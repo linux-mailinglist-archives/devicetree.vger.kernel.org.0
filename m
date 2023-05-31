@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB3EC717B98
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 730D7717BA0
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:20:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235352AbjEaJRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:17:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
+        id S231397AbjEaJUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 05:20:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235146AbjEaJRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:17:48 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E16BE
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:17:46 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f60804faf4so40021035e9.3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:17:46 -0700 (PDT)
+        with ESMTP id S235225AbjEaJTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:19:48 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E62ADC0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:19:43 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1b0201d9a9eso5689285ad.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:19:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685524664; x=1688116664;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C7AepgM+CjOnswGlLxaNY+jm6TytFlnAe++3Sm4Kqp0=;
-        b=MPGBHzPR4C/6l9q3gAZjvYeCTIQ+vM+3e5c9e697to4TKyYpcn9hdK9Nop4Wq1A0aW
-         24ptlOq10d/IGVGWGTiSwEdk8zYLBGYlG0W/iEw57zDAK+ThmwbISHO1aFU49Pu696qI
-         ssJm2Zncrrn1lrT8n7tBpo2uaz37qGWVZPuamfMYLQm1W7pJBZaa6aPkpGxY1PwpvgpU
-         TthuJ8sQvDiTaDYLs5SOJ/Rz10kfJ7Yr+E7N4wKKRDzTLL38aw3DpNgtHNqXgZldWV/j
-         sBdoC+NSmVod3ETLxRovw3v9OhUoH5jC4KdR6RciePveV+ILQixh9SLF7GsXfX0DoLS4
-         nxPw==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685524783; x=1688116783;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e/F8jIF8NqATxdAvMuHV954nGjADHoS+vIBQmhEkWOs=;
+        b=g2QKglMZH/mJ1PlHw0xaAb1Atu0wvBgVAqYnuu8mReQEONCqAC+kuvmXr1GOl2K8hi
+         PELXRr9/ZHFzDZ1y3TGPnhTkxyRxzi2WWpiULuLFvRre0MOUR2wmfXd4PYcyHYisgga9
+         vIxf3UCExwjWT2hL5wZhyPw1/THRLmg9F35utlvE2h3bHMSJOdGF1FVhqXM8zvkuKeiA
+         QDOmg7HzxXmpRYriQ+VggWvGgLlVCw55VPwJnR21xsMdQuKGIVaBL+9JKvxwHIb3unI0
+         dNbqyoJWOojJolHETOZRlnmey1S+0lkpPlrlK4bJKbtj2DG0b51oWPxTwnJeIwJ9apJ4
+         TZiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685524664; x=1688116664;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C7AepgM+CjOnswGlLxaNY+jm6TytFlnAe++3Sm4Kqp0=;
-        b=NDAoTyF87St5TTT+eldWydTLgSdyA2emsZbWlTwChyhrQ6C3QFqRSCssk+B2h6J+zA
-         n0CyxGMSdM6yFA5IVhDFR9NaWhOpWBNKKCR+tJ0stCQ5WJXIvtMnep1SGzbNNa32j27s
-         w4m/+1EfuPkHUNYhiRLH16ZcYd6Vlzn9FWF855V9eOOfWRLzsOZZ9i0wCuk1SdSWqYSh
-         4cUMEB3IFlzayR6VuHO7FRzMzWTtWb/w/0IyZRFY88+qiBmyG6LLlh9w88vENsD7kWlm
-         bT3trDYvHtaV5hGQtVyzX4v2bcBgDLwG5G+QkOn0XTBt6m2leEi7u+EiX5oNNMq4CyWF
-         vThQ==
-X-Gm-Message-State: AC+VfDxe7CERermzJBpR7EDhyf0ICO7KunBLRP4ToVNEEM0zh0e7uzfm
-        RUVISPpo57rYbBhA3aBoXc4sT/18VPrXUvqB090=
-X-Google-Smtp-Source: ACHHUZ6NYp/JcTUWk5/h2fZGRs3qgogtaSb/m+zj5/YDtdgc2Asinv1mNGaNQIRU3GHgUOrKUZDBzA==
-X-Received: by 2002:a1c:f615:0:b0:3f6:2ee:6993 with SMTP id w21-20020a1cf615000000b003f602ee6993mr3303330wmc.4.1685524664560;
-        Wed, 31 May 2023 02:17:44 -0700 (PDT)
-Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id n4-20020a05600c294400b003f3157988f8sm19683981wmd.26.2023.05.31.02.17.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 02:17:43 -0700 (PDT)
-Message-ID: <7c1dc6d2-f87d-f577-82c2-92c17105e032@baylibre.com>
-Date:   Wed, 31 May 2023 11:17:42 +0200
+        d=1e100.net; s=20221208; t=1685524783; x=1688116783;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e/F8jIF8NqATxdAvMuHV954nGjADHoS+vIBQmhEkWOs=;
+        b=Rh6ym4txZgvciDVSwXRK12V+Wpt9vssGPt/IXhnxEez0nreO3FQRItknpObZeTRx85
+         ejCWGp2Q5dknBK8zqiMBSdcp+MsV8DEM7eyWYiCeLi/HvMhHMLqLMCsclObI+h+3WGLm
+         u/9frpOa5uv+gGYY1v0uSmEf3rGnHtD6OyJYt6YUIeanYYrYhRPa5MiaGJfIyAUF6QiY
+         pCntQBHz7mxlzWjhQhewPGT+852soLrm9C4RXn6b7MLio0AILppnpxY4SOUK5xFa7Qgz
+         zk6vmWNUFpRdnIrz27gHp0KJfPdtY4tw39sphxDW1lqNLERA4rBF3BgJ1oFNCBaEjSNa
+         ehVg==
+X-Gm-Message-State: AC+VfDwWK6RBKALUnAUvIoi1xPL522kD5LMKzXduLu03nvuPiePvMWF2
+        0UJO81JjYKKhJybcj1eiDfaCWCXxCMVb7AQodYkiwg==
+X-Google-Smtp-Source: ACHHUZ6Ofzg7tjk5fXnBtT7CKLOKxvtwCuBdh95OKJ7ZvI9XlppTjSg852EOtBKSeeNZAfFL9zCpUaqHc9KwNzmaA5U=
+X-Received: by 2002:a17:902:e744:b0:1ac:86b5:70d9 with SMTP id
+ p4-20020a170902e74400b001ac86b570d9mr14542055plf.32.1685524783362; Wed, 31
+ May 2023 02:19:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3] pwm: mtk_disp: Fix the disable flow of disp_pwm
-Content-Language: en-US
-To:     Shuijing Li <shuijing.li@mediatek.com>, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     devicetree@vger.kernel.org, jitao.shi@mediatek.com,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230531031001.7440-1-shuijing.li@mediatek.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230531031001.7440-1-shuijing.li@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-8-56eb7a4d5b8e@linaro.org>
+In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-8-56eb7a4d5b8e@linaro.org>
+From:   Nicolas Belin <nbelin@baylibre.com>
+Date:   Wed, 31 May 2023 11:19:32 +0200
+Message-ID: <CAJZgTGEQ3B5M9BtDfUdyMiH+VQkWcFHU2fOJgE_1=a4E1bxMTA@mail.gmail.com>
+Subject: Re: [PATCH v5 08/17] drm/meson: fix unbind path if HDMI fails to bind
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "Lukas F. Hartmann" <lukas@mntre.com>,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,15 +85,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 05:10, Shuijing Li wrote:
-> There is a flow error in the original mtk_disp_pwm_apply() function.
-> If this function is called when the clock is disabled, there will be a
-> chance to operate the disp_pwm register, resulting in disp_pwm exception.
-> Fix this accordingly.
+Le mar. 30 mai 2023 =C3=A0 09:38, Neil Armstrong
+<neil.armstrong@linaro.org> a =C3=A9crit :
+>
+> If the case the HDMI controller fails to bind, we try to unbind
+> all components before calling drm_dev_put() which makes drm_bridge_detach=
+()
+> crash because unbinding the HDMI controller frees the bridge memory.
+>
+> The solution is the unbind all components at the end like in the remove
+> path.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/gpu/drm/meson/meson_drv.c | 23 ++++++++++++++---------
+>  1 file changed, 14 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/me=
+son_drv.c
+> index ca6d1e59e5d9..e060279dc80a 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -316,32 +316,34 @@ static int meson_drv_bind_master(struct device *dev=
+, bool has_components)
+>                 goto exit_afbcd;
+>
+>         if (has_components) {
+> -               ret =3D component_bind_all(drm->dev, drm);
+> +               ret =3D component_bind_all(dev, drm);
+>                 if (ret) {
+>                         dev_err(drm->dev, "Couldn't bind all components\n=
+");
+> +                       /* Do not try to unbind */
+> +                       has_components =3D false;
+>                         goto exit_afbcd;
+>                 }
+>         }
+>
+>         ret =3D meson_encoder_hdmi_init(priv);
+>         if (ret)
+> -               goto unbind_all;
+> +               goto exit_afbcd;
+>
+>         ret =3D meson_plane_create(priv);
+>         if (ret)
+> -               goto unbind_all;
+> +               goto exit_afbcd;
+>
+>         ret =3D meson_overlay_create(priv);
+>         if (ret)
+> -               goto unbind_all;
+> +               goto exit_afbcd;
+>
+>         ret =3D meson_crtc_create(priv);
+>         if (ret)
+> -               goto unbind_all;
+> +               goto exit_afbcd;
+>
+>         ret =3D request_irq(priv->vsync_irq, meson_irq, 0, drm->driver->n=
+ame, drm);
+>         if (ret)
+> -               goto unbind_all;
+> +               goto exit_afbcd;
+>
+>         drm_mode_config_reset(drm);
+>
+> @@ -359,15 +361,18 @@ static int meson_drv_bind_master(struct device *dev=
+, bool has_components)
+>
+>  uninstall_irq:
+>         free_irq(priv->vsync_irq, drm);
+> -unbind_all:
+> -       if (has_components)
+> -               component_unbind_all(drm->dev, drm);
+>  exit_afbcd:
+>         if (priv->afbcd.ops)
+>                 priv->afbcd.ops->exit(priv);
+>  free_drm:
+>         drm_dev_put(drm);
+>
+> +       meson_encoder_hdmi_remove(priv);
+> +       meson_encoder_cvbs_remove(priv);
+> +
+> +       if (has_components)
+> +               component_unbind_all(dev, drm);
+> +
+>         return ret;
+>  }
+>
+>
+> --
+> 2.34.1
+>
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+Works fine on a Khadas VIM3 using a TS050 panel,
+Thanks
 
--- 
-Regards,
-Alexandre
-
+Reviewed-by: Nicolas Belin <nbelin@baylibre.com>
+Tested-by: Nicolas Belin <nbelin@baylibre.com>
