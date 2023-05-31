@@ -2,42 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBDF3717A8E
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 10:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7F9E717AB0
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 10:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235102AbjEaIri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 04:47:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33388 "EHLO
+        id S232373AbjEaIvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 04:51:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234424AbjEaIrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 04:47:19 -0400
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AB78611C;
-        Wed, 31 May 2023 01:47:08 -0700 (PDT)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 192.168.10.47
-        by mg.richtek.com with MailGates ESMTP Server V5.0(746:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>); Wed, 31 May 2023 16:46:54 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Wed, 31 May
- 2023 16:46:54 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
- Transport; Wed, 31 May 2023 16:46:54 +0800
-From:   <cy_huang@richtek.com>
-To:     <sre@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <cy_huang@richtek.com>, <chiaen_wu@richtek.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] dt-bindings: power: supply: Fix rt9467 charger enable gpio active level
-Date:   Wed, 31 May 2023 16:46:53 +0800
-Message-ID: <1685522813-14481-1-git-send-email-cy_huang@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
+        with ESMTP id S235234AbjEaIu2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 04:50:28 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 309741AD;
+        Wed, 31 May 2023 01:50:19 -0700 (PDT)
+Received: from loongson.cn (unknown [223.106.25.146])
+        by gateway (Coremail) with SMTP id _____8Bx7OpLCndkvugCAA--.2102S3;
+        Wed, 31 May 2023 16:50:19 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.106.25.146])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxKL1ICndkqxyCAA--.14919S2;
+        Wed, 31 May 2023 16:50:18 +0800 (CST)
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+To:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Yingkun Meng <mengyingkun@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH 0/2] New driver for the Loongson LS2X APB DMA Controller
+Date:   Wed, 31 May 2023 16:50:03 +0800
+Message-Id: <cover.1685448898.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxKL1ICndkqxyCAA--.14919S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjvdXoWrZFyxWr47tr1kKw15Cw45Jrb_yoWfCrgEvF
+        ySqFZ7Zrn8CFy7ZFWjvr4fJFy3ZF4UX3409a4Utr1S93W3Zw1aqa4vyrZ7u3WIgFZ8ur13
+        ur40gr1xA3WUJjkaLaAFLSUrUUUU1b8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
+        D7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
+        AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
+        6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7
+        xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWln4kS
+        14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+        1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv
+        67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l42xK82IYc2
+        Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAq
+        x4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r
+        43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF
+        7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxV
+        WUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jF
+        a0PUUUUU=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
@@ -47,39 +65,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi all:
 
-The RT9467 charger enable pin is an external signal that used to enable
-battery charging. From the datasheet, the active level is low. Although
-it's already configured to logic low at driver probe function, but the
-current binding example declared it as 'GPIO_ACTIVE_LOW', this causes
-this pin be output high and disable battery charging.
+This patchset introduces you to the Loongson LS2X apbdma controller.
 
-Fixes: e1b4620fb503 ("dt-bindings: power: supply: Add Richtek RT9467 battery charger")
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-Hi,
+The Loongson LS2X APB DMA controller is available on Loongson-2K chips.
+It is a single-channel, configurable DMA controller IP core based on the
+AXI bus, whose main function is to integrate DMA functionality on a chip
+dedicated to carrying data between memory and peripherals in APB bus
+(e.g. nand).
 
-  This patch is to fix the active level for charger enable gpio polarity.
-Currently, the wrong active level makes the user confused and
-unexpectedly disable battery charging by default.
----
- Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks.
 
-diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
-index 3723717..cdc7678 100644
---- a/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
-@@ -69,7 +69,7 @@ examples:
-         reg = <0x5b>;
-         wakeup-source;
-         interrupts-extended = <&gpio_intc 32 IRQ_TYPE_LEVEL_LOW>;
--        charge-enable-gpios = <&gpio26 1 GPIO_ACTIVE_LOW>;
-+        charge-enable-gpios = <&gpio26 1 GPIO_ACTIVE_HIGH>;
- 
-         rt9467_otg_vbus: usb-otg-vbus-regulator {
-           regulator-name = "rt9467-usb-otg-vbus";
+Binbin Zhou (2):
+  dt-bindings: dmaengine: Add Loongson LS2X APB DMA controller
+  dmaengine: ls2x-apb: new driver for the Loongson LS2X APB DMA
+    controller
+
+ .../bindings/dma/loongson,ls2x-apbdma.yaml    |  61 ++
+ drivers/dma/Kconfig                           |  14 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/ls2x-apb-dma.c                    | 642 ++++++++++++++++++
+ 4 files changed, 718 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+ create mode 100644 drivers/dma/ls2x-apb-dma.c
+
 -- 
-2.7.4
+2.39.1
 
