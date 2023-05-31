@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C6471784E
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:33:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 687FA717859
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:35:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234427AbjEaHdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 03:33:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43440 "EHLO
+        id S229935AbjEaHfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 03:35:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232237AbjEaHdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:33:38 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8249A183;
-        Wed, 31 May 2023 00:33:30 -0700 (PDT)
+        with ESMTP id S234833AbjEaHfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:35:17 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669BFC0;
+        Wed, 31 May 2023 00:35:16 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685518409;
+        t=1685518515;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=bb4lcxo6KJyRdv/YgpViXadSVJCkTncR89slgKCigfI=;
-        b=fboRmsByi86S6b3FgQOOllfZLVlm1OSKDQ1ieRrq4Qibk6LaT0ZOGYeJqxE9dBpI+Lfdmn
-        1FlU5ZtzZ06CTEUdqkx0H174cfXXYGrpgJ3XetyqzyGP0awsTHtdq9QZqVA8hOf3dNzoQz
-        yAh/1r+JXL2qWt6dYwN5ladiu7KIHVXHcL58ywY012Iuh5rOHLOp2RteGMiZnDXPGkLnbn
-        4UN0vXnhD2JeIxLfXW59ARmwOJuSKgstlnNR53ulViUlDb1xV1L2iTMv2iRQaFEiPG0nso
-        yr12dYK+fy5gQbPEf/eyZP5Rz7eZjPQsRfrsZravIPP+dSZ5darBQkb3Y+m35w==
+        bh=pUnorI/qOvsXjlT7WXm+LLn3umXwCSS1TTFJLqxcPFg=;
+        b=X9/l352R3GaXjSe+wkke6JFZycBsByaaGdfLySy2l/cF/hTtqqOdyjunOS3rAeeP+Ht4ab
+        ASY0JZOBwVglAh3yjyDLS/ls7ZhKsNoBTl2t6e7gTqk0hfZyJHtj2gt45J6kM4U/T3xwpd
+        P6aWeeSUpQj1/ricomG21DcNbZyLM7CYx/WYRSwBlqddyQz7bU30a8BJcPbBKTX5oQCZ66
+        NwWWZLC/3pziD9agG6MLQbpLs4bcg8RjopjMdac3dDZVku8ympDUBZE9gJEHyLltpg0/5G
+        wlbNU3jZpHz/JvRHc0IPNeinbEsGHyXg45sbCLCIfhqL8snRpD62dp23axMQ0w==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -40,9 +40,10 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9C24BFF80D;
-        Wed, 31 May 2023 07:33:27 +0000 (UTC)
-Date:   Wed, 31 May 2023 09:33:26 +0200
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8AE65FF80C;
+        Wed, 31 May 2023 07:35:12 +0000 (UTC)
+Date:   Wed, 31 May 2023 09:35:12 +0200
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
 Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
@@ -50,13 +51,14 @@ Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
         andrew@lunn.ch, gregory.clement@bootlin.com,
         sebastian.hesselbarth@gmail.com, linux-mtd@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, enachman@marvell.com
-Subject: Re: [PATCH v7 4/4] dt-bindings: mtd: marvell-nand: Remove
- deprecated compatibles
-Message-ID: <20230531093326.26b6ced7@xps-13>
-In-Reply-To: <20230530235456.1009082-5-chris.packham@alliedtelesis.co.nz>
+        linux-arm-kernel@lists.infradead.org, enachman@marvell.com,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+Subject: Re: [PATCH v7 1/4] arm64: dts: marvell: cp11x: Fix nand_controller
+ node name according to YAML
+Message-ID: <20230531093512.0f7e12e4@xps-13>
+In-Reply-To: <20230530235456.1009082-2-chris.packham@alliedtelesis.co.nz>
 References: <20230530235456.1009082-1-chris.packham@alliedtelesis.co.nz>
-        <20230530235456.1009082-5-chris.packham@alliedtelesis.co.nz>
+        <20230530235456.1009082-2-chris.packham@alliedtelesis.co.nz>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -74,43 +76,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Chris,
 
-chris.packham@alliedtelesis.co.nz wrote on Wed, 31 May 2023 11:54:56
+chris.packham@alliedtelesis.co.nz wrote on Wed, 31 May 2023 11:54:53
 +1200:
 
-> Remove compatible values that were marked as deprecated in the old text
-> binding.
+> From: Vadym Kochan <vadym.kochan@plvision.eu>
 >=20
+> Marvell NAND controller has now YAML to validate it's DT bindings, so
+> change the node name of cp11x DTSI as it is required by nand-controller.y=
+aml
+>=20
+> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
 > ---
->  .../devicetree/bindings/mtd/marvell,nand-controller.yaml       | 3 ---
->  1 file changed, 3 deletions(-)
+>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-controlle=
-r.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> index 7cd4a2e99343..80ce854291cb 100644
-> --- a/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> @@ -18,9 +18,6 @@ properties:
->        - enum:
->            - marvell,armada370-nand-controller
->            - marvell,pxa3xx-nand-controller
-> -          - marvell,armada-8k-nand
-> -          - marvell,armada370-nand
-> -          - marvell,pxa3xx-nand
-
-Not sure what you're doing here? I would actually expect these three
-lines to have something along:
-
-                 deprecated: true
-
-and this should be part of the conversion to yaml. Or perhaps I am
-missing something?
-
-The rest of the series looks good to me.
-
+> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/b=
+oot/dts/marvell/armada-cp11x.dtsi
+> index 0cc9ee9871e7..4ec1aae0a3a9 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> @@ -468,7 +468,7 @@ CP11X_LABEL(uart3): serial@702300 {
+>  			status =3D "disabled";
+>  		};
 > =20
->    reg:
->      maxItems: 1
+> -		CP11X_LABEL(nand_controller): nand@720000 {
+> +		CP11X_LABEL(nand_controller): nand-controller@720000 {
+>  			/*
+>  			 * Due to the limitation of the pins available
+>  			 * this controller is only usable on the CPM
 
 
 Thanks,
