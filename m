@@ -2,241 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C239F7187BF
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 18:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59596718813
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 19:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbjEaQqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 12:46:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35678 "EHLO
+        id S230096AbjEaRID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 13:08:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229922AbjEaQql (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 12:46:41 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A33018C;
-        Wed, 31 May 2023 09:46:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685551600; x=1717087600;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OHgj5x9BlTOsr+jbuUC5FRn0FouRgE7wpNKD+K6wmEE=;
-  b=BkvpiWvW1b5fy4WXr/CbxjmDeGjAtSeBgvsm1IPeyWa8MAlRb3q0Y7L7
-   LcVspy0hTzBYjEku8mvMIsxnQST6ajD9+cgP4oaLPewvhe9IfAnjS0ox1
-   KzbQOO1JgHGwCBd6rrd5tHzY7lPzJX2zAyX9Ftge8doYOcOhOhBjbCPIQ
-   9iaDcOzZmhFjAZcrSZR2zJBmIxHNQx5TbDzTgwOP7E77BVw59bOj48Xox
-   Z975FgVOAwmv14wiOzYcnGDrANYGOWdCOuWbiePty/hYdVrRCu607ZCSC
-   e+SzIvBvp30EnEbD4Nn4CDxaVhnWNFK5dfAIElj11AEf4BOBMHP5ND9RW
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="354138620"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; 
-   d="scan'208";a="354138620"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2023 09:46:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="796775221"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; 
-   d="scan'208";a="796775221"
-Received: from lkp-server01.sh.intel.com (HELO fb1ced2c09fb) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 31 May 2023 09:46:34 -0700
-Received: from kbuild by fb1ced2c09fb with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q4Oy1-0001Uv-1V;
-        Wed, 31 May 2023 16:46:33 +0000
-Date:   Thu, 1 Jun 2023 00:45:56 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jeff LaBundy <jeff@labundy.com>, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, jeff@labundy.com
-Subject: Re: [PATCH 2/2] Input: iqs7222 - add support for Azoteq IQS7222D
-Message-ID: <202306010012.Dmk3yaas-lkp@intel.com>
-References: <ZHaoFCIpUM6ocPKO@nixie71>
+        with ESMTP id S230025AbjEaRH7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 13:07:59 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00ADA18B;
+        Wed, 31 May 2023 10:07:53 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34VH7hpT043694;
+        Wed, 31 May 2023 12:07:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685552863;
+        bh=tQX/X9ADA125sR0RTWyJnMsQq2TMFr67uEYkSDqfkEg=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Q9vXISPZM7JqonSwGUVxvvZuiNWvt4FThlvk1gUyDmTnEb475DrBhfuL5xZKBNwwK
+         ZLBFagHrhtFZTmnXnoHiJ0WbYIcapWAb03dZUOdnpJ/kt7TOKVH3YY1zaXTs7Yj/hl
+         ONPLHYyWg6PyYj9XeRQN6dzwRgwKtCV0wZGIWuzI=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34VH7hhl091496
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 31 May 2023 12:07:43 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ May 2023 12:07:43 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 May 2023 12:07:43 -0500
+Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34VH7c7J009279;
+        Wed, 31 May 2023 12:07:39 -0500
+Message-ID: <e25936b9-d85c-dfe8-0eb1-07b51fdfff1e@ti.com>
+Date:   Wed, 31 May 2023 22:37:38 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZHaoFCIpUM6ocPKO@nixie71>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 4/7] arm64: dts: ti: k3-j7200-mcu: Add mcu_secproxy
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nitin Yadav <n-yadav@ti.com>, Andrew Davis <afd@ti.com>
+References: <20230530165900.47502-1-nm@ti.com>
+ <20230530165900.47502-5-nm@ti.com>
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230530165900.47502-5-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
+Hi Nishanth
 
-kernel test robot noticed the following build warnings:
+On 5/30/2023 10:28 PM, Nishanth Menon wrote:
+> MCU domain has it's own secure proxy for communicating with ROM and
+> for R5 micro controller firmware operations. This is in addition to
+> the one in the main domain NAVSS subsystem that is used for general
+> purpose communication.
+>
+> Describe the node for use with bootloaders and firmware that require
+> this communication path which uses interrupts to corresponding micro
+> controller interrupt controller. Mark the node as disabled since this
+> instance does not have interrupts routed to the main processor by
+> default for a complete description of the node.
+>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+> New patch
+>
+>   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index 674e695ef844..dff23b258240 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -209,6 +209,21 @@ mcu_udmap: dma-controller@285c0000 {
+>   		};
+>   	};
+>   
+> +	secure_proxy_mcu: mailbox@2a480000 {
+I think, we should start name as  mailbox@2a380000
+> +		compatible = "ti,am654-secure-proxy";
+> +		#mbox-cells = <1>;
+> +		reg-names = "target_data", "rt", "scfg";
+> +		reg = <0x0 0x2a480000 0x0 0x80000>,
+> +		      <0x0 0x2a380000 0x0 0x80000>,
+> +		      <0x0 0x2a400000 0x0 0x80000>;
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus robh/for-next hid/for-next linus/master v6.4-rc4 next-20230531]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I think, we should have increasing order for reg. Unless there is some 
+strong reason to keep in this way.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jeff-LaBundy/Input-iqs7222-add-support-for-Azoteq-IQS7222D/20230531-095226
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/ZHaoFCIpUM6ocPKO%40nixie71
-patch subject: [PATCH 2/2] Input: iqs7222 - add support for Azoteq IQS7222D
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20230601/202306010012.Dmk3yaas-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/b8b40762779cc4c0208ff51ef9fbb2d8015ba164
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jeff-LaBundy/Input-iqs7222-add-support-for-Azoteq-IQS7222D/20230531-095226
-        git checkout b8b40762779cc4c0208ff51ef9fbb2d8015ba164
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/input/misc/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306010012.Dmk3yaas-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/input/misc/iqs7222.c: In function 'iqs7222_parse_tpad':
->> drivers/input/misc/iqs7222.c:2574:36: warning: unused variable 'val' [-Wunused-variable]
-    2574 |         unsigned int chan_sel[12], val;
-         |                                    ^~~
-
-
-vim +/val +2574 drivers/input/misc/iqs7222.c
-
-  2563	
-  2564	static int iqs7222_parse_tpad(struct iqs7222_private *iqs7222,
-  2565				      struct fwnode_handle *tpad_node, int tpad_index)
-  2566	{
-  2567		const struct iqs7222_dev_desc *dev_desc = iqs7222->dev_desc;
-  2568		struct touchscreen_properties *prop = &iqs7222->prop;
-  2569		struct i2c_client *client = iqs7222->client;
-  2570		int num_chan = dev_desc->reg_grps[IQS7222_REG_GRP_CHAN].num_row;
-  2571		int count, error, i;
-  2572		u16 *event_mask = &iqs7222->sys_setup[dev_desc->event_offset];
-  2573		u16 *tpad_setup = iqs7222->tpad_setup;
-> 2574		unsigned int chan_sel[12], val;
-  2575	
-  2576		error = iqs7222_parse_props(iqs7222, tpad_node, tpad_index,
-  2577					    IQS7222_REG_GRP_TPAD,
-  2578					    IQS7222_REG_KEY_NONE);
-  2579		if (error)
-  2580			return error;
-  2581	
-  2582		count = fwnode_property_count_u32(tpad_node, "azoteq,channel-select");
-  2583		if (count < 0) {
-  2584			dev_err(&client->dev, "Failed to count %s channels: %d\n",
-  2585				fwnode_get_name(tpad_node), count);
-  2586			return count;
-  2587		} else if (!count || count > ARRAY_SIZE(chan_sel)) {
-  2588			dev_err(&client->dev, "Invalid number of %s channels\n",
-  2589				fwnode_get_name(tpad_node));
-  2590			return -EINVAL;
-  2591		}
-  2592	
-  2593		error = fwnode_property_read_u32_array(tpad_node,
-  2594						       "azoteq,channel-select",
-  2595						       chan_sel, count);
-  2596		if (error) {
-  2597			dev_err(&client->dev, "Failed to read %s channels: %d\n",
-  2598				fwnode_get_name(tpad_node), error);
-  2599			return error;
-  2600		}
-  2601	
-  2602		tpad_setup[6] &= ~GENMASK(num_chan - 1, 0);
-  2603	
-  2604		for (i = 0; i < ARRAY_SIZE(chan_sel); i++) {
-  2605			tpad_setup[8 + i] = 0;
-  2606			if (i >= count || chan_sel[i] == U8_MAX)
-  2607				continue;
-  2608	
-  2609			if (chan_sel[i] >= num_chan) {
-  2610				dev_err(&client->dev, "Invalid %s channel: %u\n",
-  2611					fwnode_get_name(tpad_node), chan_sel[i]);
-  2612				return -EINVAL;
-  2613			}
-  2614	
-  2615			/*
-  2616			 * The following fields indicate which channels participate in
-  2617			 * the trackpad, as well as each channel's relative placement.
-  2618			 */
-  2619			tpad_setup[6] |= BIT(chan_sel[i]);
-  2620			tpad_setup[8 + i] = chan_sel[i] * 34 + 1072;
-  2621		}
-  2622	
-  2623		tpad_setup[7] = dev_desc->touch_link;
-  2624		if (fwnode_property_present(tpad_node, "azoteq,use-prox"))
-  2625			tpad_setup[7] -= 2;
-  2626	
-  2627		for (i = 0; i < ARRAY_SIZE(iqs7222_tp_events); i++)
-  2628			tpad_setup[20] &= ~(iqs7222_tp_events[i].strict |
-  2629					    iqs7222_tp_events[i].enable);
-  2630	
-  2631		for (i = 0; i < ARRAY_SIZE(iqs7222_tp_events); i++) {
-  2632			const char *event_name = iqs7222_tp_events[i].name;
-  2633			struct fwnode_handle *event_node;
-  2634	
-  2635			event_node = fwnode_get_named_child_node(tpad_node, event_name);
-  2636			if (!event_node)
-  2637				continue;
-  2638	
-  2639			if (fwnode_property_present(event_node,
-  2640						    "azoteq,gesture-angle-tighten"))
-  2641				tpad_setup[20] |= iqs7222_tp_events[i].strict;
-  2642	
-  2643			tpad_setup[20] |= iqs7222_tp_events[i].enable;
-  2644	
-  2645			error = iqs7222_parse_event(iqs7222, event_node, tpad_index,
-  2646						    IQS7222_REG_GRP_TPAD,
-  2647						    iqs7222_tp_events[i].reg_key,
-  2648						    iqs7222_tp_events[i].link, 1566,
-  2649						    NULL,
-  2650						    &iqs7222->tp_code[i]);
-  2651			fwnode_handle_put(event_node);
-  2652			if (error)
-  2653				return error;
-  2654	
-  2655			if (!dev_desc->event_offset)
-  2656				continue;
-  2657	
-  2658			/*
-  2659			 * The press/release event is determined based on whether the
-  2660			 * coordinate fields report 0xFFFF and solely relies on touch
-  2661			 * or proximity interrupts to be unmasked.
-  2662			 */
-  2663			if (i)
-  2664				*event_mask |= IQS7222_EVENT_MASK_TPAD;
-  2665			else if (tpad_setup[7] == dev_desc->touch_link)
-  2666				*event_mask |= IQS7222_EVENT_MASK_TOUCH;
-  2667			else
-  2668				*event_mask |= IQS7222_EVENT_MASK_PROX;
-  2669		}
-  2670	
-  2671		if (!iqs7222->tp_code[0])
-  2672			return 0;
-  2673	
-  2674		input_set_abs_params(iqs7222->keypad, ABS_X,
-  2675				     0, (tpad_setup[4] ? : 1) - 1, 0, 0);
-  2676	
-  2677		input_set_abs_params(iqs7222->keypad, ABS_Y,
-  2678				     0, (tpad_setup[5] ? : 1) - 1, 0, 0);
-  2679	
-  2680		touchscreen_parse_properties(iqs7222->keypad, false, prop);
-  2681	
-  2682		if (prop->max_x >= U16_MAX || prop->max_y >= U16_MAX) {
-  2683			dev_err(&client->dev, "Invalid trackpad size: %u*%u\n",
-  2684				prop->max_x, prop->max_y);
-  2685			return -EINVAL;
-  2686		}
-  2687	
-  2688		tpad_setup[4] = prop->max_x + 1;
-  2689		tpad_setup[5] = prop->max_y + 1;
-  2690	
-  2691		return 0;
-  2692	}
-  2693	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +		/*
+> +		 * Marked Disabled:
+> +		 * Node is incomplete as it is meant for bootloaders and
+> +		 * firmware on non-MPU processors
+> +		 */
+> +		status = "disabled";
+> +	};
+> +
+>   	mcu_cpsw: ethernet@46000000 {
+>   		compatible = "ti,j721e-cpsw-nuss";
+>   		#address-cells = <2>;
