@@ -2,180 +2,510 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9CC8717E0B
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 13:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDEE9717E1E
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 13:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235212AbjEaL3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 07:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40336 "EHLO
+        id S229765AbjEaLfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 07:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232331AbjEaL3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 07:29:42 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08C96E56;
-        Wed, 31 May 2023 04:29:19 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f4b80bf93aso6457152e87.0;
-        Wed, 31 May 2023 04:29:18 -0700 (PDT)
+        with ESMTP id S234876AbjEaLer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 07:34:47 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 064B510B;
+        Wed, 31 May 2023 04:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685532556; x=1688124556;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=akQTwso+lPrye4sUUo/UEde3lPFhlHH3Ok+kinULKsE=;
-        b=oAoEDv4Aza7S5BHUV4eC09G+wt7e6HOPCVH1b4j4rkPMYrV9B3ZZpYCR2jjkH/h599
-         TBb6SGVM4n3BctePdjrf6tHW8nYa+oaVKqa+qmJeEXM1/K/nzOihGhqxE4R7ie1BVYpG
-         tAFPSqtfczV2DxY02Oadlfr4nm8SU/uVktX0//f04A4xkDhuV1udQYc9eJwhth37K17n
-         lt0Lg+KCJR8GIgXbscD+cGonb8hzBP1zCXmM7o0C1QuOtW2UYBXVkH/mMVqDpZR2vC4n
-         9Ve4AMoBEi7jrYAL/MgSp87qMh+NyATMpH/vxxVaTVAXhqiHGtBupbaDxmz6gIKD0rZb
-         ylwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685532556; x=1688124556;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=akQTwso+lPrye4sUUo/UEde3lPFhlHH3Ok+kinULKsE=;
-        b=H3zVq81OaMFlIb3Kuo6o7zH55hEa/5l8O9zMliYYBM2Y0+xwQlVIvR1fmQYj2hvX/6
-         ZMt6HMmaVWg387mTXlOVr909rmZmq23C7QX13UhlKQ1ryF7vYQdXHCMrgbmtUfKnhkC2
-         FzBNuivV2pJaVtZsZ918HTZSa5ASFhkd70fGIrQ/vSG0dVMx9V35Mp3wo91svuO5Yllp
-         swQuARSfWU/pSz4cK5eTb5VMlCKdj0xgpMbrI51pUyvlVOWgVFj2QgjmPc/C5+kv8gpT
-         Fco99V5anY41Lr/t5MqJP0/4gZ6tKDRuFQHY0xVr9A8lAD1MqSIqEccArzV4l3bUeksh
-         PDJg==
-X-Gm-Message-State: AC+VfDxGFIb5iESgyxXYm9wJef9zHO8s3FcXd4/evpvpW2ZqNti6f9qg
-        V2UcCuiPxrvvFgl7oR3XnkA=
-X-Google-Smtp-Source: ACHHUZ4OeyaYtXrALpVXy/Ab24IG+OZaeMPn8A02VVjP1dyIT3Q15HKxpDhLN7KpPzMoMAFaq9yXsQ==
-X-Received: by 2002:ac2:520a:0:b0:4f3:a485:919f with SMTP id a10-20020ac2520a000000b004f3a485919fmr2512817lfl.32.1685532556136;
-        Wed, 31 May 2023 04:29:16 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id p3-20020a19f003000000b004d40e22c1eesm683097lfc.252.2023.05.31.04.29.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 May 2023 04:29:15 -0700 (PDT)
-Date:   Wed, 31 May 2023 14:29:13 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
-        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
-        kishon@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v16 00/22] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
-Message-ID: <20230531112913.n3bljxn2ew6x5t7b@mobilestation>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685532884; x=1717068884;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=DUGv+xMCQg6U9dZBPdbVk2kTCvbNzMJsb2Y5MfrpPnA=;
+  b=Kem6Vx5qow1NCcd7m0yjpak2xj72rSvaTAFGYLHfZe9dI+UQjuTCXhSY
+   lbzKuk/CUnC5lZVDpBVCuc6gK7xIc7u8i4msLGIVYvymIaW+vPCXsspx3
+   x7ef3b813ph8wNZXcuU69Hhsrid6bq0Oo3o956B+DFZT6izHv1xIlfjl0
+   4Ajp51vV5RfLb753qo/Ygutka11sdYz9DKVOZijQ594nixidBFmDg4VFv
+   YlDbxNGyR/7GxiqxlAOfB7C7B3qRI7eKv11NNkb4WG9S7xA/5Cz0VeP42
+   sh2XxWINa7zSViKH9MWqBHXxUrEqLZD9aLos88OQneYl9J+HsnhzihtKQ
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,207,1681164000"; 
+   d="scan'208";a="31194083"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 31 May 2023 13:34:42 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 31 May 2023 13:34:42 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 31 May 2023 13:34:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685532882; x=1717068882;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=DUGv+xMCQg6U9dZBPdbVk2kTCvbNzMJsb2Y5MfrpPnA=;
+  b=hloaGETWQKadDGE7VFsT8a3y+O3vkyAiWPBUJYdQQSL7jf6SFFZd88Ob
+   QtPkTILTtZUZk8NB8GeJPLxd8NdIcWVej+feKjFlvlY8q1OtTv+83XF+l
+   bFMRNWIPcPt/NTZcKxiafklMNESZbqm8z35n/FXFJrHElGhlshDGqg5Zd
+   /eJnmv9s81HRXsuPe7Ilvpdq5LAhkpYLnci3aTKL6HbfbrXaFf2r4fj+2
+   77qr4/+A5+sNyw1KCaRZxhqrRr9rbMWIH6rkLUYSuZyFnRS9BcFytr/WD
+   C53Kl0Y8PbIVxCgDbmc6uQjpeV59k3JpWqGY4Qjad4dnsNJi13WwT3qz6
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,207,1681164000"; 
+   d="scan'208";a="31194082"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 31 May 2023 13:34:42 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C7594280099;
+        Wed, 31 May 2023 13:34:41 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     ping.bai@nxp.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Joy Zou <joy.zou@nxp.com>
+Subject: Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a support
+Date:   Wed, 31 May 2023 13:34:41 +0200
+Message-ID: <3505527.iIbC2pHGDl@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230531065724.3671795-3-joy.zou@nxp.com>
+References: <20230531065724.3671795-1-joy.zou@nxp.com> <20230531065724.3671795-3-joy.zou@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yoshihiro
+Hi,
 
-On Wed, May 10, 2023 at 03:22:12PM +0900, Yoshihiro Shimoda wrote:
-> Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
-> To support them, modify PCIe DesignWare common codes.
+Am Mittwoch, 31. Mai 2023, 08:57:23 CEST schrieb Joy Zou:
+> Adding support for pmic pca9451a.
+>=20
+> This patch support old and new pmic pca9451a. The new pmic trimed BUCK1.
+> The default value of Toff_Deb is used to distinguish the old and new pmic.
+>=20
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+>  drivers/regulator/pca9450-regulator.c | 262 ++++++++++++++++++++++++--
+>  include/linux/regulator/pca9450.h     |   2 +
+>  2 files changed, 252 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/drivers/regulator/pca9450-regulator.c
+> b/drivers/regulator/pca9450-regulator.c index 91bfb7e026c9..654aa4fbe494
+> 100644
+> --- a/drivers/regulator/pca9450-regulator.c
+> +++ b/drivers/regulator/pca9450-regulator.c
+> @@ -104,7 +104,15 @@ static const struct regulator_ops
+> pca9450_ldo_regulator_ops =3D { * 0.60 to 2.1875V (12.5mV step)
+>   */
+>  static const struct linear_range pca9450_dvs_buck_volts[] =3D {
+> -	REGULATOR_LINEAR_RANGE(600000,  0x00, 0x7F, 12500),
+> +	REGULATOR_LINEAR_RANGE(600000, 0x00, 0x7F, 12500),
+> +};
+> +
+> +/*
+> + * BUCK1/3
+> + * 0.65 to 2.2375V (12.5mV step)
 
-Thanks for the updated series. I'll have a look at it on this week.
+Reading this comment, it seems the same distinction needs to be done for BU=
+CK3=20
+as well, no?
 
--Serge(y)
+> + */
+> +static const struct linear_range pca9450_trim_dvs_buck_volts[] =3D {
+> +	REGULATOR_LINEAR_RANGE(650000, 0x00, 0x7F, 12500),
+>  };
+>=20
+>  /*
+> @@ -663,6 +671,207 @@ static const struct pca9450_regulator_desc
+> pca9450bc_regulators[] =3D { },
+>  };
+>=20
+> +static const struct pca9450_regulator_desc pca9451a_regulators[] =3D {
+> +	{
+> +		.desc =3D {
+> +			.name =3D "buck1",
+> +			.of_match =3D of_match_ptr("BUCK1"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_BUCK1,
+> +			.ops =3D &pca9450_dvs_buck_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_BUCK1_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_dvs_buck_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_dvs_buck_volts),
+> +			.vsel_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
+> +			.vsel_mask =3D BUCK1OUT_DVS0_MASK,
+> +			.enable_reg =3D PCA9450_REG_BUCK1CTRL,
+> +			.enable_mask =3D BUCK1_ENMODE_MASK,
+> +			.enable_val =3D BUCK_ENMODE_ONREQ,
+> +			.ramp_mask =3D BUCK1_RAMP_MASK,
+> +			.ramp_delay_table =3D pca9450_dvs_buck_ramp_table,
+> +			.n_ramp_values =3D=20
+ARRAY_SIZE(pca9450_dvs_buck_ramp_table),
+> +			.owner =3D THIS_MODULE,
+> +			.of_parse_cb =3D pca9450_set_dvs_levels,
+> +		},
+> +		.dvs =3D {
+> +			.run_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
+> +			.run_mask =3D BUCK1OUT_DVS0_MASK,
+> +			.standby_reg =3D PCA9450_REG_BUCK1OUT_DVS1,
+> +			.standby_mask =3D BUCK1OUT_DVS1_MASK,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "buck1_trim",
+> +			.of_match =3D of_match_ptr("BUCK1"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_BUCK1,
+> +			.ops =3D &pca9450_dvs_buck_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_BUCK1_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_trim_dvs_buck_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_trim_dvs_buck_volts),
+> +			.vsel_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
+> +			.vsel_mask =3D BUCK1OUT_DVS0_MASK,
+> +			.enable_reg =3D PCA9450_REG_BUCK1CTRL,
+> +			.enable_mask =3D BUCK1_ENMODE_MASK,
+> +			.enable_val =3D BUCK_ENMODE_ONREQ,
+> +			.ramp_mask =3D BUCK1_RAMP_MASK,
+> +			.ramp_delay_table =3D pca9450_dvs_buck_ramp_table,
+> +			.n_ramp_values =3D=20
+ARRAY_SIZE(pca9450_dvs_buck_ramp_table),
+> +			.owner =3D THIS_MODULE,
+> +			.of_parse_cb =3D pca9450_set_dvs_levels,
+> +		},
+> +		.dvs =3D {
+> +			.run_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
+> +			.run_mask =3D BUCK1OUT_DVS0_MASK,
+> +			.standby_reg =3D PCA9450_REG_BUCK1OUT_DVS1,
+> +			.standby_mask =3D BUCK1OUT_DVS1_MASK,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "buck2",
+> +			.of_match =3D of_match_ptr("BUCK2"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_BUCK2,
+> +			.ops =3D &pca9450_dvs_buck_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_BUCK2_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_dvs_buck_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_dvs_buck_volts),
+> +			.vsel_reg =3D PCA9450_REG_BUCK2OUT_DVS0,
+> +			.vsel_mask =3D BUCK2OUT_DVS0_MASK,
+> +			.enable_reg =3D PCA9450_REG_BUCK2CTRL,
+> +			.enable_mask =3D BUCK2_ENMODE_MASK,
+> +			.enable_val =3D BUCK_ENMODE_ONREQ_STBYREQ,
+> +			.ramp_mask =3D BUCK2_RAMP_MASK,
+> +			.ramp_delay_table =3D pca9450_dvs_buck_ramp_table,
+> +			.n_ramp_values =3D=20
+ARRAY_SIZE(pca9450_dvs_buck_ramp_table),
+> +			.owner =3D THIS_MODULE,
+> +			.of_parse_cb =3D pca9450_set_dvs_levels,
+> +		},
+> +		.dvs =3D {
+> +			.run_reg =3D PCA9450_REG_BUCK2OUT_DVS0,
+> +			.run_mask =3D BUCK2OUT_DVS0_MASK,
+> +			.standby_reg =3D PCA9450_REG_BUCK2OUT_DVS1,
+> +			.standby_mask =3D BUCK2OUT_DVS1_MASK,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "buck4",
+> +			.of_match =3D of_match_ptr("BUCK4"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_BUCK4,
+> +			.ops =3D &pca9450_buck_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_BUCK4_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_buck_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_buck_volts),
+> +			.vsel_reg =3D PCA9450_REG_BUCK4OUT,
+> +			.vsel_mask =3D BUCK4OUT_MASK,
+> +			.enable_reg =3D PCA9450_REG_BUCK4CTRL,
+> +			.enable_mask =3D BUCK4_ENMODE_MASK,
+> +			.enable_val =3D BUCK_ENMODE_ONREQ,
+> +			.owner =3D THIS_MODULE,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "buck5",
+> +			.of_match =3D of_match_ptr("BUCK5"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_BUCK5,
+> +			.ops =3D &pca9450_buck_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_BUCK5_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_buck_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_buck_volts),
+> +			.vsel_reg =3D PCA9450_REG_BUCK5OUT,
+> +			.vsel_mask =3D BUCK5OUT_MASK,
+> +			.enable_reg =3D PCA9450_REG_BUCK5CTRL,
+> +			.enable_mask =3D BUCK5_ENMODE_MASK,
+> +			.enable_val =3D BUCK_ENMODE_ONREQ,
+> +			.owner =3D THIS_MODULE,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "buck6",
+> +			.of_match =3D of_match_ptr("BUCK6"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_BUCK6,
+> +			.ops =3D &pca9450_buck_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_BUCK6_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_buck_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_buck_volts),
+> +			.vsel_reg =3D PCA9450_REG_BUCK6OUT,
+> +			.vsel_mask =3D BUCK6OUT_MASK,
+> +			.enable_reg =3D PCA9450_REG_BUCK6CTRL,
+> +			.enable_mask =3D BUCK6_ENMODE_MASK,
+> +			.enable_val =3D BUCK_ENMODE_ONREQ,
+> +			.owner =3D THIS_MODULE,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "ldo1",
+> +			.of_match =3D of_match_ptr("LDO1"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_LDO1,
+> +			.ops =3D &pca9450_ldo_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_LDO1_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_ldo1_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_ldo1_volts),
+> +			.vsel_reg =3D PCA9450_REG_LDO1CTRL,
+> +			.vsel_mask =3D LDO1OUT_MASK,
+> +			.enable_reg =3D PCA9450_REG_LDO1CTRL,
+> +			.enable_mask =3D LDO1_EN_MASK,
+> +			.owner =3D THIS_MODULE,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "ldo4",
+> +			.of_match =3D of_match_ptr("LDO4"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_LDO4,
+> +			.ops =3D &pca9450_ldo_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_LDO4_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_ldo34_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_ldo34_volts),
+> +			.vsel_reg =3D PCA9450_REG_LDO4CTRL,
+> +			.vsel_mask =3D LDO4OUT_MASK,
+> +			.enable_reg =3D PCA9450_REG_LDO4CTRL,
+> +			.enable_mask =3D LDO4_EN_MASK,
+> +			.owner =3D THIS_MODULE,
+> +		},
+> +	},
+> +	{
+> +		.desc =3D {
+> +			.name =3D "ldo5",
+> +			.of_match =3D of_match_ptr("LDO5"),
+> +			.regulators_node =3D of_match_ptr("regulators"),
+> +			.id =3D PCA9450_LDO5,
+> +			.ops =3D &pca9450_ldo_regulator_ops,
+> +			.type =3D REGULATOR_VOLTAGE,
+> +			.n_voltages =3D PCA9450_LDO5_VOLTAGE_NUM,
+> +			.linear_ranges =3D pca9450_ldo5_volts,
+> +			.n_linear_ranges =3D=20
+ARRAY_SIZE(pca9450_ldo5_volts),
+> +			.vsel_reg =3D PCA9450_REG_LDO5CTRL_H,
+> +			.vsel_mask =3D LDO5HOUT_MASK,
+> +			.enable_reg =3D PCA9450_REG_LDO5CTRL_H,
+> +			.enable_mask =3D LDO5H_EN_MASK,
+> +			.owner =3D THIS_MODULE,
+> +		},
+> +	},
+> +};
+> +
+>  static irqreturn_t pca9450_irq_handler(int irq, void *data)
+>  {
+>  	struct pca9450 *pca9450 =3D data;
+> @@ -708,8 +917,9 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
+>  	const struct pca9450_regulator_desc	*regulator_desc;
+>  	struct regulator_config config =3D { };
+>  	struct pca9450 *pca9450;
+> -	unsigned int device_id, i;
+> +	unsigned int device_id, i, val;
+>  	unsigned int reset_ctrl;
+> +	bool pmic_trim =3D false;
+>  	int ret;
+>=20
+>  	if (!i2c->irq) {
+> @@ -721,6 +931,22 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
+>  	if (!pca9450)
+>  		return -ENOMEM;
+>=20
+> +	pca9450->regmap =3D devm_regmap_init_i2c(i2c,
+> +					      =20
+&pca9450_regmap_config);
+> +	if (IS_ERR(pca9450->regmap)) {
+> +		dev_err(&i2c->dev, "regmap initialization failed\n");
+> +		return PTR_ERR(pca9450->regmap);
+> +	}
+> +
+> +	ret =3D regmap_read(pca9450->regmap, PCA9450_REG_PWRCTRL, &val);
+> +	if (ret) {
+> +		dev_err(&i2c->dev, "Read device id error\n");
+> +		return ret;
+> +	}
+> +
+> +	if (val & PCA9450_REG_PWRCTRL_TOFF_DEB)
+> +		pmic_trim =3D true;
 
-> 
-> Changes from v15:
-> https://lore.kernel.org/linux-pci/20230509124156.150200-1-yoshihiro.shimoda.uh@renesas.com/
->  - Based on next-20230509 + pci.git / next branch (the commit 174977dc80b7
->    ("Merge branch 'pci/controller/vmd'"))
->  - (no change, JFYI) Based on the following cleanups patches:
->    [PATCH v4 00/14] PCI: dwc: Relatively simple fixes and cleanups
->    https://lore.kernel.org/linux-pci/20230414021832.13167-1-Sergey.Semin@baikalelectronics.ru/
->  - Modify the code comments in patch 8/22.
-> 
-> Changes from v14:
-> https://lore.kernel.org/linux-pci/20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com/
->  - Based on next-20230508.
->  - (no change, JFYI) Based on the following cleanups patches:
->    [PATCH v4 00/14] PCI: dwc: Relatively simple fixes and cleanups
->    https://lore.kernel.org/linux-pci/20230414021832.13167-1-Sergey.Semin@baikalelectronics.ru/
->  - Add Reviewed-by from Serge in the patch {4,5,15,}/21.
->  - Drop PCI_EXP_LNKCAP_MLW handling of pcie-tegra194.c because
->    pcie-designware.c takes care of it.
->  - Change subjects in the patch {5,6,7,8,10}/21.
->  - Drop dw_pcie_prog_ep_outbound_atu().
->  - Modify dw_pcie_link_set_max_link_width() to improve code readability.
->  - Move the retrain code to .start_link().
->  - Fix some minor issues.
-> 
-> Yoshihiro Shimoda (22):
->   PCI: Add PCI_EXP_LNKCAP_MLW macros
->   PCI: Add PCI_HEADER_TYPE_MULTI_FUNC
->   PCI: Add INTx Mechanism Messages macros
->   PCI: Rename PCI_EPC_IRQ_LEGACY to PCI_EPC_IRQ_INTX
->   PCI: dwc: Rename "legacy_irq" to "INTx_irq"
->   PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()
->   PCI: dwc: Add outbound MSG TLPs support
->   PCI: designware-ep: Add INTx IRQs support
->   PCI: dwc: Add dw_pcie_link_set_max_link_width()
->   PCI: dwc: Modify PCIE_PORT_LINK_CONTROL handling
->   PCI: dwc: Add dw_pcie_link_set_max_cap_width()
->   PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting.
->   PCI: dwc: Add EDMA_UNROLL capability flag
->   PCI: dwc: Expose dw_pcie_ep_exit() to module
->   PCI: dwc: Introduce .ep_pre_init() and .ep_deinit()
->   dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
->   dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
->   dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
->   PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
->   PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
->   MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
->   misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
-> 
->  .../bindings/pci/rcar-gen4-pci-ep.yaml        |  98 +++++++++
->  .../bindings/pci/rcar-gen4-pci-host.yaml      | 109 ++++++++++
->  .../bindings/pci/snps,dw-pcie-ep.yaml         |   4 +-
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml |   4 +-
->  MAINTAINERS                                   |   1 +
->  drivers/misc/pci_endpoint_test.c              |   4 +
->  .../pci/controller/cadence/pcie-cadence-ep.c  |   2 +-
->  drivers/pci/controller/dwc/Kconfig            |  18 ++
->  drivers/pci/controller/dwc/Makefile           |   4 +
->  drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
->  drivers/pci/controller/dwc/pci-imx6.c         |   4 +-
->  drivers/pci/controller/dwc/pci-keystone.c     |   2 +-
->  .../pci/controller/dwc/pci-layerscape-ep.c    |   4 +-
->  drivers/pci/controller/dwc/pcie-artpec6.c     |   2 +-
->  .../pci/controller/dwc/pcie-designware-ep.c   |  98 +++++++--
->  .../pci/controller/dwc/pcie-designware-host.c |  52 +++--
->  .../pci/controller/dwc/pcie-designware-plat.c |   4 +-
->  drivers/pci/controller/dwc/pcie-designware.c  | 160 ++++++++-------
->  drivers/pci/controller/dwc/pcie-designware.h  |  33 ++-
->  drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
->  drivers/pci/controller/dwc/pcie-qcom-ep.c     |   4 +-
->  .../pci/controller/dwc/pcie-rcar-gen4-ep.c    | 166 +++++++++++++++
->  .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 141 +++++++++++++
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 190 ++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  46 +++++
->  drivers/pci/controller/dwc/pcie-tegra194.c    |   8 +-
->  drivers/pci/controller/dwc/pcie-uniphier-ep.c |   2 +-
->  drivers/pci/controller/pcie-rcar-ep.c         |   2 +-
->  drivers/pci/controller/pcie-rockchip-ep.c     |   2 +-
->  drivers/pci/endpoint/functions/pci-epf-test.c |  10 +-
->  drivers/pci/pci.h                             |  18 ++
->  drivers/pci/probe.c                           |   2 +-
->  drivers/pci/quirks.c                          |   4 +-
->  include/linux/pci-epc.h                       |   4 +-
->  include/uapi/linux/pci_regs.h                 |   7 +
->  35 files changed, 1061 insertions(+), 152 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
-> 
-> -- 
-> 2.25.1
-> 
+PCA9450_REG_PWRCTRL is a read/write register. How is it possible to detect =
+a=20
+chip revision using a bit which can be changed by software e.g. bootloader?
+Despite that this bit sets debounce time for PMIC_ON_REQ, how is this relat=
+ed=20
+to BUCK1 voltage range?
+
+> +
+>  	switch (type) {
+>  	case PCA9450_TYPE_PCA9450A:
+>  		regulator_desc =3D pca9450a_regulators;
+> @@ -730,6 +956,10 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
+>  		regulator_desc =3D pca9450bc_regulators;
+>  		pca9450->rcnt =3D ARRAY_SIZE(pca9450bc_regulators);
+>  		break;
+> +	case PCA9450_TYPE_PCA9451A:
+> +		regulator_desc =3D pca9451a_regulators;
+> +		pca9450->rcnt =3D ARRAY_SIZE(pca9451a_regulators);
+> +		break;
+>  	default:
+>  		dev_err(&i2c->dev, "Unknown device type");
+>  		return -EINVAL;
+> @@ -741,13 +971,6 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
+>=20
+>  	dev_set_drvdata(&i2c->dev, pca9450);
+>=20
+> -	pca9450->regmap =3D devm_regmap_init_i2c(i2c,
+> -					      =20
+&pca9450_regmap_config);
+> -	if (IS_ERR(pca9450->regmap)) {
+> -		dev_err(&i2c->dev, "regmap initialization failed\n");
+> -		return PTR_ERR(pca9450->regmap);
+> -	}
+> -
+>  	ret =3D regmap_read(pca9450->regmap, PCA9450_REG_DEV_ID, &device_id);
+>  	if (ret) {
+>  		dev_err(&i2c->dev, "Read device id error\n");
+> @@ -756,7 +979,8 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
+>=20
+>  	/* Check your board and dts for match the right pmic */
+>  	if (((device_id >> 4) !=3D 0x1 && type =3D=3D PCA9450_TYPE_PCA9450A) ||
+> -	    ((device_id >> 4) !=3D 0x3 && type =3D=3D PCA9450_TYPE_PCA9450BC)) {
+> +	    ((device_id >> 4) !=3D 0x3 && type =3D=3D PCA9450_TYPE_PCA9450BC) ||
+> +	    ((device_id >> 4) !=3D 0x9 && type =3D=3D PCA9450_TYPE_PCA9451A)) {
+>  		dev_err(&i2c->dev, "Device id(%x) mismatched\n",
+>  			device_id >> 4);
+>  		return -EINVAL;
+> @@ -767,7 +991,16 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
+>  		struct regulator_dev *rdev;
+>  		const struct pca9450_regulator_desc *r;
+>=20
+> -		r =3D &regulator_desc[i];
+> +		if (type =3D=3D PCA9450_TYPE_PCA9451A &&
+> +		    !strcmp((&regulator_desc[i])->desc.name, "buck1") &&=20
+pmic_trim) {
+> +			r =3D &regulator_desc[i + 1];
+> +			i =3D i + 1;
+> +		} else if (type =3D=3D PCA9450_TYPE_PCA9451A &&
+> +			   !strcmp((&regulator_desc[i])->desc.name,=20
+"buck1")) {
+> +			r =3D &regulator_desc[i];
+> +			i =3D i + 1;
+
+I would put this in a single 'type =3D=3D PCA9450_TYPE_PCA9451A' branch, to=
+=20
+indicate that only PCA9451A needs some kind of special handling.
+
+> +		} else
+> +			r =3D &regulator_desc[i];
+>  		desc =3D &r->desc;
+>=20
+>  		config.regmap =3D pca9450->regmap;
+> @@ -847,7 +1080,8 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
+>  	}
+>=20
+>  	dev_info(&i2c->dev, "%s probed.\n",
+> -		type =3D=3D PCA9450_TYPE_PCA9450A ? "pca9450a" : "pca9450bc");
+> +		type =3D=3D PCA9450_TYPE_PCA9450A ? "pca9450a" :
+> +		(type =3D=3D PCA9450_TYPE_PCA9451A ? "pca9451a" :=20
+"pca9450bc"));
+>=20
+>  	return 0;
+>  }
+> @@ -865,6 +1099,10 @@ static const struct of_device_id pca9450_of_match[]=
+ =3D
+> { .compatible =3D "nxp,pca9450c",
+>  		.data =3D (void *)PCA9450_TYPE_PCA9450BC,
+>  	},
+> +	{
+> +		.compatible =3D "nxp,pca9451a",
+> +		.data =3D (void *)PCA9450_TYPE_PCA9451A,
+> +	},
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, pca9450_of_match);
+> diff --git a/include/linux/regulator/pca9450.h
+> b/include/linux/regulator/pca9450.h index 3c01c2bf84f5..5dd79f52165a 1006=
+44
+> --- a/include/linux/regulator/pca9450.h
+> +++ b/include/linux/regulator/pca9450.h
+> @@ -9,6 +9,7 @@
+>  enum pca9450_chip_type {
+>  	PCA9450_TYPE_PCA9450A =3D 0,
+>  	PCA9450_TYPE_PCA9450BC,
+> +	PCA9450_TYPE_PCA9451A,
+>  	PCA9450_TYPE_AMOUNT,
+>  };
+>=20
+> @@ -93,6 +94,7 @@ enum {
+>  	PCA9450_MAX_REGISTER	    =3D 0x2F,
+>  };
+>=20
+> +#define PCA9450_REG_PWRCTRL_TOFF_DEB    BIT(5)
+
+Newline here please.
+
+Best regards,
+Alexander
+
+>  /* PCA9450 BUCK ENMODE bits */
+>  #define BUCK_ENMODE_OFF			0x00
+>  #define BUCK_ENMODE_ONREQ		0x01
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
