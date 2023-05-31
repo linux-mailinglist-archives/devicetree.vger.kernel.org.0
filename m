@@ -2,102 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08ED37189C5
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 362437189CB
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbjEaTCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 15:02:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43824 "EHLO
+        id S229648AbjEaTGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 15:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjEaTCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:02:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8330FA3;
-        Wed, 31 May 2023 12:02:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 185C163131;
-        Wed, 31 May 2023 19:02:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35457C433EF;
-        Wed, 31 May 2023 19:02:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685559750;
-        bh=vu5Qjh+VB1GDRs5s1cdR+tuxP7UelRPqE3c33LlYEJo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=bOvXz+L3v70OxM0QZ95wPRW3XwWjg/e3v5jXibLPWljPtST7UglAxPNe6uqLouG+E
-         vawYzs5G/x9QhfB8i7RPtbeb+6BjLr1lU+kTc0KBxumX5TtT07QMRlJ2eIhPL/l6t0
-         eMKCF0+zoQyTaj41D8TvmUr/pEaqH98cfAdN4ZlZ9G6MV4guPQ/pkBS/G9YSPRwMda
-         TchlsMvrQVmcIlw9UywyZmnjYnFrp7Yi19YCiDWqkeEjp9rxIfKgZeGh1blFAZvAvc
-         QGb3w7fwEbnoY2YAhNuoLMLJk44nCdutBqQ0iihZkAoJS5eMu2b0UfCGQTuqgHlXg0
-         anje3ozSPud3A==
-Date:   Wed, 31 May 2023 14:02:28 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Ben Dooks <ben.dooks@codethink.co.uk>
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        bhelgaas@google.com, Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Sudip Mukherjee <sudip.mukherjee@codethink.co.uk>,
-        Jude Onyenegecha <jude.onyenegecha@codethink.co.uk>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jeegar Lakhani <jeegar.lakhani@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 2/2] dt-bindings: updated max-link-speed for newer
- generations
-Message-ID: <ZHeZxPRGw+X83V1k@bhelgaas>
+        with ESMTP id S229643AbjEaTGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:06:47 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEAA8A3
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:06:43 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-514ab6cb529so2788678a12.1
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:06:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685560002; x=1688152002;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yR7IN/rJmbW/7sc8ydTiLPthUafqqH/Du1ORqrZgWWg=;
+        b=o78KcazMr6xQ4rfYIG/MI2lJw3SPhYcP/anXxXwf/QirEg3eLc3JBqJEygjdozMb7T
+         XMuj5WnUIXQWbN4bOrUXg89LTE5tOW/ueBje9/PlO/HCVoCoImvsiinSkYELAGzQ98fD
+         Bjxs6XBXr1XXVIqtc4vHLr/UaV5Ye4W0GirbhdyWHMA2teayX/xQYH72cbQbjVdoCHSy
+         dsbJsltwxpL1qnbq250cq/HzKvCtF7Fbr6Pg7/iHzFSMoRWOBGNfuJ33nyOyu2jDRwig
+         IH4E+3idZlHhTmH2FQsN7NEvZv2e38wha9gZt9dSjToPxbHLyLZpxUNsI0fpArlzE8zs
+         yiGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685560002; x=1688152002;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yR7IN/rJmbW/7sc8ydTiLPthUafqqH/Du1ORqrZgWWg=;
+        b=eBaTuLZ3HE9mwcQXIEc8azL/WAqEJj2zejdsbQ7h/RV3i/fop1DPqejnIlCC/VntB1
+         LJjZqaW58Onirj0Oigstpv0gBezKVig5dDrWj+p9Xkffml2ChDUB+8kzQd9wRxoT+4Ur
+         UcWx30tfgXUtV0XaD7UK51XkXVDiC15EjfcXTj3zff6AzUOghXmwKgk5K2vJ0GLhG1sT
+         gHlmaR4a7pU7PRMwmHiw0DrcUl3WiHo/Ya9vLxGKep9sqH5U/Gpi5hDXyx6ffbZW0smu
+         OiyUf4Nla7GmgNeDDWREQuDNivfTp3+KKmxQW3Gc7BDp/VkT7j2EBB66S1JLyy4bUlYJ
+         pVkg==
+X-Gm-Message-State: AC+VfDwLhW3uelqXXMJa7DVQdaFyQWMYw9m2mqoTafzaFbQmfJ0tm6/c
+        NKCT/J2s64l0fIK7Dw4/lbfIwQ==
+X-Google-Smtp-Source: ACHHUZ6Gjg4u5HI2TPqwWF8w/xRRnBF6kJtCaMF4P1k+1aswfie5jogdRnQ0Qklx1CUCHyCnNq/pyg==
+X-Received: by 2002:a17:907:2d27:b0:94e:4285:390c with SMTP id gs39-20020a1709072d2700b0094e4285390cmr6798209ejc.10.1685560002373;
+        Wed, 31 May 2023 12:06:42 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id md7-20020a170906ae8700b0094edbe5c7ddsm9404066ejb.38.2023.05.31.12.06.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 12:06:41 -0700 (PDT)
+Message-ID: <cfd657bc-59ba-e63b-beb9-1661b8195a95@linaro.org>
+Date:   Wed, 31 May 2023 21:06:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230531092121.291770-2-ben.dooks@codethink.co.uk>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 1/8] dt-bindings: display: mediatek: add MT8195 hdmi
+ bindings
+Content-Language: en-US
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mac.shen@mediatek.com,
+        stuart.lee@mediatek.com
+References: <20220919-v4-0-687f09a06dd9@baylibre.com>
+ <20220919-v4-1-687f09a06dd9@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220919-v4-1-687f09a06dd9@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Possible subject:
-
-  dt-bindings: Add gen5, gen6 max-link-speed values
-
-On Wed, May 31, 2023 at 10:21:21AM +0100, Ben Dooks wrote:
-> Add updated max-link-speed values for newer generation PCIe link
-> speeds.
+On 29/05/2023 16:30, Guillaume Ranquet wrote:
+> Add mt8195 SoC bindings for hdmi and hdmi-ddc
 > 
-> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/pci/pci.txt | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> On mt8195 the ddc i2c controller is part of the hdmi IP block and thus has no
+> specific register range, power domain or interrupt, making it simpler
+> than the legacy "mediatek,hdmi-ddc" binding.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
-> index 6a8f2874a24d..56391e193fc4 100644
-> --- a/Documentation/devicetree/bindings/pci/pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> @@ -22,8 +22,9 @@ driver implementation may support the following properties:
->     If present this property specifies PCI gen for link capability.  Host
->     drivers could add this as a strategy to avoid unnecessary operation for
->     unsupported link speed, for instance, trying to do training for
-> -   unsupported link speed, etc.  Must be '4' for gen4, '3' for gen3, '2'
-> -   for gen2, and '1' for gen1. Any other values are invalid.
-> +   unsupported link speed, etc.  Must be '6' for gen6,  '5' for gen5,
-> +   '4' for gen4, '3' for gen3, '2' for gen2, and '1' for gen1.
-> +   Any other values are invalid.
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 
-I really wish we'd used values with some connection to the actual
-speed, e.g., "16" for 16 GT/s.  These "gen X" values are a real hassle
-to convert back to the speed.  But I guess that's water under the
-bridge.
 
-Maybe we should annotate the documentation here, though, e.g.,
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-  '6' for gen6 (64.0 GT/s), '5' for gen5 (32.0 GT/s), ...
+Best regards,
+Krzysztof
 
-Do I have that right?  I don't see "gen5" etc in the specs themselves,
-so this is just based on Google.
-
-Bjorn
