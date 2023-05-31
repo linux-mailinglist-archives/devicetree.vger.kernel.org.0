@@ -2,311 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5229718EEF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 01:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00531718F26
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 01:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbjEaXK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 19:10:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34982 "EHLO
+        id S230005AbjEaXth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 19:49:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjEaXK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 19:10:58 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA49A0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 16:10:56 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9113A846D8;
-        Thu,  1 Jun 2023 01:10:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1685574655;
-        bh=tDonX/f79Ik45V9YBqk/CP4xiQZtcS9hSQvn3JIZ4Ms=;
+        with ESMTP id S229560AbjEaXtf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 19:49:35 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F12139
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 16:49:33 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E79532C00B8;
+        Thu,  1 Jun 2023 11:49:29 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1685576969;
+        bh=JIh3FKEV4AmqhnmtnVLTx9kvmjGqUSmH2UcfmnCgf5Q=;
         h=From:To:Cc:Subject:Date:From;
-        b=HZWFsWKYJVSg3Y8hryMKiTo6YVyq0zk0+PrgN7HlOJivNyMg2lUBAOQ/lzVPhLpmy
-         n0XSTe9/W893pfWHF7e/Ko/HfOARpVVWdzS+r6gkFXBrTGQ8XfXIN/cH3NuBRD1FLm
-         0cCDCDd+0B9rgVikVIHoGUHoehs6ZKmbk16w5ACyRxXw85e5DaURuu0BZslb4l13su
-         d/J7tPehJ4RagcDe911AaGp9VrJUYgB9HBxZf3LislhvS2IDBzMZhM4KT71PJ9HTW3
-         s7D6xFBxW+Sdm8iRZ3J3D+xxUP1MLphTJnC+KsD3mfboUc8EBFPhrknhFLyhifGqcp
-         Lk0F3aa51Ya8w==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Deduplicate DSI node
-Date:   Thu,  1 Jun 2023 01:10:44 +0200
-Message-Id: <20230531231044.574541-1-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
+        b=TEGwcpmjIiHaKlSngTD6pAfAxAPpnq3bj0DpgQgAF9wEXgGM9rrmzqMa+xwesJKj3
+         uwnwSbeU5oOVk4Ov7RCu2DugdW0yibkI031ijCU4Vs03tZSNOEk9pX9sTtFfuZx9zx
+         IxB3ne6RRYblOb2d4dqIfLYQN+BJ2aAZ9dX6SHb4TapH5qZkdeV3H5IJKSQzN+MnB5
+         9r+35DJJNNw8+gwY0/HQQbrx/+1YrX57IYjwhzyZr5WfgqF50gRjZf30OTEah0FPfZ
+         TW8QCdyRE0JuLaCMKV0t1yHN8WBwnnJOHbg+RP2wMlZMYq8kjWqHkLOeAcOQoSlIv9
+         qiuMO6tgAbTUg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B6477dd090000>; Thu, 01 Jun 2023 11:49:29 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id ABAA213ED2D;
+        Thu,  1 Jun 2023 11:49:29 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id AABE7285285; Thu,  1 Jun 2023 11:49:29 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, conor@kernel.org
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        enachman@marvell.com,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v8 0/3] dt-bindings: mtd: marvell-nand: Add YAML scheme
+Date:   Thu,  1 Jun 2023 11:49:20 +1200
+Message-Id: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Score: -1
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All boards using the DSI node duplicate the same pattern common pattern
-in board DTs, that pattern is ports with endpoint labels and the same
-in-SoC regulator connection. Move that common pattern into stm32mp157.dtsi
-instead.
+Add YAML scheme for the Marvell's NAND controller
+to validate it's DT bindings. Old txt file is deleted,
+not included the compatibles and properties which were marked as
+deprecated.
 
-The two boards which do define panel@0 directly in the DSI bridge node now
-have #address-cells/#size-cells in their board DT instead of it being in
-stm32mp157.dtsi and activated incorrectly for all boards, even the ones
-which use e.g. another DSI-to-something bridge.
+Also fix node name in cp11x DTSI acording to nand-controller.yaml
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/stm32mp157.dtsi             | 18 ++++++++++++
- ...tm32mp157a-icore-stm32mp1-ctouch2-of10.dts | 24 ++++------------
- .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   | 28 ++++++-------------
- arch/arm/boot/dts/stm32mp157c-dk2.dts         | 28 ++++++-------------
- arch/arm/boot/dts/stm32mp157c-ev1.dts         | 28 ++++++-------------
- 5 files changed, 48 insertions(+), 78 deletions(-)
+I've picked up this series to hopefully get it over the line. I think I'v=
+e
+addressed all the feedback from the last round of review.
 
-diff --git a/arch/arm/boot/dts/stm32mp157.dtsi b/arch/arm/boot/dts/stm32mp157.dtsi
-index 5e733cd16ff9e..6197d878894de 100644
---- a/arch/arm/boot/dts/stm32mp157.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157.dtsi
-@@ -22,9 +22,27 @@ dsi: dsi@5a000000 {
- 			reg = <0x5a000000 0x800>;
- 			clocks = <&rcc DSI_K>, <&clk_hse>, <&rcc DSI_PX>;
- 			clock-names = "pclk", "ref", "px_clk";
-+			phy-dsi-supply = <&reg18>;
- 			resets = <&rcc DSI_R>;
- 			reset-names = "apb";
- 			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					dsi_in: endpoint {
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					dsi_out: endpoint {
-+					};
-+				};
-+			};
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-index 4279b26547dfd..df97e03d2a5ac 100644
---- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-+++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-@@ -46,26 +46,14 @@ panel_in_lvds: endpoint {
- 
- &dsi {
- 	status = "okay";
--	phy-dsi-supply = <&reg18>;
--
--	ports {
--		#address-cells = <1>;
--		#size-cells = <0>;
-+};
- 
--		port@0 {
--			reg = <0>;
--			dsi_in: endpoint {
--				remote-endpoint = <&ltdc_ep0_out>;
--			};
--		};
-+&dsi_in {
-+	remote-endpoint = <&ltdc_ep0_out>;
-+};
- 
--		port@1 {
--			reg = <1>;
--			dsi_out: endpoint {
--				remote-endpoint = <&bridge_in>;
--			};
--		};
--	};
-+&dsi_out {
-+	remote-endpoint = <&bridge_in>;
- };
- 
- &i2c6 {
-diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-index efba542898207..f8e4043463964 100644
---- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-+++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-@@ -46,26 +46,14 @@ panel_out_bridge: endpoint {
- 
- &dsi {
- 	status = "okay";
--	phy-dsi-supply = <&reg18>;
--
--	ports {
--		#address-cells = <1>;
--		#size-cells = <0>;
-+};
- 
--		port@0 {
--			reg = <0>;
--			dsi_in_ltdc: endpoint {
--				remote-endpoint = <&ltdc_out_dsi>;
--			};
--		};
-+&dsi_in {
-+	remote-endpoint = <&ltdc_out_dsi>;
-+};
- 
--		port@1 {
--			reg = <1>;
--			dsi_out_bridge: endpoint {
--				remote-endpoint = <&bridge_in_dsi>;
--			};
--		};
--	};
-+&dsi_out {
-+	remote-endpoint = <&bridge_in_dsi>;
- };
- 
- &i2c6 {
-@@ -88,7 +76,7 @@ ports {
- 			port@0 {
- 				reg = <0>;
- 				bridge_in_dsi: endpoint {
--					remote-endpoint = <&dsi_out_bridge>;
-+					remote-endpoint = <&dsi_out>;
- 					data-lanes = <1 2>;
- 				};
- 			};
-@@ -108,7 +96,7 @@ &ltdc {
- 
- 	port {
- 		ltdc_out_dsi: endpoint {
--			remote-endpoint = <&dsi_in_ltdc>;
-+			remote-endpoint = <&dsi_in>;
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-index 4bef2300ed7ca..510cca5acb79c 100644
---- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-@@ -34,26 +34,6 @@ &dsi {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	status = "okay";
--	phy-dsi-supply = <&reg18>;
--
--	ports {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		port@0 {
--			reg = <0>;
--			dsi_in: endpoint {
--				remote-endpoint = <&ltdc_ep1_out>;
--			};
--		};
--
--		port@1 {
--			reg = <1>;
--			dsi_out: endpoint {
--				remote-endpoint = <&panel_in>;
--			};
--		};
--	};
- 
- 	panel@0 {
- 		compatible = "orisetech,otm8009a";
-@@ -70,6 +50,14 @@ panel_in: endpoint {
- 	};
- };
- 
-+&dsi_in {
-+	remote-endpoint = <&ltdc_ep1_out>;
-+};
-+
-+&dsi_out {
-+	remote-endpoint = <&panel_in>;
-+};
-+
- &i2c1 {
- 	touchscreen@38 {
- 		compatible = "focaltech,ft6236";
-diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-index 49ca94c19b02b..874770c997997 100644
---- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-@@ -100,30 +100,10 @@ dcmi_0: endpoint {
- };
- 
- &dsi {
--	phy-dsi-supply = <&reg18>;
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	status = "okay";
- 
--	ports {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		port@0 {
--			reg = <0>;
--			dsi_in: endpoint {
--				remote-endpoint = <&ltdc_ep0_out>;
--			};
--		};
--
--		port@1 {
--			reg = <1>;
--			dsi_out: endpoint {
--				remote-endpoint = <&dsi_panel_in>;
--			};
--		};
--	};
--
- 	panel@0 {
- 		compatible = "raydium,rm68200";
- 		reg = <0>;
-@@ -140,6 +120,14 @@ dsi_panel_in: endpoint {
- 	};
- };
- 
-+&dsi_in {
-+	remote-endpoint = <&ltdc_ep0_out>;
-+};
-+
-+&dsi_out {
-+	remote-endpoint = <&dsi_panel_in>;
-+};
-+
- &ethernet0 {
- 	status = "okay";
- 	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
--- 
-2.39.2
+As of v7 I've re-ordered the patches so the fixups for the device trees c=
+ome
+before the schema so if the series is applied in order the various checke=
+rs
+should pass cleanly.
+
+Chris Packham (1):
+  ARM: dts: mvebu: align MTD partition nodes to dtschema
+
+Vadym Kochan (2):
+  arm64: dts: marvell: cp11x: Fix nand_controller node name according to
+    YAML
+  dt-bindings: mtd: marvell-nand: Convert to YAML DT scheme
+
+ .../bindings/mtd/marvell,nand-controller.yaml | 223 ++++++++++++++++++
+ .../devicetree/bindings/mtd/marvell-nand.txt  | 126 ----------
+ MAINTAINERS                                   |   1 -
+ arch/arm/boot/dts/armada-385-atl-x530.dts     |  14 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   2 +-
+ 5 files changed, 231 insertions(+), 135 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/marvell,nand-co=
+ntroller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/marvell-nand.tx=
+t
+
+--=20
+2.40.1
 
