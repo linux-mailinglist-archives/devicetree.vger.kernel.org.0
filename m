@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79984718228
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 748E57182B8
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236246AbjEaNke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 09:40:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54312 "EHLO
+        id S236268AbjEaNpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 09:45:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236087AbjEaNka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:40:30 -0400
+        with ESMTP id S236637AbjEaNoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:44:17 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D937DC5;
-        Wed, 31 May 2023 06:40:29 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF46E50;
+        Wed, 31 May 2023 06:42:43 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BA0163B08;
-        Wed, 31 May 2023 13:40:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2B4AC433EF;
-        Wed, 31 May 2023 13:40:27 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DEF5D63B29;
+        Wed, 31 May 2023 13:42:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18CD7C4339C;
+        Wed, 31 May 2023 13:42:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685540428;
-        bh=5FCtmPR1WPvaKonQ5+eMTQzLrgA85GsmeSlUJHuAlIw=;
+        s=k20201202; t=1685540532;
+        bh=mqL994jDilpj3DORbkHAMlSuexwDHjFi8s1HMFeV82w=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=u2NDszRJ2ggOcunfdIkXMlZ0NwwXrNRNuyn9TE1ixakcEKetv93Mtov8q5ogz+ePI
-         arKJ3GNtSyrKUyAfEG6SdCSt6LXqIkvC0XnPm+90+cFpwkY8yyL8y8tvmt3ayGShjx
-         2NSoG1Kfb9bqVYdBjQxwCAh8mdAxSeWHQbephZGWrOvXXbl8zcAu5i445cYghNiQZl
-         0AVbRwZIn6W4mLX6nw+cFOvtqmsTkUwuHXMYVwIpCOGseH7Vc9LrTnNRMgVtIwP0Hq
-         Isk+kI/bY0djDeATSzu0Ru4xGHogPWR1G0lo0f8xr25e/hj0y+Br48dIPDfBMwFI8Q
-         s2vCxRD6nFXEg==
+        b=clDF3ScYl4OfUvFhGjrv+Zh5uYdwp/3RoKIjiY1Lnw5dqr9pOvmdUGW78wkNfc3j+
+         ONc+2z0SbXpGRB2Et0dr631fkredHkaoAx48yapPMA7cKUiU44UPck5ekbg3PEVsu0
+         jKoLNv/jq23D/chSfpbQDZiPN54dphA3pW0C0SmoviZr8BVaU8MAPJZYZtaQxQ4kt1
+         IWV0d27N6h7sITzheegQNNOF5/mHv/XFz4PVhKSsLh8hw/rGYiSI22wghrLqyPwQAm
+         Ef2LyA51GTsRcQFGjRbSnM1va4OuFdMMqDMCiaU1J/Igvz7h+ojswhazD/ruvQog/J
+         jXvyKJ4TakzcQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -39,12 +39,12 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         lpieralisi@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.3 05/37] arm64: dts: arm: add missing cache properties
-Date:   Wed, 31 May 2023 09:39:47 -0400
-Message-Id: <20230531134020.3383253-5-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 04/33] ARM: dts: vexpress: add missing cache properties
+Date:   Wed, 31 May 2023 09:41:30 -0400
+Message-Id: <20230531134159.3383703-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230531134020.3383253-1-sashal@kernel.org>
-References: <20230531134020.3383253-1-sashal@kernel.org>
+In-Reply-To: <20230531134159.3383703-1-sashal@kernel.org>
+References: <20230531134159.3383703-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -61,59 +61,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[ Upstream commit 55b37d9c8ba23d28c584aef0801fb1e60e4a817c ]
+[ Upstream commit 328acc5657c6197753238d7ce0a6924ead829347 ]
 
 As all level 2 and level 3 caches are unified, add required
-cache-unified properties to fix warnings like:
+cache-unified property to fix warnings like:
 
-  foundation-v8.dtb: l2-cache0: 'cache-unified' is a required property
+  vexpress-v2p-ca5s.dtb: cache-controller@2c0f0000: 'cache-unified' is a required property
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Link: https://lore.kernel.org/r/20230421223213.115639-1-krzysztof.kozlowski@linaro.org
+Link: https://lore.kernel.org/r/20230423150837.118466-1-krzysztof.kozlowski@linaro.org
 Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/arm/foundation-v8.dtsi           | 1 +
- arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts           | 1 +
- arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts | 1 +
- 3 files changed, 3 insertions(+)
+ arch/arm/boot/dts/vexpress-v2p-ca5s.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-index 029578072d8fb..7b41537731a6a 100644
---- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-+++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-@@ -59,6 +59,7 @@ cpu3: cpu@3 {
- 		L2_0: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
+diff --git a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+index 3b88209bacea2..ff1f9a1bcfcfc 100644
+--- a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
++++ b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+@@ -132,6 +132,7 @@ L2: cache-controller@2c0f0000 {
+ 		reg = <0x2c0f0000 0x1000>;
+ 		interrupts = <0 84 4>;
+ 		cache-level = <2>;
++		cache-unified;
  	};
  
-diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-index ef68f5aae7ddf..afdf954206f1d 100644
---- a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-+++ b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-@@ -72,6 +72,7 @@ cpu@3 {
- 		L2_0: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-index 796cd7d02eb55..7bdeb965f0a96 100644
---- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-+++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-@@ -58,6 +58,7 @@ cpu@1 {
- 		L2_0: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
+ 	pmu {
 -- 
 2.39.2
 
