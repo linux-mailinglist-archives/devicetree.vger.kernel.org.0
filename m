@@ -2,134 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4676718903
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 20:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1968718924
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 20:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbjEaSFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 14:05:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48506 "EHLO
+        id S229805AbjEaSNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 14:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjEaSFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 14:05:35 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78088126;
-        Wed, 31 May 2023 11:05:34 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id af79cd13be357-75b3645fb1fso68037285a.1;
-        Wed, 31 May 2023 11:05:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685556333; x=1688148333;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yyTYC2NqLN4iSmSkNR3NaMMKKFdpdBQRppP8MlagS3o=;
-        b=PF4p4oN383Um2kXzdlvG4hGpYtN43CHFrTJNrYiQaYpbucQJK0H3ersVy1ssS/pqGz
-         SAN+QhszS9n46ida6NH9utEuMcCjtf4EgvuTxOEaHqI9+zolQcSmgNnRljaV+5oGlyMe
-         8q3qWbK5r3giNLyThPJaXQFK8ERbATDnfARvA7v+vGi8K3uzVr/ffXuXRNxU65nKTJ1U
-         9zg1mgAi+RieXN0HhQYIhSZR4G0VS3D8fhzkMc7sI9pi2FYLWLEA5ysab2e9CSCYHF20
-         RXapMR4S4T4d4FsJKAwvwMzz55JFEVBIbTJEoHMDaLwmRtXeBICwIhaw9xI46YP5hsSQ
-         C2oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685556333; x=1688148333;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yyTYC2NqLN4iSmSkNR3NaMMKKFdpdBQRppP8MlagS3o=;
-        b=AS1W85PtDnVU7A13NkgPGdctXKKVwmZEM7Hq09dyJ80swKS5tvn5cVuxEWmcaZD11k
-         XncCw1WxKwBT69g11+r8du8BgFR3yTQevXuuQ1tepDNrmz6ByyWtyX0hH85+lIy23aJD
-         +GypukFhPPXW3oDi5oIO7PC1Q1s5EJwabRuAiURhZWBILdNjPaN27vJUyl56oD9/rIZR
-         Mg3t2p6+Z4sJ63lfbFbLRUktgupXN3B90miF81WTzE8B4GfNke7o7JK3u9EpeUJk9iQR
-         FYqkRr/4TNsJPq2ITGoGE+ZiwujtvYzutKkTwKrpYDmUo0iNda8NH8YZmVG2mk14K6Da
-         4H4A==
-X-Gm-Message-State: AC+VfDyw8dsvyQICGZxWyYE9v1+aiaseEESz0e+Np0QAMrdxGgIkcX9M
-        Zx5FlzbqU5pbBANIn3MJCp0=
-X-Google-Smtp-Source: ACHHUZ6A3Plo1GaR85RqsX3LiH/Clx19EM8etVFJyB1C3AHlPPADW6NS5j7DVv3yGHlMwxcSSv69wQ==
-X-Received: by 2002:a05:620a:600a:b0:75b:23a1:d844 with SMTP id dw10-20020a05620a600a00b0075b23a1d844mr15256513qkb.6.1685556333569;
-        Wed, 31 May 2023 11:05:33 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id z5-20020ad44145000000b005e37909a7fcsm4384085qvp.13.2023.05.31.11.05.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 11:05:32 -0700 (PDT)
-Message-ID: <e2108f4c-3d0d-ca64-5ad4-ec0de6ea4bf5@gmail.com>
-Date:   Wed, 31 May 2023 11:05:20 -0700
+        with ESMTP id S230045AbjEaSNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 14:13:49 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F1DA0;
+        Wed, 31 May 2023 11:13:48 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34V8H132017586;
+        Wed, 31 May 2023 18:13:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding : to : cc; s=qcppdkim1;
+ bh=jnC3UWZnuMssmGRIBn9FSVa8jE7AqeAfSgZoP5/O3N0=;
+ b=D0nisQ/26DSNKKyF35ki3qG9qNt2DjpqAsKYI/e3wepbdvzl2IOJN4x1MUgCT3r6l6RN
+ 5F9ezzTrtv8EXxtU0qqtv00jwPrIbIPIb2V9hr5414uV1x4fEPiAnCOogXaquEyfYKpW
+ nglfxm8hiwaBIE5UaBsk/rbspNosEynBt7ZA0jENVd2RZbUXkA2EoUoMFWCbpy6ut+8r
+ KWJc0X6ZTStwdHhx5/OJd+pOdu0Xdz8eauwMTf6eyrzv7W+Z3xdKnowOV+Vy96CIcl05
+ D/VHqMrLjrIx+kFTJrPOzoV+rvZPHkOXbwKVdtmW49w28UL2ybW/oOB63zefnlsKYoex SA== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qwwbtj24a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 31 May 2023 18:13:23 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34VID2OU003020
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 31 May 2023 18:13:02 GMT
+Received: from jesszhan-linux.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 31 May 2023 11:13:02 -0700
+From:   Jessica Zhang <quic_jesszhan@quicinc.com>
+Subject: [PATCH v2 0/2] Add support for Visionox R66451 AMOLED DSI panel
+Date:   Wed, 31 May 2023 11:12:31 -0700
+Message-ID: <20230516-b4-r66451-panel-driver-v2-0-9c8d5eeef579@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: phy: Support external PHY xtal
-Content-Language: en-US
-To:     Detlev Casanova <detlev.casanova@collabora.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230531150340.522994-1-detlev.casanova@collabora.com>
- <ade45bcf-c174-429a-96ca-d0ffb41748d4@lunn.ch> <6646604.lOV4Wx5bFT@arisu>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <6646604.lOV4Wx5bFT@arisu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAA+Od2QC/4WOQQ6CMBBFr0K6dkxbComuXHsEDYtOGWASKNgCw
+ RDuLnABl+/nv/y/ikiBKYp7sopAM0fu/Q76kgjXWF8TcLmz0FKnMlM5oIGQ5yZTMFhPLZSBZwq
+ AlTSYVZiWmRa7jDYSYLDeNYf+fEEXO/C0jNBOna2PzhCo4uUcfxc7NxzHPnzPL7M60r+zswIJR
+ iuJDlHl5vb4TOzYu6vrO1Fs2/YDjmxi8eIAAAA=
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13-dev-02a79
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1685556782; l=1788;
+ i=quic_jesszhan@quicinc.com; s=20230329; h=from:subject:message-id;
+ bh=B/0asQMdL/LaMmqd6zsaL7/B67ZX+CdyB2w5irB73ZM=;
+ b=rmN+Kn7iTcoh9RA9AcHB6gM4BSHF0ITtk9n0jy/bl0XRVSbg+hepYYe8i7cFWhqVnY6yzy1FC
+ /fJOBnlo96yAs2RmG5f6KCcaJcHvlSaE+dPXGuZI4GEjdauMwhw5dXU
+X-Developer-Key: i=quic_jesszhan@quicinc.com; a=ed25519;
+ pk=gAUCgHZ6wTJOzQa3U0GfeCDH7iZLlqIEPo4rrjfDpWE=
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zZgrGm3JFetZolnrrAtLk7x9Ba-dU8eK
+X-Proofpoint-ORIG-GUID: zZgrGm3JFetZolnrrAtLk7x9Ba-dU8eK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-31_12,2023-05-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0
+ malwarescore=0 mlxlogscore=719 adultscore=0 spamscore=0 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305310154
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/31/23 11:00, Detlev Casanova wrote:
-> On Wednesday, May 31, 2023 11:16:46 A.M. EDT Andrew Lunn wrote:
->> On Wed, May 31, 2023 at 11:03:39AM -0400, Detlev Casanova wrote:
->>> Ethernet PHYs can have external an clock that needs to be activated before
->>> probing the PHY.
->>>
->>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
->>> ---
->>>
->>>   .../devicetree/bindings/net/ethernet-phy.yaml          | 10 ++++++++++
->>>   1 file changed, 10 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
->>> b/Documentation/devicetree/bindings/net/ethernet-phy.yaml index
->>> 4f574532ee13..e83a33c2aa59 100644
->>> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
->>>
->>> @@ -93,6 +93,16 @@ properties:
->>>         the turn around line low at end of the control phase of the
->>>         MDIO transaction.
->>>
->>> +  clock-names:
->>> +    items:
->>> +      - const: xtal
->>
->> I don't think xtal is the best of names here. It generally is used as
->> an abbreviation for crystal. And the commit message is about there not
->> being a crystal, but an actual clock.
->>
->> How is this clock named on the datasheet?
-> 
-> In the case of the PHY I used (RTL8211F), it is EXT_CLK. But this must be
-> generic to any (ethernet) PHY, so using ext_clk to match it would not be
-> good either.
-> 
-> Now this is about having an external clock, so the ext_clk name makes sense in
-> this case.
-> 
-> I'm not pushing one name or another, let's use what you feel is more natural.
+Add support for the 1080x2340 Visionox R66451 AMOLED DSI panel that
+comes with the Qualcomm HDK8350 display expansion pack.
 
-You can look up clocks by positional index, maybe this is a case where 
-there are just too many names that PHY vendors will use that we should 
-not be using one specific name in particular, but just define the order 
-in which clocks should be specified.
+The driver will come with display compression (DSC v1.2) enabled by
+default.
+
+Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+---
+Changes in v2:
+- Reworded panel bindings commit message for brevity (Krzysztof)
+- Used corresponding *_set_column_address() and *_set_page_address() DCS
+  helper methods (Dmitry)
+- Moved *_set_display_[on|off]() and *_[exit|enter]_sleep_mode() calls
+  into _enable() and _disable(), respectively (Dmitry)
+- Dropped cpu_to_le16() conversion for
+  mipi_dsi_dcs_set_display_brightness() (Dmitry)
+- Unset LPM flag after DCS commands are sent in _on() (Dmitry)
+- Used real numbers for mode values (Dmitry)
+- Used drm_connector_helper_get_modes_fixed() in get_modes() (Dmitry)
+- Added BACKLIGHT_CLASS_DEVICE as a Kconfig dependency (Neil)
+- Added error handling for mipi_dsi_picture_parameter_set() (Marijn)
+- Dropped "0x" for dcs->bits_per_pixel value (Marijn)
+- Link to v1: https://lore.kernel.org/r/20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com
+
+---
+Jessica Zhang (2):
+      dt-bindings: display: panel: Add Visionox R66451 AMOLED DSI panel
+      drm/panel: Add driver for Visionox r66451 panel
+
+ .../bindings/display/panel/visionox,r66451.yaml    |  59 ++++
+ drivers/gpu/drm/panel/Kconfig                      |   9 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-visionox-r66451.c      | 390 +++++++++++++++++++++
+ 4 files changed, 459 insertions(+)
+---
+base-commit: a5abc0900af0cfb1b8093200a265d2791864f26b
+change-id: 20230516-b4-r66451-panel-driver-bf04b5fb3d52
+
+Best regards,
 -- 
-Florian
+Jessica Zhang <quic_jesszhan@quicinc.com>
 
