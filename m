@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE1F2717796
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA0071779C
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:15:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234391AbjEaHOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 03:14:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58188 "EHLO
+        id S234540AbjEaHPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 03:15:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231963AbjEaHOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:14:24 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB7AD8F
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 00:14:21 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-514ab6cb529so1281185a12.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 00:14:21 -0700 (PDT)
+        with ESMTP id S234536AbjEaHPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:15:51 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36883EE
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 00:15:50 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5147dce372eso7885697a12.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 00:15:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685517260; x=1688109260;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1685517348; x=1688109348;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=he+S+tKhJeczrt//An5I955xU1SlUZf1wS7TasfMwBs=;
-        b=YdLeUgcGdnHHmTltj4+rt4eQvOOQRHAuskx3Baeo+K9kUwrVTcNq9dUYlnbcrvidg/
-         uWnxGPGw8tAstMDZec8IbDmAFufgHMc4viEYk3n5/uFSwjPU03FWyxgC1ofepIolhVd7
-         0dw+NSkiPgMSl7g+h5VDSRBiGm9nT849CufqJCOD6XYJhsysrogNqA6mgjdccnrZ2wOO
-         ckyJcuzwz8OKBWPfW2uM457P2JnaQsqo5i99mA+J6tDcvW6793psVbZiaYtjHJIxZOoN
-         UF9x5d2Bu1/3s4lJG39a8CzwWSkvR6GHfLFQecn1AbiETPbAy++loMD26Mo3qlJ5jeMn
-         JPqQ==
+        bh=8xSd0cqAgLf+YYqiwd7XbThq636v/o3mZGXKvGoMzbA=;
+        b=rXMRIfL0QEhBKNiJLprXa7lweF4waA04T8WOPzJERq4jvpcQa+4SdeFrItnoyZ/3iV
+         WVsKt+Pp/MzZTbhpGj9Z+IZRrkCX81rQOrk0VZLz0LicM4240MXekISKAMCtCnCO2sr6
+         5FpUBr1wKOhb+gPz6ZaCZeLPaWg9QnkNJlkRtKPDC6Wew9NeBzaft2yFDmumjrN9pkPn
+         HcR9qw9YGxsrc1ruMAC5Yc4+DyWlOQppqAilzOqzJHPm1lWCdLBS4HdHekMRLCtARyh8
+         vvD3dhrVShTff1NGmkI5aYkZ3FWE9k5zqpRxA6eAseXxMczKWx54ekQwbiDlB1V/AFag
+         3nQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685517260; x=1688109260;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1685517348; x=1688109348;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=he+S+tKhJeczrt//An5I955xU1SlUZf1wS7TasfMwBs=;
-        b=TeNING4ty/uVhxvswOC/G2bZYZodVuWTpvx6Hva3w2DNEYX3hV1M0iaXzE03GfO15f
-         v/3vE2MI8AOBq7EAMfsYnwiDJ01UmoHzYzKfkJ7eFV0GdD6opCU39vYkX9DTGhG+Wwfa
-         3u6Q6SSFtdUKnFHsUv1lGORMbyE/uuXrBKpDjd4inviLe28jzY+41Bql9jBPa3xagISz
-         s1kTzQZVzL1QOwNxjlmEQ/FXTrZ1q28Zdno4XfDpbrmVOeRHi1bYIXnutw/IBsrxDi6J
-         XdPNNbJWt0P/HKrDi2dMtp2x3qllnZMG+K4XHKxDoWcqF6gTIt5D8bzamNMvHCih7+vd
-         yJ7A==
-X-Gm-Message-State: AC+VfDzpYCcOxvQS+OB0M4W1FgMTjgO/E4tK0Xda19CqEzM+eQ/8ODxA
-        ro4RVLd+K5BFWYolLcZd6/SLPg==
-X-Google-Smtp-Source: ACHHUZ6MfUHxABvlX2Nt5wt1hTFu/V5ZBA/LWOr8iq4JaIzDK15YsEkF3nDdVctHxf3efDAu9whw9w==
-X-Received: by 2002:a17:907:9721:b0:94f:2916:7d7 with SMTP id jg33-20020a170907972100b0094f291607d7mr4348816ejc.19.1685517260433;
-        Wed, 31 May 2023 00:14:20 -0700 (PDT)
+        bh=8xSd0cqAgLf+YYqiwd7XbThq636v/o3mZGXKvGoMzbA=;
+        b=UAY0DcIKx60bDoutvKW3wo38KdIM+3KU3/W7E15scVo6B88se/P40rwwYB/TIHVKO7
+         uofC9cny6z/te6/GksJ6VU1IhhEe5IVJHk1w5B525b/fSvk6BegedulZANcmwrhAdDKg
+         jg7VR4bU01Ihf50YBo4QOmv/bBs5V9ukFJQAFppDmVD2lHHsx8WmAtbLEr6uCjlnVhEF
+         wA+m/TSx4JvBm61lM6UaqIMNLCOr041I/tk2XwjP5KWT6UojeUrlTyPStaTPBIVSTRzm
+         3oE4z4EOw11MKz+fCtmiudfxsFR/DtPZARRbQSgsnj+e6/RY5WMmqosgCYsvOX7TUMul
+         H2GQ==
+X-Gm-Message-State: AC+VfDz2wjKrA5TFWN5KnInPAvLDj+v4dcXZeETvuWpre0U118JrN2fT
+        qhhJ7ZEqe0Y1d8TUie7Yt6cK9A==
+X-Google-Smtp-Source: ACHHUZ5F2hKC53ubgHiwwHDoDcx88Avzd7kTKgt28eaV0r3S69mPsGVeneI2iFV8X+/Rbm590SrJCw==
+X-Received: by 2002:a17:907:d91:b0:96a:8412:a444 with SMTP id go17-20020a1709070d9100b0096a8412a444mr3827146ejc.73.1685517348720;
+        Wed, 31 May 2023 00:15:48 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id c7-20020a17090603c700b0096a68648329sm8425064eja.214.2023.05.31.00.14.18
+        by smtp.gmail.com with ESMTPSA id n13-20020a170906688d00b0096f641c6167sm8399073ejr.181.2023.05.31.00.15.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 00:14:19 -0700 (PDT)
-Message-ID: <5d65b644-9b79-d232-d0d0-d2772325eef5@linaro.org>
-Date:   Wed, 31 May 2023 09:14:18 +0200
+        Wed, 31 May 2023 00:15:48 -0700 (PDT)
+Message-ID: <46639d7e-95ed-35a6-a9ab-d802af4470ce@linaro.org>
+Date:   Wed, 31 May 2023 09:15:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v3 5/5] dt-bindings: iio: ad7192: Allow selection of clock
- modes
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: ipq5332: enable GPIO based LEDs and
+ Buttons
 Content-Language: en-US
-To:     Fabrizio Lamarque <fl.scratchpad@gmail.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     jic23@kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230530075311.400686-1-fl.scratchpad@gmail.com>
- <20230530075311.400686-6-fl.scratchpad@gmail.com>
- <20230530-cannabis-headstone-883c5b891dd3@spud>
- <CAPJMGm4=sRQGPmVi8NjAVvOVrr8s2By6PO8kKRKZt3W0FR9j-Q@mail.gmail.com>
+To:     Sridharan S N <quic_sridsn@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230531065619.9181-1-quic_sridsn@quicinc.com>
+ <20230531065619.9181-2-quic_sridsn@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAPJMGm4=sRQGPmVi8NjAVvOVrr8s2By6PO8kKRKZt3W0FR9j-Q@mail.gmail.com>
+In-Reply-To: <20230531065619.9181-2-quic_sridsn@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -84,90 +78,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 08:59, Fabrizio Lamarque wrote:
-> On Tue, May 30, 2023 at 7:22 PM Conor Dooley <conor@kernel.org> wrote:
->>
->> On Tue, May 30, 2023 at 09:53:11AM +0200, fl.scratchpad@gmail.com wrote:
->>> From: Fabrizio Lamarque <fl.scratchpad@gmail.com>
->>>
->>> AD7192 supports external clock sources, generated by a digital clock
->>> source or a crystal oscillator, or internally generated clock option
->>> without external components.
->>>
->>> Describe choice between internal and external clock, crystal or external
->>> oscillator, and internal clock output enable.
->>>
->>> Signed-off-by: Fabrizio Lamarque <fl.scratchpad@gmail.com>
->>> ---
->>>  .../bindings/iio/adc/adi,ad7192.yaml          | 27 ++++++++++++++++---
->>>  1 file changed, 24 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>> index 16def2985ab4..f7ecfd65ad80 100644
->>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>> @@ -32,7 +32,8 @@ properties:
->>>
->>>    clocks:
->>>      maxItems: 1
->>> -    description: phandle to the master clock (mclk)
->>> +    description: |
->>> +      Master clock (mclk). If not set, internal clock is used.
->>>
->>>    clock-names:
->>>      items:
->>> @@ -50,6 +51,17 @@ properties:
->>>    vref-supply:
->>>      description: VRef voltage supply
->>>
->>> +  adi,clock-xtal:
->>> +    description: |
->>> +      Select whether an external crystal oscillator or an external
->>> +      clock is applied as master (mclk) clock.
->>> +    type: boolean
->>
->> Am I being daft, or are these the same thing? If they are not, and use
->> different input pins, I think it should be explained as it not clear.
->> Could you explain why we actually care that the source is a xtal versus
->> it being mclk, and why just having master clock is not sufficient?
+On 31/05/2023 08:56, Sridharan S N wrote:
+> Add support for wlan-2g LED on GPIO 36 and wps buttons on GPIO 35.
 > 
-> I may revise the description as follows. Feel free to add your suggestions
-> in case it is still not clear enough.
+> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts | 43 +++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts | 43 +++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 43 +++++++++++++++++++++
+>  3 files changed, 129 insertions(+)
 > 
-> "Select whether an external crystal oscillator between MCLK1 and MCLK2 or
-> an external CMOS-compatible clock on MCLK2 is used as master clock".
-> 
-> This is used to properly set CLK0 and CLK1 bits in the MODE register.
-> I guess most applications would use an external crystal or internal clock.
-> The external digital clock would allow synchronization of multiple ADCs,
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts b/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+> index 3af1d5556950..ba733b6cab06 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+> @@ -7,6 +7,8 @@
+>  
+>  /dts-v1/;
+>  
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+>  #include "ipq5332.dtsi"
+>  
+>  / {
+> @@ -20,6 +22,33 @@
+>  	chosen {
+>  		stdout-path = "serial0";
+>  	};
+> +
+> +	gpio_keys {
 
-Description confuses me. Why would it matter what type of clock you have
-as input - external crystal oscillator or external CMOS-compatible
-clock? Later you refer to "internal", so maybe you meant here also
-internal for one of the options?
+No underscores in node names.
 
-> 
->>
->>> +  adi,int-clock-output-enable:
->>> +    description: |
->>> +      When internal clock is selected, this bit enables clock out pin.
->>> +    type: boolean
->>
->> And this one makes you a clock provider, so the devices advocate
->> position would be that you know that this bit should be set if
->> "clocks" is not present and a consumer requests a clock.
->> I don't seem to have got the driver patches (at least not in this
->> mailbox), so I have got no information on how you've actually implemented
->> this.
-> 
-> I see... When this bit is set, the AD7192 node should also be a clock provider.
-> The clock is output on MCLK2 pin, hence it can be used with internally
-> generated clock only.
-> I tend to dislike the idea of a "conditional clock provider". Also, I'd guess
+> +		compatible = "gpio-keys";
+> +		pinctrl-0 = <&gpio_keys_default>;
+> +		pinctrl-names = "default";
+> +		status = "okay";
 
-Either this is a clock provider via common clock framework or is not.
-Don't re-implement clock provider via other properties but just skip
-such feature.
+It's by default, why do you need it?
+
+
 
 Best regards,
 Krzysztof
