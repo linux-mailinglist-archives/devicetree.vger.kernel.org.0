@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48296717C4A
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27F99717C4D
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235282AbjEaJpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:45:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45424 "EHLO
+        id S235359AbjEaJph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 05:45:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235255AbjEaJon (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:44:43 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8A2D9
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:44:38 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f4bd608cf4so6445714e87.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:44:38 -0700 (PDT)
+        with ESMTP id S234454AbjEaJpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:45:35 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821D610B
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:45:32 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2af20198f20so58111861fa.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:45:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685526276; x=1688118276;
+        d=linaro.org; s=google; t=1685526331; x=1688118331;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YtUpdGbtHIsBeeIjbAWftyMkQuDCFyyEEzl7wNajK6Y=;
-        b=KN8F6V/8cy1snEi5dRCg6wbkBJ+qVkEW5aydsqb1FnSVOiXHKoGtyqwz4VN+bLSQmI
-         /Vu3wdiEhnLO2znAY+Z1MalDovhunuYUTPp7XC7cgDn/cLPHo2ApUH++E6gSGbVOecfi
-         Hb95IZ4HwJumI9302JtSbNaLbTPhNyT7+T5Hng8nbOkAWGeh7C3IqVRNFZMn3okdyCqR
-         qFHXKDFAF23mwsJq4xwmm/KtIsmIyKB5LbOPExk6F0d7bEQ1N55IrPUnKCIoSfupbpAV
-         ZzqaElU18dSxshWDjf+SurUKxSJlCWVPLVUzG0mnqd3DgiH/s64+4Qi3ljGpi/rRHYWN
-         jwXg==
+        bh=r0s0TPilQ6DyocR7gonpBzxO0mHl4K2RjVzthKllqVU=;
+        b=TKSEtX1nSL7h8losyLJTQiBQ2PLIsGwxi65D/6256ScJdAfCoJ3QeHx3cJqfHopw7z
+         wzksK4bN8ARkDREpchy70K50oloTQr3tU8umqyl+2CQge49e3GpVHd2fHTb9xy44KewS
+         hGRW+lX8xIT5LY5AG6C6gm3J1ogfOz1v9ptwKn+UF1jNLAIucPeOj7ZCkdcNnhoHoxaK
+         oyfdGasGdShx86/ZhRO0Ry2cLtHxmZdJr8EuDVDGCqns32CeRXWVk5Ah0J5g4oKHL+BF
+         M1CFhQWLEDlI7z54mm38KCNU/GBiFoeWNNutUU78t0/Z9aOWC+A5cVXUdbM5s1kfJ2+B
+         AEfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685526276; x=1688118276;
+        d=1e100.net; s=20221208; t=1685526331; x=1688118331;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YtUpdGbtHIsBeeIjbAWftyMkQuDCFyyEEzl7wNajK6Y=;
-        b=MIngec2j3zG+zrFyuddDTDhbj/z8Q+cEIMaAMV2YyYSXa+oYAX28YvVwl1OHxTHrJr
-         LXi8I65LPqwUMKAVTp1nN76f911e0TDsgr5fxM360Jnxlb/f/HBAjnCRmJYcciKMjpML
-         NpG0rras9XefsZO+1m864BD0oIVFwr7j2UZLYR2yeNMa6f4AfGKe/hlGz9jgTXqKDWxV
-         DKeq8tssKjQfbLNyR+DLzcANdbsATmph7QyYvWsJVr/w3eqqsEWhme/9j2SIwxNueim6
-         hhP4DHN4DYkt+KxrAkX35V55cKoKUbM3c6V3RGzVYmQg01l6CVPtyo6u0llxbUwhRX1g
-         VUXQ==
-X-Gm-Message-State: AC+VfDx6PpgbBZ6fGp/1rubzBTi4abkxb6oQQ1OYxXZB6pxibanaxQOj
-        PSlDUonBOSRPRawD0fOlQ5Xdmg==
-X-Google-Smtp-Source: ACHHUZ574Rt9+CTXST8L9QW4i5j9dXDvJp74/1+I+dMlfW2SKemr2aCBTmjg4jeMJKCUZdnE74JWIw==
-X-Received: by 2002:ac2:4154:0:b0:4f3:b32d:f739 with SMTP id c20-20020ac24154000000b004f3b32df739mr1998075lfi.19.1685526276348;
-        Wed, 31 May 2023 02:44:36 -0700 (PDT)
+        bh=r0s0TPilQ6DyocR7gonpBzxO0mHl4K2RjVzthKllqVU=;
+        b=fmXgjv69YU1MVVWXoUvP7CHg9zqbcCT7c3Ho+HAglA3Lbsn84yuq+2zqY4s6b0EOnJ
+         1ZTwGW50MrIbQJaxuB82mGsYhTwemGXYbUPboK8a8xcBSfarkBqOHgyepURj0EpWOQTF
+         LlXKyMVaFjIOoYZo7+Zm4gb5xKiifRAeeKIgLFU1tGesI9CNys5ezGbEDzq5sBpXB8NC
+         E4KwHs1SE6IxKUo1GAmkDHZWdKnfgzF3xL1Q70uEgNcCWEgFNQHRTqc/SvMwQVsBh+mx
+         8gThq1YEq5T3kIDN5sX4U1CpTMxLPVy9tv5gJlU47/WJJsBzfrQztFQNx13f6HUv0rHV
+         vYQg==
+X-Gm-Message-State: AC+VfDw93IBVWb8rUS6epBugbhC0HL8AcREyHUIDuxLMQLjQa/ukPAlu
+        XEShXY8rPKu4Jzz6HAUJ2KiPnQ==
+X-Google-Smtp-Source: ACHHUZ5fZZ9IbrtxVDFxgLGs5T98+dP+je6FYnIq+0f1cYBbtnTc/Q7NtMlfcQ+VX/2UPrmX+f6/jg==
+X-Received: by 2002:a2e:680a:0:b0:2a9:f640:2032 with SMTP id c10-20020a2e680a000000b002a9f6402032mr2058385lja.5.1685526330713;
+        Wed, 31 May 2023 02:45:30 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id n14-20020a19550e000000b004f4cabba7ebsm644847lfe.199.2023.05.31.02.44.35
+        by smtp.gmail.com with ESMTPSA id i21-20020a2e9415000000b002ab3ea4e566sm3221239ljh.58.2023.05.31.02.45.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 02:44:36 -0700 (PDT)
-Message-ID: <3f0f5942-4542-b760-d982-2fd57fee1adf@linaro.org>
-Date:   Wed, 31 May 2023 11:44:34 +0200
+        Wed, 31 May 2023 02:45:30 -0700 (PDT)
+Message-ID: <28883fc0-b48d-b09d-3e57-4c231615ac1a@linaro.org>
+Date:   Wed, 31 May 2023 11:45:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 11/14] arm64: dts: qcom: sdm845: rename labels for DSI
+Subject: Re: [PATCH 12/14] arm64: dts: qcom: sm8250: rename labels for DSI
  nodes
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -65,9 +65,9 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
- <20230531011623.3808538-12-dmitry.baryshkov@linaro.org>
+ <20230531011623.3808538-13-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230531011623.3808538-12-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230531011623.3808538-13-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,99 +92,37 @@ On 31.05.2023 03:16, Dmitry Baryshkov wrote:
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  52 +++----
+>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  40 ++---
+>  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 138 +++++++++---------
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  36 ++---
+>  4 files changed, 133 insertions(+), 133 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index dfcaac266456..9022ad726741 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -535,30 +535,6 @@ &cdsp {
+>  	firmware-name = "qcom/sm8250/cdsp.mbn";
+>  };
+>  
+> -&dsi0 {
+> -	status = "okay";
+> -	vdda-supply = <&vreg_l9a_1p2>;
+> -
+> -#if 0
+Uh-oh, could you take care of this in a separate commit?
+
+
+But since this just moves things:
+
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    | 40 ++++----
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    | 98 +++++++++----------
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts       | 86 ++++++++--------
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 76 +++++++-------
->  .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 76 +++++++-------
->  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     | 74 +++++++-------
->  .../qcom/sdm845-xiaomi-beryllium-common.dtsi  | 66 ++++++-------
->  .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   | 76 +++++++-------
->  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 36 +++----
->  9 files changed, 314 insertions(+), 314 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> index d05c511718df..1ce413263b7f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> @@ -636,25 +636,6 @@ src_pp600_s3c: smps3 {
->  	};
->  };
->  
-> -&dsi0 {
-> -	status = "okay";
-> -	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> -
-> -	ports {
-> -		port@1 {
-> -			endpoint {
-> -				remote-endpoint = <&sn65dsi86_in>;
-> -				data-lanes = <0 1 2 3>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&dsi0_phy {
-> -	status = "okay";
-> -	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> -};
-> -
->  edp_brij_i2c: &i2c3 {
->  	status = "okay";
->  	clock-frequency = <400000>;
-> @@ -687,7 +668,7 @@ ports {
->  			port@0 {
->  				reg = <0>;
->  				sn65dsi86_in: endpoint {
-> -					remote-endpoint = <&dsi0_out>;
-> +					remote-endpoint = <&mdss_dsi0_out>;
->  				};
->  			};
->  
-> @@ -767,6 +748,25 @@ &mdss {
->  	status = "okay";
->  };
->  
-> +&mdss_dsi0 {
-> +	status = "okay";
-> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> +
-> +	ports {
-> +		port@1 {
-> +			endpoint {
-> +				remote-endpoint = <&sn65dsi86_in>;
-> +				data-lanes = <0 1 2 3>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	status = "okay";
-> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> +};
-> +
->  /*
->   * Cheza fw does not properly program the GPU aperture to allow the
->   * GPU to update the SMMU pagetables for context switches.  Work
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 4dea2c04b22f..fd183f74c216 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -415,53 +415,6 @@ &cdsp_pas {
->  	firmware-name = "qcom/sdm845/cdsp.mbn";
->  };
->  
-> -&dsi0 {
-> -	status = "okay";
-> -	vdda-supply = <&vreg_l26a_1p2>;
-> -
+
 > -	qcom,dual-dsi-mode;
 > -	qcom,master-dsi;
+> -#endif
 > -
 > -	ports {
 > -		port@1 {
@@ -198,38 +136,13 @@ Konrad
 > -
 > -&dsi0_phy {
 > -	status = "okay";
-> -	vdds-supply = <&vreg_l1a_0p875>;
+> -	vdds-supply = <&vreg_l5a_0p88>;
 > -};
 > -
-> -&dsi1 {
-> -	vdda-supply = <&vreg_l26a_1p2>;
-> -
-> -	qcom,dual-dsi-mode;
-> -
-> -	/* DSI1 is slave, so use DSI0 clocks */
-> -	assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
-> -
-> -	status = "okay";
-> -
-> -	ports {
-> -		port@1 {
-> -			endpoint {
-> -				remote-endpoint = <&lt9611_b>;
-> -				data-lanes = <0 1 2 3>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&dsi1_phy {
-> -	vdds-supply = <&vreg_l1a_0p875>;
-> -	status = "okay";
-> -};
-> -
->  &gcc {
->  	protected-clocks = <GCC_QSPI_CORE_CLK>,
->  			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -517,7 +470,7 @@ port@0 {
+>  &gmu {
+>  	status = "okay";
+>  };
+> @@ -604,7 +580,7 @@ port@0 {
 >  				reg = <0>;
 >  
 >  				lt9611_a: endpoint {
@@ -238,7 +151,7 @@ Konrad
 >  				};
 >  			};
 >  
-> @@ -525,7 +478,7 @@ port@1 {
+> @@ -613,7 +589,7 @@ port@1 {
 >  				reg = <1>;
 >  
 >  				lt9611_b: endpoint {
@@ -246,17 +159,19 @@ Konrad
 > +					remote-endpoint = <&mdss_dsi1_out>;
 >  				};
 >  			};
->  
-> @@ -556,6 +509,53 @@ &mdss {
+>  #endif
+> @@ -639,6 +615,30 @@ &mdss {
 >  	status = "okay";
 >  };
 >  
 > +&mdss_dsi0 {
 > +	status = "okay";
-> +	vdda-supply = <&vreg_l26a_1p2>;
+> +	vdda-supply = <&vreg_l9a_1p2>;
 > +
+> +#if 0
 > +	qcom,dual-dsi-mode;
 > +	qcom,master-dsi;
+> +#endif
 > +
 > +	ports {
 > +		port@1 {
@@ -270,488 +185,32 @@ Konrad
 > +
 > +&mdss_dsi0_phy {
 > +	status = "okay";
-> +	vdds-supply = <&vreg_l1a_0p875>;
+> +	vdds-supply = <&vreg_l5a_0p88>;
 > +};
 > +
-> +&mdss_dsi1 {
-> +	vdda-supply = <&vreg_l26a_1p2>;
-> +
-> +	qcom,dual-dsi-mode;
-> +
-> +	/* DSI1 is slave, so use DSI0 clocks */
-> +	assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
-> +
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			endpoint {
-> +				remote-endpoint = <&lt9611_b>;
-> +				data-lanes = <0 1 2 3>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi1_phy {
-> +	vdds-supply = <&vreg_l1a_0p875>;
-> +	status = "okay";
-> +};
-> +
->  &mss_pil {
+>  &pm8150_adc {
+>  	xo-therm@4c {
+>  		reg = <ADC5_XO_THERM_100K_PU>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index 1326c171fe72..cfbc4fc1eba9 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -311,25 +311,6 @@ &cdsp_pas {
 >  	status = "okay";
->  	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> index d1440b790fa6..b2d4336e764b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> @@ -417,7 +417,43 @@ &cdsp_pas {
->  	firmware-name = "qcom/sdm845/cdsp.mdt";
->  };
->  
-> -&dsi0 {
-> +&gcc {
-> +	protected-clocks = <GCC_QSPI_CORE_CLK>,
-> +			   <GCC_QSPI_CORE_CLK_SRC>,
-> +			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-> +			   <GCC_LPASS_Q6_AXI_CLK>,
-> +			   <GCC_LPASS_SWAY_CLK>;
-> +};
-> +
-> +&gmu {
-> +	status = "okay";
-> +};
-> +
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sdm845/a630_zap.mbn";
-> +	};
-> +};
-> +
-> +&i2c10 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +};
-> +
-> +&ipa {
-> +	qcom,gsi-loader = "self";
-> +	memory-region = <&ipa_fw_mem>;
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
->  	status = "okay";
->  	vdda-supply = <&vdda_mipi_dsi0_1p2>;
->  
-> @@ -448,33 +484,33 @@ ports {
->  			port@0 {
->  				reg = <0>;
->  				truly_in_0: endpoint {
-> -					remote-endpoint = <&dsi0_out>;
-> +					remote-endpoint = <&mdss_dsi0_out>;
->  				};
->  			};
->  
->  			port@1 {
->  				reg = <1>;
->  				truly_in_1: endpoint {
-> -					remote-endpoint = <&dsi1_out>;
-> +					remote-endpoint = <&mdss_dsi1_out>;
->  				};
->  			};
->  		};
->  	};
->  };
->  
-> -&dsi0_phy {
-> +&mdss_dsi0_phy {
->  	status = "okay";
->  	vdds-supply = <&vdda_mipi_dsi0_pll>;
->  };
->  
-> -&dsi1 {
-> +&mdss_dsi1 {
->  	status = "okay";
->  	vdda-supply = <&vdda_mipi_dsi1_1p2>;
->  
->  	qcom,dual-dsi-mode;
->  
->  	/* DSI1 is slave, so use DSI0 clocks */
-> -	assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
-> +	assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
->  
->  	ports {
->  		port@1 {
-> @@ -486,47 +522,11 @@ endpoint {
->  	};
->  };
->  
-> -&dsi1_phy {
-> +&mdss_dsi1_phy {
->  	status = "okay";
->  	vdds-supply = <&vdda_mipi_dsi1_pll>;
->  };
->  
-> -&gcc {
-> -	protected-clocks = <GCC_QSPI_CORE_CLK>,
-> -			   <GCC_QSPI_CORE_CLK_SRC>,
-> -			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-> -			   <GCC_LPASS_Q6_AXI_CLK>,
-> -			   <GCC_LPASS_SWAY_CLK>;
-> -};
-> -
-> -&gmu {
-> -	status = "okay";
-> -};
-> -
-> -&gpu {
-> -	status = "okay";
-> -
-> -	zap-shader {
-> -		memory-region = <&gpu_mem>;
-> -		firmware-name = "qcom/sdm845/a630_zap.mbn";
-> -	};
-> -};
-> -
-> -&i2c10 {
-> -	status = "okay";
-> -	clock-frequency = <400000>;
-> -};
-> -
-> -&ipa {
-> -	qcom,gsi-loader = "self";
-> -	memory-region = <&ipa_fw_mem>;
-> -	status = "okay";
-> -};
-> -
-> -&mdss {
-> -	status = "okay";
-> -};
-> -
->  &mss_pil {
->  	status = "okay";
->  	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 5c384345c05d..7b1555af97b8 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -336,44 +336,6 @@ &cdsp_pas {
->  	firmware-name = "qcom/sdm845/oneplus6/cdsp.mbn";
->  };
->  
-> -&dsi0 {
-> -	status = "okay";
-> -	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> -
-> -	/*
-> -	 * Both devices use different panels but all other properties
-> -	 * are common. Compatible line is declared in device dts.
-> -	 */
-> -	display_panel: panel@0 {
-> -		status = "disabled";
-> -
-> -		reg = <0>;
-> -
-> -		vddio-supply = <&vreg_l14a_1p88>;
-> -
-> -		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> -
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
-> -
-> -		port {
-> -			panel_in: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&dsi0_out {
-> -	remote-endpoint = <&panel_in>;
-> -	data-lanes = <0 1 2 3>;
-> -};
-> -
-> -&dsi0_phy {
-> -	status = "okay";
-> -	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> -};
-> -
->  &gcc {
->  	protected-clocks = <GCC_QSPI_CORE_CLK>,
->  				<GCC_QSPI_CORE_CLK_SRC>,
-> @@ -452,6 +414,44 @@ &mdss {
->  	status = "okay";
->  };
->  
-> +&mdss_dsi0 {
-> +	status = "okay";
-> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> +
-> +	/*
-> +	 * Both devices use different panels but all other properties
-> +	 * are common. Compatible line is declared in device dts.
-> +	 */
-> +	display_panel: panel@0 {
-> +		status = "disabled";
-> +
-> +		reg = <0>;
-> +
-> +		vddio-supply = <&vreg_l14a_1p88>;
-> +
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel_in>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	status = "okay";
-> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> +};
-> +
->  /* Modem/wifi */
->  &mss_pil {
->  	status = "okay";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> index 1eaff964b202..91ae5e875d6d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> @@ -411,44 +411,6 @@ &cdsp_pas {
->  	firmware-name = "qcom/sdm845/axolotl/cdsp.mbn";
->  };
->  
-> -&dsi0 {
-> -	status = "okay";
-> -	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> -
-> -	panel@0 {
-> -		compatible = "visionox,rm69299-shift";
-> -		status = "okay";
-> -		reg = <0>;
-> -		vdda-supply = <&vreg_l14a_1p88>;
-> -		vdd3p3-supply = <&vreg_l28a_3p0>;
-> -
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-> -
-> -		pinctrl-names = "default", "sleep";
-> -		pinctrl-0 = <&sde_dsi_active &sde_te_active>;
-> -		pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
-> -
-> -		port {
-> -			panel_in_0: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&dsi0_out {
-> -	remote-endpoint = <&panel_in_0>;
-> -	data-lanes = <0 1 2 3>;
-> -};
-> -
-> -&dsi0_phy {
-> -	status = "okay";
-> -	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> -};
-> -
->  &gcc {
->  	protected-clocks = <GCC_QSPI_CORE_CLK>,
->  			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -505,6 +467,44 @@ &mdss {
->  	status = "okay";
->  };
->  
-> +&mdss_dsi0 {
-> +	status = "okay";
-> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> +
-> +	panel@0 {
-> +		compatible = "visionox,rm69299-shift";
-> +		status = "okay";
-> +		reg = <0>;
-> +		vdda-supply = <&vreg_l14a_1p88>;
-> +		vdd3p3-supply = <&vreg_l28a_3p0>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-names = "default", "sleep";
-> +		pinctrl-0 = <&sde_dsi_active &sde_te_active>;
-> +		pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
-> +
-> +		port {
-> +			panel_in_0: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel_in_0>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	status = "okay";
-> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> +};
-> +
->  &mss_pil {
->  	status = "okay";
->  	firmware-name = "qcom/sdm845/axolotl/mba.mbn", "qcom/sdm845/axolotl/modem.mbn";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> index 420ffede3e80..3bc187a066ae 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> @@ -368,43 +368,6 @@ &cdsp_pas {
->  	status = "okay";
->  };
->  
-> -&dsi0 {
-> -	vdda-supply = <&vreg_l26a_1p2>;
-> -	status = "okay";
-> -
-> -	panel: panel@0 {
-> -		/* The compatible is assigned in device DTs. */
-> -		reg = <0>;
-> -
-> -		backlight = <&pmi8998_wled>;
-> -		vddio-supply = <&vreg_l14a_1p8>;
-> -		vsp-supply = <&lab>;
-> -		vsn-supply = <&ibb>;
-> -		panel-reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-> -		touch-reset-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-> -
-> -		pinctrl-0 = <&sde_dsi_active &sde_te_active_sleep>;
-> -		pinctrl-1 = <&sde_dsi_sleep &sde_te_active_sleep>;
-> -		pinctrl-names = "default", "sleep";
-> -
-> -		port {
-> -			panel_in: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&dsi0_out {
-> -	remote-endpoint = <&panel_in>;
-> -	data-lanes = <0 1 2 3>;
-> -};
-> -
-> -&dsi0_phy {
-> -	vdds-supply = <&vreg_l1a_0p9>;
-> -	status = "okay";
-> -};
-> -
->  &gcc {
->  	protected-clocks = <GCC_QSPI_CORE_CLK>,
->  			<GCC_QSPI_CORE_CLK_SRC>,
-> @@ -515,6 +478,43 @@ &mdss {
->  	status = "okay";
->  };
->  
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vreg_l26a_1p2>;
-> +	status = "okay";
-> +
-> +	panel: panel@0 {
-> +		/* The compatible is assigned in device DTs. */
-> +		reg = <0>;
-> +
-> +		backlight = <&pmi8998_wled>;
-> +		vddio-supply = <&vreg_l14a_1p8>;
-> +		vsp-supply = <&lab>;
-> +		vsn-supply = <&ibb>;
-> +		panel-reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-> +		touch-reset-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-0 = <&sde_dsi_active &sde_te_active_sleep>;
-> +		pinctrl-1 = <&sde_dsi_sleep &sde_te_active_sleep>;
-> +		pinctrl-names = "default", "sleep";
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel_in>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	vdds-supply = <&vreg_l1a_0p9>;
-> +	status = "okay";
-> +};
-> +
->  &pm8998_gpios {
->  	focus_n: focus-n-state {
->  		pins = "gpio2";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> index 5ed975cc6ecb..8bac4b153cc9 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> @@ -223,39 +223,6 @@ &cdsp_pas {
->  	firmware-name = "qcom/sdm845/beryllium/cdsp.mbn";
 >  };
 >  
 > -&dsi0 {
 > -	status = "okay";
 > -	vdda-supply = <&vreg_l26a_1p2>;
 > -
-> -	display_panel: panel@0 {
-> -		reg = <0>;
-> -		vddio-supply = <&vreg_l14a_1p8>;
-> -		vddpos-supply = <&lab>;
-> -		vddneg-supply = <&ibb>;
-> -
-> -		backlight = <&pmi8998_wled>;
-> -		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> -
-> -		status = "disabled";
-> -
-> -		port {
-> -			panel_in_0: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
+> -	ports {
+> -		port@1 {
+> -			endpoint {
+> -				remote-endpoint = <&sn65dsi86_in_a>;
+> -				data-lanes = <0 1 2 3>;
 > -			};
 > -		};
 > -	};
-> -};
-> -
-> -&dsi0_out {
-> -	remote-endpoint = <&panel_in_0>;
-> -	data-lanes = <0 1 2 3>;
 > -};
 > -
 > -&dsi0_phy {
@@ -762,7 +221,16 @@ Konrad
 >  &gcc {
 >  	protected-clocks = <GCC_QSPI_CORE_CLK>,
 >  			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -298,6 +265,39 @@ &mdss {
+> @@ -422,7 +403,7 @@ ports {
+>  			port@0 {
+>  				reg = <0>;
+>  				sn65dsi86_in_a: endpoint {
+> -					remote-endpoint = <&dsi0_out>;
+> +					remote-endpoint = <&mdss_dsi0_out>;
+>  				};
+>  			};
+>  
+> @@ -475,6 +456,25 @@ &mdss {
 >  	status = "okay";
 >  };
 >  
@@ -770,28 +238,14 @@ Konrad
 > +	status = "okay";
 > +	vdda-supply = <&vreg_l26a_1p2>;
 > +
-> +	display_panel: panel@0 {
-> +		reg = <0>;
-> +		vddio-supply = <&vreg_l14a_1p8>;
-> +		vddpos-supply = <&lab>;
-> +		vddneg-supply = <&ibb>;
-> +
-> +		backlight = <&pmi8998_wled>;
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +
-> +		status = "disabled";
-> +
-> +		port {
-> +			panel_in_0: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
+> +	ports {
+> +		port@1 {
+> +			endpoint {
+> +				remote-endpoint = <&sn65dsi86_in_a>;
+> +				data-lanes = <0 1 2 3>;
 > +			};
 > +		};
 > +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel_in_0>;
-> +	data-lanes = <0 1 2 3>;
 > +};
 > +
 > +&mdss_dsi0_phy {
@@ -801,147 +255,209 @@ Konrad
 > +
 >  &mss_pil {
 >  	status = "okay";
->  	firmware-name = "qcom/sdm845/beryllium/mba.mbn", "qcom/sdm845/beryllium/modem.mbn";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> index 576f0421824f..6db12abaa88d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> @@ -373,44 +373,6 @@ &cdsp_pas {
+>  	firmware-name = "qcom/sdm850/LENOVO/81JL/qcdsp1v2850.mbn", "qcom/sdm850/LENOVO/81JL/qcdsp2850.mbn";
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> index eaac00085894..b841ea9192ae 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> @@ -470,75 +470,6 @@ &cdsp {
 >  	status = "okay";
 >  };
 >  
 > -&dsi0 {
-> -	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+> -	vdda-supply = <&vreg_l9a_1p2>;
+> -	qcom,dual-dsi-mode;
+> -	qcom,sync-dual-dsi;
+> -	qcom,master-dsi;
 > -	status = "okay";
 > -
 > -	display_panel: panel@0 {
-> -		compatible = "jdi,fhd-nt35596s";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
 > -		reg = <0>;
+> -		vddio-supply = <&vreg_l14a_1p88>;
+> -		reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
+> -		backlight = <&backlight>;
 > -
-> -		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> -		vddio-supply = <&vreg_l14a_1p8>;
-> -		backlight = <&pmi8998_wled>;
-> -		vddpos-supply = <&lab>;
-> -		vddneg-supply = <&ibb>;
+> -		status = "disabled";
 > -
-> -		pinctrl-names = "default", "sleep";
-> -		pinctrl-0 = <&sde_dsi_active>;
-> -		pinctrl-1 = <&sde_dsi_suspend>;
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
 > -
-> -		port {
-> -			panel_in: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
+> -			port@0 {
+> -				reg = <0>;
+> -
+> -				panel_in_0: endpoint {
+> -					remote-endpoint = <&dsi0_out>;
+> -				};
+> -			};
+> -
+> -			port@1{
+> -				reg = <1>;
+> -
+> -				panel_in_1: endpoint {
+> -					remote-endpoint = <&dsi1_out>;
+> -				};
 > -			};
 > -		};
 > -	};
 > -};
 > -
 > -&dsi0_out {
-> -	remote-endpoint = <&panel_in>;
-> -	data-lanes = <0 1 2 3>;
+> -	data-lanes = <0 1 2>;
+> -	remote-endpoint = <&panel_in_0>;
 > -};
 > -
 > -&dsi0_phy {
-> -	vdds-supply = <&vdda_mipi_dsi0_pll>;
+> -	vdds-supply = <&vreg_l5a_0p88>;
+> -	phy-type = <PHY_TYPE_CPHY>;
 > -	status = "okay";
 > -};
 > -
->  &gcc {
->  	protected-clocks = <GCC_QSPI_CORE_CLK>,
->  				<GCC_QSPI_CORE_CLK_SRC>,
-> @@ -505,6 +467,44 @@ &mdss {
+> -&dsi1 {
+> -	vdda-supply = <&vreg_l9a_1p2>;
+> -	qcom,dual-dsi-mode;
+> -	qcom,sync-dual-dsi;
+> -	/* DSI1 is slave, so use DSI0 clocks */
+> -	assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
+> -	status = "okay";
+> -};
+> -
+> -&dsi1_out {
+> -	data-lanes = <0 1 2>;
+> -	remote-endpoint = <&panel_in_1>;
+> -};
+> -
+> -&dsi1_phy {
+> -	vdds-supply = <&vreg_l5a_0p88>;
+> -	phy-type = <PHY_TYPE_CPHY>;
+> -	status = "okay";
+> -};
+> -
+>  &gmu {
+>  	status = "okay";
+>  };
+> @@ -607,6 +538,75 @@ &mdss {
 >  	status = "okay";
 >  };
 >  
 > +&mdss_dsi0 {
-> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+> +	vdda-supply = <&vreg_l9a_1p2>;
+> +	qcom,dual-dsi-mode;
+> +	qcom,sync-dual-dsi;
+> +	qcom,master-dsi;
 > +	status = "okay";
 > +
 > +	display_panel: panel@0 {
-> +		compatible = "jdi,fhd-nt35596s";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
 > +		reg = <0>;
+> +		vddio-supply = <&vreg_l14a_1p88>;
+> +		reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
+> +		backlight = <&backlight>;
 > +
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +		vddio-supply = <&vreg_l14a_1p8>;
-> +		backlight = <&pmi8998_wled>;
-> +		vddpos-supply = <&lab>;
-> +		vddneg-supply = <&ibb>;
+> +		status = "disabled";
 > +
-> +		pinctrl-names = "default", "sleep";
-> +		pinctrl-0 = <&sde_dsi_active>;
-> +		pinctrl-1 = <&sde_dsi_suspend>;
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 > +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				panel_in_0: endpoint {
+> +					remote-endpoint = <&mdss_dsi0_out>;
+> +				};
+> +			};
+> +
+> +			port@1{
+> +				reg = <1>;
+> +
+> +				panel_in_1: endpoint {
+> +					remote-endpoint = <&mdss_dsi1_out>;
+> +				};
 > +			};
 > +		};
 > +	};
 > +};
 > +
 > +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel_in>;
-> +	data-lanes = <0 1 2 3>;
+> +	data-lanes = <0 1 2>;
+> +	remote-endpoint = <&panel_in_0>;
 > +};
 > +
 > +&mdss_dsi0_phy {
-> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
+> +	vdds-supply = <&vreg_l5a_0p88>;
+> +	phy-type = <PHY_TYPE_CPHY>;
 > +	status = "okay";
 > +};
 > +
->  &mss_pil {
->  	firmware-name = "qcom/sdm845/polaris/mba.mbn", "qcom/sdm845/polaris/modem.mbn";
+> +&mdss_dsi1 {
+> +	vdda-supply = <&vreg_l9a_1p2>;
+> +	qcom,dual-dsi-mode;
+> +	qcom,sync-dual-dsi;
+> +	/* DSI1 is slave, so use DSI0 clocks */
+> +	assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi1_out {
+> +	data-lanes = <0 1 2>;
+> +	remote-endpoint = <&panel_in_1>;
+> +};
+> +
+> +&mdss_dsi1_phy {
+> +	vdds-supply = <&vreg_l5a_0p88>;
+> +	phy-type = <PHY_TYPE_CPHY>;
+> +	status = "okay";
+> +};
+> +
+>  &pcie0 {
 >  	status = "okay";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 950305aad44d..29524c25b63d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -4510,14 +4510,14 @@ dpu_intf0_out: endpoint {
->  					port@1 {
->  						reg = <1>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index e5c60a6e4074..8cfb951f6a67 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -4234,14 +4234,14 @@ ports {
+>  					port@0 {
+>  						reg = <0>;
 >  						dpu_intf1_out: endpoint {
 > -							remote-endpoint = <&dsi0_in>;
 > +							remote-endpoint = <&mdss_dsi0_in>;
 >  						};
 >  					};
 >  
->  					port@2 {
->  						reg = <2>;
+>  					port@1 {
+>  						reg = <1>;
 >  						dpu_intf2_out: endpoint {
 > -							remote-endpoint = <&dsi1_in>;
 > +							remote-endpoint = <&mdss_dsi1_in>;
 >  						};
 >  					};
 >  				};
-> @@ -4617,7 +4617,7 @@ opp-810000000 {
+> @@ -4271,7 +4271,7 @@ opp-460000000 {
 >  				};
 >  			};
 >  
 > -			dsi0: dsi@ae94000 {
 > +			mdss_dsi0: dsi@ae94000 {
->  				compatible = "qcom,sdm845-dsi-ctrl",
+>  				compatible = "qcom,sm8250-dsi-ctrl",
 >  					     "qcom,mdss-dsi-ctrl";
 >  				reg = <0 0x0ae94000 0 0x400>;
-> @@ -4639,12 +4639,12 @@ dsi0: dsi@ae94000 {
->  					      "iface",
+> @@ -4294,12 +4294,12 @@ dsi0: dsi@ae94000 {
 >  					      "bus";
+>  
 >  				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
 > -				assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
 > +				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
 >  
 >  				operating-points-v2 = <&dsi_opp_table>;
->  				power-domains = <&rpmhpd SDM845_CX>;
+>  				power-domains = <&rpmhpd SM8250_MMCX>;
 >  
 > -				phys = <&dsi0_phy>;
 > +				phys = <&mdss_dsi0_phy>;
 >  
 >  				status = "disabled";
 >  
-> @@ -4657,20 +4657,20 @@ ports {
+> @@ -4312,14 +4312,14 @@ ports {
 >  
 >  					port@0 {
 >  						reg = <0>;
@@ -958,38 +474,40 @@ Konrad
 >  						};
 >  					};
 >  				};
+> @@ -4344,7 +4344,7 @@ opp-358000000 {
+>  				};
 >  			};
 >  
 > -			dsi0_phy: phy@ae94400 {
 > +			mdss_dsi0_phy: phy@ae94400 {
->  				compatible = "qcom,dsi-phy-10nm";
+>  				compatible = "qcom,dsi-phy-7nm";
 >  				reg = <0 0x0ae94400 0 0x200>,
 >  				      <0 0x0ae94600 0 0x280>,
-> @@ -4689,7 +4689,7 @@ dsi0_phy: phy@ae94400 {
+> @@ -4363,7 +4363,7 @@ dsi0_phy: phy@ae94400 {
 >  				status = "disabled";
 >  			};
 >  
 > -			dsi1: dsi@ae96000 {
 > +			mdss_dsi1: dsi@ae96000 {
->  				compatible = "qcom,sdm845-dsi-ctrl",
+>  				compatible = "qcom,sm8250-dsi-ctrl",
 >  					     "qcom,mdss-dsi-ctrl";
 >  				reg = <0 0x0ae96000 0 0x400>;
-> @@ -4711,12 +4711,12 @@ dsi1: dsi@ae96000 {
->  					      "iface",
+> @@ -4386,12 +4386,12 @@ dsi1: dsi@ae96000 {
 >  					      "bus";
+>  
 >  				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
 > -				assigned-clock-parents = <&dsi1_phy 0>, <&dsi1_phy 1>;
 > +				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
 >  
 >  				operating-points-v2 = <&dsi_opp_table>;
->  				power-domains = <&rpmhpd SDM845_CX>;
+>  				power-domains = <&rpmhpd SM8250_MMCX>;
 >  
 > -				phys = <&dsi1_phy>;
 > +				phys = <&mdss_dsi1_phy>;
 >  
 >  				status = "disabled";
 >  
-> @@ -4729,20 +4729,20 @@ ports {
+> @@ -4404,20 +4404,20 @@ ports {
 >  
 >  					port@0 {
 >  						reg = <0>;
@@ -1010,13 +528,13 @@ Konrad
 >  
 > -			dsi1_phy: phy@ae96400 {
 > +			mdss_dsi1_phy: phy@ae96400 {
->  				compatible = "qcom,dsi-phy-10nm";
+>  				compatible = "qcom,dsi-phy-7nm";
 >  				reg = <0 0x0ae96400 0 0x200>,
 >  				      <0 0x0ae96600 0 0x280>,
-> @@ -4904,10 +4904,10 @@ dispcc: clock-controller@af00000 {
+> @@ -4443,10 +4443,10 @@ dispcc: clock-controller@af00000 {
+>  			power-domains = <&rpmhpd SM8250_MMCX>;
+>  			required-opps = <&rpmhpd_opp_low_svs>;
 >  			clocks = <&rpmhcc RPMH_CXO_CLK>,
->  				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
->  				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>,
 > -				 <&dsi0_phy 0>,
 > -				 <&dsi0_phy 1>,
 > -				 <&dsi1_phy 0>,
