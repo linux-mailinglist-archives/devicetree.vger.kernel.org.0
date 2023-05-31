@@ -2,398 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C98717C58
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:47:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F464717D1E
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 12:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbjEaJrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46826 "EHLO
+        id S234593AbjEaKWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 06:22:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231981AbjEaJq7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:46:59 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E24EE2
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:46:54 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f3baf04f0cso6322472e87.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:46:54 -0700 (PDT)
+        with ESMTP id S232807AbjEaKVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 06:21:40 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E22170C;
+        Wed, 31 May 2023 03:20:52 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-96fe88cd2fcso949663166b.1;
+        Wed, 31 May 2023 03:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685526413; x=1688118413;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iTEV1/JYGgrvuGZhmjMKnGLK6FtjMyR0jXXOjESNrZQ=;
-        b=Dgu9yIwkQSujqK3cSEfA0ahs75nmxrD3xtu6wGT5H6XaHY5Bt5zH/qls/WA2Xe9N/I
-         OgeA4WO0a1riCvQQxEdNVK2v5aMz0tPMYdYOBMapY78J5IpFsAy2VVslNd8jM2lVSvkd
-         AnkSEWYBzzs3ran37mt4QLmWQLszVvcPfYXXvUOXCSY/hut0b6k5Lsqxz/85TYTxXJ78
-         fVKVWLgydgaV2Oo3Wy33YkIFps4kl2DSaGYl0jDf9btFvPlyyP6xoJdpRxIFuHRir37i
-         cYR4JjHQ3LZyDVozT8J/CzZjy+EoIoAT8RV18/hXdlwz3Yyb8jUvLAKEnqFZUBX/Reg/
-         zqow==
+        d=gmail.com; s=20221208; t=1685528450; x=1688120450;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=i346g0tOe6vT/cLezhfvyt7e+xeEM6Fa4DiLjYERMPg=;
+        b=OBQ1mURlVEw81LGrI3oxLmfOjApy03eBH8TI/Fgivaf1IyBnHqd8a7L6+LJKJcDMtT
+         Pj5MxSmmBHMqQdKvBCHOC9TlnhDsBYFnJxlYfxxQUjn9S/S8Aj7O7wr1+ug0g84fs9tk
+         /NXzVSmelD3MVB+KGoZWHqQHHbZKlucHwj4/1MXnVEqmQwEy96Cz8A9xU2DGFQyDprob
+         QU+UXj6YYNrU5yFg3twou+BvSFVfpdV+NLVsVBdnhC+ItsVzdm450BQMMDWs6OMCOOhd
+         oJlvkBRU49zUk0zfeyly+wVybT4zLVySljJF2Z3umqdQ4BZqqmuH0DMD7MMNpUreA8Vk
+         19ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685526413; x=1688118413;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685528450; x=1688120450;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iTEV1/JYGgrvuGZhmjMKnGLK6FtjMyR0jXXOjESNrZQ=;
-        b=Rfh2pTH3BmLgts3Tb6i2HfnxxBCn5vOTHHj7KHGm7jbIxGvn7AVHrx/8gevww4ztwX
-         0jgnfsOlDSnR4KQ+ITgsnJV+i+PbAyZP0VM4aaBKtgwEGTSBA9vh4PZtSJY/rFAJ7rUo
-         t09Jfmqh+QSWykQyIb3vGmGtd26JQ2Xv98kBXtwEA/4Mtx8hb6FtpuCj976LfgIo0d1O
-         n6ErT5BHLuxqPQ1DLtZ3l22jwj3slxo5M4A0FgvNUsTKAeVLfsY7UcqNudM29IxOEPFN
-         QfBVqtHyqjjOwvMCAChE16gzZGAmDcrJtjccTj8Ez1S5wlJ3Zsd1dI4+R1pRT1lZ7rF1
-         ECdw==
-X-Gm-Message-State: AC+VfDyW8ZxRgrGbL4MwbtcPZxld2p+fyksWZiDYrOU5xx1xpIcpEyr0
-        g5c+l5gj7LV6QZ+TQIgrDEV61w==
-X-Google-Smtp-Source: ACHHUZ5Hk6eMKLlLd8nDgdT1MeeWeDEoMiW8vkzeHnRBare346zvCLG0gH9OdV8dTvPNnvPQl4zdcA==
-X-Received: by 2002:a19:c216:0:b0:4f1:4f26:738f with SMTP id l22-20020a19c216000000b004f14f26738fmr2249189lfc.19.1685526412851;
-        Wed, 31 May 2023 02:46:52 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id v17-20020a056512049100b004f382ae9892sm647764lfq.247.2023.05.31.02.46.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 02:46:52 -0700 (PDT)
-Message-ID: <26df196e-4960-353d-7449-57432d31dad2@linaro.org>
-Date:   Wed, 31 May 2023 11:46:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 14/14] ARM: dts: qcom: msm8974: rename labels for DSI
- nodes
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        bh=i346g0tOe6vT/cLezhfvyt7e+xeEM6Fa4DiLjYERMPg=;
+        b=e1dApAIlMYW4IzSUYGNl65XAtf8kik2eZ172hM2+8FebUJwz5bHbolLKgmcS29AZif
+         uZ8x4pHAv/kg3jk2YEO9to5FM4TVsH212tdd/86kHf+eCUPQ14Ae2R3UlsxQDOuX0GUe
+         7I+NSYSLf7FbeqpjnbwlBcRdouqqT4G+6vrRT4pcVCv1UpKGXltYkb10tWhfMgA0zdld
+         RHzI2Pvps/VXTNVRJvFqZCkM96sof/y84kuSInUx1a5yrL5gQVx1QRZZ2HOMa0Ac97mB
+         ZAKrAKQ8C4Oleag3kaDMZljjvM7udBqv+q4P+nsGRYPc1feVAnSCltqIUzfOia3eUk/C
+         4oXw==
+X-Gm-Message-State: AC+VfDxs8LUi2++iO9QJf55y18jsvbVmfXY98rj2z7rJjk2ZCES8jVkb
+        AaJHKgi22LjInGY5UpZSAEI=
+X-Google-Smtp-Source: ACHHUZ4UPVv8pFCaMVf2DwKLWo5JAqU0RpFvuFlHlxmmoSSaWjRUL9IRazlDJuAGikMeqiOnaBriGA==
+X-Received: by 2002:a17:907:7d9e:b0:973:ff8d:2a46 with SMTP id oz30-20020a1709077d9e00b00973ff8d2a46mr5438318ejc.3.1685528450197;
+        Wed, 31 May 2023 03:20:50 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id cb23-20020a170906a45700b00965ddf2e221sm8798394ejb.93.2023.05.31.03.20.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 May 2023 03:20:49 -0700 (PDT)
+Date:   Wed, 31 May 2023 12:20:47 +0200
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
+        linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
- <20230531011623.3808538-15-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230531011623.3808538-15-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML
+ binding
+Message-ID: <ZHcff4Gpr9QSgpOs@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20230526173955.797226-1-tomm.merciai@gmail.com>
+ <20230526173955.797226-2-tomm.merciai@gmail.com>
+ <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
+ <20230529063907.GB25984@pendragon.ideasonboard.com>
+ <20230529064326.GC25984@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230529064326.GC25984@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
+On Mon, May 29, 2023 at 09:43:26AM +0300, Laurent Pinchart wrote:
+> On Mon, May 29, 2023 at 09:39:13AM +0300, Laurent Pinchart wrote:
+> > On Sun, May 28, 2023 at 09:16:05PM +0000, Sakari Ailus wrote:
+> > > On Fri, May 26, 2023 at 07:39:43PM +0200, Tommaso Merciai wrote:
+> > > > Add documentation of device tree in YAML schema for the ALVIUM
+> > > > Camera from Allied Vision Inc.
+> > > > 
+> > > > References:
+> > > >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
+> > > > 
+> > > > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> > > > ---
+> > > > Changes since v1:
+> > > >  - Fixed build error as suggested by RHerring bot
+> > > > 
+> > > >  .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
+> > > >  1 file changed, 115 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..81e9e560c99d
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > > > @@ -0,0 +1,115 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Alliedvision Alvium Camera
+> > 
+> > s/Alliedvision/Allied Vision/
+> > 
+> > > > +
+> > > > +maintainers:
+> > > > +  - Tommaso Merciai <tomm.merciai@gmail.com>
+> > > > +  - Martin Hecht <martin.hecht@avnet.eu>
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: alliedvision,alvium
+> > 
+> > The name is very generic. There are Alvium camera modules that have a
+> > GMSL or FPD-Link interface, and I'm pretty sure those will require a
+> > different driver. I would add module-specific compatible strings (e.g.
+> > "alliedvision,alvium-1500c", ...) here, with a generic fallback.
+> > "alliedvision,alvium" isn't good as it won't cover GMSL or FPD-Link,
+> > maybe "alliedvision,alvium-csi2" would be an option.
+> 
+> Actually, "alvium-1500c" as a specific compatible string won't do. You
+> need the exact model in the compatible string, otherwise it won't be
+> possible for the driver to handle device-specific configuration (for
+> instance accessing registers of the camera sensor for fine-grained
+> configuration). I would thus recommend using "alliedvision,alvium-1500c"
+> and "alliedvision,alvium-1800c" as generic fallbacks, along compatible
+> strings that include the exact device model.
 
-On 31.05.2023 03:16, Dmitry Baryshkov wrote:
-> Currently in board files MDSS and HDMI nodes stay apart, because labels
-> for HDMI nodes do not have the mdss_ prefix. It was found that grouping
-> all display-related notes is more useful.
-> 
-> To keep all display-related nodes close in the board files, change DSI
-> node aliases from dsi_* to mdss_dsi_*.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Agree with alliedvision,alvium-csi2 and thanks for your suggestion.
+In my opinion we don’t need names for 1500c and 
+others because the same driver can drive all the alvium models.
+Alvium is taking care of different sensor abstractions.
 
-Konrad
->  .../arm/boot/dts/qcom-apq8074-dragonboard.dts | 24 ++++++-------
->  .../qcom-msm8974-lge-nexus5-hammerhead.dts    | 16 ++++-----
->  arch/arm/boot/dts/qcom-msm8974.dtsi           | 36 +++++++++----------
->  .../boot/dts/qcom-msm8974pro-samsung-klte.dts | 24 ++++++-------
->  4 files changed, 50 insertions(+), 50 deletions(-)
+I test with this driver with the following models:
+
+ - 1800 C-1240c
+ - 1800 C-040c
+ - 1500 C-500
+
+What do you think about?
+
+Thanks,
+Tommaso
+
 > 
-> diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> index 72f7e09a5bbf..72f6611bbe49 100644
-> --- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> @@ -48,7 +48,15 @@ eeprom: eeprom@52 {
->  	};
->  };
->  
-> -&dsi0 {
-> +&gpu {
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
->  	vdda-supply = <&pm8941_l2>;
->  	vdd-supply = <&pm8941_l22>;
->  	vddio-supply = <&pm8941_l12>;
-> @@ -65,31 +73,23 @@ panel: panel@0 {
->  
->  		port {
->  			panel_in: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
-> +				remote-endpoint = <&mdss_dsi0_out>;
->  			};
->  		};
->  	};
->  };
->  
-> -&dsi0_out {
-> +&mdss_dsi0_out {
->  	remote-endpoint = <&panel_in>;
->  	data-lanes = <0 1 2 3>;
->  };
->  
-> -&dsi0_phy {
-> +&mdss_dsi0_phy {
->  	status = "okay";
->  
->  	vddio-supply = <&pm8941_l12>;
->  };
->  
-> -&gpu {
-> -	status = "okay";
-> -};
-> -
-> -&mdss {
-> -	status = "okay";
-> -};
-> -
->  &pm8941_wled {
->  	qcom,cs-out;
->  	qcom,switching-freq = <3200>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> index 205907c8670a..60bdfddeae69 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> @@ -230,7 +230,11 @@ bluetooth {
->  	};
->  };
->  
-> -&dsi0 {
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
->  	status = "okay";
->  
->  	vdda-supply = <&pm8941_l2>;
-> @@ -246,27 +250,23 @@ panel: panel@0 {
->  
->  		port {
->  			panel_in: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
-> +				remote-endpoint = <&mdss_dsi0_out>;
->  			};
->  		};
->  	};
->  };
->  
-> -&dsi0_out {
-> +&mdss_dsi0_out {
->  	remote-endpoint = <&panel_in>;
->  	data-lanes = <0 1 2 3>;
->  };
->  
-> -&dsi0_phy {
-> +&mdss_dsi0_phy {
->  	status = "okay";
->  
->  	vddio-supply = <&pm8941_l12>;
->  };
->  
-> -&mdss {
-> -	status = "okay";
-> -};
-> -
->  &pm8941_gpios {
->  	gpio_keys_pin_a: gpio-keys-active-state {
->  		pins = "gpio2", "gpio3";
-> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> index 58e144957c5d..aeca504918a0 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> @@ -1837,10 +1837,10 @@ mmcc: clock-controller@fd8c0000 {
->  				 <&gcc GPLL0_VOTE>,
->  				 <&gcc GPLL1_VOTE>,
->  				 <&rpmcc RPM_SMD_GFX3D_CLK_SRC>,
-> -				 <&dsi0_phy 1>,
-> -				 <&dsi0_phy 0>,
-> -				 <&dsi1_phy 1>,
-> -				 <&dsi1_phy 0>,
-> +				 <&mdss_dsi0_phy 1>,
-> +				 <&mdss_dsi0_phy 0>,
-> +				 <&mdss_dsi1_phy 1>,
-> +				 <&mdss_dsi1_phy 0>,
->  				 <0>,
->  				 <0>,
->  				 <0>;
-> @@ -1905,20 +1905,20 @@ ports {
->  					port@0 {
->  						reg = <0>;
->  						mdp5_intf1_out: endpoint {
-> -							remote-endpoint = <&dsi0_in>;
-> +							remote-endpoint = <&mdss_dsi0_in>;
->  						};
->  					};
->  
->  					port@1 {
->  						reg = <1>;
->  						mdp5_intf2_out: endpoint {
-> -							remote-endpoint = <&dsi1_in>;
-> +							remote-endpoint = <&mdss_dsi1_in>;
->  						};
->  					};
->  				};
->  			};
->  
-> -			dsi0: dsi@fd922800 {
-> +			mdss_dsi0: dsi@fd922800 {
->  				compatible = "qcom,msm8974-dsi-ctrl",
->  					     "qcom,mdss-dsi-ctrl";
->  				reg = <0xfd922800 0x1f8>;
-> @@ -1928,7 +1928,7 @@ dsi0: dsi@fd922800 {
->  				interrupts = <4>;
->  
->  				assigned-clocks = <&mmcc BYTE0_CLK_SRC>, <&mmcc PCLK0_CLK_SRC>;
-> -				assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
-> +				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
->  
->  				clocks = <&mmcc MDSS_MDP_CLK>,
->  					 <&mmcc MDSS_AHB_CLK>,
-> @@ -1945,7 +1945,7 @@ dsi0: dsi@fd922800 {
->  					      "core",
->  					      "core_mmss";
->  
-> -				phys = <&dsi0_phy>;
-> +				phys = <&mdss_dsi0_phy>;
->  
->  				status = "disabled";
->  
-> @@ -1958,20 +1958,20 @@ ports {
->  
->  					port@0 {
->  						reg = <0>;
-> -						dsi0_in: endpoint {
-> +						mdss_dsi0_in: endpoint {
->  							remote-endpoint = <&mdp5_intf1_out>;
->  						};
->  					};
->  
->  					port@1 {
->  						reg = <1>;
-> -						dsi0_out: endpoint {
-> +						mdss_dsi0_out: endpoint {
->  						};
->  					};
->  				};
->  			};
->  
-> -			dsi0_phy: phy@fd922a00 {
-> +			mdss_dsi0_phy: phy@fd922a00 {
->  				compatible = "qcom,dsi-phy-28nm-hpm";
->  				reg = <0xfd922a00 0xd4>,
->  				      <0xfd922b00 0x280>,
-> @@ -1989,7 +1989,7 @@ dsi0_phy: phy@fd922a00 {
->  				status = "disabled";
->  			};
->  
-> -			dsi1: dsi@fd922e00 {
-> +			mdss_dsi1: dsi@fd922e00 {
->  				compatible = "qcom,msm8974-dsi-ctrl",
->  					     "qcom,mdss-dsi-ctrl";
->  				reg = <0xfd922e00 0x1f8>;
-> @@ -1999,7 +1999,7 @@ dsi1: dsi@fd922e00 {
->  				interrupts = <4>;
->  
->  				assigned-clocks = <&mmcc BYTE1_CLK_SRC>, <&mmcc PCLK1_CLK_SRC>;
-> -				assigned-clock-parents = <&dsi1_phy 0>, <&dsi1_phy 1>;
-> +				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
->  
->  				clocks = <&mmcc MDSS_MDP_CLK>,
->  					 <&mmcc MDSS_AHB_CLK>,
-> @@ -2016,7 +2016,7 @@ dsi1: dsi@fd922e00 {
->  					      "core",
->  					      "core_mmss";
->  
-> -				phys = <&dsi1_phy>;
-> +				phys = <&mdss_dsi1_phy>;
->  
->  				status = "disabled";
->  
-> @@ -2029,20 +2029,20 @@ ports {
->  
->  					port@0 {
->  						reg = <0>;
-> -						dsi1_in: endpoint {
-> +						mdss_dsi1_in: endpoint {
->  							remote-endpoint = <&mdp5_intf2_out>;
->  						};
->  					};
->  
->  					port@1 {
->  						reg = <1>;
-> -						dsi1_out: endpoint {
-> +						mdss_dsi1_out: endpoint {
->  						};
->  					};
->  				};
->  			};
->  
-> -			dsi1_phy: phy@fd923000 {
-> +			mdss_dsi1_phy: phy@fd923000 {
->  				compatible = "qcom,dsi-phy-28nm-hpm";
->  				reg = <0xfd923000 0xd4>,
->  				      <0xfd923100 0x280>,
-> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
-> index eb505d6d7f31..3e2c86591ee2 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
-> @@ -329,7 +329,15 @@ bluetooth {
->  	};
->  };
->  
-> -&dsi0 {
-> +&gpu {
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
->  	status = "okay";
->  
->  	vdda-supply = <&pma8084_l2>;
-> @@ -351,31 +359,23 @@ panel: panel@0 {
->  
->  		port {
->  			panel_in: endpoint {
-> -				remote-endpoint = <&dsi0_out>;
-> +				remote-endpoint = <&mdss_dsi0_out>;
->  			};
->  		};
->  	};
->  };
->  
-> -&dsi0_out {
-> +&mdss_dsi0_out {
->  	remote-endpoint = <&panel_in>;
->  	data-lanes = <0 1 2 3>;
->  };
->  
-> -&dsi0_phy {
-> +&mdss_dsi0_phy {
->  	status = "okay";
->  
->  	vddio-supply = <&pma8084_l12>;
->  };
->  
-> -&gpu {
-> -	status = "okay";
-> -};
-> -
-> -&mdss {
-> -	status = "okay";
-> -};
-> -
->  &pma8084_gpios {
->  	gpio_keys_pin_a: gpio-keys-active-state {
->  		pins = "gpio2", "gpio3", "gpio5";
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  clocks:
+> > > > +    description: XCLK Input Clock
+> > > > +
+> > > > +  clock-names:
+> > > > +    const: xclk
+> > > 
+> > > I'd also drop this as you have a single clock only: it's redundant.
+> > > 
+> > > > +
+> > > > +  powerdown-gpios:
+> > > > +    maxItems: 1
+> > > > +    description: >
+> > > > +      Reference to the GPIO connected to the powerdown pin, if any.
+> > > > +
+> > > > +  reset-gpios:
+> > > > +    maxItems: 1
+> > > > +    description: >
+> > > > +      Reference to the GPIO connected to the reset pin, if any.
+> > 
+> > Reading the Alvium CSI-2 Cameras User Guide, I don't see any powerdown
+> > or reset pin on the 22-pin connector. Am I missing something ? There are
+> > however two GPIOs (in addition to the I2C signals that are also
+> > documented as GPIOs), do you plan to support those ?
+> > 
+> > > > +
+> > > > +  streamon-delay:
+> > > > +    maxItems: 1
+> > > > +    description: >
+> > > > +      Delay before camera start capturing frames in us.
+> > 
+> > Add "-us" to the property name to indicate the unit.
+> > 
+> > This is a vendor-specific property, and should thus have a vendor
+> > prefix.
+> > 
+> > A longer description is needed, from that single line I have no idea
+> > what the property does exactly.
+> > 
+> > > > +
+> > > > +  rotation:
+> > > > +    enum:
+> > > > +      - 0
+> > > > +      - 180
+> > 
+> > Why is the rotation restricted to 0 or 180 ? Someone could mount the
+> > module with  90 degrees rotation, shouldn't the DT bindings allow
+> > describing that ?
+> > 
+> > You need a property for the vcc-ext-in supply.
+> > 
+> > > > +
+> > > > +  port:
+> > > > +    description: Digital Output Port
+> > > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > +    additionalProperties: false
+> > > > +
+> > > > +    properties:
+> > > > +      endpoint:
+> > > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > > +        unevaluatedProperties: false
+> > > > +
+> > > > +        properties:
+> > > > +          clock-lanes:
+> > > > +            const: 0
+> > > 
+> > > The driver can know this, no need to have it in DT, i.e. please drop it.
+> > > 
+> > > > +          data-lanes:
+> > > > +            minItems: 1
+> > > > +            maxItems: 4
+> > > > +          link-frequencies: true
+> > > > +
+> > > > +        required:
+> > > > +          - data-lanes
+> > > > +          - link-frequencies
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - clocks
+> > > > +  - clock-names
+> > > > +  - port
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +      #include <dt-bindings/gpio/gpio.h>
+> > > > +      #include <dt-bindings/clock/imx8mp-clock.h>
+> > > > +
+> > > > +      i2c {
+> > > > +          #address-cells = <1>;
+> > > > +          #size-cells = <0>;
+> > > > +
+> > > > +          camera: alvium@3c {
+> > > > +              compatible = "alliedvision,alvium";
+> > 
+> > The "alliedvision" prefix is missing from
+> > Documentation/devicetree/bindings/vendor-prefixes.yaml.
+> > 
+> > > > +              pinctrl-names = "default";
+> > > > +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
+> > 
+> > I'd drop pinctrl, it makes the example longer without adding much value.
+> > 
+> > > > +              reg = <0x3c>;
+> > > > +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > > > +              clock-names = "xclk";
+> > > > +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > > > +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > > > +              assigned-clock-rates = <24000000>;
+> > > > +              streamon-delay = <20>;
+> > > > +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+> > > > +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+> > > > +              status = "okay";
+> > > > +
+> > > > +              port {
+> > > > +                  alvium_out: endpoint {
+> > > > +                      remote-endpoint = <&mipi_csi_0_in>;
+> > > > +                      data-lanes = <1 2 3 4>;
+> > > > +                      link-frequencies = /bits/ 64 <681250000>;
+> > > > +                      clock-lanes = <0>;
+> > > > +                  };
+> > > > +              };
+> > > > +          };
+> > > > +      };
+> > > > +
+> > > > +...
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
