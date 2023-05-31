@@ -2,120 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2642C718A26
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:31:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C909D718A46
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbjEaTbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 15:31:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56342 "EHLO
+        id S229961AbjEaTh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 15:37:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjEaTbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:31:23 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5104C125
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:31:22 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-970028cfb6cso1132931966b.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:31:22 -0700 (PDT)
+        with ESMTP id S229484AbjEaTh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:37:26 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807AB9F
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:37:17 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-96f7bf29550so957629566b.3
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:37:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685561481; x=1688153481;
+        d=linaro.org; s=google; t=1685561836; x=1688153836;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XzmS9Q7rcF4wK+3M4xWTzjFrvHkAxzNx2k0i9sXDaBI=;
-        b=kmUd0XwMBxGai5Os+SkdP4FhHNwp6VP4CdwZVb4ASXJHhhW5RA30JTo0fHGGLGewCL
-         SagSqWzSx5FUD63hlEcd4px2errlCXd1ERTf4jwER+cI9yXSLKTlc3/CRf4/tzKkX3kM
-         5eihEYPiPDX87UVMK8kYU9atiYTEUwDjlsOpXBMnoougeaHRkpzl8Vb7ca/kMIGfZ2fM
-         HbcvRvqlRlXjNcptJYtsquDN+XvHmb8LBlMPKs6WzlvUZtcoNUkg9DRQgs5vtrvagyCZ
-         KitkbHZMXXlqU6cgc5KyjUOTQHUU7jfTFXP0yER16lse8X4DOY1QpX7ZsCHf+Llc7WJL
-         YQIg==
+        bh=f4CVJ2aPSnXlKEo5h1dcXTg+/9hraeZMDkdMUQ3ZvRI=;
+        b=C3rUZ/nWtt08/VVwrNSPPyh4Iozms66rLQVUNTr8QQvmp2ckJH7JbT/nquDAzfjUj5
+         hPmeWUg2Aid3VViCdRj38dUVflu3mjR9fY2LZbpVK5uMotOfsY1HqNLhiEBMj4bNQ6Cx
+         gdTpGRI4wA++LoCCmJtPx7VyzobI4pkiz5oK9dqQOlLLISlmqR+0GitPUJDXWIUN/IMp
+         tDXUCa7xhJtrPYEwtbC1Px1g4qS+ihPSb0zT9DS2VZCpq/qkN8lf1GptEi+ox6spMm/i
+         PfmxLEtiTccX4EbYoOKl3A+l0eZg6xald0yMkX4CksZSpXVkg4I7U10zd2xgcOpdfSsD
+         r7wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685561481; x=1688153481;
+        d=1e100.net; s=20221208; t=1685561836; x=1688153836;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XzmS9Q7rcF4wK+3M4xWTzjFrvHkAxzNx2k0i9sXDaBI=;
-        b=HyCNDHVQNsxxz9CAVbn7z+v1/IOfmP/FYLFJemOxZMzMQA9ppJoCie1Bibc3STOgIy
-         TnfDff6/9AMG54k0nakGQHblffbk8ORINRB0APuVPF1qRkgrRZvjbrKMl9AsNrap2fqc
-         YcVN69HvFRMxZT5GkXYtTios2wEhlrYaPrjcR4AsIKza0A/76vklWwzDv9ADICOXe4PX
-         hSanSTT/EdcVhqtZPFUokvkYgJx2aPn+V1myKxs0d8fsZySwgpCYyobWPhCpYJL2PmEc
-         8m+S5L1yRqB+CbI79NTmHpwDwUjbCQgJReUWV1Kn6ONTLJzfz9tr7oM923Xj0hoeiTZO
-         lpzA==
-X-Gm-Message-State: AC+VfDx94CzchvOD2G8liDhSXEO95vZqxiUij8/HpRoN+zWe4QlIKjCW
-        0C9Vos28DbWXx7cQ5C2eBUCT9A==
-X-Google-Smtp-Source: ACHHUZ7YpDIJJ0TXK1hKPptboCJTxQbTSLxMFbGHVI4pYNLLWMwUqhrBPicY9RoBCBrZKOfJ3iNNWQ==
-X-Received: by 2002:a17:907:25cd:b0:973:8823:f53f with SMTP id ae13-20020a17090725cd00b009738823f53fmr6334041ejc.52.1685561480773;
-        Wed, 31 May 2023 12:31:20 -0700 (PDT)
+        bh=f4CVJ2aPSnXlKEo5h1dcXTg+/9hraeZMDkdMUQ3ZvRI=;
+        b=flM48QM6OvN/GPtAF39mMJTaVLyn56fdcLWjmrK+hxogs4z1Ggqh7CayUVnTdsbyJq
+         0auss9ex/PQV4959fIQR4tXJg6kvENZonzaBFAaV8jpr/vWBZ5lTS0bv2Om2xS3wZLL9
+         MAiSyi0qOu6KjEjJb4zV62BaN+wS+lw9A45kcmljTbVBV2baHhpN/nHovtq0f3jdVgOf
+         Fl2In5Sz6LyVB2fIbHSb6xP1JJCDHpTv+42KTmpkKfZAJb3ethvPmYgDCNdeML4qkgOw
+         6L7RhpRpot8CsXk+6YnvlKQ5OO03htLHbfUltwR8cuhBtcMLDnuUbNn2tUS4WjlQLlkt
+         NngQ==
+X-Gm-Message-State: AC+VfDzz/28s2ft6LECM4BX4kQ0PRS7FUBkoL5Sck5wfjYyxVNK4bOEb
+        Z8DfDaJTe7+uW9ioxLGzhK4Jag==
+X-Google-Smtp-Source: ACHHUZ6DYu8otCOHUm9zn9KFmrbjPg/88psB43J1UIblA5chDcugIdaCHyzDwNgHlpsTn6FF1gYLTw==
+X-Received: by 2002:a17:907:6d12:b0:96a:2b4:eb65 with SMTP id sa18-20020a1709076d1200b0096a02b4eb65mr5753260ejc.9.1685561835963;
+        Wed, 31 May 2023 12:37:15 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id ss7-20020a170907038700b0096a2eaa508asm9414104ejb.168.2023.05.31.12.31.17
+        by smtp.gmail.com with ESMTPSA id s10-20020a170906a18a00b0096f00d79d6asm9487202ejy.54.2023.05.31.12.37.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 12:31:20 -0700 (PDT)
-Message-ID: <4810fb0f-2b0f-0118-435a-d7373553163a@linaro.org>
-Date:   Wed, 31 May 2023 21:31:16 +0200
+        Wed, 31 May 2023 12:37:15 -0700 (PDT)
+Message-ID: <a954db86-c5b7-0c07-8881-0ceb39ac7337@linaro.org>
+Date:   Wed, 31 May 2023 21:37:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH net-next v5 2/6] dt-bindings: net: Brcm ASP 2.0 Ethernet
- controller
+Subject: Re: [PATCH v2 1/3] dt-bindings: nvmem: syscon: Add syscon backed
+ nvmem bindings
 Content-Language: en-US
-To:     Florian Fainelli <florian.fainelli@broadcom.com>,
-        Justin Chen <justin.chen@broadcom.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        opendmb@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, richardcochran@gmail.com,
-        sumit.semwal@linaro.org, christian.koenig@amd.com,
-        simon.horman@corigine.com
-References: <1684969313-35503-1-git-send-email-justin.chen@broadcom.com>
- <1684969313-35503-3-git-send-email-justin.chen@broadcom.com>
- <ce7366d0-616d-f5f4-56be-714e65a0a96e@linaro.org>
- <b21ca84f-a5a1-6dde-7efb-5d7ce0283263@broadcom.com>
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        devicetree@vger.kernel.org, kernel@dh-electronics.com,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230517152513.27922-1-marex@denx.de>
+ <3951bf42-bf77-20a5-a343-46127b875dd5@linaro.org>
+ <2aee9fc7-e0a8-b5ad-7362-8461bac618da@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b21ca84f-a5a1-6dde-7efb-5d7ce0283263@broadcom.com>
+In-Reply-To: <2aee9fc7-e0a8-b5ad-7362-8461bac618da@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 21:29, Florian Fainelli wrote:
->>> +        required:
->>> +          - reg
->>> +          - brcm,channel
+On 24/05/2023 05:30, Marek Vasut wrote:
+> On 5/18/23 16:26, Krzysztof Kozlowski wrote:
+>> On 17/05/2023 17:25, Marek Vasut wrote:
+>>> Add trivial bindings for driver which permits exposing syscon backed
+>>> register to userspace. This is useful e.g. to expose U-Boot boot
+>>> counter on various platforms where the boot counter is stored in
+>>> random volatile register, like STM32MP15xx TAMP_BKPxR register.
+>>>
+>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>> ---
+>>> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>>> Cc: Conor Dooley <conor+dt@kernel.org>
+>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>> Cc: Marek Vasut <marex@denx.de>
+>>> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> Cc: devicetree@vger.kernel.org
+>>> Cc: kernel@dh-electronics.com
+>>> Cc: linux-arm-kernel@lists.infradead.org
+>>> Cc: linux-stm32@st-md-mailman.stormreply.com
+>>> ---
+>>> V2: Use generic syscon supernode
+>>> ---
+>>>   .../bindings/nvmem/nvmem-syscon.yaml          | 39 +++++++++++++++++++
+>>>   1 file changed, 39 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml b/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
+>>> new file mode 100644
+>>> index 0000000000000..7c1173a1a6218
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
+>>> @@ -0,0 +1,39 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/nvmem/nvmem-syscon.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +    additionalProperties: false
+>>> +title: Generic syscon backed nvmem
 >>> +
->>> +patternProperties:
->>> +  "^mdio@[0-9a-f]+$":
+>>> +maintainers:
+>>> +  - Marek Vasut <marex@denx.de>
+>>> +
+>>> +allOf:
+>>> +  - $ref: "nvmem.yaml#"
 >>
->> Isn't mdio a property of each ethernet port? Existing users
->> (e.g.bcmgenet, owl-emac, switches) do it that way...
-> 
-> They are sub-nodes of the larger Ethernet controller block, hence the 
-> property here.
-
-This is the Ethernet controller. They are subnodes here, so what do you
-mean by that? They are part of some other block?
-
-> 
+>> Usual comment: drop quotes. We removed them everywhere, so you based
+>> your work on some old tree.
 >>
->> Otherwise how do you define relation-ship? Can one mdio fit multiple ports?
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - nvmem-syscon
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>
+>> Rob's questions are not solved.
 > 
-> The relationship is established between Ethernet ports and children 
-> nodes of the MDIO controller, such as switches or Ethernet PHYs using 
-> 'phy-handle' for instance. And yes, a single/common MDIO controller 
-> could be serving multiple Ethernet ports.
+> Can you reiterate this one ? I likely missed it.
 
-We do not talk about generic case, but your device.
+You did not solve the case of more than one register. This isn't an odd
+case.
+
+> 
+>> The nvmem.yaml schema expects here to
+>> allow children. This should not be created per-register, but per entire
+>> block of registers.
+> 
+> This thing works the other way around, I have a syscon register block 
+> already, and I want to expose subset of it to userspace as read/write 
+> accessible file to expose bootcounter available in that register (so I 
+> can read it and reset it from user application).
+
+And this makes it too limited. I would expect one device exposing
+multiple blocks or registers, just like all nvmem providers are doing.
+
 
 Best regards,
 Krzysztof
