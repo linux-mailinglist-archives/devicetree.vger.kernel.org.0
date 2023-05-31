@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 813B7717C34
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FD84717C36
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:41:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235632AbjEaJk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:40:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43116 "EHLO
+        id S234727AbjEaJli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 05:41:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235635AbjEaJki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:40:38 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E891F10F
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:40:29 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f3a611b3ddso931208e87.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:40:29 -0700 (PDT)
+        with ESMTP id S235631AbjEaJlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:41:19 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A759610E
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:41:07 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f3b9c88af8so6582764e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:41:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685526028; x=1688118028;
+        d=linaro.org; s=google; t=1685526066; x=1688118066;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=S7Iy/KBojBh14VYZt/7qS18IlDGSfG4NeXwkjul8LJ4=;
-        b=icfOKIqDZQFwDO599JKupx5TKqnjn3n7PR9vwnFa1vQL0lhpZw6n/DdJlTgAhNQDKH
-         biVczXTxp/BB3P57wAAO+608t331e/Ma0pdSr4XtJH56JSQjCuzWS+pKGQhc7s+f6dVl
-         0MMjpNNEJur9A0bdCi59PYxztZHNaryXdrc/bnAghLBj0s7uOw+yylQMHIJJy2wBgnqx
-         JH3BPvJV3Jhxu6pIeyWjl3oVi1S7t3lSRb0rkD/6nROHGoQisiogCGSPTYMzloGWk3iP
-         H4tRMRAGSk9iH/a0H40xjuiCVBvOBHP3muTm2OaY2ceatZ/gRyWLoCXTyve55exM0Fxz
-         UzUw==
+        bh=vYNMOWYbKNw0yXvHcDT9nnr9py/t5MpCsmiViSrTxk8=;
+        b=bEM2J9vZkSqihNaIAQa0T8IH4y9POLxGbCo9i4jYzP+Xd6ft2iw+qB4ev3xcLAfx/G
+         9kcFCetl0I2xEcqr2jcTPve5CPj/mczpC7AAiC1qkH+2pZt1E8VDr71ZW+4EpDMmvIIx
+         L0BoKSL2hdk1Qcs96B49gY5ofCota4TEi4DVZbk0aIwNpVCpts2QNSLO+OokA1IK7XGQ
+         bFXd18uf5PDXTjeOxSoi1emeb0fELQBd2mdYrJHkXx3XnBw9SJBarLQb1wQnc4+vazIW
+         700K69Wn3gQrly4IAw5DAlMqxqBd6fctBXmwOCKubx9DiPDKD9Hao5BRUkB7qQEvuSIn
+         qNoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685526028; x=1688118028;
+        d=1e100.net; s=20221208; t=1685526066; x=1688118066;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S7Iy/KBojBh14VYZt/7qS18IlDGSfG4NeXwkjul8LJ4=;
-        b=Ukyld1CQjNIQ2UeP/3tjTfp0tZNjMZy4mfyAkl3YqE5RhySQuX6dDiwmhUR/cL2yFX
-         RgfT59s3YGwkFjG/KGbqaF/A/kZ/bTcGaaqcMgKuzkqclHxbpyL8pRz0R70TGTPXVf4R
-         YnmrJoGJxIHw3aVTfOtLI0wrlbjX6GhHZZfAyyScgLZVLfGclmbAilgonGZzVe17NHlu
-         9BONQBSJbQOpeMDGEvNjrG/icCwTCfn1cRMgP/Js2M1RklfWKWeQ8luzbDEWN9A7BtMX
-         qliY+ib8yz7wMzvg7WZbeLJo6ZutqB/oOFYY0mSRr09JeRBy0ThWXSa7yuAMrdVCBb88
-         1GyQ==
-X-Gm-Message-State: AC+VfDxXII5LP57dTachvmPQB00f/gMhrs9Fd5eKTdalMfe+i6+3Zo37
-        ac0j6ovWDeDMy5EFoq1kd45rpg==
-X-Google-Smtp-Source: ACHHUZ7eHQXFp5p32DDvpvE+TeXsGE9Q6NpdoeOwc5ddRTh0Y588xNHMKimz0W7Dr4s00iU4zpFTTg==
-X-Received: by 2002:ac2:4c32:0:b0:4f4:f4f3:5485 with SMTP id u18-20020ac24c32000000b004f4f4f35485mr1623286lfq.0.1685526028159;
-        Wed, 31 May 2023 02:40:28 -0700 (PDT)
+        bh=vYNMOWYbKNw0yXvHcDT9nnr9py/t5MpCsmiViSrTxk8=;
+        b=PEC9eIcuyHVUtpfdFXdoPowfPs03m8kra2JN31A4e/sWyhdQtQk20gkYBoQHSZ2jwc
+         YR8E3mnXCuFS7wuAiCTLGRmikBkNCdmmd/BITl9vrZcfDmXAp1ATlOsQzCfMEEMEuwdY
+         Vm1MkREt+UWi5/9x97+/g4SsVt88biz/srQByu0x8S1pzcYd2c8QuAHbpse28pPnUV2+
+         CHHyCre5KFCV7cnKjkMh8BVbmBUdHvtoKIx5vL3ylVFCE309UwrYFXuiXjPMDSMLDv6Y
+         zsSP/FZe+bqChCwXpvnBajN1X6QoXC2sKtW3FqQZ0V9aVR/8+1JxepVgJJR4oHXxR8PH
+         Xhfg==
+X-Gm-Message-State: AC+VfDzX4lyQy+0He2pWe0q7HMk/RTP+ntPYaL4CyJThiFBEvNCUJXLP
+        UD/sWKxZDrT4bbinQEZWGSZf9Q==
+X-Google-Smtp-Source: ACHHUZ5J7PKy9yfHuT7Y19Hh9cipsNrjMR0axD0ThildBVPM9JuypUgwB00RFTO9JoXWMlcJoxD+3Q==
+X-Received: by 2002:ac2:4c27:0:b0:4f2:53f6:d4bf with SMTP id u7-20020ac24c27000000b004f253f6d4bfmr2290430lfq.48.1685526065878;
+        Wed, 31 May 2023 02:41:05 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id m3-20020a056512014300b004f517c21ef0sm285980lfo.82.2023.05.31.02.40.24
+        by smtp.gmail.com with ESMTPSA id d27-20020ac24c9b000000b004f14dbc8989sm645470lfl.192.2023.05.31.02.41.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 02:40:27 -0700 (PDT)
-Message-ID: <54e83325-30ca-1373-cfeb-a876d0b6252c@linaro.org>
-Date:   Wed, 31 May 2023 11:40:22 +0200
+        Wed, 31 May 2023 02:41:05 -0700 (PDT)
+Message-ID: <9afc0124-cb38-5621-7de3-0d8c51e70ce4@linaro.org>
+Date:   Wed, 31 May 2023 11:41:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 05/14] arm64: dts: qcom: msm8953: rename labels for DSI
+Subject: Re: [PATCH 06/14] arm64: dts: qcom: msm8996: rename labels for DSI
  nodes
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -65,9 +65,9 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
- <20230531011623.3808538-6-dmitry.baryshkov@linaro.org>
+ <20230531011623.3808538-7-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230531011623.3808538-6-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230531011623.3808538-7-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,39 +95,185 @@ On 31.05.2023 03:16, Dmitry Baryshkov wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/msm8953.dtsi | 40 +++++++++++++--------------
->  1 file changed, 20 insertions(+), 20 deletions(-)
+>  .../boot/dts/qcom/msm8996-oneplus-common.dtsi | 30 ++++++++--------
+>  .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 22 ++++++------
+>  .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   | 18 +++++-----
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi         | 36 +++++++++----------
+>  .../dts/qcom/msm8996pro-xiaomi-natrium.dts    | 18 +++++-----
+>  5 files changed, 62 insertions(+), 62 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> index 7d193a467819..b711cf9a6dc0 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> @@ -766,10 +766,10 @@ gcc: clock-controller@1800000 {
->  			#power-domain-cells = <1>;
->  			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
->  				 <&sleep_clk>,
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
+> index 2adadc1e5b7c..ec5457508fe6 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
+> @@ -164,21 +164,6 @@ &camss {
+>  	vdda-supply = <&vreg_l2a_1p25>;
+>  };
+>  
+> -&dsi0 {
+> -	vdda-supply = <&vreg_l2a_1p25>;
+> -	vcca-supply = <&vreg_l22a_3p0>;
+> -	status = "okay";
+> -};
+> -
+> -&dsi0_out {
+> -	data-lanes = <0 1 2 3>;
+> -};
+> -
+> -&dsi0_phy {
+> -	vcca-supply = <&vreg_l28a_0p925>;
+> -	status = "okay";
+> -};
+> -
+>  &hsusb_phy1 {
+>  	vdd-supply = <&vreg_l28a_0p925>;
+>  	vdda-pll-supply = <&vreg_l12a_1p8>;
+> @@ -201,6 +186,21 @@ &mdss {
+>  	status = "okay";
+>  };
+>  
+> +&mdss_dsi0 {
+> +	vdda-supply = <&vreg_l2a_1p25>;
+> +	vcca-supply = <&vreg_l22a_3p0>;
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0_out {
+> +	data-lanes = <0 1 2 3>;
+> +};
+> +
+> +&mdss_dsi0_phy {
+> +	vcca-supply = <&vreg_l28a_0p925>;
+> +	status = "okay";
+> +};
+> +
+>  &mmcc {
+>  	vdd-gfx-supply = <&vdd_gfx>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> index 1ce5df0a3405..47f55c7311e9 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> @@ -235,7 +235,15 @@ bluetooth: bluetooth {
+>  	};
+>  };
+>  
+> -&dsi0 {
+> +&gpu {
+> +	status = "okay";
+> +};
+> +
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0 {
+>  	status = "okay";
+>  
+>  	vdd-supply = <&vreg_l2a_1p25>;
+> @@ -246,26 +254,18 @@ &dsi0 {
+>  	pinctrl-1 = <&mdss_dsi_sleep &mdss_te_sleep>;
+>  };
+>  
+> -&dsi0_out {
+> +&mdss_dsi0_out {
+>  	status = "okay";
+>  
+>  	data-lanes = <0 1 2 3>;
+>  };
+>  
+> -&dsi0_phy {
+> +&mdss_dsi0_phy {
+>  	status = "okay";
+>  
+>  	vcca-supply = <&vreg_l28a_0p925>;
+>  };
+>  
+> -&gpu {
+> -	status = "okay";
+> -};
+> -
+> -&mdss {
+> -	status = "okay";
+> -};
+> -
+>  &mmcc {
+>  	vdd-gfx-supply = <&vdd_gfx>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+> index 100123d51494..bdedcf9dff03 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+> @@ -93,7 +93,13 @@ synaptics@20 {
+>  
+>  };
+>  
+> -&dsi0 {
+> +&gpu {
+> +	zap-shader {
+> +		firmware-name = "qcom/msm8996/gemini/a530_zap.mbn";
+> +	};
+> +};
+> +
+> +&mdss_dsi0 {
+>  	status = "okay";
+>  
+>  	vdd-supply = <&vreg_l2a_1p25>;
+> @@ -112,22 +118,16 @@ panel: panel@0 {
+>  
+>  		port {
+>  			panel_in: endpoint {
+> -				remote-endpoint = <&dsi0_out>;
+> +				remote-endpoint = <&mdss_dsi0_out>;
+>  			};
+>  		};
+>  	};
+>  };
+>  
+> -&dsi0_out {
+> +&mdss_dsi0_out {
+>  	remote-endpoint = <&panel_in>;
+>  };
+>  
+> -&gpu {
+> -	zap-shader {
+> -		firmware-name = "qcom/msm8996/gemini/a530_zap.mbn";
+> -	};
+> -};
+> -
+>  &pmi8994_wled {
+>  	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index f75932cc2a30..3855366ca89f 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -891,10 +891,10 @@ mmcc: clock-controller@8c0000 {
+>  			clocks = <&xo_board>,
+>  				 <&gcc GPLL0>,
+>  				 <&gcc GCC_MMSS_NOC_CFG_AHB_CLK>,
 > -				 <&dsi0_phy 1>,
 > -				 <&dsi0_phy 0>,
 > -				 <&dsi1_phy 1>,
-> -				 <&dsi1_phy 0>;
+> -				 <&dsi1_phy 0>,
 > +				 <&mdss_dsi0_phy 1>,
 > +				 <&mdss_dsi0_phy 0>,
 > +				 <&mdss_dsi1_phy 1>,
-> +				 <&mdss_dsi1_phy 0>;
+> +				 <&mdss_dsi1_phy 0>,
+>  				 <&hdmi_phy>;
 >  			clock-names = "xo",
->  				      "sleep",
->  				      "dsi0pll",
-> @@ -851,20 +851,20 @@ ports {
->  					port@0 {
->  						reg = <0>;
+>  				      "gpll0",
+> @@ -987,20 +987,20 @@ mdp5_intf3_out: endpoint {
+>  					port@1 {
+>  						reg = <1>;
 >  						mdp5_intf1_out: endpoint {
 > -							remote-endpoint = <&dsi0_in>;
 > +							remote-endpoint = <&mdss_dsi0_in>;
 >  						};
 >  					};
 >  
->  					port@1 {
->  						reg = <1>;
+>  					port@2 {
+>  						reg = <2>;
 >  						mdp5_intf2_out: endpoint {
 > -							remote-endpoint = <&dsi1_in>;
 > +							remote-endpoint = <&mdss_dsi1_in>;
@@ -136,32 +282,24 @@ Konrad
 >  				};
 >  			};
 >  
-> -			dsi0: dsi@1a94000 {
-> +			mdss_dsi0: dsi@1a94000 {
->  				compatible = "qcom,msm8953-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->  				reg = <0x01a94000 0x400>;
->  				reg-names = "dsi_ctrl";
-> @@ -874,8 +874,8 @@ dsi0: dsi@1a94000 {
->  
->  				assigned-clocks = <&gcc BYTE0_CLK_SRC>,
->  						  <&gcc PCLK0_CLK_SRC>;
-> -				assigned-clock-parents = <&dsi0_phy 0>,
-> -							 <&dsi0_phy 1>;
-> +				assigned-clock-parents = <&mdss_dsi0_phy 0>,
-> +							 <&mdss_dsi0_phy 1>;
->  
->  				clocks = <&gcc GCC_MDSS_MDP_CLK>,
->  					 <&gcc GCC_MDSS_AHB_CLK>,
-> @@ -890,7 +890,7 @@ dsi0: dsi@1a94000 {
+> -			dsi0: dsi@994000 {
+> +			mdss_dsi0: dsi@994000 {
+>  				compatible = "qcom,msm8996-dsi-ctrl",
+>  					     "qcom,mdss-dsi-ctrl";
+>  				reg = <0x00994000 0x400>;
+> @@ -1024,9 +1024,9 @@ dsi0: dsi@994000 {
 >  					      "pixel",
 >  					      "core";
+>  				assigned-clocks = <&mmcc BYTE0_CLK_SRC>, <&mmcc PCLK0_CLK_SRC>;
+> -				assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
+> +				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
 >  
 > -				phys = <&dsi0_phy>;
 > +				phys = <&mdss_dsi0_phy>;
+>  				status = "disabled";
 >  
 >  				#address-cells = <1>;
->  				#size-cells = <0>;
-> @@ -903,20 +903,20 @@ ports {
+> @@ -1038,20 +1038,20 @@ ports {
 >  
 >  					port@0 {
 >  						reg = <0>;
@@ -180,41 +318,33 @@ Konrad
 >  				};
 >  			};
 >  
-> -			dsi0_phy: phy@1a94400 {
-> +			mdss_dsi0_phy: phy@1a94400 {
->  				compatible = "qcom,dsi-phy-14nm-8953";
->  				reg = <0x01a94400 0x100>,
->  				      <0x01a94500 0x300>,
-> @@ -934,7 +934,7 @@ dsi0_phy: phy@1a94400 {
+> -			dsi0_phy: phy@994400 {
+> +			mdss_dsi0_phy: phy@994400 {
+>  				compatible = "qcom,dsi-phy-14nm";
+>  				reg = <0x00994400 0x100>,
+>  				      <0x00994500 0x300>,
+> @@ -1068,7 +1068,7 @@ dsi0_phy: phy@994400 {
 >  				status = "disabled";
 >  			};
 >  
-> -			dsi1: dsi@1a96000 {
-> +			mdss_dsi1: dsi@1a96000 {
->  				compatible = "qcom,msm8953-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->  				reg = <0x01a96000 0x400>;
->  				reg-names = "dsi_ctrl";
-> @@ -944,8 +944,8 @@ dsi1: dsi@1a96000 {
->  
->  				assigned-clocks = <&gcc BYTE1_CLK_SRC>,
->  						  <&gcc PCLK1_CLK_SRC>;
-> -				assigned-clock-parents = <&dsi1_phy 0>,
-> -							 <&dsi1_phy 1>;
-> +				assigned-clock-parents = <&mdss_dsi1_phy 0>,
-> +							 <&mdss_dsi1_phy 1>;
->  
->  				clocks = <&gcc GCC_MDSS_MDP_CLK>,
->  					 <&gcc GCC_MDSS_AHB_CLK>,
-> @@ -960,7 +960,7 @@ dsi1: dsi@1a96000 {
+> -			dsi1: dsi@996000 {
+> +			mdss_dsi1: dsi@996000 {
+>  				compatible = "qcom,msm8996-dsi-ctrl",
+>  					     "qcom,mdss-dsi-ctrl";
+>  				reg = <0x00996000 0x400>;
+> @@ -1092,9 +1092,9 @@ dsi1: dsi@996000 {
 >  					      "pixel",
 >  					      "core";
+>  				assigned-clocks = <&mmcc BYTE1_CLK_SRC>, <&mmcc PCLK1_CLK_SRC>;
+> -				assigned-clock-parents = <&dsi1_phy 0>, <&dsi1_phy 1>;
+> +				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
 >  
 > -				phys = <&dsi1_phy>;
 > +				phys = <&mdss_dsi1_phy>;
->  
 >  				status = "disabled";
 >  
-> @@ -970,20 +970,20 @@ ports {
+>  				#address-cells = <1>;
+> @@ -1106,20 +1106,20 @@ ports {
 >  
 >  					port@0 {
 >  						reg = <0>;
@@ -233,8 +363,52 @@ Konrad
 >  				};
 >  			};
 >  
-> -			dsi1_phy: phy@1a96400 {
-> +			mdss_dsi1_phy: phy@1a96400 {
->  				compatible = "qcom,dsi-phy-14nm-8953";
->  				reg = <0x01a96400 0x100>,
->  				      <0x01a96500 0x300>,
+> -			dsi1_phy: phy@996400 {
+> +			mdss_dsi1_phy: phy@996400 {
+>  				compatible = "qcom,dsi-phy-14nm";
+>  				reg = <0x00996400 0x100>,
+>  				      <0x00996500 0x300>,
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dts b/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dts
+> index d18d0b0eda95..7957c8823f0d 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dts
+> @@ -39,7 +39,13 @@ touchscreen@20 {
+>  	};
+>  };
+>  
+> -&dsi0 {
+> +&gpu {
+> +	zap-shader {
+> +		firmware-name = "qcom/msm8996/natrium/a530_zap.mbn";
+> +	};
+> +};
+> +
+> +&mdss_dsi0 {
+>  	status = "okay";
+>  
+>  	vdda-supply = <&vreg_l2a_1p25>;
+> @@ -57,22 +63,16 @@ panel: panel@0 {
+>  
+>  		port {
+>  			panel_in: endpoint {
+> -				remote-endpoint = <&dsi0_out>;
+> +				remote-endpoint = <&mdss_dsi0_out>;
+>  			};
+>  		};
+>  	};
+>  };
+>  
+> -&dsi0_out {
+> +&mdss_dsi0_out {
+>  	remote-endpoint = <&panel_in>;
+>  };
+>  
+> -&gpu {
+> -	zap-shader {
+> -		firmware-name = "qcom/msm8996/natrium/a530_zap.mbn";
+> -	};
+> -};
+> -
+>  &mss_pil {
+>  	firmware-name = "qcom/msm8996/natrium/mba.mbn",
+>  			"qcom/msm8996/natrium/modem.mbn";
