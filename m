@@ -2,156 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08598718B65
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10A32718B7C
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:55:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbjEaUoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 16:44:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56460 "EHLO
+        id S229873AbjEaUzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 16:55:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjEaUoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:44:23 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB125123
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:44:21 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id BD6F18620B;
-        Wed, 31 May 2023 22:44:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1685565860;
-        bh=X6b544dY3T8ZQCIcvNDco0sNI/wQBUXSh2MxSFBg3fI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TWsrgogICKEZAczMn6RM2PdQu0bGRn4scjrW0YBT/dqyv8FPLmTjjj3zsVq+tt0ZK
-         nuTyv5LTVyF2X2LXEvfeLpX+lSJrIADIaytOFHCH8/X9wCCv0CXr4uxuXFp/jhcrDP
-         0ZybMsUQnS1iO6L5OJO5YL+vAoHlQzqVsUqFsr3HVMnXYU2EbHtJNBJyk2ADW9H0a3
-         F+4c7mv9+L6dITo9xWZT4lNlBdVgmNSyHH9GzXUGM0vl5QJTrNWOG/BARhQcXbt0gj
-         QGlDelYSzUxIXX0zxpqGxeEu+fdm54wVrNFOM6ojXAe/JX0oLJA+0Imn7Pv64lAeO0
-         +7xsgHipDA5pQ==
-Message-ID: <e9d7b2de-ef57-80fa-f92b-6f66d413114a@denx.de>
-Date:   Wed, 31 May 2023 22:44:19 +0200
+        with ESMTP id S229729AbjEaUzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:55:11 -0400
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E037A129
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:55:09 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-7770c1546e2so11180639f.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1685566509; x=1688158509;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AYHmPPdm4Dau+d947lCnpQiMGTh8x8NsQoxsSBGTC/s=;
+        b=nWyU5MJ3DqF/1xsCnT8xvvrJ1X+RS1AuqjdXWjjMqGNNT03sQXXdx96xEWonhKtbI2
+         +uqVX0CFTblLuAkVtRqPPRDzvZq0hZVNcJkRMv2n+TAxQKEl2duSkPsoP83XOujaGox8
+         uikxQ7HESMH/nuPQMUJ+WDOcPF5Ei0gRLBURs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685566509; x=1688158509;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AYHmPPdm4Dau+d947lCnpQiMGTh8x8NsQoxsSBGTC/s=;
+        b=gTo/d1nov59/8cbi7gSmvcjyA1vB63+JsP0YsSIsPZhxGylM44slnYAP3IKjK2Mozp
+         K7w62zbE34veYo3zytdYjT0QEk+7mEwUwGjEjhpsx0VOjtCW8ufdtX1f+dQH7m84DEiO
+         gUB/y25ejiSaxzHjTSlKMW4Ok+atm/svV5rTMe0JhGqvLoH/3IgHitFwhbUvrPw1FS0H
+         h6lySM1AOtyVjbvYZbbaug4RCkS5wcfR9uQ8xvjkqWGkqvAB/BPOppKb61MmThQFcc+c
+         W2ypnSt3llba7xWvRof7cNjvQ6+pHMQ8U4GVOORCFLCqYyxHmpAJNaa3J4n8TKd2nw5m
+         cVWg==
+X-Gm-Message-State: AC+VfDwg17y5IrMejGLkzT8OkLT6Ch/DhdN4POPVikRvCMGwlfJOJ9xc
+        vo6N3UsiaUuAV8Sz6pXW9I0U8WoF54QaoZldihA=
+X-Google-Smtp-Source: ACHHUZ68rR18MZZbt/8qtNRvzXLjrIdHvU8RFJgxmvw9byO21lskf0yMfnYT7hPAKY/3UKKrNtWmoA==
+X-Received: by 2002:a5e:c007:0:b0:775:5f74:f4ca with SMTP id u7-20020a5ec007000000b007755f74f4camr4613381iol.9.1685566508806;
+        Wed, 31 May 2023 13:55:08 -0700 (PDT)
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com. [209.85.166.171])
+        by smtp.gmail.com with ESMTPSA id n21-20020a6b7215000000b00752f62cd3bdsm3979479ioc.12.2023.05.31.13.55.08
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 13:55:08 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-33b398f2ab8so41925ab.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:55:08 -0700 (PDT)
+X-Received: by 2002:a05:6e02:b42:b0:33a:e716:a76d with SMTP id
+ f2-20020a056e020b4200b0033ae716a76dmr37485ilu.27.1685566153516; Wed, 31 May
+ 2023 13:49:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: nvmem: syscon: Add syscon backed
- nvmem bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+References: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org> <20230531-topic-rsc-v1-6-b4a985f57b8b@linaro.org>
+In-Reply-To: <20230531-topic-rsc-v1-6-b4a985f57b8b@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 31 May 2023 13:49:01 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Vx9txUs4=b_enDMTBXuNsTGXO2v3KyauuD8k_J++vbfA@mail.gmail.com>
+Message-ID: <CAD=FV=Vx9txUs4=b_enDMTBXuNsTGXO2v3KyauuD8k_J++vbfA@mail.gmail.com>
+Subject: Re: [PATCH 6/8] arm64: dts: qcom: sdm845: Flush RSC sleep & wake votes
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org, kernel@dh-electronics.com,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230517152513.27922-1-marex@denx.de>
- <3951bf42-bf77-20a5-a343-46127b875dd5@linaro.org>
- <2aee9fc7-e0a8-b5ad-7362-8461bac618da@denx.de>
- <a954db86-c5b7-0c07-8881-0ceb39ac7337@linaro.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <a954db86-c5b7-0c07-8881-0ceb39ac7337@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Lina Iyer <ilina@codeaurora.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/31/23 21:37, Krzysztof Kozlowski wrote:
-> On 24/05/2023 05:30, Marek Vasut wrote:
->> On 5/18/23 16:26, Krzysztof Kozlowski wrote:
->>> On 17/05/2023 17:25, Marek Vasut wrote:
->>>> Add trivial bindings for driver which permits exposing syscon backed
->>>> register to userspace. This is useful e.g. to expose U-Boot boot
->>>> counter on various platforms where the boot counter is stored in
->>>> random volatile register, like STM32MP15xx TAMP_BKPxR register.
->>>>
->>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>> ---
->>>> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
->>>> Cc: Conor Dooley <conor+dt@kernel.org>
->>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->>>> Cc: Marek Vasut <marex@denx.de>
->>>> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
->>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>> Cc: devicetree@vger.kernel.org
->>>> Cc: kernel@dh-electronics.com
->>>> Cc: linux-arm-kernel@lists.infradead.org
->>>> Cc: linux-stm32@st-md-mailman.stormreply.com
->>>> ---
->>>> V2: Use generic syscon supernode
->>>> ---
->>>>    .../bindings/nvmem/nvmem-syscon.yaml          | 39 +++++++++++++++++++
->>>>    1 file changed, 39 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml b/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
->>>> new file mode 100644
->>>> index 0000000000000..7c1173a1a6218
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
->>>> @@ -0,0 +1,39 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/nvmem/nvmem-syscon.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Generic syscon backed nvmem
->>>> +
->>>> +maintainers:
->>>> +  - Marek Vasut <marex@denx.de>
->>>> +
->>>> +allOf:
->>>> +  - $ref: "nvmem.yaml#"
->>>
->>> Usual comment: drop quotes. We removed them everywhere, so you based
->>> your work on some old tree.
->>>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - nvmem-syscon
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>
->>> Rob's questions are not solved.
->>
->> Can you reiterate this one ? I likely missed it.
-> 
-> You did not solve the case of more than one register. This isn't an odd
-> case.
+Hi,
 
-So why not just extend the bindings to support
+On Wed, May 31, 2023 at 6:22=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
+>
+> The rpmh driver will cache sleep and wake votes until the cluster
+> power-domain is about to enter idle, to avoid unnecessary writes. So
+> associate the apps_rsc with the cluster pd, so that it can be notified
+> about this event.
+>
+> Without this, only AMC votes are being commited.
+>
+> Fixes: c83545d95376 ("arm64: dts: sdm845: Add rpmh-rsc node")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/q=
+com/sdm845.dtsi
+> index 950305aad44d..707550ef4990 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -5138,6 +5138,7 @@ apps_rsc: rsc@179c0000 {
+>                                           <SLEEP_TCS   3>,
+>                                           <WAKE_TCS    3>,
+>                                           <CONTROL_TCS 1>;
+> +                       power-domains =3D <&CLUSTER_PD>;
 
-reg = <0x14c 0x4>, <0x180 0x10>, ... ;
+It would be good to confirm that this doesn't throw sdm845-cheza for a
+loop. No sdm845 Chromebooks ever officially shipped, but some people
+like Rob Clark still use the old boards in their CI farms. Adding him
+here in case he wants to check. Worst case we could just delete the
+property from the cheza device tree.
 
-this kind of stuff ?
-
->>> The nvmem.yaml schema expects here to
->>> allow children. This should not be created per-register, but per entire
->>> block of registers.
->>
->> This thing works the other way around, I have a syscon register block
->> already, and I want to expose subset of it to userspace as read/write
->> accessible file to expose bootcounter available in that register (so I
->> can read it and reset it from user application).
-> 
-> And this makes it too limited. I would expect one device exposing
-> multiple blocks or registers, just like all nvmem providers are doing.
-
-What would be the real-world use case of that ?
+-Doug
