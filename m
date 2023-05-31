@@ -2,143 +2,398 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B29D71855B
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 491EE71855F
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:55:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbjEaOww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 10:52:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
+        id S231417AbjEaOzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 10:55:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231862AbjEaOwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:52:51 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2046.outbound.protection.outlook.com [40.107.114.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4380C0;
-        Wed, 31 May 2023 07:52:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pj0xQhctX5BirZjgGp8DuiC3gR2LUbOZ8svGtO8FK693q5Vc7ZUr6kN1PDw0vt8PEmpYo9QiVCjfMbvz9VO8OHbRyxxeAZvg8uuSfNmPvS33KuGS7uIqQB6cyN3RgoyX8cf1Q9UIzDk03zrV5TLYrW8sN1xnBydkQGSVa86V3hugvXXpte5/E3sbqkrMGL1ZYrEkAh4PRS0ljUiin2/3mYKrRV86MsWU3Y1Bq69e8xOZnuFCiqwnSMXz7xzocSM2iqem7ttuO/Xld6EJloZxlyt8JOtt9vG3vRVKH58ZLjB29zmxgm9DsOoTSMPjJru25iFGb36DvMI/nadx322L3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QB9+9O8YHe6jYhIs7vr7ASVe3UNw2FxjtZRaVnMmbzc=;
- b=iRwIZr+IXHuftkWB0XMUScTBEEFvaEdMvo6xlbE9CU/jytQkpaf4jeRj8aSQ44QPNWKap6XiMc3XQK/eItsf88sIowLl0JDSVeQ7EcKEgYSk2AkteC6qVE9mPCAKhilDqUZKiB3ghXm5Ti1MG2DcnHPK9KYYCdQmJL4u6zTeKzZ+CUkwGYRld8v+gc/eqacwbM4MJhVWsccZw1V2EXu1HXrUUSEeGkZUJuMRrlGZE9lubnqdEtYGJWfiCHa1DNJLS3hOLns4ZxjQ78TRi+l+sbsTl9Xn8bOzjhSkA/6mPC9mC3sRw1zQ++9nYvAEEvm7D/pnD0G63HuBqDq+96Bs7Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sord.co.jp; dmarc=pass action=none header.from=sord.co.jp;
- dkim=pass header.d=sord.co.jp; arc=none
+        with ESMTP id S233510AbjEaOzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:55:08 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E47D9
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:55:05 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2af290cf9b7so61954741fa.3
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:55:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sordcorp.onmicrosoft.com; s=selector2-sordcorp-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QB9+9O8YHe6jYhIs7vr7ASVe3UNw2FxjtZRaVnMmbzc=;
- b=l0xiuzK7h5T46Qb4l5YHWJt8U31Q63Hp1Yc4OOc95xrQ/GvQTwkOmknOmmZkd/3eqZi8zPSLJEF+sleeMCW4H747knvNhOlpno40URdlBoCicJk6UblkOgppKWXTxyUbuV+FRweoR0ZpxraP+dKzKO86S73gdKoMSEUeVaTrH1k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=sord.co.jp;
-Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com (2603:1096:604:13c::13)
- by TYWPR01MB8872.jpnprd01.prod.outlook.com (2603:1096:400:16f::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 31 May
- 2023 14:52:46 +0000
-Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com
- ([fe80::361d:fa2b:36c9:268e]) by OSZPR01MB7049.jpnprd01.prod.outlook.com
- ([fe80::361d:fa2b:36c9:268e%2]) with mapi id 15.20.6433.024; Wed, 31 May 2023
- 14:52:46 +0000
-Message-ID: <167dd6d4-1154-3259-9a00-c46b8f764388@sord.co.jp>
-Date:   Wed, 31 May 2023 23:52:44 +0900
+        d=linaro.org; s=google; t=1685544904; x=1688136904;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6TqMXVRIcXDpIunz3BCRjGjg2eqs/x79rI3Yc7fWGng=;
+        b=tyqHCxP5DW6t2Lb5hpTE4WaI8+vME3wquslqXzoHRsZcu9MbC9TULuaTpvodSVQ59L
+         xtl1VSJUorLCcbCtcKRJV/Pi+8rmGD/8r/Y8m4jLyTllj0ehIiQDqcPaxh0T+8cswxvN
+         4zamQEi8pnAVZX9WUIecslGJEq2paljCHaWuIrBESv43HbwuG28tq6eRWSwzFSpp88sE
+         8d0+jg2z48g2zCqM+f4UOBh2JtlTEj2EmlqWCZz6wiVrYEZkTjpQiAEObvaFahheaau3
+         VIsm/HrRLJUKEBHiRkLF4MxZRDAvrf2S1U4ioYHIE2Y5H0DsIf+9vHiuk/TyDmAx2kZ9
+         +kcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685544904; x=1688136904;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6TqMXVRIcXDpIunz3BCRjGjg2eqs/x79rI3Yc7fWGng=;
+        b=Q1QIitSGvaTZw4oF3jLXl9sgH+HZYqopT0tx1vdq+Bx3Tz5UwMV7KehsphSz9dMs7i
+         80iewhHs1XUO/C/KH5L/ROgkRMtQS1kcaWXQxXfwgee/fMAxgIAjwl2GE9jqssrNixRZ
+         YskYXiFRgJO1yUQyIO78YQ5XgzP7xbCnSKYReMNRBir5PlKND2tncaJjl4hfyDBuUZTs
+         HWW+R8k5lf4bzweXLoi5Wp18mzwAViw2fi9/NrZSHZwZfYd7HWLL4GA7WApKwSUuuBFL
+         uanyFk2yaL2tHyuMxl+LuNYDxj74GPZQYF0QKKnq3hwhx8g7B9YLg9PrkaFNKoJPJdaB
+         t+RA==
+X-Gm-Message-State: AC+VfDxKM50SXTe3ixblGxYAMctqod6FUJl76bv9oykXdA7ULbUxsBLa
+        79vu5pEfySzNCNbuw+OidewYKw==
+X-Google-Smtp-Source: ACHHUZ5YCHMCLR1NSDQmBAizApylsR46k/qxtptQFran2p0NRiyqfvBh5HtMTGmouqHn5bjJfoKCQw==
+X-Received: by 2002:a2e:3203:0:b0:2ad:dd7e:6651 with SMTP id y3-20020a2e3203000000b002addd7e6651mr3179661ljy.43.1685544903832;
+        Wed, 31 May 2023 07:55:03 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id o7-20020a2e7307000000b002ad92c2ff54sm3325452ljc.15.2023.05.31.07.55.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 07:55:03 -0700 (PDT)
+Message-ID: <965bc277-b31b-e278-a793-90248615c9d6@linaro.org>
+Date:   Wed, 31 May 2023 16:55:02 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH net-next 2/2] net: phy: adin: add support for inverting
- the link status output signal
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Set up CPU cooling maps
 Content-Language: en-US
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>
-References: <7eedd83d-7d87-ba3e-7a38-990f05a44579@sord.co.jp>
- <20230531063714.7znsc7cepsk3yu44@soft-dev3-1>
-From:   Atsushi Nemoto <atsushi.nemoto@sord.co.jp>
-In-Reply-To: <20230531063714.7znsc7cepsk3yu44@soft-dev3-1>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230418-topic-cool_bengal-v1-1-c5d53814dc74@linaro.org>
+ <20230418130223.wvsu3bsm62i2gtpp@ripper>
+ <139ea923-968b-cee2-15e0-3fb8112e15d9@linaro.org>
+ <20230418155146.3qpin45woex5sbli@ripper>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230418155146.3qpin45woex5sbli@ripper>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYCPR01CA0033.jpnprd01.prod.outlook.com
- (2603:1096:405:1::21) To OSZPR01MB7049.jpnprd01.prod.outlook.com
- (2603:1096:604:13c::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSZPR01MB7049:EE_|TYWPR01MB8872:EE_
-X-MS-Office365-Filtering-Correlation-Id: d49b9d80-f29f-4028-1921-08db61e6b1ea
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZLfA+EiusQOldiY3q/lrj8lGRJsJXigVkEdjKwFTOQ/0RmefT6yliF90yegVa4di/7CYwRAnZx4Bs2qx9dBVaJ2qm8idNr0stoqsdBmjy87H38eGrTjJiEpA/eQbhLTEZFUTAdqpjhPmv2eEooo3u24fayeKKEtK6+j+76oxZ/LCMp+vO7KPfKP21CnPnXNZE33Q6xGNYAYNfdxyL5/6ONKiAd8/CyA0ERTsJaTJWOK37ToIB4zMM0riQSyhOH5xu4Z3L9FQCePgPv9tm0ln/gxXfM5vsDvj1gKWgdNoUqHkTPKfhzAO3In10JjfYg6sqUq80kj5GvfQr+cTwhaBVuEBM/z6edKffi5ALPGLWT7AsEsY0tt/m7FihZhG0d8mqtTQjK+VAxbmHmCPeX7FoOA2hIA0EkINTSIfBWIa2Ft03KHYWsy8xmIHGC99bY8CxJYhIDhPPXFYJMFj6ukJNHlP7h5HD56kY7wv/nclG/pYXnU24BhdNKzVzlJqXtuMHDt+XVMlUCALLsPcQC2Mpn8a3MYZ0DVO32ZXLoDCsVXWuHw45iBZacWQRk6D1oDNLNi1+KUf2ixO31FzMPVMSPLZM2H6zrBxjo5Ikym253cXcEKB2R2DdyMQA6KB2ZYVrfY6stDeVm6fG0pDXSO0aw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZPR01MB7049.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(39850400004)(366004)(346002)(376002)(396003)(136003)(451199021)(66476007)(5660300002)(36756003)(4326008)(6916009)(66946007)(66556008)(478600001)(31686004)(54906003)(8676002)(316002)(6486002)(41300700001)(44832011)(38100700002)(8936002)(86362001)(2616005)(6512007)(53546011)(186003)(31696002)(6506007)(26005)(4744005)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?azJRZEd6NFQ2UHlMby9aOGN1MnlFcW9TT2J4b1RqbzA4K3FwRUFKTGVRSzZZ?=
- =?utf-8?B?amFKNGVRMU9LeW52dVM4N2xacmN4NWhEb2JHLzBDY0hVeElxQ0MwNDgyamNr?=
- =?utf-8?B?bDQ1eUY2b2FuSmRwdTZtZi9QM3FTYWNldXdES2pFS0tEMnJNQ0liUTROcFZN?=
- =?utf-8?B?ZVlBNVRRdkxja050dUY4ZkFFeWp4dUcwU081cTUyZXRsaVg4Zm9adE9uQlo2?=
- =?utf-8?B?L0N6Y1pPVVAyYWYrYm9udE01SERkSXFHN1VoalZKaVMxNWxiQ1BpSVU1RlJl?=
- =?utf-8?B?dk84SVRtMWl0eG1qUlRMQW9nY0trc3hQVDdiQ3FYT3EwYlF3ZTB3WWsrS2RY?=
- =?utf-8?B?Z1BrdkZ1OVlxVUJ0UlBmNFMraEEvN1pJbjIzbUFGbnJ3aEdycE5zc3hESS9W?=
- =?utf-8?B?ZXVNMDNKclBXVjVwTGV6R3VzRkJ1M2pTQnZDVUovZ1hKMWoyaUhmL3g1M2Yv?=
- =?utf-8?B?N05xWEZnaVE3dkZESk5SMWIrR2N3WDZLWksyT2Z0MGptOVc4WWtVdGgzcW1r?=
- =?utf-8?B?ejA0Q3M0dWpHK2hEK3hQN3hTU0s5MEZzdURueHdJaURhRUlabTRLZ3JOakE1?=
- =?utf-8?B?NHhwNWcrQWhzUXM2WGNuTXhjTWJKWHFFbHd0OXFoTkUxSnVjc2NROEpWQ2Jr?=
- =?utf-8?B?UHcvM1llUllhUWlySUREUFcxZTJTWXF5cnNqUnJaRFdhR3o3WGFxNTlLbXRp?=
- =?utf-8?B?dkJQSHVUQXBSSnZrbnFXbjZyM0tobDlQZWU0M1pQT0p5SVRMM2hPUlc5L1Jy?=
- =?utf-8?B?OGlTbHBVbFdqb2tMS3puMEt0U3kwRzBhOGY0NTd2WGdkZG9HQVErVHBmTWFS?=
- =?utf-8?B?eEJMMkZWVkdMTDQyblp3bGkvdkJqM3lpQnhoTU1aUnFyMi9JdnZueEo4ZVRz?=
- =?utf-8?B?ZUNWWjEyVGVKSVRTZ01WS2VLK2dBNUYzZXhwa2dJMStHN1hvZFFEOS9xd0Vl?=
- =?utf-8?B?TDZvOHZYUnNCMVRCVzJmV09SSFNVejM1SzNIZmdYZngvZ0hMOGpOeHNodWlr?=
- =?utf-8?B?V2o3RE9pMFpaajB1NmprTG91RlpqMW9waU1GUVdjWDVlTHhwMmROczZwR2tC?=
- =?utf-8?B?NnN1V29ZZDQ2ZE9ialk4ZStURldxRkphdUN6WUdYQkZDUXUxMWtTM1BhOVUw?=
- =?utf-8?B?WmVjNS8ySUpTaTZEQnNCZVVSNUtNNTNTaXFYV0dJa1JPSkZ5Z0M3TjExMFFB?=
- =?utf-8?B?WmxUQXJBWTFJQ1NkUXRkM2RGTGkvemRmUGs1ZWc0SXkyUGtYd1RJMER3RjJy?=
- =?utf-8?B?eTd4VWJGdU44WUo1L3pjbWNyUG5LRGo3WUZXeW1KTW1MVGZkVU1QNlRvdXBC?=
- =?utf-8?B?ZzNkVWphMWJPbGxCeUNiZ2I0Y2hrenB2ZUNDREdtMkJ0NEVuSjc4cGVHTEpM?=
- =?utf-8?B?bVF0Qko2V2VzSlh6QU0yaG1yWEFXOU40VVdpYU9wK0d3SGt5OHMwTU41aVB0?=
- =?utf-8?B?SzU4c0NTN2xIbzZtZ0FZaHYwNUxWbkd1dHhMbW0zSHUwU2RrQUV2QnlrMDdK?=
- =?utf-8?B?a0tVUnFva1N4NmZkVS9jSXQrcXhENlI5NGhqNVJkUy9GVTZ1UmhQbmRaMzFG?=
- =?utf-8?B?S2xrUjZwSFl5NTJ3UUZ3RDE4NEVFUG05SmFQM0Q4ek91b2tYQk1UdVBHTk9O?=
- =?utf-8?B?aEtiUFBvYjZhRHpFbjJrVWNnWldhTFF1d1A5VFBhbHlJUC81OXJ1Sko1WVFQ?=
- =?utf-8?B?MXBYODNralVLSm81cVhqbkxCdm4xbTNIR05xRHhZMExpSGVidHpjSkU0akw5?=
- =?utf-8?B?VFgwdlJkTVVWOW41blF1QlZkZXNwbldka00rME9QRm1BaXpZNkZCcnROVUJB?=
- =?utf-8?B?RXRoWG1xYWM4U1lCU2VFU0ljRlVWWkIxeEI2aElDcnFXTHU0dVV1NGRuOXBt?=
- =?utf-8?B?bmo4M0pNMld1NkJyQUJKN0VhdGo0ZGtieDlIdkhvSXhRTW9Cdm1NT0dxdzNY?=
- =?utf-8?B?YXhwSGEwRmxxYWlvTjBGTktvZS9tOVo4U3VlNmdpYy9KSGhQZnVUTmM3dTJl?=
- =?utf-8?B?MEJjSXlmVWdxU3h6aUxaTDFHK09RWWVyd3VsMkRPdnp2aVZzb2hGSWkwWUhK?=
- =?utf-8?B?WEFybkQ1NTIxdmFNdG9oK3JVend6cmhGUENBZXVocmNpa2N0WTNKZStTenI4?=
- =?utf-8?B?NjVIRWc5WVNjdElKS1d3WnNaaXhjN1lldHQvOVBVekMwRUxmLzZvQ1JlQWpt?=
- =?utf-8?B?VGc9PQ==?=
-X-OriginatorOrg: sord.co.jp
-X-MS-Exchange-CrossTenant-Network-Message-Id: d49b9d80-f29f-4028-1921-08db61e6b1ea
-X-MS-Exchange-CrossTenant-AuthSource: OSZPR01MB7049.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2023 14:52:45.9802
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: cf867293-59a2-46d0-8328-dfdea9397b80
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wHIMYgxajNVEa1djTP8xet2f48RtwikEFqWCs2Dx1ED1AeMWjjMoSt8P2CAOJPmETVX47zHwGLbGN1ip9rWVu+T8uu1oYGue5k5pvLpb90U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8872
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/05/31 15:37, Horatiu Vultur wrote:
-> When you create patch series that contains more than 1 patch, you need to
-> create also a cover letter.
-> Also it seems that not all the maintainers were CCed. To find out which
-> ones are the maintainers please use: ./scripts/get_maintainer.pl
+
+
+On 18.04.2023 17:51, Bjorn Andersson wrote:
+> On Tue, Apr 18, 2023 at 03:01:47PM +0200, Konrad Dybcio wrote:
+>>
+>>
+>> On 18.04.2023 15:02, Bjorn Andersson wrote:
+>>> On Tue, Apr 18, 2023 at 01:56:56PM +0200, Konrad Dybcio wrote:
+>>>> Set up CPU cooling maps to ensure the thermal framework is aware of
+>>>> the connection between the CPUs and the TSENS sensors.
+>>>>
+>>>> All of the maps refer to all 4 CPUs within a given cluster at a time,
+>>>> as that's what can be considered the smallest DVFS target unit - they
+>>>> all share the same voltage line and clock source.
+>>>>
+>>>
+>>> Generally software based CPU cooling is considered too slow to cope with
+>>> CPU core temperature changes, and the limits hardware working together
+>>> with OSM/EPSS will do a better job maintaining appropriate core
+>>> temperature levels.
+>>>
+>>> Is there a reason why this can't be used/relied upon on this platform?
+>> I haven't set up LMH yet and the default limits, at least with my dubious
+>> meta build, seem to let the board go to 75degC with just 4 cores working..
+>>
+>> Not sure if there's a voltage droop when I let it go full throttle or
+>> something, but pushing it to the limit definitely causes the board to be
+>> (even) less stable..
+>>
+>>>
+>>>
+>>> PS. Amending this mechanism with software based cooling to keep the
+>>> system at a reasonable/lower temperature is a good idea.
+>> We don't like burned chips around here!
+>>
 > 
-> Other than that, it looks OK.
+> Limits hardware will help you with that, software based cooling will
+> help avoid burning the user.
+So, are there any reasons not to take this patch?
 
-Thank you for your review.
-I just posted revised patchset.
-
----
-Atsushi Nemoto
-
+Konrad
+> 
+> Regards,
+> Bjorn
+> 
+>> Konrad
+>>>
+>>> Regards,
+>>> Bjorn
+>>>
+>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 137 +++++++++++++++++++++++++++++++++++
+>>>>  1 file changed, 137 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+>>>> index 631ca327e064..36ff913c1a60 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+>>>> @@ -12,6 +12,7 @@
+>>>>  #include <dt-bindings/gpio/gpio.h>
+>>>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>>  #include <dt-bindings/power/qcom-rpmpd.h>
+>>>> +#include <dt-bindings/thermal/thermal.h>
+>>>>  
+>>>>  / {
+>>>>  	interrupt-parent = <&intc>;
+>>>> @@ -47,6 +48,8 @@ CPU0: cpu@0 {
+>>>>  			enable-method = "psci";
+>>>>  			next-level-cache = <&L2_0>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>>>> +			#cooling-cells = <2>;
+>>>> +
+>>>>  			L2_0: l2-cache {
+>>>>  				compatible = "cache";
+>>>>  				cache-level = <2>;
+>>>> @@ -63,6 +66,7 @@ CPU1: cpu@1 {
+>>>>  			enable-method = "psci";
+>>>>  			next-level-cache = <&L2_0>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>>>> +			#cooling-cells = <2>;
+>>>>  		};
+>>>>  
+>>>>  		CPU2: cpu@2 {
+>>>> @@ -75,6 +79,7 @@ CPU2: cpu@2 {
+>>>>  			enable-method = "psci";
+>>>>  			next-level-cache = <&L2_0>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>>>> +			#cooling-cells = <2>;
+>>>>  		};
+>>>>  
+>>>>  		CPU3: cpu@3 {
+>>>> @@ -87,6 +92,7 @@ CPU3: cpu@3 {
+>>>>  			enable-method = "psci";
+>>>>  			next-level-cache = <&L2_0>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>>>> +			#cooling-cells = <2>;
+>>>>  		};
+>>>>  
+>>>>  		CPU4: cpu@100 {
+>>>> @@ -99,6 +105,8 @@ CPU4: cpu@100 {
+>>>>  			dynamic-power-coefficient = <282>;
+>>>>  			next-level-cache = <&L2_1>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>>>> +			#cooling-cells = <2>;
+>>>> +
+>>>>  			L2_1: l2-cache {
+>>>>  				compatible = "cache";
+>>>>  				cache-level = <2>;
+>>>> @@ -115,6 +123,7 @@ CPU5: cpu@101 {
+>>>>  			enable-method = "psci";
+>>>>  			next-level-cache = <&L2_1>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>>>> +			#cooling-cells = <2>;
+>>>>  		};
+>>>>  
+>>>>  		CPU6: cpu@102 {
+>>>> @@ -127,6 +136,7 @@ CPU6: cpu@102 {
+>>>>  			enable-method = "psci";
+>>>>  			next-level-cache = <&L2_1>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>>>> +			#cooling-cells = <2>;
+>>>>  		};
+>>>>  
+>>>>  		CPU7: cpu@103 {
+>>>> @@ -139,6 +149,7 @@ CPU7: cpu@103 {
+>>>>  			enable-method = "psci";
+>>>>  			next-level-cache = <&L2_1>;
+>>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>>>> +			#cooling-cells = <2>;
+>>>>  		};
+>>>>  
+>>>>  		cpu-map {
+>>>> @@ -2471,6 +2482,24 @@ cpu4-thermal {
+>>>>  			polling-delay = <0>;
+>>>>  			thermal-sensors = <&tsens0 6>;
+>>>>  
+>>>> +			cooling-maps {
+>>>> +				map0 {
+>>>> +					trip = <&cpu4_alert0>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +
+>>>> +				map1 {
+>>>> +					trip = <&cpu4_alert1>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>>  			trips {
+>>>>  				cpu4_alert0: trip-point0 {
+>>>>  					temperature = <90000>;
+>>>> @@ -2497,6 +2526,24 @@ cpu5-thermal {
+>>>>  			polling-delay = <0>;
+>>>>  			thermal-sensors = <&tsens0 7>;
+>>>>  
+>>>> +			cooling-maps {
+>>>> +				map0 {
+>>>> +					trip = <&cpu5_alert0>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +
+>>>> +				map1 {
+>>>> +					trip = <&cpu5_alert1>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>>  			trips {
+>>>>  				cpu5_alert0: trip-point0 {
+>>>>  					temperature = <90000>;
+>>>> @@ -2523,6 +2570,24 @@ cpu6-thermal {
+>>>>  			polling-delay = <0>;
+>>>>  			thermal-sensors = <&tsens0 8>;
+>>>>  
+>>>> +			cooling-maps {
+>>>> +				map0 {
+>>>> +					trip = <&cpu6_alert0>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +
+>>>> +				map1 {
+>>>> +					trip = <&cpu6_alert1>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>>  			trips {
+>>>>  				cpu6_alert0: trip-point0 {
+>>>>  					temperature = <90000>;
+>>>> @@ -2549,6 +2614,24 @@ cpu7-thermal {
+>>>>  			polling-delay = <0>;
+>>>>  			thermal-sensors = <&tsens0 9>;
+>>>>  
+>>>> +			cooling-maps {
+>>>> +				map0 {
+>>>> +					trip = <&cpu7_alert0>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +
+>>>> +				map1 {
+>>>> +					trip = <&cpu7_alert1>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>>  			trips {
+>>>>  				cpu7_alert0: trip-point0 {
+>>>>  					temperature = <90000>;
+>>>> @@ -2575,6 +2658,24 @@ cpu45-thermal {
+>>>>  			polling-delay = <0>;
+>>>>  			thermal-sensors = <&tsens0 10>;
+>>>>  
+>>>> +			cooling-maps {
+>>>> +				map0 {
+>>>> +					trip = <&cpu45_alert0>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +
+>>>> +				map1 {
+>>>> +					trip = <&cpu45_alert1>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>>  			trips {
+>>>>  				cpu45_alert0: trip-point0 {
+>>>>  					temperature = <90000>;
+>>>> @@ -2601,6 +2702,24 @@ cpu67-thermal {
+>>>>  			polling-delay = <0>;
+>>>>  			thermal-sensors = <&tsens0 11>;
+>>>>  
+>>>> +			cooling-maps {
+>>>> +				map0 {
+>>>> +					trip = <&cpu67_alert0>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +
+>>>> +				map1 {
+>>>> +					trip = <&cpu67_alert1>;
+>>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>>  			trips {
+>>>>  				cpu67_alert0: trip-point0 {
+>>>>  					temperature = <90000>;
+>>>> @@ -2627,6 +2746,24 @@ cpu0123-thermal {
+>>>>  			polling-delay = <0>;
+>>>>  			thermal-sensors = <&tsens0 12>;
+>>>>  
+>>>> +			cooling-maps {
+>>>> +				map0 {
+>>>> +					trip = <&cpu0123_alert0>;
+>>>> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +
+>>>> +				map1 {
+>>>> +					trip = <&cpu0123_alert1>;
+>>>> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>>> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>>  			trips {
+>>>>  				cpu0123_alert0: trip-point0 {
+>>>>  					temperature = <90000>;
+>>>>
+>>>> ---
+>>>> base-commit: 4aa1da8d99724f6c0b762b58a71cee7c5e2e109b
+>>>> change-id: 20230418-topic-cool_bengal-2f5f3f47269c
+>>>>
+>>>> Best regards,
+>>>> -- 
+>>>> Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>>
