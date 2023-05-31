@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D72471879B
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 18:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8866171879F
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 18:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbjEaQiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 12:38:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60634 "EHLO
+        id S229830AbjEaQiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 12:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjEaQiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 12:38:04 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 888F31BF
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 09:37:25 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5147aee9d7cso8423794a12.3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 09:37:25 -0700 (PDT)
+        with ESMTP id S229822AbjEaQiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 12:38:17 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6777E18F
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 09:37:54 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5149390b20aso7748104a12.3
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 09:37:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685551034; x=1688143034;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1685551073; x=1688143073;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mI/Z+AOJe77MYRVNtpeDPQoy64/AS/Rw3B+qEnWzB1Y=;
-        b=tm9VH58Fsh0081cO5HE+79bYqZjkTUWv79a2vWGXoegxO8DrJbKVlnuxLWDoxfypuh
-         oTKGRg5ZtSXbXXlaojuYUVgECR+vnD2ctKD5pANvclxwj25d6kBMMYSqGvbh9JPbpO6d
-         GkhFPEAgDUYJTLA7rzBozYRy+WQtzjGf42Bdl6ZkklKIXvMzB2s8KR+u5+TUV+5N11G0
-         ipYSq5becnGZKB8j87m9vJkylL2YFTvKTEvIAJqClFaOV7ApRjf49qQYLcByLrePiTcQ
-         5qtvnznk+RCk0eh4O5M5l/k6P8dp3Yjek0gBb5euznBZsZb5+nEq94F3g7bnGR+xcD/p
-         uWHQ==
+        bh=m5OT9KFf8Tf78vvk5PWAxrUl4UkPQ4PVclta5xiQ/qU=;
+        b=NAPzMWTzB+wDoW1GiW10JIGYJfbf0wj18abOg+pEHZxAH4LVZTYgWWbcM95TdKEneO
+         EJwuhgz5mRPjHbdjlxfHv9lrO4ayrCmpoNd67txMZfCUDFlhk/SUTj6Job1dE96wtzMT
+         R0VIY0nYcxIxx7ESXs3+y9v8KFL7K/aivUGE05NeoemoO1Pt68cBXr1o3Vc7Pm/ZBsRz
+         96bZc4mW1Fn4WbPZ5pmj9PrFR+8mLdZ4cJtfmY+mfGWkpK/I/FYHJGeYYNUzBk4kPHFR
+         Un3BqzTpLyP2/8SHIXP6YMXGq6h3s+UiXgL3gcfNBzOt88NryOx2BAk3IAYXczDQWbGE
+         hObg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685551034; x=1688143034;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685551073; x=1688143073;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mI/Z+AOJe77MYRVNtpeDPQoy64/AS/Rw3B+qEnWzB1Y=;
-        b=W+yA5nzdzp2sfojuI1x09ipe5fO07+hQAiQ7yfp7wJSbOi5m/sc+9TVejECZxY82L+
-         SZjYTBK5EXsLb8ebRc34GyXAOJ9wEi3s9M00Qkdol/dDK2yu6G3vosXzLMIoHI+6Aw6r
-         uWxPuKn4gbjiTeU8tL39nq8tT/Uez2aEiTPGcrmFAbWcR5OHVmR3CJrsbYjfcz24/Dc2
-         F2jyfb5dCqE4b/kAMyKQY1egRc6GAxokkrhfOCR6SO5Eyxe6BcdETeUbF+FYDNVhtHbo
-         fALOqQ1p4QRxOVhysFJuP86034/8Pkolj2/XFyNHG6H7JaeaNquOzymevYrKvT/gbGEh
-         ZcEw==
-X-Gm-Message-State: AC+VfDyQgY58zJSVDshottyqNpvgAY/CnB88WNsNAwzlO5NdEnTOKcDg
-        T+KNXReMDdeiD+jn83XYwRKwHQ==
-X-Google-Smtp-Source: ACHHUZ6mk17104IpQqaV9WJrLhDKZ8/xdRyYGkqpmnwxdPbatNtB1dyYzFae4LvTWskaYKjzTZ1eJQ==
-X-Received: by 2002:a17:907:6d29:b0:96f:5747:a0de with SMTP id sa41-20020a1709076d2900b0096f5747a0demr5836897ejc.6.1685551033920;
-        Wed, 31 May 2023 09:37:13 -0700 (PDT)
+        bh=m5OT9KFf8Tf78vvk5PWAxrUl4UkPQ4PVclta5xiQ/qU=;
+        b=Mgzan1AUOvF/ufyoL3jTH7mlUiiIxSApyJQuj43jZ4ZLxieGhCmWX3XMknjDa/h8PP
+         KdEfn9mZh5NrDm0ED5V4zoGhTdK+BzVRytnyH7CaE6GaknvOyHMXuzorf7gV8ObIzFUs
+         BinYLYg6Tod8nfj1aZ06BPvMw4FXksydp9029k670lVt+xJt7/WwQmXhhA1vguD/kf6S
+         TBzsTq/Qgz6/DwbLExkkZ4O58HNpt39mfjM4NsFhxfnX5op/3B4JdNQcn0yRuI2nPSpQ
+         oQNPryO8tpt/krD4yWcfgkpnub5IH0878D9oOMWXXDuq3ginKEMA6GNiGlY8YTn1bp58
+         83RA==
+X-Gm-Message-State: AC+VfDyL3Yn15y51XowCSX8Jze0tr8QmgGqCmRcBmX5gagKukchYWqiC
+        RwPkfClE4CspNa+tkAMeDaC4bA==
+X-Google-Smtp-Source: ACHHUZ7zacc3Wdi1BXj0dZ/seBtl2Jjrzi6i8AH/zg/c4IwdBAlJHrshpDrkLhhhrDMIgJ0bVfxxPQ==
+X-Received: by 2002:a05:6402:38a:b0:514:a6af:e299 with SMTP id o10-20020a056402038a00b00514a6afe299mr3848352edv.23.1685551072886;
+        Wed, 31 May 2023 09:37:52 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id e18-20020a170906249200b0096f503ae4b0sm9265816ejb.26.2023.05.31.09.37.12
+        by smtp.gmail.com with ESMTPSA id u20-20020aa7db94000000b00502689a06b2sm5867485edt.91.2023.05.31.09.37.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 09:37:13 -0700 (PDT)
-Message-ID: <edde585c-40df-4e5e-fee0-8b8c38eff2d9@linaro.org>
-Date:   Wed, 31 May 2023 18:37:11 +0200
+        Wed, 31 May 2023 09:37:52 -0700 (PDT)
+Message-ID: <d94ad429-9f82-5751-8a49-03592bea7918@linaro.org>
+Date:   Wed, 31 May 2023 18:37:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: gpio: Add gpio-delay binding document
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
         Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         Marek Vasut <marex@denx.de>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
- <20230406093344.917259-2-alexander.stein@ew.tq-group.com>
-Content-Language: en-US
+ <a926837c-8773-1809-0bb3-34d449c5d7a5@linaro.org>
+ <CAHp75VcJMwoG07-d86obSLuPNGRQuRo_oW2JJA50ps--3s0kJA@mail.gmail.com>
+ <4810610.GXAFRqVoOG@steina-w>
+ <CACRpkda7CuiJ0=9+gw9G+mmBAOH+P2xmofb2dVANjqqrW78xfw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406093344.917259-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <CACRpkda7CuiJ0=9+gw9G+mmBAOH+P2xmofb2dVANjqqrW78xfw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -80,15 +84,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 11:33, Alexander Stein wrote:
-> This adds bindings for a GPIO enable/disable delay driver.
+On 31/05/2023 15:44, Linus Walleij wrote:
+> On Wed, May 31, 2023 at 8:53 AM Alexander Stein
+> <alexander.stein@ew.tq-group.com> wrote:
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
+>> What do I need to do to get progress on this topic? Without this kind of delay
+>> handling the DSI-LVDS bridge on our hardware cannot be used in mainline.
+> 
+> The DT binding maintainers (Rob, Krzysztof) need to ACK the approach to
+> how this is modeled in the DT bindings.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I left it for Rob as he was involved in v0 and v-1, I think, but since
+this calls for attention I replied now. Sorry for the delays.
 
 Best regards,
 Krzysztof
