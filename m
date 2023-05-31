@@ -2,61 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 100AB718138
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01BAF71814B
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236366AbjEaNQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 09:16:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
+        id S232598AbjEaNVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 09:21:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236351AbjEaNQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:16:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E5AD132;
-        Wed, 31 May 2023 06:15:55 -0700 (PDT)
+        with ESMTP id S230456AbjEaNVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:21:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74A5123;
+        Wed, 31 May 2023 06:21:04 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 17EA963990;
-        Wed, 31 May 2023 13:15:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE6E4C433D2;
-        Wed, 31 May 2023 13:15:51 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C78A63A67;
+        Wed, 31 May 2023 13:21:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8286BC4339B;
+        Wed, 31 May 2023 13:21:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685538954;
-        bh=vOTa5MUOhxTH37zrJH/3NXFRmUhlyERnZdSp2zEDzMw=;
+        s=k20201202; t=1685539263;
+        bh=38r927G2inyVMml0LWLz7BZPDRXvg4VePw65RoNKYtc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MohAVbsLBjUuF5j7mcmA9YUSlj8iSsNTlEp/4CErRWscq4hgDdCdQosJYH1VX4OD6
-         8NljKsV5mGEhUd1bhty4MryUDP67j/72hfE9RwsOyvQKPDxb4XJeZmBxrcwM5yItv9
-         w75Pwt1QP+4/+B92+4gwUkipydak26QdEsMhkWtVUC5CET8Nf6ledh09d2yH4Jw5vm
-         vAbMHe3wzZOSz09HLRiInoRz2Qbd/JEN22sFPp6ueeZX8bBcto/W2TATKoS5IcrHOZ
-         v8EUAeAV3boQ0COyFoMKckHuXwnhD7UO9cjN04I7opo7rzwIuf65Spo8+nsPb6wA+5
-         mSHMBTxXIddGA==
-Date:   Wed, 31 May 2023 14:15:49 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        b=LdZne+qt+TBfcx78L1P/e2jFK0kSzM5OFwvU2lxOWm2TlFradzemowoi00+tmv6y0
+         sWY0vKMfcns0lX4vAY/CH6ckpM41qmMi1xxJxqhdUeryyDNpqMpv5VLXnjTFxKv5YT
+         30pidaxePH2tzlQBSPb4vfBLDSguMgjWY93t7Ya/SLeTzGPsOFra84VCLvf9MR2KbQ
+         vf2dSCmwUct0o7VADfK7uJOVALI/Hv4GXRwP19ty6V6ofqoGe4+N9AN+pZH+WtAalo
+         AsJXlkNLdL/RX27xAB+do3GU73RxNpW897H95tp6qq29koGhTPCIRNZF0s6kd6Xn8P
+         VIb+hnRbwW75g==
+Date:   Wed, 31 May 2023 14:20:57 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Yingkun Meng <mengyingkun@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH 1/2] dt-bindings: dmaengine: Add Loongson LS2X APB DMA
- controller
-Message-ID: <20230531-quicksand-enviable-75a070860077@spud>
-References: <cover.1685448898.git.zhoubinbin@loongson.cn>
- <23536e4dcd5a839e932901b7c66a15d1f5465c4d.1685448898.git.zhoubinbin@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>
+Subject: Re: [PATCH v1 2/3] spi: cadence-quadspi: Add clock configuration for
+ StarFive JH7110 QSPI
+Message-ID: <075db1ba-e15c-4c3c-9430-99c866eca24d@sirena.org.uk>
+References: <20230526062529.46747-1-william.qiu@starfivetech.com>
+ <20230526062529.46747-3-william.qiu@starfivetech.com>
+ <fecc9d6a-022e-49d9-a452-8a63c409ebf3@sirena.org.uk>
+ <042c560d-1f36-8e97-3796-7423245592f4@starfivetech.com>
+ <86555925-b8dd-29a8-60cd-5c2ff2c1432a@starfivetech.com>
+ <eb68722b-bcab-4aa1-aa4e-54bfe95ef414@sirena.org.uk>
+ <93ba0b97-45aa-e59d-1454-80c4f245acc0@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qc6F2OFGFNda1XWa"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="G6ktQj/BvBBSNjYO"
 Content-Disposition: inline
-In-Reply-To: <23536e4dcd5a839e932901b7c66a15d1f5465c4d.1685448898.git.zhoubinbin@loongson.cn>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <93ba0b97-45aa-e59d-1454-80c4f245acc0@starfivetech.com>
+X-Cookie: Will Rogers never met you.
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,117 +68,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---qc6F2OFGFNda1XWa
+--G6ktQj/BvBBSNjYO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 31, 2023 at 04:50:04PM +0800, Binbin Zhou wrote:
-> Add Loongson LS2X APB DMA controller binding with DT schema
-> format using json-schema.
->=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../bindings/dma/loongson,ls2x-apbdma.yaml    | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2x-a=
-pbdma.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.y=
-aml b/Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
-> new file mode 100644
-> index 000000000000..9df32dd98aaf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/loongson,ls2x-apbdma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson LS2X APB DMA controller
-> +
-> +description: |
+On Wed, May 31, 2023 at 02:19:16PM +0800, William Qiu wrote:
+> On 2023/5/30 18:33, Mark Brown wrote:
 
-As a minor nit, the | shouldn't be required here.
+> > You could always specify a different array of clocks depending on which
+> > compatible the driver sees, just like you'd conditionally request clocks
+> > individually.
 
-> +  The Loongson LS2X APB DMA controller is used for transferring data
-> +  between system memory and the peripherals on the APB bus.
-> +
-> +maintainers:
-> +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> +
-> +allOf:
-> +  - $ref: dma-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: loongson,ls2k1000-apbdma
-> +      - items:
-> +          - const: loongson,ls2k0500-apbdma
-> +          - const: loongson,ls2k1000-apbdma
+> 	If specify a different array of clocks depending on which compatible
+> the driver sees, since there will also be clock operations in the suspend
+> and resume interfaces, this can make the code look complicated.
 
-Sweet, good to see fallbacks in use here ;)
+If you store the clock count and array in the driver data that should be
+fairly simple I think.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#dma-cells":
-> +    const: 1
-> +
-> +  dma-channels:
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#dma-cells"
-> +  - dma-channels
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    apbdma0: dma-controller@1fe00c00 {
+> 	as following:
 
-Nothing references the apbdma0 label so it can be dropped.
-Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 	/* Obtain QSPI clock. */
+> 	cqspi->num_clks = devm_clk_bulk_get_all(dev, &cqspi->clks);
+> 	if (cqspi->num_clks < 0) {
+> 		dev_err(dev, "Cannot claim QSPI clock: %u\n", cqspi->num_clks);
+> 		return -EINVAL;
+> 	}
 
-Thanks,
-Conor.
+> 	This way, the code will look simpler and clearer. How do you think
+> about it.
 
-> +        compatible =3D "loongson,ls2k1000-apbdma";
-> +        reg =3D <0x1fe00c00 0x8>;
-> +        interrupt-parent =3D <&liointc1>;
-> +        interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>;
-> +        #dma-cells =3D <1>;
-> +        dma-channels =3D <1>;
-> +    };
-> +
-> +...
-> --=20
-> 2.39.1
->=20
+I'm not clear how enable and disable would then work?
 
---qc6F2OFGFNda1XWa
+--G6ktQj/BvBBSNjYO
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHdIhQAKCRB4tDGHoIJi
-0tOrAP9Cl0SsiSBLexNeoIQe71NHkgQQJYYL6Bkmn5tX+RRFUQEAkGeOMq9MYEdb
-GxJXw1qKzqK4800lDfFBhRMJaIMligk=
-=3DRW
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR3SbkACgkQJNaLcl1U
+h9A5YAf6AyXRsEmaDvRUFjWZZNZoMgo2EFDR0Jl7tIiuqYCoBj6JUWnZZBV7bZnq
+tVBoRN8pUEPIdzISOFwas3GYdOHZdSMagbeH2d8DZp7Cn7YTBcHKdw4otXRB+4QN
+tXJITLg7JSbzgd6gP/wfMp+q9Yyf0q+T9kRsrBTFSYuJmh6yg8CRaHrHmdomTBAB
+ZvB/TwoNFJYrvpRIJXUQC3mOviO7eQCVr9z6ZG8iwlzlxym7ZSC/rRbG2MtKlxls
+zIaL56Kwe4MQg7LgQejCY+z4ZLUdqpLb9DiVOp9bRspzRuWdRABZsdzahkgEZCbL
+C2/G7xzOwRn0cvaF+TipvT73i+QPxA==
+=6EZR
 -----END PGP SIGNATURE-----
 
---qc6F2OFGFNda1XWa--
+--G6ktQj/BvBBSNjYO--
