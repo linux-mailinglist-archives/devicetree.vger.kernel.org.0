@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6177B718AAF
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39086718AB6
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjEaUBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 16:01:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40714 "EHLO
+        id S229783AbjEaUDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 16:03:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjEaUBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:01:38 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 008CAB2
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:01:35 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-96f588bc322so906432566b.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:01:35 -0700 (PDT)
+        with ESMTP id S230004AbjEaUDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:03:36 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5C5C0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:03:34 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-973e7c35eddso711094566b.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:03:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685563294; x=1688155294;
+        d=linaro.org; s=google; t=1685563413; x=1688155413;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p3eDjHnNMpBAuyn9jnH2JCTHF3bUcGt++WX3Jdu1m5k=;
-        b=kN9/nocBEZ85wU61yadCgB1E6us8CKIFiWknQm+/35514hsQ1LQga0Flo4hpJnqcRn
-         ZY/g/i6qao3FMm37IB7vtPvhYIAbTg5+DB71j6I27n0Jn3qnDW6g6/N8t9RmC3DDjAKI
-         vcOEB9mJT63945QNYACTKeKrJJfeFNNkACFYjla4e8ROs5yBuZxd2KB6kPx1zSTUjBIx
-         OBKRfo68pu2o//vn5Nbaxa0ZxVfpMBT66bPnjom7YLiyDMu7+obPSrGF8DUKuNqkNsI2
-         uPUYI/S40G+4IXXkbmXB8qe/LnKz1AIoYEPGaku1Pv0bQLt6WysSXRkBDBdMHa6D92jS
-         UGKw==
+        bh=Fl99vrQa7b2aQpHCy7q4IdOcbocEiTGFVhUuly+eb9c=;
+        b=Sf2MRXsCD/k/WPslkLQQvOMWhUJMCPc4HZjWuaLtHsf0TaiP7h5XZ+vsNoTLMQ6dbK
+         GzSngD98rVi1pIk3rH6u7ZY7UEXxHiQ4ZLjwxzzk9Vv4+Y3BZqgQ/h3IcP++Z363LGwg
+         +zdNQb4FCpwCfarTBlHOEXzJSs+OgzAFEIrnl2lmck8YZNCEJb09YVB5Wa2XpaVXQpUT
+         YJuhlw3FazZFHyuojrranvgr5tg7UljssSL98OLO7hwWraZ64VpJKQpdXMECI+Ia1awJ
+         O8yYsM04Eg23qKslGkj8Gp79yoOVwzURfpldPso1WKXPWyXPCllnsCMOef4y90wq3bFW
+         7ANw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685563294; x=1688155294;
+        d=1e100.net; s=20221208; t=1685563413; x=1688155413;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p3eDjHnNMpBAuyn9jnH2JCTHF3bUcGt++WX3Jdu1m5k=;
-        b=JBgzTR2z3WbTTG5P5ZX5FL/ooMR2CsJmnqbs111+m7XysieZFWDu8q3AoHh9ohtaeM
-         Yyu7y4xNjy7rjp2R+Ct/j+0peALesu1nxHRT+xzE9BzAgNI797PTFN997ehBOd6oz531
-         yrDqP/LoXFCJPRkUqLQMkjsax5oCREXfwQs4LwzF47zes4pFjwk3VBPLXXRILZx5Gw7D
-         pDFBq0rp0dE1FfbS+snEX7ASFrEoM9ewsJytsk+I9VnTyRSHd2pWt6WVHdW3wGksEvVn
-         4G1w93PHMXj/AFf7CcEoZKYfOcGeyoVSj0CUZgth5onMVTX2G6IzTIA8c4uZfaRRD0Pm
-         fV5Q==
-X-Gm-Message-State: AC+VfDxcL1zc+ZLSfSgywusDcVoNadNvAbAJFmTs2uHLoQ5/AqHilN93
-        cPQS5Lxmij9L8m26RMZ6A8e5ww==
-X-Google-Smtp-Source: ACHHUZ6lkzEFf9ch6zTGk1L03429+02NXVO6AVejJ7ycuzZpiYE+ItfDxHm6LXPnqsoJmPUqqST27g==
-X-Received: by 2002:a17:907:6d86:b0:94e:dd30:54b5 with SMTP id sb6-20020a1709076d8600b0094edd3054b5mr7096787ejc.6.1685563294437;
-        Wed, 31 May 2023 13:01:34 -0700 (PDT)
+        bh=Fl99vrQa7b2aQpHCy7q4IdOcbocEiTGFVhUuly+eb9c=;
+        b=PIANi2UYfNaeMOqCwRaZV0v+If8bULyOgokt0FxbiQzYIND9vt+4YgN7D3zcGHMBFY
+         NZD7K/IPvYrrY1TeCH7qIYlXaTZtd66uZFJd2sI5ZO+3e5WMJkPixJgw3//SBL7fEaZ/
+         vC1i51rKhjCQ2n0SbD1xU9OSFSeL4U6bl83cYGT/VSa0fu4op2O550kcSG7kVc9DorkS
+         KII/B4SRU4G2mWL+sMtrlIvOMCkylrH7OmEa0ZNa/2iTvo+qJ9mLYPTjJJi7Tqn6cKYx
+         ThFtKl5R38iAo1MPEjceloLICq60WB9Bh/ZlvGKy5QbjMCeRfcgvPTSPbVGLzX4Nlozm
+         tInA==
+X-Gm-Message-State: AC+VfDxCxRhvq2Uf5xAQilvHoIbLKEZa990ivWqsNTTHBdAGyhQWDCyk
+        /rJ++oc1y/suZNR+EoZkvkT1/y4s1EX2MGlaaIE=
+X-Google-Smtp-Source: ACHHUZ5J7RVYG334XtIRu16q6ujNR+vWJrs1FB6BJ/BEtNYtF3/KmQR5XmeCjgqouHvbvZGyftYWFw==
+X-Received: by 2002:a17:907:7f0d:b0:973:d71f:4029 with SMTP id qf13-20020a1709077f0d00b00973d71f4029mr7653681ejc.2.1685563413165;
+        Wed, 31 May 2023 13:03:33 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id l13-20020a170906078d00b00968a2286749sm9550858ejc.77.2023.05.31.13.01.32
+        by smtp.gmail.com with ESMTPSA id t24-20020a170906179800b00968db60e070sm9434788eje.67.2023.05.31.13.03.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 13:01:34 -0700 (PDT)
-Message-ID: <098883dd-f517-d541-de00-1a7fc0ada017@linaro.org>
-Date:   Wed, 31 May 2023 22:01:32 +0200
+        Wed, 31 May 2023 13:03:32 -0700 (PDT)
+Message-ID: <542a67da-5870-dda0-3604-9367a438e51b@linaro.org>
+Date:   Wed, 31 May 2023 22:03:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/6] clk: qcom: Add lpass clock controller driver for
- SC8280XP
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: sc8280xp: add resets for
+ soundwire controllers
 Content-Language: en-US
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         andersson@kernel.org, robh+dt@kernel.org,
@@ -66,15 +66,15 @@ Cc:     johan+linaro@kernel.org, agross@kernel.org,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230525122930.17141-1-srinivas.kandagatla@linaro.org>
- <20230525122930.17141-4-srinivas.kandagatla@linaro.org>
+ <20230525122930.17141-6-srinivas.kandagatla@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230525122930.17141-4-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230525122930.17141-6-srinivas.kandagatla@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,34 +82,83 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/05/2023 14:29, Srinivas Kandagatla wrote:
-> Add support for the lpass clock controller found on SC8280XP based devices.
-> This would allow lpass peripheral loader drivers to control the clocks and
-> bring the subsystems out of reset.
-> 
-> Currently this patch only supports resets as the Q6DSP is in control of
-> LPASS IP which manages most of the clocks via Q6PRM service on GPR rpmsg
-> channel.
+> Soundwire controllers on sc8280xp needs an explicit reset, add
+> support for this.
 > 
 > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  drivers/clk/qcom/Kconfig            |  8 ++++
->  drivers/clk/qcom/Makefile           |  1 +
->  drivers/clk/qcom/lpasscc-sc8280xp.c | 63 +++++++++++++++++++++++++++++
->  3 files changed, 72 insertions(+)
->  create mode 100644 drivers/clk/qcom/lpasscc-sc8280xp.c
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 85869e7a9f16..e25993abb519 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -523,6 +523,14 @@ config SC_LPASSCC_7280
->  	  Say Y if you want to use the LPASS branch clocks of the LPASS clock
->  	  controller to reset the LPASS subsystem.
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 6730349e34f4..39be2e89ce05 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -6,6 +6,7 @@
 >  
-> +config SC_LPASSCC_8280XP
-> +	tristate "SC8280 Low Power Audio Subsystem (LPASS) Clock Controller"
+>  #include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
+>  #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+> +#include <dt-bindings/clock/qcom,lpasscc-sc8280xp.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>  #include <dt-bindings/interconnect/qcom,sc8280xp.h>
+> @@ -2560,6 +2561,8 @@
+>  			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&rxmacro>;
+>  			clock-names = "iface";
+> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
+> +			reset-names = "swr_audio_cgcr";
+>  			label = "RX";
+>  
+>  			qcom,din-ports = <0>;
+> @@ -2634,6 +2637,8 @@
+>  			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&wsamacro>;
+>  			clock-names = "iface";
+> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_WSA_CGCR>;
+> +			reset-names = "swr_audio_cgcr";
+>  			label = "WSA";
+>  
+>  			qcom,din-ports = <2>;
+> @@ -2656,6 +2661,14 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		lpass_audiocc: clock-controller@32a9000 {
+> +			compatible = "qcom,sc8280xp-lpassaudiocc";
+> +			reg = <0 0x032a9000 0 0x1000>;
+> +			qcom,adsp-pil-mode;
 
-depends on ARM64 || COMPILE_TEST
+Here and...
+
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +		};
+> +
+>  		swr2: soundwire-controller@3330000 {
+>  			compatible = "qcom,soundwire-v1.6.0";
+>  			reg = <0 0x03330000 0 0x2000>;
+> @@ -2665,6 +2678,8 @@
+>  
+>  			clocks = <&txmacro>;
+>  			clock-names = "iface";
+> +			resets = <&lpasscc LPASS_AUDIO_SWR_TX_CGCR>;
+> +			reset-names = "swr_audio_cgcr";
+>  			label = "TX";
+>  			#sound-dai-cells = <1>;
+>  			#address-cells = <2>;
+> @@ -2901,6 +2916,14 @@
+>  			};
+>  		};
+>  
+> +		lpasscc: clock-controller@33e0000 {
+> +			compatible = "qcom,sc8280xp-lpasscc";
+> +			reg = <0 0x033e0000 0 0x12000>;
+> +			qcom,adsp-pil-mode;
+
+... here - where do you use these properties? Driver ignores them.
+
+AFAIR, these were only for sc7280 where we supported two variants for audio.
 
 Best regards,
 Krzysztof
