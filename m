@@ -2,76 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFA417189FD
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:18:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 332D3718A0F
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbjEaTSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 15:18:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50508 "EHLO
+        id S229821AbjEaTVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 15:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjEaTSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:18:13 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2227125
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:18:10 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-96fe2a1db26so1035670566b.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:18:10 -0700 (PDT)
+        with ESMTP id S229805AbjEaTVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:21:06 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74849133
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:21:04 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5147a478c38so214973a12.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:21:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685560689; x=1688152689;
+        d=linaro.org; s=google; t=1685560863; x=1688152863;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n8yZnUSUyLkwq+12ZSohTFTCzqIRJUZ2nM3Mlv8CU5Y=;
-        b=jfD6XoFfiHEkI6WEaIYim/I1vasSk7JBwLyK4bqK4cFbR1EzpJgrKmMCfMG2T7+66I
-         eW9Llzy3mxw+298elWEbeXxW3aL9FHM2KkaiElY/aP0PwzJaOdpdzKzjKdCRWlFPPo79
-         1Ba993qLQcmyLM2pyDgBcXT05a27vA/WHrnCkXEvROkoSk4OCIZDZrfFvh+dq91xiBsw
-         54J8wYpJxdGkStZv3l1ftgxsmOABW8duZRt33/F/pky5TsBbkgODNRf4LNtlGg7O8DDj
-         8+N9LbG+N8V1lWuYI3pxgJsOi6uboOUv7nCQiIqsAn8b1axOFJe6mIxfXZmOPsiXSegQ
-         t0Kg==
+        bh=Lz1nG2B3q0llv6deAIMIjSEMvsrQuQ3uKlNlDgfU5wU=;
+        b=DvSDgeuRNVRc8TL9mrIG3iWEzc8MrZLyaNSP/JQxFELc38pYKUWja2yVsCJ/cLylkK
+         vEC47lS9oNgkqcKMZs/FZgHJowNhBLhNvkHJ40isYf3g0WyhF+DUNnCLXo3+6gjHTa0w
+         oLm8Xa69uEAyeRhU395izpWOeLSeQhhkgxOVsh0S9N4+kvu5SAyf2AnTBKzcm6uqw+D4
+         7hHVZ8ysTESRDxZPDIX3Z25qomuOQBysCWfrJnNPkCwW5+sEI4ZGgiGoIeRfbiem7gZX
+         qIaCtoUxYF/Gxd4zaa5YZV0QRImRI9Ki4dp12nSYjIIYDW2AtyYsZa+J+buibw/NRRXc
+         mbjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685560689; x=1688152689;
+        d=1e100.net; s=20221208; t=1685560863; x=1688152863;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n8yZnUSUyLkwq+12ZSohTFTCzqIRJUZ2nM3Mlv8CU5Y=;
-        b=ZQENdKIq65I8xYydo+albOXsmzwoKbmesUXTzDNsspqPLSA9xQpn8wYq3u3M/o43zW
-         K7xPe00Qh6GaSsnj0H0qJMN+QXB2Xx0+jSzX2y1OErMxRma9411d7vt1vwnoWz9vAGFa
-         Rk2dJHe5MjgALkwXQGib19ol+Oiih+D7n4XEf9IG9C6T9WdrflCfgXSGt9+l1UU+Qcbf
-         21VbY1N3RUH20+XWCzKEsWy6oNOS3OBlbMv0ftlLvmibr0aW8iLHVZrME/fGbmv7hHhI
-         l+jVyAdJL1fmDyonMJ2ijxh/+Q67jeOgyJ3bBBAupql0/0zbf1HeW+eXaCzRKlYWFwjP
-         yFMA==
-X-Gm-Message-State: AC+VfDxLY5faB6kGs1fxorFMcdev3ukKwM0ky3CIDVAJlCofdjOFC9te
-        QEXg8QQZf1gcLIsiWHRhPdi+fAquwepwdXK/2lg=
-X-Google-Smtp-Source: ACHHUZ5gK/WE6u0PV2dcnqH5U9LEV1u5gmQFRpnBznnE0qZHTuxx3M0czajnS24w4LjSg6uOfAD9Uw==
-X-Received: by 2002:a17:906:5d10:b0:969:813c:9868 with SMTP id g16-20020a1709065d1000b00969813c9868mr5844763ejt.18.1685560689407;
-        Wed, 31 May 2023 12:18:09 -0700 (PDT)
+        bh=Lz1nG2B3q0llv6deAIMIjSEMvsrQuQ3uKlNlDgfU5wU=;
+        b=Hq15ip8qoTRMY4a2csR8FIciTfcrguoNaPKR7ao+RPIVL9r5wOmijU3agXvrcix6jS
+         eKYNTRId+B7TxVvn/ZOVDUOSXTF/x8XPV04/xbKuit95b9Ddwmm470yqIeppNLxIOzUx
+         zSvA9vrUUtl6aHG97dBCdh1T71mfmVr07/s5NBqTxq3ORL5lTGm46GhJAJK0X6nEen+x
+         cGNVmAtagL+onCw0eHa4Wd+45XYqKwvSGS3sRJe82X4CTZ9cZRGgNqkxkLh/CFE4w1AC
+         9gfr6p2eF/SnNw3caIIp4cXolID+jIG23nRPAs+J1WHgEkALf6dRl8gf9pM4P/Ob2NM7
+         VhYQ==
+X-Gm-Message-State: AC+VfDx2Wb2zNfa6nlrvsU3BghKO8pEmAMNve3aSU8+9t22TxJNq3G2T
+        UqhkJaWJg82qMeJ+HenIgINrAw==
+X-Google-Smtp-Source: ACHHUZ4d3/SnLt9Jvl5J0vVomD8iecQJLFMVGA7ToDhrEvJzS2tN8jTV37tKer0T748WigaTQU6f6A==
+X-Received: by 2002:a17:907:26ca:b0:969:f433:9b54 with SMTP id bp10-20020a17090726ca00b00969f4339b54mr6317786ejc.39.1685560862913;
+        Wed, 31 May 2023 12:21:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id qw23-20020a170906fcb700b0096f71ace804sm9491344ejb.99.2023.05.31.12.18.07
+        by smtp.gmail.com with ESMTPSA id s7-20020a170906c30700b0094f410225c7sm9397440ejz.169.2023.05.31.12.21.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 12:18:08 -0700 (PDT)
-Message-ID: <ce7366d0-616d-f5f4-56be-714e65a0a96e@linaro.org>
-Date:   Wed, 31 May 2023 21:18:06 +0200
+        Wed, 31 May 2023 12:21:02 -0700 (PDT)
+Message-ID: <0cb1d679-9e5b-8030-368e-69c3fc54511f@linaro.org>
+Date:   Wed, 31 May 2023 21:20:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH net-next v5 2/6] dt-bindings: net: Brcm ASP 2.0 Ethernet
+Subject: Re: [PATCH V2 1/6] dt-bindings: clock: qcom: Add SM8550 camera clock
  controller
 Content-Language: en-US
-To:     Justin Chen <justin.chen@broadcom.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     florian.fainelli@broadcom.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, opendmb@gmail.com, andrew@lunn.ch,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, simon.horman@corigine.com
-References: <1684969313-35503-1-git-send-email-justin.chen@broadcom.com>
- <1684969313-35503-3-git-send-email-justin.chen@broadcom.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230525172142.9039-1-quic_jkona@quicinc.com>
+ <20230525172142.9039-2-quic_jkona@quicinc.com>
+ <546876ba-970d-5cd5-648e-723698ca74fd@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1684969313-35503-3-git-send-email-justin.chen@broadcom.com>
+In-Reply-To: <546876ba-970d-5cd5-648e-723698ca74fd@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,148 +91,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2023 01:01, Justin Chen wrote:
-> From: Florian Fainelli <florian.fainelli@broadcom.com>
+On 26/05/2023 14:29, Bryan O'Donoghue wrote:
+> On 25/05/2023 18:21, Jagadeesh Kona wrote:
+>> Add device tree bindings for the camera clock controller on
+>> Qualcomm SM8550 platform.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> ---
+>> Changes since V1:
+>>   - Removed new YAML file and reused SM8450 CAMCC YAML file for SM8550
+>>
+>>   .../bindings/clock/qcom,sm8450-camcc.yaml     |   8 +-
+>>   include/dt-bindings/clock/qcom,sm8550-camcc.h | 187 ++++++++++++++++++
+>>   2 files changed, 193 insertions(+), 2 deletions(-)
+>>   create mode 100644 include/dt-bindings/clock/qcom,sm8550-camcc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+>> index 87ae74166807..8dbc9004202f 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+>> @@ -13,11 +13,15 @@ description: |
+>>     Qualcomm camera clock control module provides the clocks, resets and power
+>>     domains on SM8450.
+>>   
+>> -  See also:: include/dt-bindings/clock/qcom,sm8450-camcc.h
+>> +  See also::
+>> +    include/dt-bindings/clock/qcom,sm8450-camcc.h
+>> +    include/dt-bindings/clock/qcom,sm8550-camcc.h
+>>   
+>>   properties:
+>>     compatible:
+>> -    const: qcom,sm8450-camcc
+>> +    enum:
+>> +      - qcom,sm8450-camcc
+>> +      - qcom,sm8550-camcc
 > 
-> Add a binding document for the Broadcom ASP 2.0 Ethernet
-> controller.
+> Hmm,
 > 
-> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
-> ---
-> v5
-> 	- Fix compatible string yaml format to properly capture what we want
+> So looking at Documentation/devicetree/bindings/clock/*camcc*.yaml we 
+> seem to be repeating yaml over and over again with no substantial 
+> difference between one description and another.
 > 
-> v4
->         - Adjust compatible string example to reference SoC and HW ver
+> You've picked at the thread here by adding sm8550 into sm8450.
 > 
-> v3
->         - Minor formatting issues
->         - Change channel prop to brcm,channel for vendor specific format
->         - Removed redundant v2.0 from compat string
->         - Fix ranges field
+> I think sm8250, sm8450, sm8550, sc7280 and ... probably sm6350 should 
+> live in the one yaml description 
+> Documentation/devicetree/bindings/clock/qcom,camcc.yaml
 > 
-> v2
->         - Minor formatting issues
-> 
->  .../devicetree/bindings/net/brcm,asp-v2.0.yaml     | 149 +++++++++++++++++++++
->  1 file changed, 149 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> new file mode 100644
-> index 000000000000..c4cd24492bfd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> @@ -0,0 +1,149 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/brcm,asp-v2.0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom ASP 2.0 Ethernet controller
-> +
-> +maintainers:
-> +  - Justin Chen <justin.chen@broadcom.com>
-> +  - Florian Fainelli <florian.fainelli@broadcom.com>
-> +
-> +description: Broadcom Ethernet controller first introduced with 72165
-> +
-> +properties:
-> +  '#address-cells':
+> sm6350 looks a bit sparse/incomplete to me so perhaps leave that out. 
+> The others sc7280, sm8250, sm8450 and sm8550 can/should all be moved 
+> into the same yaml file with a list of compatibles.
 
-Judging by more comments, there will be a v6, thus please also use
-consistent quotes - either ' or ".
-
-> +    const: 1
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  compatible:
-
-As Conor pointed out, compatible is always first.
-
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - brcm,bcm74165-asp
-> +          - const: brcm,asp-v2.1
-> +      - items:
-> +          - enum:
-> +              - brcm,bcm72165-asp
-> +          - const: brcm,asp-v2.0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    items:
-> +      - description: RX/TX interrupt
-> +      - description: Port 0 Wake-on-LAN
-> +      - description: Port 1 Wake-on-LAN
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  ethernet-ports:
-> +    type: object
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^port@[0-9]+$":
-> +        type: object
-> +
-> +        $ref: ethernet-controller.yaml#
-> +
-> +        properties:
-> +          reg:
-> +            maxItems: 1
-> +            description: Port number
-> +
-> +          brcm,channel:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: ASP channel number
-
-Why do you need it? reg defines it. Your description does not explain
-here much, except copying property name. Can we please avoid
-descriptions which just copy name?
-
-> +
-> +        required:
-> +          - reg
-> +          - brcm,channel
-> +
-> +    additionalProperties: false
-> +
-> +patternProperties:
-> +  "^mdio@[0-9a-f]+$":
-
-Isn't mdio a property of each ethernet port? Existing users
-(e.g.bcmgenet, owl-emac, switches) do it that way...
-
-Otherwise how do you define relation-ship? Can one mdio fit multiple ports?
-
-
-> +    type: object
-> +    $ref: brcm,unimac-mdio.yaml
-> +
-> +    description:
-> +      ASP internal UniMAC MDIO bus
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-
+Clocks are different. The ones with same clocks should be together, but
+in other cases better to have separate schemas. It gets trickier to read
+with multiple if:then:
 
 Best regards,
 Krzysztof
