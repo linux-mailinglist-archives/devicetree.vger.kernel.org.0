@@ -2,194 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EACB717D48
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 12:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13848717D4E
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 12:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234460AbjEaKlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 06:41:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44588 "EHLO
+        id S234606AbjEaKoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 06:44:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231397AbjEaKlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 06:41:08 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2085.outbound.protection.outlook.com [40.107.7.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1CC1123;
-        Wed, 31 May 2023 03:41:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CJaUm5J+xwr4QIW2QHSXVPdee3AXP3juJHNPopYPGh9FOINODcnl8doyJhMAl/mEpJrX8Y+lpeSxebDrPlkSRxQcrRrL9lYAaVsV9dufoUSsUHAfOsBvZvhAPKpYE9lkcqB2fujBRE9hTR4VjuixAYpgqSWgI4qxHxpjGz8x4vS2i9pviuK0gayHB//hQjx2Nzb44oHHttN6j4QnYni28ILngMlFMJLg4jj05WPK5LNZRzTCcAMm5rydEf2DqfMtQBAkLQadMt9p0TPORWZPs1Ih6NHL4fcKF8trVubE9gGPbY0eaQ+LlmBVfA0qHQ2kie+Q57g5O4KN8IJOC1wucQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bjiYugdAhp8EnKd/O4ifUGZIcudHvxPYXm4eIQ2KfmE=;
- b=LH2Q+3kCeuJLncR15w2WPbXF3tBi/dp7eheei68m6PjElZnzcVMyRKUAKWq8MvPj5o+GuU0VwvVt4XAdA9dyVBrpwvWtWw4Ahe0XAUAzRfNqR9yLKBt3u2fAE3ZVXo0pb1tM0oJ/9jWehhARa1z4Ke7T3dWQdvzl7cKYjIVmg4MuHaPzPNousZZleZ8s2etoW9hBRzIz0GzBrQBbuFBUNL9spe3k5cghPOhCZ2nieJSDO6qpCzE5iKlLBLnX5JLr2eQ2ecGM0XEJwaSVMIyQexFkuYAO0TZvPAm9Imiq75w+iCfrfr3uF5Gkf6213OEyg89vIuvsVcl5ondbzayZxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bjiYugdAhp8EnKd/O4ifUGZIcudHvxPYXm4eIQ2KfmE=;
- b=CeSgGoU61IU+aRPJQHldBzvXcTTAh4qN956bYJyTleiYU3kjpCnoYAq9pB7Itt6KzHCTlpaOZgcdms8sAvwUjkrSGqGSs+vTORhSy4ZcYY+J2W0YAlGVwr/igDhJ4j4c7ed+LFLCDZj1s2C7CP4blbbVdvR5zdbvWbAI69hzvO4=
-Received: from AM6PR04MB5925.eurprd04.prod.outlook.com (2603:10a6:20b:ab::19)
- by DB9PR04MB9553.eurprd04.prod.outlook.com (2603:10a6:10:2ed::6) with
+        with ESMTP id S231547AbjEaKoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 06:44:17 -0400
+Received: from eu-smtp-delivery-197.mimecast.com (eu-smtp-delivery-197.mimecast.com [185.58.85.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8387121
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 03:44:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=camlingroup.com;
+        s=mimecast20210310; t=1685529853;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=IANSlOeX5EqpeU4fazQlfihRkUQSjuYrJgehibsz+BQ=;
+        b=GyAFdQbvbzFXmIHubBDkWr1FGLxHfEelQUidHG+kVxiYa6y5Hy+HTM3Q78rSyM4GKdo7vJ
+        AU2jRKSdXYf3GFkOMEmoRv3+mci6zv2IM/TeYCZQwJv+VkNXh2dmI2pjBhCNQ/29/hlEqV
+        b6djpN+PLU+sLEdKM7pIccyRQzLfpyQ=
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com
+ (mail-cwlgbr01lp2051.outbound.protection.outlook.com [104.47.20.51]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-116-QqzLu0SYML66xDxaPwHMJA-1; Wed, 31 May 2023 11:43:55 +0100
+X-MC-Unique: QqzLu0SYML66xDxaPwHMJA-1
+Received: from CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:142::9)
+ by LO2P123MB7306.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:32a::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.22; Wed, 31 May
- 2023 10:41:01 +0000
-Received: from AM6PR04MB5925.eurprd04.prod.outlook.com
- ([fe80::1a8e:7e33:7f24:d77c]) by AM6PR04MB5925.eurprd04.prod.outlook.com
- ([fe80::1a8e:7e33:7f24:d77c%5]) with mapi id 15.20.6433.024; Wed, 31 May 2023
- 10:41:01 +0000
-From:   Joy Zou <joy.zou@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v1 1/3] dt-bindings: regulator: pca9450: add
- pca9451a support
-Thread-Topic: [EXT] Re: [PATCH v1 1/3] dt-bindings: regulator: pca9450: add
- pca9451a support
-Thread-Index: AQHZk4yOFzh1S8pCcU2cJ06GozpCXq9z8twAgAAHboCAAB5uAIAAF8/w
-Date:   Wed, 31 May 2023 10:41:01 +0000
-Message-ID: <AM6PR04MB5925ABC6199D2D17D17CFAFAE1489@AM6PR04MB5925.eurprd04.prod.outlook.com>
-References: <20230531065724.3671795-1-joy.zou@nxp.com>
- <20230531065724.3671795-2-joy.zou@nxp.com>
- <f343458e-519c-1e5c-e48f-acfed2c00ad7@linaro.org>
- <25e6d735-f191-68a1-84cc-d7e1ae4c3217@kontron.de>
- <0de8cecf-ec36-9300-656b-2c073f60c407@linaro.org>
-In-Reply-To: <0de8cecf-ec36-9300-656b-2c073f60c407@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM6PR04MB5925:EE_|DB9PR04MB9553:EE_
-x-ms-office365-filtering-correlation-id: 4bf1f9d3-d432-45eb-ebbe-08db61c38702
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MayeDjx4GEDlzNtRyvlOO7oRoWoqKot0I77vI1GZgc0LmzoXpPzOdBnaK7UdoT1cxOrfWWopym//Bh4UDQwY3Cyb/Rn3isDUS5y7qYpy6zSag/8r38wqkhX++Y2UZ5imNPhLqdYK65k0y3+EeLw21DdGtf7HVNIV/f7f1feoP4BHG9I/CMUQJQUBcPGpFM37242LvgMMJo7T7E3RICgfM/lyFGX7xHQwHWf2eYJz1BlTA7GiQjPRZOIs/+UEqgrqkwYOYmG1hrNUlVJDodnpuMTIUzYMZIyVHrMQEzAuo4MSSD9q3LIDivOSuDv4XKDosxy6xEcL3OvLiHBHRXfpU7tDVFxDHT7UaXfq4uQyII1F1p6X2oTxixDcvEW+TrOTYieUO+T76rvxNEocJzptRA3GrpTjsugzWywokwG3A9ULVpqh+o07iZ08X4CB75Q8MSp2C4nE7vfNUoCWKSr0OTi7VQ/zL0vVPfE+PeO/WAWi01gMs1w4LI4vsH250QgczX+dbnH1/+n0VcWI6JMAOwNCUCTBKocnDyvGYZcSxN9UJT1QPwrVHGa+PdNSbE9NUpMebpkN0gjQeEZ4Hv39/sy27PiIN17J8jnOT+QPDD7KPQYN6FK+u98fegqBPbYMLgmmSU7yRCM53mULeZ2d0Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5925.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(376002)(39860400002)(346002)(136003)(451199021)(53546011)(38100700002)(186003)(9686003)(6506007)(41300700001)(83380400001)(7696005)(478600001)(71200400001)(110136005)(66899021)(54906003)(66946007)(4326008)(66556008)(66476007)(76116006)(64756008)(316002)(921005)(55016003)(122000001)(8936002)(52536014)(7416002)(66446008)(5660300002)(8676002)(44832011)(86362001)(38070700005)(2906002)(33656002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M21MeEJtTUNsVUFmSzVKK1hqQnAwUWVFUy9lUS9oV1VSd3UyeWlrTU4wK3px?=
- =?utf-8?B?bzNkNksyUzRRN1R4SnRwbVU4NCtmUDRyRjAxWkFPS3oyS1dHT3VMZWRiV1Rp?=
- =?utf-8?B?R2QzZ0VNMWl5WVZjWDRCM2FyNXA3TUJ3c2lESXZPM2lUOXBseFE2SEhUa1kx?=
- =?utf-8?B?SGhvTUVweTZxNnRwZGc0aFRBS3dyZmN6UnpjWnJBYkhYN3NVa0RCbE9sVzVD?=
- =?utf-8?B?TUVoTExpOUw3TkRPNHpGeDgrSjh1NzM5R2JzdHhzSEU0ajVsV0tLMXRHQ0JJ?=
- =?utf-8?B?bndEbUt4U3h1NmtSZFZnL1djVEd1OG51cE1hV1M2bEhGT1N0VGZteFZaOWo4?=
- =?utf-8?B?M2Q1bEFleHNoSkZwVm1sNVYvbEV0YjVOM1ZubEFFTnpVRWdHUzJDcWJ4RFJT?=
- =?utf-8?B?MzZON3RhYVBkdGFqUVFlcnlHM1ZNUHNLbjVQVEtuTDJuWkpudGxJSXVCa0JO?=
- =?utf-8?B?K1lYbC9WQklCU3hKc1hTczExdngwa0dkN3dlV0Z4c0t5VE5aMUJkRllTNUg3?=
- =?utf-8?B?bEZGRnpSNk5VUzExeG8xbFVRZU5ZWE1iVFc3RE8xSlVzb1BLNlpnQXJwbCt3?=
- =?utf-8?B?VTczYXYyaWlzSVd6SDlpakNkbUloZzNvN1lCMXRnUlNoTjc0UlF0c1VwbXhv?=
- =?utf-8?B?M00yZGorVlBsSGNLdXZTUCtHQk9HT09zeFQxSTM1MGU5eFh2NlRXeW5uSUNh?=
- =?utf-8?B?eVJpb210Znl2UFNZYVl1MHl6T2lnazdWTG51eVMzZHF1Q0FsTDNzWkNsVVpB?=
- =?utf-8?B?L01wOEZpWjY3VEFZcGFsZ29UTGhkVFlTeWthZjZDRy8zaFVXbHJ6VFY0Ky9i?=
- =?utf-8?B?aFVuMGhHZXZ6MlgxMTVyak4wWXE0VldRL2F2TU9WYzRJanNYSkNQd01FczVs?=
- =?utf-8?B?TEpBdmpRUkt2clhqcWI2TkxWai9MNmVYVE9CK2tubzYxSnVjWldMd2N3Y0M4?=
- =?utf-8?B?a2d4ZkRFcGl2R1RYaEFEajd6MGwwNWNlZjU0Ui9pVkwrcXpHeENZZmt4VVR5?=
- =?utf-8?B?czk5M0p0cUdJUnVRZk5ZOGVvYXNUSHhSbTBBcmRvdWJoNEY5SlZrUjBkWEVS?=
- =?utf-8?B?TGc2U1RGVUNXZnpZMkRoOW4wSGZ3L3NzcStBVUc3eXBkclc5SjRKK2xyZXlK?=
- =?utf-8?B?Y3NXRW1wOG1nQnFXOTltV1dGZHJsYTVlOGpsV3EwSm9ITmc2UDBOalE0QVRz?=
- =?utf-8?B?bEtPbmd6OUhqZXZBL09UeUk4QW9Ha3FOd090V0RxWkdBWGRwU1B2UU1xNHRT?=
- =?utf-8?B?Y1IyWVB5SmN5ZERoMGZMNGptUXJRTkI4bmxZQ2NRQ0JLdk5GWUhtc1ZMUUpi?=
- =?utf-8?B?WEZBMjRJelUyM2ZTWE1memVPWXIzb0lUZUdLQlBuNDRONDFtN0JlbWtaU21X?=
- =?utf-8?B?R0UwU29CY2t1TW82S0VISC9sN2E3WTNTZElzSkkvdHBlL3NSTnpFYzd2WFZM?=
- =?utf-8?B?WGd3bkVLemszQkRmaGtYV21teU0yUGZKN1ltYVpKU3U4TFd0NExyNHkwUVVP?=
- =?utf-8?B?Mnc0eHIweXZNbDNNaC9qc2JteVNOaGt1L0hEd2srUHdjYnFqQXVWTDRmY0hm?=
- =?utf-8?B?TlYzNU8wTG5VRnhMdm5hUytRcWszNldUWFY4bm9hYkxidUNMYzUwekhVTUVw?=
- =?utf-8?B?aVV0ZXFVdkNrLzBmUENIc2VLcUlNd2FHYnpMTHYyYWV3VitpNWZyQzVSalF2?=
- =?utf-8?B?ajBwbUN4R2ZTcHNWRStVcnExZXZtSnZxYmgyNElrU0FIcXVlUTdYbnMyQldP?=
- =?utf-8?B?eXZxOXp0Tjl6THRIWFVpK3Vpb1RrK0kyY3NneVpOUjFkVlNtTjhablQ2UGpX?=
- =?utf-8?B?OTN0TDMrdTFVWVNxcThoV3BMTnAzdkZ5WEdwUHozWURUZ2J6T0Zwa0k5Nm1q?=
- =?utf-8?B?eUFjekppclFVSFZveGhHaEV4K3IrdU1kdmxYMmVpTXd0eG85ckUvbUVTc0Ri?=
- =?utf-8?B?Y2xIc1p3OFMwNjl6Nk9KaEgzVE9sTzVuOHdkYkt3aE1PQkRNMWpndVhwVjRR?=
- =?utf-8?B?SFpGbUV1MnlrYzNyZjAyOEJ0Q3JFeWJoQ3FkTFlVbEFrazBzMUxKS0dBMk5s?=
- =?utf-8?B?SC9TdWZLZ1FRZXNjMVdoN0tjbUlOS2p0cjloUT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 31 May
+ 2023 10:43:50 +0000
+Received: from CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::6c38:e856:880a:704f]) by CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::6c38:e856:880a:704f%7]) with mapi id 15.20.6433.024; Wed, 31 May 2023
+ 10:43:50 +0000
+Message-ID: <c691858d-31af-2892-c0a3-89a37b19af86@camlingroup.com>
+Date:   Wed, 31 May 2023 12:43:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 0/9] serial: sc16is7xx: fix GPIO regression and rs485
+ improvements
+To:     Hugo Villeneuve <hugo@hugovil.com>
+CC:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+References: <20230529140711.896830-1-hugo@hugovil.com>
+ <c15a90d6-b3c1-e432-9216-c4c1e2c44ce6@camlingroup.com>
+ <20230530090836.27b8d080d6b6c022b303ac9e@hugovil.com>
+From:   Lech Perczak <lech.perczak@camlingroup.com>
+In-Reply-To: <20230530090836.27b8d080d6b6c022b303ac9e@hugovil.com>
+X-ClientProxiedBy: LO4P265CA0084.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2bd::17) To CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:400:142::9)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CWXP123MB5267:EE_|LO2P123MB7306:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0736ab2-c05e-4b0e-3eed-08db61c3eb70
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: 2OMM1wYEkl4v96bQoJjqYjcxLrOm1ROptfDtvN7suCTztPdIXqoJYRhY/jFFgb11/1rEv2KR6m1H9UFWdPjBbM/VZIQi9wk7N7lJ7cvDmWC11lLwuyh4AeOyxx0ryGPCvW2+owamess7nJcsHP30kL3qKvpom4zuYtIEqCw1FRv5et5cQSmvFwaTeVWHaF+Dh+q6fSXIBn1xWgyr3I1hh1w+Lh5b+FgZAli3H/SXSHdNAurPeCoNIVBF6y7PrO6gETq0uKIZGwLDIY5iZRwJTteSuEZCory8oz7B0TVvLwrsaUjv1l5BBdRUDZvI4w37RKWeS5gNdTmRvKNz/n8jYnRZ4G8qBZXVnoW53cEyR3qLO6cq2aH0/Btgld6H5KuiLkVFkKcR/yqIoynWh4rBHuMT1sc5KTPj8azyvLLAIfhc8fPXFK1HLjIO9GEZEZuGhsYzIUb3G+OXt47v29OTH9SLS2IM5lBCBlqZfleMTnJR2UtgRgTWcbPjgTLkhV35MDsDWj9uIJpXi60bHu87d8cUY61JpbTQwu1V1vyRb7M+aihc4PF2Q7TG8uZOmXKgA61zez9Ea5CmUyK3v8ZixXroon3bf31X+uYN8pKEH5KLKPPJEoAquJNEz3H/d0R6uKQxUE4vD5DabKAwGmjIP4tFS1TdkHVufyYeKh3Ik3tO8xANgGGOhjupfZWa1qjPBSrO5kYu8189Mb9fEeCzDA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(366004)(136003)(376002)(346002)(396003)(39850400004)(451199021)(966005)(6486002)(41300700001)(31696002)(83380400001)(86362001)(2616005)(6512007)(186003)(26005)(6506007)(2906002)(44832011)(38100700002)(8936002)(316002)(8676002)(36756003)(7416002)(5660300002)(66946007)(4326008)(6916009)(66556008)(66476007)(478600001)(31686004)(43740500002)(45980500001)(18886065003);DIR:OUT;SFP:1101
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?z3nW+6wNfoj6wLkUQMayrsFs+UZlOzj7zjURyoD9mD45JaJwsS/yI/wYUijm?=
+ =?us-ascii?Q?6fS4JWSM7ixQAJaNvFd3pYcC6ezw7irbwz0VP56klOIGwgzAeaav1TaPd3DP?=
+ =?us-ascii?Q?uCta7pLM3IIhbzuhie3aMhOVj7KCL8/Qu0IeVypryxxCO6luX2NJeqR0xE+q?=
+ =?us-ascii?Q?fgqUhCMIO4js6rWu1eT/udA/4PIjbljbfGjU2LEe220x467K2Iseha/qa5qd?=
+ =?us-ascii?Q?04AsumNWggUaEtZAzGjdCfv3vPvMv4j5l/LcMYBDrEQNn7PmvHi2Jgd0t2Ev?=
+ =?us-ascii?Q?zOSlQVldedI8EmYJ1W5yqEOBadM0VHP8foPot7CNbgnreH1sA9gyl+4j82+k?=
+ =?us-ascii?Q?nhadmqQpAu8+cS5JaInamR6QMn9RZHEjeGEmdkxkWu5eeaPowkrb8dvrQ0Tw?=
+ =?us-ascii?Q?GTMK+IJQrQGOfXvMSES0LlE3u6N6O4wmfq7rgxLCRQ9KBznXacCWaQ8ZnAuw?=
+ =?us-ascii?Q?98a/n6WM7V5GRROFqTeoW7EUWakCi8Q+ZD8Q26G7GHzu814hja6oWDuOTRlQ?=
+ =?us-ascii?Q?z/cwzVVyAw1oBLHD3SEy8jnlYxoVa/l13nuRJDFCDSEmRdM1qG8GiR4/Qred?=
+ =?us-ascii?Q?Ru7NMJAPuIOYwCPHIZocgOR7nbCGStMf3XmD1+LWrfAYdTsbQWFqYi/k/e38?=
+ =?us-ascii?Q?cz/eofx35S10TMdEZJVws+PoUDmwXx05zAfB9iCzKcgK77JMWZ7xVPgSQlDp?=
+ =?us-ascii?Q?sOISiQ0wnYfMOW1xEqWv0GzZ4aCb2zaQg8eU2sB5d7EPcjq5nDC0lDZC9q8F?=
+ =?us-ascii?Q?TbBR7LkIag6R6i2LSdhTexi6jlu7k1HPYselupWksmGFvG//6616ykVt7cCr?=
+ =?us-ascii?Q?LrA+GjYUtY6FMpSeNXBqqru8TSolnPvHsJE3TYtha1quKJD4ITJbjSbwfdVz?=
+ =?us-ascii?Q?Dt+HRh++uvdQqdqKEfAJgjb+g+gw+/Q8KJ2Qer+BfsxowhmJnQtSRD3Q45T2?=
+ =?us-ascii?Q?ao62ek3M2ftDQXSsWyC4CWynuZdeZjSRI2U4LonSGm596V+chmQOqNcVQjGD?=
+ =?us-ascii?Q?IDtWzX3Zjr+nJ2r0zFBwKu8tyVyafcGXn0kHrGtGYci+k4BjduHaj4alZNZD?=
+ =?us-ascii?Q?HYFb6Ykvsm20MNi//HNAkcu4TU7Rts3Fi/vXW8twSUcMON9mDw/sLo8jsGlq?=
+ =?us-ascii?Q?51zctSgjzmmv6+W+yNHla/N0ZijhgztwF3W4Q9jBF1PiCIlFhGTTIR4ROrOZ?=
+ =?us-ascii?Q?h1+fCO5ynbkilQsjsGp5vLEBqyhV6wHOSZ53ICwOp1Eg/rh6jsLaAGHZz9tM?=
+ =?us-ascii?Q?iCgyWF8iyF7DUwEB068RVUbiA8ScOsHUziPViuSHgfHG65cZUv82fAcTy312?=
+ =?us-ascii?Q?hXhTH2PuhGV+7tIAkfLXPhwx4PXC9pQEg2v5Se/agMl1G/0laXs2uk6SKD4W?=
+ =?us-ascii?Q?eA6RDTGEFiWofPbhCmtfGSzzlLjc5PEH21GPwJFT8LpFLQ2/eq8s2Lqd4q7l?=
+ =?us-ascii?Q?UZhOGwAuh0QjhITDIKusfOYlQvMzE809Iz4BA0ChbBnYun/XRUyAP5bm8nFq?=
+ =?us-ascii?Q?pdp2S23fkIeu2RV/JWwwvlZGbMbXhNSb9zq/5SzCS/DDGGBb9GHWFeKobNnT?=
+ =?us-ascii?Q?rdISN5U2sp1lmgPFqEmkZuGP/EjOsnD97rqLV/hv48IIFBbEYaKVhMGPks/q?=
+ =?us-ascii?Q?Rg=3D=3D?=
+X-OriginatorOrg: camlingroup.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0736ab2-c05e-4b0e-3eed-08db61c3eb70
+X-MS-Exchange-CrossTenant-AuthSource: CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5925.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4bf1f9d3-d432-45eb-ebbe-08db61c38702
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2023 10:41:01.4404
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2023 10:43:50.1832
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yetMKcA3SQjPNnumEtLpfsz7qUCstoYksGZLnq/FvBj2F25ZW2cs7WVZ2Mcd8jFj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9553
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fd4b1729-b18d-46d2-9ba0-2717b852b252
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2fAEVscsRrPHlOjHwUnGFOLSDHD1q7r34PEPRKuFWRgMqjgUllyUwBY0Dhma1jh9qcZUy8mgeqjAZlKN4mGS1shuRlR4H1k4uVmCXNopL/4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P123MB7306
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: camlingroup.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEtyenlzenRvZiBLb3psb3dz
-a2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gU2VudDogMjAyM+W5tDXmnIgz
-MeaXpSAxNzoxMg0KPiBUbzogRnJpZWRlciBTY2hyZW1wZiA8ZnJpZWRlci5zY2hyZW1wZkBrb250
-cm9uLmRlPjsgSm95IFpvdQ0KPiA8am95LnpvdUBueHAuY29tPjsgSmFja3kgQmFpIDxwaW5nLmJh
-aUBueHAuY29tPjsgbGdpcmR3b29kQGdtYWlsLmNvbTsNCj4gYnJvb25pZUBrZXJuZWwub3JnOyBy
-b2JoK2R0QGtlcm5lbC5vcmc7IGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZzsNCj4g
-Y29ub3IrZHRAa2VybmVsLm9yZzsgc2hhd25ndW9Aa2VybmVsLm9yZzsgcy5oYXVlckBwZW5ndXRy
-b25peC5kZQ0KPiBDYzoga2VybmVsQHBlbmd1dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5jb207
-IGRsLWxpbnV4LWlteA0KPiA8bGludXgtaW14QG54cC5jb20+OyBkZXZpY2V0cmVlQHZnZXIua2Vy
-bmVsLm9yZzsNCj4gbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51eC1r
-ZXJuZWxAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFtFWFRdIFJlOiBbUEFUQ0ggdjEgMS8z
-XSBkdC1iaW5kaW5nczogcmVndWxhdG9yOiBwY2E5NDUwOiBhZGQNCj4gcGNhOTQ1MWEgc3VwcG9y
-dA0KPiANCj4gQ2F1dGlvbjogVGhpcyBpcyBhbiBleHRlcm5hbCBlbWFpbC4gUGxlYXNlIHRha2Ug
-Y2FyZSB3aGVuIGNsaWNraW5nIGxpbmtzIG9yDQo+IG9wZW5pbmcgYXR0YWNobWVudHMuIFdoZW4g
-aW4gZG91YnQsIHJlcG9ydCB0aGUgbWVzc2FnZSB1c2luZyB0aGUgJ1JlcG9ydA0KPiB0aGlzIGVt
-YWlsJyBidXR0b24NCj4gDQo+IA0KPiBPbiAzMS8wNS8yMDIzIDA5OjIyLCBGcmllZGVyIFNjaHJl
-bXBmIHdyb3RlOg0KPiA+IE9uIDMxLjA1LjIzIDA4OjU2LCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiA+PiBPbiAzMS8wNS8yMDIzIDA4OjU3LCBKb3kgWm91IHdyb3RlOg0KPiA+Pj4gVXBk
-YXRlIHBjYTk0NTAgYmluZGluZ3MuDQo+ID4+Pg0KPiA+Pj4gU2lnbmVkLW9mZi1ieTogSm95IFpv
-dSA8am95LnpvdUBueHAuY29tPg0KPiA+Pj4gLS0tDQo+ID4+DQo+ID4+IFN1YmplY3QgcHJlZml4
-IGlzOiByZWd1bGF0b3I6IGR0LWJpbmRpbmdzOiBwY2E5NDUwOg0KPiA+DQo+ID4gSXMgdGhlcmUg
-c29tZSB3YXkgdG8gaGF2ZSB0aGlzIGNvbnNpc3RlbnQgZm9yIGFsbCBzdWJzeXN0ZW1zPyBNb3N0
-DQo+ID4gc3Vic3lzdGVtcyBzZWVtIHRvIHVzZToNCj4gPg0KPiA+ICAgZHQtYmluZGluZ3M6IFtz
-dWJzeXN0ZW1dOg0KPiA+DQo+ID4gQnV0IHNvbWUgdXNlOg0KPiA+DQo+ID4gICBbc3Vic3lzdGVt
-XTogZHQtYmluZGluZ3M6DQo+ID4NCj4gPiBDYXN1YWwgY29udHJpYnV0b3JzIChsaWtlIG1lKSB3
-aWxsIHZlcnkgb2Z0ZW4gZ2V0IGl0IHdyb25nIG9uIHRoZQ0KPiA+IGZpcnN0IHRyeS4gRXhhbWlu
-aW5nIHRoZSBoaXN0b3J5IGlzIGV4dHJhIGVmZm9ydCB0aGF0IGNvdWxkIGJlIGF2b2lkZWQNCj4g
-PiBhbmQgb2Z0ZW4gZG9lc24ndCBwcm92aWRlIGEgZGVmaW5pdGUgaGludCBhcyB5b3UgZmluZCBi
-b3RoIHZhcmlhdGlvbnMNCj4gPiBpbiB0aGUgcGFzdC4NCj4gPg0KPiA+IENhbiB3ZSBzdGFuZGFy
-ZGl6ZSB0aGlzIGFuZCBtYWtlIGNoZWNrcGF0Y2ggdmFsaWRhdGUgdGhlIHN1YmplY3QgbGluZT8N
-Cj4gDQo+IEkgdW5kZXJzdGFuZCB5b3VyIHBhaW4uIDopDQo+IA0KPiBNeSBleHBlY3RhdGlvbiBp
-cyBqdXN0IHRvIGhhdmUgImR0LWJpbmRpbmdzOiIgcHJlZml4LiBJdCBjYW4gYmUgYW55d2hlcmUN
-Cj4gLSBmaXJzdCBvciBzZWNvbmQsIGRvZXNuJ3QgbWF0dGVyIHRvIG1lLg0KPiANCj4gVGhlbiB0
-aGVyZSBpcyB0aGUgZ2VuZXJpYyBydWxlIHRoYXQgc3Vic3lzdGVtIHByZWZpeCBzaG91bGQgYmUg
-dGhlIGZpcnN0IGFuZA0KPiBoZXJlIHRoZXJlIGlzIGEgZGlzYWdyZWVtZW50IGJldHdlZW4gc29t
-ZSBmb2xrcy4gTW9zdCBtYWludGFpbmVycyBlaXRoZXINCj4gZG9uJ3QgY2FyZSBvciBhc3N1bWUg
-YmluZGluZ3MgYXJlIHNlcGFyYXRlIHN1YnN5c3RlbS4gTWFyayAoc3BpLCBBU29DLA0KPiByZWd1
-bGF0b3IpIGFuZCBtZWRpYS1mb2xrcyBzYXkgaXQgaXMgbm90IHNlcGFyYXRlIHN1YnN5c3RlbSAo
-cmVhbCBzdWJzeXN0ZW0gYXJlDQo+IHNwaSwgcmVndWxhdG9yIGV0YyksIHRodXMgdGhleSB3YW50
-IHRoZWlyIHN1YnN5c3RlbSBuYW1lIGFzIHRoZSBmaXJzdCBwcmVmaXguIEl0DQo+IHNvdW5kcyBy
-ZWFzb25hYmxlLiBBbnl3YXkgaXQgZG9lcyBub3QgY29udHJhZGljdCBEVCBiaW5kaW5ncyBtYWlu
-dGFpbmVycw0KPiBleHBlY3RhdGlvbiB0byBoYXZlIHNvbWV3aGVyZSAiZHQtYmluZGluZ3M6IiBw
-cmVmaXguDQo+IA0KPiBNeSBjb21tZW50IHdhcyBvbmx5IHRvIGhlbHAgeW91IGFuZCB0aGVyZSBp
-cyBubyBuZWVkIHRvIHJlc2VuZC4gSSB0aGluaw0KPiBNYXJrIHdoZW4gYXBwbHlpbmcgd2lsbCBk
-cm9wICJkdC1iaW5kaW5ncyIgcHJlZml4IGlmIGlzIGJlZm9yZSByZWd1bGF0b3IsIHRob3VnaC4N
-Cj4gTGlmZSwgbm8gYmlnIGRlYWwuDQpPaywgdGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgdGhlIGV4
-cGxhbmF0aW9uIQ0KSSBiZXR0ZXIgYWRqdXN0IHRoZSBwcmVmaXguDQpCUg0KSm95IFpvdQ0KPiAN
-Cj4gV2hldGhlciBjaGVja3BhdGNoIGNhbiBkbyB0aGlzPyBTdXJlLCBxdWl0ZSBsaWtlbHksIG9u
-ZSBqdXN0IG5lZWQgc29tZQ0KPiBQZXJsLWZvbyB0byBhZGQgc3VjaCBydWxlLiA6KQ0KPiANCj4g
-QmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
+W dniu 30.05.2023 o=C2=A015:08, Hugo Villeneuve pisze:
+> On Tue, 30 May 2023 11:30:07 +0200
+> Lech Perczak <lech.perczak@camlingroup.com> wrote:
+>
+> > W dniu 29.05.2023 o=C2=A016:07, Hugo Villeneuve pisze:
+> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > >
+> > > Hello,
+> > > this patch series mainly fixes a GPIO regression and improve RS485 fl=
+ags and
+> > > properties detection from DT.
+> > >
+> > > It now also includes various small fixes and improvements that were p=
+reviously
+> > > sent as separate patches, but that made testing everything difficult.
+> > >
+> > > Patch 1 fixes an issue when debugging IOcontrol register. After testi=
+ng the GPIO
+> > > regression patches (patches 6 and 7, tests done by Lech Perczak), it =
+appers that
+> > > this patch is also necessary for having the correct IOcontrol registe=
+r values.
+> > >
+> > > Patch 2 introduces a delay after a reset operation to respect datashe=
+et
+> > > timing recommandations.
+> > >
+> > > Patch 3 fixes an issue with init of first port during probing.
+> > >
+> > > Patch 4 fixes a bug with the output value when first setting the GPIO=
+ direction.
+> > >
+> > > Patch 5 is a refactor of GPIO registration code.
+> > >
+> > > Patches 6 and 7 fix a GPIO regression by (re)allowing to choose GPIO =
+function
+> > > for GPIO pins shared with modem status lines.
+> > >
+> > > Patch 8 allows to read common rs485 device-tree flags and properties.
+> > >
+> > > Patch 9 improves comments about chip variants.
+> > >
+> > > I have tested the changes on a custom board with two SC16IS752 DUART =
+using a
+> > > Variscite IMX8MN NANO SOM.
+> > >
+> > > Thank you.
+> > >
+> > > Link: [v1] https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/lkml=
+/2023/5/17/967> <https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/lkml=
+/2023/5/17/967>>
+> > > [v1] https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/2023/=
+5/17/777> <https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/2023/=
+5/17/777>>
+> > > [v1] https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/2023/=
+5/17/780> <https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/2023/=
+5/17/780>>
+> > > [v1] https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/2023/=
+5/17/785> <https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/2023/=
+5/17/785>>
+> > > [v1] https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkml/2023=
+/5/17/1311> <https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkml/20=
+23/5/17/1311>>
+> > > [v2] https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/2023/=
+5/18/516> <https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/2023/=
+5/18/516>>
+> > > [v3] https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/2023/5/=
+25/7> <https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/2023/5/25/7=
+>>
+> > >
+> > > Changes for V3:
+> > > - Integrated all patches into single serie to facilitate debugging an=
+d tests.
+> > > - Reduce number of exported GPIOs depending on new property
+> > > nxp,modem-control-line-ports
+> > > - Added additional example in DT bindings
+> > >
+> > > Changes for V4:
+> > > - Increase reset post delay to relax scheduler.
+> > > - Put comments patches at the end.
+> > > - Remove Fixes tag for patch "mark IOCONTROL register as volatile".
+> > > - Improve commit messages after reviews.
+> > > - Fix coding style issues after reviews.
+> > > - Change GPIO registration to always register the maximum number of G=
+PIOs
+> > > supported by the chip, but maks-out GPIOs declared as modem control l=
+ines.
+> > > - Add patch to refactor GPIO registration.
+> > > - Remove patch "serial: sc16is7xx: fix syntax error in comments".
+> > > - Remove patch "add dump registers function"
+> > >
+> > > Hugo Villeneuve (9):
+> > > serial: sc16is7xx: mark IOCONTROL register as volatile
+> > > serial: sc16is7xx: add post reset delay
+> > > serial: sc16is7xx: fix broken port 0 uart init
+> > > serial: sc16is7xx: fix bug when first setting GPIO direction
+> > > serial: sc16is7xx: refactor GPIO controller registration
+> > > dt-bindings: sc16is7xx: Add property to change GPIO function
+> > > serial: sc16is7xx: fix regression with GPIO configuration
+> > > serial: sc16is7xx: add call to get rs485 DT flags and properties
+> > > serial: sc16is7xx: improve comments about variants
+> > >
+> > > .../bindings/serial/nxp,sc16is7xx.txt | 46 ++++++
+> > > drivers/tty/serial/sc16is7xx.c | 150 +++++++++++++-----
+> > > 2 files changed, 156 insertions(+), 40 deletions(-)
+> > >
+> > >
+> > > base-commit: 8b817fded42d8fe3a0eb47b1149d907851a3c942
+> >
+> > It would be a lot of sending, to do that for every patch separately, so=
+ for whole series:
+> > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+> >
+> > And where applicable - for code patches:
+> > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
+> >
+> > I tested whole series at the same time.
+> > I did my tests on an i.MX6 board with SC16IS760 over SPI, which differs=
+ a tiny bit from SC16IS752,
+> > and everything works as it should.
+> > Thank you for fixing this!
+>
+> Hi Lech,
+> thank for your feedback.
+>
+> You mentioned before that without the patch "mark IOCONTROL register as v=
+olatile", things were not working properly for you. Could you retest by rem=
+oving this patch and see if things are still working?
+>
+> Thank you, Hugo.
+
+Hello Hugo,
+
+Just checked - this patch is required, reverting it causes things to fail, =
+so this patch should be marked as a pre-requisite for the actual fix and in=
+cluded in backports.
+Perhaps using direct write to this register made it work, but it was likely=
+ by accident.
+
+--=20
+Pozdrawiam/With kind regards,
+Lech Perczak
+
+Sr. Software Engineer
+Camlin Technologies Poland Limited Sp. z o.o.
+Strzegomska 54,
+53-611 Wroclaw
+Tel:     (+48) 71 75 000 16
+Email:   lech.perczak@camlingroup.com
+Website: http://www.camlingroup.com
+
