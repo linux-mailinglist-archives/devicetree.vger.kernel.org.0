@@ -2,103 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A5D97173F3
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 04:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A17D77173FB
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 04:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232344AbjEaC4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 22:56:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34296 "EHLO
+        id S234032AbjEaC7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 22:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231558AbjEaC4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 22:56:44 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC5511B
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 19:56:41 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-568bb833462so23440627b3.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 19:56:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685501800; x=1688093800;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=l63BPFHG/8A+DlS6bj6aZarLbZJd7JSZfr8s+sxk1kU=;
-        b=wzQLoolkF4+jrat6q+ubEjQngrEqfsaw/HCc1Ve9bqpxoiPtgOtB/OBpBsBE7v6tsy
-         PmNAc6Sp58LnySwGc5c/HtBhKvJsTIWXL5TsmFF0L4qAJl1N2bS+y2H9WxAA7MoiahaG
-         IQZgLkNBjqiFe+PzxALHR1TbsYXjtzKfOHF3UpvfJ89zoXDSFGsCqehX+rUE2RvvdT3R
-         r1VbD0ZZhCjmGpNw6hVHGabrdUDLKyunklcpm/pNN4zvIdwtTSC4QJEAwX0U627+rs9/
-         4LxGwcw+5HX+wpChEHfAOLMS6V1A9w1wenuB0+oSrprkYNvIuG2bldmCztyk7C+IHHjC
-         9u9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685501800; x=1688093800;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l63BPFHG/8A+DlS6bj6aZarLbZJd7JSZfr8s+sxk1kU=;
-        b=jks6ZXRq02fIHFyCsh8VO5xLqx2mU6mHGADawHRD5asJGlyEnLNKYygO94v1PSg6Nv
-         MNRnxybTC2DHG8ON98fWKk3SApfYIpFTYPiotIgspFGsu2kK9NpsuZKMdVjuaTO0Z4lG
-         /u7dnZtT+tk/I849Iv5TFjlrKmaVVlLLy13goYeJKiabgSbeHzEVJMzToQTBu281tLU4
-         VNP8jaWJRLxG946vvAxBROKGX543uhQ3JYReDTRg44VlhPaXEwSTCfJGJyRnTFXvbDS7
-         dcrtL2tyyNZ2Q7O9iaxXQrJEUlwAtOkXcJJILvULXgqyUS25kiJPVIeJR12Dq+antHKl
-         tFOw==
-X-Gm-Message-State: AC+VfDxsi89eruzb8YXbGfGmhAweTJ46HFaZzCS5cIKuxnxpPZ3aEuAI
-        GealGDccmT4DeWmJ1b5/LvzVBb/JVoaFAeCSmzW3Qw==
-X-Google-Smtp-Source: ACHHUZ7nxozK+OzM2cHrCcQBYx9QECrpocSGlUndYud5X7WsYdFzxQhxBFPWubzuzPJkE/PoszYCKS5y+jQXk6Fg0Uw=
-X-Received: by 2002:a81:6c94:0:b0:565:c21d:8ec6 with SMTP id
- h142-20020a816c94000000b00565c21d8ec6mr4823798ywc.6.1685501800664; Tue, 30
- May 2023 19:56:40 -0700 (PDT)
+        with ESMTP id S231373AbjEaC7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 22:59:18 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B677612D
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 19:59:13 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 97ECF2C0596;
+        Wed, 31 May 2023 14:58:59 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1685501939;
+        bh=OMlElmdtZdi259PjJVmy6JwGQG2VyhDI2nE8htIQ6Rk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=vdY6KV83oo+1h8uD9l7V5YlhyVrD9ZtyKeL41WG5ZP/LfRTinVMZIsoDbWJ+G9t6T
+         Zx8dvWLQhIPtFFxeeA/YCkt3rEzzQoVMp6esiT1KpzV+bfUmO1ivpmWRPhsJw58BoF
+         s7o8tGUuyb8nygG+m9hDnsD02D90gM6/rOsYqNWYCWMNVOzXHFksCESwXnR74yfL3H
+         avoEcQFXF4moOYFDrL8aauwhdqDBMbwk72BQZeK4HzImCOaiLdqu3ILsjqGiFL4MbM
+         tqzlcLOFl+AMqEuAqxeqGTYJWA9OPU89cp6jOUYVlkPC0ACgy5xfEVcbH8m6S0hZ15
+         dRpjOCloOgo1w==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B6476b7f30000>; Wed, 31 May 2023 14:58:59 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 6949113EDD5;
+        Wed, 31 May 2023 14:58:59 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 632ED280AFE; Wed, 31 May 2023 14:58:59 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, arnd@arndb.de, daniel.lezcano@linaro.org,
+        neil.armstrong@linaro.org, f.fainelli@gmail.com,
+        christophe.kerello@foss.st.com, liang.yang@amlogic.com,
+        jdelvare@suse.de
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/2] mtd: rawnand: marvell: add support for AC5 SoC
+Date:   Wed, 31 May 2023 14:58:45 +1200
+Message-Id: <20230531025847.1284862-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <20230527040905.stmnoshkdqgiaex6@ripper> <20230528001010.47868-3-guptarud@gmail.com>
- <fb65244e-ab3b-c473-57b9-2da80e67be4a@linaro.org> <CT04D1K5GOBT.29Y5DO5HHS57V@Latitude-E6420>
-In-Reply-To: <CT04D1K5GOBT.29Y5DO5HHS57V@Latitude-E6420>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 31 May 2023 05:56:29 +0300
-Message-ID: <CAA8EJppVHW845p-JJ-9qP6x8pJz64nEN2t2Da+u=yHc6+4pyBA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: Add qcom,usb-hs-phy-msm8960
-To:     Rudraksha Gupta <guptarud@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=cLieTWWN c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=P0xRbXHiH_UA:10 a=VwQbUJbxAAAA:8 a=BTILRwyEkoqLbeD1fBkA:9 a=AjGcO6oz07-iQ99wixmX:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 May 2023 at 05:49, Rudraksha Gupta <guptarud@gmail.com> wrote:
->
-> On Tue May 30, 2023 at 9:22 AM EDT, Krzysztof Kozlowski wrote:
-> > On 28/05/2023 02:10, Rudraksha Gupta wrote:
-> > > Adds qcom,usb-hs-phy-msm8960 compatible
-> > >
-> >
-> > Please use subject prefixes matching the subsystem. You can get them for
-> > example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> > your patch is touching.
-> >
-> > Best regards,
-> > Krzysztof
->
-> It seems like "dt-bindings:" is the subject prefix for this file. Would
-> you like me to use another prefix instead?
+This series adds support for the NAND Flash Controller on the AC5/AC5X SO=
+C. It
+needs to be applied on top of two other recent series [1] (applied to
+mtd/fixes, not yet in mainline) [2] (v7 out for review).
 
-At least it should be "dt-bindings: phy: ". However as this change
-covers existing file, it probably should be "dt-bindings: phy:
-qcom,usb-hs-phy: "
+I've tried to stick to the minimal changes required to get the NFC workin=
+g on
+the board I have (AC5X + S34ML02G2). Marvell's SDK has hard coded tables =
+of
+ndtr values for the different timing modes but so far that seems unnecess=
+ary.
 
--- 
-With best wishes
-Dmitry
+[1] - https://lore.kernel.org/linux-mtd/20230525003154.2303012-1-chris.pa=
+ckham@alliedtelesis.co.nz/raw
+[2] - https://lore.kernel.org/linux-mtd/20230530235456.1009082-1-chris.pa=
+ckham@alliedtelesis.co.nz/raw
+
+Chris Packham (2):
+  dt-bindings: mtd: Add AC5 specific binding
+  mtd: rawnand: marvell: add support for AC5 SoC
+
+ .../bindings/mtd/marvell,nand-controller.yaml    |  1 +
+ drivers/mtd/nand/raw/Kconfig                     |  2 +-
+ drivers/mtd/nand/raw/marvell_nand.c              | 16 ++++++++++++++++
+ 3 files changed, 18 insertions(+), 1 deletion(-)
+
+--=20
+2.40.1
+
