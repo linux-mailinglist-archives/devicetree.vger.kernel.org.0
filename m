@@ -2,116 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06A03717C0F
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A3A717C14
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233858AbjEaJgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:36:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41138 "EHLO
+        id S235568AbjEaJh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 05:37:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230236AbjEaJgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:36:35 -0400
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CBA83C0;
-        Wed, 31 May 2023 02:36:32 -0700 (PDT)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 192.168.10.46
-        by mg.richtek.com with MailGates ESMTP Server V5.0(761:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>); Wed, 31 May 2023 17:36:19 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Wed, 31 May
- 2023 17:36:18 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
- Transport; Wed, 31 May 2023 17:36:18 +0800
-Date:   Wed, 31 May 2023 17:36:18 +0800
-From:   ChiYuan Huang <cy_huang@richtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <sre@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <chiaen_wu@richtek.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: power: supply: Fix rt9467 charger enable
- gpio active level
-Message-ID: <20230531093618.GA17005@linuxcarl2.richtek.com>
-References: <1685522813-14481-1-git-send-email-cy_huang@richtek.com>
- <1f966e93-50c3-142e-620c-8fbb16e9b1a7@linaro.org>
+        with ESMTP id S234876AbjEaJhQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:37:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B6FC5;
+        Wed, 31 May 2023 02:37:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 514D6628ED;
+        Wed, 31 May 2023 09:37:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FB03C433EF;
+        Wed, 31 May 2023 09:37:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685525834;
+        bh=4+0MyiKVTQqe8DgyA6IjE/3NWwThW9+rvVXigmsQePk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ipt5YYAygusVm+TOrRMekgsHohVicb1Llis7Had1LpbzpEMNyWbHBaD76dDoCZEva
+         +H3vZet/Ha3Se9zGbnHYcXq8XO+duDLE3rQg4d8fkTOq7fdDhDQXMSfckSmCLmA7S1
+         Bu4xPZ9p1J6cFm4d3RDTZc1WaxkmThOuqWA6DQLl8A7Q07P0rdGX/8tvbQkDcXEH24
+         f6cSVuOHrjBTnqyqJFh4rMtYghc+cc5nlbTse36J215IRoHBFqaR2a5u4LSNvThfo/
+         hokhnO3aAy4rwtEj8YOzEj6betxAyYeKDET6IvvOtIo8rrWK+EbLBNwFyNMEP7YC52
+         6UwGrOM2VLNEA==
+Date:   Wed, 31 May 2023 10:37:10 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        kernel@pengutronix.de, Linus Walleij <linus.walleij@linaro.org>,
+        Kent Gibson <warthog618@gmail.com>, linux-gpio@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: introduce hog properties with
+ less ambiguity
+Message-ID: <20230531-carnival-nanny-6e165f08de0c@spud>
+References: <20230530151946.2317748-1-u.kleine-koenig@pengutronix.de>
+ <20230530151946.2317748-2-u.kleine-koenig@pengutronix.de>
+ <20230530-gag-doorway-e13660d45161@spud>
+ <20230531070351.gjh62dssldwworc2@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nDT2JYED1fkBXPVu"
 Content-Disposition: inline
-In-Reply-To: <1f966e93-50c3-142e-620c-8fbb16e9b1a7@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230531070351.gjh62dssldwworc2@pengutronix.de>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 11:17:37AM +0200, Krzysztof Kozlowski wrote:
-> On 31/05/2023 10:46, cy_huang@richtek.com wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> > 
-> > The RT9467 charger enable pin is an external signal that used to enable
-> > battery charging. From the datasheet, the active level is low. Although
-> > it's already configured to logic low at driver probe function, but the
-> 
-> NAK.
-> 
-> You mix two different things. Driver behavior and DTS. Driver can
-> operate either on real level - matching hardware - or on logical level
-> (high as enable, low as disable). First choice is usually wrong, because
-> it does not allow inverted signals.
-> 
-> 'Correcting' bindings to wrong approach is wrong. If the signal is
-> active low, then the flag is active low. Simple as that.
->
-If my understanding is right, so the correct way is to fix the driver code,
-not binding exmaple.
 
-> > current binding example declared it as 'GPIO_ACTIVE_LOW', this causes
-> > this pin be output high and disable battery charging.
-> > 
-> > Fixes: e1b4620fb503 ("dt-bindings: power: supply: Add Richtek RT9467 battery charger")
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> > Hi,
-> > 
-> >   This patch is to fix the active level for charger enable gpio polarity.
-> 
-> This is just example - it does not fix anything...
-> 
-Sorry, this issue comes from the customer. They directly copy the example into their
-platform dts. That's why originally I think it may be a fix.
+--nDT2JYED1fkBXPVu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Anyway, you're right. To maintain the maximum flexibility, the choice shouldn't be to fix
-the example. It has to correct the driver code for this pin behavior.
+On Wed, May 31, 2023 at 09:03:51AM +0200, Uwe Kleine-K=F6nig wrote:
 
-Thanks.
-> > Currently, the wrong active level makes the user confused and
-> > unexpectedly disable battery charging by default.
-> > ---
-> >  Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
-> > index 3723717..cdc7678 100644
-> > --- a/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
-> > +++ b/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
-> > @@ -69,7 +69,7 @@ examples:
-> >          reg = <0x5b>;
-> >          wakeup-source;
-> >          interrupts-extended = <&gpio_intc 32 IRQ_TYPE_LEVEL_LOW>;
-> > -        charge-enable-gpios = <&gpio26 1 GPIO_ACTIVE_LOW>;
-> > +        charge-enable-gpios = <&gpio26 1 GPIO_ACTIVE_HIGH>;
-> >  
-> >          rt9467_otg_vbus: usb-otg-vbus-regulator {
-> >            regulator-name = "rt9467-usb-otg-vbus";
-> 
-> Best regards,
-> Krzysztof
-> 
+> > Rob did note that gpio-hog.yaml in dt-schema would need to be updated,
+>=20
+> This is a followup-change in a separate repository once the change
+> under discussion is in mainline, right?
+
+Yeah, https://github.com/devicetree-org/dt-schema
+
+Cheers,
+Conor.
+
+
+--nDT2JYED1fkBXPVu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHcVRQAKCRB4tDGHoIJi
+0jT1AP9ZWzRZTeCeIHkwalKFsJd4dVWWekJav44OlnY2AZFenQD+JNg/H65tmxgS
+2xY4eV78w8raEN218JLz5l4Kv88WXAs=
+=HUPP
+-----END PGP SIGNATURE-----
+
+--nDT2JYED1fkBXPVu--
