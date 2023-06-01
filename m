@@ -2,351 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 421A2719D2C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81040719DD4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:26:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233240AbjFANSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 09:18:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
+        id S233738AbjFAN0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 09:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231678AbjFANSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:18:16 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B76E6E7;
-        Thu,  1 Jun 2023 06:18:14 -0700 (PDT)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id E71D61F8C1;
-        Thu,  1 Jun 2023 15:18:12 +0200 (CEST)
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233734AbjFAN0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:26:42 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD63519B;
+        Thu,  1 Jun 2023 06:26:18 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f60e730bf2so8787015e9.1;
+        Thu, 01 Jun 2023 06:26:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685625977; x=1688217977;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mY4ulbNFE/jjkAM6F1KYjqgtbBRcYBjAGNE85b4mha4=;
+        b=Eyrfbb4GRekIwaWBrbBJoAQ+TnpS4Wpf9ICO7qzsFvxrI9yFUyGrFRxRngKXl20JW3
+         tEbx+C9qcNg2G+jhDjaxDGirdsMr/nreZgAB9LkqbAaVVfWCJFlrs3R8sFu+BsIiquMP
+         lbCyVxQMJzaR1SqXubYb72QmrEP1SnkUlHjOwgYf6cZjhmdUf0SWLC5O5Ya/hRGn8rHe
+         v9SzgNnKjXNQNNs/ci1y7YuRaMQWCCUzO3r6LLTJz12h5My9spUJ8CexcmAWpWSJowE8
+         MspDWpWbFA3mTGmxvAt9KdlZhRjlGfdLXibIIdrUbLBeVgxKF+cZsb4pvM56w+unqb+z
+         CfgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685625977; x=1688217977;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mY4ulbNFE/jjkAM6F1KYjqgtbBRcYBjAGNE85b4mha4=;
+        b=cgqF1eLqN//cS5cC7lWmVficG2kWef2OtvL1fbhR4JgfUMYhzXzovcBhN0epRyum/J
+         7fAmAUHeOFOGgrHYbhRu/n0A9n75ly9FeP7p4CsJzS1jvel9SQmkOZDVtmxWu+3gbmLx
+         3i1WbTovfUFOYxtaFgQNYp6M4tSOYGGAOAUZPOExxwxbWsUB/2UeqnjyAbgbzqRlvdUx
+         rtSH4+hrqvyCjWMMCPrq8jmQBIbDt1WL4AEHE3IXh3djGbYro3TD5uSIkTykX1Em054y
+         f0Nztyn+TkTGdOE10O5itjxIQ1sFaM+V7CYIRB7bpMVw2sfNiVJZN89yZ88J66nmxJ+W
+         0eZQ==
+X-Gm-Message-State: AC+VfDwtaKZ8rp1xgf+2pMiGyBLXQNCSeEgGfN2XVpcY6C+IMH1Mzf3j
+        0Y3VaEUDhn+U6oq5aYpAYNI=
+X-Google-Smtp-Source: ACHHUZ4u07oje+b/pW5QY8IISmc/7hrBKpGR8OodL8MJC5Gg23AvYMTBZe3OPWHRjosNZWA7j6ukxw==
+X-Received: by 2002:a7b:ca59:0:b0:3f4:f7c2:d681 with SMTP id m25-20020a7bca59000000b003f4f7c2d681mr2294755wml.29.1685625976702;
+        Thu, 01 Jun 2023 06:26:16 -0700 (PDT)
+Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id n16-20020a1c7210000000b003f60119ee08sm2396549wmc.43.2023.06.01.06.26.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jun 2023 06:26:16 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: ti: add verdin am62 yavia
-Date:   Thu,  1 Jun 2023 15:18:06 +0200
-Message-Id: <20230601131806.27648-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230601131332.26877-1-francesco@dolcini.it>
-References: <20230601131332.26877-1-francesco@dolcini.it>
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Andrew Powers-Holmes <aholmes@omnom.net>,
+        Ondrej Jirman <megi@xff.cz>, stable@vger.kernel.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register and range mappings
+Date:   Thu,  1 Jun 2023 15:25:16 +0200
+Message-Id: <20230601132516.153934-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+From: Andrew Powers-Holmes <aholmes@omnom.net>
 
-Add Toradex Verdin AM62 Yavia.
+The register and range mappings for the PCIe controller in Rockchip's
+RK356x SoCs are incorrect. Replace them with corrected values from the
+vendor BSP sources, updated to match current DT schema.
 
-Link: https://www.toradex.com/products/carrier-board/yavia
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+These values are also used in u-boot.
+
+Fixes: 66b51ea7d70f ("arm64: dts: rockchip: Add rk3568 PCIe2x1 controller")
+Cc: stable@vger.kernel.org
+Signed-off-by: Andrew Powers-Holmes <aholmes@omnom.net>
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 ---
-v2:
- - added link to product pages on dts/dtsi
- - fixed pinctrl definition
----
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- .../boot/dts/ti/k3-am62-verdin-yavia.dtsi     | 207 ++++++++++++++++++
- .../dts/ti/k3-am625-verdin-nonwifi-yavia.dts  |  22 ++
- .../dts/ti/k3-am625-verdin-wifi-yavia.dts     |  22 ++
- 4 files changed, 253 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index f6b38ae10988..3af38aaf6463 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -13,8 +13,10 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dev.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
- 
- # Boards with AM62Ax SoC
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-new file mode 100644
-index 000000000000..cb11d6e7f525
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-@@ -0,0 +1,207 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * Common dtsi for Verdin AM62 SoM on Yavia carrier board
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_qspi1_clk_gpio>,
-+			    <&pinctrl_qspi1_cs_gpio>,
-+			    <&pinctrl_qspi1_io0_gpio>,
-+			    <&pinctrl_qspi1_io1_gpio>,
-+			    <&pinctrl_qspi1_io2_gpio>,
-+			    <&pinctrl_qspi1_io3_gpio>;
-+
-+		/* SODIMM 52 - LD1_RED */
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 54 - LD1_GREEN */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&main_gpio0 11 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 56 - LD1_BLUE */
-+		led-2 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 58 - LD2_RED */
-+		led-3 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 60 - LD2_GREEN */
-+		led-4 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 62 - LD2_BLUE */
-+		led-5 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+/* Verdin ETHs */
-+&cpsw3g {
-+	status = "okay";
-+};
-+
-+/* MDIO, shared by Verdin ETH_1 (On-module PHY) and Verdin ETH_2_RGMII */
-+&cpsw3g_mdio {
-+	status = "okay";
-+};
-+
-+/* Verdin ETH_1 (On-module PHY) */
-+&cpsw_port1 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_1, PWM_2 */
-+&epwm0 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_3_DSI */
-+&epwm1 {
-+	status = "okay";
-+};
-+
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ctrl_sleep_moci>,
-+		    <&pinctrl_gpio_5>,
-+		    <&pinctrl_gpio_6>,
-+		    <&pinctrl_gpio_7>,
-+		    <&pinctrl_gpio_8>,
-+		    <&pinctrl_qspi1_cs2_gpio>;
-+};
-+
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_qspi1_dqs_gpio>;
-+};
-+
-+/* Verdin I2C_1 */
-+&main_i2c1 {
-+	status = "okay";
-+
-+	/* Temperature sensor */
-+	sensor@4f {
-+		compatible = "ti,tmp75c";
-+		reg = <0x4f>;
-+	};
-+
-+	/* EEPROM */
-+	eeprom@57 {
-+		compatible = "st,24c02";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&main_i2c2 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_4_CSI */
-+&main_i2c3 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_1 */
-+&main_mcan0 {
-+	status = "okay";
-+};
-+
-+/* Verdin SPI_1 */
-+&main_spi1 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3 */
-+&main_uart0 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_1 */
-+&main_uart1 {
-+	status = "okay";
-+};
-+
-+&mcu_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio_1>,
-+		    <&pinctrl_gpio_2>,
-+		    <&pinctrl_gpio_3>,
-+		    <&pinctrl_gpio_4>;
-+};
-+
-+/* Verdin I2C_3_HDMI */
-+&mcu_i2c0 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_4 */
-+&mcu_uart0 {
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&sdhci1 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_1 */
-+&usbss0 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_2 */
-+&usbss1 {
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	status = "okay";
-+};
-+
-+/* Verdin CTRL_WAKE1_MICO# */
-+&verdin_gpio_keys {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_2 */
-+&wkup_uart0 {
-+	/* FIXME: WKUP UART0 is used by DM firmware */
-+	status = "reserved";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts b/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts
-new file mode 100644
-index 000000000000..e80332e1f030
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am625.dtsi"
-+#include "k3-am62-verdin.dtsi"
-+#include "k3-am62-verdin-nonwifi.dtsi"
-+#include "k3-am62-verdin-yavia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin AM62 on Yavia Board";
-+	compatible = "toradex,verdin-am62-nonwifi-yavia",
-+		     "toradex,verdin-am62-nonwifi",
-+		     "toradex,verdin-am62",
-+		     "ti,am625";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts b/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts
-new file mode 100644
-index 000000000000..8a2506068ac4
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am625.dtsi"
-+#include "k3-am62-verdin.dtsi"
-+#include "k3-am62-verdin-wifi.dtsi"
-+#include "k3-am62-verdin-yavia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin AM62 WB on Yavia Board";
-+	compatible = "toradex,verdin-am62-wifi-yavia",
-+		     "toradex,verdin-am62-wifi",
-+		     "toradex,verdin-am62",
-+		     "ti,am625";
-+};
+Since nobody else was gonna submit this fix on a fix, I decided
+to do it myself, based on the u-boot patch Jonas Karlman wrote.
+
+Please test that this does not break the PCIe 3 controller on
+RK3568 hardware, I don't have the right setup to easily test it
+on there.
+
+Changes since v1:
+ - Fix copy-paste error on second reg property from 0xf2000000
+   to 0xf0000000
+
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi | 14 ++++++++------
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi |  7 ++++---
+ 2 files changed, 12 insertions(+), 9 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+index ba67b58f05b7..f1be76a54ceb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+@@ -94,9 +94,10 @@ pcie3x1: pcie@fe270000 {
+ 		power-domains = <&power RK3568_PD_PIPE>;
+ 		reg = <0x3 0xc0400000 0x0 0x00400000>,
+ 		      <0x0 0xfe270000 0x0 0x00010000>,
+-		      <0x3 0x7f000000 0x0 0x01000000>;
+-		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x7ef00000 0x0 0x00100000>,
+-			 <0x02000000 0x0 0x00000000 0x3 0x40000000 0x0 0x3ef00000>;
++		      <0x0 0xf2000000 0x0 0x00100000>;
++		ranges = <0x01000000 0x0 0xf2100000 0x0 0xf2100000 0x0 0x00100000>,
++			 <0x02000000 0x0 0xf2200000 0x0 0xf2200000 0x0 0x01e00000>,
++			 <0x03000000 0x0 0x40000000 0x3 0x40000000 0x0 0x40000000>;
+ 		reg-names = "dbi", "apb", "config";
+ 		resets = <&cru SRST_PCIE30X1_POWERUP>;
+ 		reset-names = "pipe";
+@@ -146,9 +147,10 @@ pcie3x2: pcie@fe280000 {
+ 		power-domains = <&power RK3568_PD_PIPE>;
+ 		reg = <0x3 0xc0800000 0x0 0x00400000>,
+ 		      <0x0 0xfe280000 0x0 0x00010000>,
+-		      <0x3 0xbf000000 0x0 0x01000000>;
+-		ranges = <0x01000000 0x0 0x3ef00000 0x3 0xbef00000 0x0 0x00100000>,
+-			 <0x02000000 0x0 0x00000000 0x3 0x80000000 0x0 0x3ef00000>;
++		      <0x0 0xf0000000 0x0 0x00100000>;
++		ranges = <0x01000000 0x0 0xf0100000 0x0 0xf0100000 0x0 0x00100000>,
++			 <0x02000000 0x0 0xf0200000 0x0 0xf0200000 0x0 0x01e00000>,
++			 <0x03000000 0x0 0x40000000 0x3 0x80000000 0x0 0x40000000>;
+ 		reg-names = "dbi", "apb", "config";
+ 		resets = <&cru SRST_PCIE30X2_POWERUP>;
+ 		reset-names = "pipe";
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index f62e0fd881a9..61680c7ac489 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -952,7 +952,7 @@ pcie2x1: pcie@fe260000 {
+ 		compatible = "rockchip,rk3568-pcie";
+ 		reg = <0x3 0xc0000000 0x0 0x00400000>,
+ 		      <0x0 0xfe260000 0x0 0x00010000>,
+-		      <0x3 0x3f000000 0x0 0x01000000>;
++		      <0x0 0xf4000000 0x0 0x00100000>;
+ 		reg-names = "dbi", "apb", "config";
+ 		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+@@ -982,8 +982,9 @@ pcie2x1: pcie@fe260000 {
+ 		phys = <&combphy2 PHY_TYPE_PCIE>;
+ 		phy-names = "pcie-phy";
+ 		power-domains = <&power RK3568_PD_PIPE>;
+-		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
+-			  0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
++		ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
++			 <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x01e00000>,
++			 <0x03000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+ 		resets = <&cru SRST_PCIE20_POWERUP>;
+ 		reset-names = "pipe";
+ 		#address-cells = <3>;
 -- 
-2.25.1
+2.40.1
 
