@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1E0771F028
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:03:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3AA71F02C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:03:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231863AbjFARDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 13:03:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46096 "EHLO
+        id S231232AbjFARDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 13:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231386AbjFARDu (ORCPT
+        with ESMTP id S231546AbjFARDu (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:03:50 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12CBD1
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:03:47 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2af2db78b38so15295931fa.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:03:47 -0700 (PDT)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D84194
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:03:49 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96f7377c86aso157446166b.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1685639026; x=1688231026;
+        d=amarulasolutions.com; s=google; t=1685639028; x=1688231028;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AYXAD9NgGprUIQkhXdsDo3LP+5BIf2ORjzEhEoh2Q0k=;
-        b=YEyE4MplOuffKToNXoByaO0YIRahiBQrlXYzMq3NE7mD9SvEWvtIpQ4QjKuUjOkj1T
-         U4ul77rYN2OwXiwDemsBFLPmcJRebNTIAm5Kwkux5fhC6HvvbvE+lDFgsh0rMaXTPln/
-         Y4fjlsmXpHr9EpCjwT0j/eKuVIyvv6ArA2k8U=
+        bh=mcKcmUUCIxd110zie+CjXE9D2AXIydaNegCcV+6SNq0=;
+        b=ONctjRxH7/blw2xSSjhjyNIP779YSdcSYRkUGkesaThER6cV4joKdyYdDD6JLkHkFT
+         9dPXPnNYVmtgtNsGmTVl5DwIAtdk9wF9Xdre4IvLfFtPZWvq1RutMaiLGPlmUPKE75ZQ
+         kYi7DRj72VsybHu0nM8m82iG42xdjhwGoGEFE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685639026; x=1688231026;
+        d=1e100.net; s=20221208; t=1685639028; x=1688231028;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AYXAD9NgGprUIQkhXdsDo3LP+5BIf2ORjzEhEoh2Q0k=;
-        b=GgDp1kFMDnEXASllvby/mLdjB0ruIgrHLa2S5R4GBfKwB2K1qjgf/1h9aJ+LCXdkVM
-         OgIviAIX3noBcq8sUy1oXe+R9xfyqp3TF7UK1ltu23Q5uSHGAoJnLUi1ogH2P2P8Am+A
-         ttjfDFJwXZzawMi+rcM8p/3EJh+Xy/aCXI5xVPTr3zcmYtOd6eU865aR3Flx6jCAUPDL
-         c5/kB12B2aLko5GpurzetOUHu2TLLBvYg4BmwUswwLZ0EvJfRmZ58FLzjWZvToRVU5uN
-         86XqvBcf20EASwuy0lXoqtdV7WgpKuPd9HbiQJxgW7SanADF8lvFDrAs9TDfr7+7yQQN
-         RS5A==
-X-Gm-Message-State: AC+VfDwox07NnMjGWT34kaLnlM385wDp2I0kG+v+qnWSfG/SVkIVqth9
-        LW/BMuehzDrP4PqXmu9qHidHowVd/vxFTU9mAHXIUQ==
-X-Google-Smtp-Source: ACHHUZ7y/MadAmcG8+tiTZ3xPXcxTCxSt8Z6tfaDt1Gboo+wMV/9REfMseHNxiYgmiOmCfOJtQKSNA==
-X-Received: by 2002:a2e:8eca:0:b0:2b0:5a04:a5b6 with SMTP id e10-20020a2e8eca000000b002b05a04a5b6mr69305ljl.8.1685639026117;
-        Thu, 01 Jun 2023 10:03:46 -0700 (PDT)
+        bh=mcKcmUUCIxd110zie+CjXE9D2AXIydaNegCcV+6SNq0=;
+        b=G6l8sxqiAdKUflPyMxeQ2rfk6s2fy5s/Sbpo3ZTMvLpNZXxydl8i5YTLGXJIrZCv+2
+         0dRvlIxR8vfJRe1y+OvRW30xoufybq9oZY0Ql11aBKKjy944jvT+lu8Z8xy/GI084frh
+         cLzV4XV/2GM16IHESZkoH4dhAldw9MNZsFWf9ksZzFnCvUypbVwjxWXrltZane0HNNZ+
+         VIlLZe1bthopoRah/inaEQqKmoqc1TrFyMUv/MsnNzjtbZLPqs4lKWVuuoPyUxkjg/bY
+         AaJjIARTqiOsCX2kAuk8dugvLinlXrbob/dLtsk71IUdhWGSpKJJ38yJPvbT077Z+S9z
+         pKaQ==
+X-Gm-Message-State: AC+VfDzRxZ+B6HUCN16ZW2zZvI7xnWDFHtzY5V3wwaqe9KmTZupm9ot4
+        etTwPdSZE9PI6GArpYggmaPk5g==
+X-Google-Smtp-Source: ACHHUZ5N3WWPiRYSAdp/Ws29GdL2rHIl5xREti1d8ZGXwyjdXbJK4oZ3W/krDLTO2yi+qhwVPxLgog==
+X-Received: by 2002:a17:907:ea4:b0:94f:2852:1d2b with SMTP id ho36-20020a1709070ea400b0094f28521d2bmr9669112ejc.72.1685639027798;
+        Thu, 01 Jun 2023 10:03:47 -0700 (PDT)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-248-31-20.retail.telecomitalia.it. [95.248.31.20])
-        by smtp.gmail.com with ESMTPSA id bh25-20020a170906a0d900b0096165b2703asm10658522ejb.110.2023.06.01.10.03.44
+        by smtp.gmail.com with ESMTPSA id bh25-20020a170906a0d900b0096165b2703asm10658522ejb.110.2023.06.01.10.03.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 10:03:45 -0700 (PDT)
+        Thu, 01 Jun 2023 10:03:47 -0700 (PDT)
 From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Amarula patchwork <linux-amarula@amarulasolutions.com>,
@@ -58,9 +58,9 @@ Cc:     Amarula patchwork <linux-amarula@amarulasolutions.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 1/6] ARM: dts: stm32: add ltdc support on stm32f746 MCU
-Date:   Thu,  1 Jun 2023 19:03:15 +0200
-Message-Id: <20230601170320.2845218-2-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH 2/6] ARM: dts: stm32: add pin map for LTDC on stm32f7
+Date:   Thu,  1 Jun 2023 19:03:16 +0200
+Message-Id: <20230601170320.2845218-3-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20230601170320.2845218-1-dario.binacchi@amarulasolutions.com>
 References: <20230601170320.2845218-1-dario.binacchi@amarulasolutions.com>
@@ -76,35 +76,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LTDC (Lcd-tft Display Controller) support.
+Add pin configurations for using LTDC (LCD-tft Display Controller) on
+stm32f746-disco board.
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 ---
 
- arch/arm/boot/dts/stm32f746.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 35 ++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
-index dc868e6da40e..9c4ba0b7f239 100644
---- a/arch/arm/boot/dts/stm32f746.dtsi
-+++ b/arch/arm/boot/dts/stm32f746.dtsi
-@@ -507,6 +507,16 @@ pwm {
+diff --git a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+index 9f65403295ca..f3f90b9bcd61 100644
+--- a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+@@ -365,6 +365,41 @@ pins2 {
+ 					bias-pull-up;
+ 				};
  			};
- 		};
- 
-+		ltdc: display-controller@40016800 {
-+			compatible = "st,stm32-ltdc";
-+			reg = <0x40016800 0x200>;
-+			interrupts = <88>, <89>;
-+			resets = <&rcc STM32F7_APB2_RESET(LTDC)>;
-+			clocks = <&rcc 1 CLK_LCD>;
-+			clock-names = "lcd";
-+			status = "disabled";
-+		};
 +
- 		pwrcfg: power-config@40007000 {
- 			compatible = "st,stm32-power-config", "syscon";
- 			reg = <0x40007000 0x400>;
++
++			ltdc_pins_a: ltdc-pins-a-0 {
++				pins {
++					pinmux = <STM32_PINMUX('E', 4, AF14)>, /* LCD_B0 */
++						 <STM32_PINMUX('G',12, AF9)>,  /* LCD_B4 */
++						 <STM32_PINMUX('I', 9, AF14)>, /* LCD_VSYNC */
++						 <STM32_PINMUX('I',10, AF14)>, /* LCD_HSYNC */
++						 <STM32_PINMUX('I',14, AF14)>, /* LCD_CLK */
++						 <STM32_PINMUX('I',15, AF14)>, /* LCD_R0 */
++						 <STM32_PINMUX('J', 0, AF14)>, /* LCD_R1 */
++						 <STM32_PINMUX('J', 1, AF14)>, /* LCD_R2 */
++						 <STM32_PINMUX('J', 2, AF14)>, /* LCD_R3 */
++						 <STM32_PINMUX('J', 3, AF14)>, /* LCD_R4 */
++						 <STM32_PINMUX('J', 4, AF14)>, /* LCD_R5 */
++						 <STM32_PINMUX('J', 5, AF14)>, /* LCD_R6 */
++						 <STM32_PINMUX('J', 6, AF14)>, /* LCD_R7 */
++						 <STM32_PINMUX('J', 7, AF14)>, /* LCD_G0 */
++						 <STM32_PINMUX('J', 8, AF14)>, /* LCD_G1 */
++						 <STM32_PINMUX('J', 9, AF14)>, /* LCD_G2 */
++						 <STM32_PINMUX('J',10, AF14)>, /* LCD_G3 */
++						 <STM32_PINMUX('J',11, AF14)>, /* LCD_G4 */
++						 <STM32_PINMUX('J',13, AF14)>, /* LCD_B1 */
++						 <STM32_PINMUX('J',14, AF14)>, /* LCD_B2 */
++						 <STM32_PINMUX('J',15, AF14)>, /* LCD_B3 */
++						 <STM32_PINMUX('K', 0, AF14)>, /* LCD_G5 */
++						 <STM32_PINMUX('K', 1, AF14)>, /* LCD_G6 */
++						 <STM32_PINMUX('K', 2, AF14)>, /* LCD_G7 */
++						 <STM32_PINMUX('K', 4, AF14)>, /* LCD_B5 */
++						 <STM32_PINMUX('K', 5, AF14)>, /* LCD_B6 */
++						 <STM32_PINMUX('K', 6, AF14)>, /* LCD_B7 */
++						 <STM32_PINMUX('K', 7, AF14)>; /* LCD_DE */
++					slew-rate = <2>;
++				};
++			};
+ 		};
+ 	};
+ };
 -- 
 2.32.0
 
