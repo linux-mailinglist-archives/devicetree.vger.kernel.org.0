@@ -2,168 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE49A71916C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 05:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07BFD7191B8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 06:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230456AbjFADji convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 31 May 2023 23:39:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54254 "EHLO
+        id S230479AbjFAEVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 00:21:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjFADjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 23:39:37 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AED2123;
-        Wed, 31 May 2023 20:39:34 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id B065D24DC28;
-        Thu,  1 Jun 2023 11:39:26 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Jun
- 2023 11:39:26 +0800
-Received: from [192.168.125.80] (113.72.147.198) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Jun
- 2023 11:39:25 +0800
-Message-ID: <94ec74dd-2f04-8dca-35ff-a537811d1ccf@starfivetech.com>
-Date:   Thu, 1 Jun 2023 11:39:24 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v7 19/22] riscv: dts: starfive: Add initial StarFive
- JH7110 device tree
-To:     Shengyu Qu <wiagn233@outlook.com>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S230481AbjFAEVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 00:21:23 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E26718F;
+        Wed, 31 May 2023 21:21:16 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3512THVG014264;
+        Thu, 1 Jun 2023 04:21:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=QHM/WHCJDISRydD6S6QXRiWn068wj1AI1qf3+4/twIU=;
+ b=FVYjl86VI5wFCMvYP7ifcoSgEA+f8kwLWKNwKseLniPsMVbawZ8FPHV57vJLbSSf/yJu
+ 4lMi08SAlBvVxW6PuRLFt3Y4r6OCiMmbBpAwQYb/530Ogiep7QFSNchnXM82kgbr1zmp
+ H9QggxZ70wU++iPf1b1vTH7Z8ZA6YKQ9wuK+wQl0aN6IekTMToDf+TKUIONw30v8u11Q
+ DBs0RbzzTdzrqYloQ+9/qEWqdtmRhSYvdxEbsHFMg8hOBK2P8t9TE6RgEjH40okRg+u2
+ cpYInDtLt3mEj29rjJHVCydrss4de0NVw5PlmU+uXE/1gBzRVyxRYgyNvo6Am27fBj9c xQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qx5pxhxs0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 01 Jun 2023 04:21:12 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3514LBH0013322
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 1 Jun 2023 04:21:11 GMT
+Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 31 May 2023 21:21:08 -0700
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-References: <20230401111934.130844-1-hal.feng@starfivetech.com>
- <20230401111934.130844-20-hal.feng@starfivetech.com>
- <TY3P286MB2611C61D1EDB70BF0A37E65298709@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <TY3P286MB2611C61D1EDB70BF0A37E65298709@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [113.72.147.198]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+CC:     Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH RESEND 0/4] Add initial support for RDP474 of IPQ5332 family
+Date:   Thu, 1 Jun 2023 09:50:50 +0530
+Message-ID: <20230601042054.29075-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 76rKpWMqCggwYXE9aD6MlbP7JDmYoxZK
+X-Proofpoint-ORIG-GUID: 76rKpWMqCggwYXE9aD6MlbP7JDmYoxZK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-01_02,2023-05-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 bulkscore=0 adultscore=0 mlxlogscore=938
+ lowpriorityscore=0 impostorscore=0 clxscore=1015 spamscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306010036
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 7 May 2023 18:03:19 +0800, Shengyu Qu wrote:
-> Hi Hal,
->> From: Emil Renner Berthing <kernel@esmil.dk>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> new file mode 100644
->> index 000000000000..d484ecdf93f7
->> --- /dev/null
->> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> @@ -0,0 +1,509 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
->> + */
->> +
->> +/dts-v1/;
->> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
->> +#include <dt-bindings/reset/starfive,jh7110-crg.h>
->> +
->> +/ {
-[...]
->> +
->> +    soc {
->> +        compatible = "simple-bus";
->> +        interrupt-parent = <&plic>;
-> 
-> Do we really need this interrupt-parent? Seems it is causing a dependency cycle:
-> 
-> platform soc: Fixed dependency cycle(s) with /soc/interrupt-controller@c000000
-> 
-> And seems fu740 dts doesn't have this.
+Add the initial device tree support for the Reference Design
+Platform(RDP) 474 based on IPQ5332 family of SoC. This patch carries
+the support for Console UART, eMMC, I2C and GPIO based buttons.
 
-Sorry to reply too late. If we drop this line, we need to add 'interrupt-parent'
-to every node which uses interrupt. And I found some other platform did the same
-such as 
+Most of the features of RDP474 is similar to RDP441, except that the
+QDSP will not be used in RDP474, whereas it will be used in the RDP441.
 
-arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-arch/riscv/boot/dts/canaan/k210.dtsi
-arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+RDP474 comes with the SoC IPQ5300, so add the SoC info support for the
+same.
 
-Best regards,
-Hal
+Corrected the RDP number in the subject, so resending it.
 
-> 
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +        ranges;
->> +
->> +        clint: timer@2000000 {
->> +            compatible = "starfive,jh7110-clint", "sifive,clint0";
->> +            reg = <0x0 0x2000000 0x0 0x10000>;
->> +            interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
->> +                          <&cpu1_intc 3>, <&cpu1_intc 7>,
->> +                          <&cpu2_intc 3>, <&cpu2_intc 7>,
->> +                          <&cpu3_intc 3>, <&cpu3_intc 7>,
->> +                          <&cpu4_intc 3>, <&cpu4_intc 7>;
->> +        };
->> +
->> +        ccache: cache-controller@2010000 {
->> +            compatible = "starfive,jh7110-ccache", "sifive,ccache0", "cache";
->> +            reg = <0x0 0x2010000 0x0 0x4000>;
->> +            interrupts = <1>, <3>, <4>, <2>;
->> +            cache-block-size = <64>;
->> +            cache-level = <2>;
->> +            cache-sets = <2048>;
->> +            cache-size = <2097152>;
->> +            cache-unified;
->> +        };
->> +
->> +        plic: interrupt-controller@c000000 {
->> +            compatible = "starfive,jh7110-plic", "sifive,plic-1.0.0";
->> +            reg = <0x0 0xc000000 0x0 0x4000000>;
->> +            interrupts-extended = <&cpu0_intc 11>,
->> +                          <&cpu1_intc 11>, <&cpu1_intc 9>,
->> +                          <&cpu2_intc 11>, <&cpu2_intc 9>,
->> +                          <&cpu3_intc 11>, <&cpu3_intc 9>,
->> +                          <&cpu4_intc 11>, <&cpu4_intc 9>;
->> +            interrupt-controller;
->> +            #interrupt-cells = <1>;
->> +            #address-cells = <0>;
->> +            riscv,ndev = <136>;
->> +        };
->> +
->> +        uart0: serial@10000000 {
->> +            compatible = "snps,dw-apb-uart";
->> +            reg = <0x0 0x10000000 0x0 0x10000>;
->> +            clocks = <&syscrg JH7110_SYSCLK_UART0_CORE>,
->> +                 <&syscrg JH7110_SYSCLK_UART0_APB>;
->> +            clock-names = "baudclk", "apb_pclk";
->> +            resets = <&syscrg JH7110_SYSRST_UART0_APB>;
->> +            interrupts = <32>;
->> +            reg-io-width = <4>;
->> +            reg-shift = <2>;
->> +            status = "disabled";
->> +        };
->> +
-[...]
+Kathiravan T (4):
+  dt-bindings: arm: qcom,ids: add SoC ID for IPQ5300
+  soc: qcom: socinfo: Add Soc ID for IPQ5300
+  dt-bindings: arm: qcom: document MI01.9 board based on IPQ5332 family
+  arm64: dts: qcom: ipq5332: add support for the RDP474 variant
+
+ .../devicetree/bindings/arm/qcom.yaml         |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts   | 112 ++++++++++++++++++
+ drivers/soc/qcom/socinfo.c                    |   1 +
+ include/dt-bindings/arm/qcom,ids.h            |   1 +
+ 5 files changed, 117 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
+
+-- 
+2.17.1
+
