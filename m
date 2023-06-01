@@ -2,148 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5576C71F6A4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 01:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D396571F6EE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 01:57:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjFAXbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 19:31:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38570 "EHLO
+        id S229724AbjFAX5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 19:57:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjFAXbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 19:31:43 -0400
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33AE51A2;
-        Thu,  1 Jun 2023 16:31:15 -0700 (PDT)
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-774924b7c4dso19088339f.1;
-        Thu, 01 Jun 2023 16:31:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685662274; x=1688254274;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=cb1CfXzrs6lfSi6zBUOFLpr0Hb+1fAVic93bHB6hbRY=;
-        b=c9w2p5UTbkkrsjfXYQB3uYYVhYZIEJyDZRA60DBLj4NQM6o5sV6Mqcwi96FBvyyzPK
-         UL9hjm4rkSZr2N/uGTTt7Te2XIVFAwDhqVysPnPd1uF91R3MfZz4FhpkzlJYZCDaKWdC
-         4ywp4dhwRz4DVqRcdCBA2Cxoj3Q+7dqVNrPfisKEFF2/RzZpIi+3PT/hD29av1aL6xB5
-         /498lWjeNs3yGyL5YqF8NZhS/uGbi6/16P+fSm5IyYK+PV4qu5dylNimPAG8P26WBbVQ
-         3KWSnQYlEhg7ii3DPNW3QR0hQd1N7bwfDS3xyfa7f5nuI+avrT0zsk2yTL/uB7okIb2Q
-         Rb0Q==
-X-Gm-Message-State: AC+VfDzE+hhmFWeYwe95670ap3wm6qTyJoLJr/TxjYoMTTOGJ11G781B
-        9p5HL73/zYuPlw8KWKukyg==
-X-Google-Smtp-Source: ACHHUZ7KuUx3HpNpCs9tLCFhl7zyHSWtos++Yn9HCL/4MuIL0XWFVJLJNNAME44mwEOW+VqD1lLqrg==
-X-Received: by 2002:a6b:a04:0:b0:76c:c701:2f77 with SMTP id z4-20020a6b0a04000000b0076cc7012f77mr857930ioi.3.1685662274343;
-        Thu, 01 Jun 2023 16:31:14 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id k13-20020a056638370d00b0041ac54cbc60sm2507403jav.56.2023.06.01.16.31.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 16:31:13 -0700 (PDT)
-Received: (nullmailer pid 680122 invoked by uid 1000);
-        Thu, 01 Jun 2023 23:31:10 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229490AbjFAX5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 19:57:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47BCA136;
+        Thu,  1 Jun 2023 16:57:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D0A6864B02;
+        Thu,  1 Jun 2023 23:57:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE49FC433EF;
+        Thu,  1 Jun 2023 23:57:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685663859;
+        bh=NkkzfKpwW/saf1KcEfWJB55yAVfjvnM8hrbEMy081KY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DoNOCSDA9/nA+8zVLQZuV0+47vz27fi9pY+F4kR5iYfADTdGEl5ipeEYx7pxLU54v
+         bJ+FFLhZH9Poc7QKyXDTWYJV/Xh4+TpYCoy+tHKk3+KCS6F9SF/uOAeLEsd1gZ9Elw
+         fJWCwrRlJ3r7MIUuMygyfB4m7vw00zD/eLAAYtmWhNg80AbZsqCMASlNV2m6jQOIfO
+         E/sS+XQZAjSVHonoE8iLiPo7MUwqCt26NUshMCScUncqSyzXsVKAO3YZ62J/SwW3su
+         qIOSch2vXeez84KAZjChYTQPGeRZQm/lz8/PeIWyY0vquc4SWYM+me53YyxRe1C8sX
+         h3uRH9O32bqvw==
+Message-ID: <fe8bfbfc-0ce5-d4ea-a2a8-8608fe4e2f97@kernel.org>
+Date:   Fri, 2 Jun 2023 08:57:37 +0900
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        linux-iio@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v1 25/43] dt-bindings: ata: Add Cirrus EP93xx
+Content-Language: en-US
+To:     Nikita Shubin <nikita.shubin@maquefel.me>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
         Arnd Bergmann <arnd@arndb.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        linux-sunxi@lists.linux.dev,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>
-In-Reply-To: <20230601223104.1243871-3-bigunclemax@gmail.com>
-References: <20230601223104.1243871-1-bigunclemax@gmail.com>
- <20230601223104.1243871-3-bigunclemax@gmail.com>
-Message-Id: <168566227051.680105.5733105640586356762.robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add Allwinner
- D1/T113s/R329/T507 SoCs GPADC
-Date:   Thu, 01 Jun 2023 17:31:10 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Michael Peters <mpeters@embeddedTS.com>,
+        Kris Bahnsen <kris@embeddedTS.com>, linux-ide@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+ <20230601054549.10843-7-nikita.shubin@maquefel.me>
+From:   Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <20230601054549.10843-7-nikita.shubin@maquefel.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 02 Jun 2023 01:30:40 +0300, Maksim Kiselev wrote:
-> From: Maxim Kiselev <bigunclemax@gmail.com>
+On 6/1/23 14:45, Nikita Shubin wrote:
+> Add YAML bindings for ep93xx SoC PATA.
 > 
-> Allwinner's D1/T113s/R329/T507 SoCs have a new general purpose ADC.
-> This ADC is the same for all of this SoCs. The only difference is
-> the number of available channels.
-> 
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 > ---
->  .../iio/adc/allwinner,sun20i-d1-gpadc.yaml    | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
 > 
+> Notes:
+>     v0 -> v1:
+>     
+>     - renamed file to ep9312-pata
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Looks OK to me but given that this is both for the cirrus,ep9315-pata and
+cirrus,ep9312-pata, wouldn't it be better to name the file
+cirrus,ep931x-pata.yaml ?
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml: 'maintainers' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dts:33.15-25: Warning (reg_format): /example-0/adc@2009000/channel@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dts:37.15-25: Warning (reg_format): /example-0/adc@2009000/channel@1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dts:32.23-34.15: Warning (avoid_default_addr_size): /example-0/adc@2009000/channel@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dts:32.23-34.15: Warning (avoid_default_addr_size): /example-0/adc@2009000/channel@0: Relying on default #size-cells value
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dts:36.23-38.15: Warning (avoid_default_addr_size): /example-0/adc@2009000/channel@1: Relying on default #address-cells value
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dts:36.23-38.15: Warning (avoid_default_addr_size): /example-0/adc@2009000/channel@1: Relying on default #size-cells value
-Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+>     - changed email to dlemoal@kernel.org
+>     - dropped label
+>     - fixed ident
+> 
+>  .../bindings/ata/cirrus,ep9312-pata.yaml      | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+> new file mode 100644
+> index 000000000000..3489be55a6fe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ata/cirrus,ep9312-pata.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logic EP9312 PATA controller
+> +
+> +maintainers:
+> +  - Damien Le Moal <dlemoal@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: cirrus,ep9312-pata
 
-doc reference errors (make refcheckdocs):
+I am not a DT specialist, but isn't this line superfluous since it is listed in
+the items ?
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230601223104.1243871-3-bigunclemax@gmail.com
+> +      - items:
+> +          - const: cirrus,ep9315-pata
+> +          - const: cirrus,ep9312-pata
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    ide@800a0000 {
+> +      compatible = "cirrus,ep9312-pata";
+> +      reg = <0x800a0000 0x38>;
+> +      interrupt-parent = <&vic1>;
+> +      interrupts = <8>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&ide_default_pins>;
+> +    };
+> +
+> +...
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+Damien Le Moal
+Western Digital Research
 
