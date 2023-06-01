@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE79A7197F7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 11:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A146E719805
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232445AbjFAJ6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 05:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
+        id S232625AbjFAJ7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 05:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232605AbjFAJ6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 05:58:41 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5D118B
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 02:58:40 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f5021faa16so682974e87.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 02:58:40 -0700 (PDT)
+        with ESMTP id S232727AbjFAJ7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 05:59:21 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C755312F
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 02:59:13 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51494659d49so1001305a12.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 02:59:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685613519; x=1688205519;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NqAsn5Q85J3c7XSLh3IAE2t7rNKZWZ7VbEFAEiDLDYA=;
-        b=agcTDv9a1g00uH7eoyOcguszWGCywHuqzxV+NZUp012NODJleh9Y5z6ptVNYgSdmtX
-         8F+TXH5LNrlnF0kTdnei8T+PE4y7PWFCLJEuvkUrLP7arJe74gH2s9HMVLHopLe/Dm6T
-         ixDYDVag5R4OGMb97zZ+Ge2fKkBYBJ+yGZsjG1o6ADwvfq0p+ukMh1frxUVu2Cazdxe/
-         CVR1NTMnVnetB8X0HAd548kZ0xJJwf3ioefwC3QKnWw5YpzkGfleyqj8S9PMg6XIGY/j
-         ZFuMJ8Gta7UC6Q1k/SNCmPtAC1xAerVi64SWB2ThLqtGQvuZeDicTddV61Vxtxbd44N4
-         3M3Q==
+        d=linaro.org; s=google; t=1685613552; x=1688205552;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=90Gu+poX8fKoB/oDjzLzAZDuwhhlwN9OQimMwgRQWp4=;
+        b=iM8LO+FPwTHgjFORfknFCDDjXMCN2xMBI+2u+Ik/H0rhbGttDgWLwFWhgV7GidR1EJ
+         rT6uT9O6KV8yJ1zVK1wy3YY1eN2aY9T+KNEqoDB9S9q+ALh5koKj0ZcZg7K3qnr8a3TS
+         mMqOuQNhrbdoYz7kJFD4qlolN2dXiGlGU9TFlTWcjlSBIeKE+t2qyN/bJpQY/mKW9nJc
+         OWII9OiOktwbOH/ooYR18Gu5H9ENNz6JdXBobJpeBcrKbUaZcvlrqW4zd+LP3xs3nSxY
+         Q8YzxYUo4cxMOj5Rz1DEnWj27tc4Y74KZFM4ZzRujD87iDPWXQrdnu4efzE7m37QlORd
+         CT7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685613519; x=1688205519;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NqAsn5Q85J3c7XSLh3IAE2t7rNKZWZ7VbEFAEiDLDYA=;
-        b=V/N57QP1+7/vojW0SBJvWgC+j7fDSzUZplq79V6Wfr/u4HQdq3PCn2Am0Wc7Sdrsxz
-         SZa36CkTMDLyHChFOFDojsBUIgOD37orCLEe/1c59yxlXYjnPdovrvV7dCVIH58Qdxbg
-         RWWKhtH1szDWYzj/vp/Yd84JImp6JHGvsg711MWq6RFWpmFUuHpxz7YnE8vBXO9oWCaK
-         2+svcV5OsABfqqjEB6fuBrhgC5G7Q32mQgbjT78GTO5fGN9nWijyTCe8YpnMqI2F/PfA
-         uvAKNzvhCIiHw2AV48w0yXyPX8tTPRiXpq7lzezsIqiigxoLkYx6z8NhN6EaQT309CXl
-         bfIg==
-X-Gm-Message-State: AC+VfDxgOmwvpBSAVVXAvGeNtyRLQrNmBKHPb12lpfioRO1kBKrvwCL+
-        xDdUbmjHMbPmRWMvFldKD/Csag==
-X-Google-Smtp-Source: ACHHUZ4iFrRTM8PObxaqSl3SWf3yJ3DQfdOVEwYZ4x8BW9seDxRuGv7X4OG8uoX/OTH8pDwEkMWAmg==
-X-Received: by 2002:ac2:548e:0:b0:4f2:6656:d602 with SMTP id t14-20020ac2548e000000b004f26656d602mr980878lfk.9.1685613518782;
-        Thu, 01 Jun 2023 02:58:38 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id g8-20020a19ac08000000b004f1400630d3sm1037217lfc.35.2023.06.01.02.58.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 02:58:37 -0700 (PDT)
-Message-ID: <4c565a7b-3041-e3f3-7174-282348b74575@linaro.org>
-Date:   Thu, 1 Jun 2023 11:58:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: add display port nodes
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1685613552; x=1688205552;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=90Gu+poX8fKoB/oDjzLzAZDuwhhlwN9OQimMwgRQWp4=;
+        b=JBeTZWxBYGBbUViFw6ldqDJrWWgpQftcDDe3tfeEX2wOJ0y37vVJu9hWlFQBN1KFEW
+         u1JY5HCT1bXNI5wvLkJXqtxIdXAkEL8yCkgQ4At2zsv2dN3h/0noSQwv4tvReXIFTabB
+         IYMQrhoGwuyuc3EDmOw5IeTyYDbyAJEmVZx48gqf4Axph5f/dVYlaEOpGU3+R7vwxSbj
+         /xgsyTBMeMkb/V33IKrj5GaSCsBVSsH6CO+o0cNdYqbJPGY9QbLr7fIrTLyJXg6V0jC/
+         LQVJGztTb40bAaszjvntkPda60MGJiFwzt7FbbA1Ws8DgQCYhSGucPr9RS/Npe/SYdva
+         4FEg==
+X-Gm-Message-State: AC+VfDyK/jBiBw2MLyxz5iwjwQWMN1Lvr7G0fnz2zZH0RzUnUtIZ/Lqd
+        RxcjmTAPoVJhYErBgNc0amWaGQ==
+X-Google-Smtp-Source: ACHHUZ6Q1hQXvbyzsDG+IHmi111NeKcnhKLafRhBIRJoDPR46b5dmWgA63foRAXbsa1b46P3eS2Jzg==
+X-Received: by 2002:a17:907:7213:b0:974:1e0e:9bd4 with SMTP id dr19-20020a170907721300b009741e0e9bd4mr6983394ejc.16.1685613551711;
+        Thu, 01 Jun 2023 02:59:11 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id y11-20020a1709060a8b00b00965bf86c00asm10475549ejf.143.2023.06.01.02.59.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jun 2023 02:59:11 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230601-topic-sm8550-upstream-dp-v1-0-29efe2689553@linaro.org>
- <20230601-topic-sm8550-upstream-dp-v1-2-29efe2689553@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230601-topic-sm8550-upstream-dp-v1-2-29efe2689553@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Keiji Hayashibara <hayashibara.keiji@socionext.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] spi: dt-bindings: allwinner: simplify with unevaluatedProperties
+Date:   Thu,  1 Jun 2023 11:59:06 +0200
+Message-Id: <20230601095908.563865-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,140 +80,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Remove properties already mentioned by common spi-controller.yaml and
+switch to unevaluatedProperties:false to achieve same functional effect.
+This makes the binding a bit smaller.  Similarly there is no need to
+allow additionalProperties for children, because spi-controller.yaml
+already does it.
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/spi/allwinner,sun4i-a10-spi.yaml  | 8 +-------
+ .../devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml  | 8 +-------
+ 2 files changed, 2 insertions(+), 14 deletions(-)
 
-On 1.06.2023 11:52, Neil Armstrong wrote:
-> Add the Display Port controller subnode to the MDSS node.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 89 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 87 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 75cd374943eb..73524afc2e3a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -2495,6 +2495,13 @@ dpu_intf2_out: endpoint {
->  							remote-endpoint = <&mdss_dsi1_in>;
->  						};
->  					};
-> +
-> +					port@2 {
-> +						reg = <2>;
-> +						dpu_intf0_out: endpoint {
-> +							remote-endpoint = <&mdss_dp0_in>;
-> +						};
-> +					};
->  				};
->  
->  				mdp_opp_table: opp-table {
-> @@ -2522,6 +2529,84 @@ opp-514000000 {
->  				};
->  			};
->  
-> +			mdss_dp0: displayport-controller@ae90000 {
-> +				compatible = "qcom,sm8550-dp", "qcom,sm8350-dp";
-> +				reg = <0 0xae90000 0 0x200>,
-> +				      <0 0xae90200 0 0x200>,
-> +				      <0 0xae90400 0 0xc00>,
-> +				      <0 0xae91000 0 0x400>,
-> +				      <0 0xae91400 0 0x400>;
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <12>;
-> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-> +				clock-names = "core_iface",
-> +					      "core_aux",
-> +					      "ctrl_link",
-> +					      "ctrl_link_iface",
-> +					      "stream_pixel";
-> +
-> +				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-> +						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-> +				assigned-clock-parents = <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> +							 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-> +
-> +				phys = <&usb_dp_qmpphy QMP_USB43DP_DP_PHY>;
-> +				phy-names = "dp";
-> +
-> +				#sound-dai-cells = <0>;
-> +
-> +				operating-points-v2 = <&dp_opp_table>;
-> +				power-domains = <&rpmhpd SM8550_CX>;
-MMCX
+diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun4i-a10-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun4i-a10-spi.yaml
+index 2155478bfc4d..a6f34bdd1d3c 100644
+--- a/Documentation/devicetree/bindings/spi/allwinner,sun4i-a10-spi.yaml
++++ b/Documentation/devicetree/bindings/spi/allwinner,sun4i-a10-spi.yaml
+@@ -14,9 +14,6 @@ maintainers:
+   - Maxime Ripard <mripard@kernel.org>
+ 
+ properties:
+-  "#address-cells": true
+-  "#size-cells": true
+-
+   compatible:
+     const: allwinner,sun4i-a10-spi
+ 
+@@ -46,12 +43,9 @@ properties:
+       - const: rx
+       - const: tx
+ 
+-  num-cs: true
+-
+ patternProperties:
+   "^.*@[0-9a-f]+":
+     type: object
+-    additionalProperties: true
+     properties:
+       reg:
+         items:
+@@ -71,7 +65,7 @@ required:
+   - clocks
+   - clock-names
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+index fa5260eca531..28b8ace63044 100644
+--- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
++++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+@@ -14,9 +14,6 @@ maintainers:
+   - Maxime Ripard <mripard@kernel.org>
+ 
+ properties:
+-  "#address-cells": true
+-  "#size-cells": true
+-
+   compatible:
+     oneOf:
+       - const: allwinner,sun50i-r329-spi
+@@ -68,12 +65,9 @@ properties:
+       - const: rx
+       - const: tx
+ 
+-  num-cs: true
+-
+ patternProperties:
+   "^.*@[0-9a-f]+":
+     type: object
+-    additionalProperties: true
+     properties:
+       reg:
+         items:
+@@ -93,7 +87,7 @@ required:
+   - clocks
+   - clock-names
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.34.1
 
-> +
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						mdss_dp0_in: endpoint {
-> +							remote-endpoint = <&dpu_intf0_out>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						mdss_dp0_out: endpoint {
-> +						};
-> +					};
-> +				};
-> +
-> +				dp_opp_table: opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					opp-162000000 {
-> +						opp-hz = /bits/ 64 <162000000>;
-> +						required-opps = <&rpmhpd_opp_low_svs>;
-_d1
-
-> +					};
-> +
-> +					opp-270000000 {
-> +						opp-hz = /bits/ 64 <270000000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-low_svs
-
-With these fixed:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
-> +					};
-> +
-> +					opp-540000000 {
-> +						opp-hz = /bits/ 64 <540000000>;
-> +						required-opps = <&rpmhpd_opp_svs_l1>;
-
-> +					};
-> +
-> +					opp-810000000 {
-> +						opp-hz = /bits/ 64 <810000000>;
-> +						required-opps = <&rpmhpd_opp_nom>;
-> +					};
-> +				};
-> +			};
-> +
->  			mdss_dsi0: dsi@ae94000 {
->  				compatible = "qcom,sm8550-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->  				reg = <0 0x0ae94000 0 0x400>;
-> @@ -2705,8 +2790,8 @@ dispcc: clock-controller@af00000 {
->  				 <&mdss_dsi0_phy 1>,
->  				 <&mdss_dsi1_phy 0>,
->  				 <&mdss_dsi1_phy 1>,
-> -				 <0>, /* dp0 */
-> -				 <0>,
-> +				 <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> +				 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
->  				 <0>, /* dp1 */
->  				 <0>,
->  				 <0>, /* dp2 */
-> 
