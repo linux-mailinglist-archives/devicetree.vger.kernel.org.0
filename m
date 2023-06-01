@@ -2,154 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC3117190B7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 04:54:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5972C7190D0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 05:03:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229672AbjFACyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 22:54:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
+        id S231346AbjFADDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 23:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjFACyh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 22:54:37 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2046.outbound.protection.outlook.com [40.107.21.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AECF107;
-        Wed, 31 May 2023 19:54:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F60Xtx2Q8c+SO9Ut10hVKDhetlTrTJWLU9uPOs/Ipa1t5vTn4DUfTCmW+m5+mpnmI/fkKuy8boaVUXg1A1R85WeTQoRWVnt+jQAUAz2fzjMd79FMcswF6M5BL/NyxnXJAhnHv9CnegS8p9qshIBnklarVnB3betuCJkIKHrNnND4R0bgZ/spGYtxSiWwRubZBTeSOKLWvvmzIPDl7GkiB7FzSQAAtLGUFot9vxXO+W5gkQV9/8lW9z9sgRuXbqOh8KxLYE/g1dKv1F3bDRq5JCOI+le1ITVynl4jnoBWXVkGZQBCyf4KfRDDg52tCVv9Zagq6KB+KP1HIY+r5iVYaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s8o8751T+8Ru8lfN8i65+ilZIEgLiS/3bbtu4X5NUGA=;
- b=A/tRL8LNrmDjNtadS3ICXiBXRHHX0yqFsOxoHYkXh137y91Gkp3Fmux9N0jNofMwf9HU0s+w2GmEna4/ZZaHHzy44bzeDiOUJ1e4vNQmS2CoFD3ZbFnAIlSEDVZOtMl7MIOF2NKX4XTlgoqRpHWcgAhhi8xYO0xfi9d0UEZNxKC420L51SUknU4tlWAp17fV2LNzdaglKC4ecK8ETHE9F5I60C3Aa0NheLmFJ47urCT1SIM1hiAR6I6oIkoQ5hzdYjiSTzglxgUZGwIwlw7eHHSLHJ2rBZ/f145YYrq19fV1pj8m3DtXz+zkY+DaA5z2UXfrNGCesmtO7luMaFbMPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s8o8751T+8Ru8lfN8i65+ilZIEgLiS/3bbtu4X5NUGA=;
- b=mHWK3yT/0TVf/1VMX0yUBZ/QMoVVYbY0sfiPxXiVRYemv9yXHJvFwJ0qsSWnPcbkKaTjplBrpuuHFmhCHJSuqX62/uubqsAhz5hkSIxODabVd0rSjmF02PBtCnUxWs5zKmll+WkqNZgSI7rbhnGtW1xOCj/RSoyvnk3MkkUnaN0=
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
- AS8PR04MB8466.eurprd04.prod.outlook.com (2603:10a6:20b:349::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6455.22; Thu, 1 Jun 2023 02:54:33 +0000
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4]) by DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4%7]) with mapi id 15.20.6433.024; Thu, 1 Jun 2023
- 02:54:33 +0000
-From:   Xu Yang <xu.yang_2@nxp.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "peter.chen@kernel.org" <peter.chen@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>, Jun Li <jun.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>
-Subject: RE: [EXT] Re: [PATCH 1/2] dt-bindings: usb: ci-hdrc-usb2: add
- fsl,imx8ulp-usb compatible
-Thread-Topic: [EXT] Re: [PATCH 1/2] dt-bindings: usb: ci-hdrc-usb2: add
- fsl,imx8ulp-usb compatible
-Thread-Index: AQHZkuNqnZ4onfW7gEu26w5L04zA/690o2IAgACd5lA=
-Date:   Thu, 1 Jun 2023 02:54:33 +0000
-Message-ID: <DB7PR04MB45053665C02CA40E1B4635C38C499@DB7PR04MB4505.eurprd04.prod.outlook.com>
-References: <20230530104007.1294702-1-xu.yang_2@nxp.com>
- <55751ab6-4f6b-6d9f-c090-8216c5f5f357@kernel.org>
-In-Reply-To: <55751ab6-4f6b-6d9f-c090-8216c5f5f357@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB7PR04MB4505:EE_|AS8PR04MB8466:EE_
-x-ms-office365-filtering-correlation-id: bdff4858-6a2a-4472-186a-08db624b8731
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Qonj4Yolzk8XKocltQ9uZL0E2o3B9653KL8QXgs83o8CBjab81d5ePtUc2kgTGd3SANEMpAuiHHsjf3AR+Z8i5cObmtE4amEjJ3mcY9vOeLP/uHlxtqL9+DUKZm+saE3yoYH8hm5/YPcdorxMy1EZXiTR6MZpI9ZM2fJucoXd7DvA7XkE6Iv9DjA++3ps3YA4wjmWqlT3xi3If45F8WqJsPSFv1BpYAXzfJiHOQv8iMexlB7sLv99rlBYw9dtkVbdIL1iGCdGbH6IY/IjUNkuUV4qZubvccgYmHHjpqSuPgGx/2eVnfQKdWuHHc0AK2C860tLYR5dcAun7mhxkdndKjkOZWzRNd9SqI58exaZ06+bzOrpPVxpB3lviFUUXL0WdQDpZ47I5clBIdI0j9YnrmYaA5g8KfBYAhkIdXAlBvlht2D/2JM0cqVteRPIkt+JAkgHDiyvwzRlKvwqbLXn8hHA3GSdQ0aDkyJC67tMwQdCRRjmH0q0RQ6uPeE4/oSxgTWDqYafOekRYktVL89xRucVTB0ncaHXOgRZr5IU6WNNv5NvnpiBhG31vXoWA4W41HvlVmVnixrtp0T/wdFFYqzGG6Siyqa3DadVaGVnbqiz0JyZIrT1XJ/rRpw6wIb
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(346002)(136003)(376002)(39860400002)(396003)(451199021)(110136005)(54906003)(8676002)(8936002)(66556008)(76116006)(2906002)(4326008)(66946007)(64756008)(66476007)(66446008)(316002)(41300700001)(5660300002)(52536014)(478600001)(71200400001)(7696005)(33656002)(122000001)(6506007)(9686003)(53546011)(186003)(55016003)(26005)(83380400001)(86362001)(38070700005)(38100700002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QjNnU1UrdjNibTBpdWRPRVZUdnk3b2NoRnlDaGNVRmVheDNpQ1grYmhOS2NB?=
- =?utf-8?B?UnRKc2ppelMwemNJUXluMlphS0M0QTQxV1R0RmNJUUhEUUtwOWJIeUFEOTNY?=
- =?utf-8?B?cFdYV0ZqODFkdkhxN2xZK0RzTmRZcS9nZnY2SkxoK0g4bmdZcmtvY2ZaQjVk?=
- =?utf-8?B?UzR1eXlMWjVoM2M5YjQwaEhGOUpIa2hKYk1kTTBTMHdhcWRNSE1Fc2JNN3N6?=
- =?utf-8?B?a21XWmo2b1I1UnFpOVBnM0lOVU1pOGlrV05ZK3BDNU8wTmtKSEhHTUVXS1RX?=
- =?utf-8?B?RVdtcDNPUjFRa2VKYzZ0ZzJNaVZaU0p5V3k2TkNrRUtWSnRTK2VFbGZoMGlq?=
- =?utf-8?B?RzdOTFZlN2g3YzFwa3RyV1EyWDRETVhacTZmNnNxbnlWYmliZmxxQXl0ZThv?=
- =?utf-8?B?NFNUMjdRMTV0VlVVRXdyUS94VVhNKzdPakYzMXRIRmVLZjdRZ25HdGRIL3RD?=
- =?utf-8?B?SXByRlFkYXNRUVdibGc0bzM2NVliSEM0SklIYk1Dbm4zc1B3ZWt1bVhtNGpP?=
- =?utf-8?B?cW1DMVZaa2ZSejRMK2RENXd3Q3daaERPNVVTR3FpTWszOEk1M3pOUWt6RHNs?=
- =?utf-8?B?UUJhbWFlZXpCc3BvLzBRc1NQZGVaRnoxWXpSU3h2NEVyV0NQckduM0o4OExE?=
- =?utf-8?B?V2hsSnVDOEl5ZHZBNjBGVWgrZzY1Z21tRW5Rall0Wm84bmgvTGRFU1k1Y2FK?=
- =?utf-8?B?MGg2M0FPdXlyNllZc3lmVTJjbHJtMXhjTWt5dVRpa1dCaGhDRVdmR2pvU0V1?=
- =?utf-8?B?UHVBV20za3lYb0hyM21udVU5WUtCai9kY1gydEVPVDBBeSs2emhwMGpiWExT?=
- =?utf-8?B?bXlpclBNR0Y2OEVKZzF6WW9aN040cWJMR0JQWHUrWHczZUkxc1NnTmxRKzVt?=
- =?utf-8?B?L2xYSlg5Z0pveDBDbmhkM2ZqbW5zSmhXMTh6bXl1bXI4U0xNRXR6N2hneVU1?=
- =?utf-8?B?dUdBdWM2RVg1Tmo0Zm5paEVBYnhDZ3RVVkRvakRndTBET1NPSG15RG9odkVJ?=
- =?utf-8?B?dit2dnNueTM0Ym5tTVIvMU5uSHlkRW9uemQ2TWZkMzA5anJIMWM4VmMvZlZF?=
- =?utf-8?B?eHhlNVlySGI0MzdKTlBqUENydjFTNVQ1di8yQWtYYlpSZkZGdlViQnhtSXBr?=
- =?utf-8?B?SDZ0NTB2NXgrVk9oQkdNdk83dERNekhmSVFNOWM0Z3lUSHlZU1BYQlZkN1Mz?=
- =?utf-8?B?VkUzSkV3UnNIbStxRUNCbHFBVno4OEhjM2ZMbnI1QlZpMGJLN3E5QTcvVWN5?=
- =?utf-8?B?L3M5cmd5a2xwSkVLNVdPUnZQbnBVc09hTjFjbW9SNFZKRC9kQ3V5MURTWGsr?=
- =?utf-8?B?SmlmWlJ1aGpiUUdxeG95UndneFNpdFRtbThtcEtpdWtneXB2Y3EySEZHekkr?=
- =?utf-8?B?RnlobXpydUtISEJ0bmZlMjVoZmJSaUJ6RlBsSDdOaWQySy9yNHZ1NXd5dEdU?=
- =?utf-8?B?SCtmWDBsOVNva1AwenFZa0lLRzdvaWsrRk1iZmRpL0dUSWFLUVBiMzBCSy9z?=
- =?utf-8?B?UDd1YnFPYlVsUlA1bm1WdjJ4MVp1OHRFQlJIcnNPSWprMStTWUYwMHpiSndo?=
- =?utf-8?B?KzFwalJvQTJsS200L3NEaVpVdzdIY0Nsbm55OUZEVDQrSUd6c015VXZzUTI2?=
- =?utf-8?B?NXdobllvL3RWSDhzUk5JWDVQUVBDbEVkbVY5VTJiU2RsZWdsdnNnZm1CaWZO?=
- =?utf-8?B?aE0xNGFsZmFxZ2NveXJ4RXJoM0pvRmRLYk9qc01xN2tKNm5taXdhM3hxT1p1?=
- =?utf-8?B?cHFLMFhNVVUxWDFpbFVoUkU3V1hqS0Z6V3BwTG8xOVFwb291QXFnSklDTVN2?=
- =?utf-8?B?MFYvd1VTRWg1YWRGTmpIS2E3OUlIOXJlS2JiRnpxTWhDRngyczJWWGJ3M1V3?=
- =?utf-8?B?RXBrT0xjemNpRGtpN3hJeHVmVzlmblBYeDI0dmxiUDdLV2NwUDQ5K0ZDNmMz?=
- =?utf-8?B?QkZkcjk4WTh3dTBhbE1zMUdnYTJUMTNyK2ZlWDdxNjdvY1hCRExjbEN0Y1RT?=
- =?utf-8?B?UVlEUDVIa0syM3UrdlRlMFJESkNjNjBEcDF5QmZ1azlueUVxbXQ0enBGL01T?=
- =?utf-8?B?VnNiaGI3Y0h2OUZGOUc2Zk9XV1pjUUtaTnd6VFIzZmRCdDZkWjRUTUZBb0tP?=
- =?utf-8?Q?8fkM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229499AbjFADDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 23:03:20 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E504A1B3;
+        Wed, 31 May 2023 20:03:06 -0700 (PDT)
+X-UUID: d1108076002811ee9cb5633481061a41-20230601
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=CYLsdOowmiKrG5+stxCtlfifwV95BW1Eoq5bLlyFJ4I=;
+        b=fGac+bOV99SfTEkCzETooByav4McVA/nf3mXGUZ6PJCrmscMqMRoiCW1cMO+PkKnzxY1VKg57TzDE+USxso/9AJsjReO8g1IGeA4TyzVq96D8bY4T49nEIkvrgT9KjbOC+Z7QUpPZCAFpBiKHpUwge2l+yNgCv4Z0O5zU4bRi9Q=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.25,REQID:9c9f4e11-bdd1-4f97-b63b-e464682dd562,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:d5b0ae3,CLOUDID:b772333d-7aa7-41f3-a6bd-0433bee822f3,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: d1108076002811ee9cb5633481061a41-20230601
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 670926227; Thu, 01 Jun 2023 11:03:00 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 1 Jun 2023 11:02:58 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 1 Jun 2023 11:02:57 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
+CC:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 0/8] media: mediatek: vcodec: separate encoder and decoder
+Date:   Thu, 1 Jun 2023 11:02:48 +0800
+Message-ID: <20230601030256.29875-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bdff4858-6a2a-4472-186a-08db624b8731
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jun 2023 02:54:33.3110
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f0GjNCqQMTceW5vB/vYgaLaqwxCMRbcoJKKua87G9YXCmOTeE3iu5rfyns5pHjrvpy0vWndWxOTqJjp9t/qbeQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8466
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEtyenlzenRvZiBLb3psb3dz
-a2kgPGtyemtAa2VybmVsLm9yZz4NCj4gU2VudDogVGh1cnNkYXksIEp1bmUgMSwgMjAyMyAxOjIz
-IEFNDQo+IFRvOiBYdSBZYW5nIDx4dS55YW5nXzJAbnhwLmNvbT47IHBldGVyLmNoZW5Aa2VybmVs
-Lm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnDQo+IENjOiBncmVna2hAbGludXhmb3VuZGF0aW9uLm9y
-ZzsgbGludXgtdXNiQHZnZXIua2VybmVsLm9yZzsgZGwtbGludXgtaW14IDxsaW51eC1pbXhAbnhw
-LmNvbT47IEp1biBMaSA8anVuLmxpQG54cC5jb20+Ow0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVs
-Lm9yZzsgUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+DQo+IFN1YmplY3Q6IFtFWFRdIFJlOiBb
-UEFUQ0ggMS8yXSBkdC1iaW5kaW5nczogdXNiOiBjaS1oZHJjLXVzYjI6IGFkZCBmc2wsaW14OHVs
-cC11c2IgY29tcGF0aWJsZQ0KPiANCj4gQ2F1dGlvbjogVGhpcyBpcyBhbiBleHRlcm5hbCBlbWFp
-bC4gUGxlYXNlIHRha2UgY2FyZSB3aGVuIGNsaWNraW5nIGxpbmtzIG9yIG9wZW5pbmcgYXR0YWNo
-bWVudHMuIFdoZW4gaW4gZG91YnQsIHJlcG9ydCB0aGUNCj4gbWVzc2FnZSB1c2luZyB0aGUgJ1Jl
-cG9ydCB0aGlzIGVtYWlsJyBidXR0b24NCj4gDQo+IA0KPiBPbiAzMC8wNS8yMDIzIDEyOjQwLCBY
-dSBZYW5nIHdyb3RlOg0KPiA+IFRoZSBpbXg4dWxwIGFuZCBpbXg4ZHhsIGFyZSBjb21wYXRpYmxl
-LiBUaGlzIHdpbGwgYWRkIGZzbCxpbXg4dWxwLXVzYg0KPiA+IHRvIHRoZSBjb21wYXRpYmxlIHBy
-b3BlcnR5Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogWHUgWWFuZyA8eHUueWFuZ18yQG54cC5j
-b20+DQo+IA0KPiBQbGVhc2UgdXNlIHNjcmlwdHMvZ2V0X21haW50YWluZXJzLnBsIHRvIGdldCBh
-IGxpc3Qgb2YgbmVjZXNzYXJ5IHBlb3BsZQ0KPiBhbmQgbGlzdHMgdG8gQ0MuICBJdCBtaWdodCBo
-YXBwZW4sIHRoYXQgY29tbWFuZCB3aGVuIHJ1biBvbiBhbiBvbGRlcg0KPiBrZXJuZWwsIGdpdmVz
-IHlvdSBvdXRkYXRlZCBlbnRyaWVzLiAgVGhlcmVmb3JlIHBsZWFzZSBiZSBzdXJlIHlvdSBiYXNl
-DQo+IHlvdXIgcGF0Y2hlcyBvbiByZWNlbnQgTGludXgga2VybmVsLg0KDQpPa2F5LCBJIGdvdCBp
-dC4NCg0KVGhhbmtzLA0KWHUgWWFuZw0KDQo+IA0KPiANCj4gQWNrZWQtYnk6IEtyenlzenRvZiBL
-b3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gDQo+IEJlc3QgcmVn
-YXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
+With the driver more and more complex, encoder and decoder need to add more parameter
+in shared struct 'mtk_vcodec_ctx' and 'mtk_vcodec_dev'. Encoder use about 40% and
+decoder use 60% parameter. Need to allocate extra unused memory when encoder and decoder
+working.
+
+Separate encoder and decoder in different folder and use independent data struct.
+
+patch 1 remove unused parameter.
+patch 2~3 align fw and interrupt related interface.
+patch 4 remove the dependency of debug log
+patch 5~6 separate mtk_vcodec_ctx and mtk_vcodec_dev
+patch 7 removed unused header files
+patch 8 separate encoder and decoder in different folder
+---
+Yunfei Dong (8):
+  media: mediatek: vcodec: remove unused parameter
+  mediatek: vcodec: align fw interface
+  mediatek: vcodec: re-write shared interface
+  mediatek: vcodec: remove the dependency of debug log
+  mediatek: vcodec: separate struct mtk_vcodec_ctx
+  mediatek: vcodec: separate struct mtk_vcodec_dev
+  mediatek: vcodec: remove unused include header
+  mediatek: vcodec: separate decoder and encoder
+
+ .../media/platform/mediatek/vcodec/Makefile   |  55 +--
+ .../mediatek/vcodec/mtk_vcodec_intr.c         |  43 --
+ .../mediatek/vcodec/mtk_vcodec_util.h         |  83 ----
+ .../mediatek/vcodec/video-common/Makefile     |  21 +
+ .../vcodec/video-common/mtk_vcodec_com_drv.h  | 147 ++++++
+ .../{ => video-common}/mtk_vcodec_dbgfs.c     |  57 ++-
+ .../{ => video-common}/mtk_vcodec_dbgfs.h     |  22 +-
+ .../vcodec/{ => video-common}/mtk_vcodec_fw.c |  12 +-
+ .../vcodec/{ => video-common}/mtk_vcodec_fw.h |   6 +-
+ .../{ => video-common}/mtk_vcodec_fw_priv.h   |  14 +-
+ .../{ => video-common}/mtk_vcodec_fw_scp.c    |  16 +-
+ .../{ => video-common}/mtk_vcodec_fw_vpu.c    |  43 +-
+ .../vcodec/video-common/mtk_vcodec_intr.c     |  65 +++
+ .../{ => video-common}/mtk_vcodec_intr.h      |   6 +-
+ .../{ => video-common}/mtk_vcodec_util.c      |  77 ++--
+ .../vcodec/video-common/mtk_vcodec_util.h     |  76 ++++
+ .../mediatek/vcodec/video-decoder/Makefile    |  25 ++
+ .../{ => video-decoder}/mtk_vcodec_dec.c      |  66 ++-
+ .../{ => video-decoder}/mtk_vcodec_dec.h      |  10 +-
+ .../{ => video-decoder}/mtk_vcodec_dec_drv.c  |  31 +-
+ .../mtk_vcodec_dec_drv.h}                     | 424 ++++--------------
+ .../{ => video-decoder}/mtk_vcodec_dec_hw.c   |  10 +-
+ .../{ => video-decoder}/mtk_vcodec_dec_hw.h   |   6 +-
+ .../{ => video-decoder}/mtk_vcodec_dec_pm.c   |  19 +-
+ .../{ => video-decoder}/mtk_vcodec_dec_pm.h   |   6 +-
+ .../mtk_vcodec_dec_stateful.c                 |  33 +-
+ .../mtk_vcodec_dec_stateless.c                |  29 +-
+ .../vdec/vdec_av1_req_lat_if.c                | 101 ++---
+ .../{ => video-decoder}/vdec/vdec_h264_if.c   |  53 ++-
+ .../vdec/vdec_h264_req_common.c               |   4 +-
+ .../vdec/vdec_h264_req_common.h               |   6 +-
+ .../vdec/vdec_h264_req_if.c                   |  41 +-
+ .../vdec/vdec_h264_req_multi_if.c             |  75 ++--
+ .../vdec/vdec_hevc_req_multi_if.c             |  71 +--
+ .../{ => video-decoder}/vdec/vdec_vp8_if.c    |  57 ++-
+ .../vdec/vdec_vp8_req_if.c                    |  47 +-
+ .../{ => video-decoder}/vdec/vdec_vp9_if.c    | 136 +++---
+ .../vdec/vdec_vp9_req_lat_if.c                |  86 ++--
+ .../{ => video-decoder}/vdec_drv_base.h       |   2 +-
+ .../vcodec/{ => video-decoder}/vdec_drv_if.c  |   8 +-
+ .../vcodec/{ => video-decoder}/vdec_drv_if.h  |  10 +-
+ .../vcodec/{ => video-decoder}/vdec_ipi_msg.h |   0
+ .../{ => video-decoder}/vdec_msg_queue.c      |  12 +-
+ .../{ => video-decoder}/vdec_msg_queue.h      |  12 +-
+ .../vcodec/{ => video-decoder}/vdec_vpu_if.c  |  52 ++-
+ .../vcodec/{ => video-decoder}/vdec_vpu_if.h  |   6 +-
+ .../mediatek/vcodec/video-encoder/Makefile    |  11 +
+ .../{ => video-encoder}/mtk_vcodec_enc.c      |  85 ++--
+ .../{ => video-encoder}/mtk_vcodec_enc.h      |  12 +-
+ .../{ => video-encoder}/mtk_vcodec_enc_drv.c  |  25 +-
+ .../vcodec/video-encoder/mtk_vcodec_enc_drv.h | 245 ++++++++++
+ .../{ => video-encoder}/mtk_vcodec_enc_pm.c   |   4 +-
+ .../{ => video-encoder}/mtk_vcodec_enc_pm.h   |   4 +-
+ .../{ => video-encoder}/venc/venc_h264_if.c   |  91 ++--
+ .../{ => video-encoder}/venc/venc_vp8_if.c    |  57 ++-
+ .../{ => video-encoder}/venc_drv_base.h       |   4 +-
+ .../vcodec/{ => video-encoder}/venc_drv_if.c  |  10 +-
+ .../vcodec/{ => video-encoder}/venc_drv_if.h  |  11 +-
+ .../vcodec/{ => video-encoder}/venc_ipi_msg.h |   0
+ .../vcodec/{ => video-encoder}/venc_vpu_if.c  |  57 ++-
+ .../vcodec/{ => video-encoder}/venc_vpu_if.h  |   3 +-
+ 61 files changed, 1502 insertions(+), 1298 deletions(-)
+ delete mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.c
+ delete mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+ create mode 100644 drivers/media/platform/mediatek/vcodec/video-common/Makefile
+ create mode 100644 drivers/media/platform/mediatek/vcodec/video-common/mtk_vcodec_com_drv.h
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_dbgfs.c (77%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_dbgfs.h (64%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_fw.c (85%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_fw.h (88%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_fw_priv.h (75%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_fw_scp.c (79%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_fw_vpu.c (68%)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/video-common/mtk_vcodec_intr.c
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_intr.h (68%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-common}/mtk_vcodec_util.c (59%)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/video-common/mtk_vcodec_util.h
+ create mode 100644 drivers/media/platform/mediatek/vcodec/video-decoder/Makefile
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec.c (94%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec.h (91%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec_drv.c (94%)
+ rename drivers/media/platform/mediatek/vcodec/{mtk_vcodec_drv.h => video-decoder/mtk_vcodec_dec_drv.h} (51%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec_hw.c (95%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec_hw.h (92%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec_pm.c (90%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec_pm.h (61%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec_stateful.c (94%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/mtk_vcodec_dec_stateless.c (95%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_av1_req_lat_if.c (95%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_h264_if.c (87%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_h264_req_common.c (98%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_h264_req_common.h (97%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_h264_req_if.c (91%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_h264_req_multi_if.c (91%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_hevc_req_multi_if.c (93%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_vp8_if.c (88%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_vp8_req_if.c (87%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_vp9_if.c (87%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec/vdec_vp9_req_lat_if.c (95%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_drv_base.h (95%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_drv_if.c (90%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_drv_if.h (89%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_ipi_msg.h (100%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_msg_queue.c (97%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_msg_queue.h (96%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_vpu_if.c (79%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-decoder}/vdec_vpu_if.h (97%)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/video-encoder/Makefile
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/mtk_vcodec_enc.c (94%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/mtk_vcodec_enc.h (78%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/mtk_vcodec_enc_drv.c (95%)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/video-encoder/mtk_vcodec_enc_drv.h
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/mtk_vcodec_enc_pm.c (95%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/mtk_vcodec_enc_pm.h (78%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc/venc_h264_if.c (89%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc/venc_vp8_if.c (89%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc_drv_base.h (94%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc_drv_if.c (86%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc_drv_if.h (94%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc_ipi_msg.h (100%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc_vpu_if.c (83%)
+ rename drivers/media/platform/mediatek/vcodec/{ => video-encoder}/venc_vpu_if.h (96%)
+
+-- 
+2.25.1
+
