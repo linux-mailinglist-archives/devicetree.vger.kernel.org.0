@@ -2,70 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91038719AE4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 13:22:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12381719AFC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 13:29:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232556AbjFALWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 07:22:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36980 "EHLO
+        id S232969AbjFAL3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 07:29:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232588AbjFALWw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 07:22:52 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C187F13D
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 04:22:50 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-3f829e958bdso5611091cf.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 04:22:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685618570; x=1688210570;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sUmhHU1fbhyU+RUYWStGTJNMxjAzPmJ//EgW00C5mZw=;
-        b=eZ9To0SI50DTVI2dAf2RP1StKYs+cyEqUpAF2574fnqGhgB2TAaZ0gBa8bYXdn/j0x
-         FuBa8X6m1Y1EYf3bzxSBu2csTyMGZkE9/fuq0cSSE1h5sqzqaZhxg4bU1VFvtPSzv9lW
-         5QLOOoGgY2C/+BRg+CxZVUgRFDUMQ2vepXR8quVdyenHux1FM0wWOKni7MlZMsghXV69
-         FUODS4sK/uZiVM1aOfjh7UXurbvyBjLO3yR32V+j2o7vSqQ5w39O3/jGmJebHAl220wl
-         l2YbU4dB3dhyKQsqpA//vOIfL9sewdZswWZOJLPoyEsCk6buDMIeXHjvUR1hnxPzY0TO
-         4ZUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685618570; x=1688210570;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sUmhHU1fbhyU+RUYWStGTJNMxjAzPmJ//EgW00C5mZw=;
-        b=feJ3Oof08eGQV1vUh7Non0udGuN4OgU3E7B25o1mzBT32oIolw3rjFF2/bmp91xkZ6
-         l/o1XvIAZCIdT/h08I6BOBxXHa5vM51nJh5HFffeAetIgX8yLe/001bzpDDx1rf373WU
-         6eE5/6PkGHrIoIsQNNIqZV79jae7mEga2tili/gL603CR8h8jtss4h5s+eiKIr0kjv3W
-         U4ryd+ZCct1vXqUjIqs0Nyl/Mfq/MwF2OszelaOD/e6pc+iJuef3WX4PYdJs7oWZVSVL
-         kVgTKwqRGMS5enwq8j7t0s3of7rCSzO5jULjlK3E7v5QJ5H1q0/bONnW8vGk4aNKDwpM
-         4eTw==
-X-Gm-Message-State: AC+VfDyejoDDHV80nelV5emoPHNfeWUvPvpX9T0gN7QylxHAVA0U/nOt
-        pCezUfWzxggYfmwicakCRiRcJzwK+cc5qAT3VedurQ==
-X-Google-Smtp-Source: ACHHUZ672XhBtqgSSO+77bYpfA5o+5/XdJD5UDVXzB2ag05nisa3IUi07jZC+Cq76E6sC0H/aS/YY93daCCv9WmxO/Y=
-X-Received: by 2002:a05:622a:182a:b0:3f6:b055:81ff with SMTP id
- t42-20020a05622a182a00b003f6b05581ffmr9265467qtc.50.1685618569842; Thu, 01
- Jun 2023 04:22:49 -0700 (PDT)
+        with ESMTP id S232895AbjFAL3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 07:29:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A55123;
+        Thu,  1 Jun 2023 04:29:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 535DC643D2;
+        Thu,  1 Jun 2023 11:29:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A217CC433EF;
+        Thu,  1 Jun 2023 11:29:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685618968;
+        bh=YRpFV9EHccLiEr00ihV1MVHY1R0+dLRW9dyu9NplvMI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KSWlNENd8xqQprpGuF8Mhh0IbIukZI5MPrw5orokNRPf8E+42PK1wiHIOYFSNEf7w
+         644oct61rq004fmUbO7GU84F7lBCfbxqX+h+0hi2qsfira7vhjzDXfc0FaIh6Q5l0d
+         8MuUwpPPSMlP4/bk6jA3hdxGZkxMsjAQ/a3Pbv1tX1BFmNpNkG3LYqlA3dGOT572AV
+         T0dgJxIx+ACORWzL0Gispcl3WTq52rqE7kAzSZRgNv801uENOqemHGhLdzJm+e3/BW
+         NBkDychAbx9brsohEl9IFmkZWLcDQgIJIxVBH1iidKntxmZ815jjDVLMyl8wdbtix5
+         l6VMQctt3QhdQ==
+Date:   Thu, 1 Jun 2023 12:29:22 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Trevor Wu <trevor.wu@mediatek.com>
+Cc:     lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, amergnat@baylibre.com,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 7/7] ASoC: dt-bindings: mediatek,mt8188-mt6359: add
+ NAU8825 support
+Message-ID: <df12a113-109a-438c-9a6f-ece021550b69@sirena.org.uk>
+References: <20230526093150.22923-1-trevor.wu@mediatek.com>
+ <20230526093150.22923-8-trevor.wu@mediatek.com>
 MIME-Version: 1.0
-References: <20230530122112.1314458-1-ckeepax@opensource.cirrus.com> <20230530122112.1314458-5-ckeepax@opensource.cirrus.com>
-In-Reply-To: <20230530122112.1314458-5-ckeepax@opensource.cirrus.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 1 Jun 2023 13:22:49 +0200
-Message-ID: <CACRpkdb-jk50gO_Y-7NKQfLjPOH6ZwL37YsQJoJNfoqS+N8NVw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] pinctrl: cs42l43: Add support for the cs42l43
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, lee@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        robh+dt@kernel.org, conor+dt@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JmksfPfyy4Bj0Tfi"
+Content-Disposition: inline
+In-Reply-To: <20230526093150.22923-8-trevor.wu@mediatek.com>
+X-Cookie: Positively no smoking.
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,25 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 2:21=E2=80=AFPM Charles Keepax
-<ckeepax@opensource.cirrus.com> wrote:
 
-> The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> for portable applications. It provides a high dynamic range, stereo
-> DAC for headphone output, two integrated Class D amplifiers for
-> loudspeakers, and two ADCs for wired headset microphone input or
-> stereo line input. PDM inputs are provided for digital microphones.
->
-> Add a basic pinctrl driver which supports driver strength for the
-> various pins, gpios, and pinmux for the 2 multi-function pins.
->
-> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+--JmksfPfyy4Bj0Tfi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This version looks acceptable to me!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+On Fri, May 26, 2023 at 05:31:50PM +0800, Trevor Wu wrote:
 
-I guess it will be merged with the rest.
+> +      dai-format:
+> +        description: audio format.
+> +        items:
+> +          enum:
+> +            - i2s
+> +            - right_j
+> +            - left_j
+> +            - dsp_a
+> +            - dsp_b
 
-Yours,
-Linus Walleij
+Why is this a DT property - why not just pick one in the driver given
+that it's for a machine with a specific CODEC?
+
+--JmksfPfyy4Bj0Tfi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR4gREACgkQJNaLcl1U
+h9AxeAf/ehUGBygKINW6H+yy1gZ0HlpXhYS4swWucFmZqVQIaksZAUR2ly+8bPzD
+Puhp4M5k+HV/+H+VLnmi1MGn803l5bD1q3Y4Ecy5mMz8cSzQx3tNEwL+htYaUeg6
+pchi7gBYaiBd3nVWeEWelIsBx+1UYRURJ3r+YoCXRVAHaYCsbJynauBKCOAizCfG
+W7MItpvce9g75QWSuifAPhQOEggg5eo6eGlq7omEVkvzUrExfGSM5L8bCMdGar90
+dqHOrZSq0B0q2w6yGGG9KFvcqvSbnErkngpBeI33DBTDfCIhHuytcB+M3pLhFOnc
+nKhBAj+1yD+OMbQC+HYc94d+bsXErQ==
+=Zpw4
+-----END PGP SIGNATURE-----
+
+--JmksfPfyy4Bj0Tfi--
