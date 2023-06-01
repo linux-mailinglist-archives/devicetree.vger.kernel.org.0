@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8054D71F05E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D0A71F0B5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:27:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232390AbjFARL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 13:11:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51370 "EHLO
+        id S231442AbjFAR1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 13:27:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232245AbjFARL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:11:27 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581EC136
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:11:23 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-565f1145dc8so11506197b3.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:11:23 -0700 (PDT)
+        with ESMTP id S231545AbjFAR1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:27:23 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8014D19A
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:27:22 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-96f850b32caso167550366b.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:27:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685639482; x=1688231482;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2RYUgEYxXFi1ZF21Col8g6vBwno/bBmJUkRFch0DaQM=;
-        b=UVdnJ7BpN6sHBSdOMr7NGH8HcUdYjWOQtQqoEA1adtfZsyom8iNmq5UdedDkfDhRer
-         9b48g/Ii4kszW54ESZgZmO2/RpuYOW3IPzGNPBubY/a60iKbGmaafPracLZ48Gfws4bk
-         A+nQd1fxmjI1afLhCh9Df8fpTdmCXGx5WNdfGH67ftg5rJmtGJ3S6+nJfZBPpkp+L7P5
-         SsTvCWOfI7Si48vDoM0KkkDJ06V2IrimJr3gvaV81Sa5sRmQthRFwfcLD0dJfY1PoW4c
-         Add18Zi93boaWSz/M+ZWU9WO5Lg9CqElBiXJP+G2PNQggV3w45Xc6a+rkkJqMdQ8yE27
-         Ff1Q==
+        d=linaro.org; s=google; t=1685640441; x=1688232441;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ywHAd7umX8c1mvBvuckFfVUydEsgHA+GJNFS0AltCkY=;
+        b=BgGNoDLofuERQiTZN/lQ0c7R8WrONxNiD/F9UORGVlGQ/z0mw+rldKvQjq8D/q7V86
+         qkWwITW330snlXH76bz7qIY4w/OEW/xj8R25shaX5GcmhgGi75ZvWSdO9icgK/GNu70f
+         ccEIkX7g9y80DYcHIWIvpAhoQ3o0besVhoTD4o3D6Zk+JIP0C06YJ/bAe4qqbZslnFtO
+         KPO1nbInLw29zJZgTCYQObWX1RPwQBuaVvFtn9Sqm2bkXOg/vM3dtZDSR1JTPNS6qSnl
+         rVa6nhocKOHe+Xo4nib4MUyxPaO5PYVOBWxLd7TMb1pEmt/cogsGaPZxO35Ow2lxrALe
+         O/iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685639482; x=1688231482;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2RYUgEYxXFi1ZF21Col8g6vBwno/bBmJUkRFch0DaQM=;
-        b=Hq1FeFr2XfCIqNtkfKbcg7xIibUTjJZE7ZWKmP+ffaVyHYnhsCSrL2Yq+nm+Q/Ly6m
-         hnwzqL8/zKpXPpkFSh1HwpcfkzUr6Vp4iDxE1EGixy6XFQqipjpW7nH/ZqFdJ/nD1+/Q
-         0nq/azQ74RCqK4PvwlN42cWGYt3fqZeBITbTc6bFyLvCYKhaaQahlq0EJVih3jQRpUiM
-         evvQLFQ6lLQRGkqlrTxSaONS/6GjOoldmYa1zERmn6v8bXU+Do1TQXJjlE0HuoUII5BI
-         sfKslRsp+TotnJzVW+Z+EwIuTuu9sYJEeVRtbQkPWDOwBVr+WS5tFH/wkij+fmvyDUmo
-         rrrg==
-X-Gm-Message-State: AC+VfDyxmqSKD47pCwE6ZLO+Qk1FqHDN9XRABDvEY+zSPiQSobQU9VJr
-        jFLuDPSULtM7yqCbfTxRNIX8H4GjwD54sq3DsOixNw==
-X-Google-Smtp-Source: ACHHUZ4lFj0bWB6jMU3gvWBHimujzrWTdc7mbWeL3/S54GjekR5BYZtKjoQH7YngQMCdyLxjtsgfE3wU8mHqvj+RSKg=
-X-Received: by 2002:a25:b099:0:b0:b99:53e9:ba89 with SMTP id
- f25-20020a25b099000000b00b9953e9ba89mr459824ybj.50.1685639482511; Thu, 01 Jun
- 2023 10:11:22 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685640441; x=1688232441;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ywHAd7umX8c1mvBvuckFfVUydEsgHA+GJNFS0AltCkY=;
+        b=RAhhjHEUl8+l55sk/FhhRW73Jn7gqFteCYcjlKo2A4LaIycPRSkAzlW80nurq5s+04
+         NUgOl9Oq6/R64KaIF/ZfMK+02+t7oruFoyCQ+J0wEWjH6nUZkXWg0NrBgWMdVj4BBKve
+         IwylUL+Ldr4gxIec9sUd/Ixw3abHLSCeB/krJ8df5RW2dZ1q2Rkct7Y5UFo5aLEg/I/i
+         lR6k545bH94j5BjIF0/IW/0cixXSc34fYtxBvnXJPZ6yr6DJMX91kYno9hDx9Ymbxz8C
+         63/SiNxrferMNR1hlw9YgIv1w3r6e7pRMI8X2vuv4xId2FuJqdqns5zzjL8WtXbjYWAD
+         DtpQ==
+X-Gm-Message-State: AC+VfDwZo3pI8wUJ+TWzkIQmPkTrKlZAin3jCPNr2D/ZeB0KFohpuleb
+        ps0CrRwf3CzRZnM/l8WHNEPhGw==
+X-Google-Smtp-Source: ACHHUZ6VsFFYuiOtcvmekbYesmy2WkkSPy+SmgogYFK66VXaWe3UBLyCCmqvWDQLlcaV3532Bqv9Kw==
+X-Received: by 2002:a17:906:4fc7:b0:96f:c988:941 with SMTP id i7-20020a1709064fc700b0096fc9880941mr8516840ejw.15.1685640441032;
+        Thu, 01 Jun 2023 10:27:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id gt5-20020a170906f20500b0094ee700d8e4sm10846983ejb.44.2023.06.01.10.27.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Jun 2023 10:27:20 -0700 (PDT)
+Message-ID: <21819d30-1df4-15a9-f458-32162f2a82b9@linaro.org>
+Date:   Thu, 1 Jun 2023 19:27:18 +0200
 MIME-Version: 1.0
-References: <20230531151918.105223-1-nick.hawkins@hpe.com> <20230531151918.105223-5-nick.hawkins@hpe.com>
- <07b2a2f7-5ddc-0f10-6b1f-184dc21fa580@roeck-us.net> <DM4PR84MB19274F575858CBCB2FA5C23E88489@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <b1d8f851-4e87-333c-229c-b9dc37ea3c40@roeck-us.net> <DM4PR84MB19273A008BB11589CEEF697188499@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <DM4PR84MB19273A008BB11589CEEF697188499@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 1 Jun 2023 19:11:10 +0200
-Message-ID: <CACRpkdarJCSCif+r1e_jXbbAgv03OgGAO6pkW9x-yiYZJxdGeQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] hwmon: (gxp_fan_ctrl) Provide fan info via gpio
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: phy: mxs-usb-phy: convert to DT schema
+ format
+Content-Language: en-US
+To:     Xu Yang <xu.yang_2@nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        jun.li@nxp.com
+References: <20230601080723.1556461-1-xu.yang_2@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230601080723.1556461-1-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,39 +79,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 1, 2023 at 5:48=E2=80=AFPM Hawkins, Nick <nick.hawkins@hpe.com>=
- wrote:
+On 01/06/2023 10:07, Xu Yang wrote:
+> Convert the binding to DT schema format.
+> 
 
-> Thank you for your valuable feedback with the solutions you have provided=
-.
-> Before I proceed though I have a quick query about the fan driver.
-> If I were to let the user space "own" gpio pins, would it be permissible =
-for
-> the userspace to feed a kernel driver data via sysfs?
->
-> Ex:
-> GPIO Driver -> (OpenBMC) -> Fandriver (sysfs).
->
-> Here the GPIO driver would provide fan presence information to OpenBMC
-> and then OpenBMC would provide fan presence info to the fan driver.
 
-But why? Don't be so obsessed about userspace doing stuff using
-sysfs, usually it is a better idea to let the kernel handle hardware.
+Thank you for your patch. There is something to discuss/improve.
 
-I think this is a simple thermal zone you can define in the device
-tree as indicated in my previous comment.
 
-> If it were permissible to provide data to the driver via this method I co=
-uld
-> apply it to the PSU driver as well. the PSU driver which requires presenc=
-e
-> info to verify a PSU is inserted / removed.
+e/bindings/phy/mxs-usb-phy.yaml
+b/Documentation/devicetree/bindings/phy/mxs-usb-phy.yaml
+> new file mode 100644
+> index 000000000000..48b0e654e52c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/mxs-usb-phy.yaml
 
-It feels like you are looking for a way for two drivers to communicate
-with each other.
+Filename matching compatibles, so for exmaple fsl,mxs-usbphy.yaml.
 
-This can be done several ways, the most straight-forward is notifiers.
-include/linux/notifier.h
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/mxs-usb-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale MXS USB Phy Device
+> +
+> +maintainers:
+> +  - Xu Yang <xu.yang_2@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx23-usbphy
+> +          - fsl,vf610-usbphy
+> +      - items:
+> +          - enum:
+> +              - fsl,imx28-usbphy
+> +              - fsl,imx6ul-usbphy
+> +              - fsl,imx6sl-usbphy
+> +              - fsl,imx6sx-usbphy
+> +              - fsl,imx6q-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - enum:
+> +              - fsl,imx7ulp-usbphy
+> +              - fsl,imx6sll-usbphy
+> +          - const: fsl,imx6ul-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - const: fsl,imx8dxl-usbphy
+> +          - const: fsl,imx7ulp-usbphy
+> +          - const: fsl,imx6ul-usbphy
+> +          - const: fsl,imx23-usbphy
 
-Yours,
-Linus Walleij
+I cannot find these in the old bindings. Please explain changes to
+conversion in commit msg. So far you wrote that it is pure conversion.
+
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  fsl,anatop:
+> +    description:
+> +      phandle for anatop register, it is only for imx6 SoC series
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    maxItems: 1
+> +
+> +  fsl,tx-cal-45-dn-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DN output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-cal-45-dp-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DP output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-d-cal:
+> +    description:
+> +      Current trimming value (as a percentage) of the 17.78 mA TX
+> +      reference current.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 79
+> +    maximum: 119
+> +    default: 100
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+
+missing allOf narrowing anatop to imx6. Also interrupts and reg should
+be narrowed to respective variants.
+
+> +unevaluatedProperties: false
+
+Instead additionalProperties: false.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    usbphy1: usb-phy@20c9000 {
+> +        compatible = "fsl,imx6q-usbphy", "fsl,imx23-usbphy";
+> +        reg = <0x020c9000 0x1000>;
+> +        interrupts = <0 44 IRQ_TYPE_LEVEL_HIGH>;
+
+Is 0 known flag? Use defines for it.
+
+> +        fsl,anatop = <&anatop>;
+> +    };
+> +
+> +...
+
+Best regards,
+Krzysztof
+
