@@ -2,85 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA845719B38
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 13:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D41FB719B68
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232994AbjFALxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 07:53:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46612 "EHLO
+        id S233127AbjFAMBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 08:01:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232874AbjFALxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 07:53:35 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C0D136
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 04:53:33 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-514ab6cb529so4312987a12.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 04:53:33 -0700 (PDT)
+        with ESMTP id S233108AbjFAMBL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:01:11 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9232319B
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 05:00:46 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-96fb45a5258so98984266b.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 05:00:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685620412; x=1688212412;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5rPSddxI86ctgmSDuBtXnLlRRIr8tu9Gup1nhM3MX8o=;
-        b=hY9sZTgVGTJ6ujrAVw6O9rPaZR6ibpYsvN2iDDgzJsZPpJCkM69umjf9xxRzSH0L/o
-         LIte5mTEpL1SczScuOLjsfunuoTCRvgEzOtTv7pukO3+4HpqlcyL8slEDSmrck1B22+8
-         bVSZiyUr0fzzI/4wGpO8+2rN8pNfYzG06PwGZK3ZA3h4gkO9RaYWL7TBw8UrauDK2xXV
-         volv/V9mc2kAH/1I6J+yGtlgobb+hKP+mV8mCK1p/lUTR1mG1DUnG2sgzAVS8aulw7sr
-         eDz6hzOmpaOzRICapu6gfGFiAxIxxmdAK09CztKOew3ll/RehxnsuyLWxMiC5BgCaUtV
-         kVZA==
+        d=linaro.org; s=google; t=1685620845; x=1688212845;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=12GsqqrbTT/zpscVm3DxuZSkplEHxlX6gdZbxZpkH1I=;
+        b=ZQCP3Vz21SZPCdoeJB0qVBsty2nlHg4ivPp0SMPJYIf7meNgPrI4ELS7sCdtVpjxpF
+         7jlQx0T+YWJLvUgZ9sDim+9VYMJLYB666aZAh4Nvzl8at5w1QkoxpqRGVzNzmIqooM3g
+         KRTJ0XgQye79ny/m4oEElBNG0uPyG5EmUQBTRU0HzIi6ws/Tt8qVmUw5PB1MXxaKRBIL
+         5GwuYWNPDOIXnD5Kk7tA2CbC1ljaSgwMP/tIacLscmeqeVH84YDB0HX8P6aE4XfE/tcI
+         NPCyYw0/V1WhFgmsUMGldH40sWp4cdOm+Mn5yw7VPQMbz85o+nozW5xM0wv/nA8luGfa
+         8+Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685620412; x=1688212412;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5rPSddxI86ctgmSDuBtXnLlRRIr8tu9Gup1nhM3MX8o=;
-        b=JeBcB2kLfspavHd/CCzMWmcRheW3RzyfzdMo6TLk/mK38kU54FOGn+BVEnto66FMnL
-         qqvqIYxaFkb0e9qjXZqn01Z7gDv6/MdEM7/BfASpcsBDzjSHTMma3DwQVvrSK31FFsrj
-         zC4JjfYroT5Mh7vaAD3zsQXpVMJ8ATeTBtb8FvOmzsX+VJrAbUbsskpLeC7he5Xd6sXy
-         sVpIHJweFjkwNsZuDWacP7hE5InCCs5BIxyXIF/XkQcmPR3lfvZ2TdOwkcX6HzDnFl0/
-         IgubgiUFI8EzQvCuDaviSBFLgdRywFv/a+oULYmwWVpnS6i8W9SNFTMZG9U9rUwgmyVp
-         sf3w==
-X-Gm-Message-State: AC+VfDyHSrTyvmMJNieG5QGX7y45y9/prC/uo/Jrj2OOUTAYNiMYEMRI
-        g97U6A7TNfkbL1Dq/H2Ww6VS5w==
-X-Google-Smtp-Source: ACHHUZ4Uv7R3KfoQyJ1EUmV0PsUvAeAKaVKQHwLWsx0ooq+a59XB1LpTQgA72lhOrF7YuXEaQx8UTw==
-X-Received: by 2002:a17:907:7ea4:b0:96f:d04c:1d84 with SMTP id qb36-20020a1709077ea400b0096fd04c1d84mr1464614ejc.12.1685620411810;
-        Thu, 01 Jun 2023 04:53:31 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id j1-20020a1709064b4100b009664cdb3fc5sm10402832ejv.138.2023.06.01.04.53.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 04:53:30 -0700 (PDT)
-Message-ID: <eb109116-94eb-5b6d-0049-7bb31feada36@linaro.org>
-Date:   Thu, 1 Jun 2023 13:53:29 +0200
+        d=1e100.net; s=20221208; t=1685620845; x=1688212845;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=12GsqqrbTT/zpscVm3DxuZSkplEHxlX6gdZbxZpkH1I=;
+        b=lZVLvk2fw3+2kLIanK6U/bjP7yRNBDBLvGjX//8Mtvohm86l9p0QKALAuc6CSO0pyt
+         aA+RLFMcHXrw5vTXG/06n64iX6L+EuNvxMCnLrDXhQ9lYx2tjoKeFNb7oSW0VskN6a6q
+         6M8rKEPfojTs5hsCzhnHw24WL9/ifNTsp1gA+wa4LUIS4Nzp+vDEDXCohz8rT4B4HAYx
+         OfThmN+SfOp/mX+7S06qVFZzxtWc4cKjw0zCnsjIw5IAKIwKsM28mtIXbnYXeXaYKpSm
+         jPHc9PoiQRKsiaVsJNirVs++QPjUILL0Wvc8D50ces+mmJxMl9o9PznE3d4pj+tRDu/p
+         vFbw==
+X-Gm-Message-State: AC+VfDyUDwa40j7v90Ep0pKQw3HyP3X4EpFVEQ31ApCsTLGiKIR0o4Wz
+        DAtgRb4YjWeRBvIO9IMwYNjICU6Pfou8qNB//rc=
+X-Google-Smtp-Source: ACHHUZ5abBo1T78xO5hoQRfWEx585gY/aIQ7KsF9l79IH9l+iQF6ebG2nStWMZ601I5uK2a9nkAcSA==
+X-Received: by 2002:a17:907:6e11:b0:958:801b:9945 with SMTP id sd17-20020a1709076e1100b00958801b9945mr7832799ejc.31.1685620844908;
+        Thu, 01 Jun 2023 05:00:44 -0700 (PDT)
+Received: from hackbox.lan ([86.121.163.20])
+        by smtp.gmail.com with ESMTPSA id v24-20020a170906b01800b0096f6e2f4d9esm10359923ejy.83.2023.06.01.05.00.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jun 2023 05:00:44 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/4] arm64: dts: qcom: sm8150: Add missing interconnect paths to USB HCs
+Date:   Thu,  1 Jun 2023 15:00:26 +0300
+Message-Id: <20230601120029.38859-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V7 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
-Content-Language: en-US
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        andy.shevchenko@gmail.com
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
-        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
-        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robimarko@gmail.com
-References: <20230519125409.497439-1-quic_srichara@quicinc.com>
- <20230519125409.497439-5-quic_srichara@quicinc.com>
- <CAHp75VfVx+oGYKcija3h9-eWc6jggMx8p5SAQTEHTBEbjTaJKw@mail.gmail.com>
- <1823419a-6bb4-03f7-d5ae-e32204c5e598@quicinc.com>
- <ZHTK7uEzO7kcx_cV@surfacebook>
- <aefd0df1-8dfb-1b69-589b-974dea312845@quicinc.com>
- <664940c3-9ec1-b4bd-9db5-fa3529e3d1ff@linaro.org>
- <8146f367-c539-bea5-12b6-424213018488@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8146f367-c539-bea5-12b6-424213018488@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,47 +73,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 13:41, Sricharan Ramabadhran wrote:
-> 
-> 
-> On 6/1/2023 3:21 PM, Krzysztof Kozlowski wrote:
->> On 01/06/2023 11:50, Sricharan Ramabadhran wrote:
->>>
->>>
->>> On 5/29/2023 9:25 PM, andy.shevchenko@gmail.com wrote:
->>>> Mon, May 29, 2023 at 03:58:09PM +0530, Sricharan Ramabadhran kirjoitti:
->>>>> On 5/20/2023 12:17 AM, Andy Shevchenko wrote:
->>>>>> On Fri, May 19, 2023 at 3:55 PM Sricharan Ramabadhran
->>>>>> <quic_srichara@quicinc.com> wrote:
->>>>
->>>> ...
->>>>
->>>>>>      depends on OF || COMPILE_TEST
->>>>>
->>>>>    Yeah sure. COMPILE_TEST could be standalone. Will fix it and repost.
->>>>
->>>> Standalone COMPILE_TEST will give you definitely NOT what you want.
->>>> And actually it's strange to have it standalone.
->>>>
->>>
->>>    Ho ok, i meant like this, "depends on ARM64 || COMPILE_TEST"
->>
->> Don't do it differently than all other drivers. Open the Kconfig and
->> look at existing entries.
->>
->    The latest added has this below, will use this
-> 
-> 	depends on OF || COMPILE_TEST
+The USB HCs nodes are missing the interconnect paths, so add them.
 
-I would even drop this... Lemme check, it looks odd. We depend on
-ARCH_QCOM which uses OF. We have few drivers which depend on ACPI, but
-that also seems wrong. These are platform drivers so they should expect
-platform select proper firmware interface. I think none of other
-platform drivers do like this (neither Samsung pinctrl nor other
-Qualcomm drivers)).
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-I will fix this. For your patch I would just skip OF entirely.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 197c016aaeba..4e73808c7bb1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -3595,6 +3595,10 @@ usb_1: usb@a6f8800 {
+ 
+ 			resets = <&gcc GCC_USB30_PRIM_BCR>;
+ 
++			interconnects = <&aggre1_noc MASTER_USB3 0 &mc_virt SLAVE_EBI_CH0 0>,
++					<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3 0>;
++			interconnect-names = "usb-ddr", "apps-usb";
++
+ 			usb_1_dwc3: usb@a600000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0 0x0a600000 0 0xcd00>;
+@@ -3644,6 +3648,10 @@ usb_2: usb@a8f8800 {
+ 
+ 			resets = <&gcc GCC_USB30_SEC_BCR>;
+ 
++			interconnects = <&aggre1_noc MASTER_USB3_1 0 &mc_virt SLAVE_EBI_CH0 0>,
++					<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3_1 0>;
++			interconnect-names = "usb-ddr", "apps-usb";
++
+ 			usb_2_dwc3: usb@a800000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0 0x0a800000 0 0xcd00>;
+-- 
+2.34.1
 
