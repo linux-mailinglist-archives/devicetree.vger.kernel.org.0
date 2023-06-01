@@ -2,87 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82ECE7198B9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BBFA7198C9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:15:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233357AbjFAKOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 06:14:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51146 "EHLO
+        id S231726AbjFAKPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 06:15:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233386AbjFAKNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 06:13:10 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040491BD5
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 03:11:24 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f3b9755961so728775e87.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 03:11:23 -0700 (PDT)
+        with ESMTP id S233386AbjFAKOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 06:14:52 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60CEC1B9
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 03:12:31 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51492ae66a4so1022622a12.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 03:12:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685614280; x=1688206280;
+        d=linaro.org; s=google; t=1685614349; x=1688206349;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p0EutEtUlaihGOUpNEbgEBes28fbf5E3F3e4/FdOjCc=;
-        b=fn0ZXO6khFqmtQby2jEWTpRQCd+n7hAb5cPmaSCpGfMTYqsAM+8FFPC6ufvohBRanx
-         GrKXtyLZPGNgCjPhEyUyl7d8Jm9odVjsJniezIIiBvMJG8x/E1xrLZLnpyDIDOoltLvX
-         UxemvroY+1nu0kZJFbi3CR4NrZn77jbYQGcDuflCQE08ccf7Vo8xJctUBxfpYzON8tfZ
-         uRkPZuuPOb0DUVIpT1x0ur7JS1xwWtJIGCfFovY+U3LQC+npj/hlM90f7BvhwSara1CT
-         C4g7U8Mefs1g27eTlUSEHqxihcVJuODyPZrG4VGvDZZnNwVmmIDQtUtpyiit4tXtFMDy
-         qe2g==
+        bh=lzBh9mt20nfbX1HPDV7qUtSParf3lregFrOcYZNJYTg=;
+        b=RaRPkC6VX2Q/BjwDKUPe+k/HHA2K3PeWdWSAlQMRdEG/tnmTVrcItIo7UYOv/QMizh
+         fXun4KbthwnGlMhHwbgtd1oo0pSD4tiWSV8j6L+PqAHjUoVQCnLEH1tSQLXECiMPP5v6
+         bgZKjutzE6DvR4vNMNFNrJxz+V+Ag7u9SgM08zR4S7s0q2pXk03J6eaL6GcmetjkLuDG
+         7xJkZdck6h+X2pSZdQWxMjsKNExIzpLdVou7k01rUwpL9J1GZ4IJHi0UJ8BEy/5/Bixs
+         vM/7MUOZaU7XwYyyYoDTTz41nXYpYF8yiasDYOtkzXoJQisFzrA35rh9BfkblJBmsXhr
+         6aFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685614280; x=1688206280;
+        d=1e100.net; s=20221208; t=1685614349; x=1688206349;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p0EutEtUlaihGOUpNEbgEBes28fbf5E3F3e4/FdOjCc=;
-        b=dkIwH3ysQa4pw4vaaGlg1X5JoIM7BKdmaU/U7MXbiSgUgN4xoc69bbyWsSABq5p/bt
-         84S4yqheMQvMhCsabW4ykiBR8D6PdhQOGJ68sMAOl9INBkLYng9gpUzZ9n5E3BSM2gOo
-         hjBh1OxSNSePjryLqWWaU1YDo02JutL4ltTTSDI3X5CZFYHzgveQkhz27eYY4tokgwen
-         5Ws1rMLQFhhZBY3vOnoNnj8zWBpwNUdH8RiliQa8fxVco6VZ0cjesB9yN85kHK/q6qjI
-         sa5vBMW5zmZaUBDm8mB33SRYBdy0x0q9wSni79fX/izA3AwuHmOKeOJfyoD7XQ1pT5Z/
-         aggQ==
-X-Gm-Message-State: AC+VfDxqbQ/0J/KOlTlrbQckEpSXewuPPvb3FLeN+KlfaZV3A0Jy1tiw
-        Mc+E/kZhuhZt/y5sSGbNIfmSwQ==
-X-Google-Smtp-Source: ACHHUZ5JYhRGJi1iagoXEofCxIsDTHFigDWsXEwXZ8RRZ2iRl/lv9p/dOGBCXY71bwfXZDzpJ1u21A==
-X-Received: by 2002:ac2:4115:0:b0:4f1:3d7d:409e with SMTP id b21-20020ac24115000000b004f13d7d409emr1027466lfi.0.1685614280471;
-        Thu, 01 Jun 2023 03:11:20 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id p9-20020ac246c9000000b004f256fed9e8sm1036600lfo.145.2023.06.01.03.11.18
+        bh=lzBh9mt20nfbX1HPDV7qUtSParf3lregFrOcYZNJYTg=;
+        b=Km5IkIqIoNQHDFpwlasBtTNB0v5RBeUOM1lXuwlt9bY5LskxElTKcXzYpVjzYeJ3VF
+         e5Zc5CjadLR98LnH8set3MJHeiQdWQTSuk0/uUFePCL2R/B//+usuDAHiOupJCOEkjES
+         hANbS2S3/NDxcdN6YeoJjDQNmqOuKV6TDgpxcp7+SzOuK3N6aYuvX4FO5nJaktS9xAbm
+         3T6h+D0bVw7BPUAhrk2Tv8r9vLee8z+TcHgKKW+IiV9ayaWdqEbVWyRqBuzg2qmleVj4
+         Vf3ZbJAfhiL13BgYKdYQL85Px88su2PUkE+zvDz0ciLaiXKfvYgYaj85cseqDlYv+IZD
+         /JRA==
+X-Gm-Message-State: AC+VfDwT4U0pkCIzWkO3tbeDemFyV9rM5nHrndwEX0jXPOcNvRJsn6Gc
+        leFyFIygRq2WvAWtSDkYvGJdzQ==
+X-Google-Smtp-Source: ACHHUZ6Nyi5zWDsnRjCwCJM1Qxx+HYhDiHldJG4dN+0BYNHIkTDm05bT22FK85uiKCYBn46fmDiSdQ==
+X-Received: by 2002:aa7:c390:0:b0:514:9eae:b0a7 with SMTP id k16-20020aa7c390000000b005149eaeb0a7mr5187743edq.17.1685614348806;
+        Thu, 01 Jun 2023 03:12:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id l18-20020aa7c3d2000000b0051499320435sm5620034edr.14.2023.06.01.03.12.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 03:11:19 -0700 (PDT)
-Message-ID: <1d3c05f5-c1bd-6844-1788-8df0b863a02e@linaro.org>
-Date:   Thu, 1 Jun 2023 12:11:18 +0200
+        Thu, 01 Jun 2023 03:12:28 -0700 (PDT)
+Message-ID: <608f0c96-e01e-20e7-6227-1d2066223aac@linaro.org>
+Date:   Thu, 1 Jun 2023 12:12:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8550: fix low_svs RPMhPD
- labels
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] dt-bindings: serial: 8250_omap: add
+ rs485-rts-active-high
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
         linux-kernel@vger.kernel.org
-References: <20230601-topic-sm8550-upstream-dp-v2-0-e8778109c757@linaro.org>
- <20230601-topic-sm8550-upstream-dp-v2-2-e8778109c757@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230601-topic-sm8550-upstream-dp-v2-2-e8778109c757@linaro.org>
+References: <20230531111038.6302-1-francesco@dolcini.it>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230531111038.6302-1-francesco@dolcini.it>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,43 +81,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1.06.2023 12:09, Neil Armstrong wrote:
-> "low" was written "lov", fix this.
-I "lov" making typos.. Thanks for spotting this!
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+On 31/05/2023 13:10, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> Fixes: 99d33ee61cb0 ("arm64: dts: qcom: sm8550: Add missing RPMhPD OPP levels")
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> Add rs485-rts-active-high property, this was removed by mistake.
+> In general we just use rs485-rts-active-low property, however the OMAP
+> UART for legacy reason uses the -high one.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 75cd374943eb..972df1ef86ee 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -3649,15 +3649,15 @@ rpmhpd_opp_min_svs: opp-48 {
->  						opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->  					};
->  
-> -					rpmhpd_opp_lov_svs_d2: opp-52 {
-> +					rpmhpd_opp_low_svs_d2: opp-52 {
->  						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
->  					};
->  
-> -					rpmhpd_opp_lov_svs_d1: opp-56 {
-> +					rpmhpd_opp_low_svs_d1: opp-56 {
->  						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
->  					};
->  
-> -					rpmhpd_opp_lov_svs_d0: opp-60 {
-> +					rpmhpd_opp_low_svs_d0: opp-60 {
->  						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
->  					};
->  
-> 
+> Fixes: 767d3467eb60 ("dt-bindings: serial: 8250_omap: drop rs485 properties")
+> Closes: https://lore.kernel.org/all/ZGefR4mTHHo1iQ7H@francesco-nb.int.toradex.com/
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
