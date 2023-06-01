@@ -2,138 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41709719C0E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:26:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B140C719C22
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232009AbjFAM00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 08:26:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35864 "EHLO
+        id S231915AbjFAM3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 08:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231759AbjFAM0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:26:25 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BD329D;
-        Thu,  1 Jun 2023 05:26:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1685622380; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=XiG+Vi6gGHQowjb9Bf55mFt3xWEo+WLrPcjZ59s+YmLHF78da17+FBfIctd0IADxwe
-    2d5QFc+abGWb6yCVUXWkelWacXu3jdoY38irxUjSsdU2wJsmlKb7AHkz2JolSG+Ov/K1
-    1f+teExknD4NzUh5Q3BdknlwxDBv1/qfFbeKNumeNKoICrhIlgZFra6zLXocBIo7KoZk
-    VX0Yzydi3Qhus7njRfgDKcSFpRQSjGhZm+6rNJj+kldbXdF8deQDajRHPrp9E9R3eRWR
-    3FLB/nPVajRVn/BQ5WqrIieRSF7BKYAloP3/O7FhyhzEeHe1edkKJ8ToOAScvsDqCMZS
-    ReFg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1685622380;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=4nlI0t8cVc1lkSa6LiiU7VWHaD2KWNpreTHmhmut4hU=;
-    b=V6RfA2WGKv2qpcqLiAuBj4s/LF5jRgIvir2h1kaHmi/32a3PACXmprmYDwo5GbAqgC
-    xNEYj2j9mADfbA1LTolLvyRqWSPdvRLZfTc6VihRiZfGK/r4VZ4fG839oJ0fGm8uUDLY
-    3QYH6tyVcBP5gQ0i5vmS3YW7hlYrB9qYlNsPBotUrLxiwhSJldnK5FvcQR5ODlkJOrKa
-    Iv2QQfe+FHTC873CwYhf050DVBWzNm5XtASa10LcJGKo+E5eQewj95d22B9SfTgkke/g
-    hk6XJi2JWxhSfrmKGdeeer8o3J1HXbmYfpC/LWrIqq8q9PKw7Vwc/SM2iyi0PjQwTmGo
-    U5HA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1685622380;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=4nlI0t8cVc1lkSa6LiiU7VWHaD2KWNpreTHmhmut4hU=;
-    b=iYLH01kMgs6ZDj7J8rFGkkbm/WKj3keNH6pA8doB01oiknePtmcbw0ewNa2eJOk3UM
-    7WWrT8HLfgsIeIw8F+VxPPta5PmQa+NgvW1HcVGb/B7kuIreqATN6BZ/X6dkCquYgB1Z
-    RAlCbp6kzzPR1DUVkTG1JkX0JzCh9coJpD0GTnkpUFvRwnt2O8H37+cJYQxBKcCE/FVz
-    epAbZHQJYHqscbDQPRcZ1E/VHfEFUvI5Dhes9xudYFDW7ctLZcsiraUlDITwxMTxj7Ic
-    COPmoZV13XaRCaI5xx0JaGxntDBXJkIAP1gLyojgU06HVrk5pjVbJjX2cC9ACe6HvpF+
-    C2Ww==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1685622380;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=4nlI0t8cVc1lkSa6LiiU7VWHaD2KWNpreTHmhmut4hU=;
-    b=MNsSLRO1kKKD7zWnKTz1vLypyEmOef19RLKMhrf9ruh2rOoYJfjZ1zHZEGt9OmWr6p
-    0DafpbOwkx4aZdSzsfAg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA9J/h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
-    with ESMTPSA id j6420az51CQJquT
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 1 Jun 2023 14:26:19 +0200 (CEST)
-Date:   Thu, 1 Jun 2023 14:26:12 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230268AbjFAM3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:29:00 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11616133;
+        Thu,  1 Jun 2023 05:28:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=OTsx+IOqxbYdUnQsgfql+uLXRlsYC1fAzy2R6BIpCx8=; b=e8/lNo1ypjP1KEshm7WVJlDFUL
+        tQqn/KZGCuhfZPFNdjSNAqcU+2jwIxRHVOa2VInJ1CmeZUeBnwZ/x2SD3FRGvQVaKM3Qk6BuvZg7X
+        IheD584crLZvrdy4wVkmoTLGB4pdNN4iAumLGITAzlYqKtCJA1Q7f0jE+rS0+kVmk6G4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1q4hQD-00EZ7V-HV; Thu, 01 Jun 2023 14:28:53 +0200
+Date:   Thu, 1 Jun 2023 14:28:53 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Atsushi Nemoto <atsushi.nemoto@sord.co.jp>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] soc: qcom: rmtfs: Support discarding guard pages
-Message-ID: <ZHiOZPQYlvxfAAFq@gerhold.net>
-References: <20230530233643.4044823-1-quic_bjorande@quicinc.com>
- <20230530233643.4044823-3-quic_bjorande@quicinc.com>
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: adin: document a phy
+ link status inversion property
+Message-ID: <8cc9699c-92e3-4736-86b4-fe59049b3b18@lunn.ch>
+References: <e7a699fb-f7aa-3a3e-625f-7a2c512da5f9@sord.co.jp>
+ <7d2c7842-2295-4f42-a18a-12f641042972@lunn.ch>
+ <6e0c87e0-224f-c68b-9ce5-446e1b7334c1@sord.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230530233643.4044823-3-quic_bjorande@quicinc.com>
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <6e0c87e0-224f-c68b-9ce5-446e1b7334c1@sord.co.jp>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 04:36:42PM -0700, Bjorn Andersson wrote:
-> In some configurations, the exact placement of the rmtfs shared memory
-> region isn't so strict. The DeviceTree author can then choose to use the
-> "size" property and rely on the OS for placement (in combination with
-> "alloc-ranges", if desired).
+On Thu, Jun 01, 2023 at 09:29:01AM +0900, Atsushi Nemoto wrote:
+> On 2023/05/31 23:35, Andrew Lunn wrote:
+> >> The ADIN1200/ADIN1300 supports inverting the link status output signal
+> >> on the LINK_ST pin.
+> > 
+> > Please could you add an explanation to the commit message why you
+> > would want to do this?  Is this because there is an LED connected to
+> > it, but its polarity is inverted?
 > 
-> But on some platforms the rmtfs memory region may not be allocated
-> adjacent to regions allocated by other clients. Add support for
-> discarding the first and last 4k block in the region, if
-> qcom,use-guard-pages is specified in DeviceTree.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-> 
-> Changes since v1:
-> - Drop the dma_alloc_coherent() based approach and just add support for
->   the guard pages.
-> 
->  drivers/soc/qcom/rmtfs_mem.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/rmtfs_mem.c b/drivers/soc/qcom/rmtfs_mem.c
-> index f83811f51175..28238974d913 100644
-> --- a/drivers/soc/qcom/rmtfs_mem.c
-> +++ b/drivers/soc/qcom/rmtfs_mem.c
-> @@ -213,6 +213,16 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
->  		goto put_device;
->  	}
->  
-> +	/*
-> +	 * If requested, discard the first and last 4k block in order to ensure
-> +	 * that the rmtfs region isn't adjacent to other protected regions.
-> +	 */
-> +	if (of_property_present(node, "qcom,use-guard-pages")) {
-> +		rmtfs_mem->addr += SZ_4K;
-> +		rmtfs_mem->base += SZ_4K;
-> +		rmtfs_mem->size -= 2 * SZ_4K;
-> +	}
+> Yes, the LINK_ST pin of AD1200/1300 is active-high but our custom
+> board designer connected it to an LED as an active-low signal.
 
-It probably doesn't make a big difference in practice but I would say
-there is no need to even memremap() the guard pages. If you adjust the
-->addr and ->size before the memremap() then you don't need to modify
-the ->base at all.
+O.K. LED is the magic word here. And the fact that there is nothing
+specific to this PHY. Being able to specify the polarity of an output
+to an LED is pretty common.
 
-Thanks,
-Stephan
+Please take a look at:
+
+ocumentation/devicetree/bindings/net/ethernet-phy.yaml
+
+where it describes LEDs. Please add a generic DT property there for
+everybody to use. See if the LED subsystem has a name for such a
+property.
+
+There is sufficient code in net-next to allow LED0 to be controlled in
+a limited way. There are more patches coming soon which will give you
+much more control.
+
+Using LINK_ST to control an LED is not so easy to represent in the
+current code because it appears you don't have manual control of the
+LED, i.e. forced on/off. But you can offload functions when the new
+code lands.
+
+     Andrew
