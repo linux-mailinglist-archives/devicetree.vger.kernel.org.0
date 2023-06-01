@@ -2,59 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F265B71F202
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 20:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BA4F71F23E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 20:45:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232326AbjFAScI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 14:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37132 "EHLO
+        id S232326AbjFASpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 14:45:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231659AbjFAScH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 14:32:07 -0400
+        with ESMTP id S231615AbjFASpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 14:45:03 -0400
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D64198;
-        Thu,  1 Jun 2023 11:32:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66665E4;
+        Thu,  1 Jun 2023 11:45:02 -0700 (PDT)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 351IVsNF014503;
-        Thu, 1 Jun 2023 13:31:54 -0500
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 351IirK8016887;
+        Thu, 1 Jun 2023 13:44:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685644314;
-        bh=ljdWyCG/YPepgV3LFhefxbvf55IoYuxJocOURow7p0c=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=TtO7yQKVmT6G/FwBhH6zMhLGHN19AqD5i2Fxk1HUb4TyL6DgG7T0SlVwqf3bb/fWy
-         iSzbkmxHX1zz+z8jmOElwJLz9GsudP72MFz/UmVFQCkPi1/MEtxQdl1c4DYeq5RmvY
-         BJk2O1eQgzuVtRiiJMAo/FdzLqgMD7EYLoyGI2ZA=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 351IVsld104520
+        s=ti-com-17Q1; t=1685645093;
+        bh=xlBNIuvht884Q/cxhzBOzyg7387vTqEROUazB6nJwXw=;
+        h=From:To:CC:Subject:Date;
+        b=beXKZMYUDXtqpZypWzNIC6QEjCrItAngmgpJfrL2vDYcbJxxCRQkBSmzeneIhlYkW
+         8NWlIztZd8aq938TPO5jcf5jQeEZO6eNQcE25UWCf2oVpONDecVpin4XMwZbcQr8Wl
+         BVSWVHYQbpZrO6FoyNrjekVJNrmkTXoYV3I050Zw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 351IiraP111177
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 1 Jun 2023 13:31:54 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 1 Jun 2023 13:44:53 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
- Jun 2023 13:31:54 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 13:44:52 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 1 Jun 2023 13:31:54 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 351IVswd002975;
-        Thu, 1 Jun 2023 13:31:54 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Frontend Transport; Thu, 1 Jun 2023 13:44:53 -0500
+Received: from fllv0039.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 351Iiqng013740;
+        Thu, 1 Jun 2023 13:44:52 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>,
-        Udit Kumar <u-kumar1@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>
-Subject: [PATCH 9/9] arm64: dts: ti: k3-j721e: Drop SoC level aliases
-Date:   Thu, 1 Jun 2023 13:31:51 -0500
-Message-ID: <20230601183151.1000157-10-nm@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230601183151.1000157-1-nm@ti.com>
-References: <20230601183151.1000157-1-nm@ti.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Use UART name in pinmux name
+Date:   Thu, 1 Jun 2023 13:44:51 -0500
+Message-ID: <20230601184451.358272-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,43 +64,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the SoC level aliases as these need to be done at board level.
+The main_uart0 may not always be the console, but it will always be
+the UART0 in MAIN domain. Name the pinmux node to match. This makes
+it consistent with all other TI SoC based boards.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
+Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j721e.dtsi | 19 -------------------
- 1 file changed, 19 deletions(-)
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-index 6227838d8402..540d3781b37a 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-@@ -18,25 +18,6 @@ / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+index cb46c38ce2cc1..29c51705c2f17 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -397,7 +397,7 @@ AM62X_IOPAD(0x01a8, PIN_INPUT, 7) /* (D20) MCASP0_AFSX.GPIO1_12 */
+ 		>;
+ 	};
  
--	aliases {
--		serial0 = &wkup_uart0;
--		serial1 = &mcu_uart0;
--		serial2 = &main_uart0;
--		serial3 = &main_uart1;
--		serial4 = &main_uart2;
--		serial5 = &main_uart3;
--		serial6 = &main_uart4;
--		serial7 = &main_uart5;
--		serial8 = &main_uart6;
--		serial9 = &main_uart7;
--		serial10 = &main_uart8;
--		serial11 = &main_uart9;
--		ethernet0 = &cpsw_port1;
--		mmc0 = &main_sdhci0;
--		mmc1 = &main_sdhci1;
--		mmc2 = &main_sdhci2;
--	};
--
- 	chosen { };
+-	console_pins_default: console-pins-default {
++	main_uart0_pins_default: main-uart0-pins-default {
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x01c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
+ 			AM62X_IOPAD(0x01cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
+@@ -736,7 +736,7 @@ wlcore: wlcore@2 {
  
- 	cpus {
+ &main_uart0 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&console_pins_default>;
++	pinctrl-0 = <&main_uart0_pins_default>;
+ 	status = "okay";
+ };
+ 
 -- 
-2.40.0
+2.39.2
 
