@@ -2,232 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC762719F05
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D46C4719F1C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233139AbjFAOFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 10:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55374 "EHLO
+        id S233747AbjFAOHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 10:07:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233632AbjFAOFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:05:34 -0400
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A3E184;
-        Thu,  1 Jun 2023 07:05:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-        s=default2211; h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:
-        In-Reply-To:From:Subject:Mime-Version:Content-Type:Sender:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID; bh=3pKXbgDS50T7cX8cx3AOsjTCNJZJgcQdP+NdH8iRmm8=;
-        b=b1OkxWRdokcxygc1Q5Hzbwfiv5N4WRXEqLdhRDoGQiuQIg2HV93EKZ4nfQFQ2KqIYY00scFnj92
-        Q/qyKiF1/SnTEHnaa4/fKQu6xza5uxJexSDX0R0WGGDcV8Rbitue0ZdG9dTIfI/sNfdfj7D3TjPul
-        3KZRKV3Xq80fjN8Hm7TIlauULojE33O2CKNKn+jt2OeJAqFcvxWeeCAAGaQzJpSgMTHBlpzjSIoA+
-        WRlHVNYCfuanz5agVOedxSytpv5mcHR5oJw5ErSLOGHMjPwHWRVAb6Pv0bHXRE9i2G8C5U5Juyn1T
-        n4h+FSmckxl2ag/UxHkJNxEMvfDtZT8sH+dw==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <sean@geanix.com>)
-        id 1q4ivg-0008Qm-TR; Thu, 01 Jun 2023 16:05:28 +0200
-Received: from [2a06:4004:10df:0:65f3:6f7d:6ccb:3076] (helo=smtpclient.apple)
-        by sslproxy01.your-server.de with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sean@geanix.com>)
-        id 1q4ivg-000NCt-Cs; Thu, 01 Jun 2023 16:05:28 +0200
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
-Subject: Re: [PATCH v2 3/3] dt-bindings: mfd: stpmic1: add fsl,pmic-poweroff
- property
-From:   Sean Nyekjaer <sean@geanix.com>
-In-Reply-To: <b9297205-82fa-8cdf-550e-a53c073e0a9d@linaro.org>
-Date:   Thu, 1 Jun 2023 16:05:17 +0200
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
-        Lee Jones <lee@kernel.org>,
+        with ESMTP id S233679AbjFAOHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:07:22 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C560019F
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:07:08 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f611ccd06eso8915275e9.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 07:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685628427; x=1688220427;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ty9X1/lZ4kxiMPfO6SIBOmi6pFSnYht8KTXY1jDqhMk=;
+        b=IbNZ/h4TiuSpaJndwjHm+qNz1wA3az6rVJttp6dEU8IO0aQLMDFSmP2dN+eFBQ1HDx
+         fg8PWloJbb4r6byJRuANvyrhQubW/pLkfkOkCHgVmH3FOfwoCeQvZTRUZ4tlUzqnjJ3r
+         I0AE5kjMz+BJza9C/PrlYKrII6tjp6UaL4wee+dLKk6lVsHOWMCf2RHqOSTNjFH8ucQw
+         tDMpPAE+jCm5zOLHcd0CxyC+LqwMOGMppFkvfTn+zxO03Ibn0du/IFShugVW6IWq+T0d
+         f95EXlwQ3BXEC6Hc+zxMEsPXu63bbB1+bZa9jevQinZL9Mcc7zJnqu0I2AiaZjOECp2a
+         rOHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685628427; x=1688220427;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ty9X1/lZ4kxiMPfO6SIBOmi6pFSnYht8KTXY1jDqhMk=;
+        b=F1es3+xGS6LBdZxFcheAtmSh7hjIGG8z/sEJAm6TMY7bAXoY0PpMoOs7AqM73unulU
+         meIV6n6nwp1P1MJ+mWf9YmXZ9JTV+sgTQKJjHcPpKlEl+1H0hIbR1mzpw4gffQ1Hk6Gk
+         iRSifS9diBGxB1liM3+PLF9z4XxgRaQRX1ETZ9pCxnogTWletmtxuX0/Vv9H+9fKz58W
+         aPNr6b8EoablmIsCG1mgJSYD+Nq9pViCvjMD5uKV2HCc0N49DH9bHf41rBTrkKeB6vjD
+         B0ZgIK//1LHlkVLS3CEBfWPuWiEANJDV4JyEAGH/b1ry9/tmat43CQ1/XX5ZTX5uQ9uY
+         pI7A==
+X-Gm-Message-State: AC+VfDxeAOSUgKRtY+404XLiEgdmwO+KPSKq9vVUQAm2JpGulbyrR4Kx
+        pebA3SeZdBADNy0AtilYlVRFvg==
+X-Google-Smtp-Source: ACHHUZ4b47dm+Xm9jwckIXF0KkauMPIOnltIj9V54u33oWFbZgBNyMbisrPoI/BqdP8HsjWMXIyqlQ==
+X-Received: by 2002:adf:f307:0:b0:30a:f606:2459 with SMTP id i7-20020adff307000000b0030af6062459mr2025299wro.25.1685628427113;
+        Thu, 01 Jun 2023 07:07:07 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id k11-20020adfe3cb000000b003078a3f3a24sm10504166wrm.114.2023.06.01.07.07.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jun 2023 07:07:06 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH RFC 0/7] arm64: qcom: add Type-C Altmode support
+Date:   Thu, 01 Jun 2023 16:07:00 +0200
+Message-Id: <20230601-topic-sm8550-upstream-type-c-v1-0-d4d97b4d8bab@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAASmeGQC/x2NQQ6CMBAAv0L27CYtUkWvJj7AK/HQllU2gdJ0C
+ 9EQ/m7jceYws4FQYhK4VhskWll4DgX0oQI/2PAm5L4w1Ko+qpPSmOfIHmVqjVG4RMmJ7IT5Gwk
+ 9Umtc01/OujEKSsJZIXTJBj+USFjGsciY6MWf/7ODx/0Gz33/AZZ6Ex6IAAAA
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        pascal Paillet <p.paillet@foss.st.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <4BD5682B-1A36-427A-8BDA-3159182DA057@geanix.com>
-References: <20230516132225.3012541-1-sean@geanix.com>
- <20230516132225.3012541-3-sean@geanix.com>
- <20230516-footprint-handoff-bcd553ff6146@spud>
- <9B1EE405-77D3-4980-9A13-9D4F87C1A64F@geanix.com>
- <20230523-flaccid-fossil-c9d09838dc64@spud>
- <658510B5-702B-464A-BA55-01E2B315BE39@geanix.com>
- <20230524-ellipse-dagger-72f850253ea0@wendy>
- <24418459-DE19-4575-835B-8673F279993C@geanix.com>
- <b9297205-82fa-8cdf-550e-a53c073e0a9d@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: Apple Mail (2.3731.600.7)
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26925/Thu Jun  1 09:27:46 2023)
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1978;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=pWKd11RIdBHbnx87p7fyQJTNZj+yiLAVlSvzPs6zzkc=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkeKYGc/gegYT+2ro5I97D4w0ztrwLZSHJjqxi0rlv
+ 37qRo3yJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZHimBgAKCRB33NvayMhJ0TJnD/
+ 9qkKwIXFLTkm0pNFWnXYmzKRsVqM5YaC3GmSaZPYZ4VGOcM6zN8YF/2BpMVElgf2lO4uiGstOrxH6i
+ c+66+MonE+Sd7IWBzYbaaX3354h33i4EAAZrydr5ewDcwwB9PymInhyn4SbHpRWUR5jiy77lWtXMG6
+ AOj+l+wHeBNTNhoJ003676YRhmQCYrngDBTVWK0GanTitz85TyVGRTL3lSvCtytZacQiJpvnNKlpUN
+ EnguSmODmXNcAU2SOMwuMlJGIRiEJqJOLBgI/qQxfd2JOaalkyUdsZSXOvDfMKYe2NLazgl7jLsBOg
+ z9rBGG0GZqjsjR+G5ALOVNw6ioD3l/B7r8J2skGX7PZjMN2BS9D0iuCV7ojgTG34xtxaPzvjg500XL
+ s5NBqBkH5QzXcHZNcNN/djhcYG+5iH0czlXrottXBV1ppTHMkCuCWxxxmHNWgRxcWbAiNZSkhwHW69
+ OsO6Bi4Us4jW7Bj2ktBNgO10mp/B7PnYVPdxpFFdpmcTs1UYI628AYLSajxOeHXy5le0dazI+SkXk4
+ R8i58VIdbilTMhLhLnik2Q7Ua96CuSta92AbuMw2CRqcT4eaWBxLE2bZoKxg1vkIakrRCvJZNvz8Gt
+ LnXPbPMR8DM9E08FjoKdBoOEhkBp9JW2t7x3urh7DLIVP8mjfDhhwBeOCsNQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+This adds the missing bits to support the USB-C Altmode
+support on SM8550.
 
-> On 1 Jun 2023, at 09.12, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->=20
-> On 24/05/2023 12:30, Sean Nyekjaer wrote:
->>=20
->>=20
->>> On 24 May 2023, at 12.08, Conor Dooley <conor.dooley@microchip.com> =
-wrote:
->>>=20
->>> On Wed, May 24, 2023 at 10:16:13AM +0200, Sean Nyekj=C3=A6r wrote:
->>>> Hi Conor,
->>>>=20
->>>>> On 23 May 2023, at 19.29, Conor Dooley <conor@kernel.org> wrote:
->>>>>=20
->>>>> On Tue, May 23, 2023 at 11:55:50AM +0200, Sean Nyekj=C3=A6r wrote:
->>>>>>> On 16 May 2023, at 20.06, Conor Dooley <conor@kernel.org> wrote:
->>>>>>> On Tue, May 16, 2023 at 03:22:24PM +0200, Sean Nyekjaer wrote:
->>>>>>>> Document the new optional "fsl,pmic-poweroff" property.
->>>>>>>>=20
->>>>>>>> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
->>>>>>>> ---
->>>>>>>> Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 8 =
-++++++++
->>>>>>>> 1 file changed, 8 insertions(+)
->>>>>>>>=20
->>>>>>>> diff --git =
-a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml =
-b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
->>>>>>>> index 9573e4af949e..5183a7c660d2 100644
->>>>>>>> --- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
->>>>>>>> @@ -26,6 +26,14 @@ properties:
->>>>>>>>=20
->>>>>>>> interrupt-controller: true
->>>>>>>>=20
->>>>>>>> +  st,pmic-poweroff:
->>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>>>>>> +    description: |
->>>>>>>> +      if present, configure the PMIC to shutdown all power =
-rails when
->>>>>>>> +      power off sequence have finished.
->>>>>>>> +      Use this option if the SoC should be powered off by =
-external power management
->>>>>>>> +      IC (PMIC).
->>>>>>>=20
->>>>>>> Just reading this description, this is sounding quite like a =
-"software
->>>>>>> behaviour" type of property, which are not permitted, rather =
-than
->>>>>>> describing some element of the hardware. Clearly you are trying =
-to solve
->>>>>>> an actual problem though, so try re-phrasing the description =
-(and
->>>>>>> property name) to focus on what exact hardware configuration it =
-is that
->>>>>>> you are trying to special-case.
->>>>>>> Krzysztof suggested that the samsung,s2mps11-acokb-ground =
-property in
->>>>>>> samsung,s2mps11.yaml is addressing a similar problem, so that =
-could be
->>>>>>> good to look at.
->>>>>>=20
->>>>>> Better wording?
->>>>>>    Indicates that the power management IC (PMIC) is used to power =
-off the board.
->>>>>>    So as the last step in the power off sequence set the SWOFF =
-bit in the
->>>>>>    main control register (MAIN_CR) register, to shutdown all =
-power rails.
->>>>>=20
->>>>> The description for the property that Krzysztof mentioned is
->>>>> samsung,s2mps11-acokb-ground:
->>>>>  description: |
->>>>>    Indicates that ACOKB pin of S2MPS11 PMIC is connected to the =
-ground so
->>>>>    the PMIC must manually set PWRHOLD bit in CTRL1 register to =
-turn off the
->>>>>    power. Usually the ACOKB is pulled up to VBATT so when PWRHOLD =
-pin goes
->>>>>    low, the rising ACOKB will trigger power off.
->>>>>=20
->>>>> In other words, I am asking what (abnormal?) scenario there is =
-that means
->>>>> you need the property, rather than what setting the property does.
->>>>> Or am I totally off, and this is the only way this PMIC works?
->>>>=20
->>>> Indicates that the power management IC (PMIC) turn-off condition is =
-met
->>>> by setting the SWOFF bit in the main control register (MAIN_CR) =
-register.
->>>> Turn-off condition can still be reached by the PONKEY input.
->>>>=20
->>>> ?
->>>>=20
->>>> I must admit I=E2=80=99m somewhat lost here :)
->>>=20
->>> Sorry about that. I'm trying to understand what is different about =
-your
->>> hardware that it needs the property rather than what adding the =
-property
->>> does. If you look at the samsung one, it describes both the
->>> configuration of the hardware ("ACOKB pin of S2MPS11 PMIC is =
-connected to
->>> the ground") and how that is different from normal ("Usually the =
-ACOKB is
->>> pulled up to VBATT so when PWRHOLD pin goes low, the rising ACOKB =
-will
->>> trigger power off.")
->>>=20
->>> Looking at your datasheet, you don't have such a pin though - just =
-the
->>> sw poweroff bit & the PONKEY stuff. My angle is just that I am =
-trying
->>> to figure out why you need this property when it has not been needed
->>> before. Or why you would not always want to "shutdown all power =
-rails
->>> when power-off sequence have finished". I'm sorry if these are silly
->>> questions.
->>>=20
->>=20
->> No silly questions, maybe they trick me to come up with the correct =
-answer :D
->>=20
->> Basically without this, you won=E2=80=99t be able to power off the =
-system
->> other than hitting the PONKEY.
->> So it=E2=80=99s a new feature that wasn=E2=80=99t supported before.
->> Maybe this feature should not be optional?
->=20
-> You are still describing what driver should do with registers. What =
-you
-> are missing is describing real cause for this. It's exactly the same
-> case as was with s2mps11.
+These are the following changes since the previous SM8450 SoC:
+- No more GLINK altmode events for USB only changes, only DP
+- Type-C orientation is available on a PMIC signal connected
+  to a GPIO line
+- When altmode is disconnected, an 0xff mode event is sent.
 
-I didn=E2=80=99t mention anything with registers in the patch:
+In order to handle those changes, a new orientation-gpios property
+is added to the usb-c connector bindings.
+The 0xff altomode is translated as a SAFE type-c mux mode.
 
-if present, configure the PMIC to shutdown all power rails when
-power off sequence have finished.
-Use this option if the SoC should be powered off by external power =
-management
-IC (PMIC).
+And in order to handle such info, we tie this to the UCSI connector
+events to propagate the orientation to Type-C switches.
 
-^^ That=E2=80=99s is exactly what is happening if the option is enabled.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (7):
+      dt-bindings: connector: usb-connector: add a gpio used to determine the Type-C port plug orientation
+      soc: qcom: pmic_glink_altmode: handle safe mode when disconnect
+      usb: ucsi: glink: use the connector orientation GPIO to provide switch events
+      qcom: pmic_glink: enable altmode for SM8550
+      arm64: dts: qcom: sm8550: add ports subnodes in usb/dp qmpphy node
+      arm64: dts: qcom: sm8550-mtp: add pmic glink port/endpoints
+      arm64: dts: qcom: sm8550-qrd: add pmic glink port/endpoints
 
-Do you have a suggestion wording?
-What do you think about removing this option and make it default =
-behaviour?
+ .../bindings/connector/usb-connector.yaml          |  5 ++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts            | 67 ++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts            | 99 +++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 26 ++++++
+ drivers/soc/qcom/pmic_glink.c                      |  6 +-
+ drivers/soc/qcom/pmic_glink_altmode.c              | 18 +++-
+ drivers/usb/typec/ucsi/ucsi_glink.c                | 52 +++++++++++-
+ 7 files changed, 262 insertions(+), 11 deletions(-)
+---
+base-commit: f339b18115200db76b42475e44e3bc926e3ecab0
+change-id: 20230601-topic-sm8550-upstream-type-c-e85b4d971450
 
-/Sean
-
->=20
-> Best regards,
-> Krzysztof
->=20
-
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
