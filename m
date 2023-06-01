@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9986F71A0F8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465BC71A109
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:53:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232208AbjFAOv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 10:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36280 "EHLO
+        id S234219AbjFAOxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 10:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233476AbjFAOvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:51:25 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B30A186
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:51:24 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b1a46ad09fso8372231fa.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 07:51:24 -0700 (PDT)
+        with ESMTP id S233747AbjFAOxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:53:53 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEFF18C
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:53:50 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f3a99b9177so1233996e87.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 07:53:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685631082; x=1688223082;
+        d=linaro.org; s=google; t=1685631229; x=1688223229;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XlQa6nyYkrP42ALPoHQesic/eQ0yRPGYPn5Y7l5zRIo=;
-        b=UZFxKojURWoFiXbFXlx8hnvi1gjYaMIsNB26Cgzw7733KuPIHLTGRLzq4W8EHDUvc3
-         Ckhi3atFrAVPVH1F/hHiHGBKwxns0e7CJhUTKY0AZNZockvTZRfx7A5uIo0355Cf6ReN
-         r0oLDRJYYvTn8UvN64VJ2MyGCLgkSpJjNj+b6cH3pRcqbCj5rFXuNde7vngHGtJ/mcBa
-         N5EkbqfaBJ6b0PHfvtW6N/P3uDgsffLO/L8EiTi5vWO2sI9E7TBWB3oYE11Nrvu22i8n
-         Rn5QHjJvH43nmXuSm4YeFV3yAV6T55AA/vjlbDhKuzgjc2QxO9+4vrigY9EnsHh0Wo8L
-         e4ZA==
+        bh=790tI55xNKd3xmitEfyE+MxPAwHRUWPcKekWE/6Wxf4=;
+        b=iIEeuwI+RFGpPQMHkXqwx96h/6EIRBcmwyVDM/IRTV++XS0GtO/ixK9K9/wKNq8ll3
+         /PyRDIL+9iYNDAzOt7iqUDtQWW/xc76JEGUNVmoYl4SRTMUH1Lg9rA6BHnczdW3Lf2HN
+         X+rOjlBf2uGMHRFGYO37RqrKR+OGgdmiS6WGMLwvLyUYUX7m384QmDZ7MKNLnbW+VxWi
+         FxWsyY8b/6rrnQctFVsjk2OvMbQA7IEVNUhdn51xQ/HsZTmwtOClFKlDKAiioL9Pj78H
+         S+k2NhSS1MQazhKDh3HIx1Hr3DuTiIhI2/bA0/5HoUyM9tNBpwp9hmhTE8kc3N68Mv35
+         EadQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685631082; x=1688223082;
+        d=1e100.net; s=20221208; t=1685631229; x=1688223229;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XlQa6nyYkrP42ALPoHQesic/eQ0yRPGYPn5Y7l5zRIo=;
-        b=QeRAWepato2GjyRjBuqd72F1fwv+4+5WzANv1AfT1EfN+Nb7Mj+AzKpmQJqKeNMKcI
-         HMH2zZZNSnCCFg1ibYkJvGv76Y1W+5vDwOzXtc6nZnRiMPkgLXU/6+8u2mes0cZSLj9r
-         qbMAoKss5dD388kulUAOVY+RwS4QYjk6iVjB5PJxfZ+SbxzvwP5+wLpsxRu/D1XgpUtZ
-         TLBiZ2TimFqxvzcc1+IYprKLCeJsLjQYibPGPNdB1Sk1+X7xVlRex/l3MmnFMdgKHg6k
-         4vx/j3p4wU1w6qbZBGhvNNQtc3WQauXt/TiXJxeu7cenjT0/f37V0tPptOrOkP63MzgO
-         Uedw==
-X-Gm-Message-State: AC+VfDzRt/N+bPSa5ubio/zsuYFm8Bng21gaF0rpYCgE7F++uLFETyvn
-        8fuC63TsszxNt7yfnClLoZ9chnVfh9ECE8MRcBg=
-X-Google-Smtp-Source: ACHHUZ4KzlhybJYdOtJZ4v16Y42fWzlTmzhvxjOxmHjAorYRhNaHxhyJjsaIC0k9tINOcNMy7Qeq3A==
-X-Received: by 2002:a05:651c:10b:b0:2af:d2ef:49d4 with SMTP id a11-20020a05651c010b00b002afd2ef49d4mr4673473ljb.1.1685631082608;
-        Thu, 01 Jun 2023 07:51:22 -0700 (PDT)
+        bh=790tI55xNKd3xmitEfyE+MxPAwHRUWPcKekWE/6Wxf4=;
+        b=b13ynt+gC3Dd77foQmv1HB5MH3RbMeWUFwsHhQ7tD7EBOe27UGDBtlrKpJ6tcBp1QM
+         zV7LfBqWW+9w2BMlNbBaqvx3D99LFtqeMwcgOMYk/ex0pfd4GpnzFO4Wi+e0oxRjDmZJ
+         xt+RMaTHrE6AxeIGS1EFaocayVIhDAcxj+GEx9YvSyjAKLXSfblU7X2ztcvM5b+gUpG0
+         j2j5JDoVTu3f46hGNDza1o85mUkdnR7dcwH6dkfYL1IDlXEHk3dhdWPmghavYp0pU1rC
+         Dt+r2XfiHHPb3+EH6ks3H6kfbW0outhHwLfvOCX5wH/KC69U5PxxMsaf3BrRREml1zvr
+         xYLw==
+X-Gm-Message-State: AC+VfDx6RBWoLJo0tOlxDpH3ys2Zt84sfTqlod5wG7tENluxw8Dlacyk
+        rnb6ifP0Dh5/zQh3HxoNveV14Q==
+X-Google-Smtp-Source: ACHHUZ7enKascLJElckDsSOJWra6TM0JOvnbj8p/kfmTwGYiLGJ8vdY5feC0cuc5xFG4hKI3kFzfgg==
+X-Received: by 2002:ac2:44a5:0:b0:4eb:1048:1285 with SMTP id c5-20020ac244a5000000b004eb10481285mr106207lfm.47.1685631228904;
+        Thu, 01 Jun 2023 07:53:48 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id e11-20020a2e984b000000b002a9ebff8431sm3803994ljj.94.2023.06.01.07.51.21
+        by smtp.gmail.com with ESMTPSA id t4-20020a19ad04000000b004f24e797c55sm1113384lfc.25.2023.06.01.07.53.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 07:51:22 -0700 (PDT)
-Message-ID: <95bd4c66-08c6-15f3-db6c-97f820fe5517@linaro.org>
-Date:   Thu, 1 Jun 2023 17:51:21 +0300
+        Thu, 01 Jun 2023 07:53:48 -0700 (PDT)
+Message-ID: <ee48f7fd-35f1-288f-2133-1c473e8804ab@linaro.org>
+Date:   Thu, 1 Jun 2023 17:53:47 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH V3 3/5] clk: qcom: camcc-sm8550: Add camera clock
- controller driver for SM8550
+Subject: Re: [PATCH V3 4/5] clk: qcom: camcc-sm8550: Add support for qdss,
+ sleep and xo clocks
 Content-Language: en-GB
 To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -74,9 +74,9 @@ Cc:     Bjorn Andersson <andersson@kernel.org>,
         Imran Shaik <quic_imrashai@quicinc.com>,
         Ajit Pandey <quic_ajipan@quicinc.com>
 References: <20230601143430.5595-1-quic_jkona@quicinc.com>
- <20230601143430.5595-4-quic_jkona@quicinc.com>
+ <20230601143430.5595-5-quic_jkona@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230601143430.5595-4-quic_jkona@quicinc.com>
+In-Reply-To: <20230601143430.5595-5-quic_jkona@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,56 +90,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/06/2023 17:34, Jagadeesh Kona wrote:
-> Add support for the camera clock controller for camera clients to be
-> able to request for camcc clocks on SM8550 platform.
+> Add support for camera qdss, sleep and xo clocks.
 > 
-> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
 > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+
+You probably missed the Co-developed-by tag.
+
 > ---
 > Changes since V2:
->   - No changes
+>   - No changes.
 > Changes since V1:
->   - Sorted the PLL names in proper order
->   - Updated all PLL configurations to lower case hex
->   - Reused evo ops instead of adding new ops for ole pll
->   - Moved few clocks to separate patch to fix patch too long error
+>   - Newly added.
 > 
->   drivers/clk/qcom/Kconfig        |    7 +
->   drivers/clk/qcom/Makefile       |    1 +
->   drivers/clk/qcom/camcc-sm8550.c | 3405 +++++++++++++++++++++++++++++++
->   3 files changed, 3413 insertions(+)
->   create mode 100644 drivers/clk/qcom/camcc-sm8550.c
-> 
+>   drivers/clk/qcom/camcc-sm8550.c | 180 ++++++++++++++++++++++++++++++++
+>   1 file changed, 180 insertions(+)
 
-[skipped]
-
-> +
-> +static struct platform_driver cam_cc_sm8550_driver = {
-> +	.probe = cam_cc_sm8550_probe,
-> +	.driver = {
-> +		.name = "cam_cc-sm8550",
-> +		.of_match_table = cam_cc_sm8550_match_table,
-> +	},
-> +};
-> +
-> +static int __init cam_cc_sm8550_init(void)
-> +{
-> +	return platform_driver_register(&cam_cc_sm8550_driver);
-> +}
-> +subsys_initcall(cam_cc_sm8550_init);
-> +
-> +static void __exit cam_cc_sm8550_exit(void)
-> +{
-> +	platform_driver_unregister(&cam_cc_sm8550_driver);
-> +}
-> +module_exit(cam_cc_sm8550_exit);
-
-Please convert this to use module_platform_driver
-
-> +
-> +MODULE_DESCRIPTION("QTI CAMCC SM8550 Driver");
-> +MODULE_LICENSE("GPL");
 
 -- 
 With best wishes
