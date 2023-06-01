@@ -2,71 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6991718F82
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 02:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0978718F83
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 02:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjFAA3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 20:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53418 "EHLO
+        id S229557AbjFAA3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 20:29:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbjFAA3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 20:29:04 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB127124
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 17:29:02 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-ba827a34ba8so237351276.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 17:29:02 -0700 (PDT)
+        with ESMTP id S229491AbjFAA3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 20:29:07 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2088.outbound.protection.outlook.com [40.107.114.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409A011F;
+        Wed, 31 May 2023 17:29:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fsKwqI0kZcMEltgkI06l5JwiAKIxaNjiuxrqyrEYQltTSY4UYyGwVRfBpFCFWVm8iQ4zW38Y+kvayU4CFJcgdo7te7ub9bf/j6TyeIAk2DVyaV0FH6q9rqgo2Lndq92bBt49TJRNfTDVi3ebOVarXxVIqiFzoic+sH1z9vI+RfsC33jiJWYygCDQ2IRd4DC/YxJSijkhAiVfFXb5DJy7K9BEcrd1HzuvMhiFFnL2wTwDsGWnAVm9NLg488kEmm0ZI7Iy53KWnOgNt5C869yKOBcMyD+CPUukIE+9v4864aX5q42TkLrTtD4u/ofBA0FwUfrD+54/2DOBYwX/z9D80A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hp/xWfhVgpNWcSDvR5ebiEsbYpoD3eEeVAnA6WiEC74=;
+ b=cRwvBEfbqYOec7aF4h8X7MSiA6IWc0uyZ9RszgewZLC1RPiIFTnM90M4kgiJei1wtn0C1KuAfOFrrX75FRQqP4rmP435nw/wQTKRmbbr02v7MJ1GYCBZ27p929h3Ah6BvG7Dns6XNYZleeEdApfWbKJilPnParG/GqxlvsmdWJlUXE7TnYS3MIe6Y2RhRR7PffMjpB5KW/uJdd+1b6UHUsNrzo5dhJDw1TqOFOd/m3wbv5M3e2zk1By2sU3XN2sPjaca6s7+DiCUF8d/4BzwlQmXo2B0IagLpXwYxPAuz28caq5pjlP7CPLA9ETLYEaZ1DMngbayMcM48IKiWP9Lkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sord.co.jp; dmarc=pass action=none header.from=sord.co.jp;
+ dkim=pass header.d=sord.co.jp; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685579342; x=1688171342;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NEEjlzeLxFQftTZQSpKJW7Jq+wnau68354KXBq6LZXM=;
-        b=DASrcWJUigO5nWpOPk4tjfh5Q25y9tW2ZNCwtl31oosKOjljcct+SiTn3TZeN3yQc4
-         EJ2Mhq07DbjHMZEWvgSauYe9bI6j68f9z6jvw2dcYl6YlsatEX8ggHKKBCAVd18yaTlT
-         cLZGlLL/cK3XJBvKKrvFNd3DFJ8Jk8l7QWSfgiyYDI1qut/k81copaH0XHDiTLzrhdKl
-         nymb+vvf0h3AIC1PvmRMVqAE9voOMuVqyhXlwZmleEQ+s4/zdkBF5gXUhIiAEP/cb4oQ
-         e/XD4AigUJSTvNw/N2l3H68F92eQDNZ1sSsEDzIlzbMcz0NgTGdyS2m27pqioJmTNjc/
-         g+qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685579342; x=1688171342;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NEEjlzeLxFQftTZQSpKJW7Jq+wnau68354KXBq6LZXM=;
-        b=EO7b97v+P7bW7ZmSqqbEDMUVOHjiPEcX72lHqasui3U2heuD2BHu0zI00NKEnHTO80
-         tVdTCUBgoZjzVp+jmmYSkXJVplxGBtI441IWjEmS+HdALNzW/xvbUbFzTopDcywsdx7h
-         ZkZRNz07BLr0V5s90mQFn0SdXSteJAsHaEGJcGDn4M8lc0HVjKO/EwEM9zAjOU+Jcjnb
-         gqptnposeQe8kgreNw8uy/wj3CrmZEURfApsfH5+16G/gzrIyGY3GbG+oSkHbGaP0koT
-         xOXpuHMGxQ+BUMdWyXaMxg4K5ktU3PsEJfmPllrEwIWHUMqnzFesFVHa4GBaGdpwk2FQ
-         HxNQ==
-X-Gm-Message-State: AC+VfDzJbPebR2y+j1UvYrS4VBybW7L+xhbmCIqkqoEmOvHIth3ultvv
-        M+GhGN6vVn/y+nNc8AN8ZD1HW/XBRUHY+VwCP70ZlA==
-X-Google-Smtp-Source: ACHHUZ5iUMfJV/FOMlr08ahtzPGqh8EXAdjkfAkBYn2H1tsCyIX1DSM2KkkhEy6vsvNjLD1u9b8Hs3L79AxVpBIaYpk=
-X-Received: by 2002:a25:b08f:0:b0:b9a:6a68:b8da with SMTP id
- f15-20020a25b08f000000b00b9a6a68b8damr8271454ybj.25.1685579342118; Wed, 31
- May 2023 17:29:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230531014248.3824043-1-dmitry.baryshkov@linaro.org>
- <20230531014248.3824043-2-dmitry.baryshkov@linaro.org> <3a0deecb-8235-8cf5-262e-8cb8d2349a4c@linaro.org>
-In-Reply-To: <3a0deecb-8235-8cf5-262e-8cb8d2349a4c@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 1 Jun 2023 03:28:51 +0300
-Message-ID: <CAA8EJprhZCzL_0Htpjm0=Uur7AdkZLe_1Tw+uaBPwUXSOeTRyQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: power: reset: qcom-pon: define pm8941-pon
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
+ d=sordcorp.onmicrosoft.com; s=selector2-sordcorp-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hp/xWfhVgpNWcSDvR5ebiEsbYpoD3eEeVAnA6WiEC74=;
+ b=WQ/c5SzJRgwOhedBFeAN4VLAbcMQLDQz1hY75pScpXpmU2ou9geYGZ3lXGDLuhnuVNUZ5h2LkSlx0ujfIgNfGfaYNUz6KEL7jPfLg8yCjuta/jbhOO2UyUXzD1bgqZPbx4Od/IjUJwhMjW80zZ48qOfbpGGo2ACQd6BXfGMTzwg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=sord.co.jp;
+Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com (2603:1096:604:13c::13)
+ by TYWPR01MB9987.jpnprd01.prod.outlook.com (2603:1096:400:1e3::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.23; Thu, 1 Jun
+ 2023 00:29:03 +0000
+Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com
+ ([fe80::361d:fa2b:36c9:268e]) by OSZPR01MB7049.jpnprd01.prod.outlook.com
+ ([fe80::361d:fa2b:36c9:268e%2]) with mapi id 15.20.6455.020; Thu, 1 Jun 2023
+ 00:29:03 +0000
+Message-ID: <6e0c87e0-224f-c68b-9ce5-446e1b7334c1@sord.co.jp>
+Date:   Thu, 1 Jun 2023 09:29:01 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: adin: document a phy
+ link status inversion property
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+References: <e7a699fb-f7aa-3a3e-625f-7a2c512da5f9@sord.co.jp>
+ <7d2c7842-2295-4f42-a18a-12f641042972@lunn.ch>
+From:   Atsushi Nemoto <atsushi.nemoto@sord.co.jp>
+In-Reply-To: <7d2c7842-2295-4f42-a18a-12f641042972@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TYAPR01CA0215.jpnprd01.prod.outlook.com
+ (2603:1096:404:29::35) To OSZPR01MB7049.jpnprd01.prod.outlook.com
+ (2603:1096:604:13c::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSZPR01MB7049:EE_|TYWPR01MB9987:EE_
+X-MS-Office365-Filtering-Correlation-Id: acf445b9-f6fb-4eae-b692-08db623733b6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LpROF4Z3GT/Fdl9VTwekOLUjHPdSFF7U1T+hdw/A2ZCWbUAxUvu6hKd1AbVC/4meeAfroTxj3a5KF0/qpRofgwnxdpo5qA+ZQwE2xkiabaItcnEbg6sIfODNlNKS1ILImR31y4Ww+7tc7zvuCiKcXhyELKgeWSQyFk6XA5V8AYRm80OcKiVM7gRry5hoTmY7/vnFBs2ESyDVlBoomoEsbzTpbuj2tyLRF6j1//gM7SrjiL9Hyz3GhEaHpAzbY4kULhctMPH1C6FN4Y8dybEi3UopSed31zcetAcMiUl+lvZmkuvoToexKBCadkYbuG7ii0QKF/u2RVmPdE77khnekUnm5v/cyfa/ZUCK4tkxjeOiM54nYgOf44jqljUgtUx/eXBCGkHqBLouM+TpUWiS3t4iyV8ZwVdn7yREnhwA05X3trP54hXBWvZNZf1toPs8yX2H193UNY/CtDKPkpviD2fEGVleejKbol3c3KsKapoy/mvRBoodJUrb13V93YYNJCc+XpiSp2wDqeea28Q4pxD4Gn1GUpbIijMs9pvABNbfFHVb1SaPViimeQX+ZQ2WgczEJYU9EHPNb0po0rTkbc5y33kbxOKAIqHZjI6Cew5INNrWVsFly8WvubZRMniEhHnRSmx05MQZ+7YOdd5Q1w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZPR01MB7049.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(136003)(396003)(366004)(39850400004)(376002)(346002)(451199021)(31686004)(83380400001)(53546011)(26005)(6506007)(6512007)(41300700001)(38100700002)(186003)(6486002)(2616005)(478600001)(54906003)(4326008)(6916009)(66476007)(66556008)(66946007)(316002)(5660300002)(7416002)(8936002)(8676002)(44832011)(2906002)(4744005)(31696002)(86362001)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZDdCeGEwWnBwZyt2MlQ3U2ttQ0cwdTZrcGlqZ3FMNnRaVWloQTgrcG0wVFh6?=
+ =?utf-8?B?cGNiV3Zrc1hHS3Y2NDVDeTV3QkJVN1psQVVvZmxEY2phakk1RDA2d1ZPMjdO?=
+ =?utf-8?B?MmtKK2pCNWJhaSs0MjRYbjlBci90azFQOWpURzREdlFwNzEydHJxVE9mUmpZ?=
+ =?utf-8?B?VVZJRGdFZ0pNdlI5a1hQaW8zdnp3N2QzekZoQmdIU2ZuQlVDeTVDS2tHeGNK?=
+ =?utf-8?B?WTdpSHlQU0dEOU05akR5SVVJd05PRTFOYjNPVHljK3p4amdzNVVFS0V1VmVL?=
+ =?utf-8?B?QTFRVWdDeDJybG16RHBFM3pkVVpvSzVjWWV3VlhjK1VtWW5LS00yZWdjcGJR?=
+ =?utf-8?B?cHJqM3A0TGhlWTJsVjQ0VjU4MVJFcXZXZUdNdGdWRVZzczRmdXlCTlBzRUZK?=
+ =?utf-8?B?R1hZRGR1MUdHY0J1aFN4cVpJTGpudld1R21KWWpwdmdIZExaVmxtWktPYnFk?=
+ =?utf-8?B?TnJlaHZINlNEYkxxK3hqY29PcFFUMnNmdjJjakFyRzZaOEQvNEdVVnZyaG5M?=
+ =?utf-8?B?MzFVa011dWhYaWFzcmp6OFBVVUtkOGNyK2RmODM2STdvWTNRSGhQWWFaNnBL?=
+ =?utf-8?B?RytsbXJWdS8xNmNYanF5TzM0eG5OTjdtMnR3TWk1TkZGcXVzSEpRTWR6ZnVo?=
+ =?utf-8?B?RzNsMGxUZmNINGJ5T1JSVzE4WkJObTZTNk5BUC9uTmtrd0I4WDQ2algrMXNI?=
+ =?utf-8?B?UHJNTU1MSlphSjdudm1zcktQQWRLZzBEa01HVmUvNUF6WFN5VTU3SE13Sk5h?=
+ =?utf-8?B?NGlmMTBsSFZsYTJjQWRYa0krc1oyUTJLTUJydXMyRDV6Nk4wbXhFY3ptTXgr?=
+ =?utf-8?B?U0xOTi9NUzdsbW1idHpDempPZGVWdWlhdEtCc3hScThvNFBVY3JyMXdkZFJp?=
+ =?utf-8?B?bnlDOXBlVXFLUnFyMnQrck9ybEZkNUNFUUM2VEVHT1FmQ3ZaZmF2WjlDY2VT?=
+ =?utf-8?B?S2ZaSUJuSVkyNCsxUGE0S2ZVUks1TFJ2bU1DZDNUb3lucE14alpXOWNuZmdF?=
+ =?utf-8?B?bjR0R0JnUDluSm1SYW56V1FFc25jdWdMTzMzaW9mRWhQbmNOKzd2L0J6Q1Zk?=
+ =?utf-8?B?UE9ZUThybmtidWRUK2lMc0x2OUR0T2dBSllYYk5rZnBZbmFBOFRzWitySnFl?=
+ =?utf-8?B?SVRxOUF1cm5yMGVoNzBCZTZERDNndTBxY09xanFoc1RaeFBveUQycmdnc3E1?=
+ =?utf-8?B?SXBqbGM0Nm1XeTQ0K1VieTljZUlQdHBVUjVpNUhGdkRDQ3RDdFE2clZ5blUy?=
+ =?utf-8?B?SnQ4ellqeTZwaktKSS9FdFFuR0txUGhaS3FXY1NJSmJEOThBdjBkWFFSdFht?=
+ =?utf-8?B?NU85ZFJycTRSR3Ivb3J1TXk1MjVWaXA2OW91NjB1Y2Z3OG9VVDlPaC9oTC91?=
+ =?utf-8?B?RHQ1RG1la1JtVGhwd0dLWWlCcm9iY0dsMURMUkRTems1bG1LTlAxL1Qrb3pE?=
+ =?utf-8?B?SVJkYU82eHdSWFE2MmRiQnNpQ1FJN2RBRGQ3US9qZCtWWERZeHNJUXFraEc3?=
+ =?utf-8?B?UEZPaE5maTdqZmlpQldMRHpyeWZrVHFqZDlpNXlKckozUUNhVXlsVlFqdE81?=
+ =?utf-8?B?SHFSSEFVaFNsNXZ0ZGtyN3RIak80ZWxVT1lCUWROOXVMYzdsT2Q3ZFdvSkxW?=
+ =?utf-8?B?dnhlSGNVZHlCUXZnaFowaTFtamN4MGRGclJYZTFxcklzZ295OVNYN0J3SWhu?=
+ =?utf-8?B?MDl6eGwybVNIVnZmaU55OVh4SGR4S0xmSHJOdnc1T1gwbStxcmVybVgyN0hx?=
+ =?utf-8?B?YTNiSGNUaEFoN044MEtUVWpuQ05YdkgwaHpzMkpRZzROY0hXbWRxZlNFbnM4?=
+ =?utf-8?B?aDRodmlUK2FzbkdFYXFWR2gwN1p4Mk84NmFoOUlzNFRHUGJFR3lGTGdOMlFV?=
+ =?utf-8?B?LzhSWUo5ZWRnQzhlOFJYTXpSL1UzRW93VEcrVDZVUVRmRERUVFpDM2RNZHln?=
+ =?utf-8?B?bXNJYTh4V0lNQUpOUS9manJRb0swdzZLaWc0ckxjaTN1T3gyTzlBWlFielJN?=
+ =?utf-8?B?VkxLSUtXaEh3R1IyOWg2LzAyUWZCUEtuTTNDWm1aTnFvbzQvR2lhWVFCSktG?=
+ =?utf-8?B?S0p2dHdadjBSSk1MUmpOTmI5amp6Q00zTlE3cldiZldBUTNJNk1KMzVmQS8y?=
+ =?utf-8?B?SnNtUG1ER2J2V3A2V3hXMWRsdWpYY2pIWWNqUmdBNzhhMzh5RXk5eGpDMmhF?=
+ =?utf-8?B?SkE9PQ==?=
+X-OriginatorOrg: sord.co.jp
+X-MS-Exchange-CrossTenant-Network-Message-Id: acf445b9-f6fb-4eae-b692-08db623733b6
+X-MS-Exchange-CrossTenant-AuthSource: OSZPR01MB7049.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2023 00:29:03.5652
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: cf867293-59a2-46d0-8328-dfdea9397b80
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tGwT75MPwdxmaFneqS5Kgb1BRtpMhh6f20DRJ4U1RljVv2f+tMp7x4/sNWfYrITmi9Yuya3Di5AhUol5K40ajlqSN9SEaFx8k98qx4tV3oQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB9987
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,53 +136,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 May 2023 at 21:59, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 31/05/2023 03:42, Dmitry Baryshkov wrote:
-> > On PM8941 pon doesn't store the reset reason. However we still need the
-> > wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
-> > device.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../devicetree/bindings/power/reset/qcom,pon.yaml    | 12 +++++++++++-
-> >  1 file changed, 11 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-> > index d96170eecbd2..eb3c88e501ef 100644
-> > --- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-> > +++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-> > @@ -19,6 +19,7 @@ properties:
-> >    compatible:
-> >      enum:
-> >        - qcom,pm8916-pon
-> > +      - qcom,pm8941-pon
-> >        - qcom,pms405-pon
-> >        - qcom,pm8998-pon
-> >        - qcom,pmk8350-pon
-> > @@ -56,13 +57,22 @@ required:
-> >  unevaluatedProperties: false
-> >
-> >  allOf:
-> > -  - $ref: reboot-mode.yaml#
-> > +  - if:
-> > +      not:
-> > +        properties:
-> > +          compatible:
-> > +            contains:
-> > +              const: qcom,pm8941-pon
-> > +    then:
-> > +      $ref: reboot-mode.yaml#
->
-> Are you sure that this works, so pm8941 does not allow mode-*
-> properties? I am afraid they would still be considered evaluated, thus
-> your if-not is not effective.
+On 2023/05/31 23:35, Andrew Lunn wrote:
+>> The ADIN1200/ADIN1300 supports inverting the link status output signal
+>> on the LINK_ST pin.
+> 
+> Please could you add an explanation to the commit message why you
+> would want to do this?  Is this because there is an LED connected to
+> it, but its polarity is inverted?
 
-Yes, I checked that they trigger the schema validation error. If you'd
-prefer I can extend this 'if' with explicit 'mode-*: false'.
+Yes, the LINK_ST pin of AD1200/1300 is active-high but our custom
+board designer connected it to an LED as an active-low signal.
 
+I'd like to change the description as follows:
 
--- 
-With best wishes
-Dmitry
+---
+The ADIN1200/ADIN1300 supports inverting the link status output signal
+on the LINK_ST pin.
+
+The LINK_ST is active-high by default. This can be inverted by the
+GE_LNK_STAT_INV_REG register, meaning that link up is indicated by
+setting LINK_ST low.
+
+Add support for selecting this feature via device-tree properties.
+
+---
+Atsushi Nemoto
+
