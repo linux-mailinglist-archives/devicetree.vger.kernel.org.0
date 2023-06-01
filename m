@@ -2,116 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA12571A2D0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 605D271A2DD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233770AbjFAPh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 11:37:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44392 "EHLO
+        id S234682AbjFAPkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 11:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233663AbjFAPh2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:37:28 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938C2B3
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:37:27 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-75b050b4fa0so101730485a.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:37:27 -0700 (PDT)
+        with ESMTP id S233324AbjFAPkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:40:41 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E23FB
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:40:39 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id ca18e2360f4ac-77483f80522so41696739f.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:40:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685633846; x=1688225846;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xBap/Q16x/Fg2P8ZaViZGUVByhe3lZyVyIrPB/uA888=;
-        b=dA8JilenybulNfFZO/N0Cl5JwsZQcuttIA79XFmuMq2JAHbMRJDrjWs3IMvZCUYwoP
-         r3ZN+ahBOpz54o6Fulj0jAJuAOJrgAIRgDEuIS6Vuxu/VxLZkvD44iPMbXCvTPb85Q5B
-         djlJQ3T40wTiDETdG7L6LoZSjT9kY8vPdMdXaQRC+8eJSQJohZ/L/4l8tan6q9INdaGB
-         CYhX6sjaMHkLPZvJL91NHy7DcmacD7gH7yaSLtyVLTb4QDdjRbc0jGBu8HzreSfSDSnx
-         WlRmO3up8KsHtC/xih34wUxp6ckby1KrhFP051gjNJM2XzBnVZekwhYw3sWpIsyk4h1y
-         NZuQ==
+        d=chromium.org; s=google; t=1685634037; x=1688226037;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vZ+EiS+GQTo9AhoMTu3o3MEzgb5CpypJEioCqg0kvwY=;
+        b=UTkRqJo0Wj4knlKaUex/Cap//53fzpgP56q4rA7GaxW+D/nu/4UyeKpvkUp+T3J0dJ
+         OzICJ5bg9GEsdoMyc+lBss8fhyrTgxmqtOmud4evF09D2QcRcYn4y+9yXVDDCL/U3E1E
+         mrfja0alv/GnAkPR1qgSawDqBF4XPHOmeDK90=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685633846; x=1688225846;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xBap/Q16x/Fg2P8ZaViZGUVByhe3lZyVyIrPB/uA888=;
-        b=dlrCkAnCJ6xLIxlnGSdNdHVk6VDPTOg+2G9nJT+XIfyiq2Vo6p0uBgKpAzTvIyktPG
-         lKu/0iBOILBVs+sa0WjpvJQx/0+XoSLHlMS2B2XqRtz0vVWagchg8rsPlbWp2omDSAx9
-         +XDD2Y177nbGak+4+CpPrZhmbVZfNgkwizxAFfW6DIQWjzJB2t+4angsEyi5dMsbMBgv
-         oW9nFeZJX0zryQ2nIh2K2KNZpql6h/bzqAdJ0QRDgKswqVbjZWcx0rWYSYIVHJuyUAps
-         RCxcSWuDiJshOXqlCGtjQTV8bEnJrF9BRIYjfJrdc3nJtndEKGsF7a9WaoZWM3eD/HMj
-         jZMg==
-X-Gm-Message-State: AC+VfDw1+7h61TdoXLqJh+KS9HwO41nOKiDsvmF4KezHriPb/l+7/5K3
-        E4utRX1YpBhLLXXxPs4Olgg=
-X-Google-Smtp-Source: ACHHUZ46vEGXcRAe++/zXgSGLaii/NIyI+TNR8zdQcF2S3pp3Wbc8E8ri4f49sfDRrftg3r3rs3NqQ==
-X-Received: by 2002:a05:620a:2a13:b0:75b:23a1:43e with SMTP id o19-20020a05620a2a1300b0075b23a1043emr12013711qkp.4.1685633846556;
-        Thu, 01 Jun 2023 08:37:26 -0700 (PDT)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id e25-20020a05620a12d900b0075b13a89c30sm6712333qkl.3.2023.06.01.08.37.24
+        d=1e100.net; s=20221208; t=1685634037; x=1688226037;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vZ+EiS+GQTo9AhoMTu3o3MEzgb5CpypJEioCqg0kvwY=;
+        b=DnolW7JetOtLdy+MQbYeI5rj1B/pDaFzRmRJ5vTyK19KgYcVZk4mOTx0AS7XW6TN29
+         qfRpm4QKwY6UJo3JDYgpa+AL4bGrXZY6Ivj158cSuxZdIz9SbvobXHMVrrDxzuCVOP/T
+         Kix053snUger0ID3OLHHbQdq72aZbz5mQYyW01OE7Fk/HBjAYm4ZAMKQ2IyIE/BPYHyd
+         gZ1rMmfwHdw23RrVQvO7hoVag8WW8yxhEBhb1b7+DIej0h2xWMBLRnIzumzzBSS51UZR
+         iZ3CKIDgpOvifi0F+TvLyAksYCovWEAkqrKoXEQT2owUmRQkkwZbbez9kUmGCxgKCGRV
+         l3nw==
+X-Gm-Message-State: AC+VfDzDE8k+Yq+JV7c/XtJx2Nd2azDL5iC/sXsaT5Ivz4G1fqy3od0b
+        25WR9JahGGO60dUHXG1GUH2Twor2hbfekSt50ss=
+X-Google-Smtp-Source: ACHHUZ42aAO8l29M6SrMxkTqUFzV4K+iGDTk0HaqdEfDBWX9FAjSQlIQjQYbC/gsoCC1piDxYbIVeg==
+X-Received: by 2002:a5e:8f05:0:b0:774:7cf6:d350 with SMTP id c5-20020a5e8f05000000b007747cf6d350mr7256199iok.7.1685634037136;
+        Thu, 01 Jun 2023 08:40:37 -0700 (PDT)
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com. [209.85.166.172])
+        by smtp.gmail.com with ESMTPSA id v12-20020a05663812cc00b0040b1ecc3ec4sm2351778jas.11.2023.06.01.08.40.35
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 08:37:25 -0700 (PDT)
-Message-ID: <d47958c6-eec6-badd-8924-62807461546f@gmail.com>
-Date:   Thu, 1 Jun 2023 08:37:23 -0700
+        Thu, 01 Jun 2023 08:40:35 -0700 (PDT)
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-33bf12b5fb5so128385ab.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:40:35 -0700 (PDT)
+X-Received: by 2002:a05:6e02:180c:b0:33b:3d94:afb5 with SMTP id
+ a12-20020a056e02180c00b0033b3d94afb5mr191613ilv.25.1685634034756; Thu, 01 Jun
+ 2023 08:40:34 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 0/2] arm*/dts: Enable symbols for rpi device trees
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Aurelien Jarno <aurelien@aurel32.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
- <20230601140214.i4yvya763sotyjz7@pengutronix.de>
- <20230601-rake-calamari-eda0c88bd9bf@wendy>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230601-rake-calamari-eda0c88bd9bf@wendy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
+ <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230520050649.2494497-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=Wm_SK0V6WJUkuvu8yFfiP60JBuOdw9cy=0Ck2Jbn-X2A@mail.gmail.com>
+ <bd19f71b-59ee-80e7-9ff1-1cc26ecc49a7@kernel.org> <CAD=FV=WaVXUr8=4MrZQgA7t=yUBDt-iMvOFSeWhsKZ8XHJAREA@mail.gmail.com>
+ <CAHwB_N+ZpCAYftCLRwyNo2wCca+JHfGJc0_rJ=jwJcU0mbG=Dw@mail.gmail.com>
+In-Reply-To: <CAHwB_N+ZpCAYftCLRwyNo2wCca+JHfGJc0_rJ=jwJcU0mbG=Dw@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 1 Jun 2023 08:40:23 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XBwZmJUVKqX5XOrgJB-VYPgJP=HKr+DoFRFu3C3tGq2w@mail.gmail.com>
+Message-ID: <CAD=FV=XBwZmJUVKqX5XOrgJB-VYPgJP=HKr+DoFRFu3C3tGq2w@mail.gmail.com>
+Subject: Re: [v2 2/2] dt-bindings: input: touchscreen: Add ilitek 9882T
+ touchscreen chip
+To:     cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com, hsinyi@google.com, jikos@kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+On Wed, May 31, 2023 at 8:06=E2=80=AFPM cong yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> Thanks, I'll keep an eye on that next time. This patch can be discarded,.=
+After adding this series https://lore.kernel.org/r/20230523193017.4109557-1=
+-dianders@chromium.org=EF=BC=8C
+
+Thanks! I'll see if I can give that series a spin soon and then see
+how we can make progress to getting it landed.
 
 
-On 6/1/2023 7:13 AM, Conor Dooley wrote:
-> On Thu, Jun 01, 2023 at 04:02:14PM +0200, Uwe Kleine-König wrote:
->> Hello,
+> using ekth6915  also can meet my needs.
+
+Even if using ekth6915 can meet your needs, it's still better to
+actually add the right compatible string. Putting in the device tree
+that you have an "elan6915" and that you're providing "vcc33" isn't
+the best when you actually have a different touchscreen and are
+providing a very different voltage. Adding the proper bindings is
+definitely preferred.
+
+
+> On Wed, May 31, 2023 at 12:58=E2=80=AFAM Doug Anderson <dianders@chromium=
+.org> wrote:
 >>
->> On Tue, May 30, 2023 at 07:56:22PM +0200, Uwe Kleine-König wrote:
->>> based on an earlier submission by Aurelien Jarno, I rebased and slightly
->>> simplified the patches.
->>>
->>> There was some related irc conversion in #armlinux. Quoting the relevant
->>> parts:
->>>
->>> 1685078851< ukleinek> arnd, [florian]: Who would pick up https://lore.kernel.org/linux-arm-kernel/20220410225940.135744-1-aurelien@aurel32.net ?
->>> 1685078920< ukleinek> arnd, [florian]: If there is an agreement in general that this is a good idea, I can coordinate with Aurelien that for arm64 there is a v2 with the simpler approach I pointed out.
->>> 1685083481< arnd> ukleinek: I have no objections to this, if [florian] wants to pick it up and send me for 6.5.
->>> 1685083809< arnd> robher: any comments on this one?
->>> 1685466520 < [florian]> ukleinek: I was hoping we would get an Ack for robher before picking it up in the brcm soc tree, don't want to ruffle any feathers unnecessarily
->>>
->>> So it seems to start a beneficial chain reaction, only Rob's Ack is
->>> needed.
+>> Hi,
 >>
->> Not sure this might help, but as Rob seems to be away for mail, I'll
->> try: arch/arm64/boot/dts/nvidia/Makefile and
->> arch/arm64/boot/dts/ti/Makefile also make use of -@. So this patch at
->> least isn't a completely new thing and maybe Florian might dare to take
->> this patch even without Rob's explicit consent?!
-> 
-> FWIW you can have mine, unless it is explicitly Rob's you want Florian.
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-OK, I will take yours and queue those up!
--- 
-Florian
+>> On Tue, May 30, 2023 at 4:56=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+>> >
+>> > On 22/05/2023 17:33, Doug Anderson wrote:
+>> > > Hi,
+>> > >
+>> > > On Fri, May 19, 2023 at 10:07=E2=80=AFPM Cong Yang
+>> > > <yangcong5@huaqin.corp-partner.google.com> wrote:
+>> > >>
+>> > >> Add an ilitek touch screen chip ili9882t.
+>> > >>
+>> > >> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+>> > >> ---
+>> > >>  .../devicetree/bindings/input/elan,ekth6915.yaml         | 9 +++++=
+++--
+>> > >>  1 file changed, 7 insertions(+), 2 deletions(-)
+>> > >
+>> > > I'm curious about the DT maintainers opinion here. Should this be a
+>> > > new bindings file, or should it be together in the elan file. If
+>> > > nothing else, I think the secondary voltage rail name is wrong. I to=
+ok
+>> > > a quick peek at a datasheet I found and I don't even see a 3.3V rail
+>> > > going to the ili9882t. That makes it weird to reuse "vcc33-supply" f=
+or
+>> > > a second supply...
+>> >
+>> > It's easier if they are CCed...
+>>
+>> Crud. I just assumed and didn't check the CC list. Cong: can you
+>> resend and make sure you're CCing the people that get_maintainers
+>> points at. One way to find that would be:
+>>
+>> ./scripts/get_maintainer.pl -f
+>> Documentation/devicetree/bindings/input/elan,ekth6915.yaml
