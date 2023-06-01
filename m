@@ -2,80 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBD371A2C0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6428571A2C6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235056AbjFAPa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 11:30:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40824 "EHLO
+        id S234677AbjFAPc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 11:32:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234945AbjFAPat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:30:49 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A011E4D
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:30:29 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96f7377c86aso139979966b.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:30:29 -0700 (PDT)
+        with ESMTP id S233776AbjFAPc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:32:56 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C38ADB3
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:32:53 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5148f299105so2287536a12.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:32:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685633426; x=1688225426;
+        d=linaro.org; s=google; t=1685633572; x=1688225572;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z0RKWAWxwUQS0njV+ALKABSSpPIY8XnKRGM2dVeuKYE=;
-        b=OHrOQLzvB/BGyMn7OZJnDoroAwTDdoB7T099vvVDfXz4IPX9iuevZem6ECGA0RHrcl
-         NPm2L/+Xa6Lgs0/dcgQYKlOs4Hacn78ktFhJrAnRMjhEyrXYhsXxN7PS0MG2oddc+N0+
-         xSVgflbjWdrqK7r7Os0FwVr8+2o/k6Jwrt9VdlLnTxKzV6Vif+w04+5kABEO2umJwwlG
-         NvdDcaxtIXl/UFYCImVJGNJvUFcS5lUGuHfchZQksxuqixAsypachCtDncYDHbFQrW2b
-         hoUM2sl7KVBfm9DT5mOqPLUEjQYEp1U2j1ChaAMHFW9XIZ+dgwN2Cxu2fMP6BiGQfGhf
-         YQOg==
+        bh=d+hD8sanORaWT0+7h4FlSb8jJyfN127ZPZqGdgRFUik=;
+        b=ElKVSOFj2eQz/HLNwoODWxWCWoi2Kx/s1W/rVvvxdLHDkzhxpGLwE89chXLB0Mnq5q
+         25EkWgrR7i96Rbz+knEOs6rDhevaooR2wnXmShLYc0TtwXW0IGH9npeIYsuUkXM/eHx1
+         ZuSPtyUAl4O8d7ayCPJqGiSKRW44M+xAk0JCdFG8x09GTqkvjvIHK5Z303ohDAIRQ7jP
+         tdZGtiEgqRhhOHYSlYqxuv1bQEOz0ZozvnJcjRyhKEoA0C2dqXxzJWabeMMDhPP4Fs89
+         qsA0JBbna14pQ78O/ir++cbTJWSptZ8LzT4qVMMHmKW2DnOYq2ajzzg6eWAyn3gDhY0O
+         NWFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685633426; x=1688225426;
+        d=1e100.net; s=20221208; t=1685633572; x=1688225572;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z0RKWAWxwUQS0njV+ALKABSSpPIY8XnKRGM2dVeuKYE=;
-        b=IaeXWQ3bcWA4uBbObKEhDLcyr4bK6d7p59xbacR9CX/RElrPs0q+i4TDtVTMtTpDK/
-         D5QqlZv0I7jceg8Y6xLCM6Zu4B4HnoDk7AER/6T4QqPQHqThOk3GrQ4ISNLOJJzFILWQ
-         xnL3pRqNt5ggHC6UDBa1jMo4eIGPpPaxwWbNYJD3uFxEdl2+k+SzimsY+iuDBX38hCgM
-         NZOCh/+B3ZHl2UhsvqeSLfgPyG8ib5hnl62TD427qDcV9msooxrD1f8yJwwlfzd2EYxp
-         NMztN+f8wmAJqc4X1z0XtM4LEzoKazEUQ8yW3Qx62pXz8+NXz6oxP0gTQ0gjsW2js9/M
-         dROg==
-X-Gm-Message-State: AC+VfDwiAimIxgSlqXwPGweoSqflxzxQD8LxQJMUXBfJECJbn6f41VOh
-        R6+L8BHc3Zhznoyro/1qpstMBg==
-X-Google-Smtp-Source: ACHHUZ5oxQb75rdiZQ5dyM6H9Gb3YjpwUqyEzQQqXD9woiNfnlULUcZCVmMFF8hOoopHO9xklMvx8Q==
-X-Received: by 2002:a17:906:da8e:b0:966:5035:6973 with SMTP id xh14-20020a170906da8e00b0096650356973mr8590202ejb.50.1685633426478;
-        Thu, 01 Jun 2023 08:30:26 -0700 (PDT)
+        bh=d+hD8sanORaWT0+7h4FlSb8jJyfN127ZPZqGdgRFUik=;
+        b=Lm2x9+g2sLhOP8jTskIDwgwQQuljEee4yrBt830HHkrWkRKRZoG5a38FXYXdEoQ399
+         Ub8ndik74cpEzb7oXN7hRySUOpO5DxKSNcYC5pzSbeOR4vbS5LB0mPYpnAzKtw31EAK+
+         Xosr42acKKzxOxmgAEfdhkTJP6FEVJ6lMfz12himCSYEvkO9ZJRTb7Iel52leGgbRaIe
+         UPbtHbIpkHiMHn0Zqb3s5P66YdOZMPgDBPa1+BD1mPadIm5Tsa5j6uUoQkW6AZid7nVL
+         SVNSXGKepcG5eAPtu2rfHk5WNDGzpSw3MyJFApzJdOdJIduFNdr2CJTJbSyrFgqBTZ3J
+         V6QA==
+X-Gm-Message-State: AC+VfDzl/fkyLPM04FqIC+gno0zG60rRBsLMo5MMHkQJ7WNBoQzam7wW
+        rGQAwb2ajkAwrPPSEA4SSapGhwtv5+sHjsnrZnk=
+X-Google-Smtp-Source: ACHHUZ7a+j5H+4n877373TAsr1A1hwAPC3YrdKs+go0xqZQRXTvLCs8FQzyxfAYg3gC+80JnFGDtfA==
+X-Received: by 2002:aa7:ca4f:0:b0:514:a016:9cd1 with SMTP id j15-20020aa7ca4f000000b00514a0169cd1mr140984edt.8.1685633572310;
+        Thu, 01 Jun 2023 08:32:52 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id va15-20020a17090711cf00b0094ee99eeb01sm10696291ejb.150.2023.06.01.08.30.24
+        by smtp.gmail.com with ESMTPSA id y2-20020a50eb02000000b0050488d1d376sm7361686edp.0.2023.06.01.08.32.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 08:30:25 -0700 (PDT)
-Message-ID: <25c30964-6bd3-c7eb-640a-ba1f513b7675@linaro.org>
-Date:   Thu, 1 Jun 2023 17:30:23 +0200
+        Thu, 01 Jun 2023 08:32:51 -0700 (PDT)
+Message-ID: <c49f5619-286c-fbb7-0f18-5869527081c8@linaro.org>
+Date:   Thu, 1 Jun 2023 17:32:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v11 1/2] dt-bindings: spi: add loongson spi
+Subject: Re: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the
+ Realtek SoC USB 2.0/3.0 PHY
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <20230522071030.5193-2-zhuyinbo@loongson.cn>
- <20230524-pouncing-variable-c520e85f8db8@wendy>
- <b1e3d199-de5a-f8d5-9159-4965e9e1f5ef@loongson.cn>
- <20230524-relative-trimmer-046fb26a7764@wendy>
- <99b362c2-640c-9150-26ee-e9add4483886@loongson.cn>
- <2196dd29-93ee-00f7-65b4-ede73aa8ba77@linaro.org>
- <1b141df2-3e31-089e-1e05-0e268b60d074@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Ray Chi <raychi@google.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+References: <20230525022617.30537-1-stanley_chang@realtek.com>
+ <20230525022617.30537-3-stanley_chang@realtek.com>
+ <0b2143ca-ead7-c8fa-2e80-a94222af51ca@linaro.org>
+ <ee65a9d6d40d4099987db5ff1ad1753f@realtek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1b141df2-3e31-089e-1e05-0e268b60d074@loongson.cn>
+In-Reply-To: <ee65a9d6d40d4099987db5ff1ad1753f@realtek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -86,74 +94,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 11:51, zhuyinbo wrote:
->>> Yes, it is make sense as it can reduce the workload of the community.
->>> For the Loongson platform, the versions of spi peripherals are almost
->>> the same, except for a few  or individual SoCs.  And we have also
->>> discussed compatible internally, and we tend to define it this way.
->>
->> So you have chosen different path than what's clearly recommended by
->> community, existing experience and documentation:
->>
->> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
->>
->> Family names are not accepted as specific compatibles. Whenever they
->> were accepted, it lead to problems. All the time.
+On 01/06/2023 12:49, Stanley Chang[昌育德] wrote:
+> Hi Krzysztof,
 > 
-> 
-> Thank you for your documentation and advice and the Loongson platform
-> have loongson-2h (ls2h), loongson-2k (ls2k), loongson-2p (ls2p) or other
-> series SoC, which loongson-2 seems to be the family name you mentioned
-> and the "loongson,ls2k-spi" should be a speific compatible name.
-> 
+>> Thank you for your patch. There is something to discuss/improve.
 >>
->> https://lore.kernel.org/all/20220822181701.GA89665-robh@kernel.org/
->> https://lore.kernel.org/all/78651e07-6b3e-4243-8e1f-fcd1dfb3ffe1@www.fastmail.com/
->> https://lore.kernel.org/all/288f56ba9cfad46354203b7698babe91@walle.cc/
->> https://lore.kernel.org/all/106e443a-e765-51fe-b556-e4e7e2aa771c@linaro.org/
->> and many many more discussions.
->>
->> You should choose carefully, because we will keep NAK-ing adding
->> properties to circumvent missing compatibles.
+>> Actually a lot... The bindings are not suitable for review.
 > 
+> Thanks for your patience in reviewing my patches.
 > 
-> I have read the documention and patch link that you mentioned and it
-> seems to advice that We don't have wildcard names in the compatible
-> string and use wildcard names that will cause issue. and the compatible
-> "loongson,ls2k-spi" that wasn't a wildcard names, and if the loongson-2k
-> spi controller hardware upgraded or changed the I will use
-> "loongson,ls2k-spi-version" as a compatible, such as,
-> "loongson,ls2k-spi-v1.1", "loongson,ls2k-spi-v1.1a" or other.
+> Most of the properties are about the phy parameters.
+> Is the phy parameter data suitable to be placed in DTS?
+> I referenced other phy drivers. 
+> These parameters should not be defined in dts.
+> I would move the parameters to the driver.
 
-Versions? Why? They received a lot of comments in the past, let me just
-paste to avoid repeating the same:
-
-https://lore.kernel.org/all/20220926231238.GA3132756-robh@kernel.org/
-
-(and many more discussions on devicetree mailing list)
+If these can be in the driver, why would ever they be in DTS in the
+first place?
 
 > 
->>>
->>>> Or am I misunderstanding and all ls2k SoCs do work with this driver and
->>>> you were talking about other, future products?
->>>
->>> Actually, in 2k500 has one special type spi was only one cs and their's
->>> register definition was different from common type spi thus this driver
->>> doesn't support but this driver can support another common type spi in
->>> 2k500.  for this special type spi I will add support as needed in the
->>> future.
+>>> +  realtek,usb:
+>>> +    description: The phandler of realtek dwc3 node
 >>
->> Bindings are for hardware, not driver. What does your driver support or
->> does not, matters less.
+>> "phandler"? Except obvious typo, drop "The phandler of" and describe what is
+>> it for.
 > 
-> 
-> okay, I got it, and the loongson spi bindings was for loongson spi
-> controller hardware. if the spi controller hardware not changed in
-> different ls2k SoC and the spi compatible should be same thus loongson
-> spi compatible seems to be adhere to the bindings aggrement.
+> realtek,usb is a phandle of syscon used to control realtek dwc3 register.
 
-Specific compatible - yes. Unspecific - not, because you disregard the
-clear message in the guideline.
+Then no, phy should not control dwc3.
+
+> 
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>
+>> Anyway, it shouldn't be here. No, no.
+> 
+> Can I use it for phandle of syscon?
+
+PHY getting phandle to block using this PHY? Looks wrong. Why would PHY
+need to poke IP block register?
+
 
 Best regards,
 Krzysztof
