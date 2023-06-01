@@ -2,167 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81040719DD4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5A92719D7F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233738AbjFAN0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 09:26:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35206 "EHLO
+        id S233585AbjFANXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 09:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233734AbjFAN0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:26:42 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD63519B;
-        Thu,  1 Jun 2023 06:26:18 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f60e730bf2so8787015e9.1;
-        Thu, 01 Jun 2023 06:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685625977; x=1688217977;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mY4ulbNFE/jjkAM6F1KYjqgtbBRcYBjAGNE85b4mha4=;
-        b=Eyrfbb4GRekIwaWBrbBJoAQ+TnpS4Wpf9ICO7qzsFvxrI9yFUyGrFRxRngKXl20JW3
-         tEbx+C9qcNg2G+jhDjaxDGirdsMr/nreZgAB9LkqbAaVVfWCJFlrs3R8sFu+BsIiquMP
-         lbCyVxQMJzaR1SqXubYb72QmrEP1SnkUlHjOwgYf6cZjhmdUf0SWLC5O5Ya/hRGn8rHe
-         v9SzgNnKjXNQNNs/ci1y7YuRaMQWCCUzO3r6LLTJz12h5My9spUJ8CexcmAWpWSJowE8
-         MspDWpWbFA3mTGmxvAt9KdlZhRjlGfdLXibIIdrUbLBeVgxKF+cZsb4pvM56w+unqb+z
-         CfgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685625977; x=1688217977;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mY4ulbNFE/jjkAM6F1KYjqgtbBRcYBjAGNE85b4mha4=;
-        b=cgqF1eLqN//cS5cC7lWmVficG2kWef2OtvL1fbhR4JgfUMYhzXzovcBhN0epRyum/J
-         7fAmAUHeOFOGgrHYbhRu/n0A9n75ly9FeP7p4CsJzS1jvel9SQmkOZDVtmxWu+3gbmLx
-         3i1WbTovfUFOYxtaFgQNYp6M4tSOYGGAOAUZPOExxwxbWsUB/2UeqnjyAbgbzqRlvdUx
-         rtSH4+hrqvyCjWMMCPrq8jmQBIbDt1WL4AEHE3IXh3djGbYro3TD5uSIkTykX1Em054y
-         f0Nztyn+TkTGdOE10O5itjxIQ1sFaM+V7CYIRB7bpMVw2sfNiVJZN89yZ88J66nmxJ+W
-         0eZQ==
-X-Gm-Message-State: AC+VfDwtaKZ8rp1xgf+2pMiGyBLXQNCSeEgGfN2XVpcY6C+IMH1Mzf3j
-        0Y3VaEUDhn+U6oq5aYpAYNI=
-X-Google-Smtp-Source: ACHHUZ4u07oje+b/pW5QY8IISmc/7hrBKpGR8OodL8MJC5Gg23AvYMTBZe3OPWHRjosNZWA7j6ukxw==
-X-Received: by 2002:a7b:ca59:0:b0:3f4:f7c2:d681 with SMTP id m25-20020a7bca59000000b003f4f7c2d681mr2294755wml.29.1685625976702;
-        Thu, 01 Jun 2023 06:26:16 -0700 (PDT)
-Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id n16-20020a1c7210000000b003f60119ee08sm2396549wmc.43.2023.06.01.06.26.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 06:26:16 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233657AbjFANXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:23:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C883E196;
+        Thu,  1 Jun 2023 06:23:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D1296446A;
+        Thu,  1 Jun 2023 13:23:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19ACAC433EF;
+        Thu,  1 Jun 2023 13:23:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685625817;
+        bh=2Nu2ylXt9pKJIwKd04EwnfYt1AUPOoKUZUCSAoCM0V0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UPS3vEaxeyZvUegv+jMspVrWrIp/uYyoer+SfWAu4tKc2dW6JIWwVXBfAIcqGToag
+         gskqVPR5CkyxvLlVm2KHxNEbwb0hQskXdu1xYNzTTmAEsUXdYmIprU3nMIPunp4wPk
+         IZ0KAErfLBp5zOyrB7CSBqxI87Fc5M2BkSCFhxbX1REJEHXEYjss1jBPg/kpcqQm4r
+         v4Y9jvZXvw9hamv6WzeejPWrpktK9cK7E+n0m3FSNKZfbqrNwHExF8dCzZ6m31LizY
+         kcbq8HanmrO1jbVGbtP/TZndDlRC9b8Seq5vpFMMCTJWTI6H3MuYcIRmXk/kUZ74Qq
+         KFNpT0G5O0WNQ==
+Date:   Thu, 1 Jun 2023 06:27:17 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Andrew Powers-Holmes <aholmes@omnom.net>,
-        Ondrej Jirman <megi@xff.cz>, stable@vger.kernel.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register and range mappings
-Date:   Thu,  1 Jun 2023 15:25:16 +0200
-Message-Id: <20230601132516.153934-1-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.40.1
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 07/15] arm64: dts: qcom: sc8180x: Add interconnects
+ and lmh
+Message-ID: <20230601132717.yslaigqg4lprkniv@ripper>
+References: <20230530162454.51708-1-vkoul@kernel.org>
+ <20230530162454.51708-8-vkoul@kernel.org>
+ <7d4089df-e572-4d3b-6fb7-061d69479dce@linaro.org>
+ <ZHhF7zbPYyqdfURV@matsya>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZHhF7zbPYyqdfURV@matsya>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Powers-Holmes <aholmes@omnom.net>
+On Thu, Jun 01, 2023 at 12:47:03PM +0530, Vinod Koul wrote:
+> On 31-05-23, 10:26, Krzysztof Kozlowski wrote:
+> > On 30/05/2023 18:24, Vinod Koul wrote:
+> > > This add interconnect nodes and add LMH to sc8180x SoC dtsi
+> > > 
+> > > Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > 
+> > I don't understand why this was split. We talked on IRC many times on
+> > this - artificial splits are not "release early, release often". Your
+> > previous patchset was correct in that approach, but why this is separate
+> > patch?
+> 
+> Coz the patch was big to review. This is usual Linux approach to break a
+> change into smaller chunks for review!
+> 
 
-The register and range mappings for the PCIe controller in Rockchip's
-RK356x SoCs are incorrect. Replace them with corrected values from the
-vendor BSP sources, updated to match current DT schema.
+We break patches into small, logical units so that it's easy to follow
+the thought through each step in the process of introducing a change.
 
-These values are also used in u-boot.
+This is not the same thing as splitting one logical change into multiple
+smaller patches to keep the line count of each patch down. This just
+forces the reviewer to jump between emails to get the full picture of
+the logical change.
 
-Fixes: 66b51ea7d70f ("arm64: dts: rockchip: Add rk3568 PCIe2x1 controller")
-Cc: stable@vger.kernel.org
-Signed-off-by: Andrew Powers-Holmes <aholmes@omnom.net>
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
+And it's not until patch 14 that any of this content is introduced to
+the build system, so it's not split to ensure bisectability etc.
 
-Since nobody else was gonna submit this fix on a fix, I decided
-to do it myself, based on the u-boot patch Jonas Karlman wrote.
 
-Please test that this does not break the PCIe 3 controller on
-RK3568 hardware, I don't have the right setup to easily test it
-on there.
+I'd be perfectly happy to have received the dts changes as 3-4 patches.
 
-Changes since v1:
- - Fix copy-paste error on second reg property from 0xf2000000
-   to 0xf0000000
-
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 14 ++++++++------
- arch/arm64/boot/dts/rockchip/rk356x.dtsi |  7 ++++---
- 2 files changed, 12 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index ba67b58f05b7..f1be76a54ceb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -94,9 +94,10 @@ pcie3x1: pcie@fe270000 {
- 		power-domains = <&power RK3568_PD_PIPE>;
- 		reg = <0x3 0xc0400000 0x0 0x00400000>,
- 		      <0x0 0xfe270000 0x0 0x00010000>,
--		      <0x3 0x7f000000 0x0 0x01000000>;
--		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x7ef00000 0x0 0x00100000>,
--			 <0x02000000 0x0 0x00000000 0x3 0x40000000 0x0 0x3ef00000>;
-+		      <0x0 0xf2000000 0x0 0x00100000>;
-+		ranges = <0x01000000 0x0 0xf2100000 0x0 0xf2100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf2200000 0x0 0xf2200000 0x0 0x01e00000>,
-+			 <0x03000000 0x0 0x40000000 0x3 0x40000000 0x0 0x40000000>;
- 		reg-names = "dbi", "apb", "config";
- 		resets = <&cru SRST_PCIE30X1_POWERUP>;
- 		reset-names = "pipe";
-@@ -146,9 +147,10 @@ pcie3x2: pcie@fe280000 {
- 		power-domains = <&power RK3568_PD_PIPE>;
- 		reg = <0x3 0xc0800000 0x0 0x00400000>,
- 		      <0x0 0xfe280000 0x0 0x00010000>,
--		      <0x3 0xbf000000 0x0 0x01000000>;
--		ranges = <0x01000000 0x0 0x3ef00000 0x3 0xbef00000 0x0 0x00100000>,
--			 <0x02000000 0x0 0x00000000 0x3 0x80000000 0x0 0x3ef00000>;
-+		      <0x0 0xf0000000 0x0 0x00100000>;
-+		ranges = <0x01000000 0x0 0xf0100000 0x0 0xf0100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf0200000 0x0 0xf0200000 0x0 0x01e00000>,
-+			 <0x03000000 0x0 0x40000000 0x3 0x80000000 0x0 0x40000000>;
- 		reg-names = "dbi", "apb", "config";
- 		resets = <&cru SRST_PCIE30X2_POWERUP>;
- 		reset-names = "pipe";
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index f62e0fd881a9..61680c7ac489 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -952,7 +952,7 @@ pcie2x1: pcie@fe260000 {
- 		compatible = "rockchip,rk3568-pcie";
- 		reg = <0x3 0xc0000000 0x0 0x00400000>,
- 		      <0x0 0xfe260000 0x0 0x00010000>,
--		      <0x3 0x3f000000 0x0 0x01000000>;
-+		      <0x0 0xf4000000 0x0 0x00100000>;
- 		reg-names = "dbi", "apb", "config";
- 		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
-@@ -982,8 +982,9 @@ pcie2x1: pcie@fe260000 {
- 		phys = <&combphy2 PHY_TYPE_PCIE>;
- 		phy-names = "pcie-phy";
- 		power-domains = <&power RK3568_PD_PIPE>;
--		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
--			  0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
-+		ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x01e00000>,
-+			 <0x03000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
- 		resets = <&cru SRST_PCIE20_POWERUP>;
- 		reset-names = "pipe";
- 		#address-cells = <3>;
--- 
-2.40.1
-
+Regards,
+Bjorn
