@@ -2,125 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AB2D71EF71
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 18:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB76D71EFB8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 18:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbjFAQq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 12:46:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59266 "EHLO
+        id S229589AbjFAQxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 12:53:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231418AbjFAQqy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 12:46:54 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E90A1A5
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 09:46:53 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 351FlpAS010603;
-        Thu, 1 Jun 2023 18:46:38 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : from : subject : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=HqU/+Xh6ddKc8jiStCeFLG1QAjrATFCxOKZdk/TGvuM=;
- b=cXMY7fb0YFHMksJ+ic8MRcb1/QlFgJ0mErUDXX7IXdAlBRvA9tu4O0DQZeys/iF0n1yq
- qFJn3mFbI0VL4O+3aGvC/SBNegKGaL32W9YhTn+AyvAC278PMiVxQlsbLqMEIlzY/vok
- nLqVKFJvD2NpkK64cm8GwwTPwzJVizIir/NAW2e177A9jiyr7DNbep61/Sb5lkquFCEs
- bCykLSyaqYmXYvotsdmKM6aw/0XccuYg6paAcwjSI8BSW886uPrOdUN4bYnUd9UbCBMw
- WGho/aeyBl1xMPd3TvSzxbgvGBmWzwDleXda2R+TKvk3fFEojk9JThu7MJsphAos7PdE 3Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qx3152cu1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Jun 2023 18:46:38 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4135710002A;
-        Thu,  1 Jun 2023 18:46:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 30D60267E28;
-        Thu,  1 Jun 2023 18:46:38 +0200 (CEST)
-Received: from [10.129.178.187] (10.129.178.187) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 1 Jun
- 2023 18:46:37 +0200
-Message-ID: <b343ab21-2787-4602-57f8-4c2bf62db523@foss.st.com>
-Date:   Thu, 1 Jun 2023 18:46:37 +0200
+        with ESMTP id S232224AbjFAQwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 12:52:36 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0F5197
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 09:52:24 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2af2ef0d0daso15264611fa.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 09:52:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685638343; x=1688230343;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cv5o48CpGTaTmkSqmSGB6JrLPZbZffPhXroyECMP20Q=;
+        b=dK2zE69rNsGt4bXTMWMxq6bZpD4cU/x1vn4XebDWEoyqfWByDSis5f5x5GGv4KO6+g
+         B+FkzBs6FLdaaLN183dNIA96rVI5Kzag0fh8EugZ5FurJHNO/MwMye+IcB4vb1hIHsRV
+         q1+Uau405GRgsgxsByoJgmnJACabUg9vPnQBfz9vtnbQiTiEtWB6MoHLDz7LUyRHm9+1
+         DwKobSv0MjAJ+TlLpEN3pyvRUZXb23HNRa7tQe88t8gq2Eo/iVfo4PegSVzC8fRDa7dZ
+         gMtLNuqAvIOS8aRLs7GsGHEJwnJIV1/4y8GwjlFi459jLzGr5gsmz9I7H1xLmg0DAZeg
+         dWPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685638343; x=1688230343;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cv5o48CpGTaTmkSqmSGB6JrLPZbZffPhXroyECMP20Q=;
+        b=DMGAeGG3kr+SjaoKaKjVDQbD0/AZK/tb+0nfivN+EqZvknFUOOpjAry5qWZfcYbkeG
+         Zg25gtsI22xjqQcivcsGvrJ2/WQzByuRCoaxAPeP6OUgIRsGoZ22HhhhIqd+B0cyTtAf
+         m+0qN3XUMNo7F2uC/6IozfBHCKqZ71rGkQA6++OAmXA76DVllMUmhWhwXWKyAwE6uog+
+         W+kayhFKr21JpH62rBrAAI4F4sbA569Uny4xDPMXo4q4XmRJ3R8hqw9Osfbx4zpOpFEF
+         n7qXWxFJApv33vzHuFdLIQLz5gOr1b+ZqpttTCxPv4PnZbDkv8oZtRKXx5OzPn0HMKDO
+         +Onw==
+X-Gm-Message-State: AC+VfDxs97hmyxxru62Zyy2R1zvdPRKwf0h9ggftq6etI7aZBuvlRxgt
+        QgjEiUIG/LqTuu36BLUbWb3IPA==
+X-Google-Smtp-Source: ACHHUZ45xf+TTk2bM1U0IxRDaisGc8GzwSlvqbxUDojASZ12tvMvve9++CtLVgt3KkKUeuYY89L//A==
+X-Received: by 2002:a2e:b043:0:b0:2af:1807:9e6 with SMTP id d3-20020a2eb043000000b002af180709e6mr7081ljl.35.1685638342869;
+        Thu, 01 Jun 2023 09:52:22 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id fi13-20020a170906da0d00b0096fbc516a93sm10668583ejb.211.2023.06.01.09.52.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Jun 2023 09:52:22 -0700 (PDT)
+Message-ID: <5f5f6412-f466-9a3f-3ec7-aa45ab0049c6@linaro.org>
+Date:   Thu, 1 Jun 2023 18:52:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Subject: Re: [PATCH] ARM: dts: stm32: Deduplicate DSI node
-To:     Marek Vasut <marex@denx.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Philippe CORNU - foss <philippe.cornu@foss.st.com>,
-        yannick Fertre <yannick.fertre@foss.st.com>
-CC:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230531231044.574541-1-marex@denx.de>
+Subject: Re: [PATCH 1/2] dt-bindings: net: phy: Support external PHY xtal
 Content-Language: en-US
-In-Reply-To: <20230531231044.574541-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"
+To:     Detlev Casanova <detlev.casanova@collabora.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     linux-kernel@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230531150340.522994-1-detlev.casanova@collabora.com>
+ <ade45bcf-c174-429a-96ca-d0ffb41748d4@lunn.ch> <6646604.lOV4Wx5bFT@arisu>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6646604.lOV4Wx5bFT@arisu>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.129.178.187]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_08,2023-05-31_03,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On 31/05/2023 20:00, Detlev Casanova wrote:
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: xtal
+>>
+>> I don't think xtal is the best of names here. It generally is used as
+>> an abbreviation for crystal. And the commit message is about there not
+>> being a crystal, but an actual clock.
+>>
+>> How is this clock named on the datasheet?
+> 
+> In the case of the PHY I used (RTL8211F), it is EXT_CLK. But this must be 
+> generic to any (ethernet) PHY, so using ext_clk to match it would not be
+> good either.
+> 
+> Now this is about having an external clock, so the ext_clk name makes sense in 
+> this case.
+> 
+> I'm not pushing one name or another, let's use what you feel is more natural.
 
+Just drop the name.
 
-On 6/1/23 01:10, Marek Vasut wrote:
-> All boards using the DSI node duplicate the same pattern common pattern
-> in board DTs, that pattern is ports with endpoint labels and the same
-> in-SoC regulator connection. Move that common pattern into stm32mp157.dtsi
-> instead.
+Best regards,
+Krzysztof
 
-I think that is a good idea, while it did not crossed my mind implementing it
-this way on the first time.
-
-I'll let my peers Philippe and Yannick review and ack it this time. I tested it
-on DK2, it seems fine.
-
-
-Thanks :)
-
-> The two boards which do define panel@0 directly in the DSI bridge node now
-> have #address-cells/#size-cells in their board DT instead of it being in
-> stm32mp157.dtsi and activated incorrectly for all boards, even the ones
-> which use e.g. another DSI-to-something bridge.
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
-
-Reviewed-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-
-
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->  arch/arm/boot/dts/stm32mp157.dtsi             | 18 ++++++++++++
->  ...tm32mp157a-icore-stm32mp1-ctouch2-of10.dts | 24 ++++------------
->  .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   | 28 ++++++-------------
->  arch/arm/boot/dts/stm32mp157c-dk2.dts         | 28 ++++++-------------
->  arch/arm/boot/dts/stm32mp157c-ev1.dts         | 28 ++++++-------------
->  5 files changed, 48 insertions(+), 78 deletions(-)
