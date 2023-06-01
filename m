@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4829571980D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51CB471980A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:00:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232323AbjFAKAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 06:00:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
+        id S232674AbjFAKAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 06:00:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232817AbjFAJ70 (ORCPT
+        with ESMTP id S232853AbjFAJ70 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 05:59:26 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06395191
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 02:59:15 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9707313e32eso87639166b.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 02:59:15 -0700 (PDT)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DFD6188
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 02:59:17 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96f818c48fbso84068466b.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 02:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685613554; x=1688205554;
+        d=linaro.org; s=google; t=1685613555; x=1688205555;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5gUTL11vnxpXlxWq5vLbzbP4rLUK3lP3DTT7y0ZjwjY=;
-        b=Tz8PHzxd3P6JoImzVZfGM0u/T6P315gIEMdY7tO8FaC6ffAHK7T8lYXwPvgPESVvh6
-         DNI9aXvm4jS9HaK4ECQZITBJw9T+hmUOO+qToskw3HmdUh2nxixIj34Khyr9/215EQJ7
-         cZENCpFYWsPJeeJZFb8+c8/E55l2kuePHs4rrHFYptW27H1dPzwjlmnaR5Zgx/H6Q4Ji
-         rNmvet1Nk4LP/5gIzUnULm3AlDQWHdj2YF+CKYypCl3CwhloMGpSa1MmlhaATTgfYPak
-         Dtvs2pdMyz3YVlsAkPwXTFxQRyyq3FVhfkU8U4/r8BhF+QeHh2dDx57wHg1fp1lp1L5G
-         84VQ==
+        bh=SqU5JKI8xSfMQrPkRhcyh7XPcg7Z1CafuGi9gOADxbY=;
+        b=c3wBpLoondpO97ox5zj7A6M408bKWCj2FPWXD37/RVj4TibSerGEzjgQBS41qgW5wc
+         vQV8W4u1tqbpUlIzl1MhylDtY6qO15c/qY5kMcT4Jw1I7kcWLhCMLzMjd8L6ul67rR5H
+         5xMHxuvX28WFl2qP5hgJddbgKcSQfyfLMujKfiJ3U3d9yyJI9yzwEamW9BBOui0qxPhx
+         ROyznF54XxKPNV565XxXC/dgg0JQdKEuylNoRvjmBHx1B82xatc8rXu2ql/GLuFfEE6e
+         p/vP9c395lnGxJgpOU88NzMX4fq1qHhpCKGqDPpCyNdqdy+sePAz3V5cHCeHFHPVhp1b
+         wypA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685613554; x=1688205554;
+        d=1e100.net; s=20221208; t=1685613555; x=1688205555;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5gUTL11vnxpXlxWq5vLbzbP4rLUK3lP3DTT7y0ZjwjY=;
-        b=TPod9zosraLoB6ZMVrwEQTt4XXZjBjQC6qMUfxVGV1TgWUI7KMEW+ME6uReGJuJ/oZ
-         sIqMMpQay8Lud/8tEQ9wIyw33V4IstERitU0v3WQ6nhzAh+MFTHx52BtLD+DLXbMtvlV
-         Tr2/4kXsEwrDiSjjBP3km/BpPy/nA2TV1VKGS+QvId1NvUscyByiwAzqc+e12lf82MAI
-         ZVBsHNeDrpydS72PSGS7Pe1XST6el82MKAqRRCDdr3Ixt+6HCC74VTsvSc20t/cwkK2g
-         FJ5j/4dm0K2fuP0fbQe7mFdOnKcToFkkPfA+NskkuBPijexoc5QyHTMDNobmzan8KBzf
-         wEKA==
-X-Gm-Message-State: AC+VfDzANVC0/QLg4WgkE7R4KlcjFR3IxmbR1/tsXDCypblnCzOWT9f3
-        kwAy5wXrMK2w+QDxZqOPc0MH+w==
-X-Google-Smtp-Source: ACHHUZ4I/69J6jg295rv4mi6qZgVezEeoosgJf5jB21FRODGPlUpK10s+4Umt6GwBaU0uBaGgYM0Ig==
-X-Received: by 2002:a17:907:ea7:b0:974:1ef1:81fb with SMTP id ho39-20020a1709070ea700b009741ef181fbmr7716468ejc.22.1685613553897;
-        Thu, 01 Jun 2023 02:59:13 -0700 (PDT)
+        bh=SqU5JKI8xSfMQrPkRhcyh7XPcg7Z1CafuGi9gOADxbY=;
+        b=etMbIhDS9dYdDriSSQC8qGo5Outvn+16F8++fvHeScDN6QOZ4v9CoOxCEEeOHIVey4
+         inRHejvdpjZk+IsuwkF6qpU+wsIA1dEIPYM5GOZ//ZpvVwkx9rhj1VjxAh1SKyhmR1F1
+         bTBEi8VR5ONZ0xA1HKmj9nZ1DGnEXuCBIJynFUvj7Ot+9l/rEvnMd7XotP3s1yhQKFzh
+         w70tN4EGpfegSbSVa+cNCVKxp9i1L0qadVt9ScrxLowEH7YCG/f9dEF12FOXT5hTFqso
+         SCkMpHUa+ILQXX6CnaJ0sEDBAEbTa+t2sF66hmtY6CXlsY4dphqwhcCqFR9Z26UW/VKS
+         fnhw==
+X-Gm-Message-State: AC+VfDw32cHBd1hWUEcUGPOvJLaNi1yCVoh1yXL+o7L/Qaa/fAyRgiTM
+        pv8bIB5F71l01zEcRvzulpBYdg==
+X-Google-Smtp-Source: ACHHUZ5gzkqt8SW2dNBwPi6OCmq0SOHL+UihiUONfj0SGQPvjb21q3GASr/tqkSrkQAZlbaOuaU72w==
+X-Received: by 2002:a17:907:a414:b0:957:2e48:5657 with SMTP id sg20-20020a170907a41400b009572e485657mr6962043ejc.68.1685613555753;
+        Thu, 01 Jun 2023 02:59:15 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id y11-20020a1709060a8b00b00965bf86c00asm10475549ejf.143.2023.06.01.02.59.12
+        by smtp.gmail.com with ESMTPSA id y11-20020a1709060a8b00b00965bf86c00asm10475549ejf.143.2023.06.01.02.59.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 02:59:13 -0700 (PDT)
+        Thu, 01 Jun 2023 02:59:15 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -65,9 +65,9 @@ To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/3] spi: dt-bindings: samsung: drop cs-gpios
-Date:   Thu,  1 Jun 2023 11:59:07 +0200
-Message-Id: <20230601095908.563865-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] spi: dt-bindings: socionext,uniphier: drop address/size-cells
+Date:   Thu,  1 Jun 2023 11:59:08 +0200
+Message-Id: <20230601095908.563865-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230601095908.563865-1-krzysztof.kozlowski@linaro.org>
 References: <20230601095908.563865-1-krzysztof.kozlowski@linaro.org>
@@ -75,7 +75,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,27 +83,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove cs-gpios because it is already mentioned by common
+Remove address/size-cells because they are already mentioned by common
 spi-controller.yaml.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/spi/samsung,spi.yaml | 2 --
- 1 file changed, 2 deletions(-)
+ .../devicetree/bindings/spi/socionext,uniphier-spi.yaml        | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/samsung,spi.yaml b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-index e0a465d70b0a..79da99ca0e53 100644
---- a/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-+++ b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-@@ -35,8 +35,6 @@ properties:
-     minItems: 2
-     maxItems: 3
+diff --git a/Documentation/devicetree/bindings/spi/socionext,uniphier-spi.yaml b/Documentation/devicetree/bindings/spi/socionext,uniphier-spi.yaml
+index 597fc4e6b01c..c96131ebbea1 100644
+--- a/Documentation/devicetree/bindings/spi/socionext,uniphier-spi.yaml
++++ b/Documentation/devicetree/bindings/spi/socionext,uniphier-spi.yaml
+@@ -17,9 +17,6 @@ allOf:
+   - $ref: spi-controller.yaml#
  
--  cs-gpios: true
+ properties:
+-  "#address-cells": true
+-  "#size-cells": true
 -
-   dmas:
-     minItems: 2
-     maxItems: 2
+   compatible:
+     const: socionext,uniphier-scssi
+ 
 -- 
 2.34.1
 
