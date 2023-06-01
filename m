@@ -2,128 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E46A8719B15
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 13:41:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745A8719B1E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 13:49:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232380AbjFALli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 07:41:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43926 "EHLO
+        id S231878AbjFALtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 07:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231878AbjFALlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 07:41:37 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C72129;
-        Thu,  1 Jun 2023 04:41:36 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 351BBBxj005804;
-        Thu, 1 Jun 2023 11:41:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=aotPw+dYK7sxudCqVR0YLAk8+rt9UvEFInV/RtR4ZA8=;
- b=fKDeB8Qt3D5loVg6aR6NXqfSYweO1UaU554EXdngK/0zM7Fl5d0agbnDujHRXCl/agFP
- 1y2EVsNbcQMRXwl7znailcVQ3SeooNA230z50t6SzGGTqbvw/8QC3SgLsOqpVZOsgcdN
- dzB4PYXBjp6F/VB0B+j2TyLm413FhpuXSKvDbVQhnWM1zIqdatS9YQ+fYPuDGO/tEAa7
- /4QiCa1d7gd7rt6OrFHfq9E2p8p0GIMSP2b1AwNbEnvpu1nnK4aj3+O+EeNTX9kxEbuE
- b1K9aJXA2vcrb0cSCa9OrPI2C2vAQNKMjTQDlbSDQGR83bdqbRC0sJar3saR7L2n46Ul DA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxbt8hvjd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Jun 2023 11:41:20 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 351BfImE009437
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 1 Jun 2023 11:41:18 GMT
-Received: from [10.216.52.42] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
- 04:41:12 -0700
-Message-ID: <8146f367-c539-bea5-12b6-424213018488@quicinc.com>
-Date:   Thu, 1 Jun 2023 17:11:08 +0530
+        with ESMTP id S230268AbjFALtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 07:49:18 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D07CD129;
+        Thu,  1 Jun 2023 04:49:16 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 351Bn0N7025725;
+        Thu, 1 Jun 2023 06:49:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685620140;
+        bh=1AgyYwFTyh3L8MGDOaJ940Fe09PyF2HGWDtN+2rsesE=;
+        h=Date:Subject:From:To:CC:References:In-Reply-To;
+        b=R0ncVuNx1mKz4Grfo3pZDdz5qPDgvellBY+AnwjIiWd3Ed9Zl1DDTqP8s22x2hUwt
+         zFxUTZMInccJHpwg08fAe8yV9cRBYVTCnik7U4eQCqqCbDh+hQLEl/vM9JmrTGBhLC
+         v86OZsYosmdYzVdCY5ate08XkMulzwNQ9l2Z1yGY=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 351Bn0Tp116576
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Jun 2023 06:49:00 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Jun 2023 06:49:00 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Jun 2023 06:49:00 -0500
+Received: from [172.24.147.77] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 351Bmufi112293;
+        Thu, 1 Jun 2023 06:48:57 -0500
+Message-ID: <4aee3a8f-66ff-387b-73a1-31fc16eb7ffc@ti.com>
+Date:   Thu, 1 Jun 2023 17:18:56 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V7 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and
+ pinctrl node offsets
+From:   Thejasvi Konduru <t-konduru@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Apurva Nandan <a-nandan@ti.com>, Udit Kumar <u-kumar1@ti.com>
+References: <20230503083143.32369-1-t-konduru@ti.com>
+ <20230503114625.gqnijd3bog5bwemz@parameter>
+ <31b31af7-6c54-7d05-f7ef-fcceba48580e@ti.com>
+ <20230504115207.h6trzy4mqjcbkcm3@comment>
+ <67eccecb-f4a4-7f15-5316-27fd39e65b51@ti.com>
+ <20230504142239.hqhni2c52k3a3asz@prune>
+ <efab17de-aeb4-9fdb-6c97-ab2f2bc8c8f4@ti.com>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andy.shevchenko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>
-References: <20230519125409.497439-1-quic_srichara@quicinc.com>
- <20230519125409.497439-5-quic_srichara@quicinc.com>
- <CAHp75VfVx+oGYKcija3h9-eWc6jggMx8p5SAQTEHTBEbjTaJKw@mail.gmail.com>
- <1823419a-6bb4-03f7-d5ae-e32204c5e598@quicinc.com>
- <ZHTK7uEzO7kcx_cV@surfacebook>
- <aefd0df1-8dfb-1b69-589b-974dea312845@quicinc.com>
- <664940c3-9ec1-b4bd-9db5-fa3529e3d1ff@linaro.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <664940c3-9ec1-b4bd-9db5-fa3529e3d1ff@linaro.org>
+In-Reply-To: <efab17de-aeb4-9fdb-6c97-ab2f2bc8c8f4@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: u2w7l7fePiABIueIjTPZ0bYV_TrEwmvo
-X-Proofpoint-ORIG-GUID: u2w7l7fePiABIueIjTPZ0bYV_TrEwmvo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_08,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 mlxlogscore=676
- priorityscore=1501 bulkscore=0 adultscore=0 clxscore=1015 spamscore=0
- malwarescore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2306010103
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SCC_BODY_URI_ONLY,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/1/2023 3:21 PM, Krzysztof Kozlowski wrote:
-> On 01/06/2023 11:50, Sricharan Ramabadhran wrote:
->>
->>
->> On 5/29/2023 9:25 PM, andy.shevchenko@gmail.com wrote:
->>> Mon, May 29, 2023 at 03:58:09PM +0530, Sricharan Ramabadhran kirjoitti:
->>>> On 5/20/2023 12:17 AM, Andy Shevchenko wrote:
->>>>> On Fri, May 19, 2023 at 3:55 PM Sricharan Ramabadhran
->>>>> <quic_srichara@quicinc.com> wrote:
->>>
->>> ...
->>>
->>>>>      depends on OF || COMPILE_TEST
+On 09/05/23 15:19, Thejasvi Konduru wrote:
+>
+> On 04/05/23 19:52, Nishanth Menon wrote:
+>> On 17:40-20230504, Thejasvi Konduru wrote:
+>>> On 04/05/23 17:22, Nishanth Menon wrote:
+>>>> On 14:36-20230504, Thejasvi Konduru wrote:
+>>>>> On 03/05/23 17:16, Nishanth Menon wrote:
+>>>>>> On 14:01-20230503, Thejasvi Konduru wrote:
+>>>>>>> The wkup_pmx register region in j784s4 has multiple non-addressable
+>>>>>>> regions, hence the existing wkup_pmx region is split as follows to
+>>>>>>> avoid the non-addressable regions. The pinctrl node offsets are
+>>>>>>> also corrected as per the newly split wkup_pmx* nodes.
+>>>>>>>
+>>>>>>> wkup_pmx0 -> 13 pins (WKUP_PADCONFIG 0 - 12)
+>>>>>>> wkup_pmx1 -> 11 pins (WKUP_PADCONFIG 14 - 24)
+>>>>>>> wkup_pmx2 -> 72 pins (WKUP_PADCONFIG 26 - 97)
+>>>>>>> wkup_pmx3 -> 1 pin (WKUP_PADCONFIG 100)
+>>>>>>>
+>>>>>>> Fixes: 4664ebd8346a ("arm64: dts: ti: Add initial support for 
+>>>>>>> J784S4 SoC")
+>>>>>>> Signed-off-by: Thejasvi Konduru <t-konduru@ti.com>
+>>>>>>> ---
+>>>>>> Could you provide a link to the output of:
+>>>>>> $ cat /sys/kernel/debug/pinctrl/*/pins
+>>>>> https://gist.github.com/thejasvikonduru/05b1a8e0fd8176116b7a3cc4e43b244a 
+>>>>>
+>>>> Was this failing prior to this patch? Trying to understand the "Fix"
+>>>> aspect of this patch.
 >>>>
->>>>    Yeah sure. COMPILE_TEST could be standalone. Will fix it and repost.
+>>> Yes,it was failing prior to this patch.
 >>>
->>> Standalone COMPILE_TEST will give you definitely NOT what you want.
->>> And actually it's strange to have it standalone.
->>>
+>> next time some asks this question - give summary AND give a log. Even
+>> better, please don't make folks even ask the question in the first
+>> place by including the logs in the diffstat of the patch.
 >>
->>    Ho ok, i meant like this, "depends on ARM64 || COMPILE_TEST"
-> 
-> Don't do it differently than all other drivers. Open the Kconfig and
-> look at existing entries.
-> 
-   The latest added has this below, will use this
-
-	depends on OF || COMPILE_TEST
-	depends on ARM64 || COMPILE_TEST
-
-Regards,
-  Sricharan
+>> Please share the log to understand what kind of "failure" was occurring.
+>
+> Link to logs:
+> Before Fix: 
+> https://gist.github.com/thejasvikonduru/e217edf4839c348793a5671aa9331595
+> After Fix : 
+> https://gist.github.com/thejasvikonduru/05b1a8e0fd8176116b7a3cc4e43b244a
+>
+Are these logs fine and can we go forward with this patch?
