@@ -2,95 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F7071F169
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 20:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9894A71F186
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 20:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232350AbjFASLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 14:11:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50364 "EHLO
+        id S231428AbjFASPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 14:15:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231895AbjFASLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 14:11:32 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C91123;
-        Thu,  1 Jun 2023 11:11:31 -0700 (PDT)
-Received: from arisu.localnet (unknown [23.233.251.139])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S231418AbjFASPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 14:15:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F0C9193;
+        Thu,  1 Jun 2023 11:15:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: detlev)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7E6716606ED0;
-        Thu,  1 Jun 2023 19:11:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685643090;
-        bh=/1UK6RJyERSL17sN+JVrhQMGuFCZnyl/wmrhoctEEII=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ULWjjXJmbpkeISxN30WBA+kbSwotG3y7xIVx0GiEsYCmWZh15YDzICoB6EksT+VT3
-         w8idCG16fqul6WxKbdRyNN1wGfyYV94rKJhNhuUyMbW+RDH/9kujdBEpW2KYOPJlL2
-         dBZ4ETK/cU0nhPgzgf+BJVwMA7G5p5hAqgfQNY2pxvEXgxZrSqBGF+klCku897npdd
-         Uh7tIfqVi95tLdqWmp0e2BVNEs5TsJYahiB8t+KE0kxnmMAjIMqIjNEPmpdWHamAky
-         I8SyfJ4nq+uRSNNOP92X5CCR+PLSYBxlak6mf7D4vE/pNTxHlyHLsV03xa3eFN2Baa
-         rQtik76BhF+ew==
-From:   Detlev Casanova <detlev.casanova@collabora.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ABFA364895;
+        Thu,  1 Jun 2023 18:15:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54EB3C433D2;
+        Thu,  1 Jun 2023 18:15:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685643306;
+        bh=BT+vGOJPrHx0Z+8fcx0oC3s+z46tF+kKwZcJYsOV+fw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o36oVFmLU2Wu1q9HMvmzFAcs3DkxUKsOOs+rnml0FkqZwt44JlusFYehnv5xwW8Ja
+         9cTEiPRE12wWpOt2jYxHXkGvO4LEpv/9US4BfBy/NDtsUQNbc1ka7YFJDq4bZwT1Bl
+         s43kJ3taXnkcoMqCGVziv+GgNMikGtYcBZ/joSOEbDDwHlRNUfYl0u4LkyNYzDSAK7
+         wvSWK+rymUrN114LHrVlELV5K3LusD2UfJPh4g4R8DoeD6JEKIP8W+U0o8ZgYWggn2
+         Sngjon5qCNG72R4sCxfwVTWU74ueQs7llH5W0RaoXAYgNHPwS+RiCDOYvm5mU7JZ9I
+         RgKDs9LUM+5xQ==
+Date:   Thu, 1 Jun 2023 19:15:00 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
 Cc:     linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: net: phy: Support external PHY xtal
-Date:   Thu, 01 Jun 2023 14:11:31 -0400
-Message-ID: <2686795.mvXUDI8C0e@arisu>
-In-Reply-To: <5f5f6412-f466-9a3f-3ec7-aa45ab0049c6@linaro.org>
-References: <20230531150340.522994-1-detlev.casanova@collabora.com>
- <6646604.lOV4Wx5bFT@arisu> <5f5f6412-f466-9a3f-3ec7-aa45ab0049c6@linaro.org>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
+Message-ID: <20230601-geologic-bolster-72409d4270b4@spud>
+References: <20230601170320.2845218-1-dario.binacchi@amarulasolutions.com>
+ <20230601170320.2845218-5-dario.binacchi@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="FrkmRzBBFS1z/3bF"
+Content-Disposition: inline
+In-Reply-To: <20230601170320.2845218-5-dario.binacchi@amarulasolutions.com>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday, June 1, 2023 12:52:18 P.M. EDT Krzysztof Kozlowski wrote:
-> On 31/05/2023 20:00, Detlev Casanova wrote:
-> >>> +  clock-names:
-> >>> +    items:
-> >>> +      - const: xtal
-> >> 
-> >> I don't think xtal is the best of names here. It generally is used as
-> >> an abbreviation for crystal. And the commit message is about there not
-> >> being a crystal, but an actual clock.
-> >> 
-> >> How is this clock named on the datasheet?
-> > 
-> > In the case of the PHY I used (RTL8211F), it is EXT_CLK. But this must be
-> > generic to any (ethernet) PHY, so using ext_clk to match it would not be
-> > good either.
-> > 
-> > Now this is about having an external clock, so the ext_clk name makes
-> > sense in this case.
-> > 
-> > I'm not pushing one name or another, let's use what you feel is more
-> > natural.
-> Just drop the name.
 
-So I can just use devm_clk_get_optional_enabled(dev, NULL) and I'll get the 
-first clock defines in the device tree ?
+--FrkmRzBBFS1z/3bF
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Detlev.
+On Thu, Jun 01, 2023 at 07:03:18PM +0200, Dario Binacchi wrote:
+> Add compatible to panel-simple for Rocktech Displays Limited
+> RK043FN48H 4.3" 480x272 LCD-TFT panel.
+>=20
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+>=20
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple=
+=2Eyaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 01560fe226dd..bd6a92d2b41c 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -280,6 +280,8 @@ properties:
+>        - rocktech,rk101ii01d-ct
+>          # Rocktech Display Ltd. RK070ER9427 800(RGB)x480 TFT LCD panel
+>        - rocktech,rk070er9427
+> +        # Rocktech Display Ltd. RK043FN48H 4.3" 480x272 LCD-TFT panel
+> +      - rocktech,rk043fn48h
 
+I was going to ask why not alphanumerically, but clearly things are not
+in that order to begin with =C2=AF\_(=E3=83=84)_/=C2=AF
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
 
+>          # Samsung 13.3" FHD (1920x1080 pixels) eDP AMOLED panel
+>        - samsung,atna33xc20
+>          # Samsung 12.2" (2560x1600 pixels) TFT LCD panel
+> --=20
+> 2.32.0
+>=20
+
+--FrkmRzBBFS1z/3bF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHjgJAAKCRB4tDGHoIJi
+0k89AP9HH1arvvQRctJmZd92CgCawWgeDTcpytwjoIu+/HkAIAEAz1Y7DsZQRLUa
+y5PjzVH5Tym/ag5DxXL7tTuotZs/RwA=
+=Qkdm
+-----END PGP SIGNATURE-----
+
+--FrkmRzBBFS1z/3bF--
