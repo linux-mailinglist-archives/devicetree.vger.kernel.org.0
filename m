@@ -2,114 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9F8B71F04E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8054D71F05E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232179AbjFARJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 13:09:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50440 "EHLO
+        id S232390AbjFARL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 13:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231431AbjFARJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:09:24 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8970D1;
-        Thu,  1 Jun 2023 10:09:21 -0700 (PDT)
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B1ED6606ECA;
-        Thu,  1 Jun 2023 18:09:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685639359;
-        bh=Y8F29vZfkHL4Cb3ef4MuhHy4Zp5QvDAZ2kfIEyGPM9A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=djfaRrFbe5vpFwhkOMJQAaXxfPSn6juAwXkAr4/vbafpbvECworn4C6+M5gHXSwC/
-         omKlx04ZB5h0aJdt1pRwK5f1fh/c0wVQDIoAhMR0OHegtLoUymiw1hnFy5Wg2yblOH
-         SoizdaLsweDvPsQ+6QiYYYElLbHJf2pVZsRtIulNG1gHSYjfdSXdHwEoGnHsI9Nrwo
-         kC9g+1xMF4lc+XJffyLIolrsX8Xe3yqm354tkULZ4uxHR3nYlYthbfVUEJ4gYxkZ+O
-         2R+0K6KZb6diN81tPegpYjt0x83mMUvzIROFsegGI+kMLOEgnoDrS86IzX3s7IGG3U
-         v3DweIR4ktFlg==
-Date:   Thu, 1 Jun 2023 13:09:12 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Bernhard =?utf-8?Q?Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
-        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
-Subject: Re: [PATCH v4 0/5] Add LVTS support for mt8192
-Message-ID: <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
-References: <20230530195132.2286163-1-bero@baylibre.com>
- <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
+        with ESMTP id S232245AbjFARL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:11:27 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581EC136
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:11:23 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-565f1145dc8so11506197b3.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:11:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685639482; x=1688231482;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2RYUgEYxXFi1ZF21Col8g6vBwno/bBmJUkRFch0DaQM=;
+        b=UVdnJ7BpN6sHBSdOMr7NGH8HcUdYjWOQtQqoEA1adtfZsyom8iNmq5UdedDkfDhRer
+         9b48g/Ii4kszW54ESZgZmO2/RpuYOW3IPzGNPBubY/a60iKbGmaafPracLZ48Gfws4bk
+         A+nQd1fxmjI1afLhCh9Df8fpTdmCXGx5WNdfGH67ftg5rJmtGJ3S6+nJfZBPpkp+L7P5
+         SsTvCWOfI7Si48vDoM0KkkDJ06V2IrimJr3gvaV81Sa5sRmQthRFwfcLD0dJfY1PoW4c
+         Add18Zi93boaWSz/M+ZWU9WO5Lg9CqElBiXJP+G2PNQggV3w45Xc6a+rkkJqMdQ8yE27
+         Ff1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685639482; x=1688231482;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2RYUgEYxXFi1ZF21Col8g6vBwno/bBmJUkRFch0DaQM=;
+        b=Hq1FeFr2XfCIqNtkfKbcg7xIibUTjJZE7ZWKmP+ffaVyHYnhsCSrL2Yq+nm+Q/Ly6m
+         hnwzqL8/zKpXPpkFSh1HwpcfkzUr6Vp4iDxE1EGixy6XFQqipjpW7nH/ZqFdJ/nD1+/Q
+         0nq/azQ74RCqK4PvwlN42cWGYt3fqZeBITbTc6bFyLvCYKhaaQahlq0EJVih3jQRpUiM
+         evvQLFQ6lLQRGkqlrTxSaONS/6GjOoldmYa1zERmn6v8bXU+Do1TQXJjlE0HuoUII5BI
+         sfKslRsp+TotnJzVW+Z+EwIuTuu9sYJEeVRtbQkPWDOwBVr+WS5tFH/wkij+fmvyDUmo
+         rrrg==
+X-Gm-Message-State: AC+VfDyxmqSKD47pCwE6ZLO+Qk1FqHDN9XRABDvEY+zSPiQSobQU9VJr
+        jFLuDPSULtM7yqCbfTxRNIX8H4GjwD54sq3DsOixNw==
+X-Google-Smtp-Source: ACHHUZ4lFj0bWB6jMU3gvWBHimujzrWTdc7mbWeL3/S54GjekR5BYZtKjoQH7YngQMCdyLxjtsgfE3wU8mHqvj+RSKg=
+X-Received: by 2002:a25:b099:0:b0:b99:53e9:ba89 with SMTP id
+ f25-20020a25b099000000b00b9953e9ba89mr459824ybj.50.1685639482511; Thu, 01 Jun
+ 2023 10:11:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
+References: <20230531151918.105223-1-nick.hawkins@hpe.com> <20230531151918.105223-5-nick.hawkins@hpe.com>
+ <07b2a2f7-5ddc-0f10-6b1f-184dc21fa580@roeck-us.net> <DM4PR84MB19274F575858CBCB2FA5C23E88489@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+ <b1d8f851-4e87-333c-229c-b9dc37ea3c40@roeck-us.net> <DM4PR84MB19273A008BB11589CEEF697188499@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <DM4PR84MB19273A008BB11589CEEF697188499@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 1 Jun 2023 19:11:10 +0200
+Message-ID: <CACRpkdarJCSCif+r1e_jXbbAgv03OgGAO6pkW9x-yiYZJxdGeQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] hwmon: (gxp_fan_ctrl) Provide fan info via gpio
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 12:49:43PM +0800, Chen-Yu Tsai wrote:
-> On Wed, May 31, 2023 at 3:51 AM Bernhard Rosenkränzer <bero@baylibre.com> wrote:
-> >
-> > From: Balsam CHIHI <bchihi@baylibre.com>
-> >
-> > Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
-> > Also, add Suspend and Resume support to LVTS Driver (all SoCs),
-> > and update the documentation that describes the Calibration Data Offsets.
-> >
-> > Changelog:
-> >     v4 :
-> >         - Shrink the lvts_ap thermal sensor I/O range to 0xc00 to make
-> >           room for SVS support, pointed out by
-> >           AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >
-> >     v3 :
-> >         - Rebased :
-> >             base-commit: 6a3d37b4d885129561e1cef361216f00472f7d2e
-> >         - Fix issues in v2 pointed out by Nícolas F. R. A. Prado <nfraprado@collabora.com>:
-> >           Use filtered mode to make sure threshold interrupts are triggered,
-> 
-> I'm seeing sensor readout (either through sysfs/thermal/<x>/temp or hwmon)
-> fail frequently on MT8192. If I run `sensors` (lm-sensors), at least a couple
-> of the LVTS sensors would be N/A. Not sure if this is related to this change.
+On Thu, Jun 1, 2023 at 5:48=E2=80=AFPM Hawkins, Nick <nick.hawkins@hpe.com>=
+ wrote:
 
-Yes, it is. Filtered mode has some delay associated with reading, meaning most
-of the time the value isn't ready, while immediate mode is, well, pretty much
-immediate and the read always succeeds.
+> Thank you for your valuable feedback with the solutions you have provided=
+.
+> Before I proceed though I have a quick query about the fan driver.
+> If I were to let the user space "own" gpio pins, would it be permissible =
+for
+> the userspace to feed a kernel driver data via sysfs?
+>
+> Ex:
+> GPIO Driver -> (OpenBMC) -> Fandriver (sysfs).
+>
+> Here the GPIO driver would provide fan presence information to OpenBMC
+> and then OpenBMC would provide fan presence info to the fan driver.
 
-For temperature monitoring, filtered mode should be used. It supports triggering
-interrupts when crossing the thresholds. Immediate mode is meant for one-off
-readings of the temperature. This is why I suggested using filtered mode.
+But why? Don't be so obsessed about userspace doing stuff using
+sysfs, usually it is a better idea to let the kernel handle hardware.
 
-As far as the thermal framework goes, it's ok that filtered mode doesn't always
-return a value, as it will keep the old one. But of course, having the
-temperature readout always work would be a desired improvement.
+I think this is a simple thermal zone you can define in the device
+tree as indicated in my previous comment.
 
-As for ways to achieve that, I think the intended way would be to enable the
-interrupts that signal data ready on filtered mode (bits 19, 20, 21, 28), read
-the temperature and cache it so it is always available when the get_temp()
-callback is called. The issue with this is that it would cause *a lot* of
-interrupts, which doesn't seem worth it.
+> If it were permissible to provide data to the driver via this method I co=
+uld
+> apply it to the PSU driver as well. the PSU driver which requires presenc=
+e
+> info to verify a PSU is inserted / removed.
 
-Another option that comes to mind would be to enable immediate mode only during
-the get_temp() callback, to immediately read a value, and return to filtered
-mode at the end. That might work, but I haven't tried yet.
+It feels like you are looking for a way for two drivers to communicate
+with each other.
 
-Thanks,
-Nícolas
+This can be done several ways, the most straight-forward is notifiers.
+include/linux/notifier.h
+
+Yours,
+Linus Walleij
