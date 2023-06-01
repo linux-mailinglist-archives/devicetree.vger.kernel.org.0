@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9E88719286
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 07:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 514BA719292
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 07:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231524AbjFAFqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 01:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53120 "EHLO
+        id S231573AbjFAFqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 01:46:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231466AbjFAFqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 01:46:10 -0400
-Received: from forward100a.mail.yandex.net (forward100a.mail.yandex.net [178.154.239.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C200139;
-        Wed, 31 May 2023 22:46:03 -0700 (PDT)
+        with ESMTP id S231588AbjFAFqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 01:46:38 -0400
+X-Greylist: delayed 584 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 31 May 2023 22:46:17 PDT
+Received: from forward103a.mail.yandex.net (forward103a.mail.yandex.net [178.154.239.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D37F184;
+        Wed, 31 May 2023 22:46:16 -0700 (PDT)
 Received: from mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:5e51:0:640:23ee:0])
-        by forward100a.mail.yandex.net (Yandex) with ESMTP id 1C91A46CE9;
-        Thu,  1 Jun 2023 08:46:02 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id pjGDMhnDduQ0-VwQCQDbN;
-        Thu, 01 Jun 2023 08:46:01 +0300
+        by forward103a.mail.yandex.net (Yandex) with ESMTP id C3C9046C75;
+        Thu,  1 Jun 2023 08:46:12 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id pjGDMhnDduQ0-sAsX6ddU;
+        Thu, 01 Jun 2023 08:46:12 +0300
 X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1685598361;
-        bh=GdyoiL3hVIM28KbzlgDxlhFIddktjtk7MSpa7eYVBM0=;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1685598372;
+        bh=8cV6gUYwDgcHjvA3y2Zr+z89V1euSyhB5rUH846uBY4=;
         h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-        b=iuhtd5NKMWFW2QpY6pNwwZ8wYZgt30gFFJRuQ8WGcppZFyvFJx02OyjiWUpJtE5cY
-         uaU5P/lyrYML/xNoIDWqUT6c3XwUiEYR3sUuF3BsppgBDmb/up3vrWXsRt+c3hwfcM
-         xn8NLtFoIUslKlZmt7+uNon0zcczu0rW3MyECWnU=
+        b=Dzlzl22CiudVvU1ZfRV7h+YBUhaKNBYpqBV82sTUXSptEdDpiHqn15Vsk3xPNN60T
+         PX5TJGg0sf1dxiET7qtEta6qcEyJtGQwTRI45Chcv9ucJcGCh3raLpqlD9YF+T05QE
+         J+UIbCQ4wTbuy19ujfm2OKY8t+6QaxXYcFRgJS5I=
 Authentication-Results: mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
 From:   Nikita Shubin <nikita.shubin@maquefel.me>
 To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
         Arnd Bergmann <arnd@arndb.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        Damien Le Moal <dlemoal@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     Michael Peters <mpeters@embeddedTS.com>,
-        Kris Bahnsen <kris@embeddedTS.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 23/43] dt-bindings: mtd: Add ts7250 nand-controller
-Date:   Thu,  1 Jun 2023 08:45:28 +0300
-Message-Id: <20230601054549.10843-5-nikita.shubin@maquefel.me>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Nikita Shubin <nikita.shubin@maquefel.me>,
+        Michael Peters <mpeters@embeddedTS.com>,
+        Kris Bahnsen <kris@embeddedTS.com>, linux-ide@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 25/43] dt-bindings: ata: Add Cirrus EP93xx
+Date:   Thu,  1 Jun 2023 08:45:30 +0300
+Message-Id: <20230601054549.10843-7-nikita.shubin@maquefel.me>
 X-Mailer: git-send-email 2.37.4
 In-Reply-To: <20230424123522.18302-1-nikita.shubin@maquefel.me>
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
@@ -59,7 +57,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML bindings for ts7250 NAND Controller.
+Add YAML bindings for ep93xx SoC PATA.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
@@ -67,62 +65,62 @@ Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 Notes:
     v0 -> v1:
     
-    make it a nand contoller
+    - renamed file to ep9312-pata
+    - changed email to dlemoal@kernel.org
+    - dropped label
+    - fixed ident
 
- .../bindings/mtd/technologic,nand.yaml        | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+ .../bindings/ata/cirrus,ep9312-pata.yaml      | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
 
-diff --git a/Documentation/devicetree/bindings/mtd/technologic,nand.yaml b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+diff --git a/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
 new file mode 100644
-index 000000000000..26d1d9c3331d
+index 000000000000..3489be55a6fe
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++++ b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/mtd/technologic,nand.yaml#
++$id: http://devicetree.org/schemas/ata/cirrus,ep9312-pata.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Technologic Systems NAND controller
++title: Cirrus Logic EP9312 PATA controller
 +
 +maintainers:
-+  - Nikita Shubin <nikita.shubin@maquefel.me>
-+
-+allOf:
-+  - $ref: nand-controller.yaml
++  - Damien Le Moal <dlemoal@kernel.org>
 +
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: technologic,ts7200-nand
++      - const: cirrus,ep9312-pata
 +      - items:
-+          - enum:
-+              - technologic,ts7300-nand
-+              - technologic,ts7260-nand
-+              - technologic,ts7250-nand
-+          - const: technologic,ts7200-nand
++          - const: cirrus,ep9315-pata
++          - const: cirrus,ep9312-pata
 +
 +  reg:
 +    maxItems: 1
 +
-+  '#address-cells': true
-+  '#size-cells': true
++  interrupts:
++    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
++  - interrupts
 +
-+unevaluatedProperties: true
++additionalProperties: false
 +
 +examples:
 +  - |
-+    nand-controller@60000000 {
-+      compatible = "technologic,ts7200-nand";
-+      reg = <0x60000000 0x8000000>;
-+      #address-cells = <1>;
-+      #size-cells = <0>;
++    ide@800a0000 {
++      compatible = "cirrus,ep9312-pata";
++      reg = <0x800a0000 0x38>;
++      interrupt-parent = <&vic1>;
++      interrupts = <8>;
++      pinctrl-names = "default";
++      pinctrl-0 = <&ide_default_pins>;
 +    };
 +
 +...
