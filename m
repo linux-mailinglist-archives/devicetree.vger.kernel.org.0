@@ -2,82 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 605D271A2DD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FC8C71A2E6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234682AbjFAPkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 11:40:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
+        id S233230AbjFAPoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 11:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233324AbjFAPkl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:40:41 -0400
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E23FB
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:40:39 -0700 (PDT)
-Received: by mail-io1-xd29.google.com with SMTP id ca18e2360f4ac-77483f80522so41696739f.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:40:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685634037; x=1688226037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vZ+EiS+GQTo9AhoMTu3o3MEzgb5CpypJEioCqg0kvwY=;
-        b=UTkRqJo0Wj4knlKaUex/Cap//53fzpgP56q4rA7GaxW+D/nu/4UyeKpvkUp+T3J0dJ
-         OzICJ5bg9GEsdoMyc+lBss8fhyrTgxmqtOmud4evF09D2QcRcYn4y+9yXVDDCL/U3E1E
-         mrfja0alv/GnAkPR1qgSawDqBF4XPHOmeDK90=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685634037; x=1688226037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vZ+EiS+GQTo9AhoMTu3o3MEzgb5CpypJEioCqg0kvwY=;
-        b=DnolW7JetOtLdy+MQbYeI5rj1B/pDaFzRmRJ5vTyK19KgYcVZk4mOTx0AS7XW6TN29
-         qfRpm4QKwY6UJo3JDYgpa+AL4bGrXZY6Ivj158cSuxZdIz9SbvobXHMVrrDxzuCVOP/T
-         Kix053snUger0ID3OLHHbQdq72aZbz5mQYyW01OE7Fk/HBjAYm4ZAMKQ2IyIE/BPYHyd
-         gZ1rMmfwHdw23RrVQvO7hoVag8WW8yxhEBhb1b7+DIej0h2xWMBLRnIzumzzBSS51UZR
-         iZ3CKIDgpOvifi0F+TvLyAksYCovWEAkqrKoXEQT2owUmRQkkwZbbez9kUmGCxgKCGRV
-         l3nw==
-X-Gm-Message-State: AC+VfDzDE8k+Yq+JV7c/XtJx2Nd2azDL5iC/sXsaT5Ivz4G1fqy3od0b
-        25WR9JahGGO60dUHXG1GUH2Twor2hbfekSt50ss=
-X-Google-Smtp-Source: ACHHUZ42aAO8l29M6SrMxkTqUFzV4K+iGDTk0HaqdEfDBWX9FAjSQlIQjQYbC/gsoCC1piDxYbIVeg==
-X-Received: by 2002:a5e:8f05:0:b0:774:7cf6:d350 with SMTP id c5-20020a5e8f05000000b007747cf6d350mr7256199iok.7.1685634037136;
-        Thu, 01 Jun 2023 08:40:37 -0700 (PDT)
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com. [209.85.166.172])
-        by smtp.gmail.com with ESMTPSA id v12-20020a05663812cc00b0040b1ecc3ec4sm2351778jas.11.2023.06.01.08.40.35
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 08:40:35 -0700 (PDT)
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-33bf12b5fb5so128385ab.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:40:35 -0700 (PDT)
-X-Received: by 2002:a05:6e02:180c:b0:33b:3d94:afb5 with SMTP id
- a12-20020a056e02180c00b0033b3d94afb5mr191613ilv.25.1685634034756; Thu, 01 Jun
- 2023 08:40:34 -0700 (PDT)
+        with ESMTP id S232689AbjFAPod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:44:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B802B3;
+        Thu,  1 Jun 2023 08:44:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F22B764516;
+        Thu,  1 Jun 2023 15:44:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6938C4339B;
+        Thu,  1 Jun 2023 15:44:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685634271;
+        bh=Xzrs4uQvpV2FbJzVvZTm9OPYbe9DmKt40BV1GwUulo8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=a8b5RwP/q2MckI42aUURkKKBNPr1cp0rArsl9eEeIj04CsfD7J1MYS5ghGdweHnOC
+         37WtY0LFF33r66tagsiC/2OmM25chJn+in1U7f2gnXLK0L+MweBs0FHaprQCXrncJx
+         5sHVNeFanq/4CcxnNWotITt/eJc6RSZRTDkWsz6bu1aOrRtvvs6ZvCcoKEwKIdRqGl
+         K6Dann5V9W8hogqZcDjyDKyIPRZce860bTKqmeZAAPx/GY6wlMRTlI0gxL+1ycqiLo
+         5VvPlfOUfWtZiIbkJTgemcyNpT9fC9JDbghU4mX7vXYYY3A5RaGLg7R6thgbw2EQwh
+         DX/4cb7QVf0Zg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        Walker Chen <walker.chen@starfivetech.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+In-Reply-To: <20230526145402.450-1-walker.chen@starfivetech.com>
+References: <20230526145402.450-1-walker.chen@starfivetech.com>
+Subject: Re: (subset) [PATCH v5 0/3] Add TDM audio on StarFive JH7110
+Message-Id: <168563426847.132600.7350104738221381081.b4-ty@kernel.org>
+Date:   Thu, 01 Jun 2023 16:44:28 +0100
 MIME-Version: 1.0
-References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
- <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
- <20230520050649.2494497-3-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=Wm_SK0V6WJUkuvu8yFfiP60JBuOdw9cy=0Ck2Jbn-X2A@mail.gmail.com>
- <bd19f71b-59ee-80e7-9ff1-1cc26ecc49a7@kernel.org> <CAD=FV=WaVXUr8=4MrZQgA7t=yUBDt-iMvOFSeWhsKZ8XHJAREA@mail.gmail.com>
- <CAHwB_N+ZpCAYftCLRwyNo2wCca+JHfGJc0_rJ=jwJcU0mbG=Dw@mail.gmail.com>
-In-Reply-To: <CAHwB_N+ZpCAYftCLRwyNo2wCca+JHfGJc0_rJ=jwJcU0mbG=Dw@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 1 Jun 2023 08:40:23 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XBwZmJUVKqX5XOrgJB-VYPgJP=HKr+DoFRFu3C3tGq2w@mail.gmail.com>
-Message-ID: <CAD=FV=XBwZmJUVKqX5XOrgJB-VYPgJP=HKr+DoFRFu3C3tGq2w@mail.gmail.com>
-Subject: Re: [v2 2/2] dt-bindings: input: touchscreen: Add ilitek 9882T
- touchscreen chip
-To:     cong yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com, hsinyi@google.com, jikos@kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bfdf5
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,65 +63,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 26 May 2023 22:53:59 +0800, Walker Chen wrote:
+> This patchset adds TDM audio driver for the StarFive JH7110 SoC. The
+> first patch adds device tree binding for TDM module. The second patch
+> adds tdm driver support for JH7110 SoC. The last patch adds device tree
+> node and pins configuration of tdm to JH7110 dts.
+> 
+> The series has been tested on the VisionFive 2 board by plugging an
+> audio expansion board.
+> 
+> [...]
 
-On Wed, May 31, 2023 at 8:06=E2=80=AFPM cong yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> Thanks, I'll keep an eye on that next time. This patch can be discarded,.=
-After adding this series https://lore.kernel.org/r/20230523193017.4109557-1=
--dianders@chromium.org=EF=BC=8C
+Applied to
 
-Thanks! I'll see if I can give that series a spin soon and then see
-how we can make progress to getting it landed.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
 
-> using ekth6915  also can meet my needs.
+[1/3] ASoC: dt-bindings: Add TDM controller bindings for StarFive JH7110
+      commit: d9afe0d36cc27dcacbcecf02fe803a30d544698c
+[2/3] ASoC: starfive: Add JH7110 TDM driver
+      commit: fd4762b6b5cfa27bf44f5d624ce74b7dce4a479c
 
-Even if using ekth6915 can meet your needs, it's still better to
-actually add the right compatible string. Putting in the device tree
-that you have an "elan6915" and that you're providing "vcc33" isn't
-the best when you actually have a different touchscreen and are
-providing a very different voltage. Adding the proper bindings is
-definitely preferred.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> On Wed, May 31, 2023 at 12:58=E2=80=AFAM Doug Anderson <dianders@chromium=
-.org> wrote:
->>
->> Hi,
->>
->> On Tue, May 30, 2023 at 4:56=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
-.org> wrote:
->> >
->> > On 22/05/2023 17:33, Doug Anderson wrote:
->> > > Hi,
->> > >
->> > > On Fri, May 19, 2023 at 10:07=E2=80=AFPM Cong Yang
->> > > <yangcong5@huaqin.corp-partner.google.com> wrote:
->> > >>
->> > >> Add an ilitek touch screen chip ili9882t.
->> > >>
->> > >> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
->> > >> ---
->> > >>  .../devicetree/bindings/input/elan,ekth6915.yaml         | 9 +++++=
-++--
->> > >>  1 file changed, 7 insertions(+), 2 deletions(-)
->> > >
->> > > I'm curious about the DT maintainers opinion here. Should this be a
->> > > new bindings file, or should it be together in the elan file. If
->> > > nothing else, I think the secondary voltage rail name is wrong. I to=
-ok
->> > > a quick peek at a datasheet I found and I don't even see a 3.3V rail
->> > > going to the ili9882t. That makes it weird to reuse "vcc33-supply" f=
-or
->> > > a second supply...
->> >
->> > It's easier if they are CCed...
->>
->> Crud. I just assumed and didn't check the CC list. Cong: can you
->> resend and make sure you're CCing the people that get_maintainers
->> points at. One way to find that would be:
->>
->> ./scripts/get_maintainer.pl -f
->> Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
