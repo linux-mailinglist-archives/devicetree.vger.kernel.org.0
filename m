@@ -2,104 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ABC271F02F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F8B71F04E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:09:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbjFARD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 13:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46140 "EHLO
+        id S232179AbjFARJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 13:09:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232291AbjFARDy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:03:54 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE0C194
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:03:52 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-96f53c06babso146068866b.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:03:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1685639031; x=1688231031;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TTcjRJtvmJkq+LZbJsn7Ql99XlhQeL7VF1cYGLTbIN0=;
-        b=n7Sl+iCP+FVrRNRM+g0Sz9GCNp5AtH9LEbszoEgXP3nux2UZChxRBclTN0TV5Q+8Nj
-         HcANmkqpCwpAKoTljNxUqZ/L0V2hRruf8GVkXgRhID9oQx82u1i3j1xk5wUs/Xz6jwhd
-         fh4Yw9IOyWDEp8gpS/QhwOnfSJMFnUNspWCDY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685639031; x=1688231031;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TTcjRJtvmJkq+LZbJsn7Ql99XlhQeL7VF1cYGLTbIN0=;
-        b=CaEUoFd4eBhtyrBUd6upGiduns2HPgVyF1LMK20v6NwC4zRG6o1+ImAtzaF3aYuTgV
-         YtQaD9KDWobfDduHkamSTj8ooIiZKSfZ1/M00ea2lvNRiH+LpN+O7E3CyGf3yYLKXXel
-         WZSqFZK7htoZxEI5PDM0LiMF/g+XYL8uT7REFYkQ7wHTWnXbEdQpuFW3CRnIMuGWKV0E
-         ooY0oTuOHoypE1tDIv2SEWmqbISngejbl2Pwata6rQ6jKQHEdTIreBnO2/QnxAB0WLqn
-         27Bf0aUwTs4eYrgGU93z12mwGMlgAru7943veqCeVtnF68gh66sunFR15jKqmRhWkcqJ
-         xakg==
-X-Gm-Message-State: AC+VfDy8/Wn4J1BK/P7vHGLCJqxLrnwDkBRxLlEd9r/0BSd7HrqZZdQN
-        LW24fY568LsT/o/uewGDMxk2xw==
-X-Google-Smtp-Source: ACHHUZ4FzuZULxk+9erHkcf26CSBR1lbhOScIjaiZzQRVe4X/4sI5tkBoCLZAbqVQDR0tZeyiWty6A==
-X-Received: by 2002:a17:906:ee87:b0:96f:781e:a4d5 with SMTP id wt7-20020a170906ee8700b0096f781ea4d5mr7658970ejb.77.1685639031091;
-        Thu, 01 Jun 2023 10:03:51 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-248-31-20.retail.telecomitalia.it. [95.248.31.20])
-        by smtp.gmail.com with ESMTPSA id bh25-20020a170906a0d900b0096165b2703asm10658522ejb.110.2023.06.01.10.03.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 10:03:50 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        michael@amarulasolutions.com,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH 4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
-Date:   Thu,  1 Jun 2023 19:03:18 +0200
-Message-Id: <20230601170320.2845218-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230601170320.2845218-1-dario.binacchi@amarulasolutions.com>
-References: <20230601170320.2845218-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S231431AbjFARJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:09:24 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8970D1;
+        Thu,  1 Jun 2023 10:09:21 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B1ED6606ECA;
+        Thu,  1 Jun 2023 18:09:16 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685639359;
+        bh=Y8F29vZfkHL4Cb3ef4MuhHy4Zp5QvDAZ2kfIEyGPM9A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=djfaRrFbe5vpFwhkOMJQAaXxfPSn6juAwXkAr4/vbafpbvECworn4C6+M5gHXSwC/
+         omKlx04ZB5h0aJdt1pRwK5f1fh/c0wVQDIoAhMR0OHegtLoUymiw1hnFy5Wg2yblOH
+         SoizdaLsweDvPsQ+6QiYYYElLbHJf2pVZsRtIulNG1gHSYjfdSXdHwEoGnHsI9Nrwo
+         kC9g+1xMF4lc+XJffyLIolrsX8Xe3yqm354tkULZ4uxHR3nYlYthbfVUEJ4gYxkZ+O
+         2R+0K6KZb6diN81tPegpYjt0x83mMUvzIROFsegGI+kMLOEgnoDrS86IzX3s7IGG3U
+         v3DweIR4ktFlg==
+Date:   Thu, 1 Jun 2023 13:09:12 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Bernhard =?utf-8?Q?Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
+        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
+Subject: Re: [PATCH v4 0/5] Add LVTS support for mt8192
+Message-ID: <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
+References: <20230530195132.2286163-1-bero@baylibre.com>
+ <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible to panel-simple for Rocktech Displays Limited
-RK043FN48H 4.3" 480x272 LCD-TFT panel.
+On Wed, May 31, 2023 at 12:49:43PM +0800, Chen-Yu Tsai wrote:
+> On Wed, May 31, 2023 at 3:51 AM Bernhard Rosenkränzer <bero@baylibre.com> wrote:
+> >
+> > From: Balsam CHIHI <bchihi@baylibre.com>
+> >
+> > Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
+> > Also, add Suspend and Resume support to LVTS Driver (all SoCs),
+> > and update the documentation that describes the Calibration Data Offsets.
+> >
+> > Changelog:
+> >     v4 :
+> >         - Shrink the lvts_ap thermal sensor I/O range to 0xc00 to make
+> >           room for SVS support, pointed out by
+> >           AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> >
+> >     v3 :
+> >         - Rebased :
+> >             base-commit: 6a3d37b4d885129561e1cef361216f00472f7d2e
+> >         - Fix issues in v2 pointed out by Nícolas F. R. A. Prado <nfraprado@collabora.com>:
+> >           Use filtered mode to make sure threshold interrupts are triggered,
+> 
+> I'm seeing sensor readout (either through sysfs/thermal/<x>/temp or hwmon)
+> fail frequently on MT8192. If I run `sensors` (lm-sensors), at least a couple
+> of the LVTS sensors would be N/A. Not sure if this is related to this change.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
+Yes, it is. Filtered mode has some delay associated with reading, meaning most
+of the time the value isn't ready, while immediate mode is, well, pretty much
+immediate and the read always succeeds.
 
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+For temperature monitoring, filtered mode should be used. It supports triggering
+interrupts when crossing the thresholds. Immediate mode is meant for one-off
+readings of the temperature. This is why I suggested using filtered mode.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 01560fe226dd..bd6a92d2b41c 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -280,6 +280,8 @@ properties:
-       - rocktech,rk101ii01d-ct
-         # Rocktech Display Ltd. RK070ER9427 800(RGB)x480 TFT LCD panel
-       - rocktech,rk070er9427
-+        # Rocktech Display Ltd. RK043FN48H 4.3" 480x272 LCD-TFT panel
-+      - rocktech,rk043fn48h
-         # Samsung 13.3" FHD (1920x1080 pixels) eDP AMOLED panel
-       - samsung,atna33xc20
-         # Samsung 12.2" (2560x1600 pixels) TFT LCD panel
--- 
-2.32.0
+As far as the thermal framework goes, it's ok that filtered mode doesn't always
+return a value, as it will keep the old one. But of course, having the
+temperature readout always work would be a desired improvement.
 
+As for ways to achieve that, I think the intended way would be to enable the
+interrupts that signal data ready on filtered mode (bits 19, 20, 21, 28), read
+the temperature and cache it so it is always available when the get_temp()
+callback is called. The issue with this is that it would cause *a lot* of
+interrupts, which doesn't seem worth it.
+
+Another option that comes to mind would be to enable immediate mode only during
+the get_temp() callback, to immediately read a value, and return to filtered
+mode at the end. That might work, but I haven't tried yet.
+
+Thanks,
+Nícolas
