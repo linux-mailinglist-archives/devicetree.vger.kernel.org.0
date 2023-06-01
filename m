@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59FC871949A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 09:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58DF67194BA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 09:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbjFAHop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 03:44:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49796 "EHLO
+        id S231529AbjFAHvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 03:51:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231929AbjFAHmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 03:42:37 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0053010CA;
-        Thu,  1 Jun 2023 00:40:15 -0700 (PDT)
+        with ESMTP id S231572AbjFAHtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 03:49:21 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61294E41;
+        Thu,  1 Jun 2023 00:45:07 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685605214;
+        t=1685605505;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=mCdgs2ZY0Qmc8wOXyCbJFq17brRZ1eICKOVPf7KfY74=;
-        b=GhliR3CFcGqyKvO9Be0KLUU18LziFPSA3gWRYzfkfkxTtoRGNRQQ9KiITjQUd9LNCvf/bN
-        dLWtSU271I3ei3B9VjvDY4DngI2pg+yMFY7sBSksuAP5kr/HRolrc8Cp1j47Qv+JgKqEg0
-        M57yjvo2UM4Mu6prfeHwEoAmy9+Geg9mfpXrlmf2CRxqS88Ejxe7szZFnJzYWGhwKdyyWn
-        dQBAVgHBaosZQrQenv/x+9h58ExbFku8HfMjN3l7cX4sdwAOeQc19VLjXlWeYaej0O01pj
-        NrbkRjziy6ZjKCPkwFgtiY5aWt/j9GjtXWU0kQoolKCVQp/HPw8UfTKVLh8J3g==
+        bh=E8q0kpo5yQyJlgrFOIwJycXOb57GbR9p3w4XAi+QTgQ=;
+        b=aEhqsT/ShYWjw7oXndLY6YBS1LOxerrLwzyfKw02VgNZR19EmPgnsk526d4kQ3cGH35Zoo
+        gqfNFry0Ycir3UnvMUHlGm9mBbCoJej//O1xqNxto9tK89alGjQkuHNYVwPcMcxaSl6SJ7
+        T2FG8KNFO+l4noKA0IVF+9Yh+ywbXxyR2nth7xz4xWXnnTn+GV6nXK6IyRvcr62Kuk8VaN
+        FU0aouzttm9Ssc5eca1rPXDjCVGTDBCIXXmrU4jRTqzgf7NTEHQIQa4EOK5OSlxvpOTham
+        uNXmW6H8gUb2Kc/NSECSwQdazn1k3YWMJ9nG91aQxxsTpxbKv2af5zXx1F010A==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -39,36 +39,27 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 61260C0004;
-        Thu,  1 Jun 2023 07:40:10 +0000 (UTC)
-Date:   Thu, 1 Jun 2023 09:40:09 +0200
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BECA9FF804;
+        Thu,  1 Jun 2023 07:45:02 +0000 (UTC)
+Date:   Thu, 1 Jun 2023 09:45:01 +0200
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "enachman@marvell.com" <enachman@marvell.com>,
-        Vadym Kochan <vadym.kochan@plvision.eu>
-Subject: Re: [PATCH v7 3/4] dt-bindings: mtd: marvell-nand: Convert to YAML
- DT scheme
-Message-ID: <20230601094009.1eca5dbb@xps-13>
-In-Reply-To: <40bb4ad8-2bec-4eae-d0c8-c9aa31e03f32@alliedtelesis.co.nz>
-References: <20230530235456.1009082-1-chris.packham@alliedtelesis.co.nz>
-        <20230530235456.1009082-4-chris.packham@alliedtelesis.co.nz>
-        <40bb4ad8-2bec-4eae-d0c8-c9aa31e03f32@alliedtelesis.co.nz>
+To:     Nikita Shubin <nikita.shubin@maquefel.me>
+Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Peters <mpeters@embeddedTS.com>,
+        Kris Bahnsen <kris@embeddedTS.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 23/43] dt-bindings: mtd: Add ts7250 nand-controller
+Message-ID: <20230601094501.0d67d78a@xps-13>
+In-Reply-To: <20230601054549.10843-5-nikita.shubin@maquefel.me>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+        <20230601054549.10843-5-nikita.shubin@maquefel.me>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -84,73 +75,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
+Hi Nikita,
 
-Chris.Packham@alliedtelesis.co.nz wrote on Wed, 31 May 2023 22:43:46
-+0000:
+nikita.shubin@maquefel.me wrote on Thu,  1 Jun 2023 08:45:28 +0300:
 
-> Hi Miquel,
+> Add YAML bindings for ts7250 NAND Controller.
 >=20
-> On 31/05/23 11:54, Chris Packham wrote:
-> > From: Vadym Kochan <vadym.kochan@plvision.eu>
-> >
-> > Switch the DT binding to a YAML schema to enable the DT validation.
-> >
-> > Dropped deprecated compatibles and properties described in txt file.
-> >
-> > Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-> > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> > --- =20
-> <snip>
-> > diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-control=
-ler.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.ya=
-ml
-> > new file mode 100644
-> > index 000000000000..7cd4a2e99343
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> > @@ -0,0 +1,221 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/marvell,nand-controller.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Marvell NAND Flash Controller (NFC)
-> > +
-> > +maintainers:
-> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: marvell,armada-8k-nand-controller
-> > +          - const: marvell,armada370-nand-controller =20
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
 >=20
-> On this specific point. Was your intention to allow just the=20
-> "marvell,armada-8k-nand-controller" compatible?
+> Notes:
+>     v0 -> v1:
+>    =20
+>     make it a nand contoller
 >=20
-> I made it a list as the existing usage is `compatible =3D=20
-> "marvell,armada-8k-nand-controller",=20
-> "marvell,armada370-nand-controller";` but an earlier comment you made=20
-> suggested that your intention was to allow just the 8k compatible on=20
-> it's own.
+>  .../bindings/mtd/technologic,nand.yaml        | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/technologic,nan=
+d.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/technologic,nand.yaml =
+b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+> new file mode 100644
+> index 000000000000..26d1d9c3331d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/technologic,nand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Technologic Systems NAND controller
+> +
+> +maintainers:
+> +  - Nikita Shubin <nikita.shubin@maquefel.me>
+> +
+> +allOf:
+> +  - $ref: nand-controller.yaml
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: technologic,ts7200-nand
+> +      - items:
+> +          - enum:
+> +              - technologic,ts7300-nand
+> +              - technologic,ts7260-nand
+> +              - technologic,ts7250-nand
+> +          - const: technologic,ts7200-nand
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells': true
+> +  '#size-cells': true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: true
 
-To be honest I don't recall. Sometimes it's best to consider a version
-of a controller to be a superset of another, in this case both
-compatibles are welcome. I suggest you keep the description as it is.
+Should be false I guess.
 
-> Looking at the driver it doesn't do any is_compatible() checks=20
-> so I don't think it cares (currently).
->=20
-> > +      - enum:
-> > +          - marvell,armada370-nand-controller
-> > +          - marvell,pxa3xx-nand-controller
-> > +          - marvell,armada-8k-nand
-> > +          - marvell,armada370-nand
-> > +          - marvell,pxa3xx-nand
-> >  =20
+> +
+> +examples:
+> +  - |
+> +    nand-controller@60000000 {
+> +      compatible =3D "technologic,ts7200-nand";
+> +      reg =3D <0x60000000 0x8000000>;
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +    };
+> +
+> +...
 
 
 Thanks,
