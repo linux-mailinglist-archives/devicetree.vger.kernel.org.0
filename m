@@ -2,225 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23AAF7191C5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 06:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53DA871921F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 07:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230110AbjFAEVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 00:21:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33330 "EHLO
+        id S231216AbjFAFWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 01:22:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjFAEVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 00:21:33 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B7C132;
-        Wed, 31 May 2023 21:21:31 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3513NLsh016879;
-        Thu, 1 Jun 2023 04:21:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=ZxUMWkiYU6cjz5PhfZnz13CUvFrMj/R9q+3PcYeSAjs=;
- b=K064C083xyRo12Gzg+xuOTlaHi4WuNwzeOVntmYoBRhGILuPDNz+525Wsx9wdZFGGM/L
- ZMi90dMxvm5so5uwMRYFy6hUzG+XgGFF4pwQsSBcxk0vu0fZWgTnNkeJHKvpFJV3QeM/
- LoiDeLJPO5eQxqi/2Hb4AhEc08HDue+PR68eX1+WlGrBsOfrcwL5ZDqPYes4cFGxzwSa
- FOQvV7BOgWOlT/5q1ndDeTcd/aPhUehdmsJ+cUuJYHsVEmkSOSQGUXOVojb856cvoFuy
- DmVhQpDMXEWRtr7R5hUlaKjGwS6YsIsF++dBCYJ7eDSpyOaG5qJDTgbZV/ZoTtGQ7B4x ZA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qwx8qaxxr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Jun 2023 04:21:27 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3514LQ63013834
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 1 Jun 2023 04:21:26 GMT
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 31 May 2023 21:21:23 -0700
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH RESEND 4/4] arm64: dts: qcom: ipq5332: add support for the RDP474 variant
-Date:   Thu, 1 Jun 2023 09:50:54 +0530
-Message-ID: <20230601042054.29075-5-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230601042054.29075-1-quic_kathirav@quicinc.com>
-References: <20230601042054.29075-1-quic_kathirav@quicinc.com>
+        with ESMTP id S229927AbjFAFWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 01:22:46 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2084.outbound.protection.outlook.com [40.107.244.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA1D129;
+        Wed, 31 May 2023 22:22:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UE+B8+c5Wh4jy4WP27NIJAggDurAjqu+nDUoqRzLljRPqnFiB94Q6vH4zSp9jUpEd8KNsK2OOzIOusKVbGbc51pfnTcJGoDxkPCreTno5NL9k87BtmHxgU1qW1pGtqYxVVri72QhPsaRnDlV9BjaPr+5AhR0K6JqCzRCWuh3NWufrylWPACtjW4I85HoOu6Q0f0sE6NOREVryyMfyTXioRmCNDeDGgWTR3LOmmpCgFATkjsGAF5vk9OmWwA+rfWwUSq91/jOXUgU6l2rvaZNV3HfMR3IKPa+9ULx8RJ6pU4xjeztQ8VAtgqSBAm/o66BIYj3dgFmEaRYOJcHP0C9QQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DCyWc38GkGMKO0jYrgFNsPU3Cum+iixvamrPaW/lKLk=;
+ b=hzETGwpYHz2ZC/0IijOc/Sh9lUODjEoV81e0pqDYwJ5S7Fo1mdPJUvU3Nw8R/a3BaCZ46mqE0gwPM7z9F0BX0LHu+rxKIzrlX04LLANOGigbXoK14Wv/im1xL9zX6gAvv0g5QEXKioX8a1aFzGxhVfLk+UxbtYtAyBzGsvxww1ZWjhFCovDp6sHpb6bWBcttrqw+Ykf/85YpPLjWQ/ykUvn4i+MifemExwmZRhDrEmr3ex7c3hJoUhPWZkF0oRXjIkq9zKDUwKMlu88nsZTYXRdQdBuMMqk4Tn2fJDjRDylbNd7y0ppGZDZVlPhA0cispoKtV3EIryfM0yPSvWqL7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linux-watchdog.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DCyWc38GkGMKO0jYrgFNsPU3Cum+iixvamrPaW/lKLk=;
+ b=K4XuXXMW8viB3NxinmIrchfM8xxidxXFcjUiUvSPBpsOYOYHq6QyjYQc066bCPPpQz+6PvGG6ds7f2N5Sxg8UqOSU/etHr1gMVRAASlIZTL/51BD1olrIjuDFMNhWtXeHdDU2YCs98eSfXmmVy7PhXa0gTfXyFehZebI0Azbk8Q=
+Received: from BN9PR03CA0043.namprd03.prod.outlook.com (2603:10b6:408:fb::18)
+ by MN6PR12MB8568.namprd12.prod.outlook.com (2603:10b6:208:471::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Thu, 1 Jun
+ 2023 05:22:42 +0000
+Received: from BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:fb:cafe::3f) by BN9PR03CA0043.outlook.office365.com
+ (2603:10b6:408:fb::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.23 via Frontend
+ Transport; Thu, 1 Jun 2023 05:22:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT049.mail.protection.outlook.com (10.13.177.157) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.23 via Frontend Transport; Thu, 1 Jun 2023 05:22:42 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 1 Jun
+ 2023 00:22:41 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 31 May
+ 2023 22:22:41 -0700
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Thu, 1 Jun 2023 00:22:38 -0500
+From:   Srinivas Neeli <srinivas.neeli@amd.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <srinivas.neeli@amd.com>
+CC:     <linux-watchdog@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <radhey.shyam.pandey@amd.com>,
+        <git@amd.com>, <neelisrinivas18@gmail.com>, <srinivas.goud@amd.com>
+Subject: [PATCH V2] dt-bindings: watchdog: cdns,wdt-r1p2: Convert cadence watchdog to yaml
+Date:   Thu, 1 Jun 2023 10:52:37 +0530
+Message-ID: <20230601052237.2604997-1-srinivas.neeli@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9ntya9O8JPaGOdUgBz8VzkxOwIWEfv6R
-X-Proofpoint-GUID: 9ntya9O8JPaGOdUgBz8VzkxOwIWEfv6R
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_02,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- mlxlogscore=999 adultscore=0 impostorscore=0 malwarescore=0 clxscore=1015
- spamscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306010036
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT049:EE_|MN6PR12MB8568:EE_
+X-MS-Office365-Filtering-Correlation-Id: 953d07a6-f5b4-4d83-c472-08db62603950
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Zpp3r8ObLEQ3ZOpPBaSCtvVV1wjiYxO55h8GV9vAdNbTkGmRE6AcposJnay6V7VB+7ZQNjMK88YNRlLtm2JLQNHjVMxxd6DeLq7pR1t40QheLo8WVXRaRAPEKRlKYR6hp+xyXZgT6MSc6lhPsg1yk3pxnPC+nlT/zw33ioRP05uEewOIg+PYq/OC0X5DfIHvKKhatzr82Kyu8y0pxEKvXO1xi4pPpdd2cd1Qif9u9BkbGDUKYfRh68uBNl2197ehAgyclcHuGIzv5yjq3LbEYoRSW0VC/BfdPh4KPWG2MpSzt0nzTjNXdySEhbf+lle2jSgFJG9R8+sJrb2e236u9lsBO1OUBWjoIVcL5crOjwkKhDBxz+Z6yYCdJmayJ6XubTqA9mLEGMFWzRYc8FqAz9g2S6/HBhEIR93P3z6WVRgzRLX/YXF3TdEzWqRopm2Fng3rp0lK+MiyUyE3mw4bIwq7wiEfIValD3JrhSY6vWEfN2IEF1VNpNHv+9aC3z3BaJpvixHaZ3ycDDGOk/Rf3mrV/evn0cuzbUzt5m38OSzAS2Njz76k0kFv9sbUYjPdyq6FBugiAq/OqJ5nzBPBprNQFXjv0LazrtM+nRkPiQn2SCyeBOD1hmeL7dk+/tDvCgGbWm1C3DiUT9DNw2NkGQZA/JuBsX12SzeK0M7bX+J0v1bHdTj1vyNI3hrU7AKKxU070kfEV95jQgJgsBfDx0uPd1WrR/eufzTZ1QSHriXf3sZP+Omh4f7yCpRzxg0YJUWBTHM/m6rIpxVbCS6Xcw4mVFspQNm5BR94q+FaAMM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(396003)(136003)(39860400002)(451199021)(40470700004)(46966006)(36840700001)(40480700001)(81166007)(356005)(82740400003)(36860700001)(110136005)(47076005)(2616005)(83380400001)(70586007)(70206006)(426003)(54906003)(82310400005)(4326008)(336012)(86362001)(2906002)(316002)(186003)(1076003)(26005)(7049001)(44832011)(36756003)(5660300002)(478600001)(8936002)(966005)(41300700001)(8676002)(40460700003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2023 05:22:42.0565
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 953d07a6-f5b4-4d83-c472-08db62603950
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8568
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the initial device tree support for the Reference Design
-Platform(RDP) 474 based on IPQ5332 family of SoC. This patch carries
-the support for Console UART, eMMC, I2C and GPIO based buttons.
+Convert cadence watchdog bindings to DT schema format using json-schema.
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/Makefile           |   1 +
- arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts | 112 ++++++++++++++++++++
- 2 files changed, 113 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
+Changes in V2:
+- Added missing mailing list emails.
+  Conor Dooley <conor+dt@kernel.org>
+  devicetree@vger.kernel.org
+---
+ .../bindings/watchdog/cadence-wdt.txt         | 23 -------
+ .../bindings/watchdog/cdns,wdt-r1p2.yaml      | 62 +++++++++++++++++++
+ 2 files changed, 62 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/cadence-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/cdns,wdt-r1p2.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 4f9e81253e18..0f8c763a9bd9 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp442.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp474.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
+diff --git a/Documentation/devicetree/bindings/watchdog/cadence-wdt.txt b/Documentation/devicetree/bindings/watchdog/cadence-wdt.txt
+deleted file mode 100644
+index 750a87657448..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/cadence-wdt.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-Zynq Watchdog Device Tree Bindings
+--------------------------------------------
+-
+-Required properties:
+-- compatible		: Should be "cdns,wdt-r1p2".
+-- clocks		: This is pclk (APB clock).
+-- interrupts		: This is wd_irq - watchdog timeout interrupt.
+-
+-Optional properties
+-- reset-on-timeout	: If this property exists, then a reset is done
+-			  when watchdog times out.
+-- timeout-sec		: Watchdog timeout value (in seconds).
+-
+-Example:
+-	watchdog@f8005000 {
+-		compatible = "cdns,wdt-r1p2";
+-		clocks = <&clkc 45>;
+-		interrupt-parent = <&intc>;
+-		interrupts = <0 9 1>;
+-		reg = <0xf8005000 0x1000>;
+-		reset-on-timeout;
+-		timeout-sec = <10>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/cdns,wdt-r1p2.yaml b/Documentation/devicetree/bindings/watchdog/cdns,wdt-r1p2.yaml
 new file mode 100644
-index 000000000000..085729a0fdf1
+index 000000000000..3c17c5883bce
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
-@@ -0,0 +1,112 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * IPQ5332 RDP474 board device tree source
-+ *
-+ * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
++++ b/Documentation/devicetree/bindings/watchdog/cdns,wdt-r1p2.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/cdns,wdt-r1p2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: Cadence watchdog timer controller
 +
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "ipq5332.dtsi"
++maintainers:
++  - Neeli Srinivas <srinivas.neeli@amd.com>
 +
-+/ {
-+	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.9";
-+	compatible = "qcom,ipq5332-ap-mi01.9", "qcom,ipq5332";
++description:
++  The cadence watchdog timer is used to detect and recover from
++  system malfunctions. This watchdog contains 24 bit counter and
++  a programmable reset period. The timeout period varies from 1 ms
++  to 30 seconds while using a 100Mhz clock.
 +
-+	aliases {
-+		serial0 = &blsp1_uart0;
-+	};
++allOf:
++  - $ref: watchdog.yaml#
 +
-+	chosen {
-+		stdout-path = "serial0";
-+	};
++properties:
++  compatible:
++    enum:
++      - cdns,wdt-r1p2
 +
-+	gpio_keys {
-+		compatible = "gpio-keys";
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
++  reg:
++    maxItems: 1
 +
-+		button-wps {
-+			label = "wps";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			debounce-interval = <60>;
-+		};
-+	};
-+};
++  clocks:
++    maxItems: 1
 +
-+&blsp1_uart0 {
-+	pinctrl-0 = <&serial_0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
++  interrupts:
++    maxItems: 1
 +
-+&blsp1_i2c1 {
-+	clock-frequency  = <400000>;
-+	pinctrl-0 = <&i2c_1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
++  reset-on-timeout:
++    type: boolean
++    description: |
++      If this property exists, then a reset is done when watchdog
++      times out.
 +
-+&sdhc {
-+	bus-width = <4>;
-+	max-frequency = <192000000>;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	pinctrl-0 = <&sdc_default_state>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
++required:
++  - compatible
++  - reg
++  - clocks
++  - interrupts
 +
-+&sleep_clk {
-+	clock-frequency = <32000>;
-+};
++unevaluatedProperties: false
 +
-+&xo_board {
-+	clock-frequency = <24000000>;
-+};
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+/* PINCTRL */
-+
-+&tlmm {
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio35";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	i2c_1_pins: i2c-1-state {
-+		pins = "gpio29", "gpio30";
-+		function = "blsp1_i2c0";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	sdc_default_state: sdc-default-state {
-+		clk-pins {
-+			pins = "gpio13";
-+			function = "sdc_clk";
-+			drive-strength = <8>;
-+			bias-disable;
-+		};
-+
-+		cmd-pins {
-+			pins = "gpio12";
-+			function = "sdc_cmd";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		data-pins {
-+			pins = "gpio8", "gpio9", "gpio10", "gpio11";
-+			function = "sdc_data";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+};
++    watchdog@f8005000 {
++        compatible = "cdns,wdt-r1p2";
++        reg = <0xf8005000 0x1000>;
++        clocks = <&clkc 45>;
++        interrupt-parent = <&intc>;
++        interrupts = <GIC_SPI 9 IRQ_TYPE_EDGE_RISING>;
++        reset-on-timeout;
++        timeout-sec = <10>;
++    };
++...
 -- 
-2.17.1
+2.25.1
 
