@@ -2,106 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F15F571F10E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8F7071F169
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 20:12:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232915AbjFARpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 13:45:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39756 "EHLO
+        id S232350AbjFASLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 14:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233056AbjFARpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:45:30 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BFFE19D
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:45:28 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-514ab6cb529so5145167a12.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:45:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685641527; x=1688233527;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CBRDIKv9pFHHAnzSCCPWxz8E2s9GC4jBbWRxKZHWfIc=;
-        b=u+Y5wfCebXA7ka7woUFCIcXqRRZJnjDVXm+r6UIoZoD6rYdgUmg6RTJk98psKqP/Sk
-         1FpJk99QsDASd9QZNZQEpAYASYc8cNOYZv2Bf9mNMH2nHjQ41+nDmFXY4R8CIDrLcPPl
-         gRDmuhrvnZzyXAh6HL5uaXSCOHO8LYUHBKZgHXm8+ee7nufTlW9g4bvSW9v1FIlSB1eX
-         H4hZwftzd+dxrjJs2/n1B5/SkrqKb7ZpDXV4KNF3zu5DJNXOci9nwrhSsKjYRADxkcPI
-         teBDJVf/u36rvJ1j0Jwdc5QdqUPysrkdwcXOHgwPAeOzj+ly2LDU7VZpZgVABuH4gS0W
-         QkZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685641527; x=1688233527;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CBRDIKv9pFHHAnzSCCPWxz8E2s9GC4jBbWRxKZHWfIc=;
-        b=b06yLYZ5vnUPUwPyuO5EA9pgHxRG6ge8PgxZKowJUqfAsqaJzQHmbfHlHpfbCAUW/y
-         ucSw9u3/vZKyh373JLy5BOIi4QQD0zm+7HuCG6vT8w/Rq8DXWoXW0Dseq5ScHXKuN9cX
-         c8meDqxR17rky5OAP1zWTWoM0PlypN0TLJ58u2Tu2K9HjcAFiS0zVy6JhBfCvWi98E5N
-         ZEQGCpPEiuvqXAMZZ1AN8TJWWtlhkHR0yw5gEjR/BwL1s0vKpDmjKOqLjmEWufFsTGVN
-         tOCSQm9+3Xy5ER27DYimzA8Yxn1iDzDWVQu/4exwKnAGViScH8VGi8X7ky5G6q4tcZDi
-         M60g==
-X-Gm-Message-State: AC+VfDy0+N2MtyZ9o5vUOGubor8hBJTcqdiLwrG9F9EqFM1BMqyAKpn4
-        tOWUvf0n4NVX7d7PwIEZaSCfJQ==
-X-Google-Smtp-Source: ACHHUZ7Unk95/39P64w6MIuE0m9e+mNxNCBz6qY02E+GST/o0s5lxoRIlH/bV7R9zajjnFD7YNu7aQ==
-X-Received: by 2002:a05:6402:3582:b0:514:a5cf:745b with SMTP id y2-20020a056402358200b00514a5cf745bmr637933edc.3.1685641526752;
-        Thu, 01 Jun 2023 10:45:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id p16-20020a056402045000b005147f604965sm7519209edw.24.2023.06.01.10.45.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 10:45:26 -0700 (PDT)
-Message-ID: <bd257ed0-71a7-0504-0bfe-14775ac93571@linaro.org>
-Date:   Thu, 1 Jun 2023 19:45:23 +0200
+        with ESMTP id S231895AbjFASLc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 14:11:32 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C91123;
+        Thu,  1 Jun 2023 11:11:31 -0700 (PDT)
+Received: from arisu.localnet (unknown [23.233.251.139])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: detlev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7E6716606ED0;
+        Thu,  1 Jun 2023 19:11:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685643090;
+        bh=/1UK6RJyERSL17sN+JVrhQMGuFCZnyl/wmrhoctEEII=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ULWjjXJmbpkeISxN30WBA+kbSwotG3y7xIVx0GiEsYCmWZh15YDzICoB6EksT+VT3
+         w8idCG16fqul6WxKbdRyNN1wGfyYV94rKJhNhuUyMbW+RDH/9kujdBEpW2KYOPJlL2
+         dBZ4ETK/cU0nhPgzgf+BJVwMA7G5p5hAqgfQNY2pxvEXgxZrSqBGF+klCku897npdd
+         Uh7tIfqVi95tLdqWmp0e2BVNEs5TsJYahiB8t+KE0kxnmMAjIMqIjNEPmpdWHamAky
+         I8SyfJ4nq+uRSNNOP92X5CCR+PLSYBxlak6mf7D4vE/pNTxHlyHLsV03xa3eFN2Baa
+         rQtik76BhF+ew==
+From:   Detlev Casanova <detlev.casanova@collabora.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: phy: Support external PHY xtal
+Date:   Thu, 01 Jun 2023 14:11:31 -0400
+Message-ID: <2686795.mvXUDI8C0e@arisu>
+In-Reply-To: <5f5f6412-f466-9a3f-3ec7-aa45ab0049c6@linaro.org>
+References: <20230531150340.522994-1-detlev.casanova@collabora.com>
+ <6646604.lOV4Wx5bFT@arisu> <5f5f6412-f466-9a3f-3ec7-aa45ab0049c6@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add NXP i.MX93
- parallel display format configuration
-Content-Language: en-US
-To:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com
-References: <20230531093206.3893469-1-victor.liu@nxp.com>
- <20230531093206.3893469-2-victor.liu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230531093206.3893469-2-victor.liu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 11:32, Liu Ying wrote:
-> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
-> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> field. Add device tree bindings for the display format configuration.
-> 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v1->v2:
-> * No change.
+On Thursday, June 1, 2023 12:52:18 P.M. EDT Krzysztof Kozlowski wrote:
+> On 31/05/2023 20:00, Detlev Casanova wrote:
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: xtal
+> >> 
+> >> I don't think xtal is the best of names here. It generally is used as
+> >> an abbreviation for crystal. And the commit message is about there not
+> >> being a crystal, but an actual clock.
+> >> 
+> >> How is this clock named on the datasheet?
+> > 
+> > In the case of the PHY I used (RTL8211F), it is EXT_CLK. But this must be
+> > generic to any (ethernet) PHY, so using ext_clk to match it would not be
+> > good either.
+> > 
+> > Now this is about having an external clock, so the ext_clk name makes
+> > sense in this case.
+> > 
+> > I'm not pushing one name or another, let's use what you feel is more
+> > natural.
+> Just drop the name.
 
-How did you implement Rob's comment?
+So I can just use devm_clk_get_optional_enabled(dev, NULL) and I'll get the 
+first clock defines in the device tree ?
 
-> 
->  .../display/bridge/nxp,imx93-pdfc.yaml        | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,imx93-pdfc.yaml
-> 
+Detlev.
 
 
-Best regards,
-Krzysztof
 
