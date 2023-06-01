@@ -2,55 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A5E7719A18
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80BCD719A21
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:50:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232580AbjFAKtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 06:49:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48398 "EHLO
+        id S232626AbjFAKuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 06:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232167AbjFAKtQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 06:49:16 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7BAF2
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 03:49:14 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-30ae967ef74so656421f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 03:49:14 -0700 (PDT)
+        with ESMTP id S233103AbjFAKuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 06:50:20 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B797E4
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 03:50:18 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f3b9e54338so809323e87.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 03:50:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685616553; x=1688208553;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=c6i9C4EP8AHVTuV3ZMe99mOFKpU+CtVbrRAVY/z6F08=;
-        b=oc+kSwOejXR3o5/TWUq6wGiMZH/wU0no+eCTXLchWMtnXgaiUV33WezN5EA/yl+X5F
-         LEVZkkU++l0Bj45+pvR8elTDVufgCbeLTHLjbgcKs35VWnaaW/9VVmSAGWQEmVLP0Lts
-         DcEXgeZt5UgqblJvZ9VM+jfWObwaYWAIba9D7HSLT5bFrYTJS92ttbJcV9yh1oNZ6mI5
-         3FrbFhOl1cm6ahXz5UmCcaJGBD0cNV9H7HNXkJ8JSvaXkFy3YmKlwRMGPo5X2iJa8oGz
-         QhWyEt7hTdqUnJD0Hx/u60zbwkk+FB4H10l4xarKuWGyZBYTKP6aUk5MAg7ZAxt7YQGZ
-         Bg0w==
+        d=linaro.org; s=google; t=1685616617; x=1688208617;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a6+t0uy+ketxaAQlCOq5q5RS6euSThxMjwTvlYKC7DQ=;
+        b=Xk6DJfF3St/zpKIBsqM2fp+ED1i18fmPgE1IEu1CNaFqg1wtqx5VONv3nKVJuZeGyA
+         3iHwpo9jEl/7TtIaGUWQHA5lQD3cS52Fs0kaJyU4cgr34PbmWKyazQh09Ok3Ug1MnevE
+         q48eddQtPyNmla6efGBVzbqqTqgOdd5DzIQFfdY66NV+t5OEWwBmCBW4D3UDf90EfoYJ
+         SNHw5GJfGOfNlNkCmbiZVyj1YowKb5TzlwwP6EJ7y8eBMeKKFz6EghqLRzl8RSzyTPo+
+         zAHzUL1ik1Tur69dtDJx3zMGm2sJ2se6dzFd0u5Ccr2GPrINPhlvPDRf3slX5OprKS99
+         k+oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685616553; x=1688208553;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c6i9C4EP8AHVTuV3ZMe99mOFKpU+CtVbrRAVY/z6F08=;
-        b=c5ADFibM0nC0wHn4ih3k4FoM+ssFmusdcZPtWySUsH8blf5WayLOxVPQjlQQH4OJQ0
-         BtMggoWEqJBuhsONgH/Jvk/4xPIFb3Gec2PQhvmTpnN1bo0j4bMeNKuR+uaebu++aYl5
-         dIbOMBJDNIAZYC/zwi8ks3hKpYBgWnYci0hXSCu0t1fx8auOXNlzjZWMNQ6JVBD3fKMu
-         jAQMJqG/PNN/oLb6f6AeMogCZz5cseas9sl70SpzcSEsMy0WCCeiIz5qtCPjCNOvAz4H
-         ma5ElWSfsKPVrKPGkoE2T77Su+AikDOjbOxTqPyHlgE6xLQSBmQf8K3VJHKU79+mrfD2
-         JRKA==
-X-Gm-Message-State: AC+VfDzpsHPfkO2kzQctSNIjJ5Ba4ITnmb89Lkf7bx0EczMWx3uYXGSn
-        1PPG7WQmxlCpHMV/y34+tLAPmQ==
-X-Google-Smtp-Source: ACHHUZ7fq/bLvbnOkM6SF0YMAS3rD6jeKKObv8mxqEWBcWmJbEXGSPr9VwRL/vKvivqbJrKzXyOFDQ==
-X-Received: by 2002:a5d:5412:0:b0:30a:e66f:7571 with SMTP id g18-20020a5d5412000000b0030ae66f7571mr1828931wrv.4.1685616553144;
-        Thu, 01 Jun 2023 03:49:13 -0700 (PDT)
-Received: from linaro.org ([86.121.163.20])
-        by smtp.gmail.com with ESMTPSA id k5-20020adff5c5000000b0030af1d87342sm10037872wrp.6.2023.06.01.03.49.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 03:49:12 -0700 (PDT)
-Date:   Thu, 1 Jun 2023 13:49:11 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+        d=1e100.net; s=20221208; t=1685616617; x=1688208617;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a6+t0uy+ketxaAQlCOq5q5RS6euSThxMjwTvlYKC7DQ=;
+        b=GQtVAWs1UWveb7OwPnV5Pu/3ds+oKlvyTCwFK4AREeOMdNqsase5EKLv40s6j3PrTv
+         fuXhpgG1A5MDoC2BLhCjtLBG2dgT8ecEOgULCH5iRN8f56oaYe7n5g1o3ZjP9v7+tpps
+         4YvugJOX4vTz+8nFCu6gq78K24GWMAc0wBzsNPIfylooc46ZWxgfYiCj+f9q777fJZ42
+         RokxHn2EDx04dbZkeg8DbtmOIlfFVMVSIwzdG+qTtCYHsLoikP5tCb+Ht7VPRcFaVMil
+         VAvdI+t1ghM9XlE7PcDgr8/KGyARBdCAoIRPxI92jPvzUA3fHfLr/lSlGmz9P8AQ9UEH
+         zv+A==
+X-Gm-Message-State: AC+VfDyjvRvPolep3F5LB2WYB89Cw3BcpeHO6pCHH/2USAyGFJ1RtlU/
+        cEYn49lrLlk0D6DsbR6xgBfowQ==
+X-Google-Smtp-Source: ACHHUZ6qJU54CrXN5+nToeFKN/q0UGyTUCBzFZunDM946Pa2xvHWK6L7HbM/y56Ojhx0IZ+uW0gL0g==
+X-Received: by 2002:ac2:5505:0:b0:4f3:b221:558c with SMTP id j5-20020ac25505000000b004f3b221558cmr1084547lfk.43.1685616616811;
+        Thu, 01 Jun 2023 03:50:16 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id g21-20020ac25395000000b004f2ce4b0f2esm1040575lfh.168.2023.06.01.03.50.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Jun 2023 03:50:16 -0700 (PDT)
+Message-ID: <bede29c5-d4e0-7925-dcdc-c724b98d25ca@linaro.org>
+Date:   Thu, 1 Jun 2023 12:50:15 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Add missing interconnect path
+ to USB HC
+Content-Language: en-US
+To:     Abel Vesa <abel.vesa@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -58,17 +65,15 @@ Cc:     Andy Gross <agross@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Add missing interconnect path
- to USB HC
-Message-ID: <ZHh3pyQprqKDn+TS@linaro.org>
 References: <20230601103817.4066446-1-abel.vesa@linaro.org>
  <34cd6db8-9f05-23cc-cd41-7fd48ec1a286@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <34cd6db8-9f05-23cc-cd41-7fd48ec1a286@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+ <ZHh3pyQprqKDn+TS@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZHh3pyQprqKDn+TS@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,56 +82,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-06-01 12:42:22, Konrad Dybcio wrote:
-> 
-> 
-> On 1.06.2023 12:38, Abel Vesa wrote:
-> > The USB HC node is missing the interconnect paths, so add them.
-> > 
-> > Fixes: 7f7e5c1b037f ("arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes")
-> For context, it's a fix in the context of "we should prooobably have
-> this if we want to fix the icc driver to include sync state".
 
-Fair enough...
 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On 1.06.2023 12:49, Abel Vesa wrote:
+> On 23-06-01 12:42:22, Konrad Dybcio wrote:
+>>
+>>
+>> On 1.06.2023 12:38, Abel Vesa wrote:
+>>> The USB HC node is missing the interconnect paths, so add them.
+>>>
+>>> Fixes: 7f7e5c1b037f ("arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes")
+>> For context, it's a fix in the context of "we should prooobably have
+>> this if we want to fix the icc driver to include sync state".
 > 
+> Fair enough...
 > 
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> ---
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>
+>>
+>>
+>> sidenote:
+>>
+>> on recent SoCs there's also an USB-IPA path:
+>>
+>> aggre1_noc MASTER_USB3_0 <-> &config_noc SLAVE_IPA_CFG
 > 
-> sidenote:
+> AFAIK, support for IPA on SM8550 is not added yet.
 > 
-> on recent SoCs there's also an USB-IPA path:
-> 
-> aggre1_noc MASTER_USB3_0 <-> &config_noc SLAVE_IPA_CFG
+> We can worry about this 3rd path when IPA support for this platform is
+> upstreamed.
+Right, that's what I'm saying. I'm not even sure we have tethering
+acceleration upstream (where IPA pushes data quickly for sharing mobile
+data via USB).
 
-AFAIK, support for IPA on SM8550 is not added yet.
-
-We can worry about this 3rd path when IPA support for this platform is
-upstreamed.
-
+Konrad
 > 
-> I don't think we really make use of that upstream today or whether it
-> would make enabling IPA necessary (to enable the clocks and reach the
-> IPA hardware), but it's something to think about.
-> 
-> Konrad
-> >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > index 75cd374943eb..4991b2e962d1 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > @@ -2793,6 +2793,10 @@ usb_1: usb@a6f8800 {
-> >  
-> >  			resets = <&gcc GCC_USB30_PRIM_BCR>;
-> >  
-> > +			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
-> > +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
-> > +			interconnect-names = "usb-ddr", "apps-usb";
-> > +
-> >  			status = "disabled";
-> >  
-> >  			usb_1_dwc3: usb@a600000 {
+>>
+>> I don't think we really make use of that upstream today or whether it
+>> would make enabling IPA necessary (to enable the clocks and reach the
+>> IPA hardware), but it's something to think about.
+>>
+>> Konrad
+>>>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> index 75cd374943eb..4991b2e962d1 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> @@ -2793,6 +2793,10 @@ usb_1: usb@a6f8800 {
+>>>  
+>>>  			resets = <&gcc GCC_USB30_PRIM_BCR>;
+>>>  
+>>> +			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
+>>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+>>> +			interconnect-names = "usb-ddr", "apps-usb";
+>>> +
+>>>  			status = "disabled";
+>>>  
+>>>  			usb_1_dwc3: usb@a600000 {
