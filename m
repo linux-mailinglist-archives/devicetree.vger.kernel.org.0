@@ -2,152 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5273F719C33
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F041719C58
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:42:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231651AbjFAMeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 08:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38812 "EHLO
+        id S233009AbjFAMmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 08:42:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjFAMeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:34:12 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79838133;
-        Thu,  1 Jun 2023 05:34:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1685622848; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=S3TBJ4EETCTJKpfs1QEg8mc0iQOxrlN0wStMeC5mPmNTQBeTWoCFzc+/KsfzGpSHbW
-    hXatTPRtsR1pQ05kaNiqf1uHM6EmZyZ7+zp/lN+dMpApVomP11+VbHL8AqpsjJQVvRRZ
-    4+wwhy4sxQgCawlC6oQEixBPGh9LxvZ/s0/ek2JFmbnd0CTIWAeMclJr5pC+AumPafNm
-    AciTyhiaUHhxiWBNUQZYnDllKX802z3zJSBrU2c4BAVJduaZ4Q6yARUAF1uSDfxvUqKn
-    x7Zm+LT7hI8AhJP8/30MRU/ZU0Eu/f6JhB2T55kHsjOuloiAVyeVtccrkHvGYo3E9UXt
-    C90Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1685622848;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=+p5IHgtCJ++8nSCghrBfYm3V7/hpk9AekMBHzhUufmw=;
-    b=TCIbyLUdBwYatC5Qzcv+0rNQMwMgi4FxnNfiuO/UmeFeafA0/LZCHPgpJYnmn1qg+S
-    UKcrUUC7FYfTlXymbXoYyXUcys1LO8O/0cuWM0fR2o+Ubgk6tPTkWw7FIP/gxcW/rQXz
-    4SwI1wxMjFr734f7qqGj5oxlyUkgBrNLHgwonRI32mwud25qV3NWwgPEtK2e4/Dwfikd
-    kxzx3A7/BQX5F3Wqgfdl4r6M1+VqNsGJzzBKMWFIzhFXrp8o/dyTeKnkN5EGQt2JwSbc
-    fV/SzW5nhpBS4vS2BJeWx0sE/s8d8RoeiC6WIxM7rEhSKlGVvKTXgcPtV8HrdQvwbF9v
-    icyQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1685622848;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=+p5IHgtCJ++8nSCghrBfYm3V7/hpk9AekMBHzhUufmw=;
-    b=XLt1PbAKn5SRWofP0EC/8zRj9xmoVvk5qlUiOwIme2QmDSBmBx6AS80jQQQ0Nz1PCY
-    ++BieydRN9J92FdNrsYVIWjNT/UttScAdvFTBCvRJpSzpKU0osbUZHUS4kms3BTboJ1R
-    e8WoiyimUrye08j0fAT54jgPZwu5hgCQQ8TYtAb5c+2yOgfEh3xGE0kByYD7EyJbrw/V
-    yt03/KqT9w+Prf+ktKoNYW/1wjfcMHQTrtIztRydV6SsjIDk6hU8O1NATbyWtjbT7V+e
-    V+gvKEqjlvL80dM++Baq/0ZamodxrUVg2ru6fAYANPZTMDHqGFHafm/ptwQy8nBIJ2/c
-    XRyw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1685622848;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=+p5IHgtCJ++8nSCghrBfYm3V7/hpk9AekMBHzhUufmw=;
-    b=Bdcp32Svcck/rleKarQHmuINUKKaHfaMODtq8EDOz5RPqzMylJ0xDzd50lOUL02/sc
-    tyhyOlDYXjWfjT8pj7CQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA9J/h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
-    with ESMTPSA id j6420az51CY7qxR
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 1 Jun 2023 14:34:07 +0200 (CEST)
-Date:   Thu, 1 Jun 2023 14:34:00 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229589AbjFAMmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:42:01 -0400
+X-Greylist: delayed 25448 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 01 Jun 2023 05:41:59 PDT
+Received: from forward502b.mail.yandex.net (forward502b.mail.yandex.net [IPv6:2a02:6b8:c02:900:1:45:d181:d502])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33351137;
+        Thu,  1 Jun 2023 05:41:59 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:1b89:0:640:6638:0])
+        by forward502b.mail.yandex.net (Yandex) with ESMTP id 0057A5F14B;
+        Thu,  1 Jun 2023 15:41:57 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id tfNF5f2DdSw0-Fykeqnqt;
+        Thu, 01 Jun 2023 15:41:56 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1685623316;
+        bh=CuJFo+ksv+TNzCWobFFC4YBQzZRXzXYhToyTXj1R3uI=;
+        h=Cc:Message-ID:Subject:Date:References:To:From:In-Reply-To;
+        b=X3GMM50E405IR1tZ8HFcM+PO4yMKaYlbasoy9HS8XSTw7FtJePX9yD43hYwu7Qfcp
+         BCPRNfYHmU5cAURMl0+D3k4cj189jRi4dRuj6zaUkDwYU8Nwgxbjx4/bNbUbsMKBYj
+         5O6Yj7wXKU2BO2c4WzUxXNcZlFGhOBh7tphCMyBM=
+Authentication-Results: mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Date:   Thu, 1 Jun 2023 15:41:54 +0300
+From:   Nikita Shubin <nikita.shubin@maquefel.me>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: reserved-memory: rmtfs: Allow guard
- pages
-Message-ID: <ZHiQON3Or-JCGMur@gerhold.net>
-References: <20230530233643.4044823-1-quic_bjorande@quicinc.com>
- <20230530233643.4044823-2-quic_bjorande@quicinc.com>
+        Michael Peters <mpeters@embeddedts.com>,
+        Kris Bahnsen <kris@embeddedts.com>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 17/43] dt-bindings: spi: Add Cirrus EP93xx
+Message-ID: <20230601154154.57ae1b93@redslave.neermore.group>
+In-Reply-To: <d6bc264b-9c52-49c0-8012-b938da37337f@sirena.org.uk>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+        <20230601053546.9574-18-nikita.shubin@maquefel.me>
+        <d6bc264b-9c52-49c0-8012-b938da37337f@sirena.org.uk>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230530233643.4044823-2-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 04:36:41PM -0700, Bjorn Andersson wrote:
-> On some Qualcomm platforms it's required that the rmtfs memory is not
-> placed adjacent to allocations performed by other clients. Some
-> DeviceTree authors have solved this by reserving the space around
-> the region, but this prevents such author to use rely on the OS to place
-> the region, through the use of "size" (instead of a fixed location).
+Hello Mark!
+
+On Thu, 1 Jun 2023 12:17:27 +0100
+Mark Brown <broonie@kernel.org> wrote:
+
+> On Thu, Jun 01, 2023 at 08:34:08AM +0300, Nikita Shubin wrote:
 > 
-> So introduce a flag to indicate that guard pages should be carved at the
-> beginning and end of the memory region. The user shall account for the
-> two 4k blocks in the defined size.
+> > +  cirrus,ep9301-use-dma:
+> > +    description: Flag indicating that the SPI should use dma
+> > +    type: boolean  
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
+> My previous feedback on this property still applies.
 > 
-> Changes since v1:
-> - Drop qcom,alloc-size in favour of using reserved-memory/size
-> - Introduce explicit property to signal that guard pages should be
->   carved out from this region (rather than always do it in the dynamic
->   case).
-> 
->  .../bindings/reserved-memory/qcom,rmtfs-mem.yaml           | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> index bab982f00485..26e24e7b08cf 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> @@ -26,6 +26,13 @@ properties:
->      description: >
->        identifier of the client to use this region for buffers
->  
-> +  qcom,use-guard-pages:
-> +    type: boolean
-> +    description: >
-> +      Indicates that the OS should ignore the first and last 4k block of the
-> +      memory region, for the purpose of ensuring that the allocation is not
-> +      adjacent to other protected regions.
-> +
+> Please don't ignore review comments, people are generally making them
+> for a reason and are likely to have the same concerns if issues remain
+> unaddressed.  Having to repeat the same comments can get repetitive
+> and make people question the value of time spent reviewing.  If you
+> disagree with the review comments that's fine but you need to reply
+> and discuss your concerns so that the reviewer can understand your
+> decisions.
 
-The name "page(s)" is kind of ambiguous nowadays given that systems are
-configured with a variety of page sizes other than 4k.
+Sorry - that was totally unintentional, i was tinkering with spi and
+got distracted on other part of this series (it's quite big for me,
+first time tinkering with a series more than 5-6 patches).
 
-I wonder if it would be more clear to add the actual size of the guard
-pages to the device tree, e.g.
+> > +  cirrus,ep9301-use-dma:
 
-	rmtfs {
-		compatible = "qcom,rmtfs-mem";
-		size = <(2*1024*1024 + 2*4096)>;
-		qcom,guard-size = <4096>;
-	};
+The reason is that ep93xx DMA state is not quite device-tree ready at
+this moment, and clients use it with the help of:
 
-This could also handle a different padding - in the unlikely case that
-this is needed on some platform...
+https://elixir.bootlin.com/linux/v6.4-rc4/source/include/linux/platform_data/dma-ep93xx.h
 
-It's probably also fine the way you added it though, this is just
-a random thought I had. :)
+I was hoping to slip by without changing much in ep93xx DMA driver, so
+i can deal with it later, especially seeing it's having some quirks
+like:
 
-Thanks,
-Stephan
+https://elixir.bootlin.com/linux/v6.4-rc4/source/drivers/dma/ep93xx_dma.c#L471
+
+And edb93xx and bk3 don't set use_dma with SPI for some reason.
+
+I can move "use-dma" to module parameters, if this is acceptable.
