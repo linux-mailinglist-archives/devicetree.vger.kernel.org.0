@@ -2,101 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F041719C58
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:42:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C477719C98
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:52:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233009AbjFAMmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 08:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
+        id S233220AbjFAMwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 08:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjFAMmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:42:01 -0400
-X-Greylist: delayed 25448 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 01 Jun 2023 05:41:59 PDT
-Received: from forward502b.mail.yandex.net (forward502b.mail.yandex.net [IPv6:2a02:6b8:c02:900:1:45:d181:d502])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33351137;
-        Thu,  1 Jun 2023 05:41:59 -0700 (PDT)
-Received: from mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:1b89:0:640:6638:0])
-        by forward502b.mail.yandex.net (Yandex) with ESMTP id 0057A5F14B;
-        Thu,  1 Jun 2023 15:41:57 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id tfNF5f2DdSw0-Fykeqnqt;
-        Thu, 01 Jun 2023 15:41:56 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1685623316;
-        bh=CuJFo+ksv+TNzCWobFFC4YBQzZRXzXYhToyTXj1R3uI=;
-        h=Cc:Message-ID:Subject:Date:References:To:From:In-Reply-To;
-        b=X3GMM50E405IR1tZ8HFcM+PO4yMKaYlbasoy9HS8XSTw7FtJePX9yD43hYwu7Qfcp
-         BCPRNfYHmU5cAURMl0+D3k4cj189jRi4dRuj6zaUkDwYU8Nwgxbjx4/bNbUbsMKBYj
-         5O6Yj7wXKU2BO2c4WzUxXNcZlFGhOBh7tphCMyBM=
-Authentication-Results: mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
-Date:   Thu, 1 Jun 2023 15:41:54 +0300
-From:   Nikita Shubin <nikita.shubin@maquefel.me>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S232987AbjFAMwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:52:15 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F07D123;
+        Thu,  1 Jun 2023 05:52:14 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35157lhU005135;
+        Thu, 1 Jun 2023 12:52:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=a2vHoLo4nXwBfvsNLu+0pjcRYz50PyEOUYJXc0Ctxz4=;
+ b=WNJqhzeGPOvvJSWuHcTFLSA/fnFSSROg2XYXuu4JXB8tK+roD/WU/BS2Psn0mGslAr+x
+ JSOjM+oX6jq6/jLgt9AgCXweIKqErRpGpBLIMBUyGHEg1CE/XROzeSbdja5z0C2Lba0l
+ +FdllnNypUaH+j2CItfuIbKnqeDnimXH9viIT0lFaSjSIg0+q7dxYpV3iAvtR8ZcEKGN
+ LG5LGTgwtnUae13Gwk56OTOvE3+chKrx85Q+eoPGnqyb4rPJGZZvFnRmliNBAYmWe+Uj
+ Rmx8knzUhcwLQ1o8P2kYaotG4nmFy6kq6dVKVi9cJ4QnaLgW/pK76ElGRCTaowiQS2c5 Ig== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxjk2sd38-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 01 Jun 2023 12:52:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 351Cq8lh021539
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 1 Jun 2023 12:52:08 GMT
+Received: from [10.50.0.39] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
+ 05:52:03 -0700
+Message-ID: <d726e36d-8a43-7605-9afa-fde3845e1b19@quicinc.com>
+Date:   Thu, 1 Jun 2023 18:21:51 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: correct the qrng node name
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Peters <mpeters@embeddedts.com>,
-        Kris Bahnsen <kris@embeddedts.com>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 17/43] dt-bindings: spi: Add Cirrus EP93xx
-Message-ID: <20230601154154.57ae1b93@redslave.neermore.group>
-In-Reply-To: <d6bc264b-9c52-49c0-8012-b938da37337f@sirena.org.uk>
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
-        <20230601053546.9574-18-nikita.shubin@maquefel.me>
-        <d6bc264b-9c52-49c0-8012-b938da37337f@sirena.org.uk>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230526161138.25497-1-quic_kathirav@quicinc.com>
+ <fdfc568e-703e-6e74-953e-742c00f0b5fe@linaro.org>
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <fdfc568e-703e-6e74-953e-742c00f0b5fe@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jq_ZvkrXmh4i72NUDpPwMSPGdLIEn7rI
+X-Proofpoint-ORIG-GUID: jq_ZvkrXmh4i72NUDpPwMSPGdLIEn7rI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-01_08,2023-05-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ spamscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
+ priorityscore=1501 impostorscore=0 mlxlogscore=630 phishscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306010114
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Mark!
 
-On Thu, 1 Jun 2023 12:17:27 +0100
-Mark Brown <broonie@kernel.org> wrote:
+On 5/30/2023 8:14 PM, Krzysztof Kozlowski wrote:
+> On 26/05/2023 18:11, Kathiravan T wrote:
+>> qrng node address is mentioned incorrectly. Lets fix it.
+>>
+>> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>> Note: Only compilation and dtbs_check is checked. Also dependent on the
+>> below series, no functional dependencies
+>> https://lore.kernel.org/linux-arm-msm/20230526125305.19626-1-quic_kathirav@quicinc.com/T/#t
+>>
+>>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> index 0f6d6c6daed2..5d2cc0caf5a1 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> @@ -309,7 +309,7 @@
+>>   			#size-cells = <1>;
+>>   		};
+>>   
+>> -		prng: qrng@e1000 {
+>> +		prng: qrng@e3000 {
+> This was fixed some time ago:
+>
+> https://lore.kernel.org/all/20230419211856.79332-1-krzysztof.kozlowski@linaro.org/
 
-> On Thu, Jun 01, 2023 at 08:34:08AM +0300, Nikita Shubin wrote:
-> 
-> > +  cirrus,ep9301-use-dma:
-> > +    description: Flag indicating that the SPI should use dma
-> > +    type: boolean  
-> 
-> My previous feedback on this property still applies.
-> 
-> Please don't ignore review comments, people are generally making them
-> for a reason and are likely to have the same concerns if issues remain
-> unaddressed.  Having to repeat the same comments can get repetitive
-> and make people question the value of time spent reviewing.  If you
-> disagree with the review comments that's fine but you need to reply
-> and discuss your concerns so that the reviewer can understand your
-> decisions.
 
-Sorry - that was totally unintentional, i was tinkering with spi and
-got distracted on other part of this series (it's quite big for me,
-first time tinkering with a series more than 5-6 patches).
+Thanks, I didn't notice your patch.
 
-> > +  cirrus,ep9301-use-dma:
 
-The reason is that ep93xx DMA state is not quite device-tree ready at
-this moment, and clients use it with the help of:
-
-https://elixir.bootlin.com/linux/v6.4-rc4/source/include/linux/platform_data/dma-ep93xx.h
-
-I was hoping to slip by without changing much in ep93xx DMA driver, so
-i can deal with it later, especially seeing it's having some quirks
-like:
-
-https://elixir.bootlin.com/linux/v6.4-rc4/source/drivers/dma/ep93xx_dma.c#L471
-
-And edb93xx and bk3 don't set use_dma with SPI for some reason.
-
-I can move "use-dma" to module parameters, if this is acceptable.
+>
+> Best regards,
+> Krzysztof
+>
