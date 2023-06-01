@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5194B71EFC9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 18:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B2571EFD4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 18:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjFAQyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 12:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37444 "EHLO
+        id S229882AbjFAQ4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 12:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232132AbjFAQyL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 12:54:11 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7754B1A2
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 09:54:08 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96fb45a5258so151362066b.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 09:54:08 -0700 (PDT)
+        with ESMTP id S229667AbjFAQ4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 12:56:19 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 383B4E56
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 09:55:58 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-97454836448so55474166b.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 09:55:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685638447; x=1688230447;
+        d=linaro.org; s=google; t=1685638556; x=1688230556;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=opz6VtahvCDdjyoo3Ecdy1ZlcAUEXCiP9UvfN37Ndpk=;
-        b=LWiOQG5gf2rvyRCi1hD+vLSYQSgpTH/vSRYQQhyNujIB/uPUK2XWADRlsvTql/4J82
-         BF2ybxrrQpTSvzQEwyxf22vytjqI225LKfzVGpHfDeHTVCI1DUka6VH7rTVPKJkqLdaa
-         3ZuJDNavqa52M9MqOU5RA9FWijgAoecjc72kyQ9uckeTvgyDm7jepG08wZvR/cnI5U8C
-         JnYsaTggc3a7wTwzU8FHddVovstp29IQQqjUvPsMzhVyJ5VGyDTDsOfTzfDaKO3aUX6K
-         6MQ8kenQ+HDkoAyDnOW+cdmWNNUThF0ZOdb1qhghqu/U9VOeO09+v4OneIN3iRFWWWly
-         6Eqg==
+        bh=/9PhABrR6fbuT1S1oyIuPZW5VFgQbeU/P+IYi+AHHxM=;
+        b=ffZXKYwLf5T1O2JvWMZdIWhRi7SWjAPrvhw6AL6FlT1bG2FLKbU8LX68ph7e3LO04U
+         dU0rRDYbrveOU6ArfGhxfOLABRs2IHbfoby2DxZgAs86Y9xgm2Bz6MkxmTFh0uZotOlr
+         CpBbV70cVmqyHYXRn5dfEu06K1RrnQc0B65w8dp4o3x3hVSHqwXMddY+I6OdXIITVbLh
+         wagj+12DMz6Zvies9MQnbslGC4lzfDHT+hrH1o/RcDSO3+dpYJN1XPzXdQRATYrdVfpI
+         TSximRQqSXxMHjLDol5p1/cvuNwXunbRaV7yApHcxtcA54c1/WoUiTSehetLPYX13zRc
+         GHQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685638447; x=1688230447;
+        d=1e100.net; s=20221208; t=1685638556; x=1688230556;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=opz6VtahvCDdjyoo3Ecdy1ZlcAUEXCiP9UvfN37Ndpk=;
-        b=gfxibQ679KcpHke7Rdyg597ZJeB1hKhFEnxr7lGAY9zI9aA4TcWTSgghihu+Iyux2S
-         h2pnjMWuJ6ua+MB2cHsr3DnBl3WgjZvj9s9fIOK8KvlkXk5HLOv4RzzKcHsB+MgisHpb
-         rVyHC61jYXhR03cKWxhl1xFzpq1ZBQaUJIHPcXiCakKwdNVlh/S9P9usbTK/PjK1XwJz
-         ZL0MkAWX0qiNoYfcAhLPdCUFrC7r1NtStV+YsBbUHeDSBRUpPmKkwCIJ0V8ejOjeOBrN
-         x9+ZSs39Me4eOJCL64W5V2GLlBfZnbc7CiTpIKuiWF8iO127MJzQwk5oYVDLSZ7ZyLHE
-         nyjQ==
-X-Gm-Message-State: AC+VfDyETVPaE4xj4RZPZ6C5p/TkLoo0Txh0eA+iEWPlUw/thP/r9rhi
-        DkWzmBSa/42KHbAVVZtsNUmPbA==
-X-Google-Smtp-Source: ACHHUZ6Ib6fkHHOhU4CvPzpBJDbe8lHmjCmfmV5pzq4uXm82lIkWnme3xzB+iaqpqS1+gQ5oQcjPPQ==
-X-Received: by 2002:a17:907:6e11:b0:958:801b:9945 with SMTP id sd17-20020a1709076e1100b00958801b9945mr8590711ejc.31.1685638446879;
-        Thu, 01 Jun 2023 09:54:06 -0700 (PDT)
+        bh=/9PhABrR6fbuT1S1oyIuPZW5VFgQbeU/P+IYi+AHHxM=;
+        b=QQcvVHU9IbQ25sswTpEon8O5ZpW0LxEVV7eSWoKLQZJ/BQPRMozU4zN9PGO8LivVzH
+         k7a9QZXuBu2KXaxE4u4vGLQW4kouLQRLgI3mYv7TkKQu+XfDnlJV4KeNfFV25UQC5i3S
+         TW0mzm4JXfFO/ucs1m1qK6z1YD6xqPIKtaaFeC2KJWpI8iFVb9QXXA3s5AIPuOuIw0EH
+         hDOstl/lI9KBdtDZ7dV4yrbzrjYYculg/5oDdKQRm7vOYXhVNnAdVLpBTHyGhsHKu8Oj
+         WkZFCj56S8fIRRSQa6WoxnTtTo2WNgdDU3i7Kx4VsYYjO7UUoLD4qPjpO2nXKK8o0ZEz
+         1QNg==
+X-Gm-Message-State: AC+VfDxGYmh84EnvuVcWgLSoCKebhxtlVt/RNIUwZJJWJPOr3OAlD5Sp
+        XU07RDbhyMREvQ9z532a1c/6aA==
+X-Google-Smtp-Source: ACHHUZ6ygqoysrjPFxzcfm1Ac5L9I1KaJ4mwEF6HXcgsykWw+pw5MRf0NYhA4AB2O0EcNhhoiAnYUQ==
+X-Received: by 2002:a17:907:86a4:b0:973:e4c2:2bcd with SMTP id qa36-20020a17090786a400b00973e4c22bcdmr8555945ejc.18.1685638556663;
+        Thu, 01 Jun 2023 09:55:56 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id j13-20020a170906474d00b0096a5d341b50sm10759628ejs.111.2023.06.01.09.54.03
+        by smtp.gmail.com with ESMTPSA id a6-20020a1709063a4600b00973fac6065esm6693089ejf.223.2023.06.01.09.55.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 09:54:05 -0700 (PDT)
-Message-ID: <12fea13e-e2c3-487f-8d2b-cfd320c98ba7@linaro.org>
-Date:   Thu, 1 Jun 2023 18:54:01 +0200
+        Thu, 01 Jun 2023 09:55:56 -0700 (PDT)
+Message-ID: <3589e3fc-2add-52d7-68bd-2b41a9cba4af@linaro.org>
+Date:   Thu, 1 Jun 2023 18:55:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: i2c-mt65xx: add additional clocks
+Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add SM6375 GPU SMMU
 Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Qii Wang <qii.wang@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-Cc:     =?UTF-8?B?6YOt5bCP5qGl?= <joe@gainstrong.cn>
-References: <5f15212060f82fb94239174c4e4b46c151645fe8.1685549360.git.daniel@makrotopia.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230531-topic-sm6375_gpusmmu-v1-0-860943894c71@linaro.org>
+ <20230531-topic-sm6375_gpusmmu-v1-1-860943894c71@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5f15212060f82fb94239174c4e4b46c151645fe8.1685549360.git.daniel@makrotopia.org>
+In-Reply-To: <20230531-topic-sm6375_gpusmmu-v1-1-860943894c71@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,27 +85,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 18:10, Daniel Golle wrote:
-> Add pck and mck clocks which are needed to access I2C registers on MT7981.
+On 31/05/2023 17:04, Konrad Dybcio wrote:
+> SM6375 has a "Qualcomm SMMU V2" implementation for its GPU SMMU. It
+> does not however qualify for the qcom,adreno-smmu compatible, as it can
+> not do split pagetables. It consumes a single clock and a single genpd.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> index fda0467cdd954..550795f6573c5 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> @@ -78,6 +78,8 @@ properties:
->        - const: dma
->        - const: arb
->        - const: pmic
-> +      - const: mck
-> +      - const: pck
->  
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 2 ++
 
-Adding names does not magically add the clocks. This wasn't tested.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
