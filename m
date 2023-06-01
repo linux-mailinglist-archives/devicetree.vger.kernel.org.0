@@ -2,75 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 949787193DE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 09:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D6897193E8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 09:07:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231712AbjFAHFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 03:05:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
+        id S231365AbjFAHH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 03:07:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjFAHFx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 03:05:53 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D55EAA3
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 00:05:51 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96fe2a1db26so55220366b.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 00:05:51 -0700 (PDT)
+        with ESMTP id S231193AbjFAHH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 03:07:26 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75689134
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 00:07:24 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2af177f12a5so5686511fa.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 00:07:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685603150; x=1688195150;
+        d=linaro.org; s=google; t=1685603243; x=1688195243;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UdPKQt7YQaevMe9FaRHRErHd01W/8ZdQxg/qvlil77I=;
-        b=qtaGX++9GCHkMv1VgHE/tZQElSx0TTN3LmL8o0IZxcGJCInYcIHzqZpkvAggonVCa4
-         PjnMONDjQsfripiXcycIs7ObADAtw7dfR7kvy//i6d0GLMg+lF312wQk7UOhvJRdmTaO
-         iBOt/g0HeMNWaE1e79rEsvW1SESF4AbNLoqpVzQCEK7S5tU1goK1tAtFQZzN5mxiYMiP
-         M1GZApwLuxsLRUCInZFA//S5x5/zsZm/u9/V/9jenaWF7+mAdhi9aSFjnZfRIAX3Xkxp
-         ZOCG+TFA8zzNOtqVp5Psfvz4G2+eQ30OURdKdfhOOzTly+mZgj9sSWPT1hH9QNhekRYZ
-         Qs/g==
+        bh=jTgkeUoZDrm3H4JZY48LkcXj1a8GGqfVAB6tQQW57kk=;
+        b=Fm1Pq2Ue6JJGHarfUY6GOswK0cjxa8gtUuq5sHV7Blfg0pkheMr3I3HnFU4U/7SWRS
+         +GwAdFWQACD9kb64Vrem1c2BBkWy/tYbkjWTrUE5KUpK79e8iIOucerKXDnhEuD4l6Kd
+         J0EZE56D4Fv7ouxOhjHyQrfNhjotwwFIa5S1+kKveK6G4lw2wwIcVyG07ld5txfYcrcf
+         jOeHL3XhBkMW6wZZaRG6a68AAKQkTiKz9RUW0p2M9IdwPqmOZ8IvC/JvffXpXRjrTiC3
+         3LZDckOxnwBjFK+fa3V3xOcoMu7n7jCIxtPQOXbBvJcOudqAyeJKZJeCjDhAD0rTjiGZ
+         SnEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685603150; x=1688195150;
+        d=1e100.net; s=20221208; t=1685603243; x=1688195243;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UdPKQt7YQaevMe9FaRHRErHd01W/8ZdQxg/qvlil77I=;
-        b=CftsNUzUIor1JKs2tVPMZTqfB+DvZL7CdyAj6NxRLuBMh9MEVCd9zaIOBsyrgl9AkS
-         JteM2y8FcHs896lZyGJY3Gw8DGiNIEFQ2GTOuwr2t/WCtSqktxac+cDfHaGmX62rWLLH
-         qVbVeDUWjLyQVGGoutE2gmh0dE44HRfyIh27bgwxZUICibgoNA5bF0fIm4Nz+PRvRW1s
-         +ElAwWQsBBtCdGEnDQv3zi/yXOVQSdvJdGKB/8KQ1stZIvWxzhd5V0HauHXN5hsDCkKR
-         qyyGsJhbRbWHa93D8xqt+TTMMITpVEuoNFOUexla0hJaLXO5Hlsw1t4Jnq0eQ5YsLrqw
-         gD9g==
-X-Gm-Message-State: AC+VfDxLkKvLB/5hY9KAEGKpsyXaR9iCyJ2UuTWH31t0ZzZpMOqnA2SC
-        U/C1lCeGpulZLiQB/+a46albdQ==
-X-Google-Smtp-Source: ACHHUZ7iCqwfChtskRugaSiWPwtUsEfNufe1cDLS6IIi4UAtoXgXwGHYluWVhiAWfiMWS4S9mYmtEQ==
-X-Received: by 2002:a17:907:3e12:b0:973:943e:2308 with SMTP id hp18-20020a1709073e1200b00973943e2308mr8349376ejc.76.1685603150290;
-        Thu, 01 Jun 2023 00:05:50 -0700 (PDT)
+        bh=jTgkeUoZDrm3H4JZY48LkcXj1a8GGqfVAB6tQQW57kk=;
+        b=X1dbd4xot6B1AwdEnoO5fARlOHMp1JF3LnereDhvDxPOCVVVTeHvjq93rj/zIWlQPj
+         efmxArrgYrm1PyTxvmmkUb7gHIJ7rv1EaFlFqbRiK/j4H5QBDKRvGE/WQu/0osMaIVCR
+         Nt51LMJ2J7OTukytIwS1kjjrG4WvvrmZ2ADVSNXTUh6ctH17rwlu0KbE495qTz8g01YM
+         euw9tAiK4ZbX6SRwM5rY71hKlRj4wUDI19YHcQ2gJKYsyB/RN1Opseeg7K0+at57fKA3
+         Teo18P1gq+ZhJj72SV9cL2O+4TvUKKsd/Xgeh8Z15JmGBLxrgF+s4fAy4Ogf+LPdnpkz
+         YjDQ==
+X-Gm-Message-State: AC+VfDzyo2MZOAMhHRQAXEZs6YaDZZm86YNQ/TD6c0y+PIrwrrvFRr0p
+        V99FVogoUBDsDST8fH8ldhMMXg==
+X-Google-Smtp-Source: ACHHUZ5g+S7nxeGes6Q/Rl5srRoNRAARYYm1jAHUP5JJkJQ3iDkB7OpHXkXsLONoF9k1ghbr3AVQyQ==
+X-Received: by 2002:a2e:b706:0:b0:2a7:8b35:8270 with SMTP id j6-20020a2eb706000000b002a78b358270mr4241764ljo.35.1685603242710;
+        Thu, 01 Jun 2023 00:07:22 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id c22-20020a170906695600b0094f3b18044bsm10004515ejs.218.2023.06.01.00.05.48
+        by smtp.gmail.com with ESMTPSA id l2-20020a056402230200b00510d110db58sm6658071eda.80.2023.06.01.00.07.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 00:05:49 -0700 (PDT)
-Message-ID: <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
-Date:   Thu, 1 Jun 2023 09:05:47 +0200
+        Thu, 01 Jun 2023 00:07:22 -0700 (PDT)
+Message-ID: <b025b0ad-ca32-2c6e-08cc-9463e0ba0678@linaro.org>
+Date:   Thu, 1 Jun 2023 09:07:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
- scheme
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: unify version notation of
+ Northstar devices
 Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, conor@kernel.org
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        enachman@marvell.com, Vadym Kochan <vadym.kochan@plvision.eu>
-References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
- <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Conor Dooley <conor@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Christian Lamparter <chunkeey@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230520112601.11821-1-zajec5@gmail.com>
+ <20230522-bacterium-quality-b51ee7dc124c@spud>
+ <c69fb09a-40aa-6c7a-09b0-d32a2b39e18f@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <c69fb09a-40aa-6c7a-09b0-d32a2b39e18f@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -81,265 +88,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 01:49, Chris Packham wrote:
-> From: Vadym Kochan <vadym.kochan@plvision.eu>
+On 22/05/2023 22:29, Rafał Miłecki wrote:
+> On 22.05.2023 19:08, Conor Dooley wrote:
+>> On Sat, May 20, 2023 at 01:26:00PM +0200, Rafał Miłecki wrote:
+>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>
+>>> Always use a minus/hyphen char to separate model from version. This
+>>> unifies binding's "compatible" strings.
+>>
+>> Am I just being paranoid in thinking that software may have relied on
+>> the former naming scheme?
+>> On the other hand, my OCD really likes the change.
 > 
-> Switch the DT binding to a YAML schema to enable the DT validation.
+> That's a very reasonable concern.
 > 
-> The text binding didn't mention it as a requirement but existing usage
-> has
 > 
->    compatible = "marvell,armada-8k-nand-controller",
->                 "marvell,armada370-nand-controller";
+> TLDR: The risk of any breakage is extremely low due to Northstar CFE
+> bootloader & projects with Northstar support.
 > 
-> so the YAML allows this in addition to the individual compatible values.
 > 
-> There was also an incorrect reference to dma-names being "rxtx" where
-> the driver and existing device trees actually use dma-names = "data" so
-> this is corrected in the conversion.
+> There are very few Northstar devices with bootloader other than CFE.
+> All devices affected by this PATCH use CFE actually.
+> CFE on Northstar has no support for DTS (DTB).
+> DTB files are always appended to kernel on all affected devices.
 > 
-> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
+> So problem of some DTB stored in bootloader getting out of sync with
+> kernel / user-space is non-existent in this case.
 > 
-> Notes:
->     Changes in v8:
->     - Mark deprecated compatible values as such
->     - Allow "marvell,armada-8k-nand-controller" without
->       "marvell,armada370-nand-controller"
->     - Make dma-names usage reflect reality
->     - Update commit message
->     
->     Changes in v7:
->     - Restore "label" and "partitions" properties (should be picked up via
->       nand-controller.yaml but aren't)
-
-What do you mean by "aren't"? They are not needed.
-
->     - Add/restore nand-on-flash-bbt and nand-ecc-mode which aren't covered
->       by nand-controller.yaml.
->     - Use "unevalautedProperties: false"
->     - Corrections for clock-names, dma-names, nand-rb and nand-ecc-strength
->     - Add pxa3xx-nand-controller example
->     
->     Changes in v6:
->     - remove properties covered by nand-controller.yaml
->     - add example using armada-8k compatible
->     
->     earlier changes:
->     
->     v5:
->        1) Get back "label" and "partitions" properties but without
->           ref to the "partition.yaml" which was wrongly used.
->     
->        2) Add "additionalProperties: false" for nand@ because all possible
->           properties are described.
->     
->     v4:
->        1) Remove "label" and "partitions" properties
->     
->        2) Use 2 clocks for A7K/8K platform which is a requirement
->     
->     v3:
->       1) Remove txt version from the MAINTAINERS list
->     
->       2) Use enum for some of compatible strings
->     
->       3) Drop:
->             #address-cells
->             #size-cells:
->     
->          as they are inherited from the nand-controller.yaml
->     
->       4) Add restriction to use 2 clocks for A8K SoC
->     
->       5) Dropped description for clock-names and extend it with
->          minItems: 1
->     
->       6) Drop description for "dmas"
->     
->       7) Use "unevalautedProperties: false"
->     
->       8) Drop quites from yaml refs.
->     
->       9) Use 4-space indentation for the example section
->     
->     v2:
->       1) Fixed warning by yamllint with incorrect indentation for compatible list
+> We still should consider a risk of some out-of-tree driver or just
+> user-space checking for those compatible strings. I'm not aware of any
+> project other than OpenWrt providing system images for those devices.
+> There is some basic support in buildroot but it's quite dead. Even in
+> OpenWrt case the only possibly affected device is Netgear R6300 V2.
+> OpenWrt doesn't provide images for any of affected Luxul devices.
 > 
->  .../bindings/mtd/marvell,nand-controller.yaml | 223 ++++++++++++++++++
->  .../devicetree/bindings/mtd/marvell-nand.txt  | 126 ----------
->  MAINTAINERS                                   |   1 -
->  3 files changed, 223 insertions(+), 127 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mtd/marvell-nand.txt
+> So there isn't any known project this change can actually break. If
+> there is one (very unlikely) it can still update its user-space or
+> out of kernel driver while updating DTB.
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> new file mode 100644
-> index 000000000000..433feb430555
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> @@ -0,0 +1,223 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/marvell,nand-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell NAND Flash Controller (NFC)
-> +
-> +maintainers:
-> +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: marvell,armada-8k-nand-controller
-> +          - const: marvell,armada370-nand-controller
-> +      - enum:
-> +          - marvell,armada-8k-nand-controller
-> +          - marvell,armada370-nand-controller
-> +          - marvell,pxa3xx-nand-controller
-> +      - description: legacy bindings
-> +        deprecated: true
-> +        enum:
-> +          - marvell,armada-8k-nand
-> +          - marvell,armada370-nand
-> +          - marvell,pxa3xx-nand
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Shall reference the NAND controller clocks, the second one is
-> +      is only needed for the Armada 7K/8K SoCs
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: core
-> +      - const: reg
-> +
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    items:
-> +      - const: data
-> +
-> +  marvell,system-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Syscon node that handles NAND controller related registers
-> +
-> +patternProperties:
-> +  "^nand@[0-3]$":
-> +    type: object
-> +    unevaluatedProperties: false
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 3
-> +
-> +      nand-rb:
-> +        minItems: 1
+> So while this change may be not the best approach (in general terms)
+> in this case it's very unlikely to break anything.
 
-Drop minItems.
+You should explain this - reason for ABI break - in commit msg.
 
-> +        maxItems: 1
-
-Didn't you have here minimum and maximum? I think I did not ask to
-remove them.
-
-> +
-> +      nand-ecc-step-size:
-> +        const: 512
-> +
-> +      nand-ecc-strength:
-> +        enum: [1, 4, 8, 12, 16]
-> +
-> +      nand-on-flash-bbt:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +
-> +      nand-ecc-mode:
-> +        const: hw
-> +
-> +      label:
-> +        $ref: /schemas/types.yaml#/definitions/string
-
-Drop label
-
-> +
-> +      partitions:
-> +        type: object
-
-Drop partitions.
-
-> +
-> +      marvell,nand-keep-config:
-> +        description: |
-> +          Orders the driver not to take the timings from the core and
-> +          leaving them completely untouched. Bootloader timings will then
-> +          be used.
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +
-> +      marvell,nand-enable-arbiter:
-> +        description: |
-> +          To enable the arbiter, all boards blindly used it,
-> +          this bit was set by the bootloader for many boards and even if
-> +          it is marked reserved in several datasheets, it might be needed to set
-> +          it (otherwise it is harmless).
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        deprecated: true
-> +
-> +    additionalProperties: false
-
-unevaluatedProperties: false
-
-> +
-> +    required:
-> +      - reg
-> +      - nand-rb
-> +
-
-required: block goes here
-
-> +allOf:
-> +  - $ref: nand-controller.yaml
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: marvell,pxa3xx-nand-controller
-> +    then:
-> +      required:
-> +        - dmas
-> +        - dma-names
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: marvell,armada-8k-nand-controller
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +
-> +        clock-names:
-> +          minItems: 2
-> +
-> +      required:
-> +        - marvell,system-controller
-> +
-
+Or just keep old compatibles as deprecated.
 
 Best regards,
 Krzysztof
