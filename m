@@ -2,81 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C477719C98
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:52:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3829719CA9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 14:55:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233220AbjFAMwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 08:52:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45052 "EHLO
+        id S233239AbjFAMzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 08:55:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232987AbjFAMwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:52:15 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F07D123;
-        Thu,  1 Jun 2023 05:52:14 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35157lhU005135;
-        Thu, 1 Jun 2023 12:52:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=a2vHoLo4nXwBfvsNLu+0pjcRYz50PyEOUYJXc0Ctxz4=;
- b=WNJqhzeGPOvvJSWuHcTFLSA/fnFSSROg2XYXuu4JXB8tK+roD/WU/BS2Psn0mGslAr+x
- JSOjM+oX6jq6/jLgt9AgCXweIKqErRpGpBLIMBUyGHEg1CE/XROzeSbdja5z0C2Lba0l
- +FdllnNypUaH+j2CItfuIbKnqeDnimXH9viIT0lFaSjSIg0+q7dxYpV3iAvtR8ZcEKGN
- LG5LGTgwtnUae13Gwk56OTOvE3+chKrx85Q+eoPGnqyb4rPJGZZvFnRmliNBAYmWe+Uj
- Rmx8knzUhcwLQ1o8P2kYaotG4nmFy6kq6dVKVi9cJ4QnaLgW/pK76ElGRCTaowiQS2c5 Ig== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxjk2sd38-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Jun 2023 12:52:09 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 351Cq8lh021539
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 1 Jun 2023 12:52:08 GMT
-Received: from [10.50.0.39] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
- 05:52:03 -0700
-Message-ID: <d726e36d-8a43-7605-9afa-fde3845e1b19@quicinc.com>
-Date:   Thu, 1 Jun 2023 18:21:51 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: correct the qrng node name
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S232252AbjFAMzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 08:55:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA8A128;
+        Thu,  1 Jun 2023 05:55:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E878C60DBE;
+        Thu,  1 Jun 2023 12:55:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 086C2C433D2;
+        Thu,  1 Jun 2023 12:55:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685624109;
+        bh=ZqxTQp6PSUQnFN/2lX8WhB9VL0uNNxw4eFDlQcou2hM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AJ6uDVxIcnDi9PdUqw02PEj1p95RcNg3MKp1wDy2TmBbS8pVmptiCPIseJN4xU9QU
+         kCgcelTnYnYjNuM9MVgFFW/yyFFlTJnCMPoHbJDdn9kHKQLlmF1rRPYLM1lQzzD5EG
+         KyDzNREX23EwoNey1cXeLk+/T8tv9lioMokqQx5kX3+zkQW8G8Y8fRcgTnBCD18yy8
+         /EKy68ttRK3uJdPkQ/ThWUGhZHitOz32UyIBcu03OMN+zwruzur0h5baKkACR6bah4
+         oEcgapiMgotduxHfGYnTsBxn2ErLhl12AP08PsIBfn0o6ZdsMq4Xr8iOJHCJAe3sd0
+         Nl6oJX4aveXvg==
+Date:   Thu, 1 Jun 2023 13:55:03 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Nikita Shubin <nikita.shubin@maquefel.me>
+Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230526161138.25497-1-quic_kathirav@quicinc.com>
- <fdfc568e-703e-6e74-953e-742c00f0b5fe@linaro.org>
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <fdfc568e-703e-6e74-953e-742c00f0b5fe@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jq_ZvkrXmh4i72NUDpPwMSPGdLIEn7rI
-X-Proofpoint-ORIG-GUID: jq_ZvkrXmh4i72NUDpPwMSPGdLIEn7rI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_08,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- spamscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
- priorityscore=1501 impostorscore=0 mlxlogscore=630 phishscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306010114
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Michael Peters <mpeters@embeddedts.com>,
+        Kris Bahnsen <kris@embeddedts.com>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 17/43] dt-bindings: spi: Add Cirrus EP93xx
+Message-ID: <b2fc1733-4841-42e9-8bf7-1534a5d1a1b4@sirena.org.uk>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+ <20230601053546.9574-18-nikita.shubin@maquefel.me>
+ <d6bc264b-9c52-49c0-8012-b938da37337f@sirena.org.uk>
+ <20230601154154.57ae1b93@redslave.neermore.group>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="V3JKa2O2njgMRI99"
+Content-Disposition: inline
+In-Reply-To: <20230601154154.57ae1b93@redslave.neermore.group>
+X-Cookie: Positively no smoking.
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,39 +65,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 5/30/2023 8:14 PM, Krzysztof Kozlowski wrote:
-> On 26/05/2023 18:11, Kathiravan T wrote:
->> qrng node address is mentioned incorrectly. Lets fix it.
->>
->> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->> ---
->> Note: Only compilation and dtbs_check is checked. Also dependent on the
->> below series, no functional dependencies
->> https://lore.kernel.org/linux-arm-msm/20230526125305.19626-1-quic_kathirav@quicinc.com/T/#t
->>
->>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->> index 0f6d6c6daed2..5d2cc0caf5a1 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->> @@ -309,7 +309,7 @@
->>   			#size-cells = <1>;
->>   		};
->>   
->> -		prng: qrng@e1000 {
->> +		prng: qrng@e3000 {
-> This was fixed some time ago:
->
-> https://lore.kernel.org/all/20230419211856.79332-1-krzysztof.kozlowski@linaro.org/
+--V3JKa2O2njgMRI99
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Jun 01, 2023 at 03:41:54PM +0300, Nikita Shubin wrote:
+> Mark Brown <broonie@kernel.org> wrote:
+> > On Thu, Jun 01, 2023 at 08:34:08AM +0300, Nikita Shubin wrote:
 
-Thanks, I didn't notice your patch.
+> > > +  cirrus,ep9301-use-dma:
+> > > +    description: Flag indicating that the SPI should use dma
+> > > +    type: boolean =20
 
+> > My previous feedback on this property still applies.
 
->
-> Best regards,
-> Krzysztof
->
+> > > +  cirrus,ep9301-use-dma:
+
+> The reason is that ep93xx DMA state is not quite device-tree ready at
+> this moment, and clients use it with the help of:
+
+> https://elixir.bootlin.com/linux/v6.4-rc4/source/include/linux/platform_d=
+ata/dma-ep93xx.h
+
+> I was hoping to slip by without changing much in ep93xx DMA driver, so
+
+You're definign new ABI here, that's not a good thing to do for a
+temporary workaround.
+
+> I can move "use-dma" to module parameters, if this is acceptable.
+
+That's less bad.  I guess you could also define the bindings for the DMA
+controller so that the properties are there then instead of properly
+using the DMA API in the clients just check to see if the DMA properties
+are present and then proceed accordingly?
+
+--V3JKa2O2njgMRI99
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR4lSYACgkQJNaLcl1U
+h9DnQAf/dOQ5yJ4O/a6/eDXnlTKTJomQveH4SJUqEYc9Jr5rTiC4ZpD8YGXTKLfJ
+rh8ZtJo8V7AL5gxaaHy3elU7nGppA0IgAAvPhhw2hKYdCMMP3Yo2Lan3R7c/VK6R
+4z8kiUZM2elNvLEa5bG4cw/OGFBl4jFG/pZs7SsgBuvJ+4kU/eAqztvoAWo88FSU
+UUA4V2Zbj5ojJ9ihe8eB5WeGXCnFbSSUIEzfoicwJ30dj/fO4RKsXscp0G9gMJyn
+k/yLGSkYe171xoNnkwvOyTjsLGBgCfheKXX36+SCi5qR70cNONx5xsnstT5UJNrh
+jka8g3Gz6KZCu2BNk1BckqDOMeWwEA==
+=b0C9
+-----END PGP SIGNATURE-----
+
+--V3JKa2O2njgMRI99--
