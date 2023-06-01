@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 126E07193EE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 09:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FB207193F3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 09:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231234AbjFAHKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 03:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37822 "EHLO
+        id S231273AbjFAHMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 03:12:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231901AbjFAHKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 03:10:00 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D203E132
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 00:09:57 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96fbc74fbf1so63328566b.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 00:09:57 -0700 (PDT)
+        with ESMTP id S230504AbjFAHMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 03:12:18 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3959B3
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 00:12:16 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5162d2373cdso621962a12.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 00:12:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685603396; x=1688195396;
+        d=linaro.org; s=google; t=1685603535; x=1688195535;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=21iAnhfOCOE1fP1JIm6u9Hm6NZmMCUEF7VO5uMtx84k=;
-        b=LgREeLNor2SqPcJQCb4f4v9YKA1089fWRMS6umird7Dd4cduZww182HDUVxdw7MwjD
-         w0rneeWDz9908RaEHEqtyUN6qwER1pQpWROjTJo0n0PyEGeH8FHOujb/Hcww2ozrw/3Q
-         Z7lLmuHcy4XIXDWtXw9U4iBuPjdh7YeeSazlqy7RCL+ruHYlKZM0UWecCJ9aWcJ+l/CB
-         hSZfJx/SVzO+f+9zE29lflEWo31YJUYuRNY+W0dAkfdplnN8kKADdzRq3TWszwzv//3v
-         e4umrWvZONqATZ+g8KiyUUxiu+9I3nygQj4okz5sIBI6bV3ecTmqKFXb21Z5Rm+fRYY+
-         4fzQ==
+        bh=mry3SegYnlvoMgGV2UEkgTEZap3iti8la2MzpK74XkQ=;
+        b=YNo3Nf/CExL4ROls4IKsxV0EXLhZVL4UD1YC7567fGtWPhFfM+++ip1do8ztZpXL5E
+         0NE//FKy8h7i9L8vz/2/MQFmEkc8MX01UmPDrQ+g1YGXgJgleOsxKaRXjk01I5nnYtCd
+         1XrcVcrVqo0ZIBfHpu1tlTVlKCK3bG9xnDBeruHxe4AU4EyVoplNJilncWfRQCp3AayC
+         zmnj5Uol71PhZu5MxHscD6+7Vbj3hvvgigGV7UGyPXdqoYOrEPyoy6SoLsDbihclcuLS
+         mtPPkAAEO81fw1OfGtUlFj/Y65XdycXzxZYdIyMniGgbF6CCkx3ulZ49kcS2WV02i5VY
+         HvGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685603396; x=1688195396;
+        d=1e100.net; s=20221208; t=1685603535; x=1688195535;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=21iAnhfOCOE1fP1JIm6u9Hm6NZmMCUEF7VO5uMtx84k=;
-        b=kLrayIJImApxmu6J8B9kSMtJGi6IuWOCvtJ4lfX808MqrCrA4URw6/ox7ngu3WYXg/
-         j+UpGzQOnThOcrl6w+pmE2Yp8gLgnPvpreD6BczsHIp39z9qv1YoNAZzT+6ut8T8gDZK
-         0CJ4vrvqPN+QmdgkWWUsm+azjjBt6YdkY9N5q9xB5h1s32O4MgUHOpjxg6Nm6Gs44yyV
-         dDUjJU/2vTGDDyphheMYpq43X3UrmntQWuH5enVmZVuGDKtVBuDmbej9XTw7nayisQ0D
-         3GAABqmsyqDXt0cgeRhWsfD4/khQG76lN+jVjkoePJAaC1pP6A7n1iLLRrz95BNrcBQe
-         jjxQ==
-X-Gm-Message-State: AC+VfDyLRUhj1QrWZ451LQOVXs9iYIVEnmkzjGLm6MdAyP8HhHG5BZyG
-        CiZdF4Fn0K6xnhCI0IOylLVmZA==
-X-Google-Smtp-Source: ACHHUZ7tcNLG3ERUSLkHz+IPljRSIaIgjYdPAmT7rfGQr6wZ7veiS6P62xUWniNzQ0icZFFat2U3jA==
-X-Received: by 2002:a17:907:168c:b0:973:dd61:d427 with SMTP id hc12-20020a170907168c00b00973dd61d427mr3642963ejc.66.1685603396362;
-        Thu, 01 Jun 2023 00:09:56 -0700 (PDT)
+        bh=mry3SegYnlvoMgGV2UEkgTEZap3iti8la2MzpK74XkQ=;
+        b=KjPX256wU+jS6LF3PcvpVtDz3GmX+rjFDRO/IIswfmhAiszdXh0eV92F50MHjybW9p
+         hj/ZaT0xjcK6mkIu47EEQbT3yGNo5NNBp9uZ7AUjDb4yvMx7Lp364UKBDo9m/W8yiPAZ
+         oggb2RKwEkNntjtzrh5Mhm/6+Qq9u+LQhRjqPqQgiKYRiV6v8HeQlh8zh+AHui9pUyBp
+         NeI5mnt6c2zLn1Z6FzgsGvuj2aTPwA1tDU9HF5iDDIiiW6nt8xQRn6bMaG6LmaD8+Ywi
+         UR+mcI14p4WxP1veOWnTdWeLZNdDP5QXJm2EtR8Db10PBZXHuyQluuZUyRex/97/2ZJm
+         D2gQ==
+X-Gm-Message-State: AC+VfDygHULJQtGMZxO3lJsdKS0S/eaW0mlwSIeX3bY7i+2N+YGlr9s7
+        cTNYvbXYcHoaz9aXi9rpnD6cjA==
+X-Google-Smtp-Source: ACHHUZ4GN4GdPkqyU47eYI+4ehgK8CBb51y8LnoZxvfUSMBK8QN/GmDmeSJUPqL/MA2TCfTq6mf4IA==
+X-Received: by 2002:a17:907:6d83:b0:96f:b8a0:6cfe with SMTP id sb3-20020a1709076d8300b0096fb8a06cfemr8010702ejc.54.1685603535140;
+        Thu, 01 Jun 2023 00:12:15 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id fi13-20020a170906da0d00b0096fbc516a93sm9979942ejb.211.2023.06.01.00.09.41
+        by smtp.gmail.com with ESMTPSA id x10-20020a170906134a00b0096a16761ab4sm10276672ejb.144.2023.06.01.00.12.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 00:09:42 -0700 (PDT)
-Message-ID: <009679e5-792f-a872-bc02-dda3ff8781bb@linaro.org>
-Date:   Thu, 1 Jun 2023 09:09:40 +0200
+        Thu, 01 Jun 2023 00:12:14 -0700 (PDT)
+Message-ID: <b9297205-82fa-8cdf-550e-a53c073e0a9d@linaro.org>
+Date:   Thu, 1 Jun 2023 09:12:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 4/6] dt-bindings: sram: qcom,ocmem: Add msm8226 support
+Subject: Re: [PATCH v2 3/3] dt-bindings: mfd: stpmic1: add fsl,pmic-poweroff
+ property
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Brian Masney <masneyb@onstation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sean Nyekjaer <sean@geanix.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230506-msm8226-ocmem-v2-0-177d697e43a9@z3ntu.xyz>
- <20230506-msm8226-ocmem-v2-4-177d697e43a9@z3ntu.xyz>
+        Conor Dooley <conor+dt@kernel.org>,
+        pascal Paillet <p.paillet@foss.st.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230516132225.3012541-1-sean@geanix.com>
+ <20230516132225.3012541-3-sean@geanix.com>
+ <20230516-footprint-handoff-bcd553ff6146@spud>
+ <9B1EE405-77D3-4980-9A13-9D4F87C1A64F@geanix.com>
+ <20230523-flaccid-fossil-c9d09838dc64@spud>
+ <658510B5-702B-464A-BA55-01E2B315BE39@geanix.com>
+ <20230524-ellipse-dagger-72f850253ea0@wendy>
+ <24418459-DE19-4575-835B-8673F279993C@geanix.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230506-msm8226-ocmem-v2-4-177d697e43a9@z3ntu.xyz>
+In-Reply-To: <24418459-DE19-4575-835B-8673F279993C@geanix.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,64 +87,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2023 22:55, Luca Weiss wrote:
-> Add the compatible for the OCMEM found on msm8226 which compared to
-> msm8974 only has a core clock and no iface clock.
+On 24/05/2023 12:30, Sean Nyekjaer wrote:
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  .../devicetree/bindings/sram/qcom,ocmem.yaml         | 20 +++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml b/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
-> index 4bbf6db0b6bd..02e4da9649fd 100644
-> --- a/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
-> +++ b/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
-> @@ -15,7 +15,9 @@ description: |
->  
->  properties:
->    compatible:
-> -    const: qcom,msm8974-ocmem
-> +    enum:
-> +      - qcom,msm8226-ocmem  # v1.1.0
-> +      - qcom,msm8974-ocmem  # v1.4.0
->  
->    reg:
->      items:
-> @@ -28,11 +30,13 @@ properties:
->        - const: mem
->  
->    clocks:
-> +    minItems: 1
->      items:
->        - description: Core clock
->        - description: Interface clock
->  
->    clock-names:
-> +    minItems: 1
->      items:
->        - const: core
->        - const: iface
-> @@ -58,6 +62,20 @@ required:
->  
->  additionalProperties: false
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8974-ocmem
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +        clock-names:
-> +          minItems: 2
+>> On 24 May 2023, at 12.08, Conor Dooley <conor.dooley@microchip.com> wrote:
+>>
+>> On Wed, May 24, 2023 at 10:16:13AM +0200, Sean Nyekjær wrote:
+>>> Hi Conor,
+>>>
+>>>> On 23 May 2023, at 19.29, Conor Dooley <conor@kernel.org> wrote:
+>>>>
+>>>> On Tue, May 23, 2023 at 11:55:50AM +0200, Sean Nyekjær wrote:
+>>>>>> On 16 May 2023, at 20.06, Conor Dooley <conor@kernel.org> wrote:
+>>>>>> On Tue, May 16, 2023 at 03:22:24PM +0200, Sean Nyekjaer wrote:
+>>>>>>> Document the new optional "fsl,pmic-poweroff" property.
+>>>>>>>
+>>>>>>> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+>>>>>>> ---
+>>>>>>> Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 8 ++++++++
+>>>>>>> 1 file changed, 8 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+>>>>>>> index 9573e4af949e..5183a7c660d2 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+>>>>>>> @@ -26,6 +26,14 @@ properties:
+>>>>>>>
+>>>>>>> interrupt-controller: true
+>>>>>>>
+>>>>>>> +  st,pmic-poweroff:
+>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>>>>> +    description: |
+>>>>>>> +      if present, configure the PMIC to shutdown all power rails when
+>>>>>>> +      power off sequence have finished.
+>>>>>>> +      Use this option if the SoC should be powered off by external power management
+>>>>>>> +      IC (PMIC).
+>>>>>>
+>>>>>> Just reading this description, this is sounding quite like a "software
+>>>>>> behaviour" type of property, which are not permitted, rather than
+>>>>>> describing some element of the hardware. Clearly you are trying to solve
+>>>>>> an actual problem though, so try re-phrasing the description (and
+>>>>>> property name) to focus on what exact hardware configuration it is that
+>>>>>> you are trying to special-case.
+>>>>>> Krzysztof suggested that the samsung,s2mps11-acokb-ground property in
+>>>>>> samsung,s2mps11.yaml is addressing a similar problem, so that could be
+>>>>>> good to look at.
+>>>>>
+>>>>> Better wording?
+>>>>>     Indicates that the power management IC (PMIC) is used to power off the board.
+>>>>>     So as the last step in the power off sequence set the SWOFF bit in the
+>>>>>     main control register (MAIN_CR) register, to shutdown all power rails.
+>>>>
+>>>> The description for the property that Krzysztof mentioned is
+>>>> samsung,s2mps11-acokb-ground:
+>>>>   description: |
+>>>>     Indicates that ACOKB pin of S2MPS11 PMIC is connected to the ground so
+>>>>     the PMIC must manually set PWRHOLD bit in CTRL1 register to turn off the
+>>>>     power. Usually the ACOKB is pulled up to VBATT so when PWRHOLD pin goes
+>>>>     low, the rising ACOKB will trigger power off.
+>>>>
+>>>> In other words, I am asking what (abnormal?) scenario there is that means
+>>>> you need the property, rather than what setting the property does.
+>>>> Or am I totally off, and this is the only way this PMIC works?
+>>>
+>>> Indicates that the power management IC (PMIC) turn-off condition is met
+>>> by setting the SWOFF bit in the main control register (MAIN_CR) register.
+>>> Turn-off condition can still be reached by the PONKEY input.
+>>>
+>>> ?
+>>>
+>>> I must admit I’m somewhat lost here :)
+>>
+>> Sorry about that. I'm trying to understand what is different about your
+>> hardware that it needs the property rather than what adding the property
+>> does. If you look at the samsung one, it describes both the
+>> configuration of the hardware ("ACOKB pin of S2MPS11 PMIC is connected to
+>> the ground") and how that is different from normal ("Usually the ACOKB is
+>> pulled up to VBATT so when PWRHOLD pin goes low, the rising ACOKB will
+>> trigger power off.")
+>>
+>> Looking at your datasheet, you don't have such a pin though - just the
+>> sw poweroff bit & the PONKEY stuff. My angle is just that I am trying
+>> to figure out why you need this property when it has not been needed
+>> before. Or why you would not always want to "shutdown all power rails
+>> when power-off sequence have finished". I'm sorry if these are silly
+>> questions.
+>>
+> 
+> No silly questions, maybe they trick me to come up with the correct answer :D
+> 
+> Basically without this, you won’t be able to power off the system
+> other than hitting the PONKEY.
+> So it’s a new feature that wasn’t supported before.
+> Maybe this feature should not be optional?
 
-else:
-maxItems: 1?
+You are still describing what driver should do with registers. What you
+are missing is describing real cause for this. It's exactly the same
+case as was with s2mps11.
 
 Best regards,
 Krzysztof
