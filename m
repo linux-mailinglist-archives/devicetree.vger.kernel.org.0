@@ -2,169 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62CAE719D20
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421A2719D2C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:18:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232295AbjFANRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 09:17:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56894 "EHLO
+        id S233240AbjFANSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 09:18:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230222AbjFANRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:17:06 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2043.outbound.protection.outlook.com [40.107.113.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA213124;
-        Thu,  1 Jun 2023 06:17:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lnsu7xuwi+ELdKbUtL8dPmY9gDLgnnoCcp5yQx8+0Ob99ZifCO22wydliem697pa2WcvntMBLGsmeDO39vvnP7Hux2MHloUlycEmB+FkTUgWvp+xRToZd94oQcJGXrlYm138LAfQdi+emfy/kdv/Ehhn9rcbfMV/svhTo2PINBFxWGD2jADo9JiVUaDT4XWwVq9owcWTkvGOiShOZ/GZ/1E3QQVhAfFCLbdxL658QjmNsUxEK26jPmVaTAJZrOiaXeLQ8AOABjrQoRiXI4ddyOfhyg+RUaL6sTl7y7mQMNWi9onL8K5SZDp2t4dsCBMtCW/2clKtZzgcgyGknDG2TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=01hlhArD4A1xNTll2cNQg8qlvypq21YNU/ag1kHgvIc=;
- b=XpGKlMYH5kupF6RbcYxZ3CWibhWfZY5YU2gdfLOax2d8NGPqEJs4YcCtEbiED/TmPwpe50XG6XWfhRm2a6SC+dmcLlvQjlMfsC+uLWApc/mMjlVR9Yku6fR6AbT/qnR2x3hjMOJci4UYzGd7AJcTi1HmLVcwVq6opQSHjPmeQNg3S4TCiW2GO4BNjeFVuYULdBoRkH+ztfbO8DkRvIUmFUavlTa4IElBtzIAdXXSWQaqnoTG/uKDuqgi7sbfWhK6I8ZKJbFIeORLHtwc1Y4GX+X8jKY5BjfcoXRco4+HE4l8Aindl6MT22s8Az6jRMfYedVcDY7AlzRvlkX5lyoqkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sord.co.jp; dmarc=pass action=none header.from=sord.co.jp;
- dkim=pass header.d=sord.co.jp; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sordcorp.onmicrosoft.com; s=selector2-sordcorp-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=01hlhArD4A1xNTll2cNQg8qlvypq21YNU/ag1kHgvIc=;
- b=Ee/0J+jUwBdPTGaDm7NW/qVQDzEbzvQUREgyjD//86g5rZNuJKmOciMb31vW6LE4MEkm1SAI7vUAUDZdF0v5BEhiXMS2PT0Un+8dg2ABhwSPsrHPnkUzQjs5middEyo3+no7O1JC8X6fnpfKCQ4i9+R2Ar6AYM47T2o/nkJGZeI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=sord.co.jp;
-Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com (2603:1096:604:13c::13)
- by OS3PR01MB5992.jpnprd01.prod.outlook.com (2603:1096:604:d6::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.23; Thu, 1 Jun
- 2023 13:16:59 +0000
-Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com
- ([fe80::361d:fa2b:36c9:268e]) by OSZPR01MB7049.jpnprd01.prod.outlook.com
- ([fe80::361d:fa2b:36c9:268e%2]) with mapi id 15.20.6455.024; Thu, 1 Jun 2023
- 13:16:59 +0000
-Message-ID: <50ae1bda-3acf-8bce-c86c-036bc953c730@sord.co.jp>
-Date:   Thu, 1 Jun 2023 22:16:57 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231678AbjFANSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:18:16 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B76E6E7;
+        Thu,  1 Jun 2023 06:18:14 -0700 (PDT)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id E71D61F8C1;
+        Thu,  1 Jun 2023 15:18:12 +0200 (CEST)
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-References: <e7a699fb-f7aa-3a3e-625f-7a2c512da5f9@sord.co.jp>
- <7d2c7842-2295-4f42-a18a-12f641042972@lunn.ch>
- <6e0c87e0-224f-c68b-9ce5-446e1b7334c1@sord.co.jp>
- <8cc9699c-92e3-4736-86b4-fe59049b3b18@lunn.ch>
-From:   Atsushi Nemoto <atsushi.nemoto@sord.co.jp>
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: adin: document a phy
- link status inversion property
-In-Reply-To: <8cc9699c-92e3-4736-86b4-fe59049b3b18@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYCP286CA0188.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:382::17) To OSZPR01MB7049.jpnprd01.prod.outlook.com
- (2603:1096:604:13c::13)
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 5/5] arm64: dts: ti: add verdin am62 yavia
+Date:   Thu,  1 Jun 2023 15:18:06 +0200
+Message-Id: <20230601131806.27648-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230601131332.26877-1-francesco@dolcini.it>
+References: <20230601131332.26877-1-francesco@dolcini.it>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSZPR01MB7049:EE_|OS3PR01MB5992:EE_
-X-MS-Office365-Filtering-Correlation-Id: c912a2ae-ddd5-40b9-f045-08db62a27b13
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TDR3nPlYKEm5/LEYfvb3eVwDU6SoE6glRHv11fJfZ1ZG6/wvfBP2QY1uWW7vP1Jlzq6IQqlnXGf8ZI5NsS+3mctymQhCtM9Z2jvuMC+LRoFq1wkvVZKoObaxrrjRtkdM90LgXIy7Q3Cl/W0k25QR3rNJCbzyUhfuw5KZ72seFmLcfZ6M3mvDJWIQ3MA1cht51dznFM6XaPHn6T2CK3ptW35KLdAoezKJauyhgXHzYgMqDAidwPKCqRj448x/dlETLowsZpnJW0dFgm2bJtFkG444ZEskVC22eCOurjUQyD8VogZ/KcOsNmGcSRvN+xzVRCZNK/Q3wX1TFk0fWToj+wqXuQ/dOz1n6OwnRFWuDz6OkhO3f40sipb0UaJgLR1gsmfox/FLS8e2Y31K+HC+jIinR6iExHeA5bqTHDA7Gs75OxH0SoB2YXS9aO4/ryVfnH6Sl8KoijNdsX6TIy4n0ybz0XBZkXd4L84Bfe6S8/K9syvsWy2iFzCuY5n7zwk2OadTRmwPNd5BPkt7CmY3NZXRC3sIX64Q/Iq3pVfPMTUe3lnGzdEJDguzo0jhQ8OdwXzTI3h0Z9vPpFtt3+LtLyCSqLfCZM4V0MJq1E9IEwQQ2nU6zfFAceQWqYTSLFg0j91DB95p2WaCdvWi5zbqXQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZPR01MB7049.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(39850400004)(136003)(346002)(376002)(396003)(366004)(451199021)(5660300002)(478600001)(44832011)(2616005)(7416002)(53546011)(186003)(2906002)(4744005)(54906003)(26005)(36756003)(6512007)(6506007)(41300700001)(83380400001)(31686004)(31696002)(4326008)(6916009)(38100700002)(6486002)(86362001)(66476007)(66556008)(66946007)(8936002)(316002)(8676002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHVjU2ZjYnlTZWlLeE5PUk1lS0RwbU9UV3VwVDcvSUF5UDI4VGVJZVVPTHhk?=
- =?utf-8?B?VWFUS3F5ZkM1aGJRRzU2OWF5cnF3WTVLRmZyY2VpT0tvaXhDQVRQektLeVRs?=
- =?utf-8?B?S0pYdXVlN3BMUjY3QlpIZHRqMW8wWTQ2dzlkOHc5UE10NFhWMXllR05MYU9x?=
- =?utf-8?B?RDFVR0o2SVpmK3owTDJ3N2hDMGFnaUZGSUJZWmRKeGRUTTBybjhvK2ZublVI?=
- =?utf-8?B?aWxmYng1TS9qYTM4ZnlKeUVmQ2d1Y0dlWjNMMTB3OHYvS21IMkMxMXlUVHhB?=
- =?utf-8?B?Zy90Mzc3d094OG9nZnhmaXJKbEIvZVhxTHk4N01nY2RYM29sS1dLeG1WY1Fw?=
- =?utf-8?B?VzRWQk1VVHFPK2VObTM5K2NVT0hyRXEzNTJzZEQ5bFVVUDlpYloxT2gwS29u?=
- =?utf-8?B?eUVxa3E3Y2dHMHNjSit6akhBbzZQN01qM2ZadFU0RHVjRitBZHJXQjZ4azBt?=
- =?utf-8?B?SHR2dm9rSG5XOTJsWEZ5OGdSM1U0TnppZmI4cHhuUjhTQlkzbDNnVkI2MzVN?=
- =?utf-8?B?eHhUZlFRRVBQeVJIRGVpNmxrUEtyTHZuSUtIQ2Nac082UmpualNJV05YbTN6?=
- =?utf-8?B?N0ZLaDZueEdrSmhTSXJCUElMWXJWTXBOdEZyTlovSTRrbHZwUjlVZ0M2S3oy?=
- =?utf-8?B?VmttZnhaNUZQUmZ6ckpuZlpPbTNzWEJST1RSUU9EQkZlT3BGTXhhTjVjcEZB?=
- =?utf-8?B?R0xUVzlkYTd3MU9sVzdkMUdGekZYWW94VW1DUFlESEdDQTR0SzZ2ZHZMOW16?=
- =?utf-8?B?RWlZTDZnMzdIc0RFMDJpQ2UvMFozeWQxbGFKU0wxWkpZeHJIZ0NreU1KeFpS?=
- =?utf-8?B?Q3pRY3BtV0I4V1I0ZnBSU0dsajVCUlh2VmdwRWVoM21QU3pVWHorcmxSM2l1?=
- =?utf-8?B?am4zQXhSWUhUVU05cGpDZ1gzYTQxc2NsNzVONzZGdk9pODl3UEpBK2x2dG1p?=
- =?utf-8?B?SUZKSFZYTXVvSXU2c3djOVdiTUxUc1RvTDVLUllEckJ3K3N1VzN1c3RQeXYr?=
- =?utf-8?B?V1ordWNtZ3FmN0NIZ2ZwdVA5ZFRyWXRYZG80UHFvMFpUa2dzMHI2Z0hoZnFp?=
- =?utf-8?B?b00rVmhoL0VUUHVhUm9tZzZ4QXBuWTlXSEptcWtvZVhwNzhmRVdLU0ZPaE1J?=
- =?utf-8?B?emJJakxmcjY0anpJZTFJWFBUbjJRR3F4OEZaUmNzMk9mU0V0WjUxWi8zNnRK?=
- =?utf-8?B?dzVtOGxUQXZLOVZ4YmFMek8xTGxueldMa3kva0hqRDQrMi9oa25TQy9Ebk01?=
- =?utf-8?B?TGo1Sm5oZDFKTUxVMmdoNkNtMEs0dnNTN0drK1dBallZank1bXYwbnpYaHhw?=
- =?utf-8?B?VE0xb3p4RUdhZjFlSjlkenZ6UCtvWVdBc080L2hJc2lqTHdzM1JJSlp5S3Yx?=
- =?utf-8?B?aWtnOTFyZU05dUxpSHpmOGx6dnZieUNaVXV6QXhrTkNEZkI0a0lKOGNyL1Fj?=
- =?utf-8?B?QzdlYkREMDBrcWVTOVV6Z25uaENhNUNsN3NtSXR6N0hSSCtFT3RiZGdCdWx5?=
- =?utf-8?B?TDBEamcvZ2ZSNFRBNGVWbnBReXlHeXdOZit5Qnk1QURKMWpBZFhsT3RNS1Fj?=
- =?utf-8?B?cnBkcnduVjd2YVdiQlVseldHbm13bFdmL3RPMmpIWHk3K2dEWVg3Wi95SmRC?=
- =?utf-8?B?WkJrZUJRODlIMnR5NXExVmQvTW9OWG5sTjhibmV3WG9yamNKOUlYTnJUVUhP?=
- =?utf-8?B?UG1LdzU3MTAyc2ZzaWhzaXI0bGo1Z283a1puTFRnN3lNYzgyTFBuZ1lWQXdZ?=
- =?utf-8?B?Rk1MaDFodDdTMDJXelBvTno2YlJOemlhM2l2RTdlK1Y3TnlGZG5MWm4waEJ0?=
- =?utf-8?B?Y3pOcjZRZ1JVc2Y1Mk0wTGt2OWRCMndLSE03RElrMjNqTlQxOEpObGNjVlUz?=
- =?utf-8?B?Z2w1UEN4aWlNL2c4MXRFOURQV2ZGWmhIMlZUOXZNYkIrdDJLcWtTclRneWlT?=
- =?utf-8?B?UzIyVWZmMUZERTJqTkh1TUV1dE9PaFBWUk5HVXRkZlhLdmdmRS9lcnFLUGt0?=
- =?utf-8?B?VisrUHVFdXZRU3Rmc0lLeXJNaE4xc1U0ZFgzWVZUVjloTEQxRDc3ek1CeUVm?=
- =?utf-8?B?TUM5dDFMcEdsV0N4YzJSRkhDTC9vcUNJTnhpbXo5eDFCVnk1cXlRY3pidFJJ?=
- =?utf-8?B?dGVMTzhsUzRLQnEwVFNoekZqdEp6VzAxNVJWeFJPdHE0dElVdUZKYlhncUtC?=
- =?utf-8?B?TWc9PQ==?=
-X-OriginatorOrg: sord.co.jp
-X-MS-Exchange-CrossTenant-Network-Message-Id: c912a2ae-ddd5-40b9-f045-08db62a27b13
-X-MS-Exchange-CrossTenant-AuthSource: OSZPR01MB7049.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2023 13:16:59.3877
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: cf867293-59a2-46d0-8328-dfdea9397b80
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: h0vUl8lG8cJ11A+IpbFHJV7HQn3VzCQTwnit7sRXKxcQXO3rg6UgRsJ2E0lWivC026LVN2Us7C/JMEGCmbHcMQUmRAuNR4+rshAbWkz9ehY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5992
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/06/01 21:28, Andrew Lunn wrote:
->>> Please could you add an explanation to the commit message why you
->>> would want to do this?  Is this because there is an LED connected to
->>> it, but its polarity is inverted?
->>
->> Yes, the LINK_ST pin of AD1200/1300 is active-high but our custom
->> board designer connected it to an LED as an active-low signal.
-> 
-> O.K. LED is the magic word here. And the fact that there is nothing
-> specific to this PHY. Being able to specify the polarity of an output
-> to an LED is pretty common.
-> 
-> Please take a look at:
-> 
-> ocumentation/devicetree/bindings/net/ethernet-phy.yaml
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Thanks for your advice.
+Add Toradex Verdin AM62 Yavia.
 
-But in this case, LINK_ST is also connected to MII_RXLINK pin of
-the MAC module in SoC. MII_RXLINK also expects low-active signal input.
-(though I only wrote about LED, sorry)
-
-AD1200/AD1200 have another LED_0 pin and it should be appropriate for
-the LED subsystem.
-
-So I still like to use this device specific property device.
-
+Link: https://www.toradex.com/products/carrier-board/yavia
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
-Atsushi Nemoto
+v2:
+ - added link to product pages on dts/dtsi
+ - fixed pinctrl definition
+---
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../boot/dts/ti/k3-am62-verdin-yavia.dtsi     | 207 ++++++++++++++++++
+ .../dts/ti/k3-am625-verdin-nonwifi-yavia.dts  |  22 ++
+ .../dts/ti/k3-am625-verdin-wifi-yavia.dts     |  22 ++
+ 4 files changed, 253 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index f6b38ae10988..3af38aaf6463 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -13,8 +13,10 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dev.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-yavia.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
+ 
+ # Boards with AM62Ax SoC
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
+new file mode 100644
+index 000000000000..cb11d6e7f525
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
+@@ -0,0 +1,207 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Copyright 2023 Toradex
++ *
++ * Common dtsi for Verdin AM62 SoM on Yavia carrier board
++ *
++ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
++ * https://www.toradex.com/products/carrier-board/yavia
++ */
++
++#include <dt-bindings/leds/common.h>
++
++/ {
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_qspi1_clk_gpio>,
++			    <&pinctrl_qspi1_cs_gpio>,
++			    <&pinctrl_qspi1_io0_gpio>,
++			    <&pinctrl_qspi1_io1_gpio>,
++			    <&pinctrl_qspi1_io2_gpio>,
++			    <&pinctrl_qspi1_io3_gpio>;
++
++		/* SODIMM 52 - LD1_RED */
++		led-0 {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_DEBUG;
++			function-enumerator = <1>;
++			gpios = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
++		};
++		/* SODIMM 54 - LD1_GREEN */
++		led-1 {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_DEBUG;
++			function-enumerator = <1>;
++			gpios = <&main_gpio0 11 GPIO_ACTIVE_HIGH>;
++		};
++		/* SODIMM 56 - LD1_BLUE */
++		led-2 {
++			color = <LED_COLOR_ID_BLUE>;
++			function = LED_FUNCTION_DEBUG;
++			function-enumerator = <1>;
++			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
++		};
++		/* SODIMM 58 - LD2_RED */
++		led-3 {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_DEBUG;
++			function-enumerator = <2>;
++			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
++		};
++		/* SODIMM 60 - LD2_GREEN */
++		led-4 {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_DEBUG;
++			function-enumerator = <2>;
++			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
++		};
++		/* SODIMM 62 - LD2_BLUE */
++		led-5 {
++			color = <LED_COLOR_ID_BLUE>;
++			function = LED_FUNCTION_DEBUG;
++			function-enumerator = <2>;
++			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
++		};
++	};
++};
++
++/* Verdin ETHs */
++&cpsw3g {
++	status = "okay";
++};
++
++/* MDIO, shared by Verdin ETH_1 (On-module PHY) and Verdin ETH_2_RGMII */
++&cpsw3g_mdio {
++	status = "okay";
++};
++
++/* Verdin ETH_1 (On-module PHY) */
++&cpsw_port1 {
++	status = "okay";
++};
++
++/* Verdin PWM_1, PWM_2 */
++&epwm0 {
++	status = "okay";
++};
++
++/* Verdin PWM_3_DSI */
++&epwm1 {
++	status = "okay";
++};
++
++&main_gpio0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_ctrl_sleep_moci>,
++		    <&pinctrl_gpio_5>,
++		    <&pinctrl_gpio_6>,
++		    <&pinctrl_gpio_7>,
++		    <&pinctrl_gpio_8>,
++		    <&pinctrl_qspi1_cs2_gpio>;
++};
++
++&main_gpio1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_qspi1_dqs_gpio>;
++};
++
++/* Verdin I2C_1 */
++&main_i2c1 {
++	status = "okay";
++
++	/* Temperature sensor */
++	sensor@4f {
++		compatible = "ti,tmp75c";
++		reg = <0x4f>;
++	};
++
++	/* EEPROM */
++	eeprom@57 {
++		compatible = "st,24c02";
++		reg = <0x57>;
++		pagesize = <16>;
++	};
++};
++
++/* Verdin I2C_2_DSI */
++&main_i2c2 {
++	status = "okay";
++};
++
++/* Verdin I2C_4_CSI */
++&main_i2c3 {
++	status = "okay";
++};
++
++/* Verdin CAN_1 */
++&main_mcan0 {
++	status = "okay";
++};
++
++/* Verdin SPI_1 */
++&main_spi1 {
++	status = "okay";
++};
++
++/* Verdin UART_3 */
++&main_uart0 {
++	status = "okay";
++};
++
++/* Verdin UART_1 */
++&main_uart1 {
++	status = "okay";
++};
++
++&mcu_gpio0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio_1>,
++		    <&pinctrl_gpio_2>,
++		    <&pinctrl_gpio_3>,
++		    <&pinctrl_gpio_4>;
++};
++
++/* Verdin I2C_3_HDMI */
++&mcu_i2c0 {
++	status = "okay";
++};
++
++/* Verdin UART_4 */
++&mcu_uart0 {
++	status = "okay";
++};
++
++/* Verdin SD_1 */
++&sdhci1 {
++	status = "okay";
++};
++
++/* Verdin USB_1 */
++&usbss0 {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++};
++
++/* Verdin USB_2 */
++&usbss1 {
++	status = "okay";
++};
++
++&usb1 {
++	status = "okay";
++};
++
++/* Verdin CTRL_WAKE1_MICO# */
++&verdin_gpio_keys {
++	status = "okay";
++};
++
++/* Verdin UART_2 */
++&wkup_uart0 {
++	/* FIXME: WKUP UART0 is used by DM firmware */
++	status = "reserved";
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts b/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts
+new file mode 100644
+index 000000000000..e80332e1f030
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Copyright 2023 Toradex
++ *
++ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
++ * https://www.toradex.com/products/carrier-board/yavia
++ */
++
++/dts-v1/;
++
++#include "k3-am625.dtsi"
++#include "k3-am62-verdin.dtsi"
++#include "k3-am62-verdin-nonwifi.dtsi"
++#include "k3-am62-verdin-yavia.dtsi"
++
++/ {
++	model = "Toradex Verdin AM62 on Yavia Board";
++	compatible = "toradex,verdin-am62-nonwifi-yavia",
++		     "toradex,verdin-am62-nonwifi",
++		     "toradex,verdin-am62",
++		     "ti,am625";
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts b/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts
+new file mode 100644
+index 000000000000..8a2506068ac4
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Copyright 2023 Toradex
++ *
++ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
++ * https://www.toradex.com/products/carrier-board/yavia
++ */
++
++/dts-v1/;
++
++#include "k3-am625.dtsi"
++#include "k3-am62-verdin.dtsi"
++#include "k3-am62-verdin-wifi.dtsi"
++#include "k3-am62-verdin-yavia.dtsi"
++
++/ {
++	model = "Toradex Verdin AM62 WB on Yavia Board";
++	compatible = "toradex,verdin-am62-wifi-yavia",
++		     "toradex,verdin-am62-wifi",
++		     "toradex,verdin-am62",
++		     "ti,am625";
++};
+-- 
+2.25.1
 
