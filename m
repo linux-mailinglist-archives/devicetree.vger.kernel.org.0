@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C00CB71F0C3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83B6F71F0DF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229882AbjFAR30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 13:29:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
+        id S232834AbjFARe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 13:34:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232670AbjFAR3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:29:15 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D663D1
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:29:12 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9745baf7c13so19302866b.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:29:12 -0700 (PDT)
+        with ESMTP id S232832AbjFAReZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:34:25 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4326198
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:34:22 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2af2d092d7aso16630901fa.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:34:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685640551; x=1688232551;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1685640861; x=1688232861;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2nRorulo8l9EWqetty+54wVsnkEP1yOUP1LrEre/GnQ=;
-        b=ZNaeDBePrijnAElVBQ70atFd37aVdE47rydLEHYNyifXkzCPL247d7TEJPDjDGGXAO
-         sZaWcSxhWyQjuh8BYSmy4I2kKn5mDsvdRCoDD+lOdVWgzCd9TuNhYs9EDYRPQhgf2BTf
-         ocuEq3uzLnZ6/pdQb7oDhc+n7jtx6OBMnAF3xUNkGHa89g+TOMp6O/mRnkebxMeU32u7
-         X7j/XdXvik8OD8dObfY6xQNIySWp7rSNA+Js1NvxzqvqBPzaQRLO6gh5Ti5/MhHlcqhk
-         660xq9cogGn1aA5Cc5xrS2cj88dp7scn77xrN4mnS1LZ3Cv2/MpY1Db+pKuHokJ32aoD
-         T55w==
+        bh=Y+b+rm5/R5ibyZ6r+rF+iVWDROGMd6iETnPBcFk9ix0=;
+        b=DjlDIFNQZZGoxm1uB8R37Rjp2aLRL2RDbSWtuhgWaVxwcGTOcOj6y3qv+MKdft3aGn
+         NdtUdrvjh32aTOHDk1kgv5IC3amiUISeVyqGPOtEiSBH32tHleRafyshPLJbdMtffK77
+         pqUq3ztqF/ZTblQjr3nCozLnKPrC97dU/uw5YEbTR3nO3g6/O2ukfhKEEG7bn44BU1pQ
+         rKAd645Psbmxs0qH57GZ8d1dHPiLNZyzQgHj3T3/qMOMh5JfYms0ETSmvSIoefTdbmz+
+         o01d6TxTpIf82ewAeqILFkUQn7DdWUb1mnmRH6HsPj1TletzRiko4juIJE4a3lFdPcJ7
+         82+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685640551; x=1688232551;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1685640861; x=1688232861;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2nRorulo8l9EWqetty+54wVsnkEP1yOUP1LrEre/GnQ=;
-        b=MtoGPXFhiOAmcTaijngbjjhmqJDxDbN7YRr5Y+5YQfaz/d2xtFcr4blFtfh9lgt19P
-         05m1ZD4fBoU3tc31RUZXoxhkNhquabjiv8IczzGKgfXVdEpztLhIOrnx5Z1wsnxBr2so
-         xZFHOu58RH5GXg5q/usjfP7KKdAtK/dT5Kw6/Hx0WcFrQT4krCyTquh2FPWFbkgMn0H+
-         EoAy86iaGaTEbmIvY8L8zhaNUrv3pfTTLFpOPaRuXEU66OfAO/A012N8h5761UyuURg8
-         FhVg1meu/4wvj8BfziJQvunX0US5dBeUgoI9/ItSIX9WkT7aCf+2ekE9aEqSyA7dqVQ3
-         VRvQ==
-X-Gm-Message-State: AC+VfDxPsBjN2F6m+59wRrDyT/r4O4lLu/sXd+QFCqR+VK3sh7VIOFS+
-        kHykzWyw8aXzRJgXH7f1Kr3rXQ==
-X-Google-Smtp-Source: ACHHUZ5Yvq39R/qxe719VElY83GsQ1v9v78v05/3uOknrDrOSQXOj4f+KY630fwb9VORCGNeuTwwbg==
-X-Received: by 2002:a17:907:6e8a:b0:96b:559d:ff19 with SMTP id sh10-20020a1709076e8a00b0096b559dff19mr10617053ejc.21.1685640550938;
-        Thu, 01 Jun 2023 10:29:10 -0700 (PDT)
+        bh=Y+b+rm5/R5ibyZ6r+rF+iVWDROGMd6iETnPBcFk9ix0=;
+        b=V7vFMV7pVzP4/+Lk1R/ITHoiYo2FBXubeZOvCgZTCgAVBTrhSuqyCw4gdkNVwb4Yaa
+         MX4FRbF4ZkDKDW+wyK7TVKOhVnGJ/sydWeV/CX12aiHUC210dNMx8p2Luoi/3Ds9DRlK
+         proLFA8XZVFsM2xbcHmEbszqS6VVWFdFxGtrLkRkurD7YpIcc+nZngBV1pwABbZjyoX+
+         8JOBHwB04hFGf7350wvBKULCZXwXpJivSm/H16fGNW//fUPOmKMgtY2BZH62Vcu9Vl6X
+         BIFtFHW89G0t1nG0uk5opaAnls6FoTMZjcs597oWZ3h4o8VT/MX+5Y/I+sXTyYZoBDaW
+         Yd3A==
+X-Gm-Message-State: AC+VfDwp34wGOODhSC0X8Lh5pzH7AT0uP3TXFPgZAWj5KhSVQgHEeag3
+        eY4A4gbbZDxhAJKGTJBXoQQKzw==
+X-Google-Smtp-Source: ACHHUZ5irQ0RkTnQ1lBHCjsd2sQ1wVrK2U3EDXl6D//XltvtFhl1/qp+G0DqX6qDFNUg5cCMBSrGgQ==
+X-Received: by 2002:a2e:8ed0:0:b0:2ac:79df:cb49 with SMTP id e16-20020a2e8ed0000000b002ac79dfcb49mr97407ljl.27.1685640861002;
+        Thu, 01 Jun 2023 10:34:21 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id bx16-20020a170906a1d000b0096607baaf19sm10794646ejb.101.2023.06.01.10.29.09
+        by smtp.gmail.com with ESMTPSA id y1-20020aa7c241000000b0050bfeb15049sm7294362edo.60.2023.06.01.10.34.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 10:29:10 -0700 (PDT)
-Message-ID: <91c63634-eb39-fdca-2c76-6f8182c2d47c@linaro.org>
-Date:   Thu, 1 Jun 2023 19:29:08 +0200
+        Thu, 01 Jun 2023 10:34:20 -0700 (PDT)
+Message-ID: <d74a4aea-7e8c-cde7-0293-2c3a41997e41@linaro.org>
+Date:   Thu, 1 Jun 2023 19:34:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH RESEND 4/4] arm64: dts: qcom: ipq5332: add support for the
- RDP474 variant
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: pse-pd: Allow -N suffix for
+ ethernet-pse node names
 Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230601042054.29075-1-quic_kathirav@quicinc.com>
- <20230601042054.29075-5-quic_kathirav@quicinc.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+Cc:     kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20230531102113.3353065-1-o.rempel@pengutronix.de>
+ <20230531102113.3353065-2-o.rempel@pengutronix.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230601042054.29075-5-quic_kathirav@quicinc.com>
+In-Reply-To: <20230531102113.3353065-2-o.rempel@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,64 +83,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 06:20, Kathiravan T wrote:
-> Add the initial device tree support for the Reference Design
-> Platform(RDP) 474 based on IPQ5332 family of SoC. This patch carries
-> the support for Console UART, eMMC, I2C and GPIO based buttons.
+On 31/05/2023 12:21, Oleksij Rempel wrote:
+> Extend the pattern matching for PSE-PD controller nodes to allow -N
+> suffixes. This enables the use of multiple "ethernet-pse" nodes without the
+> need for a "reg" property.
 > 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile           |   1 +
->  arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts | 112 ++++++++++++++++++++
->  2 files changed, 113 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 4f9e81253e18..0f8c763a9bd9 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp442.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp474.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
-> new file mode 100644
-> index 000000000000..085729a0fdf1
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
-> @@ -0,0 +1,112 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * IPQ5332 RDP474 board device tree source
-> + *
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include "ipq5332.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.9";
-> +	compatible = "qcom,ipq5332-ap-mi01.9", "qcom,ipq5332";
-> +
-> +	aliases {
-> +		serial0 = &blsp1_uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0";
-> +	};
-> +
-> +	gpio_keys {
 
-No, srsly, so not only ignored the tags but also feedback?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
