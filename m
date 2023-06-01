@@ -2,127 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD92719F5D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B8D719F65
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233990AbjFAONw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 10:13:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35308 "EHLO
+        id S233678AbjFAOPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 10:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234003AbjFAONv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:13:51 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A755129
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:13:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685628828; x=1717164828;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SOJvV7HqozaTtO1Lcs1pdOUa558kUviCYZEEXg0IcGA=;
-  b=hw4ioQkkIpdKI/WHvbLytEWbC5ksWlO68wYIRSJWrVqkv/lxl153jsNs
-   VHPw/MOI/BqjpzpyEP92VsVQE/H4WvH6RAIZGZ3z4DF7yjHZuqnbc6jmv
-   HQDZDCHJ9/kOhPSAlJ4zHnYpNbZiGJJlC+SaOIHQCPmtDkolx0MG/z+8z
-   NdmS1g5iHdvL8PLEIdJ3e49aShhn5IS92byjn2OYUi4VqBjZbuiTLLj1t
-   V8zwMTeFuNC3n3PQTvOxBFLSZGOzFt9dQlAT3056ljX8htYcJS/lpPwsm
-   7Va3muH3N0IInIuYCIkz2YuFq8NHEO2ozYcPjMKUfq1EHZ2wPlgAUofU6
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; 
-   d="asc'?scan'208";a="216403503"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Jun 2023 07:13:46 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 1 Jun 2023 07:13:45 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 1 Jun 2023 07:13:43 -0700
-Date:   Thu, 1 Jun 2023 15:13:20 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234294AbjFAOOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:14:55 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 578CBFC;
+        Thu,  1 Jun 2023 07:14:54 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f50470d77cso1170216e87.0;
+        Thu, 01 Jun 2023 07:14:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685628892; x=1688220892;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DeEt3ZtY/qgPpIG3Juy6jxgig7CNozbybAWZDbKu/2U=;
+        b=EA6QMh0SF1z/MTpMCRKX9Wem4Jbt9wiCcnjreK854AVtiORKI2PsSN79zxKO/ZRuvH
+         he7xl4p/EgXNjbb0tGcGODweznwFnioHPqiX1EZuVwCn8HNL+2VENunXXh0TUIRIgtoO
+         SNWIsXG1pOToRqQL8NGZ5TVMAwYkgYUkjnecI1TL2VCAy99EVn5bWCW+fJILMGZfWEYP
+         SK2W9Irhygls/2htBENC8xH8KNvPZ4SV11mlGK86spve9XhKwz6YVDsvkPbc3Aaan//D
+         RilNeQcQojDJ1HsnPi2lZSFpdQoO6QjsfaZeSqevXWkx8yZAWqTKJM6VQPqC5BmSMLE6
+         khNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685628892; x=1688220892;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DeEt3ZtY/qgPpIG3Juy6jxgig7CNozbybAWZDbKu/2U=;
+        b=gzDGDOM8sHpEbLTuDsQyvKVQGhfhYHosEKAyBnJXe6OLBhOTQ25NHgBtNlszSiQnGt
+         KyVdYJZ08RNw/ahBHeC/Yp8+RABSAcJZ/bcWW8Z7QRydCTohhx+9VEayzXoLtRm64Ct5
+         J/qrZSovYhhzV93zllwxDyiY3XOCuqNd81aTriaF+0LSV1fdmhMqh0DQ5Q/8ld3EF+kd
+         1CarRccA3nyVU0pk/c1GHBUbAIUou7EfvavZNCqcqfAn9PZ9W4/EPHyjpBVURHTet59i
+         DdONXBSgBLscBmFkZmM0WsNT2+M0MO5ew0ozrx10UrwFb4NGczDEkG/gIYJ1q+7spKnx
+         ytEg==
+X-Gm-Message-State: AC+VfDxEyoQuQPNKIJH+d9AsbrYsGjqD5HDWC5IU0dlHcU39Klg0Ijr2
+        XiaK+WMqHKyl5PgfEe3Y6jKOMROpuOmA+kCYAQQ=
+X-Google-Smtp-Source: ACHHUZ5aZbU8uqtUstqjsROwRBmYjoZddv/BBhfDrYD2/3YDUKKqXKbBGkdUqIRDFOIon0Wjh3OmpR/FjZOPjI6eNUU=
+X-Received: by 2002:ac2:4c2b:0:b0:4f4:b41c:a8c1 with SMTP id
+ u11-20020ac24c2b000000b004f4b41ca8c1mr171lfq.69.1685628892019; Thu, 01 Jun
+ 2023 07:14:52 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230531-topic-8998_mmssclk-v1-0-2b5a8fc90991@linaro.org> <20230531-topic-8998_mmssclk-v1-4-2b5a8fc90991@linaro.org>
+In-Reply-To: <20230531-topic-8998_mmssclk-v1-4-2b5a8fc90991@linaro.org>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Thu, 1 Jun 2023 08:14:41 -0600
+Message-ID: <CAOCk7Nogy3+5rvyzPEgsyJe7xE_17MXVs-=mniJJj=ELsCqzNQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] clk: qcom: mmcc-msm8998: Fix the SMMU GDSC
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Aurelien Jarno <aurelien@aurel32.net>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/2] arm*/dts: Enable symbols for rpi device trees
-Message-ID: <20230601-rake-calamari-eda0c88bd9bf@wendy>
-References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
- <20230601140214.i4yvya763sotyjz7@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="PgvLnnJC8TCb4t8C"
-Content-Disposition: inline
-In-Reply-To: <20230601140214.i4yvya763sotyjz7@pengutronix.de>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Imran Khan <kimran@codeaurora.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Joonwoo Park <joonwoop@codeaurora.org>,
+        Jeffrey Hugo <jhugo@codeaurora.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---PgvLnnJC8TCb4t8C
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, May 31, 2023 at 3:01=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
+>
+> The SMMU GDSC doesn't have to be ALWAYS-ON and shouldn't feature the
+> HW_CTRL flag (it's separate from hw_ctrl_addr).  In addition to that,
+> it should feature a cxc entry for bimc_smmu_axi_clk and be marked as
+> votable.
+>
+> Fix all of these issues.
+>
+> Fixes: d14b15b5931c ("clk: qcom: Add MSM8998 Multimedia Clock Controller =
+(MMCC) driver")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-On Thu, Jun 01, 2023 at 04:02:14PM +0200, Uwe Kleine-K=F6nig wrote:
-> Hello,
->=20
-> On Tue, May 30, 2023 at 07:56:22PM +0200, Uwe Kleine-K=F6nig wrote:
-> > based on an earlier submission by Aurelien Jarno, I rebased and slightly
-> > simplified the patches.
-> >=20
-> > There was some related irc conversion in #armlinux. Quoting the relevant
-> > parts:
-> >=20
-> > 1685078851< ukleinek> arnd, [florian]: Who would pick up https://lore.k=
-ernel.org/linux-arm-kernel/20220410225940.135744-1-aurelien@aurel32.net ?
-> > 1685078920< ukleinek> arnd, [florian]: If there is an agreement in gene=
-ral that this is a good idea, I can coordinate with Aurelien that for arm64=
- there is a v2 with the simpler approach I pointed out.
-> > 1685083481< arnd> ukleinek: I have no objections to this, if [florian] =
-wants to pick it up and send me for 6.5.
-> > 1685083809< arnd> robher: any comments on this one?
-> > 1685466520 < [florian]> ukleinek: I was hoping we would get an Ack for =
-robher before picking it up in the brcm soc tree, don't want to ruffle any =
-feathers unnecessarily
-> >=20
-> > So it seems to start a beneficial chain reaction, only Rob's Ack is
-> > needed.
->=20
-> Not sure this might help, but as Rob seems to be away for mail, I'll
-> try: arch/arm64/boot/dts/nvidia/Makefile and
-> arch/arm64/boot/dts/ti/Makefile also make use of -@. So this patch at
-> least isn't a completely new thing and maybe Florian might dare to take
-> this patch even without Rob's explicit consent?!
+Was this tested on a system where the bootloader has enabled the
+display and it is active during Linux boot?
 
-FWIW you can have mine, unless it is explicitly Rob's you want Florian.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I seem to recall that in that scenario, Linux would boot up, see that
+the GDSC is on, not see any clients for it (still initializing), turn
+it off, and kill the display which then results in either a mess of
+errors or a bus lockup.
 
-Thanks,
-Conor.
-
---PgvLnnJC8TCb4t8C
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHingAAKCRB4tDGHoIJi
-0ub3APwJLXqorAtnmOtj1QhSqoDgjUnXj1APLB+gBicwWoKtBQD+MBPdQy9AX2g0
-rUffj84RC6B4rrwcwGo+ytVk0XZ1YQQ=
-=/pN2
------END PGP SIGNATURE-----
-
---PgvLnnJC8TCb4t8C--
+-Jeff
