@@ -2,46 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2A05719248
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 07:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 281C571924B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 07:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbjFAFhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 01:37:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46908 "EHLO
+        id S231351AbjFAFhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 01:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231221AbjFAFhR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 01:37:17 -0400
-Received: from forward101c.mail.yandex.net (forward101c.mail.yandex.net [178.154.239.212])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 284561BE;
-        Wed, 31 May 2023 22:36:58 -0700 (PDT)
+        with ESMTP id S231221AbjFAFh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 01:37:26 -0400
+Received: from forward103c.mail.yandex.net (forward103c.mail.yandex.net [178.154.239.214])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AA13E4E;
+        Wed, 31 May 2023 22:37:01 -0700 (PDT)
 Received: from mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:c83:0:640:84f9:0])
-        by forward101c.mail.yandex.net (Yandex) with ESMTP id CA60F600FB;
-        Thu,  1 Jun 2023 08:36:55 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id OaGNfZvWv8c0-ljXORRHt;
-        Thu, 01 Jun 2023 08:36:55 +0300
+        by forward103c.mail.yandex.net (Yandex) with ESMTP id C4C2D60054;
+        Thu,  1 Jun 2023 08:36:59 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id OaGNfZvWv8c0-N3OOwoTa;
+        Thu, 01 Jun 2023 08:36:59 +0300
 X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1685597815;
-        bh=zIJEhcZ91Oaqa6Xmm24KHPdM/EoDuW4yx6hKsFtUgXw=;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1685597819;
+        bh=UI5b9rGLSe6LSTTFs3W+D44Mr1cLR1mYJrzowkeGjpc=;
         h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-        b=idlakvnNspTx/hhaf1scWcevr+yryNuzxvfQEdwBri6tBVlLw8q+i9LEJ1rFbfXvP
-         VWI3pcacmkyMJkSqi/yJkfrLllDi5wFiXPRLIMULIdz65wwmZs9VcAPSI4UFrQwtci
-         G1/yTh1J1qbmJd19/0fmpteYQn9kNbb3rkCQXuq8=
+        b=Y3Yai3A92De2JQ3w5ZIkXIrF5Lo39zgD6JrHlozv6hMoHfXfBiTsnmb91PBovaLJH
+         /q8qz3TgSGbaXvn+3uL7090mOaekERxah3I3mcuLwgNECwtA8TG0JxaYY7MdHbwD6K
+         lt2tZso/HueOmSM5ZiM2dV5iYW7BzNjUlk5MGEMk=
 Authentication-Results: mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
 From:   Nikita Shubin <nikita.shubin@maquefel.me>
 To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
         Arnd Bergmann <arnd@arndb.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Nikita Shubin <nikita.shubin@maquefel.me>
 Cc:     Michael Peters <mpeters@embeddedTS.com>,
-        Kris Bahnsen <kris@embeddedTS.com>, linux-clk@vger.kernel.org,
+        Kris Bahnsen <kris@embeddedTS.com>, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 04/43] dt-bindings: clock: Add Cirrus EP93xx
-Date:   Thu,  1 Jun 2023 08:33:55 +0300
-Message-Id: <20230601053546.9574-5-nikita.shubin@maquefel.me>
+Subject: [PATCH v1 06/43] dt-bindings: pinctrl: Add Cirrus EP93xx
+Date:   Thu,  1 Jun 2023 08:33:57 +0300
+Message-Id: <20230601053546.9574-7-nikita.shubin@maquefel.me>
 X-Mailer: git-send-email 2.37.4
 In-Reply-To: <20230424123522.18302-1-nikita.shubin@maquefel.me>
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
@@ -56,91 +54,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Cirrus Logic EP93xx
-clock block used in these SoCs.
+Add YAML bindings for ep93xx SoC pinctrl.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
 
 Notes:
     v0 -> v1:
     
-    - it's now a clock controller
+    Krzysztof Kozlowski:
+    - removed wildcards
+    - use fallback compatible and list all possible compatibles
+    - fix ident
+    - dropped bindings in title
 
- .../bindings/clock/cirrus,ep9301.yaml         | 64 +++++++++++++++++++
- 1 file changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/cirrus,ep9301.yaml
+ .../pinctrl/cirrus,ep9301-pinctrl.yaml        | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/cirrus,ep9301-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/clock/cirrus,ep9301.yaml b/Documentation/devicetree/bindings/clock/cirrus,ep9301.yaml
+diff --git a/Documentation/devicetree/bindings/pinctrl/cirrus,ep9301-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/cirrus,ep9301-pinctrl.yaml
 new file mode 100644
-index 000000000000..4f9e0d483698
+index 000000000000..ff7b30a11bab
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/cirrus,ep9301.yaml
-@@ -0,0 +1,64 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/pinctrl/cirrus,ep9301-pinctrl.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/clock/cirrus,ep9301.yaml#
++$id: http://devicetree.org/schemas/pinctrl/cirrus,ep9301-pinctrl.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Cirrus Logic ep93xx SoC's clock controller
++title: Cirrus ep93xx pins mux controller
 +
 +maintainers:
 +  - Nikita Shubin <nikita.shubin@maquefel.me>
 +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
 +
-+description: |
-+  Cirrus Logic EP93XX SoC clocks driver bindings. The clock
-+  controller node must be defined as a child node of the ep93xx
-+  system controller node.
-+
-+  See also:
-+  - dt-bindings/clock/cirrus,ep93xx-clock.h
-+
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: cirrus,ep9301-clk
++      - const: cirrus,ep9301-pinctrl
 +      - items:
 +          - enum:
-+              - cirrus,ep9302-clk
-+              - cirrus,ep9307-clk
-+              - cirrus,ep9312-clk
-+              - cirrus,ep9315-clk
-+          - const: cirrus,ep9301-clk
++              - cirrus,ep9302-pinctrl
++              - cirrus,ep9307-pinctrl
++              - cirrus,ep9312-pinctrl
++              - cirrus,ep9315-pinctrl
++          - const: cirrus,ep9301-pinctrl
 +
-+  "#clock-cells":
-+    const: 1
++patternProperties:
++  '^pins-':
++    type: object
++    description: pin node
++    $ref: pinmux-node.yaml#
 +
-+  clocks:
-+    description: List of clock specifiers which are external input
-+      clocks to the given clock controller.
-+    items:
-+      - description: reference clock
++    properties:
++      function:
++        enum: [ spi, ac97, i2s, pwm, keypad, pata, lcd, gpio ]
++      groups:
++        minItems: 1
++        maxItems: 2
++        items:
++          enum: [ ssp, ac97, i2s_on_ssp, i2s_on_ac97, pwm1, gpio1agrp,
++                  gpio2agrp, gpio3agrp, gpio4agrp, gpio6agrp, gpio7agrp,
++                  rasteronsdram0grp, rasteronsdram3grp, keypadgrp, idegrp]
++
++    required:
++      - function
++      - groups
 +
 +required:
 +  - compatible
-+  - "#clock-cells"
-+  - clocks
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    clocks {
-+      xtali: oscillator {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <14745600>;
++    syscon@80930000 {
++      compatible = "cirrus,ep9301-syscon",
++                  "syscon", "simple-mfd";
++      reg = <0x80930000 0x1000>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      pinctrl {
++        compatible = "cirrus,ep9312-pinctrl", "cirrus,ep9301-pinctrl";
++        spi_default_pins: pins-spi {
++          function = "spi";
++          groups = "ssp";
++        };
 +      };
 +    };
-+
-+    clock-controller {
-+      #clock-cells = <1>;
-+      compatible = "cirrus,ep9301-clk";
-+      clocks = <&xtali>;
-+    };
-+...
 -- 
 2.37.4
 
