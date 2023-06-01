@@ -2,93 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AD4E71A35C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB7871EF08
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 18:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234528AbjFAP4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 11:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54856 "EHLO
+        id S231429AbjFAQbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 12:31:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234534AbjFAP4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:56:06 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4E8DE5F
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:55:45 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-33baee0235cso127135ab.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:55:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1685634945; x=1688226945;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uApS0AB+KUqwH2mw5UL4mdLHnyPDTmyOVgSJDqeRPaQ=;
-        b=y5BR8FXbezVtxErlOjqqGKRAJTB9J95itZDa1tseyYftY+Gf+XQYKzD6KoEck/jdkm
-         ZoVNis5cPOexjakvLKY0EI0DTbikKPDl/ZvtfWU0hB1daeDRS/YaWkVaQh2w0xvJ4gY6
-         gvH9dprFwLSDJvPpwl5n+zwlY/nOsSaB1cNUm1eQFdyst8KAOKXO1134VXhEyflY3diV
-         vAi+Zy4KmyqfJRSL3IjspIlKYXZqZWH9MmnR5xCHGrCtt9bTUU6M2BjBKOjmW3lCrGJU
-         90ceMJys0Gy5NH6i0WEsvfkhtVgG73mUwRCA5wsCXldA5sTjObwnSXgm+NCoUqFGty9X
-         eZhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685634945; x=1688226945;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uApS0AB+KUqwH2mw5UL4mdLHnyPDTmyOVgSJDqeRPaQ=;
-        b=Dw+xoLOEhs8Fa7CIyTdU8AJHU3ni8uLFuVnf9/BnXKZd2qlRXhEA8qfIWv0IFZKSfP
-         mV1lWOAGL+1MPl9NFg7B/O29ZS4oaFCU/iuoZwktQv4g8E3I04mS2pbIZ4eAZmTDpMDG
-         3DduFUlTCUT+somFDd80mviOkiQXL7CJ4jLugtKV7h4XemGorJqfnIsWtSoC7DD05xkM
-         q0n4+NeVWBBpg0so5Aqtp1OuBe3QQTIqJ2JhqzELbg7kdW8n846Iwnhe/amQYW1XNtO4
-         rYvuNGAJu5/6b39McSEEtTyxhLW4HAyfWG/G+ua9OqZHH+dNuGpZNAlVBq7Tw5cg7qnn
-         tmmg==
-X-Gm-Message-State: AC+VfDy+ommBq+tMRMWBcWaDWSLYe9byReWfSitPjg5t1T9LywnPZVta
-        ZZ67WB+l2NE8UWpQaEvAUCj/yNBc2Kg1rDYFi2Ghig==
-X-Google-Smtp-Source: ACHHUZ5fq3JioldW7xhRbYNQAjKs/px/pm2qGdKgn4OzPmtAXvaz+G27ZQEqZ03qI2j8UCtxfAZGvE6m8QXSxh0qHiM=
-X-Received: by 2002:a05:6e02:1a01:b0:320:9759:bf6b with SMTP id
- s1-20020a056e021a0100b003209759bf6bmr186805ild.3.1685634944981; Thu, 01 Jun
- 2023 08:55:44 -0700 (PDT)
+        with ESMTP id S231513AbjFAQbd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 12:31:33 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F7BA186;
+        Thu,  1 Jun 2023 09:31:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:MIME-Version:
+        Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=FoGN9FfcJsb8GI52NvAxVbcOnwbyqUsvlgkhEDkpODs=; b=p09bVE6VV76oObsgsORsoB/Lby
+        5zEklQQWoerTl9IywQKNEGDAIJl82JNbVywJ5Wx8x7Ts2MhBTGZrK4hUbcrzRvIEzNWyXiO1vDXWx
+        F7Yjt4GqO6IHGwfnk+Ad5n0AOjgI7wM/25+lsCm/by5c2s3HvhSp3WIPCJV9Y15BTRXA=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:53588 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q4lCl-0003BU-PL; Thu, 01 Jun 2023 12:31:16 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com,
+        linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date:   Thu,  1 Jun 2023 12:31:04 -0400
+Message-Id: <20230601163113.2785657-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
- <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com> <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Thu, 1 Jun 2023 08:55:33 -0700
-Message-ID: <CAD=FV=W_Vw=WTuap60PtzU8Jc58T1PsEhJfY96NmFFgmC1DB9w@mail.gmail.com>
-Subject: Re: [v4 4/4] drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     daniel@ffwll.ch, neil.armstrong@linaro.org, sam@ravnborg.org,
-        airlied@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hsinyi@google.com,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH v5 0/9] serial: sc16is7xx: fix GPIO regression and rs485 improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-On Thu, May 25, 2023 at 2:32=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The Starry-ili9882 is a 10.51" WUXGA TFT panel. which fits in nicely with
-> the existing panel-boe-tv101wum-nl6 driver. From the datasheet,MIPI need
-> to keep the LP11 state before the lcm_reset pin is pulled high. So add
-> lp11_before_reset flag.
->
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 371 ++++++++++++++++++
->  1 file changed, 371 insertions(+)
+Hello,
+this patch series mainly fixes a GPIO regression and improve RS485 flags and
+properties detection from DT.
 
-Applied to drm-misc-next:
+It now also includes various small fixes and improvements that were previously
+sent as separate patches, but that made testing everything difficult.
 
-8716a6473e6c drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
+Patch 1 fixes an issue with init of first port during probing.
+
+Patch 2 fixes an issue when debugging IOcontrol register, but it is also
+necessary for patch "fix regression with GPIO configuration" to work.
+
+Patch 3 is a refactor of GPIO registration code in preparation for patch 5.
+
+Patches 4 and 5 fix a GPIO regression by (re)allowing to choose GPIO function
+for GPIO pins shared with modem status lines.
+
+Patch 6 fixes a bug with the output value when first setting the GPIO direction.
+
+Patch 7 allows to read common rs485 device-tree flags and properties.
+
+Patch 8 introduces a delay after a reset operation to respect datasheet
+timing recommandations.
+
+Patch 9 improves comments about chip variants.
+
+I have tested the changes on a custom board with two SC16IS752 DUART using a
+Variscite IMX8MN NANO SOM.
+
+Thank you.
+
+Link: [v1] https://lkml.org/lkml/2023/5/17/967
+      [v1] https://lkml.org/lkml/2023/5/17/777
+      [v1] https://lkml.org/lkml/2023/5/17/780
+      [v1] https://lkml.org/lkml/2023/5/17/785
+      [v1] https://lkml.org/lkml/2023/5/17/1311
+      [v2] https://lkml.org/lkml/2023/5/18/516
+      [v3] https://lkml.org/lkml/2023/5/25/7
+      [v4] https://lkml.org/lkml/2023/5/29/656
+
+Changes for V3:
+- Integrated all patches into single serie to facilitate debugging and tests.
+- Reduce number of exported GPIOs depending on new property
+  nxp,modem-control-line-ports
+- Added additional example in DT bindings
+
+Changes for V4:
+- Increase reset post delay to relax scheduler.
+- Put comments patches at the end.
+- Remove Fixes tag for patch "mark IOCONTROL register as volatile".
+- Improve commit messages after reviews.
+- Fix coding style issues after reviews.
+- Change GPIO registration to always register the maximum number of GPIOs
+  supported by the chip, but maks-out GPIOs declared as modem control lines.
+- Add patch to refactor GPIO registration.
+- Remove patch "serial: sc16is7xx: fix syntax error in comments".
+- Remove patch "add dump registers function"
+
+Changes for V5:
+- Change patch order to facilitate stable backport(s).
+- Change duplicate device addresses in DT binding examples.
+- Use GENMASK for bit masks.
+- Replace of_property_for_each_u32() with device_property_read_u32_array
+- Add "Cc: stable..." tags
+
+Hugo Villeneuve (9):
+  serial: sc16is7xx: fix broken port 0 uart init
+  serial: sc16is7xx: mark IOCONTROL register as volatile
+  serial: sc16is7xx: refactor GPIO controller registration
+  dt-bindings: sc16is7xx: Add property to change GPIO function
+  serial: sc16is7xx: fix regression with GPIO configuration
+  serial: sc16is7xx: fix bug when first setting GPIO direction
+  serial: sc16is7xx: add call to get rs485 DT flags and properties
+  serial: sc16is7xx: add post reset delay
+  serial: sc16is7xx: improve comments about variants
+
+ .../bindings/serial/nxp,sc16is7xx.txt         |  46 +++++
+ drivers/tty/serial/sc16is7xx.c                | 168 +++++++++++++-----
+ 2 files changed, 174 insertions(+), 40 deletions(-)
+
+
+base-commit: 929ed21dfdb6ee94391db51c9eedb63314ef6847
+-- 
+2.30.2
+
