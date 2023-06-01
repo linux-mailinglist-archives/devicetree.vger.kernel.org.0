@@ -2,68 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 932E2719EFC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EFD0719F00
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233491AbjFAOBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 10:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53812 "EHLO
+        id S232667AbjFAOCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 10:02:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233230AbjFAOBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:01:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFBE9184;
-        Thu,  1 Jun 2023 07:00:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B90E64562;
-        Thu,  1 Jun 2023 14:00:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ECD8C4339B;
-        Thu,  1 Jun 2023 14:00:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685628058;
-        bh=k0lroTYvtzGNwTev1CPUc1dbilaAPIIZm6XNUqRGNLg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hRoX7cPhPvvJnIoEKa2MoFUn8l+YPPLQxGZp0KkE4D5M4OMjdNFagc1pic1TaDzFC
-         zWOlIfTCBiIqQA//MIYLdhzh1BCBls/zq3gN062MoZvhKDRcsuJgdUqw6FGzIeSOll
-         bH1QVDhTDzc74GjUpmfUajEk2dz80+XbokU4WwhLMX2y1oQCEpdPlZaL8B3xxEjxng
-         nMJmY1yqGm2h2qt2uN22hTOgF7cq0eS1Nlfy5c8HLnL9I/ekUP0UUeati+kvqHi/v+
-         ddhgngSXrIlfX6iJb7ax8iP9q55cnnjYoFMqssj8+Qx+RJfU5VY/M60CtPrWaxW1tj
-         PUIwhunq6gX8Q==
-Date:   Thu, 1 Jun 2023 15:00:49 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232331AbjFAOCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:02:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AA1184
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:02:36 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q4isb-0001mf-F8; Thu, 01 Jun 2023 16:02:17 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q4isZ-004Mqt-G9; Thu, 01 Jun 2023 16:02:15 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q4isY-00AAqk-MH; Thu, 01 Jun 2023 16:02:14 +0200
+Date:   Thu, 1 Jun 2023 16:02:14 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>,
-        Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 00/10 RESEND] Add RT5033 charger device driver
-Message-ID: <20230601140049.GF449117@google.com>
-References: <cover.1684182964.git.jahau.ref@rocketmail.com>
- <cover.1684182964.git.jahau@rocketmail.com>
- <a308cd6f-0f72-6a12-aa34-ce06290ce0bb@rocketmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Aurelien Jarno <aurelien@aurel32.net>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm*/dts: Enable symbols for rpi device trees
+Message-ID: <20230601140214.i4yvya763sotyjz7@pengutronix.de>
+References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="amlqjlvulilkdc53"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a308cd6f-0f72-6a12-aa34-ce06290ce0bb@rocketmail.com>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,83 +56,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 May 2023, Jakob Hauser wrote:
 
-> Dear all,
-> 
-> On 15.05.23 22:57, Jakob Hauser wrote:
-> > This patchset adds the charger driver "rt5033-charger". It is part of the
-> > multifunction device rt5033. The patchset is based on an older version by
-> > Beomho Seo of March 2015. For more information on the history and setup of
-> > the patchset see the cover sheet of version v1, there is a link further down
-> > below the changelog.
-> > 
-> > RESEND: Sorry for spamming. The first try of sending v6 got interrupted and
-> > was split into two threads on the lore list. Therefore sending it again.
-> > 
-> > Changes in v6:
-> >   - Patch 5: In function rt5033_charger_probe() after
-> >     calling rt5033_charger_dt_init() replaced the return value from "-ENODEV"
-> >     to "PTR_ERR(charger->chg)", as suggested by Christophe.
-> >   - Patch 9: Changed the patch from adding "power-supplies: true" to replacing
-> >     "additionalProperties: false" by "unevaluatedProperties: false", as
-> >     suggested by Krzysztof.
-> > 
-> > v1: https://lore.kernel.org/linux-pm/cover.1677620677.git.jahau@rocketmail.com/T/#t
-> > v2: https://lore.kernel.org/linux-pm/cover.1681646904.git.jahau@rocketmail.com/T/#t
-> > v3: https://lore.kernel.org/linux-pm/cover.1682636929.git.jahau@rocketmail.com/T/#t
-> > v4: https://lore.kernel.org/linux-pm/20230506155435.3005-1-jahau@rocketmail.com/T/#t
-> > v5: https://lore.kernel.org/linux-pm/20230514123130.41172-1-jahau@rocketmail.com/T/#t
-> > 
-> > The result of the patchset v6 can be seen at:
-> > https://github.com/Jakko3/linux/blob/rt5033-charger_v6/drivers/power/supply/rt5033_charger.c
-> 
-> What's missing on this patchset? I'm not familiar with the procedures. If
-> all patches need ack's, then the ones for mfd (patches 2 & 4) and for
-> dt-bindings (patch 10) are missing.
+--amlqjlvulilkdc53
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You're waiting on me.  I will apply all of the patches and submit a PR.
+Hello,
 
-You're in the queue - please stand-by.
- 
-> Link to the current patchset v6:
-> - on lore: https://lore.kernel.org/linux-pm/cover.1684182964.git.jahau@rocketmail.com/T/#t
-> - on patchwork: https://patchwork.kernel.org/project/linux-pm/list/?series=747771&state=%2A&archive=both
-> 
-> > Jakob Hauser (9):
-> >    mfd: rt5033: Fix chip revision readout
-> >    mfd: rt5033: Fix STAT_MASK, HZ_MASK and AICR defines
-> >    mfd: rt5033: Apply preparatory changes before adding rt5033-charger
-> >      driver
-> >    power: supply: rt5033_charger: Add RT5033 charger device driver
-> >    power: supply: rt5033_charger: Add cable detection and USB OTG supply
-> >    power: supply: rt5033_battery: Move struct rt5033_battery to battery
-> >      driver
-> >    power: supply: rt5033_battery: Adopt status property from charger
-> >    dt-bindings: power: supply: rt5033-battery: Apply
-> >      unevaluatedProperties
-> >    dt-bindings: Add rt5033 mfd, regulator and charger
-> > 
-> > Stephan Gerhold (1):
-> >    mfd: rt5033: Drop rt5033-battery sub-device
-> > 
-> >   .../bindings/mfd/richtek,rt5033.yaml          | 138 ++++
-> >   .../power/supply/richtek,rt5033-battery.yaml  |   2 +-
-> >   .../power/supply/richtek,rt5033-charger.yaml  |  65 ++
-> >   drivers/mfd/rt5033.c                          |   8 +-
-> >   drivers/power/supply/Kconfig                  |   8 +
-> >   drivers/power/supply/Makefile                 |   1 +
-> >   drivers/power/supply/rt5033_battery.c         |  38 +-
-> >   drivers/power/supply/rt5033_charger.c         | 744 ++++++++++++++++++
-> >   include/linux/mfd/rt5033-private.h            |  64 +-
-> >   include/linux/mfd/rt5033.h                    |  24 -
-> >   10 files changed, 1034 insertions(+), 58 deletions(-)
-> >   create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
-> >   create mode 100644 drivers/power/supply/rt5033_charger.c
-> 
-> Kind regards,
-> Jakob
+On Tue, May 30, 2023 at 07:56:22PM +0200, Uwe Kleine-K=F6nig wrote:
+> based on an earlier submission by Aurelien Jarno, I rebased and slightly
+> simplified the patches.
+>=20
+> There was some related irc conversion in #armlinux. Quoting the relevant
+> parts:
+>=20
+> 1685078851< ukleinek> arnd, [florian]: Who would pick up https://lore.ker=
+nel.org/linux-arm-kernel/20220410225940.135744-1-aurelien@aurel32.net ?
+> 1685078920< ukleinek> arnd, [florian]: If there is an agreement in genera=
+l that this is a good idea, I can coordinate with Aurelien that for arm64 t=
+here is a v2 with the simpler approach I pointed out.
+> 1685083481< arnd> ukleinek: I have no objections to this, if [florian] wa=
+nts to pick it up and send me for 6.5.
+> 1685083809< arnd> robher: any comments on this one?
+> 1685466520 < [florian]> ukleinek: I was hoping we would get an Ack for ro=
+bher before picking it up in the brcm soc tree, don't want to ruffle any fe=
+athers unnecessarily
+>=20
+> So it seems to start a beneficial chain reaction, only Rob's Ack is
+> needed.
 
--- 
-Lee Jones [李琼斯]
+Not sure this might help, but as Rob seems to be away for mail, I'll
+try: arch/arm64/boot/dts/nvidia/Makefile and
+arch/arm64/boot/dts/ti/Makefile also make use of -@. So this patch at
+least isn't a completely new thing and maybe Florian might dare to take
+this patch even without Rob's explicit consent?!
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--amlqjlvulilkdc53
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmR4pOUACgkQj4D7WH0S
+/k4Rtwf+JHWlbKMR+NxhWHLdRZU6hn08KbS1LCLpaUT9otzRZkdJoAUM2V6Z9dG2
+4ZBaVwEwIt7sJE+7aKJuFUhWW297t1JFjsHWisbn1fi5G/ebSkDEGSTlT0LWcxZ1
+1DBF06ni16hOykNFcXgYv/TNDHhjwrVa2DibEld7cxPOf+GV1gf0X3wMlfQSwkBt
+kArT5yePh6pu8E9fOv5UOEvDm94yjSt8hUtAupOblf5O2SKr0WnAI6xL53m18gxR
+Swh5Wsf2z5GyQCYCnKh7DPu81TmlVpbOuSBsEmeilAvCx0uxwiFceT7wOaoZemrc
+vXJuDMbNpYLjO9/nxdrvxfVQA16TAQ==
+=h9eu
+-----END PGP SIGNATURE-----
+
+--amlqjlvulilkdc53--
