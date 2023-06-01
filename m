@@ -2,52 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A565E7192B5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 07:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05087719357
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 08:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbjFAFth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 01:49:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54082 "EHLO
+        id S231673AbjFAGhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 02:37:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbjFAFse (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 01:48:34 -0400
-Received: from forward100a.mail.yandex.net (forward100a.mail.yandex.net [178.154.239.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D54F1710;
-        Wed, 31 May 2023 22:47:21 -0700 (PDT)
-Received: from mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:5e51:0:640:23ee:0])
-        by forward100a.mail.yandex.net (Yandex) with ESMTP id 4616346CED;
-        Thu,  1 Jun 2023 08:46:43 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id pjGDMhnDduQ0-yXfE0LdX;
-        Thu, 01 Jun 2023 08:46:43 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1685598403;
-        bh=xD3SVSf4acaNP04jn6OY2mZkIosr4Bwx2X5BXPKtEow=;
-        h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-        b=SYg3dKVVEhH5oHPt1clRNOmzuX6chECD0wwJ3oKue13AgsoOvc/smfc2WBvMIiv8z
-         5THy0kuGaHc/WtHXtcHCCmOeptKKj67zf2SnFTtHfAh5QBiwK9cSnElE6WF8zFb5M6
-         U2wwipAs6Fkl1xJU0MDxSl2c3HzG8zkI5yYeYO48=
-Authentication-Results: mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
-From:   Nikita Shubin <nikita.shubin@maquefel.me>
-To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        with ESMTP id S231648AbjFAGhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 02:37:12 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A3C4126
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 23:37:07 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51491b87565so826734a12.1
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 23:37:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685601425; x=1688193425;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7apC6RKuTStfFjQecRNb/tnXIPfhOLZC1qqLZZRTG0I=;
+        b=GOJR4HzFPq6VgPn/aBhYq/5f9RGVd7Jy+mRzng3iO7OtsLHxeBBH8PmNs+gr21mqwE
+         AvnMsUtZaQgYGsZLv4a3UAnryvW7q87tOKZGLs12mbVbJT4S37SpIsVIPCqywT4iaAFH
+         6mMN+rnWLe5dV3OGTdq8nYnjP2As2UIducPoz5ZuSrX1ywooYpO6SU3/Xe65HJGIav5c
+         sx3YqxoZRBG+BHoKMHwYNpC85XwvTM8KdcBp/w2n8EBOyAOgPviY964n78c/2ugAm31M
+         0oETQqrsYEWfUAfuvJXUXHJaPyl5geQDK6N8N4jSr3fiwUAa08JUVF4N2zXo98Qc7OBX
+         RVig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685601425; x=1688193425;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7apC6RKuTStfFjQecRNb/tnXIPfhOLZC1qqLZZRTG0I=;
+        b=cE3Fky8Nz+CQLage20OqeEhY043lVLFPZImUkwR5K4vMVwCLtOzWxUJCpTK3i3I5AP
+         gqg1EVG7Nk4s5tiVHv5qruDAbUbayiKvq7ZLI3UHadMF2cXrCyKooAOm/+Xz/P8bAnm3
+         2GZCSFKgxmatNl/N3Qj0JeBugDVkra5lx2R0ejp9q8gtGcaN3GsS1uUbIMc3H7Z8QNLZ
+         vnQj5fH14UIo01IA8/YikaYGp/1IjNWaHvGadanab2EyzHCVngo1+PMy4rrHAzl/i8Fl
+         i1AF/mEvPxClGDKhjBQRk+EXYODxPczFXHIpO+SXw9fcjN8qfizkxezkzRjWvCbZ5eAP
+         /K9g==
+X-Gm-Message-State: AC+VfDxtyArFMOtj2T/J9ubYofCcbURgpXe5G9BCw6BAuhSm7pD+gSgQ
+        RuxVvYPJp+09MMGf1UQd9boF/w==
+X-Google-Smtp-Source: ACHHUZ7TgW4b+WDB9013cvDhBkOTEymi8GYhxlfczaoWkrf4omlIKcn3X7XrakfmoqofY5rP51amYw==
+X-Received: by 2002:aa7:dad0:0:b0:514:9239:49f2 with SMTP id x16-20020aa7dad0000000b00514923949f2mr4780384eds.37.1685601425483;
+        Wed, 31 May 2023 23:37:05 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id l26-20020aa7c31a000000b0050dab547fc6sm6681914edq.74.2023.05.31.23.37.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 23:37:05 -0700 (PDT)
+Message-ID: <1c70bb0a-e682-0917-c464-4748a292e90f@linaro.org>
+Date:   Thu, 1 Jun 2023 08:37:02 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 02/43] dt-bindings: soc: Add Cirrus EP93xx
+Content-Language: en-US
+To:     Nikita Shubin <nikita.shubin@maquefel.me>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
         Arnd Bergmann <arnd@arndb.de>,
         Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Nikita Shubin <nikita.shubin@maquefel.me>,
-        Michael Peters <mpeters@embeddedTS.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Peters <mpeters@embeddedTS.com>,
         Kris Bahnsen <kris@embeddedTS.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 42/43] ARM: dts: ep93xx: Add EDB9302 DT
-Date:   Thu,  1 Jun 2023 08:45:47 +0300
-Message-Id: <20230601054549.10843-24-nikita.shubin@maquefel.me>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+ <20230601053546.9574-3-nikita.shubin@maquefel.me>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230601053546.9574-3-nikita.shubin@maquefel.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,191 +83,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+On 01/06/2023 07:33, Nikita Shubin wrote:
+> This adds device tree bindings for the Cirrus Logic EP93xx.
+> 
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add device tree for Cirrus EDB9302.
+You already sent v1. This patchset is attached to the previous thread
+making it more complicated for me to process. This buries it deep in the
+mailbox and might interfere with applying entire sets.
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
----
+Is this the next version, so v3? You already had at least two versions
+before, so this cannot be v1.
 
-Notes:
-    v0 -> v1:
-    
-    - added USB
-    - dropped 'Missing USB' in commit message
-    - add mdio + eth phy
+> ---
+> 
+> Notes:
+>     v0 -> v1:
+>     
+>     - fixed compatible - now it specifies three boards
+>     	- ts7250
+>     	- bk3
+>     	- edb9302
+>     - fixed identation in example
+>     - dropped labels
+> 
+>  .../devicetree/bindings/arm/ep93xx.yaml       | 107 ++++++++++++++++++
+>  .../dt-bindings/clock/cirrus,ep93xx-clock.h   |  53 +++++++++
+>  2 files changed, 160 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/ep93xx.yaml
+>  create mode 100644 include/dt-bindings/clock/cirrus,ep93xx-clock.h
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/ep93xx.yaml b/Documentation/devicetree/bindings/arm/ep93xx.yaml
+> new file mode 100644
+> index 000000000000..bcf9754d0763
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/ep93xx.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/ep93xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logic EP93xx device tree bindings
 
- arch/arm/boot/dts/ep93xx-edb9302.dts | 160 +++++++++++++++++++++++++++
- 1 file changed, 160 insertions(+)
- create mode 100644 arch/arm/boot/dts/ep93xx-edb9302.dts
+No improvements.
 
-diff --git a/arch/arm/boot/dts/ep93xx-edb9302.dts b/arch/arm/boot/dts/ep93xx-edb9302.dts
-new file mode 100644
-index 000000000000..3ec89f7587db
---- /dev/null
-+++ b/arch/arm/boot/dts/ep93xx-edb9302.dts
-@@ -0,0 +1,160 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "cirrus,edb9302", "cirrus,ep9301";
-+	model = "cirrus,edb9302";
-+
-+	chosen {
-+	};
-+
-+	memory {
-+		device_type = "memory";
-+	};
-+
-+	soc {
-+		flash@60000000 {
-+			compatible = "cfi-flash";
-+			reg = <0x60000000 0x1000000>;
-+			bank-width = <2>;
-+		};
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "EDB93XX";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,convert-channels = <2>;
-+		simple-audio-card,convert-sample-format = "s32_le";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s>;
-+			system-clock-direction-out;
-+			frame-master;
-+			bitclock-master;
-+			dai-sample-format = "s32_le";
-+			dai-channels = <2>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&codec>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	compatible = "cirrus,ep9301-pinctrl";
-+};
-+
-+&gpio0 {
-+	gpio-ranges = <&pinctrl 0 153 1>,
-+		      <&pinctrl 1 152 1>,
-+		      <&pinctrl 2 151 1>,
-+		      <&pinctrl 3 148 1>,
-+		      <&pinctrl 4 147 1>,
-+		      <&pinctrl 5 146 1>,
-+		      <&pinctrl 6 145 1>,
-+		      <&pinctrl 7 144 1>;
-+};
-+
-+&gpio1 {
-+	gpio-ranges = <&pinctrl 0 143 1>,
-+		      <&pinctrl 1 142 1>,
-+		      <&pinctrl 2 141 1>,
-+		      <&pinctrl 3 140 1>,
-+		      <&pinctrl 4 165 1>,
-+		      <&pinctrl 5 164 1>,
-+		      <&pinctrl 6 163 1>,
-+		      <&pinctrl 7 160 1>;
-+};
-+
-+&gpio2 {
-+	gpio-ranges = <&pinctrl 0 115 1>;
-+	/delete-property/ status;
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&pinctrl 0 97 2>;
-+	/delete-property/ status;
-+};
-+
-+&gpio5 {
-+	gpio-ranges = <&pinctrl 1 170 1>,
-+		      <&pinctrl 2 169 1>,
-+		      <&pinctrl 3 168 1>;
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&pinctrl 0 87 2>;
-+	/delete-property/ status;
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&pinctrl 2 199 4>;
-+	/delete-property/ status;
-+};
-+
-+&spi0 {
-+	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
-+		    &gpio0 7 GPIO_ACTIVE_LOW>;
-+	use_dma;
-+	/delete-property/ status;
-+
-+	codec: cs4271@0 {
-+		compatible = "cirrus,cs4271";
-+		#sound-dai-cells = <0>;
-+		reg = <0>;
-+		spi-max-frequency = <6000000>;
-+		spi-cpol;
-+		spi-cpha;
-+		reset-gpio = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	eeprom: at25f1024@1 {
-+		compatible = "atmel,at25";
-+		reg = <1>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&adc {
-+	/delete-property/ status;
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
-+		reg = <1>;
-+		device_type = "ethernet-phy";
-+	};
-+};
-+
-+&uart0 {
-+	/delete-property/ status;
-+};
-+
-+&uart1 {
-+	/delete-property/ status;
-+};
-+
-+&usb0 {
-+	/delete-property/ status;
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_on_ac97_pins>;
-+	/delete-property/ status;
-+};
--- 
-2.37.4
+> +
+> +description: |+
+
+no improvements. Do not need '|+' unless you need to preserve formatting.
+
+
+> +  The EP93xx SoC is a ARMv4T-based with 200 MHz ARM9 CPU.
+> +
+> +maintainers:
+> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> +  - Nikita Shubin <nikita.shubin@maquefel.me>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: The TS-7250 is a compact, full-featured Single Board Computer (SBC)
+> +          based upon the Cirrus EP9302 ARM9 CPU
+> +        items:
+> +          - const: technologic,ts7250
+> +          - const: cirrus,ep9301
+> +
+> +      - description: The Liebherr BK3 is a derivate from ts7250 board
+> +        items:
+> +          - const: liebherr,bk3
+> +          - const: cirrus,ep9301
+> +
+> +      - description: EDB302 is an evaluation board by Cirrus Logic,
+> +          based on a Cirrus Logic EP9302 CPU
+> +        items:
+> +          - const: cirrus,edb9302
+> +          - const: cirrus,ep9301
+> +
+> +  soc:
+> +    type: object
+> +    patternProperties:
+> +      "^.*syscon@80930000$":
+> +        type: object
+> +        properties:
+> +          compatible:
+> +            items:
+> +              - const: cirrus,ep9301-syscon
+> +              - const: syscon
+> +              - const: simple-mfd
+> +          ep9301-reboot:
+> +            type: object
+> +            properties:
+> +              compatible:
+> +                const: cirrus,ep9301-reboot
+> +        required:
+> +          - compatible
+> +          - reg
+> +          - ep9301-reboot
+> +
+> +      "^.*timer@80810000$":
+> +        type: object
+> +        properties:
+> +          compatible:
+> +            const: cirrus,ep9301-timer
+> +
+> +    required:
+> +      - syscon@80930000
+> +      - timer@80810000
+
+I don't understand what are you putting here. Why addresses are in
+bindings (they should not be), why some nodes are documented in
+top-level compatible. Drop all this.
+
+Open existing files and look how it is done there.
+
+> +
+> +required:
+> +  - compatible
+> +  - soc> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    / {
+> +      compatible = "technologic,ts7250", "cirrus,ep9301";
+> +      model = "TS-7250 SBC";
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      soc {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges;
+> +        compatible = "simple-bus";
+> +
+> +        syscon@80930000 {
+> +          compatible = "cirrus,ep9301-syscon",
+> +                        "syscon", "simple-mfd";
+> +          reg = <0x80930000 0x1000>;
+> +
+> +          ep9301-reboot {
+> +            compatible = "cirrus,ep9301-reboot";
+> +          };
+> +        };
+> +
+> +        timer@80810000 {
+> +          compatible = "cirrus,ep9301-timer";
+> +          reg = <0x80810000 0x100>;
+> +          interrupt-parent = <&vic1>;
+> +          interrupts = <19>;
+> +        };
+> +      };
+> +    };
+
+Drop all this. There is no existing binding like that.
+
+> +
+> +...
+> diff --git a/include/dt-bindings/clock/cirrus,ep93xx-clock.h b/include/dt-bindings/clock/cirrus,ep93xx-clock.h
+
+Not related to top level compatible.
+
+> new file mode 100644
+> index 000000000000..6a8cf33d811b
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/cirrus,ep93xx-clock.h
+> @@ -0,0 +1,53 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+
+Dual license.
+
+> +#ifndef DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
+> +#define DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
+> +
+> +#define EP93XX_CLK_XTALI	0
+> +
+
+
+Best regards,
+Krzysztof
 
