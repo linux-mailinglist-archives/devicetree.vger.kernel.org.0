@@ -2,116 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EFD0719F00
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC762719F05
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232667AbjFAOCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 10:02:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54572 "EHLO
+        id S233139AbjFAOFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 10:05:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232331AbjFAOCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:02:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AA1184
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:02:36 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        with ESMTP id S233632AbjFAOFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:05:34 -0400
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A3E184;
+        Thu,  1 Jun 2023 07:05:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+        s=default2211; h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:
+        In-Reply-To:From:Subject:Mime-Version:Content-Type:Sender:Reply-To:Content-ID
+        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+        Resent-Cc:Resent-Message-ID; bh=3pKXbgDS50T7cX8cx3AOsjTCNJZJgcQdP+NdH8iRmm8=;
+        b=b1OkxWRdokcxygc1Q5Hzbwfiv5N4WRXEqLdhRDoGQiuQIg2HV93EKZ4nfQFQ2KqIYY00scFnj92
+        Q/qyKiF1/SnTEHnaa4/fKQu6xza5uxJexSDX0R0WGGDcV8Rbitue0ZdG9dTIfI/sNfdfj7D3TjPul
+        3KZRKV3Xq80fjN8Hm7TIlauULojE33O2CKNKn+jt2OeJAqFcvxWeeCAAGaQzJpSgMTHBlpzjSIoA+
+        WRlHVNYCfuanz5agVOedxSytpv5mcHR5oJw5ErSLOGHMjPwHWRVAb6Pv0bHXRE9i2G8C5U5Juyn1T
+        n4h+FSmckxl2ag/UxHkJNxEMvfDtZT8sH+dw==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <sean@geanix.com>)
+        id 1q4ivg-0008Qm-TR; Thu, 01 Jun 2023 16:05:28 +0200
+Received: from [2a06:4004:10df:0:65f3:6f7d:6ccb:3076] (helo=smtpclient.apple)
+        by sslproxy01.your-server.de with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
         (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q4isb-0001mf-F8; Thu, 01 Jun 2023 16:02:17 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q4isZ-004Mqt-G9; Thu, 01 Jun 2023 16:02:15 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q4isY-00AAqk-MH; Thu, 01 Jun 2023 16:02:14 +0200
-Date:   Thu, 1 Jun 2023 16:02:14 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        (envelope-from <sean@geanix.com>)
+        id 1q4ivg-000NCt-Cs; Thu, 01 Jun 2023 16:05:28 +0200
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: Re: [PATCH v2 3/3] dt-bindings: mfd: stpmic1: add fsl,pmic-poweroff
+ property
+From:   Sean Nyekjaer <sean@geanix.com>
+In-Reply-To: <b9297205-82fa-8cdf-550e-a53c073e0a9d@linaro.org>
+Date:   Thu, 1 Jun 2023 16:05:17 +0200
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Aurelien Jarno <aurelien@aurel32.net>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm*/dts: Enable symbols for rpi device trees
-Message-ID: <20230601140214.i4yvya763sotyjz7@pengutronix.de>
-References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="amlqjlvulilkdc53"
-Content-Disposition: inline
-In-Reply-To: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        pascal Paillet <p.paillet@foss.st.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <4BD5682B-1A36-427A-8BDA-3159182DA057@geanix.com>
+References: <20230516132225.3012541-1-sean@geanix.com>
+ <20230516132225.3012541-3-sean@geanix.com>
+ <20230516-footprint-handoff-bcd553ff6146@spud>
+ <9B1EE405-77D3-4980-9A13-9D4F87C1A64F@geanix.com>
+ <20230523-flaccid-fossil-c9d09838dc64@spud>
+ <658510B5-702B-464A-BA55-01E2B315BE39@geanix.com>
+ <20230524-ellipse-dagger-72f850253ea0@wendy>
+ <24418459-DE19-4575-835B-8673F279993C@geanix.com>
+ <b9297205-82fa-8cdf-550e-a53c073e0a9d@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: Apple Mail (2.3731.600.7)
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26925/Thu Jun  1 09:27:46 2023)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---amlqjlvulilkdc53
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-On Tue, May 30, 2023 at 07:56:22PM +0200, Uwe Kleine-K=F6nig wrote:
-> based on an earlier submission by Aurelien Jarno, I rebased and slightly
-> simplified the patches.
+> On 1 Jun 2023, at 09.12, Krzysztof Kozlowski =
+<krzysztof.kozlowski@linaro.org> wrote:
 >=20
-> There was some related irc conversion in #armlinux. Quoting the relevant
-> parts:
+> On 24/05/2023 12:30, Sean Nyekjaer wrote:
+>>=20
+>>=20
+>>> On 24 May 2023, at 12.08, Conor Dooley <conor.dooley@microchip.com> =
+wrote:
+>>>=20
+>>> On Wed, May 24, 2023 at 10:16:13AM +0200, Sean Nyekj=C3=A6r wrote:
+>>>> Hi Conor,
+>>>>=20
+>>>>> On 23 May 2023, at 19.29, Conor Dooley <conor@kernel.org> wrote:
+>>>>>=20
+>>>>> On Tue, May 23, 2023 at 11:55:50AM +0200, Sean Nyekj=C3=A6r wrote:
+>>>>>>> On 16 May 2023, at 20.06, Conor Dooley <conor@kernel.org> wrote:
+>>>>>>> On Tue, May 16, 2023 at 03:22:24PM +0200, Sean Nyekjaer wrote:
+>>>>>>>> Document the new optional "fsl,pmic-poweroff" property.
+>>>>>>>>=20
+>>>>>>>> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+>>>>>>>> ---
+>>>>>>>> Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 8 =
+++++++++
+>>>>>>>> 1 file changed, 8 insertions(+)
+>>>>>>>>=20
+>>>>>>>> diff --git =
+a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml =
+b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+>>>>>>>> index 9573e4af949e..5183a7c660d2 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+>>>>>>>> @@ -26,6 +26,14 @@ properties:
+>>>>>>>>=20
+>>>>>>>> interrupt-controller: true
+>>>>>>>>=20
+>>>>>>>> +  st,pmic-poweroff:
+>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>>>>>> +    description: |
+>>>>>>>> +      if present, configure the PMIC to shutdown all power =
+rails when
+>>>>>>>> +      power off sequence have finished.
+>>>>>>>> +      Use this option if the SoC should be powered off by =
+external power management
+>>>>>>>> +      IC (PMIC).
+>>>>>>>=20
+>>>>>>> Just reading this description, this is sounding quite like a =
+"software
+>>>>>>> behaviour" type of property, which are not permitted, rather =
+than
+>>>>>>> describing some element of the hardware. Clearly you are trying =
+to solve
+>>>>>>> an actual problem though, so try re-phrasing the description =
+(and
+>>>>>>> property name) to focus on what exact hardware configuration it =
+is that
+>>>>>>> you are trying to special-case.
+>>>>>>> Krzysztof suggested that the samsung,s2mps11-acokb-ground =
+property in
+>>>>>>> samsung,s2mps11.yaml is addressing a similar problem, so that =
+could be
+>>>>>>> good to look at.
+>>>>>>=20
+>>>>>> Better wording?
+>>>>>>    Indicates that the power management IC (PMIC) is used to power =
+off the board.
+>>>>>>    So as the last step in the power off sequence set the SWOFF =
+bit in the
+>>>>>>    main control register (MAIN_CR) register, to shutdown all =
+power rails.
+>>>>>=20
+>>>>> The description for the property that Krzysztof mentioned is
+>>>>> samsung,s2mps11-acokb-ground:
+>>>>>  description: |
+>>>>>    Indicates that ACOKB pin of S2MPS11 PMIC is connected to the =
+ground so
+>>>>>    the PMIC must manually set PWRHOLD bit in CTRL1 register to =
+turn off the
+>>>>>    power. Usually the ACOKB is pulled up to VBATT so when PWRHOLD =
+pin goes
+>>>>>    low, the rising ACOKB will trigger power off.
+>>>>>=20
+>>>>> In other words, I am asking what (abnormal?) scenario there is =
+that means
+>>>>> you need the property, rather than what setting the property does.
+>>>>> Or am I totally off, and this is the only way this PMIC works?
+>>>>=20
+>>>> Indicates that the power management IC (PMIC) turn-off condition is =
+met
+>>>> by setting the SWOFF bit in the main control register (MAIN_CR) =
+register.
+>>>> Turn-off condition can still be reached by the PONKEY input.
+>>>>=20
+>>>> ?
+>>>>=20
+>>>> I must admit I=E2=80=99m somewhat lost here :)
+>>>=20
+>>> Sorry about that. I'm trying to understand what is different about =
+your
+>>> hardware that it needs the property rather than what adding the =
+property
+>>> does. If you look at the samsung one, it describes both the
+>>> configuration of the hardware ("ACOKB pin of S2MPS11 PMIC is =
+connected to
+>>> the ground") and how that is different from normal ("Usually the =
+ACOKB is
+>>> pulled up to VBATT so when PWRHOLD pin goes low, the rising ACOKB =
+will
+>>> trigger power off.")
+>>>=20
+>>> Looking at your datasheet, you don't have such a pin though - just =
+the
+>>> sw poweroff bit & the PONKEY stuff. My angle is just that I am =
+trying
+>>> to figure out why you need this property when it has not been needed
+>>> before. Or why you would not always want to "shutdown all power =
+rails
+>>> when power-off sequence have finished". I'm sorry if these are silly
+>>> questions.
+>>>=20
+>>=20
+>> No silly questions, maybe they trick me to come up with the correct =
+answer :D
+>>=20
+>> Basically without this, you won=E2=80=99t be able to power off the =
+system
+>> other than hitting the PONKEY.
+>> So it=E2=80=99s a new feature that wasn=E2=80=99t supported before.
+>> Maybe this feature should not be optional?
 >=20
-> 1685078851< ukleinek> arnd, [florian]: Who would pick up https://lore.ker=
-nel.org/linux-arm-kernel/20220410225940.135744-1-aurelien@aurel32.net ?
-> 1685078920< ukleinek> arnd, [florian]: If there is an agreement in genera=
-l that this is a good idea, I can coordinate with Aurelien that for arm64 t=
-here is a v2 with the simpler approach I pointed out.
-> 1685083481< arnd> ukleinek: I have no objections to this, if [florian] wa=
-nts to pick it up and send me for 6.5.
-> 1685083809< arnd> robher: any comments on this one?
-> 1685466520 < [florian]> ukleinek: I was hoping we would get an Ack for ro=
-bher before picking it up in the brcm soc tree, don't want to ruffle any fe=
-athers unnecessarily
+> You are still describing what driver should do with registers. What =
+you
+> are missing is describing real cause for this. It's exactly the same
+> case as was with s2mps11.
+
+I didn=E2=80=99t mention anything with registers in the patch:
+
+if present, configure the PMIC to shutdown all power rails when
+power off sequence have finished.
+Use this option if the SoC should be powered off by external power =
+management
+IC (PMIC).
+
+^^ That=E2=80=99s is exactly what is happening if the option is enabled.
+
+Do you have a suggestion wording?
+What do you think about removing this option and make it default =
+behaviour?
+
+/Sean
+
 >=20
-> So it seems to start a beneficial chain reaction, only Rob's Ack is
-> needed.
+> Best regards,
+> Krzysztof
+>=20
 
-Not sure this might help, but as Rob seems to be away for mail, I'll
-try: arch/arm64/boot/dts/nvidia/Makefile and
-arch/arm64/boot/dts/ti/Makefile also make use of -@. So this patch at
-least isn't a completely new thing and maybe Florian might dare to take
-this patch even without Rob's explicit consent?!
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---amlqjlvulilkdc53
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmR4pOUACgkQj4D7WH0S
-/k4Rtwf+JHWlbKMR+NxhWHLdRZU6hn08KbS1LCLpaUT9otzRZkdJoAUM2V6Z9dG2
-4ZBaVwEwIt7sJE+7aKJuFUhWW297t1JFjsHWisbn1fi5G/ebSkDEGSTlT0LWcxZ1
-1DBF06ni16hOykNFcXgYv/TNDHhjwrVa2DibEld7cxPOf+GV1gf0X3wMlfQSwkBt
-kArT5yePh6pu8E9fOv5UOEvDm94yjSt8hUtAupOblf5O2SKr0WnAI6xL53m18gxR
-Swh5Wsf2z5GyQCYCnKh7DPu81TmlVpbOuSBsEmeilAvCx0uxwiFceT7wOaoZemrc
-vXJuDMbNpYLjO9/nxdrvxfVQA16TAQ==
-=h9eu
------END PGP SIGNATURE-----
-
---amlqjlvulilkdc53--
