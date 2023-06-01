@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB76D71EFB8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 18:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5194B71EFC9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 18:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229589AbjFAQxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 12:53:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35984 "EHLO
+        id S229612AbjFAQyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 12:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232224AbjFAQwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 12:52:36 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0F5197
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 09:52:24 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2af2ef0d0daso15264611fa.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 09:52:24 -0700 (PDT)
+        with ESMTP id S232132AbjFAQyL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 12:54:11 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7754B1A2
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 09:54:08 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96fb45a5258so151362066b.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 09:54:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685638343; x=1688230343;
+        d=linaro.org; s=google; t=1685638447; x=1688230447;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cv5o48CpGTaTmkSqmSGB6JrLPZbZffPhXroyECMP20Q=;
-        b=dK2zE69rNsGt4bXTMWMxq6bZpD4cU/x1vn4XebDWEoyqfWByDSis5f5x5GGv4KO6+g
-         B+FkzBs6FLdaaLN183dNIA96rVI5Kzag0fh8EugZ5FurJHNO/MwMye+IcB4vb1hIHsRV
-         q1+Uau405GRgsgxsByoJgmnJACabUg9vPnQBfz9vtnbQiTiEtWB6MoHLDz7LUyRHm9+1
-         DwKobSv0MjAJ+TlLpEN3pyvRUZXb23HNRa7tQe88t8gq2Eo/iVfo4PegSVzC8fRDa7dZ
-         gMtLNuqAvIOS8aRLs7GsGHEJwnJIV1/4y8GwjlFi459jLzGr5gsmz9I7H1xLmg0DAZeg
-         dWPg==
+        bh=opz6VtahvCDdjyoo3Ecdy1ZlcAUEXCiP9UvfN37Ndpk=;
+        b=LWiOQG5gf2rvyRCi1hD+vLSYQSgpTH/vSRYQQhyNujIB/uPUK2XWADRlsvTql/4J82
+         BF2ybxrrQpTSvzQEwyxf22vytjqI225LKfzVGpHfDeHTVCI1DUka6VH7rTVPKJkqLdaa
+         3ZuJDNavqa52M9MqOU5RA9FWijgAoecjc72kyQ9uckeTvgyDm7jepG08wZvR/cnI5U8C
+         JnYsaTggc3a7wTwzU8FHddVovstp29IQQqjUvPsMzhVyJ5VGyDTDsOfTzfDaKO3aUX6K
+         6MQ8kenQ+HDkoAyDnOW+cdmWNNUThF0ZOdb1qhghqu/U9VOeO09+v4OneIN3iRFWWWly
+         6Eqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685638343; x=1688230343;
+        d=1e100.net; s=20221208; t=1685638447; x=1688230447;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cv5o48CpGTaTmkSqmSGB6JrLPZbZffPhXroyECMP20Q=;
-        b=DMGAeGG3kr+SjaoKaKjVDQbD0/AZK/tb+0nfivN+EqZvknFUOOpjAry5qWZfcYbkeG
-         Zg25gtsI22xjqQcivcsGvrJ2/WQzByuRCoaxAPeP6OUgIRsGoZ22HhhhIqd+B0cyTtAf
-         m+0qN3XUMNo7F2uC/6IozfBHCKqZ71rGkQA6++OAmXA76DVllMUmhWhwXWKyAwE6uog+
-         W+kayhFKr21JpH62rBrAAI4F4sbA569Uny4xDPMXo4q4XmRJ3R8hqw9Osfbx4zpOpFEF
-         n7qXWxFJApv33vzHuFdLIQLz5gOr1b+ZqpttTCxPv4PnZbDkv8oZtRKXx5OzPn0HMKDO
-         +Onw==
-X-Gm-Message-State: AC+VfDxs97hmyxxru62Zyy2R1zvdPRKwf0h9ggftq6etI7aZBuvlRxgt
-        QgjEiUIG/LqTuu36BLUbWb3IPA==
-X-Google-Smtp-Source: ACHHUZ45xf+TTk2bM1U0IxRDaisGc8GzwSlvqbxUDojASZ12tvMvve9++CtLVgt3KkKUeuYY89L//A==
-X-Received: by 2002:a2e:b043:0:b0:2af:1807:9e6 with SMTP id d3-20020a2eb043000000b002af180709e6mr7081ljl.35.1685638342869;
-        Thu, 01 Jun 2023 09:52:22 -0700 (PDT)
+        bh=opz6VtahvCDdjyoo3Ecdy1ZlcAUEXCiP9UvfN37Ndpk=;
+        b=gfxibQ679KcpHke7Rdyg597ZJeB1hKhFEnxr7lGAY9zI9aA4TcWTSgghihu+Iyux2S
+         h2pnjMWuJ6ua+MB2cHsr3DnBl3WgjZvj9s9fIOK8KvlkXk5HLOv4RzzKcHsB+MgisHpb
+         rVyHC61jYXhR03cKWxhl1xFzpq1ZBQaUJIHPcXiCakKwdNVlh/S9P9usbTK/PjK1XwJz
+         ZL0MkAWX0qiNoYfcAhLPdCUFrC7r1NtStV+YsBbUHeDSBRUpPmKkwCIJ0V8ejOjeOBrN
+         x9+ZSs39Me4eOJCL64W5V2GLlBfZnbc7CiTpIKuiWF8iO127MJzQwk5oYVDLSZ7ZyLHE
+         nyjQ==
+X-Gm-Message-State: AC+VfDyETVPaE4xj4RZPZ6C5p/TkLoo0Txh0eA+iEWPlUw/thP/r9rhi
+        DkWzmBSa/42KHbAVVZtsNUmPbA==
+X-Google-Smtp-Source: ACHHUZ6Ib6fkHHOhU4CvPzpBJDbe8lHmjCmfmV5pzq4uXm82lIkWnme3xzB+iaqpqS1+gQ5oQcjPPQ==
+X-Received: by 2002:a17:907:6e11:b0:958:801b:9945 with SMTP id sd17-20020a1709076e1100b00958801b9945mr8590711ejc.31.1685638446879;
+        Thu, 01 Jun 2023 09:54:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id fi13-20020a170906da0d00b0096fbc516a93sm10668583ejb.211.2023.06.01.09.52.20
+        by smtp.gmail.com with ESMTPSA id j13-20020a170906474d00b0096a5d341b50sm10759628ejs.111.2023.06.01.09.54.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 09:52:22 -0700 (PDT)
-Message-ID: <5f5f6412-f466-9a3f-3ec7-aa45ab0049c6@linaro.org>
-Date:   Thu, 1 Jun 2023 18:52:18 +0200
+        Thu, 01 Jun 2023 09:54:05 -0700 (PDT)
+Message-ID: <12fea13e-e2c3-487f-8d2b-cfd320c98ba7@linaro.org>
+Date:   Thu, 1 Jun 2023 18:54:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: phy: Support external PHY xtal
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: i2c-mt65xx: add additional clocks
 Content-Language: en-US
-To:     Detlev Casanova <detlev.casanova@collabora.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230531150340.522994-1-detlev.casanova@collabora.com>
- <ade45bcf-c174-429a-96ca-d0ffb41748d4@lunn.ch> <6646604.lOV4Wx5bFT@arisu>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Qii Wang <qii.wang@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>
+Cc:     =?UTF-8?B?6YOt5bCP5qGl?= <joe@gainstrong.cn>
+References: <5f15212060f82fb94239174c4e4b46c151645fe8.1685549360.git.daniel@makrotopia.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6646604.lOV4Wx5bFT@arisu>
+In-Reply-To: <5f15212060f82fb94239174c4e4b46c151645fe8.1685549360.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,27 +83,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 20:00, Detlev Casanova wrote:
->>> +  clock-names:
->>> +    items:
->>> +      - const: xtal
->>
->> I don't think xtal is the best of names here. It generally is used as
->> an abbreviation for crystal. And the commit message is about there not
->> being a crystal, but an actual clock.
->>
->> How is this clock named on the datasheet?
+On 31/05/2023 18:10, Daniel Golle wrote:
+> Add pck and mck clocks which are needed to access I2C registers on MT7981.
 > 
-> In the case of the PHY I used (RTL8211F), it is EXT_CLK. But this must be 
-> generic to any (ethernet) PHY, so using ext_clk to match it would not be
-> good either.
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Now this is about having an external clock, so the ext_clk name makes sense in 
-> this case.
-> 
-> I'm not pushing one name or another, let's use what you feel is more natural.
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+> index fda0467cdd954..550795f6573c5 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+> @@ -78,6 +78,8 @@ properties:
+>        - const: dma
+>        - const: arb
+>        - const: pmic
+> +      - const: mck
+> +      - const: pck
+>  
 
-Just drop the name.
+Adding names does not magically add the clocks. This wasn't tested.
 
 Best regards,
 Krzysztof
