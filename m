@@ -2,68 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3CB71F30F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 21:38:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DC4F71F341
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 21:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbjFATh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 15:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35074 "EHLO
+        id S231209AbjFATyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 15:54:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjFATh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 15:37:58 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA99C186;
-        Thu,  1 Jun 2023 12:37:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=u7bCjsVvBfHBSKBZixwNn+EH8tQNK9xBNDhiRR0ol6k=; b=PzZJA9eA5HjrgMlzs4S+NaFK+R
-        zJu0xtCCNmvh9hKUrWdWBO0l5VcByEHvORcH98acmxE6QxZKDPQI2NaW69MSn+dxGBq+cYp3CxvCQ
-        IFiWXU3mjpkqr73pS2/Z4t/g+jDbaqtmJ/pk1LwWZTg5mj+Gi5SWAFUvCJYoa/+Mknag=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1q4o7B-00EbLe-If; Thu, 01 Jun 2023 21:37:41 +0200
-Date:   Thu, 1 Jun 2023 21:37:41 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Detlev Casanova <detlev.casanova@collabora.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229476AbjFATyL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 15:54:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 880FF199;
+        Thu,  1 Jun 2023 12:54:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1445864943;
+        Thu,  1 Jun 2023 19:54:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE231C433A0;
+        Thu,  1 Jun 2023 19:54:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685649244;
+        bh=WIvsyNlQ2uif/TVWGVhpNPIcaskEDpRpcFq93Z5mjDs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iElvsq9+OM8xGA6LbHjVK0hzhFmSt8qxp7PEeQ7uaPp3EuwGQYjZSuEcyog2s9M9n
+         vsb2B0d1xD+kO4duraPDA0t8ZBwSl+rlOizY0Efg6xZ9ASaE5nvMRvMXMItSAYLfPw
+         ce2xHtoHcu2SJm3J6Qten8WSfj/Pg1G4E+5CwhMs2wvZ52tMUE59yw2bMvikdsg5QV
+         lI43YW0IU7mNPenEZfJcEKXTuRM7XJ/rCsKxt6ssacZd/scN6KpCUhiEeM3w09I99r
+         +KyB/oiyQ2h+DaUUQyTpzjQvRTDGRt81VXcWnZO5RBNXGeQWa5Y0fRkEOyfGoNGNaE
+         v6uvt8BWzAr2g==
+Date:   Thu, 1 Jun 2023 20:53:58 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] net: phy: realtek: Add optional external PHY clock
-Message-ID: <7bde15a1-08fe-4036-9256-b13280340b6b@lunn.ch>
-References: <20230531150340.522994-1-detlev.casanova@collabora.com>
- <20230531150340.522994-2-detlev.casanova@collabora.com>
- <4a6c413c-8791-fd00-a73e-7a12413693e3@gmail.com>
- <5682492.DvuYhMxLoT@arisu>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Keiji Hayashibara <hayashibara.keiji@socionext.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 1/3] spi: dt-bindings: allwinner: simplify with
+ unevaluatedProperties
+Message-ID: <20230601-unelected-grafted-8333e9984ebf@spud>
+References: <20230601095908.563865-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nHOltvHEp6P8plXF"
 Content-Disposition: inline
-In-Reply-To: <5682492.DvuYhMxLoT@arisu>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230601095908.563865-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I'm not sure about this. Isn't the clock still necessary when suspended for 
-> things like wake on lan ?
 
-Yes, but the PHY should know if its a WoL source, and not disable its
-own clock. There is some support for this in phylib, and Florian has
-also reworked it recently for Broadcom PHYs.
+--nHOltvHEp6P8plXF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-     Andrew
+On Thu, Jun 01, 2023 at 11:59:06AM +0200, Krzysztof Kozlowski wrote:
+> Remove properties already mentioned by common spi-controller.yaml and
+> switch to unevaluatedProperties:false to achieve same functional effect.
+> This makes the binding a bit smaller.  Similarly there is no need to
+> allow additionalProperties for children, because spi-controller.yaml
+> already does it.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--nHOltvHEp6P8plXF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHj3VgAKCRB4tDGHoIJi
+0hmkAP9c4/+xjSLZz6d94Dw8OGxLW8UccXJR3DDidXgsKcnPOQEAuhQukAIZ5FJQ
+JZTLwAPq7pe2aZLkiWUiElym64rkLgs=
+=qRki
+-----END PGP SIGNATURE-----
+
+--nHOltvHEp6P8plXF--
