@@ -2,133 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2EFD71F0FC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6922171F10A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 19:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233022AbjFARkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 13:40:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36928 "EHLO
+        id S233059AbjFARpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 13:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232984AbjFARkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:40:31 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7B79E40
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 10:40:23 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id d75a77b69052e-3f80e055549so8470121cf.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 10:40:23 -0700 (PDT)
+        with ESMTP id S233056AbjFARpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 13:45:14 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68529189;
+        Thu,  1 Jun 2023 10:45:13 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1b05e96dabbso6864005ad.2;
+        Thu, 01 Jun 2023 10:45:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685641223; x=1688233223;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=gmail.com; s=20221208; t=1685641513; x=1688233513;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=13OtiVNDk7Qnhrn0b5bUKmlN5jJ6hIbpEhAOIHlDDmE=;
-        b=HEdo07YPpe45yznR/Peu97wwu9mt06mz7RY7ywsbD3e6FPcnkvFnLJVhVVTMaZ2O/U
-         9D26+YOj8dcBWdGNKy1+Vf+maLnQNK+p2l1m2y8QjDDcERPrqZSFv8N35AfnMZHFzhEG
-         om0v8ecAwsEwNFsUmnw50nVcIW/qmsm3cav4LPgKfwxZXuG/zfK2lXiNTrgx/YXRTgLS
-         2ZgE4G/Xk+O1r+2euIEbp2An6KsgFeBrCp9ihYanVrowKPpjsaEhKM3Kwcftvnbk9GmJ
-         TBGEynm6vfEX/K6KWOi7LBmpY3onaPGEw0HMR4shDe3smz2+mWBnZG7T0npAn6y8I1v0
-         Epgg==
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=FYUbj1PxaWtwh4DzW6Vay4H94hGaPyKVZYWuV3ZbcXc=;
+        b=OZaoMOIBOQ/WOz1KN5ulk6CR+Y5gFgXSaO22TTBv+bmZLnL+Ld1I5u4DYlklnEQyde
+         aW54XdWuPR5ilO0qi3REMv/tarOQi6Dm5vDOWDhxrG7S0kmhygCNWnmWMbUbiKla4F42
+         wlnkhqEVBaNuV3nJh7oKwDRSAoROzdcqlu1jom2iZJghbk8a5SH8Fym1duIEYuVXipWr
+         8gIc+wA3v8ga9RnPbOVuskX3ZBwHeFUsDUSPkmtRyhA60RkR/aGE9IJjfyPNvlQS9jvz
+         JWvTuj2M6Rw37IdWXleSCzSNDXhiBgn/0dZrfQSG4Rr8pRm8lCHP7ICsnuEwGBTJAr60
+         ke4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685641223; x=1688233223;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20221208; t=1685641513; x=1688233513;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=13OtiVNDk7Qnhrn0b5bUKmlN5jJ6hIbpEhAOIHlDDmE=;
-        b=ZaUm0N+BKlpY6bq0BX01en3V85Ftgwvbb75LNOVaDOsAkvAuNwutHvz2Fk1IeyOHA5
-         0padKVnnyz/9qzWnZ99di+qJ2II5kvNnDcm+rVJUFw6PwQ5Ds2viy7SY4dHeoYdG5nPP
-         1b8k6y9y/0WKq9jz9PRSBf639iv6NR8sE96cX1lU/+fbyYPYS0ERnE5EgPM5AN3ygHTt
-         GpXYdakOwXnnO7GKvfpVIzmtkwMB9G1iDoTCe7Ac/OcBfSiJX+WAhiI5GitXRHL3B6M0
-         aTT8N/byNJZBJ4+Bz1Ip4QEjJVRGdN8RiyTGtLLtZylcQtZzqHJq5Sj/iwuRSrzgNjC2
-         SUDA==
-X-Gm-Message-State: AC+VfDwm5fnth/NRVymTO9GYAIhOFDkT9wkFhyyCR9oJHUHumqVhXhWD
-        IymOoJ76Rchai7tkts+xVbY=
-X-Google-Smtp-Source: ACHHUZ40EkCbcoq3YvjbjiQWgnYXEIvqE8x4wuUqAgp8yqiBLmpyEGCyTBaO8dexhya9WlWfemqUdQ==
-X-Received: by 2002:ac8:5e4d:0:b0:3f6:ac1b:47a3 with SMTP id i13-20020ac85e4d000000b003f6ac1b47a3mr9675721qtx.26.1685641222840;
-        Thu, 01 Jun 2023 10:40:22 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id e13-20020ac8490d000000b003f7369c7302sm7957235qtq.89.2023.06.01.10.40.11
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FYUbj1PxaWtwh4DzW6Vay4H94hGaPyKVZYWuV3ZbcXc=;
+        b=S9y1ovQLZhImZl+9pdRQa6qhXvykMFT8hUuF4NKp5kJoFScrFJHWAmU0ijRAVa9QOG
+         sIPk5M/+PlUT/KThkoINwmoUKfjG7V/WB9aVE49gH7fkIiVqjCK5xY0PD4YxgLCjRCF6
+         EWv0B6KTpRDWLvfIgD7fkgXpJ6z9gf7pk0kbnK3Q/Kne2F98xRIBVi+M37AHHSW7Rhhe
+         rYkoTUT+B+reudGF6V6wpAvShphUvG1V3Toy13sgTUA4WsSt7imumUxZ+6Ldc4uQIZcU
+         bTKyqtDXE9egY8zgrQ4bcQYtVAqtMfjgSp9o+jo1mQg8h0x4M55rsQjmlXSuuFjMbJsn
+         Zl4g==
+X-Gm-Message-State: AC+VfDzHcZaA70EURqPELBlY6B7lNPApiYEqDhbHJWTTwiJgSd3lI8GO
+        sCybTYBX59SLEuIR/z9iq8E=
+X-Google-Smtp-Source: ACHHUZ4zagpsQ+SjZ4Qm58lG7Do6V5t3Qo41xpHVOqY52Y6876LAbjAqiXp98gMaeErSNLCycz6LFw==
+X-Received: by 2002:a17:902:aa96:b0:1b0:4687:ba0c with SMTP id d22-20020a170902aa9600b001b04687ba0cmr151029plr.8.1685641512798;
+        Thu, 01 Jun 2023 10:45:12 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b1-20020a170902d50100b001b01547d0e8sm3794525plg.142.2023.06.01.10.45.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 10:40:21 -0700 (PDT)
-Message-ID: <ee304442-b8bf-ef9e-e10e-64ec4daf8ba1@gmail.com>
-Date:   Thu, 1 Jun 2023 10:40:07 -0700
+        Thu, 01 Jun 2023 10:45:12 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <8bd7d122-18b5-b9b4-0090-6344caf903fd@roeck-us.net>
+Date:   Thu, 1 Jun 2023 10:45:10 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/2] arm*/dts: Enable symbols for rpi device trees
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 4/5] hwmon: (gxp_fan_ctrl) Provide fan info via gpio
 Content-Language: en-US
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Aurelien Jarno <aurelien@aurel32.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
- <20230601140214.i4yvya763sotyjz7@pengutronix.de>
- <20230601-rake-calamari-eda0c88bd9bf@wendy>
- <d47958c6-eec6-badd-8924-62807461546f@gmail.com>
-In-Reply-To: <d47958c6-eec6-badd-8924-62807461546f@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+References: <20230531151918.105223-1-nick.hawkins@hpe.com>
+ <20230531151918.105223-5-nick.hawkins@hpe.com>
+ <07b2a2f7-5ddc-0f10-6b1f-184dc21fa580@roeck-us.net>
+ <DM4PR84MB19274F575858CBCB2FA5C23E88489@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+ <b1d8f851-4e87-333c-229c-b9dc37ea3c40@roeck-us.net>
+ <DM4PR84MB19273A008BB11589CEEF697188499@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+ <CACRpkdarJCSCif+r1e_jXbbAgv03OgGAO6pkW9x-yiYZJxdGeQ@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <CACRpkdarJCSCif+r1e_jXbbAgv03OgGAO6pkW9x-yiYZJxdGeQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/1/23 08:37, Florian Fainelli wrote:
+On 6/1/23 10:11, Linus Walleij wrote:
+> On Thu, Jun 1, 2023 at 5:48 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
 > 
-> 
-> On 6/1/2023 7:13 AM, Conor Dooley wrote:
->> On Thu, Jun 01, 2023 at 04:02:14PM +0200, Uwe Kleine-König wrote:
->>> Hello,
->>>
->>> On Tue, May 30, 2023 at 07:56:22PM +0200, Uwe Kleine-König wrote:
->>>> based on an earlier submission by Aurelien Jarno, I rebased and 
->>>> slightly
->>>> simplified the patches.
->>>>
->>>> There was some related irc conversion in #armlinux. Quoting the 
->>>> relevant
->>>> parts:
->>>>
->>>> 1685078851< ukleinek> arnd, [florian]: Who would pick up 
->>>> https://lore.kernel.org/linux-arm-kernel/20220410225940.135744-1-aurelien@aurel32.net ?
->>>> 1685078920< ukleinek> arnd, [florian]: If there is an agreement in 
->>>> general that this is a good idea, I can coordinate with Aurelien 
->>>> that for arm64 there is a v2 with the simpler approach I pointed out.
->>>> 1685083481< arnd> ukleinek: I have no objections to this, if 
->>>> [florian] wants to pick it up and send me for 6.5.
->>>> 1685083809< arnd> robher: any comments on this one?
->>>> 1685466520 < [florian]> ukleinek: I was hoping we would get an Ack 
->>>> for robher before picking it up in the brcm soc tree, don't want to 
->>>> ruffle any feathers unnecessarily
->>>>
->>>> So it seems to start a beneficial chain reaction, only Rob's Ack is
->>>> needed.
->>>
->>> Not sure this might help, but as Rob seems to be away for mail, I'll
->>> try: arch/arm64/boot/dts/nvidia/Makefile and
->>> arch/arm64/boot/dts/ti/Makefile also make use of -@. So this patch at
->>> least isn't a completely new thing and maybe Florian might dare to take
->>> this patch even without Rob's explicit consent?!
+>> Thank you for your valuable feedback with the solutions you have provided.
+>> Before I proceed though I have a quick query about the fan driver.
+>> If I were to let the user space "own" gpio pins, would it be permissible for
+>> the userspace to feed a kernel driver data via sysfs?
 >>
->> FWIW you can have mine, unless it is explicitly Rob's you want Florian.
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> Ex:
+>> GPIO Driver -> (OpenBMC) -> Fandriver (sysfs).
+>>
+>> Here the GPIO driver would provide fan presence information to OpenBMC
+>> and then OpenBMC would provide fan presence info to the fan driver.
 > 
-> OK, I will take yours and queue those up!
+> But why? Don't be so obsessed about userspace doing stuff using
+> sysfs, usually it is a better idea to let the kernel handle hardware.
+> 
+> I think this is a simple thermal zone you can define in the device
+> tree as indicated in my previous comment.
+> 
+>> If it were permissible to provide data to the driver via this method I could
+>> apply it to the PSU driver as well. the PSU driver which requires presence
+>> info to verify a PSU is inserted / removed.
+> 
+> It feels like you are looking for a way for two drivers to communicate
+> with each other.
+> 
+> This can be done several ways, the most straight-forward is notifiers.
+> include/linux/notifier.h
+> 
 
-Applied both with Conor's ack. Uwe, please copy 
-bcm-kernel-feedback-list@broadcom.com next time, so the patches show up 
-in our patchwork and make my life a tad easier ;)
+This is all unnecessary. The hwmon driver could register a gpio pin,
+including interrupt, and then report state changes to userspace with
+sysfs or udev events on the registered hwmon sysfs attributes.
 
-Thanks everyone.
--- 
-Florian
+If they really want to use userspace for everything, they should
+just use userspace for everything and not bother with a kernel driver.
+
+Guenter
 
