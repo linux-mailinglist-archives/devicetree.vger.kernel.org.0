@@ -2,238 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCEB8719658
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 11:06:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204447196B3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 11:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232492AbjFAJGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 05:06:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60916 "EHLO
+        id S232679AbjFAJU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 05:20:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232476AbjFAJGC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 05:06:02 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BE7E21B8;
-        Thu,  1 Jun 2023 02:05:42 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9323C169C;
-        Thu,  1 Jun 2023 02:06:02 -0700 (PDT)
-Received: from [10.57.22.124] (unknown [10.57.22.124])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 901053F663;
-        Thu,  1 Jun 2023 02:05:14 -0700 (PDT)
-Message-ID: <ccdc58ff-f86b-6ca8-cdf6-299cc454873c@arm.com>
-Date:   Thu, 1 Jun 2023 10:05:13 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.1
-Subject: Re: [PATCH v4 05/11] coresight-tpdm: Add nodes to set trigger
- timestamp and type
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S232709AbjFAJUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 05:20:25 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A74197;
+        Thu,  1 Jun 2023 02:20:23 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (om126205251136.34.openmobile.ne.jp [126.205.251.136])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 62ADE105;
+        Thu,  1 Jun 2023 11:19:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1685611200;
+        bh=7OZvICe7BBhFf4AJNPBe52r/1K16wC/5FM5zeCzqEQ0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iWN6EvuqeXh+2xq6KOFe6UAjhn+yDIWo5ZzOnpbcTVUoWM1TDvGpHf+tlKWUE3yBp
+         n/F2xL2QN6DWaCT6J1RnnDrORx0nF/nWoYoeZsDYwAQrX7Dz2170CZTiejDK5vdAM0
+         LLahCJEvaRMTnMv1sDnE+HhaCZNsNlSXU0WkqV9s=
+Date:   Thu, 1 Jun 2023 12:20:20 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-6-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1682586037-25973-6-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
+Subject: Re: [PATCH v6 1/6] media: dt-bindings: Add JH7110 Camera Subsystem
+Message-ID: <20230601092020.GF22609@pendragon.ideasonboard.com>
+References: <20230525083202.67933-1-jack.zhu@starfivetech.com>
+ <20230525083202.67933-2-jack.zhu@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230525083202.67933-2-jack.zhu@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 10:00, Tao Zhang wrote:
-> The nodes are needed to set or show the trigger timestamp and
-> trigger type. This change is to add these nodes to achieve these
-> function.
+Hi Jack,
+
+Thank you for the patch.
+
+On Thu, May 25, 2023 at 04:31:57PM +0800, Jack Zhu wrote:
+> Add the bindings documentation for Starfive JH7110 Camera Subsystem
+> which is used for handing image sensor data.
 > 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
 > ---
->   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   | 24 ++++++
->   drivers/hwtracing/coresight/coresight-tpdm.c       | 95 ++++++++++++++++++++++
->   2 files changed, 119 insertions(+)
+>  .../bindings/media/starfive,jh7110-camss.yaml | 180 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 187 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> index 686bdde..77e67f2 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> @@ -21,3 +21,27 @@ Description:
->   
->   		Accepts only one value -  1.
->   		1 : Reset the dataset of the tpdm
+> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> new file mode 100644
+> index 000000000000..c66586d90fa2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> @@ -0,0 +1,180 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_trig_type
-> +Date:		March 2023
-> +KernelVersion	6.3
+> +title: Starfive SoC CAMSS ISP
+> +
+> +maintainers:
+> +  - Jack Zhu <jack.zhu@starfivetech.com>
+> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+> +
+> +description:
+> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. It
+> +  consists of a VIN controller (Video In Controller, a top-level control unit)
+> +  and an ISP.
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh7110-camss
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: syscon
+> +      - const: isp
+> +
+> +  clocks:
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_func
+> +      - const: wrapper_clk_c
+> +      - const: dvp_inv
+> +      - const: axiwr
+> +      - const: mipi_rx0_pxl
+> +      - const: ispcore_2x
+> +      - const: isp_axi
+> +
+> +  resets:
+> +    maxItems: 6
+> +
+> +  reset-names:
+> +    items:
+> +      - const: wrapper_p
+> +      - const: wrapper_c
+> +      - const: axird
+> +      - const: axiwr
+> +      - const: isp_top_n
+> +      - const: isp_top_axi
+> +
+> +  power-domains:
+> +    items:
+> +      - description: JH7110 ISP Power Domain Switch Controller.
+> +
+> +  interrupts:
+> +    maxItems: 4
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Input port for receiving DVP data.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum: [5, 6]
+> +
+> +              bus-width:
+> +                enum: [8, 10, 12]
+> +
+> +              data-shift:
+> +                enum: [0, 2]
+> +                default: 0
+> +
+> +              hsync-active:
+> +                enum: [0, 1]
+> +                default: 1
+> +
+> +              vsync-active:
+> +                enum: [0, 1]
+> +                default: 1
+> +
+> +            required:
+> +              - bus-type
+> +              - bus-width
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Input port for receiving CSI data.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - power-domains
+> +  - interrupts
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    isp@19840000 {
+> +        compatible = "starfive,jh7110-camss";
+> +        reg = <0x19840000 0x10000>,
+> +              <0x19870000 0x30000>;
+> +        reg-names = "syscon", "isp";
+> +        clocks = <&ispcrg 0>,
+> +                 <&ispcrg 13>,
+> +                 <&ispcrg 2>,
+> +                 <&ispcrg 12>,
+> +                 <&ispcrg 1>,
+> +                 <&syscrg 51>,
+> +                 <&syscrg 52>;
+> +        clock-names = "apb_func",
+> +                      "wrapper_clk_c",
+> +                      "dvp_inv",
+> +                      "axiwr",
+> +                      "mipi_rx0_pxl",
+> +                      "ispcore_2x",
+> +                      "isp_axi";
+> +        resets = <&ispcrg 0>,
+> +                 <&ispcrg 1>,
+> +                 <&ispcrg 10>,
+> +                 <&ispcrg 11>,
+> +                 <&syscrg 41>,
+> +                 <&syscrg 42>;
+> +        reset-names = "wrapper_p",
+> +                      "wrapper_c",
+> +                      "axird",
+> +                      "axiwr",
+> +                      "isp_top_n",
+> +                      "isp_top_axi";
+> +        power-domains = <&pwrc 5>;
+> +        interrupts = <92>, <87>, <88>, <90>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            port@0 {
+> +                reg = <0>;
+> +                vin_from_sc2235: endpoint {
+> +                    remote-endpoint = <&sc2235_to_vin>;
+> +                    bus-type = <5>;
+> +                    bus-width = <8>;
+> +                    data-shift = <2>;
+> +                    hsync-active = <1>;
+> +                    vsync-active = <0>;
+> +                    pclk-sample = <1>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                vin_from_csi2rx: endpoint {
+> +                    remote-endpoint = <&csi2rx_to_vin>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 869e1c7fc869..9ef5d0e5dff0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20070,6 +20070,13 @@ M:	Ion Badulescu <ionut@badula.org>
+>  S:	Odd Fixes
+>  F:	drivers/net/ethernet/adaptec/starfire*
+>  
+> +STARFIVE CAMERA SUBSYSTEM DRIVER
+> +M:	Jack Zhu <jack.zhu@starfivetech.com>
+> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> +
+>  STARFIVE DEVICETREES
+>  M:	Emil Renner Berthing <kernel@esmil.dk>
+>  S:	Maintained
 
-This would need updating. We are not sure if this can make it to 6.5, 
-with dependency on James' series. Fix this with 6.5 here and we can take
-a shot.
+-- 
+Regards,
 
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Set the trigger type of DSB tpdm. Read the trigger
-> +		type of DSB tpdm.
-> +
-> +		Accepts only one of the 2 values -  0 or 1.
-> +		0 : Set the DSB trigger type to false
-> +		1 : Set the DSB trigger type to true
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_trig_ts
-> +Date:		March 2023
-> +KernelVersion	6.3
-
-Same here
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Set the trigger timestamp of DSB tpdm. Read the
-> +		trigger timestamp of DSB tpdm.
-> +
-> +		Accepts only one of the 2 values -  0 or 1.
-> +		0 : Set the DSB trigger type to false
-> +		1 : Set the DSB trigger type to true
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index 2e64cfd..14f4352 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -20,6 +20,19 @@
->   
->   DEFINE_CORESIGHT_DEVLIST(tpdm_devs, "tpdm");
->   
-> +static umode_t tpdm_dsb_is_visible(struct kobject *kobj,
-> +								   struct attribute *attr, int n)
-
-minor nit: alignment ?
-
-> +{
-> +	struct device *dev = kobj_to_dev(kobj);
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	if (drvdata)
-> +		if (drvdata && (drvdata->datasets & TPDM_PIDR0_DS_DSB))
-> +			return attr->mode;
-
-Duplicate check for drvdata ?
-
-	if (drvdata && (drvdata->datasets & TPDM_PIDR0_DS_DSB))
-		return attr->mode;
-> +
-> +	return 0;
-> +}
-> +
->   static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
->   {
->   	if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
-> @@ -239,8 +252,90 @@ static struct attribute_group tpdm_attr_grp = {
->   	.attrs = tpdm_attrs,
->   };
->   
-> +static ssize_t dsb_trig_type_show(struct device *dev,
-> +				     struct device_attribute *attr, char *buf)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	return sysfs_emit(buf, "%u\n",
-> +			 (unsigned int)drvdata->dsb->trig_type);
-> +}
-> +
-> +/*
-> + * Trigger type (boolean):
-> + * false - Disable trigger type.
-> + * true  - Enable trigger type.
-> + */
-> +static ssize_t dsb_trig_type_store(struct device *dev,
-> +				      struct device_attribute *attr,
-> +				      const char *buf,
-> +				      size_t size)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned long val;
-> +
-> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	if (val)
-> +		drvdata->dsb->trig_type = true;
-> +	else
-> +		drvdata->dsb->trig_type = false;
-> +	spin_unlock(&drvdata->spinlock);
-> +	return size;
-> +}
-> +static DEVICE_ATTR_RW(dsb_trig_type);
-> +
-> +static ssize_t dsb_trig_ts_show(struct device *dev,
-> +				     struct device_attribute *attr, char *buf)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	return sysfs_emit(buf, "%u\n",
-> +			 (unsigned int)drvdata->dsb->trig_ts);
-> +}
-> +
-> +/*
-> + * Trigger timestamp (boolean):
-> + * false - Disable trigger timestamp.
-> + * true  - Enable trigger timestamp.
-> + */
-> +static ssize_t dsb_trig_ts_store(struct device *dev,
-> +				      struct device_attribute *attr,
-> +				      const char *buf,
-> +				      size_t size)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned long val;
-> +
-> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	if (val)
-> +		drvdata->dsb->trig_ts = true;
-> +	else
-> +		drvdata->dsb->trig_ts = false;
-> +	spin_unlock(&drvdata->spinlock);
-> +	return size;
-> +}
-> +static DEVICE_ATTR_RW(dsb_trig_ts);
-> +
-> +static struct attribute *tpdm_dsb_attrs[] = {
-> +	&dev_attr_dsb_trig_ts.attr,
-> +	&dev_attr_dsb_trig_type.attr,
-> +	NULL,
-> +};
-> +
-> +static struct attribute_group tpdm_dsb_attr_grp = {
-> +	.attrs = tpdm_dsb_attrs,
-> +	.is_visible = tpdm_dsb_is_visible,
-> +};
-> +
->   static const struct attribute_group *tpdm_attr_grps[] = {
->   	&tpdm_attr_grp,
-> +	&tpdm_dsb_attr_grp,
->   	NULL,
->   };
->   
-
-Rest looks fine to me
-
-Suzuki
-
+Laurent Pinchart
