@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC8C71A2E6
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3994A71A304
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233230AbjFAPoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 11:44:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45978 "EHLO
+        id S233742AbjFAPqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 11:46:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232689AbjFAPod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:44:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B802B3;
-        Thu,  1 Jun 2023 08:44:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F22B764516;
-        Thu,  1 Jun 2023 15:44:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6938C4339B;
-        Thu,  1 Jun 2023 15:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685634271;
-        bh=Xzrs4uQvpV2FbJzVvZTm9OPYbe9DmKt40BV1GwUulo8=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=a8b5RwP/q2MckI42aUURkKKBNPr1cp0rArsl9eEeIj04CsfD7J1MYS5ghGdweHnOC
-         37WtY0LFF33r66tagsiC/2OmM25chJn+in1U7f2gnXLK0L+MweBs0FHaprQCXrncJx
-         5sHVNeFanq/4CcxnNWotITt/eJc6RSZRTDkWsz6bu1aOrRtvvs6ZvCcoKEwKIdRqGl
-         K6Dann5V9W8hogqZcDjyDKyIPRZce860bTKqmeZAAPx/GY6wlMRTlI0gxL+1ycqiLo
-         5VvPlfOUfWtZiIbkJTgemcyNpT9fC9JDbghU4mX7vXYYY3A5RaGLg7R6thgbw2EQwh
-         DX/4cb7QVf0Zg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233127AbjFAPqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:46:16 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75D3018D;
+        Thu,  1 Jun 2023 08:46:06 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96f5685f902so135929266b.2;
+        Thu, 01 Jun 2023 08:46:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685634365; x=1688226365;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IklIgLnDv67Hj1MMNmzU2HBbBaSNxYen7DB/Lbq+r38=;
+        b=Db3slDYbs6+0atRzy1FP9c6+k/n4PieWOJfpRxPPfOlhlhRN9/EVb6OgpebC5tm+qU
+         /1kNIqDBQJwn+/yA0YSSMMYinmdUsWYR7YEFJp7C7jScE0DAKIdiJXu/t2D7IRrRsKro
+         dwJoe8OMBCq2SKX+1VMlXybrPj9+uS8skJTpu570ZKFrDjL/Y9JRbvio3+9uw33GkE0P
+         eX43X/9n3T23Gbqfor5bUNgE23DERuOJdC/h58WcCUNwsTnASMuGXWJRBx1RsEt83Suy
+         hiLYFUIC5l8E4JQT4SwX8OnJBBYVJdCUhLyXoWcz/qmJJ3PC5emlc11Fd5Q4pMja9jO+
+         6TkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685634365; x=1688226365;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IklIgLnDv67Hj1MMNmzU2HBbBaSNxYen7DB/Lbq+r38=;
+        b=GiT+6YPSewvYQ/vRL2fmPtkm4/uQdeM5V9I4IUO6Uu/LtSjRhEuwB3Q3p/Ax9yQQ3W
+         7J9+qxLGDlKDFSDG6Std08n3K1R7LX4R6lJInM+MpKJ/7tuVxusG6mJz8su4Q416+tE8
+         zbRf0kZSUt3UkYPqvjfF9iTA3gqwoTPZcF3WDqAU7og5z/Uk0ouMSsOtSnF/HXHXh+9E
+         pt4DT8c9lsHgMN1he/0Y6cvC2zqUIrKFotWIewhdZ9lLIg6hu5T7ysv5fc4Ep4mfaJdV
+         fJMe51QyycZygsNvZP77EWoJgafzMCfNDj4iefG8sUxZ2ru7ZfWk7ThhX2kcf5wSXdX9
+         g4Pw==
+X-Gm-Message-State: AC+VfDxEUFWa4ixGxQohjtJzASbD32qWQvCcrihjDdVSAGKPeTR98EVD
+        O/4OFXQfJy1YFxgGs8ouEr4=
+X-Google-Smtp-Source: ACHHUZ7Fbw9B2kY3i0cLSoiipzTsYASE2XF2iggqBNdNQITA9VLCljQ7MOgpw4SU2+Gba0EnHRO3hg==
+X-Received: by 2002:a17:907:7b85:b0:971:5a46:8ac8 with SMTP id ne5-20020a1709077b8500b009715a468ac8mr10300665ejc.27.1685634364702;
+        Thu, 01 Jun 2023 08:46:04 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id a8-20020a1709062b0800b00970f0e2dab2sm10601105ejg.112.2023.06.01.08.46.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jun 2023 08:46:04 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Walker Chen <walker.chen@starfivetech.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-In-Reply-To: <20230526145402.450-1-walker.chen@starfivetech.com>
-References: <20230526145402.450-1-walker.chen@starfivetech.com>
-Subject: Re: (subset) [PATCH v5 0/3] Add TDM audio on StarFive JH7110
-Message-Id: <168563426847.132600.7350104738221381081.b4-ty@kernel.org>
-Date:   Thu, 01 Jun 2023 16:44:28 +0100
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Keiji Hayashibara <hayashibara.keiji@socionext.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/3] spi: dt-bindings: allwinner: simplify with
+ unevaluatedProperties
+Date:   Thu, 01 Jun 2023 17:46:02 +0200
+Message-ID: <2226283.iZASKD2KPV@jernej-laptop>
+In-Reply-To: <20230601095908.563865-1-krzysztof.kozlowski@linaro.org>
+References: <20230601095908.563865-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 May 2023 22:53:59 +0800, Walker Chen wrote:
-> This patchset adds TDM audio driver for the StarFive JH7110 SoC. The
-> first patch adds device tree binding for TDM module. The second patch
-> adds tdm driver support for JH7110 SoC. The last patch adds device tree
-> node and pins configuration of tdm to JH7110 dts.
-> 
-> The series has been tested on the VisionFive 2 board by plugging an
-> audio expansion board.
-> 
-> [...]
+Dne =C4=8Detrtek, 01. junij 2023 ob 11:59:06 CEST je Krzysztof Kozlowski na=
+pisal(a):
+> Remove properties already mentioned by common spi-controller.yaml and
+> switch to unevaluatedProperties:false to achieve same functional effect.
+> This makes the binding a bit smaller.  Similarly there is no need to
+> allow additionalProperties for children, because spi-controller.yaml
+> already does it.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied to
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Best regards,
+Jernej
 
-Thanks!
-
-[1/3] ASoC: dt-bindings: Add TDM controller bindings for StarFive JH7110
-      commit: d9afe0d36cc27dcacbcecf02fe803a30d544698c
-[2/3] ASoC: starfive: Add JH7110 TDM driver
-      commit: fd4762b6b5cfa27bf44f5d624ce74b7dce4a479c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
