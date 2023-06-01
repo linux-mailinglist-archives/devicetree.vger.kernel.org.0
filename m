@@ -2,88 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C99F719F57
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:13:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAD92719F5D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 16:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234041AbjFAOM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 10:12:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
+        id S233990AbjFAONw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 10:13:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233922AbjFAOM5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:12:57 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F09F1AC
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:12:49 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f603d4bc5bso8780315e9.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 07:12:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685628768; x=1688220768;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=blRDmP8zwUxnWYu3O2q7G8SVs+SLeK3eRrnyEq5ozP4=;
-        b=qdN3sFmE0bkWjRKWetOAT0HHLZIxe86o4BV9VjIYHiUK3XPu2S8gc0aoVmeWcrs4cy
-         agjoc2/Hh7uBRXSKUK6reJT3RUJmkZAEwpys5HDX5bJr6n6VJa7oPa+LItSY9540le1v
-         c5xeuCTZ1QVljMhR3nmnMXrrL0arqyhLw8IIxDSf/EhE6ILbEj1sEW03f3QystUPuj5Z
-         bDEUctCPLc84Ov0ke0ettWxLK3yjWZ3RCAHD2zRdmVaAybo0NiXe5TLVYrUVI645Qq06
-         9BbZlfyjNk5aeQp4Zj1+EaGkNAjjCWOgccsS3/JaCUwjXDNUT+G0TrhVnq5XV5ORs7dF
-         6+6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685628768; x=1688220768;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=blRDmP8zwUxnWYu3O2q7G8SVs+SLeK3eRrnyEq5ozP4=;
-        b=FMa7MvzCxEJrQD0GKChNO9QlBH+DGawYl76oRbfjK8UZQyX0WCVE2CB5ENuSe1erxK
-         sdIfXcFsaz8qD4zQMj1QD07ksi6tjAosN1VywmviyIj9v3eReWFLXQ8AggBjeEq/w45d
-         Be/kXiYMc02VFW9IdSriojLpGB8kUhTiFqDsHUihSuAbHUsv3UtXm+koHbNlR6EkTcGU
-         Pa1+/2EltCxCPVcthoXso1inn/na2g8S3YhfUJyChlseOmvJKQUgEn7B4Rrag5OnD8WR
-         Q/bPP9ZDDhy8YPW7mbKAtTQLDRcNGJns4hQgOy/G6L7Ynlh4QG/bVHX/pI20XtQg09qV
-         7LaA==
-X-Gm-Message-State: AC+VfDyz8VLz8mHkVVPnSFUPsv85URjQk6S7tPzzL1QAUOEnDHVO9hsV
-        XZxO8kN4QB+CcwQU6cYb35iVfw==
-X-Google-Smtp-Source: ACHHUZ6/ivQPA2lY433i2n8DT8ybJaluMhJNQm/WfFkDzmtsk8A31ifylaUb4N2I4BWnvbWtYj/ztw==
-X-Received: by 2002:adf:f244:0:b0:2f6:bf04:c8cc with SMTP id b4-20020adff244000000b002f6bf04c8ccmr2034350wrp.55.1685628767960;
-        Thu, 01 Jun 2023 07:12:47 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id p12-20020adfcc8c000000b0030adfa48e1esm10629591wrj.29.2023.06.01.07.12.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 07:12:47 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234003AbjFAONv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 10:13:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A755129
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 07:13:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685628828; x=1717164828;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SOJvV7HqozaTtO1Lcs1pdOUa558kUviCYZEEXg0IcGA=;
+  b=hw4ioQkkIpdKI/WHvbLytEWbC5ksWlO68wYIRSJWrVqkv/lxl153jsNs
+   VHPw/MOI/BqjpzpyEP92VsVQE/H4WvH6RAIZGZ3z4DF7yjHZuqnbc6jmv
+   HQDZDCHJ9/kOhPSAlJ4zHnYpNbZiGJJlC+SaOIHQCPmtDkolx0MG/z+8z
+   NdmS1g5iHdvL8PLEIdJ3e49aShhn5IS92byjn2OYUi4VqBjZbuiTLLj1t
+   V8zwMTeFuNC3n3PQTvOxBFLSZGOzFt9dQlAT3056ljX8htYcJS/lpPwsm
+   7Va3muH3N0IInIuYCIkz2YuFq8NHEO2ozYcPjMKUfq1EHZ2wPlgAUofU6
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; 
+   d="asc'?scan'208";a="216403503"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Jun 2023 07:13:46 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 1 Jun 2023 07:13:45 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 1 Jun 2023 07:13:43 -0700
+Date:   Thu, 1 Jun 2023 15:13:20 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+CC:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     "Lukas F. Hartmann" <lukas@mntre.com>,
-        Nicolas Belin <nbelin@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>
-In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
-Subject: Re: (subset) [PATCH v5 00/17] drm/meson: add support for MIPI DSI
- Display
-Message-Id: <168562876692.86739.7052062833690353953.b4-ty@linaro.org>
-Date:   Thu, 01 Jun 2023 16:12:46 +0200
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Aurelien Jarno <aurelien@aurel32.net>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/2] arm*/dts: Enable symbols for rpi device trees
+Message-ID: <20230601-rake-calamari-eda0c88bd9bf@wendy>
+References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
+ <20230601140214.i4yvya763sotyjz7@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PgvLnnJC8TCb4t8C"
+Content-Disposition: inline
+In-Reply-To: <20230601140214.i4yvya763sotyjz7@pengutronix.de>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,38 +72,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--PgvLnnJC8TCb4t8C
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 30 May 2023 09:38:01 +0200, Neil Armstrong wrote:
-> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-> glue on the same Amlogic SoCs.
-> 
-> This adds support for the glue managing the transceiver, mimicing the init flow provided
-> by Amlogic to setup the ENCL encoder, the glue, the transceiver, the digital D-PHY and the
-> Analog PHY in the proper way.
-> 
-> [...]
+On Thu, Jun 01, 2023 at 04:02:14PM +0200, Uwe Kleine-K=F6nig wrote:
+> Hello,
+>=20
+> On Tue, May 30, 2023 at 07:56:22PM +0200, Uwe Kleine-K=F6nig wrote:
+> > based on an earlier submission by Aurelien Jarno, I rebased and slightly
+> > simplified the patches.
+> >=20
+> > There was some related irc conversion in #armlinux. Quoting the relevant
+> > parts:
+> >=20
+> > 1685078851< ukleinek> arnd, [florian]: Who would pick up https://lore.k=
+ernel.org/linux-arm-kernel/20220410225940.135744-1-aurelien@aurel32.net ?
+> > 1685078920< ukleinek> arnd, [florian]: If there is an agreement in gene=
+ral that this is a good idea, I can coordinate with Aurelien that for arm64=
+ there is a v2 with the simpler approach I pointed out.
+> > 1685083481< arnd> ukleinek: I have no objections to this, if [florian] =
+wants to pick it up and send me for 6.5.
+> > 1685083809< arnd> robher: any comments on this one?
+> > 1685466520 < [florian]> ukleinek: I was hoping we would get an Ack for =
+robher before picking it up in the brcm soc tree, don't want to ruffle any =
+feathers unnecessarily
+> >=20
+> > So it seems to start a beneficial chain reaction, only Rob's Ack is
+> > needed.
+>=20
+> Not sure this might help, but as Rob seems to be away for mail, I'll
+> try: arch/arm64/boot/dts/nvidia/Makefile and
+> arch/arm64/boot/dts/ti/Makefile also make use of -@. So this patch at
+> least isn't a completely new thing and maybe Florian might dare to take
+> this patch even without Rob's explicit consent?!
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+FWIW you can have mine, unless it is explicitly Rob's you want Florian.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-[06/17] dt-bindings: display: add Amlogic MIPI DSI Host Controller bindings
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=0628f2341e96213c9f2d074853b255f65acd3795
-[07/17] dt-bindings: display: meson-vpu: add third DPI output port
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=25b3b35cd51ef0d98165666d250a51f39db6a1fc
-[08/17] drm/meson: fix unbind path if HDMI fails to bind
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=6a044642988b5f8285f3173b8e88784bef2bc306
-[09/17] drm/meson: only use components with dw-hdmi
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=44e16166e0e9b94d8bcdf55fc0e5fcceca1154f0
-[10/17] drm/meson: venc: add ENCL encoder setup for MIPI-DSI output
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=51fc01a03442cce5e4c21375a1ceb2e4ec93c833
-[11/17] drm/meson: add DSI encoder
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=42dcf15f901c8222352da31d622b4ee844068f42
-[12/17] drm/meson: add support for MIPI-DSI transceiver
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=77d9e1e6b8468f701ab024a060aa9c0339356870
-[13/17] drm/panel: khadas-ts050: update timings to achieve 60Hz refresh rate
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=29c6df0d942454cb43334cf0e36de068f4124b94
+Thanks,
+Conor.
 
--- 
-Neil
+--PgvLnnJC8TCb4t8C
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHingAAKCRB4tDGHoIJi
+0ub3APwJLXqorAtnmOtj1QhSqoDgjUnXj1APLB+gBicwWoKtBQD+MBPdQy9AX2g0
+rUffj84RC6B4rrwcwGo+ytVk0XZ1YQQ=
+=/pN2
+-----END PGP SIGNATURE-----
+
+--PgvLnnJC8TCb4t8C--
