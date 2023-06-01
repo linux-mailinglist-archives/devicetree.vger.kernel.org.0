@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC6AB71A2AD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EBD371A2C0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 17:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233829AbjFAP2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 11:28:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37498 "EHLO
+        id S235056AbjFAPa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 11:30:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235078AbjFAP2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:28:02 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F68C1721
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:27:43 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51480d3e161so1573705a12.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:27:42 -0700 (PDT)
+        with ESMTP id S234945AbjFAPat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 11:30:49 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A011E4D
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 08:30:29 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96f7377c86aso139979966b.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 08:30:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685633243; x=1688225243;
+        d=linaro.org; s=google; t=1685633426; x=1688225426;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=diFbsdZV2bNyGNHCVW2LsRJs05sLUshqi74Gn2Boo7g=;
-        b=u07uR3oga0LW8RARkWrzk6zEKBC4+QlgbedEutna1tZnh5VL90CbXFUpDt5W/Vvq7J
-         SMbFyUiFBVxxIO7EsteZp48OtJ3d8cvmroQolz4wLP3k7+//vvIYnojUlnN7rC3/xElz
-         RNdL+axV0Hj+xRV7lKq06aXo7FMdh6luL5eiNEsy+7PK60JwLQS3YVUh7UfnEPbkLAK7
-         IjKChpes5vMGLhmwIbLsT8z7wTs/p1J+uMPfPH69RzDCpRCr+yEPnq0Oi7xyBxsolbY1
-         qgwEs3MWqCvwfdY4vdCgXjpGS1cf0lymOOdG11R5/YAczEthV/Kq/sPXP+UL2ruosfie
-         1eoA==
+        bh=Z0RKWAWxwUQS0njV+ALKABSSpPIY8XnKRGM2dVeuKYE=;
+        b=OHrOQLzvB/BGyMn7OZJnDoroAwTDdoB7T099vvVDfXz4IPX9iuevZem6ECGA0RHrcl
+         NPm2L/+Xa6Lgs0/dcgQYKlOs4Hacn78ktFhJrAnRMjhEyrXYhsXxN7PS0MG2oddc+N0+
+         xSVgflbjWdrqK7r7Os0FwVr8+2o/k6Jwrt9VdlLnTxKzV6Vif+w04+5kABEO2umJwwlG
+         NvdDcaxtIXl/UFYCImVJGNJvUFcS5lUGuHfchZQksxuqixAsypachCtDncYDHbFQrW2b
+         hoUM2sl7KVBfm9DT5mOqPLUEjQYEp1U2j1ChaAMHFW9XIZ+dgwN2Cxu2fMP6BiGQfGhf
+         YQOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685633243; x=1688225243;
+        d=1e100.net; s=20221208; t=1685633426; x=1688225426;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=diFbsdZV2bNyGNHCVW2LsRJs05sLUshqi74Gn2Boo7g=;
-        b=OJpvUjDJhvr7vu8jkE9v58cla5b+aWC+01DQCMHo/jTmX5P2PWoecqMKDpz4WQJRhd
-         DTg+8nI4dYQtBzsTmGy4PnRkPN0/Ly7XExvzUUcQfxA78Y+xt4C+m1twMbrIMn6UQVOl
-         aiVYfDSvzAN9V8X+Eg+aqD9F8Yym2n0kVg6OwIwmss7U6lVwXFr20f4yLqsCWdPqbbOJ
-         RT0jGOErpRPoA5MmDEZoWCdOX4ifcM7HD6+28YuDcCj0VD17dk1OL7DsNqUSUtERmvQt
-         PsXn6wCayAItB0nPONwePiOcKr09XvmpzVkwdBsgkSc3R+pvkyAa9xBQbiMOvBDEHAor
-         RSgA==
-X-Gm-Message-State: AC+VfDz/LWNgY5Z7CKANSvEQ3qjoFMl5Gbdzo8B2rrzS/tqHeKPOztLc
-        7+SyqqAPsaGmMrmjmEojZ++Cqg==
-X-Google-Smtp-Source: ACHHUZ6aNXo+ri1QDqhXiTolmEsw5DZDKU2sR6eWV9FGSQBXUTBeQun4e6I97sKz0YhBvlqq1csNzA==
-X-Received: by 2002:a05:6402:1219:b0:514:994c:2982 with SMTP id c25-20020a056402121900b00514994c2982mr127674edw.40.1685633243229;
-        Thu, 01 Jun 2023 08:27:23 -0700 (PDT)
+        bh=Z0RKWAWxwUQS0njV+ALKABSSpPIY8XnKRGM2dVeuKYE=;
+        b=IaeXWQ3bcWA4uBbObKEhDLcyr4bK6d7p59xbacR9CX/RElrPs0q+i4TDtVTMtTpDK/
+         D5QqlZv0I7jceg8Y6xLCM6Zu4B4HnoDk7AER/6T4QqPQHqThOk3GrQ4ISNLOJJzFILWQ
+         xnL3pRqNt5ggHC6UDBa1jMo4eIGPpPaxwWbNYJD3uFxEdl2+k+SzimsY+iuDBX38hCgM
+         NZOCh/+B3ZHl2UhsvqeSLfgPyG8ib5hnl62TD427qDcV9msooxrD1f8yJwwlfzd2EYxp
+         NMztN+f8wmAJqc4X1z0XtM4LEzoKazEUQ8yW3Qx62pXz8+NXz6oxP0gTQ0gjsW2js9/M
+         dROg==
+X-Gm-Message-State: AC+VfDwiAimIxgSlqXwPGweoSqflxzxQD8LxQJMUXBfJECJbn6f41VOh
+        R6+L8BHc3Zhznoyro/1qpstMBg==
+X-Google-Smtp-Source: ACHHUZ5oxQb75rdiZQ5dyM6H9Gb3YjpwUqyEzQQqXD9woiNfnlULUcZCVmMFF8hOoopHO9xklMvx8Q==
+X-Received: by 2002:a17:906:da8e:b0:966:5035:6973 with SMTP id xh14-20020a170906da8e00b0096650356973mr8590202ejb.50.1685633426478;
+        Thu, 01 Jun 2023 08:30:26 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id k12-20020a056402048c00b00514c4350243sm2263947edv.56.2023.06.01.08.27.22
+        by smtp.gmail.com with ESMTPSA id va15-20020a17090711cf00b0094ee99eeb01sm10696291ejb.150.2023.06.01.08.30.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 08:27:22 -0700 (PDT)
-Message-ID: <3613f6ed-f8ad-a62c-6c0d-932bca7956dd@linaro.org>
-Date:   Thu, 1 Jun 2023 17:27:21 +0200
+        Thu, 01 Jun 2023 08:30:25 -0700 (PDT)
+Message-ID: <25c30964-6bd3-c7eb-640a-ba1f513b7675@linaro.org>
+Date:   Thu, 1 Jun 2023 17:30:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v3 07/15] arm64: dts: qcom: sc8180x: Add interconnects and
- lmh
+Subject: Re: [PATCH v11 1/2] dt-bindings: spi: add loongson spi
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     zhuyinbo <zhuyinbo@loongson.cn>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230530162454.51708-1-vkoul@kernel.org>
- <20230530162454.51708-8-vkoul@kernel.org>
- <7d4089df-e572-4d3b-6fb7-061d69479dce@linaro.org> <ZHhF7zbPYyqdfURV@matsya>
- <20230601132717.yslaigqg4lprkniv@ripper>
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
+ <20230522071030.5193-2-zhuyinbo@loongson.cn>
+ <20230524-pouncing-variable-c520e85f8db8@wendy>
+ <b1e3d199-de5a-f8d5-9159-4965e9e1f5ef@loongson.cn>
+ <20230524-relative-trimmer-046fb26a7764@wendy>
+ <99b362c2-640c-9150-26ee-e9add4483886@loongson.cn>
+ <2196dd29-93ee-00f7-65b4-ede73aa8ba77@linaro.org>
+ <1b141df2-3e31-089e-1e05-0e268b60d074@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230601132717.yslaigqg4lprkniv@ripper>
+In-Reply-To: <1b141df2-3e31-089e-1e05-0e268b60d074@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,41 +86,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 15:27, Bjorn Andersson wrote:
-> On Thu, Jun 01, 2023 at 12:47:03PM +0530, Vinod Koul wrote:
->> On 31-05-23, 10:26, Krzysztof Kozlowski wrote:
->>> On 30/05/2023 18:24, Vinod Koul wrote:
->>>> This add interconnect nodes and add LMH to sc8180x SoC dtsi
->>>>
->>>> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->>>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->>>> ---
+On 01/06/2023 11:51, zhuyinbo wrote:
+>>> Yes, it is make sense as it can reduce the workload of the community.
+>>> For the Loongson platform, the versions of spi peripherals are almost
+>>> the same, except for a few  or individual SoCs.  And we have also
+>>> discussed compatible internally, and we tend to define it this way.
+>>
+>> So you have chosen different path than what's clearly recommended by
+>> community, existing experience and documentation:
+>>
+>> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+>>
+>> Family names are not accepted as specific compatibles. Whenever they
+>> were accepted, it lead to problems. All the time.
+> 
+> 
+> Thank you for your documentation and advice and the Loongson platform
+> have loongson-2h (ls2h), loongson-2k (ls2k), loongson-2p (ls2p) or other
+> series SoC, which loongson-2 seems to be the family name you mentioned
+> and the "loongson,ls2k-spi" should be a speific compatible name.
+> 
+>>
+>> https://lore.kernel.org/all/20220822181701.GA89665-robh@kernel.org/
+>> https://lore.kernel.org/all/78651e07-6b3e-4243-8e1f-fcd1dfb3ffe1@www.fastmail.com/
+>> https://lore.kernel.org/all/288f56ba9cfad46354203b7698babe91@walle.cc/
+>> https://lore.kernel.org/all/106e443a-e765-51fe-b556-e4e7e2aa771c@linaro.org/
+>> and many many more discussions.
+>>
+>> You should choose carefully, because we will keep NAK-ing adding
+>> properties to circumvent missing compatibles.
+> 
+> 
+> I have read the documention and patch link that you mentioned and it
+> seems to advice that We don't have wildcard names in the compatible
+> string and use wildcard names that will cause issue. and the compatible
+> "loongson,ls2k-spi" that wasn't a wildcard names, and if the loongson-2k
+> spi controller hardware upgraded or changed the I will use
+> "loongson,ls2k-spi-version" as a compatible, such as,
+> "loongson,ls2k-spi-v1.1", "loongson,ls2k-spi-v1.1a" or other.
+
+Versions? Why? They received a lot of comments in the past, let me just
+paste to avoid repeating the same:
+
+https://lore.kernel.org/all/20220926231238.GA3132756-robh@kernel.org/
+
+(and many more discussions on devicetree mailing list)
+
+> 
 >>>
->>> I don't understand why this was split. We talked on IRC many times on
->>> this - artificial splits are not "release early, release often". Your
->>> previous patchset was correct in that approach, but why this is separate
->>> patch?
+>>>> Or am I misunderstanding and all ls2k SoCs do work with this driver and
+>>>> you were talking about other, future products?
+>>>
+>>> Actually, in 2k500 has one special type spi was only one cs and their's
+>>> register definition was different from common type spi thus this driver
+>>> doesn't support but this driver can support another common type spi in
+>>> 2k500.  for this special type spi I will add support as needed in the
+>>> future.
 >>
->> Coz the patch was big to review. This is usual Linux approach to break a
->> change into smaller chunks for review!
->>
+>> Bindings are for hardware, not driver. What does your driver support or
+>> does not, matters less.
 > 
-> We break patches into small, logical units so that it's easy to follow
-> the thought through each step in the process of introducing a change.
-
-For example splitting interconnects which are essential part of several
-IP blocks is not making it easy. One patch introduces incomplete block
-which is then fixed (completed) in next patch.
-
 > 
-> This is not the same thing as splitting one logical change into multiple
-> smaller patches to keep the line count of each patch down. This just
-> forces the reviewer to jump between emails to get the full picture of
-> the logical change.
+> okay, I got it, and the loongson spi bindings was for loongson spi
+> controller hardware. if the spi controller hardware not changed in
+> different ls2k SoC and the spi compatible should be same thus loongson
+> spi compatible seems to be adhere to the bindings aggrement.
 
-Reviewer has to jump here to see full picture of UART or some other IP
-block.
+Specific compatible - yes. Unspecific - not, because you disregard the
+clear message in the guideline.
 
 Best regards,
 Krzysztof
