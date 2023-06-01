@@ -2,88 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B45171952B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 10:15:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5563A719530
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 10:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231956AbjFAIPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 04:15:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34322 "EHLO
+        id S231418AbjFAIQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 04:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231310AbjFAIPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 04:15:22 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D795E9F
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 01:15:17 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2af28303127so7299631fa.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 01:15:17 -0700 (PDT)
+        with ESMTP id S229745AbjFAIQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 04:16:29 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7A1C0
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 01:16:27 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-97448470403so59436466b.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 01:16:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685607316; x=1688199316;
+        d=linaro.org; s=google; t=1685607386; x=1688199386;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/wwwjM9P/GD9y2WtF65nLtVcIMEiwxXul9Ob8jZmYYk=;
-        b=XI3ldMgL0wgSZCxVcqoTaJKj8OW3UmqWeaQ0GC3A0n00XtrjXX71IOLLTytWsCZmfS
-         ZBhojKovQxnkZWjbYM3OqfmBKiYKw67kSgXDGgx9OekKZHP2vCfF3/H9pEBNED5pR+B0
-         HbivpF/e5u9dbmyoIU3uFFpXTlxwkzWCyfytvv3dAN615J781KE7nUQiSrM7qQhpXFqR
-         q5jlql1mv1I2hjm6ogx+fYQuBBAxwSqZR6X3weutBUdTXWEGYyWu/8kfEDub7nqAptrc
-         WlkYyRBO8W1cvyn3Wg/AdZHc5849fmMfy/8AF4M2JvCJWZ47dBOsFCZdLkBPM/xywO2s
-         Lgpw==
+        bh=+ZlmtiF4KA9ocnxQPoaWgoJR4/5KSbrAx1dT+mr7mGM=;
+        b=W7NFa7T/Oae6bC96fLKOOD7Sb+BPavX6Psf0Cwp9e8TPJgPtXT/35jB3AE2+2yMRkz
+         9UlpledBPB25lpNULBYhsiKQf/hEqyMzQQqB3eU62AnDBtlBFAsigfMCs5zi63gloBGv
+         ikvR2pv0+B6jIzpVq/msFLaKiDbA+uAjvE9MR0youdgb4jhbgvZdI0H6llksNEtOsm1I
+         0ngAdtY+2HAQhJubh5BaiSGaMBFSlaGrSBaZfwk+SOvZkHgNJ5yp1yUWKGXb/x3o4Ou8
+         6804uC9lSlsEgDO93F02hK7wDaF1jMN8ecPSzlmcnMDeXWVQQxnIpiSHNT57jeeqc9mR
+         1dqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685607316; x=1688199316;
+        d=1e100.net; s=20221208; t=1685607386; x=1688199386;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/wwwjM9P/GD9y2WtF65nLtVcIMEiwxXul9Ob8jZmYYk=;
-        b=gq293tZSQXh0IhzQKeoeOc6gptTSv0e2k5x7n8xY3Gi6RwzcyTSdwGIqVWCYb6eAEY
-         LMq2HGu7tf3uuJlUWXOTqehwuUQniW/3Cs1sKSUx0T7XrpqeD50cmOlek6xZ7OP0BSL5
-         VvddWd5X8EgPeVpVq0UjAUE3eqwHWfgVDgR0I05ccbfnwrsx293j5cKMzQbSbmyqyYN+
-         Vj78AWQyu0HtSOMcMpBeijvL4rMNuYT3xcqVWpxPXCeJKbnT+3FYeIHZhDlDK3V/R9KP
-         5AGrbTB7vuCCZvoq0YPBEWN0+QjkFhgiVjMXnPqQAX0DcgTGVlbJZViThvl1FUyxto4Y
-         OZ1Q==
-X-Gm-Message-State: AC+VfDyCSsY8gEHeuNkgV7nLyUt2LbUw1/rcsaaHAWYP9+6V6HA4Gb3v
-        c0ev28HtS8rEwZvmiy0ErXBt/A==
-X-Google-Smtp-Source: ACHHUZ6iiQPR2tf93aAvw7Aij8815QXY9Vq0T9piVYxnhMCB9kcVvtlaaPViZzJ/DeRWFf/5vVtajg==
-X-Received: by 2002:a2e:9dc1:0:b0:2ac:819f:f73f with SMTP id x1-20020a2e9dc1000000b002ac819ff73fmr4470033ljj.20.1685607316119;
-        Thu, 01 Jun 2023 01:15:16 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id v12-20020a2e990c000000b002af01da6c67sm3692769lji.32.2023.06.01.01.15.14
+        bh=+ZlmtiF4KA9ocnxQPoaWgoJR4/5KSbrAx1dT+mr7mGM=;
+        b=dMVSL7MfH1OYZc7agIeFOZAsExqlHWBU2Cwhf8QQmS7emJ0dLsNuQvdJkObkcpp8Ak
+         Rdllx1sRpQlhNOOvJJDGGkCOYLLf10ZZYlymCN2uui/sE+Q4pVpF/v/qBJasT2tG+n6m
+         nd1r2tpwS8c+LuFC2amaoL4BgwEROvG6FhIJduulKxT1qC4aV8aijxxn/EkXtgeiHh2W
+         Zd3QBjNbQmNUJIxbL597vTwDbd1vyvHXt6L+41W7wqIuOhp4TVmRADiC90OrnX3gjZuV
+         8PX/0/5vu8Zb61Qvf3rSJfeAk+oHJi6t/HHpurvC/7KHlTB7c1m0TciVWzc5olbekNUt
+         RR2A==
+X-Gm-Message-State: AC+VfDwb6u6H5Msiwo9owUYrk1evCi3MWS4jze/vJiBGGiJEx8nPWHLl
+        rCXzbU8pWNy/2mPzycOfhwTHcgsbfH3ahbL/iII=
+X-Google-Smtp-Source: ACHHUZ4DljKcRGOWxpVfB5cYXTsZTWw0PALbkS9QuMfQOSfa87E03D8Hwpa9RKx4sHT8U0nU+uktzg==
+X-Received: by 2002:a17:906:fd82:b0:96a:6f35:d1a5 with SMTP id xa2-20020a170906fd8200b0096a6f35d1a5mr7805033ejb.67.1685607386283;
+        Thu, 01 Jun 2023 01:16:26 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id u8-20020a1709060b0800b0096f920858afsm10170697ejg.102.2023.06.01.01.16.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 01:15:15 -0700 (PDT)
-Message-ID: <e98a2901-7ad4-5a1f-5739-64750836d396@linaro.org>
-Date:   Thu, 1 Jun 2023 10:15:13 +0200
+        Thu, 01 Jun 2023 01:16:25 -0700 (PDT)
+Message-ID: <88a6ba33-2494-e4c7-eba2-d31c0deeb308@linaro.org>
+Date:   Thu, 1 Jun 2023 10:16:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 0/8] Flush RSC votes properly on more RPMh platforms
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 17/43] dt-bindings: spi: Add Cirrus EP93xx
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Nikita Shubin <nikita.shubin@maquefel.me>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Richard Acayan <mailingradian@gmail.com>,
-        Lina Iyer <ilina@codeaurora.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>
-References: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
- <f5875c10-21c1-43b6-4ce6-25b968588412@linaro.org>
- <CAD=FV=Um8U2MQsrv+ngQg_h-aQMi5_yy6Lrj3ovr7eV1PC+Wnw@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAD=FV=Um8U2MQsrv+ngQg_h-aQMi5_yy6Lrj3ovr7eV1PC+Wnw@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Michael Peters <mpeters@embeddedTS.com>,
+        Kris Bahnsen <kris@embeddedTS.com>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+ <20230601053546.9574-18-nikita.shubin@maquefel.me>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230601053546.9574-18-nikita.shubin@maquefel.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -94,61 +82,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/06/2023 07:34, Nikita Shubin wrote:
+> Add YAML bindings for ep93xx SoC SPI.
+> 
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
+> 
+> Notes:
+>     v0 -> v1:
+>     Krzysztof Kozlowski:
+>     - replaced maintainers
+>     - removed wildcards
+>     - use fallback compatible and list all possible compatibles
+>     - drop quotes in ref
+>     - dropped "clock-names"
+>     - dropped label
+>     - fix ident
+> 
+>  .../devicetree/bindings/spi/spi-ep9301.yaml   | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/spi-ep9301.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-ep9301.yaml b/Documentation/devicetree/bindings/spi/spi-ep9301.yaml
+> new file mode 100644
+> index 000000000000..c363b25a3074
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/spi-ep9301.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/spi-ep9301.yaml#
+
+Filename based on compatible, so missing prefix, wrong order of name
+components.
+
+This applies everywhere, not to some files only. Applied to all your
+bindings.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: EP93xx SoC SPI controller
+> +
+> +maintainers:
+> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> +  - Nikita Shubin <nikita.shubin@maquefel.me>
+> +
+> +allOf:
+> +  - $ref: spi-controller.yaml#
+> +
+> +properties:
+> +  "#address-cells": true
+> +  "#size-cells": true
+
+Drop these two.
+
+> +
+> +  compatible:
+
+Anyway, compatible is always first.
+
+> +    oneOf:
+> +      - const: cirrus,ep9301-spi
+> +      - items:
+> +          - enum:
+> +              - cirrus,ep9302-spi
+> +              - cirrus,ep9307-spi
+> +              - cirrus,ep9312-spi
+> +              - cirrus,ep9315-spi
+> +          - const: cirrus,ep9301-spi
+> +
+> +  reg:
+> +    items:
+> +      - description: SPI registers region
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: SPI Controller reference clock source
+> +
+> +  cs-gpios: true
+
+Drop, not needed.
+
+> +
+> +  cirrus,ep9301-use-dma:
+> +    description: Flag indicating that the SPI should use dma
+> +    type: boolean
+
+In such case where are dmas? Unless you meant some internal dma
+controller? In such case extend the description because now it just
+duplicates property name.
 
 
-On 31.05.2023 23:45, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, May 31, 2023 at 7:26 AM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 31.05.2023 15:22, Konrad Dybcio wrote:
->>> As pointed out in [1], the Linux implementation of RSC basically requires
->>> (even if not explicitly) that we point it to a power domain which
->>> represents the power state of the CPUs. In an effort to fulfill that
->>> requirement, make it required in bindings and hook it up on all platforms
->>> where I was able to do. This means all RPMh platforms, except
->>>
->>> - SC7180
->>> - SC7280
->>> - SA8775
->>>
->>> As there wasn't an idle-states setup (which may be on purpose for CrOS
->>> devices, certainly not for Windows SC7[12]80s) that I could validate.
->>> (Doug, Bartosz, could you guys look into your respective platforms of
->>> interest here?)
->>>
->>> This series also adds support for idle states on SM6350, as I was able
->>> to add and test that.
->> I noticed that 7280 is WIP:
->>
->> https://lore.kernel.org/lkml/20230424110933.3908-4-quic_mkshah@quicinc.com/
-> 
-> Right. For sc7180 Chromebooks we don't use OSI (OS Initiated) mode but
-> instead use PC (Platform Coordinated) mode. As I understand it, that
-> means we take a different path through all this stuff.
-> 
-> That being said, in the sc7280 thread you pointed at, Bjorn and Ulf
-> said that we could use the new device tree snippets for sc7280 even
-> before the ATF update. If I'm reading the thread correctly and the
-> same applies to sc7180:
-> 
-> 1. New DT plus firmware that doesn't support OSI - OK
-> 2. New DT plus firmware that supports OSI - OK after code changes
-> 3. Old DT plus firmware that doesn't support OSI - OK
-> 4. Old DT plus firmware that supports OSI - Not OK
-> 
-> For sc7180 Chromebooks we'll never have firmware that supports OSI.
-> That means that, assuming I'm understanding correctly, we actually
-> could move the DT to represent things the new way. Presumably this
-> would be important for sc7180 devices that originally shipped with
-> Windows (I think support for one of these is underway).
-It's even merged now!
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/cirrus,ep93xx-clock.h>
+> +    spi@808a0000 {
+> +      compatible = "cirrus,ep9301-spi";
+> +      reg = <0x808a0000 0x18>;
+> +      interrupt-parent = <&vic1>;
+> +      interrupts = <21>;
+> +      clocks = <&syscon EP93XX_CLK_SPI>;
+> +      cs-gpios = <&gpio5 2 0>;
 
-Yeah, AFAICT all you said makes sense
+Use proper gpio defines for flags.
 
-I don't however know how you tell RSC driver that your platform is
-going to sleep when using PC mode..
+> +      cirrus,ep9301-use-dma;
+> +    };
+> +
+> +...
 
-KOnrad
-> 
-> -Doug
+Best regards,
+Krzysztof
+
