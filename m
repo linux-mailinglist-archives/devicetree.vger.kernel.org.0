@@ -2,86 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A77E5719DF5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B5E0719E1A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 15:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233891AbjFAN15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 09:27:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35762 "EHLO
+        id S234113AbjFAN3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 09:29:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233835AbjFAN1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:27:49 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A218E64
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 06:27:29 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5149bdb59daso1296354a12.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 06:27:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685626045; x=1688218045;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0Bh0NwcmQVDulBJjQlFxoXeFk9v1DzA4S7ePzbUk4+w=;
-        b=q1iotZxbLy8szFOTeC5e/G0VQdDeibKUxN1V13zopsKDoRyLSyc6Z3+4NCEAYIHRcr
-         0Y+SOKRkc0h/8PrlcU2NIUN1lDLPBiHpGdDNpR2mlagpo/gvLvFSQS3CValEhaAtjE+2
-         RE+eVynh/sqxFzs+LL8qvlWKtlmi6qvz/TKHDm0/IH+D5aOrdEusPcJwXPMYNre/ulBW
-         FI9QWATMBhOQi00g1fzNaUT9uFmVOiAy+PvM5ML4OmjN50l9Q4JqXau5CjGGmBr819kT
-         fq1kDhA1u4fUCbzvrfZF+RjuYK9zU0Wo40z60SZLVIhSRl3FKihyEIC7AAk5scS9W995
-         Kp9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685626045; x=1688218045;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Bh0NwcmQVDulBJjQlFxoXeFk9v1DzA4S7ePzbUk4+w=;
-        b=UmHvzdmcErK2ZjGE2xXNyRJ+sRjcWYrlaLsTZDr3WBIg8g03XjyAkpCYewruCTWFZM
-         UDYWt77VZO6rSo9L+yJ+/wqdJcyUgttxpFrTmnxzFnfuWVeK/4HbbL4ZkCdoODV+jOdV
-         JKWdn7I30TzX2QeoVPSfovt2K+EL82HJZHpCNRKcFlGTVbd+ngUeF9vskK09DzBx0svC
-         hGO0rRchRNsPlLRD8M/EKLlzdiLBxVcEaB1mOWIP9XsLfhmUQD8MN2b3iAnLbexFlldK
-         93eLmRpS8sM6h+5zwQo+y6AgnYZ04fLGJ/oI7d52TsX65iyn8pekTL0Qwt5IHMbVkOVj
-         5Puw==
-X-Gm-Message-State: AC+VfDyJAAzX9/Xa/ItPgB0R5JzSLQwzGraD3YMZVHRZxPQdRV3uTe/I
-        mf+i0d8A6UhnkbG/puAarR7kkg==
-X-Google-Smtp-Source: ACHHUZ56vTDQLpgZcsfUFAD+UPccMtNn7lITWkhbfSA78O9BcUWWDHiZ5WDLxtlvxFtNO3fcz/01mw==
-X-Received: by 2002:a05:6402:12ce:b0:514:938a:67cd with SMTP id k14-20020a05640212ce00b00514938a67cdmr5009231edx.38.1685626045251;
-        Thu, 01 Jun 2023 06:27:25 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id y1-20020aa7c241000000b0050bfeb15049sm7070997edo.60.2023.06.01.06.27.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 06:27:24 -0700 (PDT)
-Message-ID: <33979417-2c0c-5474-23e0-7e72add99873@linaro.org>
-Date:   Thu, 1 Jun 2023 15:27:22 +0200
+        with ESMTP id S234061AbjFAN2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 09:28:40 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D951FC;
+        Thu,  1 Jun 2023 06:28:19 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 351DRxTq077536;
+        Thu, 1 Jun 2023 08:27:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685626079;
+        bh=q/GykU5T9n5Kgc4zooTOyI7oZoY5Y9fll6ju0mX0kt8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=zOBkAZF/KWLCFskhNEWzxoH116fHU2etpkVM42sPWQ3xnzgkXUlZJA/0LpmrFtk5V
+         vlpa7wilJGBxN1xQww6YhvBt26VevEQ2r2gkMrJYn8QQiG40OmJ3Xctuvt11dZUfEP
+         LO6YWR7qPpVBYqIR6n5wL+XSrUirMhG1GHJFUjXw=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 351DRxiY013352
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Jun 2023 08:27:59 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Jun 2023 08:27:59 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Jun 2023 08:27:59 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 351DRxwp033854;
+        Thu, 1 Jun 2023 08:27:59 -0500
+Date:   Thu, 1 Jun 2023 08:27:59 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Hari Nagalla <hnagalla@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j721s2-main: Add R5F and C7x
+ remote processsor nodes
+Message-ID: <20230601132759.li7t35pw35gfg6i7@demise>
+References: <20230529220941.10801-1-hnagalla@ti.com>
+ <20230529220941.10801-2-hnagalla@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V7 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        andy.shevchenko@gmail.com
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
-        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
-        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robimarko@gmail.com
-References: <20230519125409.497439-1-quic_srichara@quicinc.com>
- <20230519125409.497439-5-quic_srichara@quicinc.com>
- <CAHp75VfVx+oGYKcija3h9-eWc6jggMx8p5SAQTEHTBEbjTaJKw@mail.gmail.com>
- <1823419a-6bb4-03f7-d5ae-e32204c5e598@quicinc.com>
- <ZHTK7uEzO7kcx_cV@surfacebook>
- <aefd0df1-8dfb-1b69-589b-974dea312845@quicinc.com>
- <664940c3-9ec1-b4bd-9db5-fa3529e3d1ff@linaro.org>
- <8146f367-c539-bea5-12b6-424213018488@quicinc.com>
- <eb109116-94eb-5b6d-0049-7bb31feada36@linaro.org>
-Content-Language: en-US
-In-Reply-To: <eb109116-94eb-5b6d-0049-7bb31feada36@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230529220941.10801-2-hnagalla@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,50 +66,361 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 13:53, Krzysztof Kozlowski wrote:
-> On 01/06/2023 13:41, Sricharan Ramabadhran wrote:
->>
->>
->> On 6/1/2023 3:21 PM, Krzysztof Kozlowski wrote:
->>> On 01/06/2023 11:50, Sricharan Ramabadhran wrote:
->>>>
->>>>
->>>> On 5/29/2023 9:25 PM, andy.shevchenko@gmail.com wrote:
->>>>> Mon, May 29, 2023 at 03:58:09PM +0530, Sricharan Ramabadhran kirjoitti:
->>>>>> On 5/20/2023 12:17 AM, Andy Shevchenko wrote:
->>>>>>> On Fri, May 19, 2023 at 3:55 PM Sricharan Ramabadhran
->>>>>>> <quic_srichara@quicinc.com> wrote:
->>>>>
->>>>> ...
->>>>>
->>>>>>>      depends on OF || COMPILE_TEST
->>>>>>
->>>>>>    Yeah sure. COMPILE_TEST could be standalone. Will fix it and repost.
->>>>>
->>>>> Standalone COMPILE_TEST will give you definitely NOT what you want.
->>>>> And actually it's strange to have it standalone.
->>>>>
->>>>
->>>>    Ho ok, i meant like this, "depends on ARM64 || COMPILE_TEST"
->>>
->>> Don't do it differently than all other drivers. Open the Kconfig and
->>> look at existing entries.
->>>
->>    The latest added has this below, will use this
->>
->> 	depends on OF || COMPILE_TEST
+On 17:09-20230529, Hari Nagalla wrote:
+> The J721S2 SoCs have 2 dual-core Arm Cortex-R5F processor (R5FSS)
+> subsystems/clusters in MAIN voltage domain. Each of these can be
+> configured at boot time to be either run in a LockStep mode or in an
+> Asymmetric Multi Processing (AMP) fashion in Split-mode. These
+> subsystems have 64 KB each Tightly-Coupled Memory (TCM) internal
+> memories for each core split between two banks - ATCM and BTCM
+> (further interleaved into two banks). The TCMs of both Cores are
+> combined in LockStep-mode to provide a larger 128 KB of memory, but
+> otherwise are functionally similar to those on J721E SoCs.
 > 
-> I would even drop this... Lemme check, it looks odd. We depend on
-> ARCH_QCOM which uses OF. We have few drivers which depend on ACPI, but
-> that also seems wrong. These are platform drivers so they should expect
-> platform select proper firmware interface. I think none of other
-> platform drivers do like this (neither Samsung pinctrl nor other
-> Qualcomm drivers)).
+> Add the DT nodes for the MAIN domain R5F cluster/subsystems, the two
+> R5F cores are added as child nodes to each of the R5F cluster nodes.
+> The clusters are configured to run in LockStep mode by default, with
+> the ATCMs enabled to allow the R5 cores to execute code from DDR
+> with boot-strapping code from ATCM. The inter-processor communication
+> between the main A72 cores and these processors is achieved through
+> shared memory and Mailboxes.
 > 
-> I will fix this. For your patch I would just skip OF entirely.
+> The following firmware names are used by default for these cores, and
+> can be overridden in a board dts file if desired:
+>         MAIN R5FSS0 Core0: j721s2-main-r5f0_0-fw (both in LockStep & Split modes)
+>         MAIN R5FSS0 Core1: j721s2-main-r5f0_1-fw (needed only in Split mode)
+>         MAIN R5FSS1 Core0: j721s2-main-r5f1_0-fw (both in LockStep & Split modes)
+>         MAIN R5FSS1 Core1: j721s2-main-r5f1_1-fw (needed only in Split mode)
+> 
+> The K3 J721S2 SoCs have two C71x DSP subsystems in MAIN voltage domain. The
+> C71x DSPs are 64 bit machine with fixed and floating point DSP operations.
+> Similar to the R5F remote cores, the inter-processor communication
+> between the main A72 cores and these DSP cores is achieved through
+> shared memory and Mailboxes.
+> 
+> The following firmware names are used by default for these DSP cores,
+> and can be overridden in a board dts file if desired:
+>         MAIN C71_0 : j721s2-c71_0-fw
+>         MAIN C71_1 : j721s2-c71_1-fw
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 128 +++++++++++++++++----
+>  1 file changed, 104 insertions(+), 24 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index 2dd7865f7654..361aa6b24b22 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -463,7 +463,6 @@ mailbox0_cluster0: mailbox@31f80000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
 
-Correction: you need OF :(
+See https://lore.kernel.org/all/20221020160305.18711-9-afd@ti.com/
+NAK.
+>  		};
+>  
+>  		mailbox0_cluster1: mailbox@31f81000 {
+> @@ -473,7 +472,6 @@ mailbox0_cluster1: mailbox@31f81000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster2: mailbox@31f82000 {
+> @@ -483,7 +481,6 @@ mailbox0_cluster2: mailbox@31f82000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster3: mailbox@31f83000 {
+> @@ -493,7 +490,6 @@ mailbox0_cluster3: mailbox@31f83000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster4: mailbox@31f84000 {
+> @@ -503,7 +499,6 @@ mailbox0_cluster4: mailbox@31f84000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster5: mailbox@31f85000 {
+> @@ -513,7 +508,6 @@ mailbox0_cluster5: mailbox@31f85000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster6: mailbox@31f86000 {
+> @@ -523,7 +517,6 @@ mailbox0_cluster6: mailbox@31f86000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster7: mailbox@31f87000 {
+> @@ -533,7 +526,6 @@ mailbox0_cluster7: mailbox@31f87000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster8: mailbox@31f88000 {
+> @@ -543,7 +535,6 @@ mailbox0_cluster8: mailbox@31f88000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster9: mailbox@31f89000 {
+> @@ -553,7 +544,6 @@ mailbox0_cluster9: mailbox@31f89000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster10: mailbox@31f8a000 {
+> @@ -563,7 +553,6 @@ mailbox0_cluster10: mailbox@31f8a000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox0_cluster11: mailbox@31f8b000 {
+> @@ -573,7 +562,6 @@ mailbox0_cluster11: mailbox@31f8b000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster0: mailbox@31f90000 {
+> @@ -583,7 +571,6 @@ mailbox1_cluster0: mailbox@31f90000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster1: mailbox@31f91000 {
+> @@ -593,7 +580,6 @@ mailbox1_cluster1: mailbox@31f91000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster2: mailbox@31f92000 {
+> @@ -603,7 +589,6 @@ mailbox1_cluster2: mailbox@31f92000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster3: mailbox@31f93000 {
+> @@ -613,7 +598,6 @@ mailbox1_cluster3: mailbox@31f93000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster4: mailbox@31f94000 {
+> @@ -623,7 +607,6 @@ mailbox1_cluster4: mailbox@31f94000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster5: mailbox@31f95000 {
+> @@ -633,7 +616,6 @@ mailbox1_cluster5: mailbox@31f95000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster6: mailbox@31f96000 {
+> @@ -643,7 +625,6 @@ mailbox1_cluster6: mailbox@31f96000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster7: mailbox@31f97000 {
+> @@ -653,7 +634,6 @@ mailbox1_cluster7: mailbox@31f97000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster8: mailbox@31f98000 {
+> @@ -663,7 +643,6 @@ mailbox1_cluster8: mailbox@31f98000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster9: mailbox@31f99000 {
+> @@ -673,7 +652,6 @@ mailbox1_cluster9: mailbox@31f99000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster10: mailbox@31f9a000 {
+> @@ -683,7 +661,6 @@ mailbox1_cluster10: mailbox@31f9a000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		mailbox1_cluster11: mailbox@31f9b000 {
+> @@ -693,7 +670,6 @@ mailbox1_cluster11: mailbox@31f9b000 {
+>  			ti,mbox-num-users = <4>;
+>  			ti,mbox-num-fifos = <16>;
+>  			interrupt-parent = <&main_navss_intr>;
+> -			status = "disabled";
+>  		};
+>  
+>  		main_ringacc: ringacc@3c000000 {
+> @@ -1102,4 +1078,108 @@ main_spi7: spi@2170000 {
+>  		clocks = <&k3_clks 346 1>;
+>  		status = "disabled";
+>  	};
+> +
+> +	main_r5fss0: r5fss@5c00000 {
+> +		compatible = "ti,j721s2-r5fss";
+> +		ti,cluster-mode = <1>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
+> +			 <0x5d00000 0x00 0x5d00000 0x20000>;
+> +		power-domains = <&k3_pds 277 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		main_r5fss0_core0: r5f@5c00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5c00000 0x00010000>,
+> +			      <0x5c10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <279>;
+> +			ti,sci-proc-ids = <0x06 0xff>;
+> +			resets = <&k3_reset 279 1>;
+> +			firmware-name = "j721s2-main-r5f0_0-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +
+> +		main_r5fss0_core1: r5f@5d00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5d00000 0x00010000>,
+> +			      <0x5d10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <280>;
+> +			ti,sci-proc-ids = <0x07 0xff>;
+> +			resets = <&k3_reset 280 1>;
+> +			firmware-name = "j721s2-main-r5f0_1-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +	};
+> +
+> +	main_r5fss1: r5fss@5e00000 {
+> +		compatible = "ti,j721s2-r5fss";
+> +		ti,cluster-mode = <1>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x5e00000 0x00 0x5e00000 0x20000>,
+> +			 <0x5f00000 0x00 0x5f00000 0x20000>;
+> +		power-domains = <&k3_pds 278 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		main_r5fss1_core0: r5f@5e00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5e00000 0x00010000>,
+> +			      <0x5e10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <281>;
+> +			ti,sci-proc-ids = <0x08 0xff>;
+> +			resets = <&k3_reset 281 1>;
+> +			firmware-name = "j721s2-main-r5f1_0-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +
+> +		main_r5fss1_core1: r5f@5f00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5f00000 0x00010000>,
+> +			      <0x5f10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <282>;
+> +			ti,sci-proc-ids = <0x09 0xff>;
+> +			resets = <&k3_reset 282 1>;
+> +			firmware-name = "j721s2-main-r5f1_1-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +	};
+> +
+> +	c71_0: dsp@64800000 {
+> +		compatible = "ti,j721s2-c71-dsp";
+> +		reg = <0x00 0x64800000 0x00 0x00080000>,
+> +		      <0x00 0x64e00000 0x00 0x0000c000>;
+> +		reg-names = "l2sram", "l1dram";
+> +		ti,sci = <&sms>;
+> +		ti,sci-dev-id = <8>;
+> +		ti,sci-proc-ids = <0x30 0xff>;
+> +		resets = <&k3_reset 8 1>;
+> +		firmware-name = "j721s2-c71_0-fw";
+> +	};
+> +
+> +	c71_1: dsp@65800000 {
+> +		compatible = "ti,j721s2-c71-dsp";
+> +		reg = <0x00 0x65800000 0x00 0x00080000>,
+> +		      <0x00 0x65e00000 0x00 0x0000c000>;
+> +		reg-names = "l2sram", "l1dram";
+> +		ti,sci = <&sms>;
+> +		ti,sci-dev-id = <11>;
+> +		ti,sci-proc-ids = <0x31 0xff>;
+> +		resets = <&k3_reset 11 1>;
+> +		firmware-name = "j721s2-c71_1-fw";
+> +	};
+>  };
+> -- 
+> 2.34.1
+> 
 
-Best regards,
-Krzysztof
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
