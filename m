@@ -2,91 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4821A71982D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CAAA71984F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jun 2023 12:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232782AbjFAKCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 06:02:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
+        id S233254AbjFAKGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 06:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233158AbjFAKCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 06:02:00 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 054761702
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 03:01:01 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-30c2bd52f82so681440f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 03:01:01 -0700 (PDT)
+        with ESMTP id S233212AbjFAKGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 06:06:14 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F452E44
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 03:03:55 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-514924b4f8cso1032173a12.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 03:03:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685613660; x=1688205660;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WAx+jFDzq0c5ILkKouxlY9shq9bl0OVhOAIn/RBAyfY=;
-        b=B8yhsJymQokCcMGsEIBPJ7ys9b5gK8OMUImx5g+OR1leKfOF29HgN7KHgO/dPnCa/c
-         sYI0GDWJX/UnWnw3GeWang4R+34dlUCYQkNLpqnB511XkElne2Wa6WOPdObF07xQejWc
-         b7eiBwoPxlFcQNVXGyN1AwrtZixGk+NR3i9iZm1apcyNCjUfIVId4s4/5Z+AmQDxiNpd
-         +nexR2w4mie/uT5MSZUmneHHRsika6Pu6VH2zkDKCL/I4g0YcVtdP2pWFDGIGPlTvsaG
-         vi/TLhkSJsX1jZI4ZN6+ntI+wUIbLr5ScYu1MW4FgsB7AdT8MCuoyZyREwemFSYHuCW6
-         QRCQ==
+        d=linaro.org; s=google; t=1685613833; x=1688205833;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WO8KsaywxjcSX6U8BECoCcVISsSXERYCN/AYt3V86VI=;
+        b=j4S5kWdl3VRytOmeo3nxkdlw8u0wFF93pTVOptBBi9qTp4Ot0KOb5bcE8MoFv93bRY
+         sY7h6/H9zu0Zu+2QXm60OrPcq0uvD8BnQRftgyD5ZikvnJK1ricQHhKMVzf4z8KPDqCO
+         6zqeqiGYZmmL3g2MnLrqGBsprMfe6tnMXGOmb6TpZHGs5mGLcvs4S6mAPUI84TbZ6ed5
+         GO9M6G1SBQ2iV2Kbwnz+JlB/rJRkmmv6ZsAlToqHh+f+AsHxcuyPo4RU55M7a6WvLVun
+         LJg4TZ+p8qu6yH1IEYFk9CKwICZ+7E8YbPZjKZCcnY9EQaKdtonjIB7OrvaAqkSiHJsP
+         a0vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685613660; x=1688205660;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WAx+jFDzq0c5ILkKouxlY9shq9bl0OVhOAIn/RBAyfY=;
-        b=g6RFlemXy4W7XQ9oHD9xAVDhZ7jeq9iSVtgbSB6QBF72HMyZutAw7dUPUgSDPj56kU
-         4dTvOx6rUCvMADph2AzjnFdaLCB92Q6HGrZwMc31jw4RqWloiUuF33jYynPo1LgDQSJl
-         4jhUpKK4WDvb7S/hGCynNuS+5KZ0V11NFagBBV8gtiybvnmnpiHhPBJwc37+LWRRX6b8
-         Fdcm5MHgX/pRImTPWxjK/gmfh+sZn6N1cPneJWT3ojRX1+Ao9dwHcQEeVKkZjZLednwF
-         Wc3q+m5Rx0UDc/u0sYgGNrFkUGtQKXseTsVRBWDH9e62JNreGXV7ZQ7H7lVyM8uClUxk
-         Vsfw==
-X-Gm-Message-State: AC+VfDyaVHEWz2gz9M3fc/HY1puFdJw2p86Wgrp6v4aAPokVPtgHK2Qo
-        2t+c/SiEM1v1AejCqIVgCw9meQ==
-X-Google-Smtp-Source: ACHHUZ6UladVjoxCSV/LuWMdKqFDJSnP9zD3rQvW9KQ2gMIYMIbxP+Jap0gSzsKL+cHCmknC/gyyJQ==
-X-Received: by 2002:adf:efd1:0:b0:30a:f2a0:64fa with SMTP id i17-20020adfefd1000000b0030af2a064famr1352671wrp.10.1685613660397;
-        Thu, 01 Jun 2023 03:01:00 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id l13-20020adff48d000000b003064088a94fsm9708543wro.16.2023.06.01.03.00.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 03:01:00 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 01 Jun 2023 12:00:55 +0200
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sm8550-qrd: enable PMIC Volume
- and Power buttons
+        d=1e100.net; s=20221208; t=1685613833; x=1688205833;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WO8KsaywxjcSX6U8BECoCcVISsSXERYCN/AYt3V86VI=;
+        b=VBsDEsOaaQGFje/KKSsozvNREmgviM2Me8QiBmzoZS/rMnWDTU1AMkZVGjjfxlZLgS
+         hEruKKaDsx/IbQ7JU+YkidWCem+cw0io/uPcylt+Md7v0Emwbg6HXBLbkCnSzUYwGNZ0
+         62hNd4cmhRqzO710UaHlLkIe3ynrTGBqaI86m4cal2cMVqHcVC2QHkERnu0oWUjEMStr
+         ZrftAFAyAYq4q/+FFWU0baHYnfb31YBBv7ev+K5C79pDqOP8IiXp7UMJkviKzdpCY+dK
+         vvhB7v0xTRwBHfby6o7jNKffbnVHogroQePsZl0r/XSzkz3IPoR7In/A9fxWJx6s14zy
+         QWPA==
+X-Gm-Message-State: AC+VfDwbkUvNAX8Nc4LZgl2U0kV37p5rsfvPxZpdEMH13kt43u+5nxjQ
+        zqweyWM+B4dfWiSPoDS7AFELPQ==
+X-Google-Smtp-Source: ACHHUZ5XF35YQhoW6eEwBUCD3iUcY3MK6CCYI1Ds5j3oUuOB+tovOKsrFDij/jYx+59W+nHLeUm8eQ==
+X-Received: by 2002:a17:907:2d0a:b0:974:1ef7:1e33 with SMTP id gs10-20020a1709072d0a00b009741ef71e33mr8451695ejc.8.1685613833464;
+        Thu, 01 Jun 2023 03:03:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id t24-20020a170906179800b00968db60e070sm10262249eje.67.2023.06.01.03.03.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Jun 2023 03:03:52 -0700 (PDT)
+Message-ID: <025e29ae-842f-e086-81f1-20380152dc0e@linaro.org>
+Date:   Thu, 1 Jun 2023 12:03:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v3-4-8823ee43f3fc@linaro.org>
-References: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v3-0-8823ee43f3fc@linaro.org>
-In-Reply-To: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v3-0-8823ee43f3fc@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: display: msm: dp-controller: document
+ SM8550 compatible
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1743;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=P0dwYrh6jEzryV5sgUM7LEUfeUVDi8DDxU6r07M1UvI=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkeGxXgKZcuoQctaVxpxCDkCGLakl/acAXBZ4WmFHE
- S7k22+eJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZHhsVwAKCRB33NvayMhJ0R1REA
- C+4e6Gh4ZzFbqUPPSlMNTwZHp/cTa74/JKQJ4gFffEeaeLaA5IEzs8qMvg2jT+Ed1KpIJhaOELzUcq
- iyNGb8B0JOnw1DuSC5gCLfrbo246t+MV2Xo7HLwq1xG2WGSPYjVywgNz952/Ug1v8Aat4nsoibnh7/
- cFxhPL1B5XgXO0w/aZ59k3cqWfUj+dKQBmWrnG0A2Ra3BEgirj8RJpYqWX+T83BYL8BISJ3X1GwLeH
- 7lP29he7gZ7xhZEmhIBNwofNxkdEGPvr7q5Y9m9N0atmFJHd3S/0UvRyxXsO1CXTiC1xtZkYtnhmJ3
- x8El6FUEMnxh0OpzaLTTA6xSRdLG6RaEGhaPL9I7VQhBWuK4OHHgg6xrTpsHkxPfpUnrBXvQLfzuDf
- +eOeBs3mGGm4lVjxzQuktaniaY8+svYUzmjPN/MJTzplmxZFL8vTqYyZzTww3MmZRdmd7gjrQyYDp7
- mMdxFbNL0Nvpu7mYyeEtIPZfVKZDLymhdqS7gUtX3+Ys/AIJVOdhu2IoKYiykRUeb/TalOFo+Tl7n4
- inDX6eCnlsDdbqVLFLqJF7ESEQawyK7XnsJ1gGDVLivH302itOnIIbUs2S2xd0+DZmdFMnKWvMKSf2
- Gbr1ZVcZGvrT4EHhkXkpwS75fLhtkpCIRco385bgxhWpeWyKTxqFYZ7BfAYA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-dp-v1-0-29efe2689553@linaro.org>
+ <20230601-topic-sm8550-upstream-dp-v1-1-29efe2689553@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230601-topic-sm8550-upstream-dp-v1-1-29efe2689553@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -95,80 +91,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Volume Down & Power buttons are controlled by the PMIC via
-the PON hardware, and the Volume Up is connected to a PMIC gpio.
+On 01/06/2023 11:52, Neil Armstrong wrote:
+> The SM8550 & SM8350 SoC shares the same DP TX IP version, use the
+> SM8350 compatible as fallback for SM8550.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-Enable the necessary hardware and setup the GPIO state for the
-Volume Up gpio key.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 36 +++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index efff15225e67..cde2ab8b18a4 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -54,6 +54,22 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&volume_up_n>;
-+		pinctrl-names = "default";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
- 	pmic-glink {
- 		compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
- 		#address-cells = <1>;
-@@ -516,6 +532,16 @@ led-1 {
- 	};
- };
- 
-+&pm8550_gpios {
-+	volume_up_n: volume-up-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
- &pm8550_pwm {
- 	status = "okay";
- 
-@@ -548,6 +574,16 @@ &pm8550b_eusb2_repeater {
- 	vdd3-supply = <&vreg_l5b_3p1>;
- };
- 
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+
-+	status = "okay";
-+};
-+
- &pcie_1_phy_aux_clk {
- 	clock-frequency = <1000>;
- };
-
--- 
-2.34.1
+Best regards,
+Krzysztof
 
