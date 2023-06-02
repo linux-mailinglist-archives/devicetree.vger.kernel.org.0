@@ -2,124 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D4E71FDAD
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CB5271FDD5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:28:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234563AbjFBJXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 05:23:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44448 "EHLO
+        id S234235AbjFBJ2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 05:28:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234591AbjFBJWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:22:38 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C964D170B
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 02:20:49 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f60a27c4a2so1944213e87.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 02:20:49 -0700 (PDT)
+        with ESMTP id S234218AbjFBJ2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:28:16 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310941BCF
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 02:26:14 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5147f4bbfdaso2575084a12.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 02:26:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685697648; x=1688289648;
+        d=linaro.org; s=google; t=1685697972; x=1688289972;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=S7Drlf6d0eSvdkz521tEpg/R4nVgFN4pBANk8O7IVXo=;
-        b=fWDu+PB94bBQ8IVnM30BixX+jarI/2av8LptQBYAAJT+UuLUF+/L+ar0Qp9SDGOhUd
-         ZtYLxjpm+hgsJsDzPRJSJlfB9butJpnVGK4RAc+sU/fnHSes5GJxqMgLbFVEY5+9Oe1s
-         yvETh/loiAYPGA5/UeHFw6mAQm6yhydSZjgOhZLrOXzSLtCd0FDRjatxyhV1Bem8H5sc
-         L9gEUO+866xafmkSVdPjLmIvSuKtls9zfNJa+1W9Sc6XGSRiNs/Z09Pd9jqijlrDNjVV
-         dJmlJwLPXm4AFxFmBxuIntPXeJuEZgcz/GW5kjTKx4v6iTaU+w41GDH/g3luU7qLdEO5
-         9dSQ==
+        bh=y5mONN4wL/Liqce4VaaIxlv40SSoKGs7lYJ0PeAaNVU=;
+        b=YArpIdjhBau4bUHncRhdtnLrifllglfO2cL4Y2QdyOAAb/ShSvsnO47/l5v0J7eqTR
+         C4MHZhLJkLj0XoIiySwbWvER/8TCvSpzYm0mPI0o4ot0Qxlx4eg5ZCuQN2hQ86bmkWGY
+         dVYCffeP5ojLv1NwIv62nYSegwQemmZCZHhlO1IzmB20ERZCdXdNZ0FNzcNM6VhKq7R5
+         gnDZYGBJ47qswZR7Hu5UWtOqusuyll0RL2cT+njLETFKD+7FFlW6rqc1qBepy/qUisRC
+         h0t3XsFQ47fpCI9Hvcex92O45cez+naHuCMUfbr00t1OQTVtr4MyQ9NCJD0+L2nj/vye
+         dQWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685697648; x=1688289648;
+        d=1e100.net; s=20221208; t=1685697972; x=1688289972;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S7Drlf6d0eSvdkz521tEpg/R4nVgFN4pBANk8O7IVXo=;
-        b=Q25iCGyD64q7Yde/S6dPYDbCtWTpTlevJLSkyxvhFBP4uY4SdDKpzxKjDqMJ5fSTUo
-         ePbOloHsxP+Fag29MFKNoBLdBjsLVmdpAfGpsjz2zDGXGyf7W/A0rC6DgArfukP3QwX6
-         R4CAk0ro/0viLs6AwB0LGPn1otEeC8HnJs6aAlGFpv+7hm7laMsMpEWp0MwCrL7ynbje
-         Ix8DB7LzL1+JEeG9kjoAfncBVpvspUNq5Y0dGFxHFy1pRXFigMaekTxR3maIudGXLGjq
-         8Qpj5p1OWp9JsRhmDFB2Wi3kD4uherW2zQxRQuhyyNS9ydyLvYdMD09ITvNWyI5T2s2Y
-         j+8g==
-X-Gm-Message-State: AC+VfDxxvNOwAkK4S2ftoZncUx6//r7EqhqNv/wElynJlvhyHSnKHYel
-        HWNVYUQTMNDeKt8UKSaqJVMi5g==
-X-Google-Smtp-Source: ACHHUZ4EYz1HyZloJ+9zE+uQrhFGGv98qfYWPJ97kHwe1Oz1FMC4Dbia+nxn7ICJC2XZU5lOqEid3g==
-X-Received: by 2002:ac2:4578:0:b0:4ed:b4f9:28c7 with SMTP id k24-20020ac24578000000b004edb4f928c7mr1478901lfm.6.1685697648187;
-        Fri, 02 Jun 2023 02:20:48 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id z7-20020a056512376700b004f3b4d17114sm100286lft.144.2023.06.02.02.20.47
+        bh=y5mONN4wL/Liqce4VaaIxlv40SSoKGs7lYJ0PeAaNVU=;
+        b=duAzhXnd2H0+kPZb/y8/nClTUfzYrLpu9dV1xwAdVXPYGWNNJV0w82F9B9NpLfCaMM
+         q0/2IQLX4RLEEfW5GJIsstKCFsX+EY/1BsFKtqic1mlMFprYeCE4kdEwWe9mgGkkBxJv
+         dnR1j6cdsSzb1IhtgE3AHIboys13G+g/3oVu6iWgZCnUmvbGGs3lA8ZIILAiZqAB424A
+         PsTZVNY3SlGj5lOfN91myzstOTVe5Gm54aclil9UiyYyLnSg6kM5ImV4xtivXz1jCizE
+         dknIxmXpaGTB30TkaHTSLU7S9iv9CvLlqNLNoFbnuAsiQFWrmItuffnMv6J0/mREqp/t
+         1fAA==
+X-Gm-Message-State: AC+VfDyZCFsVMNeVIcOu9zIY2E9fWfHa5WXKyy39mraNNMeVLkmr9r6Q
+        JNEoa9IMXYocK68N0oocWIEZXK+l3H4/CiMapHU=
+X-Google-Smtp-Source: ACHHUZ7kLXNcFuvemWZ7GVhVmmdkvpqq44En4YBUYu4k69KzyVyYRAdzmK7csLF19ZEPgvY4RM+wMQ==
+X-Received: by 2002:aa7:da42:0:b0:510:e80f:fa4e with SMTP id w2-20020aa7da42000000b00510e80ffa4emr1752627eds.1.1685697972632;
+        Fri, 02 Jun 2023 02:26:12 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id y17-20020a50e611000000b005149e90115bsm459518edm.83.2023.06.02.02.26.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Jun 2023 02:20:47 -0700 (PDT)
-Message-ID: <87ae0199-be94-b199-e043-55aa74520f0b@linaro.org>
-Date:   Fri, 2 Jun 2023 11:20:46 +0200
+        Fri, 02 Jun 2023 02:26:12 -0700 (PDT)
+Message-ID: <88f91fc2-3b10-872d-4ade-486b25e94129@linaro.org>
+Date:   Fri, 2 Jun 2023 11:26:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sm8250: Add missing interconnect
- paths to USB HCs
+Subject: Re: [PATCH v2 2/2] dt-bindings: leds: Document Awinic AW2026 bindings
 Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20230602062016.1883171-1-abel.vesa@linaro.org>
- <20230602062016.1883171-4-abel.vesa@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230602062016.1883171-4-abel.vesa@linaro.org>
+To:     Vladimir Barinov <v.barinov@yadro.com>, Lee Jones <lee@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux@yadro.com
+References: <20230525101341.2036563-1-v.barinov@yadro.com>
+ <20230525101428.2037061-1-v.barinov@yadro.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230525101428.2037061-1-v.barinov@yadro.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2.06.2023 08:20, Abel Vesa wrote:
-> The USB HCs nodes are missing the interconnect paths, so add them.
+On 25/05/2023 12:14, Vladimir Barinov wrote:
+> Add Awinic AW2026 binding documentation
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Vladimir Barinov <v.barinov@yadro.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Changes in version 2:
+> - fixed typos in patch header 2016 -> 2026
+> - fixed typo in example section that break dt_binding_check
+> 
+>  .../bindings/leds/awinic,aw2026.yaml          | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw2026.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/awinic,aw2026.yaml b/Documentation/devicetree/bindings/leds/awinic,aw2026.yaml
+> new file mode 100664
+> index 000000000000..abacf746677b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/awinic,aw2026.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/awinic,aw2026.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic AW2026 3-channel LED Driver
+> +
+> +maintainers:
+> +  - Vladimir Barinov <v.barinov@yadro.com>
+> +
+> +description: |
 
-Konrad
-> 
-> Changes since v1:
->  * None.
-> 
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index c5787489b05c..08ea6396d364 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3750,6 +3750,10 @@ usb_1: usb@a6f8800 {
->  
->  			resets = <&gcc GCC_USB30_PRIM_BCR>;
->  
-> +			interconnects = <&aggre1_noc MASTER_USB3 0 &mc_virt SLAVE_EBI_CH0 0>,
-> +					<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3 0>;
-> +			interconnect-names = "usb-ddr", "apps-usb";
+Do not need '|' unless you need to preserve formatting.
+
+> +  The AW2026 is a 3-channel LED driver with I2C interface. It can control
+> +  LED brightness with PWM output. It supports hardware blinking and
+> +  hardware patterns.
 > +
->  			usb_1_dwc3: usb@a600000 {
->  				compatible = "snps,dwc3";
->  				reg = <0 0x0a600000 0 0xcd00>;
-> @@ -3810,6 +3814,10 @@ usb_2: usb@a8f8800 {
->  
->  			resets = <&gcc GCC_USB30_SEC_BCR>;
->  
-> +			interconnects = <&aggre1_noc MASTER_USB3_1 0 &mc_virt SLAVE_EBI_CH0 0>,
-> +					<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3_1 0>;
-> +			interconnect-names = "usb-ddr", "apps-usb";
+> +properties:
+> +  compatible:
+> +    const: awinic,aw2026
 > +
->  			usb_2_dwc3: usb@a800000 {
->  				compatible = "snps,dwc3";
->  				reg = <0 0x0a800000 0 0xcd00>;
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  awinic,led-max-microamp:
+
+microamp is per sub-LED, not per entire device. This is already
+expressed by common bindings. Drop entire property and use common one in
+children.
+
+
+
+> +    description:
+> +      Maximum current at LED output
+> +    enum:
+> +      [3000, 6375, 12750, 25500]
+> +
+> +  vcc-supply:
+> +    description: Regulator providing power to the "VBAT" pin.
+> +
+> +patternProperties:
+> +  "^led@[0-2]$":
+> +    type: object
+> +    $ref: common.yaml#
+
+unevaluatedProperties: false
+
+Just open existing bindings and do not code it differently...
+
+> +
+> +    properties:
+> +      reg:
+> +        description: Index of the LED.
+> +        minimum: 0
+> +        maximum: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c0 {
+
+i2c
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led-controller@64 {
+> +            compatible = "awinic,aw2026";
+> +            reg = <0x64>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            awinic,led-max-microamp = <6375>;
+> +            vcc-supply = <&vcc_3v3_s0>;
+> +
+> +            led@0 {
+> +                    reg = <0>;
+
+Wrong indenration.
+Use 4 spaces for example indentation.
+
+> +                    function = LED_FUNCTION_INDICATOR;
+> +                    color = <LED_COLOR_ID_RED>;
+> +            };
+
+Best regards,
+Krzysztof
+
