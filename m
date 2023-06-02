@@ -2,280 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 530E671F8A6
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 04:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F84971F8E3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 05:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230123AbjFBC6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 22:58:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
+        id S233491AbjFBDVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 23:21:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbjFBC6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 22:58:46 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC9018C;
-        Thu,  1 Jun 2023 19:58:44 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3522ufZV005417;
-        Fri, 2 Jun 2023 02:58:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=qFQIB/ud71JvDuFvq/x/CQyt3uSRPcDLl1prAsYYBnE=;
- b=ens7thHThozt54paO/XmTgaydS6ODCFCHiXNRGrX+nnfWQnPwFYvQJSf/guZScsCx1j1
- T+or8JweGqbqHo5LmEhvFLURVWONrA5oINoCO/Pqn0rNxyLAQLaCpOcyxJmRQ31CbVnC
- 96ez8IGZ3l9TPC3JOiw9Co8iMsKGQk/iFqcU79P+h9dfZXOFCp0l5meLc5I+HHUd9ezB
- ZLGIxnKtg7PBPqlMCo399a46abUEq2zMSqpQ83PaDjyoTGxvP417DeWDm8cmAI88DEZO
- EIShevWaPQIOqgQdUK9Olqn2NtI5OckQ7bheHBltddQB8snKZDbrlId3xxMcFaZDPuBp yw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qy8390020-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 02:58:17 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3522wGKA010839
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Jun 2023 02:58:16 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
- 19:58:11 -0700
-Message-ID: <053da70b-3d01-a3e5-4703-4e5cf23831ed@quicinc.com>
-Date:   Fri, 2 Jun 2023 10:58:08 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 06/11] coresight-tpdm: Add node to set dsb programming
- mode
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S233485AbjFBDVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 23:21:37 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06CC136;
+        Thu,  1 Jun 2023 20:21:33 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3523JoxsE028351, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3523JoxsE028351
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Fri, 2 Jun 2023 11:19:50 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Fri, 2 Jun 2023 11:20:04 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Fri, 2 Jun 2023 11:20:04 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Fri, 2 Jun 2023 11:20:04 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-7-git-send-email-quic_taozha@quicinc.com>
- <4e413a50-001d-cfbf-99a4-7e612f44ed38@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <4e413a50-001d-cfbf-99a4-7e612f44ed38@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RdUqhFOlz8R1FSzXjiZGiCIgPMjsMA1t
-X-Proofpoint-ORIG-GUID: RdUqhFOlz8R1FSzXjiZGiCIgPMjsMA1t
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_08,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- mlxscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
- priorityscore=1501 spamscore=0 adultscore=0 malwarescore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306020020
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Ray Chi <raychi@google.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the Realtek SoC USB 2.0/3.0 PHY
+Thread-Topic: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the
+ Realtek SoC USB 2.0/3.0 PHY
+Thread-Index: AQHZjrBYcJlLsVj/HkuHUZRifSysgq90OEaAgAGJYxD//9d+gIABRKMg
+Date:   Fri, 2 Jun 2023 03:20:04 +0000
+Message-ID: <f53b5c21247c49db8be7071de36c773b@realtek.com>
+References: <20230525022617.30537-1-stanley_chang@realtek.com>
+ <20230525022617.30537-3-stanley_chang@realtek.com>
+ <0b2143ca-ead7-c8fa-2e80-a94222af51ca@linaro.org>
+ <ee65a9d6d40d4099987db5ff1ad1753f@realtek.com>
+ <c49f5619-286c-fbb7-0f18-5869527081c8@linaro.org>
+In-Reply-To: <c49f5619-286c-fbb7-0f18-5869527081c8@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXMBS04.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 6/1/2023 5:23 PM, Suzuki K Poulose wrote:
-> On 27/04/2023 10:00, Tao Zhang wrote:
->> Add node to set and show programming mode for TPDM DSB subunit.
->> Once the DSB programming mode is set, it will be written to the
->> register DSB_CR.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> ---
->>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   | 15 ++++++
->>   drivers/hwtracing/coresight/coresight-tpdm.c       | 62 
->> ++++++++++++++++++++++
->>   drivers/hwtracing/coresight/coresight-tpdm.h       | 16 ++++++
->>   3 files changed, 93 insertions(+)
->>
->> diff --git 
->> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> index 77e67f2..348e167 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> @@ -45,3 +45,18 @@ Description:
->>           Accepts only one of the 2 values -  0 or 1.
->>           0 : Set the DSB trigger type to false
->>           1 : Set the DSB trigger type to true
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_mode
->> +Date:        March 2023
->> +KernelVersion    6.3
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (Write) Set the mode of DSB tpdm. Read the mode of DSB
->> +        tpdm.
->> +
->> +        Accepts the value needs to be greater than 0. What data
->> +        bits do is listed below.
->> +        Bit[0:1] : Test mode control bit for choosing the inputs.
->> +        Bit[3] : Set to 0 for low performance mode.
->> +                 Set to 1 for high performance mode.
->> +        Bit[4:8] : Select byte lane for high performance mode.
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index 14f4352..1bacaa5 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -4,6 +4,7 @@
->>    */
->>     #include <linux/amba/bus.h>
->> +#include <linux/bitfield.h>
->>   #include <linux/bitmap.h>
->>   #include <linux/coresight.h>
->>   #include <linux/coresight-pmu.h>
->> @@ -43,6 +44,32 @@ static void tpdm_reset_datasets(struct 
->> tpdm_drvdata *drvdata)
->>       }
->>   }
->>   +static void set_dsb_test_mode(struct tpdm_drvdata *drvdata, u32 *val)
->> +{
->> +    u32 mode;
->> +
->> +    mode = TPDM_DSB_MODE_TEST(drvdata->dsb->mode);
->> +    *val &= ~TPDM_DSB_TEST_MODE;
->> +    *val |= FIELD_PREP(TPDM_DSB_TEST_MODE, mode);
->> +}
->> +
->> +static void set_dsb_hpsel_mode(struct tpdm_drvdata *drvdata, u32 *val)
->> +{
->> +    u32 mode;
->> +
->> +    mode = TPDM_DSB_MODE_HPBYTESEL(drvdata->dsb->mode);
->> +    *val &= ~TPDM_DSB_HPSEL;
->> +    *val |= FIELD_PREP(TPDM_DSB_HPSEL, mode);
->> +}
->> +
->> +static void set_dsb_perf_mode(struct tpdm_drvdata *drvdata, u32 *val)
->> +{
->> +    if (drvdata->dsb->mode & TPDM_DSB_MODE_PERF)
->> +        *val |= TPDM_DSB_CR_MODE;
->> +    else
->> +        *val &= ~TPDM_DSB_CR_MODE;
->> +}
->> +
->>   static void set_trigger_type(struct tpdm_drvdata *drvdata, u32 *val)
->>   {
->>       if (drvdata->dsb->trig_type)
->> @@ -64,6 +91,12 @@ static void tpdm_enable_dsb(struct tpdm_drvdata 
->> *drvdata)
->>       writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
->>         val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
->> +    /* Set the test accurate mode */
->> +    set_dsb_test_mode(drvdata, &val);
->> +    /* Set the byte lane for high-performance mode */
->> +    set_dsb_hpsel_mode(drvdata, &val);
->> +    /* Set the performance mode */
->> +    set_dsb_perf_mode(drvdata, &val);
->>       /* Set trigger type */
->>       set_trigger_type(drvdata, &val);
->>       /* Set the enable bit of DSB control register to 1 */
->> @@ -252,6 +285,34 @@ static struct attribute_group tpdm_attr_grp = {
->>       .attrs = tpdm_attrs,
->>   };
->>   +static ssize_t dsb_mode_show(struct device *dev,
->> +                  struct device_attribute *attr,
->> +                  char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    return sysfs_emit(buf, "%lx\n",
->> +             (unsigned long)drvdata->dsb->mode);
->> +}
->> +
->> +static ssize_t dsb_mode_store(struct device *dev,
->> +                   struct device_attribute *attr,
->> +                   const char *buf,
->> +                   size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || val < 0)
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    drvdata->dsb->mode = val & TPDM_MODE_ALL;
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(dsb_mode);
->> +
->>   static ssize_t dsb_trig_type_show(struct device *dev,
->>                        struct device_attribute *attr, char *buf)
->>   {
->> @@ -323,6 +384,7 @@ static ssize_t dsb_trig_ts_store(struct device *dev,
->>   static DEVICE_ATTR_RW(dsb_trig_ts);
->>     static struct attribute *tpdm_dsb_attrs[] = {
->> +    &dev_attr_dsb_mode.attr,
->>       &dev_attr_dsb_trig_ts.attr,
->>       &dev_attr_dsb_trig_type.attr,
->>       NULL,
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->> b/drivers/hwtracing/coresight/coresight-tpdm.h
->> index 68f33bd..79df07e 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->> @@ -15,11 +15,25 @@
->>     /* Enable bit for DSB subunit */
->>   #define TPDM_DSB_CR_ENA        BIT(0)
->> +/* Enable bit for DSB subunit perfmance mode */
->> +#define TPDM_DSB_CR_MODE        BIT(1)
->>   /* Enable bit for DSB subunit trigger type */
->>   #define TPDM_DSB_CR_TRIG_TYPE        BIT(12)
->> +
->>   /* Enable bit for DSB subunit trigger timestamp */
->>   #define TPDM_DSB_TIER_XTRIG_TSENAB        BIT(1)
->>   +/* DSB programming modes */
->> +/* Test mode control bit*/
->> +#define TPDM_DSB_MODE_TEST(val)    (val & GENMASK(1, 0))
->> +/* Perforceman mode */
->
-> minor nit: typo ^^
-I will update this in the next patch series.
->
->> +#define TPDM_DSB_MODE_PERF        BIT(3)
->> +/* High performance mode */
->> +#define TPDM_DSB_MODE_HPBYTESEL(val)    (val & GENMASK(8, 4))
->> +#define TPDM_MODE_ALL            (0xFFFFFFF)
->
-> GENMASK(27, 0) ?
->
-> Also, why do we cover bits 27-0 ?
-
-The TPDM mode is only represented by [0:8]bits.
-
-Can I replace it with "#define TPDM_DSB_MODE(val)    (VAL & GENMASK(8, 0))"?
-
-
-Best,
-
-Tao
-
->
-> Suzuki
+SGkgS3J6eXN6dG9mLA0KDQo+ID4NCj4gPiBNb3N0IG9mIHRoZSBwcm9wZXJ0aWVzIGFyZSBhYm91
+dCB0aGUgcGh5IHBhcmFtZXRlcnMuDQo+ID4gSXMgdGhlIHBoeSBwYXJhbWV0ZXIgZGF0YSBzdWl0
+YWJsZSB0byBiZSBwbGFjZWQgaW4gRFRTPw0KPiA+IEkgcmVmZXJlbmNlZCBvdGhlciBwaHkgZHJp
+dmVycy4NCj4gPiBUaGVzZSBwYXJhbWV0ZXJzIHNob3VsZCBub3QgYmUgZGVmaW5lZCBpbiBkdHMu
+DQo+ID4gSSB3b3VsZCBtb3ZlIHRoZSBwYXJhbWV0ZXJzIHRvIHRoZSBkcml2ZXIuDQo+IA0KPiBJ
+ZiB0aGVzZSBjYW4gYmUgaW4gdGhlIGRyaXZlciwgd2h5IHdvdWxkIGV2ZXIgdGhleSBiZSBpbiBE
+VFMgaW4gdGhlIGZpcnN0IHBsYWNlPw0KPiANCk91ciBwbGF0Zm9ybXMgaGF2ZSAzIHhoY2kgY29u
+dHJvbGxlcnMgd2hpY2ggbWFwIHRvIDMgZGlmZmVyZW50IHBoeSBwb3J0cy4NCkFuZCB0aGUgdGhy
+ZWUgcGh5IHBvcnRzIHVzZSB0aGUgc2FtZSBkcml2ZXIsIGJ1dCB0aGUgcGFyYW1ldGVycyBhcmUg
+ZGlmZmVyZW50Lg0KU28gSSBwdXQgdGhlIHBhcmFtZXRlciBzZXR0aW5ncyBpbiBEVFMsIHdlIGhh
+dmUgMyB1c2ItcGh5IG5vZGVzIHJlcHJlc2VudGluZyAzIHBoeSBwb3J0cy4NCkFsc28sIHNvbWUg
+cGFyYW1ldGVycyBoYXZlIHRvIGJlIGFkanVzdGVkIGZvciBkaWZmZXJlbnQgYm9hcmRzLg0KVGhl
+cmVmb3JlLCBpdCBpcyBtb3JlIGFwcGxpY2FibGUgaW4gRFRTIHRoYW4gaW4gZHJpdmVyLg0KDQo+
+ID4+PiArICByZWFsdGVrLHVzYjoNCj4gPj4+ICsgICAgZGVzY3JpcHRpb246IFRoZSBwaGFuZGxl
+ciBvZiByZWFsdGVrIGR3YzMgbm9kZQ0KPiA+Pg0KPiA+PiAicGhhbmRsZXIiPyBFeGNlcHQgb2J2
+aW91cyB0eXBvLCBkcm9wICJUaGUgcGhhbmRsZXIgb2YiIGFuZCBkZXNjcmliZQ0KPiA+PiB3aGF0
+IGlzIGl0IGZvci4NCj4gPg0KPiA+IHJlYWx0ZWssdXNiIGlzIGEgcGhhbmRsZSBvZiBzeXNjb24g
+dXNlZCB0byBjb250cm9sIHJlYWx0ZWsgZHdjMyByZWdpc3Rlci4NCj4gDQo+IFRoZW4gbm8sIHBo
+eSBzaG91bGQgbm90IGNvbnRyb2wgZHdjMy4NCg0KT0sgSSBrbm93IGl0IGRvZXNuJ3QgbWFrZSBz
+ZW5zZS4NCldlIHdhbnQgdG8gZGlzYWJsZSBwaHkgc3VzcGVuZCBmcm9tIG1hYyBsYXllci4NCkkg
+d2lsbCB0cnkgb3RoZXIgbWV0aG9kLg0KDQo+ID4NCj4gPj4+ICsgICAgJHJlZjogL3NjaGVtYXMv
+dHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZQ0KPiA+Pg0KPiA+PiBBbnl3YXksIGl0IHNo
+b3VsZG4ndCBiZSBoZXJlLiBObywgbm8uDQo+ID4NCj4gPiBDYW4gSSB1c2UgaXQgZm9yIHBoYW5k
+bGUgb2Ygc3lzY29uPw0KPiANCj4gUEhZIGdldHRpbmcgcGhhbmRsZSB0byBibG9jayB1c2luZyB0
+aGlzIFBIWT8gTG9va3Mgd3JvbmcuIFdoeSB3b3VsZCBQSFkNCj4gbmVlZCB0byBwb2tlIElQIGJs
+b2NrIHJlZ2lzdGVyPw0KPiANCg0KT0suIEkga25vdyBpdCBkb2Vzbid0IG1ha2Ugc2Vuc2UuDQo=
