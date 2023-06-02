@@ -2,93 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CDA7204A1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A00A7204BE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:43:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236056AbjFBOje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 10:39:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41010 "EHLO
+        id S236180AbjFBOnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 10:43:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236047AbjFBOjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:39:33 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C83F99;
-        Fri,  2 Jun 2023 07:39:31 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 352CtKFc003737;
-        Fri, 2 Jun 2023 14:39:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=q86k7CM1/8cC0ZfpyvBhE3VtRtfoTKqmBnlMXnF6eJE=;
- b=Q0t7hLTjApUUTRQ1iAgr7f3Z0eRC9voY4Srzm4CdV3IFDmHPExqxgenBviwzarMJ91vb
- /JvdEj5YBHTpjsVuPcrEKciTsUzqADfHwf7aRsLBLwTAPinj4/nQubJ71KeYsM9iQILr
- mZe++7vGmKOZSv1Zxq/N6bTjryvYVYv70WgX2DaCpt+VF6yS5NzshHZyBAmLYi41da15
- S6CFkByUvqayti0x2h9hMDcGJZ7y2ECjYy34iOvFpOXRC0rGt4lM/QVJ9ulQvyimCult
- IH/tKmrRy6xgLmPd4q4Qo1gaV0wKlfjq0LF0lVGsZV+5Fok9Zu2rD2d2lxjWDPcKWNzx /w== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qyb6f0xud-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 14:39:16 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 352EcePh029373
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Jun 2023 14:38:40 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 2 Jun 2023
- 07:38:36 -0700
-Message-ID: <19bd262c-9063-5c7c-02b2-aa507c8c2a31@quicinc.com>
-Date:   Fri, 2 Jun 2023 22:38:33 +0800
+        with ESMTP id S236174AbjFBOnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:43:14 -0400
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258E7E48
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:43:09 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-437df8c864bso422711137.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:43:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1685716988; x=1688308988;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q5DsGEeFIU7S2qjJFcRC07Q+PVvX0RwO1FEv6+zxQis=;
+        b=gyd5HnsqBsfy9l5IbuHhhhqTkNxeqt7JDdlM1XsKX98cQAx85Ciy3GiE523QujH18q
+         ufKpsHsiUOVlgxnIjSTDHJ8yYFLKB1yYzWrzEGc074c0n3w9m6R0qxymfEJv1Z/aFGmS
+         JXqRi0CM87Av6zmGli6xInj9a9FBUc37pQRDCQZ2x4Rn90FwY4oGr6QZUd6Lln8QPERK
+         hETQxFSZVhXkU/KEqmWG5iV/mJsrCO/s8ivRQLLZA9s3dmE4SF6DqM/cQ3uOjnLkznEJ
+         nKTKFK+24xFJTB263/u19wOTEL9NTBqBm5Huqaht2w60Q5tcKnFxXW4CaAyKGLlWHi0I
+         ai+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685716988; x=1688308988;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q5DsGEeFIU7S2qjJFcRC07Q+PVvX0RwO1FEv6+zxQis=;
+        b=Zmy9RWPCvqtv8KzvggVf6F6Q2ntMXbeHZzhkTt5qEKe7a60aqR2FlHnoR1emES64ee
+         ARoeUQMvn1BoY/O1/QPj6PnSUvB8lR3Xx1OlR3X9ZhLZnKxcWjIWKHpqpKZdSrMsMTqy
+         XhEvAqEJ4Lcg/hDYQT4LJBUT/S35N+9mdXY6kFzJxu3XSWHup/mb0FcT7RW3/XCPlXxh
+         E9zScb7fr/10OnBUmIy/OhKISyaZ7XeEzpVqtHKlKG3Wv4IL4TayCTo7/Mv2cmCoZkuC
+         S3eh6uXCW2E0Csg0z1V53P5ZViPtnCJPkIkbfsSl3i8sHBVffFFRjlp+WmZZJ6Mm89wH
+         8xGg==
+X-Gm-Message-State: AC+VfDxYH5PXBFKGjE1wt7CgoC1+TDNobAOc284qVi9RpxydDDl8BGv1
+        nu1eH0xjEE0UEyFgMbF7fad3mnGYgZlrpTpZpJmyjw==
+X-Google-Smtp-Source: ACHHUZ5BtAIg2gehTksnBUYzE534xIDy9zMGqI/tX7t3Q6vZwjyz8pLQnSfBm+JNxlaO66d0DHoAK8piHoH1qBruoVI=
+X-Received: by 2002:a05:6102:3641:b0:439:3730:c524 with SMTP id
+ s1-20020a056102364100b004393730c524mr3742804vsu.7.1685716987938; Fri, 02 Jun
+ 2023 07:43:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v4 07/11] coresight-tpdm: Add nodes for dsb edge control
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-8-git-send-email-quic_taozha@quicinc.com>
- <606b8a25-0468-c310-ccff-1477e2b238b2@arm.com>
- <c5c28ab8-7d6a-f8e7-ad34-8716ac77d2dc@quicinc.com>
- <a2bd3bbf-5512-971a-95a1-3220f31814a2@arm.com>
-Content-Language: en-US
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <a2bd3bbf-5512-971a-95a1-3220f31814a2@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ZtqLMuMy6QfTCQbfCPTcWTh62dBYPdRA
-X-Proofpoint-ORIG-GUID: ZtqLMuMy6QfTCQbfCPTcWTh62dBYPdRA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-02_10,2023-06-02_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=999 clxscore=1015 bulkscore=0 spamscore=0 mlxscore=0
- malwarescore=0 suspectscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306020111
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
+ <20230530173000.3060865-22-dave.stevenson@raspberrypi.com> <bqz2iyucj3fzprzmouu5genmm4e4h33oeye5cng5bekaqen2t4@tjlftixka3oq>
+In-Reply-To: <bqz2iyucj3fzprzmouu5genmm4e4h33oeye5cng5bekaqen2t4@tjlftixka3oq>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Fri, 2 Jun 2023 15:42:51 +0100
+Message-ID: <CAPY8ntAc8FELe0rPpumK=5Spk9ixugKg-JzGq=Ak-+9A-wKFgw@mail.gmail.com>
+Subject: Re: [PATCH 21/21] media: i2c: imx258: Make HFLIP and VFLIP controls writable
+To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -97,395 +69,286 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jacopo
 
-On 6/2/2023 4:45 PM, Suzuki K Poulose wrote:
-> On 02/06/2023 09:21, Tao Zhang wrote:
->>
->> On 6/1/2023 8:14 PM, Suzuki K Poulose wrote:
->>> On 27/04/2023 10:00, Tao Zhang wrote:
->>>> Add the nodes to set value for DSB edge control and DSB edge
->>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
->>>> resgisters to configure edge control. DSB edge detection control
->>>> 00: Rising edge detection
->>>> 01: Falling edge detection
->>>> 10: Rising and falling edge detection (toggle detection)
->>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
->>>> configure mask. Eight 32 bit registers providing DSB interface
->>>> edge detection mask control.
->>>>
->>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>> ---
->>>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
->>>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 135 
->>>> ++++++++++++++++++++-
->>>>   drivers/hwtracing/coresight/coresight-tpdm.h       |  21 ++++
->>>>   3 files changed, 187 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git 
->>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>> index 348e167..a57f000 100644
->>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>> @@ -60,3 +60,35 @@ Description:
->>>>           Bit[3] : Set to 0 for low performance mode.
->>>>                    Set to 1 for high performance mode.
->>>>           Bit[4:8] : Select byte lane for high performance mode.
->>>> +
->>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
->>>> +Date:        March 2023
->>>> +KernelVersion    6.3
->>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>> +Description:
->>>> +        Read/Write a set of the edge control registers of the DSB
->>>> +        in TPDM.
->>>> +
->>>> +        Expected format is the following:
->>>> +        <integer1> <integer2> <integer3>
->>>> +
->>>> +        Where:
->>>> +        <integer1> : Start EDCR register number
->>>> +        <integer2> : End EDCR register number
->>>> +        <integer3> : The value need to be written
->>>> +
->>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl_mask
->>>> +Date:        March 2023
->>>> +KernelVersion    6.3
->>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>> +Description:
->>>> +        Read/Write a set of the edge control mask registers of the
->>>> +        DSB in TPDM.
->>>> +
->>>> +        Expected format is the following:
->>>> +        <integer1> <integer2> <integer3>
->>>> +
->>>> +        Where:
->>>> +        <integer1> : Start EDCMR register number
->>>> +        <integer2> : End EDCMR register number
->>>> +        <integer3> : The value need to be written
->>>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->>>> b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>> index 1bacaa5..a40e458 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>> @@ -80,7 +80,14 @@ static void set_trigger_type(struct tpdm_drvdata 
->>>> *drvdata, u32 *val)
->>>>     static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->>>>   {
->>>> -    u32 val;
->>>> +    u32 val, i;
->>>> +
->>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++)
->>>> +        writel_relaxed(drvdata->dsb->edge_ctrl[i],
->>>> +               drvdata->base + TPDM_DSB_EDCR(i));
->>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCMR; i++)
->>>> + writel_relaxed(drvdata->dsb->edge_ctrl_mask[i],
->>>> +               drvdata->base + TPDM_DSB_EDCMR(i));
->>>
->>> Do all TPDM DSBs have MAX_EDCR registers ? Or some have less than 
->>> that ?
->>> If it is latter, do we need special care to avoid writing to inexistent
->>> registers ?
->>>
->> You are right, not all DSB TPDMs have MAX_EDCR registers. In our 
->> design, the inexistent register addresses
->>
->> are not occupied and safe for accessing.
->>
->> Currently we don't have a good way to know the quantity of EDCR/EDCMR 
->> registers for DSB TPDMs.
->>
->> The only way we can think of is to set it in device tree manually.
->>
->> Do you have other suggestion for this?
->>
->>>>         val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
->>>>       /* Set trigger timestamp */
->>>> @@ -313,6 +320,130 @@ static ssize_t dsb_mode_store(struct device 
->>>> *dev,
->>>>   }
->>>>   static DEVICE_ATTR_RW(dsb_mode);
->>>>   +static ssize_t dsb_edge_ctrl_show(struct device *dev,
->>>> +                       struct device_attribute *attr,
->>>> +                       char *buf)
->>>> +{
->>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->>>> +    ssize_t size = 0;
->>>> +    int i;
->>>> +
->>>> +    spin_lock(&drvdata->spinlock);
->>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
->>>> +        size += sysfs_emit_at(buf, size,
->>>> +                  "Index:0x%x Val:0x%x\n", i,
->>>> +                  drvdata->dsb->edge_ctrl[i]);
->>>
->>> It may be safe, but please add a check to make sure that we don't
->>> overflow. At least bail out when we hit a return of 0, indicating
->>> reached the end of buffer.
->>>
->> Can I add the following check to replace the current code??
->>
->> int ret = 0;
->>
->>
->> for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
->>
->>      ret = sysfs_emit_at(buf, size, "Index:0x%x Val:0x%x\n", i, 
->> drvdata->dsb->edge_ctrl[i]);
->>
->>      if (!ret) {
->>
->>          dev_warn(drvdata->dev, "The buffer has been overflowed\n");
+On Fri, 2 Jun 2023 at 14:58, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
 >
-> You don't need this, it already triggers a WARN() in sysfs_emit_at().
-> So you could do:
+> Hi Dave
 >
->     for (....) {
->         unsigned long bytes = sysfs_emit_at(buf, size, ....);
+> On Tue, May 30, 2023 at 06:30:00PM +0100, Dave Stevenson wrote:
+> > The sensor supports H & V flips, but the controls were READ_ONLY.
+> >
+> > Note that the Bayer order changes with these flips, therefore
+> > they set the V4L2_CTRL_FLAG_MODIFY_LAYOUT property.
 >
->         if (bytes <= 0)
->             break;
->         size += bytes;
->     }
+> Nice!
 >
-Sure, I will update in the next patch series.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > ---
+> >  drivers/media/i2c/imx258.c | 99 ++++++++++++++++++++++++--------------
+> >  1 file changed, 64 insertions(+), 35 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > index 98b5c1e3abff..cf90ac66e14c 100644
+> > --- a/drivers/media/i2c/imx258.c
+> > +++ b/drivers/media/i2c/imx258.c
+> > @@ -83,8 +83,8 @@
+> >
+> >  /* Orientation */
+> >  #define REG_MIRROR_FLIP_CONTROL              0x0101
+> > -#define REG_CONFIG_MIRROR_FLIP               0x03
+> > -#define REG_CONFIG_FLIP_TEST_PATTERN 0x02
+> > +#define REG_CONFIG_MIRROR_HFLIP              0x01
+> > +#define REG_CONFIG_MIRROR_VFLIP              0x02
+> >
+> >  /* IMX258 native and active pixel array size. */
+> >  #define IMX258_NATIVE_WIDTH          4224U
+> > @@ -484,6 +484,23 @@ static const struct imx258_variant_cfg imx258_pdaf_cfg = {
+> >       .num_regs = ARRAY_SIZE(imx258_pdaf_cfg_regs),
+> >  };
+> >
+> > +/*
+> > + * The supported formats.
+> > + * This table MUST contain 4 entries per format, to cover the various flip
+> > + * combinations in the order
+> > + * - no flip
+> > + * - h flip
+> > + * - v flip
+> > + * - h&v flips
+> > + */
+> > +static const u32 codes[] = {
+> > +     /* 10-bit modes. */
+> > +     MEDIA_BUS_FMT_SRGGB10_1X10,
+> > +     MEDIA_BUS_FMT_SGRBG10_1X10,
+> > +     MEDIA_BUS_FMT_SGBRG10_1X10,
+> > +     MEDIA_BUS_FMT_SBGGR10_1X10
+> > +};
+> > +
+> >  static const char * const imx258_test_pattern_menu[] = {
+> >       "Disabled",
+> >       "Solid Colour",
+> > @@ -677,6 +694,8 @@ struct imx258 {
+> >       struct v4l2_ctrl *vblank;
+> >       struct v4l2_ctrl *hblank;
+> >       struct v4l2_ctrl *exposure;
+> > +     struct v4l2_ctrl *hflip;
+> > +     struct v4l2_ctrl *vflip;
+> >       /* Current long exposure factor in use. Set through V4L2_CID_VBLANK */
+> >       unsigned int long_exp_shift;
+> >
+> > @@ -780,9 +799,22 @@ static int imx258_write_regs(struct imx258 *imx258,
+> >       return 0;
+> >  }
+> >
+> > +/* Get bayer order based on flip setting. */
+> > +static u32 imx258_get_format_code(struct imx258 *imx258)
 >
->>
->>          spin_unlock(&drvdata->spinlock);
->>
->>          return size;
->>
->>      } else
->>
->>          size += ret;
->>
->> }
->>
->>>> +    }
->>>> +    spin_unlock(&drvdata->spinlock);
->>>> +    return size;
->>>> +}
->>>> +
->>>> +/*
->>>> + * value 1: Start EDCR register number
->>>> + * value 2: End EDCR register number
->>>> + * value 3: The value need to be written
->>>> + * The EDCR registers can include up to 16 32-bit registers, and each
->>>> + * one can be configured to control up to 16 edge detections(2 bits
->>>> + * control one edge detection). So a total 256 edge detections can be
->>>> + * configured. So the starting number(value 1) and ending 
->>>> number(value 2)
->>>> + * cannot be greater than 256, and value 1 should be less than 
->>>> value 2.
->>>> + * The following values are the rage of value 3.
->>>> + * 0 - Rising edge detection
->>>> + * 1 - Falling edge detection
->>>> + * 2 - Rising and falling edge detection (toggle detection)
->>>> + */
->>>> +static ssize_t dsb_edge_ctrl_store(struct device *dev,
->>>> +                    struct device_attribute *attr,
->>>> +                    const char *buf,
->>>> +                    size_t size)
->>>> +{
->>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->>>> +    unsigned long val, mask, start, end, edge_ctrl, edge_ctrl_shift;
->>>> +    int i, reg;
->>>> +
->>>> +    if (sscanf(buf, "%lx %lx %lx", &start, &end, &edge_ctrl) != 3)
->>>> +        return -EINVAL;
->>>> +    if ((start >= TPDM_DSB_MAX_LINES) || (end >= 
->>>> TPDM_DSB_MAX_LINES) ||
->>>> +        (start > end) || (edge_ctrl > 0x2))
->>>> +        return -EPERM;
->>>> +
->>>> +    spin_lock(&drvdata->spinlock);
->>>> +    for (i = start; i <= end; i++) {
->>>> +        /*
->>>> +         * There are 2 bit per DSB Edge Control line.
->>>> +         * Thus we have 16 lines in a 32bit word.
->>>> +         */
->>>> +        reg = EDCR_TO_WORD_IDX(i);
->>>> +        mask = EDCR_TO_WORD_MASK(i);
->>>> +        val = drvdata->dsb->edge_ctrl[reg];
->>>
->>>> +        edge_ctrl_shift = EDCR_TO_WORD_VAL(edge_ctrl, i);
->>>> +        bitmap_replace(&val, &val, &edge_ctrl_shift, &mask, 32);
->>>
->>> Could we simply do :
->>>
->>>         reg &= ~mask;
->>>         reg |= FIELD_PREP(mask, edge_ctrl);
->>>
->> Perhaps "FIELD_PREP" cannot be used here since "mask" must be 
->> constant in this macro.
->
-> Ah, you are right. Sorry about that.
->
->>
->> But in our code, the variable "mask" is not constant.
->
-> Still I think using the bitmap_replace is an overkill. We could simply
-> do:
->         val &= ~mask;
->         val |= EDCR_TO_WORD_VAL(edge_ctrl, i);
+> can struct imx258 be const ?
 
-Sure, I will update in the next patch series.
+It can
 
-
-Best,
-
-Tao
-
+> > +{
+> > +     unsigned int i;
+> > +
+> > +     lockdep_assert_held(&imx258->mutex);
+> > +
+> > +     i = (imx258->vflip->val ? 2 : 0) |
+> > +         (imx258->hflip->val ? 1 : 0);
+> > +
+> > +     return codes[i];
+> > +}
 >
-> Suzuki
+> An empty line wouldn't hurt
+
+Done
+
+> >  /* Open sub-device */
+> >  static int imx258_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> >  {
+> > +     struct imx258 *imx258 = to_imx258(sd);
+> >       struct v4l2_mbus_framefmt *try_fmt =
+> >               v4l2_subdev_get_try_format(sd, fh->state, 0);
+> >       struct v4l2_rect *try_crop;
+> > @@ -790,7 +822,7 @@ static int imx258_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> >       /* Initialize try_fmt */
+> >       try_fmt->width = supported_modes[0].width;
+> >       try_fmt->height = supported_modes[0].height;
+> > -     try_fmt->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> > +     try_fmt->code = imx258_get_format_code(imx258);
+> >       try_fmt->field = V4L2_FIELD_NONE;
+> >
+> >       /* Initialize try_crop */
+> > @@ -903,10 +935,6 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+> >               ret = imx258_write_reg(imx258, IMX258_REG_TEST_PATTERN,
+> >                               IMX258_REG_VALUE_16BIT,
+> >                               ctrl->val);
+> > -             ret = imx258_write_reg(imx258, REG_MIRROR_FLIP_CONTROL,
+> > -                             IMX258_REG_VALUE_08BIT,
+> > -                             !ctrl->val ? REG_CONFIG_MIRROR_FLIP :
+> > -                             REG_CONFIG_FLIP_TEST_PATTERN);
+> >               break;
+> >       case V4L2_CID_WIDE_DYNAMIC_RANGE:
+> >               if (!ctrl->val) {
+> > @@ -928,6 +956,15 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+> >               ret = imx258_set_frame_length(imx258,
+> >                                             imx258->cur_mode->height + ctrl->val);
+> >               break;
+> > +     case V4L2_CID_VFLIP:
+> > +     case V4L2_CID_HFLIP:
+> > +             ret = imx258_write_reg(imx258, REG_MIRROR_FLIP_CONTROL,
+> > +                                    IMX258_REG_VALUE_08BIT,
+> > +                                    (imx258->hflip->val ?
+> > +                                     REG_CONFIG_MIRROR_HFLIP : 0) |
+> > +                                    (imx258->vflip->val ?
+> > +                                     REG_CONFIG_MIRROR_VFLIP : 0));
+> > +             break;
+> >       default:
+> >               dev_info(&client->dev,
+> >                        "ctrl(id:0x%x,val:0x%x) is not handled\n",
+> > @@ -949,11 +986,13 @@ static int imx258_enum_mbus_code(struct v4l2_subdev *sd,
+> >                                 struct v4l2_subdev_state *sd_state,
+> >                                 struct v4l2_subdev_mbus_code_enum *code)
+> >  {
+> > -     /* Only one bayer order(GRBG) is supported */
+> > +     struct imx258 *imx258 = to_imx258(sd);
+> > +
+> > +     /* Only one bayer format (10 bit) is supported */
+> >       if (code->index > 0)
+> >               return -EINVAL;
+> >
+> > -     code->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> > +     code->code = imx258_get_format_code(imx258);
+> >
+> >       return 0;
+> >  }
+> > @@ -962,10 +1001,11 @@ static int imx258_enum_frame_size(struct v4l2_subdev *sd,
+> >                                 struct v4l2_subdev_state *sd_state,
+> >                                 struct v4l2_subdev_frame_size_enum *fse)
+> >  {
+> > +     struct imx258 *imx258 = to_imx258(sd);
+> >       if (fse->index >= ARRAY_SIZE(supported_modes))
+> >               return -EINVAL;
+> >
+> > -     if (fse->code != MEDIA_BUS_FMT_SBGGR10_1X10)
+> > +     if (fse->code != imx258_get_format_code(imx258))
+> >               return -EINVAL;
+> >
+> >       fse->min_width = supported_modes[fse->index].width;
+> > @@ -976,12 +1016,13 @@ static int imx258_enum_frame_size(struct v4l2_subdev *sd,
+> >       return 0;
+> >  }
+> >
+> > -static void imx258_update_pad_format(const struct imx258_mode *mode,
+> > +static void imx258_update_pad_format(struct imx258 *imx258,
+> > +                                  const struct imx258_mode *mode,
 >
->>>
->>>> + drvdata->dsb->edge_ctrl[reg] = val;
->>>> +    }
->>>> +    spin_unlock(&drvdata->spinlock);
->>>> +
->>>> +    return size;
->>>> +}
->>>> +static DEVICE_ATTR_RW(dsb_edge_ctrl);
->>>> +
->>>> +static ssize_t dsb_edge_ctrl_mask_show(struct device *dev,
->>>> +                        struct device_attribute *attr,
->>>> +                        char *buf)
->>>> +{
->>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->>>> +    ssize_t size = 0;
->>>> +    int i;
->>>> +
->>>> +    spin_lock(&drvdata->spinlock);
->>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCMR; i++) {
->>>> +        size += sysfs_emit_at(buf, size,
->>>> +                  "Index:0x%x Val:0x%x\n", i,
->>>> +                  drvdata->dsb->edge_ctrl_mask[i]);
->>>> +    }
->>>> +    spin_unlock(&drvdata->spinlock);
->>>> +    return size;
->>>> +}
->>>> +
->>>> +/*
->>>> + * value 1: Start EDCMR register number
->>>> + * value 2: End EDCMR register number
->>>> + * value 3: The value need to be written
->>>> + */
->>>> +static ssize_t dsb_edge_ctrl_mask_store(struct device *dev,
->>>> +                         struct device_attribute *attr,
->>>> +                         const char *buf,
->>>> +                         size_t size)
->>>> +{
->>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->>>> +    unsigned long start, end, val;
->>>> +    u32 set;
->>>> +    int i, reg;
->>>> +
->>>> +    if (sscanf(buf, "%lx %lx %lx", &start, &end, &val) != 3)
->>>> +        return -EINVAL;
->>>> +    if ((start >= TPDM_DSB_MAX_LINES) || (end >= TPDM_DSB_MAX_LINES)
->>>> +        || (start > end) || (val & ~1UL))
->>>> +        return -EPERM;
->>>> +
->>>> +    spin_lock(&drvdata->spinlock);
->>>> +    for (i = start; i <= end; i++) {
->>>> +        /*
->>>> +         * There is 1 bit per DSB Edge Control Mark line.
->>>> +         * Thus we have 32 lines in a 32bit word.
->>>> +         */
->>>> +        reg = EDCMR_TO_WORD_IDX(i);
->>>> +        set = drvdata->dsb->edge_ctrl_mask[reg];
->>>> +        if (val)
->>>> +            set |= BIT(EDCR_TO_WORD_SHIFT(i));
->>>> +        else
->>>> +            set &= ~BIT(EDCR_TO_WORD_SHIFT(i));
->>>> +        drvdata->dsb->edge_ctrl_mask[reg] = set;
->>>> +    }
->>>> +    spin_unlock(&drvdata->spinlock);
->>>> +    return size;
->>>> +}
->>>> +static DEVICE_ATTR_RW(dsb_edge_ctrl_mask);
->>>> +
->>>>   static ssize_t dsb_trig_type_show(struct device *dev,
->>>>                        struct device_attribute *attr, char *buf)
->>>>   {
->>>> @@ -385,6 +516,8 @@ static DEVICE_ATTR_RW(dsb_trig_ts);
->>>>     static struct attribute *tpdm_dsb_attrs[] = {
->>>>       &dev_attr_dsb_mode.attr,
->>>> +    &dev_attr_dsb_edge_ctrl.attr,
->>>> +    &dev_attr_dsb_edge_ctrl_mask.attr,
->>>>       &dev_attr_dsb_trig_ts.attr,
->>>>       &dev_attr_dsb_trig_type.attr,
->>>>       NULL,
->>>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->>>> b/drivers/hwtracing/coresight/coresight-tpdm.h
->>>> index 79df07e..f25dcdec 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->>>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->>>> @@ -12,6 +12,8 @@
->>>>   /* DSB Subunit Registers */
->>>>   #define TPDM_DSB_CR        (0x780)
->>>>   #define TPDM_DSB_TIER        (0x784)
->>>> +#define TPDM_DSB_EDCR(n)    (0x808 + (n * 4))
->>>> +#define TPDM_DSB_EDCMR(n)    (0x848 + (n * 4))
->>>>     /* Enable bit for DSB subunit */
->>>>   #define TPDM_DSB_CR_ENA        BIT(0)
->>>> @@ -34,6 +36,15 @@
->>>>   #define TPDM_DSB_TEST_MODE        GENMASK(10, 9)
->>>>   #define TPDM_DSB_HPSEL        GENMASK(6, 2)
->>>>   +#define EDCRS_PER_WORD                16
->>>> +#define EDCR_TO_WORD_IDX(r)            ((r) / EDCRS_PER_WORD)
->>>> +#define EDCR_TO_WORD_SHIFT(r)        ((r % EDCRS_PER_WORD) * 2)
->>>> +#define EDCR_TO_WORD_VAL(val, r)    (val << EDCR_TO_WORD_SHIFT(r))
->>>> +#define EDCR_TO_WORD_MASK(r)        EDCR_TO_WORD_VAL(0x3, r)
->>>
->>> minor nit: add a new line here please
->> Sure, I will update this in the next patch series.
->>>
->>>> +#define EDCMRS_PER_WORD                32
->>>> +#define EDCMR_TO_WORD_IDX(r)        ((r) / EDCMRS_PER_WORD)
->>>> +#define EDCMR_TO_WORD_SHIFT(r)        ((r) % EDCMRS_PER_WORD)
->>>> +
->>>>   /* TPDM integration test registers */
->>>>   #define TPDM_ITATBCNTRL        (0xEF0)
->>>>   #define TPDM_ITCNTRL        (0xF00)
->>>> @@ -60,14 +71,24 @@
->>>>   #define TPDM_PIDR0_DS_IMPDEF    BIT(0)
->>>>   #define TPDM_PIDR0_DS_DSB    BIT(1)
->>>>   +#define TPDM_DSB_MAX_LINES    256
->>>> +/* MAX number of EDCR registers */
->>>> +#define TPDM_DSB_MAX_EDCR    16
->>>> +/* MAX number of EDCMR registers */
->>>> +#define TPDM_DSB_MAX_EDCMR    8
->>>> +
->>>>   /**
->>>>    * struct dsb_dataset - specifics associated to dsb dataset
->>>>    * @mode:             DSB programming mode
->>>> + * @edge_ctrl:        Save value for edge control
->>>> + * @edge_ctrl_mask:   Save value for edge control mask
->>>>    * @trig_ts:          Enable/Disable trigger timestamp.
->>>>    * @trig_type:        Enable/Disable trigger type.
->>>>    */
->>>>   struct dsb_dataset {
->>>>       u32                mode;
->>>> +    u32                edge_ctrl[TPDM_DSB_MAX_EDCR];
->>>> +    u32                edge_ctrl_mask[TPDM_DSB_MAX_EDCMR];
->>>
->>> minor nit: Please align it with the fields below.
->>
->> Sure, I will update this in the next patch series.
->>
->>
->> Best,
->>
->> Tao
->>
->>>
->>>>       bool            trig_ts;
->>>>       bool            trig_type;
->>>>   };
->>>
->>> Suzuki
+> Can't you get mode from imx258->cur_mode ?
+
+It's called from imx258_set_pad_format for both SET and TRY, so needs
+to be able to work on the new mode to be selected/tried as well as the
+current mode.
+
+> >                                    struct v4l2_subdev_format *fmt)
+> >  {
+> >       fmt->format.width = mode->width;
+> >       fmt->format.height = mode->height;
+> > -     fmt->format.code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> > +     fmt->format.code = imx258_get_format_code(imx258);
+> >       fmt->format.field = V4L2_FIELD_NONE;
+> >  }
+> >
+> > @@ -994,7 +1035,7 @@ static int __imx258_get_pad_format(struct imx258 *imx258,
+> >                                                         sd_state,
+> >                                                         fmt->pad);
+> >       else
+> > -             imx258_update_pad_format(imx258->cur_mode, fmt);
+> > +             imx258_update_pad_format(imx258, imx258->cur_mode, fmt);
+> >
+> >       return 0;
+> >  }
+> > @@ -1030,13 +1071,12 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
+> >
+> >       mutex_lock(&imx258->mutex);
+> >
+> > -     /* Only one raw bayer(GBRG) order is supported */
+> > -     fmt->format.code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> > +     fmt->format.code = imx258_get_format_code(imx258);
+> >
+> >       mode = v4l2_find_nearest_size(supported_modes,
+> >               ARRAY_SIZE(supported_modes), width, height,
+> >               fmt->format.width, fmt->format.height);
+> > -     imx258_update_pad_format(mode, fmt);
+> > +     imx258_update_pad_format(imx258, mode, fmt);
+> >       if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+> >               framefmt = v4l2_subdev_get_try_format(sd, sd_state, fmt->pad);
+> >               *framefmt = fmt->format;
+> > @@ -1186,15 +1226,6 @@ static int imx258_start_streaming(struct imx258 *imx258)
+> >               return ret;
+> >       }
+> >
+> > -     /* Set Orientation be 180 degree */
+> > -     ret = imx258_write_reg(imx258, REG_MIRROR_FLIP_CONTROL,
+> > -                            IMX258_REG_VALUE_08BIT, REG_CONFIG_MIRROR_FLIP);
+> > -     if (ret) {
+> > -             dev_err(&client->dev, "%s failed to set orientation\n",
+> > -                     __func__);
+> > -             return ret;
+> > -     }
+> > -
+> >       /* Apply customized values from user */
+> >       ret =  __v4l2_ctrl_handler_setup(imx258->sd.ctrl_handler);
+> >       if (ret)
+> > @@ -1383,7 +1414,6 @@ static int imx258_init_controls(struct imx258 *imx258)
+> >       struct i2c_client *client = v4l2_get_subdevdata(&imx258->sd);
+> >       const struct imx258_link_freq_config *link_freq_cfgs;
+> >       struct v4l2_fwnode_device_properties props;
+> > -     struct v4l2_ctrl *vflip, *hflip;
+> >       struct v4l2_ctrl_handler *ctrl_hdlr;
+> >       const struct imx258_link_cfg *link_cfg;
+> >       s64 vblank_def;
+> > @@ -1408,16 +1438,15 @@ static int imx258_init_controls(struct imx258 *imx258)
+> >       if (imx258->link_freq)
+> >               imx258->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> >
+> > -     /* The driver only supports one bayer order and flips by default. */
+> > -     hflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
+> > -                               V4L2_CID_HFLIP, 1, 1, 1, 1);
+> > -     if (hflip)
+> > -             hflip->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> > +     imx258->hflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
+> > +                                       V4L2_CID_HFLIP, 0, 1, 1, 1);
+> > +     if (imx258->hflip)
+> > +             imx258->hflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+> >
+> > -     vflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
+> > -                               V4L2_CID_VFLIP, 1, 1, 1, 1);
+> > -     if (vflip)
+> > -             vflip->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> > +     imx258->vflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
+> > +                                       V4L2_CID_VFLIP, 0, 1, 1, 1);
+> > +     if (imx258->vflip)
+> > +             imx258->vflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
 >
+> if flips are now writable, should they be enabled by default ?
+
+This is the potential debate.
+
+An existing userspace app is using this driver and it renders as
+desired. Merge this change and suddenly all their images are upside
+down, and that's assuming they haven't hard coded the Bayer order
+which has now changed due to correcting the cropping registers.
+Some would say that is a regression.
+
+I know you'd discussed it with Sakari, but wasn't totally clear on the
+final decision. It's part of the reason why I had this as the final
+patch, because then it's easy to drop whilst discussing it.
+
+  Dave
+
+> >
+> >       link_freq_cfgs = &imx258->link_freq_configs[0];
+> >       link_cfg = link_freq_cfgs[imx258->lane_mode_idx].link_cfg;
+> > --
+> > 2.25.1
+> >
