@@ -2,105 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60D6C71FC20
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 10:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77C5E71FC34
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 10:38:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233907AbjFBIc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 04:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S234518AbjFBIia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 04:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234014AbjFBIc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 04:32:57 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70551F2
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 01:32:55 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51491b87565so2637811a12.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 01:32:55 -0700 (PDT)
+        with ESMTP id S234421AbjFBIi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 04:38:29 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6014718C
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 01:38:27 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9745c5fed21so107673366b.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 01:38:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685694774; x=1688286774;
+        d=linaro.org; s=google; t=1685695106; x=1688287106;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=S6o32+EXqkQOwwvwWTyyFIWUzWvHCRd3bW8dtLzYc0M=;
-        b=SF+7px9QcZH1m1Vj1b2GfXALro+NdRTuZIllFGdKVav7TEBvES/2uDpWKVI9xCZWZj
-         Iv4bT38X4VR2ZAahaID8tl7YnfQCN+dfYwrgfbmTjOg1U7rD7NSOfjpjrWHShz7TJyZY
-         YcTLPTBP6SIuO7QCpCu72aRFZO6EQUipoA2O/r+AmyTKNT45OebGXlQrEew7g4fHcWMF
-         OVrAocSDqDleCKKAaH70gdYegshPK3bxyqFB5qSxqTmvtlaZcG4jmIc5e0rMFKGEzSJA
-         Tysc9o6h3haQDhWXsvkxQhM8zCT2RaiSSLJOfFY3rkol/FC7XZY12Jh9hC8Fk6fX5yEm
-         ajHA==
+        bh=pPYsqCw+S4frzdamGly3+8lmKwz0DvRF1BFqk4pDJOk=;
+        b=OAdnQ1kBlBpFTnXu6dS3B59LrW5AVp8ZcAJsAfNCUqiphvo3vuLfQ2jQojKHK8uIu+
+         mkYHn25y1tDmdVsZEYIACwOPC1mChfuvNucUnrQPPJYoWH90zfogqm1WlPjHFhLiHvDn
+         zUejvooWWmDBxSVkq1+jelu+5yBDbIxrA7qptcGtSrCXHkPoMcGKltkB6InEmFYlqKip
+         qVkl3R/iTD3QMkpIskH6E5HD5IpLSLYkBnXw33jvZnnPkTX21eTThiXpXwAOcZA4tuSD
+         yHV3IG9eobPhR60HzBNIBtqxsECxUBM6oLTe+nAgdWiMxlGTuKuud6NJA5A2fJHNyieV
+         MBhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685694774; x=1688286774;
+        d=1e100.net; s=20221208; t=1685695106; x=1688287106;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S6o32+EXqkQOwwvwWTyyFIWUzWvHCRd3bW8dtLzYc0M=;
-        b=hETgY0KlF05PqSyipiuh7/Dkq9sqMEPs2IVk5I8GmvnvRWYfWDOMrH4fIGTZUWG3z1
-         nCUth8yZq2XpvkCFOeghryvpoENM4UDwJPOEJ+C77IfiAijay4ypJMbtjkjslKSxr0lC
-         cNf5szxmurTvC213wHR3VQR0S1DVLIWYO+XS4fzewj5UFQ/s7RYx1b65ILUpAvqLgjwP
-         Y3xXlE9YW4813J2Q77vZPDMimSlX36vEDeGVkXxbImBIYHFFMcW8T4KLy4rXRLoqG2iZ
-         vRb0+DPV2HlYOh6mEUtxs3JWWFaADaSgodiOxkqXy565E7yLyOufECnP8d6LAsSAsbJa
-         fQig==
-X-Gm-Message-State: AC+VfDyUSGtWkJFRAQPMSXxc8EWtIQZPQRfRMt35qO9bU9MgUWTq9rG+
-        H08a8ldYbBL546aafG+bZTqBLQ==
-X-Google-Smtp-Source: ACHHUZ5bbkg1zhdbdLCCj6ww+0OpxboaT0r5ApjCE5h604Y3MUUFQIlVUcvBkPvczEmb5mkg4VqJdw==
-X-Received: by 2002:a17:907:a42a:b0:96f:912d:7922 with SMTP id sg42-20020a170907a42a00b0096f912d7922mr9551134ejc.53.1685694773958;
-        Fri, 02 Jun 2023 01:32:53 -0700 (PDT)
+        bh=pPYsqCw+S4frzdamGly3+8lmKwz0DvRF1BFqk4pDJOk=;
+        b=A/zNxohuhPlJc9w2bfsv2eYRIodfpf43y7hgcrRbnTDjSacnl6LD/RjV6mD+OtWYbM
+         +Mpk1pehkIQHEYD3laz5mnts6EWsTeD+KcG4Dn0IXRX4NM28yCLnEWougI7fTgkX7IXv
+         Nsu2Q1vaZdKBFYtMWbNZqYZ2f1xZ93Hn9blowWnyLTwIBB+LzcVNNNBWcGcpdqDELLqu
+         4e22Ac+os9eOfOQWlOFX2QEeGskP14l5suKEuXTQZaUwn6SRfxfr09JUD5R74MNeldeE
+         R5yfB4wjqR5QFKWHHGfij9EKIVL+iDjfrCZwvPFLsgXbxKmnBaTK/b27t1T0eO2C58Qj
+         yEIQ==
+X-Gm-Message-State: AC+VfDwdK4CrrmVO1evBxtnxJXT5eBfpitKTNeA29L3oRG2NuXI7xP+8
+        Pa/Z4jBpQleL/l1EJZoi6+Vyig==
+X-Google-Smtp-Source: ACHHUZ7U7Nk9Xfw9ScoLkNnQ7voAB8/uUOjSN+gFT7/29x62vxLDRSi2u8Ebdcr4cCP2ctPddFy3iw==
+X-Received: by 2002:a17:907:3f14:b0:96a:5e38:ba49 with SMTP id hq20-20020a1709073f1400b0096a5e38ba49mr12594130ejc.2.1685695105825;
+        Fri, 02 Jun 2023 01:38:25 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id y26-20020a17090668da00b00947ed087a2csm461979ejr.154.2023.06.02.01.32.52
+        by smtp.gmail.com with ESMTPSA id h19-20020a17090619d300b0096f641a4c01sm472053ejd.179.2023.06.02.01.38.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Jun 2023 01:32:53 -0700 (PDT)
-Message-ID: <75d78713-fc8f-24a9-a422-2b4d57c5d488@linaro.org>
-Date:   Fri, 2 Jun 2023 10:32:51 +0200
+        Fri, 02 Jun 2023 01:38:25 -0700 (PDT)
+Message-ID: <fbcc5688-387c-32fb-edac-17848c92b936@linaro.org>
+Date:   Fri, 2 Jun 2023 10:38:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v3 3/8] dt-bindings: leds: leds-mt6323: Support WLED
- output
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add Allwinner
+ D1/T113s/R329/T507 SoCs GPADC
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, pavel@ucw.cz
-Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230601110813.2373764-1-angelogioacchino.delregno@collabora.com>
- <20230601110813.2373764-4-angelogioacchino.delregno@collabora.com>
+To:     Maksim Kiselev <bigunclemax@gmail.com>, linux-iio@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230601223104.1243871-1-bigunclemax@gmail.com>
+ <20230601223104.1243871-3-bigunclemax@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230601110813.2373764-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230601223104.1243871-3-bigunclemax@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 13:08, AngeloGioacchino Del Regno wrote:
-> Some PMICs have a separated WLED string output: add a property
-> `mediatek,is-wled` to indicate which LED string is a WLED.
+On 02/06/2023 00:30, Maksim Kiselev wrote:
+> From: Maxim Kiselev <bigunclemax@gmail.com>
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  Documentation/devicetree/bindings/leds/leds-mt6323.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-mt6323.txt b/Documentation/devicetree/bindings/leds/leds-mt6323.txt
-> index 052dccb8f2ce..904b2222a5fe 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-mt6323.txt
-> +++ b/Documentation/devicetree/bindings/leds/leds-mt6323.txt
-> @@ -30,6 +30,7 @@ Optional properties for the LED child node:
->  - label : See Documentation/devicetree/bindings/leds/common.txt
->  - linux,default-trigger : See Documentation/devicetree/bindings/leds/common.txt
->  - default-state: See Documentation/devicetree/bindings/leds/common.txt
-> +- mediatek,is-wled: LED string is connected to WLED output
+> Allwinner's D1/T113s/R329/T507 SoCs have a new general purpose ADC.
+> This ADC is the same for all of this SoCs. The only difference is
+> the number of available channels.
 
-Why would it matter to what the output is connected to?
+Except that it wasn't tested...
+
+> 
+> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+> ---
+>  .../iio/adc/allwinner,sun20i-d1-gpadc.yaml    | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
+> new file mode 100644
+> index 000000000000..94f15bb48231
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: GPL-2.0
+
+dual license
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/allwinner,sun20i-d1-gpadc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner D1 General Purpose ADC
+> +
+> +properties:
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  compatible:
+> +    enum:
+> +      - allwinner,sun20i-d1-gpadc
+
+compatible is first property
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - "#io-channel-cells"
+> +  - clocks
+> +  - compatible
+> +  - interrupts
+> +  - reg
+> +  - resets
+
+required: block goes after all properties.
+
+> +
+> +patternProperties:
+> +  "^channel@([0-15])$":
+> +    $ref: adc.yaml
+> +    type: object
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      Represents the internal channels of the ADC.
+> +
+> +    properties:
+> +      reg:
+
+> +        description: |
+Do not need '|' unless you need to preserve formatting.
+
+> +          The channel number.
+> +          Up to 16 channels, numbered from 0 to 15.
+
+Don't repeat constraints in free form text.
+
+> +        items:
+> +          minimum: 0
+> +          maximum: 15
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+
+Hm? So you do not allow anything from adc.yaml related? Are you sure
+this is your intention?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpadc: adc@2009000 {
+> +        compatible = "allwinner,sun20i-d1-gpadc";
+> +        reg = <0x2009000 0x1000>;
+> +        clocks = <&ccu 80>;
+> +        resets = <&ccu 32>;
+> +        interrupts = <0 57 4>;
+
+Use proper defines
+
+> +        #io-channel-cells = <1>;
+> +
+> +        channel@0 {
+> +          reg = <0>;
+
+Broken indentation.
+Use 4 spaces for example indentation.
+
+> +        };
+> +
+> +        channel@1 {
+> +          reg = <1>;
+> +        };
+> +    };
+> +
+> +...
 
 Best regards,
 Krzysztof
