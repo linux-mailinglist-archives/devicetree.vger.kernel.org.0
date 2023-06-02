@@ -2,353 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A00A7204BE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6F917204D6
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:49:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236180AbjFBOnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 10:43:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43948 "EHLO
+        id S236220AbjFBOtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 10:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236174AbjFBOnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:43:14 -0400
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258E7E48
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:43:09 -0700 (PDT)
-Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-437df8c864bso422711137.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:43:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1685716988; x=1688308988;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=q5DsGEeFIU7S2qjJFcRC07Q+PVvX0RwO1FEv6+zxQis=;
-        b=gyd5HnsqBsfy9l5IbuHhhhqTkNxeqt7JDdlM1XsKX98cQAx85Ciy3GiE523QujH18q
-         ufKpsHsiUOVlgxnIjSTDHJ8yYFLKB1yYzWrzEGc074c0n3w9m6R0qxymfEJv1Z/aFGmS
-         JXqRi0CM87Av6zmGli6xInj9a9FBUc37pQRDCQZ2x4Rn90FwY4oGr6QZUd6Lln8QPERK
-         hETQxFSZVhXkU/KEqmWG5iV/mJsrCO/s8ivRQLLZA9s3dmE4SF6DqM/cQ3uOjnLkznEJ
-         nKTKFK+24xFJTB263/u19wOTEL9NTBqBm5Huqaht2w60Q5tcKnFxXW4CaAyKGLlWHi0I
-         ai+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685716988; x=1688308988;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q5DsGEeFIU7S2qjJFcRC07Q+PVvX0RwO1FEv6+zxQis=;
-        b=Zmy9RWPCvqtv8KzvggVf6F6Q2ntMXbeHZzhkTt5qEKe7a60aqR2FlHnoR1emES64ee
-         ARoeUQMvn1BoY/O1/QPj6PnSUvB8lR3Xx1OlR3X9ZhLZnKxcWjIWKHpqpKZdSrMsMTqy
-         XhEvAqEJ4Lcg/hDYQT4LJBUT/S35N+9mdXY6kFzJxu3XSWHup/mb0FcT7RW3/XCPlXxh
-         E9zScb7fr/10OnBUmIy/OhKISyaZ7XeEzpVqtHKlKG3Wv4IL4TayCTo7/Mv2cmCoZkuC
-         S3eh6uXCW2E0Csg0z1V53P5ZViPtnCJPkIkbfsSl3i8sHBVffFFRjlp+WmZZJ6Mm89wH
-         8xGg==
-X-Gm-Message-State: AC+VfDxYH5PXBFKGjE1wt7CgoC1+TDNobAOc284qVi9RpxydDDl8BGv1
-        nu1eH0xjEE0UEyFgMbF7fad3mnGYgZlrpTpZpJmyjw==
-X-Google-Smtp-Source: ACHHUZ5BtAIg2gehTksnBUYzE534xIDy9zMGqI/tX7t3Q6vZwjyz8pLQnSfBm+JNxlaO66d0DHoAK8piHoH1qBruoVI=
-X-Received: by 2002:a05:6102:3641:b0:439:3730:c524 with SMTP id
- s1-20020a056102364100b004393730c524mr3742804vsu.7.1685716987938; Fri, 02 Jun
- 2023 07:43:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-22-dave.stevenson@raspberrypi.com> <bqz2iyucj3fzprzmouu5genmm4e4h33oeye5cng5bekaqen2t4@tjlftixka3oq>
-In-Reply-To: <bqz2iyucj3fzprzmouu5genmm4e4h33oeye5cng5bekaqen2t4@tjlftixka3oq>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Fri, 2 Jun 2023 15:42:51 +0100
-Message-ID: <CAPY8ntAc8FELe0rPpumK=5Spk9ixugKg-JzGq=Ak-+9A-wKFgw@mail.gmail.com>
-Subject: Re: [PATCH 21/21] media: i2c: imx258: Make HFLIP and VFLIP controls writable
-To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236228AbjFBOtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:49:18 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D8CEE49;
+        Fri,  2 Jun 2023 07:49:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685717355; x=1717253355;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YPUlxeS32cApP+ZDIUHR9khrq40A8i+TVQo/LyymAAg=;
+  b=iSIFuCLsrzjIhWQBq0iHm1gHLZ5Fe81EIAgx/XJKBBeb5h4s9L/vuxNi
+   sxbmnLW1Vnpkz3AhKgcybk4fgrK2BzmQ+6gqei9fF0FkGprGa9olHloGP
+   xbX4agugBUo/X5HDCdot1VlKxug48zEhqKIluLCyE89uT7YoWFAMR3dwT
+   YiFJ9I1SCjzWW4pXvbbWu+vcrodW4esE9qEgmGm+AmQvW+g9TyP3NlnQ/
+   4FFQHCk5TwMl0rQbmioL314poFzQMNdXl10QfJc4pI33sR3WqYza4DiSN
+   rNi+V4AieD9jdYVpu8Wv6UVZyzPUrz4tEzMO9KgE1ijDl4a/VnxI/bOWP
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="353378802"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; 
+   d="scan'208";a="353378802"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2023 07:49:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="772905903"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; 
+   d="scan'208";a="772905903"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga008.fm.intel.com with ESMTP; 02 Jun 2023 07:49:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1q565Q-000fQj-0X;
+        Fri, 02 Jun 2023 17:49:04 +0300
+Date:   Fri, 2 Jun 2023 17:49:03 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs
+ GPADC
+Message-ID: <ZHoBXxM80aqvLZNt@smile.fi.intel.com>
+References: <20230601223104.1243871-1-bigunclemax@gmail.com>
+ <20230601223104.1243871-2-bigunclemax@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230601223104.1243871-2-bigunclemax@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo
+On Fri, Jun 02, 2023 at 01:30:39AM +0300, Maksim Kiselev wrote:
+> From: Maxim Kiselev <bigunclemax@gmail.com>
+> 
+> The General Purpose ADC (GPADC) can convert the external signal into
+> a certain proportion of digital value, to realize the measurement of
+> analog signal, which can be applied to power detection and key detection.
+> 
+> Theoretically, this ADC can support up to 16 channels. All SoCs below
+> contain this GPADC IP. The only difference between them is the number
+> of available channels:
+> 
+>  T113 - 1 channel
+>  D1   - 2 channels
+>  R329 - 4 channels
+>  T507 - 4 channels
 
-On Fri, 2 Jun 2023 at 14:58, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
->
-> Hi Dave
->
-> On Tue, May 30, 2023 at 06:30:00PM +0100, Dave Stevenson wrote:
-> > The sensor supports H & V flips, but the controls were READ_ONLY.
-> >
-> > Note that the Bayer order changes with these flips, therefore
-> > they set the V4L2_CTRL_FLAG_MODIFY_LAYOUT property.
->
-> Nice!
->
-> >
-> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > ---
-> >  drivers/media/i2c/imx258.c | 99 ++++++++++++++++++++++++--------------
-> >  1 file changed, 64 insertions(+), 35 deletions(-)
-> >
-> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> > index 98b5c1e3abff..cf90ac66e14c 100644
-> > --- a/drivers/media/i2c/imx258.c
-> > +++ b/drivers/media/i2c/imx258.c
-> > @@ -83,8 +83,8 @@
-> >
-> >  /* Orientation */
-> >  #define REG_MIRROR_FLIP_CONTROL              0x0101
-> > -#define REG_CONFIG_MIRROR_FLIP               0x03
-> > -#define REG_CONFIG_FLIP_TEST_PATTERN 0x02
-> > +#define REG_CONFIG_MIRROR_HFLIP              0x01
-> > +#define REG_CONFIG_MIRROR_VFLIP              0x02
-> >
-> >  /* IMX258 native and active pixel array size. */
-> >  #define IMX258_NATIVE_WIDTH          4224U
-> > @@ -484,6 +484,23 @@ static const struct imx258_variant_cfg imx258_pdaf_cfg = {
-> >       .num_regs = ARRAY_SIZE(imx258_pdaf_cfg_regs),
-> >  };
-> >
-> > +/*
-> > + * The supported formats.
-> > + * This table MUST contain 4 entries per format, to cover the various flip
-> > + * combinations in the order
-> > + * - no flip
-> > + * - h flip
-> > + * - v flip
-> > + * - h&v flips
-> > + */
-> > +static const u32 codes[] = {
-> > +     /* 10-bit modes. */
-> > +     MEDIA_BUS_FMT_SRGGB10_1X10,
-> > +     MEDIA_BUS_FMT_SGRBG10_1X10,
-> > +     MEDIA_BUS_FMT_SGBRG10_1X10,
-> > +     MEDIA_BUS_FMT_SBGGR10_1X10
-> > +};
-> > +
-> >  static const char * const imx258_test_pattern_menu[] = {
-> >       "Disabled",
-> >       "Solid Colour",
-> > @@ -677,6 +694,8 @@ struct imx258 {
-> >       struct v4l2_ctrl *vblank;
-> >       struct v4l2_ctrl *hblank;
-> >       struct v4l2_ctrl *exposure;
-> > +     struct v4l2_ctrl *hflip;
-> > +     struct v4l2_ctrl *vflip;
-> >       /* Current long exposure factor in use. Set through V4L2_CID_VBLANK */
-> >       unsigned int long_exp_shift;
-> >
-> > @@ -780,9 +799,22 @@ static int imx258_write_regs(struct imx258 *imx258,
-> >       return 0;
-> >  }
-> >
-> > +/* Get bayer order based on flip setting. */
-> > +static u32 imx258_get_format_code(struct imx258 *imx258)
->
-> can struct imx258 be const ?
+...
 
-It can
+> +struct sun20i_gpadc_iio {
+> +	struct regmap		*regmap;
+> +	struct completion	completion;
+> +	struct mutex		lock;
 
-> > +{
-> > +     unsigned int i;
-> > +
-> > +     lockdep_assert_held(&imx258->mutex);
-> > +
-> > +     i = (imx258->vflip->val ? 2 : 0) |
-> > +         (imx258->hflip->val ? 1 : 0);
-> > +
-> > +     return codes[i];
-> > +}
->
-> An empty line wouldn't hurt
+The locks should be explained (what are they for? what do they protect?).
 
-Done
+> +	int			lastch;
+> +};
 
-> >  /* Open sub-device */
-> >  static int imx258_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
-> >  {
-> > +     struct imx258 *imx258 = to_imx258(sd);
-> >       struct v4l2_mbus_framefmt *try_fmt =
-> >               v4l2_subdev_get_try_format(sd, fh->state, 0);
-> >       struct v4l2_rect *try_crop;
-> > @@ -790,7 +822,7 @@ static int imx258_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
-> >       /* Initialize try_fmt */
-> >       try_fmt->width = supported_modes[0].width;
-> >       try_fmt->height = supported_modes[0].height;
-> > -     try_fmt->code = MEDIA_BUS_FMT_SBGGR10_1X10;
-> > +     try_fmt->code = imx258_get_format_code(imx258);
-> >       try_fmt->field = V4L2_FIELD_NONE;
-> >
-> >       /* Initialize try_crop */
-> > @@ -903,10 +935,6 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
-> >               ret = imx258_write_reg(imx258, IMX258_REG_TEST_PATTERN,
-> >                               IMX258_REG_VALUE_16BIT,
-> >                               ctrl->val);
-> > -             ret = imx258_write_reg(imx258, REG_MIRROR_FLIP_CONTROL,
-> > -                             IMX258_REG_VALUE_08BIT,
-> > -                             !ctrl->val ? REG_CONFIG_MIRROR_FLIP :
-> > -                             REG_CONFIG_FLIP_TEST_PATTERN);
-> >               break;
-> >       case V4L2_CID_WIDE_DYNAMIC_RANGE:
-> >               if (!ctrl->val) {
-> > @@ -928,6 +956,15 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
-> >               ret = imx258_set_frame_length(imx258,
-> >                                             imx258->cur_mode->height + ctrl->val);
-> >               break;
-> > +     case V4L2_CID_VFLIP:
-> > +     case V4L2_CID_HFLIP:
-> > +             ret = imx258_write_reg(imx258, REG_MIRROR_FLIP_CONTROL,
-> > +                                    IMX258_REG_VALUE_08BIT,
-> > +                                    (imx258->hflip->val ?
-> > +                                     REG_CONFIG_MIRROR_HFLIP : 0) |
-> > +                                    (imx258->vflip->val ?
-> > +                                     REG_CONFIG_MIRROR_VFLIP : 0));
-> > +             break;
-> >       default:
-> >               dev_info(&client->dev,
-> >                        "ctrl(id:0x%x,val:0x%x) is not handled\n",
-> > @@ -949,11 +986,13 @@ static int imx258_enum_mbus_code(struct v4l2_subdev *sd,
-> >                                 struct v4l2_subdev_state *sd_state,
-> >                                 struct v4l2_subdev_mbus_code_enum *code)
-> >  {
-> > -     /* Only one bayer order(GRBG) is supported */
-> > +     struct imx258 *imx258 = to_imx258(sd);
-> > +
-> > +     /* Only one bayer format (10 bit) is supported */
-> >       if (code->index > 0)
-> >               return -EINVAL;
-> >
-> > -     code->code = MEDIA_BUS_FMT_SBGGR10_1X10;
-> > +     code->code = imx258_get_format_code(imx258);
-> >
-> >       return 0;
-> >  }
-> > @@ -962,10 +1001,11 @@ static int imx258_enum_frame_size(struct v4l2_subdev *sd,
-> >                                 struct v4l2_subdev_state *sd_state,
-> >                                 struct v4l2_subdev_frame_size_enum *fse)
-> >  {
-> > +     struct imx258 *imx258 = to_imx258(sd);
-> >       if (fse->index >= ARRAY_SIZE(supported_modes))
-> >               return -EINVAL;
-> >
-> > -     if (fse->code != MEDIA_BUS_FMT_SBGGR10_1X10)
-> > +     if (fse->code != imx258_get_format_code(imx258))
-> >               return -EINVAL;
-> >
-> >       fse->min_width = supported_modes[fse->index].width;
-> > @@ -976,12 +1016,13 @@ static int imx258_enum_frame_size(struct v4l2_subdev *sd,
-> >       return 0;
-> >  }
-> >
-> > -static void imx258_update_pad_format(const struct imx258_mode *mode,
-> > +static void imx258_update_pad_format(struct imx258 *imx258,
-> > +                                  const struct imx258_mode *mode,
->
-> Can't you get mode from imx258->cur_mode ?
+...
 
-It's called from imx258_set_pad_format for both SET and TRY, so needs
-to be able to work on the new mode to be selected/tried as well as the
-current mode.
+> +static const struct regmap_config sun20i_gpadc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +	.fast_io = true,
 
-> >                                    struct v4l2_subdev_format *fmt)
-> >  {
-> >       fmt->format.width = mode->width;
-> >       fmt->format.height = mode->height;
-> > -     fmt->format.code = MEDIA_BUS_FMT_SBGGR10_1X10;
-> > +     fmt->format.code = imx258_get_format_code(imx258);
-> >       fmt->format.field = V4L2_FIELD_NONE;
-> >  }
-> >
-> > @@ -994,7 +1035,7 @@ static int __imx258_get_pad_format(struct imx258 *imx258,
-> >                                                         sd_state,
-> >                                                         fmt->pad);
-> >       else
-> > -             imx258_update_pad_format(imx258->cur_mode, fmt);
-> > +             imx258_update_pad_format(imx258, imx258->cur_mode, fmt);
-> >
-> >       return 0;
-> >  }
-> > @@ -1030,13 +1071,12 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
-> >
-> >       mutex_lock(&imx258->mutex);
-> >
-> > -     /* Only one raw bayer(GBRG) order is supported */
-> > -     fmt->format.code = MEDIA_BUS_FMT_SBGGR10_1X10;
-> > +     fmt->format.code = imx258_get_format_code(imx258);
-> >
-> >       mode = v4l2_find_nearest_size(supported_modes,
-> >               ARRAY_SIZE(supported_modes), width, height,
-> >               fmt->format.width, fmt->format.height);
-> > -     imx258_update_pad_format(mode, fmt);
-> > +     imx258_update_pad_format(imx258, mode, fmt);
-> >       if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
-> >               framefmt = v4l2_subdev_get_try_format(sd, sd_state, fmt->pad);
-> >               *framefmt = fmt->format;
-> > @@ -1186,15 +1226,6 @@ static int imx258_start_streaming(struct imx258 *imx258)
-> >               return ret;
-> >       }
-> >
-> > -     /* Set Orientation be 180 degree */
-> > -     ret = imx258_write_reg(imx258, REG_MIRROR_FLIP_CONTROL,
-> > -                            IMX258_REG_VALUE_08BIT, REG_CONFIG_MIRROR_FLIP);
-> > -     if (ret) {
-> > -             dev_err(&client->dev, "%s failed to set orientation\n",
-> > -                     __func__);
-> > -             return ret;
-> > -     }
-> > -
-> >       /* Apply customized values from user */
-> >       ret =  __v4l2_ctrl_handler_setup(imx258->sd.ctrl_handler);
-> >       if (ret)
-> > @@ -1383,7 +1414,6 @@ static int imx258_init_controls(struct imx258 *imx258)
-> >       struct i2c_client *client = v4l2_get_subdevdata(&imx258->sd);
-> >       const struct imx258_link_freq_config *link_freq_cfgs;
-> >       struct v4l2_fwnode_device_properties props;
-> > -     struct v4l2_ctrl *vflip, *hflip;
-> >       struct v4l2_ctrl_handler *ctrl_hdlr;
-> >       const struct imx258_link_cfg *link_cfg;
-> >       s64 vblank_def;
-> > @@ -1408,16 +1438,15 @@ static int imx258_init_controls(struct imx258 *imx258)
-> >       if (imx258->link_freq)
-> >               imx258->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> >
-> > -     /* The driver only supports one bayer order and flips by default. */
-> > -     hflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
-> > -                               V4L2_CID_HFLIP, 1, 1, 1, 1);
-> > -     if (hflip)
-> > -             hflip->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > +     imx258->hflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
-> > +                                       V4L2_CID_HFLIP, 0, 1, 1, 1);
-> > +     if (imx258->hflip)
-> > +             imx258->hflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
-> >
-> > -     vflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
-> > -                               V4L2_CID_VFLIP, 1, 1, 1, 1);
-> > -     if (vflip)
-> > -             vflip->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > +     imx258->vflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
-> > +                                       V4L2_CID_VFLIP, 0, 1, 1, 1);
-> > +     if (imx258->vflip)
-> > +             imx258->vflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
->
-> if flips are now writable, should they be enabled by default ?
+I forgot if I asked about regmap lock do you need it?
 
-This is the potential debate.
+> +};
 
-An existing userspace app is using this driver and it renders as
-desired. Merge this change and suddenly all their images are upside
-down, and that's assuming they haven't hard coded the Bayer order
-which has now changed due to correcting the cropping registers.
-Some would say that is a regression.
+...
 
-I know you'd discussed it with Sakari, but wasn't totally clear on the
-final decision. It's part of the reason why I had this as the final
-patch, because then it's easy to drop whilst discussing it.
+> +	if (!wait_for_completion_timeout(&info->completion,
+> +					 msecs_to_jiffies(100))) {
 
-  Dave
+Dunno if it's better to have this parameter to be defined with self-explanatory
+name.
 
-> >
-> >       link_freq_cfgs = &imx258->link_freq_configs[0];
-> >       link_cfg = link_freq_cfgs[imx258->lane_mode_idx].link_cfg;
-> > --
-> > 2.25.1
-> >
+> +		ret = -ETIMEDOUT;
+> +		goto err;
+> +	}
+
+...
+
+> +err:
+
+err_unlock:
+
+> +	mutex_unlock(&info->lock);
+> +
+> +	return ret;
+
+...
+
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = sun20i_gpadc_adc_read(info, chan, val);
+> +		return ret;
+
+		return sun...;
+
+> +	case IIO_CHAN_INFO_SCALE:
+> +		/* value in mv = 1800mV / 4096 raw */
+> +		*val = 1800;
+> +		*val2 = 12;
+> +		return IIO_VAL_FRACTIONAL_LOG2;
+> +	default:
+> +		return -EINVAL;
+> +	}
+
+...
+
+> +	if (num_channels > SUN20I_GPADC_MAX_CHANNELS) {
+> +		dev_err(dev, "num of channel children out of range");
+> +		return -EINVAL;
+> +	}
+
+Is it really critical error?
+
+...
+
+> +	channels = devm_kcalloc(dev, num_channels,
+> +				sizeof(*channels), GFP_KERNEL);
+
+At least one more parameter can be located on the previous line.
+
+> +	if (!channels)
+> +		return -ENOMEM;
+
+...
+
+> +err_child_out:
+
+err_put_child:
+
+The goto labels should be self-explanatory of what to expect when goto.
+
+> +	fwnode_handle_put(node);
+> +
+> +	return ret;
+
+...
+
+> +	ret = devm_request_irq(dev, irq, sun20i_gpadc_irq_handler,
+> +			       0, dev_name(dev), info);
+> +	if (ret < 0)
+
+Here...
+
+> +		return dev_err_probe(dev, ret,
+> +				     "failed requesting irq %d\n", irq);
+
+...
+
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret < 0)
+
+...and here, do the positive returned values even possible?
+
+> +		return dev_err_probe(dev, ret,
+> +				     "could not register the device\n");
+
+...
+
+> +	{ .compatible = "allwinner,sun20i-d1-gpadc", },
+
+Inner comma is not needed.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
