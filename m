@@ -2,102 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEF4572045B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA26720480
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:30:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235044AbjFBOZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 10:25:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33966 "EHLO
+        id S235600AbjFBOaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 10:30:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235813AbjFBOZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:25:04 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5387D9F;
-        Fri,  2 Jun 2023 07:25:02 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.00,213,1681138800"; 
-   d="scan'208";a="161964815"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Jun 2023 23:25:01 +0900
-Received: from localhost.localdomain (unknown [10.226.93.55])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D404640065BD;
-        Fri,  2 Jun 2023 23:24:57 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        with ESMTP id S235298AbjFBOah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:30:37 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D771A7
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:30:35 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-96f5685f902so302011266b.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:30:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685716234; x=1688308234;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iz3EiuLQkvt9izfvyoQpEiizvgQ9e4YlnvOx76NrFwY=;
+        b=ZWtKC8AqHPXLEz2K6eOmqn1usR4MgPYMh+M829yTormlDAG8mLuISRYI4M0iFTZIfd
+         xKTpdsH86YF1yY+bj3Yp0CVfEuggC2DiJ3Vtpvx5CenKr37GkQqhiqw27z85/AtDMM0S
+         PfrFXsTu5Ory1tZDYcnVNC6jd+x/LyuwcQrFBiPe7iCjvcgh2uiXdFUUvO4pNZ0TnoH6
+         IlCc3JL6lRc3I3K12ARHILwvvyRGm1iV1HXuHVGCJULxQFm0SCb4WWLkZ2vXa/5wJvOi
+         JmcnlMeWVMlSrT/Ucff/1Rsh6j61d24aq0M67GNuGS8M0rRa34D2iKzx29Tlctqx761c
+         AaRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685716234; x=1688308234;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iz3EiuLQkvt9izfvyoQpEiizvgQ9e4YlnvOx76NrFwY=;
+        b=LM30MQKpane2obF5eBTEMu4GqmldWOYT9IfHrtcrO2A2qxTtqRzqRVpMxn4P3nGEtF
+         7aStHD9GqiaxoQBYQ82DRMqoHgfZMmBLEhA04aM1McclnZStwnoYDq33kjTf6/a9IWS7
+         zMjlVJqd+nS37zjlmj0calaSPqJPbguE6uAxCL7wShvkR8d/gAZ0FdtAdE4ZPbnZLOpq
+         dN/1olEAMep+wabElgKx2Dj/uYWhQe7e5LUKkcXQ5/pPUwmuYYJkcma7w2njv2oh2t6/
+         xXP0DvfyD+h5ZP3zmgyUGpw1Gzs3sj1asP0gGSWtEjp1Yt1p0ioQm6UMhSksPo3GRZLg
+         Aclw==
+X-Gm-Message-State: AC+VfDxa4ZZKoRRrOpLbbLeOq2l+lw6R9rNW71dxMAc3nJ3EI19uMWSH
+        mmkViDjbkeWAVX7USA0c7+brLA==
+X-Google-Smtp-Source: ACHHUZ4UcaG8arANlfaUOZBVkk1iNwBRIL7OU1zab+ZWua9cjYpORVIfVutSVC0iqeRU+fJ6cll7FQ==
+X-Received: by 2002:a17:907:1c22:b0:94b:cd7c:59f4 with SMTP id nc34-20020a1709071c2200b0094bcd7c59f4mr11753218ejc.16.1685716234169;
+        Fri, 02 Jun 2023 07:30:34 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id w21-20020a170906185500b00968db60e070sm820853eje.67.2023.06.02.07.30.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jun 2023 07:30:33 -0700 (PDT)
+Message-ID: <ac3c1067-8567-78b6-6592-2157461cdeed@linaro.org>
+Date:   Fri, 2 Jun 2023 16:30:31 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 1/2] dt-bindings: usb: add ON Semiconductor nb7vpq904m
+ Type-C Linear Redriver bindings
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Trent Piepho <tpiepho@gmail.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v6 06/11] dt-bindings: rtc: isil,isl1208: Document clock and clock-names properties
-Date:   Fri,  2 Jun 2023 15:24:21 +0100
-Message-Id: <20230602142426.438375-7-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230602142426.438375-1-biju.das.jz@bp.renesas.com>
-References: <20230602142426.438375-1-biju.das.jz@bp.renesas.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230601-topic-sm8x50-upstream-redriver-v1-0-6ad21094ff6f@linaro.org>
+ <20230601-topic-sm8x50-upstream-redriver-v1-1-6ad21094ff6f@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230601-topic-sm8x50-upstream-redriver-v1-1-6ad21094ff6f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per the HW manual, XTOSCB bit setting is as follows
+On 01/06/2023 11:21, Neil Armstrong wrote:
+> Document bindings for this ON Semiconductor Type-C USB SuperSpeed
+> and DisplayPort ALT Mode Linear Redriver.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-If using an external clock signal, set the XTOSCB bit as 1 to
-disable the crystal oscillator.
 
-If using an external crystal, the XTOSCB bit needs to be set at 0
-to enable the crystal oscillator.
+...
 
-Document clock and clock-names properties.
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Sideband Use (SBU) AUX lines endpoint to the Type-C connector for the purpose of
+> +          handling altmode muxing and orientation switching.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c13 {
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v5->v6:
- * Added Rb tag from Geert.
-v4->v5:
- * Replaced oneOf->enum for clock-names as it is simpler.
- * Added Rb tag from Conor.
-v4:
- * New patch
----
- .../devicetree/bindings/rtc/isil,isl1208.yaml         | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+If there is going to be resend: i2c
 
-diff --git a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-index 565965147ce6..11f7378d4997 100644
---- a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-+++ b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-@@ -25,6 +25,17 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    description: |
-+      Use xin, if connected to an external crystal.
-+      Use clkin, if connected to an external clock signal.
-+    enum:
-+      - xin
-+      - clkin
-+
-   interrupts:
-     minItems: 1
-     maxItems: 2
--- 
-2.25.1
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
