@@ -2,133 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA27D72041D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48999720424
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234989AbjFBOO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 10:14:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58092 "EHLO
+        id S234687AbjFBOTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 10:19:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234948AbjFBOOz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:14:55 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325661A6;
-        Fri,  2 Jun 2023 07:14:54 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51640b9ed95so636271a12.2;
-        Fri, 02 Jun 2023 07:14:54 -0700 (PDT)
+        with ESMTP id S235208AbjFBOTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:19:20 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607911A6
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:19:19 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-970056276acso304968366b.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:19:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685715292; x=1688307292;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K9Mq4zTWNZxgXmn77g79M7jiTcegyvnCqH1d/BABQRw=;
-        b=MdpnURFfo2xSF+LNcUy3EATrFiAxtU0Ahw+t6ngyOgs82v8O43y1D2rkwPxJPRNNNO
-         qm8FUF4k24oI2ns4mhAFnHUJgjqKhsPZejHQFRhPByrTXebetE0Lcfdxsch0usfXjLU5
-         MO0XhzLM+xS0rNlXnNLz+n5LX6DeVjrcCKq4EunC5uTNVFtG+JO7DFNeIxvLdFTcnF+r
-         C7MzPymNYRyLQF1rlvogwFB0mNPJyuhZu8+ni5/Z7J6fbKkOLnaJ/t41T/ws93VwEk6E
-         6oxyPBecocZ51JQxPQ32xZEJ8L1UYpKQXPHR4R8VlUedcGy60bMjOOXF03oeBuWgTpkE
-         rQ/g==
+        d=linaro.org; s=google; t=1685715557; x=1688307557;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LTa69TMDPmdaiXEQ8KHtyu73N8TtVWeb4hLxgfpprJA=;
+        b=cSuMWqqt1llDOJJM3+DcVgcFSRbIhe6Spwn4rtD/UtpmOujurEuwLKNJTnJINmp0gP
+         HW0wY5n2xkQ5np1e44OkNB49SfGf+0mxMaTJXXjBYgUH9LVvGTfLAVaWNMrTdHGEQdVV
+         qCehqsPo5miz5GAs01G7io0ulfPR5sbwXtNY1aKsIZJWyrOop/XkPIMc5DAawILhtOSv
+         tXkdKf6iOBYISEMD2WS0VCIyZVST5NG3Dpz+F8MV/bjBc2FPHKVaTrwTaxNRSPgiDYtb
+         fwn4LEsHAHuNn1hYASKD4A7DntVa1WKblZoKKtL3UaIVpYn976jrIL1KZdFms0aYoasT
+         8wGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685715292; x=1688307292;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K9Mq4zTWNZxgXmn77g79M7jiTcegyvnCqH1d/BABQRw=;
-        b=N+arcyFiQZNJhs9o1/Aryzv/6WVyrmi1yQhzWHcdrA+0IefwyZo7QZ7mECFIBgvXBC
-         KqTkIicYYyxp3Ou/rblAVzstnzkoJEzW6oDUDm+BKk7vN+PsT1PtQ9Y1UNPNrOkITZ5O
-         hKKuqqVHcw21J78sT6xrjOZnmkyOfnuDWrAcPBcFs+bEjv4hNh2mbBQAp97mJ2mTDZTm
-         MhYlYUjcR6qCCaJdwRH5W7ubY5F7e0xSNXEAx5IdphUXJCGMgUaxkavvD5mQQDNFFRKh
-         r4YjSJvhhutK/X/ZCxy4NyiKi4NOTzNZk9PLJG70fdWcpt3UE668zpAVfgeojdicixkL
-         DDzw==
-X-Gm-Message-State: AC+VfDwqqAeC4PuT4RL130MATGrYAMWo6GWhsYsSrZFN72dN4Na4070A
-        dKpSOqqhTKBfZ0mY1A6EUMM=
-X-Google-Smtp-Source: ACHHUZ6RinDs3iE3gaXYXQ41Xcx4tyV6SOb7xP+HOV0ILLllQhHtK2pudfDmd6ipafJsmZ/CO4EhUA==
-X-Received: by 2002:aa7:c904:0:b0:510:db93:f034 with SMTP id b4-20020aa7c904000000b00510db93f034mr2127459edt.36.1685715292657;
-        Fri, 02 Jun 2023 07:14:52 -0700 (PDT)
-Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id a25-20020aa7d919000000b005163008c6b7sm729828edr.27.2023.06.02.07.14.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jun 2023 07:14:52 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v4 3/3] arm64: tegra: Add Tegra234 pin controllers
-Date:   Fri,  2 Jun 2023 16:14:45 +0200
-Message-Id: <20230602141445.3012550-4-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230602141445.3012550-1-thierry.reding@gmail.com>
-References: <20230602141445.3012550-1-thierry.reding@gmail.com>
+        d=1e100.net; s=20221208; t=1685715557; x=1688307557;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LTa69TMDPmdaiXEQ8KHtyu73N8TtVWeb4hLxgfpprJA=;
+        b=HkyeRaqoJ7TlrdutCCYAcwNTBd3WHUXq+TzoFvTwBherWMrvbx1TWFthQKptSvwveK
+         f3P+oVIWBg2US/QZ6Podd8fsJw4ztH7GAy4+5kI9k/7bQFENpx1bNLD6Xscx/waIfRwF
+         ix2QLilIav3zYzvBx/+kfHtlWtKsEOv0jkG+wQXrAqahuyt22WCna01ffZtKScqkR29i
+         FQBW8y+oo5SjGFu4R/bXvkO2DexC1MIAKrhWNojaxs6dlbA9k3Ikw2ER1Zvf6KBZ+HrA
+         +0u+FXqUg8ki5/ZDPGn1slM3dIxvGtppNiXoViihkt3eZPewkEIi8qF0kEYHbxg/i4pJ
+         Lm9g==
+X-Gm-Message-State: AC+VfDwogURQi5qsu4LQFVg8Z2xBJML55ei43q2GLyKiLClPJysUEWRw
+        /revq9aeifYdR80gKCCifAZAsA==
+X-Google-Smtp-Source: ACHHUZ4t/LypzBlEtLR9YZ+51hGCwZLTtLW9N/+gXiVyH9YZTyAJyhCZZ+QPEUZiHubr5H2XUOFZWw==
+X-Received: by 2002:a17:906:9b83:b0:96f:ee6d:fed5 with SMTP id dd3-20020a1709069b8300b0096fee6dfed5mr10742995ejc.72.1685715557125;
+        Fri, 02 Jun 2023 07:19:17 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id s20-20020a170906bc5400b009745b0cb326sm808244ejv.109.2023.06.02.07.19.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jun 2023 07:19:16 -0700 (PDT)
+Message-ID: <afd610cf-954f-afc2-00da-86da9fe4192d@linaro.org>
+Date:   Fri, 2 Jun 2023 16:19:14 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
+ touchscreen chip
+Content-Language: en-US
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, dianders@chromium.org,
+        hsinyi@google.com
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230602140948.2138668-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230602140948.2138668-2-yangcong5@huaqin.corp-partner.google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230602140948.2138668-2-yangcong5@huaqin.corp-partner.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Prathamesh Shete <pshete@nvidia.com>
+On 02/06/2023 16:09, Cong Yang wrote:
+> Add an ilitek touch screen chip ili9882t.
+> 
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 
-Add the device tree nodes for the MAIN and AON pin controllers found on
-the Tegra234 family of SoCs.
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
-Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v3:
-- use correct value for #address-cells and #size-cells
-- correct gpio-ranges property name
+There is no way this would work and if you test you will see error msg.
+Feel free to ping if message is unclear.
 
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> ---
+>  .../bindings/input/elan,ekth6915.yaml         | 36 ++++++++++++++-----
+>  1 file changed, 27 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> index 05e6f2df604c..73e94cb6c4e0 100644
+> --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> @@ -15,11 +15,15 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: elan,ekth6915
+> +    oneOf:
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 133b2d32d19b..9dba05be03d2 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -109,6 +109,7 @@ gpio: gpio@2200000 {
- 			interrupt-controller;
- 			#gpio-cells = <2>;
- 			gpio-controller;
-+			gpio-ranges = <&pinmux 0 0 164>;
- 		};
- 
- 		ethernet@2310000 {
-@@ -147,6 +148,11 @@ codec@242c000 {
- 			status = "disabled";
- 		};
- 
-+		pinmux: pinmux@2430000 {
-+			compatible = "nvidia,tegra234-pinmux";
-+			reg = <0x0 0x2430000 0x0 0x19100>;
-+		};
-+
- 		gpcdma: dma-controller@2600000 {
- 			compatible = "nvidia,tegra234-gpcdma",
- 				     "nvidia,tegra186-gpcdma";
-@@ -1805,6 +1811,12 @@ gpio_aon: gpio@c2f0000 {
- 			interrupt-controller;
- 			#gpio-cells = <2>;
- 			gpio-controller;
-+			gpio-ranges = <&pinmux_aon 0 0 32>;
-+		};
-+
-+		pinmux_aon: pinmux@c300000 {
-+			compatible = "nvidia,tegra234-pinmux-aon";
-+			reg = <0x0 0xc300000 0x0 0x4000>;
- 		};
- 
- 		pwm4: pwm@c340000 {
--- 
-2.40.1
+It's not oneOf. Just enum
+
+> +      - enum:
+> +        - elan,ekth6915
+> +        - ilitek,ili9882t
+>  
+>    reg:
+> -    const: 0x10
+> +    enum:
+> +      - 0x10
+> +      - 0x41
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -29,17 +33,31 @@ properties:
+>  
+>    vcc33-supply:
+>      description: The 3.3V supply to the touchscreen.
+> +                 If using ili9882t then this supply will not be needed.
+
+Are you sure these are compatible devices then? What does it mean "not
+needed"? Is the pin there or is not?
+
+>  
+>    vccio-supply:
+>      description:
+>        The IO supply to the touchscreen. Need not be specified if this is the
+>        same as the 3.3V supply.
+> -
+> -required:
+> -  - compatible
+> -  - reg
+> -  - interrupts
+> -  - vcc33-supply
+> +      If using ili9882t, the IO supply is required.
+> +
+> +  required:
+
+NAK. Really. Test patches before sending.
+
+Best regards,
+Krzysztof
 
