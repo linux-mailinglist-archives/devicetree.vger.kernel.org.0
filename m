@@ -2,93 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CAE471F8E1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 05:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFBCD71F90A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 05:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231863AbjFBDVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 23:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60154 "EHLO
+        id S232674AbjFBDys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 23:54:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbjFBDVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 23:21:34 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D89107;
-        Thu,  1 Jun 2023 20:21:33 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3523DM4L010027;
-        Fri, 2 Jun 2023 03:21:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=qO4SVk1ZImVpFaqBhVfkmc9Z+Cv6JcVlWb/AZgjdGAY=;
- b=Rt79VxHm9h/JkhR46fQufr4f3kXh7LYUH/bDRenb4KhS4E0IcOPgI1CpDA8E2Naimr1/
- W5HJUdwLczufIP6KCkT57h7gU8S/rbAUuJvXliUVajwpDO+OOhtoNEXi8ANDDBvi9OnB
- sZH+agEqeJ4k6SMHANQh0aG44ZP5jaihxz6bZGmPco2turb22WSknc2OH0DVyuh0cc1r
- 6bcfkOBBS15bibFT/nFeUlzJ7Y7fP4H+yBdtbT1AojAcmKE+CDWPZhFNpCtvAM8Lvzny
- /RIQB7P7A1Frqr6VP2pj0vBzgnfvomZQKcCjZbXtWitu+RE2usvv65u2OBfZBMiacDuA Sg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxugr9nyw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 03:21:18 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3523LHgK012273
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Jun 2023 03:21:17 GMT
-Received: from [10.216.26.36] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
- 20:21:11 -0700
-Message-ID: <fb95bebd-52ec-eda5-22c3-c3e494e29674@quicinc.com>
-Date:   Fri, 2 Jun 2023 08:51:07 +0530
+        with ESMTP id S229598AbjFBDyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 23:54:47 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA8618C;
+        Thu,  1 Jun 2023 20:54:46 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-2566f66190dso1345264a91.1;
+        Thu, 01 Jun 2023 20:54:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685678085; x=1688270085;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AFYRa2oit8Kb04mbuiimeCpNVm02GagiFFjOTHBNe/E=;
+        b=DyjwxaLk7AueeisR6yISmADRKlAHBLdbHCQxJgnZxXyaRSC4Ln0ymZBuV5GNb8izsY
+         BGgRFHURLha9A++oTaDl4vGKpLH3br3cColD7VPoRCL7FFmmQ9+thgITD2irfws1WyP7
+         8z7kq2jO+Q1lqfanDHsw8c6o38bMu2Gv7dWKuEnKtAWBAON6c0cqANMkIkWgoj/La9im
+         AgPIII4nTTAZofuQU0B5FcNGpzOg9Q3BETfrB6RZNzGYBOS25Ae8JUsQNwp7oKsq6qqH
+         JIp6LFPKgHvj8pR5T2aUYszEbnwhSQQgZ9lqiRwAZqD5xjPaXoxNmbB5bQ3tj+LtzNsN
+         BxbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685678085; x=1688270085;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AFYRa2oit8Kb04mbuiimeCpNVm02GagiFFjOTHBNe/E=;
+        b=OCiP3ukFtzLKs0pjo7HTHAKgON3LEjxkoiqiNjQNcNKe02pMnUbVukc4Vc/7FA9TpD
+         awaylnuGoSwV+XnCKlHDMt2AOsLpnYWU3DIaYfcUKNjBj7YY7TtCKcs/S2PAqcEuZ6UI
+         cwtZgYfVyZNCPyz/nwcpu/Hw++BKOtMpEhrpqxOmk2K7/kEDlf4gD4NR6SFSAKpjfUDM
+         +jl/bQGJN5avwP1Iz2j8JjXwymFfbv8VG8R0+12IVZDsRTQ7+lbkohtkRY0bSbiVP4XY
+         r9FLGkavbnAiR0V1udlLrIGfsxS8ceI0DaQD95BChkDQkSTGfZCy/lh+WkK2Ephnw83h
+         AJAg==
+X-Gm-Message-State: AC+VfDzcVKLKo1Dh2hqL8Y8+PG5sLZtQHmX6x/xW1db3RfiHVB0X9UaQ
+        tZdFlBvXMdUhsTXZooVqNNS8pKMT+RyoUdp/IMU=
+X-Google-Smtp-Source: ACHHUZ7bFV1KjjBpBrQzVDLhlCusRk+BBNxv53GfvPOJzwSHNjAxytFtkFPQE+TCkYjIZVWXIk2piLSrw5WZpmltkF4=
+X-Received: by 2002:a17:90a:1d46:b0:256:bc96:45ad with SMTP id
+ u6-20020a17090a1d4600b00256bc9645admr1073489pju.40.1685678085392; Thu, 01 Jun
+ 2023 20:54:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V7 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andy.shevchenko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>
-References: <20230519125409.497439-1-quic_srichara@quicinc.com>
- <20230519125409.497439-5-quic_srichara@quicinc.com>
- <CAHp75VfVx+oGYKcija3h9-eWc6jggMx8p5SAQTEHTBEbjTaJKw@mail.gmail.com>
- <1823419a-6bb4-03f7-d5ae-e32204c5e598@quicinc.com>
- <ZHTK7uEzO7kcx_cV@surfacebook>
- <aefd0df1-8dfb-1b69-589b-974dea312845@quicinc.com>
- <664940c3-9ec1-b4bd-9db5-fa3529e3d1ff@linaro.org>
- <8146f367-c539-bea5-12b6-424213018488@quicinc.com>
- <eb109116-94eb-5b6d-0049-7bb31feada36@linaro.org>
- <33979417-2c0c-5474-23e0-7e72add99873@linaro.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <33979417-2c0c-5474-23e0-7e72add99873@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vp_2jjG7MS1Kcj8RfbOAJlefqzJHJQEo
-X-Proofpoint-ORIG-GUID: vp_2jjG7MS1Kcj8RfbOAJlefqzJHJQEo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-02_01,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 mlxscore=0 clxscore=1015 impostorscore=0 adultscore=0
- malwarescore=0 phishscore=0 bulkscore=0 mlxlogscore=625 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306020023
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <20230531093206.3893469-1-victor.liu@nxp.com> <20230531093206.3893469-2-victor.liu@nxp.com>
+ <bd257ed0-71a7-0504-0bfe-14775ac93571@linaro.org>
+In-Reply-To: <bd257ed0-71a7-0504-0bfe-14775ac93571@linaro.org>
+From:   Ying Liu <gnuiyl@gmail.com>
+Date:   Fri, 2 Jun 2023 11:54:33 +0800
+Message-ID: <CAOcKUNWkubMK1MJS73tpbm4bafQv2GAMuq_JOTFbvB9EVDRvxg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add NXP i.MX93
+ parallel display format configuration
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
+        conor+dt@kernel.org, rfoss@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonas@kwiboo.se,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        jernej.skrabec@gmail.com, robh+dt@kernel.org,
+        Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,54 +77,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 2, 2023 at 1:45=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 31/05/2023 11:32, Liu Ying wrote:
+> > NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
+> > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+> > field. Add device tree bindings for the display format configuration.
+> >
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v1->v2:
+> > * No change.
+>
+> How did you implement Rob's comment?
 
+Should have discussed more in v1 about Rob's comment, but
+let me explain why this dt-binding makes sense here:
 
-On 6/1/2023 6:57 PM, Krzysztof Kozlowski wrote:
-> On 01/06/2023 13:53, Krzysztof Kozlowski wrote:
->> On 01/06/2023 13:41, Sricharan Ramabadhran wrote:
->>>
->>>
->>> On 6/1/2023 3:21 PM, Krzysztof Kozlowski wrote:
->>>> On 01/06/2023 11:50, Sricharan Ramabadhran wrote:
->>>>>
->>>>>
->>>>> On 5/29/2023 9:25 PM, andy.shevchenko@gmail.com wrote:
->>>>>> Mon, May 29, 2023 at 03:58:09PM +0530, Sricharan Ramabadhran kirjoitti:
->>>>>>> On 5/20/2023 12:17 AM, Andy Shevchenko wrote:
->>>>>>>> On Fri, May 19, 2023 at 3:55 PM Sricharan Ramabadhran
->>>>>>>> <quic_srichara@quicinc.com> wrote:
->>>>>>
->>>>>> ...
->>>>>>
->>>>>>>>       depends on OF || COMPILE_TEST
->>>>>>>
->>>>>>>     Yeah sure. COMPILE_TEST could be standalone. Will fix it and repost.
->>>>>>
->>>>>> Standalone COMPILE_TEST will give you definitely NOT what you want.
->>>>>> And actually it's strange to have it standalone.
->>>>>>
->>>>>
->>>>>     Ho ok, i meant like this, "depends on ARM64 || COMPILE_TEST"
->>>>
->>>> Don't do it differently than all other drivers. Open the Kconfig and
->>>> look at existing entries.
->>>>
->>>     The latest added has this below, will use this
->>>
->>> 	depends on OF || COMPILE_TEST
->>
->> I would even drop this... Lemme check, it looks odd. We depend on
->> ARCH_QCOM which uses OF. We have few drivers which depend on ACPI, but
->> that also seems wrong. These are platform drivers so they should expect
->> platform select proper firmware interface. I think none of other
->> platform drivers do like this (neither Samsung pinctrl nor other
->> Qualcomm drivers)).
->>
->> I will fix this. For your patch I would just skip OF entirely.
-> 
-> Correction: you need OF :(
+Both i.MX8mp SoC and i.MX93 SoC media block control devices
+contain a LVDS Display Bridge(LDB) child device. The i.MX93 block
+control device additionally contains this PDFC child device.
 
-  yup, will follow the same then.
+LDB dt-binding [1] is written in a separate file and referenced in
+i.MX8mp block control dt-binding [2].  So, for the sake of consistency,
+it makes sense to keep this PDFC dt-binding and reference it
+together with the LDB one [1] in i.MX93 block control dt-binding [3]
+in future, doesn't it?
+
+It seems good to have a separate PDFC dt-binding in case it can/will
+be referenced by multiple parent device dt-bindings.
+
+[1] Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+[2] Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yam=
+l
+[3] Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
 
 Regards,
-  Sricharan
+Liu Ying
+
+>
+> >
+> >  .../display/bridge/nxp,imx93-pdfc.yaml        | 78 +++++++++++++++++++
+> >  1 file changed, 78 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/nx=
+p,imx93-pdfc.yaml
