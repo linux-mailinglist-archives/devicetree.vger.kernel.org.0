@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EE2971FD07
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFF6A71FD3C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234303AbjFBJFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 05:05:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59882 "EHLO
+        id S235068AbjFBJMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 05:12:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234834AbjFBJEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:04:12 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0929C10D1
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 02:03:51 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51494659d49so2631456a12.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 02:03:50 -0700 (PDT)
+        with ESMTP id S234482AbjFBJLi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:11:38 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EEFA10F0
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 02:10:16 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f3b9755961so2406696e87.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 02:10:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google; t=1685696629; x=1688288629;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FMKaght3EZRcwtR4hLhGpGozkma4rbwmuu+0lxvlO3A=;
-        b=aG3Fb8X3K9WKKxNliXyqCzqEZZLOAoC6+28JL4RDvnce9WPai1yKdx0ChsOA6lzB7y
-         sgOHuV1st30My66XqPWbpZNBLehHxsHl9kFZRb4hR8CuRGTZfAUA8pTLXzixnF/cixb5
-         jPt1Pdg3POHJ5A2WTe56XJ2P0GNmJmOCmrvIIQUviHJgSY5tVV5CvfpKte6P6z/3oh4l
-         PSHUkwTIQqidY85LpUOWYubwIctytCIgg7cbqb6ySfLJr/0Jw9w1RQU2wNtJGYmfrmaS
-         RZyfs8UuR7zTmy/p6b+RZIJkHQg+dM/aGHLTvzNl2PD0I6gI2Ldpn2M+nbY4iTKv7H4X
-         d5Lw==
+        d=linaro.org; s=google; t=1685697014; x=1688289014;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PhUweK3MrTmGnE3rIz5Y4GwtiIWH03ocYNQvN700a+k=;
+        b=dBFV/LvpLULuahatBG7pkyT25KZbjPW4rwC4qWew/loLA+yaCVla5gHKtotpLn/t41
+         UJV/HVDkrCz3i9kIL1473ialF11BmJwV5J8B+HSLRcKNg9zFaCMWvfT1fZA82DuDcyiu
+         R24I3hcInTr7jnmZwNqmlYXGY9gOektdVFUvc5yYEXkYYYgsh9qKeVaNQxMmoXTBoNtL
+         egsbOHkKVvMGemwEqp4BkE1QEgT3WEj/wZCW/LFlMnVmwFSwk4bt9QoBaRnarM+Iv+4Q
+         udYinK32K6rDeAeSZTreVW0qp/UNjxConNTa9n6qsAZ+EeubIghCRDq5O4T1qh1dzqT+
+         dI2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685696629; x=1688288629;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FMKaght3EZRcwtR4hLhGpGozkma4rbwmuu+0lxvlO3A=;
-        b=a7WZFTbu3fmeYlnLP8rIAcGbQDUuHMb4sLnAH/9xtqCpG4ZVhcKIQWgzK+CK84n/Vg
-         Bsckmvc8oJAiyxepJrIZmEHX2uxCkXiCn2pq16cRc8aM9zpRCs2ZkKsbV/bInfJpYqMT
-         ktol5iUzHCrCUQ3TL+6Rx7cym/vTyt6IC8OBhxDw40WV4u0KA6toWxw0DrREkdPuF/1V
-         0yvVJ8TfnykKPoI7DNWoYDEAUVVH3TDhr1h2W6sWh7GTxHiLBCJ6UOeH2sbfRXC3Oope
-         3hsX2ZtWchxt9rIHiZUsiZSlH4tr5d8334YiXAcW7qNXW2A6TiJNrAjPesFFTk1jNkAH
-         af8Q==
-X-Gm-Message-State: AC+VfDzva4RTPeKCCw+N0Tp5myHDpezGe55rBezJKgjKElKjWt5LZARi
-        q/0g+CAlhOIg+/P1YcifA+mppw==
-X-Google-Smtp-Source: ACHHUZ4jmlviWCEZ9d2sqlZKV0HRtlTNsu09RrXOh72/ySDy+4DwbEEj8oyV65wODyolmmip16qHpg==
-X-Received: by 2002:a17:906:d550:b0:974:6334:f6b2 with SMTP id cr16-20020a170906d55000b009746334f6b2mr806371ejc.22.1685696629567;
-        Fri, 02 Jun 2023 02:03:49 -0700 (PDT)
-Received: from localhost.localdomain (80.71.142.18.ipv4.parknet.dk. [80.71.142.18])
-        by smtp.gmail.com with ESMTPSA id w23-20020a170906385700b009707fa1c316sm488031ejc.213.2023.06.02.02.03.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jun 2023 02:03:49 -0700 (PDT)
-From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] ASoC: simple-card: parse symmetric-clock-roles property
-Date:   Fri,  2 Jun 2023 11:03:21 +0200
-Message-Id: <20230602090322.1876359-5-alvin@pqrs.dk>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230602090322.1876359-1-alvin@pqrs.dk>
-References: <20230602090322.1876359-1-alvin@pqrs.dk>
+        d=1e100.net; s=20221208; t=1685697014; x=1688289014;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PhUweK3MrTmGnE3rIz5Y4GwtiIWH03ocYNQvN700a+k=;
+        b=erHckRQ5IA/vCLoYdkwDMyD9Wl6fzqtw1UrepCau155H+upBnzcncL2xhGyp4lQYat
+         E/SPr8URxhF1cUgHdxQS3o24ZA82en+BK2TG5DsH8m6mUE9YRePbpJlKvMiQbpG04jIA
+         dSlZqL+pjPXrUFFjz33W9S7uDPUYX/aVS5q4H/xMollQC1sZjeUTNvF8n1Xqc5CWurFf
+         I6yr8iivzoXyUsP06HvC2nVdBFxco9DF/IeCcYgj/b/n4e8BxqKhWhRwvbcbR5Vj4uhC
+         8y6+FqqTGrhRi4faoBLwHx/68wj2sQU3b5kQFL2uYvd/zgr25wGY/gi8nUkVk+pncckj
+         iBMQ==
+X-Gm-Message-State: AC+VfDzNHhOf1qNdHuXYm6iRWR2OMPn6bGIaQmD3Ma+13h0yVSXPnYkV
+        p8b/qREG5tPBK4uDZLgIxjlPdA==
+X-Google-Smtp-Source: ACHHUZ4uOxiawkp4T5MNwtGac+PuGeNfQjMldLdTtBkDICVqI7WZjCVAG7q+W2hXqCW9Oy4aOa23NQ==
+X-Received: by 2002:ac2:4294:0:b0:4f0:1124:8b2a with SMTP id m20-20020ac24294000000b004f011248b2amr1221204lfh.46.1685697014575;
+        Fri, 02 Jun 2023 02:10:14 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id d15-20020ac24c8f000000b004eb4357122bsm97399lfl.259.2023.06.02.02.10.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jun 2023 02:10:14 -0700 (PDT)
+Message-ID: <2879254a-cd62-9f97-2c64-aa5151b19d82@linaro.org>
+Date:   Fri, 2 Jun 2023 11:10:12 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 1/3] drm/msm/adreno: Add Adreno A690 support
+Content-Language: en-US
+To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org,
+        Steev Klimaszewski <steev@kali.org>
+References: <20230531030945.4109453-1-quic_bjorande@quicinc.com>
+ <20230531030945.4109453-2-quic_bjorande@quicinc.com>
+ <57ffc7d9-c767-df36-d91f-8949993b1cdf@linaro.org>
+ <z6usdzbvqxt6q7siff6qucyywafb6k4yh6qdpignqatowjb4c6@z3az35e3abs3>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <z6usdzbvqxt6q7siff6qucyywafb6k4yh6qdpignqatowjb4c6@z3az35e3abs3>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,39 +84,140 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alvin Šipraga <alsi@bang-olufsen.dk>
 
-The property, when set, specifies that both ends of the dai-link should
-have the same clock consumer/provider roles. As with other simple-card
-properties, a prefix can be specified.
 
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
----
- sound/soc/generic/simple-card.c | 4 ++++
- 1 file changed, 4 insertions(+)
+On 1.06.2023 20:30, Akhil P Oommen wrote:
+> On Wed, May 31, 2023 at 10:30:09PM +0200, Konrad Dybcio wrote:
+>>
+>>
+>>
+>> On 31.05.2023 05:09, Bjorn Andersson wrote:
+>>> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>>
+>>> Introduce support for the Adreno A690, found in Qualcomm SC8280XP.
+>>>
+>>> Tested-by: Steev Klimaszewski <steev@kali.org>
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>>> ---
+>> Couple of additional nits that you may or may not incorporate:
+>>
+>> [...]
+>>
+>>> +	{REG_A6XX_RBBM_CLOCK_HYST_SP0, 0x0000F3CF},
+>> It would be cool if we could stop adding uppercase hex outside preprocessor
+>> defines..
+>>
+>>
+>> [...]
+>>> +	A6XX_PROTECT_RDONLY(0x0fc00, 0x01fff),
+>>> +	A6XX_PROTECT_NORDWR(0x11c00, 0x00000), /*note: infiite range */
+>> typo
+>>
+>>
+>>
+>> -- Questions to Rob that don't really concern this patch --
+>>
+>>> +static void a690_build_bw_table(struct a6xx_hfi_msg_bw_table *msg)
+>> Rob, I'll be looking into reworking these into dynamic tables.. would you
+>> be okay with two more additions (A730, A740) on top of this before I do that?
+>> The number of these funcs has risen quite a bit and we're abusing the fact
+>> that so far there's a 1-1 mapping of SoC-Adreno (at the current state of
+>> mainline, not in general)..
+> 
+> +1. But please leave a618 and 7c3 as it is.
+OK I'll note that
 
-diff --git a/sound/soc/generic/simple-card.c b/sound/soc/generic/simple-card.c
-index 5a5e4ecd0f61..4513e30948b7 100644
---- a/sound/soc/generic/simple-card.c
-+++ b/sound/soc/generic/simple-card.c
-@@ -181,6 +181,7 @@ static int simple_link_init(struct asoc_simple_priv *priv,
- {
- 	struct device *dev = simple_priv_to_dev(priv);
- 	struct snd_soc_dai_link *dai_link = simple_priv_to_link(priv, li->link);
-+	char prop[128];
- 	int ret;
- 
- 	ret = asoc_simple_parse_daifmt(dev, node, codec,
-@@ -188,6 +189,9 @@ static int simple_link_init(struct asoc_simple_priv *priv,
- 	if (ret < 0)
- 		return 0;
- 
-+	snprintf(prop, sizeof(prop), "%ssymmetric-clock-roles", prefix);
-+	dai_link->symmetric_clock_roles = of_property_read_bool(node, prop);
-+
- 	dai_link->init			= asoc_simple_dai_init;
- 	dai_link->ops			= &simple_ops;
- 
--- 
-2.40.0
-
+Konrad
+> 
+> -Akhil
+> 
+>>
+>>> +{
+>>> +	/*
+>>> +	 * Send a single "off" entry just to get things running
+>>> +	 * TODO: bus scaling
+>>> +	 */
+>> Also something I'll be looking into in the near future..
+>>
+>>> @@ -531,6 +562,8 @@ static int a6xx_hfi_send_bw_table(struct a6xx_gmu *gmu)
+>>>  		adreno_7c3_build_bw_table(&msg);
+>>>  	else if (adreno_is_a660(adreno_gpu))
+>>>  		a660_build_bw_table(&msg);
+>>> +	else if (adreno_is_a690(adreno_gpu))
+>>> +		a690_build_bw_table(&msg);
+>>>  	else
+>>>  		a6xx_build_bw_table(&msg);
+>> I think changing the is_adreno_... to switch statements with a gpu_model
+>> var would make it easier to read.. Should I also rework that?
+>>
+>> Konrad
+>>
+>>>  
+>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>>> index 8cff86e9d35c..e5a865024e94 100644
+>>> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
+>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>>> @@ -355,6 +355,20 @@ static const struct adreno_info gpulist[] = {
+>>>  		.init = a6xx_gpu_init,
+>>>  		.zapfw = "a640_zap.mdt",
+>>>  		.hwcg = a640_hwcg,
+>>> +	}, {
+>>> +		.rev = ADRENO_REV(6, 9, 0, ANY_ID),
+>>> +		.revn = 690,
+>>> +		.name = "A690",
+>>> +		.fw = {
+>>> +			[ADRENO_FW_SQE] = "a660_sqe.fw",
+>>> +			[ADRENO_FW_GMU] = "a690_gmu.bin",
+>>> +		},
+>>> +		.gmem = SZ_4M,
+>>> +		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+>>> +		.init = a6xx_gpu_init,
+>>> +		.zapfw = "a690_zap.mdt",
+>>> +		.hwcg = a690_hwcg,
+>>> +		.address_space_size = SZ_16G,
+>>>  	},
+>>>  };
+>>>  
+>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>> index f62612a5c70f..ac9c429ca07b 100644
+>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>> @@ -55,7 +55,7 @@ struct adreno_reglist {
+>>>  	u32 value;
+>>>  };
+>>>  
+>>> -extern const struct adreno_reglist a615_hwcg[], a630_hwcg[], a640_hwcg[], a650_hwcg[], a660_hwcg[];
+>>> +extern const struct adreno_reglist a615_hwcg[], a630_hwcg[], a640_hwcg[], a650_hwcg[], a660_hwcg[], a690_hwcg[];
+>>>  
+>>>  struct adreno_info {
+>>>  	struct adreno_rev rev;
+>>> @@ -272,6 +272,11 @@ static inline int adreno_is_a660(struct adreno_gpu *gpu)
+>>>  	return gpu->revn == 660;
+>>>  }
+>>>  
+>>> +static inline int adreno_is_a690(struct adreno_gpu *gpu)
+>>> +{
+>>> +	return gpu->revn == 690;
+>>> +};
+>>> +
+>>>  /* check for a615, a616, a618, a619 or any derivatives */
+>>>  static inline int adreno_is_a615_family(struct adreno_gpu *gpu)
+>>>  {
+>>> @@ -280,13 +285,13 @@ static inline int adreno_is_a615_family(struct adreno_gpu *gpu)
+>>>  
+>>>  static inline int adreno_is_a660_family(struct adreno_gpu *gpu)
+>>>  {
+>>> -	return adreno_is_a660(gpu) || adreno_is_7c3(gpu);
+>>> +	return adreno_is_a660(gpu) || adreno_is_a690(gpu) || adreno_is_7c3(gpu);
+>>>  }
+>>>  
+>>>  /* check for a650, a660, or any derivatives */
+>>>  static inline int adreno_is_a650_family(struct adreno_gpu *gpu)
+>>>  {
+>>> -	return gpu->revn == 650 || gpu->revn == 620 || adreno_is_a660_family(gpu);
+>>> +	return gpu->revn == 650 || gpu->revn == 620  || adreno_is_a660_family(gpu);
+>>>  }
+>>>  
+>>>  u64 adreno_private_address_space_size(struct msm_gpu *gpu);
