@@ -2,63 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5676872098B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 21:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 768A57209C5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 21:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237099AbjFBTLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 15:11:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58726 "EHLO
+        id S232240AbjFBT0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 15:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237106AbjFBTLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 15:11:35 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DBDA1BE;
-        Fri,  2 Jun 2023 12:11:32 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-75b01271ad4so231746885a.1;
-        Fri, 02 Jun 2023 12:11:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685733091; x=1688325091;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=opFi1JTQYsq9CCCUgt1EEOObmcMhgBVZV9dRUuWuSGw=;
-        b=pIxmdQ9XfmOIJbx8yTczNiD0X4sZxgFu6m69eJeQcAmnOTkyt13Ysou4KnDPwWGX+T
-         Z96wFpf/1GVU9lau6s1oWmMzsU1+EA+ev3oelwbYB6NCTd6oCZ7L6WvEA4THlQNO5oH2
-         6eln1MDKzfP1KUyDqB/Me61IBYPvdTcipm1mIFA1/zcC6eMyOBnfCgwhhsynmOEUjPPB
-         J8ak6QzjrT8n+2qgwkhN2gJAkY2/A3xqRAfDHKREYrS5XYzZWxvdFPGrhG8r/L+7pv9/
-         Fwl+t5BNiO7Jq4vXmaQBRLF7IW1cZIFaS52KHotah1KIgcXTSgtW0OpMm/WXgiwWT0GK
-         062A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685733091; x=1688325091;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=opFi1JTQYsq9CCCUgt1EEOObmcMhgBVZV9dRUuWuSGw=;
-        b=lxyswwKpNflAiICsr2HmG/xsVZoODxNPz7/ZhUs0eKT0bmukNg7V+VcNghar4Goxnu
-         ZuVEHFrYt4JiTfZ1RocIIjOqlHmhj05Kcv9MI8o7N4j0DtvZKLKUA3PJulSfp+AOLhjq
-         7D1DgloV9zwU+ZJBi60G2i22spuLlOBgMgOKQq87lJXzxbXcTpBZZULQ1yFzagWGA8N9
-         Zt/UqCK8tav9eIoV7jP7XpIP8sxA9so9Bw/RGsgauV+3XqsLEte+zHVj28kHzxFS1Bt3
-         uAQusB8sH/S99mPW4gcYRwkbWlypMYvjmr9rzMgjZl3Qoa8TBuGMR17Vj6oh5NLP9m/4
-         m1Qw==
-X-Gm-Message-State: AC+VfDxU8NkDkgeeuR6yejP43WOWdr+JX8pPiRawWrg29QWySUHW9QoP
-        nWG2j1Yzy5UyjHNx8mC9ufQ=
-X-Google-Smtp-Source: ACHHUZ6YnUoaCGLE6lsrpxVhurfAkr9IE0o/Fi5tnPsc12SxFMiaxgHFvtsALAFo4/50VjKKYKOnPg==
-X-Received: by 2002:a05:620a:4003:b0:75b:23a1:8347 with SMTP id h3-20020a05620a400300b0075b23a18347mr17217065qko.66.1685733091668;
-        Fri, 02 Jun 2023 12:11:31 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id t7-20020a05620a004700b0075b327a2988sm936705qkt.133.2023.06.02.12.11.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Jun 2023 12:11:30 -0700 (PDT)
-Message-ID: <3597b0be-2dc9-5dbd-a773-6dd5704ef4a9@gmail.com>
-Date:   Fri, 2 Jun 2023 12:11:17 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/3] net: phy: realtek: Disable clock on suspend
-Content-Language: en-US
-To:     Detlev Casanova <detlev.casanova@collabora.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S232213AbjFBT0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 15:26:54 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C948BCE;
+        Fri,  2 Jun 2023 12:26:53 -0700 (PDT)
+Received: from arisu.localnet (unknown [23.233.251.139])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: detlev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0850C66066EC;
+        Fri,  2 Jun 2023 20:26:50 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685734012;
+        bh=K2VKtEmDpy08yDsNjAgi61u3CcMiqyOtI/vNCwLfGaU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=MpgWdHN9Xowv7q0wPCaVOGHELi+gsTTsQR8A2pIbhFfJEghkY56y493jFVDarsu7O
+         dRUAaEXzj8CUwQPgY1VkbBuCgME3IsDFpWJOWDDXip9TIY98ikv2rtJnW7tSWk0QJf
+         WenvFzPMDo73fivy4/tfFQRfBbP5w81N9/mX9Lv8PfHV5moA23Jy6YISpiAWsAgLfk
+         kvARRnZLQ+CTHCl3VStLQG6SVXPi3F1QxZ5jNul8LqjiSg/EFgrbVEmU28s8Kj2wtT
+         GKkb3KNUbPdO+Gapiou/O8ldel0unGq6pR0Juj5q+WZxZApylc4ZjggzuUUh6SX5DD
+         yKmMOgA6tZgEA==
+From:   Detlev Casanova <detlev.casanova@collabora.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     linux-kernel@vger.kernel.org,
         Heiner Kallweit <hkallweit1@gmail.com>,
         Russell King <linux@armlinux.org.uk>,
         "David S . Miller" <davem@davemloft.net>,
@@ -67,35 +42,83 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: net: phy: Document support for external PHY
+ clk
+Date:   Fri, 02 Jun 2023 15:26:53 -0400
+Message-ID: <2288019.ElGaqSPkdT@arisu>
+In-Reply-To: <4255bc0a-491c-4fbb-88ea-ec1d864a1a24@lunn.ch>
 References: <20230602182659.307876-1-detlev.casanova@collabora.com>
- <20230602182659.307876-4-detlev.casanova@collabora.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230602182659.307876-4-detlev.casanova@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+ <20230602182659.307876-3-detlev.casanova@collabora.com>
+ <4255bc0a-491c-4fbb-88ea-ec1d864a1a24@lunn.ch>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/2/23 11:26, Detlev Casanova wrote:
-> For PHYs that call rtl821x_probe() where an external clock can be
-> configured, make sure that the clock is disabled
-> when ->suspend() is called and enabled on resume.
+On Friday, June 2, 2023 2:42:38 P.M. EDT Andrew Lunn wrote:
+> On Fri, Jun 02, 2023 at 02:26:58PM -0400, Detlev Casanova wrote:
+> > Ethern PHYs can have external an clock that needs to be activated before
+> > probing the PHY.
 > 
-> The PHY_ALWAYS_CALL_SUSPEND is added to ensure that the suspend function
-> is actually always called.
+> `Ethernet PHYs can have an external clock.`
 > 
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> We need to be careful with 'activated before probing the PHY'. phylib
+> itself will not activate the clock. You must be putting the IDs into
+> the compatible string, so the correct driver is loaded, and its probe
+> function is called. The probe itself enables the clock, so it is not
+> before probe, but during probe.
+> 
+> I'm picky about this because we have issues with enumerating the MDIO
+> bus to find PHYs. Some boards needs the PHY taking out of reset,
+> regulators enabled, clocks enabled etc, before the PHY will respond on
+> the bus. It is hard for the core to do this, before the probe. So we
+> recommend putting IDs in the compatible, so the driver probe function
+> to do any additional setup needed.
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+That makes sense, In my head, "probing" == calling phy_write/read() functions. 
+But I get how this could be confused with the _probe() function. (And I just 
+realised that there are typos)
+
+What about "Ethernet PHYs can have an external clock that needs to be 
+activated before communicating with the PHY" ?
+
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> > 
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > b/Documentation/devicetree/bindings/net/ethernet-phy.yaml index
+> > 4f574532ee13..c1241c8a3b77 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > 
+> > @@ -93,6 +93,12 @@ properties:
+> >        the turn around line low at end of the control phase of the
+> >        MDIO transaction.
+> > 
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description:
+> > +      External clock connected to the PHY. If not specified it is assumed
+> > +      that the PHY uses a fixed crystal or an internal oscillator.
+> 
+> This text is good.
+
+Detlev
+
+
+
 
