@@ -2,197 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 241CE72024F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 14:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C38CC720273
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 14:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235309AbjFBMmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 08:42:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44358 "EHLO
+        id S234446AbjFBM4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 08:56:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234114AbjFBMmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 08:42:54 -0400
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2108.outbound.protection.outlook.com [40.107.14.108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A75E13D;
-        Fri,  2 Jun 2023 05:42:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P9ztqL75GCUAxGqTkOfR38UdgeHSy/FcjHUojxK52B4Rr0UxR/NI7fi1rb6D3F0GeI5yQ6fyzYLzFNsTaIKznHgJWeuyNrUl/x9+Z3/NWRiH+x6ozwP7QR5YpVEXr8EAWBtlZdmniAD+0OsbaaYAbpGP9KnZ/UN0i5CrOUm/otv3/F+HY4L8NcSRMmv5pJoY9cvJLqs/fon5OTS8JILESm8GsfyWYXn7RVDLe1CB48syAlE9le5+jAD4oNU5XvgVVVafBVkUtXJyAS258YQfqo/xG8gUZgWdmLQLiqavYyAohvh0LJviWUG7SBL4Mt6DAg/Rbnf4lSubf2nGzP6/Pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wX1+TYU0MZMAaBkK4kccaBi6kfgni4Gww6sFk1F7b04=;
- b=cx8d3p6egj2BftMeVMUtRoqYfiU+PnsZOT/89yNFOu3hUccHDkdKhWob/7GoV88EfBG5ZWFdhe9fdqUjxk5Cac00x7MyJkb+k7S8emIHVYhkmyPyDp+uC+KhnFMY5VhxrArlOoE1l6LNCrBDQOiol/iIullonlPnPXFwRazqO0lHz/vBOw041OZ6tyVfwidhLcS6k1wBatNKGIoDxPP45g5oKjKkQyJHORoHRnwHLhxGFD5mDHlxYSDF+Hs4y1hTK5UsX9zaHnOXjtVW6RuyuYAKeA2bvYmO86+F9N5uT7SOWDOz+Nmc/+jpkLFeBFdL4BxlSRtWHanIRNARC9ahIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bang-olufsen.dk; dmarc=pass action=none
- header.from=bang-olufsen.dk; dkim=pass header.d=bang-olufsen.dk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bang-olufsen.dk;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wX1+TYU0MZMAaBkK4kccaBi6kfgni4Gww6sFk1F7b04=;
- b=hPhsqys0jyDYh2d6nf8az6VEYu95YXN4og2b5PGKYFpRDSbflOYoN6vdO4ceVdaAJEcB5Zsy8TONAxrefONMFdMChv0YNN9rSijea9azs+c+QUIaQKVEWNvaLbDxm7M5FKJs7UJpdTDZ2QHWkhW36HCOZCCJEAgtjj/3B457uj4=
-Received: from AM6PR03MB3943.eurprd03.prod.outlook.com (2603:10a6:20b:26::24)
- by DU0PR03MB9732.eurprd03.prod.outlook.com (2603:10a6:10:44c::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.23; Fri, 2 Jun
- 2023 12:42:49 +0000
-Received: from AM6PR03MB3943.eurprd03.prod.outlook.com
- ([fe80::b8e6:a92f:367e:801f]) by AM6PR03MB3943.eurprd03.prod.outlook.com
- ([fe80::b8e6:a92f:367e:801f%7]) with mapi id 15.20.6433.024; Fri, 2 Jun 2023
- 12:42:49 +0000
-From:   =?utf-8?B?QWx2aW4gxaBpcHJhZ2E=?= <ALSI@bang-olufsen.dk>
-To:     Mark Brown <broonie@kernel.org>
-CC:     =?utf-8?B?QWx2aW4gxaBpcHJhZ2E=?= <alvin@pqrs.dk>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S232201AbjFBM4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 08:56:35 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D97D196;
+        Fri,  2 Jun 2023 05:56:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685710594; x=1717246594;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=25GYVrBSeIZshbsRClfURyGuYpPyStjnVIsiOAveQYw=;
+  b=GfoFtP09q1BlA/WcUsVAFDXAeFNKGMJdM/7CiJdn40dv7LpmD0LO3vUp
+   PeEn/BrGBoaiI5y+6xNN/ZVmiGeo2fso0LH8y5RPV+bJqyt5zNrTl7otJ
+   WAUi30okSES2Z4/dhQhU7oq4SMZjFAu0D07bYupnfJwAGPCG+1PpkuoVX
+   IEft6303HkhgWD+LxxXrtR4Zftp1uErtzO5FXEKWV6EHLYxrFWgfGIKx9
+   riCZJuK8cYUUJxaBWvHdmyeA21rg+3iWrj+kizy0HebIQO2Wcr+Rhw9l6
+   OsNdCuMNUYuMIo0Mex5rIcORXhnOJsSeAKYepUf8/LrmMEPzMjuZAagly
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="419392208"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; 
+   d="scan'208";a="419392208"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2023 05:56:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="831981005"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; 
+   d="scan'208";a="831981005"
+Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 02 Jun 2023 05:56:30 -0700
+Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q54KT-0000Rd-2k;
+        Fri, 02 Jun 2023 12:56:29 +0000
+Date:   Fri, 2 Jun 2023 20:55:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/4] ASoC: dt-bindings: document new symmetric-clock-role
- flag
-Thread-Topic: [PATCH 1/4] ASoC: dt-bindings: document new symmetric-clock-role
- flag
-Thread-Index: AQHZlTEkbjROoMVD8k+Rhl00q7eUT693ZJ6AgAAIGwCAAAHAAIAABp6A
-Date:   Fri, 2 Jun 2023 12:42:49 +0000
-Message-ID: <aesymtpx5bkfkvlbt2d6o3gn4zjzsbyiwxiuqziohgovy7oaoo@kt2n6v7kmuw7>
-References: <20230602090322.1876359-1-alvin@pqrs.dk>
- <20230602090322.1876359-2-alvin@pqrs.dk>
- <3fe93662-82b0-4834-b6c3-473669c66210@sirena.org.uk>
- <7csvw25vhyal2jsznb3jykuijxqpk7bzyguxvl7cyitosgga2w@pxmkce22cm3d>
- <91b6d02a-25d5-4835-942e-3f8072bd8897@sirena.org.uk>
-In-Reply-To: <91b6d02a-25d5-4835-942e-3f8072bd8897@sirena.org.uk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bang-olufsen.dk;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM6PR03MB3943:EE_|DU0PR03MB9732:EE_
-x-ms-office365-filtering-correlation-id: 23d78e2d-e27c-43ec-52ad-08db6366dfb1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yYvTejDcU1CXMTq52pfqQUW+zVjdrhuFFuUZR6oODRqVaTIe4F/fkT+IrzZwsFZZfUfUMFfGhXYnOJZtDXKDSqXSgF1mB/9EHiNAHziNivKMoPVCduPUElBZcrLHZeW78/79w2AAZM61wnGsKoiVdzhHNhd2mPvHoxrbTK0gEDZFZCM1lVYytuXR/MivLPHgY5hJECZTX6C3Tnzhbt5trc6nss7mIK78zDlnvLSnqpiND4ZklfAzUEepy0jy6xoFyHc7Q0959+krb9zkYkgB8NwcPDQ2dRLzZra0bwZBJcQz9psb1W87NZb/8EvI0JfAne8yD6s2HyOYxvTvB2uxWAbhZi3GFW/bOjGKbeWBkhN459wfP+a4M7cdfynA12meUDNXp5Jan+JOFS0P9MmMu4L7kUgbC99j9wfpplznoxJPzqz0VYXK9t7Hx0sa5TOttYbrbFFnM0PXMz06FlZny92z/MDdyWLe6Bobo/ny3HH/4m9FjIqtwLtd2AzRZk5LK/yqeFwFt+2OfSfkvAs2IwsYE8hGAn+RQK2C9+JF3SH0cm8Jej/kyd3nBKBhqPCauiRfo78kPIMSWifS8HK9kNNwhM4ym7svKfbm3bQSIPjywHxD0fBTByVnHwEd1poK
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR03MB3943.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(7916004)(366004)(136003)(39860400002)(396003)(346002)(376002)(451199021)(6486002)(33716001)(478600001)(66574015)(85202003)(6506007)(26005)(6512007)(85182001)(9686003)(186003)(83380400001)(71200400001)(41300700001)(38100700002)(4326008)(8676002)(6916009)(76116006)(64756008)(66556008)(66446008)(66476007)(122000001)(66946007)(316002)(7416002)(86362001)(2906002)(38070700005)(5660300002)(8936002)(54906003)(91956017);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MEpYcnA2a0dQZ2Q3ejV0Y0VGaDdGVWRjb2IrbERGcm9vZG85Y3duRzByNkx0?=
- =?utf-8?B?eE8rQzh5RzNLeHM5c1RNS2d1N3Y3dFNzR0pUcnJXVDRiMHVYRlhsalArTGpl?=
- =?utf-8?B?ckxJSi9FRzVtc1d5SHBkeFM1SUM3QzYrUmVhUk9QdmxPNkd0aS93MnlsQ2Y2?=
- =?utf-8?B?ZHJYc2JlWjVjRHM1T20vWCtvc0pxWUtPTUx6Q3NIejBPQ1E0WG5MNEdoTkdn?=
- =?utf-8?B?eTExTDZYZURlQ3RwYTE1cnJLSHFSdFdhcGZFb0lFRTEzbVNFZWFMbTV5U0Ev?=
- =?utf-8?B?TzhiVW84ckMzOUQ2Zkh6YlhVTXdITTZIZ2JkUkNCTHByN3RjWGlPaFkzQVdI?=
- =?utf-8?B?eStnL1dsZFlGYk4rdmxOQjhlUHk4UG16TGplL1NvTjc2c21pdENxdVUrV2lr?=
- =?utf-8?B?bEJHRGRqNUtBeHFpTWRFRjV3bjhjRU5WcCtjVmRRMW9tQ0pLOW5QaitJVmtx?=
- =?utf-8?B?V0NUV2FYVFc3c1VrcDBCb2F1SGQwVDYyWFdKTmF0SU1CNmxWNjBVYWRmMGFN?=
- =?utf-8?B?VGtMVmUxOGxrRys3SU1WK0VWK1FnakhXK1FRSERFWjR1c0c2cUo4R0d2NVFP?=
- =?utf-8?B?MFVnb3A4ZlU0U04zNFJBdjZ6Z0Z3ZmhGWFBNR2RHakZWRSticmc3N2JPNGtJ?=
- =?utf-8?B?cWJCdlhUeE1DQ21HRkl5YUhPUWRpMU5Vbzk2UnhxdXlraVl3aVJVY1Q1K0Vn?=
- =?utf-8?B?RGFpNkxHSTRGbjVoZExVc2VXdHl2dXIyd1JZQm9TaXVUQ0ZsMnkxc3ZrMTZG?=
- =?utf-8?B?QWx3SVVZR2VvcXpiQ0FCOGM0OTZtQ1Nnbk9URmhxTUFtUmozejdqWnFoZWsx?=
- =?utf-8?B?OE1jYzIzbE15RmkrWDRRcldoSnNhK0p0UTNhR1U2VVFhMUs1Qmc3cHU5OG5M?=
- =?utf-8?B?N0ltR1V5b04wM2U0c1NrcE94V0t4eFQyZGlmcXJyU2htT0l1bU5ubWJKWGlJ?=
- =?utf-8?B?Q1BPZEpsTUtyd0o5T2duNHNTY2VnYnJqTzBQWFNEeUtOaXpXU0JJc09uMUs4?=
- =?utf-8?B?amV6WTA4TWxJeGZsUU1ReTd0UUZZaC9pQis3QUtaeGYzWDB1VXgzcHdrbXo4?=
- =?utf-8?B?NnNvcW5aaU9OWnBNRHZpODU0aTNJOFVrcEREekQ1eWxaVFdWdlhoZGJ2VlNH?=
- =?utf-8?B?eGlaTlNKYm4yeit6bzlsTTlXUkFGcXMvZnR5L1RvUzlQMUwrME1ydzRiTWJw?=
- =?utf-8?B?VlBVM1g0SFBQQktlVG5SMzhSd292aXdJVUJJOUsyMjZDeUV5amxFUWwwR0pJ?=
- =?utf-8?B?eDdXODc4U1VNQWRvZ2NYUGEybEUrc0w4U2pPM3U0RGVSNy8wTksrUXF2VUty?=
- =?utf-8?B?eS9TY1RxZGVqK2dsOXRZUlF2TlB2L1lSK1F4eU9tYmhGL2dhbXdWRy9ON3ND?=
- =?utf-8?B?VnF1NEFKVWZiYjFWNEJsV0ZPbmlJZ3A2NmhESGwvUGgzYmI0NWtVeHJvamh4?=
- =?utf-8?B?YUk5eSs1S1NBYm5TdWNLczVSajd4WGZiVWtWQk16d2xFdFA5WTNxS3htbmRM?=
- =?utf-8?B?VnJQQjQyNUZORzRBem04Y3pyWitYcW5FaGJ4R1dqVmRJaFVrbFkyMS9GMDdE?=
- =?utf-8?B?eXRpbzNiWU0vek01a2RsRDFJUVNjZEppbzlBWDBOZHdlZEpjRGhrcWlvZkFq?=
- =?utf-8?B?dkVKOU8wUmFOQnhJaDhieVBTNlAySm5VOXpMUVVPb3FTTkIzY08xMm80aDho?=
- =?utf-8?B?SEtyM1B3a2tqSzFFNnlGSXQvU0R2WG5VMWlmbThVRE56ejlkNC9HRnVRV0I1?=
- =?utf-8?B?cDlqNEpxb091L3VYeDlVd1p0YmpuTCtmUUIvVVhkSDBRKzJ1dkg0QnBpWnc3?=
- =?utf-8?B?TExEYVNRQjBvaXJBbUdGM2ZVTmNldVc3cjNWMzA3YmVYOHJDWTBOdE9MSElt?=
- =?utf-8?B?OW5NNFZqMjc2cGF2THNlNDdMM2V2ZDNlRUVKRFVyZHF6ZEpkQ2J0ZHJ1cUky?=
- =?utf-8?B?Z0h1dDUybXNxSVpoeWpOQWQwZ2ZuVnNDekg0alJmSHNKWHQ2djMvb1NTNzFV?=
- =?utf-8?B?R0lyWjJmQ2UwTEJ4YnBmYkF5TysrN1FFY1VTY0ZIa1lWN0VqZE5RK2pZcHdY?=
- =?utf-8?B?VXJOOFpxYU12WjZqSE5ob21lalcxUytPRmNwaFpSdUh4dkNlUC9SM2tEVXZ0?=
- =?utf-8?B?ck5wM2lIYU04dUdZUndHOWtEbklycWdxdXJWRDlCYXpHakRkRFRraFdsSWdP?=
- =?utf-8?B?d3c9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B38978195DD7F5499DA28BD90226E7AC@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>
+Cc:     oe-kbuild-all@lists.linux.dev, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: Re: [PATCH 2/2] dmaengine: ls2x-apb: new driver for the Loongson
+ LS2X APB DMA controller
+Message-ID: <202306022006.u6leN6i9-lkp@intel.com>
+References: <f65ebee39b5e1827af08d9e8d1f260928915f9b0.1685448898.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
-X-OriginatorOrg: bang-olufsen.dk
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR03MB3943.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23d78e2d-e27c-43ec-52ad-08db6366dfb1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jun 2023 12:42:49.3280
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 210d08b8-83f7-470a-bc96-381193ca14a1
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kW0SYXRQ6FpJp81ZsHva6/poP4KdghQavnZalFxDu3dIe9aW0LxMBnNp2ijx/PXZhH6BCSv+P6j0px1niXWOJw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB9732
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f65ebee39b5e1827af08d9e8d1f260928915f9b0.1685448898.git.zhoubinbin@loongson.cn>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCBKdW4gMDIsIDIwMjMgYXQgMDE6MTk6MDhQTSArMDEwMCwgTWFyayBCcm93biB3cm90
-ZToNCj4gT24gRnJpLCBKdW4gMDIsIDIwMjMgYXQgMTI6MTI6NTJQTSArMDAwMCwgQWx2aW4gxaBp
-cHJhZ2Egd3JvdGU6DQo+ID4gT24gRnJpLCBKdW4gMDIsIDIwMjMgYXQgMTI6NDM6NTFQTSArMDEw
-MCwgTWFyayBCcm93biB3cm90ZToNCj4gDQo+ID4gPiBXaHkgd291bGQgd2UgaGF2ZSBhIHByb3Bl
-cnR5IGZvciB0aGlzIGFuZCBub3QganVzdCBkZXNjcmliZSB3aGF0ZXZlciB0aGUNCj4gPiA+IGFj
-dHVhbCBjbG9ja2luZyBhcnJhbmdlbWVudCBpcz8NCj4gDQo+ID4gU3VyZSAtIGxldCBtZSBqdXN0
-IGVsYWJvcmF0ZSBvbiBteSB0aGlua2luZyBhbmQgbWF5YmUgeW91IGNhbiBoZWxwIG1lIHdpdGgg
-YQ0KPiA+IGJldHRlciBhcHByb2FjaDoNCj4gDQo+ID4gVGhlIGNsb2NraW5nIGFycmFuZ2VtZW50
-IGlzIGVuY29kZWQgaW4gdGhlIGRhaV9mbXQgZmllbGQgb2Ygc25kX3NvY19kYWlfbGluaywNCj4g
-PiBidXQgdGhpcyBpcyBhIHNpbmdsZSB2YWx1ZSB0aGF0IGRlc2NyaWJlcyB0aGUgZm9ybWF0IG9u
-IGJvdGggZW5kcy4gVGhlIGN1cnJlbnQNCj4gPiBiZWhhdmlvdXIgb2YgQVNvQyBpcyB0byBmbGlw
-IHRoZSBjbG9jayByb2xlcyBlbmNvZGVkIGluIGRhaV9mbXQgd2hlbiBhcHBseWluZyBpdA0KPiA+
-IHRvIHRoZSBDUFUgc2lkZSBvZiB0aGUgbGluay4NCj4gDQo+ID4gTG9va2luZyBmcm9tIGEgRFQg
-cGVyc3BlY3RpdmUsIGlmIEkgZG8gbm90IHNwZWNpZnkgZS5nLiBiaXRjbG9jay1tYXN0ZXIgb24N
-Cj4gPiBlaXRoZXIgc2lkZSBvZiB0aGUgbGluaywgdGhlbiB0aGUgZGFpX2ZtdCB3aWxsIGRlc2Ny
-aWJlIHRoZSBjb2RlYyBhcyBhIGJpdGNsb2NrDQo+ID4gY29uc3VtZXIgYW5kIChhZnRlciBmbGlw
-cGluZykgdGhlIENQVSBhcyBhIHByb3ZpZGVyLiBUaGF0J3MgdGhlIGRlZmF1bHQNCj4gPiBpbXBs
-aWNhdGlvbiBvZiB0aGUgRFQgYmluZGluZ3MgYW5kIEkgY2FuJ3QgYnJlYWsgY29tcGF0aWJpbGl0
-eSB0aGVyZS4NCj4gDQo+IE5vbmUgb2YgdGhpcyBhZGRyZXNzZXMgbXkgcXVlc3Rpb24uICBUbyBy
-ZXBlYXQgd2h5IHdvdWxkIHdlIG5vdCBqdXN0DQo+IGRlc2NyaWJlIHRoZSBhY3R1YWwgY2xvY2tp
-bmcgYXJyYW5nZW1lbnQgaGVyZSAtIHRoaXMgcHJvcGVydHkgZG9lcyBub3QNCj4gc3BlY2lmeSB3
-aGVyZSB0aGUgY2xvY2sgYWN0dWFsbHkgY29tZXMgZnJvbSBhdCBhbGwsIHdlJ3JlIHN0aWxsIGdv
-aW5nIHRvDQo+IG5lZWQgYWRkaXRpb25hbCBpbmZvcm1hdGlvbiBmb3IgdGhhdCBhbmQgaWYgd2Un
-dmUgZGVzY3JpYmVkIHRoYXQgY2xvY2sNCj4gdGhlbiB3ZSBhbHJlYWR5IGtub3cgaXQncyB0aGVy
-ZSB3aXRob3V0IGhhdmluZyB0byBzcGVjaWZ5IGFueSBtb3JlDQo+IHByb3BlcnRpZXMuDQoNClll
-cyBJIHNlZSB3aGF0IHlvdSBtZWFuLiBPbiBteSBwbGF0Zm9ybSB0aGUgY2xvY2sgc291cmNlIGlz
-IGFjdHVhbGx5IGRlc2NyaWJlZA0KYnkgdGhlIGNvbW1vbiBjbG9jayBmcmFtZXdvcmssIHNvIEkg
-d291bGQgd2FudCB0byB1c2UgdGhhdC4gSWYgaXQgd2VyZSBhDQpjb21wb25lbnQgZHJpdmVyIHRo
-ZW4gaXQgd291bGQgbW9zdCBsaWtlbHkgYmUgYSBjb2RlYyB0aGF0IGlzIHBhcnQgb2YgdGhlDQpk
-YWktbGluayBhbnl3YXkuIFNvIHdoYXQgYWJvdXQgaGF2aW5nIHR3byBzdHJ1Y3QgY2xrIHBvaW50
-ZXJzIGluIHN0cnVjdA0Kc25kX3NvY19kYWk/DQoNCiAgICBzdHJ1Y3Qgc25kX3NvY19kYWkgew0K
-ICAgICAgICAvKiAuLi4gKi8NCiAgICAgICAgc3RydWN0IGNsayAqYml0Y2xvY2tfcHJvdmlkZXI7
-DQogICAgICAgIHN0cnVjdCBjbGsgKmZyYW1lY2xvY2tfcHJvdmlkZXI7DQogICAgICAgIC8qIC4u
-LiAqLw0KICAgIH07DQoNCklmIG5vbi1OVUxMIEkgY291bGQgdGhlbiBoYXZlIHRoZSBBU29DIGNv
-cmUgZW5hYmxlL2Rpc2FibGUgdGhlIGNsb2NrcyBvbiBkZW1hbmQ/DQpJIHdvdWxkIHNheSBpbiBo
-d19wYXJhbXMvaHdfZnJlZSwgYWxiZWl0IHRoYXQgcnVucyBhZnRlciBzZXRfZm10Lg0KDQpIYXZp
-bmcgc2FpZCB0aGF0LCBJIHNlZSBBU29DIGRvZXNuJ3QgcmVhbGx5IHVzZSB0aGUgQ0NGIG11Y2gu
-Li4gYW0gSSB3YXkgb2ZmPw0KDQpJIGRvbid0IHRoaW5rIGl0J3MgZmVhc2libGUgdG8gbW9kaWZ5
-IGV2ZXJ5IGNvbXBvbmVudCBkcml2ZXIgdG8gZXhwbGljaXRseQ0KaGFuZGxlIHRoaXMgYW5kIHRo
-ZW4gaWdub3JlIGFueSBDQlBfQ0ZQIGJpdHMgc2V0IGluIGl0cyBjYWxsIHRvIHNldF9mbXQgLSB0
-aGlzDQppcyB3aHkgSSB3YW50IGhlbHAgZnJvbSB0aGUgQVNvQyBjb3JlLg0KDQo+IA0KPiA+IFRo
-ZSBvdGhlciBpc3N1ZSBpcyB0aGF0IGZvciB0aGUgc2ltcGxlLWNhcmQgdGhlIERBSSBmb3JtYXQg
-aXMgb25seSBwYXJzZWQgaW4gb25lDQo+ID4gcGxhY2UgYW5kIGFwcGxpZWQgdG8gdGhlIHdob2xl
-IGxpbmsuIEFyZSB5b3UgcHJvcG9zaW5nIHRoYXQgaXQgYmUgbW9kaWZpZWQgdG8NCj4gPiBleHBs
-aWNpdGx5IHRyeSBhbmQgcGFyc2UgYm90aCBlbmRzIGluIG9yZGVyIHRvIGRldGVybWluZSBpZiBi
-b3RoIHNpZGVzIHdhbnQgdG8NCj4gPiBiZSBjbG9jayBjb25zdW1lcnM/IEluIHRoYXQgY2FzZSBJ
-J2QgaGF2ZSB0byBhbHNvIGludHJvZHVjZSBiaXRjbG9jay1jb25zdW1lcg0KPiA+IGFuZCBmcmFt
-ZWNsb2NrLWNvbnN1bWVyIHByb3BlcnRpZXMgdG8gbWlycm9yIHRoZSBleGlzdGluZyBiaXRjbG9j
-ay1tYXN0ZXIgYW5kDQo+ID4gZnJhbWVjbG9jay1tYXN0ZXIgcHJvcGVydGllcywgYXMgYW4gZXhw
-bGljaXQgYWJzZW5jZSBvZiB0aGUgKi1tYXN0ZXIgcHJvcGVydHkgb24NCj4gPiBib3RoIHNpZGVz
-IHdvdWxkIGhhdmUgdG8gZGVmYXVsdCB0byB0aGUgb3JpZ2luYWwgQVNvQyBiZWhhdmlvdXIgZGVz
-Y3JpYmVkIGFib3ZlLg0KPiANCj4gSWYgc2ltcGxlLWNhcmQgY2FuJ3QgYmUgbWFkZSB0byB3b3Jr
-IHRoYXQncyBmaW5lLCBpdCdzIGRlcHJlY2F0ZWQNCj4gYW55d2F5Lg0KDQpBaCBPSywgSSBkaWRu
-J3Qga25vdyB0aGF0LiBSaWdodCBub3cgSSdtIHVzaW5nIGdyYXBoLWNhcmQyLCB0aGF0J3Mgbm90
-DQpkZXByZWNhdGVkLCByaWdodD8NCg0KS2luZCByZWdhcmRzLA0KQWx2aW4=
+Hi Binbin,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on vkoul-dmaengine/next]
+[also build test ERROR on robh/for-next linus/master v6.4-rc4 next-20230602]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-dmaengine-Add-Loongson-LS2X-APB-DMA-controller/20230531-165211
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/f65ebee39b5e1827af08d9e8d1f260928915f9b0.1685448898.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH 2/2] dmaengine: ls2x-apb: new driver for the Loongson LS2X APB DMA controller
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20230602/202306022006.u6leN6i9-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c78b43fba2c7874dc293c0e2aba22c4e74500283
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Binbin-Zhou/dt-bindings-dmaengine-Add-Loongson-LS2X-APB-DMA-controller/20230531-165211
+        git checkout c78b43fba2c7874dc293c0e2aba22c4e74500283
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/dma/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306022006.u6leN6i9-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/dma/ls2x-apb-dma.c: In function 'ls2x_dma_write_cmd':
+>> drivers/dma/ls2x-apb-dma.c:179:15: error: implicit declaration of function 'readq'; did you mean 'readw'? [-Werror=implicit-function-declaration]
+     179 |         val = readq(priv->regs + LDMA_ORDER_ERG) & LDMA_ASK_ADDR_MASK;
+         |               ^~~~~
+         |               readw
+   In file included from include/linux/ratelimit_types.h:5,
+                    from include/linux/ratelimit.h:5,
+                    from include/linux/dev_printk.h:16,
+                    from include/linux/device.h:15,
+                    from include/linux/dmaengine.h:8,
+                    from drivers/dma/ls2x-apb-dma.c:8:
+   include/linux/bits.h:35:18: warning: right shift count is negative [-Wshift-count-negative]
+      35 |          (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
+         |                  ^~
+   include/linux/bits.h:37:38: note: in expansion of macro '__GENMASK'
+      37 |         (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
+         |                                      ^~~~~~~~~
+   drivers/dma/ls2x-apb-dma.c:33:33: note: in expansion of macro 'GENMASK'
+      33 | #define LDMA_ASK_ADDR_MASK      GENMASK(63, 5) /* Ask Addr Mask */
+         |                                 ^~~~~~~
+   drivers/dma/ls2x-apb-dma.c:179:52: note: in expansion of macro 'LDMA_ASK_ADDR_MASK'
+     179 |         val = readq(priv->regs + LDMA_ORDER_ERG) & LDMA_ASK_ADDR_MASK;
+         |                                                    ^~~~~~~~~~~~~~~~~~
+>> drivers/dma/ls2x-apb-dma.c:181:9: error: implicit declaration of function 'writeq'; did you mean 'writew'? [-Werror=implicit-function-declaration]
+     181 |         writeq(val, priv->regs + LDMA_ORDER_ERG);
+         |         ^~~~~~
+         |         writew
+   drivers/dma/ls2x-apb-dma.c: In function 'ls2x_dma_start_transfer':
+   include/linux/bits.h:35:18: warning: right shift count is negative [-Wshift-count-negative]
+      35 |          (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
+         |                  ^~
+   include/linux/bits.h:37:38: note: in expansion of macro '__GENMASK'
+      37 |         (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
+         |                                      ^~~~~~~~~
+   drivers/dma/ls2x-apb-dma.c:33:33: note: in expansion of macro 'GENMASK'
+      33 | #define LDMA_ASK_ADDR_MASK      GENMASK(63, 5) /* Ask Addr Mask */
+         |                                 ^~~~~~~
+   drivers/dma/ls2x-apb-dma.c:204:31: note: in expansion of macro 'LDMA_ASK_ADDR_MASK'
+     204 |         val = (ldma_sg->llp & LDMA_ASK_ADDR_MASK) | LDMA_64BIT_EN | LDMA_START;
+         |                               ^~~~~~~~~~~~~~~~~~
+   In file included from include/linux/device/driver.h:21,
+                    from include/linux/device.h:32:
+   drivers/dma/ls2x-apb-dma.c: At top level:
+>> drivers/dma/ls2x-apb-dma.c:628:25: error: 'ls2x_dma_dt_ids' undeclared here (not in a function); did you mean 'ls2x_dma_isr'?
+     628 | MODULE_DEVICE_TABLE(of, ls2x_dma_dt_ids);
+         |                         ^~~~~~~~~~~~~~~
+   include/linux/module.h:244:15: note: in definition of macro 'MODULE_DEVICE_TABLE'
+     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
+         |               ^~~~
+>> include/linux/module.h:244:21: error: '__mod_of__ls2x_dma_dt_ids_device_table' aliased to undefined symbol 'ls2x_dma_dt_ids'
+     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
+         |                     ^~~~~~
+   drivers/dma/ls2x-apb-dma.c:628:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
+     628 | MODULE_DEVICE_TABLE(of, ls2x_dma_dt_ids);
+         | ^~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +179 drivers/dma/ls2x-apb-dma.c
+
+   173	
+   174	static void ls2x_dma_write_cmd(struct ls2x_dma_chan *lchan, bool cmd)
+   175	{
+   176		u64 val = 0;
+   177		struct ls2x_dma_priv *priv = to_ldma_priv(lchan->vchan.chan.device);
+   178	
+ > 179		val = readq(priv->regs + LDMA_ORDER_ERG) & LDMA_ASK_ADDR_MASK;
+   180		val |= LDMA_64BIT_EN | cmd;
+ > 181		writeq(val, priv->regs + LDMA_ORDER_ERG);
+   182	}
+   183	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
