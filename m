@@ -2,308 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA1C5720908
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 20:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB9D720914
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 20:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236644AbjFBSV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 14:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40522 "EHLO
+        id S236089AbjFBS1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 14:27:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236593AbjFBSV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 14:21:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467A718C;
-        Fri,  2 Jun 2023 11:21:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S235575AbjFBS1J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 14:27:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7AA123;
+        Fri,  2 Jun 2023 11:27:07 -0700 (PDT)
+Received: from arisu.hitronhub.home (unknown [23.233.251.139])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C0B5260D3A;
-        Fri,  2 Jun 2023 18:21:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A609C433D2;
-        Fri,  2 Jun 2023 18:21:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685730115;
-        bh=wZmST5GqZfwNaXvG5ams1yOqiopsMBnwXrGfs0DzrKk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HxHBZ0/iZ+gWdLqiKl6YbDXzHpA124IhNDjyA68Fln6QGStTGDWjKUkHIrFN9xTU7
-         95B8CQ+aTdp9EW0NAufAfu/J99ZNMwPbFr0ROwPlNVB7+jpFxMx4LoXtuy9pAQyjKp
-         8sFG56C83swAIV2LURY2SsrrpVNha0ZqJsDjMfybtxHfV32X2XqmjFOSjFBudnww0z
-         AJ29/B2AeOuC4120GlF7y0cLJjI57ri2lUvIUm+mGMJOCxPSJ3vb+PEriH+04FpxU4
-         sMVMnuhAk1pTDZNQ5psWuVJ1IGHN46Bcy7i+HMOhMbxJbBNqzcuqQWNs71k5HLKuqk
-         ENBfjRGZl6hew==
-Date:   Fri, 2 Jun 2023 19:21:47 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Keith Zhao <keith.zhao@starfivetech.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        (Authenticated sender: detlev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 63A1266066EC;
+        Fri,  2 Jun 2023 19:27:04 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685730425;
+        bh=oceu11ynUm4Aadbni5SseGKgOMyd/2PaucSJemy3+Ek=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Mz9YqxM6QV+KY0Yku7jxz+kI54+5/oaIEkaJ5jyABtgogIc0ivvkN9LbY9cLih19r
+         a+jCjeOLROW34zp3QOeq2L/zjIOTH6fsHU6HDxZkD7ZqTEysQWa/d0f9dXU1obtZXr
+         METtnrlm0HEOlRJA48hC94X34k1/WOXUKuTybrQ1Pia6VHDdM0h86SCCcxmRd0LCTp
+         itOqag2iifQZ2hp7eych3eqiklie1hlSDPOPAczilfnVq1xABZ/YXbZ2fzMBfd6lgo
+         80KTDTBiJR9rsE1ccGw9QJIO7KWAOji+Ehz0MJScdbquc8OLUad5HpLRujtJfgEecC
+         F4uD8jMq6xqYQ==
+From:   Detlev Casanova <detlev.casanova@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH 1/9] dt-bindings: display: Add yamls for JH7110 display
- subsystem
-Message-ID: <20230602-uncommon-rejoicing-e73c0c475f9f@spud>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602074043.33872-2-keith.zhao@starfivetech.com>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: net: phy: realtek: Support external PHY clock
+Date:   Fri,  2 Jun 2023 14:26:56 -0400
+Message-Id: <20230602182659.307876-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.39.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="MvIfnYU0aT/WgDUu"
-Content-Disposition: inline
-In-Reply-To: <20230602074043.33872-2-keith.zhao@starfivetech.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, thank you for your comments ! HEre are the changes that were
+discussed.
 
---MvIfnYU0aT/WgDUu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Some PHYs can use an external clock that must be enabled before probing
+it.
 
-Hey Keith,
-
-On Fri, Jun 02, 2023 at 03:40:35PM +0800, Keith Zhao wrote:
-> Add bindings for JH7110 display subsystem which
-> has a display controller verisilicon dc8200
-> and an HDMI interface.
->=20
-> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
-> ---
->  .../display/verisilicon/starfive-hdmi.yaml    |  93 +++++++++++++++
->  .../display/verisilicon/verisilicon-dc.yaml   | 110 ++++++++++++++++++
->  .../display/verisilicon/verisilicon-drm.yaml  |  42 +++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  MAINTAINERS                                   |   7 ++
->  5 files changed, 254 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/verisilicon=
-/starfive-hdmi.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/verisilicon=
-/verisilicon-dc.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/verisilicon=
-/verisilicon-drm.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/display/verisilicon/starfi=
-ve-hdmi.yaml b/Documentation/devicetree/bindings/display/verisilicon/starfi=
-ve-hdmi.yaml
-> new file mode 100644
-> index 000000000000..c30b7954a355
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/verisilicon/starfive-hdmi=
-=2Eyaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/verisilicon/starfive-hdmi.yam=
-l#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive HDMI transmiter
-> +
-> +description:
-> +  The StarFive SoC uses the HDMI signal transmiter based on innosilicon =
-IP
-
-Is innosilicon the same thing as verisilicon? Also
-s/transmiter/transmitter/, both here and in the title.
+Changes since v1:
+ * Remove the clock name as it is not guaranteed to be identical across
+   different PHYs
+ * Disable/Enable the clock when suspending/resuming
 
 
-> +  to generate HDMI signal from its input and transmit the signal to the =
-screen.
-> +
-> +maintainers:
-> +  - Keith Zhao <keith.zhao@starfivetech.com>
-> +  - ShengYang Chen <shengyang.chen@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,hdmi
-
-Is this going to work on every SoC that StarFive has ever & will ever
-make? Please use soc-based compatibles ;)
-
-> +
-> +  reg:
-> +    minItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: The HDMI hot plug detection interrupt.
-> +
-> +  clocks:
-> +    items:
-> +      - description: System clock of HDMI module.
-> +      - description: Mclk clock of HDMI audio.
-> +      - description: Bclk clock of HDMI audio.
-> +      - description: Pixel clock generated by HDMI module.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sysclk
-> +      - const: mclk
-> +      - const: bclk
-> +      - const: pclk
-> +
-> +  resets:
-> +    items:
-> +      - description: Reset for HDMI module.
-> +
-> +  reset-names:
-> +    items:
-> +      - const: hdmi_tx
-
-You only have one item here, you don't need the "items: - const:",
-"const:" alone will do.
-
-
-> diff --git a/Documentation/devicetree/bindings/display/verisilicon/verisi=
-licon-dc.yaml b/Documentation/devicetree/bindings/display/verisilicon/veris=
-ilicon-dc.yaml
-> new file mode 100644
-> index 000000000000..1322502c4cde
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/verisilicon/verisilicon-d=
-c.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/verisilicon/verisilicon-dc.ya=
-ml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive display controller
-> +
-> +description:
-> +  The StarFive SoC uses the display controller based on Verisilicon IP
-> +  to transfer the image data from a video memory
-> +  buffer to an external LCD interface.
-
-Is it based on Verisilicon IP, or is it exactly that verisilicon IP? I
-ask because...
-
-> +maintainers:
-> +  - Keith Zhao <keith.zhao@starfivetech.com>
-> +  - ShengYang Chen <shengyang.chen@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: verisilicon,dc8200
-
-=2E..the compatible is the verisilicon IP. I would be a lot happier if
-the compatibles were set yp for something like:
-"starfive,jh7110-foo", "verisilicon,dc8200"
-
-> diff --git a/Documentation/devicetree/bindings/display/verisilicon/verisi=
-licon-drm.yaml b/Documentation/devicetree/bindings/display/verisilicon/veri=
-silicon-drm.yaml
-> new file mode 100644
-> index 000000000000..aed8d4af2c55
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/verisilicon/verisilicon-d=
-rm.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/verisilicon/verisilicon-drm.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Verisilicon DRM master device
-> +
-> +maintainers:
-> +  - Keith Zhao <keith.zhao@starfivetech.com>
-> +  - ShengYang Chen <shengyang.chen@starfivetech.com>
-> +
-> +description: |
-> +  The Verisilicon DRM master device is a virtual device needed to list a=
-ll
-> +  display controller or other display interface nodes that comprise the
-> +  graphics subsystem.
-> +
-> +properties:
-> +  compatible:
-> +    const: verisilicon,display-subsystem
-
-Same here.
-
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index 82d39ab0231b..52c04fd098be 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1436,6 +1436,8 @@ patternProperties:
->      description: Variscite Ltd.
->    "^vdl,.*":
->      description: Van der Laan b.v.
-> +  "^verisilicon,.*":
-> +    description: Verisilicon Technologies, Inc.
-
-This should be in it's own patch.
-
-Cheers,
-Conor.
-
->    "^vertexcom,.*":
->      description: Vertexcom Technologies, Inc.
->    "^via,.*":
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2a0496448b7f..293aa13d484c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7049,6 +7049,13 @@ F:	Documentation/devicetree/bindings/display/brcm,=
-bcm2835-*.yaml
->  F:	drivers/gpu/drm/vc4/
->  F:	include/uapi/drm/vc4_drm.h
-> =20
-> +DRM DRIVERS FOR VERISILICON
-> +M:	Keith Zhao <keith.zhao@starfivetech.com>
-> +L:	dri-devel@lists.freedesktop.org
-> +S:	Maintained
-> +T:	git git://anongit.freedesktop.org/drm/drm-misc
-> +F:	Documentation/devicetree/bindings/display/verisilicon/
-> +
->  DRM DRIVERS FOR VIVANTE GPU IP
->  M:	Lucas Stach <l.stach@pengutronix.de>
->  R:	Russell King <linux+etnaviv@armlinux.org.uk>
-> --=20
-> 2.34.1
->=20
-
---MvIfnYU0aT/WgDUu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHozOwAKCRB4tDGHoIJi
-0qGfAQCOw/FcLRxZ76ev3AIGXrIb1ZeNQe+VXPB56KKXU2pSxwEArYO0igKszta9
-cCp+5+8uMIkgXInjUhRVx70UBTTb9gs=
-=sbrO
------END PGP SIGNATURE-----
-
---MvIfnYU0aT/WgDUu--
