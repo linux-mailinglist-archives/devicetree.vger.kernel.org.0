@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3365A720939
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 20:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38350720948
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 20:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236975AbjFBSf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 14:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46666 "EHLO
+        id S235858AbjFBSmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 14:42:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236976AbjFBSf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 14:35:26 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805A0194;
-        Fri,  2 Jun 2023 11:35:25 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8980666066EC;
-        Fri,  2 Jun 2023 19:35:22 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685730924;
-        bh=jK4RBgnhLajzb2VVh6RYcKZcAuPJaGK5uoOa+eFFoBY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Wjv7v5HBHtFx5on0MWE70XzJ0RLica7WNZnenTd22QUX1ETH8ac66iaJKQhXmWWyU
-         yFapVBMRh7+JKmBgNJYxBTEMy5w8KNY4BshEJ9zL9E4qAkgotqYGtIFpOLYpee9gXl
-         N7epNw17P/NF2aTIFBj8SQ5wkOqocT/Fl1zcpFn2u9PD+aAi3Z35yM1lK6FRyCaRcz
-         36gL6CYlxaaLhJ3hGg4iMoqrgLr2MjvHDIcPBCcSQP1zjz27kSmtFgC7gCH4ztc/nq
-         OCf3PH8xC/2uq3Lisks9voOIyZCWTq6xxKipqkiKZx2tMkKQ8Vvhhd9uYVHM8yfJ1o
-         V9Hf5JGs2r9yA==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S236210AbjFBSmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 14:42:53 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E82A1A5;
+        Fri,  2 Jun 2023 11:42:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=eNfE8L27WSnMGrKhYSIEYK8Z+p50w3HySEc+m+GC5XM=; b=fxFy3Ip6ShI5edhwdL9zyX2ZXD
+        xS9Q+2ldQU6lAjXFBrnkHrBiNaVzxnimumOPaRZIjzpWmTq6E22hPXd98uv0fqKvu63Wq/ukcqmtd
+        K8747UlDszc7me6WI+VwrHF2LPB9No4kSw7YH0OMzKxNQoNWnCeZ2zbGPt9ZqVDLecKE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1q59jS-00Ehfx-3D; Fri, 02 Jun 2023 20:42:38 +0200
+Date:   Fri, 2 Jun 2023 20:42:38 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Detlev Casanova <detlev.casanova@collabora.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH] arm64: dts: mediatek: mt8192: Fix CPUs capacity-dmips-mhz
-Date:   Fri,  2 Jun 2023 14:35:15 -0400
-Message-Id: <20230602183515.3778780-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.40.1
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: net: phy: Document support for
+ external PHY clk
+Message-ID: <4255bc0a-491c-4fbb-88ea-ec1d864a1a24@lunn.ch>
+References: <20230602182659.307876-1-detlev.casanova@collabora.com>
+ <20230602182659.307876-3-detlev.casanova@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230602182659.307876-3-detlev.casanova@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,75 +59,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The capacity-dmips-mhz parameter was miscalculated: this SoC runs
-the first (Cortex-A55) cluster at a maximum of 2000MHz and the
-second (Cortex-A76) cluster at a maximum of 2200MHz.
+On Fri, Jun 02, 2023 at 02:26:58PM -0400, Detlev Casanova wrote:
+> Ethern PHYs can have external an clock that needs to be activated before
+> probing the PHY.
 
-In order to calculate the right capacity-dmips-mhz, the following
-test was performed:
-1. CPUFREQ governor was set to 'performance' on both clusters
-2. Ran dhrystone with 500000000 iterations for 10 times on each cluster
-3. Calculated the mean result for each cluster
-4. Calculated DMIPS/MHz: dmips_mhz = dmips_per_second / cpu_mhz
-5. Scaled results to 1024:
-   result_c0 = dmips_mhz_c0 / dmips_mhz_c1 * 1024
+`Ethernet PHYs can have an external clock.`
 
-The mean results for this SoC are:
-Cluster 0 (LITTLE): 12016411 Dhry/s
-Cluster 1 (BIG): 31702034 Dhry/s
+We need to be careful with 'activated before probing the PHY'. phylib
+itself will not activate the clock. You must be putting the IDs into
+the compatible string, so the correct driver is loaded, and its probe
+function is called. The probe itself enables the clock, so it is not
+before probe, but during probe.
 
-The calculated scaled results are:
-Cluster 0: 426.953226899238 (rounded to 427)
-Cluster 1: 1024
+I'm picky about this because we have issues with enumerating the MDIO
+bus to find PHYs. Some boards needs the PHY taking out of reset,
+regulators enabled, clocks enabled etc, before the PHY will respond on
+the bus. It is hard for the core to do this, before the probe. So we
+recommend putting IDs in the compatible, so the driver probe function
+to do any additional setup needed.
 
-Fixes: 48489980e27e ("arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 4f574532ee13..c1241c8a3b77 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -93,6 +93,12 @@ properties:
+>        the turn around line low at end of the control phase of the
+>        MDIO transaction.
+>  
+> +  clocks:
+> +    maxItems: 1
+> +    description:
+> +      External clock connected to the PHY. If not specified it is assumed
+> +      that the PHY uses a fixed crystal or an internal oscillator.
+
+This text is good.
+
+    Andrew
 
 ---
-
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 63247c832f42..db17f67bb801 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -71,7 +71,7 @@ cpu0: cpu@0 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			performance-domains = <&performance 0>;
--			capacity-dmips-mhz = <530>;
-+			capacity-dmips-mhz = <427>;
- 		};
- 
- 		cpu1: cpu@100 {
-@@ -89,7 +89,7 @@ cpu1: cpu@100 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			performance-domains = <&performance 0>;
--			capacity-dmips-mhz = <530>;
-+			capacity-dmips-mhz = <427>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -107,7 +107,7 @@ cpu2: cpu@200 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			performance-domains = <&performance 0>;
--			capacity-dmips-mhz = <530>;
-+			capacity-dmips-mhz = <427>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -125,7 +125,7 @@ cpu3: cpu@300 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			performance-domains = <&performance 0>;
--			capacity-dmips-mhz = <530>;
-+			capacity-dmips-mhz = <427>;
- 		};
- 
- 		cpu4: cpu@400 {
--- 
-2.40.1
-
+pw-bot: cr
