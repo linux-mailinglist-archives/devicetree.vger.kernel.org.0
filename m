@@ -2,71 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45798720952
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 20:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 605F0720987
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 21:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236210AbjFBSnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 14:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49694 "EHLO
+        id S237097AbjFBTK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 15:10:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236969AbjFBSnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 14:43:42 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2EF51B3;
-        Fri,  2 Jun 2023 11:43:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=jfneblYBOjYYxA0NKH+Vqb9gSU5XXDjXlUQAlaqb8HI=; b=HoI0OAuACVkzKpgJWsKJbktIJD
-        jfegeMLt39LgEMSUbh27959JFDxXgl3RUwFN1PUuIPXhOnrLGp2TWssNB9zGNJskvwnh/3yAYrXuY
-        uv0h7baMMsmjSX1J4gzNTPoH3/k8GLkt/bimnnsHQIRLZKafpPNKrwP9Jue7VAom2Uy0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1q59kJ-00Ehgl-Fg; Fri, 02 Jun 2023 20:43:31 +0200
-Date:   Fri, 2 Jun 2023 20:43:31 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Detlev Casanova <detlev.casanova@collabora.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] net: phy: realtek: Add optional external PHY clock
-Message-ID: <f009ffe1-a72a-4910-b705-5b633bac12a6@lunn.ch>
-References: <20230602182659.307876-1-detlev.casanova@collabora.com>
- <20230602182659.307876-2-detlev.casanova@collabora.com>
+        with ESMTP id S237143AbjFBTKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 15:10:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB121B7
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 12:10:19 -0700 (PDT)
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1q5AAA-0000vT-5c; Fri, 02 Jun 2023 21:10:14 +0200
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        patchwork-lst@pengutronix.de
+Subject: [PATCH] arm64: dts: imx8mp: don't initialize audio clocks from CCM node
+Date:   Fri,  2 Jun 2023 21:10:13 +0200
+Message-Id: <20230602191013.4124840-1-l.stach@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230602182659.307876-2-detlev.casanova@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 02, 2023 at 02:26:57PM -0400, Detlev Casanova wrote:
-> In some cases, the PHY can use an external clock source instead of a
-> crystal.
-> 
-> Add an optional clock in the phy node to make sure that the clock source
-> is enabled, if specified, before probing.
-> 
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+The audio clocks should be intitialized to the correct rate by the subsystem
+using them. There is no need to always initialize them from the CCM node
+assigned-clocks property. This way boards using the audio clocks in a non-
+standard way can change them without first duplicating the CCM clock
+setup.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
 
-    Andrew
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 428c60462e3d..995445ad54cc 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -534,26 +534,16 @@ clk: clock-controller@30380000 {
+ 						  <&clk IMX8MP_CLK_A53_CORE>,
+ 						  <&clk IMX8MP_CLK_NOC>,
+ 						  <&clk IMX8MP_CLK_NOC_IO>,
+-						  <&clk IMX8MP_CLK_GIC>,
+-						  <&clk IMX8MP_CLK_AUDIO_AHB>,
+-						  <&clk IMX8MP_CLK_AUDIO_AXI_SRC>,
+-						  <&clk IMX8MP_AUDIO_PLL1>,
+-						  <&clk IMX8MP_AUDIO_PLL2>;
++						  <&clk IMX8MP_CLK_GIC>;
+ 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
+ 							 <&clk IMX8MP_ARM_PLL_OUT>,
+ 							 <&clk IMX8MP_SYS_PLL2_1000M>,
+ 							 <&clk IMX8MP_SYS_PLL1_800M>,
+-							 <&clk IMX8MP_SYS_PLL2_500M>,
+-							 <&clk IMX8MP_SYS_PLL1_800M>,
+-							 <&clk IMX8MP_SYS_PLL1_800M>;
++							 <&clk IMX8MP_SYS_PLL2_500M>;
+ 				assigned-clock-rates = <0>, <0>,
+ 						       <1000000000>,
+ 						       <800000000>,
+-						       <500000000>,
+-						       <400000000>,
+-						       <800000000>,
+-						       <393216000>,
+-						       <361267200>;
++						       <500000000>;
+ 			};
+ 
+ 			src: reset-controller@30390000 {
+-- 
+2.39.2
+
