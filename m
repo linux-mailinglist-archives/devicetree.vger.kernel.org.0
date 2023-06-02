@@ -2,71 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C40D072006C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 13:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72034720092
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 13:44:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234832AbjFBLar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 07:30:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59508 "EHLO
+        id S234930AbjFBLoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 07:44:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233860AbjFBLaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 07:30:46 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A02A218D
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 04:30:45 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6af873d1d8bso1493992a34.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 04:30:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685705445; x=1688297445;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N3tQa/xAjjFjMbYTIPvabJVdNLC/DkLFMMTZCH3qWNU=;
-        b=eu/8L6FEJyCnomQkO9MfzOs1itqP5rZNTr/8Tp1Z0jIfUk2foEP2a5s+P4i5p5pPoB
-         HUVnG/7kA9MJUzRUT0tV8mT3PW3cmNtD3PZZkx681tXOgYO9bFxovJ5SzIEYC0tld35x
-         n2JCqw2Ig9aIkEc8AaZSEEvZvIDLJ6nHE6jcvzV4u0BzGSHlIxjH/0t93XpG+1on0ntE
-         9IPe7YZu/Zi5lZoNIKhQ8AGAxOfl3Q9ELKqMPLuYLwqRqAELxox+FIZsR9nwOgWM2n6M
-         Vg47qfzSSn15OjsbLki0T9QANN9CVcKbsEG4x9VQn1kFkqu0s2x7P+HCbT1WjTufGV/4
-         YOCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685705445; x=1688297445;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N3tQa/xAjjFjMbYTIPvabJVdNLC/DkLFMMTZCH3qWNU=;
-        b=jKjTE0ifG3TJdZ7SI4sl5srOQ1i2s3fpTqzyT/60VJuxcilzlo6d3Z6TS4Cms828sP
-         iQyf7Ew+SdpF7yt+bM0YPzrp0d3yBwsutFv02OdaWaABg+Kv9UJyiNNWKFYGhzVLNR3e
-         SA9dqnm0gFuEMKJS9Amc6sXRPAW8MetrEY2FKXTviKMqdQaSvzS/atJ8icys19EAjBg5
-         /e5UGDuPe+u7duXCE21obMvRjlGAtBVbCFzTHD2P6qT5cPRIwXat45TDqADtgE3HDds1
-         lnDT4NKCmlAcL80LUt9++2KcCxynNdd5S6bAWYRNWHxr0I2adWUtdcj0p5IRAjNJ5/E5
-         WF4Q==
-X-Gm-Message-State: AC+VfDz/Kh1k9HgXifiOr/aF3c1EybBRjhfWP9umNc4zZQWWaaDmhBms
-        uIB1R7FPpNb8Xs2x2ujJSIA6N9UgcW7ur1BVJbk=
-X-Google-Smtp-Source: ACHHUZ5bnEkYkQvDbtYgf3PHqO2aUWLOzfEnyUNaWd4OmZBSRLxwI8uehBL9rCaqJYTtVmRlZpNzRUMrMKrQRV/FR4s=
-X-Received: by 2002:a05:6358:4e8a:b0:127:de76:9adf with SMTP id
- ce10-20020a0563584e8a00b00127de769adfmr2955152rwb.9.1685705444535; Fri, 02
- Jun 2023 04:30:44 -0700 (PDT)
+        with ESMTP id S229470AbjFBLn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 07:43:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40275194;
+        Fri,  2 Jun 2023 04:43:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C750564F32;
+        Fri,  2 Jun 2023 11:43:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AC21C433D2;
+        Fri,  2 Jun 2023 11:43:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685706237;
+        bh=qyj2TnFG9Q0Dqv/yetg95LBFYsBmGWLoH4r/LKwHNFI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kAlxMoP/qBc0mYGcWpYHeVsa9+r7EDw01E7qngnPnA87Tv0sbunfoocMmS0lWr0IO
+         xzTgsYDl/xjWuRMFdC/paiH3tQuz2xNEamizJmn5Jg5X97Q+xh3JBOKOEa3DbOQWlI
+         R0gUicxEfXmC9PEeI2Mrz23WWJ6luwzf3Wv+d8OXgwN3Y9pLhE/6dLm4WoQJTWz8i1
+         bb/ziz/uyfqIMztFJDty5LMV3rIVyt3iMADd2W9+TEfyE49g+MutpJ+WdcCviVuliE
+         tPGj795nypFMC5LsLLRXBEkMTkScWCtGx0AdLzjBpsIWn7Qr4IiqHjY7WNRgW9EX9c
+         +ivng4bHzEtIw==
+Date:   Fri, 2 Jun 2023 12:43:51 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] ASoC: dt-bindings: document new symmetric-clock-role
+ flag
+Message-ID: <3fe93662-82b0-4834-b6c3-473669c66210@sirena.org.uk>
+References: <20230602090322.1876359-1-alvin@pqrs.dk>
+ <20230602090322.1876359-2-alvin@pqrs.dk>
 MIME-Version: 1.0
-Received: by 2002:a05:7022:4583:b0:62:6069:5fa8 with HTTP; Fri, 2 Jun 2023
- 04:30:43 -0700 (PDT)
-Reply-To: elenatudorie987@gmail.com
-From:   Elena Tudorie <bestwinne@gmail.com>
-Date:   Fri, 2 Jun 2023 11:30:43 +0000
-Message-ID: <CAGg1EpQV5G+EUJnjuCdBXDu9UOPRB1TtLo-W6mRORy52z14cjQ@mail.gmail.com>
-Subject: Greetings
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: ****
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yljCHQatclI9IIDH"
+Content-Disposition: inline
+In-Reply-To: <20230602090322.1876359-2-alvin@pqrs.dk>
+X-Cookie: War is an equal opportunity destroyer.
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am Ms Elena Tudorie, I have a important  business  to discuss with you,
-Thanks for your time and  Attention.
-Regards.
-Mrs.Elena Tudorie
+
+--yljCHQatclI9IIDH
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jun 02, 2023 at 11:03:18AM +0200, Alvin =C5=A0ipraga wrote:
+> From: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
+>=20
+> The new flag specifies that both ends of the dai-link have the same
+> clock consumer/provider role. This should be used to describe hardware
+> where e.g. the CPU and codec both receive their bit- and frame-clocks
+> from an external source.
+
+Why would we have a property for this and not just describe whatever the
+actual clocking arrangement is?
+
+--yljCHQatclI9IIDH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR51fYACgkQJNaLcl1U
+h9BNRAf/dP2YV4uOYvx3LXMZqRrfypjgfWwbbFEufSIelAq8lZS5puJ+MvumnDqL
+XR89aM7F6DDztwC4eCpUETQ1JsAz5EHnoaLe+uxnG5c2wV+AOXi2SVoXLtA+S6lX
+3IGObHfe4FnxwvIX2N0wZX0XH20MEpJhJCO71zo+t9dOZo7OykvYEQA+4kkBcePa
+7zx9TAhm0VkpEUY3RkT4uymkkyIczcaDkaF2HTNDIG0DEtrw02lXVYi1WmhiY5Ah
+C4IlcYDVqwVpAQGboONnZoF8+9IFeZRynit9kSNKajMK9EVz1T+NmXQzUYD/UxfY
+sOiGK2eIY2eai/KegHSKFnIOBmOw7w==
+=htpo
+-----END PGP SIGNATURE-----
+
+--yljCHQatclI9IIDH--
