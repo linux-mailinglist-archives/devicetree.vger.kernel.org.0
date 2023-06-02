@@ -2,73 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C99B972030D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:18:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15D67720311
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:19:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236132AbjFBNSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 09:18:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35994 "EHLO
+        id S236063AbjFBNT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 09:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236022AbjFBNSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:18:33 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAE810C2
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 06:18:12 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-97467e06511so74504366b.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 06:18:12 -0700 (PDT)
+        with ESMTP id S235849AbjFBNT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:19:26 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603FCE68
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 06:19:04 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51640b9ed95so552261a12.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 06:19:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685711891; x=1688303891;
+        d=linaro.org; s=google; t=1685711943; x=1688303943;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=+NwS3zwEZvLwZpFK4ZiaFDiysXGsoIUw128QiW5LtVU=;
-        b=y4SvAQHWgG5smj0nfr9cPL7rQvdt+tK6xIKJN0ulw65aVNy/YL45IdSDjNDnQcMYUs
-         Kj0wjGYzG93cyd6LOUYTn21uAVPRLY6nXj0urvDaZy4/6Fdo0KvV58x2jBQjl8sxMGkp
-         F17BWTrDcCC1zPba7hYt12q4F/0G742A1CshaNWFJdzOX+mCMg9p2fb3J9/BRvCQqD2C
-         MI7BP2tA1WBhHD4vzsFGkkvrOFS0WVTi7AHK92+OYpbpEvBg0jdSoj/a8zKeOcVQk1Kv
-         NGk/Ate+EL5OQhweq+scBl3NcZEh6E88/c86+0VHj54iid0E8n97Hk7e8XiHhcFwVcHV
-         fmSA==
+        bh=AL6U3/LQtPsSpL2edMdeHjfgSwujh1CtL4Li08D5DHs=;
+        b=pyC6LRH2rMaASgz2UmMPd3ADLZrFuBVBFLUOOXcAxWFnky8vafdBQsVIyqsfgiogcb
+         yo4FW5xHchmJUazBm3DBNYDPE3BepBXNEERQXVmgiZkwITQ0ZnmVihzPn86TjW5OFMF/
+         QLrPoPEbcoKXIenJ6OPJi8Rthh4JRXih5OTCmKLPHzaO5Q+ss0UMQcJpe6dLbRN6v8i+
+         3cDjQzXg4XPOPBxJArZoOthApo8ZORoAEloRP7SHNG3MJzJdG6IH5KMb2lpUzKNx3R73
+         4TllygpfqMPP+owJl6MIa5i28NgAj2KPC34C61ykSM3ip1HImbFBWuLUJUsQrAv1jyh3
+         6cAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685711891; x=1688303891;
+        d=1e100.net; s=20221208; t=1685711943; x=1688303943;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+NwS3zwEZvLwZpFK4ZiaFDiysXGsoIUw128QiW5LtVU=;
-        b=bkGG1PNFZZ8DnddyOk+pUeWobW6+MAE474tiXxhOHX+tULqj7m4C+PL69y76kg2yFI
-         WC/LK3drf7bhJcI7CWx83N1P3pI3cfWkWOihTONcbWfxD+1qH02rWA5fLhDCHfb8y44c
-         CKntLlur9fnN3dBEoPq0GtcDkfJfvo9g4j1cNleDh7C87PFhftWwiMqy6rgbThtFJNn/
-         7zSGgFT1rWY63evxd0KIxT+3DD0ZOjxWYK/exYtwqrMRRJ9UiL+ixNICZfqVEqhb0rxY
-         BLwu4WBrQG7BiNhU3tF22rMTD0d+QM3HIcTGsdu6e7efFrigSwC8JVdGqRVkFnEayG0e
-         nktA==
-X-Gm-Message-State: AC+VfDyGKZ0Q5zAZzhDLDyc6AQ7VwajqhTQEElXvPScKEbPB9EkN9cOZ
-        dZGeSsoJjsZC/4tAx6VlXwIM/A==
-X-Google-Smtp-Source: ACHHUZ6JYFwp/knwwWxf+ufp1RJgv7D7BecZvMAW0KHV56DSQ8VwVIvFUeqNQttcyPPpjVyDgEDmXg==
-X-Received: by 2002:a17:907:3e14:b0:974:545d:cfa3 with SMTP id hp20-20020a1709073e1400b00974545dcfa3mr3324224ejc.64.1685711891425;
-        Fri, 02 Jun 2023 06:18:11 -0700 (PDT)
+        bh=AL6U3/LQtPsSpL2edMdeHjfgSwujh1CtL4Li08D5DHs=;
+        b=F8XCXw2P+PATq6+sCWS3wz217sr4VkM/kQxI4EFfvN83EcdqnveJOyRRa5VqLBornP
+         9W9TxoFqaddlf8XinktZ5qVuVn4ccOxXY/1dXCnF4CWDMFiC0DBQOqbJ2EitVLz6ZmvY
+         R9n1JP1mGXa2LWx7KBMUk5z3CqffzWAPVToSlRQw2nAlNRhyvxLCbRstr69BCtmBG/md
+         637IVLnVEghkyaoEA5pbVQsuPpCbakeNg9RQZf7Tvn02vfTKd/lJCdzKX8FbcPx8uHUC
+         eew0VQ9Y+tIM6xd1OrCz9hWLI5ikk2MhcfXQVTfB7HArlpYa2ZL2PAMF4mj/YolsSQlj
+         Bl5g==
+X-Gm-Message-State: AC+VfDxMTcs7qbb8mIwYah7W3ndSdza6DQYCHMCYTG1PAfPfK36IlFrJ
+        JjhMr+vjgSD7w7M/ig2rT6HWog==
+X-Google-Smtp-Source: ACHHUZ4lfHUVchhkj0FLIuh1zMCNcKzc073RQWJcEmJpWsqUawWDIMPhIfzIQDTofF7iZBwWVjkUCw==
+X-Received: by 2002:a05:6402:1513:b0:50b:fb29:1d8f with SMTP id f19-20020a056402151300b0050bfb291d8fmr1941563edw.0.1685711942755;
+        Fri, 02 Jun 2023 06:19:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id x17-20020a170906149100b009764f0c5fe6sm19622ejc.7.2023.06.02.06.18.09
+        by smtp.gmail.com with ESMTPSA id l5-20020aa7d945000000b00516323ef3a9sm677267eds.49.2023.06.02.06.19.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Jun 2023 06:18:11 -0700 (PDT)
-Message-ID: <b06070d3-a272-9a0b-2d02-df8fbca4e951@linaro.org>
-Date:   Fri, 2 Jun 2023 15:18:08 +0200
+        Fri, 02 Jun 2023 06:19:02 -0700 (PDT)
+Message-ID: <5b537617-a9cb-609b-790d-3dda4b3933ec@linaro.org>
+Date:   Fri, 2 Jun 2023 15:18:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 6/6] arm64: defconfig: Enable sc828x0xp lpasscc clock
- controller
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     johan+linaro@kernel.org, agross@kernel.org,
-        konrad.dybcio@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230525122930.17141-1-srinivas.kandagatla@linaro.org>
- <20230525122930.17141-7-srinivas.kandagatla@linaro.org>
+Subject: Re: [EXT] Re: [PATCH 2/2] dt-bindings: i2c: imx-lpi2c: Add bus
+ recovery example
+To:     Carlos Song <carlos.song@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Anson.Huang@nxp.com" <Anson.Huang@nxp.com>
+Cc:     Clark Wang <xiaoning.wang@nxp.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230529074302.3612294-1-carlos.song@nxp.com>
+ <20230529074302.3612294-2-carlos.song@nxp.com>
+ <ed004607-5a23-564a-3185-a63af87783e5@linaro.org>
+ <VI1PR04MB5005E43373DB10A9FD726AD7E8489@VI1PR04MB5005.eurprd04.prod.outlook.com>
 Content-Language: en-US
-In-Reply-To: <20230525122930.17141-7-srinivas.kandagatla@linaro.org>
+In-Reply-To: <VI1PR04MB5005E43373DB10A9FD726AD7E8489@VI1PR04MB5005.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,14 +97,102 @@ X-Mailing-List: devicetree@vger.kernel.org
 Resending as my previous email probably got lost. If you got it twice,
 apologies.
 
-On 25/05/2023 14:29, Srinivas Kandagatla wrote:
-> Enabled sc828x0xp lpasscc clock controller driver required for X13s laptop.
+On 31/05/2023 12:22, Carlos Song wrote:
+> Hi,
+> 	Thanks for you reply. 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Tuesday, May 30, 2023 10:59 PM
+>> To: Carlos Song <carlos.song@nxp.com>; Aisheng Dong
+>> <aisheng.dong@nxp.com>; shawnguo@kernel.org; s.hauer@pengutronix.de;
+>> kernel@pengutronix.de; festevam@gmail.com; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> Anson.Huang@nxp.com
+>> Cc: Clark Wang <xiaoning.wang@nxp.com>; Bough Chen
+>> <haibo.chen@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
+>> linux-i2c@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>> Subject: [EXT] Re: [PATCH 2/2] dt-bindings: i2c: imx-lpi2c: Add bus recovery
+>> example
+>>
+>> Caution: This is an external email. Please take care when clicking links or
+>> opening attachments. When in doubt, report the message using the 'Report this
+>> email' button
+>>
+>>
+>> On 29/05/2023 09:43, carlos.song@nxp.com wrote:
+>>> From: Clark Wang <xiaoning.wang@nxp.com>
+>>>
+>>> Add i2c bus recovery configuration example.
+>>
+>> Why? That's just example... also with coding style issue.
+>>
+>>>
+>>> Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
+>>> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+>>> ---
+>>>  .../devicetree/bindings/i2c/i2c-imx-lpi2c.yaml   | 16 ++++++++++++++++
+>>>  1 file changed, 16 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> index 4656f5112b84..62ee457496e4 100644
+>>> --- a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> @@ -58,6 +58,16 @@ properties:
+>>>    power-domains:
+>>>      maxItems: 1
+>>>
+>>> +  pinctrl-names:
+>>> +    minItems: 1
+>>> +    maxItems: 3
+>>
+>> What's the benefit of this? Entries should be defined but without it is not really
+>> helpful. Anyway not explained in commit msg.
+>>
+>>> +
+>>> +  scl-gpios:
+>>> +    maxItems: 1
+>>> +
+>>> +  sda-gpios:
+>>> +    maxItems: 1
+>>
+>> You don't need these two. Anyway not explained in commit msg.
+>>
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
+> Sorry for confusing you with the poor commit log and without
+> full description.
+> 
+> The reason why we need sending the patch for dt-binding is :
+> We sent out a patch for I.MX LPI2C bus support recovery function.
+> When LPI2C use recovery function, lpi2c controller need to switch the 
+> SCL pin and SDA pin to their GPIO function.  So I think the scl-gpio and
+> sda-gpio property need to be added in the dt-bindings.
+
+Why do you think they are not in the bindings already?
+
+> 
+> And alternative pinmux settings are described in a separate pinctrl state "gpio". 
+> So maybe "gpio" pinctrl item need to be added.
+> 
+> I would like to know whether the above changes are really unnecessary according to above case?
+> Or because of the vague commit log, you are misled and think that our patch is not necessary to add examples.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I claim your patch has zero effect. Can you prove otherwise?
+
+Proof is with DTS example and result of dtbs_check.
+
+> 
+> Is there no need to add sda/scl-gpios property or no need to add maxItems: 1?
+
+I think entire patch can be dropped.
+
+> We also find the sci-gpio and sda-gpio have been defined in the ref: /schemas/i2c/i2c-controller.yaml. 
+> So is this the root cause of no need to add these properties?
+
+Yes.
+
 
 Best regards,
 Krzysztof
