@@ -2,111 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A17171FE19
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1384171FC7C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 10:49:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235065AbjFBJmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 05:42:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52870 "EHLO
+        id S234852AbjFBItP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 04:49:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234554AbjFBJmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:42:01 -0400
-X-Greylist: delayed 1801 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 02 Jun 2023 02:41:46 PDT
-Received: from mta-04.yadro.com (mta-04.yadro.com [89.207.88.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706821AB;
-        Fri,  2 Jun 2023 02:41:46 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-04.yadro.com 358EAC0005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yadro.com; s=mta-04;
-        t=1685695598; bh=IyHRJF/zre043k98ZDshtLNWhe8WKi2wLyzTArL8jtA=;
-        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-        b=X1aWV4csjSO2RPP7ImF6gPm9floXV+c11hTO2RkkL5ZpwwzncQKcuUEf6rOTwZED2
-         cK7P4r6MKAnwdXitp+dXJ/sPDFIv26m4F3ZKVirRTZp+8sdiPmromGeQj+zBKl1fbM
-         RVevDZleSvrJ0PAeuaZZgJiXv5s6h3aMm/FPY06osUXdzXKLRDwySvnSvA8lxKyqi3
-         nfIRxMTfyMpPqQE8/zJkFC/tXZa+KBdKHCconvupGk2vkv6otDPX0YncapaIEsP+Du
-         WpfTChvxpL3Buro9euVycxE1eJTNTvEz26vg9vS23G+q82w8RwZMN5GgWGuQDPFbMZ
-         4p+u/R32A8Vbw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yadro.com; s=mta-03;
-        t=1685695598; bh=IyHRJF/zre043k98ZDshtLNWhe8WKi2wLyzTArL8jtA=;
-        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-        b=wRROsHfNTT80YN/60jvIiKOv3gjfU+1kjKfFYX40vJy0dSOm+PNpuByNgxDVeGt0C
-         PStAyU6eViXSd7KEXZKMc4hh5sUOFk62rMX2MKFy9uBrKLVmN8u9l/CV9wbydrm4eq
-         hjULC5hamswiGAr8RiaI/oR+jk4ESS4sN+QWpDU6hCz0jTc4NKxrQSEsq2snqGH5I6
-         6bbPA9A04v7GyUR0+03X2PKNGmtC9XYiyhXV+3x0JkwuHq1dYsUeBz9hVYK5tJJ4jC
-         Oq9bTdW16BnTPQfa7cyIbkLAkrk2ju6u1dEy/IQ6/1urjMIR06cVxxTQBbR9m/oCfa
-         NJy8vPex3zfKw==
-Message-ID: <b9fc06dd-d9e4-58fc-6252-87590c416ce7@yadro.com>
-Date:   Fri, 2 Jun 2023 11:46:36 +0300
+        with ESMTP id S234497AbjFBIse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 04:48:34 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B8D1A8
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 01:48:31 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b1a3fa2cd2so20886531fa.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 01:48:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685695709; x=1688287709;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IoQFQr/nPSNFex22doBQPMhVul05JZ1RLUaTofGh6rc=;
+        b=oIOrjmJMTtBBGOq/2Ap4Pc5fVooiIfofixNKfmoziFbJDansAXfxM2Lzl5qgL6CuK/
+         E0dmtS2SyWFo0da/54uB8NmmavclqDHnNVPpj9Rd31x71CHwZltsAxjHvrfytOFajcM8
+         mMqnp0hJPEwDKHxbC2P221cVgnFIttyu2aJ+s16T75ctesZk8ltNNDyzXij8lwvOM71E
+         Gkj8SAju7i2h7BdQsVxZfFMAwyhVEDQaQtECkoE/3LCSd0fzXTAWY0SXE+t0pKYnLtm9
+         CuXFXPJiyomBtlI5sFvW7M5ZY+MTqqkjxJqN6Fyc1oKHcTAWO6mUcX/yZjLPTUCaOTxW
+         QHbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685695709; x=1688287709;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IoQFQr/nPSNFex22doBQPMhVul05JZ1RLUaTofGh6rc=;
+        b=R9s9c66LZljVVazOLmvzlU75kox9sEkW+U6CktvkWpUq1HvVNL6O2UEq4DA0TPGj/G
+         mAysLbEB/cznAq+lzNBM2Dd5lwm7u+oyMaFsFzF7DqqvIKcxyIc5yowAHE/Z/MNn4hNE
+         rq+p2rkdJ8CNq59ISDvq4PwqRnpWTaUsFNLv2rfZHTZAuJpVbQHyf8a6lp2st/uzaNB+
+         fXj7CeblEgVUHjZ9ocXBALf6g8aY++kKOCoXHX+owkTzW0spiulH20UY+SGAZ2JJjQiR
+         aviv+H7cBDRKNbsoV8lQY2RpbzvLPnbjeHW8CxJ5mNYEbgJoyawSl9zlQZuD9rWA5CfE
+         JVEg==
+X-Gm-Message-State: AC+VfDyevcmWPuE2Ego15nXnjnmEb0uOelK84ZBCLu9KKwAIP0u3EF99
+        uK9Be4mdD7Op8Vq0wdZlBNq0Mg==
+X-Google-Smtp-Source: ACHHUZ4CteD5aDWXschtOOQKsN+0Vs7jmkj6ydwf/dShOQgl0gKLTUFIt0A5KbHdVwxKiVNQPMfMYw==
+X-Received: by 2002:a2e:801a:0:b0:2ac:7d3b:6312 with SMTP id j26-20020a2e801a000000b002ac7d3b6312mr1323052ljg.22.1685695709498;
+        Fri, 02 Jun 2023 01:48:29 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id w22-20020a2e9996000000b002ab5421959fsm142943lji.90.2023.06.02.01.48.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jun 2023 01:48:28 -0700 (PDT)
+Message-ID: <ff395fd4-1100-6276-f8c5-a3815b64ceb8@linaro.org>
+Date:   Fri, 2 Jun 2023 10:48:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] dt-bindings: leds: Document Awinic AW2016 bindings
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux@yadro.com>,
-        <linux-leds@vger.kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230524113910.196321-1-v.barinov@yadro.com>
- <20230524114056.196518-1-v.barinov@yadro.com>
- <168493088788.3462735.2834416618033227181.robh@kernel.org>
- <20230602080655.GN449117@google.com>
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 4/4] clk: qcom: mmcc-msm8998: Fix the SMMU GDSC
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Imran Khan <kimran@codeaurora.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Joonwoo Park <joonwoop@codeaurora.org>,
+        Jeffrey Hugo <jhugo@codeaurora.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20230531-topic-8998_mmssclk-v1-0-2b5a8fc90991@linaro.org>
+ <20230531-topic-8998_mmssclk-v1-4-2b5a8fc90991@linaro.org>
+ <CAOCk7Nogy3+5rvyzPEgsyJe7xE_17MXVs-=mniJJj=ELsCqzNQ@mail.gmail.com>
 Content-Language: en-US
-From:   Vladimir Barinov <v.barinov@yadro.com>
-In-Reply-To: <20230602080655.GN449117@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAOCk7Nogy3+5rvyzPEgsyJe7xE_17MXVs-=mniJJj=ELsCqzNQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-08.corp.yadro.com (172.17.11.58)
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
 
-On 6/2/23 11:06, Lee Jones wrote:
-> «Внимание! Данное письмо от внешнего адресата!»
->
-> On Wed, 24 May 2023, Rob Herring wrote:
->
->> On Wed, 24 May 2023 14:40:56 +0300, Vladimir Barinov wrote:
->>> Add Awinic AW2026 binding documentation
->>>
->>> Signed-off-by: Vladimir Barinov <v.barinov@yadro.com>
->>> ---
->>>   .../bindings/leds/awinic,aw2026.yaml          | 92 +++++++++++++++++++
->>>   1 file changed, 92 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw2026.yaml
->>>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+On 1.06.2023 16:14, Jeffrey Hugo wrote:
+> On Wed, May 31, 2023 at 3:01 AM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >>
->> yamllint warnings/errors:
+>> The SMMU GDSC doesn't have to be ALWAYS-ON and shouldn't feature the
+>> HW_CTRL flag (it's separate from hw_ctrl_addr).  In addition to that,
+>> it should feature a cxc entry for bimc_smmu_axi_clk and be marked as
+>> votable.
 >>
->> dtschema/dtc warnings/errors:
->> Error: Documentation/devicetree/bindings/leds/awinic,aw2026.example.dts:52.3-53.1 syntax error
->> FATAL ERROR: Unable to parse input tree
->> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/leds/awinic,aw2026.example.dtb] Error 1
->> make[1]: *** Waiting for unfinished jobs....
->> make: *** [Makefile:1512: dt_binding_check] Error 2
-> Taking this set out of my review queue until this is rectified.
+>> Fix all of these issues.
+>>
+>> Fixes: d14b15b5931c ("clk: qcom: Add MSM8998 Multimedia Clock Controller (MMCC) driver")
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Was this tested on a system where the bootloader has enabled the
+> display and it is active during Linux boot?
+No, I only have a device whose bootloader doesn't initialize display.
 
-Thank you for paying attention for this commit.
+> 
+> I seem to recall that in that scenario, Linux would boot up, see that
+> the GDSC is on, not see any clients for it (still initializing), turn
+> it off, and kill the display which then results in either a mess of
+> errors or a bus lockup.
+I see 2 possible scenarios: either the display shuts off (because
+somebody hasn't described the hardware properly and Linux isn't)
+aware of all dependencies, or we get bus errors because we only
+shut down / initialize some hardware partially, also possibly due
+to bad dependency description.
 
-I've already resent fixes in v2 version:
-
-https://lore.kernel.org/all/20230525101341.2036563-1-v.barinov@yadro.com/
-
->
-> --
-> Lee Jones [李琼斯]
-
-
--- 
-Regards
-Vladimir
-
+Konrad
+> 
+> -Jeff
