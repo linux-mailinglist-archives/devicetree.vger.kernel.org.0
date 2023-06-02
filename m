@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA75A71F9F8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 08:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F19A171FA49
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 08:46:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233850AbjFBGUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 02:20:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36936 "EHLO
+        id S233879AbjFBGqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 02:46:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233808AbjFBGUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 02:20:33 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0FDE7
-        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 23:20:31 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f603ff9c02so16220705e9.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 23:20:31 -0700 (PDT)
+        with ESMTP id S234039AbjFBGqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 02:46:10 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FA70132
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 23:46:08 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-97454836448so145966766b.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Jun 2023 23:46:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685686830; x=1688278830;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8SZlmBe4W9vLL73H/TTCi5vs76P5q4kfXo4iNUwpvog=;
-        b=vldA/uo1C/WVXoGzKY60oskUqNZSBc5PIaJaSHedAZruZQNfEEC/5c7lC+IPwwKZ7B
-         MC9xryptPH1N7ZnIkxCgLonLM9/+sYmnt8EC+K/HSUunMtNo4h876oxyQqYbjMOy9yNO
-         wu11ICLWPUQNoy11RwpGO1xJUEmab1ItDVuUlq8jVNegl+vMwIXHnHluX0P/dOpQFRAi
-         0hiETtiw/gnNJOFtYu9R2rpDjma+exd6nlkH3+Obut/hYfSrhTd7Hls4wfjPRKzuOy6d
-         VmEkPhqfV4kKAdRYmpPwc1gJzcg18pTJCm1W4DRfOdxVhW1vhHDYbzNZDsdv0OjxexHf
-         geCg==
+        d=linaro.org; s=google; t=1685688367; x=1688280367;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Sn5GKIPUq7n4vlCzPHxBlLVhBwHsIY9pwft/0PIKGBs=;
+        b=uRHXQmKFfg6Ty6YPEOvbVuHCYKuBOonqM93J4SRlD1cgcAk1u+uNI+jfV5y01WPD+r
+         8yp0tqQonwy0Of/F4l5ueo7PDlxpGUCHWL0/cvwRF9wLedTFpqa+M1uXDs/VPvCKHsQz
+         uqNjb3u0y7i6egKZVxVMPPyfFjXY6Td+g06Owx9alBj+o5Lh8x1WQrd6zAShZ/Fq+tKP
+         u6k4idSxXuz9rZvNmguP7cTNwcgnYzn7himsVHIEwZvfUjSgNmWj7oWPkusc4SCli2cw
+         i0zMjtJx5laVjN6jCaQTdd/+VC1uBSWtJyoHDYTstRMSxDQEWCMgde7jHF+TyBlZyBcO
+         K3Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685686830; x=1688278830;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8SZlmBe4W9vLL73H/TTCi5vs76P5q4kfXo4iNUwpvog=;
-        b=RNxXdZglTSrrPwBDZAJIMw+Vfm8n8M0K2QtvltiM28bEN4+YGzHX0K/u4PIQopnC6u
-         yORHnBx1BiSwFQlAj4d5DRdogkey+Qr0ssy64vxNoBFuY2RwgpLlamHF9mdkMsuDzqS/
-         jG84kqyOhHhsg8MdB3N1Syp//9QeeRUYVpkmPCbk9L12fAf+WJgIkPpRs35AN8rXHaNY
-         qAd4z+RtmuTaSTXP+b5pgt1ijGqiRb6YHKRc1TDgmGm6fubHT0r36QQ3QzSQswD173Pg
-         +gBhbYXjvu/jZ8bd29inFzeBmN4qMkvfGYGoVYjzsr58R8n82qYCoKVUPqENQO8s4jHr
-         PhTg==
-X-Gm-Message-State: AC+VfDxOKYikGyRtFJslTplYoFSBExeF/EvRy4sadO95njXJ+tiDGiFb
-        8KdY8ZCJWl9BlaGr/XZ5V9PBChHN9l2urhlo088=
-X-Google-Smtp-Source: ACHHUZ4/ldsWeZTvk36B4VbWR7NbgEGMgA3p73P73jjsRLaF9rzYgCqJ8+hZKo55x6eQfrlgMRnbTA==
-X-Received: by 2002:adf:dd81:0:b0:309:51ec:9ce0 with SMTP id x1-20020adfdd81000000b0030951ec9ce0mr3321475wrl.69.1685686829989;
-        Thu, 01 Jun 2023 23:20:29 -0700 (PDT)
-Received: from hackbox.lan ([86.121.163.20])
-        by smtp.gmail.com with ESMTPSA id 23-20020a05600c229700b003f42894ebe2sm4388213wmf.23.2023.06.01.23.20.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jun 2023 23:20:29 -0700 (PDT)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: sm8450: Add missing interconnect paths to USB HC
-Date:   Fri,  2 Jun 2023 09:20:16 +0300
-Message-Id: <20230602062016.1883171-6-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230602062016.1883171-1-abel.vesa@linaro.org>
-References: <20230602062016.1883171-1-abel.vesa@linaro.org>
+        d=1e100.net; s=20221208; t=1685688367; x=1688280367;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sn5GKIPUq7n4vlCzPHxBlLVhBwHsIY9pwft/0PIKGBs=;
+        b=SkbreEVEvPjCjSQPOeyLG9zjF2HTFDeaBxgeBpmN+q6mBryAcBWKBCEnhJOjKvlIum
+         bTlmQPvQAdA49BT272TaCdIvnlfIhXhiMKLIRkCWD5eu8/6trNYY4fyjqgWfn4NLx54x
+         9ekZ8RANtfvdNOTEh6MKYg3Soefv8beN/annZWJ4yzMQ/qXBHiZj9bZngq+ZnwMnxOwn
+         yFTYYuNjUtgGNohgVIre7S/ry1WYHccbXYTmYOSk6OSso0g8i6Ifx3ktA84E5YQmLHBm
+         foHVw2ttDpn3tEjUzcriWhUWuaFZH5s58zLtyrq6WJFvOeiE70O4QQBQHnhmYJGnChHv
+         afcQ==
+X-Gm-Message-State: AC+VfDx0C604QjzCb3lfYQE8lkYq+82FrLaoE+0/7ZW6CbISKfOkuuCT
+        FQIcoNJWQF2wJA9nXzQ+DWzlIg==
+X-Google-Smtp-Source: ACHHUZ7Q1uVjMhamKfseFwmnkiS2/n+5edox82SflnDS21Cz4GqWA+5aSrTkhy1Md9Sa95VNrecatA==
+X-Received: by 2002:a17:907:746:b0:973:d2d1:e7 with SMTP id xc6-20020a170907074600b00973d2d100e7mr7718987ejb.71.1685688366895;
+        Thu, 01 Jun 2023 23:46:06 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id bq24-20020a170906d0d800b0097436a54b4bsm393664ejb.0.2023.06.01.23.46.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Jun 2023 23:46:06 -0700 (PDT)
+Message-ID: <b31a1142-b6bd-16ca-ef26-87f91617e3b9@linaro.org>
+Date:   Fri, 2 Jun 2023 08:46:04 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] dt-bindings: pinctrl: Drop k3
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+References: <20230601173831.982429-1-nm@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230601173831.982429-1-nm@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,33 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The USB HC node is missing the interconnect paths, so add them.
+On 01/06/2023 19:38, Nishanth Menon wrote:
+> For convenience (less code duplication), the pin controller pin
+> configuration register values were defined in the bindings header.
+> These are not some IDs or other abstraction layer but raw numbers used
+> in the registers.
+> 
+> These constants do not fit the purpose of bindings. They do not
+> provide any abstraction, any hardware and driver independent ID. In
+> fact, the Linux pinctrl-single driver actually do not use the bindings
+> header at all.
+> 
+> Commit f2de003e1426 ("dt-bindings: pinctrl: k3: Deprecate header with
+> register constants") already moved users to the local header, so, drop
+> the binding header. See background discussion in [1].
+> 
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
+This happened just a release ago, so I would rather expect to have it
+deprecated for some time, so out of tree DTBs won't be broken. But any
+platform ABI is up to platform maintainer so:
 
-Changes since v1:
- * Added Konrad's R-b tag
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 11560ec9f182..5cd7296c7660 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -4306,6 +4306,10 @@ usb_1: usb@a6f8800 {
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
-+			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
-+					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
-+			interconnect-names = "usb-ddr", "apps-usb";
-+
- 			usb_1_dwc3: usb@a600000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a600000 0 0xcd00>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
