@@ -2,123 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 768A57209C5
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 21:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 985A87209E3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 21:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232240AbjFBT0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 15:26:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
+        id S235274AbjFBTef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 15:34:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232213AbjFBT0y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 15:26:54 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C948BCE;
-        Fri,  2 Jun 2023 12:26:53 -0700 (PDT)
-Received: from arisu.localnet (unknown [23.233.251.139])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: detlev)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0850C66066EC;
-        Fri,  2 Jun 2023 20:26:50 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685734012;
-        bh=K2VKtEmDpy08yDsNjAgi61u3CcMiqyOtI/vNCwLfGaU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MpgWdHN9Xowv7q0wPCaVOGHELi+gsTTsQR8A2pIbhFfJEghkY56y493jFVDarsu7O
-         dRUAaEXzj8CUwQPgY1VkbBuCgME3IsDFpWJOWDDXip9TIY98ikv2rtJnW7tSWk0QJf
-         WenvFzPMDo73fivy4/tfFQRfBbP5w81N9/mX9Lv8PfHV5moA23Jy6YISpiAWsAgLfk
-         kvARRnZLQ+CTHCl3VStLQG6SVXPi3F1QxZ5jNul8LqjiSg/EFgrbVEmU28s8Kj2wtT
-         GKkb3KNUbPdO+Gapiou/O8ldel0unGq6pR0Juj5q+WZxZApylc4ZjggzuUUh6SX5DD
-         yKmMOgA6tZgEA==
-From:   Detlev Casanova <detlev.casanova@collabora.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: net: phy: Document support for external PHY
- clk
-Date:   Fri, 02 Jun 2023 15:26:53 -0400
-Message-ID: <2288019.ElGaqSPkdT@arisu>
-In-Reply-To: <4255bc0a-491c-4fbb-88ea-ec1d864a1a24@lunn.ch>
-References: <20230602182659.307876-1-detlev.casanova@collabora.com>
- <20230602182659.307876-3-detlev.casanova@collabora.com>
- <4255bc0a-491c-4fbb-88ea-ec1d864a1a24@lunn.ch>
+        with ESMTP id S236140AbjFBTeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 15:34:24 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC18E62
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 12:33:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1685734405;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+        bh=7Z1/Pgz58TbhaQAzpuoEur5XNSR4LavXZhKLTHjF5Cw=;
+        b=TmUZrlJeIc/600X8fCn5y47Qb92ZpDpkBMazd4MxMZpPnyEsRFdE8UV8OZxhv1pZcvk901
+        DoWvqy3YfvFKLNmjBqRAa2eG9oHUsMiZ10ZFijoP4LzvIFJOtwkHU6mBQ5MyBvaUktXMuA
+        RXS4uVI20t4ePUuuTN0rFtSBZJqUrv8=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-166-7DenV8X8OeSFR6dBqylZyA-1; Fri, 02 Jun 2023 15:33:24 -0400
+X-MC-Unique: 7DenV8X8OeSFR6dBqylZyA-1
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6237c937691so28208356d6.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 12:33:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685734403; x=1688326403;
+        h=user-agent:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7Z1/Pgz58TbhaQAzpuoEur5XNSR4LavXZhKLTHjF5Cw=;
+        b=gOAzOS7ljFkvwYt1LI8apOfxfn8jslIM2A76L3OW8Vu5EecSxlv+AJiRHC9HoTpVcM
+         w4UCi8OFOcm54sA5ybo8QZno0skgl0iw29ihUMgGaSwmAfl3wwlOHpmwwqZqI3tm281g
+         Dx4eRlJa8ZTIvnpAGfS2vt9/foEtotghmIuG3i319Ki0Xpvgnqaw56mawGTkPdCA5+Tj
+         tftdKd9FGWD3AQmoVyt82/+xiCQNKa7Az7MPG+vcheITjmsjccxV0+8TCytHMDVp0X6H
+         qjqX7oJNq62kHLg++m0Uokd/OsvfpKNAN2bGfhz3XgXaQGOtFOT0h+QzcxUnld5car8F
+         BB7g==
+X-Gm-Message-State: AC+VfDwClw9L9iMf3eotL28U2S0xxUf4NEjLkRZA2v/4zp1nJuUXTn3O
+        Xo696SXym0yGH7OirafDu8T35I0k8nQQyiw3lc7/CTBABwsl8JZzYOiIY+EqShzW8iSQ1dEemSv
+        x6id8X12DafX6lRfB6od3Iw==
+X-Received: by 2002:a05:6214:240b:b0:623:9a08:4edd with SMTP id fv11-20020a056214240b00b006239a084eddmr7805014qvb.25.1685734403631;
+        Fri, 02 Jun 2023 12:33:23 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7NZR2ZeuZ9ArjkHu3p5/1mDjjAHhYDJMspDvekkAGQhPg38icwokA4+1iokJfw7YqLFuJqFA==
+X-Received: by 2002:a05:6214:240b:b0:623:9a08:4edd with SMTP id fv11-20020a056214240b00b006239a084eddmr7804993qvb.25.1685734403378;
+        Fri, 02 Jun 2023 12:33:23 -0700 (PDT)
+Received: from fedora (bras-base-wndson1334w-grc-09-142-113-164-22.dsl.bell.ca. [142.113.164.22])
+        by smtp.gmail.com with ESMTPSA id f30-20020ad4559e000000b0061c7431810esm1145512qvx.141.2023.06.02.12.33.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Jun 2023 12:33:22 -0700 (PDT)
+Date:   Fri, 2 Jun 2023 15:33:21 -0400
+From:   Lucas Karpinski <lkarpins@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        ahalaney@redhat.com, echanude@redhat.com, bmasney@redhat.com,
+        quic_shazhuss@quicinc.com
+Subject: [PATCH] Revert "arm64: dts: qcom: sa8540p-ride: enable pcie2a node"
+Message-ID: <pmodcoakbs25z2a7mlo5gpuz63zluh35vbgb5itn6k5aqhjnny@jvphbpvahtse>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: NeoMutt/20230517
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday, June 2, 2023 2:42:38 P.M. EDT Andrew Lunn wrote:
-> On Fri, Jun 02, 2023 at 02:26:58PM -0400, Detlev Casanova wrote:
-> > Ethern PHYs can have external an clock that needs to be activated before
-> > probing the PHY.
-> 
-> `Ethernet PHYs can have an external clock.`
-> 
-> We need to be careful with 'activated before probing the PHY'. phylib
-> itself will not activate the clock. You must be putting the IDs into
-> the compatible string, so the correct driver is loaded, and its probe
-> function is called. The probe itself enables the clock, so it is not
-> before probe, but during probe.
-> 
-> I'm picky about this because we have issues with enumerating the MDIO
-> bus to find PHYs. Some boards needs the PHY taking out of reset,
-> regulators enabled, clocks enabled etc, before the PHY will respond on
-> the bus. It is hard for the core to do this, before the probe. So we
-> recommend putting IDs in the compatible, so the driver probe function
-> to do any additional setup needed.
+This reverts commit 2eb4cdcd5aba2db83f2111de1242721eeb659f71.
 
-That makes sense, In my head, "probing" == calling phy_write/read() functions. 
-But I get how this could be confused with the _probe() function. (And I just 
-realised that there are typos)
+The patch introduced a sporadic error where the Qdrive3 will fail to
+boot occasionally due to an rcu preempt stall.
+Qualcomm has disabled pcie2a downstream:
+https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/rh-patch/-/commit/447f2135909683d1385af36f95fae5e1d63a7e2f
 
-What about "Ethernet PHYs can have an external clock that needs to be 
-activated before communicating with the PHY" ?
+rcu: INFO: rcu_preempt self-detected stall on CPU
+rcu:     0-....: (1 GPs behind) idle=77fc/1/0x4000000000000004 softirq=841/841 fqs=2476
+rcu:     (t=5253 jiffies g=-175 q=2552 ncpus=8)
+Call trace:
+ __do_softirq
+ ____do_softirq
+ call_on_irq_stack
+ do_softirq_own_stack
+ __irq_exit_rcu
+ irq_exit_rcu
 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > b/Documentation/devicetree/bindings/net/ethernet-phy.yaml index
-> > 4f574532ee13..c1241c8a3b77 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > 
-> > @@ -93,6 +93,12 @@ properties:
-> >        the turn around line low at end of the control phase of the
-> >        MDIO transaction.
-> > 
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description:
-> > +      External clock connected to the PHY. If not specified it is assumed
-> > +      that the PHY uses a fixed crystal or an internal oscillator.
-> 
-> This text is good.
+The issue occurs normally once every 3-4 boot cycles.
+There is likely a race condition caused when setting up the two pcie
+domains concurrently (pcie2a and pcie3a).
 
-Detlev
+The issue is not present when only pcie2a is enabled or when only pcie3a
+is enabled.
+A workaround was found that allowed the Qdrive3 to boot with both pcie2a
+and pcie3a enabled.
+Set the .probe_type to PROBE_FORCE_SYNCHRONOUS and add an msleep() to
+the probing function.
+This is not a solution, so this patch is disabling pcie2a as it seems
+Red Hat are the only ones working on the board,
+we're find with disabling the node until a root cause is found. If
+anyone has further suggestions for debugging, let me know.
 
+Signed-off-by: Lucas Karpinski <lkarpins@redhat.com>
+---
+ During debugging:
+        - Added additional time for clock/regulator stabilization.
+        - Reduced the bandwidth across pcie2a and pcie3a.
+        - Replaced the interconnect setup from another driver.
+        - The 32-bit/64-bit/config-io space for both pcie2a and pcie3a look to be mapped correctly.
+        - Verified interconnects were started successfully.
 
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 44 -----------------------
+ 1 file changed, 44 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index 24fa449d48a6..d492723ccf7c 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -186,27 +186,6 @@ &i2c18 {
+ 	status = "okay";
+ };
+ 
+-&pcie2a {
+-	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
+-		 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
+-		 <0x03000000 0x5 0x00000000 0x5 0x00000000 0x1 0x00000000>;
+-
+-	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
+-	wake-gpios = <&tlmm 145 GPIO_ACTIVE_HIGH>;
+-
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie2a_default>;
+-
+-	status = "okay";
+-};
+-
+-&pcie2a_phy {
+-	vdda-phy-supply = <&vreg_l11a>;
+-	vdda-pll-supply = <&vreg_l3a>;
+-
+-	status = "okay";
+-};
+-
+ &pcie3a {
+ 	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
+ 		 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
+@@ -356,29 +335,6 @@ i2c18_default: i2c18-default-state {
+ 		bias-pull-up;
+ 	};
+ 
+-	pcie2a_default: pcie2a-default-state {
+-		perst-pins {
+-			pins = "gpio143";
+-			function = "gpio";
+-			drive-strength = <2>;
+-			bias-pull-down;
+-		};
+-
+-		clkreq-pins {
+-			pins = "gpio142";
+-			function = "pcie2a_clkreq";
+-			drive-strength = <2>;
+-			bias-pull-up;
+-		};
+-
+-		wake-pins {
+-			pins = "gpio145";
+-			function = "gpio";
+-			drive-strength = <2>;
+-			bias-pull-up;
+-		};
+-	};
+-
+ 	pcie3a_default: pcie3a-default-state {
+ 		perst-pins {
+ 			pins = "gpio151";
+-- 
+2.40.1
 
