@@ -2,148 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D396571F6EE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 01:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A12871F733
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 02:42:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjFAX5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 19:57:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48146 "EHLO
+        id S233168AbjFBAmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 20:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjFAX5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 19:57:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47BCA136;
-        Thu,  1 Jun 2023 16:57:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D0A6864B02;
-        Thu,  1 Jun 2023 23:57:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE49FC433EF;
-        Thu,  1 Jun 2023 23:57:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685663859;
-        bh=NkkzfKpwW/saf1KcEfWJB55yAVfjvnM8hrbEMy081KY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=DoNOCSDA9/nA+8zVLQZuV0+47vz27fi9pY+F4kR5iYfADTdGEl5ipeEYx7pxLU54v
-         bJ+FFLhZH9Poc7QKyXDTWYJV/Xh4+TpYCoy+tHKk3+KCS6F9SF/uOAeLEsd1gZ9Elw
-         fJWCwrRlJ3r7MIUuMygyfB4m7vw00zD/eLAAYtmWhNg80AbZsqCMASlNV2m6jQOIfO
-         E/sS+XQZAjSVHonoE8iLiPo7MUwqCt26NUshMCScUncqSyzXsVKAO3YZ62J/SwW3su
-         qIOSch2vXeez84KAZjChYTQPGeRZQm/lz8/PeIWyY0vquc4SWYM+me53YyxRe1C8sX
-         h3uRH9O32bqvw==
-Message-ID: <fe8bfbfc-0ce5-d4ea-a2a8-8608fe4e2f97@kernel.org>
-Date:   Fri, 2 Jun 2023 08:57:37 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 25/43] dt-bindings: ata: Add Cirrus EP93xx
-Content-Language: en-US
-To:     Nikita Shubin <nikita.shubin@maquefel.me>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Michael Peters <mpeters@embeddedTS.com>,
-        Kris Bahnsen <kris@embeddedTS.com>, linux-ide@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230601054549.10843-7-nikita.shubin@maquefel.me>
-From:   Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20230601054549.10843-7-nikita.shubin@maquefel.me>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S233095AbjFBAl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 20:41:59 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB5A195;
+        Thu,  1 Jun 2023 17:41:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=nwW+FBXmqc2OYPaC0Zr4Z9mFnd0+mBmKkf3uvp6DtKw=; b=pd3gVcINaX3CKKN9X3bkpnyW80
+        rROQ2P1ke2FUiKtsMs/52nX5VdlgMYA8atkJ/WvMv5Zjb7b7q1ITvgWwx/00o8jTeh5bwa20dYFXB
+        UkxmExH+8MV4qkJEzHmxWVVZGcDkjZ4jTpX1JDS0j8Z5XqTPQj44tiPa+j20AF1DNdd4=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:53008 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q4srN-0008S3-6c; Thu, 01 Jun 2023 20:41:42 -0400
+Date:   Thu, 1 Jun 2023 20:41:40 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     andy.shevchenko@gmail.com
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org
+Message-Id: <20230601204140.3b45c9b97efb36431d058ba7@hugovil.com>
+In-Reply-To: <ZHkN5kEa6yqHdDeL@surfacebook>
+References: <20230601201844.3739926-1-hugo@hugovil.com>
+        <20230601201844.3739926-6-hugo@hugovil.com>
+        <ZHkN5kEa6yqHdDeL@surfacebook>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v6 5/9] serial: sc16is7xx: fix regression with GPIO
+ configuration
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/1/23 14:45, Nikita Shubin wrote:
-> Add YAML bindings for ep93xx SoC PATA.
+On Fri, 2 Jun 2023 00:30:14 +0300
+andy.shevchenko@gmail.com wrote:
+
+> Thu, Jun 01, 2023 at 04:18:40PM -0400, Hugo Villeneuve kirjoitti:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control lines")
+> > and commit 21144bab4f11 ("sc16is7xx: Handle modem status lines")
+> > changed the function of the GPIOs pins to act as modem control
+> > lines without any possibility of selecting GPIO function.
+> > 
+> > As a consequence, applications that depends on GPIO lines configured
+> > by default as GPIO pins no longer work as expected.
+> > 
+> > Also, the change to select modem control lines function was done only
+> > for channel A of dual UART variants (752/762). This was not documented
+> > in the log message.
+> > 
+> > Allow to specify GPIO or modem control line function in the device
+> > tree, and for each of the ports (A or B).
+> > 
+> > Do so by using the new device-tree property named
+> > "modem-control-line-ports" (property added in separate patch).
+> > 
+> > When registering GPIO chip controller, mask-out GPIO pins declared as
+> > modem control lines according to this new "modem-control-line-ports"
+> > DT property.
+> > 
+> > Boards that need to have GPIOS configured as modem control lines
+> > should add that property to their device tree. Here is a list of
+> > boards using the sc16is7xx driver in their device tree and that may
+> > need to be modified:
+> >     arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
+> >     mips/boot/dts/ingenic/cu1830-neo.dts
+> >     mips/boot/dts/ingenic/cu1000-neo.dts
 > 
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> ---
+> Almost good, a few remarks and if addressed as suggested,
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 > 
-> Notes:
->     v0 -> v1:
->     
->     - renamed file to ep9312-pata
-
-Looks OK to me but given that this is both for the cirrus,ep9315-pata and
-cirrus,ep9312-pata, wouldn't it be better to name the file
-cirrus,ep931x-pata.yaml ?
-
-
->     - changed email to dlemoal@kernel.org
->     - dropped label
->     - fixed ident
+> Thank you!
 > 
->  .../bindings/ata/cirrus,ep9312-pata.yaml      | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+> ...
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
-> new file mode 100644
-> index 000000000000..3489be55a6fe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/cirrus,ep9312-pata.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logic EP9312 PATA controller
-> +
-> +maintainers:
-> +  - Damien Le Moal <dlemoal@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: cirrus,ep9312-pata
+> > +	if (!s->gpio_valid_mask)
+> 
+> I would use == 0, but it's up to you. Both will work equally.
 
-I am not a DT specialist, but isn't this line superfluous since it is listed in
-the items ?
+Hi,
+done.
 
-> +      - items:
-> +          - const: cirrus,ep9315-pata
-> +          - const: cirrus,ep9312-pata
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ide@800a0000 {
-> +      compatible = "cirrus,ep9312-pata";
-> +      reg = <0x800a0000 0x38>;
-> +      interrupt-parent = <&vic1>;
-> +      interrupts = <8>;
-> +      pinctrl-names = "default";
-> +      pinctrl-0 = <&ide_default_pins>;
-> +    };
-> +
-> +...
+> > +		return 0;
+> 
+> ...
+> 
+> > +static int sc16is7xx_setup_mctrl_ports(struct device *dev)
+> 
+> Not sure why int if you always return an unsigned value.
+> Otherwise return an error code when it's no defined mask
+> and check it in the caller.
 
--- 
-Damien Le Moal
-Western Digital Research
+Changed return type to u8.
 
+ 
+> > +{
+> > +	struct sc16is7xx_port *s = dev_get_drvdata(dev);
+> > +	int i;
+> > +	int ret;
+> > +	int count;
+> > +	u32 mctrl_port[2];
+> > +	u8 mctrl_mask = 0;
+> 
+> I would return 0 directly in the first two cases and split an assignment closer
+> to the first user.
+> 
+> > +	count = device_property_count_u32(dev, "nxp,modem-control-line-ports");
+> > +	if (count < 0 || count > ARRAY_SIZE(mctrl_port))
+> > +		return mctrl_mask;
+> 
+> 		return 0;
+
+Done.
+
+
+> > +	ret = device_property_read_u32_array(dev, "nxp,modem-control-line-ports",
+> > +					     mctrl_port, count);
+> > +	if (ret)
+> > +		return mctrl_mask;
+> 
+> 		return 0;
+
+Done.
+
+
+> 	mctrl_mask = 0;
+
+Done.
+
+ 
+> > +	for (i = 0; i < count; i++) {
+> > +		/* Use GPIO lines as modem control lines */
+> > +		if (mctrl_port[i] == 0)
+> > +			mctrl_mask |= SC16IS7XX_IOCONTROL_MODEM_A_BIT;
+> > +		else if (mctrl_port[i] == 1)
+> > +			mctrl_mask |= SC16IS7XX_IOCONTROL_MODEM_B_BIT;
+> > +	}
+> 
+> > +	if (!mctrl_mask)
+> > +		return mctrl_mask;
+> 
+> Maybe positive one?
+> 	if (mctrl_mask)
+> 		regmap_update_bits(...);
+
+I used negative to save on indentation, but it also fits by converting it to positive, so done.
+
+ 
+> > +	regmap_update_bits(s->regmap,
+> > +			   SC16IS7XX_IOCONTROL_REG << SC16IS7XX_REG_SHIFT,
+> > +			   SC16IS7XX_IOCONTROL_MODEM_A_BIT |
+> > +			   SC16IS7XX_IOCONTROL_MODEM_B_BIT, mctrl_mask);
+> > +
+> > +	return mctrl_mask;
+> > +}
+> 
+> ...
+> 
+> >  	unsigned long freq = 0, *pfreq = dev_get_platdata(dev);
+> >  	unsigned int val;
+> > +	u8 mctrl_mask = 0;
+> 
+> This assignment is redundant, so you simply can define it
+> 
+> >  	u32 uartclk = 0;
+> 
+> 	u8 mctrl_mask;
+
+Done.
+
+I will send a V7 soon with your Reviewed-by tag.
+
+Thank you,
+Hugo.
+
+ 
+> >  	int i, ret;
+> >  	struct sc16is7xx_port *s;
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+ 
