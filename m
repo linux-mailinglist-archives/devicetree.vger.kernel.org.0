@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A13871FD09
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9358571FD0C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235033AbjFBJEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 05:04:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60468 "EHLO
+        id S235174AbjFBJE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 05:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234723AbjFBJEF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:04:05 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90D4BE7E
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 02:03:44 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-970028cfb6cso277581966b.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 02:03:44 -0700 (PDT)
+        with ESMTP id S235034AbjFBJEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:04:06 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453FD10C1
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 02:03:46 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-973f78329e3so269473766b.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 02:03:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google; t=1685696623; x=1688288623;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4z0aWs+76DsOLK1ZdUfTJiO33aieMzJYwE+Vw+aqL5o=;
-        b=KC3pRTXttgRIUpt/J5diupn1SqWtaBkgdDbiDRQ9CHSU5XfIvtNfmd13SWzWayo0BX
-         HUdX9gDctfwufnP09F5pk6O9FrRX9CPNX0VquDeoRD3xBs+lbLQULNZy2P5SHbu5QOp+
-         vVWx2jGeYcbasf0SzGdw2+wev5PColDikoe8BxdKye8N6UOHmNUWu7zWwkWKnIls/aWz
-         uOrgsS3LVLZ9/5YpqWY1MowwGZxt0EEyS3xhHdy3nQFyEAXAyfxIn4DNEmt8hJ80Qqmv
-         Ih3npZIPQS+r5V3KrJ7tu7rOGu3425u8cI7pePSUbWQAZABx4ktAkyKBM4nbWPA7g8oT
-         dnKw==
+        d=pqrs.dk; s=google; t=1685696624; x=1688288624;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lmqqRgiUwINg0zM6iswD1JyF/sKo+vBLZEf0BZFnUDQ=;
+        b=PsUDUxexLrW3qJIJMMeH0z/bQvrHVeGXXEVIg6jC84q5cZT/2pA22ihuOt5kr8K32z
+         Ce58wDcU3/NbbC6NfAn2EtyPPHo5Zn7rxiAZX5lGNOfrP4b5fjYvUvWXikGAVAM3G/Dm
+         GNMbfO1VysCFDsZ4p7szujfKrewggNF76QAes8VQrtNFYr6KnXSoSBepumy6jmSiMVaY
+         a/R3IGl5ZLeyrxQ1HmZXYhyxaWsgMa5S33yJBUxJ8gfb8HVSISXiTYJvDkBIZlaMA2OL
+         3vzdxjXtcJCM66l8HcBeqsGP4fLMSsjDFKJqgXQwwfUVMzPNMcq18/KSFndgrgThlS89
+         pMQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685696623; x=1688288623;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4z0aWs+76DsOLK1ZdUfTJiO33aieMzJYwE+Vw+aqL5o=;
-        b=EgQq+b1kma2V4Si+aLhupQkXNwjkdjvDWYCzS6+b41wkt0dwN8dDRQq/qTOj/7e2v2
-         84NqRTHLnGjvWhGgWzDjyq4COyOh3x405B+COWZYm2437LRsbmjLgtVThbTjdp4m+9sB
-         tvMBGnmmgRB3+GKbUNGpu5XAuO7D83mtMNzgybf6hSbI2yAw06AL/eYb7F9rmZMN/jwQ
-         amh+rRD3yLH2moKSo2B4DUq+7ZbvP7lw3kd2TwMsHNxZvxPtsH3IHHHKbRG0dO/oP62s
-         x4/DVDCWmUWOFqPGLy5LBnH9B+3B1FLPHsUGi/FsoPBTA2N9zs5oWu/amaa2QXjLTryr
-         tulg==
-X-Gm-Message-State: AC+VfDxfOjHz5og1XEcw9nJmRQSE8ClQ8FVvSn9MoZiYHm4XggXKDDt7
-        OJppFrU7Zh4yOIerTZNnNkJsYA==
-X-Google-Smtp-Source: ACHHUZ5CDb7hi9sRLxSyOLWk2zLbnISHdDPJk09PJ3HtrxN665G3O5E6naqR5vu6cmuvrQV4abNDig==
-X-Received: by 2002:a17:907:8a11:b0:93e:fa12:aa1a with SMTP id sc17-20020a1709078a1100b0093efa12aa1amr11368431ejc.1.1685696623017;
-        Fri, 02 Jun 2023 02:03:43 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685696624; x=1688288624;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lmqqRgiUwINg0zM6iswD1JyF/sKo+vBLZEf0BZFnUDQ=;
+        b=BnKQCQ3u5I5DYjAUmM43lvr2W9eT0+dfz4zUpOeXYam/+bs3AxaDRiYC8jyIsGWqwz
+         0cHTmR0b47HomJhN280jP5f5ctA8xCZWhrYBrZ/F3rJaaCOLctLcratv06n37RwnQ4pC
+         SqmQ4oM3Fa21MPPU/6dse73euvZOrXatsEJiNYm6BSUTqU6zI7B1veXQ6qefqTaI21bB
+         tRpPWK9vH94IPQEIxFSu5pPvWCp/4XjYYznbC7lm1/QzWyMunc9aVLDsyKLRpbknqWdE
+         DDjR4qXKMzoBar6qqBpGO5IL4RRfwkvq98iNG3DKac4gc3LCGO7Goqo92/+Ld+cOptkX
+         LTEg==
+X-Gm-Message-State: AC+VfDwWEKhVv1Ul/vONYWz3wL0hVmDlcDp8TEwmEIYWX06YxUoqGyqA
+        wXrwtHt6ZUqgTR7+7UWe0u0OCA==
+X-Google-Smtp-Source: ACHHUZ6FkgH9Pi4zxcCao3h6bU7K54MDeWgSQbT7iAsMjpkVsc6amBOT7zaP+p1lvup38fs0YdmhYw==
+X-Received: by 2002:a17:907:9618:b0:953:8249:1834 with SMTP id gb24-20020a170907961800b0095382491834mr12522628ejc.16.1685696624649;
+        Fri, 02 Jun 2023 02:03:44 -0700 (PDT)
 Received: from localhost.localdomain (80.71.142.18.ipv4.parknet.dk. [80.71.142.18])
-        by smtp.gmail.com with ESMTPSA id w23-20020a170906385700b009707fa1c316sm488031ejc.213.2023.06.02.02.03.42
+        by smtp.gmail.com with ESMTPSA id w23-20020a170906385700b009707fa1c316sm488031ejc.213.2023.06.02.02.03.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jun 2023 02:03:42 -0700 (PDT)
+        Fri, 02 Jun 2023 02:03:44 -0700 (PDT)
 From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -60,10 +61,12 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
 Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/4] ASoC: support dai-links with symmetric clock roles
-Date:   Fri,  2 Jun 2023 11:03:17 +0200
-Message-Id: <20230602090322.1876359-1-alvin@pqrs.dk>
+Subject: [PATCH 1/4] ASoC: dt-bindings: document new symmetric-clock-role flag
+Date:   Fri,  2 Jun 2023 11:03:18 +0200
+Message-Id: <20230602090322.1876359-2-alvin@pqrs.dk>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230602090322.1876359-1-alvin@pqrs.dk>
+References: <20230602090322.1876359-1-alvin@pqrs.dk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -79,23 +82,59 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Alvin Šipraga <alsi@bang-olufsen.dk>
 
-Currently the ASoC core always assumes that one end of a dai-link is a 
-clock provider and the other a consumer. This series adds support for
-configuring dai-links where both ends are actually clock consumers.
+The new flag specifies that both ends of the dai-link have the same
+clock consumer/provider role. This should be used to describe hardware
+where e.g. the CPU and codec both receive their bit- and frame-clocks
+from an external source.
 
-Alvin Šipraga (4):
-  ASoC: dt-bindings: document new symmetric-clock-role flag
-  ASoC: core: add support for dai-links with symmetric clock roles
-  ASoC: audio-graph-card2: parse symmetric-clock-roles property
-  ASoC: simple-card: parse symmetric-clock-roles property
-
+Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
+---
  .../devicetree/bindings/sound/simple-card.yaml        | 11 +++++++++++
- include/sound/soc.h                                   |  3 +++
- sound/soc/generic/audio-graph-card2.c                 |  7 ++++++-
- sound/soc/generic/simple-card.c                       |  4 ++++
- sound/soc/soc-core.c                                  |  4 +++-
- 5 files changed, 27 insertions(+), 2 deletions(-)
+ 1 file changed, 11 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+index b05e05c81cc4..ce738d1a394d 100644
+--- a/Documentation/devicetree/bindings/sound/simple-card.yaml
++++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+@@ -27,6 +27,11 @@ definitions:
+     description: dai-link uses bit clock inversion
+     $ref: /schemas/types.yaml#/definitions/flag
+ 
++  symmetric-clock-roles:
++    description: |
++    dai-link uses same clock consumer/provider role for both CPU and Codec
++    $ref: /schemas/types.yaml#/definitions/flag
++
+   dai-tdm-slot-num:
+     description: see tdm-slot.txt.
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -128,6 +133,8 @@ definitions:
+         $ref: "#/definitions/frame-inversion"
+       bitclock-inversion:
+         $ref: "#/definitions/bitclock-inversion"
++      symmetric-clock-roles:
++        $ref: "#/definitions/symmetric-clock-roles"
+       frame-master:
+         $ref: /schemas/types.yaml#/definitions/flag
+       bitclock-master:
+@@ -181,6 +188,8 @@ properties:
+     $ref: "#/definitions/frame-inversion"
+   simple-audio-card,bitclock-inversion:
+     $ref: "#/definitions/bitclock-inversion"
++  simple-audio-card,symmetric-clock-roles:
++    $ref: "#/definitions/symmetric-clock-roles"
+   simple-audio-card,format:
+     $ref: "#/definitions/format"
+   simple-audio-card,mclk-fs:
+@@ -230,6 +239,8 @@ patternProperties:
+         $ref: "#/definitions/frame-inversion"
+       bitclock-inversion:
+         $ref: "#/definitions/bitclock-inversion"
++      symmetric-clock-roles:
++        $ref: "#/definitions/symmetric-clock-roles"
+       format:
+         $ref: "#/definitions/format"
+       mclk-fs:
 -- 
 2.40.0
 
