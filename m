@@ -2,93 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 630A371FB47
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 09:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A44171FB88
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 10:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234482AbjFBHlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 03:41:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45466 "EHLO
+        id S234160AbjFBIHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 04:07:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234511AbjFBHl0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 03:41:26 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9EBE60
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 00:41:10 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-565a022ef06so19083467b3.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 00:41:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685691669; x=1688283669;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UFqaTu5B61rwfwc5NKp0Ccl6n6BJ3VZpDfsWbgoPDJY=;
-        b=a/RrQ6Eq+HdWOqGJu2OeVkoQIqHJqHlvQsPNvxAT+7e1aVORcmh8kHRkjJdX14R2xP
-         4kXoiMpKOpWDCCaSZP2uG7y5OJ5qU4m3G5JYPB+zpRClI1InVr/yHoeps9D1ZvPvtote
-         vgA/IZ44Xf0uS4vRU9u5f5Jmz5LeEEcan33ZNjSuMhlzzMhLSBdaxGH1PPnTbYydQSlZ
-         I+OM43sqDWfk0UeAfCSF01EVsUNnl3JGUyr8Ut1JjHQ9m8feUx3tpIlHUZHQ/SHrpCim
-         dphjTALvdqIS9TbKVEeG/f/Xwi3HVfuIsAZqcazPhydaVIXgkm32CYzqd2P/hv77nOJ7
-         s/VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685691669; x=1688283669;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UFqaTu5B61rwfwc5NKp0Ccl6n6BJ3VZpDfsWbgoPDJY=;
-        b=g34lCWtBwcAI8Qh6V2O5j6Lg0Ht98MmbGnC4WcU8vC9r6bnuYpeKCf8AEpOid0v3Nt
-         8UG5BGQIGCdyzAtpHtgjLbP5zWZwZE+JyK3LBRmjGrGIO61m5bFBSdc0z35a88E8bjaq
-         mX/efVli+bTVish0IukGMIbKt70RhTB49Ep+8L8/shanabA6MGEYPF179r2zZUb4glav
-         Uqgh1U9rT2C+m5k/6M8F9pN8SSnrLingAkwB7qvfHHxnJgQjXXgB6hVbpvNNtK6SH5Ih
-         k7BakmS6/+0pWD8eG3b2bTe8Gwtt6i8vzk9X9cl9gn1yIwsSo3nYffFn18Vd3veHTCB0
-         3WGw==
-X-Gm-Message-State: AC+VfDwU20DlOezjNhDjmk8lo+lQvNYwaEeTYxBKTlKsACkRFhkOZKRu
-        F9KX1HW1Y9pnX8rc4dziDhLY07kVwDD5MGLqae7Qo80AKGfRKKAb
-X-Google-Smtp-Source: ACHHUZ73pPHO+fZThX9YLy7zOMNSuvWVhr0F792nFpsbuy9S15kHXP6xWIA/VuZ16exeHC4Sjxm0z7LvF7Ih9WU/1k0=
-X-Received: by 2002:a0d:f181:0:b0:568:fe3a:46b3 with SMTP id
- a123-20020a0df181000000b00568fe3a46b3mr7716449ywf.28.1685691669320; Fri, 02
- Jun 2023 00:41:09 -0700 (PDT)
+        with ESMTP id S233812AbjFBIHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 04:07:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB6CD3;
+        Fri,  2 Jun 2023 01:07:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B34C660F29;
+        Fri,  2 Jun 2023 08:06:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F132C433D2;
+        Fri,  2 Jun 2023 08:06:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685693219;
+        bh=3I5CwM0h7zM2RpqeipzAicM8qi8sXEOoMLfEVMaOBiA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qKEdr7hYIE2TEU5V+/owMIpIc7uOBuYb/UzWNkgVPQBNDVIZeR3x7a7Il2LzAESC4
+         PUhrg2WUwMnPf9V0fgyExDIqgImzXzwal+0BD9+qyNwpY0Zj55YjQGOafvGqSwVd7I
+         I/bddeUQjy6uhu4CnZWe/r/ByPyxI1w2jl3eWRdSyceBh+1HfqJpCfERhZg1OJ7PIB
+         3Iy4+r615dW8ZLCc/0CyZXFp7Jsxu78RdeMX0kEtTanSiQh4ycIjEj9sdx0h6RekOr
+         JkFeFKuCmz35a6Jq6uUOC8DW+GNHMui1mcNXIHZFX69y7A4eQQqqxDPhx7/nbRmnlC
+         P/5NuCpPsHt/Q==
+Date:   Fri, 2 Jun 2023 09:06:55 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vladimir Barinov <v.barinov@yadro.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux@yadro.com,
+        linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 2/2] dt-bindings: leds: Document Awinic AW2016 bindings
+Message-ID: <20230602080655.GN449117@google.com>
+References: <20230524113910.196321-1-v.barinov@yadro.com>
+ <20230524114056.196518-1-v.barinov@yadro.com>
+ <168493088788.3462735.2834416618033227181.robh@kernel.org>
 MIME-Version: 1.0
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230601054549.10843-15-nikita.shubin@maquefel.me> <cacd8ea8-f834-4983-20ff-a875fee8011a@linaro.org>
-In-Reply-To: <cacd8ea8-f834-4983-20ff-a875fee8011a@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 2 Jun 2023 09:40:56 +0200
-Message-ID: <CACRpkdZVhwsoHg3jOWuXtdL5kqbnbHjEYJOGsBCTcfLrVKbX3w@mail.gmail.com>
-Subject: Re: [PATCH v1 33/43] dt-bindings: gpio: Add Cirrus EP93xx
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Nikita Shubin <nikita.shubin@maquefel.me>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Peters <mpeters@embeddedts.com>,
-        Kris Bahnsen <kris@embeddedts.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <168493088788.3462735.2834416618033227181.robh@kernel.org>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 1, 2023 at 10:20=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Wed, 24 May 2023, Rob Herring wrote:
 
-> > +title: EP93xx GPIO controller
-> > +
-> > +maintainers:
-> > +  - Linus Walleij <linus.walleij@linaro.org>
-> > +  - Bartosz Golaszewski <brgl@bgdev.pl>
->
-> Did you choose correct maintainers? Bartosz, Linus, do you take care
-> about EP93xx platform?
+> 
+> On Wed, 24 May 2023 14:40:56 +0300, Vladimir Barinov wrote:
+> > Add Awinic AW2026 binding documentation
+> > 
+> > Signed-off-by: Vladimir Barinov <v.barinov@yadro.com>
+> > ---
+> >  .../bindings/leds/awinic,aw2026.yaml          | 92 +++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw2026.yaml
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/leds/awinic,aw2026.example.dts:52.3-53.1 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/leds/awinic,aw2026.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1512: dt_binding_check] Error 2
 
-I'm fine with it (I have a platform).
+Taking this set out of my review queue until this is rectified.
 
-Yours,
-Linus Walleij
+-- 
+Lee Jones [李琼斯]
