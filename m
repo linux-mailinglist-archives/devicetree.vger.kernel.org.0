@@ -2,86 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B8B71FB0D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 09:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A096B71FB2E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 09:41:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234085AbjFBHfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 03:35:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42362 "EHLO
+        id S234386AbjFBHk5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 2 Jun 2023 03:40:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234303AbjFBHfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 03:35:01 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8909C0;
-        Fri,  2 Jun 2023 00:34:58 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3527XgK72027076, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3527XgK72027076
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Fri, 2 Jun 2023 15:33:42 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Fri, 2 Jun 2023 15:33:56 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Fri, 2 Jun 2023 15:33:56 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Fri, 2 Jun 2023 15:33:56 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234223AbjFBHkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 03:40:55 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC9119A;
+        Fri,  2 Jun 2023 00:40:53 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 546D280E2;
+        Fri,  2 Jun 2023 15:40:47 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Jun
+ 2023 15:40:47 +0800
+Received: from xiaofei.localdomain (180.164.60.184) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Jun
+ 2023 15:40:46 +0800
+From:   Keith Zhao <keith.zhao@starfivetech.com>
+To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>
+CC:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ray Chi <raychi@google.com>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the Realtek SoC USB 2.0/3.0 PHY
-Thread-Topic: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0/3.0 PHY
-Thread-Index: AQHZjrBYcJlLsVj/HkuHUZRifSysgq90OEaAgAGJYxD//9d+gIABRKMg///BZQCAAIkxgA==
-Date:   Fri, 2 Jun 2023 07:33:55 +0000
-Message-ID: <9cf3f726120846fabfcca269155d948c@realtek.com>
-References: <20230525022617.30537-1-stanley_chang@realtek.com>
- <20230525022617.30537-3-stanley_chang@realtek.com>
- <0b2143ca-ead7-c8fa-2e80-a94222af51ca@linaro.org>
- <ee65a9d6d40d4099987db5ff1ad1753f@realtek.com>
- <c49f5619-286c-fbb7-0f18-5869527081c8@linaro.org>
- <f53b5c21247c49db8be7071de36c773b@realtek.com>
- <1231d116-ca4b-fb73-d000-d531297343e7@linaro.org>
-In-Reply-To: <1231d116-ca4b-fb73-d000-d531297343e7@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        "Emil Renner Berthing" <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        <christian.koenig@amd.com>, Bjorn Andersson <andersson@kernel.org>,
+        "Heiko Stuebner" <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Keith Zhao <keith.zhao@starfivetech.com>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        Shengyang Chen <shengyang.chen@starfivetech.com>,
+        Changhuang Liang <changhuang.liang@starfivetech.com>
+Subject: [PATCH 0/9] Add DRM driver for StarFive SoC JH7110
+Date:   Fri, 2 Jun 2023 15:40:34 +0800
+Message-ID: <20230602074043.33872-1-keith.zhao@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+Content-Type: text/plain
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,21 +70,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQo+ID4+IElmIHRoZXNlIGNhbiBiZSBpbiB0aGUgZHJpdmVyLCB3aHkg
-d291bGQgZXZlciB0aGV5IGJlIGluIERUUyBpbiB0aGUgZmlyc3QNCj4gcGxhY2U/DQo+ID4+DQo+
-ID4gT3VyIHBsYXRmb3JtcyBoYXZlIDMgeGhjaSBjb250cm9sbGVycyB3aGljaCBtYXAgdG8gMyBk
-aWZmZXJlbnQgcGh5IHBvcnRzLg0KPiANCj4gWW91IG1lYW4gb24gdGhlIHNhbWUgU29DPw0KDQpZ
-ZXMsIG9uZSBTb0MgaGFzIHRocmVlIHhoY2kgY29udHJvbGxlcnMuDQoNCj4gPiBBbmQgdGhlIHRo
-cmVlIHBoeSBwb3J0cyB1c2UgdGhlIHNhbWUgZHJpdmVyLCBidXQgdGhlIHBhcmFtZXRlcnMgYXJl
-DQo+IGRpZmZlcmVudC4NCj4gPiBTbyBJIHB1dCB0aGUgcGFyYW1ldGVyIHNldHRpbmdzIGluIERU
-Uywgd2UgaGF2ZSAzIHVzYi1waHkgbm9kZXMgcmVwcmVzZW50aW5nDQo+IDMgcGh5IHBvcnRzLg0K
-PiA+IEFsc28sIHNvbWUgcGFyYW1ldGVycyBoYXZlIHRvIGJlIGFkanVzdGVkIGZvciBkaWZmZXJl
-bnQgYm9hcmRzLg0KPiA+IFRoZXJlZm9yZSwgaXQgaXMgbW9yZSBhcHBsaWNhYmxlIGluIERUUyB0
-aGFuIGluIGRyaXZlci4NCj4gDQo+IFRoZW4gaXQgbG9va3MganVzdGlmaWVkIGluIERULCBzbyBw
-bGVhc2Ugd3JpdGUgcHJvcGVyIGRlc2NyaXB0aW9ucyBmb3IgcHJvcGVyDQo+IHByb3BlcnRpZXMu
-IFVuZGVyc2NvcmVzIGFyZSBub3QgYWxsb3dlZCBpbiBub2RlIG5hbWVzLiBObyBmYWtlIG5vZGVz
-Lg0KPiBQcm9wZXJ0aWVzIHNob3VsZCB1c3VhbGx5IGRlc2NyaWJlIHBoeXNpY2FsL2hhcmR3YXJl
-IGVmZmVjdCBub3QgdGhlIHJlZ2lzdGVyDQo+IHZhbHVlLg0KDQpJIHdpbGwgd3JpdGUgbW9yZSBk
-ZXRhaWwgZm9yIHByb3BlcnRpZXMuIA0KDQo+IHFjb20sdXNiLXNucHMtZmVtdG8tdjIueWFtbCBp
-cyBuaWNlIGV4YW1wbGUuIEZldyBNZWRpYXRlayBiaW5kaW5ncyBhbHNvDQo+IHdvdWxkIHdvcmsu
-DQo+ICcNCg0KVGhhbmtzLA0KU3RhbmxleQ0K
+Hi,
+
+This series is a DRM driver for StarFive SoC JH7110, which includes a
+display controller driver for Verisilicon DC8200 and an HMDI driver.
+
+We use GEM framework for buffer management and allocate memory by 
+using DMA APIs.
+
+The JH7110 display subsystem includes a display controller Verisilicon
+DC8200 and an HDMI transmitter. The HDMI TX IP is designed for transmitting 
+video and audio data from DC8200 to a display device. The HDMI TX IP 
+consists of  the digital controller and the physical layer.
+
+This series does not support HDMI audio driver.
+
+Keith Zhao (9):
+  dt-bindings: display: Add yamls for JH7110 display subsystem
+  riscv: dts: starfive: jh7110: add dc&hdmi controller node
+  drm/verisilicon: Add basic drm driver
+  drm/verisilicon: Add gem driver for JH7110 SoC
+  drm/verisilicon: Add mode config funcs
+  drm/verisilicon: Add drm crtc funcs
+  drm/verisilicon: Add drm plane funcs
+  drm/verisilicon: Add verisilicon dc controller driver
+  drm/verisilicon: Add starfive hdmi driver
+
+ .../display/verisilicon/starfive-hdmi.yaml    |   93 +
+ .../display/verisilicon/verisilicon-dc.yaml   |  110 +
+ .../display/verisilicon/verisilicon-drm.yaml  |   42 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    9 +
+ .../jh7110-starfive-visionfive-2.dtsi         |   87 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |   46 +
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/verisilicon/Kconfig           |   24 +
+ drivers/gpu/drm/verisilicon/Makefile          |   13 +
+ drivers/gpu/drm/verisilicon/starfive_hdmi.c   |  928 ++++++++
+ drivers/gpu/drm/verisilicon/starfive_hdmi.h   |  296 +++
+ drivers/gpu/drm/verisilicon/vs_crtc.c         |  388 ++++
+ drivers/gpu/drm/verisilicon/vs_crtc.h         |   74 +
+ drivers/gpu/drm/verisilicon/vs_dc.c           | 1040 +++++++++
+ drivers/gpu/drm/verisilicon/vs_dc.h           |   62 +
+ drivers/gpu/drm/verisilicon/vs_dc_hw.c        | 2008 +++++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_dc_hw.h        |  496 ++++
+ drivers/gpu/drm/verisilicon/vs_drv.c          |  301 +++
+ drivers/gpu/drm/verisilicon/vs_drv.h          |   52 +
+ drivers/gpu/drm/verisilicon/vs_fb.c           |  181 ++
+ drivers/gpu/drm/verisilicon/vs_fb.h           |   15 +
+ drivers/gpu/drm/verisilicon/vs_gem.c          |  372 +++
+ drivers/gpu/drm/verisilicon/vs_gem.h          |   72 +
+ drivers/gpu/drm/verisilicon/vs_plane.c        |  440 ++++
+ drivers/gpu/drm/verisilicon/vs_plane.h        |   74 +
+ drivers/gpu/drm/verisilicon/vs_type.h         |   72 +
+ include/uapi/drm/drm_fourcc.h                 |   83 +
+ include/uapi/drm/vs_drm.h                     |   50 +
+ 30 files changed, 7433 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon/starfive-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon/verisilicon-dc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon/verisilicon-drm.yaml
+ create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+ create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+ create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.c
+ create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_fb.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_fb.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_gem.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_gem.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
+ create mode 100644 include/uapi/drm/vs_drm.h
+
+-- 
+2.34.1
+
