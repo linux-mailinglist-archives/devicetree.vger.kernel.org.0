@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEC027208A4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 19:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4807208BB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 20:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235208AbjFBRxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 13:53:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56258 "EHLO
+        id S236993AbjFBSCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 14:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234562AbjFBRxh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 13:53:37 -0400
+        with ESMTP id S236990AbjFBSCP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 14:02:15 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435B3123;
-        Fri,  2 Jun 2023 10:53:35 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7ACE43;
+        Fri,  2 Jun 2023 11:02:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D3AD9611D7;
-        Fri,  2 Jun 2023 17:53:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F5FBC433D2;
-        Fri,  2 Jun 2023 17:53:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7081364EDE;
+        Fri,  2 Jun 2023 18:02:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93CBDC433EF;
+        Fri,  2 Jun 2023 18:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685728414;
-        bh=b9kqJeL7cB8BeNqJEwvKkD/C4WuuGR4Ka56IkoyPdZI=;
+        s=k20201202; t=1685728929;
+        bh=XAtF7146Gm5KAng3zs9SmmSWYFO5+S4sp3hfrNzqsaY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uZ6mOuJVbaEs4cQyr4LZnHZh/yUVRjDOlp1Ioa6RC71KmCQfxKDLraKbbwMGGZj0z
-         G5gtS5y/vq3pkIMIB++bB6fGpe1G5liOJzZj61Z7hSbOPcGZ3MCU+6uA9DlRWzR862
-         MR9umtnYTtIEJcF4A3oaYPPspc2d0ECbtXY46ih2us0zG/LzK32MYl32FjSnW45u8Z
-         MTLQi7K7uQNo9Jq/63FaI6K793namWs0XsMqjCj5dhupydAhKBQ9GCqGukNhOx0Nf5
-         zLWRP+cUJwaG/mUcsKmalR75rd9L+Yp4yijOhZnUwdK8k0ygBp2VCMkQFqdl9YIL+3
-         wrhZUnL4IiOFw==
-Date:   Fri, 2 Jun 2023 18:53:28 +0100
+        b=B1iBK/EgCQfwHC9U0wG4xOewz3AJ6+xTOkNs1hHpawt2k9fS+cK2xl6ZTPGY2ImgG
+         dCfa7dnrlhQOZDY27iJuRKwXV5h+YIUOUJfWd+jOV5/glxTMVFjgHVawB1iGecbNhu
+         ifILVn8LXQlzcY3YhiHa394KztaiybnT6XrOSVfanR2+cCas3ZxP3v17Am3URhLd2M
+         Prl/J3Z9rqu+V9MVwJE2m9UDd6U7Hx0ge8IxxFLQ1LEj5nEIXl8odUdzazYgMoBG1C
+         dwrB2nVC7/6ayXs1wpNAfSdyd4JszvWIj0qZm66/BUTF2g6uVPv0fS74AXawy4u+EA
+         ioq/wjjKnYLkA==
+Date:   Fri, 2 Jun 2023 19:02:05 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     matthias.bgg@kernel.org
-Cc:     rafael@kernel.org, Daniel Lezcano <daniel.lezcano@linaro.org>,
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: mediatek: Move auxdac
- binding to yaml
-Message-ID: <20230602-pacify-dares-0989f2c759b2@spud>
-References: <20230601134425.29499-1-matthias.bgg@kernel.org>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: qspi: cdns,qspi-nor: Add clocks for
+ StarFive JH7110 SoC
+Message-ID: <20230602-impurity-broker-28cc27869b64@spud>
+References: <20230602084925.215411-1-william.qiu@starfivetech.com>
+ <20230602084925.215411-2-william.qiu@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="/PBB13aRPpKxOFCF"
+        protocol="application/pgp-signature"; boundary="1mtQStb3HNNyC+Nn"
 Content-Disposition: inline
-In-Reply-To: <20230601134425.29499-1-matthias.bgg@kernel.org>
+In-Reply-To: <20230602084925.215411-2-william.qiu@starfivetech.com>
 X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,121 +63,57 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---/PBB13aRPpKxOFCF
+--1mtQStb3HNNyC+Nn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 01, 2023 at 03:44:24PM +0200, matthias.bgg@kernel.org wrote:
-> From: Matthias Brugger <matthias.bgg@gmail.com>
+On Fri, Jun 02, 2023 at 04:49:23PM +0800, William Qiu wrote:
+> The QSPI controller needs three clock items to work properly on StarFive
+> JH7110 SoC, so there is need to change the maxItems's value to 3. Other
+> platforms do not have this constraint.
 >=20
-> Convert the older binding to yaml syntax.
-> The thermal IP has several sensors, to reflect that
-> thermal-sensors-cells is set to '1'. Apart optional regulator
-> for bank supply wasn't part of the old binding description,
-> this patch adds them.
->=20
-> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
->=20
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
+>  .../devicetree/bindings/spi/cdns,qspi-nor.yaml    | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
 >=20
-> Changes in v2:
-> - drop auxadc and apmixedsys nodes
-> - maxItems for clocks
-> - drop obvious description of reset
-> - mention optional regulators in commit message
-> - mention thermal-sensors-cells change in commit message
->=20
->  .../bindings/thermal/mediatek,thermal.yaml    | 152 ++++++++++++++++++
->  .../bindings/thermal/mediatek-thermal.txt     |  52 ------
->  2 files changed, 152 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,th=
-ermal.yaml
->  delete mode 100644 Documentation/devicetree/bindings/thermal/mediatek-th=
-ermal.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,thermal.y=
-aml b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
-> new file mode 100644
-> index 000000000000..bbc9c2935da0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
-> @@ -0,0 +1,152 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/D=
+ocumentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index b310069762dd..b6a27171d965 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -26,6 +26,15 @@ allOf:
+>              const: starfive,jh7110-qspi
+>      then:
+>        properties:
+> +        clocks:
+> +          maxItems: 3
 > +
-> +title: MediaTek Thermal Sensor
-> +
-> +maintainers:
-> +  - Matthias Brugger <matthias.bgg@gmail.com>
-> +
-> +description: |
-                ^
-You don't need this btw, unless you have formatting to preserve.
+> +        clock-names:
+> +          items:
+> +            - const: ref_clk
 
-> +  The MediaTek thermal controller measures the on-SoC temperatures.
-> +  This device does not have its own ADC, instead it directly controls
-> +  the AUXADC via AHB bus accesses. For this reason this device needs
-> +  phandles to the AUXADC. Also it controls a mux in the apmixedsys
-> +  register space via AHB bus accesses, so a phandle to the APMIXEDSYS
-> +  is also needed.
+Aww, I liked Mark's suggestions better.
+If you are respinning to fix the LKP reported issue w/ ignoring the result
+of enabling the clocks, could you chop the _clk off of this one?
 
-> +  reset-names:
-> +    items:
-> +      - const: therm
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: calibration-data
-
-You don't need the "items: - const:", "const:" alone is sufficient.
-
-> +
-> +  mediatek,auxadc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle to the AUXADC which the thermal controller uses...
-=2E..to read the on-SoC temperatures as it does not have its own ADC.
-
-Moving the information out of the description down here seems like it
-would be better than what the original text binding does. Sorry for not
-point that out last time around.
-
-> +
-> +  mediatek,apmixedsys:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle to the APMIXEDSYS controller...
-
-Ideally the information about the purpose of the mux would go here, but
-I don't know the purpose of it :)
-
-> +  "#thermal-sensor-cells":
-> +    const: 1
-> +
-> +  bank0-supply:
-> +    description: Regulator supplying voltage to the first bank
-
-Since I am an eejit, first bank of what? Sensors?
-
-Otherwise, LGTM.
-
-Cheers,
+Thanks,
 Conor.
 
-
---/PBB13aRPpKxOFCF
+--1mtQStb3HNNyC+Nn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHosmAAKCRB4tDGHoIJi
-0i3eAQDTiUYAwX9JPVS3gO5Z7cj7YBFJT4ql+2b/vG0SvLN9PwEAmPXWtqSLISGI
-EH42+4j4s+1DWnLiQj/R9cdkpYNLeQE=
-=LSEq
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHounQAKCRB4tDGHoIJi
+0ovMAP4rOWvNSNrwxKPStmIgIe61T65PqjNZ69zziOQlOW0aJwEAqRT+V42af0Ph
+W6Q7Ex/+PyIMKWfrpZ7JjENsTSQnVQ8=
+=GvFA
 -----END PGP SIGNATURE-----
 
---/PBB13aRPpKxOFCF--
+--1mtQStb3HNNyC+Nn--
