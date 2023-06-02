@@ -2,139 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C3A872020A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 14:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EBA9720226
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 14:35:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231876AbjFBM0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 08:26:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
+        id S234449AbjFBMf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 08:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbjFBM0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 08:26:38 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20E90E2;
-        Fri,  2 Jun 2023 05:26:36 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 352CPJga004924;
-        Fri, 2 Jun 2023 14:26:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=7oMSyWiQ47xLyNRigDKbEExVh2FJm9LkeL6T8S2WUxo=;
- b=ejt1nVA8/a1R/uR+rCZ7moocIXr6zbHnPJaA1FdRGVre6Qj8JJmNwGhoJQmx6lQufRMv
- fiAaXsgVLHfglp5qRqB0qs23d3QIUZPn3/UBKYMzi9YKiFlApFg9TGavwsKYnp5ybExU
- 73P5B3ZMA1PYTi5XeoMmAE4lUJNjVBUSu2cUu6RzDswykxrwtryZZ/s/MhZJ4dn5Il7p
- HAQJpgrN7Nb9yaI+k6e8U6+wZeaNrc56OQUH8MIFEHNWrXM9d+3bI9QgqyfaEVfzZilM
- 9qDinZDO0uu28qWjveq7o68MUOiclpENcnrOj5U8lTCYl6z3LUBtz+WT4/SEYtVN7wZw 1g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qyc519ngh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 14:26:19 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7DBE310002A;
-        Fri,  2 Jun 2023 14:26:18 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 75B5023152E;
-        Fri,  2 Jun 2023 14:26:18 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 2 Jun
- 2023 14:26:16 +0200
-Message-ID: <b04c9fa4-6f9c-1011-1326-4d1897404364@foss.st.com>
-Date:   Fri, 2 Jun 2023 14:26:16 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 04/11] dt-bindings: stm32: add st,stm32mp25 compatibles to
- the stm32 family
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor@kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S234443AbjFBMf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 08:35:26 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 230E918C;
+        Fri,  2 Jun 2023 05:35:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685709325; x=1717245325;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RFn4lE0CnHg+BrpP8BhtcKygS1L2eOihwOiPLsc1C4Y=;
+  b=a4+vzQw4d8FHqp8ptwFER1BFbTbiYG2oJ+d+BfVy8OgCiaSQVpn8UnXT
+   8lUeUHxSzSGAMlpjqgmBGbwelTB2gp2RfqTwVPu5oD2LsMrKbogKj3nD5
+   s4ddlGLMPe43zImRnDyl3Lx45LyTsRo3IZvy3ry8g/D2THg8Pf/8uQ6Zj
+   CG8X5pBB0DowR/t+VqsLkcHdQ5Xsy6jQVlloAV2DP0zS6OpO5R/TVioGI
+   LRsW3onPt7o9l+iFzGgmHoIJRWZ0uSsvnpl2tR3nWYf8hJcluTmc38dP0
+   XKA+M0zJah0DZK5lOdl/N9eOlkzrSXGJx39jLplhUzhbENWll5imIRetQ
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="353352674"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; 
+   d="scan'208";a="353352674"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2023 05:34:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="737515174"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; 
+   d="scan'208";a="737515174"
+Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 02 Jun 2023 05:34:30 -0700
+Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q53zB-0000RJ-16;
+        Fri, 02 Jun 2023 12:34:29 +0000
+Date:   Fri, 2 Jun 2023 20:33:52 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     oe-kbuild-all@lists.linux.dev, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, <soc@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-References: <20230529162034.20481-1-alexandre.torgue@foss.st.com>
- <20230529162034.20481-5-alexandre.torgue@foss.st.com>
- <20230529-backlit-dealing-b099e4eb5210@spud>
- <c805cd5f-92b1-eb56-d9bc-66814705e848@foss.st.com>
- <25d61668-0b79-8565-0de8-dad7e80e3798@linaro.org>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <25d61668-0b79-8565-0de8-dad7e80e3798@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-02_08,2023-06-02_02,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>
+Subject: Re: [PATCH v2 2/3] spi: cadence-quadspi: Add clock configuration for
+ StarFive JH7110 QSPI
+Message-ID: <202306022017.UbwjjWRN-lkp@intel.com>
+References: <20230602084925.215411-3-william.qiu@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230602084925.215411-3-william.qiu@starfivetech.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+Hi William,
 
-On 5/31/23 20:47, Krzysztof Kozlowski wrote:
-> On 30/05/2023 10:39, Alexandre TORGUE wrote:
->> Hi Conor
->>
->> On 5/29/23 20:05, Conor Dooley wrote:
->>> On Mon, May 29, 2023 at 06:20:27PM +0200, Alexandre Torgue wrote:
->>>> STM32 family is extended by the addition of the STM32MP25 SoCs. It is composed
->>>> of 4 SoCs: STM32MP251, STM32MP253, STM32MP255 and STM32MP257.
->>>>
->>>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
->>>> index 4af5b8f4f803..7d7ca33d2e61 100644
->>>> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
->>>> @@ -161,6 +161,15 @@ properties:
->>>>              - const: phytec,phycore-stm32mp157c-som
->>>>              - const: st,stm32mp157
->>>>    
->>>> +      - items:
->>>> +          - const: st,stm32mp251
->>>> +      - items:
->>>> +          - const: st,stm32mp253
->>>> +      - items:
->>>> +          - const: st,stm32mp255
->>>> +      - items:
->>>> +          - const: st,stm32mp257
->>>
->>> I assume the slightly odd format is just to avoid churn when adding
->>> the board compatibles.
->>
->> Yes, exactly.
->>
-> 
-> I don't get it. How are you going to extend it? Or rather - what are you
-> documenting here? If these are SoCs, then this is not valid. We do not
-> allow these alone.
-> 
-> No, please drop it.
+kernel test robot noticed the following build warnings:
 
-Ok. I will drop it in V2 and update binding patch which defines the 
-STM32 EV1 board.
+[auto build test WARNING on broonie-spi/for-next]
+[also build test WARNING on linus/master v6.4-rc4 next-20230602]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks
-Alex
+url:    https://github.com/intel-lab-lkp/linux/commits/William-Qiu/dt-bindings-qspi-cdns-qspi-nor-Add-clocks-for-StarFive-JH7110-SoC/20230602-165251
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+patch link:    https://lore.kernel.org/r/20230602084925.215411-3-william.qiu%40starfivetech.com
+patch subject: [PATCH v2 2/3] spi: cadence-quadspi: Add clock configuration for StarFive JH7110 QSPI
+config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20230602/202306022017.UbwjjWRN-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/6bbd49e32d407d210b6ea322696cef2e49bf3fa1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review William-Qiu/dt-bindings-qspi-cdns-qspi-nor-Add-clocks-for-StarFive-JH7110-SoC/20230602-165251
+        git checkout 6bbd49e32d407d210b6ea322696cef2e49bf3fa1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/spi/
 
-> 
-> Best regards,
-> Krzysztof
-> 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306022017.UbwjjWRN-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
+
+   drivers/spi/spi-cadence-quadspi.c: In function 'cqspi_resume':
+>> drivers/spi/spi-cadence-quadspi.c:1873:17: warning: ignoring return value of 'clk_bulk_prepare_enable' declared with attribute 'warn_unused_result' [-Wunused-result]
+    1873 |                 clk_bulk_prepare_enable(cqspi->num_clks, cqspi->clks);
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +1873 drivers/spi/spi-cadence-quadspi.c
+
+  1865	
+  1866	static int cqspi_resume(struct device *dev)
+  1867	{
+  1868		struct cqspi_st *cqspi = dev_get_drvdata(dev);
+  1869		struct spi_master *master = dev_get_drvdata(dev);
+  1870	
+  1871		clk_prepare_enable(cqspi->clk);
+  1872		if (of_device_is_compatible(dev->of_node, "starfive,jh7110-qspi"))
+> 1873			clk_bulk_prepare_enable(cqspi->num_clks, cqspi->clks);
+  1874		cqspi_wait_idle(cqspi);
+  1875		cqspi_controller_init(cqspi);
+  1876	
+  1877		cqspi->current_cs = -1;
+  1878		cqspi->sclk = 0;
+  1879	
+  1880		return spi_master_resume(master);
+  1881	}
+  1882	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
