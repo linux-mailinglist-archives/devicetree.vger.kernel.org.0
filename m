@@ -2,322 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1367571FFF0
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 13:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F35720059
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 13:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235813AbjFBLE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 07:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46018 "EHLO
+        id S235145AbjFBL0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 07:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235549AbjFBLE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 07:04:27 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED7D18D;
-        Fri,  2 Jun 2023 04:04:26 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 352AkOaD023391;
-        Fri, 2 Jun 2023 11:04:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=gM0DDxKPzyI61z+wl1A5wOzmSM5QqZdd04x7K7mtZ/M=;
- b=j3EbV2/ltfHZBWsDHeSHszRQnD83AHI3PjIt0Bo0GkDrEQ07Ui/8pOskARA/iRqgIS3b
- VSwKYCrbZJsqY9YUTnwsi31ucwdcrDZ1MyvaDewbjYXuBs6XKpc6D9Ubme+pCkymaqQQ
- zOiwBoaH8PmQZFZej3YmxjEiwQ8oyimllpkgK+tlk/nmypF+qi10UIYG6HRrB7OvY6Ly
- sZeec7P78BXzaXPV5FJZxSjtd2TULtIfBa8xrcE3vHMCvDGsMj4PVVSWxDpAVARHs8X4
- aGNwuObhp+fAb7RxXeb5DEoiH2qr5kDtVNV0s11DLHzwytHTeeQOzvydlBmrRuZ1ZGqZ GA== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxugraeeq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 11:04:20 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 352B4Ks1006589
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Jun 2023 11:04:20 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 2 Jun 2023 04:04:15 -0700
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-Subject: [PATCH v5 3/3] arm64: dts: qcom: ipq9574: add thermal zone nodes
-Date:   Fri, 2 Jun 2023 16:33:52 +0530
-Message-ID: <4cc3aa1c93aacfc8ddf236a3d6ed07bfe75da1a4.1685703605.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1685703605.git.quic_varada@quicinc.com>
-References: <cover.1685703605.git.quic_varada@quicinc.com>
+        with ESMTP id S235132AbjFBL0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 07:26:30 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821ED19B;
+        Fri,  2 Jun 2023 04:26:26 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5149c51fd5bso2756265a12.0;
+        Fri, 02 Jun 2023 04:26:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685705185; x=1688297185;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bOPB28jxPP1M23tfsnHLbkbDEHXgo1+K8VOhyFsqi6U=;
+        b=IrIbn7LfJhd+mpGB11x7u5HSdSoCZ47pmC/BObxhhvfSW2C6vsB5Yy6rD2L57YxKjC
+         Xw+sUY3LrGS8itBzi0y8fC20ig3M2p7r7aGBuJbyhQ3W36s5ffY5DlIyvAwSZUazFZgG
+         3B+munNLaO8sPejoYBQ1kw1VRzLwqWu6JtCbvVbPh11+5Z79nTn7na/tJB7r4TVi89zd
+         uSp3NTeZieYcIN2r1FrJjLWpP73qfL/aipt93HfYS65RjgZi/6Dp2+jvE8Ym3pg6YjPr
+         DJWXdTBLcbBzn0e3fS3BXBSe0piaSWMvFHzGB0TlzSeQMhJWTRD+O5kPqpu98t5DSZ4i
+         ZHVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685705185; x=1688297185;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bOPB28jxPP1M23tfsnHLbkbDEHXgo1+K8VOhyFsqi6U=;
+        b=C7SS8EmoKVed/4lDwJjpvjgib1Ymjjoc24sQWuNYGmYBHnF78li0Rooqd1yx8+Okiu
+         ZH0/JFRaGaXtxbX7L1ZioIsk3ERp4o88ZZypDIqB2nxUueHcmsdpH9Lk+WQeS8fZzDsQ
+         I8+u0G7fMIcpkC9daqKluVf9O4PqDpmGObvm76ZgfZdjCeuGwOVsRWG+wyvN4tQSSyy+
+         igqOh9WvrQOOoTbWzU1Uf1F35VTHZOEPfuPSt84Dh9KOdyhOYX3LP4AIPS4bEnOcKv1J
+         IrAH8gKgSTxJhjCUFvqlU6u/ln0ifotoKeu66t3434xDCzhtZwtj282RQevxgGdXkb8H
+         5sQg==
+X-Gm-Message-State: AC+VfDyTWCbUIfIbRHEI+w0gwjKpJD/HtnfN1vMLlAMQl05OVrBDuoxD
+        GIkZSZPCHj2UeCm+ZVN0ut8qD3704yWW9sxCOM8=
+X-Google-Smtp-Source: ACHHUZ6p5AgQF78RB2S6WIQmya7KwCHPkKWT06OvgYvF8dTYFhrSqbDeEszMYkYgF9F5YUQyDT2R6Hs+20SG2Iiqmp8=
+X-Received: by 2002:a05:6402:14d9:b0:514:9aae:4528 with SMTP id
+ f25-20020a05640214d900b005149aae4528mr1910061edx.14.1685705184768; Fri, 02
+ Jun 2023 04:26:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Yt3P0_MHZ9SlF2KKejSyxuOLm2gGktFk
-X-Proofpoint-ORIG-GUID: Yt3P0_MHZ9SlF2KKejSyxuOLm2gGktFk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-02_08,2023-06-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 mlxscore=0 clxscore=1015 impostorscore=0 adultscore=0
- malwarescore=0 phishscore=0 bulkscore=0 mlxlogscore=999 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306020082
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <cover.1685693501.git.zhoubinbin@loongson.cn> <c38c666015a162d7031b20a48209ce577bab62cd.1685693501.git.zhoubinbin@loongson.cn>
+In-Reply-To: <c38c666015a162d7031b20a48209ce577bab62cd.1685693501.git.zhoubinbin@loongson.cn>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Fri, 2 Jun 2023 19:26:08 +0800
+Message-ID: <CAJhJPsXz=en8aPsmwTovk+uggi0VvUwtYuhymsdxMA6=su2vNg@mail.gmail.com>
+Subject: Re: [PATCH V5 2/5] rtc: Remove the Loongson-1 RTC driver
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org, zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds thermal zone nodes for the various
-sensors present in IPQ9574
+On Fri, Jun 2, 2023 at 5:51=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn>=
+ wrote:
+>
+> Remove the ls1x-rtc driver as it is obsolete. We will continue to
+> support the ls1x RTC in the upcoming Loongson unified RTC driver
+> rtc-loongson.
+>
+> Cc: Keguang Zhang <keguang.zhang@gmail.com>
+> Cc: zhao zhang <zhzhl555@gmail.com>
+> Cc: Yang Ling <gnaygnil@gmail.com>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
-[v2]:
-	Rename clusterX nodes as cpussX nodes
+Acked-by: Keguang Zhang <keguang.zhang@gmail.com>
 
-[v1]:
-	Fix node names
----
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 208 ++++++++++++++++++++++++++++++++++
- 1 file changed, 208 insertions(+)
+> ---
+>  drivers/rtc/Kconfig    |  10 ---
+>  drivers/rtc/Makefile   |   1 -
+>  drivers/rtc/rtc-ls1x.c | 192 -----------------------------------------
+>  3 files changed, 203 deletions(-)
+>  delete mode 100644 drivers/rtc/rtc-ls1x.c
+>
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index 753872408615..599f5110a251 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -1726,16 +1726,6 @@ config RTC_DRV_TEGRA
+>           This drive can also be built as a module. If so, the module
+>           will be called rtc-tegra.
+>
+> -config RTC_DRV_LOONGSON1
+> -       tristate "loongson1 RTC support"
+> -       depends on MACH_LOONGSON32
+> -       help
+> -         This is a driver for the loongson1 on-chip Counter0 (Time-Of-Ye=
+ar
+> -         counter) to be used as a RTC.
+> -
+> -         This driver can also be built as a module. If so, the module
+> -         will be called rtc-ls1x.
+> -
+>  config RTC_DRV_MXC
+>         tristate "Freescale MXC Real Time Clock"
+>         depends on ARCH_MXC || COMPILE_TEST
+> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
+> index ea445d1ebb17..c50afd8fb9f4 100644
+> --- a/drivers/rtc/Makefile
+> +++ b/drivers/rtc/Makefile
+> @@ -78,7 +78,6 @@ obj-$(CONFIG_RTC_DRV_ISL12022)        +=3D rtc-isl12022=
+.o
+>  obj-$(CONFIG_RTC_DRV_ISL12026) +=3D rtc-isl12026.o
+>  obj-$(CONFIG_RTC_DRV_ISL1208)  +=3D rtc-isl1208.o
+>  obj-$(CONFIG_RTC_DRV_JZ4740)   +=3D rtc-jz4740.o
+> -obj-$(CONFIG_RTC_DRV_LOONGSON1)        +=3D rtc-ls1x.o
+>  obj-$(CONFIG_RTC_DRV_LP8788)   +=3D rtc-lp8788.o
+>  obj-$(CONFIG_RTC_DRV_LPC24XX)  +=3D rtc-lpc24xx.o
+>  obj-$(CONFIG_RTC_DRV_LPC32XX)  +=3D rtc-lpc32xx.o
+> diff --git a/drivers/rtc/rtc-ls1x.c b/drivers/rtc/rtc-ls1x.c
+> deleted file mode 100644
+> index 5af26dc5c2a3..000000000000
+> --- a/drivers/rtc/rtc-ls1x.c
+> +++ /dev/null
+> @@ -1,192 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0-or-later
+> -/*
+> - * Copyright (c) 2011 Zhao Zhang <zhzhl555@gmail.com>
+> - *
+> - * Derived from driver/rtc/rtc-au1xxx.c
+> - */
+> -
+> -#include <linux/module.h>
+> -#include <linux/kernel.h>
+> -#include <linux/rtc.h>
+> -#include <linux/init.h>
+> -#include <linux/platform_device.h>
+> -#include <linux/delay.h>
+> -#include <linux/types.h>
+> -#include <linux/io.h>
+> -#include <loongson1.h>
+> -
+> -#define LS1X_RTC_REG_OFFSET    (LS1X_RTC_BASE + 0x20)
+> -#define LS1X_RTC_REGS(x) \
+> -               ((void __iomem *)KSEG1ADDR(LS1X_RTC_REG_OFFSET + (x)))
+> -
+> -/*RTC programmable counters 0 and 1*/
+> -#define SYS_COUNTER_CNTRL              (LS1X_RTC_REGS(0x20))
+> -#define SYS_CNTRL_ERS                  (1 << 23)
+> -#define SYS_CNTRL_RTS                  (1 << 20)
+> -#define SYS_CNTRL_RM2                  (1 << 19)
+> -#define SYS_CNTRL_RM1                  (1 << 18)
+> -#define SYS_CNTRL_RM0                  (1 << 17)
+> -#define SYS_CNTRL_RS                   (1 << 16)
+> -#define SYS_CNTRL_BP                   (1 << 14)
+> -#define SYS_CNTRL_REN                  (1 << 13)
+> -#define SYS_CNTRL_BRT                  (1 << 12)
+> -#define SYS_CNTRL_TEN                  (1 << 11)
+> -#define SYS_CNTRL_BTT                  (1 << 10)
+> -#define SYS_CNTRL_E0                   (1 << 8)
+> -#define SYS_CNTRL_ETS                  (1 << 7)
+> -#define SYS_CNTRL_32S                  (1 << 5)
+> -#define SYS_CNTRL_TTS                  (1 << 4)
+> -#define SYS_CNTRL_TM2                  (1 << 3)
+> -#define SYS_CNTRL_TM1                  (1 << 2)
+> -#define SYS_CNTRL_TM0                  (1 << 1)
+> -#define SYS_CNTRL_TS                   (1 << 0)
+> -
+> -/* Programmable Counter 0 Registers */
+> -#define SYS_TOYTRIM            (LS1X_RTC_REGS(0))
+> -#define SYS_TOYWRITE0          (LS1X_RTC_REGS(4))
+> -#define SYS_TOYWRITE1          (LS1X_RTC_REGS(8))
+> -#define SYS_TOYREAD0           (LS1X_RTC_REGS(0xC))
+> -#define SYS_TOYREAD1           (LS1X_RTC_REGS(0x10))
+> -#define SYS_TOYMATCH0          (LS1X_RTC_REGS(0x14))
+> -#define SYS_TOYMATCH1          (LS1X_RTC_REGS(0x18))
+> -#define SYS_TOYMATCH2          (LS1X_RTC_REGS(0x1C))
+> -
+> -/* Programmable Counter 1 Registers */
+> -#define SYS_RTCTRIM            (LS1X_RTC_REGS(0x40))
+> -#define SYS_RTCWRITE0          (LS1X_RTC_REGS(0x44))
+> -#define SYS_RTCREAD0           (LS1X_RTC_REGS(0x48))
+> -#define SYS_RTCMATCH0          (LS1X_RTC_REGS(0x4C))
+> -#define SYS_RTCMATCH1          (LS1X_RTC_REGS(0x50))
+> -#define SYS_RTCMATCH2          (LS1X_RTC_REGS(0x54))
+> -
+> -#define LS1X_SEC_OFFSET                (4)
+> -#define LS1X_MIN_OFFSET                (10)
+> -#define LS1X_HOUR_OFFSET       (16)
+> -#define LS1X_DAY_OFFSET                (21)
+> -#define LS1X_MONTH_OFFSET      (26)
+> -
+> -
+> -#define LS1X_SEC_MASK          (0x3f)
+> -#define LS1X_MIN_MASK          (0x3f)
+> -#define LS1X_HOUR_MASK         (0x1f)
+> -#define LS1X_DAY_MASK          (0x1f)
+> -#define LS1X_MONTH_MASK                (0x3f)
+> -#define LS1X_YEAR_MASK         (0xffffffff)
+> -
+> -#define ls1x_get_sec(t)                (((t) >> LS1X_SEC_OFFSET) & LS1X_=
+SEC_MASK)
+> -#define ls1x_get_min(t)                (((t) >> LS1X_MIN_OFFSET) & LS1X_=
+MIN_MASK)
+> -#define ls1x_get_hour(t)       (((t) >> LS1X_HOUR_OFFSET) & LS1X_HOUR_MA=
+SK)
+> -#define ls1x_get_day(t)                (((t) >> LS1X_DAY_OFFSET) & LS1X_=
+DAY_MASK)
+> -#define ls1x_get_month(t)      (((t) >> LS1X_MONTH_OFFSET) & LS1X_MONTH_=
+MASK)
+> -
+> -#define RTC_CNTR_OK (SYS_CNTRL_E0 | SYS_CNTRL_32S)
+> -
+> -static int ls1x_rtc_read_time(struct device *dev, struct rtc_time *rtm)
+> -{
+> -       unsigned long v;
+> -       time64_t t;
+> -
+> -       v =3D readl(SYS_TOYREAD0);
+> -       t =3D readl(SYS_TOYREAD1);
+> -
+> -       memset(rtm, 0, sizeof(struct rtc_time));
+> -       t  =3D mktime64((t & LS1X_YEAR_MASK), ls1x_get_month(v),
+> -                       ls1x_get_day(v), ls1x_get_hour(v),
+> -                       ls1x_get_min(v), ls1x_get_sec(v));
+> -       rtc_time64_to_tm(t, rtm);
+> -
+> -       return 0;
+> -}
+> -
+> -static int ls1x_rtc_set_time(struct device *dev, struct  rtc_time *rtm)
+> -{
+> -       unsigned long v, t, c;
+> -       int ret =3D -ETIMEDOUT;
+> -
+> -       v =3D ((rtm->tm_mon + 1)  << LS1X_MONTH_OFFSET)
+> -               | (rtm->tm_mday << LS1X_DAY_OFFSET)
+> -               | (rtm->tm_hour << LS1X_HOUR_OFFSET)
+> -               | (rtm->tm_min  << LS1X_MIN_OFFSET)
+> -               | (rtm->tm_sec  << LS1X_SEC_OFFSET);
+> -
+> -       writel(v, SYS_TOYWRITE0);
+> -       c =3D 0x10000;
+> -       /* add timeout check counter, for more safe */
+> -       while ((readl(SYS_COUNTER_CNTRL) & SYS_CNTRL_TS) && --c)
+> -               usleep_range(1000, 3000);
+> -
+> -       if (!c) {
+> -               dev_err(dev, "set time timeout!\n");
+> -               goto err;
+> -       }
+> -
+> -       t =3D rtm->tm_year + 1900;
+> -       writel(t, SYS_TOYWRITE1);
+> -       c =3D 0x10000;
+> -       while ((readl(SYS_COUNTER_CNTRL) & SYS_CNTRL_TS) && --c)
+> -               usleep_range(1000, 3000);
+> -
+> -       if (!c) {
+> -               dev_err(dev, "set time timeout!\n");
+> -               goto err;
+> -       }
+> -       return 0;
+> -err:
+> -       return ret;
+> -}
+> -
+> -static const struct rtc_class_ops  ls1x_rtc_ops =3D {
+> -       .read_time      =3D ls1x_rtc_read_time,
+> -       .set_time       =3D ls1x_rtc_set_time,
+> -};
+> -
+> -static int ls1x_rtc_probe(struct platform_device *pdev)
+> -{
+> -       struct rtc_device *rtcdev;
+> -       unsigned long v;
+> -
+> -       v =3D readl(SYS_COUNTER_CNTRL);
+> -       if (!(v & RTC_CNTR_OK)) {
+> -               dev_err(&pdev->dev, "rtc counters not working\n");
+> -               return -ENODEV;
+> -       }
+> -
+> -       /* set to 1 HZ if needed */
+> -       if (readl(SYS_TOYTRIM) !=3D 32767) {
+> -               v =3D 0x100000;
+> -               while ((readl(SYS_COUNTER_CNTRL) & SYS_CNTRL_TTS) && --v)
+> -                       usleep_range(1000, 3000);
+> -
+> -               if (!v) {
+> -                       dev_err(&pdev->dev, "time out\n");
+> -                       return -ETIMEDOUT;
+> -               }
+> -               writel(32767, SYS_TOYTRIM);
+> -       }
+> -       /* this loop coundn't be endless */
+> -       while (readl(SYS_COUNTER_CNTRL) & SYS_CNTRL_TTS)
+> -               usleep_range(1000, 3000);
+> -
+> -       rtcdev =3D devm_rtc_allocate_device(&pdev->dev);
+> -       if (IS_ERR(rtcdev))
+> -               return PTR_ERR(rtcdev);
+> -
+> -       platform_set_drvdata(pdev, rtcdev);
+> -       rtcdev->ops =3D &ls1x_rtc_ops;
+> -       rtcdev->range_min =3D RTC_TIMESTAMP_BEGIN_1900;
+> -       rtcdev->range_max =3D RTC_TIMESTAMP_END_2099;
+> -
+> -       return devm_rtc_register_device(rtcdev);
+> -}
+> -
+> -static struct platform_driver  ls1x_rtc_driver =3D {
+> -       .driver         =3D {
+> -               .name   =3D "ls1x-rtc",
+> -       },
+> -       .probe          =3D ls1x_rtc_probe,
+> -};
+> -
+> -module_platform_driver(ls1x_rtc_driver);
+> -
+> -MODULE_AUTHOR("zhao zhang <zhzhl555@gmail.com>");
+> -MODULE_LICENSE("GPL");
+> --
+> 2.39.1
+>
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index cda3fd4..392dbe5 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -592,6 +592,214 @@
- 		};
- 	};
- 
-+	thermal-zones {
-+		nss-top-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 3>;
-+
-+			trips {
-+				nss-top-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ubi-0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 4>;
-+
-+			trips {
-+				ubi_0-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ubi-1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 5>;
-+
-+			trips {
-+				ubi_1-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ubi-2-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 6>;
-+
-+			trips {
-+				ubi_2-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ubi-3-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 7>;
-+
-+			trips {
-+				ubi_3-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpuss0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 8>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpuss1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 9>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 10>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
-+
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cpu1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 11>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
-+
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cpu2-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 12>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
-+
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cpu3-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 13>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
-+
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wcss-phyb-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 14>;
-+
-+			trips {
-+				wcss_phyb-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		top-glue-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 15>;
-+
-+			trips {
-+				top_glue-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--- 
-2.7.4
 
+--=20
+Best regards,
+
+Keguang Zhang
