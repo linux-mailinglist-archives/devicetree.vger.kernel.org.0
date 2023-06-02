@@ -2,151 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B851572082D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 19:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FEB720832
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 19:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236725AbjFBRLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 13:11:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43150 "EHLO
+        id S236840AbjFBRNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 13:13:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235598AbjFBRLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 13:11:14 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E9831A4;
-        Fri,  2 Jun 2023 10:11:09 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 352ECb1Q032733;
-        Fri, 2 Jun 2023 17:10:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=FVEixRlR8jvJDNKMaAZQsJwdlgbarwIFloHWwfSG8Lo=;
- b=XGM8D300dnbqIFPUi3lgKv4c1r8LLYEvowCqJuU3nzvIUiEtnsYqqolz/SokWBX93jtZ
- qLYrXtRwszh73+m37MUwZ0ytjhPchW7lZYVcTW0iXaE7F9yTdn3V+n+psUQsgRNgonqE
- ssaAt+81TEWqWtBez9yjjFT/zIlcOG94cwJP2qqFq4TyeyqLsEvHz7950hy0cMxxviqb
- p10OEiE9ZtJIbVbwKSKj1d8P7sEQFy2DpD63Ic5ncq6ng5nM+nTa0rEbxPrcAkKuocGY
- 6Aqgf7cUrgcZX6ceSWEm5912yzfyF+hEBIzSirZCLo6UwTu3IoGHIf26Y1xPMnpGNm23 Xw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qyb5f9cx6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 17:10:47 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 352HAkmp024795
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Jun 2023 17:10:46 GMT
-Received: from [10.216.26.36] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 2 Jun 2023
- 10:10:39 -0700
-Message-ID: <36788c66-a93d-9f80-ae5b-44ec1bd27b31@quicinc.com>
-Date:   Fri, 2 Jun 2023 22:40:35 +0530
+        with ESMTP id S235529AbjFBRNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 13:13:12 -0400
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 020B01A7
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 10:13:11 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id ada2fe7eead31-4394a8f26d5so595607137.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 10:13:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1685725990; x=1688317990;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sgzsS75kXqE+x/nYYWZpPxfxzFW609nA7iNUZapD6uE=;
+        b=VPo6y09JiUZLI6s9Pa4OpvcsN78s2ESpR+qy8OvlD/uEFadWfViSHNAghm2/fCxfbi
+         2AnCuOHT+dLilEjQ8b8UV5K0gt3yxg4Ezhx7k/0jcnGoJ08dOwRigGnjJEAiwCf+oBa4
+         A3/4/BQQfaHjlhtzJhZ8Y6YC0h7CMzvjlU2uSH0o1kd4/V5p74+sKmV+nnJH33IcDzIw
+         AgF0hD1wVUhoJNVIK2rMIbK5GQDU1ST1FryjUkkDL3H0/0swtxBBV3qMAxI5/zEzXfHd
+         u3c5QvQl6J6MojhEy63d0AFyi2E6DfMW7AW8aFqFIn2HNT53qfMT73g0TWGQbC8ocdgp
+         r/Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685725990; x=1688317990;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sgzsS75kXqE+x/nYYWZpPxfxzFW609nA7iNUZapD6uE=;
+        b=YdEdNSxhziBRiTdzXB4PM6vnctq342rt/ZYiISgMd/Y8KwYsuhfcIoSsnQxHRk7NOJ
+         e1e1jLTjA8DsayAhH905Qu/YsSHo5LVv6ly0z9MNWTc2SqUvY8XLpAT1YMl8zUNM++0Q
+         35944e1yX/66j2jVvLgfDwFOeTBx4XR4jswoW4Zd6GM02PlLHL/VJrkIOnfchI9GuC4w
+         qREaV83B0UCOUuv89zTcFt5d40BsDNxk70apvU2wFWoaAjeNx3ZS5UpeYj+K5LmbdVMW
+         srhjGbeavn23hboafn4SblE3CYCCIqDKNRadrA7JnSlsIOOE77KF1iQzZJh0iVl/lfnW
+         JSjA==
+X-Gm-Message-State: AC+VfDyyNF177qdXuNGUQnWP5NaDYp2K72LMK9VpS4lxx1U9MzK39Z9Y
+        yOBr1ScE6z2tEKprEGqlK3nUfr+bwe6pAncb+JPDSg==
+X-Google-Smtp-Source: ACHHUZ7+Ia0WDhjEIVIPHG/AhVa7C9CNFpMSUeDc/GoyyHSSmyOMLcfa0GwqtKlgFohitl5ZQkDB4QfePpR5cuarVuI=
+X-Received: by 2002:a05:6102:409:b0:430:1fa:87c5 with SMTP id
+ d9-20020a056102040900b0043001fa87c5mr4365097vsq.32.1685725990154; Fri, 02 Jun
+ 2023 10:13:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V8 2/8] clk: qcom: Add Global Clock controller (GCC)
- driver for IPQ5018
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>,
-        <krzysztof.kozlowski@linaro.org>
-References: <20230602082325.1445261-1-quic_srichara@quicinc.com>
- <20230602082325.1445261-3-quic_srichara@quicinc.com>
- <CAHp75Vcfa2cbACEPROuOptPM7c9SOp_TudK-4Rx45OhWPf=iiw@mail.gmail.com>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <CAHp75Vcfa2cbACEPROuOptPM7c9SOp_TudK-4Rx45OhWPf=iiw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: CNv3Ik2pUxE6RZumgCgRCADuQFU9E5Ha
-X-Proofpoint-GUID: CNv3Ik2pUxE6RZumgCgRCADuQFU9E5Ha
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-02_12,2023-06-02_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- suspectscore=0 spamscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
- phishscore=0 lowpriorityscore=0 mlxlogscore=999 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306020130
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
+ <20230530173000.3060865-15-dave.stevenson@raspberrypi.com> <i7epfbavk5z7imvlsecitwqcdhmu7yh6z25guu7utfes2e7yyz@l7iz5vrit7h7>
+In-Reply-To: <i7epfbavk5z7imvlsecitwqcdhmu7yh6z25guu7utfes2e7yyz@l7iz5vrit7h7>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Fri, 2 Jun 2023 18:12:54 +0100
+Message-ID: <CAPY8ntA33yeHgd-ZiC3Eew52_svUDDMegAo3_2Wwk=em5oToVg@mail.gmail.com>
+Subject: Re: [PATCH 14/21] media: i2c: imx258: Add support for long exposure modes
+To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Naushir Patuck <naush@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jacopo
 
+On Fri, 2 Jun 2023 at 14:38, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
+>
+> Hi Dave
+>
+> On Tue, May 30, 2023 at 06:29:53PM +0100, Dave Stevenson wrote:
+> > The sensor has a register CIT_LSHIFT which extends the exposure
+> > and frame times by the specified power of 2 for longer
+> > exposure times.
+> >
+> > Add support for this by configuring this register via V4L2_CID_VBLANK
+> > and extending the V4L2_CID_EXPOSURE range accordingly.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > ---
+> >  drivers/media/i2c/imx258.c | 38 ++++++++++++++++++++++++++++++++------
+> >  1 file changed, 32 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > index f5199e3243e8..1e424058fcb9 100644
+> > --- a/drivers/media/i2c/imx258.c
+> > +++ b/drivers/media/i2c/imx258.c
+> > @@ -69,6 +69,10 @@
+> >  #define IMX258_HDR_RATIO_STEP                1
+> >  #define IMX258_HDR_RATIO_DEFAULT     0x0
+> >
+> > +/* Long exposure multiplier */
+> > +#define IMX258_LONG_EXP_SHIFT_MAX    7
+> > +#define IMX258_LONG_EXP_SHIFT_REG    0x3002
+> > +
+> >  /* Test Pattern Control */
+> >  #define IMX258_REG_TEST_PATTERN              0x0600
+> >
+> > @@ -629,6 +633,8 @@ struct imx258 {
+> >       struct v4l2_ctrl *vblank;
+> >       struct v4l2_ctrl *hblank;
+> >       struct v4l2_ctrl *exposure;
+> > +     /* Current long exposure factor in use. Set through V4L2_CID_VBLANK */
+> > +     unsigned int long_exp_shift;
+> >
+> >       /* Current mode */
+> >       const struct imx258_mode *cur_mode;
+> > @@ -793,6 +799,26 @@ static void imx258_adjust_exposure_range(struct imx258 *imx258)
+> >                                exposure_def);
+> >  }
+> >
+> > +static int imx258_set_frame_length(struct imx258 *imx258, unsigned int val)
+> > +{
+> > +     int ret;
+> > +
+> > +     imx258->long_exp_shift = 0;
+> > +
+> > +     while (val > IMX258_VTS_MAX) {
+> > +             imx258->long_exp_shift++;
+> > +             val >>= 1;
+> > +     }
+> > +
+> > +     ret = imx258_write_reg(imx258, IMX258_REG_VTS,
+> > +                            IMX258_REG_VALUE_16BIT, val);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     return imx258_write_reg(imx258, IMX258_LONG_EXP_SHIFT_REG,
+> > +                             IMX258_REG_VALUE_08BIT, imx258->long_exp_shift);
+> > +}
+> > +
+> >  static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+> >  {
+> >       struct imx258 *imx258 =
+> > @@ -823,7 +849,7 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+> >       case V4L2_CID_EXPOSURE:
+> >               ret = imx258_write_reg(imx258, IMX258_REG_EXPOSURE,
+> >                               IMX258_REG_VALUE_16BIT,
+> > -                             ctrl->val);
+> > +                             ctrl->val >> imx258->long_exp_shift);
+>
+> Shouldn't this be done only if vblank > VTS_MAX ?
 
-On 6/2/2023 6:41 PM, Andy Shevchenko wrote:
-> On Fri, Jun 2, 2023 at 11:24 AM Sricharan Ramabadhran
-> <quic_srichara@quicinc.com> wrote:
->>
->> Add support for the global clock controller found on IPQ5018
->> based devices.
-> 
-> ...
-> 
->>   config IPQ_GCC_5332
->>          tristate "IPQ5332 Global Clock Controller"
->>          depends on ARM64 || COMPILE_TEST
->>          help
->>            Support for the global clock controller on ipq5332 devices.
->> -         Say Y if you want to use peripheral devices such as UART, SPI,
->> -         i2c, USB, SD/eMMC, etc.
-> 
-> Nothing in the commit message about this. Please, elaborate.
-> 
-> ...
+You're partly right, and it's a bug in our imx477 and imx708 drivers
+too. (cc Naush for info)
 
-  oops, unintended change. Not sure how this crept in.
-  Thanks for catching it, will remove this.
+Computing imx258->long_exp_shift should be done in the early part of
+imx258_set_ctrl before the pm_runtime_get_if_in_use check. Otherwise
+the __v4l2_ctrl_handler_setup call will potentially be setting
+exposure before vblank, and exposure register will be based on the
+wrong shift.
+If (vblank + mode->height) <= VTS_MAX then long_exp_shift will be 0,
+so the value written here will be the same.
 
-> 
->> +#include <linux/kernel.h>
->> +#include <linux/err.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_device.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/regmap.h>
->> +#include <linux/reset-controller.h>
-> 
-> Why not keep this ordered?
-> 
-> Missing bits.h and maybe others, but in an unordered list it's harder to check.
-> 
+The slightly more awkward one to handle is that if long_exp_shift
+changes then we need to recompute and write IMX258_REG_EXPOSURE based
+on the new shift. You have to love the niggles.
 
-  sure, will order it.
+Thanks
+  Dave
 
-> ...
-> 
->> +                       &gpll4_main.clkr.hw
-> 
-> Can we keep trailing comma here and in similar cases, like
-> 
->> +                       &ubi32_pll_main.clkr.hw
->> +                       &gpll0_main.clkr.hw
-> 
-> (and many others)?
-> 
-
-  ok, will fix it.
-
-Regards,
-  Sricharan
+> >               break;
+> >       case V4L2_CID_DIGITAL_GAIN:
+> >               ret = imx258_update_digital_gain(imx258, IMX258_REG_VALUE_16BIT,
+> > @@ -855,9 +881,8 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+> >               }
+> >               break;
+> >       case V4L2_CID_VBLANK:
+> > -             ret = imx258_write_reg(imx258, IMX258_REG_VTS,
+> > -                                    IMX258_REG_VALUE_16BIT,
+> > -                                    imx258->cur_mode->height + ctrl->val);
+> > +             ret = imx258_set_frame_length(imx258,
+> > +                                           imx258->cur_mode->height + ctrl->val);
+> >               break;
+> >       default:
+> >               dev_info(&client->dev,
+> > @@ -983,8 +1008,9 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
+> >                            imx258->cur_mode->height;
+> >               __v4l2_ctrl_modify_range(
+> >                       imx258->vblank, vblank_min,
+> > -                     IMX258_VTS_MAX - imx258->cur_mode->height, 1,
+> > -                     vblank_def);
+> > +                     ((1 << IMX258_LONG_EXP_SHIFT_MAX) * IMX258_VTS_MAX) -
+> > +                                             imx258->cur_mode->height,
+> > +                     1, vblank_def);
+> >               __v4l2_ctrl_s_ctrl(imx258->vblank, vblank_def);
+> >               h_blank =
+> >                       imx258->link_freq_configs[mode->link_freq_index].pixels_per_line
+> > --
+> > 2.25.1
+> >
