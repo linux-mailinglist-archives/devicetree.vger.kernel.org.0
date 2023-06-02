@@ -2,84 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9684971F917
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 06:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CEB571F97E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 07:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232221AbjFBEF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 00:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39292 "EHLO
+        id S232708AbjFBFAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 01:00:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231259AbjFBEFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 00:05:25 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9923F132;
-        Thu,  1 Jun 2023 21:05:23 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3523X2Bn032395;
-        Fri, 2 Jun 2023 04:05:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=g2YsiNDXH7x12Xq/HmkFBsnoCy87pQRc7ageQK0z4nQ=;
- b=Qc02lk/NvNiQBxPeMC3SnIDEoHX+lJdEyFKR2DMLSLwpBpfyVO1qrz37C3EM5mC+oAoL
- GIQ2LYbXwKZpbV+Dvt9SVhE0iVYTyoDHTQvyROO4iqYQsnHnH33nd8m/hhUPwHpWDHFv
- gEry2rMPqDHKVJPjfcdyT6YvbP5ovXV3RVHg4oRo7Bf8KhIKxXjhCV9jG8uRFrHE258O
- +kFjkMeO7VyD8m5XpDTsMsvt3FhA405DTl41lDNao+47eUbZOHsNdrAYkFNYO5h1iqez
- 2FTx753zNMi/4RqU8f4xUlN2Zj5HASgjHgo/fpomzEHUotV4594MHhwyDooInRPBYMmI dw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxs9gt4fx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 04:05:18 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35245HtZ013574
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Jun 2023 04:05:17 GMT
-Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
- 21:05:13 -0700
-Message-ID: <2dd8e5be-c5b5-02e7-32d0-587a40cb70cc@quicinc.com>
-Date:   Fri, 2 Jun 2023 09:35:10 +0530
+        with ESMTP id S229524AbjFBFAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 01:00:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1360F107;
+        Thu,  1 Jun 2023 22:00:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6B1FC64C43;
+        Fri,  2 Jun 2023 05:00:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B2A17C4339B;
+        Fri,  2 Jun 2023 05:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685682020;
+        bh=rUHmOXEYpK/oNBqcnTdtouxfSre1j04IJR96syYNKDw=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=Vsbzlpgdftk8smVI3yWSPQcDhM00q0Fb6ZUHq53dFVgfRBZfrtlRAQFga4wIJoVFd
+         GeC7zQlHYpS8h6SGynQSJBGdqsb2iHAQuzIUp7dPdAdfgQL2wFZ37BameN0mY9xKQx
+         SvsV7KQYO/qPAITjmG7L2DQq3LeJzN51/OUSpwWviRWlb1AG6ABkiRLHI7KrVf6oxP
+         i/41ZPo/EGc9lN2MZ3z1/knMQA6htsN30dEdUqpMXKMWpNjFZKgXKdWMNn4vb9g9nA
+         CXO1BgH82XuZyHRHRYnz4SbduC6VHUAqOWvEXk5qPVnjhFyLR2C7mo78nJzqBpampD
+         x7KOVAuihf5sg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 979BDE29F3F;
+        Fri,  2 Jun 2023 05:00:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH RESEND 4/4] arm64: dts: qcom: ipq5332: add support for the
- RDP474 variant
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230601042054.29075-1-quic_kathirav@quicinc.com>
- <20230601042054.29075-5-quic_kathirav@quicinc.com>
- <91c63634-eb39-fdca-2c76-6f8182c2d47c@linaro.org>
-Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <91c63634-eb39-fdca-2c76-6f8182c2d47c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: g4DpGIfWTwAKhhT0ZB13JAvySdUUa8i1
-X-Proofpoint-GUID: g4DpGIfWTwAKhhT0ZB13JAvySdUUa8i1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-02_01,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- spamscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 adultscore=0
- phishscore=0 lowpriorityscore=0 mlxlogscore=999 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306020027
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 0/2] Extend dt-bindings for PSE-PD controllers and update
+ prtt1c dts
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168568202061.24823.10947582942293943932.git-patchwork-notify@kernel.org>
+Date:   Fri, 02 Jun 2023 05:00:20 +0000
+References: <20230531102113.3353065-1-o.rempel@pengutronix.de>
+In-Reply-To: <20230531102113.3353065-1-o.rempel@pengutronix.de>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, jerome.pouiller@silabs.com,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,80 +61,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
-On 6/1/2023 10:59 PM, Krzysztof Kozlowski wrote:
-> On 01/06/2023 06:20, Kathiravan T wrote:
->> Add the initial device tree support for the Reference Design
->> Platform(RDP) 474 based on IPQ5332 family of SoC. This patch carries
->> the support for Console UART, eMMC, I2C and GPIO based buttons.
->>
->> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile           |   1 +
->>   arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts | 112 ++++++++++++++++++++
->>   2 files changed, 113 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 4f9e81253e18..0f8c763a9bd9 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp442.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp474.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
->> new file mode 100644
->> index 000000000000..085729a0fdf1
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
->> @@ -0,0 +1,112 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * IPQ5332 RDP474 board device tree source
->> + *
->> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->> +#include "ipq5332.dtsi"
->> +
->> +/ {
->> +	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.9";
->> +	compatible = "qcom,ipq5332-ap-mi01.9", "qcom,ipq5332";
->> +
->> +	aliases {
->> +		serial0 = &blsp1_uart0;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0";
->> +	};
->> +
->> +	gpio_keys {
-> No, srsly, so not only ignored the tags but also feedback?
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Wed, 31 May 2023 12:21:11 +0200 you wrote:
+> changes v3:
+> - reword commit message for the pse-controller.yaml patch
+> - drop podl-pse-regulator.yaml patch
+> 
+> changes v2:
+> - extend ethernet-pse regexp in the PoDL PSE dt-bindings
+> 
+> [...]
+
+Here is the summary with links:
+  - [v3,1/2] dt-bindings: net: pse-pd: Allow -N suffix for ethernet-pse node names
+    https://git.kernel.org/netdev/net-next/c/bd415f6c748e
+  - [v3,2/2] ARM: dts: stm32: prtt1c: Add PoDL PSE regulator nodes
+    (no matching commit)
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-Please correct me if I am wrong here..
-
-This is RESEND of V1 patches (only minor correction in the subject line 
-in cover letter). Also I don't see review comments as such in original 
-V1 as well 
-https://lore.kernel.org/linux-arm-msm/20230531135048.19164-1-quic_kathirav@quicinc.com/
-
-Can you help to point out your review comments, I couldn't able to find out.
-
-Thanks,
-
-
->
-> Best regards,
-> Krzysztof
->
