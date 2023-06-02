@@ -2,143 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AE977203E2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F03720400
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234960AbjFBN75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 09:59:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54128 "EHLO
+        id S235461AbjFBOKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 10:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234769AbjFBN7r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:59:47 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A293C13E;
-        Fri,  2 Jun 2023 06:59:46 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f4d80bac38so2749540e87.2;
-        Fri, 02 Jun 2023 06:59:46 -0700 (PDT)
+        with ESMTP id S235145AbjFBOKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:10:45 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E48198
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:10:40 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-53404873a19so1172666a12.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:10:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685714385; x=1688306385;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nTN3SqBStdfh47dkRHJQq2annqGcH5JYkK2qy9Njd5A=;
-        b=NlIcjLaqw+UJ4KMHwtXzN9tvEZMSxzwkfvzVg988ePm1k7mdTVc3Nc6ItSknw3wLvo
-         POZi029DR3dzEnfriPincsQejUzZckw1MH2qBUPxCDKliTPL59/El/Q9N9AII5rAh+Cz
-         VP8yXiVo8I4yg7KHWjMJmThZNjmcqXghnnKSLtfBkeuH89RkvOG7+NeLszWIhx9nQV/7
-         oCzuOsbvjbKigEnUwh3Q6dFaWebml9aG/iKhI8uKoUMLxPXTg93LkAC+AgOm9pKlMv0I
-         V3Wvvi0pd/Djyx1yO7HpFE5VvKaIYbiTVCHY7D//8dVGNRJhuMYsaTV7dDI/EXhV5zdt
-         9QgA==
+        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1685715039; x=1688307039;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KVK6hsAkr2t2TtBLH/UasFkOv83y2FFgyEi4rUpiTPY=;
+        b=5hRIGvKGBI4Q/6isoE6tLWyNH6CT5/+uchB5fWu0dzJu7sanhCiuiixE7XQgIDvNOU
+         RJwlYQKaWkRlFJ6orp1IUrWEpb7ormdJWXnMl2FR37z0PK6MTrcyhr/JGgmn69YAW/66
+         OLZzMhgaAAzP+VC0xrm6DxxZdJkXiedQIgTQBIqG88FyfssIHQIAbsHyly9TnTfbXF/K
+         5n97YjbLgRadx7mWXIupLOLjg3ppLhwUr0raM2BBz94USYeRnU01cKRW17PB+bfzYCLO
+         r0BDobNUJYoYAsw1xvCNSXocybJjYCbF4vsqSheiCIUorrxFIeaZCtXp0Yb1l4IzUoQt
+         Q3lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685714385; x=1688306385;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nTN3SqBStdfh47dkRHJQq2annqGcH5JYkK2qy9Njd5A=;
-        b=RXvHWD99IuRFbFent/VsQEmuGDFtNQ2gaeoXIfG0/NkstM5DPiOAswS8BCFriz2QF5
-         wfoa0N3YTFU2VAxYSAwcESfE3MuINIURsPS59rh5t45i4Mm4uCEFvY3TW8VQhn4bWOKq
-         Xnl6NxvM/LnIKT9kPzv6vnOBlYNMwCTu+wtm/G2N91uCZDRtyUrElMPOPAeJXU7ryNrV
-         92pM6y75ciWjFrXb+HPnqexlB+NY2W+zoKE3EB6fIj7GypmpedbXrvPI2B9tvBrWdukE
-         fxtBCdYdwV9WRto4GoU5bS6YoSA31/R0iteLR7kYj5bjv1/O2N11B+TckMnqgbyb/H0+
-         gGtA==
-X-Gm-Message-State: AC+VfDwiCYrXa1qQeloLm89kBfSkhcqxsrKe1wlAp/bSkw/eicmJzDRS
-        YOpIcgspd3hK1/wwckU3Ayc=
-X-Google-Smtp-Source: ACHHUZ7l909Tryh8qYkMllMSiYfajl6Ve8Ib66Jep6sx4kUqMNiBCc0vU3137Hc8OAifDcZmjGy9wg==
-X-Received: by 2002:a2e:87d6:0:b0:2ac:819f:f73f with SMTP id v22-20020a2e87d6000000b002ac819ff73fmr68955ljj.20.1685714384802;
-        Fri, 02 Jun 2023 06:59:44 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id e25-20020a2e8199000000b002adbf24212esm236579ljg.49.2023.06.02.06.59.43
+        d=1e100.net; s=20221208; t=1685715039; x=1688307039;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KVK6hsAkr2t2TtBLH/UasFkOv83y2FFgyEi4rUpiTPY=;
+        b=cAgJgBI6XOzU/0mzIbLDOIK8mBq2dmmNykDH/aHFxvltuA89sCofLal5G9jVl35M7l
+         DxUXOgp0082pRRMZu2f5YTEBmmExxi22w4aVqN2jTNeg+cPZW9jwtACbsiBY4Nf/qziL
+         IGnKsaEJdVuIGLJV4q4PGw9ylmEmkCpygHRgDachitO9iwRObj9prZNVFA9JLCDn/jyv
+         eg4Ty/tOFLbOLQuxltjjbs44uDbVyx5TV0IZNk6CkjRNf05uZye8olSqpGkCBELV1ctZ
+         hvw5H6WJ6GsjO6/s0cwGoDExBNEB89mmDtTiC4r8oUzx9ePHRrTNfwXK44lKpH1Um7tB
+         IMxA==
+X-Gm-Message-State: AC+VfDzJ9bBPujFQmCc+6qQnHACXZM6lkgkSt6v95GZrn0W20yEh174M
+        +Dyl2/P1Jb4XqN6Uo3DWN/KC7A==
+X-Google-Smtp-Source: ACHHUZ47rMkWSf8RU6yNVYqIGemVMae35FKf2485NhgAFsmoMvUsgA1ZCYUJcV1PB2Z2JJAc/et04w==
+X-Received: by 2002:a17:902:d489:b0:1b0:46af:7f15 with SMTP id c9-20020a170902d48900b001b046af7f15mr23079plg.64.1685715039585;
+        Fri, 02 Jun 2023 07:10:39 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.214])
+        by smtp.gmail.com with ESMTPSA id c11-20020a170902d48b00b0019e60c645b1sm1370878plg.305.2023.06.02.07.10.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jun 2023 06:59:44 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Kalle Valo <kvalo@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Arend Van Spriel <arend@broadcom.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] ARM: dts: BCM5301X: Add Netgear R8000 WiFi regulator mappings
-Date:   Fri,  2 Jun 2023 15:59:25 +0200
-Message-Id: <20230602135925.14143-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20230602135925.14143-1-zajec5@gmail.com>
-References: <20230602135925.14143-1-zajec5@gmail.com>
+        Fri, 02 Jun 2023 07:10:38 -0700 (PDT)
+From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, dianders@chromium.org,
+        hsinyi@google.com
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Subject: [PATCH 0/2] Add ili9882t timing
+Date:   Fri,  2 Jun 2023 22:09:46 +0800
+Message-Id: <20230602140948.2138668-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Add ili9882t dt-bindings and timing
 
-This allows setting FullMAC firmware regulatory domain.
+Cong Yang (2):
+  dt-bindings: input: touchscreen: Add ilitek 9882T touchscreen chip
+  HID: i2c-hid: elan: Add ili9882t timing
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/bcm4709-netgear-r8000.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ .../bindings/input/elan,ekth6915.yaml         | 36 ++++++++++++++-----
+ drivers/hid/i2c-hid/i2c-hid-of-elan.c         | 20 ++++++++---
+ 2 files changed, 43 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm4709-netgear-r8000.dts b/arch/arm/boot/dts/bcm4709-netgear-r8000.dts
-index 14303ab521ea..3552b6deffc2 100644
---- a/arch/arm/boot/dts/bcm4709-netgear-r8000.dts
-+++ b/arch/arm/boot/dts/bcm4709-netgear-r8000.dts
-@@ -137,8 +137,10 @@ bridge@0,0,0 {
- 		#size-cells = <2>;
- 
- 		wifi@0,1,0 {
-+			compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
- 			reg = <0x0000 0 0 0 0>;
- 			ieee80211-freq-limit = <5735000 5835000>;
-+			brcm,ccode-map = "JP-JP-78", "US-Q2-86";
- 		};
- 	};
- };
-@@ -159,6 +161,19 @@ bridge@1,1,0 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 
-+			bridge@1,0 {
-+				reg = <0x800 0 0 0 0>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+
-+				wifi@0,0 {
-+					compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
-+					reg = <0x0000 0 0 0 0>;
-+					brcm,ccode-map = "JP-JP-78", "US-Q2-86";
-+				};
-+			};
-+
- 			bridge@1,2,2 {
- 				reg = <0x1000 0 0 0 0>;
- 
-@@ -166,8 +181,10 @@ bridge@1,2,2 {
- 				#size-cells = <2>;
- 
- 				wifi@1,4,0 {
-+					compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
- 					reg = <0x0000 0 0 0 0>;
- 					ieee80211-freq-limit = <5170000 5730000>;
-+					brcm,ccode-map = "JP-JP-78", "US-Q2-86";
- 				};
- 			};
- 		};
 -- 
-2.35.3
+2.25.1
 
