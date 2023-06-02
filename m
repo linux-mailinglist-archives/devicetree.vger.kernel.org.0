@@ -2,163 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95D1371FCE4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4911571FCFA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:03:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234454AbjFBJA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 05:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57880 "EHLO
+        id S234944AbjFBJDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 05:03:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234265AbjFBJAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:00:22 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8FE78133;
-        Fri,  2 Jun 2023 02:00:20 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9B46E1063;
-        Fri,  2 Jun 2023 02:01:05 -0700 (PDT)
-Received: from [10.57.22.125] (unknown [10.57.22.125])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7BD903F663;
-        Fri,  2 Jun 2023 02:00:17 -0700 (PDT)
-Message-ID: <e82d7387-a299-20e5-3176-dce20966a10b@arm.com>
-Date:   Fri, 2 Jun 2023 10:00:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.1
-Subject: Re: [PATCH v4 07/11] coresight-tpdm: Add nodes for dsb edge control
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S234970AbjFBJCz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:02:55 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71471BC;
+        Fri,  2 Jun 2023 02:02:42 -0700 (PDT)
+X-UUID: 35640376012411eeb20a276fd37b9834-20230602
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=tkXvsKWiCiKvGwn/DYFIYckSfCXc3Ts7n72TyGWrQmc=;
+        b=FPa4fei4T/U5nTPHvMgqemEhIBYngoZHYXOhI0j9rFBOBsSz+DT/Agz5odsETxpgpCuHF5k0FzJcwagJJpDda4hUjDWeeknEtUyiUCX+vex0gyDIqKaa8G2rt8/weZxRGuE7l3SM2Rw4NAKj7eAdX9LC7V3pTBV1in65y9frUY0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.25,REQID:d1b47338-9435-4331-8e3a-64032cf64e36,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACT
+        ION:release,TS:75
+X-CID-INFO: VERSION:1.1.25,REQID:d1b47338-9435-4331-8e3a-64032cf64e36,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACT
+        ION:quarantine,TS:75
+X-CID-META: VersionHash:d5b0ae3,CLOUDID:44b95f3d-7aa7-41f3-a6bd-0433bee822f3,B
+        ulkID:230602170233GFCM3XCM,BulkQuantity:0,Recheck:0,SF:29|28|17|19|48|38,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-UUID: 35640376012411eeb20a276fd37b9834-20230602
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 256430585; Fri, 02 Jun 2023 17:02:32 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 2 Jun 2023 17:02:31 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 2 Jun 2023 17:02:30 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-8-git-send-email-quic_taozha@quicinc.com>
- <606b8a25-0468-c310-ccff-1477e2b238b2@arm.com>
- <c5c28ab8-7d6a-f8e7-ad34-8716ac77d2dc@quicinc.com>
- <a2bd3bbf-5512-971a-95a1-3220f31814a2@arm.com>
-In-Reply-To: <a2bd3bbf-5512-971a-95a1-3220f31814a2@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Yong Wu <yong.wu@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <iommu@lists.linux.dev>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <mingyuan.ma@mediatek.com>,
+        <yf.wang@mediatek.com>, <jianjiao.zeng@mediatek.com>,
+        <chengci.xu@mediatek.com>
+Subject: [PATCH v12 0/7] MT8188 IOMMU SUPPORT
+Date:   Fri, 2 Jun 2023 17:02:20 +0800
+Message-ID: <20230602090227.7264-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RDNS_NONE,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2023 09:45, Suzuki K Poulose wrote:
-> On 02/06/2023 09:21, Tao Zhang wrote:
->>
->> On 6/1/2023 8:14 PM, Suzuki K Poulose wrote:
->>> On 27/04/2023 10:00, Tao Zhang wrote:
->>>> Add the nodes to set value for DSB edge control and DSB edge
->>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
->>>> resgisters to configure edge control. DSB edge detection control
->>>> 00: Rising edge detection
->>>> 01: Falling edge detection
->>>> 10: Rising and falling edge detection (toggle detection)
->>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
->>>> configure mask. Eight 32 bit registers providing DSB interface
->>>> edge detection mask control.
->>>>
->>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>> ---
->>>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
->>>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 135 
->>>> ++++++++++++++++++++-
->>>>   drivers/hwtracing/coresight/coresight-tpdm.h       |  21 ++++
->>>>   3 files changed, 187 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git 
->>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>> index 348e167..a57f000 100644
->>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>> @@ -60,3 +60,35 @@ Description:
->>>>           Bit[3] : Set to 0 for low performance mode.
->>>>                    Set to 1 for high performance mode.
->>>>           Bit[4:8] : Select byte lane for high performance mode.
->>>> +
->>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
->>>> +Date:        March 2023
->>>> +KernelVersion    6.3
->>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>> +Description:
->>>> +        Read/Write a set of the edge control registers of the DSB
->>>> +        in TPDM.
->>>> +
->>>> +        Expected format is the following:
->>>> +        <integer1> <integer2> <integer3>
->>>> +
->>>> +        Where:
->>>> +        <integer1> : Start EDCR register number
->>>> +        <integer2> : End EDCR register number
->>>> +        <integer3> : The value need to be written
->>>> +
->>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl_mask
->>>> +Date:        March 2023
->>>> +KernelVersion    6.3
->>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>> +Description:
->>>> +        Read/Write a set of the edge control mask registers of the
->>>> +        DSB in TPDM.
->>>> +
->>>> +        Expected format is the following:
->>>> +        <integer1> <integer2> <integer3>
->>>> +
->>>> +        Where:
->>>> +        <integer1> : Start EDCMR register number
->>>> +        <integer2> : End EDCMR register number
->>>> +        <integer3> : The value need to be written
->>>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->>>> b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>> index 1bacaa5..a40e458 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>> @@ -80,7 +80,14 @@ static void set_trigger_type(struct tpdm_drvdata 
->>>> *drvdata, u32 *val)
->>>>     static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->>>>   {
->>>> -    u32 val;
->>>> +    u32 val, i;
->>>> +
->>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++)
->>>> +        writel_relaxed(drvdata->dsb->edge_ctrl[i],
->>>> +               drvdata->base + TPDM_DSB_EDCR(i));
->>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCMR; i++)
->>>> +        writel_relaxed(drvdata->dsb->edge_ctrl_mask[i],
->>>> +               drvdata->base + TPDM_DSB_EDCMR(i));
->>>
->>> Do all TPDM DSBs have MAX_EDCR registers ? Or some have less than that ?
->>> If it is latter, do we need special care to avoid writing to inexistent
->>> registers ?
->>>
->> You are right, not all DSB TPDMs have MAX_EDCR registers. In our 
->> design, the inexistent register addresses
->>
->> are not occupied and safe for accessing.
+MT8188 have 3 IOMMU HWs. 2 IOMMU HW is for multimedia, and 1 IOMMU HW
+is for infra-master, like PCIe.
 
-Does the TRM for the component say so ? Or is it by luck ? If the spec
-says it is RAZ/WriteIgnore, then we could keep the code as it is,
-with a comment. Otherwise, we could add a DT property. So please get
-this clarified with the H/W designers.
+About the 2 MM IOMMU HW, the connection could be something like this:
 
-Suzuki
+        IOMMU(VDO)          IOMMU(VPP)
+           |                   |
+      SMI_COMMON(VDO)      SMI_COMMON(VPP)
+      ---------------     ----------------
+      |      |   ...      |      |     ...
+    larb0 larb2  ...    larb1 larb3    ...
+
+INFRA IOMMU does not have SMI, the master connects to IOMMU directly.
+
+Although multiple banks supported in MT8188, we only use one of them,
+which means PCIe is put in bank0 of INFRA IOMMU.
+
+So we have two pgtable for MT8188, specifically, these two MM IOMMU HW
+share a pgtable while INFRA IOMMU HW use a independent pgtable.
+
+Another change is that we add some SMC command for INFRA master to 
+enable INFRA IOMMU in ATF considering security concerns.
+
+We also adjust the flow of mtk_iommu_config to reduce indention.
+
+Change in v12:
+  - Change nothing. Just rebase on v6.4-rc4 and collect AngeloGioacchino's R-b.
+
+change in v11:
+  https://lore.kernel.org/linux-iommu/20230418083514.4379-1-yong.wu@mediatek.com/
+  - Just add a new entry in MAINTAINERS from AngeloGioacchino.
+
+change in v10:
+  https://lore.kernel.org/linux-mediatek/20230417073606.25729-1-yong.wu@mediatek.com/
+  - Add a Fixes tag for [2/7].
+  - Rebase on mtk-iommu-dma-range-v7:
+    https://lore.kernel.org/linux-mediatek/20230411093144.2690-1-yong.wu@mediatek.com/
+
+change since v9:
+  https://lore.kernel.org/linux-mediatek/20230317085541.20447-1-yong.wu@mediatek.com/
+  - Move the patch about setting set_dma_mask out from this patchset.
+  - Add a MAINTAINER patch since the header file was added a prefix "mediatek,"
+
+change since v8:
+    https://lore.kernel.org/linux-mediatek/20230307080555.14399-1-yong.wu@mediatek.com/
+  - Base on v6.3-rc1 and mtk-iommu-dma-range-v5:
+    https://lore.kernel.org/linux-mediatek/20230307023507.13306-1-yong.wu@mediatek.com/
+  - Add a new patch set_dma_mask about since mt8188 support the PA of pgtable 35bits.
+
+changes since v7:
+    https://lore.kernel.org/linux-mediatek/20230216053322.11596-1-yong.wu@mediatek.com/
+  - Base on mtk-iommu-dma-range-v4:
+    https://lore.kernel.org/linux-mediatek/20230215062544.8677-1-yong.wu@mediatek.com/
+  - Add a new patch for two IOMMU share pagetable issue.
+  - Add a new patch for adding iova_region_larb_msk for mt8188.
+  - Add the comment in the dt-binding header file about larb index.
+    This is for readable when updating the iova_region_larb_msk.
+    
+    Since there is something wrong for chengci's mail account when sending
+    to devicetree mail list, we don't know why. I help send this patchset.
+    https://lore.kernel.org/linux-mediatek/5a916595-12ee-92e6-d380-84146dd75218@linaro.org/
+
+changes since v6:
+    https://lore.kernel.org/linux-mediatek/20221223101439.494-1-chengci.xu@mediatek.com/
+  - base on tag: next-20221220.
+  - update commit message of patch[2/4].
+
+changes since v5:
+  - base on tag: next-20221205.
+  - add flag PGTABLE_PA_35_EN for all IOMMU in MT8188.
+  - modify the type of "portid_msk" from "u32" to "unsigned long".
+
+changes since v4:
+  - base on tag: next-20221018.
+  - add patch[2/4] to reduce indention by adjust mtk_iommu_config flow.
+
+changes since v3:
+  - base on tag: next-20220916.
+  - use license "GPL-2.0-only OR BSD-2-Clause" in bingings head file.
+  - drop redundant "portid" assignment when configure infra master.
+  - reduce indentation by using "else if" when config infra master.
+  - update probe flow about "pericfg" for CFG_IFA_MASTER_IN_ATF.
+  - drop unused "pericfg_comp_str" in mt8188_data_infra.
+  - drop words like "This commit/patch".
+
+changes since v2:
+  - base on tag: next-20220831.
+  - rename "mt8188-memory-port.h" to "mediatek,mt8188-memory-port.h".
+  - use dual-license in "mediatek,mt8188-memory-port.h"
+  - remove unnecessary "()" when define SMI_LARB_ID
+
+changes since v1:
+  - base on tag: next-20220803.
+  - adds MT8188 IOMMU support.
+
+Chengci.Xu (5):
+  dt-bindings: mediatek: mt8188: Add binding for MM & INFRA IOMMU
+  iommu/mediatek: Fix two IOMMU share pagetable issue
+  iommu/mediatek: Adjust mtk_iommu_config flow
+  iommu/mediatek: Add enable IOMMU SMC command for INFRA masters
+  iommu/mediatek: Add MT8188 IOMMU Support
+
+Yong Wu (2):
+  iommu/mediatek: mt8188: Add iova_region_larb_msk
+  MAINTAINERS: iommu/mediatek: Update the header file name
+
+ .../bindings/iommu/mediatek,iommu.yaml        |  12 +-
+ MAINTAINERS                                   |   1 +
+ drivers/iommu/mtk_iommu.c                     | 151 ++++--
+ .../memory/mediatek,mt8188-memory-port.h      | 489 ++++++++++++++++++
+ include/soc/mediatek/smi.h                    |   1 +
+ 5 files changed, 622 insertions(+), 32 deletions(-)
+ create mode 100644 include/dt-bindings/memory/mediatek,mt8188-memory-port.h
+
+-- 
+2.18.0
+
+
