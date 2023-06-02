@@ -2,171 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57920720667
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 17:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5186F7206C7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 18:05:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236263AbjFBPj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 11:39:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51652 "EHLO
+        id S235809AbjFBQFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 12:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235166AbjFBPjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 11:39:44 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705C2B3;
-        Fri,  2 Jun 2023 08:39:42 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (om126156168104.26.openmobile.ne.jp [126.156.168.104])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 59056844;
-        Fri,  2 Jun 2023 17:39:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1685720358;
-        bh=oS6EYP4XE+4+Oq5RWtM0y/AhtxVoU4P0IParV/DSkvU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AXgTufZQ71XnC0V7x+tLy2k6qTbqMDBHZurvVir7B9UOJuZ09uIdgys8tuIHCaikH
-         Kj9OAgtplwCJ2kk/125+ZdsWIacov/gA2BYNUOK+GX3dnxdeRiV08Pf5ox/azMwXQa
-         nGY8Y40jtIslJuvb4NhuzKodCRsfqgDXLXf+jFX0=
-Date:   Fri, 2 Jun 2023 18:39:38 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Johannes Zink <j.zink@pengutronix.de>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        kernel test robot <lkp@intel.com>,
-        Dan Carpenter <error27@gmail.com>,
-        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] drm/panel-simple: allow LVDS format override
-Message-ID: <20230602153938.GC3343@pendragon.ideasonboard.com>
-References: <20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de>
- <20230523-simplepanel_support_nondefault_datamapping-v2-3-87196f0d0b64@pengutronix.de>
+        with ESMTP id S234982AbjFBQFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 12:05:23 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D3D671B8;
+        Fri,  2 Jun 2023 09:05:20 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0B4A81063;
+        Fri,  2 Jun 2023 09:06:06 -0700 (PDT)
+Received: from [10.57.22.125] (unknown [10.57.22.125])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 007AE3F7BD;
+        Fri,  2 Jun 2023 09:05:17 -0700 (PDT)
+Message-ID: <9d724c1d-ef76-8a9f-a55b-814ba8ceb83a@arm.com>
+Date:   Fri, 2 Jun 2023 17:05:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v2-3-87196f0d0b64@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.11.1
+Subject: Re: [PATCH v4 07/11] coresight-tpdm: Add nodes for dsb edge control
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
+ <1682586037-25973-8-git-send-email-quic_taozha@quicinc.com>
+ <606b8a25-0468-c310-ccff-1477e2b238b2@arm.com>
+ <c5c28ab8-7d6a-f8e7-ad34-8716ac77d2dc@quicinc.com>
+ <a2bd3bbf-5512-971a-95a1-3220f31814a2@arm.com>
+ <19bd262c-9063-5c7c-02b2-aa507c8c2a31@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <19bd262c-9063-5c7c-02b2-aa507c8c2a31@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johannes,
-
-Thank you for the patch.
-
-On Tue, May 23, 2023 at 10:19:43AM +0200, Johannes Zink wrote:
-> Some panels support multiple LVDS data mapping formats, which can be
-> used e.g. run displays on jeida-18 format when only 3 LVDS lanes are
-> available.
+On 02/06/2023 15:38, Tao Zhang wrote:
 > 
-> Add parsing of an optional data-mapping devicetree property, which also
-> touches up the bits per color to match the bus format.
+> On 6/2/2023 4:45 PM, Suzuki K Poulose wrote:
+>> On 02/06/2023 09:21, Tao Zhang wrote:
+>>>
+>>> On 6/1/2023 8:14 PM, Suzuki K Poulose wrote:
+>>>> On 27/04/2023 10:00, Tao Zhang wrote:
+>>>>> Add the nodes to set value for DSB edge control and DSB edge
+>>>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
+>>>>> resgisters to configure edge control. DSB edge detection control
+>>>>> 00: Rising edge detection
+>>>>> 01: Falling edge detection
+>>>>> 10: Rising and falling edge detection (toggle detection)
+>>>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
+>>>>> configure mask. Eight 32 bit registers providing DSB interface
+>>>>> edge detection mask control.
+>>>>>
+>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>>> ---
+>>>>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
+>>>>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 135 
+>>>>> ++++++++++++++++++++-
+>>>>>   drivers/hwtracing/coresight/coresight-tpdm.h       |  21 ++++
+>>>>>   3 files changed, 187 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git 
+>>>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
+>>>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>>> index 348e167..a57f000 100644
+>>>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>>> @@ -60,3 +60,35 @@ Description:
+>>>>>           Bit[3] : Set to 0 for low performance mode.
+>>>>>                    Set to 1 for high performance mode.
+>>>>>           Bit[4:8] : Select byte lane for high performance mode.
+>>>>> +
+>>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
+>>>>> +Date:        March 2023
+>>>>> +KernelVersion    6.3
+>>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
+>>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
+>>>>> +Description:
+>>>>> +        Read/Write a set of the edge control registers of the DSB
+>>>>> +        in TPDM.
+>>>>> +
+>>>>> +        Expected format is the following:
+>>>>> +        <integer1> <integer2> <integer3>
+>>>>> +
+>>>>> +        Where:
+>>>>> +        <integer1> : Start EDCR register number
+>>>>> +        <integer2> : End EDCR register number
+>>>>> +        <integer3> : The value need to be written
+>>>>> +
+>>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl_mask
+>>>>> +Date:        March 2023
+>>>>> +KernelVersion    6.3
+>>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
+>>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
+>>>>> +Description:
+>>>>> +        Read/Write a set of the edge control mask registers of the
+>>>>> +        DSB in TPDM.
+>>>>> +
+>>>>> +        Expected format is the following:
+>>>>> +        <integer1> <integer2> <integer3>
+>>>>> +
+>>>>> +        Where:
+>>>>> +        <integer1> : Start EDCMR register number
+>>>>> +        <integer2> : End EDCMR register number
+>>>>> +        <integer3> : The value need to be written
+>>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
+>>>>> b/drivers/hwtracing/coresight/coresight-tpdm.c
+>>>>> index 1bacaa5..a40e458 100644
+>>>>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+>>>>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+>>>>> @@ -80,7 +80,14 @@ static void set_trigger_type(struct tpdm_drvdata 
+>>>>> *drvdata, u32 *val)
+>>>>>     static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>>>>>   {
+>>>>> -    u32 val;
+>>>>> +    u32 val, i;
+>>>>> +
+>>>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++)
+>>>>> +        writel_relaxed(drvdata->dsb->edge_ctrl[i],
+>>>>> +               drvdata->base + TPDM_DSB_EDCR(i));
+>>>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCMR; i++)
+>>>>> + writel_relaxed(drvdata->dsb->edge_ctrl_mask[i],
+>>>>> +               drvdata->base + TPDM_DSB_EDCMR(i));
+>>>>
+>>>> Do all TPDM DSBs have MAX_EDCR registers ? Or some have less than 
+>>>> that ?
+>>>> If it is latter, do we need special care to avoid writing to inexistent
+>>>> registers ?
+>>>>
+>>> You are right, not all DSB TPDMs have MAX_EDCR registers. In our 
+>>> design, the inexistent register addresses
+>>>
+>>> are not occupied and safe for accessing.
+>>>
+>>> Currently we don't have a good way to know the quantity of EDCR/EDCMR 
+>>> registers for DSB TPDMs.
+>>>
+>>> The only way we can think of is to set it in device tree manually.
+>>>
+>>> Do you have other suggestion for this?
+>>>
+>>>>>         val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
+>>>>>       /* Set trigger timestamp */
+>>>>> @@ -313,6 +320,130 @@ static ssize_t dsb_mode_store(struct device 
+>>>>> *dev,
+>>>>>   }
+>>>>>   static DEVICE_ATTR_RW(dsb_mode);
+>>>>>   +static ssize_t dsb_edge_ctrl_show(struct device *dev,
+>>>>> +                       struct device_attribute *attr,
+>>>>> +                       char *buf)
+>>>>> +{
+>>>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>>>>> +    ssize_t size = 0;
+>>>>> +    int i;
+>>>>> +
+>>>>> +    spin_lock(&drvdata->spinlock);
+>>>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
+>>>>> +        size += sysfs_emit_at(buf, size,
+>>>>> +                  "Index:0x%x Val:0x%x\n", i,
+>>>>> +                  drvdata->dsb->edge_ctrl[i]);
+>>>>
+>>>> It may be safe, but please add a check to make sure that we don't
+>>>> overflow. At least bail out when we hit a return of 0, indicating
+>>>> reached the end of buffer.
+>>>>
+>>> Can I add the following check to replace the current code??
+>>>
+>>> int ret = 0;
+>>>
+>>>
+>>> for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
+>>>
+>>>      ret = sysfs_emit_at(buf, size, "Index:0x%x Val:0x%x\n", i, 
+>>> drvdata->dsb->edge_ctrl[i]);
+>>>
+>>>      if (!ret) {
+>>>
+>>>          dev_warn(drvdata->dev, "The buffer has been overflowed\n");
+>>
+>> You don't need this, it already triggers a WARN() in sysfs_emit_at().
+>> So you could do:
+>>
+>>     for (....) {
+>>         unsigned long bytes = sysfs_emit_at(buf, size, ....);
+>>
+>>         if (bytes <= 0)
+>>             break;
+>>         size += bytes;
+>>     }
+>>
+> Sure, I will update in the next patch series.
+>>
+>>>
+>>>          spin_unlock(&drvdata->spinlock);
+>>>
+>>>          return size;
+>>>
+>>>      } else
+>>>
+>>>          size += ret;
+>>>
+>>> }
+>>>
+>>>>> +    }
+>>>>> +    spin_unlock(&drvdata->spinlock);
+>>>>> +    return size;
+>>>>> +}
+>>>>> +
+>>>>> +/*
+>>>>> + * value 1: Start EDCR register number
+>>>>> + * value 2: End EDCR register number
+>>>>> + * value 3: The value need to be written
+>>>>> + * The EDCR registers can include up to 16 32-bit registers, and each
+>>>>> + * one can be configured to control up to 16 edge detections(2 bits
+>>>>> + * control one edge detection). So a total 256 edge detections can be
+>>>>> + * configured. So the starting number(value 1) and ending 
+>>>>> number(value 2)
+>>>>> + * cannot be greater than 256, and value 1 should be less than 
+>>>>> value 2.
+>>>>> + * The following values are the rage of value 3.
+>>>>> + * 0 - Rising edge detection
+>>>>> + * 1 - Falling edge detection
+>>>>> + * 2 - Rising and falling edge detection (toggle detection)
+>>>>> + */
+>>>>> +static ssize_t dsb_edge_ctrl_store(struct device *dev,
+>>>>> +                    struct device_attribute *attr,
+>>>>> +                    const char *buf,
+>>>>> +                    size_t size)
+>>>>> +{
+>>>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>>>>> +    unsigned long val, mask, start, end, edge_ctrl, edge_ctrl_shift;
+>>>>> +    int i, reg;
+>>>>> +
+>>>>> +    if (sscanf(buf, "%lx %lx %lx", &start, &end, &edge_ctrl) != 3)
+>>>>> +        return -EINVAL;
+>>>>> +    if ((start >= TPDM_DSB_MAX_LINES) || (end >= 
+>>>>> TPDM_DSB_MAX_LINES) ||
+>>>>> +        (start > end) || (edge_ctrl > 0x2))
+>>>>> +        return -EPERM;
+>>>>> +
+>>>>> +    spin_lock(&drvdata->spinlock);
+>>>>> +    for (i = start; i <= end; i++) {
+>>>>> +        /*
+>>>>> +         * There are 2 bit per DSB Edge Control line.
+>>>>> +         * Thus we have 16 lines in a 32bit word.
+>>>>> +         */
+>>>>> +        reg = EDCR_TO_WORD_IDX(i);
+>>>>> +        mask = EDCR_TO_WORD_MASK(i);
+>>>>> +        val = drvdata->dsb->edge_ctrl[reg];
+>>>>
+>>>>> +        edge_ctrl_shift = EDCR_TO_WORD_VAL(edge_ctrl, i);
+>>>>> +        bitmap_replace(&val, &val, &edge_ctrl_shift, &mask, 32);
+>>>>
+>>>> Could we simply do :
+>>>>
+>>>>         reg &= ~mask;
+>>>>         reg |= FIELD_PREP(mask, edge_ctrl);
+>>>>
+>>> Perhaps "FIELD_PREP" cannot be used here since "mask" must be 
+>>> constant in this macro.
+>>
+>> Ah, you are right. Sorry about that.
+>>
+>>>
+>>> But in our code, the variable "mask" is not constant.
+>>
+>> Still I think using the bitmap_replace is an overkill. We could simply
+>> do:
+>>         val &= ~mask;
+>>         val |= EDCR_TO_WORD_VAL(edge_ctrl, i);
 
-Of course one could argue that the innolux,g101ice-l01 panel should have
-used the panel-lvds bindings... :-)
+Since we don't need mask any longer we could even do :
 
-> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> 
-> ---
-> 
-> Changes:
-> 
->   v1 -> v2: - fix missing unwind goto found by test robot
->               Reported-by: kernel test robot <lkp@intel.com>
->               Reported-by: Dan Carpenter <error27@gmail.com>
->               Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
-> ---
->  drivers/gpu/drm/panel/panel-simple.c | 39 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 38 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 2a9c1a785a5c..0a35fdb49ccb 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -40,6 +40,7 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_mipi_dsi.h>
->  #include <drm/drm_panel.h>
-> +#include <drm/drm_of.h>
->  
->  /**
->   * struct panel_desc - Describes a simple panel.
-> @@ -559,7 +560,7 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
->  	struct device_node *ddc;
->  	int connector_type;
->  	u32 bus_flags;
-> -	int err;
-> +	int err, ret;
->  
->  	panel = devm_kzalloc(dev, sizeof(*panel), GFP_KERNEL);
->  	if (!panel)
-> @@ -605,6 +606,42 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
->  			panel_simple_parse_panel_timing_node(dev, panel, &dt);
->  	}
->  
-> +
+	   val &= ~EDCR_TO_WORD_MASK(i);
+	   val |= EDCR_TO_WORD_VAL(edge_ctrl, i);
 
-Double blank line.
 
-> +	/* optional data-mapping property for overriding bus format */
+Suzuki
 
-s/optional/Optional/
 
-> +	ret = drm_of_lvds_get_data_mapping(dev->of_node);
-> +	if (ret == -EINVAL) {
-> +		dev_warn(dev, "Ignore invalid data-mapping property");
-> +	} else if (ret != -ENODEV) {
-
-If someone incorrectly sets the property in DT for a non-LVDS panel,
-the result won't be nice. That's of course a DT issue, but I wonder if
-we could/should protect against it. You could move this code to a
-separate function (which would have the added benefit of lowering the
-indentation level as you can return early in error cases), and call it
-from panel_simple_probe() only if the panel is an LVDS panel (as
-reported by its desc->bus_format value).
-
-> +		int bpc;
-> +
-> +		switch (ret) {
-> +		default:
-> +			WARN_ON(1);
-> +			fallthrough;
-> +		case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
-> +			fallthrough;
-> +		case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
-> +			bpc = 8;
-> +			break;
-> +		case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-> +			bpc = 6;
-> +		}
-> +
-> +		if (desc->bpc != bpc || desc->bus_format != ret) {
-> +			struct panel_desc *override_desc;
-> +
-> +			override_desc = devm_kmemdup(dev, desc, sizeof(*desc), GFP_KERNEL);
-> +			if (!override_desc) {
-> +				err = -ENOMEM;
-> +				goto free_ddc;
-> +			}
-> +
-> +			override_desc->bus_format = ret;
-> +			override_desc->bpc = bpc;
-> +			panel->desc = override_desc;
-> +		}
-> +	}
-> +
->  	connector_type = desc->connector_type;
->  	/* Catch common mistakes for panels. */
->  	switch (connector_type) {
-
--- 
-Regards,
-
-Laurent Pinchart
