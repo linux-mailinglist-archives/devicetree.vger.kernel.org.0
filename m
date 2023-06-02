@@ -2,69 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 515817209FE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 21:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09895720AF3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 23:25:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235923AbjFBTnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 15:43:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43074 "EHLO
+        id S235681AbjFBVY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 17:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235353AbjFBTnk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 15:43:40 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E21B19B;
-        Fri,  2 Jun 2023 12:43:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=p2kx53FIkLSzM3l59PYme95Et3nogdbgkEjsVJ+GbYY=; b=mBN8lN82hw72k5hWdJGwf9dN7a
-        nCTt8kw/sUpcFmsarHCKX/+XUQGB/bn/IGgc1kGZFdICq0TO6B6+hiQMPJottKXIxFa92Y0w+1inY
-        pBzrIjkMP8jPOtmhlHlrz0t4WX8xHBYL3ZExa3hsvhgHp4iciYV8qeHDjfKcycH//mvA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1q5AgG-00EhxJ-4o; Fri, 02 Jun 2023 21:43:24 +0200
-Date:   Fri, 2 Jun 2023 21:43:24 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Detlev Casanova <detlev.casanova@collabora.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234676AbjFBVYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 17:24:55 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C09EE48;
+        Fri,  2 Jun 2023 14:24:53 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 352LOhKJ098321;
+        Fri, 2 Jun 2023 16:24:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685741083;
+        bh=RCcliWkAS05ERjj+1p4ib8PPrDkwvU8L32PWoE2CMjQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=QpmJFj4r7WOUzeObc8oO7geeXZXbT6+r5FZowcLtdhpXLwRNAQhewv0AGRF7Z+eBr
+         BgqEANZO4mjmmiofBtZTPLOqrJrgvdBfgl1HOdPPBt1VNUt+Mm9Bdt7kpo5MVKw5EE
+         AwA7ZHqxWcddj2UgcT6C6TfjnAPP/TiN85ZUYbFI=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 352LOhvc003170
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 2 Jun 2023 16:24:43 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ Jun 2023 16:24:43 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 Jun 2023 16:24:43 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 352LOhKP059668;
+        Fri, 2 Jun 2023 16:24:43 -0500
+Date:   Fri, 2 Jun 2023 16:24:43 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Thejasvi Konduru <t-konduru@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: net: phy: Document support for
- external PHY clk
-Message-ID: <b188ba63-5e9e-403b-9caa-a52085279e3d@lunn.ch>
-References: <20230602182659.307876-1-detlev.casanova@collabora.com>
- <20230602182659.307876-3-detlev.casanova@collabora.com>
- <4255bc0a-491c-4fbb-88ea-ec1d864a1a24@lunn.ch>
- <2288019.ElGaqSPkdT@arisu>
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Apurva Nandan <a-nandan@ti.com>, Udit Kumar <u-kumar1@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and
+ pinctrl node offsets
+Message-ID: <20230602212443.diuhlfah7an4b4cj@unrigged>
+References: <20230503083143.32369-1-t-konduru@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <2288019.ElGaqSPkdT@arisu>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230503083143.32369-1-t-konduru@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> What about "Ethernet PHYs can have an external clock that needs to be 
-> activated before communicating with the PHY" ?
+On 14:01-20230503, Thejasvi Konduru wrote:
+> The wkup_pmx register region in j784s4 has multiple non-addressable
+> regions, hence the existing wkup_pmx region is split as follows to
+> avoid the non-addressable regions. The pinctrl node offsets are
+> also corrected as per the newly split wkup_pmx* nodes.
+> 
+> wkup_pmx0 -> 13 pins (WKUP_PADCONFIG 0 - 12)
+> wkup_pmx1 -> 11 pins (WKUP_PADCONFIG 14 - 24)
+> wkup_pmx2 -> 72 pins (WKUP_PADCONFIG 26 - 97)
+> wkup_pmx3 -> 1 pin (WKUP_PADCONFIG 100)
+> 
+> Fixes: 4664ebd8346a ("arm64: dts: ti: Add initial support for J784S4 SoC")
+> Signed-off-by: Thejasvi Konduru <t-konduru@ti.com>
 
-That good.
 
-Thanks
-	Andrew
+Reviewed-by: Nishanth Menon <nm@ti.com>
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
