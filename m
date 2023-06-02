@@ -2,110 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7004C7205A7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 17:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DFFC7205BE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 17:18:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235675AbjFBPO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 11:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35064 "EHLO
+        id S236159AbjFBPSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 11:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232743AbjFBPO1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 11:14:27 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28929E6A;
-        Fri,  2 Jun 2023 08:14:04 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-33d31ab00bdso6054245ab.3;
-        Fri, 02 Jun 2023 08:14:04 -0700 (PDT)
+        with ESMTP id S235527AbjFBPSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 11:18:42 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAAC21B6
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 08:18:39 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-199dd37f0e4so1874694fac.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 08:18:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1685719119; x=1688311119;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=j+4qhMVi0B2zvgx90anQBBrvjjddXuuOegU4U4Gosus=;
+        b=rwu/awid8mbBUkkrdNfJbUZPK0KJw/j9t/TLB2JEuyo6ORAM34xCOyR7LehjawTI4q
+         5dNRX9+C1v5jxJKva3mFO/HWVww8cvieiBUnaaaV1J4yLpTOQbZmkZmkfshEVPpq02i1
+         A6SZWwQZH7F1H8IwE4GJFh0wMaPwR+GNGa0UKCAftKRfRQZ7Ms1IoGRaGLUcHJ+kprbO
+         cPUD3NXxQ0upLj+fBzsmHP5DWKdBecEVtRcg3TGnOrz35Wna8ymXPxyR1opb2nQE7uUO
+         NbY3ZPNSjc/qsss8eo6KMLTDyQTYNTbzf33swrXr0rRUJ1T6jDMWtw4pFDDoMTRgpjMi
+         thwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685718843; x=1688310843;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lNz7EHfJCZ4aAXNJupCemelGLErGlUkCq/uI3p2KECg=;
-        b=mGN6DKD2642hDOuCB9yKNkoQk5RNghflHBRSJDvQzRhDkg9NxsE9W0cCK19ZY5UJ+e
-         6Tu7528QeY41jsNGUHO0ARre4Ll4bH26sMsV668R61aD/Q1CktPvvipFlBqwHVtM1EEk
-         VBS87jDbbjaMT5Bz+0z+1rpijHMOhG7LVcRI9eWFPQHhuQuyrSWr0aSYyu1352uFVR//
-         CVhOsVaWQFmWVcmipiNxfi2V7KeawiAne2Ep/lj/TfLSONZqHSoDEy98VuT0SA1WH949
-         Yj0iwHrehFYU1N+CswdnUkfyvEcpTg1sMmPKNcmBksoxd8BLJHdtYaSY2g6L31jONGnm
-         WnVw==
-X-Gm-Message-State: AC+VfDzBJ78m7SP0A7ZpD9eEsCHK2C6IAmCB6XV3fSHsVTVuScwae4Rv
-        I4NNZ0M8BbAwmpgzBGOgEFWykFJGew==
-X-Google-Smtp-Source: ACHHUZ5hifGlPbShyifnNwL6jsL1rlCdiGUoMjSlMjkQA5lNYQz6/XQU9zNiJLKcr2k7S4Myxlx1xQ==
-X-Received: by 2002:a92:d1c3:0:b0:33b:6f65:2dd0 with SMTP id u3-20020a92d1c3000000b0033b6f652dd0mr9427113ilg.29.1685718843212;
-        Fri, 02 Jun 2023 08:14:03 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id l11-20020a92290b000000b003351835c53fsm357919ilg.19.2023.06.02.08.14.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jun 2023 08:14:02 -0700 (PDT)
-Received: (nullmailer pid 1767457 invoked by uid 1000);
-        Fri, 02 Jun 2023 15:14:00 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1685719119; x=1688311119;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j+4qhMVi0B2zvgx90anQBBrvjjddXuuOegU4U4Gosus=;
+        b=JFFQxIE0hxvIdeyPTRuKdPXcqZWJhNCI5jgVRxdiqti3BA7S7G2B+/oKmAV37CYPWK
+         9JoFieOOujr7Y031XXlHfIJzLKbhkLMf2v5Q+O48Y/pGuXpku9HQvarX1c+bJVugS8On
+         tNfufkPzyl2Vj9zWuHPms4QBEoD9gJ4JksYtR2hdoZ5dZbL6uBoKwBMZii5kUGdZKo14
+         URUhcuYfrQV9CsywUfxTE2oitSkCX/B5tK8RE15+o94EHuw8SlVSlMdTx8vQcl4TarPZ
+         ggKOXtBRqpA8FMw5xicEC+Jevu8nNWvrJL+R4+U7PpaUX4zjZkVLp3zFvhvbHSG6OI/8
+         HxHw==
+X-Gm-Message-State: AC+VfDzdo7vASFXz//paRsP1HVEzbYltnH/nCNPdFWZGIt+V3P6HuCCt
+        bgZouJhsQYom0oQZ7rVz63GqJRUSNJpzDvTcbetrkIzKW9f2YwYLuD4=
+X-Google-Smtp-Source: ACHHUZ4qNh10ksxpPcM8GSsDr5lZGOevUabbbtBIaMFlh1DQSfYsF01uMvxSaFWA3m8/5+XGtJ6T84n3/iFiUCovydE=
+X-Received: by 2002:a05:6358:63a5:b0:121:4227:8d7c with SMTP id
+ k37-20020a05635863a500b0012142278d7cmr5974574rwh.14.1685719119257; Fri, 02
+ Jun 2023 08:18:39 -0700 (PDT)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     dmitry.torokhov@gmail.com, jikos@kernel.org, conor+dt@kernel.org,
-        linux-input@vger.kernel.org, benjamin.tissoires@redhat.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        hsinyi@google.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, dianders@chromium.org
-In-Reply-To: <20230602140948.2138668-2-yangcong5@huaqin.corp-partner.google.com>
-References: <20230602140948.2138668-1-yangcong5@huaqin.corp-partner.google.com>
- <20230602140948.2138668-2-yangcong5@huaqin.corp-partner.google.com>
-Message-Id: <168571884052.1767438.8020984972654545636.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
- touchscreen chip
-Date:   Fri, 02 Jun 2023 09:14:00 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
+ <20230530173000.3060865-13-dave.stevenson@raspberrypi.com> <oxixqip6yhr3huqg4odozxqrtb6zqpbnla6eytrcdpeurclwor@z6dvre5jgji4>
+In-Reply-To: <oxixqip6yhr3huqg4odozxqrtb6zqpbnla6eytrcdpeurclwor@z6dvre5jgji4>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Fri, 2 Jun 2023 16:18:22 +0100
+Message-ID: <CAPY8ntB-pOcCwwyrPAXNKU19cx0pY3TF6oZ9YnOUFg81jGc=Fg@mail.gmail.com>
+Subject: Re: [PATCH 12/21] media: i2c: imx258: Allow configuration of clock
+ lane behaviour
+To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jacopo
 
-On Fri, 02 Jun 2023 22:09:47 +0800, Cong Yang wrote:
-> Add an ilitek touch screen chip ili9882t.
-> 
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../bindings/input/elan,ekth6915.yaml         | 36 ++++++++++++++-----
->  1 file changed, 27 insertions(+), 9 deletions(-)
-> 
+On Fri, 2 Jun 2023 at 14:27, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
+>
+> Hi Dave
+>
+> On Tue, May 30, 2023 at 06:29:51PM +0100, Dave Stevenson wrote:
+> > The sensor supports the clock lane either remaining in HS mode
+> > during frame blanking, or dropping to LP11.
+> >
+> > Add configuration of the mode via V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK.
+>
+> Assuming a follow-up patch for DT
+> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+It's already covered in video-interfaces.yaml, and is an optional flag
+as the driver will work in either manner, so do the bindings need
+updating?
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/input/elan,ekth6915.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+In checking the default value for this register, it is 0x01, or non-continuous.
+The original omission of this property from the binding and driver
+therefore means that an existing binding will most likely have omitted
+it and be believing the sensor is in continuous clock mode when it
+isn't.
+Now that we check the mode requested, it will actually adopt
+continuous clock mode and may no longer work with the receiver.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/elan,ekth6915.yaml: properties:required: ['compatible', 'reg', 'interrupts', 'vcc33-supply'] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/elan,ekth6915.yaml: properties: 'required' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
-	hint: A json-schema keyword was found instead of a DT property name.
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/elan,ekth6915.yaml: ignoring, error in schema: properties: required
-Documentation/devicetree/bindings/input/elan,ekth6915.example.dtb: /example-0/i2c/touchscreen@10: failed to match any schema with compatible: ['elan,ekth6915']
+Perhaps it's best to drop this patch, and add it as a note to anyone
+preparing a talk on Camera Sensor Drivers Compliance ;-)
 
-doc reference errors (make refcheckdocs):
+  Dave
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230602140948.2138668-2-yangcong5@huaqin.corp-partner.google.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > ---
+> >  drivers/media/i2c/imx258.c | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> >
+> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > index 1fa83fe82f27..b5c2dcb7c9e6 100644
+> > --- a/drivers/media/i2c/imx258.c
+> > +++ b/drivers/media/i2c/imx258.c
+> > @@ -72,6 +72,8 @@
+> >  /* Test Pattern Control */
+> >  #define IMX258_REG_TEST_PATTERN              0x0600
+> >
+> > +#define IMX258_CLK_BLANK_STOP                0x4040
+> > +
+> >  /* Orientation */
+> >  #define REG_MIRROR_FLIP_CONTROL              0x0101
+> >  #define REG_CONFIG_MIRROR_FLIP               0x03
+> > @@ -634,6 +636,7 @@ struct imx258 {
+> >       const struct imx258_link_freq_config *link_freq_configs;
+> >       const s64 *link_freq_menu_items;
+> >       unsigned int nlanes;
+> > +     unsigned int csi2_flags;
+> >
+> >       /*
+> >        * Mutex for serialized access:
+> > @@ -1072,6 +1075,15 @@ static int imx258_start_streaming(struct imx258 *imx258)
+> >               return ret;
+> >       }
+> >
+> > +     ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
+> > +                            IMX258_REG_VALUE_08BIT,
+> > +                            imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
+> > +                            1 : 0);
+> > +     if (ret) {
+> > +             dev_err(&client->dev, "%s failed to set clock lane mode\n", __func__);
+> > +             return ret;
+> > +     }
+> > +
+> >       /* Apply default values of current mode */
+> >       reg_list = &imx258->cur_mode->reg_list;
+> >       ret = imx258_write_regs(imx258, reg_list->regs, reg_list->num_of_regs);
+> > @@ -1486,6 +1498,8 @@ static int imx258_probe(struct i2c_client *client)
+> >               goto error_endpoint_poweron;
+> >       }
+> >
+> > +     imx258->csi2_flags = ep.bus.mipi_csi2.flags;
+> > +
+> >       /* Initialize subdev */
+> >       v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+> >
+> > --
+> > 2.25.1
+> >
