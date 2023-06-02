@@ -2,198 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25FEB720832
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 19:13:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FA30720874
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 19:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236840AbjFBRNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 13:13:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43804 "EHLO
+        id S236765AbjFBRgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 13:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235529AbjFBRNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 13:13:12 -0400
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 020B01A7
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 10:13:11 -0700 (PDT)
-Received: by mail-vs1-xe29.google.com with SMTP id ada2fe7eead31-4394a8f26d5so595607137.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 10:13:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1685725990; x=1688317990;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sgzsS75kXqE+x/nYYWZpPxfxzFW609nA7iNUZapD6uE=;
-        b=VPo6y09JiUZLI6s9Pa4OpvcsN78s2ESpR+qy8OvlD/uEFadWfViSHNAghm2/fCxfbi
-         2AnCuOHT+dLilEjQ8b8UV5K0gt3yxg4Ezhx7k/0jcnGoJ08dOwRigGnjJEAiwCf+oBa4
-         A3/4/BQQfaHjlhtzJhZ8Y6YC0h7CMzvjlU2uSH0o1kd4/V5p74+sKmV+nnJH33IcDzIw
-         AgF0hD1wVUhoJNVIK2rMIbK5GQDU1ST1FryjUkkDL3H0/0swtxBBV3qMAxI5/zEzXfHd
-         u3c5QvQl6J6MojhEy63d0AFyi2E6DfMW7AW8aFqFIn2HNT53qfMT73g0TWGQbC8ocdgp
-         r/Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685725990; x=1688317990;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sgzsS75kXqE+x/nYYWZpPxfxzFW609nA7iNUZapD6uE=;
-        b=YdEdNSxhziBRiTdzXB4PM6vnctq342rt/ZYiISgMd/Y8KwYsuhfcIoSsnQxHRk7NOJ
-         e1e1jLTjA8DsayAhH905Qu/YsSHo5LVv6ly0z9MNWTc2SqUvY8XLpAT1YMl8zUNM++0Q
-         35944e1yX/66j2jVvLgfDwFOeTBx4XR4jswoW4Zd6GM02PlLHL/VJrkIOnfchI9GuC4w
-         qREaV83B0UCOUuv89zTcFt5d40BsDNxk70apvU2wFWoaAjeNx3ZS5UpeYj+K5LmbdVMW
-         srhjGbeavn23hboafn4SblE3CYCCIqDKNRadrA7JnSlsIOOE77KF1iQzZJh0iVl/lfnW
-         JSjA==
-X-Gm-Message-State: AC+VfDyyNF177qdXuNGUQnWP5NaDYp2K72LMK9VpS4lxx1U9MzK39Z9Y
-        yOBr1ScE6z2tEKprEGqlK3nUfr+bwe6pAncb+JPDSg==
-X-Google-Smtp-Source: ACHHUZ7+Ia0WDhjEIVIPHG/AhVa7C9CNFpMSUeDc/GoyyHSSmyOMLcfa0GwqtKlgFohitl5ZQkDB4QfePpR5cuarVuI=
-X-Received: by 2002:a05:6102:409:b0:430:1fa:87c5 with SMTP id
- d9-20020a056102040900b0043001fa87c5mr4365097vsq.32.1685725990154; Fri, 02 Jun
- 2023 10:13:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-15-dave.stevenson@raspberrypi.com> <i7epfbavk5z7imvlsecitwqcdhmu7yh6z25guu7utfes2e7yyz@l7iz5vrit7h7>
-In-Reply-To: <i7epfbavk5z7imvlsecitwqcdhmu7yh6z25guu7utfes2e7yyz@l7iz5vrit7h7>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Fri, 2 Jun 2023 18:12:54 +0100
-Message-ID: <CAPY8ntA33yeHgd-ZiC3Eew52_svUDDMegAo3_2Wwk=em5oToVg@mail.gmail.com>
-Subject: Re: [PATCH 14/21] media: i2c: imx258: Add support for long exposure modes
-To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236683AbjFBRgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 13:36:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6128B1B9
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 10:36:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F2FD260ED1
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 17:36:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06835C433D2;
+        Fri,  2 Jun 2023 17:36:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685727405;
+        bh=H8cO8pwKMsgmyagKn0dUw4ty1lVYzMAg/B0nJrCbPPk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=B3UoMKi01tdjuM/yNwb/HhcXMoDmwMRx6E0jpL0EYmygJ3nl3PhYoZpFQ3/amrjU0
+         012lWNGdxHUOFz17Rc1NFuVX4va5gaINxLhqCYfwi5ToMFkr3XqILCaQ+QoxglfgMR
+         gWQZfK2xamdbjj0hZU2FY3RGskBPCg7HsOumXoU+0EFlt7aG/td363RJWDsEKDcPOO
+         NJtToqFgvtVuoCSyCBIqzqRJ43tFig6mJNJ5aiPEF6VIKKcXoRT3WPEv8+iim3W1gy
+         AkQK6IX5DFdvdwoBGEKwmGFqbw4+p1Px2jIDzdanFS+B0romUON5BYhO06U+RPE3pU
+         47EZGKwpy8MNw==
+Date:   Fri, 2 Jun 2023 18:36:40 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Naushir Patuck <naush@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Pratyush Yadav <ptyadav@amazon.de>,
+        Dhruva Gole <d-gole@ti.com>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: mtd: partitions: Include TP-Link SafeLoader
+ in allowed list
+Message-ID: <20230602-concise-lent-612301adb856@spud>
+References: <20230602161023.14739-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="o5EchAN4kPIujJ+I"
+Content-Disposition: inline
+In-Reply-To: <20230602161023.14739-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo
 
-On Fri, 2 Jun 2023 at 14:38, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
->
-> Hi Dave
->
-> On Tue, May 30, 2023 at 06:29:53PM +0100, Dave Stevenson wrote:
-> > The sensor has a register CIT_LSHIFT which extends the exposure
-> > and frame times by the specified power of 2 for longer
-> > exposure times.
-> >
-> > Add support for this by configuring this register via V4L2_CID_VBLANK
-> > and extending the V4L2_CID_EXPOSURE range accordingly.
-> >
-> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > ---
-> >  drivers/media/i2c/imx258.c | 38 ++++++++++++++++++++++++++++++++------
-> >  1 file changed, 32 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> > index f5199e3243e8..1e424058fcb9 100644
-> > --- a/drivers/media/i2c/imx258.c
-> > +++ b/drivers/media/i2c/imx258.c
-> > @@ -69,6 +69,10 @@
-> >  #define IMX258_HDR_RATIO_STEP                1
-> >  #define IMX258_HDR_RATIO_DEFAULT     0x0
-> >
-> > +/* Long exposure multiplier */
-> > +#define IMX258_LONG_EXP_SHIFT_MAX    7
-> > +#define IMX258_LONG_EXP_SHIFT_REG    0x3002
-> > +
-> >  /* Test Pattern Control */
-> >  #define IMX258_REG_TEST_PATTERN              0x0600
-> >
-> > @@ -629,6 +633,8 @@ struct imx258 {
-> >       struct v4l2_ctrl *vblank;
-> >       struct v4l2_ctrl *hblank;
-> >       struct v4l2_ctrl *exposure;
-> > +     /* Current long exposure factor in use. Set through V4L2_CID_VBLANK */
-> > +     unsigned int long_exp_shift;
-> >
-> >       /* Current mode */
-> >       const struct imx258_mode *cur_mode;
-> > @@ -793,6 +799,26 @@ static void imx258_adjust_exposure_range(struct imx258 *imx258)
-> >                                exposure_def);
-> >  }
-> >
-> > +static int imx258_set_frame_length(struct imx258 *imx258, unsigned int val)
-> > +{
-> > +     int ret;
-> > +
-> > +     imx258->long_exp_shift = 0;
-> > +
-> > +     while (val > IMX258_VTS_MAX) {
-> > +             imx258->long_exp_shift++;
-> > +             val >>= 1;
-> > +     }
-> > +
-> > +     ret = imx258_write_reg(imx258, IMX258_REG_VTS,
-> > +                            IMX258_REG_VALUE_16BIT, val);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     return imx258_write_reg(imx258, IMX258_LONG_EXP_SHIFT_REG,
-> > +                             IMX258_REG_VALUE_08BIT, imx258->long_exp_shift);
-> > +}
-> > +
-> >  static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
-> >  {
-> >       struct imx258 *imx258 =
-> > @@ -823,7 +849,7 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
-> >       case V4L2_CID_EXPOSURE:
-> >               ret = imx258_write_reg(imx258, IMX258_REG_EXPOSURE,
-> >                               IMX258_REG_VALUE_16BIT,
-> > -                             ctrl->val);
-> > +                             ctrl->val >> imx258->long_exp_shift);
->
-> Shouldn't this be done only if vblank > VTS_MAX ?
+--o5EchAN4kPIujJ+I
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You're partly right, and it's a bug in our imx477 and imx708 drivers
-too. (cc Naush for info)
+On Fri, Jun 02, 2023 at 06:10:23PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> This fixes validation of Linux hosted DTS files for Northstar based
+> TP-Link routers.
 
-Computing imx258->long_exp_shift should be done in the early part of
-imx258_set_ctrl before the pm_runtime_get_if_in_use check. Otherwise
-the __v4l2_ctrl_handler_setup call will potentially be setting
-exposure before vblank, and exposure register will be based on the
-wrong shift.
-If (vblank + mode->height) <= VTS_MAX then long_exp_shift will be 0,
-so the value written here will be the same.
+What is the actual error that this fixes?
 
-The slightly more awkward one to handle is that if long_exp_shift
-changes then we need to recompute and write IMX258_REG_EXPOSURE based
-on the new shift. You have to love the niggles.
+Cheers,
+Conor.
 
-Thanks
-  Dave
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> ---
+>  Documentation/devicetree/bindings/mtd/partitions/partitions.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partitions.=
+yaml b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> index 2edc65e0e361..1dda2c80747b 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> @@ -21,6 +21,7 @@ oneOf:
+>    - $ref: linksys,ns-partitions.yaml
+>    - $ref: qcom,smem-part.yaml
+>    - $ref: redboot-fis.yaml
+> +  - $ref: tplink,safeloader-partitions.yaml
+> =20
+>  properties:
+>    compatible: true
+> --=20
+> 2.35.3
+>=20
 
-> >               break;
-> >       case V4L2_CID_DIGITAL_GAIN:
-> >               ret = imx258_update_digital_gain(imx258, IMX258_REG_VALUE_16BIT,
-> > @@ -855,9 +881,8 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
-> >               }
-> >               break;
-> >       case V4L2_CID_VBLANK:
-> > -             ret = imx258_write_reg(imx258, IMX258_REG_VTS,
-> > -                                    IMX258_REG_VALUE_16BIT,
-> > -                                    imx258->cur_mode->height + ctrl->val);
-> > +             ret = imx258_set_frame_length(imx258,
-> > +                                           imx258->cur_mode->height + ctrl->val);
-> >               break;
-> >       default:
-> >               dev_info(&client->dev,
-> > @@ -983,8 +1008,9 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
-> >                            imx258->cur_mode->height;
-> >               __v4l2_ctrl_modify_range(
-> >                       imx258->vblank, vblank_min,
-> > -                     IMX258_VTS_MAX - imx258->cur_mode->height, 1,
-> > -                     vblank_def);
-> > +                     ((1 << IMX258_LONG_EXP_SHIFT_MAX) * IMX258_VTS_MAX) -
-> > +                                             imx258->cur_mode->height,
-> > +                     1, vblank_def);
-> >               __v4l2_ctrl_s_ctrl(imx258->vblank, vblank_def);
-> >               h_blank =
-> >                       imx258->link_freq_configs[mode->link_freq_index].pixels_per_line
-> > --
-> > 2.25.1
-> >
+--o5EchAN4kPIujJ+I
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHooqAAKCRB4tDGHoIJi
+0rLIAQDtgZZe23hQKLk5rCFrwCL8nX7+5VxmDD0sKDgn55FjyQD9HdyW13V8NeR4
+wtJpUiHFEqfkD/ZXnOxfrfeksxuQowc=
+=h+rh
+-----END PGP SIGNATURE-----
+
+--o5EchAN4kPIujJ+I--
