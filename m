@@ -2,68 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6FB71FE28
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEAA771FE35
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 11:47:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234576AbjFBJou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 05:44:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
+        id S234027AbjFBJrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 05:47:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233639AbjFBJot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:44:49 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DF4B3;
-        Fri,  2 Jun 2023 02:44:47 -0700 (PDT)
+        with ESMTP id S233725AbjFBJrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 05:47:12 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF51FC0;
+        Fri,  2 Jun 2023 02:47:06 -0700 (PDT)
 Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
         (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5D1E980F8;
-        Fri,  2 Jun 2023 17:44:46 +0800 (CST)
+        by ex01.ufhost.com (Postfix) with ESMTP id 8F57324E27E;
+        Fri,  2 Jun 2023 17:47:05 +0800 (CST)
 Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
  (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Jun
- 2023 17:44:46 +0800
+ 2023 17:47:05 +0800
 Received: from [192.168.125.128] (183.27.98.75) by EXMBX061.cuchost.com
  (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Jun
- 2023 17:44:44 +0800
-Message-ID: <712ffab1-5b25-f8bb-79a0-e2c0693e4c35@starfivetech.com>
-Date:   Fri, 2 Jun 2023 17:42:42 +0800
+ 2023 17:47:04 +0800
+Message-ID: <506c0a1e-a839-c9b7-1b04-7fb3af535fe0@starfivetech.com>
+Date:   Fri, 2 Jun 2023 17:45:01 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 1/7] dt-bindings: clock: Add StarFive JH7110 PLL clock
- generator
+Subject: Re: [PATCH v2 2/3] clocksource: Add StarFive timer driver
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Torsten Duwe <duwe@lst.de>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <yanhong.wang@starfivetech.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        "Rob Herring" <robh+dt@kernel.org>,
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+CC:     <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        "Hal Feng" <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <u-boot@lists.denx.de>
-References: <20230512022036.97987-2-xingyu.wu@starfivetech.com>
- <20230519135733.GA10188@lst.de>
- <20230519-smokeless-guileless-2a71cae06509@wendy>
- <df43411e-8982-74f5-6148-e7281c37dada@starfivetech.com>
- <20230523-fondue-monotype-0c751a8f0c13@wendy>
- <20230523131006.46997d84@blackhole.lan>
- <20230523-saturate-axis-f46b78b7b82b@wendy>
- <38a9cb77-18b3-4daa-724b-9f2282f7d948@starfivetech.com>
- <20230524-jittery-sway-41b578b24153@wendy>
- <20230526093432.4682eab8@blackhole.lan>
- <20230526-unwashed-musty-dee883f1d6a7@wendy>
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+References: <20230320135433.144832-1-xingyu.wu@starfivetech.com>
+ <20230320135433.144832-3-xingyu.wu@starfivetech.com>
 From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <20230526-unwashed-musty-dee883f1d6a7@wendy>
+In-Reply-To: <20230320135433.144832-3-xingyu.wu@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [183.27.98.75]
@@ -71,139 +54,584 @@ X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
  (172.16.6.61)
 X-YovoleRuleAgent: yovoleflag
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/5/26 20:23, Conor Dooley wrote:
-> On Fri, May 26, 2023 at 09:34:32AM +0200, Torsten Duwe wrote:
->> On Wed, 24 May 2023 11:19:48 +0100
->> Conor Dooley <conor.dooley@microchip.com> wrote:
->> 
->> > On Wed, May 24, 2023 at 05:00:02PM +0800, Xingyu Wu wrote:
->> > > On 2023/5/23 19:28, Conor Dooley wrote:
->> > > > On Tue, May 23, 2023 at 01:10:06PM +0200, Torsten Duwe wrote:
->> > > >> On Tue, 23 May 2023 09:28:39 +0100
->> > > >> Conor Dooley <conor.dooley@microchip.com> wrote:
->> > > >> 
->> > > >> > On Tue, May 23, 2023 at 10:56:43AM +0800, Xingyu Wu wrote:
->> > > >> > > On 2023/5/19 22:16, Conor Dooley wrote:
->> > > >> > > > On Fri, May 19, 2023 at 03:57:33PM +0200, Torsten Duwe
->> > > >> > > > wrote:
->> > > >> > > >> On Fri, May 12, 2023 at 10:20:30AM +0800, Xingyu Wu wrote:
->> [...]
->> 
->> > > >> > > Because PLL driver is separated from SYSCRG drivers in
->> > > >> > > Linux, the numbering starts from 0. But in Uboot, the PLL
->> > > >> > > driver is included in the SYSCRG driver, and the number
->> > > >> > > follows the SYSCRG.
->> > > >> > 
->> > > >> > Unfortunately, how you choose to construct your drivers has
->> > > >> > nothing to do with this.
->> 
->> Exactly. As I wrote (quote below), the PLLx frequencies are controlled
->> by the I/O block SYS_SYSCON (starting there at offset 0x18), according
->> to the public datasheets. All(?) other clocks are derived from those in
->> the *_CRG units. That *is* the hardware to be described, in *the* (one
->> and only!) DT. U-Boot, and any OS, are free to reorganise their driver
->> framework around that, but the hardware description is quite clear.
+On 2023/3/20 21:54, Xingyu Wu wrote:
+> Add timer driver for the StarFive JH7110 SoC.
 > 
-> The dt-binding that is in this series specifies that the pll clock
-> controller is a child of the syscon:
-> https://lore.kernel.org/linux-riscv/20230512022036.97987-1-xingyu.wu@starfivetech.com/T/#Z2e.:..:20230512022036.97987-6-xingyu.wu::40starfivetech.com:1soc:starfive:starfive::2cjh7110-syscon.yaml
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> ---
+>  MAINTAINERS                          |   7 +
+>  drivers/clocksource/Kconfig          |  12 +
+>  drivers/clocksource/Makefile         |   1 +
+>  drivers/clocksource/timer-starfive.c | 390 +++++++++++++++++++++++++++
+>  drivers/clocksource/timer-starfive.h |  96 +++++++
+>  5 files changed, 506 insertions(+)
+>  create mode 100644 drivers/clocksource/timer-starfive.c
+>  create mode 100644 drivers/clocksource/timer-starfive.h
 > 
-> That seems correct to me & U-Boot's devicetree is not compliant.
-> 
->> > > >> > These defines/numbers appear in the dts and are part of the DT
->> > > >> > ABI. The same dts is supposed to work for Linux & U-Boot.
->> > > >> 
->> > > >> The JH7110 has 6 blocks of 64k iomem in that functional area:
->> > > >> {SYS,STG,AON} x {CRG,SYSCON}. None of these has 190 clocks.
->> > > >> The good news: the current DTS, as proposed here and in U-Boot
->> > > >> master, provides nodes for all 6 entities. The bad news is that
->> > > >> the clock assignments to those nodes and their numbering is
->> > > >> messed up.
->> > > >> 
->> > > >> AFAICT PLL{0,1,2} _are_ generated in SYS_SYSCON and thus U-Boot
->> > > >> gets it wrong, in addition to the erroneous DTS.
->> > > > 
->> > > > The numbers are kinda hocus-pocus anyway, they are just made up
->> > > > since the clock numbering usually isn't something with a nice TRM
->> > > > to go and reference (unlike interrupts which usually are
->> > > > documented in that way). It is very helpful to make them aligned
->> > > > some register/bit positions or, but that is not required.
->> > > > IOW U-Boot is not wrong per se to use 190 instead of 0, but it is
->> > > > wrong to have different numbers in both places.
->> 
->> U-Boot reuses the Common Clock Framework from Linux, and I'm not sure
->> whether the clock IDs need to be unique in order for the appropriate
->> clock to be found.
-> 
-> Unique within the clock controller, otherwise it is impossible to tell
-> the difference between <&cctrl 1> and <&cctrl 1> apart! (The same
-> follows even with increased #clock-cells, something must be unique).
-> That's besides the point of this particular issue though.
-> 
->> But that would be the only restriction, if it
->> applies. Even then, each driver could register a clock with its own,
->> arbitrarily chosen base offset with the CCF, so each CRG unit could
->> still have its own clocks enumerated starting with 0 in the DTB.
->> 
->> > > > It sounds like you're saying that (and I have not looked) the
->> > > > U-Boot dts actually has structural difference w.r.t. what
->> > > > provides which clock? If so, that'll need to be fixed
->> > > > independently of the numbering problem.
->> 
->> > > 
->> > > Oh, unfortunately, the 7110 can not support to mix the uboot dtb
->> > > and linux dtb up.
->> > 
->> > What does "cannot support" mean? It's normal and desirable for the
->> 
->> IMHO "desirable" is too weak.
-> 
-> Yeah, agreed. I just don't like being prescriptive about what happens in
-> projects that I do not maintain things for I guess.
-> 
->> > same dtb to be usable for both. The Linux kernel's dt-bindings are
->> > used for multiple projects, not just Linux - it'd be silly for
->> > U-Boot, FreeBSD etc etc to go off and each have their open set of
->> > (incompatible) bindings.
->> > 
->> > > If boot the Linux and should use the linux dtb instead of the uboot
->> > > dtb. Because all clock ids and reset ids in Linux and Uboot are
->> > > different include PLL, and some modules can work in Linux but not
->> > > in uboot.
->> [...]
->> > 
->> > > I suggest to boot Linux with its own linux dtb.
->> 
->> This is a fragile band-aid, to be used only as a last resort. It
->> creates more problems than it solves. Your DTB will then match your
->> kernel, but whether it describes the actual hardware is a game of
->> chance. Doesn't the VisionFive2 have an RPi connector... ?
->> 
->> One of the IMO few valid use cases of adding a DTB to the kernel
->> at boot is OpenWRT, when you build an OS Image for a particular piece
->> of hardware you have at hand.
->> 
->> > I suggest to make sure that you can use the same dtb for both.
->> 
->> Interestingly enough, U-Boot already has the PLL driver in a separate
->> file. I have a half-baked patch here that moves the sys_syscon DT
->> matching into that file...
-> 
-> If you have patches that fix the devicetree & drivers in U-Boot, please
-> post them. I don't really care at all which set of arbitrary numbers are
-> chosen (as long as there is one and one only) but it looks like U-Boot's
-> devicetree has an incorrect description of the clock controllers.
-> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 958b7ec118b4..dac6298d8f6e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19958,6 +19958,13 @@ S:	Maintained
+>  T:	git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
+>  F:	drivers/soc/starfive/
+>  
+> +STARFIVE TIMER DRIVER
+> +M:	Samin Guo <samin.guo@starfivetech.com>
+> +M:	Xingyu Wu <xingyu.wu@starfivetech.com>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/timer/starfive*
+> +F:	drivers/clocksource/timer-starfive*
+> +
+>  STARFIVE TRNG DRIVER
+>  M:	Jia Jie Ho <jiajie.ho@starfivetech.com>
+>  S:	Supported
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index 5fc8f0e7fb38..35daf07d4db7 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -630,6 +630,18 @@ config RISCV_TIMER
+>  	  is accessed via both the SBI and the rdcycle instruction.  This is
+>  	  required for all RISC-V systems.
+>  
+> +config STARFIVE_TIMER
+> +	bool "Timer for the STARFIVE SoCs"
+> +	depends on ARCH_STARFIVE || COMPILE_TEST
+> +	select TIMER_OF
+> +	select CLKSRC_MMIO
+> +	default ARCH_STARFIVE
+> +	help
+> +	  This enables the timer for StarFive SoCs. On RISC-V platform,
+> +	  the system has started RISCV_TIMER. But you can also use this timer
+> +	  to do a lot more on StarFive SoCs. This timer can provide high
+> +	  precision and four channels to use in JH7110 SoC.
+> +
+>  config CLINT_TIMER
+>  	bool "CLINT Timer for the RISC-V platform" if COMPILE_TEST
+>  	depends on GENERIC_SCHED_CLOCK && RISCV
+> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
+> index 64ab547de97b..276695d95cdc 100644
+> --- a/drivers/clocksource/Makefile
+> +++ b/drivers/clocksource/Makefile
+> @@ -80,6 +80,7 @@ obj-$(CONFIG_INGENIC_TIMER)		+= ingenic-timer.o
+>  obj-$(CONFIG_CLKSRC_ST_LPC)		+= clksrc_st_lpc.o
+>  obj-$(CONFIG_X86_NUMACHIP)		+= numachip.o
+>  obj-$(CONFIG_RISCV_TIMER)		+= timer-riscv.o
+> +obj-$(CONFIG_STARFIVE_TIMER)		+= timer-starfive.o
+>  obj-$(CONFIG_CLINT_TIMER)		+= timer-clint.o
+>  obj-$(CONFIG_CSKY_MP_TIMER)		+= timer-mp-csky.o
+>  obj-$(CONFIG_GX6605S_TIMER)		+= timer-gx6605s.o
+> diff --git a/drivers/clocksource/timer-starfive.c b/drivers/clocksource/timer-starfive.c
+> new file mode 100644
+> index 000000000000..53163948ed86
+> --- /dev/null
+> +++ b/drivers/clocksource/timer-starfive.c
+> @@ -0,0 +1,390 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Starfive Timer driver
+> + *
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + *
+> + * Author:
+> + * Xingyu Wu <xingyu.wu@starfivetech.com>
+> + * Samin Guo <samin.guo@starfivetech.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clockchips.h>
+> +#include <linux/clocksource.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/irq.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/sched_clock.h>
+> +
+> +#include "timer-starfive.h"
+> +
+> +static const struct starfive_timer_chan_base starfive_timer_jh7110_base = {
+> +	.ctrl		= STARFIVE_TIMER_JH7110_CTL,
+> +	.load		= STARFIVE_TIMER_JH7110_LOAD,
+> +	.enable		= STARFIVE_TIMER_JH7110_ENABLE,
+> +	.reload		= STARFIVE_TIMER_JH7110_RELOAD,
+> +	.value		= STARFIVE_TIMER_JH7110_VALUE,
+> +	.intclr		= STARFIVE_TIMER_JH7110_INT_CLR,
+> +	.intmask	= STARFIVE_TIMER_JH7110_INT_MASK,
+> +	.channel_num	= STARFIVE_TIMER_CH_4,
+> +	.channel_base	= {STARFIVE_TIMER_CH_BASE(0), STARFIVE_TIMER_CH_BASE(1),
+> +			   STARFIVE_TIMER_CH_BASE(2), STARFIVE_TIMER_CH_BASE(3)},
+> +};
+> +
+> +static inline struct starfive_clkevt *to_starfive_clkevt(struct clock_event_device *evt)
+> +{
+> +	return container_of(evt, struct starfive_clkevt, evt);
+> +}
+> +
+> +/* 0:continuous-run mode, 1:single-run mode */
+> +static inline void starfive_timer_set_mod(struct starfive_clkevt *clkevt, int mod)
+> +{
+> +	writel(mod, clkevt->ctrl);
+> +}
+> +
+> +/* Interrupt Mask Register, 0:Unmask, 1:Mask */
+> +static inline void starfive_timer_int_enable(struct starfive_clkevt *clkevt)
+> +{
+> +	writel(STARFIVE_TIMER_INTMASK_DIS, clkevt->intmask);
+> +}
+> +
+> +static inline void starfive_timer_int_disable(struct starfive_clkevt *clkevt)
+> +{
+> +	writel(STARFIVE_TIMER_INTMASK_ENA, clkevt->intmask);
+> +}
+> +
+> +/*
+> + * BIT(0): Read value represent channel intr status.
+> + * Write 1 to this bit to clear interrupt. Write 0 has no effects.
+> + * BIT(1): "1" means that it is clearing interrupt. BIT(0) can not be written.
+> + */
+> +static inline int starfive_timer_int_clear(struct starfive_clkevt *clkevt)
+> +{
+> +	u32 value;
+> +	int ret;
+> +
+> +	/* waiting interrupt can be to clearing */
+> +	ret = readl_poll_timeout_atomic(clkevt->intclr, value,
+> +					!(value & STARFIVE_TIMER_JH7110_INT_CLR_AVA_MASK),
+> +					STARFIVE_DELAY_US, STARFIVE_TIMEOUT_US);
+> +	if (!ret)
+> +		writel(0x1, clkevt->intclr);
+> +
+> +	return ret;
+> +}
+> +
+> +/*
+> + * The initial value to be loaded into the
+> + * counter and is also used as the reload value.
+> + * val = clock rate --> 1s
+> + */
+> +static inline void starfive_timer_set_load(struct starfive_clkevt *clkevt, u32 val)
+> +{
+> +	writel(val, clkevt->load);
+> +}
+> +
+> +static inline u32 starfive_timer_get_val(struct starfive_clkevt *clkevt)
+> +{
+> +	return readl(clkevt->value);
+> +}
+> +
+> +/*
+> + * Write RELOAD register to reload preset value to counter.
+> + * (Write 0 and write 1 are both ok)
+> + */
+> +static inline void starfive_timer_set_reload(struct starfive_clkevt *clkevt)
+> +{
+> +	writel(0, clkevt->reload);
+> +}
+> +
+> +static inline void starfive_timer_enable(struct starfive_clkevt *clkevt)
+> +{
+> +	writel(STARFIVE_TIMER_ENA, clkevt->enable);
+> +}
+> +
+> +static inline void starfive_timer_disable(struct starfive_clkevt *clkevt)
+> +{
+> +	writel(STARFIVE_TIMER_DIS, clkevt->enable);
+> +}
+> +
+> +static int starfive_timer_int_init_enable(struct starfive_clkevt *clkevt)
+> +{
+> +	int ret;
+> +
+> +	starfive_timer_int_disable(clkevt);
+> +	ret = starfive_timer_int_clear(clkevt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	starfive_timer_int_enable(clkevt);
+> +	starfive_timer_enable(clkevt);
+> +
+> +	return 0;
+> +}
+> +
+> +static int starfive_timer_shutdown(struct clock_event_device *evt)
+> +{
+> +	struct starfive_clkevt *clkevt = to_starfive_clkevt(evt);
+> +
+> +	starfive_timer_disable(clkevt);
+> +	return starfive_timer_int_clear(clkevt);
+> +}
+> +
+> +static void starfive_timer_suspend(struct clock_event_device *evt)
+> +{
+> +	struct starfive_clkevt *clkevt = to_starfive_clkevt(evt);
+> +
+> +	clkevt->reload_val = starfive_timer_get_val(clkevt);
+> +	starfive_timer_shutdown(evt);
+> +}
+> +
+> +static void starfive_timer_resume(struct clock_event_device *evt)
+> +{
+> +	struct starfive_clkevt *clkevt = to_starfive_clkevt(evt);
+> +
+> +	starfive_timer_set_load(clkevt, clkevt->reload_val);
+> +	starfive_timer_set_reload(clkevt);
+> +	starfive_timer_int_enable(clkevt);
+> +	starfive_timer_enable(clkevt);
+> +}
+> +
+> +static int starfive_timer_tick_resume(struct clock_event_device *evt)
+> +{
+> +	starfive_timer_resume(evt);
+> +
+> +	return 0;
+> +}
+> +
+> +static int starfive_clocksource_init(struct starfive_clkevt *clkevt)
+> +{
+> +	int ret;
+> +
+> +	starfive_timer_set_mod(clkevt, STARFIVE_TIMER_MOD_CONTIN);
+> +	starfive_timer_set_load(clkevt, STARFIVE_TIMER_MAX_TICKS);
+> +	ret = starfive_timer_int_init_enable(clkevt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return clocksource_mmio_init(clkevt->value, clkevt->name, clkevt->rate,
+> +				     STARFIVE_CLOCK_SOURCE_RATING, STARFIVE_VALID_BITS,
+> +				     clocksource_mmio_readl_down);
+> +}
+> +
+> +/* IRQ handler for the timer */
+> +static irqreturn_t starfive_timer_interrupt(int irq, void *priv)
+> +{
+> +	struct clock_event_device *evt = (struct clock_event_device *)priv;
+> +	struct starfive_clkevt *clkevt = to_starfive_clkevt(evt);
+> +
+> +	if (starfive_timer_int_clear(clkevt))
+> +		return IRQ_NONE;
+> +
+> +	if (evt->event_handler)
+> +		evt->event_handler(evt);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int starfive_timer_set_periodic(struct clock_event_device *evt)
+> +{
+> +	struct starfive_clkevt *clkevt = to_starfive_clkevt(evt);
+> +
+> +	starfive_timer_disable(clkevt);
+> +	starfive_timer_set_mod(clkevt, STARFIVE_TIMER_MOD_CONTIN);
+> +	starfive_timer_set_load(clkevt, clkevt->periodic);
+> +
+> +	return starfive_timer_int_init_enable(clkevt);
+> +}
+> +
+> +static int starfive_timer_set_oneshot(struct clock_event_device *evt)
+> +{
+> +	struct starfive_clkevt *clkevt = to_starfive_clkevt(evt);
+> +
+> +	starfive_timer_disable(clkevt);
+> +	starfive_timer_set_mod(clkevt, STARFIVE_TIMER_MOD_SINGLE);
+> +	starfive_timer_set_load(clkevt, STARFIVE_TIMER_MAX_TICKS);
+> +
+> +	return starfive_timer_int_init_enable(clkevt);
+> +}
+> +
+> +static int starfive_timer_set_next_event(unsigned long next,
+> +					 struct clock_event_device *evt)
+> +{
+> +	struct starfive_clkevt *clkevt = to_starfive_clkevt(evt);
+> +
+> +	starfive_timer_disable(clkevt);
+> +	starfive_timer_set_mod(clkevt, STARFIVE_TIMER_MOD_SINGLE);
+> +	starfive_timer_set_load(clkevt, next);
+> +	starfive_timer_enable(clkevt);
+> +
+> +	return 0;
+> +}
+> +
+> +static void starfive_set_clockevent(struct clock_event_device *evt)
+> +{
+> +	evt->features = CLOCK_EVT_FEAT_PERIODIC |
+> +			CLOCK_EVT_FEAT_ONESHOT |
+> +			CLOCK_EVT_FEAT_DYNIRQ;
+> +	evt->set_state_shutdown = starfive_timer_shutdown;
+> +	evt->set_state_periodic = starfive_timer_set_periodic;
+> +	evt->set_state_oneshot = starfive_timer_set_oneshot;
+> +	evt->set_state_oneshot_stopped = starfive_timer_shutdown;
+> +	evt->tick_resume = starfive_timer_tick_resume;
+> +	evt->set_next_event = starfive_timer_set_next_event;
+> +	evt->suspend = starfive_timer_suspend;
+> +	evt->resume = starfive_timer_resume;
+> +	evt->rating = STARFIVE_CLOCKEVENT_RATING;
+> +}
+> +
+> +static void starfive_clockevents_register(struct starfive_clkevt *clkevt)
+> +{
+> +	clkevt->rate = clk_get_rate(clkevt->clk);
+> +	clkevt->periodic = DIV_ROUND_CLOSEST(clkevt->rate, HZ);
+> +
+> +	starfive_set_clockevent(&clkevt->evt);
+> +	clkevt->evt.name = clkevt->name;
+> +	clkevt->evt.irq = clkevt->irq;
+> +	clkevt->evt.cpumask = cpu_possible_mask;
+> +
+> +	clockevents_config_and_register(&clkevt->evt, clkevt->rate,
+> +					STARFIVE_TIMER_MIN_TICKS, STARFIVE_TIMER_MAX_TICKS);
+> +}
+> +
+> +static void __init starfive_clkevt_base_init(const struct starfive_timer_chan_base *timer,
+> +					     struct starfive_clkevt *clkevt,
+> +					     void __iomem *base, int ch)
+> +{
+> +	void __iomem *channel_base;
+> +
+> +	channel_base = base + timer->channel_base[ch];
+> +	clkevt->base = channel_base;
+> +	clkevt->ctrl = channel_base + timer->ctrl;
+> +	clkevt->load = channel_base + timer->load;
+> +	clkevt->enable = channel_base + timer->enable;
+> +	clkevt->reload = channel_base + timer->reload;
+> +	clkevt->value = channel_base + timer->value;
+> +	clkevt->intclr = channel_base + timer->intclr;
+> +	clkevt->intmask = channel_base + timer->intmask;
+> +}
+> +
+> +static int __init starfive_timer_probe(struct platform_device *pdev)
+> +{
+> +	const struct starfive_timer_chan_base *timer_base = of_device_get_match_data(&pdev->dev);
+> +	char name[10];
+> +	struct starfive_timer_priv *priv;
+> +	struct starfive_clkevt *clkevt;
+> +	struct clk *pclk;
+> +	struct reset_control *rst;
+> +	int ch;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, struct_size(priv, clkevt, timer_base->channel_num),
+> +			    GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->base),
+> +				     "failed to map registers\n");
+> +
+> +	rst = devm_reset_control_get_exclusive(&pdev->dev, "apb");
+> +	if (IS_ERR(rst))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(rst), "failed to get apb reset\n");
+> +
+> +	pclk = devm_clk_get_enabled(&pdev->dev, "apb");
+> +	if (IS_ERR(pclk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(pclk),
+> +				     "failed to get & enable apb clock\n");
+> +
+> +	ret = reset_control_deassert(rst);
+> +	if (ret)
+> +		goto err;
+> +
+> +	priv->dev = &pdev->dev;
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	for (ch = 0; ch < timer_base->channel_num; ch++) {
+> +		clkevt = &priv->clkevt[ch];
+> +		snprintf(name, sizeof(name), "ch%d", ch);
+> +
+> +		starfive_clkevt_base_init(timer_base, clkevt, priv->base, ch);
+> +		/* Ensure timers are disabled */
+> +		starfive_timer_disable(clkevt);
+> +
+> +		rst = devm_reset_control_get_exclusive(&pdev->dev, name);
+> +		if (IS_ERR(rst)) {
+> +			ret = PTR_ERR(rst);
+> +			goto err;
+> +		}
+> +
+> +		clkevt->clk = devm_clk_get_enabled(&pdev->dev, name);
+> +		if (IS_ERR(clkevt->clk)) {
+> +			ret = PTR_ERR(clkevt->clk);
+> +			goto err;
+> +		}
+> +
+> +		ret = reset_control_deassert(rst);
+> +		if (ret)
+> +			goto ch_err;
+> +
+> +		clkevt->irq = platform_get_irq(pdev, ch);
+> +		if (clkevt->irq < 0) {
+> +			ret = clkevt->irq;
+> +			goto ch_err;
+> +		}
+> +
+> +		snprintf(clkevt->name, sizeof(clkevt->name), "%s.ch%d", pdev->name, ch);
+> +		starfive_clockevents_register(clkevt);
+> +
+> +		ret = devm_request_irq(&pdev->dev, clkevt->irq, starfive_timer_interrupt,
+> +				       IRQF_TIMER | IRQF_IRQPOLL,
+> +				       clkevt->name, &clkevt->evt);
+> +		if (ret)
+> +			goto ch_err;
+> +
+> +		ret = starfive_clocksource_init(clkevt);
+> +		if (ret)
+> +			goto ch_err;
+> +	}
+> +
+> +	return 0;
+> +
+> +ch_err:
+> +	/* Only unregister the failed channel and the rest timer channels continue to work. */
+> +	clk_disable_unprepare(clkevt->clk);
+> +err:
+> +	/* If no other channel successfully registers, pclk should be disabled. */
+> +	if (!ch)
+> +		clk_disable_unprepare(pclk);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id starfive_timer_match[] = {
+> +	{ .compatible = "starfive,jh7110-timer", .data = &starfive_timer_jh7110_base },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, starfive_timer_match);
+> +
+> +static struct platform_driver starfive_timer_driver = {
+> +	.probe = starfive_timer_probe,
+> +	.driver = {
+> +		.name = "starfive-timer",
+> +		.of_match_table = starfive_timer_match,
+> +	},
+> +};
+> +module_platform_driver(starfive_timer_driver);
+> +
+> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
+> +MODULE_DESCRIPTION("StarFive timer driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/clocksource/timer-starfive.h b/drivers/clocksource/timer-starfive.h
+> new file mode 100644
+> index 000000000000..62eb630cc98d
+> --- /dev/null
+> +++ b/drivers/clocksource/timer-starfive.h
+> @@ -0,0 +1,96 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + */
+> +
+> +#ifndef __STARFIVE_TIMER_H__
+> +#define __STARFIVE_TIMER_H__
+> +
+> +/* Bias: Ch0-0x0, Ch1-0x40, Ch2-0x80, and so on. */
+> +#define STARFIVE_TIMER_CH_LEN			0x40
+> +#define STARFIVE_TIMER_CH_BASE(x)		((STARFIVE_TIMER_CH_##x) * STARFIVE_TIMER_CH_LEN)
+> +
+> +#define STARFIVE_CLOCK_SOURCE_RATING		200
+> +#define STARFIVE_VALID_BITS			32
+> +#define STARFIVE_DELAY_US			0
+> +#define STARFIVE_TIMEOUT_US			10000
+> +#define STARFIVE_CLOCKEVENT_RATING		300
+> +#define STARFIVE_TIMER_MAX_TICKS		0xffffffff
+> +#define STARFIVE_TIMER_MIN_TICKS		0xf
+> +
+> +#define STARFIVE_TIMER_JH7110_INT_STATUS	0x00 /* RO[0:4]: Interrupt Status for channel0~4 */
+> +#define STARFIVE_TIMER_JH7110_CTL		0x04 /* RW[0]: 0-continuous run, 1-single run */
+> +#define STARFIVE_TIMER_JH7110_LOAD		0x08 /* RW: load value to counter */
+> +#define STARFIVE_TIMER_JH7110_ENABLE		0x10 /* RW[0]: timer enable register */
+> +#define STARFIVE_TIMER_JH7110_RELOAD		0x14 /* RW: write 1 or 0 both reload counter */
+> +#define STARFIVE_TIMER_JH7110_VALUE		0x18 /* RO: timer value register */
+> +#define STARFIVE_TIMER_JH7110_INT_CLR		0x20 /* RW: timer interrupt clear register */
+> +#define STARFIVE_TIMER_JH7110_INT_MASK		0x24 /* RW[0]: timer interrupt mask register */
+> +#define STARFIVE_TIMER_JH7110_INT_CLR_AVA_MASK	BIT(1)
+> +
+> +enum STARFIVE_TIMER_CH {
+> +	STARFIVE_TIMER_CH_0 = 0,
+> +	STARFIVE_TIMER_CH_1,
+> +	STARFIVE_TIMER_CH_2,
+> +	STARFIVE_TIMER_CH_3,
+> +	STARFIVE_TIMER_CH_4,
+> +	STARFIVE_TIMER_CH_5,
+> +	STARFIVE_TIMER_CH_6,
+> +	STARFIVE_TIMER_CH_7,
+> +	STARFIVE_TIMER_CH_MAX
+> +};
+> +
+> +enum STARFIVE_TIMER_INTMASK {
+> +	STARFIVE_TIMER_INTMASK_DIS = 0,
+> +	STARFIVE_TIMER_INTMASK_ENA = 1
+> +};
+> +
+> +enum STARFIVE_TIMER_MOD {
+> +	STARFIVE_TIMER_MOD_CONTIN = 0,
+> +	STARFIVE_TIMER_MOD_SINGLE = 1
+> +};
+> +
+> +enum STARFIVE_TIMER_CTL_EN {
+> +	STARFIVE_TIMER_DIS = 0,
+> +	STARFIVE_TIMER_ENA = 1
+> +};
+> +
+> +struct starfive_timer_chan_base {
+> +	/* Resgister */
+> +	unsigned int ctrl;
+> +	unsigned int load;
+> +	unsigned int enable;
+> +	unsigned int reload;
+> +	unsigned int value;
+> +	unsigned int intclr;
+> +	unsigned int intmask;
+> +
+> +	unsigned int channel_num;	/* timer channel numbers */
+> +	unsigned int channel_base[];
+> +};
+> +
+> +struct starfive_clkevt {
+> +	struct clock_event_device evt;
+> +	struct clk *clk;
+> +	char name[20];
+> +	int irq;
+> +	u32 periodic;
+> +	u32 rate;
+> +	u32 reload_val;
+> +	void __iomem *base;
+> +	void __iomem *ctrl;
+> +	void __iomem *load;
+> +	void __iomem *enable;
+> +	void __iomem *reload;
+> +	void __iomem *value;
+> +	void __iomem *intclr;
+> +	void __iomem *intmask;
+> +};
+> +
+> +struct starfive_timer_priv {
+> +	struct device *dev;
+> +	void __iomem *base;
+> +	struct starfive_clkevt clkevt[];
+> +};
+> +
+> +#endif /* __STARFIVE_TIMER_H__ */
 
-Thank you for your suggestions. I will discuss with my partners how to solve this problem.
+Hi Daniel and Thomas,
+
+I have submitted patches for Timer driver. Could you please help to review and give your comments?
+Thanks.
 
 Best regards,
 Xingyu Wu
