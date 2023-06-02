@@ -2,226 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1718720483
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F53072048D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:35:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235054AbjFBObU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 10:31:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37700 "EHLO
+        id S235930AbjFBOfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 10:35:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235843AbjFBObS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:31:18 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72380E41
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:31:12 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id ada2fe7eead31-43ac1ebb646so710246137.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:31:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1685716271; x=1688308271;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9TWmoSj312IRURlPEigbTAvTyko3gL4dMQLXCgAsIXg=;
-        b=DZAGPqthWk1DcQBLGGHqxcvzFxKZicS4UySvPN6rPke/IkVAaHl7iyIRdSdTPtdQTU
-         IJdtt8LuGLkoIwMyOKu60InW1JHlkGgzL6E3gpUbMhhBt0ypZ+i2uXaTF60fTB8ZYdff
-         AZwNZbr0b7cbYv5fc3BKVVaSFWEv8t/3Y9CCFzXZbUZPYNiv5Woi1yG3u6vWvlhkCrhi
-         rMyu6ju6IYMQZev6Z8Dg3mVf67MZHJcSRiJacIuCZBhdGFaknjL7pvy+WGeWLYvmfC98
-         jg76EblpM/q4odbdx0NLCqTow+xxzut4ktTpJI1z6CMBQfY2wDYWgVP7IwZZdgWAbTI0
-         0bJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685716271; x=1688308271;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9TWmoSj312IRURlPEigbTAvTyko3gL4dMQLXCgAsIXg=;
-        b=AN922+Q7jMXjFPJUPMM1UsI4UIH5gd8lsX/PNAIJmbec7qY3G+7EC1p5jDr6K/zCfr
-         OBVNmtMlLel3oSlRwo5w+ai5pzOkoSLARJ2THCW1qxQJsPaFSK8kkW6tRMUrC20vCbS8
-         1QrBMmberH7Ue/CqYvKS9EGYWJ97bznatVA+JhhBvAlEltZrl+P8CihHL7GEf7QyhQHj
-         8fA41jxX28aMpNsCj/rEV8nhpd6IfurE7Cp8kSNcwJyC4J85TXELKcAPQWrjGNN1vAaF
-         zWXmf6A3uCEu+CyLwFInQFy9ir5ouSJFQwjtVu1KvVpzVuyWa6R9F5UImnNZUDg9lY51
-         K9nQ==
-X-Gm-Message-State: AC+VfDxMXPZ9DMFVuReUvV0VKb9PVvKBEIh/p3h3wyS/jkiTartAMF4E
-        54ohxBqZ3sJwoQVhfftE7lcJosrGW7EA0s9WXCHr5w==
-X-Google-Smtp-Source: ACHHUZ4C8Xln3Ss+Gu+9F9p3GJikyRzJyTrkA//rR+b4UADGTc8IA2grguBS6kTfV8AHcc2mE/j552g3TRPl5q5scRI=
-X-Received: by 2002:a05:6102:8b:b0:43b:1c7a:bb20 with SMTP id
- t11-20020a056102008b00b0043b1c7abb20mr2683066vsp.26.1685716271220; Fri, 02
- Jun 2023 07:31:11 -0700 (PDT)
+        with ESMTP id S235824AbjFBOfH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:35:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94F241BD
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:35:03 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1q55rh-0001s5-P4; Fri, 02 Jun 2023 16:34:53 +0200
+Message-ID: <19b4b043-7f14-7bd3-c4fa-817ae21009ca@pengutronix.de>
+Date:   Fri, 2 Jun 2023 16:34:48 +0200
 MIME-Version: 1.0
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-21-dave.stevenson@raspberrypi.com> <zawd5acdiwtrve2k2n7p347uv767htvg73eq356darbdvnppqx@throy5wedcvx>
-In-Reply-To: <zawd5acdiwtrve2k2n7p347uv767htvg73eq356darbdvnppqx@throy5wedcvx>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Fri, 2 Jun 2023 15:30:54 +0100
-Message-ID: <CAPY8ntAtB9rEMKAnDJhpqdzv3kmNC-DGeBtOn=eDxiFB6=8LnQ@mail.gmail.com>
-Subject: Re: [PATCH 20/21] media: i2c: imx258: Change register settings for
- variants of the sensor
-To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 3/3] drm/panel-simple: allow LVDS format override
+Content-Language: en-US, de-DE
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Dan Carpenter <error27@gmail.com>,
+        kernel test robot <lkp@intel.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kernel@pengutronix.de, patchwork-jzi@pengutronix.de
+References: <20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de>
+ <20230523-simplepanel_support_nondefault_datamapping-v2-3-87196f0d0b64@pengutronix.de>
+From:   Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v2-3-87196f0d0b64@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo
+Hi,
 
-On Fri, 2 Jun 2023 at 14:48, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
->
-> Hi Dave
->
-> On Tue, May 30, 2023 at 06:29:59PM +0100, Dave Stevenson wrote:
-> > Sony have advised that there are variants of the IMX258 sensor which
-> > require slightly different register configuration to the mainline
-> > imx258 driver defaults.
-> >
-> > There is no available run-time detection for the variant, so add
-> > configuration via the DT compatible string.
-> >
-> > The Vision Components imx258 module supports PDAF, so add the
-> > register differences for that variant
-> >
-> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > ---
-> >  drivers/media/i2c/imx258.c | 49 ++++++++++++++++++++++++++++++++++----
-> >  1 file changed, 45 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> > index 986757650378..98b5c1e3abff 100644
-> > --- a/drivers/media/i2c/imx258.c
-> > +++ b/drivers/media/i2c/imx258.c
-> > @@ -6,6 +6,7 @@
-> >  #include <linux/delay.h>
-> >  #include <linux/i2c.h>
-> >  #include <linux/module.h>
-> > +#include <linux/of_device.h>
-> >  #include <linux/pm_runtime.h>
-> >  #include <linux/regulator/consumer.h>
-> >  #include <media/v4l2-ctrls.h>
-> > @@ -320,8 +321,6 @@ static const struct imx258_reg mipi_642mbps_24mhz_4l[] = {
-> >
-> >  static const struct imx258_reg mode_common_regs[] = {
-> >       { 0x3051, 0x00 },
-> > -     { 0x3052, 0x00 },
-> > -     { 0x4E21, 0x14 },
-> >       { 0x6B11, 0xCF },
-> >       { 0x7FF0, 0x08 },
-> >       { 0x7FF1, 0x0F },
-> > @@ -344,7 +343,6 @@ static const struct imx258_reg mode_common_regs[] = {
-> >       { 0x7FA8, 0x03 },
-> >       { 0x7FA9, 0xFE },
-> >       { 0x7B24, 0x81 },
-> > -     { 0x7B25, 0x00 },
-> >       { 0x6564, 0x07 },
-> >       { 0x6B0D, 0x41 },
-> >       { 0x653D, 0x04 },
-> > @@ -459,6 +457,33 @@ static const struct imx258_reg mode_1048_780_regs[] = {
-> >       { 0x034F, 0x0C },
-> >  };
-> >
-> > +struct imx258_variant_cfg {
-> > +     const struct imx258_reg *regs;
-> > +     unsigned int num_regs;
-> > +};
-> > +
-> > +static const struct imx258_reg imx258_cfg_regs[] = {
-> > +     { 0x3052, 0x00 },
-> > +     { 0x4E21, 0x14 },
-> > +     { 0x7B25, 0x00 },
-> > +};
-> > +
-> > +static const struct imx258_variant_cfg imx258_cfg = {
-> > +     .regs = imx258_cfg_regs,
-> > +     .num_regs = ARRAY_SIZE(imx258_cfg_regs),
-> > +};
-> > +
-> > +static const struct imx258_reg imx258_pdaf_cfg_regs[] = {
-> > +     { 0x3052, 0x01 },
-> > +     { 0x4E21, 0x10 },
-> > +     { 0x7B25, 0x01 },
-> > +};
-> > +
-> > +static const struct imx258_variant_cfg imx258_pdaf_cfg = {
-> > +     .regs = imx258_pdaf_cfg_regs,
-> > +     .num_regs = ARRAY_SIZE(imx258_pdaf_cfg_regs),
-> > +};
-> > +
-> >  static const char * const imx258_test_pattern_menu[] = {
-> >       "Disabled",
-> >       "Solid Colour",
-> > @@ -643,6 +668,8 @@ struct imx258 {
-> >       struct v4l2_subdev sd;
-> >       struct media_pad pad;
-> >
-> > +     const struct imx258_variant_cfg *variant_cfg;
-> > +
-> >       struct v4l2_ctrl_handler ctrl_handler;
-> >       /* V4L2 Controls */
-> >       struct v4l2_ctrl *link_freq;
-> > @@ -1134,6 +1161,14 @@ static int imx258_start_streaming(struct imx258 *imx258)
-> >               return ret;
-> >       }
-> >
-> > +     ret = imx258_write_regs(imx258, imx258->variant_cfg->regs,
-> > +                             imx258->variant_cfg->num_regs);
-> > +     if (ret) {
-> > +             dev_err(&client->dev, "%s failed to set variant config\n",
-> > +                     __func__);
-> > +             return ret;
-> > +     }
-> > +
-> >       ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
-> >                              IMX258_REG_VALUE_08BIT,
-> >                              imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
-> > @@ -1490,6 +1525,7 @@ static int imx258_probe(struct i2c_client *client)
-> >       struct v4l2_fwnode_endpoint ep = {
-> >               .bus_type = V4L2_MBUS_CSI2_DPHY
-> >       };
-> > +     const struct of_device_id *match;
->
-> This seems to be unused
->
-> >       int ret;
-> >       u32 val = 0;
-> >
-> > @@ -1565,6 +1601,10 @@ static int imx258_probe(struct i2c_client *client)
-> >
-> >       imx258->csi2_flags = ep.bus.mipi_csi2.flags;
-> >
-> > +     imx258->variant_cfg = of_device_get_match_data(&client->dev);
-> > +     if (!match)
->
-> Here you could check for !imx258->variant_cfg
+gentle ping here - Do you have any feedback for me on this patch?
 
-Thank you.
+Thanks and best regards
+Johannes
 
-I did have
-match = i2c_of_match_device(imx258_dt_ids, client);
-but swapped to of_device_get_match_data as it's cleaner and avoids
-having to move imx258_dt_ids around. Shame I missed the error
-condition :-(
+On 5/23/23 10:19, Johannes Zink wrote:
+> Some panels support multiple LVDS data mapping formats, which can be
+> used e.g. run displays on jeida-18 format when only 3 LVDS lanes are
+> available.
+> 
+> Add parsing of an optional data-mapping devicetree property, which also
+> touches up the bits per color to match the bus format.
+> 
+> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> 
+> ---
+> 
+> Changes:
+> 
+>    v1 -> v2: - fix missing unwind goto found by test robot
+>                Reported-by: kernel test robot <lkp@intel.com>
+>                Reported-by: Dan Carpenter <error27@gmail.com>
+>                Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 39 +++++++++++++++++++++++++++++++++++-
+>   1 file changed, 38 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 2a9c1a785a5c..0a35fdb49ccb 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -40,6 +40,7 @@
+>   #include <drm/drm_edid.h>
+>   #include <drm/drm_mipi_dsi.h>
+>   #include <drm/drm_panel.h>
+> +#include <drm/drm_of.h>
+>   
+>   /**
+>    * struct panel_desc - Describes a simple panel.
+> @@ -559,7 +560,7 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
+>   	struct device_node *ddc;
+>   	int connector_type;
+>   	u32 bus_flags;
+> -	int err;
+> +	int err, ret;
+>   
+>   	panel = devm_kzalloc(dev, sizeof(*panel), GFP_KERNEL);
+>   	if (!panel)
+> @@ -605,6 +606,42 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
+>   			panel_simple_parse_panel_timing_node(dev, panel, &dt);
+>   	}
+>   
+> +
+> +	/* optional data-mapping property for overriding bus format */
+> +	ret = drm_of_lvds_get_data_mapping(dev->of_node);
+> +	if (ret == -EINVAL) {
+> +		dev_warn(dev, "Ignore invalid data-mapping property");
+> +	} else if (ret != -ENODEV) {
+> +		int bpc;
+> +
+> +		switch (ret) {
+> +		default:
+> +			WARN_ON(1);
+> +			fallthrough;
+> +		case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
+> +			fallthrough;
+> +		case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
+> +			bpc = 8;
+> +			break;
+> +		case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
+> +			bpc = 6;
+> +		}
+> +
+> +		if (desc->bpc != bpc || desc->bus_format != ret) {
+> +			struct panel_desc *override_desc;
+> +
+> +			override_desc = devm_kmemdup(dev, desc, sizeof(*desc), GFP_KERNEL);
+> +			if (!override_desc) {
+> +				err = -ENOMEM;
+> +				goto free_ddc;
+> +			}
+> +
+> +			override_desc->bus_format = ret;
+> +			override_desc->bpc = bpc;
+> +			panel->desc = override_desc;
+> +		}
+> +	}
+> +
+>   	connector_type = desc->connector_type;
+>   	/* Catch common mistakes for panels. */
+>   	switch (connector_type) {
+> 
 
-> > +             imx258->variant_cfg = &imx258_cfg;
-> > +
-> >       /* Initialize subdev */
-> >       v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
-> >
-> > @@ -1653,7 +1693,8 @@ MODULE_DEVICE_TABLE(acpi, imx258_acpi_ids);
-> >  #endif
-> >
-> >  static const struct of_device_id imx258_dt_ids[] = {
-> > -     { .compatible = "sony,imx258" },
-> > +     { .compatible = "sony,imx258", .data = &imx258_cfg },
-> > +     { .compatible = "sony,imx258-pdaf", .data = &imx258_pdaf_cfg },
-> >       { /* sentinel */ }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, imx258_dt_ids);
-> > --
-> > 2.25.1
-> >
+-- 
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+
