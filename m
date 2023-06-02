@@ -2,82 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F152720375
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA8D1720376
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:35:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234281AbjFBNdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 09:33:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
+        id S234587AbjFBNfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 09:35:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234594AbjFBNdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:33:41 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA25E7;
-        Fri,  2 Jun 2023 06:33:38 -0700 (PDT)
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0B00427C;
-        Fri,  2 Jun 2023 15:33:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1685712795;
-        bh=212PAKwwpUVxavqd0+trs4PdaFDGNRKTDGQOic3+F1Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=F+M7pk+dmGtCj3cgpFp+vXiNtdV2JzGgNq06Uopkyggw9HP9Jb+fCDH0RqQppZaod
-         RqyTXoTwadKozklPOM1baCmB28Rgds7EpsJGG1ccl/VpBYxIWWXEIEvvbfqhRNIyCR
-         x5NAHje1n0up2ASuCowXUqc5PeVJ7ppERdCrwCJQ=
-Date:   Fri, 2 Jun 2023 15:33:34 +0200
-From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233790AbjFBNfH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:35:07 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E470DD3
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 06:35:05 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2af2d092d7aso29507001fa.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 06:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685712904; x=1688304904;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+D+cT5bVMTBSVYrrRJIkBOBm/asBspOxF+5TUcjsWFM=;
+        b=j56OsXTTt7If51WTkujtEaYRahoEBHGUgItifJp7cAK7n1Vhv6LpwvBfWaFKxVC9kX
+         38pAR4/bFe7hw4fDwGASOKcjIhX0I1e3x+ppBvSVWlTVcsno87iFjlufXujkQktPInCr
+         u9QYeCLooQlnyhIfRjvLs6oicYkCzVOOdnteDqSg8GoeXueZHCUqdw9peBx+mC3g/6Wn
+         pujcIyHRKw9Qm8Y+D0rQvncq/PdUwJYfDTJJsvlMkYrRK2x6HTK5fkffn06pjxCNL1JK
+         GzM7vXU43IM2O7JED/URBJDVMUDBddAdsQktxAHfWUFDYYHNk6zaKiLpQf07NEP7jbHZ
+         6Kyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685712904; x=1688304904;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+D+cT5bVMTBSVYrrRJIkBOBm/asBspOxF+5TUcjsWFM=;
+        b=e+GiCCtLPqs7wMGddQwYXP53kmKZW4tVt0fwbmlQNC2Vfq+mAdKd1zy04Cw+smjJ2C
+         5j07Ki6m53m08NGxxIp+2a0th/30lns5rOWdIE3CdQq3eRYi1p13Qp/vgF4LV8z5tvD8
+         UwgmSQr0I5NzcBrkfadWxakb8Imzio/GHk7/bH7q0Bh6SSnKL+e6Lq4idsjcZfNEsjLV
+         L40CXDkhCJkj3lebMpmxYC+Jss9Q1+LAbNEBGAJSVBo8z8My3G030cmU2k+SOL90uYTa
+         bDEH56KZyK4k/R1KH8HvTbOT86QAYL2H6BxZh0SArGJZheICpbuUcYgaElQgZRfY8vt1
+         CykQ==
+X-Gm-Message-State: AC+VfDxuI+dCR4Xf0FnP7MMtm5ahR4Di2Wuf2zAHfp9a+B2RfdammVdD
+        KDZqPT7qfV/SOWPgTzL41XU=
+X-Google-Smtp-Source: ACHHUZ7A/maTZbtk8SoUTF1/Oo7Jpgor/rmHqro1jSxhLYohgXuQTsFytR+y8ykRDe1RyHg/Am4itA==
+X-Received: by 2002:a2e:8883:0:b0:2b1:a93a:4133 with SMTP id k3-20020a2e8883000000b002b1a93a4133mr1576474lji.47.1685712903844;
+        Fri, 02 Jun 2023 06:35:03 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id a4-20020a05651c010400b002a8bc9918d4sm225892ljb.97.2023.06.02.06.35.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Jun 2023 06:35:03 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 13/21] media: i2c: imx258: Correct max FRM_LENGTH_LINES
- value
-Message-ID: <zkvn7f52qdwgybn7qzoluojhc3gnb2nabdcnggimucw2sh3fvd@hwak4v7gbx54>
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-14-dave.stevenson@raspberrypi.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] ARM: dts: BCM5301X: Drop invalid #usb-cells
+Date:   Fri,  2 Jun 2023 15:34:54 +0200
+Message-Id: <20230602133455.7441-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230530173000.3060865-14-dave.stevenson@raspberrypi.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 06:29:52PM +0100, Dave Stevenson wrote:
-> The data sheet states that the maximum value for registers
-> 0x0340/0x0341 FRM_LENGTH_LINES is 65525(decimal), not the
-> 0xFFFF defined in this driver. Correct this limit.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-It was close indeed :)
-Good catch
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Such property simply doesn't exist (is not documented or used anywhere).
 
->
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> ---
->  drivers/media/i2c/imx258.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index b5c2dcb7c9e6..f5199e3243e8 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -28,7 +28,7 @@
->  #define IMX258_VTS_30FPS		0x0c50
->  #define IMX258_VTS_30FPS_2K		0x0638
->  #define IMX258_VTS_30FPS_VGA		0x034c
-> -#define IMX258_VTS_MAX			0xffff
-> +#define IMX258_VTS_MAX			65525
->
->  #define IMX258_REG_VTS			0x0340
->
-> --
-> 2.25.1
->
+This fixes:
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@21000: Unevaluated properties are not allowed ('#usb-cells' was unexpected)
+        From schema: Documentation/devicetree/bindings/usb/generic-ehci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@22000: Unevaluated properties are not allowed ('#usb-cells' was unexpected)
+        From schema: Documentation/devicetree/bindings/usb/generic-ohci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@23000: Unevaluated properties are not allowed ('#usb-cells' was unexpected)
+        From schema: Documentation/devicetree/bindings/usb/generic-xhci.yaml
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/bcm-ns.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/bcm-ns.dtsi b/arch/arm/boot/dts/bcm-ns.dtsi
+index 3f8220a7a54d..793891f1f260 100644
+--- a/arch/arm/boot/dts/bcm-ns.dtsi
++++ b/arch/arm/boot/dts/bcm-ns.dtsi
+@@ -192,8 +192,6 @@ usb2: usb2@21000 {
+ 			interrupt-parent = <&gic>;
+ 
+ 			ehci: usb@21000 {
+-				#usb-cells = <0>;
+-
+ 				compatible = "generic-ehci";
+ 				reg = <0x00021000 0x1000>;
+ 				interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+@@ -214,8 +212,6 @@ ehci_port2: port@2 {
+ 			};
+ 
+ 			ohci: usb@22000 {
+-				#usb-cells = <0>;
+-
+ 				compatible = "generic-ohci";
+ 				reg = <0x00022000 0x1000>;
+ 				interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+@@ -245,8 +241,6 @@ usb3: usb3@23000 {
+ 			interrupt-parent = <&gic>;
+ 
+ 			xhci: usb@23000 {
+-				#usb-cells = <0>;
+-
+ 				compatible = "generic-xhci";
+ 				reg = <0x00023000 0x1000>;
+ 				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.35.3
+
