@@ -2,46 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E1C472033A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DFD772034A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235580AbjFBN1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 09:27:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40112 "EHLO
+        id S236150AbjFBN30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 09:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235284AbjFBN1D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:27:03 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87B361B5;
-        Fri,  2 Jun 2023 06:27:01 -0700 (PDT)
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D52BC27C;
-        Fri,  2 Jun 2023 15:26:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1685712397;
-        bh=el4KbGDxHXmAq1JF0OzjnJcJFKD7nSDz/uxWbNmUFy0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tAgKmtwLgb8hafIkvQG+2VVK1RqhiQwiIiG4EKkcRQkNqvcL3Yral8F/Ef1wNWUBd
-         eNN6yjMsU3AOibP4VKE/M/9a+bL9cVe23EZ53i1dWy6U0ClDyfiLDw5K1BRBkJQIdK
-         g6fSeFbACG3zM+U55P/1UVU3SbxdFiBRVOCLZa1I=
-Date:   Fri, 2 Jun 2023 15:26:56 +0200
-From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 12/21] media: i2c: imx258: Allow configuration of clock
- lane behaviour
-Message-ID: <oxixqip6yhr3huqg4odozxqrtb6zqpbnla6eytrcdpeurclwor@z6dvre5jgji4>
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-13-dave.stevenson@raspberrypi.com>
+        with ESMTP id S235127AbjFBN3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:29:24 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45CE21BB;
+        Fri,  2 Jun 2023 06:29:23 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 352Bxqhe001514;
+        Fri, 2 Jun 2023 15:29:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=Jaa9ldqnH9KBfB6bgVSLUH7do/rkSGKUFcgJkRV5qeg=;
+ b=eHT1B5x3tld74c/PxAnFGDH2M2q0FHnMDECpqOzJ0JhuZU9osWR+CM8nvmVjnWa7HoL8
+ s/nbhzZ9H9UeeR6ke47mwUYSgMznJ+fxS6YQs29mwrWL7Z9jiW642UPAH55KHkc6ozZZ
+ EC+yiHJmtrFNNveKaCRIHFyaEW5Ka45eiSBkikRl1V6BsFT5GxWZSngMTj6JQQBIzYJN
+ rfnQTtbxnEQ3J7C9IbnlTFavuK6ze+UV1TVermEOWtJfQPRlnVI85gtmcY8lc+Cku8Si
+ c0cVgHUJ3VVhEKqIl1WowwPUkc4+O/wj1D6FkG9NP4RXKuxaEjA3Ceks7jUpaRix56MJ 8A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qweqepguk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 02 Jun 2023 15:29:04 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D3A9310002A;
+        Fri,  2 Jun 2023 15:29:03 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C4A11236927;
+        Fri,  2 Jun 2023 15:29:03 +0200 (CEST)
+Received: from localhost (10.201.21.93) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 2 Jun
+ 2023 15:29:03 +0200
+From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, <soc@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v2 00/10] Add STM32MP25 support
+Date:   Fri, 2 Jun 2023 15:28:49 +0200
+Message-ID: <20230602132859.16442-1-alexandre.torgue@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230530173000.3060865-13-dave.stevenson@raspberrypi.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-02_10,2023-06-02_02,2023-05-22_02
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -50,69 +73,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dave
+I'm pleased to announce extension of the STM32 MPU family with the addition of
+the STM32MP25 Armv8 based SoCs.
 
-On Tue, May 30, 2023 at 06:29:51PM +0100, Dave Stevenson wrote:
-> The sensor supports the clock lane either remaining in HS mode
-> during frame blanking, or dropping to LP11.
->
-> Add configuration of the mode via V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK.
+STM32MP25 family is composed of 4 SoCs defined as following:
 
-Assuming a follow-up patch for DT
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+  -STM32MP251: common part composed of 1*Cortex-A35, common peripherals like
+   SDMMC, UART, SPI, I2C, PCIe, USB3, parallel and DSI display, 1*ETH ...
 
->
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> ---
->  drivers/media/i2c/imx258.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index 1fa83fe82f27..b5c2dcb7c9e6 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -72,6 +72,8 @@
->  /* Test Pattern Control */
->  #define IMX258_REG_TEST_PATTERN		0x0600
->
-> +#define IMX258_CLK_BLANK_STOP		0x4040
-> +
->  /* Orientation */
->  #define REG_MIRROR_FLIP_CONTROL		0x0101
->  #define REG_CONFIG_MIRROR_FLIP		0x03
-> @@ -634,6 +636,7 @@ struct imx258 {
->  	const struct imx258_link_freq_config *link_freq_configs;
->  	const s64 *link_freq_menu_items;
->  	unsigned int nlanes;
-> +	unsigned int csi2_flags;
->
->  	/*
->  	 * Mutex for serialized access:
-> @@ -1072,6 +1075,15 @@ static int imx258_start_streaming(struct imx258 *imx258)
->  		return ret;
->  	}
->
-> +	ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
-> +			       IMX258_REG_VALUE_08BIT,
-> +			       imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
-> +			       1 : 0);
-> +	if (ret) {
-> +		dev_err(&client->dev, "%s failed to set clock lane mode\n", __func__);
-> +		return ret;
-> +	}
-> +
->  	/* Apply default values of current mode */
->  	reg_list = &imx258->cur_mode->reg_list;
->  	ret = imx258_write_regs(imx258, reg_list->regs, reg_list->num_of_regs);
-> @@ -1486,6 +1498,8 @@ static int imx258_probe(struct i2c_client *client)
->  		goto error_endpoint_poweron;
->  	}
->
-> +	imx258->csi2_flags = ep.bus.mipi_csi2.flags;
-> +
->  	/* Initialize subdev */
->  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
->
-> --
-> 2.25.1
->
+  -STM32MP253: STM32MP251 + 1*Cortex-A35 (dual CPU), a second ETH, CAN-FD and
+   LVDS display.
+
+  -STM32MP255: STM32MP253 + GPU/AI and video encode/decode.
+  -STM32MP257: STM32MP255 + ETH TSN switch (2+1 ports).
+
+  A second diversity layer exists for security features/ A35 frequency:
+  -STM32MP25xY, "Y" gives information:
+    -Y = A means A35@1.2GHz + no cryp IP and no secure boot.
+    -Y = C means A35@1.2GHz + cryp IP and secure boot.
+    -Y = D means A35@1.5GHz + no cryp IP and no secure boot.
+    -Y = F means A35@1.5GHz + cryp IP and secure boot.
+
+This series adds the STM32MP257F EV1 board support. This board embeds a
+STM32MP257FAI SoC, with 4GB of DDR4, TSN switch (2+1 ports), 2*USB typeA,
+1*USB2 typeC, SNOR OctoSPI, mini PCIe, STPMIC2 for power distribution ...
+
+Changes since v1:
+
+-Add Conor "reviewed-by".
+-Drop patch[4] of initial series to not define SoC without board in stm32,yaml.
+-Add Krzysztof "Acked-by" after reordering enum in st,stm32-syscon.yaml
+
+Thanks
+Alex
+
+Alexandre Torgue (9):
+  dt-bindings: pinctrl: stm32: support for stm32mp257 and additional
+    packages
+  pinctrl: stm32: add stm32mp257 pinctrl support
+  arm64: introduce STM32 family on Armv8 architecture
+  arm64: dts: st: introduce stm32mp25 SoCs family
+  arm64: dts: st: introduce stm32mp25 pinctrl files
+  dt-bindings: stm32: document stm32mp257f-ev1 board
+  arm64: dts: st: add stm32mp257f-ev1 board support
+  arm64: defconfig: enable ARCH_STM32 and STM32 serial driver
+  MAINTAINERS: add entry for ARM/STM32 ARCHITECTURE
+
+Patrick Delaunay (1):
+  dt-bindings: stm32: add st,stm32mp25-syscfg compatible for syscon
+
+ .../bindings/arm/stm32/st,stm32-syscon.yaml   |    7 +-
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |    6 +
+ .../bindings/pinctrl/st,stm32-pinctrl.yaml    |    4 +-
+ MAINTAINERS                                   |    1 +
+ arch/arm64/Kconfig.platforms                  |   14 +
+ arch/arm64/boot/dts/Makefile                  |    1 +
+ arch/arm64/boot/dts/st/Makefile               |    2 +
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |   38 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  279 ++
+ arch/arm64/boot/dts/st/stm32mp253.dtsi        |   23 +
+ arch/arm64/boot/dts/st/stm32mp255.dtsi        |    9 +
+ arch/arm64/boot/dts/st/stm32mp257.dtsi        |    9 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |   50 +
+ arch/arm64/boot/dts/st/stm32mp25xc.dtsi       |    8 +
+ arch/arm64/boot/dts/st/stm32mp25xf.dtsi       |    8 +
+ .../boot/dts/st/stm32mp25xxai-pinctrl.dtsi    |   83 +
+ .../boot/dts/st/stm32mp25xxak-pinctrl.dtsi    |   71 +
+ .../boot/dts/st/stm32mp25xxal-pinctrl.dtsi    |   71 +
+ arch/arm64/configs/defconfig                  |    3 +
+ drivers/pinctrl/stm32/Kconfig                 |    6 +
+ drivers/pinctrl/stm32/Makefile                |    1 +
+ drivers/pinctrl/stm32/pinctrl-stm32.h         |    3 +
+ drivers/pinctrl/stm32/pinctrl-stm32mp257.c    | 2581 +++++++++++++++++
+ include/dt-bindings/pinctrl/stm32-pinfunc.h   |    3 +
+ 24 files changed, 3277 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/st/Makefile
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp251.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp253.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp255.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp257.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp25xc.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp25xf.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp25xxai-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp25xxak-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp25xxal-pinctrl.dtsi
+ create mode 100644 drivers/pinctrl/stm32/pinctrl-stm32mp257.c
+
+-- 
+2.17.1
+
