@@ -2,144 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 089927204F7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:55:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 128AE7204FA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 16:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235775AbjFBOzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 10:55:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50922 "EHLO
+        id S236279AbjFBO41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 10:56:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235634AbjFBOzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:55:19 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2003E51
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:55:11 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f60a27c4a2so2433971e87.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:55:11 -0700 (PDT)
+        with ESMTP id S236273AbjFBO4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 10:56:22 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABBD8134
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 07:56:19 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-973e7c35eddso308808966b.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 07:56:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685717710; x=1688309710;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xJNUVlgds7t6ZphnTS9QNzdJzZn0b5QCJlQjBpXkafw=;
-        b=e8/qkoCtR6xTkEhpN829hQI0x1nRJEmDo/dyOeB5Y4t6Poolv5I1NxPmfKjva8yOyx
-         9mEXVsH4Rb88/0+DexoaoL39ikcuiTOniyxTAXNHA1zprxAGeUDkO1yetxTMLT0iQSQj
-         ejSIuK+2J3YCe63bP76OyL80Uxt+VEHKau/8NkhpKMDOrYj/xrupjz5a91NEuGRwcCny
-         tp6Zqa2f1pKGzLBE+WtyO2jUHiXRh36QVwcDjWOqxWrZVem45HYkL8hUwNMNOmMSJz76
-         WOCbpM8N6PIfNg9P8MbCB/C5IffTMjCqJefBS3OoQoS2bfGe7fWUUJYHaSd82MOQgKw2
-         bcyA==
+        d=linaro.org; s=google; t=1685717778; x=1688309778;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wnzl+oKBQQYlv+ufXrrOrmqqiDIhBJ9gKxeDwPiop2U=;
+        b=GMxQutQqOI2tYKBtzZAaqKIUqU7r+PbwrkxhgYgJ/iORGQqWjNUT689CDWDrVKPob9
+         XKn5G6+X4YG/uBUk6V3WDG1ZKe1Pihx+25lJWj/bIiP3047DfEbvgkYd1qbcubV4u9wP
+         i3yIPb66r8f6GAu5D18gRLF4cz1zhO0XOg1Qw9MZJAfbdhK7B9tMCYXg230OYF/1VcFG
+         nnTG22QXULPNj4Qvx+OSyRySFNN04gaYx34Ll+kkFTbJ/VYPc7oTiL5+fyStGEfvUdmI
+         DaiY0eTy39o/0NEEYBq+Ap7jZICjSb/Ih38Gx/hIYnDufYAWV5NolWjtuMPijXaBDM9O
+         Ub5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685717710; x=1688309710;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xJNUVlgds7t6ZphnTS9QNzdJzZn0b5QCJlQjBpXkafw=;
-        b=VN9rINWQTAO5/MLOjWbZGN9eELTaWLNyDgZgszWPPhykCr57uyT0Bwa8l07qqcpkpH
-         kkBj52Wu3PTHyX/+KEifkJPU6grjY9MNdPDJ4J3fhq2NLuK5SAEKrjTegqkNGtPO5AVi
-         BfX0/CQwoTU2LnpsSGtgmNwJ5pBiisjjam2fuTLPFIT3md7Yh/dQgfH2JbCO3dHXozyG
-         ygPhW4gBBdt1dFL8M6m5eMSkypDsFuOBV7BN6Boqn9qwLAqoIkhhllI2IwVp5upGu5RE
-         Nq4CQfihCKbMDYVx4Q8r6qiuRay40AMBvMkG5gKv0O8NyzaASQHacNHynFzfcxiJq/BI
-         KfAw==
-X-Gm-Message-State: AC+VfDwVuEz5EtFBidmD2bsx963G+4QISR7hCGsRaLuXrQCaWlN5qzZd
-        JGp79h9PCDp4pyQjsqnYB0teE8WuF10=
-X-Google-Smtp-Source: ACHHUZ6RmFY4GVpw+KVnVpJ0BrkQo4HXNM070W5R9Uxyj4XIJNdRg5/RknGrC5IH9C2FT1ZbjMa6Bw==
-X-Received: by 2002:a05:6512:96e:b0:4f1:3be7:e1d with SMTP id v14-20020a056512096e00b004f13be70e1dmr1812532lft.62.1685717709988;
-        Fri, 02 Jun 2023 07:55:09 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id h18-20020ac25972000000b004efd3c2b746sm185234lfp.162.2023.06.02.07.55.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jun 2023 07:55:09 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] ARM: dts: BCM5301X: Use updated "spi-gpio" binding properties
-Date:   Fri,  2 Jun 2023 16:54:58 +0200
-Message-Id: <20230602145458.6655-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        d=1e100.net; s=20221208; t=1685717778; x=1688309778;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wnzl+oKBQQYlv+ufXrrOrmqqiDIhBJ9gKxeDwPiop2U=;
+        b=BJvryREdwUUL7t+se3k0aPdjXbGxomHh8vtclylnaRk4qi8xLNPqIuN1fHzIL0iXAZ
+         Dsu2L/PdpQ6CWxWC6ui2ganXE6jX6z0qi6/HIwt0wVPlpFhA5PRgSmG6ZhcVpPtd5ksj
+         iVVQ5v74Tb1j0YHmAiJTyOgfGymZMHS+KXtzyaw0LJSE2n+tSeZxMECoFJ2D587Lg0pQ
+         Cj3uZ6wr5WdaYFBSRB8lu1SntOJ7bU/462C/ZX8njZEE2wwjUC981EkpCyPBYV2cZpav
+         phBBtYHaW7Oyb6RRvC6/9lbulPFj9RpkBivlMvijoTB2+K1B27B8mJOcMWu5P++fCYCm
+         9H+g==
+X-Gm-Message-State: AC+VfDwJhUkG5gwu7Tp5oWQ0vINR4IihjhNYl/E104xAY88hmnMY5Obz
+        j325Q0NzbxwAxZwTZ2989rPn1w==
+X-Google-Smtp-Source: ACHHUZ4hcWFfF0FCaSfbTI+lzp2kZljSmf3H9Wn8b8Dj2qTDyDNjHbvmC3SaZv9TvGPuinNqTX/0LA==
+X-Received: by 2002:a17:907:8a22:b0:969:7739:2eb7 with SMTP id sc34-20020a1709078a2200b0096977392eb7mr11905326ejc.4.1685717778140;
+        Fri, 02 Jun 2023 07:56:18 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id a24-20020a170906245800b009745ecf5438sm839680ejb.193.2023.06.02.07.56.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jun 2023 07:56:17 -0700 (PDT)
+Message-ID: <c0c0dba2-2d93-9b30-7106-7bf7826844b2@linaro.org>
+Date:   Fri, 2 Jun 2023 16:56:15 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 2/4] dt-bindings: power: reset:
+ atmel,at91sam9260-shdwc: convert to yaml
+Content-Language: en-US
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        sre@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230524123528.439082-1-claudiu.beznea@microchip.com>
+ <20230524123528.439082-3-claudiu.beznea@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230524123528.439082-3-claudiu.beznea@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 24/05/2023 14:35, Claudiu Beznea wrote:
+> Convert Atmel shutdown controller to YAML.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
 
-Switch away from deprecated properties.
 
-This fixes:
-arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: gpio-sck: False schema does not allow [[6, 7, 0]]
-        From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
-arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: gpio-mosi: False schema does not allow [[6, 4, 0]]
-        From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
-arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: 'sck-gpios' is a required property
-        From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
-arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: Unevaluated properties are not allowed ('gpio-mosi', 'gpio-sck' were unexpected)
-        From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,at91sam9260-shdwc
+> +              - atmel,at91sam9rl-shdwc
+> +    then:
+> +      properties:
+> +        atmel,wakeup-rtt-timer:
+> +          description: enable real-time timer wake-up
+> +          type: boolean
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dts  | 4 ++--
- arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts | 4 ++--
- arch/arm/boot/dts/bcm47081-buffalo-wzr-900dhp.dts  | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+No, don't define properties in allOf.
 
-diff --git a/arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dts b/arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dts
-index 43c698a0a7c3..95ef6ca7210b 100644
---- a/arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dts
-+++ b/arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dts
-@@ -28,8 +28,8 @@ memory@0 {
- 	spi {
- 		compatible = "spi-gpio";
- 		num-chipselects = <1>;
--		gpio-sck = <&chipcommon 7 0>;
--		gpio-mosi = <&chipcommon 4 0>;
-+		sck-gpios = <&chipcommon 7 0>;
-+		mosi-gpios = <&chipcommon 4 0>;
- 		cs-gpios = <&chipcommon 6 0>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts b/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts
-index 407319cb5c0d..a2b7644eaf39 100644
---- a/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts
-+++ b/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts
-@@ -28,8 +28,8 @@ memory@0 {
- 	spi {
- 		compatible = "spi-gpio";
- 		num-chipselects = <1>;
--		gpio-sck = <&chipcommon 7 0>;
--		gpio-mosi = <&chipcommon 4 0>;
-+		sck-gpios = <&chipcommon 7 0>;
-+		mosi-gpios = <&chipcommon 4 0>;
- 		cs-gpios = <&chipcommon 6 0>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/bcm47081-buffalo-wzr-900dhp.dts b/arch/arm/boot/dts/bcm47081-buffalo-wzr-900dhp.dts
-index f8622ecce6a2..7655e4ff2d1c 100644
---- a/arch/arm/boot/dts/bcm47081-buffalo-wzr-900dhp.dts
-+++ b/arch/arm/boot/dts/bcm47081-buffalo-wzr-900dhp.dts
-@@ -28,8 +28,8 @@ memory@0 {
- 	spi {
- 		compatible = "spi-gpio";
- 		num-chipselects = <1>;
--		gpio-sck = <&chipcommon 7 0>;
--		gpio-mosi = <&chipcommon 4 0>;
-+		sck-gpios = <&chipcommon 7 0>;
-+		mosi-gpios = <&chipcommon 4 0>;
- 		cs-gpios = <&chipcommon 6 0>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.35.3
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,at91sam9rl-shdwc
+> +              - atmel,at91sam9x5-shdwc
+> +    then:
+> +      properties:
+> +        atmel,wakeup-rtc-timer:
+> +          description: enable real-time clock wake-up
+> +          type: boolean
+
+Same problem.
+
+> +
+> +unevaluatedProperties: false
+
+This should be additionalProperties: false.
+> +
+> +examples:
+> +  - |
+> +    shdwc: poweroff@fffffd10 {
+> +        compatible = "atmel,at91sam9260-shdwc";
+> +        reg = <0xfffffd10 0x10>;
+> +        clocks = <&clk32k>;
+> +    };
+> +
+> +...
+
+Best regards,
+Krzysztof
 
