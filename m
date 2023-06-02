@@ -2,120 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD77E71FEAE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 12:13:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6307C71FEE3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 12:21:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235201AbjFBKNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 06:13:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39476 "EHLO
+        id S234482AbjFBKVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 06:21:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235000AbjFBKNG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 06:13:06 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3816D197;
-        Fri,  2 Jun 2023 03:13:05 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-7747df5b674so35863839f.3;
-        Fri, 02 Jun 2023 03:13:05 -0700 (PDT)
+        with ESMTP id S233982AbjFBKVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 06:21:35 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B18AB180
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 03:21:34 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b1a86cdec6so14988331fa.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 03:21:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1685701293; x=1688293293;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3q0SzVmGHZSYA8dRUVFZwmu0+tSDXCd1K6OkYFYtOd8=;
+        b=pjzDmVWrmpv8bNLYLxvaZYL6mxAG3qQGOPJ8xm++RR5BxeesRsXpGhpys5eIzcxcHB
+         rxgB6q/xLenJIRNPnwkVkDzsQhtNqR1+AzfiU/SbEYotGzou+QdALXAT5+qDdwLxo+tz
+         xcdp4bFWejnRiySMy3kFESCse7L+7H5XqwxHM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685700784; x=1688292784;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=l/PIFR+ZIA9eZqhv8ThRSE/EHs2TLrNkw8dWpu4ejEo=;
-        b=EWgZyOouIxS5i+8MJ02WPWOlmN3P37zHI8h5KSEzVXKyg5gH6K4SYQPUXrmuiNO3T9
-         Xjc5eiPV44Y0McnGAxz+r8BAk1s5maeJyzpoitepdIHkp+ktx6/MPXnqJQOjnTJ9Wbpr
-         KoyZdVRVTdqhhWXolXGiKTYU22KK8kWXfnvThXo/V4ED3Oe7GlZQ5OuT48eOTc75q0Wy
-         LYvSCKoVhghOqoMeiTujy+Ju68mvZ+itUc9j+CXcbYY9VUzMA6nXI44Wabm48er3VNao
-         yQGbBKFodZCmIeL02XeK6CZulkZR311ssw99VvfpYEzXjPhhYho5hmn9xlXdIotIBd6E
-         SMHA==
-X-Gm-Message-State: AC+VfDxJyEbZsO98yq5eDA0WV7x6YjqZlMugM41pKNbm26d0Oam8sNv4
-        +Euk5dn9ekwpOIG145hyXHCG5wVMMA==
-X-Google-Smtp-Source: ACHHUZ6CYRer4ThVGQY100UimlMmqDeEPZXk9gl/qzrUD8+oKZRBwxw0FiZma7Yt5Kk1HtF3Qk5qGA==
-X-Received: by 2002:a6b:db17:0:b0:76c:71dc:55f3 with SMTP id t23-20020a6bdb17000000b0076c71dc55f3mr2219262ioc.6.1685700784312;
-        Fri, 02 Jun 2023 03:13:04 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id z3-20020a029f03000000b0040f94261ab1sm208404jal.12.2023.06.02.03.13.02
+        d=1e100.net; s=20221208; t=1685701293; x=1688293293;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3q0SzVmGHZSYA8dRUVFZwmu0+tSDXCd1K6OkYFYtOd8=;
+        b=SB2CGDPI88Da8Ts0uh49QUqqOYjYTLiQRK/iJqsEBMDoJADQsc8piQh3/B9bgrr/UZ
+         d0DT0dE5m8gq1CId1CJ+rsM/Pcp179uNseKwezoQniKeI+xOdyS+cahgt1arRZCl1mBg
+         YM5sDuLC7csHzYseL+CI5esHHHTBROSqk5pD3YzLAutccQSaJO4U7chfCC4lXfXjB4Ru
+         OMBMA3Wwh969ikVaSteaczG9RUr3fOsfTFCyDfrcVhrWVH7A/4S7b/vvhvPk6k0tZbYY
+         PoWq3LxJgVaxDqe6Wak+/Yf5OZaQ97mfTpKoLPGWqADhgGTFHuJOCXyXnCsnE6K2FH2Q
+         rF/w==
+X-Gm-Message-State: AC+VfDwBFF+PypckqWnlcyBrCWFILndog7vhAElRaAEBmcB17+44Tmtg
+        LCGsxizaeFR1NjbXvI0Xx1mwSA==
+X-Google-Smtp-Source: ACHHUZ6co4uO+gVLS2iC+Vv8IBfeCfrH5pWd6DF66wUFf3puiaOUh6G/ryC64nR6uuVEL69eEqSvqw==
+X-Received: by 2002:a2e:9944:0:b0:2ad:8623:a97e with SMTP id r4-20020a2e9944000000b002ad8623a97emr1104584ljj.50.1685701292883;
+        Fri, 02 Jun 2023 03:21:32 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-248-31-20.retail.telecomitalia.it. [95.248.31.20])
+        by smtp.gmail.com with ESMTPSA id x24-20020aa7d398000000b0051499320435sm528887edq.14.2023.06.02.03.21.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jun 2023 03:13:03 -0700 (PDT)
-Received: (nullmailer pid 1359772 invoked by uid 1000);
-        Fri, 02 Jun 2023 10:13:02 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fri, 02 Jun 2023 03:21:32 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20230602090322.1876359-2-alvin@pqrs.dk>
-References: <20230602090322.1876359-1-alvin@pqrs.dk>
- <20230602090322.1876359-2-alvin@pqrs.dk>
-Message-Id: <168570078201.1359749.10287160624641352834.robh@kernel.org>
-Subject: Re: [PATCH 1/4] ASoC: dt-bindings: document new
- symmetric-clock-role flag
-Date:   Fri, 02 Jun 2023 04:13:02 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v2 0/6] Add display support on the stm32f746-disco board
+Date:   Fri,  2 Jun 2023 12:21:16 +0200
+Message-Id: <20230602102123.3345587-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The series adds support for the display on the stm32f746-disco board,
+along with a generic patch that adds the "bpp" parameter to the stm-drm
+module. The intention is to allow users to size, within certain limits,
+the memory footprint required by the framebuffer.
 
-On Fri, 02 Jun 2023 11:03:18 +0200, Alvin Šipraga wrote:
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
-> 
-> The new flag specifies that both ends of the dai-link have the same
-> clock consumer/provider role. This should be used to describe hardware
-> where e.g. the CPU and codec both receive their bit- and frame-clocks
-> from an external source.
-> 
-> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-> ---
->  .../devicetree/bindings/sound/simple-card.yaml        | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
+Changes in v2:
+- Add 'Acked-by' tag of Conor Dooley.
+- Fix build warning reported by kernel test robot.
+- Add 'Reported-by' tag of kernel test robot.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Dario Binacchi (6):
+  ARM: dts: stm32: add ltdc support on stm32f746 MCU
+  ARM: dts: stm32: add pin map for LTDC on stm32f7
+  ARM: dts: stm32: support display on stm32f746-disco board
+  dt-bindings: display: simple: add Rocktech RK043FN48H
+  drm/panel: simple: add support for Rocktech RK043FN48H panel
+  drm/stm: add an option to change FB bpp
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/sound/simple-card.yaml:33:5: [error] syntax error: could not find expected ':' (syntax)
+ .../bindings/display/panel/panel-simple.yaml  |  2 +
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi        | 35 +++++++++++++
+ arch/arm/boot/dts/stm32f746-disco.dts         | 51 +++++++++++++++++++
+ arch/arm/boot/dts/stm32f746.dtsi              | 10 ++++
+ drivers/gpu/drm/panel/panel-simple.c          | 29 +++++++++++
+ drivers/gpu/drm/stm/drv.c                     |  8 ++-
+ 6 files changed, 134 insertions(+), 1 deletion(-)
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/sound/simple-card.example.dts'
-Documentation/devicetree/bindings/sound/simple-card.yaml:33:5: could not find expected ':'
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/sound/simple-card.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/sound/simple-card.yaml:33:5: could not find expected ':'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/simple-card.yaml: ignoring, error parsing file
-make: *** [Makefile:1512: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230602090322.1876359-2-alvin@pqrs.dk
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.32.0
 
