@@ -2,92 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E17E471F86B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 04:30:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2112F71F875
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 04:35:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbjFBCa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jun 2023 22:30:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46800 "EHLO
+        id S229490AbjFBCfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jun 2023 22:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjFBCa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 22:30:26 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7DCF180;
-        Thu,  1 Jun 2023 19:30:24 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35229dS6021413;
-        Fri, 2 Jun 2023 02:30:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=z4PGhJicd64CLNRAi7yXlmeie/hBJ8KiRE5vR6dLI3Y=;
- b=T2gk7s76YivrQKBkE42kHbX1hXBSu4BZf4lz4nzRN1H9+76Ky8RmfH4DfSr0YKaUQ5nm
- bw5cbPEmCXTNFZBrlIbQ76L30rXIwBc11teMqdFVSjsei5W+kF7BG7hlFDesifPMY5Jc
- eFqNUf90GimokCeOAiZDgovy6FAqQV+idj7Z+eCH8OSNhNpNixzF8b2DmvNilMvzBsKD
- MoulHlXy7WSXojT8itrZhWo8WYzhqEWX5kJPcRJ1GJBulhVbQ/nyZl59kKSte0ue8uva
- hVpDpQ1cp+ys8q8pYH3wRNsYJd4nPa9OoG4f/wMEBfFB1u3tD8G7qLZ8+EIuDZAJOwx7 bA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxqyda8hy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Jun 2023 02:29:59 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3522Tw2T019651
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Jun 2023 02:29:58 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
- 19:29:52 -0700
-Message-ID: <e7909578-6538-b3bd-7bca-3e19015cfdef@quicinc.com>
-Date:   Fri, 2 Jun 2023 10:29:50 +0800
+        with ESMTP id S232292AbjFBCfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jun 2023 22:35:39 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 390F2193
+        for <devicetree@vger.kernel.org>; Thu,  1 Jun 2023 19:35:37 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 3A847861B4;
+        Fri,  2 Jun 2023 04:35:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1685673334;
+        bh=FLo2u3hTWKC7gXkYAleXSO3z8LcAt+1FxJV3wMcHbaE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JddLkl+GRWMLl+6KtCmgARwKcbF5c0IXgP1U47skgYZLSg1js6H8Nuox8QJgpWxAp
+         DRbE8vUpAedhRmjSZenhBTFcfTvshRztPNK0TWmYEgqCELjVOX2ezHoQ0e6NRaMFPO
+         ZzC5y0lqQ+eS7OZcQPb8yJv095AzKTgUP1HucQP6Eob2uudX2sCMkp74HMtmzKFFZi
+         PwUKYE8KrkneXvqKOPvSaYmjenYmK5fdD1j92OubtLWcuPxS7fGenD87C9ux99R+79
+         H/FI/f8QLmFAtgqfQnuFwDEecfpMHY92h+mQWKyBAeWYEjhMEZgCrLykoR3A2O2R1y
+         cJ7IsmVzV8C+g==
+Message-ID: <81f4574d-38c2-21f2-b947-d13e5fc99c60@denx.de>
+Date:   Fri, 2 Jun 2023 04:35:33 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 05/11] coresight-tpdm: Add nodes to set trigger
- timestamp and type
+Subject: Re: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
+ mailbox for emtrion emSBC-Argon
 Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Cochran <richardcochran@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-6-git-send-email-quic_taozha@quicinc.com>
- <ccdc58ff-f86b-6ca8-cdf6-299cc454873c@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <ccdc58ff-f86b-6ca8-cdf6-299cc454873c@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4ewbk22m80blD3fl4BtDufLGKaIwIPuf
-X-Proofpoint-GUID: 4ewbk22m80blD3fl4BtDufLGKaIwIPuf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_08,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- mlxlogscore=999 phishscore=0 mlxscore=0 bulkscore=0 spamscore=0
- adultscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2306020017
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "kernel@dh-electronics.com" <kernel@dh-electronics.com>
+References: <20230518011246.438097-1-marex@denx.de>
+ <PAXPR10MB471850924065C987981634C1F14B9@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+ <133c8b4a-8680-f613-807a-2d7931d0a186@denx.de>
+ <PAXPR10MB4718D37242FF00D47DF0CEF1F1499@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <PAXPR10MB4718D37242FF00D47DF0CEF1F1499@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -96,195 +70,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 6/1/23 14:56, Arnaud POULIQUEN wrote:
 
-On 6/1/2023 5:05 PM, Suzuki K Poulose wrote:
-> On 27/04/2023 10:00, Tao Zhang wrote:
->> The nodes are needed to set or show the trigger timestamp and
->> trigger type. This change is to add these nodes to achieve these
->> function.
+Hi,
+
+[...]
+
+>> I assume that if the firmware does not use the detach mailbox, then the
+>> detach mailbox is just ignored and unused, so there is no problem with
+>> having it described in the DT in any case ?
+> 
+> Yes, The aim of the ST evaluation board is to provide a DT  to a support
+> different firmwares for demo and tests.  But it is not the case of all boards...
+> If your boards provide demo using the "detach" it is justified.
+> If you just add it as a workaround to mask the warnings, you just mask the issue.
+
+Then it seems there is no issue with the boards modified here, because 
+as far as I can tell, those are all general purpose SoMs and evaluation 
+boards. With such systems, you cannot predict what the user would like 
+to use those for, that could include whatever ST demo.
+
+>> And if that's the case, then I would much rather prefer to have all the boards
+>> describe the same set of mailboxes, so they don't diverge . What do you
+>> think ?
 >>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> ---
->>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   | 24 ++++++
->>   drivers/hwtracing/coresight/coresight-tpdm.c       | 95 
->> ++++++++++++++++++++++
->>   2 files changed, 119 insertions(+)
+> 
+> I would avoid this.  It is only a configuration by default for current demo.
+
+That current demo is restricted to ST produced boards only, or can it 
+also be run on development kits manufactured by other vendors ? I think 
+it is the later, and I don't see why those should be kept out.
+
+> The allocation depends on the firmware loaded on M4, so depend on the project.
+> For instance, a work has started in OpenAMP community to implement the vIrtio Services
+> For the IPC.  Each virtio services would be associated to one or several mailbox
+> Channels.  In this case we would need to arbitrate allocations.
+> The result could be that we propose a virtio channel for rpmsg + some other virtio.
+> More than that we probably manage the mailboxes in sub node
+> Here is an RFC on the topic (https://lore.kernel.org/lkml/20220920202201.GB1042164@p14s/)
+> 
+> That said, fixing rpmsg virqueue and the shutdown mailboxes in the  SoC dtsi, seems reasonable as it
+> provides the default expected implementation.
+> Do the same for the detach that is optional and mainly unused, I'm not fan.
+> Adding the detach mailbox in the DT to mask a warning issue, I'm rather against it
+
+Removal of divergence.
+
+>>> Rather than adding unused optional mailbox, I will more in favor of
+>>> having a mbox_request_channel_byname_optional helper or something
+>>> similar
 >>
->> diff --git 
->> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> index 686bdde..77e67f2 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> @@ -21,3 +21,27 @@ Description:
->>             Accepts only one value -  1.
->>           1 : Reset the dataset of the tpdm
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_trig_type
->> +Date:        March 2023
->> +KernelVersion    6.3
->
-> This would need updating. We are not sure if this can make it to 6.5, 
-> with dependency on James' series. Fix this with 6.5 here and we can take
-> a shot.
-Sure, I will update this in the next patch series.
->
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (Write) Set the trigger type of DSB tpdm. Read the trigger
->> +        type of DSB tpdm.
->> +
->> +        Accepts only one of the 2 values -  0 or 1.
->> +        0 : Set the DSB trigger type to false
->> +        1 : Set the DSB trigger type to true
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_trig_ts
->> +Date:        March 2023
->> +KernelVersion    6.3
->
-> Same here
-Sure, I will update this in the next patch series.
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (Write) Set the trigger timestamp of DSB tpdm. Read the
->> +        trigger timestamp of DSB tpdm.
->> +
->> +        Accepts only one of the 2 values -  0 or 1.
->> +        0 : Set the DSB trigger type to false
->> +        1 : Set the DSB trigger type to true
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index 2e64cfd..14f4352 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -20,6 +20,19 @@
->>     DEFINE_CORESIGHT_DEVLIST(tpdm_devs, "tpdm");
->>   +static umode_t tpdm_dsb_is_visible(struct kobject *kobj,
->> +                                   struct attribute *attr, int n)
->
-> minor nit: alignment ?
-Sure, I will update this in the next patch series.
->
->> +{
->> +    struct device *dev = kobj_to_dev(kobj);
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    if (drvdata)
->> +        if (drvdata && (drvdata->datasets & TPDM_PIDR0_DS_DSB))
->> +            return attr->mode;
->
-> Duplicate check for drvdata ?
->
->     if (drvdata && (drvdata->datasets & TPDM_PIDR0_DS_DSB))
->         return attr->mode;
+>> See above, I think it is better to have the mailbox described in DT always and
+>> not use it (the user can always remove it), than to not have it described on
+>> some boards and have it described on other boards (inconsistency).
+> 
+> Adding it in the DT ( and especially in the Soc DTSI) can also be interpreted as
+> "it is defined so you must use it". I would expect that the Bindings already provide
+> the information to help user to add it on need.
 
-Don't need double check here, I will change this in the next patch series.
-
-
-Best,
-
-Tao
-
->> +
->> +    return 0;
->> +}
->> +
->>   static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
->>   {
->>       if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
->> @@ -239,8 +252,90 @@ static struct attribute_group tpdm_attr_grp = {
->>       .attrs = tpdm_attrs,
->>   };
->>   +static ssize_t dsb_trig_type_show(struct device *dev,
->> +                     struct device_attribute *attr, char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    return sysfs_emit(buf, "%u\n",
->> +             (unsigned int)drvdata->dsb->trig_type);
->> +}
->> +
->> +/*
->> + * Trigger type (boolean):
->> + * false - Disable trigger type.
->> + * true  - Enable trigger type.
->> + */
->> +static ssize_t dsb_trig_type_store(struct device *dev,
->> +                      struct device_attribute *attr,
->> +                      const char *buf,
->> +                      size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    if (val)
->> +        drvdata->dsb->trig_type = true;
->> +    else
->> +        drvdata->dsb->trig_type = false;
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(dsb_trig_type);
->> +
->> +static ssize_t dsb_trig_ts_show(struct device *dev,
->> +                     struct device_attribute *attr, char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    return sysfs_emit(buf, "%u\n",
->> +             (unsigned int)drvdata->dsb->trig_ts);
->> +}
->> +
->> +/*
->> + * Trigger timestamp (boolean):
->> + * false - Disable trigger timestamp.
->> + * true  - Enable trigger timestamp.
->> + */
->> +static ssize_t dsb_trig_ts_store(struct device *dev,
->> +                      struct device_attribute *attr,
->> +                      const char *buf,
->> +                      size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    if (val)
->> +        drvdata->dsb->trig_ts = true;
->> +    else
->> +        drvdata->dsb->trig_ts = false;
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(dsb_trig_ts);
->> +
->> +static struct attribute *tpdm_dsb_attrs[] = {
->> +    &dev_attr_dsb_trig_ts.attr,
->> +    &dev_attr_dsb_trig_type.attr,
->> +    NULL,
->> +};
->> +
->> +static struct attribute_group tpdm_dsb_attr_grp = {
->> +    .attrs = tpdm_dsb_attrs,
->> +    .is_visible = tpdm_dsb_is_visible,
->> +};
->> +
->>   static const struct attribute_group *tpdm_attr_grps[] = {
->>       &tpdm_attr_grp,
->> +    &tpdm_dsb_attr_grp,
->>       NULL,
->>   };
->
-> Rest looks fine to me
->
-> Suzuki
->
+Why should every single board add it separately and duplicate the same 
+stuff, if they can all start with it, and if anyone needs to tweak the 
+mailbox allocation, then they can do that in the board DT ? I really 
+don't like the duplication suggestion here.
