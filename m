@@ -2,143 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D0B771FC8F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 10:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF3C71FCC2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 10:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234917AbjFBIuX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 2 Jun 2023 04:50:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51286 "EHLO
+        id S234799AbjFBIyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 04:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234963AbjFBItv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 04:49:51 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3EBE1AE;
-        Fri,  2 Jun 2023 01:49:49 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 74D7380C1;
-        Fri,  2 Jun 2023 16:49:48 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Jun
- 2023 16:49:48 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 2 Jun 2023 16:49:28 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v2 3/3] riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC
-Date:   Fri, 2 Jun 2023 16:49:25 +0800
-Message-ID: <20230602084925.215411-4-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230602084925.215411-1-william.qiu@starfivetech.com>
-References: <20230602084925.215411-1-william.qiu@starfivetech.com>
+        with ESMTP id S234557AbjFBIyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 04:54:02 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C308E47;
+        Fri,  2 Jun 2023 01:53:21 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3527steb018334;
+        Fri, 2 Jun 2023 08:53:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=m32xqfafdcX/VXStuKyJNVLtJJE3KbtHvb0uXWbIgns=;
+ b=P8Es0wXqt3wovE/DUiuS3HbtntnGugtIXfRl7r9bTjvV5FCDCg+DrXAKmiXqNYNIemN1
+ 8+3x8/oSOdewbb4Prwl6kLBga7lAZ6odMGy0b0jxVctVt/l0mci534SedkOkn4/UFxTw
+ TSqZUi+C2tNd4D9t22Qcv226obViNgwlsu2WX61JUlbvD+JQ9laaL59RaFbeZPFhwzra
+ nqmc3Vq/mWhiunU5Ld0L2gnGlj5QvYft30/ffc+WzvAUrv4mwkWqqYoVEmVAAddW8obh
+ cYmP5GdZLTKgXJb3Peg+qhKmSDRBTAsYV/Tmta5GYA7M2oQVBwEvoJJ3taBh2ncTC+qJ eQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qybnbr66q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 02 Jun 2023 08:53:18 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3528rHIJ003441
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 2 Jun 2023 08:53:17 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 2 Jun 2023
+ 01:53:12 -0700
+Message-ID: <c3b05763-0153-e422-9874-bfaab461003b@quicinc.com>
+Date:   Fri, 2 Jun 2023 14:23:09 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: add few more reserved memory
+ region
+To:     Anusha Rao <quic_anusha@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+References: <20230602084431.19134-1-quic_anusha@quicinc.com>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <20230602084431.19134-1-quic_anusha@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EDAXQl5IkftLbLZj9-UROBvnqmu3rpiW
+X-Proofpoint-ORIG-GUID: EDAXQl5IkftLbLZj9-UROBvnqmu3rpiW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-02_06,2023-05-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=574 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ clxscore=1015 mlxscore=0 spamscore=0 impostorscore=0 adultscore=0
+ suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2304280000 definitions=main-2306020066
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the quad spi controller node for the StarFive JH7110 SoC.
 
-Co-developed-by: Ziv Xu <ziv.xu@starfivetech.com>
-Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 32 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 18 +++++++++++
- 2 files changed, 50 insertions(+)
+On 6/2/2023 2:14 PM, Anusha Rao wrote:
+> In IPQ SoCs, bootloader will collect the system RAM contents upon crash
+> for post-morterm analysis. If we don't reserve the memory region used
+> by bootloader, obviously linux will consume it and upon next boot on
+> crash, bootloader will be loaded in the same region, which will lead to
+> loss of some data, sometimes we may miss out critical information.
+> So lets reserve the region used by the bootloader.
+>
+> Similarly SBL copies some data into the reserved region and it will be
+> used in the crash scenario. So reserve 1MB for SBL as well.
+>
+> While at it, drop the size padding in the reserved memory region,
+> wherever applicable
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 2a6d81609284..22212c1150f9 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -126,6 +126,38 @@ &i2c6 {
- 	status = "okay";
- };
- 
-+&qspi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	nor_flash: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg=<0>;
-+		cdns,read-delay = <5>;
-+		spi-max-frequency = <12000000>;
-+		cdns,tshsl-ns = <1>;
-+		cdns,tsd2d-ns = <1>;
-+		cdns,tchsh-ns = <1>;
-+		cdns,tslch-ns = <1>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			spl@0 {
-+				reg = <0x0 0x20000>;
-+			};
-+			uboot@100000 {
-+				reg = <0x100000 0x300000>;
-+			};
-+			data@f00000 {
-+				reg = <0xf00000 0x100000>;
-+			};
-+		};
-+	};
-+};
-+
- &sysgpio {
- 	i2c0_pins: i2c0-0 {
- 		i2c-pins {
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 4c5fdb905da8..e1a51e57a851 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -440,6 +440,24 @@ i2c6: i2c@12060000 {
- 			status = "disabled";
- 		};
- 
-+		qspi: spi@13010000 {
-+			compatible = "starfive,jh7110-qspi", "cdns,qspi-nor";
-+			reg = <0x0 0x13010000 0x0 0x10000
-+				0x0 0x21000000 0x0 0x400000>;
-+			interrupts = <25>;
-+			clocks = <&syscrg JH7110_SYSCLK_QSPI_REF>,
-+				 <&syscrg JH7110_SYSCLK_QSPI_AHB>,
-+				 <&syscrg JH7110_SYSCLK_QSPI_APB>;
-+			clock-names = "ref_clk", "hclk", "pclk";
-+			resets = <&syscrg JH7110_SYSRST_QSPI_APB>,
-+				 <&syscrg JH7110_SYSRST_QSPI_AHB>,
-+				 <&syscrg JH7110_SYSRST_QSPI_REF>;
-+			reset-names = "qspi", "qspi-ocp", "rstc_ref";
-+			cdns,fifo-depth = <256>;
-+			cdns,fifo-width = <4>;
-+			cdns,trigger-address = <0x0>;
-+		};
-+
- 		syscrg: clock-controller@13020000 {
- 			compatible = "starfive,jh7110-syscrg";
- 			reg = <0x0 0x13020000 0x0 0x10000>;
--- 
-2.34.1
 
+LGTM.
+
+Reviewed-by: Kathiravan T <quic_kathirav@quicinc.com>
+
+
+>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 12 +++++++++++-
+>   1 file changed, 11 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 0baeb10bbdae..7d21ec0909fb 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -156,6 +156,16 @@
+>   		#size-cells = <2>;
+>   		ranges;
+>   
+> +		bootloader@4a100000 {
+> +			reg = <0x0 0x4a100000 0x0 0x400000>;
+> +			no-map;
+> +		};
+> +
+> +		sbl@4a500000 {
+> +			reg = <0x0 0x4a500000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+>   		tz_region: tz@4a600000 {
+>   			reg = <0x0 0x4a600000 0x0 0x400000>;
+>   			no-map;
+> @@ -163,7 +173,7 @@
+>   
+>   		smem@4aa00000 {
+>   			compatible = "qcom,smem";
+> -			reg = <0x0 0x4aa00000 0x0 0x00100000>;
+> +			reg = <0x0 0x4aa00000 0x0 0x100000>;
+>   			hwlocks = <&tcsr_mutex 0>;
+>   			no-map;
+>   		};
