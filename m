@@ -2,124 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7D2271FAC2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 09:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E017F71FAD7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 09:20:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234281AbjFBHMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 03:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33916 "EHLO
+        id S233609AbjFBHUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 03:20:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234292AbjFBHMO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 03:12:14 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4480110C1
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 00:12:09 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-96f7bf29550so245547566b.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 00:12:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685689928; x=1688281928;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ID97egBGuXMI7J4GkeNsqWERFtG/jgBWuZXR0IgIwWE=;
-        b=pJ6WxSKGbQ1lTXGYSx5AV6TgLnndwDX+mYc4xaGh0RzfzalUrq3xVEWx54oWvDi02I
-         z1fvVun1fQXFZBEdCACH3A6qBZmGWyjxGbOKud+dLG9w+/9DEIU1owODdv9vBALtlBrf
-         OXsvJ2jO/bxffy3BDljQJDG/GORMavqDuUvF6qtPv+yxO/+R3BQdJ3p6BTSbPay0Hxv7
-         dY53Bs3Z8PYwSd5WBPOuwBbVrXj+sbZYw7QtiuISgIKdt4FCeuBAoBXK6n1Pq6mUXacl
-         ZLN8o4wds8nM3S3H16LEMFHrkqTKHIWPKMnJARqQVdgy0rbl3V2ZrqlFi6a0s3q/rsLW
-         KusA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685689928; x=1688281928;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ID97egBGuXMI7J4GkeNsqWERFtG/jgBWuZXR0IgIwWE=;
-        b=BuL5flRcrVKAdzhSOVX+DPIyNbIS9uKnI2+nNHL12pSD41/i9951Nq1tJVoA7yYVSo
-         kS3120xhYWuQ8Jf7NLSD4JpEoVBUKOSC4MvkDoG8UkMHTdspw29hdi8law2HxVmYAiFP
-         BtY79vv+AKQ5oMdTaFRRgknvlt38GRfBHldw0oNl0P9fRXBnlqlr6lB70LvLBTTnA2KK
-         xghU90n/Hb4u9Y2ga3QYY4Mfe5ek+KAAqzmuLSTCf6wvs6sq0IYCAMpT1Rwcdco31oeg
-         dD8m9DPxNA0O4WzZtBmUXAmLiI6lUby3yZxdxVgGKKSMBmqg6bKAKw21aI+e0OFWU063
-         zjnA==
-X-Gm-Message-State: AC+VfDy0Kry9HpdsfZ4QvmV0sXEGf1j48y534/t9h9B3AamA8rrve3GS
-        RS9ox7E4flnyms+759Djix/iPQ==
-X-Google-Smtp-Source: ACHHUZ4hbQaYX7U80wxKjvKgnV9pZX+PaiNP2lawdYjP7mjQi3B2eIAZoovKcl7m0wcRKYSz3aVP3Q==
-X-Received: by 2002:a17:906:6a16:b0:947:ebd5:c798 with SMTP id qw22-20020a1709066a1600b00947ebd5c798mr10173625ejc.54.1685689927791;
-        Fri, 02 Jun 2023 00:12:07 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id g4-20020a170906c18400b00969f13d886fsm397252ejz.71.2023.06.02.00.12.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Jun 2023 00:12:07 -0700 (PDT)
-Message-ID: <7dfc6241-ed72-d655-7400-fd8f9c413e69@linaro.org>
-Date:   Fri, 2 Jun 2023 09:12:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: i2c-mt65xx: add additional clocks
-Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233227AbjFBHUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 03:20:47 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F131FC0;
+        Fri,  2 Jun 2023 00:20:46 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 658688111;
+        Fri,  2 Jun 2023 07:20:46 +0000 (UTC)
+Date:   Fri, 2 Jun 2023 10:20:45 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Qii Wang <qii.wang@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        =?UTF-8?B?6YOt5bCP5qGl?= <joe@gainstrong.cn>
-References: <5f15212060f82fb94239174c4e4b46c151645fe8.1685549360.git.daniel@makrotopia.org>
- <12fea13e-e2c3-487f-8d2b-cfd320c98ba7@linaro.org>
- <ZHjtExYIdVFo3HnB@makrotopia.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZHjtExYIdVFo3HnB@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: ti: add toradex,verdin-am62 et
+ al.
+Message-ID: <20230602072045.GO14287@atomide.com>
+References: <20230601131332.26877-1-francesco@dolcini.it>
+ <20230601131332.26877-2-francesco@dolcini.it>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230601131332.26877-2-francesco@dolcini.it>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 21:10, Daniel Golle wrote:
-> On Thu, Jun 01, 2023 at 06:54:01PM +0200, Krzysztof Kozlowski wrote:
->> On 31/05/2023 18:10, Daniel Golle wrote:
->>> Add pck and mck clocks which are needed to access I2C registers on MT7981.
->>>
->>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
->>> ---
->>>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
->>> index fda0467cdd954..550795f6573c5 100644
->>> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
->>> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
->>> @@ -78,6 +78,8 @@ properties:
->>>        - const: dma
->>>        - const: arb
->>>        - const: pmic
->>> +      - const: mck
->>> +      - const: pck
->>>  
->>
->> Adding names does not magically add the clocks. This wasn't tested.
+Hi,
+
+* Francesco Dolcini <francesco@dolcini.it> [230601 13:15]:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> Adding the clocks is done in patch 2/2 which just wasn't sent to
-> devicetree@ and dt maintainers, but to the relevant mailing lists
-> instead. Was that wrong and should I always send the complete series
-> also to devicetree@ as well as dt maintainers?
+> Add toradex,verdin-am62 for Toradex Verdin AM62 SoM, its
+> nonwifi and wifi variants and the carrier boards (Dahlia,
+> Verdin Development Board and Yavia) they may be mated in.
 
-I didn't mean implementation. I meant that you still do not allow more
-clocks! You can put into names whatever you wish but clocks are taken
-from "clocks" property, not from clock-names.
+Looks like you have wifi on sdio, there should be no need for separate
+compatible properties. The sdio wifi will try to probe and will just bail
+out if no wifi is populated.
 
+If however the non-wifi variants are recycling the sdio pins for something
+else, then it's it's a different story. In that case you want either
+seprate compatible properties, or want to use dts fragments possibly.
 
-Best regards,
-Krzysztof
+Regards,
 
+Tony
