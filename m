@@ -2,77 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D60B7202EE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 714A77202F2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jun 2023 15:17:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235512AbjFBNQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 09:16:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34230 "EHLO
+        id S236063AbjFBNRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jun 2023 09:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235822AbjFBNQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:16:57 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64F29E47
-        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 06:16:41 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9745d99cfccso141105366b.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 06:16:41 -0700 (PDT)
+        with ESMTP id S236080AbjFBNRG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 09:17:06 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63B3E4C
+        for <devicetree@vger.kernel.org>; Fri,  2 Jun 2023 06:16:55 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96f50e26b8bso311793866b.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Jun 2023 06:16:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685711800; x=1688303800;
+        d=linaro.org; s=google; t=1685711814; x=1688303814;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=j28C2wetcVicrmK7EXz1lTX3AP4fQveEZhUDx7hxIXY=;
-        b=CLFcijfoQeto2cd4h28Cjcs0ioTA0TMc3PEP2LL/92pIrJVh8u8voO7SF4t0o/skIG
-         ZgDWoPXsu2nMbi9J1i7zC9K1tgEZnY8EVwVfuyWrlVnJxtQll2DxVZW6TLnkb4JJ7yI2
-         qm5zPTtyn5nLxYwQcYRERXb3u9AdbolZzB6yDErHYEmfPfvYLKEcuy1ln9f5Xy1zXSOE
-         mn6jxCMIGLe0ghaO8YriZaA1EPrx65agQN/6ouGPBzdbDSjlZd+aMwPo6bPAOSPz1NsJ
-         wfHsEiSKkPhmEzQWHcePl0437S+NCAdtbVdCbP3Ckm/EwL8SiNxvLVQMlR/9W8DRnn1v
-         m+Mg==
+        bh=OWKKScIs76KUhUju57F1WBq/kEE/WaubIYmlIJkcXeM=;
+        b=djg1I3aMWrXwh42gt+Z1jP8HZRSPHKiD/O7q572NXS2NstJBFkf74hP1hqDpFvm93Y
+         S6rtZ0hSvDt36ie3UCI0m9WQnXbsNumG6nSch+IYQuOtC7w8PCiKzpzcbZ22OA8qj4NH
+         D5ZimQPwP1o+5OTH5SX93sFAvP4kx0FLlkLxgZSiRVeiVWd429YmS9Jr2yRZNUlqRpWr
+         XDbnj7tWmzvagBl1nQOMkWYJVN9WEPIyp2VQcp+vgJxHzdafj3yIWjekFqcnGfcrVcXy
+         oWeHsdXPttjn29t/JHXr+i6tuTUAP2mJV5ZlR9/PDl9IpawjmQQwb6SYJJad2ovGmOlP
+         Ds/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685711800; x=1688303800;
+        d=1e100.net; s=20221208; t=1685711814; x=1688303814;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j28C2wetcVicrmK7EXz1lTX3AP4fQveEZhUDx7hxIXY=;
-        b=BYnuwWU5rVNbZnTetyoKoQT0ssoU7PMCpXopw4MF+nT2pOYmCNs5ZqBClo0bSXTy0v
-         FMI71OymLRO74JlKuIx8qqawcB7PolHKg6jrkOmh6mwxTmufia5j8I2cZejR/L8BN7d2
-         N4qZL+Ny/ed/OOXS8vMvx4p4Bu7R/Jhz62eY1OmzdUXbzVctpGXkFb8t7kZuiMeqE/da
-         5dye+By+jatXAMtAChH8PS9b+kMx50b+UB2Nk9sIIndiMW+Sv8+PDpEli2TmFTpYNRJh
-         e2fnWp9KhXJq1c6UJVkhOpd+EhG1Epm0EqQFx+im6TVXD7DSZR+zlnZvNCjTS/Jru5lI
-         VSyA==
-X-Gm-Message-State: AC+VfDx4cB1asrQtvAyZcdU1U1+m19ZcT7yj57k2EdgUWFg2Voll5RBu
-        6eaX1ue9FEEHaUDRg/DZHlG4ww==
-X-Google-Smtp-Source: ACHHUZ7Z1vpCwYjr/jHZTFqspUKofOsqfrZbxehSYdMVxJWcvgUeMS+/9IUSt/sbr0GS6Zqi8Ic7aQ==
-X-Received: by 2002:a17:907:6297:b0:96f:88a3:3a0e with SMTP id nd23-20020a170907629700b0096f88a33a0emr11386283ejc.0.1685711799784;
-        Fri, 02 Jun 2023 06:16:39 -0700 (PDT)
+        bh=OWKKScIs76KUhUju57F1WBq/kEE/WaubIYmlIJkcXeM=;
+        b=l7fkvwQeGf3F+YffJf3PcGaWZv1Y+cjsHfOQ/n/G01htHM7p3K4WyqQgojo3VZB6kN
+         67VeCJVm3nBoC4IFidRuDpoNCuWulkQR3CgH7K8eT/egi87ceB1oHOTwE2+TsKb5ILJ1
+         zX3CVYdxj2up9jxDqdsuVqEjj2kNtAI+DQzgxL9XYffrffhGc6hhYNwHHcgKn9NDQML6
+         A68QR3l4qtje+SL1btQwIe7oyUClZ92yiEq31A7125fRDYDK9U8OUvtPjG3u9mrnL2IS
+         NTxbDqmebObma3bdDRST7wDhOoPwTeHDOyLoZeF43XuTUJX/gOKirWLBX2gF7B6JWoQp
+         mWlw==
+X-Gm-Message-State: AC+VfDwdSrTd71yblGSJsTU0dfQPyc3/cdUHfUEZ/0FnE2NG4rWRwIXF
+        NUuytqxw/QMy+7jilsFhBieOoQ==
+X-Google-Smtp-Source: ACHHUZ7MMAyTZGii1bYOWthzbVZRd2pV1jULI1a2xgUG69SJwoyDeW8SFaGdCjP8JrcL40Z/J/mbOA==
+X-Received: by 2002:a17:907:94c7:b0:96f:aed9:2535 with SMTP id dn7-20020a17090794c700b0096faed92535mr10956707ejc.9.1685711814507;
+        Fri, 02 Jun 2023 06:16:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id mb10-20020a170906eb0a00b009658475919csm741823ejb.188.2023.06.02.06.16.37
+        by smtp.gmail.com with ESMTPSA id o12-20020a170906358c00b00966447c76f3sm766394ejb.39.2023.06.02.06.16.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Jun 2023 06:16:39 -0700 (PDT)
-Message-ID: <34a95a76-97f9-517f-e09b-a74a06d8da34@linaro.org>
-Date:   Fri, 2 Jun 2023 15:16:36 +0200
+        Fri, 02 Jun 2023 06:16:54 -0700 (PDT)
+Message-ID: <7c431f4c-3212-c297-8cc4-9280124f4746@linaro.org>
+Date:   Fri, 2 Jun 2023 15:16:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: usb: xilinx: Replace Manish by Piyush
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-        piyush.mehta@amd.com
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-References: <504444f5c2f4e725ac39cba1d72032d5a00c7cda.1684828805.git.michal.simek@amd.com>
+Subject: Re: [PATCH V2 3/5] dt-bindings: vendor-prefixes: add Indiedroid
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, lucas.tanure@collabora.com,
+        kever.yang@rock-chips.com, yifeng.zhao@rock-chips.com,
+        sebastian.reichel@collabora.com, andyshrk@163.com,
+        jagan@amarulasolutions.com, heiko@sntech.de, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        broonie@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+References: <20230531161220.280744-1-macroalpha82@gmail.com>
+ <20230531161220.280744-4-macroalpha82@gmail.com>
 Content-Language: en-US
-In-Reply-To: <504444f5c2f4e725ac39cba1d72032d5a00c7cda.1684828805.git.michal.simek@amd.com>
+In-Reply-To: <20230531161220.280744-4-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,12 +83,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 Resending as my previous email probably got lost. If you got it twice,
 apologies.
 
-On 23/05/2023 10:00, Michal Simek wrote:
-> Manish no longer works for AMD/Xilinx and there is also no activity from
-> him. That's why proposing Piyush as the best candidate instead.
+On 31/05/2023 18:12, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
+> Indiedroid is a sub-brand of Ameridroid for their line of single board
+> computers.
+> https://indiedroid.us/
+> 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
