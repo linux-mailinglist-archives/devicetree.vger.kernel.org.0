@@ -2,85 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A83BB7211BA
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 21:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7A487211FB
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 22:03:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbjFCTKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jun 2023 15:10:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
+        id S229627AbjFCUDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jun 2023 16:03:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjFCTKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 15:10:04 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D2E180
-        for <devicetree@vger.kernel.org>; Sat,  3 Jun 2023 12:10:03 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96fab30d1e1so702515066b.0
-        for <devicetree@vger.kernel.org>; Sat, 03 Jun 2023 12:10:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685819401; x=1688411401;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c/1fXZdlFrD4ZTMnSyIek5ravNGSg+bm7NeK4UcfZ5I=;
-        b=XGWSGPhc+xt9lfYE3ElzKDuGrJr3WUc1F9NreSgchCvhk9+TGEXaB0X+FKeFhLa4Ul
-         dBWwVA0PU7u3A9Gb/r9/YacGuXlVlqHEu42aPrlpEXXDzJscOc1SF0ShHSQse0Oj/chT
-         QLovyIjmr92pscaSYQIt6uY5CA4K46N++1MwTW+XvEsqSbFTIBJVPKBUnQcFshqSmfQK
-         AlKleHL2WPQjWo13ySdvQFAtO3k6DRkLK4/THrSTOZf+p2O7ixH3ctDfYqgLUS+Hg85I
-         68k9+su4xAFbe2lICX5JB6tswOOT4SmDCXRpHWHpjtOEseiVoM9V54Gs8SlVtQ7YAqlA
-         6tmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685819401; x=1688411401;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c/1fXZdlFrD4ZTMnSyIek5ravNGSg+bm7NeK4UcfZ5I=;
-        b=GPgMBvNVE6+itb5I1EXuF4IsK5Q8DQioRLPP5ebvHSefzyhlN8odOvsOCHjLjNmCdc
-         rkpn1M3QcTZ/2nn5FKEpoRzeMp1tjN//PWuZu3esB579dv+KNx0zG4V7HnOh6zJRAgsf
-         pHYrkdM8XhCEkn/aCYa+1se5SUeBvz+yaaljs4LDCIiTRWJsbYcqfIrvCtpn+g2oafCz
-         SdqfgQwj0eV7U2sASswR7OZ80bQoWqp7oFzUO+Xi2obj4mjR4PhEhTfKSaphBMpyeJha
-         z3uUAGxMX5pCpDOskq1RyotC/XkuXFZF/xAJBFtg3NuAZXEJYCLd2EtH78KEE45tBA/3
-         OjSg==
-X-Gm-Message-State: AC+VfDwuQQnzKU438bOkihK6/h6fvjDjygXaTGpbBNhtDgysRU/0CUNP
-        YBPmYi05RF95kgIB5yr71Bg9FQ==
-X-Google-Smtp-Source: ACHHUZ4RopHcJJ7GF3SSU2ePLu5DlX+l9IkWhVj+EuFjvR5yyF0baMdpGCWtH8xOXILm4qx46Z8pUw==
-X-Received: by 2002:a17:906:5d0a:b0:974:5bd2:1807 with SMTP id g10-20020a1709065d0a00b009745bd21807mr2096976ejt.24.1685819401691;
-        Sat, 03 Jun 2023 12:10:01 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id bi1-20020a170906a24100b009664cdb3fc5sm2218126ejb.138.2023.06.03.12.09.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 03 Jun 2023 12:10:01 -0700 (PDT)
-Message-ID: <d354734e-c8d1-2d75-fec4-e91bb322bbe2@linaro.org>
-Date:   Sat, 3 Jun 2023 21:09:58 +0200
+        with ESMTP id S229451AbjFCUDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 16:03:12 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD9418D;
+        Sat,  3 Jun 2023 13:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685822591; x=1717358591;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=d01tRDxvZ5T+IIbhLGGRzLix+V9DNdmXlY+ubhvrJgA=;
+  b=m2LwGDPl1RQ4G2TgvLKCRod321ZEh9jqV6HWCZfH0ashx9gyPUqhbb2v
+   7hlYRGH2gtWhS0jAgvo6S2Nz/WyQCLCc0KbGYzlmAdVNgw2zZgOZmlDib
+   GKmdlY0tnphPmaJv12XDpCvMSF8uiGUsGpi38fYrRnfgjkhFelPlR8FPj
+   jBDYmAkafWNKw/ZYzatJgg7zrAWn8kcpXoxDYfuomJ7vjbSRDLG/343wV
+   SBuElDQyebhhkpqEcpsPpI/FaENqc73yiyXeHWoA4qM7Ypn0ps994uWho
+   uytp8uDFNxeLfxX+rB9ffTvu75Yc5jqso4dm/ztqAnJiG24qmCzXaZAGq
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,216,1681196400"; 
+   d="scan'208";a="155388154"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Jun 2023 13:03:09 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Sat, 3 Jun 2023 13:03:07 -0700
+Received: from che-lt-i67070.amer.actel.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Sat, 3 Jun 2023 13:02:55 -0700
+From:   Varshini Rajendran <varshini.rajendran@microchip.com>
+To:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <claudiu.beznea@microchip.com>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <gregkh@linuxfoundation.org>, <linux@armlinux.org.uk>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <sre@kernel.org>,
+        <broonie@kernel.org>, <varshini.rajendran@microchip.com>,
+        <arnd@arndb.de>, <gregory.clement@bootlin.com>,
+        <sudeep.holla@arm.com>, <balamanikandan.gunasundar@microchip.com>,
+        <mihai.sain@microchip.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC:     <Hari.PrasathGE@microchip.com>, <cristian.birsan@microchip.com>,
+        <durai.manickamkr@microchip.com>, <manikandan.m@microchip.com>,
+        <dharma.b@microchip.com>, <nayabbasha.sayed@microchip.com>,
+        <balakrishnan.s@microchip.com>
+Subject: [PATCH 00/21] Add support for sam9x7 SoC family
+Date:   Sun, 4 Jun 2023 01:32:22 +0530
+Message-ID: <20230603200243.243878-1-varshini.rajendran@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: add PHY_TYPE_CDPHY definition
-Content-Language: en-US
-To:     Julien Stephan <jstephan@baylibre.com>
-Cc:     mkorpershoek@baylibre.com, khilman@baylibre.com,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-References: <20230524083033.486490-1-jstephan@baylibre.com>
- <20230524083033.486490-2-jstephan@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230524083033.486490-2-jstephan@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,28 +76,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2023 10:30, Julien Stephan wrote:
-> Add definition for CDPHY phy type that can be configured in either D-PHY
-> mode or C-PHY mode
-> 
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> ---
->  include/dt-bindings/phy/phy.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
-> index 6b901b342348..a19d85dbbf16 100644
-> --- a/include/dt-bindings/phy/phy.h
-> +++ b/include/dt-bindings/phy/phy.h
-> @@ -23,5 +23,6 @@
->  #define PHY_TYPE_DPHY		10
->  #define PHY_TYPE_CPHY		11
->  #define PHY_TYPE_USXGMII	12
-> +#define PHY_TYPE_CDPHY		13
+This patch series adds support for the new SoC family - sam9x7.
+ - The device tree, configs and drivers are added
+ - Clock driver for sam9x7 is added
+ - Support for basic peripherals is added
 
-I don't think there is CD phy. It is D-PHY or C-PHY. This is not for all
-possible combinations but just types of phy.
+Balamanikandan Gunasundar (1):
+  ARM: configs: at91: Enable csi and isc support
 
-Best regards,
-Krzysztof
+Hari Prasath (1):
+  irqchip/atmel-aic5: Add support for sam9x7 aic
+
+Nicolas Ferre (1):
+  net: macb: add support for gmac to sam9x7
+
+Varshini Rajendran (18):
+  dt-bindings: microchip: atmel,at91rm9200-tcb: add sam9x60 compatible
+  dt-bindings: usb: ehci: Add atmel at91sam9g45-ehci compatible
+  dt-bindings: usb: generic-ehci: Document clock-names property
+  ARM: dts: at91: sam9x7: add device tree for soc
+  ARM: configs: at91: enable config flags for sam9x7 SoC
+  ARM: configs: at91: add mcan support
+  ARM: at91: pm: add support for sam9x7 soc family
+  ARM: at91: pm: add sam9x7 soc init config
+  ARM: at91: Kconfig: add config flag for SAM9X7 SoC
+  ARM: at91: add support in soc driver for new sam9x7
+  clk: at91: clk-sam9x60-pll: re-factor to support individual core freq
+    outputs
+  clk: at91: sam9x7: add support for HW PLL freq dividers
+  clk: at91: sam9x7: add sam9x7 pmc driver
+  dt-bindings: irqchip/atmel-aic5: Add support for sam9x7 aic
+  power: reset: at91-poweroff: lookup for proper pmc dt node for sam9x7
+  power: reset: at91-reset: add reset support for sam9x7 soc
+  power: reset: at91-reset: add sdhwc support for sam9x7 soc
+  dt-bindings: net: cdns,macb: add documentation for sam9x7 ethernet
+    interface
+
+ .../interrupt-controller/atmel,aic.txt        |    2 +-
+ .../devicetree/bindings/net/cdns,macb.yaml    |    1 +
+ .../soc/microchip/atmel,at91rm9200-tcb.yaml   |    1 +
+ .../devicetree/bindings/usb/generic-ehci.yaml |    5 +
+ arch/arm/boot/dts/sam9x7.dtsi                 | 1333 +++++++++++++++++
+ arch/arm/configs/at91_dt_defconfig            |    8 +
+ arch/arm/mach-at91/Kconfig                    |   21 +-
+ arch/arm/mach-at91/Makefile                   |    1 +
+ arch/arm/mach-at91/generic.h                  |    2 +
+ arch/arm/mach-at91/pm.c                       |   35 +
+ arch/arm/mach-at91/sam9x7.c                   |   34 +
+ drivers/clk/at91/Makefile                     |    1 +
+ drivers/clk/at91/clk-sam9x60-pll.c            |   50 +-
+ drivers/clk/at91/pmc.h                        |    2 +
+ drivers/clk/at91/sam9x60.c                    |    7 +
+ drivers/clk/at91/sam9x7.c                     |  947 ++++++++++++
+ drivers/clk/at91/sama7g5.c                    |    7 +
+ drivers/irqchip/irq-atmel-aic5.c              |   10 +
+ drivers/net/ethernet/cadence/macb_main.c      |    1 +
+ drivers/power/reset/Kconfig                   |    4 +-
+ drivers/power/reset/at91-sama5d2_shdwc.c      |    1 +
+ drivers/soc/atmel/soc.c                       |   23 +
+ drivers/soc/atmel/soc.h                       |    9 +
+ 23 files changed, 2489 insertions(+), 16 deletions(-)
+ create mode 100644 arch/arm/boot/dts/sam9x7.dtsi
+ create mode 100644 arch/arm/mach-at91/sam9x7.c
+ create mode 100644 drivers/clk/at91/sam9x7.c
+
+-- 
+2.25.1
 
