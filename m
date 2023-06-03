@@ -2,164 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B31E7720F86
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 12:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5749C720FDB
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 13:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjFCKs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jun 2023 06:48:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53368 "EHLO
+        id S230023AbjFCLKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jun 2023 07:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbjFCKs1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 06:48:27 -0400
-Received: from sender3-op-o19.zoho.com (sender3-op-o19.zoho.com [136.143.184.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82732E1;
-        Sat,  3 Jun 2023 03:48:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1685789288; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=jS6fwJbr/HNXViynisbTo4r6Q1ABQRB0Mu1vTIdDoBGJPYHzADX9Jo9RYa4yNVbKQrkuNyYHm/MgHBQAX4/1Tj1a4F3kcmBj/SKs36DU0LU5Hp7YtYsonuJdOpiZDIGFs+YfEXbgRhRVJww4uzEdXlaik6iTUI2ZF0OKgwHtVd0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1685789288; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=l61RFDyIs8zaoxSjZ7niju+bNPjneBpOdbP7BVDn2+E=; 
-        b=U7hxRm/KA1M7wVkWyOmFm93scmItW8+Pq7pULn/ohJlQ1KUbL2ECSDeQuUF32RznLjWwWs55DauM3NTWBo3wHGbmpYVoq+T+28QL+2jYyrJgPahGgADDH7WRb4GZXLvyfgBSflIb/8dclxC42F6sdgZqJrtJZuGIIp+LPI1Wb2E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1685789288;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=l61RFDyIs8zaoxSjZ7niju+bNPjneBpOdbP7BVDn2+E=;
-        b=D2K1fsn4m+1tEnBY4c1vHvyBUrrA22XpwYK195M7zSZA97MpI1rFBLqn4ZJ0Fz4I
-        n7ikZTHGNRP9OFQLgEV+PnOu5UmyVIBOCubjjeMwy5lquUu/XsCu9NKa8EgM3IUVFdE
-        2sU7XnfDNSajDIc8FJWdIxyTefctZ+B5W1QY8QuQ=
-Received: from [192.168.99.141] (178-147-169-233.haap.dm.cosmote.net [178.147.169.233]) by mx.zohomail.com
-        with SMTPS id 1685789286581102.0769329082168; Sat, 3 Jun 2023 03:48:06 -0700 (PDT)
-Message-ID: <8f27983d-0b1d-47f1-9219-f609423c9fb6@arinc9.com>
-Date:   Sat, 3 Jun 2023 13:48:01 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: Aw: Re: Re: Re: Re: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate
- gmacs, mt7530 switch, and add port@5
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229829AbjFCLJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 07:09:59 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C214F18C;
+        Sat,  3 Jun 2023 04:09:56 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 353B9mMq093223;
+        Sat, 3 Jun 2023 06:09:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685790588;
+        bh=Hqoap+yfSNixLL/77coXwHFElZl4l67f/fUvV++NvFE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=dlPgVmMTWdFINyvhjYvRuCJygDA7knFxL3mL16MK50fkwpR4nQ/uN0bn6rGPQiHQa
+         CeSV4520/2zvPcF+qSczEowpQHn6weZxQzy5qukI8/ACnKFb38I8T/lsuTKg/PKGRl
+         DtcpSgqQiWT7sLyL/ak0e887I9GWw/WyK88NHUUY=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 353B9mwR124328
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 3 Jun 2023 06:09:48 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 3
+ Jun 2023 06:09:47 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 3 Jun 2023 06:09:47 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 353B9l5Z107035;
+        Sat, 3 Jun 2023 06:09:47 -0500
+Date:   Sat, 3 Jun 2023 06:09:47 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
-References: <20230210182505.24597-1-arinc.unal@arinc9.com>
- <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
- <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
- <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com>
- <trinity-dd260791-3637-4193-8f93-a9fcdb013dcb-1676722705920@3c-app-gmx-bap53>
- <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
- <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
- <fb96d8eb-2eb7-db19-1135-1a833294dd67@arinc9.com>
- <trinity-899c01a6-0fc5-4900-aea8-2b43802c8329-1676814734826@3c-app-gmx-bs35>
- <trinity-3f46d325-bc45-4ee7-ae86-c8db4467aa94-1681303779505@3c-app-gmx-bap50>
- <703ad8a8-f84e-6404-4cce-5386bfaa2bd7@arinc9.com>
- <trinity-489cdc3b-e861-49d0-b1ec-e964f00388df-1681312277092@3c-app-gmx-bap50>
- <0d242292-16b7-6837-7d1a-b70c41309e6b@arinc9.com>
- <trinity-990f3b28-d67c-49ef-9094-c3b7d2059e36-1681318402336@3c-app-gmx-bap50>
- <e08c5175-d771-5b87-d065-47942a800419@arinc9.com>
- <0fa22575-18d8-5598-1377-7f66c56aa861@gmail.com>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <0fa22575-18d8-5598-1377-7f66c56aa861@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Udit Kumar <u-kumar1@ti.com>, Nitin Yadav <n-yadav@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>,
+        Thejasvi Konduru <t-konduru@ti.com>,
+        Dasnavis Sabiya <sabiya.d@ti.com>
+Subject: Re: [PATCH 0/8] arm64: dts: ti: k3-j784s4/am69: Add uart, i2c,
+ eeprom, misc
+Message-ID: <20230603110947.weqktiz5bftcze3y@backpack>
+References: <20230602214937.2349545-1-nm@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230602214937.2349545-1-nm@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29.05.2023 16:40, Matthias Brugger wrote:
+On 16:49-20230602, Nishanth Menon wrote:
+> Hi,
 > 
+> This series picks up from where [1] left off. After fixing the mux
+> regions, introduce the basic i2c, uarts, ethernet, and a few alias
+> fixups sprinkled along with it.
 > 
-> On 12/04/2023 19:06, Arınç ÜNAL wrote:
->> On 12.04.2023 19:53, Frank Wunderlich wrote:
->>> Hi
->>>
->>>> Gesendet: Mittwoch, 12. April 2023 um 18:21 Uhr
->>>> Von: "Arınç ÜNAL" <arinc.unal@arinc9.com>
->>>>> thanks, it changes the master when i upgrade iproute to 6.1 (from 
->>>>> debian bullseye-backports), but i cannot do any traffic on it after 
->>>>> switching to gmac1...
->>>>>
->>>>> 5: wan@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc 
->>>>> noqueue state UP group default qlen 1000
->>>>>       link/ether f2:d2:51:56:cd:3d brd ff:ff:ff:ff:ff:ff
->>>>>       inet 192.168.0.11/24 scope global wan
->>>>>          valid_lft forever preferred_lft forever
->>>>>
->>>>> see no p5-TX/gmac-rx
->>>
->>>> Did you apply the vlan and flooding fix patches from Richard?
->>>
->>> have now applied all patches i've found from richard (which are all 
->>> rejected):
->>>
->>> fe4495bb3cc2 2023-02-12 Fix setting up CPU and User ports to be in 
->>> the correct mode during setup and when toggling vlan_filtering on a 
->>> bridge port.  (HEAD -> 6.3-rc)
->>> b0641f3e1a69 2023-02-12 Fix Flooding: Disable by default on User 
->>> ports and Enable on CPU ports
->>> cb04b3451524 2023-02-12 Do not add all User ports to the CPU by 
->>> default. This will break Multi CPU when added a seperate patch. It 
->>> will be overwritten by .port_enable and since we are forcing output 
->>> to a port via the Special Tag this is not needed.
->>>
->>> and now it seems working and is clear ;)
->>>
->>> root@bpi-r2:~# ip l show wan
->>> 5: wan@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue 
->>> state UP mode DEFAULT group default qlen 1000
->>>      link/ether f2:d2:51:56:cd:3d brd ff:ff:ff:ff:ff:ff
->>>
->>> iperf3
->>> [ ID] Interval           Transfer     Bitrate         Retr
->>> [  5]   0.00-10.00  sec  1.09 GBytes   940 Mbits/sec    0             
->>> sender
->>> [  5]   0.00-10.03  sec  1.09 GBytes   936 Mbits/sec                  
->>> receiver
->>>
->>>
->>> iperf3 -R
->>> [ ID] Interval           Transfer     Bitrate         Retr
->>> [  5]   0.00-10.04  sec  1.09 GBytes   936 Mbits/sec    0             
->>> sender
->>> [  5]   0.00-10.00  sec  1.09 GBytes   938 Mbits/sec                  
->>> receiver
->>>
->>>
->>> how do you deal with these patches? do you include them into your 
->>> mt7530 fixes series? they (and vladimirs preferred cpu-port) need to 
->>> be applied before these DTS-changes
->>
->> Dealing with this is the last step on my tasklist. Take a look:
->>
->> https://arinc9.notion.site/mt7530-c-improvements-bbfdc2ceb958484b9627297b88bc6d4a
->>
+> This series also takes over [2] and rebased on top of [1] and my series.
 > 
-> I'm a bit lost here. @frank can this be merged now or are there still 
-> oustanding issues. It seems to me that not, but just in case...
+> Test log: 
 
-I fixed the network connectivity issue on the MT7530 DSA sudriver which 
-was the main problem this patch series would cause. I don't see an issue 
-that should block this series anymore.
+Apologies on that, I seem to have forgotten to provide the link to the
+test log. Anyways, here we go:
 
-With the current MT7530 DSA sudriver, port 5 will be the active CPU port 
-instead of 6. I've got a patch series to prefer port 6 instead but in 
-the meantime, this patch series should be good to apply.
+https://gist.github.com/nmenon/dca0ea1203c4e06d77f77b5c4a4a3e3f
+> 
+> Dasnavis Sabiya (1):
+>   arm64: dts: ti: k3-am69-sk: Add pinmux for RPi Header
+> 
+> Nishanth Menon (7):
+>   arm64: dts: ti: k3-j784s4-evm: Fix main_i2c0 alias
+>   arm64: dts: ti: k3-j784s4-evm: Add mcu and wakeup uarts
+>   arm64: dts: ti: k3-j784s4-evm: Enable wakeup_i2c0 and eeprom
+>   arm64: dts: ti: k3-am69-sk: Fix main_i2c0 alias
+>   arm64: dts: ti: k3-am69-sk: Enable mcu network port
+>   arm64: dts: ti: k3-am69-sk: Add mcu and wakeup uarts
+>   arm64: dts: ti: k3-am69-sk: Enable wakeup_i2c0 and eeprom
+> 
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts    | 165 ++++++++++++++++++++++-
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts |  56 +++++++-
+>  2 files changed, 219 insertions(+), 2 deletions(-)
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20230503083143.32369-1-t-konduru@ti.com/
+> [2] https://lore.kernel.org/linux-arm-kernel/20230316104743.482972-3-sabiya.d@ti.com/
+> -- 
+> 2.40.0
+> 
 
-Arınç
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
