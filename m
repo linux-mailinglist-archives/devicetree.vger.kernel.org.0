@@ -2,96 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37CC272118C
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 20:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E36D9721192
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 20:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbjFCS1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jun 2023 14:27:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32784 "EHLO
+        id S229573AbjFCSqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jun 2023 14:46:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbjFCS1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 14:27:48 -0400
-Received: from fgw21-7.mail.saunalahti.fi (fgw21-7.mail.saunalahti.fi [62.142.5.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49EF4132
-        for <devicetree@vger.kernel.org>; Sat,  3 Jun 2023 11:27:47 -0700 (PDT)
-Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
-        by fgw21.mail.saunalahti.fi (Halon) with ESMTP
-        id 555a7ff2-023c-11ee-abf4-005056bdd08f;
-        Sat, 03 Jun 2023 21:27:45 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Sat, 3 Jun 2023 21:27:44 +0300
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229481AbjFCSqJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 14:46:09 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46BB0BD
+        for <devicetree@vger.kernel.org>; Sat,  3 Jun 2023 11:46:07 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51458e3af68so4672398a12.2
+        for <devicetree@vger.kernel.org>; Sat, 03 Jun 2023 11:46:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685817966; x=1688409966;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ffGnCR1AWRVuPbEtVqod9VhAoeRndwMhCaIUDGcL49s=;
+        b=oB65jSg2cZ/+UIohZAO5DQQBSSbEkl7WMyUssM0+mCNxkrI7/Z4K/iAYiTTrGPNuFW
+         s1jFeQQlbIuJn5+cAULlRNcfH1ZJ56kvHCGYRYnlinClcdI1dOpNqAmKIsO21F9U4nQ2
+         97n3lDQWRz2LhnWSRggMH7LgQ0XnTBe+uT4p8rd+8738YqjQ8QeHvFEig/aoNmvKv5t/
+         Wtqsf8ru2HLeMMqyMulQ0hEPSmvHFDONVY0YAHQvaLIuDlQr5l8Zy8qUjr/GVg0L2sQb
+         h/Ti3S98QroZ8wB61PMH9WY5NNZf6UuBXZmABC0P9pTCWvqaSPcmW6vuSh0Ef/rTN3si
+         wePw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685817966; x=1688409966;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ffGnCR1AWRVuPbEtVqod9VhAoeRndwMhCaIUDGcL49s=;
+        b=gzocf1yne/wqH1FZPBKMDfPKlcwERwRfptvHStS3Gri0NudeI79JDtJzj/cWlt5Vrd
+         BJyKEJDdw4fUxuevirCtmAi8ilJS4U686xuplWIcHBT4EPB1GzPqhoATrXAJ4934/LTv
+         iR2vKX6dLI3xRMi4f1ztRDHS27WeIS69FosXUghxS5J7qMcxWtIpbNF1+5Hsv+iXKIak
+         2ni5b4k4W8hMq8RDZBtpdxLoGe8wsb/MVUTidnkdeINz3Qjg8gwwQLbzjaaApohoarzj
+         5x474yx42jEwHVuVtnmfXImoe46+dYWHRMGTCsCcJzD3iIVSVQXzjch2y0PwPnimKbut
+         JyYQ==
+X-Gm-Message-State: AC+VfDy58ea05bXkRLmRM3aJkZ0alIESN59IdFS5g3fTcFJf+R47LL/h
+        CFs7THdit2nqHMvgdsLd6qZ+mA==
+X-Google-Smtp-Source: ACHHUZ5TeVnEF5E7EKTR0piomCgLM0TUkYQnJujj6vPOILoSM4N+GykILYjYN2EhtNp++/83scPe/A==
+X-Received: by 2002:a17:907:7f8c:b0:94e:116:8581 with SMTP id qk12-20020a1709077f8c00b0094e01168581mr2767917ejc.5.1685817965751;
+        Sat, 03 Jun 2023 11:46:05 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id a24-20020a170906245800b009745ecf5438sm2208699ejb.193.2023.06.03.11.46.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 03 Jun 2023 11:46:04 -0700 (PDT)
+Message-ID: <651f8f0d-bfba-18df-b266-e2f95e6f7c6e@linaro.org>
+Date:   Sat, 3 Jun 2023 20:46:02 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH RFC 1/7] dt-bindings: connector: usb-connector: add a gpio
+ used to determine the Type-C port plug orientation
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 9/9] ASoC: simple-card: Handle additional devices
-Message-ID: <ZHuGIGDsyGWPTvKi@surfacebook>
-References: <20230523151223.109551-1-herve.codina@bootlin.com>
- <20230523151223.109551-10-herve.codina@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230523151223.109551-10-herve.codina@bootlin.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-type-c-v1-0-d4d97b4d8bab@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v1-1-d4d97b4d8bab@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230601-topic-sm8550-upstream-type-c-v1-1-d4d97b4d8bab@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tue, May 23, 2023 at 05:12:23PM +0200, Herve Codina kirjoitti:
-> An additional-devs subnode can be present in the simple-card top node.
-> This subnode is used to declared some "virtual" additional devices.
+On 01/06/2023 16:07, Neil Armstrong wrote:
+> On some platforms, the Type-C plug orientation is given on a GPIO line.
 > 
-> Create related devices from this subnode and avoid this subnode presence
-> to interfere with the already supported subnodes analysis.
 
-...
 
-> +static int simple_populate_aux(struct asoc_simple_priv *priv)
-> +{
-> +	struct device *dev = simple_priv_to_dev(priv);
-> +	struct device_node *node;
-> +	struct device **ptr;
-> +	int ret;
-> +
-> +	node = of_get_child_by_name(dev->of_node, PREFIX "additional-devs");
-> +	if (!node)
-> +		return 0;
-> +
-> +	ptr = devres_alloc(simple_populate_aux_release, sizeof(*ptr), GFP_KERNEL);
-> +	if (!ptr)
-> +		return -ENOMEM;
-> +
-> +	ret = of_platform_populate(node, NULL, NULL, dev);
-> +	if (ret) {
-> +		devres_free(ptr);
-> +	} else {
-> +		*ptr = dev;
-> +		devres_add(dev, ptr);
-> +	}
-> +	return ret;
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This can be well simplified by using devm_add_action_or_reset().
-
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
