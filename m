@@ -2,202 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74B17720D0E
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 03:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF18720DE9
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 07:24:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236936AbjFCBvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jun 2023 21:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
+        id S229694AbjFCFYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jun 2023 01:24:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231202AbjFCBvC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jun 2023 21:51:02 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1197E45;
-        Fri,  2 Jun 2023 18:51:01 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-ba81ded8d3eso2985873276.3;
-        Fri, 02 Jun 2023 18:51:01 -0700 (PDT)
+        with ESMTP id S229619AbjFCFYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 01:24:07 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79744A2;
+        Fri,  2 Jun 2023 22:24:06 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6af6f5fc42aso2816825a34.1;
+        Fri, 02 Jun 2023 22:24:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685757061; x=1688349061;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+haGyXm6YykBz/oKJVR4lxh8FAPCM1LLYnf/lq4Msmk=;
-        b=MSSxpfa62CFzGS4/7t8aT0vkJZmT+tJBYJ2WrSXbcNviPLWhOsDwW8U9GsB/8Td/2X
-         3qJ8HIXnFiQRPsIzTsqNddnkXGTe2S4xwp27l4WuziLN6EvWLCZeuU32yyzrB9/xLbfD
-         4E7D73MLrry2XQUVpV2nckK+GPrK3pNqsBn/YGZIXOcXOogGWQh7QITHN7sBvykT26LN
-         F0nRaotcvYBvY7hmR8a5EdeTlvVUF2mPYE3oiOSKxKv0dvhNW65oEZmJRu6lzTmbxBkf
-         CuThhABcVn3a+ha6vDEHVbQE8V5rd9Kad5QymdXMklRuSD4A+/GvNQrwziEVDeg6P/HC
-         BRxw==
+        d=gmail.com; s=20221208; t=1685769846; x=1688361846;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=toBw9nUuf6WSVaDwJ5WhYaRBSOkx/ry8bMBeK7UQV9g=;
+        b=l0Mlvcv8X0GAMywHOWpumUadWNJ73cIx/FCA50VQWZMHObfoNEjv7fPbJNw5Vs4YrD
+         6O/P7GLOj4ZZBZyhe7aommRkH2FDyVrN0SVkg0CN7/cREQO1OZanCGY61Et82SrxDcFa
+         5b+t7Rmgtu4NQInVYUDZjFdCujy/yyAxComUe9vLw43WAaP6jgCD5BEdYqF0WQLZE/jE
+         8Wo67r9tFRnB3sOsQvaPPEswya2G2CMs3PLZVw86tQ7I0N/pX4B8Vhon9Mc9HULXWCit
+         Lv3oXT6ZO1B0//f5Uq3ekM4Yseclq5Ezz/m9fqLUAiS3ZydFniKSbDor5S1/CH0FDHM6
+         3RJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685757061; x=1688349061;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+haGyXm6YykBz/oKJVR4lxh8FAPCM1LLYnf/lq4Msmk=;
-        b=WHn7k1Ova6iXS8IYkK61aFlNyb4RGdsobpVlbYvjeymQW01xcrlOLpm0da++MSUmk6
-         mZz6039yFyt8lC3hbbPGY8KZQ/3qzSwM8lI40682G8QaFydtKA3YodOHgKnHgrSKuOU0
-         hQXPgSvDr7wAc8hV/lqEXdWBljvS3KOAdgsmbgsuiY2k4FUHBsJAA6cQ/XUTKbM2DT0N
-         IEe9hDlOa49Wljp1KAJiluFup4GFD5l0Goe6Gbclyh+/z+7ULaB7D32jClvQlFhzx3Gs
-         YxKHsS3svOxda/tRVuguNONUsEgG+f6/EnAsMLrNSJBnpPr04f8nVVBv7WQreNPCqPio
-         bJEw==
-X-Gm-Message-State: AC+VfDxSf2k9OEIpk7ohEFriRpXfZuXsMybPFbt866tEYilNABQRXn31
-        HNQGAGXdOsLBvFKAX2MUMbzQ6Q0M6IhNdcv4/48=
-X-Google-Smtp-Source: ACHHUZ4xw9XIJvykaamYDvL4pOW/ZVbr8wwnsqQIsGZqCdOahv5nd8ae9U47d9dfDfU1dhEsi4WKs3nJCIkt98QACNs=
-X-Received: by 2002:a81:4745:0:b0:54f:adff:bd7a with SMTP id
- u66-20020a814745000000b0054fadffbd7amr2005581ywa.8.1685757060985; Fri, 02 Jun
- 2023 18:51:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1685693501.git.zhoubinbin@loongson.cn> <1b0bb443bd74647c17b7902f3d719700f81a1dba.1685693501.git.zhoubinbin@loongson.cn>
- <20230602-giveaway-tipping-4c420a13f2f1@spud>
-In-Reply-To: <20230602-giveaway-tipping-4c420a13f2f1@spud>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Sat, 3 Jun 2023 09:50:49 +0800
-Message-ID: <CAMpQs4LMw8srAXq_3Q1wt3g3KWY5JY=n_=r_GJNy7ic8T9gskg@mail.gmail.com>
-Subject: Re: [PATCH V5 1/5] dt-bindings: rtc: Remove the LS2X from the trivial RTCs
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1685769846; x=1688361846;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=toBw9nUuf6WSVaDwJ5WhYaRBSOkx/ry8bMBeK7UQV9g=;
+        b=ZVC3FuQMQeo28WV8ibDqKyoP3K7RBEMkbPAPvD534XjqjuRdhqeWxO0LzbE5+ul0m2
+         eMaAZsoaTmPaB+LJaZfRm5VucQtQLljSauNC9j5pJbIy5pVs6ghVIMxQCiexBa/jd8Iw
+         T5K3ZdC1BBtS5sYy0sly5ikwLuuDX494hrHS2HzNURjms+2A2qcRFDO0k0fMD/NCISlP
+         NrvtpkM8UcwEu2zOLtxVdF6dttvFGm87IuDYpqWYegX4b9hTF+J2sSJhLf02w9YwyE14
+         IEjwZgd5UdLjad3HWIbBYWm9L5wvpMkEunt4z5QPazRuOk0BPQi9Q6S0wI7IoqCZeqgy
+         YKAQ==
+X-Gm-Message-State: AC+VfDwmK8WdtQLhJELwcxxjObs9WqLq7YBkhN9atffrNA80BbkNBDY/
+        osh1UlLOektDgSqIA80UMskXn2x4D0Kz/RVV
+X-Google-Smtp-Source: ACHHUZ5hYwedOMf4CnZrFOk98naDKtpfTCIjXXrqIal8+tuHfcoKn4EA8zL0Jee3yMkt/LJ5JB/rmw==
+X-Received: by 2002:a9d:6246:0:b0:6ab:1338:fed5 with SMTP id i6-20020a9d6246000000b006ab1338fed5mr4806358otk.11.1685769845743;
+        Fri, 02 Jun 2023 22:24:05 -0700 (PDT)
+Received: from localhost.localdomain ([98.97.118.17])
+        by smtp.gmail.com with ESMTPSA id j20-20020a635954000000b00519c3475f21sm2074767pgm.46.2023.06.02.22.24.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Jun 2023 22:24:05 -0700 (PDT)
+From:   Ben Schneider <bschnei@gmail.com>
+X-Google-Original-From: Ben Schneider <ben@bens.haus>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Linux Arm Kernel <linux-arm-kernel@lists.infradead.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org,
-        Keguang Zhang <keguang.zhang@gmail.com>,
-        zhao zhang <zhzhl555@gmail.com>, Yang Ling <gnaygnil@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Conor Dooley <conor+dt@kernel.org>,
+        Devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Ben Schneider <ben@bens.haus>
+Subject: [PATCH] arm64: dts: marvell: Fix espressobin-ultra boot failure and wifi
+Date:   Sat,  3 Jun 2023 05:23:56 +0000
+Message-Id: <20230603052356.3530-1-ben@bens.haus>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <87o7lys5x7.fsf@BL-laptop>
+References: <87o7lys5x7.fsf@BL-laptop>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 3, 2023 at 2:05=E2=80=AFAM Conor Dooley <conor@kernel.org> wrot=
-e:
->
-> On Fri, Jun 02, 2023 at 05:50:20PM +0800, Binbin Zhou wrote:
-> > Move Loongson RTC bindings from trivial-rtc.yaml into loongson,rtc.yaml=
-.
->
-> $subject: dt-bindings: rtc: Remove the LS2X from the trivial RTCs
->
-> If you end up resubmitting, could you use a subject like that better
-> describes the changes?
-> Say "dt-bindings: rtc: Split loongson,ls2x-rtc into SoC-based compatibles=
-"?
+Boot hangs on EspressoBIN Ultra (Armada 3720) after a message that device
+vcc_sd1 had been disabled. The device manufacturer patched this issue in
+their kernel fork noting that vcc_sd1 is used by the EspressoBIN model
+but not the EspressoBIN Ultra. Removing the device from the tree fixes
+the boot hang and wifi.
 
-OK, I got it.
+Signed-off-by: Ben Schneider <ben@bens.haus>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks.
-Binbin
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+index d29d2da95..f9abef8dc 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+@@ -24,6 +24,8 @@
+ 		ethernet5 = &switch0port4;
+ 	};
+ 
++	/delete-node/ regulator;
++
+ 	reg_usb3_vbus: usb3-vbus {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "usb3-vbus";
+@@ -66,6 +68,7 @@
+ };
+ 
+ &sdhci1 {
++	/delete-property/ vqmmc-supply;
+ 	status = "disabled";
+ };
+ 
+-- 
+2.17.1
 
-> Otherwise,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
-> Thanks,
-> Conor.
-> >
-> > The architectures associated with this driver use the built-in DTB, so
-> > we can just drop the compatible(rtc-ls2x) with wildcards.
-> > Also, soc-based compatible is more accurate for hardware differences
-> > between chips.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../devicetree/bindings/rtc/loongson,rtc.yaml | 57 +++++++++++++++++++
-> >  .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
-> >  2 files changed, 57 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/loongson,rtc.=
-yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml b/=
-Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
-> > new file mode 100644
-> > index 000000000000..f89c1f660aee
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/loongson,rtc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Loongson Real-Time Clock
-> > +
-> > +description:
-> > +  The Loongson family chips use an on-chip counter 0 (Time Of Year
-> > +  counter) as the RTC.
-> > +
-> > +maintainers:
-> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> > +
-> > +allOf:
-> > +  - $ref: rtc.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - loongson,ls1b-rtc
-> > +          - loongson,ls1c-rtc
-> > +          - loongson,ls7a-rtc
-> > +          - loongson,ls2k1000-rtc
-> > +      - items:
-> > +          - enum:
-> > +              - loongson,ls2k2000-rtc
-> > +              - loongson,ls2k0500-rtc
-> > +          - const: loongson,ls7a-rtc
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    rtc@1fe27800 {
-> > +        compatible =3D "loongson,ls2k1000-rtc";
-> > +        reg =3D <0x1fe27800 0x100>;
-> > +
-> > +        interrupt-parent =3D <&liointc1>;
-> > +        interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
-> > +    };
-> > +
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/D=
-ocumentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > index a3603e638c37..9af77f21bb7f 100644
-> > --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > @@ -47,8 +47,6 @@ properties:
-> >        - isil,isl1218
-> >        # Intersil ISL12022 Real-time Clock
-> >        - isil,isl12022
-> > -      # Loongson-2K Socs/LS7A bridge Real-time Clock
-> > -      - loongson,ls2x-rtc
-> >        # Real Time Clock Module with I2C-Bus
-> >        - microcrystal,rv3029
-> >        # Real Time Clock
-> > --
-> > 2.39.1
-> >
