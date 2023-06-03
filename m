@@ -2,91 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A817211B2
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 20:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A83BB7211BA
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jun 2023 21:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjFCSzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jun 2023 14:55:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36710 "EHLO
+        id S229512AbjFCTKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jun 2023 15:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbjFCSzf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 14:55:35 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2BACE6B;
-        Sat,  3 Jun 2023 11:55:13 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2405:201:0:21ea:e49:10dd:40c0:e842])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: shreeya)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0D5CD6603050;
-        Sat,  3 Jun 2023 19:55:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685818508;
-        bh=8S7OKZmsezN6RAz8kQrAHp0icflqSiGjbX9ZA0jDAwA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QWmWePs19ts8sVUd4Z4OscrkOetjDVbAaFedKZFjEMnXmn2su4sDSPtsGHDjUAHjG
-         bQwclcUFme+Pb7TeUB4X7eJJOsP1qnr46OVHC2HviY62rJRhBaHBsyS2MTdY46Ki+S
-         VcF+ijqRifz0EFLjk9JsCwogHo3M4cPS8OzN+hfzBa5VG3Fbpbn7chHWaWQMqgZdkF
-         8w5Zh2S3ZuxhCOBc3YfIXPeaGlTXmrQNoEzCLXlStFIWJtR/hll94cy2BkMnG4kO/S
-         fiSJ+E0KuzfkCz2IXvx560GjVaggcC0i9xkgwjKzV3xbFLDd22iL1bih51DlEpOpOD
-         cj807GFcEHiMA==
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-To:     jic23@kernel.org, lars@metafoo.de, heiko@sntech.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sebastian.reichel@collabora.com
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gustavo.padovan@collabora.com, kernel@collabora.com,
-        serge.broslavsky@collabora.com,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 8/8] dt-bindings: iio: adc: Add rockchip,rk3588-saradc string
-Date:   Sun,  4 Jun 2023 00:23:40 +0530
-Message-Id: <20230603185340.13838-9-shreeya.patel@collabora.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230603185340.13838-1-shreeya.patel@collabora.com>
-References: <20230603185340.13838-1-shreeya.patel@collabora.com>
+        with ESMTP id S229445AbjFCTKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jun 2023 15:10:04 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D2E180
+        for <devicetree@vger.kernel.org>; Sat,  3 Jun 2023 12:10:03 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96fab30d1e1so702515066b.0
+        for <devicetree@vger.kernel.org>; Sat, 03 Jun 2023 12:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685819401; x=1688411401;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c/1fXZdlFrD4ZTMnSyIek5ravNGSg+bm7NeK4UcfZ5I=;
+        b=XGWSGPhc+xt9lfYE3ElzKDuGrJr3WUc1F9NreSgchCvhk9+TGEXaB0X+FKeFhLa4Ul
+         dBWwVA0PU7u3A9Gb/r9/YacGuXlVlqHEu42aPrlpEXXDzJscOc1SF0ShHSQse0Oj/chT
+         QLovyIjmr92pscaSYQIt6uY5CA4K46N++1MwTW+XvEsqSbFTIBJVPKBUnQcFshqSmfQK
+         AlKleHL2WPQjWo13ySdvQFAtO3k6DRkLK4/THrSTOZf+p2O7ixH3ctDfYqgLUS+Hg85I
+         68k9+su4xAFbe2lICX5JB6tswOOT4SmDCXRpHWHpjtOEseiVoM9V54Gs8SlVtQ7YAqlA
+         6tmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685819401; x=1688411401;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c/1fXZdlFrD4ZTMnSyIek5ravNGSg+bm7NeK4UcfZ5I=;
+        b=GPgMBvNVE6+itb5I1EXuF4IsK5Q8DQioRLPP5ebvHSefzyhlN8odOvsOCHjLjNmCdc
+         rkpn1M3QcTZ/2nn5FKEpoRzeMp1tjN//PWuZu3esB579dv+KNx0zG4V7HnOh6zJRAgsf
+         pHYrkdM8XhCEkn/aCYa+1se5SUeBvz+yaaljs4LDCIiTRWJsbYcqfIrvCtpn+g2oafCz
+         SdqfgQwj0eV7U2sASswR7OZ80bQoWqp7oFzUO+Xi2obj4mjR4PhEhTfKSaphBMpyeJha
+         z3uUAGxMX5pCpDOskq1RyotC/XkuXFZF/xAJBFtg3NuAZXEJYCLd2EtH78KEE45tBA/3
+         OjSg==
+X-Gm-Message-State: AC+VfDwuQQnzKU438bOkihK6/h6fvjDjygXaTGpbBNhtDgysRU/0CUNP
+        YBPmYi05RF95kgIB5yr71Bg9FQ==
+X-Google-Smtp-Source: ACHHUZ4RopHcJJ7GF3SSU2ePLu5DlX+l9IkWhVj+EuFjvR5yyF0baMdpGCWtH8xOXILm4qx46Z8pUw==
+X-Received: by 2002:a17:906:5d0a:b0:974:5bd2:1807 with SMTP id g10-20020a1709065d0a00b009745bd21807mr2096976ejt.24.1685819401691;
+        Sat, 03 Jun 2023 12:10:01 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id bi1-20020a170906a24100b009664cdb3fc5sm2218126ejb.138.2023.06.03.12.09.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 03 Jun 2023 12:10:01 -0700 (PDT)
+Message-ID: <d354734e-c8d1-2d75-fec4-e91bb322bbe2@linaro.org>
+Date:   Sat, 3 Jun 2023 21:09:58 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 1/3] dt-bindings: phy: add PHY_TYPE_CDPHY definition
+Content-Language: en-US
+To:     Julien Stephan <jstephan@baylibre.com>
+Cc:     mkorpershoek@baylibre.com, khilman@baylibre.com,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+References: <20230524083033.486490-1-jstephan@baylibre.com>
+ <20230524083033.486490-2-jstephan@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230524083033.486490-2-jstephan@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add rockchip,rk3588-saradc compatible string.
+On 24/05/2023 10:30, Julien Stephan wrote:
+> Add definition for CDPHY phy type that can be configured in either D-PHY
+> mode or C-PHY mode
+> 
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>  include/dt-bindings/phy/phy.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
+> index 6b901b342348..a19d85dbbf16 100644
+> --- a/include/dt-bindings/phy/phy.h
+> +++ b/include/dt-bindings/phy/phy.h
+> @@ -23,5 +23,6 @@
+>  #define PHY_TYPE_DPHY		10
+>  #define PHY_TYPE_CPHY		11
+>  #define PHY_TYPE_USXGMII	12
+> +#define PHY_TYPE_CDPHY		13
 
-Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+I don't think there is CD phy. It is D-PHY or C-PHY. This is not for all
+possible combinations but just types of phy.
 
-Changes in v3
-  - No change
-
-Changes in v2
-  - Add an Acked-by tag.
-
- Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-index da50b529c157..11c27ea451c8 100644
---- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-@@ -21,6 +21,7 @@ properties:
-               - rockchip,rk3308-saradc
-               - rockchip,rk3328-saradc
-               - rockchip,rk3568-saradc
-+              - rockchip,rk3588-saradc
-               - rockchip,rv1108-saradc
-               - rockchip,rv1126-saradc
-           - const: rockchip,rk3399-saradc
--- 
-2.30.2
+Best regards,
+Krzysztof
 
