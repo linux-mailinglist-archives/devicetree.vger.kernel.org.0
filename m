@@ -2,68 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90BF972198A
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 21:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 702DB7219AC
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 22:21:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbjFDTbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 15:31:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49020 "EHLO
+        id S230403AbjFDUVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 16:21:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbjFDTbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 15:31:42 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1525EBD;
-        Sun,  4 Jun 2023 12:31:41 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id af79cd13be357-75d4dd6f012so151999685a.2;
-        Sun, 04 Jun 2023 12:31:41 -0700 (PDT)
+        with ESMTP id S229449AbjFDUVA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 16:21:00 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6300CA;
+        Sun,  4 Jun 2023 13:20:57 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5148e4a2f17so6330423a12.1;
+        Sun, 04 Jun 2023 13:20:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685907100; x=1688499100;
+        d=gmail.com; s=20221208; t=1685910056; x=1688502056;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YhHt1Igy5XGokOhDhTq6mJz2pRBSZ6AO9ZY+vSnJL5c=;
-        b=bjReZaID2MFIkZ43YlEG6qrAJCmtsfoggepopslbsdx9KdAg2rtBdb5RaVRMaGuLZp
-         i4ld6ELYnY9l9twnqNvzAIV9jMiphUg0zgIx0NMs1XhwYLP9BURjFysnKIZmEwYQecAY
-         upzxRvvaIhsjhtvi+Xs+iTDSHSCpwhCHY42a1v+g182WMOhOtaeLVD8SUpERWWbR6w4Z
-         WyYnCXf4I3ajvYriMZTuctlU7IcLHWPluALBXQ+N8nJkhOnIghIlzU2Ps/ydfr7RHL+B
-         YbZ8ieT4meKn7qVmsPB7kEivKubzuTx08jhnvqcnM4pG+TJJzgYMSmgL9XqHCv0ho4vV
-         lxTA==
+        bh=pc901lSB1t/5njyHaOGc8Szlz99xchoB9LNubqrB9pc=;
+        b=DoNX4mNR4KsN0iXSQQhd4DQCDKAy/YiYQuMQD6ru8VRddZ5HU9qYoL1jaIugifNuZq
+         7hZI3Fc7GCBMSXoxGBPUIekHPqx6cxXD+ifUYBWCSSi1VxGnmjlKDVzY3Yvqt0gsz7by
+         B2jj1+gU6W63y37bzdsUk55TL10jVRoYRWDmsiD4IE/iyREUrHeUWdo8ZdmSmYW9byyP
+         o2kUCLPpNeIMZDxH6g03V2Zx2o13q5xifpMdawywWXXZV1tF8ye3f/8BbGvMrNCYwByX
+         WBLHgmVUNzFsAOQHrT9LEk6onwWScg0UncK9BSgbit/tQBh0JmLCWszHpOpeYgs7u2fl
+         BSpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685907100; x=1688499100;
+        d=1e100.net; s=20221208; t=1685910056; x=1688502056;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YhHt1Igy5XGokOhDhTq6mJz2pRBSZ6AO9ZY+vSnJL5c=;
-        b=VWXVT2GFdw3ReTKJRd0B5J/fy+0FfaC8fBjpbmhTjp86Qc/PuwpgqdwIjnzU+t/ivp
-         r+dPT7mv7XeF2D9syVrlnjsVsHF+y4xdh6eNi8z90+Vf5x+EBo+J7qctn7z0JxZYbguq
-         drLSO5uG4e3LMnKqcUxLuPLLecJsYGh9mFKN/v5EgFsOUUHxC99CY47Rr5rdbF4GzkGg
-         W/CoqDRc4Xs3smh/LGkbX4VKj1zh5ZlVZHjdTWvcgX2uXgT6PyL7EE4wJA4S59ZV0/Ez
-         fyA0Ku8GNLJzKjgaaM3gEmT/T6aPxs4DSftUuq9y9mdp+mlD2AOD+vgcM6s4KoAOhvmq
-         IqaA==
-X-Gm-Message-State: AC+VfDxQthQjeujordYYeZ+nMZ6xNVs1HPKP4emC6cFtFpbXyFKc4wS/
-        tRimc1RQhwraXeUxxhN+aPyxTf7FzneDp1WoDDs=
-X-Google-Smtp-Source: ACHHUZ6MlIIw7A2FKKKISZs9OPXU4Dcn/MhmC2rODXVKZdRXKFeyPf6aHG+HT2U7NC3LGgFRVY6xoQFh4CvO2DDHJ0k=
-X-Received: by 2002:a05:620a:19a5:b0:75d:a13:ae74 with SMTP id
- bm37-20020a05620a19a500b0075d0a13ae74mr19736789qkb.36.1685907100148; Sun, 04
- Jun 2023 12:31:40 -0700 (PDT)
+        bh=pc901lSB1t/5njyHaOGc8Szlz99xchoB9LNubqrB9pc=;
+        b=DprAyRMGGl92/HehGDVoK686WLj28+7ZhXYy4/5ruDQFUfYfjffb5EDAqeB4C8ShfI
+         YRwp/6D1SprIzbiAhHkM4DA2FxcDWVDuZaBKkLiMRMaT45imA8dU6aP4S+7qjbfCB00U
+         OR6MVdF0YMUQ+IzduLvP8QDfGFmAcyglRvXUkhxc5lCvefnajZwUJ/J34vc9NwmqUuar
+         AsmhNH8q/XPchpw4A61ruzg7bMf0dks3TBImgx9gmhodc4UB781t+VjHEerqPMg1R71V
+         0L7D/bSqiFyNfofCYLPSPtMT+krMzI2TS6AAGTZTyHckEU7Dmrzf8OjuxENDNCryFjjn
+         ucqw==
+X-Gm-Message-State: AC+VfDwskFtNqjk0jsDdXZ/QKcFHBfcAEJoUqKfSFlebaYAGduOMSbjG
+        vajI6Kzc04UcgX/qAd7bUpzWr5WEEn4FPymeb40=
+X-Google-Smtp-Source: ACHHUZ7HJh+h9S1Y+0QLnh+mPkHQqhlWKeX5TeLGIsBww9yr2NxJpXCvJ2n+CmB71U+vMZhwSkpXWhlo0NM6x+JnCj0=
+X-Received: by 2002:a17:906:730b:b0:970:132f:698f with SMTP id
+ di11-20020a170906730b00b00970132f698fmr5945181ejc.2.1685910055898; Sun, 04
+ Jun 2023 13:20:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230602152626.284324-1-hugo@hugovil.com> <20230602152626.284324-6-hugo@hugovil.com>
- <2023060454-cotton-paramount-e33e@gregkh> <CAHp75Ve6W-hcB4YAeKukgv-uOEzBY7Tx5Sdf3doTRYKzNPcVGw@mail.gmail.com>
- <20230604134459.3c3844012e9714fa2a61e642@hugovil.com>
-In-Reply-To: <20230604134459.3c3844012e9714fa2a61e642@hugovil.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 4 Jun 2023 22:31:04 +0300
-Message-ID: <CAHp75VeWFPBmsD8zsSAaQGNNXtfgLtQuM9AMGfLPk-6p0VW=Pg@mail.gmail.com>
-Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO configuration
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+References: <20230601223104.1243871-1-bigunclemax@gmail.com>
+ <20230601223104.1243871-3-bigunclemax@gmail.com> <fbcc5688-387c-32fb-edac-17848c92b936@linaro.org>
+In-Reply-To: <fbcc5688-387c-32fb-edac-17848c92b936@linaro.org>
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Date:   Sun, 4 Jun 2023 23:20:43 +0300
+Message-ID: <CALHCpMizv52yj0rw0pR8pYjSys2UivS4L4GkWLgc-d91bdmDCA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add Allwinner
+ D1/T113s/R329/T507 SoCs GPADC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        William Breathitt Gray <william.gray@linaro.org>,
         Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,39 +97,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 4, 2023 at 8:45=E2=80=AFPM Hugo Villeneuve <hugo@hugovil.com> w=
-rote:
+=D0=BF=D1=82, 2 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 11:38, Krzy=
+sztof Kozlowski
+<krzysztof.kozlowski@linaro.org>:
+Hi Krzysztof,
 >
-> On Sun, 4 Jun 2023 14:57:31 +0300
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> On 02/06/2023 00:30, Maksim Kiselev wrote:
+> > From: Maxim Kiselev <bigunclemax@gmail.com>
+> >
+> > Allwinner's D1/T113s/R329/T507 SoCs have a new general purpose ADC.
+> > This ADC is the same for all of this SoCs. The only difference is
+> > the number of available channels.
 >
-> > On Sun, Jun 4, 2023 at 10:47=E2=80=AFAM Greg KH <gregkh@linuxfoundation=
-.org> wrote:
-> > > On Fri, Jun 02, 2023 at 11:26:21AM -0400, Hugo Villeneuve wrote:
-> >
-> > ...
-> >
-> > > > +static u8 sc16is7xx_setup_mctrl_ports(struct device *dev)
-> > >
-> > > This returns what, mctrl?  If so, please document that, it doesn't lo=
-ok
-> > > obvious.
-> >
-> > Good suggestion. Because I also stumbled over the returned type.
-> >
-> > >  And as the kernel test robot reported, you do nothing with the
-> > > return value so why compute it?
-> >
-> > It seems that the entire function and respective call has to be moved
-> > under #ifdef CONFIG_GPIOLIB.
->
-> Hi,
-> it cannot. See my explanations in response to Greg's comments.
+> Except that it wasn't tested...
 
-Then as Greg suggested, store in the structure and make this function
-to return an error code (with int), with this amendment you don't need
-to add a comment about the returned variable anymore.
+Yes, you are right. I tested it only on the T113s board. And I will be glad=
+ if
+someone tests it on another SoC.
 
---=20
-With Best Regards,
-Andy Shevchenko
+...
+
+> Please run scripts/checkpatch.pl and fix reported warnings. Some
+> warnings can be ignored, but the code here looks like it needs a fix.
+> Feel free to get in touch if the warning is not clear.
+
+I got a warning about required maintainer property. Should I do
+anything with this?
+If yes, then who should be a maintainer?
+
+...
+
+> Hm? So you do not allow anything from adc.yaml related? Are you sure
+> this is your intention?
+
+I'm not sure about it. I looked at other ADC bindings and didn't find
+another driver with 'additionalProperties: true'
