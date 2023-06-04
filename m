@@ -2,161 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63625721A1C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 23:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB259721A3C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 23:31:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231316AbjFDVIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 17:08:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
+        id S230176AbjFDVbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 17:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjFDVIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 17:08:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1513AB8;
-        Sun,  4 Jun 2023 14:08:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A651260ADE;
-        Sun,  4 Jun 2023 21:08:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EE49C433D2;
-        Sun,  4 Jun 2023 21:08:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685912892;
-        bh=tBcMEkXrQsgqR/F6ZhRcf1FCjzt6WCA3VYv57KwwRro=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YeJvobG8z6dzqRsit5sIsSHMfcoFQJQT0lsk3RpGpNSTXDUpBvLvbZnPp18xsw1Op
-         EBQhljqx4fl05CY9+Re1+ccLsuY9GKV+ir1TyjHK5DRSWtN6F8OsTwBNDd8FBU+Pih
-         23wuxP4tRvW6pTbWVXhKuUcJiUPfbc2nnuNrgIz2/dapwchbfo1C/5UIGWZ94Sot9I
-         Qj5WEi3i9Bm718xXQy+3Rv6VIXijNzlygT89FFhcc2X+0xWR4CYmI35Wj4jGycgU0u
-         OS+Ay2auw/kJzPl6KAbpX/AwwWAlGQCxRMTLZhtF4kdvL0EMS6vTnEje9yF2mjMd+n
-         eOf7SY6ruMbPQ==
-Date:   Sun, 4 Jun 2023 22:08:02 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Varshini Rajendran <varshini.rajendran@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229449AbjFDVbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 17:31:05 -0400
+Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9BBE9BD;
+        Sun,  4 Jun 2023 14:31:01 -0700 (PDT)
+Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
+        by smtp.dudau.co.uk (Postfix) with SMTP id 71E1141D13A6;
+        Sun,  4 Jun 2023 22:30:59 +0100 (BST)
+Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Sun, 04 Jun 2023 22:30:59 +0100
+Date:   Sun, 4 Jun 2023 22:30:59 +0100
+From:   Liviu Dudau <liviu@dudau.co.uk>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Balamanikandan Gunasundar 
-        <balamanikandan.gunasundar@microchip.com>,
-        mihai.sain@microchip.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Netdev <netdev@vger.kernel.org>, linux-usb@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
-        durai.manickamkr@microchip.com, manikandan.m@microchip.com,
-        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
-        balakrishnan.s@microchip.com
-Subject: Re: [PATCH 15/21] dt-bindings: irqchip/atmel-aic5: Add support for
- sam9x7 aic
-Message-ID: <20230604-cohesive-unmoving-032da3272620@spud>
-References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
- <20230603200243.243878-16-varshini.rajendran@microchip.com>
- <20230603-fervor-kilowatt-662c84b94853@spud>
- <20230603-sanded-blunderer-73cdd7c290c1@spud>
- <4d3694b3-8728-42c1-8497-ae38134db37c@app.fastmail.com>
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] mips: dts: ralink: Add support for TP-Link HC220
+ G5 v1 board
+Message-ID: <ZH0Ck794eem2DUdw@bart.dudau.co.uk>
+References: <84b31c59-81d3-c83d-ece9-a120b1cdcdd7@arinc9.com>
+ <20230529150833.526084-1-liviu@dudau.co.uk>
+ <20230529150833.526084-2-liviu@dudau.co.uk>
+ <ZHTK+qG0xBWfn9gt@bart.dudau.co.uk>
+ <cc70b28c-7bbe-0766-4a43-c0d7584e108a@arinc9.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3Md+FIkjg+Lb1NW6"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <4d3694b3-8728-42c1-8497-ae38134db37c@app.fastmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cc70b28c-7bbe-0766-4a43-c0d7584e108a@arinc9.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Jun 03, 2023 at 03:06:08PM +0300, Arınç ÜNAL wrote:
+> On 29.05.2023 18:55, Liviu Dudau wrote:
+> > On Mon, May 29, 2023 at 04:08:32PM +0100, Liviu Dudau wrote:
+> > > This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
+> > > a MT7603 2.4GHz WiFi and a MT7663 5GHz WiFi chips integrated on the board,
+> 
+> Do you mean MT7662 5GHz WiFi?
 
---3Md+FIkjg+Lb1NW6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Actually it's MT76*1*3. Will fix for v3.
 
-On Sun, Jun 04, 2023 at 11:49:48AM +0200, Arnd Bergmann wrote:
-> On Sat, Jun 3, 2023, at 23:23, Conor Dooley wrote:
-> > On Sat, Jun 03, 2023 at 10:19:50PM +0100, Conor Dooley wrote:
-> >> Hey Varshini,
-> >>=20
-> >> On Sun, Jun 04, 2023 at 01:32:37AM +0530, Varshini Rajendran wrote:
-> >> > Document the support added for the Advanced interrupt controller(AIC)
-> >> > chip in the sam9x7 soc family
-> >>=20
-> >> Please do not add new family based compatibles, but rather use per-soc
-> >> compatibles instead.
-> >
-> > These things leave me penally confused. Afaiu, sam9x60 is a particular
+> 
+> > > connected to the main SoC over PCIe.
+> > > 
+> > > The GMAC1 on the SoC is connected to PHY0 on the GSW and can be used to
+> > > improve routing bandwidth.
+> 
+> This is not always true, I'd prefer you remove this sentence from the patch
+> log.
 
-s/penally/perennially/
+If your comment is about the statement not being always true in general, then
+I agree. However for this device the port marked as WAN on HC220 v1 is the
+second port on the switch and according to the DSA bindings docs only PHY0
+or PHY4 can be connected to GMAC1, so I picked the one that worked (PHY4 did
+not). More on that at the end of the email.
 
-> > SoC. sam9x7 is actually a family, containing sam9x70, sam9x72 and
-> > sam9x75. It would appear to me that each should have its own compatible,
-> > no?
->=20
-> I think the usual way this works is that the sam9x7 refers to the
-> SoC design as in what is actually part of the chip, whereas the 70,
-> 72 and 75 models are variants that have a certain subset of the
-> features enabled.
->=20
-> If that is the case here, then referring to the on-chip parts by
-> the sam9x7 name makes sense, and this is similar to what we do
-> on TI AM-series chips.
+> 
+> > > 
+> > > The device uses NMBM over NAND, which is not currently supported in the
+> > > mainline, so NAND node is skipped in this revision.
+> > > 
+> > > Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
+> > > ---
+> > >   arch/mips/boot/dts/ralink/Makefile            |   3 +-
+> > >   .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 129 ++++++++++++++++++
+> > >   2 files changed, 131 insertions(+), 1 deletion(-)
+> > >   create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+> > > 
+> > > diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
+> > > index 11732b8c8163a..d27d7e8c700fe 100644
+> > > --- a/arch/mips/boot/dts/ralink/Makefile
+> > > +++ b/arch/mips/boot/dts/ralink/Makefile
+> > > @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
+> > >   dtb-$(CONFIG_SOC_MT7621) += \
+> > >   	mt7621-gnubee-gb-pc1.dtb \
+> > > -	mt7621-gnubee-gb-pc2.dtb
+> > > +	mt7621-gnubee-gb-pc2.dtb \
+> > > +	mt7621-tplink-hc220-g5-v1.dtb
+> > >   obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+> > > diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+> > > new file mode 100644
+> > > index 0000000000000..f003ae615a58e
+> > > --- /dev/null
+> > > +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+> > > @@ -0,0 +1,129 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +/dts-v1/;
+> > > +
+> > > +#include "mt7621.dtsi"
+> > > +
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/input/input.h>
+> > > +#include <dt-bindings/leds/common.h>
+> > > +
+> > > +/ {
+> > > +	compatible = "tplink,hc220-g5-v1", "mediatek,mt7621-soc";
+> > > +	model = "TP-Link HC220 G5 v1";
+> > > +
+> > > +	memory@0 {
+> > > +		device_type = "memory";
+> > > +		reg = <0x0 0x0 0x0 0x8000000>;
+> 
+> What's going on here? Just do 'reg = <0x00000000 0x08000000>;'.
+>
 
-If it is the case that what differentiates them is having bits chopped
-off, and there's no implementation differences that seems fair.
+Right, hangover from 64bits world :) Will fix for v3.
 
-> There is a remaining risk that a there would be a future
-> sam9x71/73/74/76/... product based on a new chip that uses
-> incompatible devices, but at that point we can still use the
-> more specific model number to identify those without being
-> ambiguous. The same thing can of course happen when a SoC
-> vendor reuses a specific name of a prior product with an update
-> chip that has software visible changes.
->=20
-> I'd just leave this up to Varshini and the other at91 maintainers
-> here, provided they understand the exact risks.
 
-Ye, seems fair to me. Nicolas/Claudiu etc, is there a convention to use
-the "0" model as the compatible (like the 9x60 did) or have "random"
-things been done so far?
+> > > +	};
+> > > +
+> > > +	chosen {
+> > > +		/* add 'earlycon=uart8260,mmio32,0x1e000c00' to
+> 
+> 8260?
 
-> It's different for the parts that are listed as just sam9x60
-> compatible in the DT, I think those clearly need to have sam9x7
-> in the compatible list, but could have the sam9x60 identifier
-> as a fallback if the hardware is compatible.
+Duh, I feel stupid. It's 8250 and (as you mention bellow) not needed to
+enable early boot messages.
 
-Aye.
+> 
+> > > +		 * bootargs for early boot messages
+> 
+> Isn't just adding "earlycon" to bootargs enough?
+> 
+> > > +		 */
+> > > +		bootargs = "console=ttyS0,115200";
+> > > +	};
+> > > +
+> > > +	gpio-keys {
+> > > +		compatible = "gpio-keys";
+> > > +
+> > > +		key-reset {
+> > > +			label = "reset";
+> > > +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+> > > +			linux,code = <KEY_RESTART>;
+> > > +		};
+> > > +
+> > > +		key-wps {
+> > > +			label = "wps";
+> > > +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
+> > > +			linux,code = <KEY_WPS_BUTTON>;
+> > > +		};
+> > > +	};
+> > > +
+> > > +	leds {
+> > > +		compatible = "gpio-leds";
+> > > +
+> > > +		red {
+> > > +			color = <LED_COLOR_ID_RED>;
+> > > +			function = LED_FUNCTION_FAULT;
+> > > +			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
+> > > +		};
+> > > +
+> > > +		green {
+> > > +			color = <LED_COLOR_ID_GREEN>;
+> > > +			function = LED_FUNCTION_POWER;
+> > > +			gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
+> > > +			linux,default-trigger = "default-on";
+> > > +		};
+> > > +
+> > > +		blue {
+> > > +			color = <LED_COLOR_ID_BLUE>;
+> > > +			function = LED_FUNCTION_WPS;
+> > > +			gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
+> > > +		};
+> > > +	};
+> > > +
+> > > +	resetc: reset-controller {
+> > > +		compatible = "ralink,rt2880-reset";
+> > > +		#reset-cells = <1>;
+> > > +	};
+> 
+> We don't use this anymore.
+>
 
---3Md+FIkjg+Lb1NW6
-Content-Type: application/pgp-signature; name="signature.asc"
+I've copied it from disassembled vendor device tree. Is this not needed
+anymore for reset?
 
------BEGIN PGP SIGNATURE-----
+> > > +
+> > > +	mtd {
+> > > +		compatible = "mediatek,mt7622-nfc";
+> > > +	};
+> 
+> What's this got to do with this device?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHz9MgAKCRB4tDGHoIJi
-0ldWAP0RQc1PNr/7S0ZoI1mtSvW5rkogdGae6SPbH5C+bLhcmQEApOd41QvYR3Pq
-xuVQ4aC0kBM/JFWUKg2lYgoQNcmmEQw=
-=Dd5S
------END PGP SIGNATURE-----
+This is the NAND Flash Controller bindind. Left over from interrupted
+development of the NAND support. Will remove for v3.
 
---3Md+FIkjg+Lb1NW6--
+> 
+> > > +};
+> > > +
+> > > +&i2c {
+> > > +	status = "okay";
+> > > +};
+> 
+> Why does this device need i2c?
+
+It doesn't. I was curious if there was anything hanging on that bus so I've
+enabled it to scan it. Will remove for v3.
+
+
+> 
+> > > +
+> > > +&pcie {
+> > > +	status = "okay";
+> > > +};
+> 
+> Do both WiFi chips work by just enabling pcie? I was expecting 'compatible =
+> "mediatek,mt76";' on pcie@0,0 and pcie@1,0.
+
+Nothing else is needed and I can modprobe the mt7603e and mt7615e modules just
+fine, with the devices becoming available one I put the appropriate firmware in
+the right place.
+
+> 
+> > > +
+> > > +&spi0 {
+> > > +	status = "okay";
+> > > +
+> > > +	flash@0 {
+> > > +		#address-cells = <1>;
+> > > +		#size-cells = <1>;
+> > > +		compatible = "jedec,spi-nor";
+> > > +		reg = <0>;
+> > > +		spi-max-frequency = <50000000>;
+> > > +	};
+> > > +};
+> 
+> I thought you said this device had NAND flash, not NOR.
+
+Appologies, I will remove this for now as I haven't finished looking into
+storage problem yet.
+
+> 
+> > > +
+> > > +/* gmac1 connected to MT7530's phy0 */
+> > > +&gmac1 {
+> > > +	phy-handle = <&ethphy0>;
+> > > +
+> > > +	fixed-link {
+> > > +		status = "disabled";
+> > > +	};
+> > > +};
+> > > +
+> > > +&mdio {
+> > > +	/* MT7530's phy0 */
+> > > +	ethphy0: ethernet-phy@0 {
+> > > +		reg = <0>;
+> > > +	};
+> > > +};
+> 
+> Remove the two nodes above.
+
+It would be nice if you can provide some explanation to some of your requests
+so that I can learn more about this. This is my first time dipping my toes
+on MIPS and MT7621 world, so I don't have that much experience and would like
+to know more.
+
+> 
+> > > +
+> > > +&switch0 {
+> > > +	ports {
+> > > +		/* phy0 is muxed to gmac1 */
+> > > +		port@0 {
+> > > +			status = "okay";
+> > > +			label = "lan2";
+> > > +		};
+> > 
+> > I've made the changes to look similar to the gnubee-gb-pc2, and things mostly
+> > work, with the exception that I can mount an NFS root filesystem only on "lan2"
+> > interface at boot time. All other interfaces (ports) hang forever waiting for
+> > an DHCP response from my server. The only difference is where I plug in the
+> > ethernet cable, no other change (not even a restart) on the server.
+> 
+> This sounds like a userspace configuration issue.
+
+Which userspace? On the server side? I don't touch anything there, only
+change the ethernet port where the cable is connected on the device and
+reboot. It only works for "lan2".
+
+If you're talking about userspace on the device, I don't agree as there is nothing
+loaded there but the kernel, and it is trying to mount the NFS root.
+
+I have to admit that I don't really understand how the whole MT7530 DSA is wired
+inside this device. I mostly did trial and error and it is very possible that what
+I've got were just half results that are more confusing that they should be. The
+vendor device tree uses the old bindings and drivers, with the gsw node outside
+of the ethernet one and also a mtk-hnat_v1 node that seems to bundle all ports
+under one single MAC address, so it's hard to understand from there how things work.
+I was trying to both enable NFS root and squeeze the maximum speed from the switch,
+so I thought I need to enable gmac1 and use the PHYs of the switch to enable 2Gbps
+routing. When I've tried PHY4 things didn't work, while with PHY0 I've got all the
+connections to work (but only if I've used LAN2 as the initial connection to the
+NFS server).
+
+Now I've tried removing the two nodes as suggested and I can mount the NFS root over
+any of the three physical connections, but the iperf3 speed is only about 512Mbits/sec
+vs the 730Mbits/sec that I was getting with the GMAC1 enabled.
+
+Anyway, none of this is relevant for the upstreaming of the device tree and I will
+make the requested changes. Thanks for spending time reviewing the patches.
+
+Best regards,
+Liviu
+
+> 
+> Arınç
+
+-- 
+Everyone who uses computers frequently has had, from time to time,
+a mad desire to attack the precocious abacus with an axe.
+       	   	      	     	  -- John D. Clark, Ignition!
