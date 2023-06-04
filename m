@@ -2,59 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5107215E7
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 11:50:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E987215F6
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 12:16:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230360AbjFDJuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 05:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44246 "EHLO
+        id S230331AbjFDKQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 06:16:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjFDJux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 05:50:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA939DF;
-        Sun,  4 Jun 2023 02:50:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 479C160C4C;
-        Sun,  4 Jun 2023 09:50:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6D41C433EF;
-        Sun,  4 Jun 2023 09:50:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685872251;
-        bh=IgRN8Lu8fQwHnW6QBReccrez4UTFIqy7/PxHxvotA+o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GgcyXvalCKCV5LticVpRbbuyR84124r30m/DjsEVG3jFZzwilFfE5UOo2DLiTBq+S
-         4RswMKDjLfr5Pz89xfjdc7Saz1glBPbC++F12NFGRsEFG1RmlfFMAsGZu8GigvV9Xm
-         wm8QGh+I6JknY3FIJT8rQv1qj2kbuV3b0gPRaPUY4KWAWloJ+XH0zfdx9fTsR1Llb3
-         DyBg1JhyAAy3vH4xtjk38g5AJu2cKbfZC7yxyJc/h9zL9SwO7ZzAaOrE8y8GRH1VrF
-         6Lf87ZVHk6IIhZliXVYiW5c0BZMCrCer3RyDHMrWrxKw99Qq/kan0iq3AK90pwTc6x
-         lm9+lPpNBexZA==
-Date:   Sun, 4 Jun 2023 17:50:38 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx8qxp: add adma_pwm in adma
-Message-ID: <20230604095038.GA4199@dragon>
-References: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
- <20230424082108.26512-2-alexander.stein@ew.tq-group.com>
+        with ESMTP id S229490AbjFDKQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 06:16:36 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93D58DF
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 03:16:35 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51491b87565so5744385a12.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 03:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685873794; x=1688465794;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLg9QBJhk1oImNoGSDJiKswDbiKjTVpqU48w/ZpJGgc=;
+        b=L2QUXG/6NWS2T85/D3ATrgEr19pjlsgEtwm3WZDq6GTOStkw/tdCPQyod87YsTxlEj
+         ZIEUHw3xnxN6WaWwbPoSblcKwT4JJtJUAmse/8hWAeXq1/w1wXP+H/2KdWehcnbdjlXJ
+         0udN2SNpie4vr/EW9zAjgrpqI9p39ejHx9sqcV25twz4AP4Qbef58xd0FIHgMqCQS6RU
+         lK6HPpB+ZHftNIoL1txD8wajsGuDW7ETUPYBoZyTZIe/G4AIOEUzQqCZd2r4Oztc56Et
+         A6j+gYZZVjyg1WeCmKPqYTy5izgNQ1kD3xvXnGm/mU4rcKhtW2O9nkHfYAufPt0YsIhW
+         7D/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685873794; x=1688465794;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLg9QBJhk1oImNoGSDJiKswDbiKjTVpqU48w/ZpJGgc=;
+        b=Jqmkt719EmqJawgEM2C+NEu8VJ4ZupFzyaJEXPXyBLcXMLpFkdIGVI4vK4Vk4vs2+h
+         zUmhX2SrxzXn0OGAELk+0permG0Hm59wBdDZgP8ZO1JH3fdhBD9utevVADgdNyb6qJNV
+         m1Cgz/o0bsem3vnJVd/z4uKQOEInWnIWFDpXrVDa5nrXJtKX0y37RzSWqMMW7hg6MzDW
+         M3TqXT11SsC790QPjUG+Y6DB9BQJvRxU3nOrhwTuASiC+Zj/yb/BnNwLckE7djYyMwt3
+         LnB75ngoyYnhUnK/8tMdQ3LY3UTuMwCD9zP+E8e6ZGz8eJhvHiND16RX32cTlSa0Sdri
+         vpdg==
+X-Gm-Message-State: AC+VfDwNSIVpO4WV1jcy/YoTU06tD2hhm0UP+wnR9WHavlcYi+SHtfh2
+        3cDq/dfmwgv4zevHdPr6wf7uJA==
+X-Google-Smtp-Source: ACHHUZ4YqYusxv/TXLHJE8KhbEgaiaOewFEXjb3jA7TtNsn/LlZwnZM1seDK3ppCp78H/qP/xit0KQ==
+X-Received: by 2002:aa7:c2d9:0:b0:514:af52:e492 with SMTP id m25-20020aa7c2d9000000b00514af52e492mr5536683edp.33.1685873794033;
+        Sun, 04 Jun 2023 03:16:34 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id bc10-20020a056402204a00b00510de087302sm2626887edb.47.2023.06.04.03.16.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Jun 2023 03:16:33 -0700 (PDT)
+Message-ID: <8c0b1e70-382d-669c-c0ee-438fada6e78a@linaro.org>
+Date:   Sun, 4 Jun 2023 12:16:31 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230424082108.26512-2-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add NXP i.MX93
+ parallel display format configuration
+Content-Language: en-US
+To:     Ying Liu <gnuiyl@gmail.com>
+Cc:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
+        conor+dt@kernel.org, rfoss@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonas@kwiboo.se,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        jernej.skrabec@gmail.com, robh+dt@kernel.org,
+        Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+        kernel@pengutronix.de, linux-imx@nxp.com
+References: <20230531093206.3893469-1-victor.liu@nxp.com>
+ <20230531093206.3893469-2-victor.liu@nxp.com>
+ <bd257ed0-71a7-0504-0bfe-14775ac93571@linaro.org>
+ <CAOcKUNWkubMK1MJS73tpbm4bafQv2GAMuq_JOTFbvB9EVDRvxg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAOcKUNWkubMK1MJS73tpbm4bafQv2GAMuq_JOTFbvB9EVDRvxg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,65 +85,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 24, 2023 at 10:21:08AM +0200, Alexander Stein wrote:
-> Add PWM device and the corresponding clock gating device in adma subsystem.
+On 02/06/2023 05:54, Ying Liu wrote:
+> On Fri, Jun 2, 2023 at 1:45 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 31/05/2023 11:32, Liu Ying wrote:
+>>> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
+>>> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+>>> field. Add device tree bindings for the display format configuration.
+>>>
+>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+>>> ---
+>>> v1->v2:
+>>> * No change.
+>>
+>> How did you implement Rob's comment?
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Should have discussed more in v1 about Rob's comment, but
+> let me explain why this dt-binding makes sense here:
 
-Looks good to me.  I will pick it up after dt-bindings one gets
-accepted/picked first.
+"It needs to be defined as part of the mediamix blkctrl
+schema though."
 
-Shawn
+Where is it defined in mediamix blkctrl?
 
-> ---
-> * New in v2
-> 
->  .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> index 2dce8f2ee3ea..7d5f96c99020 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> @@ -124,6 +124,19 @@ lpuart3: serial@5a090000 {
->  		status = "disabled";
->  	};
->  
-> +	adma_pwm: pwm@5a190000 {
-> +		compatible = "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
-> +		reg = <0x5a190000 0x1000>;
-> +		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&adma_pwm_lpcg 1>,
-> +			 <&adma_pwm_lpcg 0>;
-> +		clock-names = "ipg", "per";
-> +		assigned-clocks = <&clk IMX_SC_R_LCD_0_PWM_0 IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates = <24000000>;
-> +		#pwm-cells = <2>;
-> +		power-domains = <&pd IMX_SC_R_LCD_0_PWM_0>;
-> +	};
-> +
->  	spi0_lpcg: clock-controller@5a400000 {
->  		compatible = "fsl,imx8qxp-lpcg";
->  		reg = <0x5a400000 0x10000>;
-> @@ -220,6 +233,18 @@ uart3_lpcg: clock-controller@5a490000 {
->  		power-domains = <&pd IMX_SC_R_UART_3>;
->  	};
->  
-> +	adma_pwm_lpcg: clock-controller@5a590000 {
-> +		compatible = "fsl,imx8qxp-lpcg";
-> +		reg = <0x5a590000 0x10000>;
-> +		#clock-cells = <1>;
-> +		clocks = <&clk IMX_SC_R_LCD_0_PWM_0 IMX_SC_PM_CLK_PER>,
-> +			 <&dma_ipg_clk>;
-> +		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names = "adma_pwm_lpcg_clk",
-> +				     "adma_pwm_lpcg_ipg_clk";
-> +		power-domains = <&pd IMX_SC_R_LCD_0_PWM_0>;
-> +	};
-> +
->  	i2c0: i2c@5a800000 {
->  		reg = <0x5a800000 0x4000>;
->  		interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
-> -- 
-> 2.34.1
-> 
+
+
+Best regards,
+Krzysztof
+
