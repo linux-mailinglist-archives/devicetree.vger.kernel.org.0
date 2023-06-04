@@ -2,162 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1578D72196E
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 21:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC258721974
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 21:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbjFDTL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 15:11:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45544 "EHLO
+        id S231840AbjFDTPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 15:15:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbjFDTL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 15:11:56 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D870A4;
-        Sun,  4 Jun 2023 12:11:55 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f6255ad8aeso645330e87.2;
-        Sun, 04 Jun 2023 12:11:55 -0700 (PDT)
+        with ESMTP id S231316AbjFDTPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 15:15:42 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31914B3
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 12:15:39 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-51458e3af68so6060385a12.2
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 12:15:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685905914; x=1688497914;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=azAP3x1baPIF9TbZBZ/iwj9CaGYl4y3es7jb/ELOFIA=;
-        b=pfxsmkbyB8/+7tGHKrqVx1tdPTcUyi0+pa7WFkwh1EiHwkuyD2wc7eD5CiOqwsGm4b
-         TurgxvO4X0a6HuMdjVXV8ox/CEwfRpx98kXBdD9RgrY8reW9kFLDSdAvyv8ibz4g7JYf
-         CVO2D9TnG02RfiUeAtsxYriCX/wXUFYA0Z1fm6aXJKAhnBKH0V8Y+9QRbq4vU9+/STBv
-         C6GPK8TdLQDQPU2s3Mo2GeHFzYoCfneUDF4j80vgrCsMKTw3/4XOxN7tiEfAahuch+Fe
-         upST+TcXK4FuIsCh2ECSIKLsiPa2UgvL8acXEmMCaYSZCuOsUpVOR7l7rB430YhAzUS+
-         aUYw==
+        d=linaro.org; s=google; t=1685906137; x=1688498137;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oH9Cr0aed9+SlGFSxcuX+CM/ZuPzolXMmmuHZioD1Hw=;
+        b=M3lclyEwwgmcfweqqFKYlO/pXrx5sqR43R8US5cgUcuQhYgXTxTBH8bnmoz+xOxQ2x
+         Qww5rcE2NpTNCTpfUf5lWWC+vIqXTCNNcE/fUOjDtZhvG5ZIzvrMpuMi/f6M+y2dVp9i
+         s0poQ0QHk+JdzLZeEy4BiP0LPnClqeazR+Pi7c89GerlRJu8hA9D/NV6Yo2jURUrtXe7
+         6frzkKUcbwyBWYBLiv4QSu0/sJ2P2ZUqmdD0NtwOD8CN3Lnos87LuMEExUGb4lI6KGId
+         53mruOVpbKZmf4ArPdMAeACMFiGST6DhgYMSa5Ku0aktXjiL8VWIQKTNY2F1oiPrM07L
+         XyXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685905914; x=1688497914;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=azAP3x1baPIF9TbZBZ/iwj9CaGYl4y3es7jb/ELOFIA=;
-        b=eswQ/AU41+MYbM5s6Y7/NbBncQN1OmqvJsZENgQv1MIHDS3DdnOLp9G2ZkbsLS6Ih1
-         jzAjF0BEjEck1u74wFUiJYLvJKm5Pgou1vyHrCblUmZ7lBrZlEiRYp9rXjk8dAzPeRf1
-         6AO51dgoNnAV6FkuZk/E+1BAhrbmFHvdqOCuAH7YeaVItcZLV/DeNAFNekgmpuWvy9Q6
-         oXAE5AdgCH/MhB7cbVFN/6mqvwomscd7eSvegNLEVyAiNtR0pS4X8BCfe2nMZczWuf7i
-         lxTagYf5a9ZpBWvhNiZennc13qwkB4vuW0VQ+WdFVbGVmakBuWc3bCNnAP5o2C1q9CCv
-         rAbA==
-X-Gm-Message-State: AC+VfDziVJWq/Y5gwk8p9LkZAFEOojJMtgu+I8VaJImvsb53PYlvMffM
-        XEGrT1uDVHsQFArLoRIJeAg=
-X-Google-Smtp-Source: ACHHUZ4QX84YGTAap42xf8IcVLART9ckvKesrVoX2+oE65kP2pidl7JNsvozPo1y0LQJ9I7eRhD7QQ==
-X-Received: by 2002:ac2:46f4:0:b0:4ee:e0c7:434d with SMTP id q20-20020ac246f4000000b004eee0c7434dmr4561954lfo.51.1685905913218;
-        Sun, 04 Jun 2023 12:11:53 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id u8-20020ac25188000000b004f377f317d4sm858351lfi.285.2023.06.04.12.11.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jun 2023 12:11:52 -0700 (PDT)
-Date:   Sun, 4 Jun 2023 22:11:50 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v2 3/6] dt-bindings: ata: ahci: dwc: enforce rockchip
- clocks
-Message-ID: <20230604191150.aqx4jewtifsknijt@mobilestation>
-References: <20230522173423.64691-1-sebastian.reichel@collabora.com>
- <20230522173423.64691-4-sebastian.reichel@collabora.com>
+        d=1e100.net; s=20221208; t=1685906137; x=1688498137;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oH9Cr0aed9+SlGFSxcuX+CM/ZuPzolXMmmuHZioD1Hw=;
+        b=dInc2vjNYiqJDm/17HdRkOlGTxNFSsRQXfOA538C8pnBjv7gsD3IdUYwipMz5LrYh1
+         xWWflJIgvnsaITvdJKtURNsbPgdjk4hZ4dENRKP0vF7xxf0suP1WSeemIg23b0v7ccQN
+         IKWuAhMuMv7M3lsVMHRWn9ay48/JPHINadaHG+7EO6vFB/Mesr/moluvzDocx1YRdCiO
+         RCMyWWmiw4DCGmF/KQQni9P0vX3TuUtAh2Y1FfhAWS2K/JXsPThus69RT7lJv/t0MBoh
+         rC9lPN/XnxGoAMTyRRgWjtPCpdbdVY5vQbgpJEKLRrdOyHjOL3sDdCI8Fq94OD9lkqb4
+         qmbQ==
+X-Gm-Message-State: AC+VfDw55KnbKek+PqUqlj1kH3+zvIMjdm3WPFMuXM9/M4TgL4uJRfJU
+        vWZMtkQbmM1rSXLe47GRB3HwBw==
+X-Google-Smtp-Source: ACHHUZ7Ksh/PEECYfIW7+cnMnPoU2N/J0/a3hIXQ3RDFnmAk+dCPnK6b0/p2X6w6QuFk8miSunoa5A==
+X-Received: by 2002:a17:907:1607:b0:96a:6c64:8066 with SMTP id hb7-20020a170907160700b0096a6c648066mr5595587ejc.4.1685906137605;
+        Sun, 04 Jun 2023 12:15:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id f14-20020a170906494e00b0097461fecc91sm3335292ejt.81.2023.06.04.12.15.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Jun 2023 12:15:37 -0700 (PDT)
+Message-ID: <aae10e8f-b4f2-7417-ab08-41d6ec9ab8fc@linaro.org>
+Date:   Sun, 4 Jun 2023 21:15:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230522173423.64691-4-sebastian.reichel@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v4] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0 boards
+Content-Language: en-US
+To:     Artur Weber <aweber.kernel@gmail.com>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230604165627.16963-1-aweber.kernel@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230604165627.16963-1-aweber.kernel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 07:34:20PM +0200, Sebastian Reichel wrote:
-> Provide a specific list of clocks allowed for RK3568 and RK3588
-> based DWC AHCI controllers.
+On 04/06/2023 18:56, Artur Weber wrote:
+> Introduce support for the Galaxy Tab 3 8.0 series of boards:
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>  - Samsung Galaxy Tab 3 8.0 WiFi (SM-T310/lt01wifi)
+>  - Samsung Galaxy Tab 3 8.0 3G (SM-T311/lt013g)
+>  - Samsung Galaxy Tab 3 8.0 LTE (SM-T315/lt01lte)
+> 
+> What works:
+> 
+>  - Display and backlight
+>  - Touchscreen
+>  - GPIO buttons, hall sensor
+>  - WiFi and Bluetooth
+>  - USB, fuel gauge, charging
+>  - Accelerometer and magnetometer
+>  - Audio: speaker, microphone, headset
+>  - WiFi model only: light sensor
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > ---
->  .../bindings/ata/snps,dwc-ahci.yaml           | 34 +++++++++++++++++--
->  1 file changed, 31 insertions(+), 3 deletions(-)
+> This is an updated version of "[PATCH v3 13/13] ARM: dts: exynos: Add Samsung
+> Galaxy Tab 3 8.0 boards"[1].
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> index c6a0d6c8b62c..37830185b9b5 100644
-> --- a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> @@ -13,9 +13,6 @@ description:
->    This document defines device tree bindings for the generic Synopsys DWC
->    implementation of the AHCI SATA controller.
->  
-> -allOf:
-> -  - $ref: snps,dwc-ahci-common.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -41,6 +38,37 @@ required:
->    - reg
->    - interrupts
->  
-> +allOf:
-> +  - $ref: snps,dwc-ahci-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3588-dwc-ahci
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: sata
-> +            - const: pmalive
-> +            - const: rxoob
-> +            - const: ref
-> +            - const: asic
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3568-dwc-ahci
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: sata
-> +            - const: pmalive
-> +            - const: rxoob
+> Changed in v4:
+> - Added touchkey keycodes
+> - Added audio nodes
+> - Added MMC aliases
+> - Fixed dtbs_check warnings
+> - Fixed indentation in pinctrl sleep state overrides
+> 
+> Changed in v3:
+>  - Addressed review comments
+>  - Removed rtc node (RTC is provided by PMIC)
+>  - Added CPU thermal node
+>  - Fixed dtbs_check warnings
+>  - Added common changes from next/dt
+> 
+> Should pass dtbs_check with no errors, provided that the following patches
+> are present:
+> 
+> Backlight node is adapted to changes from "[PATCH v2 1/4] dt-bindings:
+> backlight: lp855x: convert to YAML and modernize"[2]. The whole patchset
+> has been reviewed, waiting for any further reviews or a merge.
+> 
+> Touchkey keycode property is added by "[PATCH 1/2] dt-bindings: mms114: Add
+> linux,keycodes property for touch keys"[3]. So far only the bindings part
+> of the patch has been acked, otherwise everything is awaiting review.
+> 
+> Display bindings have been added by "[PATCH v5 1/3] dt-bindings: display:
+> panel: Add Samsung S6D7AA0 LCD panel controller"[4]. These are already
+> reviewed and merged into the DRM tree.
+> 
+> [1] https://lore.kernel.org/linux-devicetree/20230501195525.6268-14-aweber.kernel@gmail.com/
+> [2] https://lore.kernel.org/linux-devicetree/20230519180728.2281-2-aweber.kernel@gmail.com/
+> [3] https://lore.kernel.org/linux-devicetree/20230521145843.19489-2-aweber.kernel@gmail.com/
+> [4] https://lore.kernel.org/linux-devicetree/20230519170354.29610-2-aweber.kernel@gmail.com/
+> ---
+>  arch/arm/boot/dts/Makefile                  |    3 +
+>  arch/arm/boot/dts/exynos4212-tab3-3g8.dts   |   29 +
+>  arch/arm/boot/dts/exynos4212-tab3-lte8.dts  |   44 +
+>  arch/arm/boot/dts/exynos4212-tab3-wifi8.dts |   26 +
+>  arch/arm/boot/dts/exynos4212-tab3.dtsi      | 1303 +++++++++++++++++++
+>  5 files changed, 1405 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/exynos4212-tab3-3g8.dts
+>  create mode 100644 arch/arm/boot/dts/exynos4212-tab3-lte8.dts
+>  create mode 100644 arch/arm/boot/dts/exynos4212-tab3-wifi8.dts
+>  create mode 100644 arch/arm/boot/dts/exynos4212-tab3.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 59829fc90315..6a4ca481171e 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -217,6 +217,9 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
+>  	exynos4210-smdkv310.dtb \
+>  	exynos4210-trats.dtb \
+>  	exynos4210-universal_c210.dtb \
+> +	exynos4212-tab3-3g8.dtb \
+> +	exynos4212-tab3-lte8.dtb \
+> +	exynos4212-tab3-wifi8.dtb \
+>  	exynos4412-i9300.dtb \
+>  	exynos4412-i9305.dtb \
+>  	exynos4412-itop-elite.dtb \
+> diff --git a/arch/arm/boot/dts/exynos4212-tab3-3g8.dts b/arch/arm/boot/dts/exynos4212-tab3-3g8.dts
+> new file mode 100644
+> index 000000000000..d96b2dd44608
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/exynos4212-tab3-3g8.dts
+> @@ -0,0 +1,29 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung's Exynos4212 based Galaxy Tab 3 8.0 3G board device tree
+> + * source
+> + *
+> + * Copyright (c) 2013 Samsung Electronics Co., Ltd.
+> + *		http://www.samsung.com
+> + */
 > +
+> +/dts-v1/;
+> +#include "exynos4212-tab3.dtsi"
+> +
+> +/ {
+> +	model = "Samsung Galaxy Tab 3 8.0 3G (SM-T311) based on Exynos4212";
+> +	compatible = "samsung,t311", "samsung,tab3", "samsung,exynos4212", "samsung,exynos4";
+> +	chassis-type = "tablet";
+> +};
+> +
+> +/* Pin control sleep state overrides */
+> +&sleep0 {
+> +	PIN_SLP(gpb-5, INPUT, UP);
+> +};
+> +
+> +&sleep1 {
+> +	PIN_SLP(gpl0-0, OUT0, NONE);
+> +	PIN_SLP(gpl1-0, OUT0, NONE);
+> +	PIN_SLP(gpl2-4, OUT0, NONE);
+> +	PIN_SLP(gpm3-3, OUT1, NONE);
+> +};
+> diff --git a/arch/arm/boot/dts/exynos4212-tab3-lte8.dts b/arch/arm/boot/dts/exynos4212-tab3-lte8.dts
+> new file mode 100644
+> index 000000000000..bbb398eca7b0
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/exynos4212-tab3-lte8.dts
+> @@ -0,0 +1,44 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung's Exynos4212 based Galaxy Tab 3 8.0 LTE board device tree
+> + * source
+> + *
+> + * Copyright (c) 2013 Samsung Electronics Co., Ltd.
+> + *		http://www.samsung.com
+> + */
+> +
+> +/dts-v1/;
+> +#include "exynos4212-tab3.dtsi"
+> +
+> +/ {
+> +	model = "Samsung Galaxy Tab 3 8.0 LTE (SM-T315) based on Exynos4212";
+> +	compatible = "samsung,t315", "samsung,tab3", "samsung,exynos4212", "samsung,exynos4";
+> +	chassis-type = "tablet";
+> +};
+> +
+> +/* Pin control sleep state overrides */
+> +&sleep0 {
+> +	PIN_SLP(gpa0-4, INPUT, UP);
+> +	PIN_SLP(gpa0-5, INPUT, UP);
+> +
+> +	PIN_SLP(gpb-5, INPUT, UP);
+> +
+> +	PIN_SLP(gpc0-0, PREV, NONE);
+> +	PIN_SLP(gpc1-3, INPUT, NONE);
+> +
+> +	PIN_SLP(gpf1-6, INPUT, NONE);
+> +	PIN_SLP(gpf2-2, PREV, NONE);
+> +};
+> +
+> +&sleep1 {
+> +	PIN_SLP(gpl0-0, PREV, NONE);
+> +
+> +	PIN_SLP(gpl1-0, PREV, NONE);
+> +
+> +	PIN_SLP(gpl2-1, INPUT, DOWN);
+> +	PIN_SLP(gpl2-2, INPUT, DOWN);
+> +	PIN_SLP(gpl2-4, OUT0, NONE);
+> +	PIN_SLP(gpl2-5, PREV, NONE);
+> +
+> +	PIN_SLP(gpm3-3, OUT1, NONE);
+> +};
+> diff --git a/arch/arm/boot/dts/exynos4212-tab3-wifi8.dts b/arch/arm/boot/dts/exynos4212-tab3-wifi8.dts
+> new file mode 100644
+> index 000000000000..54cb01703b60
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/exynos4212-tab3-wifi8.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung's Exynos4212 based Galaxy Tab 3 8.0 WiFi board device tree
+> + * source
+> + *
+> + * Copyright (c) 2013 Samsung Electronics Co., Ltd.
+> + *		http://www.samsung.com
+> + */
+> +
+> +/dts-v1/;
+> +#include "exynos4212-tab3.dtsi"
+> +
+> +/ {
+> +	model = "Samsung Galaxy Tab 3 8.0 WiFi (SM-T310) based on Exynos4212";
+> +	compatible = "samsung,t310", "samsung,tab3", "samsung,exynos4212", "samsung,exynos4";
+> +	chassis-type = "tablet";
+> +};
+> +
+> +&i2c_lightsensor {
+> +	status = "okay";
+> +
+> +	lightsensor@10 {
+> +		compatible = "capella,cm3323";
+> +		reg = <0x10>;
+> +	};
+> +};
+> diff --git a/arch/arm/boot/dts/exynos4212-tab3.dtsi b/arch/arm/boot/dts/exynos4212-tab3.dtsi
+> new file mode 100644
+> index 000000000000..e014100e11f8
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/exynos4212-tab3.dtsi
+> @@ -0,0 +1,1303 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung's Exynos4212 based Galaxy Tab 3 board common source
+> + *
+> + * Copyright (c) 2013 Samsung Electronics Co., Ltd.
+> + *		http://www.samsung.com
+> + */
+> +
+> +/dts-v1/;
+> +#include "exynos4212.dtsi"
+> +#include "exynos4412-ppmu-common.dtsi"
+> +#include "exynos-mfc-reserved-memory.dtsi"
+> +#include <dt-bindings/clock/samsung,s2mps11.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/input/gpio-keys.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include "exynos-pinctrl.h"
+> +
+> +/*
+> + * This device does not use the built-in RTC; instead, the RTC in the
+> + * S5M8786 PMIC is used instead. Remove the unused node to avoid DTB check
+> + * warnings.
+> + */
+> +/delete-node/ &rtc;
 
-As I already suggested here
-https://lore.kernel.org/all/20230421192822.yckihqlk2vlkueyc@mobilestation/
-let's create a separate DT-schema for the Rockchip AHCI SATA
-controllers. Please see the way it's done for Baikal-T1 AHCI SATA
-here: Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
-Your generic schema patch doesn't provide a full hardware constraints
-(what about resets, number of ports, etc?), but makes the generic
-DW AHCI SATA controller DT-schema harder to read.
+This is not the solution. The S3C RTC is there. Just like all other
+boards we have two RTCs and DTS should be complete. Definitely you
+should not remove something just because there were warnings. Instead
+warnings should be fixed.
 
-* Don't forget to add the "select: ..." property to prevent your
-DT-schema from being applied to all the "snps,dwc-ahci"-compatible
-DT-nodes (see my comment to the previous patchset revision).
-Alternatively you can just drop the generic DW AHCI compatible string
-from the DT-files (but in this case you would need to add vendor-specific
-compatible string to the driver).
+Best regards,
+Krzysztof
 
--Serge(y)
-
->  unevaluatedProperties: false
->  
->  examples:
-> -- 
-> 2.39.2
-> 
