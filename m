@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542E97216F3
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 14:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D62721704
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 14:42:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbjFDMdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 08:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50574 "EHLO
+        id S231231AbjFDMlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 08:41:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjFDMdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 08:33:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1812CA;
-        Sun,  4 Jun 2023 05:33:04 -0700 (PDT)
+        with ESMTP id S231219AbjFDMlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 08:41:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 774F7B8;
+        Sun,  4 Jun 2023 05:41:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5AC6360CF9;
-        Sun,  4 Jun 2023 12:33:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16753C433EF;
-        Sun,  4 Jun 2023 12:32:57 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0C22961793;
+        Sun,  4 Jun 2023 12:41:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDF9AC433D2;
+        Sun,  4 Jun 2023 12:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685881983;
-        bh=ZKl8AHXFpU+GegW3V/WCBn2zAiMinYPo4ep6qsk84Ew=;
+        s=k20201202; t=1685882490;
+        bh=c3zQhXlEbenAsUWsWRIn4i4KxdSSZNpYHV7hoFF7MNM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GCMtkHsdLlodxs99cE4PLBMcRIpwlHtjBdeeMsuB/4Wl5wgxGGVY3z6fAWG/uEJMY
-         mazndFF9YBK5rKxvw0NQ2lPEwm8+qK1dVqbLq9rhDKy2sRfPUa5OtSRz7BEOVWX23o
-         YVfiC3FwN7jk/mElY1J7pffr7u/+Wp30t5l1BLDxabdcthoTKIXEL/UAch/Q7Ne1DJ
-         fICp6MzRGUG19eXQI3mnpJ12gbnrpodMnbae3BLh+Ds5TNSYbU3z7APMyjX2E8EVQl
-         J863JEw6zJ0Bwo+NQh2sQhlFxx1t8uw44A++InFJTeY4iXH4+qs+pvJ8pmTL3VyNo7
-         Xcmeid3Aeebnw==
-Date:   Sun, 4 Jun 2023 20:32:51 +0800
+        b=LzVIdGldIKFkbEzym4Yw2LY8+HrtjxA3wFft1bNG8yIoq6RJB2gez6uA9Xmue4UaJ
+         4f2hqiOTvhHbRlmA4BxEFZvnFICtjXKPqmZLtbAYgwHM+1WukHv3ngyBTXOPZeWGT3
+         KYA/hGKuYHfZUnaYVnTEICut2b2Wflz7V0EWCTtb1sBHUEnrL32Rs1o5eiIZTi9H8d
+         l+vuVJh1JxXX7IPRIQ7JP0BT22QzNO5pJkJOuyEatpliDeptt17DLAy2gkh0HoW/VY
+         ynjA7Qe402WX5qQBiooebTPp61Fgc04XmTacFC+nsrXEiSZ2/iTPHuIMt9/Jdfujza
+         ++6ESEO7eBtzw==
+Date:   Sun, 4 Jun 2023 20:41:19 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 1/2] arm64: dts: imx8mn-beacon: Migrate sound card to
- simple-audio-card
-Message-ID: <20230604123251.GI4199@dragon>
-References: <20230528112254.2634028-1-aford173@gmail.com>
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: imx8mp-msc-sm2s: Add sound card
+Message-ID: <20230604124119.GK4199@dragon>
+References: <20230529095728.83993-1-luca.ceresoli@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230528112254.2634028-1-aford173@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230529095728.83993-1-luca.ceresoli@bootlin.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,10 +60,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 28, 2023 at 06:22:53AM -0500, Adam Ford wrote:
-> Instead of using a custom glue layer connecting the wm8962 CODEC
-> to the SAI3 sound-dai, migrate the sound card to simple-audio-card.
+On Mon, May 29, 2023 at 11:57:28AM +0200, Luca Ceresoli wrote:
+> The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
+> NXP SGTL5000 audio codec connected to I2S-0 (sai2).
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> This requires to:
+> 
+>  * add the power supplies (always on)
+>  * enable sai2 with pinmuxes
+>  * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
+>    IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
+> 
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-Applied both, thanks!
+Applied, thanks!
