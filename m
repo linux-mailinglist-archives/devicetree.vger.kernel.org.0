@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0096B721605
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 12:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF8C72160C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 12:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229851AbjFDKZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 06:25:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
+        id S230494AbjFDK1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 06:27:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjFDKZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 06:25:24 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F26BC0
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 03:25:23 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5149429c944so5774543a12.0
-        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 03:25:23 -0700 (PDT)
+        with ESMTP id S231127AbjFDK07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 06:26:59 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43EA6FD
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 03:26:53 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-970028cfb6cso619246866b.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 03:26:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685874321; x=1688466321;
+        d=linaro.org; s=google; t=1685874412; x=1688466412;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YJMkEbWSHnrMMvY5aFflCgy+a09GUp8CaxfqQLYJPe8=;
-        b=McBfv3wHyWsk0SGbQ5NzvzBcitJkpkYBCcKhIr4LcsTctO8BBHr9h/hsEhg8Fwk08r
-         jxWQO8ouTtG0WQ/67m/YleqKfdsKI8g4SmaRsT2cyy7crwB4kazGiiVxcix7QbzpMnE6
-         DK8pL2ch++6vYrfXmnJrYN/juEihCEFhmCTbkAvudj4pc324In23ZX1khGt4c3s2lbpe
-         JjT+9JehWk/oLAC+BSlGx3R48D2WhjGidNVcQkpsWiIdAo0V2GgTxD+C4eAw/JvdC54R
-         ASeBAQqc2dWC+mVcPjhJ60goUepdbj+uC/u0TWXpZrP/CxVrU0XWRvVEVcT43XLIez7i
-         CUjw==
+        bh=AJSHI/wM8OxoIZMScQKHzgdshhk+Z+V6iSUOb3f+fUo=;
+        b=WBLIufn6FaDKJRlxmznzODTyp1EIkLlA9g0b7y9YQaN397riJeRgHOvmEhWu6QQTfg
+         SIcsO05Y0x5Fo1CswjmM7AnZhLK/2Y6BLTVOVNW9UcKm8rKWzuKnbmChqwJsbbfr52ar
+         jvioklNjVDfKH2xnlvzIibk3XTxlqrDVrsrgQHNUoWT7nETIhEc96bg+EzJBBrzeaNYL
+         BUq1uwWS+eFrUcrkJX3a5BivOWVLvL/+tV7n8qnju7ZJKj665NBcpyPfwgjleO9dUHZV
+         C2NjCIb0Tgorq+YFUbunBkpv4MIECxPrlKlHFPoL+mzVzizOvGfLUqmJlmePrjp2lCZJ
+         zMMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685874321; x=1688466321;
+        d=1e100.net; s=20221208; t=1685874412; x=1688466412;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YJMkEbWSHnrMMvY5aFflCgy+a09GUp8CaxfqQLYJPe8=;
-        b=P2kkBgZ7y3Qut6tFpmzziGiio8mwwCuKouzoJYx96+Jyxpcvw4ZIIRKfRyxAYM/mg+
-         eSHssLTZ5niRvhSckGgPL2RObN0e600NJEplfWcWrltKUJ5fkE6bI6IloKF/wmiau4cO
-         o3fW5JaUV8NbFrP64/kgU3ljIT+nut9F1BMdTMHc9CBRp3rkhEqb8nwquzgBYvXqg9H2
-         2qF6sgSILYjsMrh6T1+0D4OiAgey3F7Hh/eL+ldGyCD6L0x4GqHA5U6ec7zbPqbzJ6Ww
-         1Cm5DOiQojn2O2WIKxp3M63NzwwS7fnRfPLR/xa4NMhxxrXP/4JKfiKpj6nMKuNMTkw2
-         Ncyg==
-X-Gm-Message-State: AC+VfDxW8y/EPwzQx5N7bpEgmduhzurGB1iwQ+JwBvtY5GFc1Mvdkklw
-        +OhADVplX9aX6Jbk2EkcVhBdoQ==
-X-Google-Smtp-Source: ACHHUZ6fMJ/yHO+vKOlsfo5f9HIUMEEqhsXTkY3yEn808RCHlyky7VTMAEu8r0kM8MxtmIPIP/E1Gg==
-X-Received: by 2002:aa7:d405:0:b0:514:ad09:44df with SMTP id z5-20020aa7d405000000b00514ad0944dfmr5493938edq.28.1685874321665;
-        Sun, 04 Jun 2023 03:25:21 -0700 (PDT)
+        bh=AJSHI/wM8OxoIZMScQKHzgdshhk+Z+V6iSUOb3f+fUo=;
+        b=ikQnZpf+1XBpK9dcrWmT3kj2H/FXVsC2qoHKUCGAxCOajjdB1yV3myayGYKpr22IFK
+         nMxpTp9K4TSCJOnQpvOwqitdnbiVC5eHvCBxnXENzqH1PhYVTiZoYrnc3mlW50AJ/GGt
+         1udlQgkDeKFcrF0/lHzNjYNeavGxqxoi02fe6pkOA60zH2rVmkg9ZZnRBk0xVFKvKq4P
+         gevbuvVKLL0uh8wlk9czSpeTTOT/EENm80gtk90fL54xVcVQmMAC9b0zN/zRRUpmTmKd
+         9FoUDiI3zwrkkL0VHnISUPRoAkXqHF+j0Zos6mymfgqWFeNRR9lfJTaQnsK1FtgIXOJq
+         E+/Q==
+X-Gm-Message-State: AC+VfDy0gi8BoHNTofxs+K046N/OaA8+HbHh5BcETNAWCOktL2ysyPEN
+        Yw+EVCjWad0fqmm/W6HAPEjiHg==
+X-Google-Smtp-Source: ACHHUZ4JYlaRMEe60I46ZCyR3ZzQ9mtSGPn76sEYeljxg2b0VEu14Ft6nUd4H17cb/XZHAbY26cixw==
+X-Received: by 2002:a17:907:1c25:b0:977:d48f:97ad with SMTP id nc37-20020a1709071c2500b00977d48f97admr1102482ejc.75.1685874411803;
+        Sun, 04 Jun 2023 03:26:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id w15-20020a056402070f00b00514bb73b8casm2712792edx.57.2023.06.04.03.25.20
+        by smtp.gmail.com with ESMTPSA id qu25-20020a170907111900b00974530bb44dsm2905545ejb.183.2023.06.04.03.26.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Jun 2023 03:25:21 -0700 (PDT)
-Message-ID: <6187d1a4-1667-21c5-00ba-4689caa6cac8@linaro.org>
-Date:   Sun, 4 Jun 2023 12:25:19 +0200
+        Sun, 04 Jun 2023 03:26:51 -0700 (PDT)
+Message-ID: <cd4501ab-a088-cd2a-51c8-a469a66b7af5@linaro.org>
+Date:   Sun, 4 Jun 2023 12:26:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v2 1/3] dt-bindings: reserved-memory: rmtfs: Allow guard
- pages
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: stm32: document audio of graph
+ port for i2s
 Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230530233643.4044823-1-quic_bjorande@quicinc.com>
- <20230530233643.4044823-2-quic_bjorande@quicinc.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230531140912.819373-1-olivier.moysan@foss.st.com>
+ <20230531140912.819373-2-olivier.moysan@foss.st.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230530233643.4044823-2-quic_bjorande@quicinc.com>
+In-Reply-To: <20230531140912.819373-2-olivier.moysan@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,48 +85,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 01:36, Bjorn Andersson wrote:
-> On some Qualcomm platforms it's required that the rmtfs memory is not
-> placed adjacent to allocations performed by other clients. Some
-> DeviceTree authors have solved this by reserving the space around
-> the region, but this prevents such author to use rely on the OS to place
-> the region, through the use of "size" (instead of a fixed location).
+On 31/05/2023 16:09, Olivier Moysan wrote:
+> When linking the STM32 I2S to another DAI component, according
+> to audio graph cards bindings, an OF graph port property is expected
+> in the node. Document the port property.
 > 
-> So introduce a flag to indicate that guard pages should be carved at the
-> beginning and end of the memory region. The user shall account for the
-> two 4k blocks in the defined size.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
 > ---
+>  Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Changes since v1:
-> - Drop qcom,alloc-size in favour of using reserved-memory/size
-> - Introduce explicit property to signal that guard pages should be
->   carved out from this region (rather than always do it in the dynamic
->   case).
-> 
->  .../bindings/reserved-memory/qcom,rmtfs-mem.yaml           | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> index bab982f00485..26e24e7b08cf 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> @@ -26,6 +26,13 @@ properties:
->      description: >
->        identifier of the client to use this region for buffers
+> diff --git a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
+> index a040d4d31412..3bc917a45802 100644
+> --- a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
+> @@ -61,6 +61,10 @@ properties:
+>      description: Configure the I2S device as MCLK clock provider.
+>      const: 0
 >  
-> +  qcom,use-guard-pages:
-> +    type: boolean
-> +    description: >
-> +      Indicates that the OS should ignore the first and last 4k block of the
-> +      memory region, for the purpose of ensuring that the allocation is not
-> +      adjacent to other protected regions.
+> +  port:
+> +    $ref: audio-graph-port.yaml#
+> +    unevaluatedProperties: false
+> +
 
-Property name and description: do not describe the OS behavior. Describe
-the hardware or firmware. Describe the actual problem or characteristic
-which will be then interpreted by OS to do what you want. DT is not for
-instructing OS what to do.
+Extend the example.
 
 Best regards,
 Krzysztof
