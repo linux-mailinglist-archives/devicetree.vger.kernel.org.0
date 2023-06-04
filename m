@@ -2,330 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB259721A3C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 23:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08254721AE4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 00:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230176AbjFDVbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 17:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
+        id S232057AbjFDWuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 18:50:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjFDVbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 17:31:05 -0400
-Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9BBE9BD;
-        Sun,  4 Jun 2023 14:31:01 -0700 (PDT)
-Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
-        by smtp.dudau.co.uk (Postfix) with SMTP id 71E1141D13A6;
-        Sun,  4 Jun 2023 22:30:59 +0100 (BST)
-Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Sun, 04 Jun 2023 22:30:59 +0100
-Date:   Sun, 4 Jun 2023 22:30:59 +0100
-From:   Liviu Dudau <liviu@dudau.co.uk>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] mips: dts: ralink: Add support for TP-Link HC220
- G5 v1 board
-Message-ID: <ZH0Ck794eem2DUdw@bart.dudau.co.uk>
-References: <84b31c59-81d3-c83d-ece9-a120b1cdcdd7@arinc9.com>
- <20230529150833.526084-1-liviu@dudau.co.uk>
- <20230529150833.526084-2-liviu@dudau.co.uk>
- <ZHTK+qG0xBWfn9gt@bart.dudau.co.uk>
- <cc70b28c-7bbe-0766-4a43-c0d7584e108a@arinc9.com>
+        with ESMTP id S229670AbjFDWun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 18:50:43 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E74DD3;
+        Sun,  4 Jun 2023 15:50:42 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f3b5881734so5150310e87.0;
+        Sun, 04 Jun 2023 15:50:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685919040; x=1688511040;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OJwPRTwaUr2TZRzE6A7VxF+Vzo4yDjm2AO9GVcS91bg=;
+        b=MyaPvhQiZN1WXRacRGISQXvtk6jeuOHhyVfLDYz1Zy12WtW0rWStLnYGscuVM4gewD
+         qamlf0aD2OTtzqsSF8ZB6bfkvriJ7rYXuTsh53y/AVsrwfD7vaOVrWANGyyuQoR7jvRv
+         jcLMvPE/xnwy1wp/tB03xncLbi387XayHaZIL6jLmHzQPNX/vCe7NeDqV8PDmYwQrYSa
+         1gNvCYqbnpj9oXAiCqyXG6/4j8HgRn1tGme9x2Ba5qmg6X1ZXWuej4tmxOV1BIqq0XOY
+         ZEAoSjTlkUzTiZO/75BspbvU0nnGEnelGAyfglVCVzWvW+VCdY4c21R3bxT6Ad9NrLWh
+         LZig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685919040; x=1688511040;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OJwPRTwaUr2TZRzE6A7VxF+Vzo4yDjm2AO9GVcS91bg=;
+        b=WninH9oAML0hwDdGG1HzPs9rm7mFJ8TKsc29YtFCDlS7WxzF2VGtY7eCcz8SDH4nyx
+         3gcdCX7ojDRzJZ1FOIjLJO9uuiZC8BQS5iLl+uhlf6ai26d/rGCA2jnwa3jg5KP3qA1E
+         cDbdPJAK4Kc1PlLXIV4JLdJhlF+RB2lqePIUeVuy2rn2ht561lj6FZn1aw0goQToiUG+
+         U2TQml8IMGWYjpLX+xmVIws7llDJZn+yV7PaA3qzZPeMyFeub4uTQtz16m/9ohYD6lx8
+         q1ywU95hb69F8g46xwwsV3hv3ipFFZgIw3ejCOEFQrbxHxcva1AIT+xQdhMvvEzhRdNQ
+         chpQ==
+X-Gm-Message-State: AC+VfDx+RUdTa0Xu4nH6xnWcH9cmJZgTih5U2WdadzdsszKwdFiRIaTD
+        eexllWJlgQkhf9z+pvOEnBg=
+X-Google-Smtp-Source: ACHHUZ6mCMVY9k8TPPRIZmBDlVFGt1XfTafbxf775H8qbC01AA/rbIJdsxIpQUpKuHnml8ekox++/A==
+X-Received: by 2002:ac2:52b4:0:b0:4f4:dfd4:33df with SMTP id r20-20020ac252b4000000b004f4dfd433dfmr3971595lfm.21.1685919039989;
+        Sun, 04 Jun 2023 15:50:39 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id w2-20020ac254a2000000b004f60e0ecc7dsm904803lfk.250.2023.06.04.15.50.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Jun 2023 15:50:39 -0700 (PDT)
+Date:   Mon, 5 Jun 2023 01:50:36 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
+        robh+dt@kernel.org, kw@linux.com, kishon@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v16 01/22] PCI: Add PCI_EXP_LNKCAP_MLW macros
+Message-ID: <20230604225036.earzdx5dvzc3imoz@mobilestation>
+References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230510062234.201499-2-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cc70b28c-7bbe-0766-4a43-c0d7584e108a@arinc9.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230510062234.201499-2-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 03, 2023 at 03:06:08PM +0300, Arınç ÜNAL wrote:
-> On 29.05.2023 18:55, Liviu Dudau wrote:
-> > On Mon, May 29, 2023 at 04:08:32PM +0100, Liviu Dudau wrote:
-> > > This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
-> > > a MT7603 2.4GHz WiFi and a MT7663 5GHz WiFi chips integrated on the board,
+On Wed, May 10, 2023 at 03:22:13PM +0900, Yoshihiro Shimoda wrote:
+> Add macros defining Maximum Link Width bits in Link Capabilities
+> Register.
 > 
-> Do you mean MT7662 5GHz WiFi?
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 
-Actually it's MT76*1*3. Will fix for v3.
+You haven't been using these macros in the following up patches since
+v9. Why do you keep submitting this change then? I would suggest to
+drop the patch especially seeing the PCI_EXP_LNKCAP_MLW field directly
+encodes the link width thus these macros unlikely will be of much use.
 
+-Serge(y)
+
+> ---
+>  include/uapi/linux/pci_regs.h | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> > > connected to the main SoC over PCIe.
-> > > 
-> > > The GMAC1 on the SoC is connected to PHY0 on the GSW and can be used to
-> > > improve routing bandwidth.
+> diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
+> index dc2000e0fe3a..5d48413ac28f 100644
+> --- a/include/uapi/linux/pci_regs.h
+> +++ b/include/uapi/linux/pci_regs.h
+> @@ -538,6 +538,12 @@
+>  #define  PCI_EXP_LNKCAP_SLS_16_0GB 0x00000004 /* LNKCAP2 SLS Vector bit 3 */
+>  #define  PCI_EXP_LNKCAP_SLS_32_0GB 0x00000005 /* LNKCAP2 SLS Vector bit 4 */
+>  #define  PCI_EXP_LNKCAP_SLS_64_0GB 0x00000006 /* LNKCAP2 SLS Vector bit 5 */
+> +#define  PCI_EXP_LNKCAP_MLW_X1	0x00000010 /* Maximum Link Width x1 */
+> +#define  PCI_EXP_LNKCAP_MLW_X2	0x00000020 /* Maximum Link Width x2 */
+> +#define  PCI_EXP_LNKCAP_MLW_X4	0x00000040 /* Maximum Link Width x4 */
+> +#define  PCI_EXP_LNKCAP_MLW_X8	0x00000080 /* Maximum Link Width x8 */
+> +#define  PCI_EXP_LNKCAP_MLW_X12	0x000000c0 /* Maximum Link Width x12 */
+> +#define  PCI_EXP_LNKCAP_MLW_X16	0x00000100 /* Maximum Link Width x16 */
+>  #define  PCI_EXP_LNKCAP_MLW	0x000003f0 /* Maximum Link Width */
+>  #define  PCI_EXP_LNKCAP_ASPMS	0x00000c00 /* ASPM Support */
+>  #define  PCI_EXP_LNKCAP_ASPM_L0S 0x00000400 /* ASPM L0s Support */
+> -- 
+> 2.25.1
 > 
-> This is not always true, I'd prefer you remove this sentence from the patch
-> log.
-
-If your comment is about the statement not being always true in general, then
-I agree. However for this device the port marked as WAN on HC220 v1 is the
-second port on the switch and according to the DSA bindings docs only PHY0
-or PHY4 can be connected to GMAC1, so I picked the one that worked (PHY4 did
-not). More on that at the end of the email.
-
-> 
-> > > 
-> > > The device uses NMBM over NAND, which is not currently supported in the
-> > > mainline, so NAND node is skipped in this revision.
-> > > 
-> > > Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
-> > > ---
-> > >   arch/mips/boot/dts/ralink/Makefile            |   3 +-
-> > >   .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 129 ++++++++++++++++++
-> > >   2 files changed, 131 insertions(+), 1 deletion(-)
-> > >   create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
-> > > 
-> > > diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
-> > > index 11732b8c8163a..d27d7e8c700fe 100644
-> > > --- a/arch/mips/boot/dts/ralink/Makefile
-> > > +++ b/arch/mips/boot/dts/ralink/Makefile
-> > > @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
-> > >   dtb-$(CONFIG_SOC_MT7621) += \
-> > >   	mt7621-gnubee-gb-pc1.dtb \
-> > > -	mt7621-gnubee-gb-pc2.dtb
-> > > +	mt7621-gnubee-gb-pc2.dtb \
-> > > +	mt7621-tplink-hc220-g5-v1.dtb
-> > >   obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-> > > diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
-> > > new file mode 100644
-> > > index 0000000000000..f003ae615a58e
-> > > --- /dev/null
-> > > +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
-> > > @@ -0,0 +1,129 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +/dts-v1/;
-> > > +
-> > > +#include "mt7621.dtsi"
-> > > +
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +#include <dt-bindings/input/input.h>
-> > > +#include <dt-bindings/leds/common.h>
-> > > +
-> > > +/ {
-> > > +	compatible = "tplink,hc220-g5-v1", "mediatek,mt7621-soc";
-> > > +	model = "TP-Link HC220 G5 v1";
-> > > +
-> > > +	memory@0 {
-> > > +		device_type = "memory";
-> > > +		reg = <0x0 0x0 0x0 0x8000000>;
-> 
-> What's going on here? Just do 'reg = <0x00000000 0x08000000>;'.
->
-
-Right, hangover from 64bits world :) Will fix for v3.
-
-
-> > > +	};
-> > > +
-> > > +	chosen {
-> > > +		/* add 'earlycon=uart8260,mmio32,0x1e000c00' to
-> 
-> 8260?
-
-Duh, I feel stupid. It's 8250 and (as you mention bellow) not needed to
-enable early boot messages.
-
-> 
-> > > +		 * bootargs for early boot messages
-> 
-> Isn't just adding "earlycon" to bootargs enough?
-> 
-> > > +		 */
-> > > +		bootargs = "console=ttyS0,115200";
-> > > +	};
-> > > +
-> > > +	gpio-keys {
-> > > +		compatible = "gpio-keys";
-> > > +
-> > > +		key-reset {
-> > > +			label = "reset";
-> > > +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
-> > > +			linux,code = <KEY_RESTART>;
-> > > +		};
-> > > +
-> > > +		key-wps {
-> > > +			label = "wps";
-> > > +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-> > > +			linux,code = <KEY_WPS_BUTTON>;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	leds {
-> > > +		compatible = "gpio-leds";
-> > > +
-> > > +		red {
-> > > +			color = <LED_COLOR_ID_RED>;
-> > > +			function = LED_FUNCTION_FAULT;
-> > > +			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
-> > > +		};
-> > > +
-> > > +		green {
-> > > +			color = <LED_COLOR_ID_GREEN>;
-> > > +			function = LED_FUNCTION_POWER;
-> > > +			gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
-> > > +			linux,default-trigger = "default-on";
-> > > +		};
-> > > +
-> > > +		blue {
-> > > +			color = <LED_COLOR_ID_BLUE>;
-> > > +			function = LED_FUNCTION_WPS;
-> > > +			gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	resetc: reset-controller {
-> > > +		compatible = "ralink,rt2880-reset";
-> > > +		#reset-cells = <1>;
-> > > +	};
-> 
-> We don't use this anymore.
->
-
-I've copied it from disassembled vendor device tree. Is this not needed
-anymore for reset?
-
-> > > +
-> > > +	mtd {
-> > > +		compatible = "mediatek,mt7622-nfc";
-> > > +	};
-> 
-> What's this got to do with this device?
-
-This is the NAND Flash Controller bindind. Left over from interrupted
-development of the NAND support. Will remove for v3.
-
-> 
-> > > +};
-> > > +
-> > > +&i2c {
-> > > +	status = "okay";
-> > > +};
-> 
-> Why does this device need i2c?
-
-It doesn't. I was curious if there was anything hanging on that bus so I've
-enabled it to scan it. Will remove for v3.
-
-
-> 
-> > > +
-> > > +&pcie {
-> > > +	status = "okay";
-> > > +};
-> 
-> Do both WiFi chips work by just enabling pcie? I was expecting 'compatible =
-> "mediatek,mt76";' on pcie@0,0 and pcie@1,0.
-
-Nothing else is needed and I can modprobe the mt7603e and mt7615e modules just
-fine, with the devices becoming available one I put the appropriate firmware in
-the right place.
-
-> 
-> > > +
-> > > +&spi0 {
-> > > +	status = "okay";
-> > > +
-> > > +	flash@0 {
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <1>;
-> > > +		compatible = "jedec,spi-nor";
-> > > +		reg = <0>;
-> > > +		spi-max-frequency = <50000000>;
-> > > +	};
-> > > +};
-> 
-> I thought you said this device had NAND flash, not NOR.
-
-Appologies, I will remove this for now as I haven't finished looking into
-storage problem yet.
-
-> 
-> > > +
-> > > +/* gmac1 connected to MT7530's phy0 */
-> > > +&gmac1 {
-> > > +	phy-handle = <&ethphy0>;
-> > > +
-> > > +	fixed-link {
-> > > +		status = "disabled";
-> > > +	};
-> > > +};
-> > > +
-> > > +&mdio {
-> > > +	/* MT7530's phy0 */
-> > > +	ethphy0: ethernet-phy@0 {
-> > > +		reg = <0>;
-> > > +	};
-> > > +};
-> 
-> Remove the two nodes above.
-
-It would be nice if you can provide some explanation to some of your requests
-so that I can learn more about this. This is my first time dipping my toes
-on MIPS and MT7621 world, so I don't have that much experience and would like
-to know more.
-
-> 
-> > > +
-> > > +&switch0 {
-> > > +	ports {
-> > > +		/* phy0 is muxed to gmac1 */
-> > > +		port@0 {
-> > > +			status = "okay";
-> > > +			label = "lan2";
-> > > +		};
-> > 
-> > I've made the changes to look similar to the gnubee-gb-pc2, and things mostly
-> > work, with the exception that I can mount an NFS root filesystem only on "lan2"
-> > interface at boot time. All other interfaces (ports) hang forever waiting for
-> > an DHCP response from my server. The only difference is where I plug in the
-> > ethernet cable, no other change (not even a restart) on the server.
-> 
-> This sounds like a userspace configuration issue.
-
-Which userspace? On the server side? I don't touch anything there, only
-change the ethernet port where the cable is connected on the device and
-reboot. It only works for "lan2".
-
-If you're talking about userspace on the device, I don't agree as there is nothing
-loaded there but the kernel, and it is trying to mount the NFS root.
-
-I have to admit that I don't really understand how the whole MT7530 DSA is wired
-inside this device. I mostly did trial and error and it is very possible that what
-I've got were just half results that are more confusing that they should be. The
-vendor device tree uses the old bindings and drivers, with the gsw node outside
-of the ethernet one and also a mtk-hnat_v1 node that seems to bundle all ports
-under one single MAC address, so it's hard to understand from there how things work.
-I was trying to both enable NFS root and squeeze the maximum speed from the switch,
-so I thought I need to enable gmac1 and use the PHYs of the switch to enable 2Gbps
-routing. When I've tried PHY4 things didn't work, while with PHY0 I've got all the
-connections to work (but only if I've used LAN2 as the initial connection to the
-NFS server).
-
-Now I've tried removing the two nodes as suggested and I can mount the NFS root over
-any of the three physical connections, but the iperf3 speed is only about 512Mbits/sec
-vs the 730Mbits/sec that I was getting with the GMAC1 enabled.
-
-Anyway, none of this is relevant for the upstreaming of the device tree and I will
-make the requested changes. Thanks for spending time reviewing the patches.
-
-Best regards,
-Liviu
-
-> 
-> Arınç
-
--- 
-Everyone who uses computers frequently has had, from time to time,
-a mad desire to attack the precocious abacus with an axe.
-       	   	      	     	  -- John D. Clark, Ignition!
