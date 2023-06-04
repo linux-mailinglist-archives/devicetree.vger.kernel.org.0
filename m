@@ -2,91 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E18C57218E1
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 19:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F6C7218F0
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 19:57:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231807AbjFDRpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 13:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59624 "EHLO
+        id S232035AbjFDR5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 13:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjFDRpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 13:45:09 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C8DDA;
-        Sun,  4 Jun 2023 10:45:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=8tuReGumGx5Wv85MrtWjYRVw7RQeKVwg++eJQNKhbh8=; b=C959Vz1t371iA3KcP2+7GkI3oH
-        u7gxBzjQ0nkjAq+cyEyTSetir1R7BxSDkkRO7VncSemw3rzL9nr2D8LvB8ffjEgDKiJgoyMsnWuZ0
-        B5y299xuFhNeUD66r6OD76xDOK6ozzdE6IKI7UOHTiOo3+4PrzEU0wuLIv5KsyCzaTDA=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37774 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q5rmn-00067x-Cm; Sun, 04 Jun 2023 13:45:01 -0400
-Date:   Sun, 4 Jun 2023 13:44:59 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org
-Message-Id: <20230604134459.3c3844012e9714fa2a61e642@hugovil.com>
-In-Reply-To: <CAHp75Ve6W-hcB4YAeKukgv-uOEzBY7Tx5Sdf3doTRYKzNPcVGw@mail.gmail.com>
-References: <20230602152626.284324-1-hugo@hugovil.com>
-        <20230602152626.284324-6-hugo@hugovil.com>
-        <2023060454-cotton-paramount-e33e@gregkh>
-        <CAHp75Ve6W-hcB4YAeKukgv-uOEzBY7Tx5Sdf3doTRYKzNPcVGw@mail.gmail.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
+        with ESMTP id S231823AbjFDR5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 13:57:39 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF585DB
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 10:57:38 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-970028cfb6cso669320866b.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 10:57:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685901457; x=1688493457;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ls45VQQIUyzoH7noNjdXrCaXMXOXQFDg/zHramtLqdM=;
+        b=PvmReiyAK7QRh5JN2sHHbdpCwbBfOriS3FNHDYsIkTUaaqQ/L8+FihSC4I2Wz5VIjm
+         McYw/UsoCBp8WiMimkT7v+mK/I7Whr0XS7PwrqsSZvRQfv6iNkEvfWmLvCfHCCSiPLP+
+         Qlb04qpALQJlQ1XY0y416zyf6SNFc21DjT73r9fSNULXwApEWk+gqsgZrEHlLY50VRvI
+         FSsZHJmjSA6oxiTtv0ezbmj3MMIFO8p3PQysQX9paW6TlY+JVR0rCRd6tj9W/kPvkcSI
+         gt1ZSAj+4jHMlrgIcXzL8EkZZu5ANo7IuK4VNpzWz+bsH/GXiTQubRMRUiB13kuoSYIl
+         WXPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685901457; x=1688493457;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ls45VQQIUyzoH7noNjdXrCaXMXOXQFDg/zHramtLqdM=;
+        b=loBUqUWCYPNq/MLutX+tms45QCk43ovoAICDTtX5o5c7rIVhL3worvEMeylYsSxxD4
+         LWvtdBbm/8d+BnpdioerDfmai8nCvtiKRyVjHlOzfz8wngRm1+uqRs3lVIXiX5ukjhsH
+         sl67bfF5qVCY9p2OUQqNfF4S79k1CeIInSwSltz12fFGSFZZ4+wrvKQkdB+6YTJN7IeR
+         2bghRlnmm+mDvRMdY3BvwU6E6B/IpC248jNu6RcxwZbfYaFybwJlDzC4zwIKGh/H1lMm
+         30q3mcxWbMdHM9QSj3hANg0ncNmL+hZIFx/Y1g/E9sPU0FgF40FEyGM9uPcfhZefM25I
+         Smcg==
+X-Gm-Message-State: AC+VfDyOvs1CrTRyrEbsjMqn7ZvQIFyQcWiR+RBUn2+zQNoiOSx7GqbA
+        fyn0vkhZRaavju1dvXXqmbt5Xg==
+X-Google-Smtp-Source: ACHHUZ7ZTbEOAIM4tY91C54D0FYjxaN4oqFmOFXsAHhex4sytDP6QvuKaoBFbxk10faqOQdXZp6Xaw==
+X-Received: by 2002:a17:906:fe45:b0:96f:f046:9a92 with SMTP id wz5-20020a170906fe4500b0096ff0469a92mr4579876ejb.37.1685901457150;
+        Sun, 04 Jun 2023 10:57:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id bj21-20020a170906b05500b009661484e84esm3294252ejb.191.2023.06.04.10.57.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Jun 2023 10:57:36 -0700 (PDT)
+Message-ID: <f33106d5-ea0c-131c-f615-a8df4da58990@linaro.org>
+Date:   Sun, 4 Jun 2023 19:57:33 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v5 03/12] dt-bindings: display/msm: sc7180-dpu: Describe
+ SM6350 and SM6375
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev
+References: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v5-3-998b4d2f7dd1@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230411-topic-straitlagoon_mdss-v5-3-998b4d2f7dd1@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
- configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 4 Jun 2023 14:57:31 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On 23/05/2023 09:46, Konrad Dybcio wrote:
+> SC7180, SM6350 and SM6375 use a rather similar hw setup for DPU, with
+> the main exception being that the last one requires an additional
+> throttle clock.
+> 
+> It is not well understood yet, but failing to toggle it on makes the
+> display hardware stall and not output any frames.
+> 
+> Document SM6350 and SM6375 DPU.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> On Sun, Jun 4, 2023 at 10:47 AM Greg KH <gregkh@linuxfoundation.org> wrote:
-> > On Fri, Jun 02, 2023 at 11:26:21AM -0400, Hugo Villeneuve wrote:
-> 
-> ...
-> 
-> > > +static u8 sc16is7xx_setup_mctrl_ports(struct device *dev)
-> >
-> > This returns what, mctrl?  If so, please document that, it doesn't look
-> > obvious.
-> 
-> Good suggestion. Because I also stumbled over the returned type.
-> 
-> >  And as the kernel test robot reported, you do nothing with the
-> > return value so why compute it?
-> 
-> It seems that the entire function and respective call has to be moved
-> under #ifdef CONFIG_GPIOLIB.
 
-Hi,
-it cannot. See my explanations in response to Greg's comments.
 
-Hugo.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
