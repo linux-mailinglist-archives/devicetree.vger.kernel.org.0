@@ -2,51 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6DBD721711
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 14:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7E2E72171B
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 14:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjFDMyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 08:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57730 "EHLO
+        id S231624AbjFDM5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 08:57:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjFDMyE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 08:54:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B0DD91
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 05:54:04 -0700 (PDT)
+        with ESMTP id S231598AbjFDM5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 08:57:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B99F9B8;
+        Sun,  4 Jun 2023 05:57:20 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D497D612D5
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 12:54:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0C46C433EF;
-        Sun,  4 Jun 2023 12:53:58 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B7BB60C22;
+        Sun,  4 Jun 2023 12:57:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA263C433D2;
+        Sun,  4 Jun 2023 12:57:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685883243;
-        bh=0Kc4oz+xt7HQaKdA8Luq0nnszu05lwAGznlgJvndzmw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vv5JnZUlkUXZDcGfsoEt3sNQ+C/rLUvMaISKJVanb8NZJxFf4kqNaYsomHK4kZhBQ
-         6rGXzd7JmcdcPIxNM6oqBXl3JL+2MEuD5HWfeN95tueSFqhncW5aSZ9C1fX5lP7pig
-         jZebD2rvfdrwLwQx8qQixwsOxO+N54ucP/lb4Tips6jN2PKoAgCYwbJg2HibWH84ks
-         FhIHLcO9Vlp5Jp104IwFdZbbv60WHsDDU2jIDrd7mnESP940HyhfkeE3lhQZMvsKd5
-         eOSudTIXO2vv8MXVXsmH5MBobACdFYa0kIbnz++zXoPduQdG8GKG7usg56Vx3pB7t+
-         w4xgdrw7FmNjQ==
-Date:   Sun, 4 Jun 2023 20:53:50 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] ARM: dts: imx: Use 'eeprom' as node name
-Message-ID: <20230604125350.GN4199@dragon>
-References: <20230529200645.801626-1-festevam@gmail.com>
+        s=k20201202; t=1685883439;
+        bh=uC6GAzAxk+Ilg7FO0DtR2P2d62jjDvP1VcAoUbRcWl4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=C9RG7kCvi3rPq0OYmXS6BDfF2khfVMngctFP8BaRkrGW9EtJIdkTbQ9HPmp7HMj0I
+         /cxOMqwX1HyOTdA7ljfTEGaBcqzHfR8L/cWAJWIxQsdD9JmMbWu5ua3BMGE7jCGnYo
+         curKIXczDfc722S1tLWIInlzuJqh/lBdYHrUGQzzOQLvT7eOg7yFn5zWaf+1rsU9TJ
+         3O8+wC2U5DW5/B04b1qyESbY+hVD+3Av1EDGPxWkeRPSj1VCXWFwo6qxX91P6j/Khb
+         GL7Kc435pUaJsC8Vv8nAeKBbBj4dGenSrA+xEZM3sKpC/IQ5daATAZJi7bPybShFrT
+         KiDVVWizLcDQQ==
+Date:   Sun, 4 Jun 2023 13:57:15 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     andy.shevchenko@gmail.com
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 2/3] iio: potentiometer: Add support for the Renesas
+ X9250 potentiometers
+Message-ID: <20230604135715.45d5b9e2@jic23-huawei>
+In-Reply-To: <ZHTLeYnX2hm1G79W@surfacebook>
+References: <20230509160852.158101-1-herve.codina@bootlin.com>
+        <20230509160852.158101-3-herve.codina@bootlin.com>
+        <20230513193525.43a4475f@jic23-huawei>
+        <20230514163233.0c048256@bootlin.com>
+        <20230514181912.314ef781@jic23-huawei>
+        <20230515084416.399f47c8@bootlin.com>
+        <20230520173057.372355e8@jic23-huawei>
+        <ZHTLeYnX2hm1G79W@surfacebook>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230529200645.801626-1-festevam@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,12 +68,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 29, 2023 at 05:06:45PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> Devicetree node names should be generic. Use 'eeprom' as node name
-> to avoid devicetree check warning from at24.yaml.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+On Mon, 29 May 2023 18:57:45 +0300
+andy.shevchenko@gmail.com wrote:
 
-Applied, thanks!
+> Sat, May 20, 2023 at 05:30:57PM +0100, Jonathan Cameron kirjoitti:
+> 
+> ...
+> 
+> > Done  
+> 
+> Not sure if my comments can be addressed.
+> 
+Hi Andy,
+
+I've pushed it out as togreg (which is more or less non rebasing - except
+when something goes horribly wrong) now so I'd rather handle your suggestions
+as a follow up cleanup patch / series.
+
+Thanks,
+
+Jonathan
+
