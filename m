@@ -2,166 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B1C6721B05
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 01:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14990721B0A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 01:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232462AbjFDXQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 19:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
+        id S232475AbjFDXSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 19:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjFDXQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 19:16:25 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF158A9;
-        Sun,  4 Jun 2023 16:16:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=hJhugzfcI+7CDRUGK0Ajees/mgMNPJIh2H0o1K86D4k=; b=C+IeKdScF5v2GD97F/m6ZtMTX/
-        z15kRDbwivWCuM9rcPMu+egUtWokTzXMyGcBsjRB62p13jNCd8HSmjz48ZJ4jyxehVUt51BwSlIZv
-        tcILVrz1Tuqcw9lSc0gsTenJqAD/ICsGmoiHuDHN50JqwPO45HcMa3wNkIX/Q/CB6eYo=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:49848 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q5wxK-0000Mo-HS; Sun, 04 Jun 2023 19:16:15 -0400
-Date:   Sun, 4 Jun 2023 19:16:13 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org, Andy Shevchenko <andy.shevchenko@gmail.com>
-Message-Id: <20230604191613.ea95fa9a1bc508525fe3bbd5@hugovil.com>
-In-Reply-To: <2023060406-scarcity-clear-cc56@gregkh>
-References: <20230602152626.284324-1-hugo@hugovil.com>
-        <20230602152626.284324-6-hugo@hugovil.com>
-        <2023060454-cotton-paramount-e33e@gregkh>
-        <20230604134344.73dc3cbb57d335d4a0b4b33a@hugovil.com>
-        <2023060406-scarcity-clear-cc56@gregkh>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S230378AbjFDXSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 19:18:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F1FA9;
+        Sun,  4 Jun 2023 16:18:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7D72E601DA;
+        Sun,  4 Jun 2023 23:18:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DBBC433EF;
+        Sun,  4 Jun 2023 23:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685920721;
+        bh=rzuhfw4wzgpQy0GTjTxMvrd2y7D1c09iZqWSEs5zQWU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AVjjmq6UY/hh81nSi8XRyKs9xn4idclj8mBAU3xdzk+dH1sqBPsV73Y653pgwFOlJ
+         YLKWWwzmNiPHbKKgyF0Wy/oVKeDldxx3bpigsvy3MOKysmHn/hAfKqJP+x2mpL48eZ
+         c0faK4yTOYdM/EoNyxzQeMcpQyJoFjxhtqNOErfUqVd+auf+VD9k8yY6kIqj4WHkmL
+         EpPhmWHBUETv+loJvClDjKoykkeXHMdpf2RmgV9aLchkFCcv8ms2+Zjv9OQU3GEaZF
+         48Ota50DxFtaHSdOZy+t+LzWYybnAHyFa9kymEgMmq7sChBWZNhZU/1vlge8/VpwOy
+         pPBWhNB/UI6Ng==
+Date:   Mon, 5 Jun 2023 07:18:30 +0800
+From:   Peter Chen <peter.chen@kernel.org>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        linux-usb@vger.kernel.org, linux-imx@nxp.com, jun.li@nxp.com,
+        devicetree@vger.kernel.org, peng.fan@nxp.com
+Subject: Re: [PATCH 2/2] usb: chipidea: imx: don't request QoS for imx8ulp
+Message-ID: <20230604231830.GE258497@nchen-desktop>
+References: <20230530104007.1294702-1-xu.yang_2@nxp.com>
+ <20230530104007.1294702-2-xu.yang_2@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230530104007.1294702-2-xu.yang_2@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
- configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 4 Jun 2023 20:29:58 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
-
-> On Sun, Jun 04, 2023 at 01:43:44PM -0400, Hugo Villeneuve wrote:
-> > Here is what I suggest to silence the warning:
-> > 
-> > 	mctrl_mask = sc16is7xx_setup_mctrl_ports(dev);
-> > 
-> > #ifdef CONFIG_GPIOLIB
-> > 	ret = sc16is7xx_setup_gpio_chip(dev, mctrl_mask);
-> > 	if (ret)
-> > 		goto out_thread;
-> > #else
-> > 	(void) mctrl_mask;
-> > #endif
+On 23-05-30 18:40:07, Xu Yang wrote:
+> Use dedicated imx8ulp usb compatible to remove QoS request
+> since imx8ulp has no such limitation of imx7ulp: DMA will
+> not work if system enters idle.
 > 
-> Eeek,  no, please no...
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> Signed-off-by: Li Jun <jun.li@nxp.com>
+> ---
+>  drivers/usb/chipidea/ci_hdrc_imx.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> First off, please don't put #ifdef in .c files if at all possible.
-
-Hi Greg,
-Andy also made a similar comment, but couldn't suggest a valid
-alternative when I asked him what to do about that.
-
-Just as a sidenote, I didn't add those #ifdef, they were already
-present in the driver in multiple places.
-
-What would be your suggestion to get rid of those #ifdef, simply delete
-them all?
-
-If you suggest me what to do, I will be happy to submit a
-future patch after this series is finalized to clean that aspect.
-
-
-> Secondly, that (void) craziness is just that.  Rework this to not be an
-> issue some other way please.
+> diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_hdrc_imx.c
+> index 9f0f4ec701c5..336ef6dd8e7d 100644
+> --- a/drivers/usb/chipidea/ci_hdrc_imx.c
+> +++ b/drivers/usb/chipidea/ci_hdrc_imx.c
+> @@ -70,6 +70,10 @@ static const struct ci_hdrc_imx_platform_flag imx7ulp_usb_data = {
+>  		CI_HDRC_PMQOS,
+>  };
+>  
+> +static const struct ci_hdrc_imx_platform_flag imx8ulp_usb_data = {
+> +	.flags = CI_HDRC_SUPPORTS_RUNTIME_PM,
+> +};
+> +
+>  static const struct of_device_id ci_hdrc_imx_dt_ids[] = {
+>  	{ .compatible = "fsl,imx23-usb", .data = &imx23_usb_data},
+>  	{ .compatible = "fsl,imx28-usb", .data = &imx28_usb_data},
+> @@ -80,6 +84,7 @@ static const struct of_device_id ci_hdrc_imx_dt_ids[] = {
+>  	{ .compatible = "fsl,imx6ul-usb", .data = &imx6ul_usb_data},
+>  	{ .compatible = "fsl,imx7d-usb", .data = &imx7d_usb_data},
+>  	{ .compatible = "fsl,imx7ulp-usb", .data = &imx7ulp_usb_data},
+> +	{ .compatible = "fsl,imx8ulp-usb", .data = &imx8ulp_usb_data},
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, ci_hdrc_imx_dt_ids);
+> -- 
+> 2.34.1
 > 
-> > I could also store (define new variable) mctrl_mask directly inside struct sc16is7xx_port...
-> 
-> Sure, that sounds best.
 
-Ok, I will do that.
+Acked-by: Peter Chen <peter.chen@kernel.org>
 
+-- 
 
-> > > And you have a real port here, no need to pass in a "raw" struct device,
-> > > right?
-> > 
-> > The function operates globally on both ports (or nr_uart), not just a single port. That is why I pass the "raw" struct device, in order to extract the 
-> > struct sc16is7xx_port from it:
-> > 
-> >     struct sc16is7xx_port *s = dev_get_drvdata(dev);
-> > 
-> > Inside the function, I also need the "raw" struc device. If we pass a struct sc16is7xx_port to the function, then I can get the "raw" struc device with this:
-> > 
-> > static u8 sc16is7xx_setup_mctrl_ports(struct sc16is7xx_port *s)
-> > {
-> > 	struct device *dev = &s->p[0].port.dev;
-> > 
-> > But I find this more obfuscated and hard to understand than to simply pass a "raw" struct device...
-> 
-> You should never need a "raw" struct device for stuff (if so, something
-> is really odd).  Except for error messages, but that's not really a big
-> deal, right?
-
-> Don't pass around struct device in a driver, use the real types as you
-> know you have it and it saves odd casting around and it just doesn't
-> look safe at all to do so.
-
-If you look at the patch, you will see that I need "struct device *dev"
-at two places in the sc16is7xx_setup_mctrl_ports() function to read the
-device properties:
-
-...
-+static u8 sc16is7xx_setup_mctrl_ports(struct device *dev)
-...
-+	count = device_property_count_u32(dev,...
-...
-+	ret = device_property_read_u32_array(dev,
-...
-
-I do not understand why this is odd?
-
-
-> And if you have that crazy s->p.... stuff in multiple places, the
-> perhaps you might want to rethink the structure somehow?  Or at the very
-> least, write an inline function to get it when needed.
-
-I am not sure what you mean by that, since again that "crazy" stuff is
-already used everywhere in this driver?
-
-
-> Also, meta comment, you might want to use some \n characters in your
-> emails, your lines are really long :)
-
-Strange, I use sylpheed as a mail client, and the option "Wrap lines at
-72 characters" is enabled by default, but somehow you must also check
-the box "Wrap on input" for it to work, not very intuitive :) Thanks for
-pointing that to me.
-
-Hugo.
+Thanks,
+Peter Chen
