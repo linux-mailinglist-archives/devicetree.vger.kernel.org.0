@@ -2,157 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5907215E3
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 11:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5107215E7
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 11:50:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbjFDJuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 05:50:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43848 "EHLO
+        id S230360AbjFDJuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 05:50:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjFDJuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 05:50:10 -0400
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D60A7D3;
-        Sun,  4 Jun 2023 02:50:09 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 40D975C00D1;
-        Sun,  4 Jun 2023 05:50:09 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Sun, 04 Jun 2023 05:50:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1685872209; x=1685958609; bh=jB
-        pSfKUu6g0tTh7kun5Pd9yKmiW3zyzac/8DZ01kT8g=; b=oJbdWX55eMSWq+02KI
-        fRuMpx1qCk5Z6EmEHNTxJ/9fY1O9EwSkMTJ0U621i8SO5m8hNbXBly2ZdmkI9oBw
-        MrW+rXFBtPKWQsh+eubuTktF8EiAmSymTwSedENUv5rb59onYz30bOXY9y8bbNcx
-        CNCFb5C7bONp4HBlsCF15ahCMTtBrvzger2KL7zbzi0/P4dVidtvdZNnXDMeve38
-        iha011cuAYIbyFmEzRV0l5GU562mvKRa4u8+ANyRiruCM4SZmDaYfgeNcsKUoZBw
-        wPjSvwinNQm0nLFygzOIAykjVgQ3QwDEV9LLMhqb6lmTyP8AGVr26cF0h3MaGEUE
-        pQ+A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1685872209; x=1685958609; bh=jBpSfKUu6g0tT
-        h7kun5Pd9yKmiW3zyzac/8DZ01kT8g=; b=ZJ7ZqSZvdfTNq4EwCH4RGXcIV6jHU
-        YaAlsG9hRyLfDhtcj1IJZ7irMJmASH/Gp6NrcZWAGwaRDgeZOWWJXEmzurL6YNC6
-        rSvoHQTxBv+UoQeWX00gR8CoGjM8F/MYP2FS+6m3DkzfTl+3ngVQKecAnedQgxJG
-        qWUQFvcjO/0pwY773+89etlzQweH0IHZ+oIh14pBeg/keoKvGCp4Kx7tpW1HguHK
-        aFHkoGuIka5CUnmTjLJH/nxm2wPH6DUb3sxydGo0TDobkxNZQAMpyQ2P/JMp/KDn
-        ofGvXOUeeV5detfqylU6uuIMpiYWEYi+iwqA4IB0uuMP/s6pBChaMMcww==
-X-ME-Sender: <xms:UF58ZFDkXvUfT_kpYfCql7e_tG7AIFp6eOT2Mpn6h3_rzq_qGK-9Ig>
-    <xme:UF58ZDgyPdwZtSZr0A8wGMMAQen99qWzOZcQ0HIfm3IqrxBnS_XU4IG1lomrhIqPQ
-    ACoktosoZJBnBBtpiI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeljedgvddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:UF58ZAkKLZTntqZL03bWn0CngTJJhscpwa1yGJ2ulsVNzq2m5LuPuA>
-    <xmx:UF58ZPzHYOHAr8cyqxDbK8D65-kYtraE7NvYfVxaeq_NsD7AYn-kCA>
-    <xmx:UF58ZKRSdQooc9lvDs9hQksGNU0Z_hi0UWdWdFpMGYU1DZENuFlpww>
-    <xmx:UV58ZD2G9wXgl_EejQe5nWqgbsh89fAMALZCeXwz8EQ3_O_rpVB7Kw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id AC67BB60086; Sun,  4 Jun 2023 05:50:08 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-447-ge2460e13b3-fm-20230525.001-ge2460e13
-Mime-Version: 1.0
-Message-Id: <4d3694b3-8728-42c1-8497-ae38134db37c@app.fastmail.com>
-In-Reply-To: <20230603-sanded-blunderer-73cdd7c290c1@spud>
-References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
- <20230603200243.243878-16-varshini.rajendran@microchip.com>
- <20230603-fervor-kilowatt-662c84b94853@spud>
- <20230603-sanded-blunderer-73cdd7c290c1@spud>
-Date:   Sun, 04 Jun 2023 11:49:48 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Conor Dooley" <conor@kernel.org>,
-        "Varshini Rajendran" <varshini.rajendran@microchip.com>
-Cc:     "Thomas Gleixner" <tglx@linutronix.de>,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        "Claudiu Beznea" <claudiu.beznea@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Eric Dumazet" <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        "Paolo Abeni" <pabeni@redhat.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Sebastian Reichel" <sre@kernel.org>,
-        "Mark Brown" <broonie@kernel.org>,
-        "Gregory Clement" <gregory.clement@bootlin.com>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        "Balamanikandan Gunasundar" <balamanikandan.gunasundar@microchip.com>,
-        mihai.sain@microchip.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Netdev <netdev@vger.kernel.org>, linux-usb@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
-        durai.manickamkr@microchip.com, manikandan.m@microchip.com,
-        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
-        balakrishnan.s@microchip.com
-Subject: Re: [PATCH 15/21] dt-bindings: irqchip/atmel-aic5: Add support for sam9x7 aic
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229635AbjFDJux (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 05:50:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA939DF;
+        Sun,  4 Jun 2023 02:50:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 479C160C4C;
+        Sun,  4 Jun 2023 09:50:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6D41C433EF;
+        Sun,  4 Jun 2023 09:50:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685872251;
+        bh=IgRN8Lu8fQwHnW6QBReccrez4UTFIqy7/PxHxvotA+o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GgcyXvalCKCV5LticVpRbbuyR84124r30m/DjsEVG3jFZzwilFfE5UOo2DLiTBq+S
+         4RswMKDjLfr5Pz89xfjdc7Saz1glBPbC++F12NFGRsEFG1RmlfFMAsGZu8GigvV9Xm
+         wm8QGh+I6JknY3FIJT8rQv1qj2kbuV3b0gPRaPUY4KWAWloJ+XH0zfdx9fTsR1Llb3
+         DyBg1JhyAAy3vH4xtjk38g5AJu2cKbfZC7yxyJc/h9zL9SwO7ZzAaOrE8y8GRH1VrF
+         6Lf87ZVHk6IIhZliXVYiW5c0BZMCrCer3RyDHMrWrxKw99Qq/kan0iq3AK90pwTc6x
+         lm9+lPpNBexZA==
+Date:   Sun, 4 Jun 2023 17:50:38 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: imx8qxp: add adma_pwm in adma
+Message-ID: <20230604095038.GA4199@dragon>
+References: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
+ <20230424082108.26512-2-alexander.stein@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230424082108.26512-2-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 3, 2023, at 23:23, Conor Dooley wrote:
-> On Sat, Jun 03, 2023 at 10:19:50PM +0100, Conor Dooley wrote:
->> Hey Varshini,
->> 
->> On Sun, Jun 04, 2023 at 01:32:37AM +0530, Varshini Rajendran wrote:
->> > Document the support added for the Advanced interrupt controller(AIC)
->> > chip in the sam9x7 soc family
->> 
->> Please do not add new family based compatibles, but rather use per-soc
->> compatibles instead.
->
-> These things leave me penally confused. Afaiu, sam9x60 is a particular
-> SoC. sam9x7 is actually a family, containing sam9x70, sam9x72 and
-> sam9x75. It would appear to me that each should have its own compatible,
-> no?
+On Mon, Apr 24, 2023 at 10:21:08AM +0200, Alexander Stein wrote:
+> Add PWM device and the corresponding clock gating device in adma subsystem.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-I think the usual way this works is that the sam9x7 refers to the
-SoC design as in what is actually part of the chip, whereas the 70,
-72 and 75 models are variants that have a certain subset of the
-features enabled.
+Looks good to me.  I will pick it up after dt-bindings one gets
+accepted/picked first.
 
-If that is the case here, then referring to the on-chip parts by
-the sam9x7 name makes sense, and this is similar to what we do
-on TI AM-series chips.
+Shawn
 
-There is a remaining risk that a there would be a future
-sam9x71/73/74/76/... product based on a new chip that uses
-incompatible devices, but at that point we can still use the
-more specific model number to identify those without being
-ambiguous. The same thing can of course happen when a SoC
-vendor reuses a specific name of a prior product with an update
-chip that has software visible changes.
-
-I'd just leave this up to Varshini and the other at91 maintainers
-here, provided they understand the exact risks.
-
-It's different for the parts that are listed as just sam9x60
-compatible in the DT, I think those clearly need to have sam9x7
-in the compatible list, but could have the sam9x60 identifier
-as a fallback if the hardware is compatible.
-
-     Arnd
+> ---
+> * New in v2
+> 
+>  .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+> index 2dce8f2ee3ea..7d5f96c99020 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+> @@ -124,6 +124,19 @@ lpuart3: serial@5a090000 {
+>  		status = "disabled";
+>  	};
+>  
+> +	adma_pwm: pwm@5a190000 {
+> +		compatible = "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
+> +		reg = <0x5a190000 0x1000>;
+> +		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&adma_pwm_lpcg 1>,
+> +			 <&adma_pwm_lpcg 0>;
+> +		clock-names = "ipg", "per";
+> +		assigned-clocks = <&clk IMX_SC_R_LCD_0_PWM_0 IMX_SC_PM_CLK_PER>;
+> +		assigned-clock-rates = <24000000>;
+> +		#pwm-cells = <2>;
+> +		power-domains = <&pd IMX_SC_R_LCD_0_PWM_0>;
+> +	};
+> +
+>  	spi0_lpcg: clock-controller@5a400000 {
+>  		compatible = "fsl,imx8qxp-lpcg";
+>  		reg = <0x5a400000 0x10000>;
+> @@ -220,6 +233,18 @@ uart3_lpcg: clock-controller@5a490000 {
+>  		power-domains = <&pd IMX_SC_R_UART_3>;
+>  	};
+>  
+> +	adma_pwm_lpcg: clock-controller@5a590000 {
+> +		compatible = "fsl,imx8qxp-lpcg";
+> +		reg = <0x5a590000 0x10000>;
+> +		#clock-cells = <1>;
+> +		clocks = <&clk IMX_SC_R_LCD_0_PWM_0 IMX_SC_PM_CLK_PER>,
+> +			 <&dma_ipg_clk>;
+> +		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> +		clock-output-names = "adma_pwm_lpcg_clk",
+> +				     "adma_pwm_lpcg_ipg_clk";
+> +		power-domains = <&pd IMX_SC_R_LCD_0_PWM_0>;
+> +	};
+> +
+>  	i2c0: i2c@5a800000 {
+>  		reg = <0x5a800000 0x4000>;
+>  		interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
+> -- 
+> 2.34.1
+> 
