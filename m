@@ -2,133 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABD69721AF9
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 01:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B1C6721B05
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 01:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbjFDXHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 19:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49676 "EHLO
+        id S232462AbjFDXQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 19:16:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229799AbjFDXHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 19:07:47 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC38D2;
-        Sun,  4 Jun 2023 16:07:45 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f629ccb8ebso461893e87.1;
-        Sun, 04 Jun 2023 16:07:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685920064; x=1688512064;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TwLcOmYSCHnciiTrmwp/dF1NG1ZiZ+r/NeCx4fwaUHI=;
-        b=QCnkt9pJq7WxTPkKPOBn8SoKUFsjTL5sFTnTq5H6XWu8o9/JwD+9IK11OzXKeE6QLw
-         8OwzpjxyXX331JrCI/4NX5xSj2gV6/Rx01V2h9Iay2xYN7vrhMJmfitg0orlAM+gheJc
-         eiHFz/j4dD0qO6Umfmzx3mMnP2UayaMLQ+dJtxU+xIxv6wXsDECjx3m0Zhz88F8qnYAE
-         FoUh3zRLqFd/zA00USokvAdoBJi5nUAFz/kjV9p2x5ulWdTVtSa/gOCgFw1CankE1U3Y
-         JrM5LhpfdMkEJPWVC/dqjHJNWOocVAIfiS7Vsz+/Rru4tloIobo9jLfOB7mOk9zgjEy0
-         WC8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685920064; x=1688512064;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TwLcOmYSCHnciiTrmwp/dF1NG1ZiZ+r/NeCx4fwaUHI=;
-        b=aYGXiCtFPfD0iSn9EbFQGRPg2bbsuYmU8s5jPwJ63QRYvPAUGL3PnDZI0/RsLCsqYA
-         JipR0y1sa7Zew6YKXhQs46rs2nD1PCHRp0Fdgw0YXGY3MYMgO64Ed3zoCXiuEcX3QwSN
-         z+5bzjiQMTGDRLkV/s0SLgcgGIVcsaD1dZuBfm5LxFIltRTO9a8wXpu9ISGXsVOD3LgM
-         kDX1baAhPp8cJNwa1sT5ZtUzSWxxIcO5Dsy7lZfVlLlcqnzvdw6KtNK3mjcoWwUh6spX
-         pO08sVCf4fDlCTl/gvMixJg5NY4GHSgWHvOwkyq/Oudj7NCb4klIXeZZmwCvwq+YmHv5
-         1PDw==
-X-Gm-Message-State: AC+VfDzlB0l8+5E2OuYZrwFjM65gduzIgmSwbQFMlsgZpNngZwNaWp9E
-        ftobQHpgfY7813G9ISbE1V0=
-X-Google-Smtp-Source: ACHHUZ6oKTlkUeLJtYCcCG67VWEvQ2tfDxFh+oLdXO/CCRchFe3Sm8v+yohx97eSJG69wNjsPm4DSw==
-X-Received: by 2002:ac2:5303:0:b0:4f1:b3ab:cd61 with SMTP id c3-20020ac25303000000b004f1b3abcd61mr3920672lfh.61.1685920063744;
-        Sun, 04 Jun 2023 16:07:43 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id c27-20020ac244bb000000b004f1d884a4efsm912195lfm.242.2023.06.04.16.07.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jun 2023 16:07:43 -0700 (PDT)
-Date:   Mon, 5 Jun 2023 02:07:40 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
-        robh+dt@kernel.org, kw@linux.com, kishon@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v16 03/22] PCI: Add INTx Mechanism Messages macros
-Message-ID: <20230604230740.criuymkykrq54oln@mobilestation>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
- <20230510062234.201499-4-yoshihiro.shimoda.uh@renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510062234.201499-4-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229449AbjFDXQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 19:16:25 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF158A9;
+        Sun,  4 Jun 2023 16:16:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=hJhugzfcI+7CDRUGK0Ajees/mgMNPJIh2H0o1K86D4k=; b=C+IeKdScF5v2GD97F/m6ZtMTX/
+        z15kRDbwivWCuM9rcPMu+egUtWokTzXMyGcBsjRB62p13jNCd8HSmjz48ZJ4jyxehVUt51BwSlIZv
+        tcILVrz1Tuqcw9lSc0gsTenJqAD/ICsGmoiHuDHN50JqwPO45HcMa3wNkIX/Q/CB6eYo=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:49848 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q5wxK-0000Mo-HS; Sun, 04 Jun 2023 19:16:15 -0400
+Date:   Sun, 4 Jun 2023 19:16:13 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org, Andy Shevchenko <andy.shevchenko@gmail.com>
+Message-Id: <20230604191613.ea95fa9a1bc508525fe3bbd5@hugovil.com>
+In-Reply-To: <2023060406-scarcity-clear-cc56@gregkh>
+References: <20230602152626.284324-1-hugo@hugovil.com>
+        <20230602152626.284324-6-hugo@hugovil.com>
+        <2023060454-cotton-paramount-e33e@gregkh>
+        <20230604134344.73dc3cbb57d335d4a0b4b33a@hugovil.com>
+        <2023060406-scarcity-clear-cc56@gregkh>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
+ configuration
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 03:22:15PM +0900, Yoshihiro Shimoda wrote:
-> Add "Message Routing" and "INTx Mechanism Messages" macros to send
-> a message by a PCIe driver.
+On Sun, 4 Jun 2023 20:29:58 +0200
+Greg KH <gregkh@linuxfoundation.org> wrote:
+
+> On Sun, Jun 04, 2023 at 01:43:44PM -0400, Hugo Villeneuve wrote:
+> > Here is what I suggest to silence the warning:
+> > 
+> > 	mctrl_mask = sc16is7xx_setup_mctrl_ports(dev);
+> > 
+> > #ifdef CONFIG_GPIOLIB
+> > 	ret = sc16is7xx_setup_gpio_chip(dev, mctrl_mask);
+> > 	if (ret)
+> > 		goto out_thread;
+> > #else
+> > 	(void) mctrl_mask;
+> > #endif
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/pci.h | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> Eeek,  no, please no...
 > 
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 2475098f6518..67badc40e90b 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -11,6 +11,24 @@
->  
->  #define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
->  
+> First off, please don't put #ifdef in .c files if at all possible.
 
-> +/* Message Routing */
+Hi Greg,
+Andy also made a similar comment, but couldn't suggest a valid
+alternative when I asked him what to do about that.
 
-Call it "Implicit Message Routing (r[2:0])" as per the specification.
+Just as a sidenote, I didn't add those #ifdef, they were already
+present in the driver in multiple places.
 
-> +#define PCI_MSG_ROUTING_RC	0
-> +#define PCI_MSG_ROUTING_ADDR	1
-> +#define PCI_MSG_ROUTING_ID	2
-> +#define PCI_MSG_ROUTING_BC	3
-> +#define PCI_MSG_ROUTING_LOCAL	4
-> +#define PCI_MSG_ROUTING_GATHER	5
+What would be your suggestion to get rid of those #ifdef, simply delete
+them all?
 
-IMO prefix like this PCI_MSG_TYPE_R_{RC,ADDR,ID,BC,...} would be a bit
-better since it would indicate that this routing flags are a sub-field of
-the Message Type field. Bjorn?
+If you suggest me what to do, I will be happy to submit a
+future patch after this series is finalized to clean that aspect.
 
-> +
-> +/* INTx Mechanism Messages */
-> +#define PCI_CODE_ASSERT_INTA	0x20
-> +#define PCI_CODE_ASSERT_INTB	0x21
-> +#define PCI_CODE_ASSERT_INTC	0x22
-> +#define PCI_CODE_ASSERT_INTD	0x23
-> +#define PCI_CODE_DEASSERT_INTA	0x24
-> +#define PCI_CODE_DEASSERT_INTB	0x25
-> +#define PCI_CODE_DEASSERT_INTC	0x26
-> +#define PCI_CODE_DEASSERT_INTD	0x27
 
-IMO Prefix PCI_MSG_CODE_... would be a bit more descriptive since per
-the specification the respective message field is called "Message
-Code" and not just "Code". Bjorn?
-
--Serge(y)
-
-> +
->  extern const unsigned char pcie_link_speed[];
->  extern bool pci_early_dump;
->  
-> -- 
-> 2.25.1
+> Secondly, that (void) craziness is just that.  Rework this to not be an
+> issue some other way please.
 > 
+> > I could also store (define new variable) mctrl_mask directly inside struct sc16is7xx_port...
+> 
+> Sure, that sounds best.
+
+Ok, I will do that.
+
+
+> > > And you have a real port here, no need to pass in a "raw" struct device,
+> > > right?
+> > 
+> > The function operates globally on both ports (or nr_uart), not just a single port. That is why I pass the "raw" struct device, in order to extract the 
+> > struct sc16is7xx_port from it:
+> > 
+> >     struct sc16is7xx_port *s = dev_get_drvdata(dev);
+> > 
+> > Inside the function, I also need the "raw" struc device. If we pass a struct sc16is7xx_port to the function, then I can get the "raw" struc device with this:
+> > 
+> > static u8 sc16is7xx_setup_mctrl_ports(struct sc16is7xx_port *s)
+> > {
+> > 	struct device *dev = &s->p[0].port.dev;
+> > 
+> > But I find this more obfuscated and hard to understand than to simply pass a "raw" struct device...
+> 
+> You should never need a "raw" struct device for stuff (if so, something
+> is really odd).  Except for error messages, but that's not really a big
+> deal, right?
+
+> Don't pass around struct device in a driver, use the real types as you
+> know you have it and it saves odd casting around and it just doesn't
+> look safe at all to do so.
+
+If you look at the patch, you will see that I need "struct device *dev"
+at two places in the sc16is7xx_setup_mctrl_ports() function to read the
+device properties:
+
+...
++static u8 sc16is7xx_setup_mctrl_ports(struct device *dev)
+...
++	count = device_property_count_u32(dev,...
+...
++	ret = device_property_read_u32_array(dev,
+...
+
+I do not understand why this is odd?
+
+
+> And if you have that crazy s->p.... stuff in multiple places, the
+> perhaps you might want to rethink the structure somehow?  Or at the very
+> least, write an inline function to get it when needed.
+
+I am not sure what you mean by that, since again that "crazy" stuff is
+already used everywhere in this driver?
+
+
+> Also, meta comment, you might want to use some \n characters in your
+> emails, your lines are really long :)
+
+Strange, I use sylpheed as a mail client, and the option "Wrap lines at
+72 characters" is enabled by default, but somehow you must also check
+the box "Wrap on input" for it to work, not very intuitive :) Thanks for
+pointing that to me.
+
+Hugo.
