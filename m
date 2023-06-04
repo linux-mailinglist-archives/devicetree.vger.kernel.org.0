@@ -2,82 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D756721774
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 15:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5DA7217F7
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jun 2023 16:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232011AbjFDNfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 09:35:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42954 "EHLO
+        id S232002AbjFDO4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 10:56:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjFDNfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 09:35:13 -0400
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3ACA8DA;
-        Sun,  4 Jun 2023 06:35:12 -0700 (PDT)
-Received: from [192.168.20.2] (unknown [77.239.252.99])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 9FB2D1407E3;
-        Sun,  4 Jun 2023 13:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1685885711;
+        with ESMTP id S231909AbjFDO4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 10:56:52 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 235BC83;
+        Sun,  4 Jun 2023 07:56:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1685890609;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hWSdLvdNVWuD5AVS9UvtS8NdUTlSKL3owLdgzwv6oRQ=;
-        b=XzHiyYY8t9XMYJATI9brPQhkzMKLrRnM67HCzUAb9CMZ9qsod9uCiBLufJ1oDGM29ORz/I
-        C4n2TqYDRsxR+zemBOBC0l8UWorC42CQEOGFqmuqpVjU8MwHwW62ERD7ESLinn53y+GCgo
-        KUASu+xuJBy/G6iiLMpW3sl2EDA+lLc=
-Message-ID: <06cd3bc1-ce97-3b62-c5f1-98b22c8c24b0@postmarketos.org>
-Date:   Sun, 4 Jun 2023 16:35:10 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Add
- SDM660 compatible
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=aUm8nxoMkt5vtIyk2EeQbuAcNEwuQxxePTczf1+Ra6o=;
+        b=giN82oAIH5BKybRITpljyFWW87PlYw3IFJsVU/Wdt9jABVxhXA7zQE5ZuQMC7wPgXqlEbC
+        GmOQmzszVA5nHRq14QisUWI8hiB6nYqJOAjgoL6b4DcX2iIQizd5OEflO8CcY9hAvxWB9z
+        +X7MWAU+zbuJNjg7tLKkfDPixJ7qfrI=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230604061421.3787649-1-alexeymin@postmarketos.org>
- <05658f98-ddc1-702b-ea4b-4ea95d0b3313@linaro.org>
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-In-Reply-To: <05658f98-ddc1-702b-ea4b-4ea95d0b3313@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     "H . Nikolaus Schaller" <hns@goldelico.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, list@opendingux.net,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH 0/9] MIPS: CI20: Add WiFi / Bluetooth support
+Date:   Sun,  4 Jun 2023 16:56:33 +0200
+Message-Id: <20230604145642.200577-1-paul@crapouillou.net>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.06.2023 12:11, Krzysztof Kozlowski wrote:>
-> You also need to restrict/constrain power domains and resets.
-> 
-> Best regards,
-> Krzysztof
-> 
+Hi,
 
-If I understand correctly, power domains and resets should be already 
-restricted together with msm8996+msm8998 by "else" branch [1]?
-Am I missing something?
+Here's a set of patches to add support for the WiFi / Bluetooth chip on
+the CI20.
 
-[1] 
-https://elixir.bootlin.com/linux/v6.4-rc4/source/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml#L311
+WiFi works pretty well, provided it is used with the latest firmware
+provided by linux-firmware. Bluetooth does not work very well here, as
+I cannot get my wireless keyboard to pair; but it does detect it, and it
+does see they key presses when I type the pairing code.
+
+I only tested with a somewhat recent (~2022) Buildroot-based userspace.
+I enabled WEXT compatibility because the CI20 is typically used with a
+very old userspace, but I did not try to use it with old tools like
+ifconfig/iwconfig.
+
+Cheers,
+-Paul
+
+Paul Cercueil (9):
+  MIPS: DTS: CI20: Fix regulators
+  MIPS: DTS: CI20: Fix ACT8600 regulator node names
+  MIPS: DTS: CI20: Add parent supplies to ACT8600 regulators
+  MIPS: DTS: CI20: Do not force-enable CIM and WiFi regulators
+  MIPS: DTS: CI20: Misc. cleanups
+  MIPS: DTS: CI20: Parent MSCMUX clock to MPLL
+  MIPS: DTS: CI20: Enable support for WiFi / Bluetooth
+  MIPS: configs: CI20: Regenerate defconfig
+  MIPS: configs: CI20: Enable WiFi / Bluetooth
+
+ arch/mips/boot/dts/ingenic/ci20.dts | 148 +++++++++++++++++++---------
+ arch/mips/configs/ci20_defconfig    |  47 ++++++---
+ 2 files changed, 133 insertions(+), 62 deletions(-)
+
 -- 
-Regards,
-Alexey Minnekhanov
+2.39.2
+
