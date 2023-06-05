@@ -2,325 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89224721E9C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC38D721F54
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 09:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjFEG7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 02:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33952 "EHLO
+        id S231347AbjFEHQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 03:16:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjFEG7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:59:30 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F1DAD
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:59:28 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-514924ca903so6415610a12.2
-        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:59:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685948367; x=1688540367;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b3gf39J0e6Ug9xwuUlT/0gU+hrC/12pzramCbbQjL4A=;
-        b=mW8GZA+Rq9gwuGiJ7l2Yb5V80S2yfzyuh6nK4EWOKRupfjPPHyNDnyqkR0dwHq/k5N
-         iXODZH/q07+nwXtrznbS9anb5dS3YIMEhAzhSYIqGotN8rj2Z9EYwAFXDTCH9OAWO3NW
-         dOVbnS0derytPK206OQnEvrNc99hO5vsoftQI3TInD10V9bibtst8nFxGujnWdcZg5a/
-         fdIMnVD48tuh2YmSHW3PnOEosdAWBU+CHDcYBkaAhyyZ+5b16hit9OxsDGuHFkEphxuB
-         C8iZlXL1KXTvGU3ON8o7Oi/ACNjCHctgUxuYwZ2y65UStqAPmfeTgtbJM+76nywbVEOE
-         Hi2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685948367; x=1688540367;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b3gf39J0e6Ug9xwuUlT/0gU+hrC/12pzramCbbQjL4A=;
-        b=WeW5IAyccZzWLwS5nMmMyoJjTK2El3VsbFJLyw337XzhvDZOE22gRGaQcmMDXKEsDv
-         IAb1P7Tm9rdFubAoxFpg8hti69Xx2fx4vrzJ7CiA9lUyK9DEu7aFgRrhT/GrzyMpTA7Q
-         L0j/tnPuQwXTNB1ho39Y8gApNKny0qUPY/qIYnSeBvIdGbJ+8OIQg1VNacoPUUpEGEDP
-         ziKwUimczmTeyqVGhrmd1a1l9aAo7W+piYMrvbrQ3SuxpdmPdn2cvcUvGpN6EkbxKedH
-         GNcB+UR7ehPWa36vT/eaP1H9n9AdJ3vwQEJibIYkkEJXx9MaoAOGGs0GV2eK/LeJofWP
-         EsYw==
-X-Gm-Message-State: AC+VfDwBkz+p16qcL6UlHjVMCg7y3RrpM9qyHHjoR7/FiTdJ3u9QCsFX
-        82IpgyDH98EiRtw26W9WzzGe+yopGKUMctQGU04=
-X-Google-Smtp-Source: ACHHUZ62BEmn8WrMHA3fsRSPnPX/q78d2QO6HDOam1Lb/CZYXyD8ch0G6LozIIUyy+8egmqzEdKcKw==
-X-Received: by 2002:a05:6402:54e:b0:514:8e4a:7e8f with SMTP id i14-20020a056402054e00b005148e4a7e8fmr6426564edx.32.1685948367246;
-        Sun, 04 Jun 2023 23:59:27 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id l9-20020aa7c3c9000000b005105f002fd1sm3509006edr.66.2023.06.04.23.59.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Jun 2023 23:59:26 -0700 (PDT)
-Message-ID: <b9baf188-6ee3-40ed-27e9-66a08c8de7f6@linaro.org>
-Date:   Mon, 5 Jun 2023 08:59:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v5 1/1] dt-bindings: pinctrl: Update pinctrl-single to use
- yaml
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20230523092038.55677-1-tony@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230523092038.55677-1-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231293AbjFEHQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 03:16:21 -0400
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B124DCD;
+        Mon,  5 Jun 2023 00:15:56 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 6BE833200930;
+        Mon,  5 Jun 2023 03:05:10 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Mon, 05 Jun 2023 03:05:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1685948710; x=1686035110; bh=J0
+        4p8yU7rVE6vzX9z1prBkDXh2NOANidZ1xruSUmk4M=; b=xESH+28mSbNvewmM34
+        Up/hdlUILTueD97esgYzbscRd60ilVfcpfoDyon9PX/5I4eb9emZYZttRcap4w2v
+        SzbLICvFXf19RbxskQgXMXAgPfMrGgYywpaKgZqN/3FwsZDeNIQuQkHrKXQquX0J
+        zGBnY5yV0G05Ffm35nQoCj0l0N3TttlcRFzBZcp/uiSeLT523Q2wTBQuBKAGcFu9
+        zXqaQqUgh1+kFRBCsEkM4D9JT0Q9gY8jI80o09gxTbXUcVfR37L+7wFjLyX0cxNa
+        er3jk69qZJppf4si3Z/kzBt6POV6a0qbw4kr9VV7V8HwfaCaukUxYIJl+ZAmYlOa
+        q1+A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; t=1685948710; x=1686035110; bh=J04p8yU7rVE6v
+        zX9z1prBkDXh2NOANidZ1xruSUmk4M=; b=dcek2dcj4hW59qVxhxiv+1GAwbfJo
+        3bI15R9XWreRXA5xZ9t+cgR17I65zcJ55OxOnlHtI7N2ThnLKNKE2eHALF8DygxK
+        BFMKCajAz/RWZFhfQVQQJJMB+DPCStWw3ZyKJ3MHQBtMMwbie/ct/9iuTtQU5aqh
+        SBqqjFuo6mbxfBnWH8qwfg5jNTPCNcW7THEY+Q/JuxancbNYQttD+fcDzGuu0fCr
+        A70MYoD4m7Tz6AYQ29qB16IhmZXjEWp/WJy+FSqdw7cLmZO2uhBL9WcFkIQGEVrx
+        oxAREy+RHVvXYbG45AZlJIR4GV21UUBElKxifAvknW5wRJ7J9Y46Gae+w==
+X-ME-Sender: <xms:JYl9ZDyzcJN2tZm3qfakgRiI1y5imTGnxR7-MuLB2tRDk5YY_Gxerg>
+    <xme:JYl9ZLRUSpN440X5x7P1Vtc0J7p_E8lBgS1af9_M1n9sJcoLS25CKxsoISa4hIME2
+    tjWCII_UMiJyaWTOjI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeelkedguddugecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:JYl9ZNUgEKSUTETrHb50fCTrTlhY_d0UoqghJoTERcOFESCArCNDTQ>
+    <xmx:JYl9ZNjEnJfnpsJ9xR98LZyWCSVMml4ov4bLpXCAPEQgtoT9E-uwhA>
+    <xmx:JYl9ZFCk_Wk0zlS-yalrBx05lJPokB0F_tRm4KlE81akeqzRimmbng>
+    <xmx:Jol9ZPlt20zysWbBHN_DIfEqM8K5Ksh8LY_FKGIz15n8QCzYtKlyFg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5B29EB60086; Mon,  5 Jun 2023 03:05:09 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-447-ge2460e13b3-fm-20230525.001-ge2460e13
+Mime-Version: 1.0
+Message-Id: <d95d37f5-5bef-43a9-b319-0bbe0ac366b4@app.fastmail.com>
+In-Reply-To: <c72f45ec-c185-8676-b31c-ec48cd46278c@linaro.org>
+References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
+ <20230603200243.243878-2-varshini.rajendran@microchip.com>
+ <c72f45ec-c185-8676-b31c-ec48cd46278c@linaro.org>
+Date:   Mon, 05 Jun 2023 09:04:49 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Varshini Rajendran" <varshini.rajendran@microchip.com>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+        "Claudiu Beznea" <claudiu.beznea@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Russell King" <linux@armlinux.org.uk>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Sebastian Reichel" <sre@kernel.org>,
+        "Mark Brown" <broonie@kernel.org>,
+        "Gregory Clement" <gregory.clement@bootlin.com>,
+        "Sudeep Holla" <sudeep.holla@arm.com>,
+        "Balamanikandan Gunasundar" <balamanikandan.gunasundar@microchip.com>,
+        "Mihai.Sain" <mihai.sain@microchip.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Netdev <netdev@vger.kernel.org>, linux-usb@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
+        durai.manickamkr@microchip.com, manikandan.m@microchip.com,
+        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
+        balakrishnan.s@microchip.com
+Subject: Re: [PATCH 01/21] dt-bindings: microchip: atmel,at91rm9200-tcb: add sam9x60
+ compatible
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2023 11:20, Tony Lindgren wrote:
-> Update binding for yaml and remove the old related txt bindings. Note that
-> we are also adding the undocumented pinctrl-single,slew-rate property. And
-> we only use the first example from the old binding.
-> 
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+On Mon, Jun 5, 2023, at 08:35, Krzysztof Kozlowski wrote:
+> On 03/06/2023 22:02, Varshini Rajendran wrote:
+>> Add sam9x60 compatible string support in the schema file
+>> 
+>> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+>> ---
+>>  .../devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml  | 1 +
+>>  1 file changed, 1 insertion(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+>> index a46411149571..c70c77a5e8e5 100644
+>> --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+>> @@ -20,6 +20,7 @@ properties:
+>>            - atmel,at91rm9200-tcb
+>>            - atmel,at91sam9x5-tcb
+>>            - atmel,sama5d2-tcb
+>> +          - microchip,sam9x60-tcb
+>
+> No wildcards.
 
+sam9x60 is the actual name of the chip, it's no wildcard. For sam9x70,
+sam9x72 and sam9x75, I think using sam9x7 as the compatible string
+is probably fine, as long as they are actually the same chip. Again,
+the 'x' in there is not a wildcard but part of the name.
 
-Thank you for your patch. There is something to discuss/improve.
-
-
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-> new file mode 100644
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-> @@ -0,0 +1,201 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: One-register-per-pin type device tree based pinctrl driver
-
-Drop "device tree based pinctrl driver" and describe the hardware.
-
-> +
-> +maintainers:
-> +  - Tony Lindgren <tony@atomide.com>
-> +
-> +description:
-> +  This binding describes pinctrl devices that use one hardware register to
-> +  configure each pin.
-
-Drop "This binding describes" and just say what is the hardware here.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-
-Drop items, you have just an enum.
-
-> +          - enum:
-> +              - pinctrl-single
-> +              - pinconf-single
-> +      - items:
-> +          - enum:
-> +              - ti,am437-padconf
-> +              - ti,dra7-padconf
-> +              - ti,omap2420-padconf
-> +              - ti,omap2430-padconf
-> +              - ti,omap3-padconf
-> +              - ti,omap4-padconf
-> +              - ti,omap5-padconf
-> +          - const: pinctrl-single
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  '#pinctrl-cells':
-> +    enum: [ 1, 2 ]
-
-Describe in description what are the arguments. Old binding had it.
-
-> +
-> +  pinctrl-single,bit-per-mux:
-> +    description: Optional flag to indicate register controls more than one pin
-> +    type: boolean
-> +
-> +  pinctrl-single,function-mask:
-> +    description: Mask of the allowed register bits
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pinctrl-single,function-off:
-> +    description: Optional function off mode for disabled state
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pinctrl-single,register-width:
-> +    description: Width of pin specific bits in the register
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 8, 16, 32 ]
-> +
-> +  pinctrl-single,gpio-range:
-> +    description: Optional list of pin base, nr pins & gpio function
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle of a gpio-range node
-> +          - description: pin base
-> +          - description: number of pins
-> +          - description: gpio function
-> +
-> +  '#gpio-range-cells':
-> +    description: No longer needed, may exist in older files for gpio-ranges
-> +    deprecated: true
-> +    const: 3
-> +
-> +  gpio-range:
-> +    description: Optional node for gpio range cells
-> +    type: object
-
-On this level of indentation:
-additionalProperties: false
-
-> +    properties:
-> +      '#pinctrl-single,gpio-range-cells':
-> +        description: Number of gpio range cells
-> +        const: 3
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +patternProperties:
-> +  '-pins((.*)?)$|-pin':
-
-Why do you need outer ()?
--pin$
-
-> +    description: Pin group node name using pins or pin naming
-> +    type: object
-> +    $ref: pinmux-node.yaml#
-
-You don't use anything from this ref. Drop it, unless you plan to
-deprecate old properties and use generic from pinmux-node.
-
-> +
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      pinctrl-single,pins:
-> +        description:
-> +          Array of pins as described in pinmux-node.yaml for pinctrl-pin-array
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +      pinctrl-single,bits:
-> +        description: Register bit configuration for pinctrl-single,bit-per-mux
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        items:
-> +          - description: register offset
-> +          - description: value
-> +          - description: pin bitmask in the register
-> +
-> +      pinctrl-single,bias-pullup:
-> +        description: Optional bias pull up configuration
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        items:
-> +          - description: input
-> +          - description: enabled pull up bits
-> +          - description: disabled pull up bits
-> +          - description: bias pull up mask
-> +
-> +      pinctrl-single,bias-pulldown:
-> +        description: Optional bias pull down configuration
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        items:
-> +          - description: input
-> +          - description: enabled pull down bits
-> +          - description: disabled pull down bits
-> +          - description: bias pull down mask
-> +
-> +      pinctrl-single,drive-strength:
-> +        description: Optional drive strength configuration
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        items:
-> +          - description: drive strength current
-> +          - description: drive strength mask
-> +
-> +      pinctrl-single,input-schmitt:
-> +        description: Optional input schmitt configuration
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        items:
-> +          - description: input
-> +          - description: enable bits
-> +          - description: disable bits
-> +          - description: input schmitt mask
-> +
-> +      pinctrl-single,low-power-mode:
-> +        description: Optional low power mode configuration
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        items:
-> +          - description: low power mode value
-> +          - description: low power mode mask
-> +
-> +      pinctrl-single,slew-rate:
-> +        description: Optional slew rate configuration
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        items:
-> +          - description: slew rate
-> +          - description: slew rate mask
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - pinctrl-single,register-width
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +        pinmux@4a100040 {
-
-Mixed up indentation.
-
-> +          compatible = "pinctrl-single";
-> +          reg = <0x4a100040 0x0196>;
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          #pinctrl-cells = <2>;
-> +          #interrupt-cells = <1>;
-> +          interrupt-controller;
-> +          pinctrl-single,register-width = <16>;
-> +          pinctrl-single,function-mask = <0xffff>;
-> +          pinctrl-single,gpio-range = <&range 0 3 0>;
-> +          range: gpio-range {
-> +            #pinctrl-single,gpio-range-cells = <3>;
-> +          };
-> +
-> +          uart2-pins {
-
-
-Best regards,
-Krzysztof
-
+    Arnd
