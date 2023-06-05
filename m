@@ -2,167 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9A8722664
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83B19722677
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231848AbjFEMxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 08:53:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44754 "EHLO
+        id S233655AbjFEMyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 08:54:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232827AbjFEMxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:53:09 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E12D2
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 05:53:07 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-30ae5f2ac94so4822422f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 05:53:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1685969585; x=1688561585;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XPyqgMjhtaeTJwO3ElYWGhUyN9nDJ0IyOHMrhcL0ADA=;
-        b=vWSePFvXUdh4wd62uuTGsxHWNdTuoPIsZ+S+73WqxWKosGjwD9ULn9hVkhxZfkMlup
-         Ll1kFQw2FdTnujfyPaAH5gm4n6uTsPAgmnkmgyNL/5PdofRVQKqFmB8vHpJFp+k8VWOO
-         VK5izkQ6DdbM2cbx3o8ziAGvv0CPRIyFfjAGMbGhQj8D+8saAEKMct1z23YHbc9JGt05
-         45aXFO6dfcJ3RQCQ3dzrdJvDYkOkppl2v1iYGw6aXy3MvdXTzqpnWGLQAFJzThs7OcXD
-         wWov3wZmPoTG85eBooFprBpDkADzSG2ZW49X+VDxTfQW5DFU0T79upECf8Szj5zVfpyF
-         irtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685969585; x=1688561585;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XPyqgMjhtaeTJwO3ElYWGhUyN9nDJ0IyOHMrhcL0ADA=;
-        b=Yz55sOhdivGlvNckROc9jS2LMPyj2+OM7cwGJZlomk6dUwroaVm7ip4krZUDHKSj9S
-         IrXKMD0lOV1E3CnMBQNHEN0w+glb45Ldnn/+fHCRhG+qE3DZBhizspHzronal4pP8wnf
-         OnnklvEauk+OViK/G1s82dvyNNuUvOdtDjX60pyU+Hb5O4UYzDWI/mD1F+sBTYm6SVK7
-         bQxBsu/igFGq/4YcTYo7wHbxGN1sHSSv+OwQ/okEPWzQIlPk7jkeB2NwpX3/4UFAuYPx
-         c2IGevpNuNECT+XPRnZuY1blVRIC7fz6YDTgdsc3ThZN/wTAo4BBWgdbPEBnuWAUHcU5
-         wDVA==
-X-Gm-Message-State: AC+VfDxfA1rLAz4GA88kb5XSKLZioKSQvYdbMvwqNhqq0hAekkAPbjVy
-        zPnT4lSYtzrzdtZdcDHh+NEZnQ==
-X-Google-Smtp-Source: ACHHUZ4sxQ43NnTMNOrI+9A99Zw1EFcrGnWgXoD4coDyXUsiBSDwhgLMGnbIgxrEeGuPDLVCerh14w==
-X-Received: by 2002:a5d:5488:0:b0:306:2de6:6f9b with SMTP id h8-20020a5d5488000000b003062de66f9bmr6433627wrv.58.1685969584788;
-        Mon, 05 Jun 2023 05:53:04 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b467:b060:6671:840c])
-        by smtp.gmail.com with ESMTPSA id q22-20020a056000137600b0030aee3da084sm9740286wrz.49.2023.06.05.05.53.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 05:53:04 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kent Gibson <warthog618@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH] gpiolib: demote the hogging log messages to debug
-Date:   Mon,  5 Jun 2023 14:52:48 +0200
-Message-Id: <20230605125248.279921-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S232885AbjFEMyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:54:49 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF51113;
+        Mon,  5 Jun 2023 05:54:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685969679; x=1717505679;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=a+Tn4FBYo0QLrStvlRhVV+bb1iI8O3ndmJkkVSEip2g=;
+  b=UrrUXL2U0aZ/WMYl2TJe4L43Ci0uiIw0ckuebDEMyk9b1eYP6uiGyDm1
+   QZRIV5jHc+n3XRaeYEk9uhNAYpdU2xGvA9w52JKjIivntKsEBbxQD2gtz
+   qLodBXgsC8Dy07GEB+uZMJN37HwXju2ZVRXY/bIs1nLrGaza64xOwcBJQ
+   G29brtYJmJpxPcnYi7M52et78zAPQL+akRqBoScTHRNyJDz4lM9jDd8g1
+   1LasS3xwWpcnIVFa5nO4dqBT6YxnWjGudYhHeJTwJ377WKs6Krxz7FUhu
+   trA+KDCqek4yAFVl+Y/jpwvIaP/209vgvOlQBUweu+/2y2F8ZCCq5d+yY
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
+   d="scan'208";a="155562864"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Jun 2023 05:54:38 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 5 Jun 2023 05:54:37 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Mon, 5 Jun 2023 05:54:25 -0700
+Message-ID: <bf0ab4e0-7e0b-3fb6-f54e-d75acb54ce5e@microchip.com>
+Date:   Mon, 5 Jun 2023 14:54:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 03/21] dt-bindings: usb: generic-ehci: Document
+ clock-names property
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>,
+        Varshini Rajendran <varshini.rajendran@microchip.com>
+CC:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <gregkh@linuxfoundation.org>,
+        <linux@armlinux.org.uk>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <sre@kernel.org>, <broonie@kernel.org>,
+        <arnd@arndb.de>, <gregory.clement@bootlin.com>,
+        <sudeep.holla@arm.com>, <balamanikandan.gunasundar@microchip.com>,
+        <mihai.sain@microchip.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <Hari.PrasathGE@microchip.com>,
+        <cristian.birsan@microchip.com>, <durai.manickamkr@microchip.com>,
+        <manikandan.m@microchip.com>, <dharma.b@microchip.com>,
+        <nayabbasha.sayed@microchip.com>, <balakrishnan.s@microchip.com>
+References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
+ <20230603200243.243878-4-varshini.rajendran@microchip.com>
+ <20230603-skincare-ideology-bfbc3fd384c5@spud>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230603-skincare-ideology-bfbc3fd384c5@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 03/06/2023 at 23:15, Conor Dooley wrote:
+> Hey Varshini,
+> 
+> On Sun, Jun 04, 2023 at 01:32:25AM +0530, Varshini Rajendran wrote:
+>> Document the property clock-names in the schema.
+>>
+>> It fixes the dtbs_warning,
+> s/dtbs_warning/dtbs_check warning/?
+> 
+>> 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+> Does this fix a warning currently in the tree, or fix a warning
+> introduced by some patches in this series? (Or both?)
 
-Drivers should be silent when they work correctly. There's no reason to
-emit info messages when GPIO lines are hogged. Demote the message to
-debug.
+Our USB DT pattern is the same on all our newer SoC, to it mustn't be 
+introduced by the addition of this one.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Suggested-by: Kent Gibson <warthog618@gmail.com>
----
- drivers/gpio/gpiolib.c |  2 +-
- drivers/of/unittest.c  | 16 ++++++++--------
- 2 files changed, 9 insertions(+), 9 deletions(-)
+Best regards,
+   Nicolas
 
-diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-index a7220e04a93e..e4515bda8915 100644
---- a/drivers/gpio/gpiolib.c
-+++ b/drivers/gpio/gpiolib.c
-@@ -4243,7 +4243,7 @@ int gpiod_hog(struct gpio_desc *desc, const char *name,
- 	/* Mark GPIO as hogged so it can be identified and removed later */
- 	set_bit(FLAG_IS_HOGGED, &desc->flags);
- 
--	gpiod_info(desc, "hogged as %s%s\n",
-+	gpiod_dbg(desc, "hogged as %s%s\n",
- 		(dflags & GPIOD_FLAGS_BIT_DIR_OUT) ? "output" : "input",
- 		(dflags & GPIOD_FLAGS_BIT_DIR_OUT) ?
- 		  (dflags & GPIOD_FLAGS_BIT_DIR_VAL) ? "/high" : "/low" : "");
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 2191c0136531..0060334a98a7 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1849,19 +1849,19 @@ static void __init of_unittest_overlay_gpio(void)
- 	 * driver is registered
- 	 */
- 
--	EXPECT_BEGIN(KERN_INFO,
-+	EXPECT_BEGIN(KERN_DEBUG,
- 		     "gpio-<<int>> (line-B-input): hogged as input\n");
- 
--	EXPECT_BEGIN(KERN_INFO,
-+	EXPECT_BEGIN(KERN_DEBUG,
- 		     "gpio-<<int>> (line-A-input): hogged as input\n");
- 
- 	ret = platform_driver_register(&unittest_gpio_driver);
- 	if (unittest(ret == 0, "could not register unittest gpio driver\n"))
- 		return;
- 
--	EXPECT_END(KERN_INFO,
-+	EXPECT_END(KERN_DEBUG,
- 		   "gpio-<<int>> (line-A-input): hogged as input\n");
--	EXPECT_END(KERN_INFO,
-+	EXPECT_END(KERN_DEBUG,
- 		   "gpio-<<int>> (line-B-input): hogged as input\n");
- 
- 	unittest(probe_pass_count + 2 == unittest_gpio_probe_pass_count,
-@@ -1888,7 +1888,7 @@ static void __init of_unittest_overlay_gpio(void)
- 	probe_pass_count = unittest_gpio_probe_pass_count;
- 	chip_request_count = unittest_gpio_chip_request_count;
- 
--	EXPECT_BEGIN(KERN_INFO,
-+	EXPECT_BEGIN(KERN_DEBUG,
- 		     "gpio-<<int>> (line-D-input): hogged as input\n");
- 
- 	/* overlay_gpio_03 contains gpio node and child gpio hog node */
-@@ -1896,7 +1896,7 @@ static void __init of_unittest_overlay_gpio(void)
- 	unittest(overlay_data_apply("overlay_gpio_03", NULL),
- 		 "Adding overlay 'overlay_gpio_03' failed\n");
- 
--	EXPECT_END(KERN_INFO,
-+	EXPECT_END(KERN_DEBUG,
- 		   "gpio-<<int>> (line-D-input): hogged as input\n");
- 
- 	unittest(probe_pass_count + 1 == unittest_gpio_probe_pass_count,
-@@ -1935,7 +1935,7 @@ static void __init of_unittest_overlay_gpio(void)
- 	 *   - processing gpio for overlay_gpio_04b
- 	 */
- 
--	EXPECT_BEGIN(KERN_INFO,
-+	EXPECT_BEGIN(KERN_DEBUG,
- 		     "gpio-<<int>> (line-C-input): hogged as input\n");
- 
- 	/* overlay_gpio_04b contains child gpio hog node */
-@@ -1943,7 +1943,7 @@ static void __init of_unittest_overlay_gpio(void)
- 	unittest(overlay_data_apply("overlay_gpio_04b", NULL),
- 		 "Adding overlay 'overlay_gpio_04b' failed\n");
- 
--	EXPECT_END(KERN_INFO,
-+	EXPECT_END(KERN_DEBUG,
- 		   "gpio-<<int>> (line-C-input): hogged as input\n");
- 
- 	unittest(chip_request_count + 1 == unittest_gpio_chip_request_count,
+>> Signed-off-by: Varshini Rajendran<varshini.rajendran@microchip.com>
+>> ---
+>>   Documentation/devicetree/bindings/usb/generic-ehci.yaml | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+>> index 7e486cc6cfb8..542ac26960fc 100644
+>> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+>> @@ -102,6 +102,10 @@ properties:
+>>           - if a USB DRD channel: first clock should be host and second
+>>             one should be peripheral
+>>   
+>> +  clock-names:
+>> +    minItems: 1
+>> +    maxItems: 4
+>> +
+>>     power-domains:
+>>       maxItems: 1
+>>   
+>> -- 
+>> 2.25.1
+
 -- 
-2.39.2
+Nicolas Ferre
 
