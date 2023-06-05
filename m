@@ -2,103 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6125F722D36
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233C5722D40
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:06:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbjFERDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 13:03:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34298 "EHLO
+        id S235164AbjFERF7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 5 Jun 2023 13:05:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232856AbjFERDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:03:02 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4828BE62;
-        Mon,  5 Jun 2023 10:02:35 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 355H2Nd1091456;
-        Mon, 5 Jun 2023 12:02:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685984543;
-        bh=RuYR7IYFkECl4W0iqlW22Tj9fVd8u3TlObzGxgDPA0k=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=fuPwlMcTMQ2PKeUKbN/T2tLcs3zh1vrkVnK7eOkDqMv/UqIx8MdSMI8vHgJr7XDH7
-         uapWuTgDCLQt0V0hCYVatpuCiVrgMlt3Z/xLjZmspNyKf+sYOpmt7aU+XZjV0lQJx5
-         MPLbqhw1/LhdilpBe4LuG/tQ0VcCzr4KG24n0Erk=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 355H2N8t041575
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 5 Jun 2023 12:02:23 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- Jun 2023 12:02:23 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 Jun 2023 12:02:23 -0500
-Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 355H2JGl083839;
-        Mon, 5 Jun 2023 12:02:20 -0500
-Message-ID: <720c8c43-9a95-d7b5-3267-405ff0149eea@ti.com>
-Date:   Mon, 5 Jun 2023 22:32:18 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 08/12] arm64: dts: ti: k3-am64-evm: Fixup reference to
- phandles array
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S231254AbjFERF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:05:59 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C571109;
+        Mon,  5 Jun 2023 10:05:52 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4QZg1N2bmLz67ftX;
+        Tue,  6 Jun 2023 01:03:52 +0800 (CST)
+Received: from localhost (10.126.171.223) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 5 Jun
+ 2023 18:05:48 +0100
+Date:   Mon, 5 Jun 2023 18:05:47 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Herve Codina <herve.codina@bootlin.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <u-kumar1@ti.com>
-References: <20230601152636.858553-1-nm@ti.com>
- <20230601152636.858553-9-nm@ti.com>
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230601152636.858553-9-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 5/9] iio: inkern: Add a helper to query an available
+ minimum raw value
+Message-ID: <20230605180547.0000528b@Huawei.com>
+In-Reply-To: <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
+References: <20230523151223.109551-1-herve.codina@bootlin.com>
+        <20230523151223.109551-6-herve.codina@bootlin.com>
+        <ZHtIdTZbULl6t4RT@surfacebook>
+        <20230605094637.7615b689@bootlin.com>
+        <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.126.171.223]
+X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth
+On Mon, 5 Jun 2023 12:45:24 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-On 6/1/2023 8:56 PM, Nishanth Menon wrote:
-> When referring to array of phandles, using <> to separate the array
-> entries is better notation as it makes potential errors with phandle and
-> cell arguments easier to catch. Fix the outliers to be consistent with
-> the rest of the usage.
->
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am642-evm.dts | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> index 91bdc6026d1f..fef68a778ac9 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> @@ -467,8 +467,8 @@ &usb0 {
->   
->   &cpsw3g {
->   	pinctrl-names = "default";
-> -	pinctrl-0 = <&rgmii1_pins_default
-> -		     &rgmii2_pins_default>;
-> +	pinctrl-0 = <&rgmii1_pins_default>,
-> +		    <&rgmii2_pins_default>;
+> On Mon, Jun 5, 2023 at 10:46 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> > On Sat, 3 Jun 2023 17:04:37 +0300
+> > andy.shevchenko@gmail.com wrote:  
+> > > Tue, May 23, 2023 at 05:12:19PM +0200, Herve Codina kirjoitti:  
+> 
+> ...
+> 
+> > > > +           case IIO_VAL_INT:
+> > > > +                   *val = vals[--length];  
+> > >  
+> > > > +                   while (length) {  
+> > >
+> > >                       while (length--) {
+> > >
+> > > will do the job and at the same time...
+> > >  
+> > > > +                           if (vals[--length] < *val)
+> > > > +                                   *val = vals[length];  
+> > >
+> > > ...this construction becomes less confusing (easier to parse).  
+> >
+> > Indeed, I will change in the next iteration.  
+> 
+> And looking into above line, this whole construction I would prefer to
+> have a macro in minmax.h like
+> 
+> #define min_array(array, len) \
+> {( \
+>   typeof(len) __len = (len); \
+>   typeof(*(array)) __element = (array)[--__len]; \
+>   while (__len--) \
+>     __element = min(__element, (array)[__len]); \
+>   __element; \
+> )}
+> 
+> (it might need more work, but you got the idea)
+> 
+> > > > +                   }
+> > > > +                   break;  
+> 
+> ...
+> 
+> > > > +           default:
+> > > > +                   /* FIXME: learn about min for other iio values */  
+> > >
+> > > I believe in a final version this comment won't be here.  
+> >
+> > We have the same FIXME comment in the iio_channel_read_max() function I
+> > copied to create this iio_channel_read_min() and, to be honest, I
+> > don't really know how to handle these other cases.
+> >
+> > In this series, I would prefer to keep this FIXME.  
+> 
+> I see, Jonathan needs to be involved here then.
+
+It's really more of a TODO when someone needs it than a FIXME.
+I'm not particularly keen to see a bunch of code supporting cases
+that no one uses, but it's useful to call out where the code would
+go if other cases were to be supported.
+
+Perhaps soften it to a note that doesn't have the work FIXME in it.
+
+Jonathan
 
 
-Please see, if  pinctrl-0 can be defined in one line, instead of two, to 
-be inline with most of changes in this series.
+> 
+> > > > +                   return -EINVAL;  
+> 
 
-> [..]
