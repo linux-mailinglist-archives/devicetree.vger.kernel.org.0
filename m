@@ -2,171 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBE67722827
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 16:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 976E3722878
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 16:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbjFEOFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 10:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34132 "EHLO
+        id S234337AbjFEONI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 10:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231840AbjFEOFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 10:05:41 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A33739E
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 07:05:39 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-97467e06511so538108566b.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 07:05:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685973938; x=1688565938;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4F51IRVrDIze+qjXHpDVAhkcOo31QSIv2AnwfuvPioc=;
-        b=UUIJLOJ8DY8HMkMDSpoPFW3QMPsxaWKa9VTuxxxNJKt+RhlNq+i8GSi7ki/2a9KFCG
-         waghnHUQZiCS05NgwvFAc/DcvjhNsfQZo1TcCUT5yw5j7tQKH6qOMrCE8oZEYJ1m2ixl
-         rpI4N+YIk8OkvvOZSHKwLlDhlxe30D14L++k+m5Its/jsA6mCGuk7b0Hrq5KPi5gopnr
-         SUcYtei/eHyHUnLr/8GxvRbKJF/0HvPFeiQ6iwf2Z+TJ3xSXBVjidy+qU9Xrm3ALmHN5
-         gEhJhaA/+TfDQqCPraDfpzQcsaGASw2lc10l6fwTCdP/2JrWuODodnAaNcdYQ9BjepjT
-         oWCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685973938; x=1688565938;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4F51IRVrDIze+qjXHpDVAhkcOo31QSIv2AnwfuvPioc=;
-        b=j4YeAGPFEGzC2YgNqBvk/QIB940am3bJ/zprGEDjaZaqyvb1THGFdxZP/QhSFNdWB3
-         PgdoRXb3WT7yPUgh6Fz+PyFBSYc2zCge2nVZhPA8xwgx9k+nPryZhqIvJ7zyPVG9uPD5
-         c85IvRdeNi1LayiAYG4zsLEh2N2SC5dy5hJmStF9wOOMJJQwKf2cbrhnkEdwsH7rUktE
-         b0hco/NVG+CK/Qn1dEPbT1jbVCqKGXf9p6N1uIjJGC+9DpAPB+4CkCKyfCx2MFFkBwdb
-         iWLR2lgZc+J+/9HPeiVeBl9VatEDE0NCy+hvGY99OXXAsWxAcpz796F7jYeXlUkek9dN
-         v+mg==
-X-Gm-Message-State: AC+VfDzAlxb1J3YFfFx/uYz//Aa7xdn4uBMB2gAA3g9DI7OZ2cYRwOtf
-        BRgXFIyQz4GKeE9fLFnJvbqLAg==
-X-Google-Smtp-Source: ACHHUZ4RZZlQTw4Wm7pNOJHPxDHTYEQT2MsZQGjIzs1EFq3F/ubbPD4qykERqVVPH4r9OSPtJ0Fo+w==
-X-Received: by 2002:a17:907:2d8f:b0:976:6863:a737 with SMTP id gt15-20020a1709072d8f00b009766863a737mr7462304ejc.50.1685973938147;
-        Mon, 05 Jun 2023 07:05:38 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id c8-20020a170906924800b00977cc473b41sm2376896ejx.142.2023.06.05.07.05.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 07:05:37 -0700 (PDT)
-Message-ID: <5e900bf1-2a5c-7152-7971-37bcadd80e3e@linaro.org>
-Date:   Mon, 5 Jun 2023 16:05:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: fixed-clock: Add nvmem support
-Content-Language: en-US
-To:     Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S234335AbjFEOMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 10:12:52 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106DAE79;
+        Mon,  5 Jun 2023 07:11:57 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685974292;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=uHfp+IyYPxqhLvbm8OYS3Lo9uaz8M1hK/LpKpngruro=;
+        b=I2dvsEv0zE3yipuHlMDg7UA6Ckx9wEa+H7t4VCmIJcET1px6TWlt7rNFPhb/SO9IEr87xN
+        wBDLyJFUk2WuVLIjnpLpNczEg7ezgRrWzNXcHfM72l4s1aK3/1FBXifJpSNNg7ovgpqdnU
+        sEbgtIJ38z5zNlZtLiHlgEiq1hUq9FBgXbrBSv7ldAgs719ePTGOKJszV3E6vSlhEkmwO6
+        3Y8BW+LvafTVtnj1GhZ43dI/oLHQTUVjlzbkrqkGemXrN7lKXZWEQbi28a5jY0iiatAb96
+        D7cll8e4nHqA9hc6bkHvRmCcrDjnK9xkByDt3YyE/qSkEUNvWMff9ZOfwZSYKw==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 32278C0003;
+        Mon,  5 Jun 2023 14:11:30 +0000 (UTC)
+Date:   Mon, 5 Jun 2023 16:11:29 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
-References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.1d0217a8-661f-4359-b77b-02222c761b01@emailsignatures365.codetwo.com>
- <20230605133410.15076-1-mike.looijmans@topic.nl>
- <5d1f08f1-792b-255b-89f0-dd5fa2f0baa4@linaro.org>
- <96004048-0ba5-4cd6-406f-e1235c819c97@topic.nl>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <96004048-0ba5-4cd6-406f-e1235c819c97@topic.nl>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 5/9] iio: inkern: Add a helper to query an available
+ minimum raw value
+Message-ID: <20230605161129.4ac3231b@bootlin.com>
+In-Reply-To: <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
+References: <20230523151223.109551-1-herve.codina@bootlin.com>
+        <20230523151223.109551-6-herve.codina@bootlin.com>
+        <ZHtIdTZbULl6t4RT@surfacebook>
+        <20230605094637.7615b689@bootlin.com>
+        <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 16:00, Mike Looijmans wrote:
-> On 05-06-2023 15:38, Krzysztof Kozlowski wrote:
->> On 05/06/2023 15:34, Mike Looijmans wrote:
->>> Add bindings for a fixed-rate clock that retrieves its rate from an
->>> NVMEM provider. This allows to store clock settings in EEPROM or EFUSE
->>> or similar device.
->>>
->>> Component shortages lead to boards being shipped with different clock
->>> crystals, based on what was available at the time. The clock frequency
->>> was written to EEPROM at production time. Systems can adapt to a wide
->>> range of input frequencies using the clock framework, but this required
->>> us to patch the devicetree at runtime or use some custom driver. This
->>> provides a more generic solution.
->>>
->>> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
->>>
->>> ---
->>>
->>> Changes in v3:
->>> Modify fixed-clock instead of introducing nvmem-clock
->>>
->>> Changes in v2:
->>> Changed "fixed-clock" into "nvmem-clock" in dts example
->>> Add minItems:1 to nvmem-cell-names
->>>
->>>   .../bindings/clock/fixed-clock.yaml           | 25 ++++++++++++++++++-
->>>   1 file changed, 24 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/fixed-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
->>> index b0a4fb8256e2..23e4df96d3b0 100644
->>> --- a/Documentation/devicetree/bindings/clock/fixed-clock.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
->>> @@ -12,7 +12,9 @@ maintainers:
->>>   
->>>   properties:
->>>     compatible:
->>> -    const: fixed-clock
->>> +    enum:
->>> +      - fixed-clock
->>> +      - fixed-clock-nvmem
->> Do you even need new compatible? Isn't this the same clock from the
->> hardware point of view?
-> 
-> I need a new compatible because a "fixed-clock" only loads at init time. 
-> It registers using CLK_OF_DECLARE, which requires the clock to register 
-> early. NVMEM providers are typical devices like I2C EEPROMs that won't 
-> be available at that point, hence I needed to create a clock that 
-> registers as a regular clock driver and can handle deferral and similar.
+Hi Andy,
 
-Ah, ok.
+On Mon, 5 Jun 2023 12:45:24 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+
+> On Mon, Jun 5, 2023 at 10:46 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> > On Sat, 3 Jun 2023 17:04:37 +0300
+> > andy.shevchenko@gmail.com wrote:  
+> > > Tue, May 23, 2023 at 05:12:19PM +0200, Herve Codina kirjoitti:  
+> 
+> ...
+> 
+> > > > +           case IIO_VAL_INT:
+> > > > +                   *val = vals[--length];  
+> > >  
+> > > > +                   while (length) {  
+> > >
+> > >                       while (length--) {
+> > >
+> > > will do the job and at the same time...
+> > >  
+> > > > +                           if (vals[--length] < *val)
+> > > > +                                   *val = vals[length];  
+> > >
+> > > ...this construction becomes less confusing (easier to parse).  
+> >
+> > Indeed, I will change in the next iteration.  
+> 
+> And looking into above line, this whole construction I would prefer to
+> have a macro in minmax.h like
+> 
+> #define min_array(array, len) \
+> {( \
+>   typeof(len) __len = (len); \
+>   typeof(*(array)) __element = (array)[--__len]; \
+>   while (__len--) \
+>     __element = min(__element, (array)[__len]); \
+>   __element; \
+> )}
+> 
+> (it might need more work, but you got the idea)
+
+I will also introduce max_array() and update both iio_channel_read_max()
+and iio_channel_read_min() to use these macros.
+
+Will be available in the next series iteration.
+
+Thanks,
+Hervé
 
 > 
+> > > > +                   }
+> > > > +                   break;  
 > 
->>
->>>     "#clock-cells":
->>>       const: 0
->>> @@ -33,6 +35,27 @@ required:
->>>   
->>>   additionalProperties: false
->>>   
->> Put it under allOf. Entire block should be before additionalProperties
->> (just like in example-schema).
->>
->>> +if:
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        const: fixed-clock-nvmem
->>> +
->>> +then:
->>> +  properties:
->>> +    nvmem-cells:
->>> +      maxItems: 2
->> Anyway, I don't think you tested it. Provide a DTS user of this. I don't
->> think it works and such user would point to mistakes.
->>
->> Properties should be defined in top-level properties:, not in
->> allOf:if:then. In allOf:if:then you only narrow them.
+> ...
 > 
-> Ah, got it. Added an example dts block to the document, this revealed 
-> the issues, indeed didn't test the bindings.
+> > > > +           default:
+> > > > +                   /* FIXME: learn about min for other iio values */  
+> > >
+> > > I believe in a final version this comment won't be here.  
+> >
+> > We have the same FIXME comment in the iio_channel_read_max() function I
+> > copied to create this iio_channel_read_min() and, to be honest, I
+> > don't really know how to handle these other cases.
+> >
+> > In this series, I would prefer to keep this FIXME.  
 > 
-> Fixed it into an "allOf" to properly narrow the properties.
-
-The real DTS user would be also welcomed.
-
-Best regards,
-Krzysztof
-
+> I see, Jonathan needs to be involved here then.
+> 
+> > > > +                   return -EINVAL;  
+> 
