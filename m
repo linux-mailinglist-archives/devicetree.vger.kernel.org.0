@@ -2,81 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCE06721B33
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 02:25:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BE4E721B3A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 02:29:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbjFEAZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 20:25:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
+        id S229449AbjFEA33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 20:29:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjFEAZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 20:25:41 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C94FFCC;
-        Sun,  4 Jun 2023 17:25:39 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b1b2ca09b9so28828391fa.1;
-        Sun, 04 Jun 2023 17:25:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685924738; x=1688516738;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dYlRYy9MgXWGQls9ZmzboJnmu32FmhCrTKxHUsegk54=;
-        b=CZncJxEGwanzEim8+FL0s+TwNpFtd35nfqdPQRhRmoI8gCtUZVFtxbe6kS0RBY1e/m
-         PJWwLoZ/PGu/Y4U1SBvseizZHzxF4J4GIKssAALWhrkKlrNhhK+pksh6MOC9YhzTbXe6
-         YzuxuQ3tYE1Z0P+T1rKO649YFennetHAcKWI27wyYGINGBCawaaeOhBLXWNnvZMvOupr
-         HnIhaeoLLPEIz9/gZdZvVJRtftdcOJYFE7QDt9j25CFzSclFYBukIdBOH4kpa5PbjDCk
-         CTRj4iVDjtag7aEMT+ITof1iBkgU2Nau302oBAl3Lnoh3rxaVQg2zve2T2eSe2rnauyM
-         ylEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685924738; x=1688516738;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dYlRYy9MgXWGQls9ZmzboJnmu32FmhCrTKxHUsegk54=;
-        b=hktWl/trinJDOnuvDAgA/utMAf32vG5+3JTlyYIdVRylOTGnyhqFfhbdv8p+MXQZYB
-         l+68WzREOkRfUNNkI2fd4CjoPnr4mDI+bv9c6PBssxuOHPGBdoXN1sGfJeeTUwECwMbj
-         VyYXOSUzEN3UosPRS+k8IPkyL7wCg+by7B91iUJrclMu+pIWBBjmnOY9/ULwodrL+Vye
-         SEY/2PMb0CAFEy6QV0XVP3/MV4kbemvJnjgr5hnUAtBOMaOFglNuhDYqDDmmFEPQ3Y5c
-         ePaivG1l9gcowQ5cqobpqUa7fRAgcPJd4IX6LYsTREXQYLFIjScJxPZTkllwNoH+rvM7
-         EQRw==
-X-Gm-Message-State: AC+VfDwiR+BQGY/re1eK5C5/8n+M65UEqQ5Yws4w4djETkpqRhdVUzmw
-        Twm6EF4pliMDz1+ImPVQ238FZRyllknDqA==
-X-Google-Smtp-Source: ACHHUZ4fxfoLaXaswLh917fs58Sed/QKxIibrCyOG1N/6mg6OehD5KT7PM5pNLcVbN26g8a+0o3rcg==
-X-Received: by 2002:a05:651c:8a:b0:2b1:c665:329d with SMTP id 10-20020a05651c008a00b002b1c665329dmr1086574ljq.35.1685924737903;
-        Sun, 04 Jun 2023 17:25:37 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id j4-20020a2eb704000000b002adaacdb900sm1224320ljo.42.2023.06.04.17.25.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jun 2023 17:25:37 -0700 (PDT)
-Date:   Mon, 5 Jun 2023 03:25:35 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v16 01/22] PCI: Add PCI_EXP_LNKCAP_MLW macros
-Message-ID: <20230605002535.f75gn32artzoyiat@mobilestation>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
- <20230510062234.201499-2-yoshihiro.shimoda.uh@renesas.com>
- <20230604225036.earzdx5dvzc3imoz@mobilestation>
- <TYBPR01MB534183482CD31D122C4735C0D84DA@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        with ESMTP id S230218AbjFEA33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 20:29:29 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2123.outbound.protection.outlook.com [40.107.113.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A578C10D;
+        Sun,  4 Jun 2023 17:28:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OwIq6uvchi/VEMQq8kEqWR2gcxTlZ2zuDuvRRLaUnBVEOEnk47MF0YzbrFlCkkcjCgLpDMLGTP5mZCYYIBrnC6FRZQ/sgzImRWX2YDD9kYHxS+xrRoVFdXg4fw5UzYlQT/6uWKDLrzt5724kaFo0/otkzNO/SG0872SX8zTEziy+/cRYK7HAPe9QkWzeUM7KbbLPfHdyUSmEhhqbG6UdhBozRms5aTxi5kfzcce/L1Df2STOszkfbvEscY+FC2+EEE9VOnnTpltRiwReyC93GXkRKx7GY4tragp7SWzPIUzbiKZCfh5xE8zaN/VRpApHjxtdCbw453j+Elc7t/5XbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=suM7EOO4+V5IEmbqJC5g1lp3RMQ5Ilw3/+EX2TR3NaM=;
+ b=lridU8t479cM6oXquAC0C9Zm3SuUKC1VLpFsqhwpQAPa1ZhG2/OcUOafpfkFZPsrMOyvj0qmYz+sckrxgKC/oYqaCNT41xvZNDPNKG92pW271dgWU3yKj2c5ic81tooIZN6LJlFC4mjJtE5HovhzWeIdV7UC2a0uBe+cBpbl8y2hzzFLh/nn26INNDIOSEwzbJ60FaU+wUN3NVD+70Xi28B8eoKLHQsQzrhA8zOyj4wRiejDz2eRh3uJF/9tYTjGR8mEvoIrg6cLRqJWhbockUnddZI4k6EwApELfe6uKZ5BLF8cm39c5rrp0ZjYmyJnjXPIiwtzXDdeTxA+PbWtvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=suM7EOO4+V5IEmbqJC5g1lp3RMQ5Ilw3/+EX2TR3NaM=;
+ b=JScn88pkBheP3KwG25u4QlIo3PMP5gSZN7s54TcaY7/Rg20PYuWvY63jWFcmLQdUA+fertowP5alSfOJDYYpI8sibv3f/maQ7+qXFCydZT7batB61OtKQzAei2BymuZ/eoR7K+pgqQQZFJo01+7sYmzUQZ6KUkCiObwozwYroi8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by TYVPR01MB11130.jpnprd01.prod.outlook.com (2603:1096:400:36c::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Mon, 5 Jun
+ 2023 00:28:15 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::91e7:a94f:9f75:d840]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::91e7:a94f:9f75:d840%6]) with mapi id 15.20.6455.030; Mon, 5 Jun 2023
+ 00:28:14 +0000
+Message-ID: <873536iwgx.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Alvin =?ISO-8859-2?Q?=A9ipraga?= <alvin@pqrs.dk>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Alvin =?ISO-8859-2?Q?=A9ipraga?= <alsi@bang-olufsen.dk>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] ASoC: simple-card: parse symmetric-clock-roles property
+In-Reply-To: <20230602090322.1876359-5-alvin@pqrs.dk>
+References: <20230602090322.1876359-1-alvin@pqrs.dk>
+        <20230602090322.1876359-5-alvin@pqrs.dk>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date:   Mon, 5 Jun 2023 00:28:14 +0000
+X-ClientProxiedBy: TYCP286CA0212.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c5::16) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYBPR01MB534183482CD31D122C4735C0D84DA@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYVPR01MB11130:EE_
+X-MS-Office365-Filtering-Correlation-Id: 681a3d36-5531-4763-66d4-08db655bc06d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6ugDyQmJKCpNCHdYC2FcyqK+ZjSBB12kswKjYvyWmJMlK1sDz9g+Q8yblfCTos+DrXk5QrjV+jE4616qzNC5w9hYWFugmRmL7k93cwdhILcgr3WYP1rFU8TYpjYvtTb4I9WUbSGtMrH9htOWE6wRzZXsh/S1ytHRVk4F/iP8UfJk6tC6HAOJDybKk8piTPHw9tr0cXLTVC+/HEjEYvdX7C9LWUeMLbrZh9lYTzklUcK6NlTrfSSafrFr9efEd5VDm/HDYEZzs0Wj2KuP+dBACCxMGiVE5rgreswmwmGO+o1MucUCiETEO5R3ipzBS2goMI+6BmJDmZ9XJj1YbqVCQAm6GMhsL4AcpC+XuGyv/kurOLFSSEr0LshiFG8C9M51v4zS/tnlZG1hVpDzln72DC/vjfa+CLjm1m/QaOqJgUCzAxJYTPbbN5MNBbK6DCityjRIBxRru1yqEz0M+AtpR7RVSiLL66WhURgvCUI2+sLky89wgdyNvNWC7FQ4xjknP/4PH7PKeYBCP9NvOZTnIaDD5YLGX4NBgXze8votbg9Y0/wEzaMTsWQkEb6JpxV4ooUK18cSTp3kVH8es5ue73fWTGrynYqqDia4h4uv9hYBWmGrbv5w5uOcdqi/yb96
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(376002)(396003)(136003)(39860400002)(346002)(451199021)(6512007)(6506007)(38100700002)(2616005)(41300700001)(38350700002)(6486002)(52116002)(26005)(186003)(83380400001)(478600001)(54906003)(4326008)(66476007)(66556008)(6916009)(316002)(66946007)(7416002)(8936002)(8676002)(5660300002)(2906002)(86362001)(36756003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rxFlW/s/qEqqxqdhO1z/xl30ZbHDrZ5/su78QXH1usZ2IC7F35nVOApB5d95?=
+ =?us-ascii?Q?vw34tyQmPSJQUE8ZUuCfO16ZIz/YhsjVM3mcwsv69PScBI4Pa4VH5eflQKkq?=
+ =?us-ascii?Q?sCC0oYmjZjukIW76FVjAmrXgqMswrxDjt5MxFXcAoPW8i6gisqXJT6RvJMJH?=
+ =?us-ascii?Q?JOEjxEieELXEG3R84CoskGxOyd3RFnrXgNze3lZRAOqKIRUI9b1thIhSCPUB?=
+ =?us-ascii?Q?dYch7eO+4xgIgCkBtDBsSzk/Xlfshp4X89ouIgndMubklLV207fuUGcwo2CC?=
+ =?us-ascii?Q?gFyVfHhqnMIL4tHo+0uDswBrb9dezM7rF3G3F/3E96KPt0DBy4kEk0r2owok?=
+ =?us-ascii?Q?328hQLCwZ1Sp6DRPy0qtNp91qwL7OVJoOFZEI+AzZ2i7D7CzRCeq+aXAcevz?=
+ =?us-ascii?Q?gYhsuuzpfOtOQ3k9pfbB+KwiUfQsc+vpFUSOwIW8ulEbXIb0rFM0wfq9imw4?=
+ =?us-ascii?Q?ZqW4CyOoaib6rZpMyeCrIPbQb2a5N1ZjmssIr6K+w//pHNtAV3Ogdvvrqnnk?=
+ =?us-ascii?Q?TC0v+VTq66Bl2bx3SZThDWsq5y5vDQNSs+cu7jx3NGY2tbvVBZAwx6mG6arN?=
+ =?us-ascii?Q?R7la7LLJM5BTeeGyXCA0dAa6D5WXZRu4oxa83/2RgXzIkc7zXBH9ifGQ/owo?=
+ =?us-ascii?Q?oIEdhpKoD9+Lzt8NGtw4kqthggQsoPFm+cCavU0Lf1JObRPXY28Td2cXOQ1p?=
+ =?us-ascii?Q?j1mZwpvIHvkWyUwXpDGcaLaW/x6gejkcNW+rGmh/mL/AqL66+R+8HgPbDrIf?=
+ =?us-ascii?Q?MVn4ETZCUDDSlXK5hYNArdb5BrLuXRL2ROu73439GSsybEigA4TMK60iUxOu?=
+ =?us-ascii?Q?2Q83LkYN6SJuWbesDMWVlxRKrbU2daNZV5SgYMYEeNpClk589Kr7uLm5DjSH?=
+ =?us-ascii?Q?uj8aDyEelo2+TJaq7Sm6Szsr1F5BnjkG5LXlZAHbqwXOhZ0pCuVTZI01MCVo?=
+ =?us-ascii?Q?d5sb1e13a84SciUYY6cLvyncpJeeqr/qQVwsp7hT5sHZ3ajMT9szum9kyj+I?=
+ =?us-ascii?Q?PhCdc2Uz+1iKSoIYkt4R+x/3ud5poS6myV9JZhZGf0DwhcVRca3nb2VUMa9n?=
+ =?us-ascii?Q?oiDiEdBmJygVi+JiArBKZa3tYcIyHuozPaVccWwFeR/zpo5qw6O8Y/oZShCs?=
+ =?us-ascii?Q?DUjlot8ypn4u47yt5EcGXlad760+nJa4pm2nZfBGnorBxnUxQ7VTzcUUk3fO?=
+ =?us-ascii?Q?ZbZ3i770sC1jX5RZUC0QVG2CpTLQBsRuiNsergydzv58nXHGbz1ZOvmzOww+?=
+ =?us-ascii?Q?rzLVTBRBv73BHk2ikEe14otPWwyUns4uAOFKXszelWFiTzgZ5yavQ9Yxa2nO?=
+ =?us-ascii?Q?DvFrtbJ9SkTeBsfF9wtVjjO59tTK+7oXfHt2DnBdu+1rYIVRUuWfOHsCBZ7m?=
+ =?us-ascii?Q?a9q08uL555exxlf16EJR5gg0cf3lFRr5dlw+LiX7+7MTWsSFNq2cC7yzMP0Y?=
+ =?us-ascii?Q?7Oz03xtqTeECRfsg5B3iaVEZrKn7Flmw+qtSOZDRsSKroaqCniiK4Fb1eyTD?=
+ =?us-ascii?Q?W52tcPjw6SI2M/fPyfmZf+iuMFVqvVv1Wyn9RxVstVz6Xo+xkMS7rLZuJgnh?=
+ =?us-ascii?Q?fa1MieR5tYR0DqL/v5CjcHxqPGt5R1HrexG1u0+ZN9sr5fJ3fBN+1Rk2/Qrx?=
+ =?us-ascii?Q?5c6pQiu3kP/r/zMrwfJx/fA=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 681a3d36-5531-4763-66d4-08db655bc06d
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2023 00:28:14.9013
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hbSvUZXL7Fzow6bIhqQcuVg957BfbX94FFiDArbS9DFKTNLb7kltDACFDa+/flj5gpI9ZoJROu18ThXmd4SHBzIDPVtps+wjcRqArMgpK/cS6J4SsObAueTNVImHqE3Z
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYVPR01MB11130
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,76 +122,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 05, 2023 at 12:14:26AM +0000, Yoshihiro Shimoda wrote:
-> Hello Serge,
-> 
-> > From: Serge Semin, Sent: Monday, June 5, 2023 7:51 AM
-> > 
-> > On Wed, May 10, 2023 at 03:22:13PM +0900, Yoshihiro Shimoda wrote:
-> > > Add macros defining Maximum Link Width bits in Link Capabilities
-> > > Register.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> > 
-> > You haven't been using these macros in the following up patches since
-> > v9. Why do you keep submitting this change then? I would suggest to
-> > drop the patch especially seeing the PCI_EXP_LNKCAP_MLW field directly
-> > encodes the link width thus these macros unlikely will be of much use.
-> 
-> Thank you for your review! You're correct. I didn't realized that
-> the macros were not used on the patch series..
-> 
-> However, I also realized that the patch 11/22 used the PCI_EXP_LNKSTA_NLW_SHIFT
-> macro for the PCI_EXP_LNKCAP register. So, I'm thinking that I should modify
-> this patch as adding PCI_EXP_LNKCAP_MLW_SHIFT instead. But, what do you think?
-> 
-> --- on the patch 11/22 ---
-> > +	cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> > +	val = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
-> > +	val &= ~PCI_EXP_LNKCAP_MLW;
-> > +	val |= num_lanes << PCI_EXP_LNKSTA_NLW_SHIFT;
-> 
-> Perhaps, this should be PCI_EXP_LNKCAP_MLW_SHIFT instead.
 
-I'll get to that patch tomorrow, but in any case there is no need in
-defining an additional macro here. There is a handy helper FIELD_PREP()
-for that: FIELD_PREP(PCI_EXP_LNKSTA_MLW, num_lanes).
+Hi Alvin
 
-IMO for the same reason the PCI_EXP_LNKSTA_NLW_* macros are
-unnecessary and can be easily either dropped or replaced by the
-FIELD_{PREP,GET} macros usage.
+Thank you for the patch
 
--Serge(y)
+> --- a/sound/soc/generic/simple-card.c
+> +++ b/sound/soc/generic/simple-card.c
+> @@ -181,6 +181,7 @@ static int simple_link_init(struct asoc_simple_priv *priv,
+>  {
+>  	struct device *dev = simple_priv_to_dev(priv);
+>  	struct snd_soc_dai_link *dai_link = simple_priv_to_link(priv, li->link);
+> +	char prop[128];
+>  	int ret;
+>  
+>  	ret = asoc_simple_parse_daifmt(dev, node, codec,
+> @@ -188,6 +189,9 @@ static int simple_link_init(struct asoc_simple_priv *priv,
+>  	if (ret < 0)
+>  		return 0;
+>  
+> +	snprintf(prop, sizeof(prop), "%ssymmetric-clock-roles", prefix);
+> +	dai_link->symmetric_clock_roles = of_property_read_bool(node, prop);
+> +
+>  	dai_link->init			= asoc_simple_dai_init;
+>  	dai_link->ops			= &simple_ops;
 
-> ---
-> 
-> Best regards,
-> Yoshihiro Shimoda
-> 
-> > -Serge(y)
-> > 
-> > > ---
-> > >  include/uapi/linux/pci_regs.h | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > >
-> > > diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
-> > > index dc2000e0fe3a..5d48413ac28f 100644
-> > > --- a/include/uapi/linux/pci_regs.h
-> > > +++ b/include/uapi/linux/pci_regs.h
-> > > @@ -538,6 +538,12 @@
-> > >  #define  PCI_EXP_LNKCAP_SLS_16_0GB 0x00000004 /* LNKCAP2 SLS Vector bit 3 */
-> > >  #define  PCI_EXP_LNKCAP_SLS_32_0GB 0x00000005 /* LNKCAP2 SLS Vector bit 4 */
-> > >  #define  PCI_EXP_LNKCAP_SLS_64_0GB 0x00000006 /* LNKCAP2 SLS Vector bit 5 */
-> > > +#define  PCI_EXP_LNKCAP_MLW_X1	0x00000010 /* Maximum Link Width x1 */
-> > > +#define  PCI_EXP_LNKCAP_MLW_X2	0x00000020 /* Maximum Link Width x2 */
-> > > +#define  PCI_EXP_LNKCAP_MLW_X4	0x00000040 /* Maximum Link Width x4 */
-> > > +#define  PCI_EXP_LNKCAP_MLW_X8	0x00000080 /* Maximum Link Width x8 */
-> > > +#define  PCI_EXP_LNKCAP_MLW_X12	0x000000c0 /* Maximum Link Width x12 */
-> > > +#define  PCI_EXP_LNKCAP_MLW_X16	0x00000100 /* Maximum Link Width x16 */
-> > >  #define  PCI_EXP_LNKCAP_MLW	0x000003f0 /* Maximum Link Width */
-> > >  #define  PCI_EXP_LNKCAP_ASPMS	0x00000c00 /* ASPM Support */
-> > >  #define  PCI_EXP_LNKCAP_ASPM_L0S 0x00000400 /* ASPM L0s Support */
-> > > --
-> > > 2.25.1
-> > >
+looks good to me.
+
+simple-card / audio-graph-card / audio-graph-card2 want to support same settings
+(But unfortunately it is not completely synchronized...).
+
+Could you please add same settings or indicate it on the comment
+(like /* FIXME support symmetric-clock-roles here */, etc)
+on audio-graph-card, if you create v2 patch ?
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
