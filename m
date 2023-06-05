@@ -2,207 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70C3372235D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E90D7223A3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:35:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbjFEKY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 06:24:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47846 "EHLO
+        id S231839AbjFEKfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 06:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbjFEKYr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:24:47 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6EF38EA;
-        Mon,  5 Jun 2023 03:24:45 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ADABAD75;
-        Mon,  5 Jun 2023 03:25:30 -0700 (PDT)
-Received: from [10.57.25.141] (unknown [10.57.25.141])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7128E3F793;
-        Mon,  5 Jun 2023 03:24:42 -0700 (PDT)
-Message-ID: <08c9f926-53f2-2b2f-1acc-274643c7de00@arm.com>
-Date:   Mon, 5 Jun 2023 11:24:40 +0100
+        with ESMTP id S231986AbjFEKfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:35:15 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA4AE53
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 03:34:59 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51458e3af68so6942144a12.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 03:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685961298; x=1688553298;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uFq5oGkqVQ3sub4JCKqcWdAZJhLFL2YkYQs99Cty04o=;
+        b=eZ9V+gIQetiODGpzOE/DVwsx5nXiBXaMfrU86OFR0YpPaivq3MAh5SkrE6C2GjhgNL
+         /lOeKCSVH0Y0VbG+T3zyaTPzGd9pdjSwBTyuBw20kIgFSTBrFcfBilo6V84kwfKCQe/1
+         7lr//Ay0N4QwKwdIN2CKcrC3hbQwaJeyn9tiT0EjWbTcp5nbIMYC5NFp+eLSI9ynjNAd
+         6k1sfoZj/qzgtcny0Jq3tjOoQHe/mPmd+YAee1GrUpYui2TM0f7NAoaKO7DkdDsJlTjt
+         sTzmBj9ZcxGJUdDNVJPNiGnyqBKTizHPc8iChG1HbXPpsblGrzb8hIqmOSeFAM2lvSVQ
+         Tp5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685961298; x=1688553298;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uFq5oGkqVQ3sub4JCKqcWdAZJhLFL2YkYQs99Cty04o=;
+        b=FQFLteiG+h+ZZt4AL3TXjqQdjmrjt9Guk43+FA61bhQQaau3oxilCJlZFeXAqnnaOL
+         8SFobu9Ynv64IpMV1Sqj8wJCwM/ranBDKmGIzMiOKCIzfwIBJGncWIPYNsx9cLijQmtV
+         NpzoM5dQ2NuJpiVTzz1ERJKZZmRHh1jnQRhnobUxpqWo3ZrCa2NqugN4/gpi9Ca7+rnR
+         FJ2jLnN5UdQBQ5UrnE3JZ6XrEJ41t4LX4zjPkS20VCVUFvtrSJNY7/qPjxCK7AXSZqwL
+         UXFNyuT89P/VUBUo8qovwFjl0LaFZ3IU51SihwfScCL3O83I+QU77+ete1WyNxKwu/D7
+         mrNQ==
+X-Gm-Message-State: AC+VfDyegpJPl0fkWHjkhIDKtVlOXQhw4rOdDYBsLX+0k8vj3fj9qbCx
+        io5GpbOTOnmdrcJE9Vdsn+FOsw==
+X-Google-Smtp-Source: ACHHUZ5+XtjfkEfVdH+SHr9LWWN02kLyYG3gz7kWxBFVXGEK6U0G8WHiam5TJMMbVl0NoG1DZ9XjbQ==
+X-Received: by 2002:a05:6402:6d4:b0:514:9528:6e6f with SMTP id n20-20020a05640206d400b0051495286e6fmr8643302edy.7.1685961297889;
+        Mon, 05 Jun 2023 03:34:57 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id s18-20020a056402165200b00510b5051f95sm3680533edx.90.2023.06.05.03.34.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jun 2023 03:34:57 -0700 (PDT)
+Message-ID: <6818f4b0-4222-c3bb-c55f-bc0d26d7a681@linaro.org>
+Date:   Mon, 5 Jun 2023 12:34:54 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.1
-Subject: Re: [PATCH v4 11/11] coresight-tpdm: Add nodes for dsb msr support
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-12-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1682586037-25973-12-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
+ touchscreen chip
+Content-Language: en-US
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, dianders@chromium.org,
+        hsinyi@google.com
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230605060524.1178164-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 10:00, Tao Zhang wrote:
-> Add the nodes for DSB subunit MSR(mux select register) support.
-> The TPDM MSR (mux select register) interface is an optional
-> interface and associated bank of registers per TPDM subunit.
-> The intent of mux select registers is to control muxing structures
-> driving the TPDM’s’ various subunit interfaces.
+On 05/06/2023 08:05, Cong Yang wrote:
+> Add an ilitek touch screen chip ili9882t.
 > 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 > ---
->   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   | 15 ++++++
->   drivers/hwtracing/coresight/coresight-tpdm.c       | 53 ++++++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tpdm.h       |  3 ++
->   3 files changed, 71 insertions(+)
+>  .../bindings/input/elan,ekth6915.yaml         | 23 ++++++++++++++++---
+>  1 file changed, 20 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> index 639b6fb8..f746f25 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> @@ -170,3 +170,18 @@ Description:
->   		Accepts only one of the 2 values -  0 or 1.
->   		0 : Set the DSB pattern type to value.
->   		1 : Set the DSB pattern type to toggle.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_msr
-> +Date:		March 2023
-> +KernelVersion	6.3
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Set the MSR(mux select register) of DSB tpdm. Read
-> +		the MSR(mux select register) of DSB tpdm.
-> +
-> +		Expected format is the following:
-> +		<integer1> <integer2>
-> +
-> +		Where:
-> +		<integer1> : Index number of MSR register
-> +		<integer2> : The value need to be written
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index 627de36..5fe0bd5c 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -240,6 +240,14 @@ static int tpdm_datasets_setup(struct tpdm_drvdata *drvdata)
->   			if (!drvdata->dsb)
->   				return -ENOMEM;
->   		}
-> +		if (!of_property_read_u32(drvdata->dev->of_node,
-> +			   "qcom,dsb_msr_num", &drvdata->dsb->msr_num)) {
-> +			drvdata->dsb->msr = devm_kzalloc(drvdata->dev,
-> +				   (drvdata->dsb->msr_num * sizeof(*drvdata->dsb->msr)),
-> +				   GFP_KERNEL);
-> +			if (!drvdata->dsb->msr)
-> +				return -ENOMEM;
-> +		}
->   	}
->   
->   	return 0;
-> @@ -765,6 +773,50 @@ static ssize_t dsb_trig_ts_store(struct device *dev,
->   }
->   static DEVICE_ATTR_RW(dsb_trig_ts);
->   
-> +static ssize_t dsb_msr_show(struct device *dev,
-> +				 struct device_attribute *attr,
-> +				 char *buf)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned int i;
-> +	ssize_t size = 0;
-> +
-> +	if (drvdata->dsb->msr_num == 0)
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	for (i = 0; i < TPDM_DSB_MAX_PATT; i++) {
+> diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> index 05e6f2df604c..f0e7ffdce605 100644
+> --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> @@ -15,11 +15,14 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: elan,ekth6915
+> +    enum:
+> +      - elan,ekth6915
+> +      - ilitek,ili9882t
+>  
+>    reg:
+> -    const: 0x10
+> +    enum:
+> +      - 0x10
+> +      - 0x41
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -29,11 +32,13 @@ properties:
+>  
+>    vcc33-supply:
+>      description: The 3.3V supply to the touchscreen.
+> +                 If using ili9882t then this supply will not be needed.
 
-Shouldn't this be  "i < drvdata->dsb->msr_num" ?
+What does it mean "will not be needed"? Describe the hardware, not your
+drivers.
 
+I don't think you tested your DTS. Submit DTS users, because I do not
+believe you are testing your patches. You already got such comment and I
+don't see much of improvements here.
 
-> +		size += sysfs_emit_at(buf, size,
-> +				  "%u 0x%x\n", i, drvdata->dsb->msr[i]);
-> +	}
-> +	spin_unlock(&drvdata->spinlock);
-> +
-> +	return size;
-> +}
-> +
-> +static ssize_t dsb_msr_store(struct device *dev,
-> +				  struct device_attribute *attr,
-> +				  const char *buf,
-> +				  size_t size)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned int num, val;
-> +	int nval;
-> +
-> +	if (drvdata->dsb->msr_num == 0)
-> +		return -EINVAL;
-> +
-> +	nval = sscanf(buf, "%u %x", &num, &val);
-> +	if ((nval != 2) || (num >= (drvdata->dsb->msr_num - 1)))
+>  
+>    vccio-supply:
+>      description:
+>        The IO supply to the touchscreen. Need not be specified if this is the
+>        same as the 3.3V supply.
+> +      If using ili9882t, the IO supply is required.
 
-(num >= drvdata->dsb->msr_num) ?
+Don't repeat constraints in free form text.
+>  
+>  required:
+>    - compatible
+> @@ -41,6 +46,18 @@ required:
+>    - interrupts
+>    - vcc33-supply
+>  
+> +if:
 
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	drvdata->dsb->msr[num] = val;
-> +	spin_unlock(&drvdata->spinlock);
-> +	return size;
-> +}
-> +static DEVICE_ATTR_RW(dsb_msr);
-> +
->   static struct attribute *tpdm_dsb_attrs[] = {
->   	&dev_attr_dsb_mode.attr,
->   	&dev_attr_dsb_edge_ctrl.attr,
-> @@ -777,6 +829,7 @@ static struct attribute *tpdm_dsb_attrs[] = {
->   	&dev_attr_dsb_trig_patt_mask.attr,
->   	&dev_attr_dsb_trig_ts.attr,
->   	&dev_attr_dsb_trig_type.attr,
-> +	&dev_attr_dsb_msr.attr,
->   	NULL,
->   };
->   
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
-> index 9ad32a6..05e9f8e 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
-> @@ -18,6 +18,7 @@
->   #define TPDM_DSB_XPMR(n)	(0x7E8 + (n * 4))
->   #define TPDM_DSB_EDCR(n)	(0x808 + (n * 4))
->   #define TPDM_DSB_EDCMR(n)	(0x848 + (n * 4))
-> +#define TPDM_DSB_MSR(n)		(0x980 + (n * 4))
->   
->   /* Enable bit for DSB subunit */
->   #define TPDM_DSB_CR_ENA		BIT(0)
-> @@ -113,6 +114,8 @@ struct dsb_dataset {
->   	u32				trig_patt_mask[TPDM_DSB_MAX_PATT];
->   	bool			trig_ts;
->   	bool			trig_type;
-> +	u32				msr_num;
-> +	u32				*msr;
->   };
->   
->   /**
+Keep it in allOf. Will save you one indentation later.
+
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: ilitek,ili9882t
+> +then:
+> +  required:
+> +    - compatible
+> +    - reg
+> +    - interrupts
+
+Don't duplicate.
+
+> +    - vccio-supply
 
 
-Where/when do we write to these registers in the DSB ?
+Best regards,
+Krzysztof
 
-Suzuki
