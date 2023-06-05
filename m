@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08254722B5A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 17:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29A6F722B67
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 17:40:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234425AbjFEPjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 11:39:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
+        id S232890AbjFEPka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 11:40:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234824AbjFEPjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 11:39:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA58FA;
-        Mon,  5 Jun 2023 08:39:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233890AbjFEPkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 11:40:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968F9130;
+        Mon,  5 Jun 2023 08:40:13 -0700 (PDT)
+Received: from arisu.mtl.collabora.ca (mtl.collabora.ca [66.171.169.34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5449262729;
-        Mon,  5 Jun 2023 15:39:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6800C433D2;
-        Mon,  5 Jun 2023 15:39:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685979574;
-        bh=sk/6csv09QzAZsCVw89hyVmoT6X4fAwVBTUDtzlCaqc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=B3DS1aPN52xZLBz/61LYSKi/INp49YsP1ayDLaFROtPa2oVFCe98LResBzCGIcvCq
-         x1IGxfu1UZStAEQwhxHjbGpHP1yTcrIndNn5I+fGppeDXX/FAb+3tboq9R5ZSHAsSk
-         gByf9Z38mGx5ZghQSUExsPgj1SW3ifD6bNK2T9WytR0UQUO9M9ZdAlyHPQat0hNB0z
-         w/zPUi87EKKJL7ydAD4+SB1oYcUBDEMyf2BZYEcWnW4WVUihrGcRzGi7NmX1exhaFB
-         Sjbskk+Wyz86C07AoXzIpqeqQpJtw+XmOHjVJX5RP7kg2maE/HvJVqIACi9FqeKsTZ
-         NtWQUN/yJqyyQ==
-Date:   Mon, 5 Jun 2023 16:39:29 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+        (Authenticated sender: detlev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AA0EE660036A;
+        Mon,  5 Jun 2023 16:40:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685979612;
+        bh=GZl6ZhnAnG6jIOD1vjYTq8i9dEDF+bhtGx3LOe6W+Ig=;
+        h=From:To:Cc:Subject:Date:From;
+        b=OP6jCf1A4MiKSEjBCv4IlmWs4/fnvnKlEkWD25RfUnm/z9zLKiX6tNXclcoXhI3iE
+         tDLBCCd5Q3EtlLWz40vBpznWg4QDsYmqblZxAbNnt7pUI/Ayd1q7gEYo+e96X1OMyH
+         YsnGE3TRRxevmjIwvXcP764f/faXLUov1z4EmSitCGW6GVOlgFcsufB2U8sxCGcZF5
+         dVfOYix7Va4lCkbobfXeg9CDg9zVIW81wS/cGJ3J7B1XRe+k4088Hke7PZczpJdQeW
+         oElIltkn0u5ZxVN0p3QzjVfhP9kKwMt9w7SsPxN1VAnNGJG0vVy/uezDgwvTsBkqKT
+         KEDWRdKeu36Gg==
+From:   Detlev Casanova <detlev.casanova@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [RESEND PATCH] dt-bindings: iommu: arm,smmu: enable clocks for
- sa8775p Adreno SMMU
-Message-ID: <20230605153928.GB21796@willie-the-truck>
-References: <20230530144931.188900-1-brgl@bgdev.pl>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/3] net: phy: realtek: Support external PHY clock
+Date:   Mon,  5 Jun 2023 11:40:07 -0400
+Message-Id: <20230605154010.49611-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.39.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230530144931.188900-1-brgl@bgdev.pl>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 04:49:31PM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> The GPU SMMU will require the clocks property to be set so put the
-> relevant compatible into the adreno if-then block.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Resending with all IOMMU maintainers in CC.
+Some PHYs can use an external clock that must be enabled before
+communicating with them.
 
-I've picked up the earlier version (which is the same patch). There was
-a trivial conflict with a similar change allowing clocks for the
-'qcom,sc8280xp-smmu-500' device, so please check when I push out the
-updated branch.
+Changes since v3:
+ * Do not call genphy_suspend if WoL is enabled.
+Changes since v2:
+ * Reword documentation commit message
+Changes since v1:
+ * Remove the clock name as it is not guaranteed to be identical across
+   different PHYs
+ * Disable/Enable the clock when suspending/resuming
 
-Will
+
