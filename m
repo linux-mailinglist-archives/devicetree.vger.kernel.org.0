@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3476721E56
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F34721E5E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjFEGl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 02:41:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
+        id S230029AbjFEGmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 02:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjFEGlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:41:25 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A105E41
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:41:01 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-97668583210so366942066b.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:41:01 -0700 (PDT)
+        with ESMTP id S229677AbjFEGmR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:42:17 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E9EDE68
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:41:44 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977e0fbd742so63595766b.2
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:41:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685947255; x=1688539255;
+        d=linaro.org; s=google; t=1685947301; x=1688539301;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WKyJTEWAr2/bbgJ4qj5g0DH+qXUa8fA/In0KtxR+hDE=;
-        b=j9sEsVQGcZI0ww4pUAZR4LvJgzBAxv+VHBf2ykJK4FV2Paspea3UMvQUD1Hat0/DK6
-         C1ZtBMO0d3gCnu84BBRsvmgPvqeZWNbC0SiDrn8YrEbCDKDVrsHe+EKYYeg3fsAUF7vi
-         DSMcugAkDnGFX/wvFCMlCWIAp3F4e5CINRNi6nZC2wLz/C8EA3k6ePtwqvAgx/SHDbsx
-         wfXBw4epXXiMf3xILHbRp5rHLLAKMgzGSyhjm08P6v4i92CM2NgMsCPyX5CKBUVqB6Qx
-         VLFd208uwr6/GMyOws242w3aXkOsKtMtTh4F1pwluQ09WVNCwATda+lT649Ol+DlX3Mf
-         Hidg==
+        bh=ES4QwZGNTqaGDHkT5g+vUXHwRybmHm+v/fVuOTJ+7nY=;
+        b=zvVD+Qymqy+NcNPO08oupjqv+659xgLwRbW2xE7uEMe5qvtSExF/OpeShP9JAzUcl+
+         NV0nE0NP873VpH1gnyDpAVAtzyPjw1/2FE4TIw4MkMytJOXU80szSd8wX38WrUVBN1Hs
+         3S2BcZfkEJ18KMmG4zUNHCTKIXZDcJIXRuqTlN3W+cHPwhVHGK6Sb9CxFJpgS0V+YImr
+         pCXMu9yOzKi4fCo5Qh3nZhWuLYcX4OGbmKiFk0q9/04XFkH+znzUunADVm5q2Ap7+6Jn
+         C1AR9OLDsL0IvZBrDtKlPfFrDQkfTo6Zg/ha2nhoPyNSjbQcILanOw0s10R1zekKDR8/
+         7DOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685947255; x=1688539255;
+        d=1e100.net; s=20221208; t=1685947301; x=1688539301;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WKyJTEWAr2/bbgJ4qj5g0DH+qXUa8fA/In0KtxR+hDE=;
-        b=eSexxbKwgdcBpPn8YNWbrGiJ8zOC8E7jJzc1H+OqamBgsm2EVDfKdhzz5hkfXYMx/D
-         zOFTh64wX+VjvXd9+OOLBw2HMpbUEhOTbTlwqAozfb7mW5WW+dGQhzAXN+I1KFlcfdvQ
-         ipfeqrXVhQOt3XqH2PdqyZZEHfiUMU7oRc9A9vk0K49jQ3rb02wwroMsgmlJrh4dQWiH
-         LpNtF3YgTZajSs+jZyHkTz7VsZw/NjDkREA1D+GnAi01IRZsO7sMCjUxfQkhTR3F0tAt
-         FUvtawNmC8khT9fZBvuZxEFy8SFKXZY1gWif7l/wEwSZ2lNC7pK7oZqTDTvuVal/rIJW
-         Npyw==
-X-Gm-Message-State: AC+VfDz0026BVHXeplq7vVmoIsnQ1y/m94PKY6XU1ugD1hqLoUtcnKp3
-        RAlE0MLfTuJH25wWEsMXlKa4bA==
-X-Google-Smtp-Source: ACHHUZ5rD9LvlGRhmhSXQ6m7PkXkbDSH3OreIA9ygN8V+18zsEuiGBcHP+HOLFbqCky2LbZl2Bq7Kg==
-X-Received: by 2002:a17:907:6d19:b0:973:ea73:b883 with SMTP id sa25-20020a1709076d1900b00973ea73b883mr5710250ejc.66.1685947255077;
-        Sun, 04 Jun 2023 23:40:55 -0700 (PDT)
+        bh=ES4QwZGNTqaGDHkT5g+vUXHwRybmHm+v/fVuOTJ+7nY=;
+        b=QJu2lFyUYDz80jRoXYA6n2W474OWPxt6Vb7xYwsfEcFmCgYgWj+LTr/QH6tpqE8zme
+         A/Cl+XOYVusgfN7l6tFssyMfbuwatyjfbPYkDpsewO+AyAtmAgWvSSB421ic9J8Fntxo
+         NUc+fbl0PHfV4beOsiUPZZ2KEBJkvK0riMGE/Lw2wvIoGABCH7HAESLqChfeUgI3EXlG
+         ntwR5JAA6fj5HjIibkl5xfhBGti6G5xk6NSPg02eyt1nWPzZ0xTFdETMVGuL6p5dVf49
+         M4xGK/C8UZRIJobDr7t2XZOFAeRrn4Q5CpVuTGuvRzmisXh/oqT1O322oxXXIWvJCKFm
+         CNPg==
+X-Gm-Message-State: AC+VfDwATTFNQeAvvu9WbpaStBnX2EkKlEc5RplVRommAMbmdAS1Y3y3
+        Kz7a5nB4TJjvvmPoKJ+f4HL3gw==
+X-Google-Smtp-Source: ACHHUZ4MLkQ0TxRJYotGe0A3pkwTJOfonlJxjBPm4WV0ed3f0oPF4CbcpOdQhoL+RWTTYXC+hwB8CQ==
+X-Received: by 2002:a17:907:6d28:b0:973:9337:1aac with SMTP id sa40-20020a1709076d2800b0097393371aacmr5790961ejc.60.1685947301554;
+        Sun, 04 Jun 2023 23:41:41 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id qt23-20020a170906ecf700b00977ca5de275sm2220115ejb.13.2023.06.04.23.40.51
+        by smtp.gmail.com with ESMTPSA id jp25-20020a170906f75900b0096f675ce45csm3863114ejb.182.2023.06.04.23.41.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Jun 2023 23:40:54 -0700 (PDT)
-Message-ID: <cb6db583-fec9-f20c-23b3-6fda437e65a7@linaro.org>
-Date:   Mon, 5 Jun 2023 08:40:50 +0200
+        Sun, 04 Jun 2023 23:41:41 -0700 (PDT)
+Message-ID: <fdf5723d-802f-21c2-3808-dcdcf1869bf4@linaro.org>
+Date:   Mon, 5 Jun 2023 08:41:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 06/21] ARM: configs: at91: add mcan support
+Subject: Re: [PATCH 04/21] ARM: dts: at91: sam9x7: add device tree for soc
 Content-Language: en-US
 To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
         tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
@@ -75,9 +75,9 @@ Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
         dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
         balakrishnan.s@microchip.com
 References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
- <20230603200243.243878-7-varshini.rajendran@microchip.com>
+ <20230603200243.243878-5-varshini.rajendran@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230603200243.243878-7-varshini.rajendran@microchip.com>
+In-Reply-To: <20230603200243.243878-5-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,10 +91,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/06/2023 22:02, Varshini Rajendran wrote:
-> Enable MCAN configs to support sam9x7 soc family
+> Add device tree file for SAM9X7 SoC family
 > 
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> [nicolas.ferre@microchip.com: add support for gmac to sam9x7]
+> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> [balamanikandan.gunasundar@microchip.com: Add device node csi2host and isc]
+> Signed-off-by: Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
+> ---
+>  arch/arm/boot/dts/sam9x7.dtsi | 1333 +++++++++++++++++++++++++++++++++
+>  1 file changed, 1333 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sam9x7.dtsi
 
-There is no need to enable config items one by one. Squash these.
+How do you even test it? Where are boards and their bindings?
 
 Best regards,
 Krzysztof
