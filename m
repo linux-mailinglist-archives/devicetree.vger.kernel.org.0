@@ -2,125 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA1E72221E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 11:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E220A722258
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 11:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbjFEJZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 05:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52600 "EHLO
+        id S230169AbjFEJg4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 5 Jun 2023 05:36:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbjFEJZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 05:25:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2DE4FA;
-        Mon,  5 Jun 2023 02:25:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 80CFA611E0;
-        Mon,  5 Jun 2023 09:25:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 688DEC433D2;
-        Mon,  5 Jun 2023 09:25:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685957122;
-        bh=C8hSf7UeIq2XMloQPxX0oi7i6jNaTN/Ue7ny6sLukEM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rI6tkhq7bdujvNtyQ7hDVhV3I2vuLw8My0dE1y5KXkDLAM+FNsFlV3A/Q+vR4oHK7
-         aNYmSR2m8Gx+uE4DeMbe5+GGBW26jqiVkCoE/tkEYp1e5cFuWPxrfMQY1FFodeZAcz
-         UDD5os7BxMal9qaF9U1742zME5fiLd53tp/APhPz14HXCVIt5Q4slhT1N2aGDJWXaZ
-         Cw8ApTPcSLs8eWLpKZ4o8azVfOB8iTxFojR2ESMRYFkxASmKJYdXs3FqT4TmrFny6K
-         mVME1IHGpz1TUnw/jxXC7vdlIdJa5YsqAVwz+BHpGnNhw5pY4ufXoQ5Dh6JFyKuR9Q
-         64/F95Jkyb5kw==
-Date:   Mon, 5 Jun 2023 11:25:19 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
+        with ESMTP id S230146AbjFEJg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 05:36:56 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DC6B7;
+        Mon,  5 Jun 2023 02:36:54 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2E89C80C4;
+        Mon,  5 Jun 2023 17:36:52 +0800 (CST)
+Received: from EXMBX064.cuchost.com (172.16.6.64) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 5 Jun
+ 2023 17:36:52 +0800
+Received: from EXMBX067.cuchost.com (172.16.6.67) by EXMBX064.cuchost.com
+ (172.16.6.64) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 5 Jun
+ 2023 17:36:52 +0800
+Received: from EXMBX067.cuchost.com ([fe80::a825:bd30:18ff:b2f8]) by
+ EXMBX067.cuchost.com ([fe80::a825:bd30:18ff:b2f8%16]) with mapi id
+ 15.00.1497.044; Mon, 5 Jun 2023 17:36:51 +0800
+From:   Mason Huo <mason.huo@starfivetech.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+CC:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/5] dt-bindings: display: ssd1307fb: Remove default
- width and height values
-Message-ID: <3bluztz3pcyoyjk4ett673ksnvtkl4xrjqjt43mhmd76dugg7t@kkp7rkx3vjjs>
-References: <20230605074753.562332-1-javierm@redhat.com>
- <20230605074753.562332-3-javierm@redhat.com>
+        Conor Dooley <conor@kernel.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Shengyu Qu <wiagn233@outlook.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v3 0/3] Add JH7110 cpufreq support
+Thread-Topic: [PATCH v3 0/3] Add JH7110 cpufreq support
+Thread-Index: AdmXkDPLZg25EWWrSjqYc22BpOYTbg==
+Date:   Mon, 5 Jun 2023 09:36:51 +0000
+Message-ID: <c5bde0d92d514250a21120ed33e0f6b2@EXMBX067.cuchost.com>
+References: <20230421031431.23010-1-mason.huo@starfivetech.com>
+ <457c35b5-aec4-1147-673f-947052b5f944@starfivetech.com>
+ <20230505-gusty-corset-e451d947c10d@wendy>
+In-Reply-To: <20230505-gusty-corset-e451d947c10d@wendy>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [183.27.98.75]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2glq5zwptkalv6dy"
-Content-Disposition: inline
-In-Reply-To: <20230605074753.562332-3-javierm@redhat.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Conor,
 
---2glq5zwptkalv6dy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Fri, May 05, 2023 at 09:38:38AM +0800, Mason Huo wrote:
+>> Hi Conor & Shengyu,
+>> 
+>> Thanks for your review, and is there any comments about these v3 patches?
 
-Hi,
+> Firstly there appears to have been some mess-up with the driver/bindings for 1/3, so I am waiting to see if the binding gets reverted before doing anything and secondly it's the merge window so I can't do anything about 3/3 until next week.
+> 
+> Cheers,
+> Conor.
 
-On Mon, Jun 05, 2023 at 09:47:50AM +0200, Javier Martinez Canillas wrote:
-> A default resolution in the ssd130x driver isn't set to an arbitrary 96x16
-> anymore. Instead is set to a width and height that's controller dependent.
->=20
-> Update DT schema to reflect what the driver does and make its users aware.
->=20
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
->=20
->  .../devicetree/bindings/display/solomon,ssd1307fb.yaml    | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.=
-yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> index 94bb5ef567c6..e8ed642dc144 100644
-> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -49,15 +49,15 @@ properties:
-> =20
->    solomon,height:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> -    default: 16
->      description:
-> -      Height in pixel of the screen driven by the controller
-> +      Height in pixel of the screen driven by the controller.
-> +      The default value is controller-dependent.
-> =20
->    solomon,width:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> -    default: 96
->      description:
-> -      Width in pixel of the screen driven by the controller
-> +      Width in pixel of the screen driven by the controller.
-> +      The default value is controller-dependent.
+Could you help to check if this patch can be moved on?
 
-I think we should document it still, either in the comment itself, or
-through a conditional and different default values based on the
-compatible.
-
-Maxime
-
---2glq5zwptkalv6dy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZH2p/wAKCRDj7w1vZxhR
-xRhXAQDvdcSALPank/jAyvcR8VX3ysS2Dn97ccy6GFuJotM7lAD+KE6PzZoSteHi
-I2vEzEO7Z6MIyO911S0roRSMFDBirg8=
-=n3Vi
------END PGP SIGNATURE-----
-
---2glq5zwptkalv6dy--
+Thanks
+Mason
