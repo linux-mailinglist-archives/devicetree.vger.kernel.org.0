@@ -2,124 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73A37722006
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 09:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 487D672202E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 09:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbjFEHs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 03:48:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39914 "EHLO
+        id S230286AbjFEHxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 03:53:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjFEHs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 03:48:56 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95887A1
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 00:48:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1685951292;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Wy1ybExd+DdkhzJijCZf2robb5n3TSjvDJzl2U7VfoI=;
-        b=hen+y6gJYG3zNhmjy95owTWLaVkcvhf66DckXO0w+8a/fG9NtWGeClJ4Cbbyf1iQnPcntx
-        ziFrKB/3UhA4MB0P4KsHN5Fvyaf4Cr1pQpiM3NoaoO4TxLY5lGbwjorcyR885+TXObV3In
-        Oh9zaxCMUX6czZUqwHxsiUOuhoumFQQ=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-658-phWephWXPwOEP5oRGK9wOg-1; Mon, 05 Jun 2023 03:48:11 -0400
-X-MC-Unique: phWephWXPwOEP5oRGK9wOg-1
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-3f7aad897a5so14219565e9.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 00:48:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685951290; x=1688543290;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wy1ybExd+DdkhzJijCZf2robb5n3TSjvDJzl2U7VfoI=;
-        b=KImfsWyNN/Hm7OrYUF3YtAg3vMidQO/UdIWUTcwdhRvddBLl/DEgPka6RpgHYgjNEi
-         I7Aa09DJZRWEM8Z2cjkBIqaDnuougmGVMvghvanaEGgj17z8HsuidsimaI8UW/IM2DQ0
-         MZtLqFqUMU+J8j2Dd0M0kf3MkSGXHVWlLniC7N2x1B9lYO14ZTXjpOYHEWaaJBvdVGeo
-         AJPWh5gEuwNXrq3C8cXkWvrt/wzyVlbldFG8MteeDKtZR/jbgS49D8roMHw4fuJ2RTE0
-         R/ysl4/j2QjRFRmTWQ1TvV4l+DNsiLSThl45kvmN+PK+aw8JzjmQeA/7+Q+dH3z1H0Fa
-         LYMQ==
-X-Gm-Message-State: AC+VfDzqj29B7Rv89rLk671/2jfzWvTaL//AZxpR1FqJGfBuWZO4LWMe
-        SDEEKSsgWcPFMqIlR/WGsvWlPeNrRHDxXZuILR50Oilzm4pSZf/1HLE2UcGgKkisejCMVspOmxP
-        xH0Azuumt8qWuRaup7C3QWg==
-X-Received: by 2002:a05:600c:246:b0:3f6:a66:a36d with SMTP id 6-20020a05600c024600b003f60a66a36dmr6957917wmj.10.1685951290364;
-        Mon, 05 Jun 2023 00:48:10 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7eFHg9bKquUpdsiK2KD6fy5tNMuQeT4ijXo/E1E9L9E6LlQGTfx9UJ7jtWPmSqTB0TklZmdQ==
-X-Received: by 2002:a05:600c:246:b0:3f6:a66:a36d with SMTP id 6-20020a05600c024600b003f60a66a36dmr6957906wmj.10.1685951290089;
-        Mon, 05 Jun 2023 00:48:10 -0700 (PDT)
-Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id q21-20020a1ce915000000b003f4fb5532a1sm9715192wmc.43.2023.06.05.00.48.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 00:48:09 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/5] dt-bindings: display: ssd1307fb: Remove default width and height values
-Date:   Mon,  5 Jun 2023 09:47:50 +0200
-Message-Id: <20230605074753.562332-3-javierm@redhat.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230605074753.562332-1-javierm@redhat.com>
-References: <20230605074753.562332-1-javierm@redhat.com>
+        with ESMTP id S231451AbjFEHxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 03:53:04 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F34E9;
+        Mon,  5 Jun 2023 00:52:42 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D2CF366056AA;
+        Mon,  5 Jun 2023 08:52:39 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685951561;
+        bh=ma8BsYbgBg4IWVmjxVkOdcEeWuXb2Q5wJV89M9WEafQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fPWZk0y1402kA+YZQ63ycsSDCF70dv82ThEZDWUKgjAM19Ezcmg9BuXaMBSW5r3eG
+         v5HY8RyJPmXdjOpab1yj3AJGh0K1nZbygk9BYHkj2DBBrgljsi9bDpqQTvTVib2f0d
+         IjlHgzHbpOkT7zvjeuyQty8h7zekYuuzxm3d1K6v+WhxfiKSjX94kMTfOerY4NuHz9
+         42D14zFM+hwhGtvd9eRF6fb8M//9CH4Ybf1Sww1lUD9I8munXPK2+ORGJO7B+b4g2m
+         t/rajBjUgz0i9YqDVFXZ7G/K1AK0kZotmW4GnVin4RAJPoYbeMrZxVmiwOj9fpV980
+         NgAic0Zt1XTvw==
+Message-ID: <fdc3cfa9-3221-c422-a42b-602410dc22f4@collabora.com>
+Date:   Mon, 5 Jun 2023 09:52:37 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v4 0/5] Add LVTS support for mt8192
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>
+Cc:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org,
+        rui.zhang@intel.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
+        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
+References: <20230530195132.2286163-1-bero@baylibre.com>
+ <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
+ <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A default resolution in the ssd130x driver isn't set to an arbitrary 96x16
-anymore. Instead is set to a width and height that's controller dependent.
+Il 01/06/23 19:09, Nícolas F. R. A. Prado ha scritto:
+> On Wed, May 31, 2023 at 12:49:43PM +0800, Chen-Yu Tsai wrote:
+>> On Wed, May 31, 2023 at 3:51 AM Bernhard Rosenkränzer <bero@baylibre.com> wrote:
+>>>
+>>> From: Balsam CHIHI <bchihi@baylibre.com>
+>>>
+>>> Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
+>>> Also, add Suspend and Resume support to LVTS Driver (all SoCs),
+>>> and update the documentation that describes the Calibration Data Offsets.
+>>>
+>>> Changelog:
+>>>      v4 :
+>>>          - Shrink the lvts_ap thermal sensor I/O range to 0xc00 to make
+>>>            room for SVS support, pointed out by
+>>>            AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>
+>>>      v3 :
+>>>          - Rebased :
+>>>              base-commit: 6a3d37b4d885129561e1cef361216f00472f7d2e
+>>>          - Fix issues in v2 pointed out by Nícolas F. R. A. Prado <nfraprado@collabora.com>:
+>>>            Use filtered mode to make sure threshold interrupts are triggered,
+>>
+>> I'm seeing sensor readout (either through sysfs/thermal/<x>/temp or hwmon)
+>> fail frequently on MT8192. If I run `sensors` (lm-sensors), at least a couple
+>> of the LVTS sensors would be N/A. Not sure if this is related to this change.
+> 
+> Yes, it is. Filtered mode has some delay associated with reading, meaning most
+> of the time the value isn't ready, while immediate mode is, well, pretty much
+> immediate and the read always succeeds.
+> 
+> For temperature monitoring, filtered mode should be used. It supports triggering
+> interrupts when crossing the thresholds. Immediate mode is meant for one-off
+> readings of the temperature. This is why I suggested using filtered mode.
+> 
+> As far as the thermal framework goes, it's ok that filtered mode doesn't always
+> return a value, as it will keep the old one. But of course, having the
+> temperature readout always work would be a desired improvement.
+> 
+> As for ways to achieve that, I think the intended way would be to enable the
+> interrupts that signal data ready on filtered mode (bits 19, 20, 21, 28), read
+> the temperature and cache it so it is always available when the get_temp()
+> callback is called. The issue with this is that it would cause *a lot* of
+> interrupts, which doesn't seem worth it.
+> 
+> Another option that comes to mind would be to enable immediate mode only during
+> the get_temp() callback, to immediately read a value, and return to filtered
+> mode at the end. That might work, but I haven't tried yet.
+> 
 
-Update DT schema to reflect what the driver does and make its users aware.
+The issue with keeping all as filtered mode comes when we want to add MediaTek
+SVS functionality which, on most SoCs, is used only for the GPU (apart from the
+MT8183 which has cpu+gpu svs).
 
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
----
+It makes sense to cache the readings, but I'm concerned about possible
+instabilities that we could get through the SVS voltage adjustment flows, as
+that algorithm takes current IP temperature to shape the DVFS "V" curve; please
+keep in mind that this concern is valid only if temperature readings get updated
+"very slowly" (>100ms would be too slow).
 
- .../devicetree/bindings/display/solomon,ssd1307fb.yaml    | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+So, point of the situation:
+  - Filtered mode, less than 100ms per temperature reading -> cache it, it's ok
+  - Filtered mode, more than 100ms per temp reading -> switch GPU to Immediate mode.
 
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-index 94bb5ef567c6..e8ed642dc144 100644
---- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-@@ -49,15 +49,15 @@ properties:
- 
-   solomon,height:
-     $ref: /schemas/types.yaml#/definitions/uint32
--    default: 16
-     description:
--      Height in pixel of the screen driven by the controller
-+      Height in pixel of the screen driven by the controller.
-+      The default value is controller-dependent.
- 
-   solomon,width:
-     $ref: /schemas/types.yaml#/definitions/uint32
--    default: 96
-     description:
--      Width in pixel of the screen driven by the controller
-+      Width in pixel of the screen driven by the controller.
-+      The default value is controller-dependent.
- 
-   solomon,page-offset:
-     $ref: /schemas/types.yaml#/definitions/uint32
--- 
-2.40.1
+Your call.
+
+Keep up the good work!
+- Angelo
 
