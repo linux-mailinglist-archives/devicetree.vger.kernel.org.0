@@ -2,83 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A97B722CB5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 18:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE50E722CBE
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 18:35:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231866AbjFEQfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 12:35:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
+        id S231742AbjFEQff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 12:35:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbjFEQfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 12:35:17 -0400
+        with ESMTP id S229590AbjFEQfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 12:35:25 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B224CD;
-        Mon,  5 Jun 2023 09:35:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7721EC;
+        Mon,  5 Jun 2023 09:35:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 279FE62822;
-        Mon,  5 Jun 2023 16:35:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 792CFC433D2;
-        Mon,  5 Jun 2023 16:35:12 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A3976281F;
+        Mon,  5 Jun 2023 16:35:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA573C433D2;
+        Mon,  5 Jun 2023 16:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685982915;
-        bh=zDePudP0DIR1Wb1O58bInOt74h9pSblZwyhXOT/M3Hk=;
+        s=k20201202; t=1685982923;
+        bh=9MUmkLDtIToYd9V8NeIlMZ2u6glZyMADhdjMo7PXa/k=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BRLcSUDjdioCI3RhbR5gPH62O+NlFoutQE/GVqFrkM8GfbZSRJHtR+8PqwyQvHs85
-         QLa+14K5UIVgmig6BroBG1m00K7UwoH2tLzrKzLsWTFc+yDW5MZ/SzbvOo5imJyDN3
-         tr5Vdz4Sy42wxrXVf4FjYd7njW5kzAtRbeBxyej4uMZ1VV06MQ4k5Bqy7Xl0ra389h
-         VvEa1yf8mwxKHW0iJbjLhdZFHp6g79UMROiiVMcBaNJ5qXRs/00622zuejcFzRZKWf
-         k+A1Vbzzq8YsaJv44tLRm2EJQ9VopXBmtbnaRdht9Q5admb/YUvkQ1zjVWbeb08Jz8
-         561RqQviWbv1Q==
+        b=o9p3vloDHX1j/zkqijJx5n840xvdqcWa9nb+UxkHX546s1eNB8WZghVr2JfQ2SloE
+         ujooE/1fhezPJyZu1STyVIFo/5sbR/WPZI6b1rv5603nKQoCWSg3whzirKvfVr7M15
+         NOlafbciQ5cnRJagU4e+z42JXsySpUWkrq8KY78uyVnyvZ2mbBIZyW3ikuZWZq8/AO
+         CPLZ2EmC2hqbatV0VBRWs0klxIG/FVryjtAnUQ7cisrRznAazL9VL8TdGYhDDLpvoi
+         +m4nzW33PsGMJ5k5Myr6/969o+SN5t0CovZEZWq+5wA9Y8d/SDRrOdgYOQ9UB4DzSL
+         BuIoSeXoUnNJg==
 From:   Will Deacon <will@kernel.org>
-To:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
+To:     Joerg Roedel <joro@8bytes.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel-team@android.com, Will Deacon <will@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     catalin.marinas@arm.com, kernel-team@android.com,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 0/5] arm64: dts: qcom: sa8775p: add more IOMMUs
-Date:   Mon,  5 Jun 2023 17:35:01 +0100
-Message-Id: <168597911073.23229.8836975612213411980.b4-ty@kernel.org>
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        iommu@lists.linux.dev
+Subject: Re: [PATCH 0/2] SM6375 GPU SMMU
+Date:   Mon,  5 Jun 2023 17:35:04 +0100
+Message-Id: <168597965563.30054.140440008485884265.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230417125844.400782-1-brgl@bgdev.pl>
-References: <20230417125844.400782-1-brgl@bgdev.pl>
+In-Reply-To: <20230531-topic-sm6375_gpusmmu-v1-0-860943894c71@linaro.org>
+References: <20230531-topic-sm6375_gpusmmu-v1-0-860943894c71@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Apr 2023 14:58:39 +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Wed, 31 May 2023 17:04:22 +0200, Konrad Dybcio wrote:
+> This series hooks up the GPU SMMU, as well as GPUCC as its direct
+> dependency.
 > 
-> Add the GPU and PCIe IOMMUs for sa8775p platforms as well as the required
-> GPU clock controller driver.
+> The thing sadly can't seem to be able to do PPPT, not even on downstream..
 > 
-> NOTE: I didn't pick up Krzysztof's tag for patch 4/5 as the patch changed
-> significantly.
+> Depends on (bindings and functionality-wise):
+> https://lore.kernel.org/linux-arm-msm/20230529-topic-sm6375gpuccpd-v1-0-8d57c41a6066@linaro.org/
 > 
 > [...]
 
 Applied bindings patch to will (for-joerg/arm-smmu/bindings), thanks!
 
-[4/5] dt-bindings: iommu: arm,smmu: enable clocks for sa8775p Adreno SMMU
-      https://git.kernel.org/will/c/387a80a74125
+[1/2] dt-bindings: arm-smmu: Add SM6375 GPU SMMU
+      https://git.kernel.org/will/c/44984d56e059
 
 Cheers,
 -- 
