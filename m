@@ -2,161 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E90D7223A3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 507E97223C3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbjFEKfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 06:35:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53206 "EHLO
+        id S231772AbjFEKqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 06:46:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231986AbjFEKfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:35:15 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA4AE53
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 03:34:59 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51458e3af68so6942144a12.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 03:34:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685961298; x=1688553298;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uFq5oGkqVQ3sub4JCKqcWdAZJhLFL2YkYQs99Cty04o=;
-        b=eZ9V+gIQetiODGpzOE/DVwsx5nXiBXaMfrU86OFR0YpPaivq3MAh5SkrE6C2GjhgNL
-         /lOeKCSVH0Y0VbG+T3zyaTPzGd9pdjSwBTyuBw20kIgFSTBrFcfBilo6V84kwfKCQe/1
-         7lr//Ay0N4QwKwdIN2CKcrC3hbQwaJeyn9tiT0EjWbTcp5nbIMYC5NFp+eLSI9ynjNAd
-         6k1sfoZj/qzgtcny0Jq3tjOoQHe/mPmd+YAee1GrUpYui2TM0f7NAoaKO7DkdDsJlTjt
-         sTzmBj9ZcxGJUdDNVJPNiGnyqBKTizHPc8iChG1HbXPpsblGrzb8hIqmOSeFAM2lvSVQ
-         Tp5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685961298; x=1688553298;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uFq5oGkqVQ3sub4JCKqcWdAZJhLFL2YkYQs99Cty04o=;
-        b=FQFLteiG+h+ZZt4AL3TXjqQdjmrjt9Guk43+FA61bhQQaau3oxilCJlZFeXAqnnaOL
-         8SFobu9Ynv64IpMV1Sqj8wJCwM/ranBDKmGIzMiOKCIzfwIBJGncWIPYNsx9cLijQmtV
-         NpzoM5dQ2NuJpiVTzz1ERJKZZmRHh1jnQRhnobUxpqWo3ZrCa2NqugN4/gpi9Ca7+rnR
-         FJ2jLnN5UdQBQ5UrnE3JZ6XrEJ41t4LX4zjPkS20VCVUFvtrSJNY7/qPjxCK7AXSZqwL
-         UXFNyuT89P/VUBUo8qovwFjl0LaFZ3IU51SihwfScCL3O83I+QU77+ete1WyNxKwu/D7
-         mrNQ==
-X-Gm-Message-State: AC+VfDyegpJPl0fkWHjkhIDKtVlOXQhw4rOdDYBsLX+0k8vj3fj9qbCx
-        io5GpbOTOnmdrcJE9Vdsn+FOsw==
-X-Google-Smtp-Source: ACHHUZ5+XtjfkEfVdH+SHr9LWWN02kLyYG3gz7kWxBFVXGEK6U0G8WHiam5TJMMbVl0NoG1DZ9XjbQ==
-X-Received: by 2002:a05:6402:6d4:b0:514:9528:6e6f with SMTP id n20-20020a05640206d400b0051495286e6fmr8643302edy.7.1685961297889;
-        Mon, 05 Jun 2023 03:34:57 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id s18-20020a056402165200b00510b5051f95sm3680533edx.90.2023.06.05.03.34.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 03:34:57 -0700 (PDT)
-Message-ID: <6818f4b0-4222-c3bb-c55f-bc0d26d7a681@linaro.org>
-Date:   Mon, 5 Jun 2023 12:34:54 +0200
+        with ESMTP id S231432AbjFEKqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:46:00 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46EF0EA;
+        Mon,  5 Jun 2023 03:45:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685961959; x=1717497959;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=p5URlSMRlx8Wq02hvARuSDlMSFf/lU44gWl/ckAOxo8=;
+  b=UX4tWJ8x0MblyLcx+Jd5tfqW+gAaeghFljVTxAKg2086tvLSf2+XkK2I
+   SyIoN7wjshEIOD8P+qCLu8g4N8oMGEOSh9Utdf4Ku+AN6cPsRvcsGEJPU
+   bAuMx5/6eO642/c29lg2yePjfPZgnqhXWlAXfEaWJ8M1oPyJXiVGp6lpn
+   6mmePpHWUqgKip8Qk52bY2xfC4YcpCsrwHJDpvtcc0Vlgzum+OwxglHU4
+   GIvWjYaUzFCxZOGOVn1U6tka8bGFVRS0QudO2+1tQioN4K6vXb/XN33mV
+   dYkoy0FAJ9S0z7tpujlPz//cmJoy8zJNDpzfEAXp2fFE2j36IcWdDrFU9
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="335954387"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
+   d="scan'208";a="335954387"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2023 03:45:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="852929198"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
+   d="scan'208";a="852929198"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 05 Jun 2023 03:45:51 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 05 Jun 2023 13:45:50 +0300
+Date:   Mon, 5 Jun 2023 13:45:50 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH RFC 3/7] usb: ucsi: glink: use the connector orientation
+ GPIO to provide switch events
+Message-ID: <ZH283tlyRffPMXGm@kuha.fi.intel.com>
+References: <20230601-topic-sm8550-upstream-type-c-v1-0-d4d97b4d8bab@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v1-3-d4d97b4d8bab@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
- touchscreen chip
-Content-Language: en-US
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230605060524.1178164-1-yangcong5@huaqin.corp-partner.google.com>
- <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230601-topic-sm8550-upstream-type-c-v1-3-d4d97b4d8bab@linaro.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 08:05, Cong Yang wrote:
-> Add an ilitek touch screen chip ili9882t.
+On Thu, Jun 01, 2023 at 04:07:03PM +0200, Neil Armstrong wrote:
+> On SM8550, the non-altmode orientation is not given anymore within
+> altmode events, even with USB SVIDs events.
 > 
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> On the other side, the Type-C connector orientation is correctly
+> reported by a signal from the PMIC.
+> 
+> Take this gpio signal when we detect some Type-C port activity
+> to notify any Type-C switches tied to the Type-C port connectors.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
 > ---
->  .../bindings/input/elan,ekth6915.yaml         | 23 ++++++++++++++++---
->  1 file changed, 20 insertions(+), 3 deletions(-)
+>  drivers/usb/typec/ucsi/ucsi_glink.c | 52 ++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 51 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> index 05e6f2df604c..f0e7ffdce605 100644
-> --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> @@ -15,11 +15,14 @@ description:
+> diff --git a/drivers/usb/typec/ucsi/ucsi_glink.c b/drivers/usb/typec/ucsi/ucsi_glink.c
+> index 1fe9cb5b6bd9..88491dbff7e3 100644
+> --- a/drivers/usb/typec/ucsi/ucsi_glink.c
+> +++ b/drivers/usb/typec/ucsi/ucsi_glink.c
+> @@ -9,9 +9,13 @@
+>  #include <linux/mutex.h>
+>  #include <linux/property.h>
+>  #include <linux/soc/qcom/pdr.h>
+> +#include <linux/usb/typec_mux.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/soc/qcom/pmic_glink.h>
+>  #include "ucsi.h"
 >  
->  properties:
->    compatible:
-> -    items:
-> -      - const: elan,ekth6915
-> +    enum:
-> +      - elan,ekth6915
-> +      - ilitek,ili9882t
+> +#define PMIC_GLINK_MAX_PORTS	2
+> +
+>  #define UCSI_BUF_SIZE                   48
 >  
->    reg:
-> -    const: 0x10
-> +    enum:
-> +      - 0x10
-> +      - 0x41
+>  #define MSG_TYPE_REQ_RESP               1
+> @@ -53,6 +57,9 @@ struct ucsi_notify_ind_msg {
+>  struct pmic_glink_ucsi {
+>  	struct device *dev;
 >  
->    interrupts:
->      maxItems: 1
-> @@ -29,11 +32,13 @@ properties:
+> +	struct gpio_desc *port_orientation[PMIC_GLINK_MAX_PORTS];
+> +	struct typec_switch *port_switch[PMIC_GLINK_MAX_PORTS];
+> +
+>  	struct pmic_glink_client *client;
 >  
->    vcc33-supply:
->      description: The 3.3V supply to the touchscreen.
-> +                 If using ili9882t then this supply will not be needed.
-
-What does it mean "will not be needed"? Describe the hardware, not your
-drivers.
-
-I don't think you tested your DTS. Submit DTS users, because I do not
-believe you are testing your patches. You already got such comment and I
-don't see much of improvements here.
-
+>  	struct ucsi *ucsi;
+> @@ -221,8 +228,20 @@ static void pmic_glink_ucsi_notify(struct work_struct *work)
+>  	}
 >  
->    vccio-supply:
->      description:
->        The IO supply to the touchscreen. Need not be specified if this is the
->        same as the 3.3V supply.
-> +      If using ili9882t, the IO supply is required.
-
-Don't repeat constraints in free form text.
+>  	con_num = UCSI_CCI_CONNECTOR(cci);
+> -	if (con_num)
+> +	if (con_num) {
+> +		if (con_num < PMIC_GLINK_MAX_PORTS &&
+> +		    ucsi->port_orientation[con_num - 1]) {
+> +			int orientation = gpiod_get_value(ucsi->port_orientation[con_num - 1]);
+> +
+> +			if (orientation >= 0) {
+> +				typec_switch_set(ucsi->port_switch[con_num - 1],
+> +						 orientation ? TYPEC_ORIENTATION_REVERSE
+> +							     : TYPEC_ORIENTATION_NORMAL);
+> +			}
+> +		}
+> +
+>  		ucsi_connector_change(ucsi->ucsi, con_num);
+> +	}
 >  
->  required:
->    - compatible
-> @@ -41,6 +46,18 @@ required:
->    - interrupts
->    - vcc33-supply
+>  	if (ucsi->sync_pending && cci & UCSI_CCI_BUSY) {
+>  		ucsi->sync_val = -EBUSY;
+> @@ -283,6 +302,7 @@ static int pmic_glink_ucsi_probe(struct auxiliary_device *adev,
+>  {
+>  	struct pmic_glink_ucsi *ucsi;
+>  	struct device *dev = &adev->dev;
+> +	struct fwnode_handle *fwnode;
+>  	int ret;
 >  
-> +if:
+>  	ucsi = devm_kzalloc(dev, sizeof(*ucsi), GFP_KERNEL);
+> @@ -310,6 +330,36 @@ static int pmic_glink_ucsi_probe(struct auxiliary_device *adev,
+>  
+>  	ucsi_set_drvdata(ucsi->ucsi, ucsi);
+>  
+> +	device_for_each_child_node(dev, fwnode) {
+> +		u32 port;
+> +
+> +		ret = fwnode_property_read_u32(fwnode, "reg", &port);
+> +		if (ret < 0) {
+> +			dev_err(dev, "missing reg property of %pOFn\n", fwnode);
+> +			return ret;
+> +		}
+> +
+> +		if (port >= PMIC_GLINK_MAX_PORTS) {
+> +			dev_warn(dev, "invalid connector number, ignoring\n");
+> +			continue;
+> +		}
+> +
+> +		ucsi->port_orientation[port] = devm_fwnode_gpiod_get(&adev->dev, fwnode,
+> +								     "orientation",
+> +								     GPIOD_IN, NULL);
+> +		if (IS_ERR(ucsi->port_orientation[port]))
+> +			return dev_err_probe(dev, PTR_ERR(ucsi->port_orientation[port]),
+> +					     "unable to acquire orientation gpio\n");
+> +
+> +		if (!ucsi->port_orientation[port])
+> +			continue;
+> +
+> +		ucsi->port_switch[port] = fwnode_typec_switch_get(fwnode);
+> +		if (IS_ERR(ucsi->port_switch[port]))
+> +			return dev_err_probe(dev, PTR_ERR(ucsi->port_switch[port]),
+> +					"failed to acquire orientation-switch\n");
+> +	}
+> +
+>  	ucsi->client = devm_pmic_glink_register_client(dev,
+>  						       PMIC_GLINK_OWNER_USBC,
+>  						       pmic_glink_ucsi_callback,
+> 
+> -- 
+> 2.34.1
 
-Keep it in allOf. Will save you one indentation later.
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: ilitek,ili9882t
-> +then:
-> +  required:
-> +    - compatible
-> +    - reg
-> +    - interrupts
-
-Don't duplicate.
-
-> +    - vccio-supply
-
-
-Best regards,
-Krzysztof
-
+-- 
+heikki
