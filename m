@@ -2,425 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9BE97222B5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 11:56:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27F297222D1
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:01:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbjFEJ4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 05:56:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35374 "EHLO
+        id S231218AbjFEKBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 06:01:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbjFEJ4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 05:56:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA9CB8;
-        Mon,  5 Jun 2023 02:56:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 57E07621FF;
-        Mon,  5 Jun 2023 09:56:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B51EC433D2;
-        Mon,  5 Jun 2023 09:56:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685958978;
-        bh=E0sAzZZmP5WA1Nwo3dxOCDReq4iq5AIC9EGQphYjTpc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bErdGzNY2CmDdzKa+JSuXnENnoWBEZhEfN1CjJA42rochcJAzsTmwhQgjeGA7RzKl
-         h/lT3hAkIPCwG8aXhHAVR+shMKLMbRjbUjGitdmddEBDMzFXDy03jqQa+2ZGCvJpKs
-         JBYPF5nOf/OBaU+evEXkwRnmc9TtQosKCKHvFGCI+hjlEyBGp+dLIC6gyZnz34tTAX
-         QgwpmaMeF9yT/D4/t3JtKiz+aUCNuPP7d/augH+oAAY34+2MH2+noUTSRfJhzSI9s2
-         ZX2zDaKS4KuAic9ukqDgdkfXu6YMIyYuA7NbK/dZVFliyw6lfaBgsb0RI/Hc9wen7l
-         67FeaF2Sct8vA==
-Date:   Mon, 5 Jun 2023 11:56:15 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Keith Zhao <keith.zhao@starfivetech.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229459AbjFEKBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:01:49 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2048.outbound.protection.outlook.com [40.107.20.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967EED3;
+        Mon,  5 Jun 2023 03:01:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pbcqn1K9SkzXE4jgb6WG17EyM/TsnH6TD1w3HWfUg5o=;
+ b=D+7J+Sx7hhYj3mZv4nEaMQIZaR5Z7MZElQWb6ibp1pkyl2lZRZE8gqwVAOrpmqHm3bxIeplEmE8jOepiKySQ6aJnmiNiNAHYusPScyldquDtXxQXz8Owbt/1yAWqrN4pDv2xRwUbdtsLDbzVodYmWUIxZ0MHmyGNW9z23EtRyFlTWFkEaEzlX+zt1GUtsPp3J6+l5CGWB3qkb9ST2QXYfVUevSd+h2U22w2dYi7IPODC54usWw4oeJY7eRQNUW5KkxDRZWDcny52xxZHwqePr6ckPYzP3hgMSwXQI+ndt8x+dNj5Ffp52piF8XGkMl62JqP8vzJ7XwLuq3aQvGXFXQ==
+Received: from ZR0P278CA0184.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:44::19)
+ by DBBPR04MB7660.eurprd04.prod.outlook.com (2603:10a6:10:20f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Mon, 5 Jun
+ 2023 10:01:41 +0000
+Received: from VE1EUR01FT023.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:910:44:cafe::50) by ZR0P278CA0184.outlook.office365.com
+ (2603:10a6:910:44::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
+ Transport; Mon, 5 Jun 2023 10:01:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
+ smtp.mailfrom=topicproducts.com; dkim=fail (signature did not verify)
+ header.d=topic.nl;dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
+Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
+ VE1EUR01FT023.mail.protection.outlook.com (10.152.2.218) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6477.18 via Frontend Transport; Mon, 5 Jun 2023 10:01:40 +0000
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (104.47.11.49) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 05 Jun 2023 10:01:39 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TrwTUfLGJNEQKzvTSv+LAbo5BDv/eHsbuyv6nKVX64SpZ9a6fis1Y9/HoNeol/E7Thognx8PVQ/QlG6taIDCzF8XH1CdMzBMDHdIEDG2MyzhfEMAwm6bVZIiRSsivK4qSRpNAPXnOQz7Sxd5EboDlP+FBvA/DNRzIRLr95+QDuyxPEjttZ01SO6ITZZYpdaMfFQM8dSrrvqfJD+Gpv0iJQ9gtiX35LgDXSoCuodoxYcHZpVhlGCThUVB45JdtmUFdOAsp+K0se0hNCz9Lfj0FAvTnVHpK5w1/zLnhpHp6tVQBvgpRzEfEOuZiDmw2oRxpPvIVPSt4uPRRb4cREMbaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=V9u43TFUx+rCyt4zwj8CGK4Hio2R9CL3d6dzWzFRoK4=;
+ b=LXtmTg+vhJsYwdi2WQMMxBwzgMrFyKGq+D4IcJMsPQJR9JSLCyi8DUkRt5jU9BMrsFCjyqc3YyHhtnvu0WLRhv+8rf8EdE+AbIIA0q4E6pfkp8QkWSXYdTrlXAHJARukeeqWZP41wCXZy24AlAm9LqIuPOUha9z7td1ebZcLTyJCLZyQKh+24wOW9Xkvivw/ibqo4WSSmh+oo7EaQTwsKEOmVq7pJ8eLvIgjVqMp2mWNFq9mCy0O148F0Dd54PuHdM+ZA1dBHpQEHaBZbn5zxtYLyLgxAfsXZlbnkoK5dn1fkfahmAyjm6Pt/MynhhMfn/855CaEMTrzKCtGDVqSCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V9u43TFUx+rCyt4zwj8CGK4Hio2R9CL3d6dzWzFRoK4=;
+ b=pbNUGbXbFxwEyKe2CNgP9G2iPebeFZMYD4CtGpox8cN4HHshr40l2hfO5jdpwGKJv9DE3jY7a+rsn8DWQRTveBdBA18FsX30YojaFl5ON5HMGXyfz7+WGxVNj5SYIgFmbscktWNMML3xnFMbLAYJeyoce/mt8LYfyMVLA8856DBmo2xjmJ+BYh+N/oMxSLcISoT37sq2P32pkkxvrozoEGuiyMu/fl0fqVoWRXMHlBQDRwnT0O94hxZsegMQBe93UZYW2XGfKu8STJOlXleE2SsfxyvMvpAJmFfQ4zZSNMCWuCY1jwqJWFuBxLRpA8q9MlH6mgpgNdhY8rJxLXghXw==
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by AS1PR04MB9683.eurprd04.prod.outlook.com (2603:10a6:20b:473::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Mon, 5 Jun
+ 2023 10:01:36 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::4cd1:3e90:54e5:9696]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::4cd1:3e90:54e5:9696%5]) with mapi id 15.20.6455.030; Mon, 5 Jun 2023
+ 10:01:36 +0000
+Message-ID: <ae4e2041-9fd7-30e7-8c0a-22a423c5871e@topic.nl>
+Date:   Mon, 5 Jun 2023 12:01:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add nvmem-clock
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+CC:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH 9/9] drm/verisilicon: Add starfive hdmi driver
-Message-ID: <ayygsdwzogu4ygkobs7zkroxicxtixtp5bxayn5vzk4qlkwt6x@yo5s2qwt77mo>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602074043.33872-10-keith.zhao@starfivetech.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.2167d5ad-7e99-4eb9-a313-030fc7a7d546@emailsignatures365.codetwo.com>
+ <20230526143807.10164-1-mike.looijmans@topic.nl>
+ <c6d886d9-8f74-7af3-5478-030f5d6e4b1c@linaro.org>
+Organization: Topic
+In-Reply-To: <c6d886d9-8f74-7af3-5478-030f5d6e4b1c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: AM0PR02CA0219.eurprd02.prod.outlook.com
+ (2603:10a6:20b:28f::26) To DB8PR04MB6523.eurprd04.prod.outlook.com
+ (2603:10a6:10:10f::26)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="c3ccdoac5xz7n6if"
-Content-Disposition: inline
-In-Reply-To: <20230602074043.33872-10-keith.zhao@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|AS1PR04MB9683:EE_|VE1EUR01FT023:EE_|DBBPR04MB7660:EE_
+X-MS-Office365-Filtering-Correlation-Id: 30ec630e-0f1a-4abc-7b34-08db65abdc12
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: anrrKJCc2URoe/g3BRyIt6qSnW5MzMz4feqPO0nmGFOtZstwPc9oXDw9JLVuTCy/35bxhdaR58pZQaYqcTYOn883OA3sMevoZNrj8+yIB3aa+Oi8JEK8dM0hIdb3IpBB7g33+Z+dziNO1yjUKt62/hQzPh47w+u0oHVoIZ1+46nXnTW479xCgCjYyyTwUtmQjxIWk8+98Hp19DvN7Hi/IZJ6yLlhH3JIV+1fZuz2J4Vbn1lyttDvX69EGbmJem+s8OdD+UainMARjMEz2i5pZnEF9glvs4K4u+96h2dam4oVWur5g5lbfzBsngd5NnbQ3U7p2DnysWM+GEWDdbuQGd8/F8TMZJhFySIVilTtmtEShNMj7/CH204MuTjgz6hRrtt0q0VhddXAgM/Ii/7+RhQnGpAyIy9fAQxlRS6/PYkLXnbVekOJbXGSaMjnZCfxwK9HZdisxquqUdUTin8CCz9Mr7e1LanY9S2AJ8pErYhUXReUKYC00Yw9/XaSygCwqrn/GMa4FKzDWGNWEslmVeei2pKlzCYhyMVYx0yujTQMy6q1Ogv0mQSMisd/Tu9PWMXxmkvaGL4A3L10J4UE5lS9hY7B2V11roF47afgA5hU3z3ETyGvNjAGdQVD87KVhkcnjO5D/GjGDdMv9LF0cquzzAf7QDvFqzYvhItRazU=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(396003)(366004)(346002)(136003)(39840400004)(451199021)(53546011)(6512007)(6506007)(38100700002)(2616005)(41300700001)(38350700002)(31686004)(36916002)(6486002)(52116002)(186003)(26005)(42882007)(83380400001)(83170400001)(478600001)(54906003)(4326008)(66476007)(66556008)(316002)(66946007)(8936002)(8676002)(5660300002)(44832011)(2906002)(31696002)(15974865002)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9683
+X-CodeTwo-MessageID: 0245adc9-b7a5-483c-ace2-196be3da7e17.20230605100139@westeu12-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: VE1EUR01FT023.eop-EUR01.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 0afd62b1-0ba8-456e-5b6c-08db65abd948
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 69klB3EXCWIf61HqPkCPNdkbaADWlMw3KJnsGM1CfI5JRXyr2mFiHhZyO9meB2rNJkM0CSMHT0qVuPlJkQV7M3AsIG21TVIqa18/JufT7HwFDEKx2IT64fgVU8yoHXDbSsghIyFpfu2Hj+6PliewH7AB+oTSFwYqY3iGRDt7hXZl+B8oLgJwqsAGxCu94EbzpcpIPPTVd7r8pS+m8Zmd7kWBq9nfwHD2+pK2h+J3FCy1hJq8/VgM0/SeCdvliyCFPeuN8EKzd7ebgGS20xC4FKVwVnPb1HvNlxzRYkfK7r71FZma4O+RXAPWFalhm55DeeX3mKjbjPp4nqqqYorRM3WrhPfjpKOPm/Mbd4OIw6jvV0h7IndZylcMbo/pOMygZpLfuPYuFiTejJNgkiXmZOpP1/g9ZrQAFIfxvmRQGxnLBQZrarKMjPaKT3ijwULaAwsROu8L20wY93n9E3fogNC5Amufj/+4GXV0Ku9yAcrKZDmZ9Z9BHzIRRk0t14dKGS56MIfB5hH6oBZl9badZ2N9nC7cnksDOMc/9JyTHqriMTfp2GPLKKZ0ye4jorqZl0flM7CW7jSKPw0CBJ7aFLZ/ULBsh/EVrLl+i+PIN/Nc0pWl9wcDrUhnsasvKP/t9NxpdvY723Nu2wivTA3sdY/vNTh+mg4O1FX9wZ1fa3OjoS9MDB6q6+uWrmORKt3AF+UyHqjoNDFcZkEFh03mFxVmPc30Z+2BsybjDyUAoJTlWsUy+aoTot29o9WP07n3YkOeYpGmdT9nQRxggGFYmQ==
+X-Forefront-Antispam-Report: CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(376002)(39840400004)(396003)(451199021)(46966006)(36840700001)(47076005)(2616005)(26005)(6512007)(53546011)(6506007)(83380400001)(31686004)(41300700001)(36860700001)(36916002)(6486002)(186003)(42882007)(336012)(478600001)(83170400001)(54906003)(4326008)(82310400005)(40480700001)(7636003)(7596003)(356005)(70206006)(70586007)(316002)(8936002)(8676002)(5660300002)(44832011)(2906002)(31696002)(15974865002)(36756003)(43740500002)(18886075002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2023 10:01:40.6725
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30ec630e-0f1a-4abc-7b34-08db65abdc12
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT023.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7660
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 31-05-2023 21:27, Krzysztof Kozlowski wrote:
+> On 26/05/2023 16:38, Mike Looijmans wrote:
+>> Add bindings for a fixed-rate clock that retrieves its rate from an
+>> NVMEM provider. This allows to store clock settings in EEPROM or EFUSE
+>> or similar device.
+>>
+>> Component shortages lead to boards being shipped with different clock
+>> crystals, based on what was available at the time. The clock frequency
+>> was written to EEPROM at production time. Systems can adapt to a wide
+>> range of input frequencies using the clock framework, but this required
+>> us to patch the devicetree at runtime or use some custom driver. This
+>> provides a more generic solution.
+> This does not look like real hardware. I mean, the clock does not fetch
+> its rate from nvmem, right? It's the Linux which does it, so basically
+> you described here driver, not hardware.
+Right, this just reads a setting from an NVMEM provider.
+> Extend existing fixed-clock bindings to allow reading frequency via
+> nvmem cells.
 
---c3ccdoac5xz7n6if
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I just tried and implemented this, but it does not work. The reason is=20
+that the fixed-clock implementation returns "void" in its=20
+of_fixed_clk_setup() init function. The nvmem provider returns=20
+EPROBE_DEFER because it isn't ready at this early stage, and this error=20
+will not be propagated up because of the "void" signature. Thus, it's=20
+never retried and the clock just disappears.
 
-Hi,
 
-On Fri, Jun 02, 2023 at 03:40:43PM +0800, Keith Zhao wrote:
-> Add HDMI dirver for StarFive SoC JH7110.
->=20
-> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> Best regards,
+> Krzysztof
+>
 
-I have a few high level comments:
+--=20
+Mike Looijmans
+System Expert
 
-> +static int starfive_hdmi_setup(struct starfive_hdmi *hdmi,
-> +			       struct drm_display_mode *mode)
-> +{
-> +	hdmi_modb(hdmi, STARFIVE_BIAS_CONTROL, STARFIVE_BIAS_ENABLE, STARFIVE_B=
-IAS_ENABLE);
-> +	hdmi_writeb(hdmi, STARFIVE_RX_CONTROL, STARFIVE_RX_ENABLE);
-> +	hdmi->hdmi_data.vic =3D drm_match_cea_mode(mode);
-> +
-> +	hdmi->tmds_rate =3D mode->clock * 1000;
-> +	starfive_hdmi_phy_clk_set_rate(hdmi);
-> +
-> +	while (!(hdmi_readb(hdmi, STARFIVE_PRE_PLL_LOCK_STATUS) & 0x1))
-> +		continue;
-> +	while (!(hdmi_readb(hdmi, STARFIVE_POST_PLL_LOCK_STATUS) & 0x1))
-> +		continue;
-> +
-> +	/*turn on LDO*/
-> +	hdmi_writeb(hdmi, STARFIVE_LDO_CONTROL, STARFIVE_LDO_ENABLE);
-> +	/*turn on serializer*/
-> +	hdmi_writeb(hdmi, STARFIVE_SERIALIER_CONTROL, STARFIVE_SERIALIER_ENABLE=
-);
-> +
-> +	starfive_hdmi_tx_phy_power_down(hdmi);
-> +	starfive_hdmi_config_video_timing(hdmi, mode);
-> +	starfive_hdmi_tx_phy_power_on(hdmi);
-> +
-> +	starfive_hdmi_tmds_driver_on(hdmi);
-> +	starfive_hdmi_sync_tmds(hdmi);
-> +
-> +	return 0;
-> +}
+TOPIC Embedded Products B.V.
+Materiaalweg 4, 5681 RJ Best
+The Netherlands
 
-The PHY PLL supports rate until 594MHz, but I don't see any scrambler
-setup here?
+T: +31 (0) 499 33 69 69
+E: mike.looijmans@topic.nl
+W: www.topic.nl
 
-> +static void starfive_hdmi_encoder_mode_set(struct drm_encoder *encoder,
-> +					   struct drm_display_mode *mode,
-> +					   struct drm_display_mode *adj_mode)
-> +{
-> +	struct starfive_hdmi *hdmi =3D encoder_to_hdmi(encoder);
-> +
-> +	starfive_hdmi_setup(hdmi, adj_mode);
 
-You should put that call into the enable callback, there's no need to
-power it up at that point.
 
-> +	memcpy(&hdmi->previous_mode, adj_mode, sizeof(hdmi->previous_mode));
-
-You don't seem to be using that anywhere, and it's not the previous but
-the current mode.
-
-> +}
-> +
-> +static void starfive_hdmi_encoder_enable(struct drm_encoder *encoder)
-> +{
-> +	struct starfive_hdmi *hdmi =3D encoder_to_hdmi(encoder);
-> +
-> +	pm_runtime_get_sync(hdmi->dev);
-> +}
-> +
-> +static void starfive_hdmi_encoder_disable(struct drm_encoder *encoder)
-> +{
-> +	struct starfive_hdmi *hdmi =3D encoder_to_hdmi(encoder);
-> +
-> +	pm_runtime_put(hdmi->dev);
-> +}
-> +
-> +static bool starfive_hdmi_encoder_mode_fixup(struct drm_encoder *encoder,
-> +					     const struct drm_display_mode *mode,
-> +					     struct drm_display_mode *adj_mode)
-> +{
-> +	return true;
-> +}
-
-You can drop that one
-
-> +static int
-> +starfive_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
-> +				   struct drm_crtc_state *crtc_state,
-> +				   struct drm_connector_state *conn_state)
-> +{
-> +	return 0;
-> +}
-
-Ditto
-
-> +static int starfive_hdmi_connector_get_modes(struct drm_connector *conne=
-ctor)
-> +{
-> +	struct starfive_hdmi *hdmi =3D connector_to_hdmi(connector);
-> +	struct edid *edid;
-> +	int ret =3D 0;
-> +
-> +	if (!hdmi->ddc)
-> +		return 0;
-> +
-> +	edid =3D drm_get_edid(connector, hdmi->ddc);
-> +	if (edid) {
-> +		hdmi->hdmi_data.sink_is_hdmi =3D drm_detect_hdmi_monitor(edid);
-> +		hdmi->hdmi_data.sink_has_audio =3D drm_detect_monitor_audio(edid);
-> +		drm_connector_update_edid_property(connector, edid);
-> +		ret =3D drm_add_edid_modes(connector, edid);
-> +		kfree(edid);
-> +	}
-> +
-> +	return ret;
-> +}
-
-get_modes can be called while the connector is inactive, you need to
-call pm_runtime_get_sync / pm_runtime_put here
-
-> +static enum drm_mode_status
-> +starfive_hdmi_connector_mode_valid(struct drm_connector *connector,
-> +				   struct drm_display_mode *mode)
-> +{
-> +	const struct pre_pll_config *cfg =3D pre_pll_cfg_table;
-> +	int pclk =3D mode->clock * 1000;
-> +	bool valid =3D false;
-> +	int i;
-> +
-> +	for (i =3D 0; cfg[i].pixclock !=3D (~0UL); i++) {
-> +		if (pclk =3D=3D cfg[i].pixclock) {
-> +			if (pclk > 297000000)
-> +				continue;
-> +
-> +			valid =3D true;
-> +			break;
-> +		}
-> +	}
-> +
-> +	return (valid) ? MODE_OK : MODE_BAD;
-> +}
-
-So I guess that's why you don't bother with the scrambler, you filter
-all the modes > 297MHz?
-
-If so, you also need to make sure it happens in atomic_check. mode_valid
-will only filter the modes exposed to userspace, but the userspace is
-free to send any mode it wants and that's checked by atomic_check.
-
-> +
-> +static int
-> +starfive_hdmi_probe_single_connector_modes(struct drm_connector *connect=
-or,
-> +					   u32 maxX, u32 maxY)
-> +{
-> +	struct starfive_hdmi *hdmi =3D connector_to_hdmi(connector);
-> +	int ret;
-> +
-> +	pm_runtime_get_sync(hdmi->dev);
-> +
-> +	ret =3D drm_helper_probe_single_connector_modes(connector, 3840, 2160);
-> +
-> +	pm_runtime_put(hdmi->dev);
-> +
-> +	return ret;
-> +}
-
-You already have a pm_runtime_get_sync call in get_modes, why is that
-necessary?
-
-> +
-> +static void starfive_hdmi_connector_destroy(struct drm_connector *connec=
-tor)
-> +{
-> +	drm_connector_unregister(connector);
-> +	drm_connector_cleanup(connector);
-> +}
-
-Use drmm_connector_init.
-
-> +static irqreturn_t starfive_hdmi_irq(int irq, void *dev_id)
-> +{
-> +	struct starfive_hdmi *hdmi =3D dev_id;
-> +
-> +	drm_helper_hpd_irq_event(hdmi->connector.dev);
-
-drm_connector_helper_hpd_irq_event()
-
-> +static int starfive_hdmi_get_clk_rst(struct device *dev, struct starfive=
-_hdmi *hdmi)
-> +{
-> +	hdmi->sys_clk =3D devm_clk_get(dev, "sysclk");
-> +	if (IS_ERR(hdmi->sys_clk)) {
-> +		DRM_DEV_ERROR(dev, "Unable to get HDMI sysclk clk\n");
-> +		return PTR_ERR(hdmi->sys_clk);
-> +	}
-> +	hdmi->mclk =3D devm_clk_get(dev, "mclk");
-> +	if (IS_ERR(hdmi->mclk)) {
-> +		DRM_DEV_ERROR(dev, "Unable to get HDMI mclk clk\n");
-> +		return PTR_ERR(hdmi->mclk);
-> +	}
-> +	hdmi->bclk =3D devm_clk_get(dev, "bclk");
-> +	if (IS_ERR(hdmi->bclk)) {
-> +		DRM_DEV_ERROR(dev, "Unable to get HDMI bclk clk\n");
-> +		return PTR_ERR(hdmi->bclk);
-> +	}
-> +	hdmi->tx_rst =3D reset_control_get_shared(dev, "hdmi_tx");
-> +	if (IS_ERR(hdmi->tx_rst)) {
-> +		DRM_DEV_ERROR(dev, "Unable to get HDMI tx rst\n");
-> +		return PTR_ERR(hdmi->tx_rst);
-> +	}
-
-That one isn't device-managed, you'll need to put back the reference in
-unbind.
-
-> +	return 0;
-> +}
-> +
-> +static int starfive_hdmi_bind(struct device *dev, struct device *master,
-> +			      void *data)
-> +{
-> +	struct platform_device *pdev =3D to_platform_device(dev);
-> +	struct drm_device *drm =3D data;
-> +	struct starfive_hdmi *hdmi;
-> +	struct resource *iores;
-> +	int irq;
-> +	int ret;
-> +
-> +	hdmi =3D devm_kzalloc(dev, sizeof(*hdmi), GFP_KERNEL);
-> +	if (!hdmi)
-> +		return -ENOMEM;
-
-Using device-managed actions to allocate memory that will eventually
-hold the connectors and encoders is unsafe.
-
-Please use drmm_kzalloc here, and test that it all works fine by
-enabling KASAN and removing the module.
-
-> +
-> +	hdmi->dev =3D dev;
-> +	hdmi->drm_dev =3D drm;
-> +
-> +	iores =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	hdmi->regs =3D devm_ioremap_resource(dev, iores);
-> +	if (IS_ERR(hdmi->regs))
-> +		return PTR_ERR(hdmi->regs);
-
-The main issue I was mentioning above is that whenever the device is
-unbound from its driver, all the device-managed actions are executed.
-
-However, the KMS device will still be there until the last (userspace)
-user closes its FD, so if anything happens between the time the module
-is removed and the FD is closed, you get plenty of use-after-free errors.
-
-For MMIO accesses, this is even more true since you need to use a
-device-managed action for the registers mapping (this is true for any
-resource tied to the device itself, so clocks, reset, etc. fit that
-description too).
-
-To protect against it, you need to protect any device access by a call
-to drm_dev_enter/drm_dev_exit.
-
-> +
-> +	ret =3D starfive_hdmi_get_clk_rst(dev, hdmi);
-> +	ret =3D starfive_hdmi_enable_clk_deassert_rst(dev, hdmi);
-
-Why does the device need to be powered here?
-
-> +	irq =3D platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> +		ret =3D irq;
-> +		goto err_disable_clk;
-> +	}
-> +
-> +	hdmi->ddc =3D starfive_hdmi_i2c_adapter(hdmi);
-> +	if (IS_ERR(hdmi->ddc)) {
-> +		ret =3D PTR_ERR(hdmi->ddc);
-> +		hdmi->ddc =3D NULL;
-> +		goto err_disable_clk;
-> +	}
-> +
-> +	hdmi->tmds_rate =3D clk_get_rate(hdmi->sys_clk);
-
-It's not clear to me what tmds_rate is here, wouldn't that change from
-one mode to the next?
-
-> +	starfive_hdmi_i2c_init(hdmi);
-> +
-> +	ret =3D starfive_hdmi_register(drm, hdmi);
-> +	if (ret)
-> +		goto err_put_adapter;
-> +
-> +	dev_set_drvdata(dev, hdmi);
-> +
-> +	/* Unmute hotplug interrupt */
-> +	hdmi_modb(hdmi, HDMI_STATUS, m_MASK_INT_HOTPLUG, v_MASK_INT_HOTPLUG(1));
-> +
-> +	ret =3D devm_request_threaded_irq(dev, irq, starfive_hdmi_hardirq,
-> +					starfive_hdmi_irq, IRQF_SHARED,
-> +					dev_name(dev), hdmi);
-> +	if (ret < 0)
-> +		goto err_cleanup_hdmi;
-> +
-> +	pm_runtime_use_autosuspend(&pdev->dev);
-> +	pm_runtime_set_autosuspend_delay(&pdev->dev, 500);
-
-Autosuspend? Shouldn't we enable the device as long as there is an
-active video output (and you have that covered already)?
-
-> +	pm_runtime_enable(&pdev->dev);
-> +
-> +	starfive_hdmi_disable_clk_assert_rst(dev, hdmi);
-
-It would be clearer if you would move
-starfive_hdmi_enable_clk_deassert_rst()/disable_clk_assert_rst() into
-runtime_resume/runtime_suspend, and then in you bind just call
-pm_runtime_enable(), pm_runtime_get_sync(), do the registration, and
-pm_runtime_put.
-
-> +#define UPDATE(x, h, l)\
-> +({\
-> +	typeof(x) x_ =3D (x);\
-> +	typeof(h) h_ =3D (h);\
-> +	typeof(l) l_ =3D (l);\
-> +	(((x_) << (l_)) & GENMASK((h_), (l_)));\
-> +})
-
-That's FIELD_PREP, right?
-Maxime
-
---c3ccdoac5xz7n6if
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZH2xPwAKCRDj7w1vZxhR
-xRFAAP0f3J6Tu7GQHeZqx5luoDhXXLf8/1gmqshwjcYtEt7awgEAoRRjwu25Pah9
-m5eSDewNpcJYQHuxezva0a9w+5vmPQk=
-=BH5E
------END PGP SIGNATURE-----
-
---c3ccdoac5xz7n6if--
