@@ -2,139 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 233C5722D40
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3022D722D5C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235164AbjFERF7 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 5 Jun 2023 13:05:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36148 "EHLO
+        id S232400AbjFERJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 13:09:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231254AbjFERF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:05:59 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C571109;
-        Mon,  5 Jun 2023 10:05:52 -0700 (PDT)
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4QZg1N2bmLz67ftX;
-        Tue,  6 Jun 2023 01:03:52 +0800 (CST)
-Received: from localhost (10.126.171.223) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 5 Jun
- 2023 18:05:48 +0100
-Date:   Mon, 5 Jun 2023 18:05:47 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Herve Codina <herve.codina@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S230008AbjFERJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:09:41 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FEE091
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 10:09:40 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-ba827a34ba8so6077861276.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 10:09:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685984979; x=1688576979;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4GWJEMZcMO5R6CDwitNhGNBkGuDXmhHZQItLXpH0uTo=;
+        b=pdj/9TlRmRWlyOYd2VLiS64oTqpWOU5PMoiNL5+SGh4vpokaM+qFex8O9+ljopL6Ek
+         HBHAvWJQ0M7e3j7sWibBIHzTbZ7f0rfjCT19VhAxApvCJvkBEPAgvtJD/iULeeRRvCsi
+         K35kvKwzQOmmk0iNm9NTpfGFzEPZdQgW4GpiloBxi+Vz0V3YRJrdjU9HBlFfsBa4rHBZ
+         AMMH3+pYaBrY1aT1mSRJiwNLndUGS6EZpe7XL9uEaZ5GKuZDs2fYRQG8OrwCZzXYkbDw
+         +AMx1QTVgl/f3GRDvoqcC+bh1ZarvG2crDi3cMscnTGrZkgloX4ChOL359x5llIys0Fd
+         qNzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685984979; x=1688576979;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4GWJEMZcMO5R6CDwitNhGNBkGuDXmhHZQItLXpH0uTo=;
+        b=SuPE41d9bZ5eIOtOtryHnvJHlIxYgfUdg9cv/zSn7ePjMorkIuTsnePstVDKX7AQEZ
+         ZGX6nGnUghAct20JGQ1GsJoYQW/ot/QwWbvoSz1YMLGBdEzyayg9I2l5iqDMnmMHXU/a
+         nlR3sdRb6kF30KrwD26R6UWjby5WxGUJ4n88/tBeXiflrJh9Cr5KM/mYxAJwCsZqNf14
+         KkhOLQhdPZQ9vgZmHJHFLvuJoPD6Rgg3igDuL+tm8G4FwMt/Rz0djRz4K4IwhjP4FgXK
+         UnsOubPVu8frdwq90605fsa+9E3dpqN/CA7tS5o+EKxQFF3+Gmst1GK9orSM0zRAqGWq
+         F5rA==
+X-Gm-Message-State: AC+VfDxcPAMIPsK8pSnf/g4Kw65W+iTaUoe612LPQXixoJ6d50fUFKZZ
+        Jh7V9/668/wu800DU3+4C0jqb5+B5LBCWK4HOkgFMw==
+X-Google-Smtp-Source: ACHHUZ4p/Fv7/1YL5aK6ni9BSkRIpB2mD0PTUJxt1VEJdkmZiqICIOae+tEFI3eDyVtAjNHYulgKIeUo+lKq/F6nazA=
+X-Received: by 2002:a25:ade5:0:b0:b9e:6d83:7bcf with SMTP id
+ d37-20020a25ade5000000b00b9e6d837bcfmr12259782ybe.27.1685984979703; Mon, 05
+ Jun 2023 10:09:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v5-5-998b4d2f7dd1@linaro.org>
+ <e9da7236-5915-b9df-59dc-c2baa960f52b@linaro.org> <ea8d1808-b04c-332f-834a-c3f237e0b931@linaro.org>
+In-Reply-To: <ea8d1808-b04c-332f-834a-c3f237e0b931@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 5 Jun 2023 20:09:28 +0300
+Message-ID: <CAA8EJprAiB8xrrx23fX95PnVockeH=6omppEwDJAxU6kGS5LwA@mail.gmail.com>
+Subject: Re: [PATCH v5 05/12] dt-bindings: display/msm: Add SM6375 MDSS
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 5/9] iio: inkern: Add a helper to query an available
- minimum raw value
-Message-ID: <20230605180547.0000528b@Huawei.com>
-In-Reply-To: <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
-References: <20230523151223.109551-1-herve.codina@bootlin.com>
-        <20230523151223.109551-6-herve.codina@bootlin.com>
-        <ZHtIdTZbULl6t4RT@surfacebook>
-        <20230605094637.7615b689@bootlin.com>
-        <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
-MIME-Version: 1.0
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.126.171.223]
-X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Jun 2023 12:45:24 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-
-> On Mon, Jun 5, 2023 at 10:46 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> > On Sat, 3 Jun 2023 17:04:37 +0300
-> > andy.shevchenko@gmail.com wrote:  
-> > > Tue, May 23, 2023 at 05:12:19PM +0200, Herve Codina kirjoitti:  
-> 
-> ...
-> 
-> > > > +           case IIO_VAL_INT:
-> > > > +                   *val = vals[--length];  
-> > >  
-> > > > +                   while (length) {  
-> > >
-> > >                       while (length--) {
-> > >
-> > > will do the job and at the same time...
-> > >  
-> > > > +                           if (vals[--length] < *val)
-> > > > +                                   *val = vals[length];  
-> > >
-> > > ...this construction becomes less confusing (easier to parse).  
+On Mon, 5 Jun 2023 at 20:01, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 4.06.2023 20:04, Krzysztof Kozlowski wrote:
+> > On 23/05/2023 09:46, Konrad Dybcio wrote:
+> >> Document the SM6375 MDSS.
+> >>
+> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >> ---
+> >>  .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 216 +++++++++++++++++++++
+> >>  1 file changed, 216 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
+> >> new file mode 100644
+> >> index 000000000000..3aa4f0470c95
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
+> >> @@ -0,0 +1,216 @@
+> >> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6375-mdss.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Qualcomm SM6375 Display MDSS
+> >> +
+> >> +maintainers:
+> >> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
+> >> +
+> >> +description:
+> >> +  SM6375 MSM Mobile Display Subsystem (MDSS), which encapsulates sub-blocks
+> >> +  like DPU display controller, DSI and DP interfaces etc.
+> >> +
+> >> +$ref: /schemas/display/msm/mdss-common.yaml#
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    items:
+> >> +      - const: qcom,sm6375-mdss
+> >> +
 > >
-> > Indeed, I will change in the next iteration.  
-> 
-> And looking into above line, this whole construction I would prefer to
-> have a macro in minmax.h like
-> 
-> #define min_array(array, len) \
-> {( \
->   typeof(len) __len = (len); \
->   typeof(*(array)) __element = (array)[--__len]; \
->   while (__len--) \
->     __element = min(__element, (array)[__len]); \
->   __element; \
-> )}
-> 
-> (it might need more work, but you got the idea)
-> 
-> > > > +                   }
-> > > > +                   break;  
-> 
-> ...
-> 
-> > > > +           default:
-> > > > +                   /* FIXME: learn about min for other iio values */  
-> > >
-> > > I believe in a final version this comment won't be here.  
+> > Same as 6350 - drop items.
+> Ack
+>
 > >
-> > We have the same FIXME comment in the iio_channel_read_max() function I
-> > copied to create this iio_channel_read_min() and, to be honest, I
-> > don't really know how to handle these other cases.
+> > Similar concern about interconnects, although we don't have header file
+> > for them, so I assume we will fill it up later.
+> Yep, they'll come later and other SoCs may need a bump up for a third icc
+> path soon..
+
+4th ;-)
+
+>
+> Konrad
 > >
-> > In this series, I would prefer to keep this FIXME.  
-> 
-> I see, Jonathan needs to be involved here then.
-
-It's really more of a TODO when someone needs it than a FIXME.
-I'm not particularly keen to see a bunch of code supporting cases
-that no one uses, but it's useful to call out where the code would
-go if other cases were to be supported.
-
-Perhaps soften it to a note that doesn't have the work FIXME in it.
-
-Jonathan
+> > Best regards,
+> > Krzysztof
+> >
 
 
-> 
-> > > > +                   return -EINVAL;  
-> 
 
+-- 
+With best wishes
+Dmitry
