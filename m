@@ -2,54 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D51E722EDB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92645722EE7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbjFESof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 14:44:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53334 "EHLO
+        id S234380AbjFESqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 14:46:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjFESof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:44:35 -0400
-X-Greylist: delayed 3736 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 05 Jun 2023 11:44:33 PDT
+        with ESMTP id S235452AbjFESqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:46:50 -0400
 Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940C9CD
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:44:33 -0700 (PDT)
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69]) by mx-outbound43-10.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 05 Jun 2023 18:44:30 +0000
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6261a25e981so62123396d6.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:44:30 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38CD510B
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:46:47 -0700 (PDT)
+Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com [209.85.128.199]) by mx-outbound43-10.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 05 Jun 2023 18:46:44 +0000
+Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-568a8704f6dso75987527b3.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:46:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1685990669; x=1688582669;
+        d=mistralsolutions.com; s=google; t=1685990804; x=1688582804;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HEiNRZDZjWnkzNY9AoYu0FIiGrH0hmi+XSngmRPIxu4=;
-        b=DR3v926sj9urURKWo5Z1cI2T+SFraCsrUtJGWXhwP3u/Two8rAYFlipBFJ1DplLlJA
-         b6eGIoK5wLulQmCcpMsJBXvQyHxvFh9gUg5b/LI2kCq/998ekF+71sL0cKLIvRwRs66v
-         lgXD1SOjNLB+9YM/ksGeh2+EE+V5JW3/Hg2ns=
+        bh=Ka0dLgOU3SOSpHh8q74Sw3feQDmjVZ2vWBXiiwU0uuo=;
+        b=bg0l+zOIkieXj2sARvT8rzf/fc6F01hKWlxctJGfb6Jtgco2ICrd5M+WtOv1pomA3e
+         I0AQ16jF45DQo+xn6XLCkRopmLyy4zE4ZXcO0s45JDvMvDP+GtzAqw/LDYZ5IZRkwkBQ
+         Gv5elZcN0S/I5XBRIxOzvarjD+cGpTxXtKvLI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685990669; x=1688582669;
+        d=1e100.net; s=20221208; t=1685990804; x=1688582804;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HEiNRZDZjWnkzNY9AoYu0FIiGrH0hmi+XSngmRPIxu4=;
-        b=iKO+AWdYePBPr1MGnPtj9lShHf9zeOT3+NLUevsGgOflDgavyY/g0h6To0XtFA3i9F
-         QWbNGE+xsJ2mfuQRI5xGCPkfQYjoR8SU+jcx+gEwXwUzFHL7FgdLCTQdm/tN0K6jPR3C
-         Ffbijo35/odTIwcLbczo4CJu0J+mm9fVK2umWXtBVhWVQ+sEQd2/uPfYF8rpCaQutDwn
-         P/ZbXHPXEfssHOiJvCJk+UHzu4PKAbCD8hyfDWxoGar/+IM+eSYH25xe3OJLqUvrELBY
-         LeEOr5gV6Li2tluGDwgAQhr8oXSu/NrWCHClgdGJBFvPIsmNPQyLhZggKp/4Cg4c1ujF
-         Lu9g==
-X-Gm-Message-State: AC+VfDyGmVwSJZJ++VrqVXO6gOx8UdDwtkQo4iJ46xu9qj0eg5lCq3ae
-        brRpFnNfkx4Uefva7WntBo8pDvL9RSuzcK0JXCWbRCWfCm7gpT5QGSTWz8mmlFFSh6gGiAponpW
-        B4j/ZeyuyEnlzeJw6uRkDKP75COD47KsrK2HEhpYdh78qJCIK2f1mMJWl+g==
-X-Received: by 2002:a05:6a20:e619:b0:10a:be5c:6e2d with SMTP id my25-20020a056a20e61900b0010abe5c6e2dmr2446150pzb.39.1685986933603;
-        Mon, 05 Jun 2023 10:42:13 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7niwQ6oqcZbl4tSMUgkwVEOqD7UX6n+xTcgK6jiCDqg4/oQz6awofepRrmuvDWlsF2EEzsqw==
-X-Received: by 2002:a05:6a20:e619:b0:10a:be5c:6e2d with SMTP id my25-20020a056a20e61900b0010abe5c6e2dmr2446131pzb.39.1685986933254;
-        Mon, 05 Jun 2023 10:42:13 -0700 (PDT)
+        bh=Ka0dLgOU3SOSpHh8q74Sw3feQDmjVZ2vWBXiiwU0uuo=;
+        b=G4lqjLaa+guHmFSx3ngV7tmhlyxJTPnrsvFJ5rTesdtot/G5x0IszJPkthSH+eN1Cd
+         LFyamXYEUg21jHtPKGaaIOPkgyBtWdg5mUyxPs+UrTn8EG56vZsMeVHo99sRwzyolBl/
+         1hJaXDx09bpavqjHsRwBwRfhfS0SWDv2Scr6ZLMvoKwMN56pfu78rzW3DxseoDfd+hPK
+         y17ueBgxiCtzNjH5ydmYycUEDiM2Hm8CnZ3tXuFLHTxcQ7ld6CFB9TJzQ25Xd0qAdSY0
+         khynhZ3KOGf1h09o6FrC1I8CGaxEc246/7qZtDcSZhzHXocxce0Vw0TDxhb2NmTMsh2f
+         MdUQ==
+X-Gm-Message-State: AC+VfDzxDr74XGR4LQ/n1zg9gkXSIhP9HWWvl6c3GkCtw89tJoukANl7
+        qgAKSSZWMvByQhX8mdxGGUGdrE8RdEknLaQnmI+LBgTLDIw1qDPtPNHUfEvckJK+H/3DZdpUSzO
+        aK+2fBM2mtddv31cpYrQJRWF+DrYLo5Yz+d2ZiBp7MWAsknq9HXDA5Vyw6A==
+X-Received: by 2002:a17:903:2305:b0:1b0:61dd:e523 with SMTP id d5-20020a170903230500b001b061dde523mr5054984plh.41.1685987159012;
+        Mon, 05 Jun 2023 10:45:59 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5dFGH5RUHSCIKrPt8pUW9EBcAJtw6hTNlCcT2vaMXJ2vPnVhOOyVumgmm7oF8ujFweztfoAw==
+X-Received: by 2002:a17:903:2305:b0:1b0:61dd:e523 with SMTP id d5-20020a170903230500b001b061dde523mr5054968plh.41.1685987158744;
+        Mon, 05 Jun 2023 10:45:58 -0700 (PDT)
 Received: from LAP789U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id z6-20020aa785c6000000b0064d2ad04cccsm5619653pfn.175.2023.06.05.10.42.09
+        by smtp.gmail.com with ESMTPSA id f10-20020a170902860a00b001aaecc0b6ffsm6816616plo.160.2023.06.05.10.45.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 10:42:12 -0700 (PDT)
+        Mon, 05 Jun 2023 10:45:58 -0700 (PDT)
 From:   sabiya.d@mistralsolutions.com
 X-Google-Original-From: sabiya.d@ti.com
 To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
@@ -57,20 +56,20 @@ To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, sabiya.d@mistralsolutions.com,
         Dasnavis Sabiya <sabiya.d@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am69-sk: Enable MCU CPSW2G
-Date:   Mon,  5 Jun 2023 23:12:02 +0530
-Message-Id: <20230605174202.159278-1-sabiya.d@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am69-sk: Add eMMC mmc0 support
+Date:   Mon,  5 Jun 2023 23:15:51 +0530
+Message-Id: <20230605174551.160262-1-sabiya.d@ti.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1685990669-311018-5448-28522-1
+X-BESS-ID: 1685990804-311018-5451-28576-1
 X-BESS-VER: 2019.1_20230525.1947
-X-BESS-Apparent-Source-IP: 209.85.219.69
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyMrY0AbIygIJGiWlGpsYGJs
-        nG5mkWlkZmFhapBqYGhpaGhsaJKYmppkq1sQDBv8m0QQAAAA==
+X-BESS-Apparent-Source-IP: 209.85.128.199
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrKyMDYGMjKAYoapKZZpRmmmyR
+        ZGqQZmZmkG5sbmSSaGJomW5uaGaYbmSrWxABee2KFAAAAA
 X-BESS-Outbound-Spam-Score: 0.00
 X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.248613 [from 
-        cloudscan12-250.eu-central-1a.ess.aws.cudaops.com]
+        cloudscan18-126.eu-central-1b.ess.aws.cudaops.com]
         Rule breakdown below
          pts rule name              description
         ---- ---------------------- --------------------------------
@@ -92,78 +91,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Dasnavis Sabiya <sabiya.d@ti.com>
 
-Add device tree support to enable MCU CPSW for AM69 SK
+Add support for eMMC card connected to main sdhci0 instance.
 
 Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 50 +++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index bc49ba534790..4b7d9280d76f 100644
+index 4b7d9280d76f..ab8ec2cb396e 100644
 --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
 +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -104,6 +104,32 @@ vdd_sd_dv: regulator-tlv71033 {
+@@ -22,6 +22,7 @@ chosen {
+ 
+ 	aliases {
+ 		serial2 = &main_uart8;
++		mmc0 = &main_sdhci0;
+ 		mmc1 = &main_sdhci1;
+ 		i2c0 = &main_i2c0;
+ 	};
+@@ -191,6 +192,14 @@ exp1: gpio@21 {
  	};
  };
  
-+&wkup_pmx0 {
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (A35) MCU_RGMII1_RD0 */
-+			J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B36) MCU_RGMII1_RD1 */
-+			J784S4_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C36) MCU_RGMII1_RD2 */
-+			J784S4_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D36) MCU_RGMII1_RD3 */
-+			J784S4_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (B37) MCU_RGMII1_RXC */
-+			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (C37) MCU_RGMII1_RX_CTL */
-+			J784S4_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (D37) MCU_RGMII1_TD0 */
-+			J784S4_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (D38) MCU_RGMII1_TD1 */
-+			J784S4_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E37) MCU_RGMII1_TD2 */
-+			J784S4_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E38) MCU_RGMII1_TD3 */
-+			J784S4_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (E36) MCU_RGMII1_TXC */
-+			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (C38) MCU_RGMII1_TX_CTL */
-+		>;
-+	};
-+
-+	mcu_mdio_pins_default: mcu-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A36) MCU_MDIO0_MDC */
-+			J784S4_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
-+		>;
-+	};
++&main_sdhci0 {
++	/* eMMC */
++	status = "okay";
++	non-removable;
++	ti,driver-strength-ohm = <50>;
++	disable-wp;
 +};
 +
- &main_pmx0 {
- 	main_uart8_pins_default: main-uart8-pins-default {
- 		pinctrl-single,pins = <
-@@ -178,3 +204,27 @@ &main_sdhci1 {
- &main_gpio0 {
+ &main_sdhci1 {
+ 	/* SD card */
  	status = "okay";
- };
-+
-+&mcu_cpsw {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_cpsw_pins_default>;
-+};
-+
-+&davinci_mdio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mdio_pins_default>;
-+
-+	mcu_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&mcu_cpsw_port1 {
-+	status = "okay";
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&mcu_phy0>;
-+};
 -- 
 2.25.1
 
