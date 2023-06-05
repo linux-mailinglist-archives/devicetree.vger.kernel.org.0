@@ -2,56 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB43723339
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 00:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD1147233C0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 01:42:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbjFEWdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 18:33:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36218 "EHLO
+        id S230328AbjFEXmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 19:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232565AbjFEWdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 18:33:42 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0548DF3;
-        Mon,  5 Jun 2023 15:33:40 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id ca18e2360f4ac-777a9d7efabso80438839f.0;
-        Mon, 05 Jun 2023 15:33:39 -0700 (PDT)
+        with ESMTP id S230150AbjFEXmq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 19:42:46 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97497CD
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 16:42:45 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-568af2f6454so52892547b3.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 16:42:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686004419; x=1688596419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1686008565; x=1688600565;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wtUVpP6es6yg1qk2MeHjSfVIxOPxP0g6I1UOB9ugWXk=;
-        b=XaDviP3PGd1V7YtV0tQg8h3isRt6DZ4YlW0W5YV7IYW2LaYwYSAjvviQcvDf+H+9B5
-         QeXgEgnsSjWP9QoQHq/WdZv/arXv0q3YHVfoKyOtnPpO3Z3LVbBY3FBMMLN2EzMJ+I5f
-         jWABOlypPLqbPR+it4tCumq4JU42/evlkk+9CoKYmbmlLf2ElQ+JZ4BMUF/JqecSpu+b
-         h9pxI88c8c+af0M0GLPEG942UvVgPbLN50jnNQDPtnisDWpVj/oc7rcmotHdPZP+DNMQ
-         cGL+mxRMWYTxNTtgd2vwQHgRgX04cvWVbeY0Hkw6J9DU1CmNcfNYEU+b9MJVbxgJMnha
-         kHTw==
+        bh=FWEmN72tSuT121qLjRj5zqV8DqiPMX6/C4ygy0CrmcU=;
+        b=wbXOgOagGK/xJRGAsfT7jynGwj3rGC1ssyFHvN5DvdJvUT/pkFBj9RiN/l2biGOuYf
+         O3k4jJQtxftSeYXII9uovUViZxT87EIZ7As/nQ2Ja6lFILj1EpoYa5G5JZd7rchHx4Sq
+         64qY0L12JMlSnKjb4fpoPEPYpZ8yQ57NzMiedcSa055SMwgHLot3q/85XTQbqAVnjm1O
+         tEsB6fISue63IFa7hEviGeHO9ea9g/lllH+ALJCYl9SwvxU4RojHR4fFzM5SaQczQ/DD
+         PkSA6HyvBHpDbzqR167jekUVx1sVHJurxMSl5EdmVGHZZIj3LZ5wU4fTNobSqs/xmD5X
+         dRjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686004419; x=1688596419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1686008565; x=1688600565;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wtUVpP6es6yg1qk2MeHjSfVIxOPxP0g6I1UOB9ugWXk=;
-        b=j+ES9okXVEyIavTTN861N7sb1PpYaHRKHF6MZF9c9jGdotVqnha9PIePIOSkdeiuyo
-         D2pYol+rhBO9lOIOp6Kthe09kfkOBlR3XmxzPHbIZT+m2BsGuQ/Dsrz/Ki+qmWBXtNJb
-         01X4QhC4gA4yyMzggZovF5KC+wETqJs6Yh2Iy0nm8GjGAFD7xaQsX+6iDPSMsmspGjsV
-         Atm585i2ATRf6737i0njbKWdhsuU97S5WywGEMS843PU4HcWtfp47emhLqEsWiSoFdiQ
-         sqP8rQ5R4I8efpPoKRmITcH3bIymjlWiL1hv2V4aB9Id6qO54jNTzAakmiI65gE/ZL3w
-         LfjQ==
-X-Gm-Message-State: AC+VfDySX0RNJ0zQXqmeKqLzRZO2478FDuELgBdP6a3AZ/G0dDfP8fAg
-        9TUwxUPVWQvCbGZw1o3Zlt4=
-X-Google-Smtp-Source: ACHHUZ5uScyXiUNNTrMaP7qAeOzLigUEMX+vl6YWxmBast5Ye8L0DaYMk+7E65jGheuDq55QL3EMhQ==
-X-Received: by 2002:a6b:7f08:0:b0:776:fce3:4763 with SMTP id l8-20020a6b7f08000000b00776fce34763mr441549ioq.20.1686004419308;
-        Mon, 05 Jun 2023 15:33:39 -0700 (PDT)
-Received: from aford-B741.lan ([2601:447:d001:897f:f45b:1201:1374:ebd2])
-        by smtp.gmail.com with ESMTPSA id j13-20020a02a68d000000b004035b26b6d8sm2477068jam.2.2023.06.05.15.33.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 15:33:39 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        bh=FWEmN72tSuT121qLjRj5zqV8DqiPMX6/C4ygy0CrmcU=;
+        b=fblgAg+34oF2C7Y3b5WGVOO0cZ+ksc7RQupibvJ77xttxcRoqFP4ggEf7R9qVrI8cb
+         GQ2/S+7Y2vNEHT3j0s06vpGNKki39TtXqHpf+OyGMRFWutaGnFcrUMwPitEvlcR7h4kE
+         qDZSVHmacOHrp9feFtnR+Wu1+dyZxZRoOLEedrcpt4e1gLyx0mv+CU7km5EvA5ftSXHk
+         Czt6zmixktTMRvGG07WEo9m6yMecZpD2gIbiwkK8KNyY3yZDPEBbAYk2ynRNH2n62waB
+         EKh7qLeUKYg/zKJ3BLL/jTuOzipuSbp2cQVoFbsBc6XHA4ZXrR02+N+d3kC4M7WFgK4f
+         d3xg==
+X-Gm-Message-State: AC+VfDy5BYMBvo80Shuyd605Kd9AZUxyx9ckuMjosS6YaJsgNlKEck1I
+        PPT+O37FdFe7j4kme2s3IxUo5U2KKhcD8Thy4cjO1A==
+X-Google-Smtp-Source: ACHHUZ48tYtuK+uxw6BOnNab1jPfJmBLAB+Z8k/5oCKqNX4LZafsuUnPcgMGNv2dxUO90HRZ4UEMyO1dIaPPkg1YvuE=
+X-Received: by 2002:a0d:eb0c:0:b0:565:de9d:be6b with SMTP id
+ u12-20020a0deb0c000000b00565de9dbe6bmr119693ywe.21.1686008564641; Mon, 05 Jun
+ 2023 16:42:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230605090442.11316-1-nicolas.cavallari@green-communications.fr>
+In-Reply-To: <20230605090442.11316-1-nicolas.cavallari@green-communications.fr>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 5 Jun 2023 16:42:33 -0700
+Message-ID: <CAJ+vNU1=Gv9COt_hmSuhqvA1wJvSraB2H03c=JHCLncuiia0QA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm-venice: Fix GSC vdd_bat data size.
+To:     Nicolas Cavallari <nicolas.cavallari@green-communications.fr>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -59,19 +62,11 @@ Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2 2/2] arm64: dts: imx8mm-beacon: Add HDMI video with sound
-Date:   Mon,  5 Jun 2023 17:33:23 -0500
-Message-Id: <20230605223323.578198-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230605223323.578198-1-aford173@gmail.com>
-References: <20230605223323.578198-1-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,153 +74,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Beacon Embedded imx8mm development kit has a DSI
-to HDMI bridge chip.  The bridge supports stereo audio
-and hot-plugging.
+On Mon, Jun 5, 2023 at 2:05=E2=80=AFAM Nicolas Cavallari
+<nicolas.cavallari@green-communications.fr> wrote:
+>
+> On these boards, vdd_bat is 16bit, not 24bit.  Reading them as 24bit
+> values yield garbage values because of the additional byte, which is a
+> configurable fan trippoint[1].
+>
+> So set their mode to mode_voltage_16bit =3D 3 instead of
+> mode_voltage_24bit =3D 1.
+>
+> [1]: http://trac.gateworks.com/wiki/gsc#SystemTemperatureandVoltageMonito=
+r
+>
+> Only tested on GW7100.
+>
+> Signed-off-by: Nicolas Cavallari <nicolas.cavallari@green-communications.=
+fr>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts  | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts  | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts  | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts  | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts  | 2 +-
+>  6 files changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi b/ar=
+ch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> index 9e7d38872157..c3c9a00f9dfe 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> @@ -149,7 +149,7 @@ channel@6 {
+>                         };
+>
+>                         channel@8 {
+> -                               gw,mode =3D <1>;
+> +                               gw,mode =3D <3>;
+>                                 reg =3D <0x08>;
+>                                 label =3D "vdd_bat";
+>                         };
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arc=
+h/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+> index df3b2c93d2d5..0ec2ce3dd721 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+> @@ -354,7 +354,7 @@ channel@6 {
+>                         };
+>
+>                         channel@8 {
+> -                               gw,mode =3D <1>;
+> +                               gw,mode =3D <3>;
+>                                 reg =3D <0x08>;
+>                                 label =3D "vdd_bat";
+>                         };
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arc=
+h/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+> index c33ec6826d32..03cd29063312 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+> @@ -327,7 +327,7 @@ channel@6 {
+>                         };
+>
+>                         channel@8 {
+> -                               gw,mode =3D <1>;
+> +                               gw,mode =3D <3>;
+>                                 reg =3D <0x08>;
+>                                 label =3D "vdd_bat";
+>                         };
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts b/arc=
+h/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
+> index 363020a08c9b..6f26914602c8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
+> @@ -293,7 +293,7 @@ channel@6 {
+>                         };
+>
+>                         channel@8 {
+> -                               gw,mode =3D <1>;
+> +                               gw,mode =3D <3>;
+>                                 reg =3D <0x08>;
+>                                 label =3D "vdd_bat";
+>                         };
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arc=
+h/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> index 7c12518dbc96..2ddba4213001 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> @@ -325,7 +325,7 @@ channel@6 {
+>                         };
+>
+>                         channel@8 {
+> -                               gw,mode =3D <1>;
+> +                               gw,mode =3D <3>;
+>                                 reg =3D <0x08>;
+>                                 label =3D "vdd_bat";
+>                         };
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arc=
+h/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> index eb51d648359b..92514b71b5f4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> @@ -281,7 +281,7 @@ channel@6 {
+>                         };
+>
+>                         channel@8 {
+> -                               gw,mode =3D <1>;
+> +                               gw,mode =3D <3>;
+>                                 reg =3D <0x08>;
+>                                 label =3D "vdd_bat";
+>                         };
+> --
+> 2.40.1
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Hi Nicolas,
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dts
-index 74a7b0cc10c2..499217ff30b4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dts
-@@ -16,4 +16,136 @@ / {
- 	chosen {
- 		stdout-path = &uart2;
- 	};
-+
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&adv7535_out>;
-+			};
-+		};
-+	};
-+
-+	reg_hdmi: regulator-hdmi-dvdd {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_hdmi>;
-+		regulator-name = "hdmi_pwr_en";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <70000>;
-+		regulator-always-on;
-+	};
-+
-+	sound-hdmi {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "sound-hdmi";
-+		simple-audio-card,format = "i2s";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai5 0>;
-+			system-clock-direction-out;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&adv_bridge>;
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	adv_bridge: hdmi@3d {
-+		compatible = "adi,adv7535";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_hdmi_bridge>;
-+		reg = <0x3d>, <0x3b>;
-+		reg-names = "main", "cec";
-+		adi,dsi-lanes = <4>;
-+		adi,fixed-lanes;
-+		dvdd-supply = <&reg_hdmi>;
-+		v3p3-supply = <&reg_hdmi>;
-+		v1p2-supply = <&reg_hdmi>;
-+		a2vdd-supply = <&reg_hdmi>;
-+		avdd-supply = <&reg_hdmi>;
-+		pvdd-supply = <&reg_hdmi>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+		#sound-dai-cells = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				adv7535_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				adv7535_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&lcdif {
-+	status = "okay";
-+};
-+
-+&mipi_dsi {
-+	samsung,esc-clock-frequency = <20000000>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+
-+			dsi_out: endpoint {
-+				remote-endpoint = <&adv7535_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&sai5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai5>;
-+	assigned-clocks = <&clk IMX8MM_CLK_SAI5>;
-+	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	#sound-dai-cells = <0>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_hdmi_bridge: hdmibridgegrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19
-+		>;
-+	};
-+
-+	pinctrl_reg_hdmi: reghdmigrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_STROBE_GPIO2_IO11              0x16
-+		>;
-+	};
-+
-+	pinctrl_sai5: sai5grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI5_RXD3_SAI5_TX_DATA0	0xd6
-+			MX8MM_IOMUXC_SAI5_RXD2_SAI5_TX_BCLK	0xd6
-+			MX8MM_IOMUXC_SAI5_RXD1_SAI5_TX_SYNC	0xd6
-+		>;
-+	};
- };
--- 
-2.39.2
+Thanks for noticing this - these do indeed need to be changed.
 
+Acked-by: Tim Harvey <tharvey@gateworks.com>
+
+Best Regards,
+
+Tim
