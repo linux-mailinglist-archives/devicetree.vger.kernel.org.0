@@ -2,101 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3970723177
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 22:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC56872317D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 22:35:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbjFEUdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 16:33:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54956 "EHLO
+        id S231157AbjFEUfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 16:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230212AbjFEUdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 16:33:25 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE2894;
-        Mon,  5 Jun 2023 13:33:24 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3094910b150so5438541f8f.0;
-        Mon, 05 Jun 2023 13:33:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685997202; x=1688589202;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0FVlR5c2/WvwJOLQve/zeHEZhnk0qDgV8/Te/9/yeBw=;
-        b=hSjCpLQSJ06FlUJhr4lYmJSvPZbqvRBsbaY6eHiuIZJP8vqNEuvA+tvOK4FkvCbm4l
-         tmeqK3UoKOrVzI6L+QQDRNPOUqFjBBSZmwG5teqVrsiwFApdC8rYQea1j76c8V2HlOxC
-         eIPkXmWNEz7wPrXVPl+SfticNAd1a4IUTVYpj/lT75GTBfiaCn9Md1hZRmM9TWbR6NTj
-         zYokURN9fo+dZ+fBdo60mpIfcH4WYXZ0oy3c+kj8To4R1W+WHpetTdVwyNFBBp4EWKEP
-         S2KP5Zt1RDvH+xubeTpx6j5EHD27O+LEee4Bx+N4kGXVAuLouKwUM76BE9vnz2pGlEWC
-         Rp7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685997202; x=1688589202;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0FVlR5c2/WvwJOLQve/zeHEZhnk0qDgV8/Te/9/yeBw=;
-        b=bWPtI5q1TbfoqUuWu24wa4MtLw5Kb1PG8ZERMZ3teMvUVpAHVbs4VuaIiMTlsPpkXD
-         9wKmCdmrY/Oc2TJGz0zIXrC94EKUbLlJkbLDcuXnUD+VZAVwsrVIYPpSQFG0Vp7kA1Gz
-         tropt8ucgoukZt/qwoXeD8QJuS7bKT5Gg+oCxmb2Z6/V4q2TT6SRSUELR6fiT9KqL05q
-         ecasNgYRyKvUH513yG31r6aWupYIuEBFvvqCtcqQzxy3Xyq6+rWg9Zt7mFeMDkc6qHld
-         g/MIHzrIrWD4D597UHgbbPAFb9a9uPTm0ufoLvLCfTUhma3qufWySjI1mcFAKQhD/QAQ
-         QvHg==
-X-Gm-Message-State: AC+VfDyzxblbLK0PB2ueFULmUP6dGMUV8kbuHul4ZOPnJ+fw7i9DTCy5
-        dZQWGucoF7GImaRzNG7bORE=
-X-Google-Smtp-Source: ACHHUZ76iU5P6O7/YW8mDILgf4kOC0/R/6d5lCrSwmRZhZ6buN6+1sEPvdX/sjUsvqebMIOa+wh5Ow==
-X-Received: by 2002:adf:f18c:0:b0:309:4999:7549 with SMTP id h12-20020adff18c000000b0030949997549mr30641wro.46.1685997202207;
-        Mon, 05 Jun 2023 13:33:22 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c1fe:b00:f181:5e69:a6b8:882f? (dynamic-2a01-0c23-c1fe-0b00-f181-5e69-a6b8-882f.c23.pool.telefonica.de. [2a01:c23:c1fe:b00:f181:5e69:a6b8:882f])
-        by smtp.googlemail.com with ESMTPSA id w17-20020a5d5451000000b0030631f199f9sm10605261wrv.34.2023.06.05.13.33.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 13:33:21 -0700 (PDT)
-Message-ID: <590d4dee-2c72-e25b-af5d-3c2290f03bd4@gmail.com>
-Date:   Mon, 5 Jun 2023 22:33:20 +0200
+        with ESMTP id S233567AbjFEUe6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 16:34:58 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845AED2;
+        Mon,  5 Jun 2023 13:34:56 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 355KYjRj039900;
+        Mon, 5 Jun 2023 15:34:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685997285;
+        bh=owfzNXjgRIhds0kf9ztj9jjDbFO7AWNXIHw+Ae0od9g=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ZUgyNaxRqzm0UrGn0CGrMgmkSZzm/SjbzzFib5wVmwVC8Xm2soyo2+0R9AyzcCvXs
+         M61kaAY8eqpaMmTPbuFV8EyA1nGkBL1JVwRN4ebIFoZGOeEwmzLnVb2l/tVn76HHUz
+         6nkiCbfIu+OxMd8UWFVknoBSBfD83/Zfh40PkVbA=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 355KYjth125048
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Jun 2023 15:34:45 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ Jun 2023 15:34:45 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 Jun 2023 15:34:45 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 355KYjN2021312;
+        Mon, 5 Jun 2023 15:34:45 -0500
+Date:   Mon, 5 Jun 2023 15:34:45 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <sabiya.d@mistralsolutions.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Dasnavis Sabiya <sabiya.d@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Enable MCU CPSW2G
+Message-ID: <20230605203445.z3ducpq7pr74m56c@evident>
+References: <20230605174202.159278-1-sabiya.d@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v4 0/3] net: phy: realtek: Support external PHY clock
-Content-Language: en-US
-To:     Detlev Casanova <detlev.casanova@collabora.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230605154010.49611-1-detlev.casanova@collabora.com>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <20230605154010.49611-1-detlev.casanova@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230605174202.159278-1-sabiya.d@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05.06.2023 17:40, Detlev Casanova wrote:
-> Some PHYs can use an external clock that must be enabled before
-> communicating with them.
+On 23:12-20230605, sabiya.d@mistralsolutions.com wrote:
+> From: Dasnavis Sabiya <sabiya.d@ti.com>
 > 
-> Changes since v3:
->  * Do not call genphy_suspend if WoL is enabled.
-> Changes since v2:
->  * Reword documentation commit message
-> Changes since v1:
->  * Remove the clock name as it is not guaranteed to be identical across
->    different PHYs
->  * Disable/Enable the clock when suspending/resuming
+> Add device tree support to enable MCU CPSW for AM69 SK
 > 
-> 
-Not a big thing, but if a v5 should be needed:
-Please annotate the series properly as net-next (see netdev FAQ).
+> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
 
+Does'nt
+https://lore.kernel.org/linux-arm-kernel/20230602214937.2349545-6-nm@ti.com/
+address this?
+
+I already CCed you, so do you care to ack instead? OR provide review
+comments so that I can improve the patch?
+
+> ---
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 50 +++++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> index bc49ba534790..4b7d9280d76f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> @@ -104,6 +104,32 @@ vdd_sd_dv: regulator-tlv71033 {
+>  	};
+>  };
+>  
+> +&wkup_pmx0 {
+> +	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (A35) MCU_RGMII1_RD0 */
+> +			J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B36) MCU_RGMII1_RD1 */
+> +			J784S4_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C36) MCU_RGMII1_RD2 */
+> +			J784S4_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D36) MCU_RGMII1_RD3 */
+> +			J784S4_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (B37) MCU_RGMII1_RXC */
+> +			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (C37) MCU_RGMII1_RX_CTL */
+> +			J784S4_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (D37) MCU_RGMII1_TD0 */
+> +			J784S4_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (D38) MCU_RGMII1_TD1 */
+> +			J784S4_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E37) MCU_RGMII1_TD2 */
+> +			J784S4_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E38) MCU_RGMII1_TD3 */
+> +			J784S4_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (E36) MCU_RGMII1_TXC */
+> +			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (C38) MCU_RGMII1_TX_CTL */
+> +		>;
+> +	};
+> +
+> +	mcu_mdio_pins_default: mcu-mdio-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A36) MCU_MDIO0_MDC */
+> +			J784S4_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
+> +		>;
+> +	};
+> +};
+> +
+>  &main_pmx0 {
+>  	main_uart8_pins_default: main-uart8-pins-default {
+>  		pinctrl-single,pins = <
+> @@ -178,3 +204,27 @@ &main_sdhci1 {
+>  &main_gpio0 {
+>  	status = "okay";
+>  };
+> +
+> +&mcu_cpsw {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_cpsw_pins_default>;
+> +};
+> +
+> +&davinci_mdio {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_mdio_pins_default>;
+> +
+> +	mcu_phy0: ethernet-phy@0 {
+> +		reg = <0>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,min-output-impedance;
+> +	};
+> +};
+> +
+> +&mcu_cpsw_port1 {
+> +	status = "okay";
+> +	phy-mode = "rgmii-rxid";
+> +	phy-handle = <&mcu_phy0>;
+> +};
+> -- 
+> 2.25.1
+> 
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
