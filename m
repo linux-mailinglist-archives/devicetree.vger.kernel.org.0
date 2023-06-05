@@ -2,181 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E406E722E06
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7F08722E5F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbjFER5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 13:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60328 "EHLO
+        id S229968AbjFESLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 14:11:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231747AbjFER5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:57:44 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73CF7C7;
-        Mon,  5 Jun 2023 10:57:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=cVsuCfqC328oMH5P7QiDL9VIp18ZMkyI/Asduj73yQk=; b=NI+cWrOZPRfjHDb5xVaM2Nknyv
-        hYDPhBnh/UnnvcHlfe0cLuKWDGGbRpbOSva/wC7PuIf4av1CXrxHq6QkOSPi2zIxRKYw2Jof36FO9
-        N8BB/DUqoECfE1ka07zWf+hW4NZXODnJ9YUrZydN/MjV1tpBWhzm8iaXj1HJ/2kYz1mc=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:50380 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q6ESV-0001nl-3e; Mon, 05 Jun 2023 13:57:36 -0400
-Date:   Mon, 5 Jun 2023 13:57:34 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org, Andy Shevchenko <andy.shevchenko@gmail.com>
-Message-Id: <20230605135734.1b66d32f39e7e4d32d5978a8@hugovil.com>
-In-Reply-To: <20230604191613.ea95fa9a1bc508525fe3bbd5@hugovil.com>
-References: <20230602152626.284324-1-hugo@hugovil.com>
-        <20230602152626.284324-6-hugo@hugovil.com>
-        <2023060454-cotton-paramount-e33e@gregkh>
-        <20230604134344.73dc3cbb57d335d4a0b4b33a@hugovil.com>
-        <2023060406-scarcity-clear-cc56@gregkh>
-        <20230604191613.ea95fa9a1bc508525fe3bbd5@hugovil.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S229895AbjFESLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:11:10 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701C6BE
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:11:08 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-3f6c81cc112so56602071cf.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:11:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1685988667; x=1688580667;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6UTezE/BzshamEBk739Q008lxLFJJ5MkDiNwID8JRsM=;
+        b=ZMJR8olST/aiP8wmPc157xqtwkij4N8JZMtxA6DMk9wWW2nVAgIzN91DxCiNB9Uv2K
+         kgWshEBhnlAOQ9yAd0Pg4EvE7vqx/1YjYyZn7gHfEdAWsNXihad3G111CxlGVpqLfN6E
+         nFTUFGAYWa9cUuSvzS7mq0amXHubrnOC0FYGQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685988667; x=1688580667;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6UTezE/BzshamEBk739Q008lxLFJJ5MkDiNwID8JRsM=;
+        b=HNzhg+CHHIOlZXliFPV8HonU5hwqRx6vPaKTcj7iQ3g0Hs9rLHonxt/fLhDCpFsDhS
+         4A3DDp7fkZ8LEhCu/RLGY2vRrGHbSoFtP4sUnzUlPkb0vsNf1onW16c0GYGjlD94dH5l
+         Gm+OdQr9tLqzbp+AxEcafbtWc68Tj4gg/UGNc1zG7r8ObIwgVNe5jQwS7lvrmPbn24Ot
+         rEjP1/j8uNMP+55aBJ9rV7j3shSeCH5yyGNxYZVEGwxWMbb3so9KkhzO7a84NOKwV/uG
+         P/RPamx2DNG0wUIhXHmcIeUkYaM+Laxd7/LZznq0+rLsRgNJ8hQRWLewARTQM87G/lWC
+         Tm8Q==
+X-Gm-Message-State: AC+VfDwyzOHJujJpuMCSZMoVGWQelVSkKzq0Rim0p1OGSvYABWNSISmc
+        Sq/YQ3uLq/+yr4w93G/CpcuagQ==
+X-Google-Smtp-Source: ACHHUZ4VsxloTLwhTMjpcQr/mQxxQ9xE+0LHNvkmha+uwtn8YPMXb/vrw12gYBTKM51nrKm7uB6msw==
+X-Received: by 2002:ac8:7f12:0:b0:3f5:17dc:ba6e with SMTP id f18-20020ac87f12000000b003f517dcba6emr8740104qtk.7.1685988667486;
+        Mon, 05 Jun 2023 11:11:07 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id j17-20020ac874d1000000b003f6b8556547sm4911934qtr.32.2023.06.05.11.11.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jun 2023 11:11:05 -0700 (PDT)
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Use updated "spi-gpio" binding properties
+Date:   Mon,  5 Jun 2023 11:11:02 -0700
+Message-Id: <20230605181102.2253414-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230602145458.6655-1-zajec5@gmail.com>
+References: <20230602145458.6655-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000a445e905fd65d373"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
- configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 4 Jun 2023 19:16:13 -0400
-Hugo Villeneuve <hugo@hugovil.com> wrote:
+--000000000000a445e905fd65d373
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-> On Sun, 4 Jun 2023 20:29:58 +0200
-> Greg KH <gregkh@linuxfoundation.org> wrote:
-> 
-> > On Sun, Jun 04, 2023 at 01:43:44PM -0400, Hugo Villeneuve wrote:
-> > > Here is what I suggest to silence the warning:
-> > > 
-> > > 	mctrl_mask = sc16is7xx_setup_mctrl_ports(dev);
-> > > 
-> > > #ifdef CONFIG_GPIOLIB
-> > > 	ret = sc16is7xx_setup_gpio_chip(dev, mctrl_mask);
-> > > 	if (ret)
-> > > 		goto out_thread;
-> > > #else
-> > > 	(void) mctrl_mask;
-> > > #endif
-> > 
-> > Eeek,  no, please no...
-> > 
-> > First off, please don't put #ifdef in .c files if at all possible.
-> 
-> Hi Greg,
-> Andy also made a similar comment, but couldn't suggest a valid
-> alternative when I asked him what to do about that.
-> 
-> Just as a sidenote, I didn't add those #ifdef, they were already
-> present in the driver in multiple places.
-> 
-> What would be your suggestion to get rid of those #ifdef, simply delete
-> them all?
-> 
-> If you suggest me what to do, I will be happy to submit a
-> future patch after this series is finalized to clean that aspect.
-> 
-> 
-> > Secondly, that (void) craziness is just that.  Rework this to not be an
-> > issue some other way please.
-> > 
-> > > I could also store (define new variable) mctrl_mask directly inside struct sc16is7xx_port...
-> > 
-> > Sure, that sounds best.
-> 
-> Ok, I will do that.
-> 
-> 
-> > > > And you have a real port here, no need to pass in a "raw" struct device,
-> > > > right?
-> > > 
-> > > The function operates globally on both ports (or nr_uart), not just a single port. That is why I pass the "raw" struct device, in order to extract the 
-> > > struct sc16is7xx_port from it:
-> > > 
-> > >     struct sc16is7xx_port *s = dev_get_drvdata(dev);
-> > > 
-> > > Inside the function, I also need the "raw" struc device. If we pass a struct sc16is7xx_port to the function, then I can get the "raw" struc device with this:
-> > > 
-> > > static u8 sc16is7xx_setup_mctrl_ports(struct sc16is7xx_port *s)
-> > > {
-> > > 	struct device *dev = &s->p[0].port.dev;
-> > > 
-> > > But I find this more obfuscated and hard to understand than to simply pass a "raw" struct device...
-> > 
-> > You should never need a "raw" struct device for stuff (if so, something
-> > is really odd).  Except for error messages, but that's not really a big
-> > deal, right?
-> 
-> > Don't pass around struct device in a driver, use the real types as you
-> > know you have it and it saves odd casting around and it just doesn't
-> > look safe at all to do so.
-> 
-> If you look at the patch, you will see that I need "struct device *dev"
-> at two places in the sc16is7xx_setup_mctrl_ports() function to read the
-> device properties:
-> 
-> ...
-> +static u8 sc16is7xx_setup_mctrl_ports(struct device *dev)
-> ...
-> +	count = device_property_count_u32(dev,...
-> ...
-> +	ret = device_property_read_u32_array(dev,
-> ...
-> 
-> I do not understand why this is odd?
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-Hi Greg,
-I finally added a "struct device" member inside "struct sc16is7xx_port"
-and now I simply pass "struct sc16is7xx_port *s as the sole argument to
-sc16is7xx_setup_mctrl_ports().
+On Fri,  2 Jun 2023 16:54:58 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Switch away from deprecated properties.
+> 
+> This fixes:
+> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: gpio-sck: False schema does not allow [[6, 7, 0]]
+>         From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: gpio-mosi: False schema does not allow [[6, 4, 0]]
+>         From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: 'sck-gpios' is a required property
+>         From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: Unevaluated properties are not allowed ('gpio-mosi', 'gpio-sck' were unexpected)
+>         From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-That should take care of your concern I hope, and I will submit a V8
-soon with all these changes.
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
-Hugo.
+--000000000000a445e905fd65d373
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-
-> > And if you have that crazy s->p.... stuff in multiple places, the
-> > perhaps you might want to rethink the structure somehow?  Or at the very
-> > least, write an inline function to get it when needed.
-> 
-> I am not sure what you mean by that, since again that "crazy" stuff is
-> already used everywhere in this driver?
-> 
-> 
-> > Also, meta comment, you might want to use some \n characters in your
-> > emails, your lines are really long :)
-> 
-> Strange, I use sylpheed as a mail client, and the option "Wrap lines at
-> 72 characters" is enabled by default, but somehow you must also check
-> the box "Wrap on input" for it to work, not very intuitive :) Thanks for
-> pointing that to me.
-> 
-> Hugo.
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIN2mmw9bzMSD5bsv
+2bjwTZnUi21naPgPvnlAf/poZ13jMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDYwNTE4MTEwN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBqURtqXk2bB3Zx4m5cDIWEJARqKyGJZZZT
+nSqU6v581GD9vsuIi7vDddq/e8blv2lTumOrDRU9V6Wa0KXD8GvgpFsPiQOpVX9kkwpU9C0aESZN
+XYLWWOUiAsGitZdv9TJOm1rYATOJsPVB66tGEOv6EKqlSyKLFQZoBu330bO93gm68XaZS5xKzm05
+/qEDNx+ucHSHCAUIvlQZaUU1L2LCIlS+vBIZNoOVXzbIQNsesr5/Kx2JECifIS52vwc/kFuhNNJR
+pHhTUV58DZsszMgBKmote5tcfdqGSy4pzIHBDY4tBmBFkEZfY1l/nEJGxKwzYE+z0O0xHTrWg/Ql
+pVQ2
+--000000000000a445e905fd65d373--
