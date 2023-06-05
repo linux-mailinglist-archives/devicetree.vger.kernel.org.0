@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC4BC722E65
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A0DE722E66
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:12:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235342AbjFESMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 14:12:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41494 "EHLO
+        id S229895AbjFESMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 14:12:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbjFESMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:12:09 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 452CDD3
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:12:08 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id d75a77b69052e-3f6c6020cfbso39505611cf.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:12:08 -0700 (PDT)
+        with ESMTP id S234104AbjFESMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:12:22 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8215DF4
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:12:19 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-3f7fdbdf68eso56779551cf.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:12:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1685988727; x=1688580727;
+        d=broadcom.com; s=google; t=1685988738; x=1688580738;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QarNqsuzsIMdyY2zWPt7se7n2hHo0TLPa+yOu0866s8=;
-        b=eE9UcoZVIVXFu3n7K08G6N8wic+6SABWbfhSYMXQ8nlqD+5K/EY7ZLbZJG0qK1y+2Q
-         jo5qba4T7QqIhn6hpZzOh1ssNKBte2idHcUZBTWUrltOEcTQvJyAQgsIGv+mKFnkM4Am
-         crzjc98jPAUbX5MQ31cytoLOf/+mDOhTQt9ZQ=
+        bh=kv/NqwZTv5tFEziDJWKKNrmUnG9ql30ssEX7nut5hj8=;
+        b=amoDqy19HvWTcHNnXX/tkDLXOLXuNzXCfImZXUpkLtk8MEA0kRMzNfEAVoBOQfR26T
+         4UnB7EmS+lJ88SkfEMKpOe7z8s/0jya+imroKONCSJF8k5yvpPOanD9YpjpC0rkx0gi7
+         dQFsMvWJVgrygHmXS24tgbqCusTA+QEuaSLAE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685988727; x=1688580727;
+        d=1e100.net; s=20221208; t=1685988738; x=1688580738;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QarNqsuzsIMdyY2zWPt7se7n2hHo0TLPa+yOu0866s8=;
-        b=JJbkcYOO3Gb7t3ObqGEANvROUbz3BkQ/aBFq/akcDUR9Nf0BUxsFlUCGKeBDO7reVz
-         xLtvXxWKbSR+HfJE4HJQZDFWYV12X/mgwVAYKvdYgPNJe3O5ACSJEj6mNsE1YF8RwkVs
-         J/HDmh0/gcCL3HpQQXc/xn0NMeNNF2evVahAMUcDVwGPBRfqc8ZDKwOgGzH+G4ylOGKN
-         39/A73GojwOEO/TsXj0oQAdUsXp2X9vD1xkU1dPOdLBfvwCLdt3lgWky7waZ3RqedJKd
-         jLZo20GPd/bMfiiuu67EozCwqFraJ1dJ72nEAYIJ2WzVGtZhofxyI8ZAE3FwV+Lwv9WA
-         hnnw==
-X-Gm-Message-State: AC+VfDySzzdulAKMgbZpiNnwhxOQfpb5zvBpj6qr45FbOBG0nDbBUrt0
-        eVthbo08o+eL4cqH3oDKa7leIw==
-X-Google-Smtp-Source: ACHHUZ7erwLzAqTO/1bqS3C9eAHs5EWKTm6HaLJcRT5556vfNlNIWvSBtQAPGZ8gnUfWEzKmFBJK9g==
-X-Received: by 2002:a05:622a:255:b0:3f5:3c8f:b7c1 with SMTP id c21-20020a05622a025500b003f53c8fb7c1mr10306252qtx.2.1685988727324;
-        Mon, 05 Jun 2023 11:12:07 -0700 (PDT)
+        bh=kv/NqwZTv5tFEziDJWKKNrmUnG9ql30ssEX7nut5hj8=;
+        b=SHLPH3oVtx9fLZ1K4kLhhhvSLeGzittC5ItBZDEoeQrtSXtfs3Fwb7H2kmkjXUI4mJ
+         RsewmeEyidggY/icAL7Zf9NQchqu2fOoL+PoOoHIxe0UTCID3t5XLxb7ph/oO0lHc38v
+         3qk+1JzyxaGJBbt1auLH/GiEmE6A/6p8DXzww7vskk12IdV4tqiz7IvfLbf9m1pHtQLq
+         kG+zAWLE5wbQxUbxD75Iu7fC92nw7+PzpG3TGUWesv/YKXgkvFvTLPhN8UQ5G0O3LFOz
+         GiGVgyaQhVkor6jFWaWK2ONIJuorXnUr6bwN8Fsl+pnOgu5lUcuc1dVwZ+ktVfi7hY28
+         LS7g==
+X-Gm-Message-State: AC+VfDxifxqoMgXmG37ZocWgnQa2BNhpnOsc/TTO16sA4W1Z5K0LUPk1
+        HziIoabPe0w0aoIZH3TuSGPzTw==
+X-Google-Smtp-Source: ACHHUZ5tr7ehxSuHzyUpH4gtOLIWUE72zXS92dJT2gOvAvufsaiTufDVHoqFzhB/djxyhBRymXVgTw==
+X-Received: by 2002:ac8:7d44:0:b0:3f6:b91a:e55e with SMTP id h4-20020ac87d44000000b003f6b91ae55emr10040984qtb.16.1685988738611;
+        Mon, 05 Jun 2023 11:12:18 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id w16-20020a05622a135000b003f6be5256d5sm4903641qtk.19.2023.06.05.11.12.05
+        by smtp.gmail.com with ESMTPSA id fw15-20020a05622a4a8f00b003f8e6071e43sm1875982qtb.3.2023.06.05.11.12.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 11:12:06 -0700 (PDT)
+        Mon, 05 Jun 2023 11:12:18 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
@@ -54,15 +54,15 @@ Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/2] ARM: dts: BCM5301X: Drop invalid #usb-cells
-Date:   Mon,  5 Jun 2023 11:12:04 -0700
-Message-Id: <20230605181204.2253783-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Drop invalid properties from Meraki MR32 keys
+Date:   Mon,  5 Jun 2023 11:12:15 -0700
+Message-Id: <20230605181215.2253875-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230602133455.7441-1-zajec5@gmail.com>
-References: <20230602133455.7441-1-zajec5@gmail.com>
+In-Reply-To: <20230602133455.7441-2-zajec5@gmail.com>
+References: <20230602133455.7441-1-zajec5@gmail.com> <20230602133455.7441-2-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000034e49305fd65d7d8"
+        boundary="000000000000e0ab1905fd65d752"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -73,24 +73,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000034e49305fd65d7d8
+--000000000000e0ab1905fd65d752
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Fri,  2 Jun 2023 15:34:54 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+On Fri,  2 Jun 2023 15:34:55 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Such property simply doesn't exist (is not documented or used anywhere).
-> 
 > This fixes:
-> arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@21000: Unevaluated properties are not allowed ('#usb-cells' was unexpected)
->         From schema: Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@22000: Unevaluated properties are not allowed ('#usb-cells' was unexpected)
->         From schema: Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@23000: Unevaluated properties are not allowed ('#usb-cells' was unexpected)
->         From schema: Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> arch/arm/boot/dts/bcm53015-meraki-mr26.dtb: keys: '#address-cells', '#size-cells' do not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
+>         From schema: Documentation/devicetree/bindings/input/gpio-keys.yaml
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
@@ -99,7 +93,7 @@ Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---00000000000034e49305fd65d7d8
+--000000000000e0ab1905fd65d752
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -170,14 +164,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBJXzBGAR+J1HI29
-pC2UOcJ3AomXYeRIqYdSUiZbrceHMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDYwNTE4MTIwN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIKFYuQqY6JaPlPat
+gi/jIWj7PqE1rYfHkrRvwFDRQDZKMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDYwNTE4MTIxOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCysbWCAc9W7ObRa3fCRJhh5hpWop2zw8Se
-b6dVZA+3dAeQi5Ku+9GiY5dykiNb2oQIkjIvcLybwlCkOI9P/qEb7gnW6GP8ozBVZWRdkJyab/mV
-Vm4+g0/9GcPp4jigZe3KGi0X4Qmz/S+5hW4rjYtTkeTXk40o/FSBWiv/TrA7Fa75UnBOZi+d/R3S
-TcafgWyTeJ/yP+HNLP37Gi07qigQvW1pxd/knzIOYqZCkB6Xzh1AR+2txB2slItFEkGL7uTDTW7O
-Z9nK2A8raHatbc2eK3Yk6uKwXF+MhvjC/tclwO9LjsxPl02GN94dSAtoo9Zp8+BVCSDnZ0q6pr06
-pnUy
---00000000000034e49305fd65d7d8--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQADOWbSawKSvbXYWj/Umn1JtPIRXk3K4CLI
+K956Il0hn0mtdkMMV3UlLGNt10Nh3xeXlWs+V2n8XwVeAhexPNMNKpJYvjjKeF0pIqJBcM1FDNqE
+CYKueMlrL3jJ2yZrSDsSDyoKuirq6CjZ/n8hfDQXRuE/8sVbp3ye1HaucJk+Svx1xWjcYe4kZZpv
+l82c2cPChdb70YrpA4NpdhYNdL+HyEctiYb+1otmEXogWgebimrjb1Nx24tM/srLdyMIwqdof5r5
+MqGDgbnwRvg9rC5gXo8bpEG1FAg6CdGLr1rx3X7O91gJOpwXhqgAQgraQfW2NTmUhZ/UeyrAweUW
+osA5
+--000000000000e0ab1905fd65d752--
