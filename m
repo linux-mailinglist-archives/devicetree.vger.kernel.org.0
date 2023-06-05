@@ -2,135 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C6CF721E07
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFB02721E0B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:24:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229701AbjFEGXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 02:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46192 "EHLO
+        id S229626AbjFEGYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 02:24:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbjFEGXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:23:17 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBA4B3;
-        Sun,  4 Jun 2023 23:23:15 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3555vJGq030898;
-        Mon, 5 Jun 2023 06:23:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=RCBSXqnqd8SXWD2jLzPWHFxvq4Xzphwc5Yh9xwjmR7Y=;
- b=AUHzGkvz938gmjinpj0mExMp3t7PHkF2L0rRFidAcJ808MqMFrCJvC1ITDF4C4tlJY5W
- qR4QBlOTikXpl2A/vdFwdqKk1HWISks+/tniPKBYfKPNFrZhsSe2dsr8pmVKmd+5MlQl
- EdG60HsYHsohi6yOmzr7aDIuUvDWecalC88dL8umGCB8SL3Y7oyZVZBSfhpBOcuJ9U0z
- QfrxREdTdlYv26PNXHYTMCseeLUmMQo3oha2ls17urBzBHBBMqP0n/GXIOz281+R6yTM
- 6Mo33vI59ULs8XD8OhTIILSAT9ypqYqeWSu3gpm4h6f3xBrdGSprRWkENUjwKfYvyDZD cw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qyw46aqvx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 05 Jun 2023 06:23:10 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3556N9EN019973
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 5 Jun 2023 06:23:09 GMT
-Received: from [10.201.206.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sun, 4 Jun 2023
- 23:23:00 -0700
-Message-ID: <eda6ad87-5ae0-b62a-e877-541fcfe59718@quicinc.com>
-Date:   Mon, 5 Jun 2023 11:52:57 +0530
+        with ESMTP id S229480AbjFEGYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:24:07 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF550E3
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:24:05 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so5445589e87.3
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:24:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685946244; x=1688538244;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T+rq5XkqN28INce3TzLWsTQLy6BL9Bx5PmUS8c7Jaoc=;
+        b=iIM6Ehv/5Tuame+j/7VHDY/RJzfdGmjMN/9anQ7EDq7HLd1EOta0j10Qed1nLMTQla
+         Saw/Yz71Nz0LgIEQGt/WzYeHhMj26hjs58+WaadXcQzDoyy1d/uQUuuuOHOmKrJsD8RK
+         K6z7cDAtyeF2MdOjIZAI/aKyVg6Sr0YsfTgwoZGzjnUaI2uhmevmfNTEmZT822OxOQ01
+         OBQZEnYCn+oiWjqe3owQKt7QrVnJuuTzm3Fr6mwyy82Si2v0aIjv5NrrfpRnZaAV11wW
+         g0s76nXLTAGBPtX8gvVsJc2FKlrEhJ1E+RbXysjiCPK0NTEj6iiBKwYJns9kEopyak4U
+         kQLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685946244; x=1688538244;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T+rq5XkqN28INce3TzLWsTQLy6BL9Bx5PmUS8c7Jaoc=;
+        b=bUs42cocGcGcK6znUhzMzH58Y1FbHBWPAc1PdaCnhh9kjj3SRdXKdDtBLbwJKstLBM
+         111LsgC7BzszqyDH4U2dicUi6OUYbcpDBoWh8X2rMyfhrsK1E4sCeHLgmnEqnzH0rtxq
+         95cHm3EAWd4Fw/fh+oGxO9I0Q7Cip4zvKhjwSbaBaLOMHEUeiY2zJZrGgXRc8ru6oqmP
+         DxA89Pb9i8U1hsUxgcvGBqKPMmrTgECm2WfUviCDZRWWsm4dgBC/7VIAPRKQ/O6DoAnF
+         XQdbOgQgOcwmn75/Kyqde+pGKPmom3W9u3x3JcCC8gv06BXQtsoQ41gLyUDU8k6EaJvX
+         CapA==
+X-Gm-Message-State: AC+VfDz3AGiA1Cs/iwZmx7TzdAt8kaKaG2HUvVW74d+Y2ovVxYFsD+Z0
+        kDSG/U3BWFFlj2y6oy7STkDVHA==
+X-Google-Smtp-Source: ACHHUZ721HTzywDNwWlcZQjpy3ZTbwS6sBCP+LYgCL+Orn1Z1WX8P/q9HPfxZPhBQLsIqlR0HXoUsw==
+X-Received: by 2002:ac2:5a01:0:b0:4f5:a181:97b1 with SMTP id q1-20020ac25a01000000b004f5a18197b1mr4917129lfn.50.1685946243884;
+        Sun, 04 Jun 2023 23:24:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id bc10-20020a056402204a00b00510de087302sm3511072edb.47.2023.06.04.23.24.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Jun 2023 23:24:03 -0700 (PDT)
+Message-ID: <7e9e5588-46bc-51bf-13d3-7d47d2bee6ec@linaro.org>
+Date:   Mon, 5 Jun 2023 08:24:00 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH V2 04/13] dt-bindings: clock: qcom: gcc-ipq5018: remove q6
- clocks macros
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add Allwinner
+ D1/T113s/R329/T507 SoCs GPADC
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <jassisinghbrar@gmail.com>, <mathieu.poirier@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_eberman@quicinc.com>, <quic_mojha@quicinc.com>,
-        <kvalo@kernel.org>, <loic.poulain@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_devipriy@quicinc.com>
-References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
- <20230521222852.5740-5-quic_mmanikan@quicinc.com>
- <514a9e26-aeb9-ce05-1055-337646098ec1@linaro.org>
- <d64b9718-0c85-6e5d-7c5b-6ea617e36a32@gmail.com>
-From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <d64b9718-0c85-6e5d-7c5b-6ea617e36a32@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Maxim Kiselev <bigunclemax@gmail.com>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230601223104.1243871-1-bigunclemax@gmail.com>
+ <20230601223104.1243871-3-bigunclemax@gmail.com>
+ <fbcc5688-387c-32fb-edac-17848c92b936@linaro.org>
+ <CALHCpMizv52yj0rw0pR8pYjSys2UivS4L4GkWLgc-d91bdmDCA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CALHCpMizv52yj0rw0pR8pYjSys2UivS4L4GkWLgc-d91bdmDCA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: WdW1Ji5aEIMWml-lCuoVBdN2GVj67_qN
-X-Proofpoint-GUID: WdW1Ji5aEIMWml-lCuoVBdN2GVj67_qN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-03_08,2023-06-02_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 mlxlogscore=999 mlxscore=0 phishscore=0 priorityscore=1501
- lowpriorityscore=0 spamscore=0 bulkscore=0 malwarescore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306050056
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/2/2023 12:25 AM, Robert Marko wrote:
-> On 30. 05. 2023. 13:01, Krzysztof Kozlowski wrote:
-> 
->> On 22/05/2023 00:28, Manikanta Mylavarapu wrote:
->>> Since Q6 firmware takes care of bring up clocks in multipd
->>> model, remove bring up clock macros.
+On 04/06/2023 22:20, Maxim Kiselev wrote:
+> пт, 2 июн. 2023 г. в 11:38, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org>:
+> Hi Krzysztof,
+>>
+>> On 02/06/2023 00:30, Maksim Kiselev wrote:
+>>> From: Maxim Kiselev <bigunclemax@gmail.com>
 >>>
->>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>> ---
->>>   include/dt-bindings/clock/qcom,gcc-ipq5018.h | 21 --------------------
->>>   1 file changed, 21 deletions(-)
->>>
->> I am fine with this if it still compiles... I have doubts about it,
->> unless of some depedencies (you mentioned three !)... but then it gets
->> complicated.
+>>> Allwinner's D1/T113s/R329/T507 SoCs have a new general purpose ADC.
+>>> This ADC is the same for all of this SoCs. The only difference is
+>>> the number of available channels.
 >>
->> Keep patches doing same logical change in same patchset. This dependency
->> dance in recent submissions is making things tricky and prolonging your
->> upstreaming process significantly.
+>> Except that it wasn't tested...
 > 
-> Considering that the basic IPQ5018 patchset that this series depends on
-> has not yet been merged, why not just drop these there instead?
-> 
-> Regards,
-> Robert
-> 
-Yeah i agree. I will drop this patch in this series.
+> Yes, you are right. I tested it only on the T113s board. And I will be glad if
+> someone tests it on another SoC.
 
-Thanks & Regards,
-Manikanta.
+Please show me the commands how you tested bindings on T113s board. I
+really would like to see them...
 
->>
->> Best regards,
->> Krzysztof
->>
->>
->>
+> 
+> ...
+> 
+>> Please run scripts/checkpatch.pl and fix reported warnings. Some
+>> warnings can be ignored, but the code here looks like it needs a fix.
+>> Feel free to get in touch if the warning is not clear.
+> 
+> I got a warning about required maintainer property. Should I do
+> anything with this?
+
+You should do something because sending broken code is not correct.
+
+> If yes, then who should be a maintainer?
+
+Someone responsible for this hardware.
+
+> 
+> ...
+> 
+>> Hm? So you do not allow anything from adc.yaml related? Are you sure
+>> this is your intention?
+> 
+> I'm not sure about it. I looked at other ADC bindings and didn't find
+> another driver with 'additionalProperties: true'
+
+I didn't write about additionalProperties:true, but about missing ref to
+adc.yaml.
+
+Best regards,
+Krzysztof
+
