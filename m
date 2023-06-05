@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 281E4722005
+	by mail.lfdr.de (Postfix) with ESMTP id 73A37722006
 	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 09:49:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbjFEHs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 03:48:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39478 "EHLO
+        id S229683AbjFEHs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 03:48:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjFEHs4 (ORCPT
+        with ESMTP id S229491AbjFEHs4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 03:48:56 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D382094
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 00:48:10 -0700 (PDT)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95887A1
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 00:48:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1685951290;
+        s=mimecast20190719; t=1685951292;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=VGkR4tMfNbDgtB0o7CKTM6cPx5ZMqgLHeB2CGeYB4eI=;
-        b=PKomrvETIESO4Ihc4rDtP8UpoAPeuvscynfVxuniMwsIy8sJY0DuT8pcV9R2ZhrljVdQy4
-        B928qgJdhhfHr7IdIZvSGKLlBHbv4qGEkQMDtMg/1DrYtB+9N/UWRUEjHYbhGqsfdf2c1G
-        mqbsEY7SfEWq8FOZcSL16yZiuyB7HTw=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Wy1ybExd+DdkhzJijCZf2robb5n3TSjvDJzl2U7VfoI=;
+        b=hen+y6gJYG3zNhmjy95owTWLaVkcvhf66DckXO0w+8a/fG9NtWGeClJ4Cbbyf1iQnPcntx
+        ziFrKB/3UhA4MB0P4KsHN5Fvyaf4Cr1pQpiM3NoaoO4TxLY5lGbwjorcyR885+TXObV3In
+        Oh9zaxCMUX6czZUqwHxsiUOuhoumFQQ=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-21-7KxenBTWNLSSQYF6tDIr3Q-1; Mon, 05 Jun 2023 03:48:08 -0400
-X-MC-Unique: 7KxenBTWNLSSQYF6tDIr3Q-1
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-3f5df65f9f4so21889415e9.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 00:48:08 -0700 (PDT)
+ us-mta-658-phWephWXPwOEP5oRGK9wOg-1; Mon, 05 Jun 2023 03:48:11 -0400
+X-MC-Unique: phWephWXPwOEP5oRGK9wOg-1
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-3f7aad897a5so14219565e9.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 00:48:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685951287; x=1688543287;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VGkR4tMfNbDgtB0o7CKTM6cPx5ZMqgLHeB2CGeYB4eI=;
-        b=CU5nUmmKtVgnyYs9WZ1Ky7apZ9XcJp2BQyZVVyHrG3LmyBS7sEhc1maqa3oIRBuPiy
-         KneTA0KD9WCJQBAm6Mxfvz4kD+JG4PxEHPJA1QXlziBZa10SFXAtV4c+cLAPzoVXjvJp
-         Z7vaAYU0XyI5Hg4qJkK+o53aRyNCoIpgSZrTXXkIkA0x5EIm1Ak8V2B823zXpR1mVRAX
-         Rf0VjbsXKLEZLnWdUnICeqTZBg1r3UQ/UukqvZ9qDT/49u3YF2O6EDUO3F3kcIL5Lqri
-         ywTSKgQy1CUWCPNQiebMofh9BM06ACNFJTRLuwsTokU+6nggFBN398+kkRGhR8dUkE5z
-         Wpww==
-X-Gm-Message-State: AC+VfDxHvXhN9VewbJz6EKngo7CPUA8o1NsCd4fXBSFvIFAs/8PGRmAh
-        AU+3gizhWGFuKbG9vbPlKBgOoFbVj0XrmC4NViNLxF6g9n3kwGyXGxBzNbwZ5mFnuSajx4Y/mO+
-        n3Zj3DvZ4wW2E2BfYY3J5Vg==
-X-Received: by 2002:a1c:4b04:0:b0:3f7:246e:cd2e with SMTP id y4-20020a1c4b04000000b003f7246ecd2emr5265793wma.23.1685951287248;
-        Mon, 05 Jun 2023 00:48:07 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6HJOy+bVutAb7WQLT6j3pU44tUaR1qLXEO8VnPsMONwfgesftWuRQxvkdzmRmRsnT2DMy9OA==
-X-Received: by 2002:a1c:4b04:0:b0:3f7:246e:cd2e with SMTP id y4-20020a1c4b04000000b003f7246ecd2emr5265786wma.23.1685951286962;
-        Mon, 05 Jun 2023 00:48:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685951290; x=1688543290;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Wy1ybExd+DdkhzJijCZf2robb5n3TSjvDJzl2U7VfoI=;
+        b=KImfsWyNN/Hm7OrYUF3YtAg3vMidQO/UdIWUTcwdhRvddBLl/DEgPka6RpgHYgjNEi
+         I7Aa09DJZRWEM8Z2cjkBIqaDnuougmGVMvghvanaEGgj17z8HsuidsimaI8UW/IM2DQ0
+         MZtLqFqUMU+J8j2Dd0M0kf3MkSGXHVWlLniC7N2x1B9lYO14ZTXjpOYHEWaaJBvdVGeo
+         AJPWh5gEuwNXrq3C8cXkWvrt/wzyVlbldFG8MteeDKtZR/jbgS49D8roMHw4fuJ2RTE0
+         R/ysl4/j2QjRFRmTWQ1TvV4l+DNsiLSThl45kvmN+PK+aw8JzjmQeA/7+Q+dH3z1H0Fa
+         LYMQ==
+X-Gm-Message-State: AC+VfDzqj29B7Rv89rLk671/2jfzWvTaL//AZxpR1FqJGfBuWZO4LWMe
+        SDEEKSsgWcPFMqIlR/WGsvWlPeNrRHDxXZuILR50Oilzm4pSZf/1HLE2UcGgKkisejCMVspOmxP
+        xH0Azuumt8qWuRaup7C3QWg==
+X-Received: by 2002:a05:600c:246:b0:3f6:a66:a36d with SMTP id 6-20020a05600c024600b003f60a66a36dmr6957917wmj.10.1685951290364;
+        Mon, 05 Jun 2023 00:48:10 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7eFHg9bKquUpdsiK2KD6fy5tNMuQeT4ijXo/E1E9L9E6LlQGTfx9UJ7jtWPmSqTB0TklZmdQ==
+X-Received: by 2002:a05:600c:246:b0:3f6:a66:a36d with SMTP id 6-20020a05600c024600b003f60a66a36dmr6957906wmj.10.1685951290089;
+        Mon, 05 Jun 2023 00:48:10 -0700 (PDT)
 Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id q21-20020a1ce915000000b003f4fb5532a1sm9715192wmc.43.2023.06.05.00.48.06
+        by smtp.gmail.com with ESMTPSA id q21-20020a1ce915000000b003f4fb5532a1sm9715192wmc.43.2023.06.05.00.48.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 00:48:06 -0700 (PDT)
+        Mon, 05 Jun 2023 00:48:09 -0700 (PDT)
 From:   Javier Martinez Canillas <javierm@redhat.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
@@ -66,15 +67,17 @@ Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH 0/5] drm/ssd130x: A few enhancements and cleanups
-Date:   Mon,  5 Jun 2023 09:47:48 +0200
-Message-Id: <20230605074753.562332-1-javierm@redhat.com>
+Subject: [PATCH 2/5] dt-bindings: display: ssd1307fb: Remove default width and height values
+Date:   Mon,  5 Jun 2023 09:47:50 +0200
+Message-Id: <20230605074753.562332-3-javierm@redhat.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230605074753.562332-1-javierm@redhat.com>
+References: <20230605074753.562332-1-javierm@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,32 +85,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+A default resolution in the ssd130x driver isn't set to an arbitrary 96x16
+anymore. Instead is set to a width and height that's controller dependent.
 
-While working on adding support for the SSD132X family of 4-bit grayscale
-Solomon OLED panel controllers, I noticed a few things in the driver that
-can be improved and make extending to support other chip families easier.
+Update DT schema to reflect what the driver does and make its users aware.
 
-I've split the preparatory patches in this series and will post the actual
-SSD132X support as a separate patch-set once this one is merged.
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+---
 
-Best regards,
-Javier
+ .../devicetree/bindings/display/solomon,ssd1307fb.yaml    | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-
-Javier Martinez Canillas (5):
-  drm/ssd130x: Make default width and height to be controller dependent
-  dt-bindings: display: ssd1307fb: Remove default width and height
-    values
-  drm/ssd130x: Set the page height value in the device info data
-  drm/ssd130x: Don't allocate buffers on each plane update
-  drm/ssd130x: Remove hardcoded bits-per-pixel in ssd130x_buf_alloc()
-
- .../bindings/display/solomon,ssd1307fb.yaml   |   8 +-
- drivers/gpu/drm/solomon/ssd130x.c             | 124 ++++++++++++------
- drivers/gpu/drm/solomon/ssd130x.h             |   6 +
- 3 files changed, 93 insertions(+), 45 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+index 94bb5ef567c6..e8ed642dc144 100644
+--- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
++++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+@@ -49,15 +49,15 @@ properties:
+ 
+   solomon,height:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    default: 16
+     description:
+-      Height in pixel of the screen driven by the controller
++      Height in pixel of the screen driven by the controller.
++      The default value is controller-dependent.
+ 
+   solomon,width:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    default: 96
+     description:
+-      Width in pixel of the screen driven by the controller
++      Width in pixel of the screen driven by the controller.
++      The default value is controller-dependent.
+ 
+   solomon,page-offset:
+     $ref: /schemas/types.yaml#/definitions/uint32
 -- 
 2.40.1
 
