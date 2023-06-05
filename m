@@ -2,163 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39291721CB6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 05:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D6B721CD0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 06:08:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232842AbjFED6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 23:58:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41264 "EHLO
+        id S232419AbjFEEH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 00:07:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232846AbjFED6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 23:58:13 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC720B8
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 20:58:11 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-30ae141785bso4357354f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 20:58:11 -0700 (PDT)
+        with ESMTP id S230493AbjFEEH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 00:07:57 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC33A6;
+        Sun,  4 Jun 2023 21:07:56 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1b011cffef2so40585145ad.3;
+        Sun, 04 Jun 2023 21:07:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685937490; x=1688529490;
+        d=gmail.com; s=20221208; t=1685938075; x=1688530075;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=C1INtN/KwPq/Kh+/tuqCsXKBvEKli+VsBh43RgsVDQQ=;
-        b=CNJgdIQWmGpb04ERz1Ys1nZrFf5/mzRxPH6KaKPjMO/3ffHex71sKR7RzjL48hpK23
-         7nGHLu+rmyyzYpb/kRA1/17nnxrMFAT0PuuxqWCtMnWJZB2fyxvreBAWcjNc55O32PVY
-         vl+6m3g9FI7LaUsjVyfboXH2VuXHRFE3Z0hPlkHGcRdmg255pieg9l+0prOmR/AnRMvI
-         pYX4RsS/sxwLEPA/5IneiOqDd0fblgwJ5evcpRLsfl81aaU/F+23pDwIhXYD9pgRzkjW
-         F5u/VYEE6E2x8G0sBGYcVEJHMsP0DzY2ckxmZBQBJSYZmm9z5dpoj8ETASH5ezPYTL5H
-         W2tA==
+        bh=652JpJkLoWj/t+Dv8KQmBEx358qgiU+Lje74sKtKVzo=;
+        b=o2kG8IFEgF9X46L1mat+0mEHB8VrXmIs7IFQRAizQkDdDBG01eLu0Gn1kAgDT3P1NO
+         lKowFn+oFbYNvi+8A1VmY8OkipcLQbui4neuEztHz7o5gJPyFArTFpeJv7KmokQBN29Z
+         YECZoHtgteAHtwfbxIBxqIiNgX/ntRdgra8IaWb/mrtctTO4AC8opEaOfFFGr/qaz9sy
+         jhNRN6teh1bNMoVJk/ZWFAjJfi0gQfuboAMrY4apE3jbhjPhocEa6fiohOIMVsu4ARLl
+         tkRUv6VT78w+fe6UkYuydX45InK2VQf+NGuDF4twDu8MRGC+SB8tJLGOiZAbYPQItU3F
+         Eshw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685937490; x=1688529490;
+        d=1e100.net; s=20221208; t=1685938075; x=1688530075;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=C1INtN/KwPq/Kh+/tuqCsXKBvEKli+VsBh43RgsVDQQ=;
-        b=OgsLIzfTbeulOh6X4ZYaVAeeFdgEjfliTyyklfxfHDhDhNS94CxFKdQCwBp4Z7hdM7
-         /z32AWzHqoRAo2dZCwt82vukLgEocc4v5i7OeRE0aqB1xrTF5lIKkbGkShgPwRajBqc+
-         0Ojb1+lKSd/1j/nmlbpvkOmNcSVyNAZxKbcfQkYs4sd9z7d9g8Eo7m2OgmN9Wz3mD+6t
-         +9ocrWYUa+vXx/EpsrdY9vI1L0M/weaNJKes5zPm7E25fw/+k2H0jHxOgz3dc/bQZly6
-         9k4iJO6Tx0Y61MkTcS/Tn9KSjLK2TBddjJa7eff9X+gltmjpW96+rLzfcaK9AXaf8DlU
-         zZ9w==
-X-Gm-Message-State: AC+VfDxAQyMHqM564w+NvH06HaQcZb76EgqHzR2+VAy1BdwcD+WxRlEH
-        3Vpr860HYrTlItfmwsGM3LADFQ==
-X-Google-Smtp-Source: ACHHUZ4DJGhaMm7brMwF3P8AN9X/VOOOSJlkXVvH96yVnAEoah1Hx3Zw7Ukr9AL0H+eD7KQMt0LyCw==
-X-Received: by 2002:adf:fb45:0:b0:30a:ee5e:5cf5 with SMTP id c5-20020adffb45000000b0030aee5e5cf5mr4968771wrs.31.1685937490193;
-        Sun, 04 Jun 2023 20:58:10 -0700 (PDT)
-Received: from localhost.localdomain ([2.223.46.74])
-        by smtp.gmail.com with ESMTPSA id l18-20020a05600c1d1200b003f61177faffsm22761574wms.0.2023.06.04.20.58.09
+        bh=652JpJkLoWj/t+Dv8KQmBEx358qgiU+Lje74sKtKVzo=;
+        b=h+pnOmmarh450Zy98qHXVza5ovtNsLVeHlJFf7MbIqsRR6I7eJ4U5pYTtcjgWAmwM1
+         Jo8tUelK1utgfXKw30aiqfb7HjVuDA5EQMxEaV7KKVcBWb00upCb0dNk2SjFB4rkMjiq
+         1zCvL2Ov9oRP5A0fiLP989CiODVyEyGoZjoWwPbN/MTBsR7oUFmHcVmeqxUSVgJ7m5DM
+         oDGoBt60s/5s7CqOp7AOuqhufg7lO37ZPQDta5uS8o2hKN0f5QwsmWyRQ22VKqHwMUfF
+         dAiukL4jjthZRSgCPNrxM0V6n0jLTpnqjAgw8j9qXrKKY4PZzSqv3VKYV55lysrSEuZj
+         EMPg==
+X-Gm-Message-State: AC+VfDy26jjlKi8GZpuzZPqoX8ZdZcq/gSzrViJsF5uL1NUSSFZqOtfI
+        T4NrTBw4We1R2yJ4MNLwc0EpcNAF07M=
+X-Google-Smtp-Source: ACHHUZ7Y4u3Z8ob/D7XXc51E40iSzJIBaa+3ztJQ3n6LUEVWfGUDXBrL/UmhoBgOaZM3cKYbf+yLlg==
+X-Received: by 2002:a17:902:d34b:b0:1b0:1095:f4f6 with SMTP id l11-20020a170902d34b00b001b01095f4f6mr6169360plk.24.1685938075344;
+        Sun, 04 Jun 2023 21:07:55 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id b4-20020a170903228400b001b21bcea439sm206164plh.170.2023.06.04.21.07.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jun 2023 20:58:09 -0700 (PDT)
-From:   Alexey Klimov <alexey.klimov@linaro.org>
-To:     linux-sunxi@lists.linux.dev
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, wens@csie.org,
-        jernej.skrabec@gmail.com, samuel@sholland.org,
-        daniel.lezcano@linaro.org, peter.griffin@linaro.org,
-        klimov.linux@gmail.com
-Subject: [PATCH] arm64: dts: allwinner: a64: Add thermal trip points for GPU
-Date:   Mon,  5 Jun 2023 04:58:08 +0100
-Message-Id: <20230605035808.594686-1-alexey.klimov@linaro.org>
-X-Mailer: git-send-email 2.40.1
+        Sun, 04 Jun 2023 21:07:54 -0700 (PDT)
+From:   Jacky Huang <ychuang570808@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, tmaimon77@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, arnd@arndb.de, soc@kernel.org,
+        schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH v13 00/10] Introduce Nuvoton ma35d1 SoC
+Date:   Mon,  5 Jun 2023 04:07:39 +0000
+Message-Id: <20230605040749.67964-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Without trip points for GPU, the following errors are printed in the
-dmesg log and the sun8i-thermal driver fails to load:
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-thermal_sys: Failed to find 'trips' node
-thermal_sys: Failed to find trip points for thermal-sensor id=1
-sun8i-thermal: probe of 1c25000.thermal-sensor failed with error -22
+This patchset adds initial support for the Nuvoton ma35d1 SoC, including
+initial device tree, clock driver, reset driver, and serial driver.
 
-When thermal zones are defined, trip points definitions are mandatory.
-Trip values for the GPU are assumed to be the same values as the CPU
-ones. The available specs do not provide any hints about thermal regimes
-for the GPU and it seems GPU is implemented on the same die as the CPU.
+This patchset cover letter is based from the initial support for Nuvoton
+ma35d1 to keep tracking the version history.
 
-Tested on Pine a64+.
+This patchset had been applied to Linux kernel 6.4.0-rc5
+and tested on the Nuvoton ma35d1 SOM evaluation board.
 
-Cc: Samuel Holland <samuel@sholland.org>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
+(ma35d1 information: https://www.nuvoton.com/products/microprocessors/arm-cortex-a35-mpus/)
+MA35D1 porting on linux-5.10.y can be found at: https://github.com/OpenNuvoton/MPU-Family
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 62f45f71ec65..07963eea1bf0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -243,6 +243,29 @@ gpu0_thermal: gpu0-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 1>;
-+
-+			trips {
-+				gpu0_alert0: gpu0_alert0 {
-+					/* milliCelsius */
-+					temperature = <75000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				gpu0_alert1: gpu0_alert1 {
-+					/* milliCelsius */
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "hot";
-+				};
-+
-+				gpu0_crit: gpu0_crit {
-+					/* milliCelsius */
-+					temperature = <110000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 
- 		gpu1_thermal: gpu1-thermal {
-@@ -250,6 +273,29 @@ gpu1_thermal: gpu1-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 2>;
-+
-+			trips {
-+				gpu1_alert0: gpu1_alert0 {
-+					/* milliCelsius */
-+					temperature = <75000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				gpu1_alert1: gpu1_alert1 {
-+					/* milliCelsius */
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "hot";
-+				};
-+
-+				gpu1_crit: gpu1_crit {
-+					/* milliCelsius */
-+					temperature = <110000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 	};
- 
+v13:
+  - Modify serial driver
+    - Added a check for oops_in_progress in ma35d1serial_console_write to
+      determine whether to perform the spin_lock.
+    - Rebased drivers/tty/serial/Kconfig and recreate the patch
+    - Rebased MAINTAINERS and recreate the patch
+
+v12:
+  - Modify serial driver
+    - Added PORT_MA35 to include/uapi/linux/serial_core.h, and apply to
+      the port->type of ma35d1 serial driver
+    - Added check for the return value of ioremap()
+    - Fixed several coding issues
+  - Rebase MAINTAINERS and recreate the patch
+
+v11:
+  - Rebase on top of 2023.05.24
+  - Modify serial driver
+    - Fixed several coding style issues
+    - Fixed ma35d1serial_set_mctrl()
+    - Added the 'MA35_' prefix to all register and bit field definitions.
+    - Used 'ttyNVT' instead of 'ttyS'
+  - Modify clock driver
+    - Added 'source nuvoton/Kconfig' to drivers/clk/Kconfig
+    - Fixed several coding issues
+    - Removed unnecessary inline specifier
+  - Modify reset driver
+    - Fixed typo and added comments
+  - Modify ma35d1.dtsi l2-cache node
+    - Added cache-unified and cache-size properties
+
+v10:
+  - Change from using ARCH_NUVOTON to using ARCH_MA35. The following patch files
+    have been modified:
+    - patch 1 arch/arm64/Kconfig.platforms
+    - patch 2 arch/arm64/configs/defconfig
+    - patch 7 arch/arm64/boot/dts/nuvoton/Makefile
+    - patch 8 drivers/clk/Makefile
+              drivers/clk/nuvoton/Kconfig
+              drivers/clk/nuvoton/Makefile
+    - patch 9 drivers/reset/Kconfig
+    - patch 10 drivers/tty/serial/Kconfig
+
+v9:
+  - Combine MAINTAINERS patch into patch 5 'dt-bindings: arm: Add initial bindings
+    for Nuvoton platform'
+  - Modify clock driver
+    - Use the helper function for 64-bit division
+    - Fixed minor issues
+  - Modify reset driver
+    - Refine coding style and add required header files
+    - Add spin_lock protection
+  - Add error return handling to the serial driver probe function
+
+v8:
+  - Remove '0005-dt-bindings-mfd-syscon-Add-nuvoton-ma35d1-sys-compat.patch' as it was applied.
+  - Modify MAINTAINERS NUVOTON MA35 and NPCM path settings
+  - Remove 'syscon' from dtsi 'sys' node and modify the corresponding yaml
+  - Modify clock driver
+    - Remove the header file and move definitions into .c files.
+    - Use parent_data instead of parent name.
+  - Modify serial driver
+  - Modify reset driver
+    - Modify reset register/offset lookup table to be indexed by reset id
+    - Combined reset and reboot structure
+
+v7:
+  - Fixed dts system-management node and compatible driver
+  - move 'nuvoton,npcm-gcr.yaml' from 'binding/arm/nuvoton' to 'binding/soc/nuvoton'
+  - In ma35d1.dtsi, create the soc node for ma35d1 SoC
+  - Modify the issues found in serial driver
+  - Modify the issues found in clock driver
+  - Modify the IDs of reset driver to be contiguous numbers and use lookup table
+    to find register offset and bit position.
+  - Modify MAINTAINERS NUVOTON NPCM path as npcm directory name to nuvoton
+
+v6:
+  - Combine nuvoton,ma35d1-clk.yaml and nuvoton,ma35d1-clk.h into one patch
+  - Combine nuvoton,ma35d1-reset.yaml and nuvoton,ma35d1-reset.h into one patch
+  - rename Documentation/devicetree/bindings/arm/npcm directory as nuvoton
+  - Remove patch for adding include/linux/mfd/ma35d1-sys.h as it's not required
+  - Update dtsi & dts files and move board-specific nodes to dts
+  - Modify reset driver
+  - Modify serial driver, fix coding style issues
+  - Modify clock driver, rewrite the PLL calculation functions
+
+v5:
+  - Add ARCH_NUVOTON to arm64 Kconfig
+  - Add ARCH_NUVOTON to defconfig
+  - Add the clock driver
+  - Add the reset driver
+  - Add the serial driver
+  - Add us to the maintainer
+
+v4:
+  - patch 4/5 is a resend
+  - Fixed dt_binding_check errors of nuvoton,ma35d1-clk.yaml
+  - Modify ma35d1.dtsi
+    1. Add a node hxt_24m
+    2. Fixed the base address of gic node
+    3. Add clocks and clock-names to clock node
+  - Fixed borad binding mistakes of nuvoton.yaml
+
+v3:
+  - added patch 4/5 and 5/5
+  - introduce CONFIG_ARCH_NUVOTON option
+  - add initial bindings for Nuvoton Platform boards
+  - fixed coding style problem of nuvoton,ma35d1-clk.h
+  - added CAPLL to clock-controller node
+  - modify the chosen node of ma35d1-evb.dts
+  - modify clock yaml "clk-pll-mode" to "nuvoton,clk-pll-mode"
+
+v2:
+  - fixed dt_binding_check failed of nuvoton,ma35d1-clk.yaml
+
+Jacky Huang (10):
+  arm64: Kconfig.platforms: Add config for Nuvoton MA35 platform
+  arm64: defconfig: Add support for Nuvoton MA35 family SoCs
+  dt-bindings: clock: nuvoton: add binding for ma35d1 clock controller
+  dt-bindings: reset: nuvoton: Document ma35d1 reset control
+  dt-bindings: arm: Add initial bindings for Nuvoton platform
+  dt-bindings: serial: Document ma35d1 uart controller
+  arm64: dts: nuvoton: Add initial ma35d1 device tree
+  clk: nuvoton: Add clock driver for ma35d1 clock controller
+  reset: Add Nuvoton ma35d1 reset driver support
+  tty: serial: Add Nuvoton ma35d1 serial driver support
+
+ .../bindings/arm/nuvoton/nuvoton,ma35d1.yaml  |  30 +
+ .../npcm.yaml => nuvoton/nuvoton,npcm.yaml}   |   2 +-
+ .../bindings/clock/nuvoton,ma35d1-clk.yaml    |  63 ++
+ .../bindings/reset/nuvoton,ma35d1-reset.yaml  |  45 +
+ .../serial/nuvoton,ma35d1-serial.yaml         |  48 +
+ .../nuvoton/nuvoton,npcm-gcr.yaml}            |   2 +-
+ MAINTAINERS                                   |  13 +-
+ arch/arm64/Kconfig.platforms                  |   8 +
+ arch/arm64/boot/dts/nuvoton/Makefile          |   2 +
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  56 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  56 ++
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 234 +++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/nuvoton/Kconfig                   |  19 +
+ drivers/clk/nuvoton/Makefile                  |   4 +
+ drivers/clk/nuvoton/clk-ma35d1-divider.c      | 135 +++
+ drivers/clk/nuvoton/clk-ma35d1-pll.c          | 361 +++++++
+ drivers/clk/nuvoton/clk-ma35d1.c              | 933 ++++++++++++++++++
+ drivers/reset/Kconfig                         |   6 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-ma35d1.c                  | 235 +++++
+ drivers/tty/serial/Kconfig                    |  18 +
+ drivers/tty/serial/Makefile                   |   1 +
+ drivers/tty/serial/ma35d1_serial.c            | 808 +++++++++++++++
+ .../dt-bindings/clock/nuvoton,ma35d1-clk.h    | 253 +++++
+ .../dt-bindings/reset/nuvoton,ma35d1-reset.h  | 108 ++
+ include/uapi/linux/serial_core.h              |   3 +
+ 29 files changed, 3444 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/nuvoton/nuvoton,ma35d1.yaml
+ rename Documentation/devicetree/bindings/arm/{npcm/npcm.yaml => nuvoton/nuvoton,npcm.yaml} (93%)
+ create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/nuvoton,ma35d1-serial.yaml
+ rename Documentation/devicetree/bindings/{arm/npcm/nuvoton,gcr.yaml => soc/nuvoton/nuvoton,npcm-gcr.yaml} (93%)
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+ create mode 100644 drivers/clk/nuvoton/Kconfig
+ create mode 100644 drivers/clk/nuvoton/Makefile
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1-divider.c
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1-pll.c
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1.c
+ create mode 100644 drivers/reset/reset-ma35d1.c
+ create mode 100644 drivers/tty/serial/ma35d1_serial.c
+ create mode 100644 include/dt-bindings/clock/nuvoton,ma35d1-clk.h
+ create mode 100644 include/dt-bindings/reset/nuvoton,ma35d1-reset.h
+
 -- 
-2.40.1
+2.34.1
 
