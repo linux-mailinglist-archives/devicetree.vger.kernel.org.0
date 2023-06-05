@@ -2,112 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0753F722DAB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAFA7722DBC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235408AbjFERbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 13:31:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
+        id S235024AbjFERgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 13:36:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234624AbjFERah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:30:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67D2115;
-        Mon,  5 Jun 2023 10:30:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DCE4628B0;
-        Mon,  5 Jun 2023 17:30:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E35EAC433EF;
-        Mon,  5 Jun 2023 17:30:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685986234;
-        bh=WdV07oy/o91QEHR/yUMXPJbDhkHpn84JHUxwqIBH/a4=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=WV4/J8LxaHbnn83o/tFnncB95q1CEMouX8J6cEuJJ8BqIw+HxGKjSw4SggwJCclmh
-         bnjh16AvaQ+oXOk/C2vdQJGn1GFxuKQmc1VpkASsn8yAii3JkrBkBAuCWx+ctWSvGu
-         gt0Wog/LH9xfYCD5PsdFl3k5fIzFI5ZR7PIZw5mSkX+yMxSo5wUOHvGk3ZiCs2m7YD
-         sONooxx9S7MoWNN43+spGjmJwv+bC+aRgusr/ZmSoHbfAPAs7p1qAj2D86ugm2indf
-         wV3HvFI+N8Kt4VB73e7JiGcVPHCJYokX7vCk8UclcXKmq2AqPB5BMdTqAucGNrMvPq
-         Y6nAGTf53zMbg==
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com,
-        Trevor Wu <trevor.wu@mediatek.com>
-Cc:     amergnat@baylibre.com, alsa-devel@alsa-project.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230526093150.22923-1-trevor.wu@mediatek.com>
-References: <20230526093150.22923-1-trevor.wu@mediatek.com>
-Subject: Re: [PATCH v3 0/7] ASoC: mt8188: add new board support
-Message-Id: <168598623165.103672.7353425800916087713.b4-ty@kernel.org>
-Date:   Mon, 05 Jun 2023 18:30:31 +0100
+        with ESMTP id S229834AbjFERgt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:36:49 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC678F;
+        Mon,  5 Jun 2023 10:36:41 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685986599;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Yjxc+85Bq54GZEvP6akAc9UZPm7vVtcD2MajvGxNqiY=;
+        b=fi5uoXdANbPmsJUCGLlp8YkQvRea5sm2llsgEt0TFFbN/DiK/ijhu1QIs5Lb2SHJSBwlTa
+        xdRattLNG7l9JpgH7Z2IWlWWnCWosU1xEqePGqf0QzTm5HkuErSI72aB0EIN6+4amnT0Ga
+        8P+eqvTkLDpUBP2q2wVkWdPbKHMPlb/UrWbta2UWHEFpzfSkXWd8qOJMTia0XbM4I72MNo
+        htz4tOzOJNwc7ZqbKvRPvV4SamC6GjcYV5Yf3fFGzU1Qozhdsb7h7PJ7F8Vnc6JSTYkcZc
+        ETtauzV/LnDHBQc6O1Sj8LPo50Bx0osDRQ1RHgVz9XCDZ+P/SY/4l7DojYpbKA==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A2C4E20004;
+        Mon,  5 Jun 2023 17:36:37 +0000 (UTC)
+Date:   Mon, 5 Jun 2023 19:36:36 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 5/9] iio: inkern: Add a helper to query an available
+ minimum raw value
+Message-ID: <20230605193636.5239a271@bootlin.com>
+In-Reply-To: <20230605180547.0000528b@Huawei.com>
+References: <20230523151223.109551-1-herve.codina@bootlin.com>
+        <20230523151223.109551-6-herve.codina@bootlin.com>
+        <ZHtIdTZbULl6t4RT@surfacebook>
+        <20230605094637.7615b689@bootlin.com>
+        <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
+        <20230605180547.0000528b@Huawei.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 May 2023 17:31:43 +0800, Trevor Wu wrote:
-> In the series, we extend the capability of mt8188-mt6359 driver.
+Hi Jonathan, Andy,
+
+On Mon, 5 Jun 2023 18:05:47 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+
+> On Mon, 5 Jun 2023 12:45:24 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 > 
-> The following changes are included.
-> 1. Divide ADDA BE dai into two dais for SOF.
-> 2. Register hdmi/dp jack pins.
-> 3. dai_fmt can be configured from device tree.
-> 4. Add some I2S codecs support.
+...
+> > > > > +           default:
+> > > > > +                   /* FIXME: learn about min for other iio values */    
+> > > >
+> > > > I believe in a final version this comment won't be here.    
+> > >
+> > > We have the same FIXME comment in the iio_channel_read_max() function I
+> > > copied to create this iio_channel_read_min() and, to be honest, I
+> > > don't really know how to handle these other cases.
+> > >
+> > > In this series, I would prefer to keep this FIXME.    
+> > 
+> > I see, Jonathan needs to be involved here then.  
 > 
-> [...]
+> It's really more of a TODO when someone needs it than a FIXME.
+> I'm not particularly keen to see a bunch of code supporting cases
+> that no one uses, but it's useful to call out where the code would
+> go if other cases were to be supported.
+> 
+> Perhaps soften it to a note that doesn't have the work FIXME in it.
+> 
+> Jonathan
+> 
 
-Applied to
+Right, I will change to /* TODO: learn about max for other iio values */
+in the next iteration (both iio_channel_read_max() and iio_channel_read_min())
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Regards,
+Hervé
 
-Thanks!
-
-[1/7] ASoC: mediatek: mt8188: separate ADDA playback dai from capture dai
-      commit: 2a7a1ae95c84d4199736872bfbc39d01f4b6b0ab
-[2/7] ASoC: dt-bindings: mediatek,mt8188-mt6359: remove ADDA_BE from link-name
-      commit: 9fba0d3ec0a074d1a7c094b2cb722f135215fab0
-[3/7] ASoC: mediatek: mt8188-mt6359: register hdmi/dp jack pins
-      commit: 73cf2b3f2b45fa4c231e8e84ae5d8cc80947d799
-[4/7] ASoC: mediatek: common: soundcard driver add dai_fmt support
-      commit: c0e7390e6d3f42b9a15a0e72add21facb8e17790
-[5/7] ASoC: soc-dapm.c: clean up debugfs for freed widget
-      commit: 8ad13cdc92f66333ae475251ae7722313f84e496
-[6/7] ASoC: mediatek: mt8188-mt6359: support new board with nau88255
-      commit: 9f08dcbddeb307793bbfff036db213d2cdf03a50
-[7/7] ASoC: dt-bindings: mediatek,mt8188-mt6359: add NAU8825 support
-      commit: ee02b869dcad7ba3772b58e93dd90ab4f932fac5
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> 
+> >   
+> > > > > +                   return -EINVAL;    
+> >   
+> 
