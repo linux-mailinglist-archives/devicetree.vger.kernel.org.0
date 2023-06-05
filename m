@@ -2,156 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2694722091
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 10:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0307220DF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 10:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229970AbjFEIJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 04:09:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
+        id S229772AbjFEIWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 04:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjFEIJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 04:09:01 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23009A1
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 01:09:00 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1q65Gn-00021e-UX; Mon, 05 Jun 2023 10:08:53 +0200
-Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1q65Gi-0003OO-3S; Mon, 05 Jun 2023 10:08:48 +0200
-Date:   Mon, 5 Jun 2023 10:08:48 +0200
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Keith Zhao <keith.zhao@starfivetech.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH 9/9] drm/verisilicon: Add starfive hdmi driver
-Message-ID: <20230605080848.GA4802@pengutronix.de>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602074043.33872-10-keith.zhao@starfivetech.com>
+        with ESMTP id S229579AbjFEIWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 04:22:00 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8A26B7;
+        Mon,  5 Jun 2023 01:21:59 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B133066056AC;
+        Mon,  5 Jun 2023 09:21:57 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685953318;
+        bh=VJJ5TugID6Q4W6b8RgUTwaQaM+UQcpqFmZpmE6t57EI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=c9Ck2tFBEAWtO399BEwFs1Yx0a6XkEl2E3oKh6tn7Q2OBeSI6MfSvGQ0ke/yUSRXj
+         rSbfCLVzUMnrv5WvJK9KRhgERLPJFtFmRAgIZhYRCHJTbHdO4AOqMov1kYDCu1g91c
+         akCSyrW7GspMYhDLgxL10cQDF/BzJr00mXnF6gQsl4EFD3xXZbnxvI6chKN65AKo4p
+         WCqfaZmCaHTqI7AldbLAGHTWTxeLqMe9ebPTJjdhL7X8SgnREYSKQZh3DeBqtXXxMe
+         Hs8MCZQmuezlwKPtDxljhKfvpwMW3wjJzmJwmjmUr3tKpqnLdv/T/NVqxnqfvdjL6L
+         mW+KO9Qg7twfg==
+Message-ID: <01c88a42-274c-f8cf-73a6-29741579d9db@collabora.com>
+Date:   Mon, 5 Jun 2023 10:21:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230602074043.33872-10-keith.zhao@starfivetech.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: pza@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8192: Fix CPUs capacity-dmips-mhz
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     kernel@collabora.com, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230602183515.3778780-1-nfraprado@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230602183515.3778780-1-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Keith,
-
-On Fri, Jun 02, 2023 at 03:40:43PM +0800, Keith Zhao wrote:
-> Add HDMI dirver for StarFive SoC JH7110.
+Il 02/06/23 20:35, Nícolas F. R. A. Prado ha scritto:
+> The capacity-dmips-mhz parameter was miscalculated: this SoC runs
+> the first (Cortex-A55) cluster at a maximum of 2000MHz and the
+> second (Cortex-A76) cluster at a maximum of 2200MHz.
 > 
-> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
-> ---
->  drivers/gpu/drm/verisilicon/Kconfig         |  11 +
->  drivers/gpu/drm/verisilicon/Makefile        |   1 +
->  drivers/gpu/drm/verisilicon/starfive_hdmi.c | 928 ++++++++++++++++++++
->  drivers/gpu/drm/verisilicon/starfive_hdmi.h | 296 +++++++
->  drivers/gpu/drm/verisilicon/vs_drv.c        |   6 +
->  drivers/gpu/drm/verisilicon/vs_drv.h        |   4 +
->  6 files changed, 1246 insertions(+)
->  create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.c
->  create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.h
+> In order to calculate the right capacity-dmips-mhz, the following
+> test was performed:
+> 1. CPUFREQ governor was set to 'performance' on both clusters
+> 2. Ran dhrystone with 500000000 iterations for 10 times on each cluster
+> 3. Calculated the mean result for each cluster
+> 4. Calculated DMIPS/MHz: dmips_mhz = dmips_per_second / cpu_mhz
+> 5. Scaled results to 1024:
+>     result_c0 = dmips_mhz_c0 / dmips_mhz_c1 * 1024
 > 
-[...]
-> diff --git a/drivers/gpu/drm/verisilicon/starfive_hdmi.c b/drivers/gpu/drm/verisilicon/starfive_hdmi.c
-> new file mode 100644
-> index 000000000000..128ecca03309
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/starfive_hdmi.c
-> @@ -0,0 +1,928 @@
-[...]
-> +static int starfive_hdmi_enable_clk_deassert_rst(struct device *dev, struct starfive_hdmi *hdmi)
-> +{
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(hdmi->sys_clk);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(dev, "Cannot enable HDMI sys clock: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(hdmi->mclk);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(dev, "Cannot enable HDMI mclk clock: %d\n", ret);
-> +		return ret;
-> +	}
-> +	ret = clk_prepare_enable(hdmi->bclk);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(dev, "Cannot enable HDMI bclk clock: %d\n", ret);
-> +		return ret;
-> +	}
-> +	ret = reset_control_deassert(hdmi->tx_rst);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to deassert tx_rst\n");
+> The mean results for this SoC are:
+> Cluster 0 (LITTLE): 12016411 Dhry/s
+> Cluster 1 (BIG): 31702034 Dhry/s
+> 
+> The calculated scaled results are:
+> Cluster 0: 426.953226899238 (rounded to 427)
+> Cluster 1: 1024
+> 
+> Fixes: 48489980e27e ("arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
 
-The error paths should clk_disable_unprepare() enabled clocks.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> +		return ret;
-> +	}
-> +	return 0;
-> +}
-> +
-[...]
-> +static int starfive_hdmi_get_clk_rst(struct device *dev, struct starfive_hdmi *hdmi)
-> +{
-> +	hdmi->sys_clk = devm_clk_get(dev, "sysclk");
-> +	if (IS_ERR(hdmi->sys_clk)) {
-> +		DRM_DEV_ERROR(dev, "Unable to get HDMI sysclk clk\n");
-> +		return PTR_ERR(hdmi->sys_clk);
-> +	}
-> +	hdmi->mclk = devm_clk_get(dev, "mclk");
-> +	if (IS_ERR(hdmi->mclk)) {
-> +		DRM_DEV_ERROR(dev, "Unable to get HDMI mclk clk\n");
-> +		return PTR_ERR(hdmi->mclk);
-> +	}
-> +	hdmi->bclk = devm_clk_get(dev, "bclk");
-> +	if (IS_ERR(hdmi->bclk)) {
-> +		DRM_DEV_ERROR(dev, "Unable to get HDMI bclk clk\n");
-> +		return PTR_ERR(hdmi->bclk);
-> +	}
-> +	hdmi->tx_rst = reset_control_get_shared(dev, "hdmi_tx");
 
-Use devm_reset_control_get_shared() for consistency, otherwise this is missing
-a reset_control_put() somewhere.
-
-regards
-Philipp
