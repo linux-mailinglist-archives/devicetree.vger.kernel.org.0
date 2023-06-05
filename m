@@ -2,149 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3022D722D5C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88EE0722D8F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232400AbjFERJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 13:09:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
+        id S232762AbjFERWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 13:22:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230008AbjFERJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:09:41 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FEE091
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 10:09:40 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-ba827a34ba8so6077861276.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 10:09:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685984979; x=1688576979;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4GWJEMZcMO5R6CDwitNhGNBkGuDXmhHZQItLXpH0uTo=;
-        b=pdj/9TlRmRWlyOYd2VLiS64oTqpWOU5PMoiNL5+SGh4vpokaM+qFex8O9+ljopL6Ek
-         HBHAvWJQ0M7e3j7sWibBIHzTbZ7f0rfjCT19VhAxApvCJvkBEPAgvtJD/iULeeRRvCsi
-         K35kvKwzQOmmk0iNm9NTpfGFzEPZdQgW4GpiloBxi+Vz0V3YRJrdjU9HBlFfsBa4rHBZ
-         AMMH3+pYaBrY1aT1mSRJiwNLndUGS6EZpe7XL9uEaZ5GKuZDs2fYRQG8OrwCZzXYkbDw
-         +AMx1QTVgl/f3GRDvoqcC+bh1ZarvG2crDi3cMscnTGrZkgloX4ChOL359x5llIys0Fd
-         qNzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685984979; x=1688576979;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4GWJEMZcMO5R6CDwitNhGNBkGuDXmhHZQItLXpH0uTo=;
-        b=SuPE41d9bZ5eIOtOtryHnvJHlIxYgfUdg9cv/zSn7ePjMorkIuTsnePstVDKX7AQEZ
-         ZGX6nGnUghAct20JGQ1GsJoYQW/ot/QwWbvoSz1YMLGBdEzyayg9I2l5iqDMnmMHXU/a
-         nlR3sdRb6kF30KrwD26R6UWjby5WxGUJ4n88/tBeXiflrJh9Cr5KM/mYxAJwCsZqNf14
-         KkhOLQhdPZQ9vgZmHJHFLvuJoPD6Rgg3igDuL+tm8G4FwMt/Rz0djRz4K4IwhjP4FgXK
-         UnsOubPVu8frdwq90605fsa+9E3dpqN/CA7tS5o+EKxQFF3+Gmst1GK9orSM0zRAqGWq
-         F5rA==
-X-Gm-Message-State: AC+VfDxcPAMIPsK8pSnf/g4Kw65W+iTaUoe612LPQXixoJ6d50fUFKZZ
-        Jh7V9/668/wu800DU3+4C0jqb5+B5LBCWK4HOkgFMw==
-X-Google-Smtp-Source: ACHHUZ4p/Fv7/1YL5aK6ni9BSkRIpB2mD0PTUJxt1VEJdkmZiqICIOae+tEFI3eDyVtAjNHYulgKIeUo+lKq/F6nazA=
-X-Received: by 2002:a25:ade5:0:b0:b9e:6d83:7bcf with SMTP id
- d37-20020a25ade5000000b00b9e6d837bcfmr12259782ybe.27.1685984979703; Mon, 05
- Jun 2023 10:09:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
- <20230411-topic-straitlagoon_mdss-v5-5-998b4d2f7dd1@linaro.org>
- <e9da7236-5915-b9df-59dc-c2baa960f52b@linaro.org> <ea8d1808-b04c-332f-834a-c3f237e0b931@linaro.org>
-In-Reply-To: <ea8d1808-b04c-332f-834a-c3f237e0b931@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 5 Jun 2023 20:09:28 +0300
-Message-ID: <CAA8EJprAiB8xrrx23fX95PnVockeH=6omppEwDJAxU6kGS5LwA@mail.gmail.com>
-Subject: Re: [PATCH v5 05/12] dt-bindings: display/msm: Add SM6375 MDSS
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232155AbjFERWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:22:52 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE6C91;
+        Mon,  5 Jun 2023 10:22:49 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685985768;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Berwdtb2uXHQbSksaaVPK3mZrvObJ1lWrE4UzrcIf8M=;
+        b=J7ev+niTsg1xzPdC/Z0LVxKv4Z42cGvd9zc2KeBD1xxv+tqyeHe/4J8ImQTFJ1AoRgwgFN
+        6ojrllCzR4ja6qcd8Etya0M3KkgPxP7cdNUzzM1mBqdz0+9jfeouUaa6+qH29biRkSjfrN
+        DEIv/KSc/UuFrVmO58z9vm5utSERq6eCX49QApf1GYrUKVvHRTAtTYXX/eis3QNiXJMu6m
+        unP5K6zs/HR9ux7R15lM8AbrvRMKbugnYtaMO8wRVXXYMabKWLmZaZTrLy4l+nDei2D3CH
+        yOnw8Ft+VslMGLTB3zGn7OVLUIwcfgiqpz9hy1ufyO1B+48vf2k025F3lQLDcw==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 30441240009;
+        Mon,  5 Jun 2023 17:22:46 +0000 (UTC)
+Date:   Mon, 5 Jun 2023 19:22:45 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 7/9] ASoC: codecs: Add support for the generic IIO
+ auxiliary devices
+Message-ID: <20230605192245.4132e0ae@bootlin.com>
+In-Reply-To: <20230528183855.0c95d308@jic23-huawei>
+References: <20230523151223.109551-1-herve.codina@bootlin.com>
+ <20230523151223.109551-8-herve.codina@bootlin.com>
+ <20230528183855.0c95d308@jic23-huawei>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Jun 2023 at 20:01, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 4.06.2023 20:04, Krzysztof Kozlowski wrote:
-> > On 23/05/2023 09:46, Konrad Dybcio wrote:
-> >> Document the SM6375 MDSS.
-> >>
-> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> ---
-> >>  .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 216 +++++++++++++++++++++
-> >>  1 file changed, 216 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
-> >> new file mode 100644
-> >> index 000000000000..3aa4f0470c95
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
-> >> @@ -0,0 +1,216 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6375-mdss.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Qualcomm SM6375 Display MDSS
-> >> +
-> >> +maintainers:
-> >> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> +
-> >> +description:
-> >> +  SM6375 MSM Mobile Display Subsystem (MDSS), which encapsulates sub-blocks
-> >> +  like DPU display controller, DSI and DP interfaces etc.
-> >> +
-> >> +$ref: /schemas/display/msm/mdss-common.yaml#
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    items:
-> >> +      - const: qcom,sm6375-mdss
-> >> +
-> >
-> > Same as 6350 - drop items.
-> Ack
->
-> >
-> > Similar concern about interconnects, although we don't have header file
-> > for them, so I assume we will fill it up later.
-> Yep, they'll come later and other SoCs may need a bump up for a third icc
-> path soon..
+Hi Jonathan,
 
-4th ;-)
+On Sun, 28 May 2023 18:38:55 +0100
+Jonathan Cameron <jic23@kernel.org> wrote:
 
->
-> Konrad
-> >
-> > Best regards,
-> > Krzysztof
-> >
+> On Tue, 23 May 2023 17:12:21 +0200
+> Herve Codina <herve.codina@bootlin.com> wrote:
+> 
+> > Industrial I/O devices can be present in the audio path.
+> > These devices needs to be used as audio components in order to be fully
+> > integrated in the audio path.
+> > 
+> > This support allows to consider these Industrial I/O devices as auxliary
+> > audio devices and allows to control them using mixer controls.
+> > 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---  
+> 
+> > diff --git a/sound/soc/codecs/audio-iio-aux.c b/sound/soc/codecs/audio-iio-aux.c
+> > new file mode 100644
+> > index 000000000000..21575c4b35fd
+> > --- /dev/null
+> > +++ b/sound/soc/codecs/audio-iio-aux.c
+> > @@ -0,0 +1,302 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +//
+> > +// audio-iio-aux.c  --  ALSA SoC glue to use IIO devices as audio components
+> > +//
+> > +// Copyright 2023 CS GROUP France
+> > +//
+> > +// Author: Herve Codina <herve.codina@bootlin.com>
+> > +
+> > +#include <linux/iio/consumer.h>
+> > +#include <linux/module.h>  
+> 
+> #include <linux/mod_devicetable.h> ideally to pick up
+> the of_device_id definition without bouncing through some non 
+> obvious header path.
 
+Right, <linux/module.h> will be replaced by <linux/mod_devicetable.h> in the
+next iteration.
 
+Thanks for the review,
+Hervé
 
--- 
-With best wishes
-Dmitry
+> 
+> 
+> > +#include <linux/slab.h>
+> > +#include <sound/soc.h>
+> > +#include <sound/tlv.h>  
+> 
+> Otherwise, the IIO elements of this look good.  So for those at least
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> I don't have enough knowledge of the snd stuff to review those
+> parts.
+> 
+> Jonathan
+> 
+> 
