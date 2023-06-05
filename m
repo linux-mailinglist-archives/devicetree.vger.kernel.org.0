@@ -2,144 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19BB7722584
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:22:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 322777225FD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:36:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232901AbjFEMWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 08:22:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51038 "EHLO
+        id S232935AbjFEMg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 08:36:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233008AbjFEMWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:22:40 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1FAE68;
-        Mon,  5 Jun 2023 05:22:15 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 9A3D53200913;
-        Mon,  5 Jun 2023 08:22:11 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Mon, 05 Jun 2023 08:22:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1685967731; x=1686054131; bh=7W
-        iLrLsF5xVxXNcAy4Mh7e7hxHBVb5egJsZ8LOLNRvo=; b=2o1kwlV3Do2loqfo88
-        8E8nDDB5CavhahXYo6NRabED24JsbSPlA/28nBdwLSv8pPi6tdbInnX6ZLfYGJIm
-        d/ZZHp7m3paDvnOH0noWl7Ko/QtboQpabiwAApHaYpbnOwCG8p32w6UHX3sH2Ryu
-        +1MCyFRdDI/RN6Vs811t++D4ZDUd9Q086Ay7fCnXsIeNNYynG3hZ+0AZcg8R/dGf
-        /pCFJ5fYIIzQeWOQ9TU+7r18p7N0MpyKzCac44ZpElncC9G/hZJVnXyo8ZaNm+H5
-        Xu64ngLXypJBb9h19upA8yk8tu8iWMkH+/NUkndFMdFatP/V6RtvpzMYJ0L+1GlG
-        BYjw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1685967731; x=1686054131; bh=7WiLrLsF5xVxX
-        NcAy4Mh7e7hxHBVb5egJsZ8LOLNRvo=; b=bMOmsPyCvbE5xOYlrfbDXKiyTdvl0
-        h1VBo3CiJg9/m3T4yfz7v6rr4FNGm/olLi+ic+M4vg1lnfrcUE5OFFK2K9z+7YPV
-        1uLrhqglfmTMp0PhHZ40d1x813XFyKNPtEhylYRwrnhGTJrWr6J4kNdDxDPFe7HG
-        Bq3psbyd1ZbIVb5pPBWyAH2s78xfNogW1DvNWuncHMbTSH7xFkyBLGVqKRpaEK1Q
-        u+SEAeHhjPQPRh6JCOdsylGdjmsMme9LyKKeqNNtfyhSVnrf2ka0IyRtrUXjnn/C
-        A8jkfIUvqaljFkLxBRaemIN76g3qGznuTBwEZYlOUJEyOl1SkhQw2DpNA==
-X-ME-Sender: <xms:ctN9ZDmD-tSymJN54hej2KEc-SLnn0p6xZC_NVsNaNZlh6NPqUqI2g>
-    <xme:ctN9ZG0xEW8krpuXFulA_rknWNdgRDA6LQIUcgWN1ZWQM7VKvzUCWUu-a9tdf802u
-    avA_EX3MyQOR_4oRfo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeelledgheduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:ctN9ZJpRlsoxA7UiHkqptL34w_v_IjkGD8QhakerALnfohbmRYGSYQ>
-    <xmx:ctN9ZLmGLFrIAbb-zW7rxXN7J0076toHehHcVydIzI9Z0PlSSDgacg>
-    <xmx:ctN9ZB1Xz0IQNNTMSL3_dcw1XG4Q85C4_eI4tBnm94D3uLNNSd1GFQ>
-    <xmx:c9N9ZOLlaiJV7ZDVd7olUsSd-GhbZoNUddglv_9XL9y0u-TTf6ke2w>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 96776B60086; Mon,  5 Jun 2023 08:22:10 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-447-ge2460e13b3-fm-20230525.001-ge2460e13
-Mime-Version: 1.0
-Message-Id: <d98d050a-29dd-4ee7-86cd-bad4e6a04584@app.fastmail.com>
-In-Reply-To: <3e262485-bf5f-1a98-e399-e02add3eaa89@microchip.com>
-References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
- <20230603200243.243878-22-varshini.rajendran@microchip.com>
- <be3716e0-383f-e79a-b441-c606c0e049df@linaro.org>
- <3e262485-bf5f-1a98-e399-e02add3eaa89@microchip.com>
-Date:   Mon, 05 Jun 2023 14:21:50 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Nicolas Ferre" <nicolas.ferre@microchip.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Varshini Rajendran" <varshini.rajendran@microchip.com>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        "Claudiu Beznea" <claudiu.beznea@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Eric Dumazet" <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        "Paolo Abeni" <pabeni@redhat.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Sebastian Reichel" <sre@kernel.org>,
-        "Mark Brown" <broonie@kernel.org>,
-        "Gregory Clement" <gregory.clement@bootlin.com>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        "Balamanikandan Gunasundar" <balamanikandan.gunasundar@microchip.com>,
-        "Mihai.Sain" <mihai.sain@microchip.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Netdev <netdev@vger.kernel.org>, linux-usb@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
-        durai.manickamkr@microchip.com, manikandan.m@microchip.com,
-        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
-        balakrishnan.s@microchip.com
-Subject: Re: [PATCH 21/21] net: macb: add support for gmac to sam9x7
-Content-Type: text/plain
+        with ESMTP id S232896AbjFEMgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:36:25 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17EFBFA;
+        Mon,  5 Jun 2023 05:35:56 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685968540;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=euSzWbdAJIhobvITCThSqCY0UiRHVup0lZuS9yKCiCI=;
+        b=Y3PTcyCD1Xh1PS3bwIAeEasa8DsJNB6JUDLbYfgzXu4kJnbAOccGVoygE4DmyImLDLzv/N
+        ykGK7bH96jGj1PFLEx/TTVTHTqG1kWdumuw1YrLn9FxhVruYnQWyqsDFGwU/PuoE1ZvTnl
+        Zmu1FjT9tzN0ZA4RIuooqFWksce2JYGokae0dLwVm/EwXWowEniZESfui4bjrCs0xWqgjI
+        GDj3H4NH25F+uUfMQrrznoZsuEeRGUd0DWy/EiqyZlb+qB3yHKGy/8w9YNEDiXJfIWNayP
+        engkRUb60X+hNYH7z9M1j1WNapxP6RUdP7b4p0DeeZZt7Q+Esx+pxmLaQSq08w==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9A38AE000C;
+        Mon,  5 Jun 2023 12:35:37 +0000 (UTC)
+Date:   Mon, 5 Jun 2023 14:35:36 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     andy.shevchenko@gmail.com
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 6/9] ASoC: soc-dapm.h: Add a helper to build a DAPM
+ widget dynamically
+Message-ID: <20230605143536.5a3b5bbe@bootlin.com>
+In-Reply-To: <ZHtJLxNReoc4Yjqj@surfacebook>
+References: <20230523151223.109551-1-herve.codina@bootlin.com>
+        <20230523151223.109551-7-herve.codina@bootlin.com>
+        <ZHtJLxNReoc4Yjqj@surfacebook>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 5, 2023, at 14:07, Nicolas Ferre wrote:
-> On 05/06/2023 at 08:42, Krzysztof Kozlowski wrote:
->>>
->>> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
->>> index 29a1199dad14..609c8e9305ba 100644
->>> --- a/drivers/net/ethernet/cadence/macb_main.c
->>> +++ b/drivers/net/ethernet/cadence/macb_main.c
->>> @@ -4913,6 +4913,7 @@ static const struct of_device_id macb_dt_ids[] = {
->>>        { .compatible = "microchip,mpfs-macb", .data = &mpfs_config },
->>>        { .compatible = "microchip,sama7g5-gem", .data = &sama7g5_gem_config },
->>>        { .compatible = "microchip,sama7g5-emac", .data = &sama7g5_emac_config },
->>> +     { .compatible = "microchip,sam9x7-gem", .data = &sama7g5_gem_config },
->> 
->> These are compatible, aren't they? Why do you need new entry?
->
-> The hardware itself is different, even if the new features are not 
-> supported yet in the macb driver.
-> The macb driver will certainly evolve in order to add these features so 
-> we decided to match a new compatible string all the way to the driver.
+Hi Andy,
 
-It sounds like you can still drop this patch though, and only add a
-specific entry here after the .data field is actually different
-when those features get added.
+On Sat, 3 Jun 2023 17:07:43 +0300
+andy.shevchenko@gmail.com wrote:
 
-The important bit for now is to have the specific string in the binding
-and in the dtb, along with the fallback for I assume "microchip,sama7g5-gem".
+> Tue, May 23, 2023 at 05:12:20PM +0200, Herve Codina kirjoitti:
+> > The SND_SOC_DAPM_* helpers family are used to build widgets array in a
+> > static way.
+> > 
+> > Introduce SND_SOC_DAPM_WIDGET() in order to use the SND_SOC_DAPM_*
+> > helpers family in a dynamic way. The different SND_SOC_DAPM_* parameters
+> > can be computed by the code and the widget can be built based on this
+> > parameter computation.
+> > For instance:
+> >   static int create_widget(char *input_name)
+> >   {
+> > 	struct snd_soc_dapm_widget widget;
+> > 	char name*;
+> > 	...
+> > 	name = input_name;
+> > 	if (!name)
+> > 		name = "default";
+> > 
+> > 	widget = SND_SOC_DAPM_WIDGET(SND_SOC_DAPM_INPUT(name));
+> > 	...
+> >   }  
+> 
+> Maybe instead of adding a helper, simply convert those macros to provide
+> a compaund literal? (See, for example,
+> https://elixir.bootlin.com/linux/v6.4-rc4/source/include/linux/pinctrl/pinctrl.h#L42)
+> 
 
-     Arnd
+Yes, I will convert them in the next iteration.
+
+Thanks for the review,
+Hervé
