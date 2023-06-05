@@ -2,103 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E2A722A44
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 17:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12BEC722AA9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 17:15:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjFEPIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 11:08:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47680 "EHLO
+        id S234348AbjFEPPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 11:15:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233691AbjFEPII (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 11:08:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E44D9F7;
-        Mon,  5 Jun 2023 08:08:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 66F1961A33;
-        Mon,  5 Jun 2023 15:08:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96EDBC433D2;
-        Mon,  5 Jun 2023 15:08:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685977686;
-        bh=TUnJ2BXVl10ANhL4RWDXm6wNiv5IcJXcwpqMUue5pMk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lu1c1KUbihrACAZM1WwkhlEc2SjxpozUb7R3/hWKHvBodTdd+k0vJ5jHNVZXF7p1H
-         QU3OOUHV5iizqplgo9tz1Dz35cYSjVLP3YTdvbq7Pte0BR42A9FB3izWmoLYQ/WPmU
-         WaB8MfFZ8jnXjGki1AOPR3+JKf8zViE5lAmSX+qhF4uceYl5PPvtlxJ4GFihhnqNYV
-         A8s2MnOm0bdNu9FSRpHmpRf8SyqX9fUOZco5cs8CuHHut1Xh2S+Q/TwxQmHfs6keLJ
-         5nkpG3ii+iNTrkDUNsOEdLouO9FAzIZIPvbfSBuLV8yFpoL6E1hw6EdqkNin/Y8Hx5
-         D7A9VBTkXHo3g==
-Date:   Mon, 5 Jun 2023 16:08:02 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Paulo Pavacic <pavacic.p@gmail.com>
-Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: add fannal,c3004
-Message-ID: <20230605-untracked-trillion-d30cb9cb77c5@spud>
-References: <20230519142456.2588145-1-pavacic.p@gmail.com>
- <20230519142456.2588145-2-pavacic.p@gmail.com>
- <20230519-emerald-void-066fad80950a@spud>
- <CAO9szn2sYRezCUQKFZ_qsVfne0gpWoirZoE-HpWTPS4G1U5fNQ@mail.gmail.com>
- <20230605-handyman-rebound-0c10df9dfaf2@spud>
- <CAO9szn0crQzy0L2Y-NZGKEVbpspxZMkO0oPpYr1WMS081ZxKRw@mail.gmail.com>
+        with ESMTP id S235355AbjFEPPc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 11:15:32 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75487C5;
+        Mon,  5 Jun 2023 08:14:35 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 355FDxFK100220;
+        Mon, 5 Jun 2023 10:13:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685978039;
+        bh=1LbyU7mjt/+cgQHUAABS5foB5XVJY69pidPaNxd2SYg=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=W/kmXQyUeeL5Le/uBK/GL5qBmj6mVYF0Mm6pAjIuGxkiKrwN58cLVvKKY8aTOG54I
+         C/vK+aR0abI4q/A7BZHFBCmFP/kHzbriebJOEgTYp9f6V6RNGxtw09MIFherGXyzbY
+         V6NfA+efGREulfpqyWwxvCpdgeUqxt9X8iH0PJZk=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 355FDx0w030721
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Jun 2023 10:13:59 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ Jun 2023 10:13:58 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 Jun 2023 10:13:59 -0500
+Received: from [10.249.142.56] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 355FDunv022614;
+        Mon, 5 Jun 2023 10:13:56 -0500
+Message-ID: <4b4f4eef-398b-843b-37f8-fdf97c1b6b8d@ti.com>
+Date:   Mon, 5 Jun 2023 20:43:55 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="GT4Wjy9c0rngJLum"
-Content-Disposition: inline
-In-Reply-To: <CAO9szn0crQzy0L2Y-NZGKEVbpspxZMkO0oPpYr1WMS081ZxKRw@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j721e-mcu-wakeup: Switch to
+ "ti,j721e-system-controller" compatible
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>
+References: <20230424154841.353631-1-nm@ti.com>
+ <20230424154841.353631-2-nm@ti.com>
+From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
+In-Reply-To: <20230424154841.353631-2-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi
 
---GT4Wjy9c0rngJLum
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 4/24/2023 9:18 PM, Nishanth Menon wrote:
+> Switch to "ti,j721e-system-controller" compatible to be more specific.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index 24e8125db8c4..71b8b04a7789 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -35,7 +35,7 @@ k3_reset: reset-controller {
+>  	};
+>  
+>  	mcu_conf: syscon@40f00000 {
+> -		compatible = "syscon", "simple-mfd";
+> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+>  		reg = <0x0 0x40f00000 0x0 0x20000>;
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
 
-On Mon, Jun 05, 2023 at 04:56:13PM +0200, Paulo Pavacic wrote:
-> Hello Conor,
->=20
-> pon, 5. lip 2023. u 16:43 Conor Dooley <conor@kernel.org> napisao je:
+As Andrew suggested at [0], lets work on getting rid of unneeded
+"syscon" here and move to simple-bus instead 
 
+[0] https://lore.kernel.org/all/76da0b98-3274-b047-db11-ecabc117ae11@ti.com/
 
-> Sorry this is my first patch, I still don't understand, why should I
-> add `maxItems: 1` to the 'reg:' ?
-> Isn't  part of the code:
-> > required:
-> >  - compatible
-> >  - reg
-> >  - reset-gpios
->=20
-> making `minItems: 1` redundant for reg properties?
-
-I went and had another look, and you get enforcement of this from the
-dsi-controller binding if extra reg entries are added.
-Sorry for the noise.
-
-
-
---GT4Wjy9c0rngJLum
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH36UgAKCRB4tDGHoIJi
-0oonAQD3lGSB2k18Pg6DEw5Bz+u2pdmbiD39MplQ8K9WA5ojCgD5Aco+KHU0HRlL
-h6BQhlYAo5Sm6sACbPSTCiSyVp/qIwY=
-=RxHH
------END PGP SIGNATURE-----
-
---GT4Wjy9c0rngJLum--
+Regards
+Vignesh
