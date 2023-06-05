@@ -2,121 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 322777225FD
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6811972260F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232935AbjFEMg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 08:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32928 "EHLO
+        id S233562AbjFEMiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 08:38:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232896AbjFEMgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:36:25 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17EFBFA;
-        Mon,  5 Jun 2023 05:35:56 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685968540;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=euSzWbdAJIhobvITCThSqCY0UiRHVup0lZuS9yKCiCI=;
-        b=Y3PTcyCD1Xh1PS3bwIAeEasa8DsJNB6JUDLbYfgzXu4kJnbAOccGVoygE4DmyImLDLzv/N
-        ykGK7bH96jGj1PFLEx/TTVTHTqG1kWdumuw1YrLn9FxhVruYnQWyqsDFGwU/PuoE1ZvTnl
-        Zmu1FjT9tzN0ZA4RIuooqFWksce2JYGokae0dLwVm/EwXWowEniZESfui4bjrCs0xWqgjI
-        GDj3H4NH25F+uUfMQrrznoZsuEeRGUd0DWy/EiqyZlb+qB3yHKGy/8w9YNEDiXJfIWNayP
-        engkRUb60X+hNYH7z9M1j1WNapxP6RUdP7b4p0DeeZZt7Q+Esx+pxmLaQSq08w==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9A38AE000C;
-        Mon,  5 Jun 2023 12:35:37 +0000 (UTC)
-Date:   Mon, 5 Jun 2023 14:35:36 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     andy.shevchenko@gmail.com
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 6/9] ASoC: soc-dapm.h: Add a helper to build a DAPM
- widget dynamically
-Message-ID: <20230605143536.5a3b5bbe@bootlin.com>
-In-Reply-To: <ZHtJLxNReoc4Yjqj@surfacebook>
-References: <20230523151223.109551-1-herve.codina@bootlin.com>
-        <20230523151223.109551-7-herve.codina@bootlin.com>
-        <ZHtJLxNReoc4Yjqj@surfacebook>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S233352AbjFEMiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:38:01 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD0BE8;
+        Mon,  5 Jun 2023 05:37:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685968659; x=1717504659;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=3qZ9HUtKkrRCZ6pttiD0fABhp7XxMD/NZypAKra7/nI=;
+  b=zmW1Kfnz/9WtSOdbRyawwHs2gtEfcqGeiDRpMbQBIJ2tXpjm5EVKXcak
+   Y18LYJvj6suBFaecX5AM5hePEvHNJdha+12pOP9NIqqYeHGoOuJiuNIs2
+   Mep7Dl3Y6irMvPZvYyDQXbzBy8CB3Qk5SF+cwSkm/YAzEonZiI+9JiR4t
+   EzT7E5e53ItTOnfLZz10DaBATcqmPDjvHqOeBsp+S0KHeAutJqjXcXAI5
+   sTwWxt6TRtDKrQ76exmV8u7lueTj1eCed5fB2HGtpPQ5m9MllG85pmJ2+
+   baYFWNB93/LCMk+OSAs1myPFyCqGoYz8ZtvdnYGlwKJG7NGS4Ot837LVR
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
+   d="scan'208";a="216851473"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Jun 2023 05:37:35 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 5 Jun 2023 05:37:29 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Mon, 5 Jun 2023 05:37:23 -0700
+Message-ID: <add5e49e-8416-ba9f-819a-da944938c05f@microchip.com>
+Date:   Mon, 5 Jun 2023 14:37:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 15/21] dt-bindings: irqchip/atmel-aic5: Add support for
+ sam9x7 aic
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+CC:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Russell King <linux@armlinux.org.uk>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Gregory Clement" <gregory.clement@bootlin.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Balamanikandan Gunasundar 
+        <balamanikandan.gunasundar@microchip.com>,
+        <mihai.sain@microchip.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Netdev <netdev@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Hari.PrasathGE@microchip.com>, <cristian.birsan@microchip.com>,
+        <durai.manickamkr@microchip.com>, <manikandan.m@microchip.com>,
+        <dharma.b@microchip.com>, <nayabbasha.sayed@microchip.com>,
+        <balakrishnan.s@microchip.com>
+References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
+ <20230603200243.243878-16-varshini.rajendran@microchip.com>
+ <20230603-fervor-kilowatt-662c84b94853@spud>
+ <20230603-sanded-blunderer-73cdd7c290c1@spud>
+ <4d3694b3-8728-42c1-8497-ae38134db37c@app.fastmail.com>
+ <20230604-cohesive-unmoving-032da3272620@spud>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230604-cohesive-unmoving-032da3272620@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Arnd, Conor,
 
-On Sat, 3 Jun 2023 17:07:43 +0300
-andy.shevchenko@gmail.com wrote:
-
-> Tue, May 23, 2023 at 05:12:20PM +0200, Herve Codina kirjoitti:
-> > The SND_SOC_DAPM_* helpers family are used to build widgets array in a
-> > static way.
-> > 
-> > Introduce SND_SOC_DAPM_WIDGET() in order to use the SND_SOC_DAPM_*
-> > helpers family in a dynamic way. The different SND_SOC_DAPM_* parameters
-> > can be computed by the code and the widget can be built based on this
-> > parameter computation.
-> > For instance:
-> >   static int create_widget(char *input_name)
-> >   {
-> > 	struct snd_soc_dapm_widget widget;
-> > 	char name*;
-> > 	...
-> > 	name = input_name;
-> > 	if (!name)
-> > 		name = "default";
-> > 
-> > 	widget = SND_SOC_DAPM_WIDGET(SND_SOC_DAPM_INPUT(name));
-> > 	...
-> >   }  
+On 04/06/2023 at 23:08, Conor Dooley wrote:
+> On Sun, Jun 04, 2023 at 11:49:48AM +0200, Arnd Bergmann wrote:
+>> On Sat, Jun 3, 2023, at 23:23, Conor Dooley wrote:
+>>> On Sat, Jun 03, 2023 at 10:19:50PM +0100, Conor Dooley wrote:
+>>>> Hey Varshini,
+>>>>
+>>>> On Sun, Jun 04, 2023 at 01:32:37AM +0530, Varshini Rajendran wrote:
+>>>>> Document the support added for the Advanced interrupt controller(AIC)
+>>>>> chip in the sam9x7 soc family
+>>>> Please do not add new family based compatibles, but rather use per-soc
+>>>> compatibles instead.
+>>> These things leave me penally confused. Afaiu, sam9x60 is a particular
+> s/penally/perennially/
 > 
-> Maybe instead of adding a helper, simply convert those macros to provide
-> a compaund literal? (See, for example,
-> https://elixir.bootlin.com/linux/v6.4-rc4/source/include/linux/pinctrl/pinctrl.h#L42)
-> 
+>>> SoC. sam9x7 is actually a family, containing sam9x70, sam9x72 and
+>>> sam9x75. It would appear to me that each should have its own compatible,
+>>> no?
+>> I think the usual way this works is that the sam9x7 refers to the
+>> SoC design as in what is actually part of the chip, whereas the 70,
+>> 72 and 75 models are variants that have a certain subset of the
+>> features enabled.
 
-Yes, I will convert them in the next iteration.
+Yes, That's the case.
+>> If that is the case here, then referring to the on-chip parts by
+>> the sam9x7 name makes sense, and this is similar to what we do
+>> on TI AM-series chips.
 
-Thanks for the review,
-Hervé
+This is what we did for most of our SoCs families, indeed.
+
+> If it is the case that what differentiates them is having bits chopped
+> off, and there's no implementation differences that seems fair.
+
+Ok, thanks.
+
+>> There is a remaining risk that a there would be a future
+>> sam9x71/73/74/76/... product based on a new chip that uses
+>> incompatible devices, but at that point we can still use the
+>> more specific model number to identify those without being
+>> ambiguous. 
+
+This is exactly what we did for sama5d29 which is not the same silicon 
+vs. the other members of the sama5d2 family. We used the more specify 
+sama5d29 sub-string for describing the changing parts (CAN-FD and Ethernet).
+
+>> The same thing can of course happen when a SoC
+>> vendor reuses a specific name of a prior product with an update
+>> chip that has software visible changes.
+>>
+>> I'd just leave this up to Varshini and the other at91 maintainers
+>> here, provided they understand the exact risks.
+
+Yep, I understand the risk and will try to review the compatibility 
+strings that would need more precise description (maybe PMC or AIC).
+
+> Ye, seems fair to me. Nicolas/Claudiu etc, is there a convention to use
+> the "0" model as the compatible (like the 9x60 did) or have "random"
+> things been done so far?
+
+sam9x60 was a single SoC, not a member of a "family", so there was no 
+meaning of the "0" here. Moreover, the "0" ones are usually not the 
+subset, if it even exists.
+So far, we used the silicon string to define the compatibility string, 
+adding a more precise string for hardware of family members that needed 
+it (as mentioned above for sama5d29).
+
+>> It's different for the parts that are listed as just sam9x60
+>> compatible in the DT, I think those clearly need to have sam9x7
+>> in the compatible list, but could have the sam9x60 identifier
+>> as a fallback if the hardware is compatible.
+> Aye.
+
+Yep, agreed.
+
+Thanks for your help. Best regards,
+   Nicolas
+
+-- 
+Nicolas Ferre
+
