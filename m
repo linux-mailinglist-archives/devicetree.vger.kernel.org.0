@@ -2,108 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B85B722112
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 10:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24F872214A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 10:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbjFEIeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 04:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
+        id S230259AbjFEIoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 04:44:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbjFEIeG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 04:34:06 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5440AC7;
-        Mon,  5 Jun 2023 01:34:04 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-777ac4344f9so19423739f.0;
-        Mon, 05 Jun 2023 01:34:04 -0700 (PDT)
+        with ESMTP id S230266AbjFEIob (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 04:44:31 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2541FE3
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 01:44:25 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3078cc99232so4144246f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 01:44:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685954663; x=1688546663;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MrfUcOIoh78ZG5yS7R23juCUyPfE+5HsrCyM0YNurn4=;
+        b=IgSNkde0F2plrIXJephmlvFxedbx7tHM/IirdYyN8pIDo1/xuMRvfD3003V3SWGHl8
+         Xze9Y//QtV5Ftzj9fe4SKQCZtkWTeyO92TffXIgoNk/f0UTaEOLtvzh0OKVOfviV2ZDz
+         kaVgp5xNaUfGdZgx0+4PlUx5MlzbexzibYxSjDjpapVblsms1sKsRFLZRK2bdIb27J7i
+         H2fo5fxIYxiaQg/Oubg67FQ9i6jDMbwv4rC77dQ4G84nkEJ7alXmS0jKXSsLjo/AOmNJ
+         jnqpRhceRR89MCqgmvivmJ9Top5sIb3qzgDkyZzDvZIWBVvD85ieWL8lkmwaHMAQ3/pr
+         P5lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685954043; x=1688546043;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=FvMVzBFh2qIaLJzUc3itd2Y7Ptws11UXcErgWlt9W/U=;
-        b=Uyl7ibfIhbM2lCd1QOH06Dp+0qgyPZf1OUPVt0Gr9k9t3DfVICMBWixr88/jjhX22o
-         p019KECAV7ahIYthSSmdrbV5EvAikcN0K0zt8xi95qCv0bfGhgN08rZBB28tLdlAho/P
-         BsfTssRHCLw9epmyfbaJTJyIqBDQvDtmkFZFeTihIl/ujPK0qbEsyHySzUrSv7J+Rfqi
-         NOTq61FKNcIWfvIciY3rr78sq7oLdlQLIh+tOj62o8imjhYf+F+4oE21BNfWnKTAOYMD
-         98iO1xpVSTedAfJX1sDpaHNEYJXYX3LNNJoZpaHtniKXsxbsg56kUDeElQwCk6SM1g43
-         jrQw==
-X-Gm-Message-State: AC+VfDxFqs8YaUiXhBviXLLWi8x/g4KMhMpRESMiffF7/I3muL9Zfq5L
-        uL3QfuEhGoWvnEY32UuQcg==
-X-Google-Smtp-Source: ACHHUZ5QAi3gJpHdm7Tj1gUW44mXOGsCdk/LqF2d6rfZDUpRsopLA0zibIELN/MSr7L9Mf9hF5UYZg==
-X-Received: by 2002:a6b:740f:0:b0:777:91d5:c198 with SMTP id s15-20020a6b740f000000b0077791d5c198mr5849697iog.15.1685954043534;
-        Mon, 05 Jun 2023 01:34:03 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id z25-20020a6b0a19000000b00760f256037dsm545198ioi.44.2023.06.05.01.34.01
+        d=1e100.net; s=20221208; t=1685954663; x=1688546663;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MrfUcOIoh78ZG5yS7R23juCUyPfE+5HsrCyM0YNurn4=;
+        b=V28qVEZNSejK0nxmE4uHCVtCaMEddBv/5BVDGJ5lWfkOLkPOHnm+XcBopWQviq26xN
+         i6YdBdeRHoC18ghSqrdqyGZYFJLC+M2DexP3dy7dZckccjvz0KqAX6RijQq1EtKoMkFE
+         NjkQ/GTgbc4Ml5XMyR4jcZ6AJG2uXMaYPOHP1OHYG5Wue4OuS+JMpiRivAZKubYfKHf6
+         mHwSUANAhsqva2LboWm43yLJXyE5HvGgoalPN0pv6s8S3kJGWqPQbhwjwTKncuizF1uu
+         Gq4ptFHQ/4GsgNW2jIao/LgDWUnT8HyJG9croPH8MZ7PKhyPc7+PAh9cyG/crY10h3eU
+         dkMA==
+X-Gm-Message-State: AC+VfDxjBQC7YSjl99zFRoCl0GVBnJF22m4c3mL2TgMd68/NKKd9KMil
+        Ui9QplzuNov1rwkucRVDZSN4zg==
+X-Google-Smtp-Source: ACHHUZ5lrv51N2yyyZvduWpzWmbtXLAxBQh2VfWJZNp02Pt1G+uTkEUIrAQWOBc93DFyD+N73N+83w==
+X-Received: by 2002:adf:f986:0:b0:2ff:6906:7169 with SMTP id f6-20020adff986000000b002ff69067169mr5341675wrr.68.1685954663499;
+        Mon, 05 Jun 2023 01:44:23 -0700 (PDT)
+Received: from localhost ([2a01:e0a:55f:21e0:9e19:4376:dea6:dbfa])
+        by smtp.gmail.com with ESMTPSA id p12-20020a5d458c000000b00307acec258esm9107444wrq.3.2023.06.05.01.44.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 01:34:02 -0700 (PDT)
-Received: (nullmailer pid 208976 invoked by uid 1000);
-        Mon, 05 Jun 2023 08:33:58 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     devicetree@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mon, 05 Jun 2023 01:44:22 -0700 (PDT)
+Date:   Mon, 5 Jun 2023 10:44:22 +0200
+From:   Julien Stephan <jstephan@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Kevin Hilman <khilman@baylibre.com>, robh@kernel.org,
+        chunkuang.hu@kernel.org, linux-mediatek@lists.infradead.org,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <20230531-rpm-rproc-v1-6-e0a3b6de1f14@gerhold.net>
-References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
- <20230531-rpm-rproc-v1-6-e0a3b6de1f14@gerhold.net>
-Message-Id: <168595403816.208946.12766625011186229177.robh@kernel.org>
-Subject: Re: [PATCH 06/14] dt-bindings: soc: qcom: smd-rpm: Use
- qcom,rpm-proc in example
-Date:   Mon, 05 Jun 2023 02:33:58 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add mediatek mipi csi driver v
+ 0.5
+Message-ID: <totyr5bsupdv6y6muvndnhywbw5fl5kezoxie2hyz4g53yi34m@6geccwkjvupc>
+References: <20230515090551.1251389-2-jstephan@baylibre.com>
+ <ab9aa30f-82d7-1d14-5561-e19ff10af0b0@linaro.org>
+ <4yppinkucchwnwtnnpbqdn4bejmntjq3q6mx6es55f2pwyce3c@qdhdks47lpyt>
+ <1853f049-4f00-b7f0-973a-2c4e7b0b2634@linaro.org>
+ <7h353w2oug.fsf@baylibre.com>
+ <fbf1b0a6-f45d-69a0-5de6-8269567e15b3@linaro.org>
+ <7hwn18yndq.fsf@baylibre.com>
+ <c63ebd7e-8658-9cdd-4fc4-ade9c94dfa64@linaro.org>
+ <7hcz2snpnw.fsf@baylibre.com>
+ <10074d67-394b-3ddb-8bd1-fc051bdb7f79@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10074d67-394b-3ddb-8bd1-fc051bdb7f79@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 30, 2023 at 10:53:31AM +0200, Krzysztof Kozlowski wrote:
+> On 22/05/2023 21:15, Kevin Hilman wrote:
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+> >
+> >> On 16/05/2023 23:31, Kevin Hilman wrote:
+> >>
+> >>>> Third is to use versioned IP blocks.
+> >>>>
+> >>>> The second case also would work, if it is applicable to you (you really
+> >>>> have fallback matching all devices). Third solution depends on your
+> >>>> versioning and Rob expressed dislike about it many times.
+> >>>>
+> >>>> We had many discussions on mailing lists, thus simplifying the review -
+> >>>> I recommend the first choice. For a better recommendation you should say
+> >>>> a bit more about the block in different SoCs.
+> >>>
+> >>> I'll try to say a bit more about the PHY block, but in fact, it's not
+> >>> just about differences between SoCs. On the same SoC, 2 different PHYs
+> >>> may have different features/capabilities.
+> >>>
+> >>> For example, on MT8365, There are 2 PHYs: CSI0 and CSI1.  CSI0 can
+> >>> function as a C-PHY or a D-PHY, but CSI1 can only function as D-PHY
+> >>> (used as the example in the binding patch[1].)  On another related SoC,
+> >>> there are 3 PHYs, where CSI0 is C-D but CSI1 & CSI2 are only D.
+> >>>
+> >>> So that's why it seems (at least to me) that while we need SoC
+> >>> compatible, it's not enough.  We also need properties to describe
+> >>> PHY-specific features (e.g. C-D PHY)
+> >>
+> >> I recall the same or very similar case... It bugs me now, but
+> >> unfortunately I cannot find it.
+> >>
+> >>>
+> >>> Of course, we could rely only on SoC-specific compatibles describe this.
+> >>> But then driver will need an SoC-specific table with the number of PHYs
+> >>> and per-PHY features for each SoC encoded in the driver.  Since the
+> >>> driver otherwise doesn't (and shouldn't, IMHO) need to know how many
+> >>> PHYs are on each SoC, I suggested to Julien that perhaps the additional
+> >>> propery was the better solution.
+> >>
+> >> Phys were modeled as separate device instances, so you would need
+> >> difference in compatible to figure out which phy is it.
+> >>
+> >> Other way could be to create device for all phys and use phy-cells=1.
+> >> Whether it makes sense, depends on the actual datasheet - maybe the
+> >> split phy per device is artificial? There is one PHY block with two
+> >> address ranges for each PHY - CSI0 and CSI1 - but it is actually one
+> >> block? You should carefully check this because once design is chosen,
+> >> you won't be able to go back to other and it might be a problem (e.g.
+> >> there is some top-level block for powering on all CSI instances).
+> >
+> > We're pretty sure these are multiple instances of the IP block as they
+> > can operate completely independently.
+> >
+> >>>
+> >>> To me it seems redundant to have the driver encode PHYs-per-SoC info,
+> >>> when the per-SoC DT is going to have the same info, so my suggestion was
+> >>> to simplify the driver and have this kind of hardware description in the
+> >>> DT, and keep the driver simple, but we are definitely open to learning
+> >>> the "right way" of doing this.
+> >>
+> >> The property then is reasonable. It should not be bool, though, because
+> >> it does not scale. There can be next block which supports only D-PHY on
+> >> CSI0 and C-PHY on CSI1? Maybe some enum or list, depending on possible
+> >> configurations.
+> >
+> > OK, looks like include/dt-bindings/phy/phy.y already has
+> >
+> >   #define PHY_TYPE_DPHY		10
+> >   #define PHY_TYPE_CPHY		11
+> >
+> > we'll add a PHY_TYPE_CDPHY and use that.   Sound reasonable?
+>
+> Yes. Currently it is usually used as phy-cells argument (after the phy
+> number/lane/ID), but cdns,phy-type and intel,phy-mode use it directly as
+> property in provider. In both cases they have a bit different meaning
+> than yours. You want to list all supported modes or narrow/restrict
+> them. Maybe hisilicon,fixed-mode fits your purpose?
+>
 
-On Mon, 05 Jun 2023 09:08:22 +0200, Stephan Gerhold wrote:
-> Use the new top-level rpm-proc node instead of having a dummy top-level
-> /smd node that only contains the RPM but not other remote processors.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
+Hi Krzysztof,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks for the suggestion, using something like hisilicon,fixed-node
+looks like a good fit.
+With mediatek,fixed-node, by default CSI node will be considered as
+CD-PHY capable (unless the fixed-mode property is set.) so I won't need
+anymore the new define PHY_TYPE_CDPHY introduced in v3.
 
-yamllint warnings/errors:
+Also introducing mediatek,fixed-mode suggests that PHYs not declaring
+the fixed mode property support mode selection, so I suggest to add a
+phy argument (#phy-cells = <1>) to select the mode (D or C mode).
+Exactly what is done by the hsilicon driver.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.example.dtb: /example-0/remoteproc-rpm: failed to match any schema with compatible: ['qcom,msm8916-rpm-proc', 'qcom,rpm-proc']
+How does that sound to you?
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230531-rpm-rproc-v1-6-e0a3b6de1f14@gerhold.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best,
+Julien
+> Best regards,
+> Krzysztof
+>
