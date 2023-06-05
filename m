@@ -2,130 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 185F7722C68
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 18:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F20D1722C93
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 18:30:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234871AbjFEQVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 12:21:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39360 "EHLO
+        id S234899AbjFEQaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 12:30:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234903AbjFEQVk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 12:21:40 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFB11E9;
-        Mon,  5 Jun 2023 09:21:39 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AED526606E75;
-        Mon,  5 Jun 2023 17:21:36 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685982098;
-        bh=eYWIdhW4aakZCc9KT/m2mXuoGNz20gM45H5p6PtQfaA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Nyshmm6ObK9GxFVtiLunGY3XtIz9xexeLx/ePQwXglIhayFfZxi3sM4omcgO83LkK
-         fIDCGlZexBM8iCi/9LZzmQHh/n+AGsC7CzWquCziocDuPiZZleX36sbD7So7qKe6U2
-         a14M9u+sY45vC2QNBgNfu1hIRjVXzcX9WuJEqKkRqHjtc2TtAd0H6LRC8JTsQsIE8q
-         cIkHLvz4hxBdmrO6i8M3nl0Xhn5OA7N0BSypRMas2Siw2oDLjQBnYvYyiRU5zEVv84
-         lI1f2ImGC2qDbLdOsfIYKM4T8usjS4EZIxQU0k7MtKHkDa0EDYtymStIrURM8vbprx
-         Z5zoOPbPdaCfA==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH 6/6] arm64: dts: mediatek: mt8183: Add decoder
-Date:   Mon,  5 Jun 2023 12:20:30 -0400
-Message-Id: <20230605162030.274395-7-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230605162030.274395-1-nfraprado@collabora.com>
-References: <20230605162030.274395-1-nfraprado@collabora.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234724AbjFEQ34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 12:29:56 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D53CD;
+        Mon,  5 Jun 2023 09:29:55 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 355FsagK004361;
+        Mon, 5 Jun 2023 16:29:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=vL6D0As9ECdahRNEPut0utmGQpSV82VRmuPgQ0w6HiU=;
+ b=k1bmnUIXRzVBx8zsfRJABLi83+C4m8vPap6pYLMvNtjQx9fNp2eaQ7O2m69OycyB255s
+ i8ZJZftkwDSsEItwc4ahxJ9h/AnL0I/vhK7tp3RnpcTjB5yMQmThXrCJf5S0Paf6SNhi
+ 0eSre1RhTidyKohhybRD1+SdhLf3pzAtPzjrvmC2IyByXh7A0VKw2k9HOgQfelbwQlE5
+ AAOZ1m85LnM8DyzgV7A1D4q08res9u0VyXRhLIcemCsPPp2JxE0ujmr7HkDxzuh9ISiA
+ V9OnxvjKKnOCscI+ilAdPPkYO5wx2cDsWodAhkbTD+FGMfEzkiLUSb6LkJR42WomNurW HQ== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r1arnsf2b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 05 Jun 2023 16:29:23 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 355GTJlQ030307;
+        Mon, 5 Jun 2023 16:29:19 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3qyxkkq41b-1;
+        Mon, 05 Jun 2023 16:29:19 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 355GTI4v030293;
+        Mon, 5 Jun 2023 16:29:18 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 355GTIau030291;
+        Mon, 05 Jun 2023 16:29:18 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id D1CFA5F03; Mon,  5 Jun 2023 21:59:17 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
+        tglx@linutronix.de, maz@kernel.org, will@kernel.org,
+        robin.murphy@arm.com, joro@8bytes.org, mani@kernel.org,
+        robimarko@gmail.com
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH v2 00/10] Add devicetree support for SDX75 Modem and IDP
+Date:   Mon,  5 Jun 2023 21:59:07 +0530
+Message-Id: <1685982557-28326-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FIyRgPkSvHuPpeP1VKL5Wjd0GmoV2R8z
+X-Proofpoint-GUID: FIyRgPkSvHuPpeP1VKL5Wjd0GmoV2R8z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-05_31,2023-06-02_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=641
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
+ phishscore=0 spamscore=0 clxscore=1015 malwarescore=0 adultscore=0
+ mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306050141
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yunfei Dong <yunfei.dong@mediatek.com>
+Hi,
 
-Add node for the hardware decoder present on the MT8183 SoC.
+Changes in v2:
+ - Added the CPUFreq support patch.
+ - Collected the Acked by tags.
+ - Addressed some minor comments from Konrad.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Signed-off-by: Qianqian Yan <qianqian.yan@mediatek.com>
-Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-Signed-off-by: Alexandre Courbot <acourbot@chromium.org>
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
+This series adds devicetree support for Qualcomm SDX75 platform and IDP
+board. This series functionally depends on GCC and RPMh Clock support
+series [1], and pinctrl support for SDX75 [2] which are under review.
 
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 39 ++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+With this current devicetree support, the IDP can boot into initramfsshell.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 5169779d01df..8bb10ed67e87 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -2019,6 +2019,45 @@ vdecsys: syscon@16000000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		vcodec_dec: video-codec@16020000 {
-+			compatible = "mediatek,mt8183-vcodec-dec";
-+			reg = <0 0x16020000 0 0x1000>,		/* VDEC_MISC */
-+			      <0 0x16021000 0 0x800>,		/* VDEC_VLD */
-+			      <0 0x16021800 0 0x800>,		/* VDEC_TOP */
-+			      <0 0x16022000 0 0x1000>,		/* VDEC_MC */
-+			      <0 0x16023000 0 0x1000>,		/* VDEC_AVCVLD */
-+			      <0 0x16024000 0 0x1000>,		/* VDEC_AVCMV */
-+			      <0 0x16025000 0 0x1000>,		/* VDEC_PP */
-+			      <0 0x16026800 0 0x800>,		/* VP8_VD */
-+			      <0 0x16027000 0 0x800>,		/* VP6_VD */
-+			      <0 0x16027800 0 0x800>,		/* VP8_VL */
-+			      <0 0x16028400 0 0x400>;		/* VP9_VD */
-+			reg-names = "misc",
-+				    "ld",
-+				    "top",
-+				    "cm",
-+				    "ad",
-+				    "av",
-+				    "pp",
-+				    "hwd",
-+				    "hwq",
-+				    "hwb",
-+				    "hwg";
-+			interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_LOW>;
-+			iommus = <&iommu M4U_PORT_HW_VDEC_MC_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PP_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_VLD_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_AVC_MV_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PRED_RD_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PRED_WR_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PPWRAP_EXT>;
-+			mediatek,scp = <&scp>;
-+			power-domains = <&spm MT8183_POWER_DOMAIN_VDEC>;
-+			clocks = <&vdecsys CLK_VDEC_VDEC>,
-+				 <&vdecsys CLK_VDEC_ACTIVE>;
-+			clock-names = "vdec", "active";
-+		};
-+
- 		larb1: larb@16010000 {
- 			compatible = "mediatek,mt8183-smi-larb";
- 			reg = <0 0x16010000 0 0x1000>;
+[1] https://lore.kernel.org/lkml/20230419133013.2563-3-quic_tdas@quicinc.com/
+[2] https://lore.kernel.org/all/1684409015-25196-1-git-send-email-quic_rohiagar@quicinc.com/
+
+Thanks,
+Rohit.
+
+Imran Shaik (1):
+  arm64: dts: qcom: Add support for GCC and RPMHCC for SDX75
+
+Rohit Agarwal (9):
+  dt-bindings: arm: qcom: Document SDX75 platform and boards
+  dt-bindings: firmware: scm: Add compatible for SDX75
+  dt-bindings: interrupt-controller: Add SDX75 PDC compatible
+  dt-bindings: arm-smmu: Add SDX75 SMMU compatible
+  dt-bindings: cpufreq: cpufreq-qcom-hw: Add SDX75 compatible
+  arm64: dts: qcom: Add SDX75 platform and IDP board support
+  arm64: dts: qcom: Add QUPv3 UART console node for SDX75
+  arm64: dts: qcom: Enable the QUPv3 UART console for SDX75
+  arm64: dts: qcom: Add the support of cpufreq on SDX75
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   7 +
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml          |   1 +
+ .../devicetree/bindings/firmware/qcom,scm.yaml     |   1 +
+ .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
+ .../devicetree/bindings/iommu/arm,smmu.yaml        |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ arch/arm64/boot/dts/qcom/sdx75-idp.dts             |  33 ++
+ arch/arm64/boot/dts/qcom/sdx75.dtsi                | 647 +++++++++++++++++++++
+ 8 files changed, 692 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdx75-idp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sdx75.dtsi
+
 -- 
-2.40.1
+2.7.4
 
