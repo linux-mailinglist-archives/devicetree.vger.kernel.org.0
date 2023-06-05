@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7396C722EB2
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:30:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3A2E722EEF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235077AbjFESas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 14:30:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49010 "EHLO
+        id S231472AbjFEStV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 14:49:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234586AbjFESaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:30:46 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51F6F4
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:30:45 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-bacfa9fa329so5325460276.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:30:45 -0700 (PDT)
+        with ESMTP id S229893AbjFEStT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:49:19 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C97ED
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:49:17 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f5f728c4aaso5801293e87.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:49:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685989845; x=1688581845;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2bCD5PZj1At8yqhL4CYuYaQGs7kVSIn0/Mt/nLV2HXs=;
-        b=c5a8KY3tXAcIgrvqx6pKcIyicw4mhKUoO7L6uvtT5vI+5nzchsky91+qaYZuDhZWgk
-         loqPxlttSDTnongyVNVNRJw46CKmugZ4Q5VIalUbQjK5O9X9gCKOZn70yBFlBtwX5GgJ
-         gySIHVqIxIpPzWsFxS1u+wOtokXml2HheNIg0+4LdlbaZuy/3n/GmU2iR5097ifqOFBZ
-         9hyNiMEde/WN0CU5S8l8NNOmrYr2h5H4DbB4SrjtsHqqWGhMBtMD+Cu3SGuY4dIiwbo2
-         q5mHLcwYphvgfbYJO9U/a2Ft+KsZX8f2RJhBOKsg8sTjvMvsGJqdQEPRWQCiwXIUojff
-         qrNg==
+        d=linaro.org; s=google; t=1685990955; x=1688582955;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eS7R8Iw26U2hBPhTa4MZJ2uQUjp12WGBrNfWAr/A1BY=;
+        b=v14FLESgzRLJ7jJiMOxQzWE1HaUNvpUIwxALr1UpG0kEN6Qsj4URQP3OIZCKD4kz/3
+         c25IqisDh9wUCeQWLdjGa8CXnhY5bVP+a0VR5s41lDORwJChQBIZlpgKKOzYyKMxz3Du
+         b4oc8feOXJGz3faQWAmSTDXfgAHu++s9+yMdebAcmlWsSJbv8R4bM+2vmqxax1PjnJlW
+         ++pCEDVd5lgDMXqxlGNV/ZuZQO0JfjyVtuVByVjtIJ+/CmsO9ZEEYHRl7yr6xFe/goBP
+         H+oSKrVkvG+8ZRKIyoJqNGc5b6M0uaNH8uvqZ9iWhlajZCKKl6bDTzgwI0VYjEXqk8iu
+         1V9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685989845; x=1688581845;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2bCD5PZj1At8yqhL4CYuYaQGs7kVSIn0/Mt/nLV2HXs=;
-        b=QnZwjadja2MrhZsX7CCIOzsP1iD2VnRmznUf6KFix88lGgGFG+hw4tEIpiqDycrXBq
-         DRkaslAQJwHNusnCmg4axPFqmpWd6lrjHJb9XFnq96XVTthYzhMDfKXmAPZSXMDLQoWT
-         KLXnXCFxLUdw8lTH/doy8sw16lqh3AU4VELEcnNJHPEZMP73CtOcPer1XeX69s/caxVf
-         ND+bEumXZ0E/LfeNkBLjgWvFF/8SCaXJez4jGIhgsiY8J8jc/D84QNQMJkmvwW/RNu0h
-         cNtAtdsqhg3btgecpeS/KkZDffEIvTLadjdj/PSNGp9fDuGgcWgL2acE3eT8GZxxCvV1
-         awig==
-X-Gm-Message-State: AC+VfDzHUqpplX4n9b9ymooPc4IDTxjWPsuUC6SNjXj2ewypY5IsctDx
-        iuzbNXR/do7Z3yFAnO49P1yjBUdQ9LTwGIH2vyrYGQ==
-X-Google-Smtp-Source: ACHHUZ6mF0HQB1db3oxZ/PWuW6L+XmF5rCHXz5idoZNIDLqw0b82MU/KjjtQYOFBLP++iwX0UEUHhBXI+vEEnCK+zB4=
-X-Received: by 2002:a25:2413:0:b0:bad:1159:1aea with SMTP id
- k19-20020a252413000000b00bad11591aeamr11057933ybk.8.1685989844815; Mon, 05
- Jun 2023 11:30:44 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685990955; x=1688582955;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eS7R8Iw26U2hBPhTa4MZJ2uQUjp12WGBrNfWAr/A1BY=;
+        b=Rx4KhaCv15dPvhkWvcPwu+1vhq6iFcNirXgkw/CWCGHj9gItWFB5Lik8aRIXneBcAy
+         Bo/wKDZz09z6iESnO5gc2hW2dIWd1zA+GBHVKJsd+kDQpkWHtPkG9WvlQ1HHUVIVlWr+
+         Xa1XyWEc3TxfkQ/MTYnnpQktklJIhCgrjtodBVY/2crEKQeo8/0lygOL2XXA4IeKzjFy
+         diqWQs63WPX0I6FJfPg3ydkPvaw2oy5JjNM3rt/J9wMKB7ZbrYkR3VUeqRfHN506X2iu
+         GjAW2bEa4xYyU0P6kJGam/cq2S9RWfCagjd09mKT8V1mozy4CRxKM0+OL6XkpeuXIDp1
+         XzRA==
+X-Gm-Message-State: AC+VfDzbdpQTWRqs6cmA8qj0L3pNDV+VvXnKG+vTf3IfILk+xeeLweJl
+        ffEoMu4eHUrjRJWLfmDOSQNY0EY7xkSZz+XE+no=
+X-Google-Smtp-Source: ACHHUZ66SeEy8dldCqgvYUjjpe+Gv06VM9DmlXAk6TNxjzYlDvyAVS8UKqFdJrPs328lAR8pVrFpOg==
+X-Received: by 2002:ac2:4353:0:b0:4f3:77f9:2bbe with SMTP id o19-20020ac24353000000b004f377f92bbemr3810557lfl.3.1685990955422;
+        Mon, 05 Jun 2023 11:49:15 -0700 (PDT)
+Received: from [192.168.1.101] (abyj96.neoplus.adsl.tpnet.pl. [83.9.29.96])
+        by smtp.gmail.com with ESMTPSA id a9-20020a056512020900b004f62e33f343sm225120lfo.109.2023.06.05.11.49.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jun 2023 11:49:14 -0700 (PDT)
+Message-ID: <84c94ba5-fee4-c37a-9900-f9a1ad589c33@linaro.org>
+Date:   Mon, 5 Jun 2023 20:49:13 +0200
 MIME-Version: 1.0
-References: <1685982557-28326-1-git-send-email-quic_rohiagar@quicinc.com> <1685982557-28326-8-git-send-email-quic_rohiagar@quicinc.com>
-In-Reply-To: <1685982557-28326-8-git-send-email-quic_rohiagar@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 5 Jun 2023 21:30:34 +0300
-Message-ID: <CAA8EJpogj0uzQdk-kDqm7Pju7Q5aXJg6FHswkJy+ugawqePWLw@mail.gmail.com>
-Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: Add support for GCC and RPMHCC
- for SDX75
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
-        tglx@linutronix.de, maz@kernel.org, will@kernel.org,
-        robin.murphy@arm.com, joro@8bytes.org, mani@kernel.org,
-        robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, Imran Shaik <quic_imrashai@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 04/14] soc: qcom: smd-rpm: Match rpmsg channel instead of
+ compatible
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
+ <20230531-rpm-rproc-v1-4-e0a3b6de1f14@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230531-rpm-rproc-v1-4-e0a3b6de1f14@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,109 +81,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Jun 2023 at 19:30, Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
->
-> From: Imran Shaik <quic_imrashai@quicinc.com>
->
-> Add support for GCC and RPMHCC clock nodes for SDX75 platform.
->
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+
+
+On 5.06.2023 09:08, Stephan Gerhold wrote:
+> There is an ever growing list of compatibles in the smd-rpm.c driver.
+> A fallback compatible would help here but would still require keeping
+> the current list around for backwards compatibility.
+> 
+> As an alternative, let's switch the driver to match the rpmsg_device_id
+> instead, which is always "rpm_requests" on all platforms. Add a check
+> to ensure that there is a device tree node defined for the device since
+> otherwise the of_platform_populate() call will operate on the root node (/).
+> 
+> Similar approaches with matching rpmsg_device_id are already used in
+> qcom_sysmon, qcom_glink_ssr, qrtr, and rpmsg_wwan_ctrl.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->  arch/arm64/boot/dts/qcom/sdx75.dtsi | 37 ++++++++++++++++++++++++++++++++++++-
->  1 file changed, 36 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-> index 3d1646b..f83eef8 100644
-> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-> @@ -7,6 +7,7 @@
->   */
->
->  #include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/clock/qcom,sdx75-gcc.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->
-> @@ -22,7 +23,21 @@
->                 reg = <0 0x80000000 0 0>;
->         };
->
-> -       clocks { };
-> +       clocks {
-> +               xo_board: xo_board {
+Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # SM6375 (G-Link)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-No underscores in node names
-
-> +                       compatible = "fixed-clock";
-> +                       clock-frequency = <76800000>;
-> +                       clock-output-names = "xo_board";
-
-Why do you need this?
-
-> +                       #clock-cells = <0>;
-> +               };
+Konrad
+>  drivers/soc/qcom/smd-rpm.c | 35 +++++++++--------------------------
+>  1 file changed, 9 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/smd-rpm.c b/drivers/soc/qcom/smd-rpm.c
+> index 0c1aa809cc4e..13d8c52330d0 100644
+> --- a/drivers/soc/qcom/smd-rpm.c
+> +++ b/drivers/soc/qcom/smd-rpm.c
+> @@ -199,6 +199,9 @@ static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
+>  	struct qcom_smd_rpm *rpm;
+>  	int ret;
+>  
+> +	if (!rpdev->dev.of_node)
+> +		return -EINVAL;
 > +
-> +               sleep_clk: sleep_clk {
-
-No underscores in node names
-
-> +                       compatible = "fixed-clock";
-> +                       clock-frequency = <32000>;
-> +                       clock-output-names = "sleep_clk";
-
-Why do you need this?
-
-> +                       #clock-cells = <0>;
-> +               };
-> +       };
->
->         cpus {
->                 #address-cells = <2>;
-> @@ -358,6 +373,18 @@
->                 ranges = <0 0 0 0 0x10 0>;
->                 dma-ranges = <0 0 0 0 0x10 0>;
->
-> +               gcc: clock-controller@80000 {
-> +                       compatible = "qcom,sdx75-gcc";
-> +                       reg = <0x0 0x0080000 0x0 0x1f7400>;
-> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +                                <&sleep_clk>;
-> +                       clock-names = "bi_tcxo",
-> +                                     "sleep_clk";
-
-As this is a new platform, it should not be using clock-names to bind
-gcc clocks. Please use clock indices instead.
-
-> +                       #clock-cells = <1>;
-> +                       #reset-cells = <1>;
-> +                       #power-domain-cells = <1>;
-> +               };
-> +
->                 tcsr_mutex: hwlock@1f40000 {
->                         compatible = "qcom,tcsr-mutex";
->                         reg = <0x0 0x01f40000 0x0 0x40000>;
-> @@ -520,6 +547,14 @@
->                         apps_bcm_voter: bcm_voter {
->                                 compatible = "qcom,bcm-voter";
->                         };
-> +
-> +                       rpmhcc: clock-controller {
-> +                               compatible = "qcom,sdx75-rpmh-clk";
-> +                               clocks = <&xo_board>;
-
-> +                               clock-names = "xo";
-> +                               #clock-cells = <1>;
-> +                       };
-> +
->                 };
->         };
->
-> --
-> 2.7.4
->
-
-
--- 
-With best wishes
-Dmitry
+>  	rpm = devm_kzalloc(&rpdev->dev, sizeof(*rpm), GFP_KERNEL);
+>  	if (!rpm)
+>  		return -ENOMEM;
+> @@ -230,38 +233,18 @@ static void qcom_smd_rpm_remove(struct rpmsg_device *rpdev)
+>  	of_platform_depopulate(&rpdev->dev);
+>  }
+>  
+> -static const struct of_device_id qcom_smd_rpm_of_match[] = {
+> -	{ .compatible = "qcom,rpm-apq8084" },
+> -	{ .compatible = "qcom,rpm-ipq6018" },
+> -	{ .compatible = "qcom,rpm-ipq9574" },
+> -	{ .compatible = "qcom,rpm-msm8226" },
+> -	{ .compatible = "qcom,rpm-msm8909" },
+> -	{ .compatible = "qcom,rpm-msm8916" },
+> -	{ .compatible = "qcom,rpm-msm8936" },
+> -	{ .compatible = "qcom,rpm-msm8953" },
+> -	{ .compatible = "qcom,rpm-msm8974" },
+> -	{ .compatible = "qcom,rpm-msm8976" },
+> -	{ .compatible = "qcom,rpm-msm8994" },
+> -	{ .compatible = "qcom,rpm-msm8996" },
+> -	{ .compatible = "qcom,rpm-msm8998" },
+> -	{ .compatible = "qcom,rpm-sdm660" },
+> -	{ .compatible = "qcom,rpm-sm6115" },
+> -	{ .compatible = "qcom,rpm-sm6125" },
+> -	{ .compatible = "qcom,rpm-sm6375" },
+> -	{ .compatible = "qcom,rpm-qcm2290" },
+> -	{ .compatible = "qcom,rpm-qcs404" },
+> -	{}
+> +static const struct rpmsg_device_id qcom_smd_rpm_id_table[] = {
+> +	{ .name = "rpm_requests", },
+> +	{ /* sentinel */ }
+>  };
+> -MODULE_DEVICE_TABLE(of, qcom_smd_rpm_of_match);
+> +MODULE_DEVICE_TABLE(rpmsg, qcom_smd_rpm_id_table);
+>  
+>  static struct rpmsg_driver qcom_smd_rpm_driver = {
+>  	.probe = qcom_smd_rpm_probe,
+>  	.remove = qcom_smd_rpm_remove,
+>  	.callback = qcom_smd_rpm_callback,
+> -	.drv  = {
+> -		.name  = "qcom_smd_rpm",
+> -		.of_match_table = qcom_smd_rpm_of_match,
+> -	},
+> +	.id_table = qcom_smd_rpm_id_table,
+> +	.drv.name = "qcom_smd_rpm",
+>  };
+>  
+>  static int __init qcom_smd_rpm_init(void)
+> 
