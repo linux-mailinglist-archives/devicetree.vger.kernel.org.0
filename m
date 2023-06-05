@@ -2,481 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40AA2721B30
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 02:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE06721B33
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 02:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbjFEAWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jun 2023 20:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58620 "EHLO
+        id S229886AbjFEAZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jun 2023 20:25:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjFEAWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 20:22:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6249CC;
-        Sun,  4 Jun 2023 17:22:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4509E60BBF;
-        Mon,  5 Jun 2023 00:22:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 741BCC433EF;
-        Mon,  5 Jun 2023 00:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685924534;
-        bh=txO3Oea/MAFL2H+6EmnHqNe0dqHZwszaXJbuYwZkdaM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GpuQwwD3hSDq8P3TJogujK+5+JwtOeHLml25Osju4qjK2CydySAAXjTUwhu4lEaNV
-         9UiXudZeqBK2232QQPtMwnw9sbQEA4C5rN5HRJdiV/JzYoS6HopzWmuEdX8POIRZol
-         /ZX6aHxKsLHeotFa8WWwaBc4Oluoq98LnL0aXQHxp1wef5u9SA8BvZfjrMKblHOVf5
-         A0hjHjI9bQ/g8fYE/wZUBIeFIDS6Zg4ISsW3bZ/v/PMhxRI8/mbAxWVZ+p+3IAo46+
-         EkHp8fgwarJsmh5kVWgQu5wZxSKpYZBI+B+oSlRuws2Qftsow8sFGXadLXyVfDzs6e
-         LhBb2hHYeTg1Q==
-Date:   Mon, 5 Jun 2023 08:21:54 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
-Message-ID: <20230605002154.GT4199@dragon>
-References: <20230601193112.4083934-1-tharvey@gateworks.com>
+        with ESMTP id S229449AbjFEAZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jun 2023 20:25:41 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C94FFCC;
+        Sun,  4 Jun 2023 17:25:39 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b1b2ca09b9so28828391fa.1;
+        Sun, 04 Jun 2023 17:25:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685924738; x=1688516738;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dYlRYy9MgXWGQls9ZmzboJnmu32FmhCrTKxHUsegk54=;
+        b=CZncJxEGwanzEim8+FL0s+TwNpFtd35nfqdPQRhRmoI8gCtUZVFtxbe6kS0RBY1e/m
+         PJWwLoZ/PGu/Y4U1SBvseizZHzxF4J4GIKssAALWhrkKlrNhhK+pksh6MOC9YhzTbXe6
+         YzuxuQ3tYE1Z0P+T1rKO649YFennetHAcKWI27wyYGINGBCawaaeOhBLXWNnvZMvOupr
+         HnIhaeoLLPEIz9/gZdZvVJRtftdcOJYFE7QDt9j25CFzSclFYBukIdBOH4kpa5PbjDCk
+         CTRj4iVDjtag7aEMT+ITof1iBkgU2Nau302oBAl3Lnoh3rxaVQg2zve2T2eSe2rnauyM
+         ylEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685924738; x=1688516738;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dYlRYy9MgXWGQls9ZmzboJnmu32FmhCrTKxHUsegk54=;
+        b=hktWl/trinJDOnuvDAgA/utMAf32vG5+3JTlyYIdVRylOTGnyhqFfhbdv8p+MXQZYB
+         l+68WzREOkRfUNNkI2fd4CjoPnr4mDI+bv9c6PBssxuOHPGBdoXN1sGfJeeTUwECwMbj
+         VyYXOSUzEN3UosPRS+k8IPkyL7wCg+by7B91iUJrclMu+pIWBBjmnOY9/ULwodrL+Vye
+         SEY/2PMb0CAFEy6QV0XVP3/MV4kbemvJnjgr5hnUAtBOMaOFglNuhDYqDDmmFEPQ3Y5c
+         ePaivG1l9gcowQ5cqobpqUa7fRAgcPJd4IX6LYsTREXQYLFIjScJxPZTkllwNoH+rvM7
+         EQRw==
+X-Gm-Message-State: AC+VfDwiR+BQGY/re1eK5C5/8n+M65UEqQ5Yws4w4djETkpqRhdVUzmw
+        Twm6EF4pliMDz1+ImPVQ238FZRyllknDqA==
+X-Google-Smtp-Source: ACHHUZ4fxfoLaXaswLh917fs58Sed/QKxIibrCyOG1N/6mg6OehD5KT7PM5pNLcVbN26g8a+0o3rcg==
+X-Received: by 2002:a05:651c:8a:b0:2b1:c665:329d with SMTP id 10-20020a05651c008a00b002b1c665329dmr1086574ljq.35.1685924737903;
+        Sun, 04 Jun 2023 17:25:37 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id j4-20020a2eb704000000b002adaacdb900sm1224320ljo.42.2023.06.04.17.25.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Jun 2023 17:25:37 -0700 (PDT)
+Date:   Mon, 5 Jun 2023 03:25:35 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "kishon@kernel.org" <kishon@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v16 01/22] PCI: Add PCI_EXP_LNKCAP_MLW macros
+Message-ID: <20230605002535.f75gn32artzoyiat@mobilestation>
+References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230510062234.201499-2-yoshihiro.shimoda.uh@renesas.com>
+ <20230604225036.earzdx5dvzc3imoz@mobilestation>
+ <TYBPR01MB534183482CD31D122C4735C0D84DA@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230601193112.4083934-1-tharvey@gateworks.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <TYBPR01MB534183482CD31D122C4735C0D84DA@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 01, 2023 at 12:31:12PM -0700, Tim Harvey wrote:
-> Update the imx8mp-venice-gw74xx for revB:
->  - add CAN1
->  - add TIS-TPM on SPI2
->  - add FAN controller
->  - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
->    backward compatible option)
->  - M2 socket GPIO's moved
+On Mon, Jun 05, 2023 at 12:14:26AM +0000, Yoshihiro Shimoda wrote:
+> Hello Serge,
 > 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > From: Serge Semin, Sent: Monday, June 5, 2023 7:51 AM
+> > 
+> > On Wed, May 10, 2023 at 03:22:13PM +0900, Yoshihiro Shimoda wrote:
+> > > Add macros defining Maximum Link Width bits in Link Capabilities
+> > > Register.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> > 
+> > You haven't been using these macros in the following up patches since
+> > v9. Why do you keep submitting this change then? I would suggest to
+> > drop the patch especially seeing the PCI_EXP_LNKCAP_MLW field directly
+> > encodes the link width thus these macros unlikely will be of much use.
+> 
+> Thank you for your review! You're correct. I didn't realized that
+> the macros were not used on the patch series..
+> 
+> However, I also realized that the patch 11/22 used the PCI_EXP_LNKSTA_NLW_SHIFT
+> macro for the PCI_EXP_LNKCAP register. So, I'm thinking that I should modify
+> this patch as adding PCI_EXP_LNKCAP_MLW_SHIFT instead. But, what do you think?
+> 
+> --- on the patch 11/22 ---
+> > +	cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> > +	val = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
+> > +	val &= ~PCI_EXP_LNKCAP_MLW;
+> > +	val |= num_lanes << PCI_EXP_LNKSTA_NLW_SHIFT;
+> 
+> Perhaps, this should be PCI_EXP_LNKCAP_MLW_SHIFT instead.
+
+I'll get to that patch tomorrow, but in any case there is no need in
+defining an additional macro here. There is a handy helper FIELD_PREP()
+for that: FIELD_PREP(PCI_EXP_LNKSTA_MLW, num_lanes).
+
+IMO for the same reason the PCI_EXP_LNKSTA_NLW_* macros are
+unnecessary and can be easily either dropped or replaced by the
+FIELD_{PREP,GET} macros usage.
+
+-Serge(y)
+
 > ---
->  .../dts/freescale/imx8mp-venice-gw74xx.dts    | 261 +++++++++++-------
->  1 file changed, 159 insertions(+), 102 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> index eb51d648359b..0e389ec5c2d4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> @@ -125,12 +125,22 @@ reg_usb2_vbus: regulator-usb2 {
->  		regulator-max-microvolt = <5000000>;
->  	};
->  
-> +	reg_can1_stby: regulator-can1-stby {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_can1>;
-> +		regulator-name = "can1_stby";
-> +		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
->  	reg_can2_stby: regulator-can2-stby {
->  		compatible = "regulator-fixed";
->  		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_reg_can>;
-> +		pinctrl-0 = <&pinctrl_reg_can2>;
->  		regulator-name = "can2_stby";
-> -		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
-> +		gpio = <&gpio5 5 GPIO_ACTIVE_LOW>;
->  		regulator-min-microvolt = <3300000>;
->  		regulator-max-microvolt = <3300000>;
->  	};
-> @@ -164,6 +174,21 @@ &A53_3 {
->  	cpu-supply = <&reg_arm>;
->  };
->  
-> +&ecspi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spi1>;
-> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +
-> +	tpm@0 {
-> +		compatible = "tcg,tpm_tis-spi";
-> +		#address-cells = <0x1>;
-> +		#size-cells = <0x1>;
-> +		reg = <0x0>;
-> +		spi-max-frequency = <36000000>;
-> +	};
-> +};
-> +
->  /* off-board header */
->  &ecspi2 {
->  	pinctrl-names = "default";
-> @@ -204,6 +229,13 @@ fixed-link {
->  	};
->  };
->  
-> +&flexcan1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +	xceiver-supply = <&reg_can1_stby>;
-> +	status = "okay";
-> +};
-> +
->  &flexcan2 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_flexcan2>;
-> @@ -214,38 +246,38 @@ &flexcan2 {
->  &gpio1 {
->  	gpio-line-names =
->  		"", "", "", "", "", "", "", "",
-> -		"", "", "dio0", "", "dio1", "", "", "",
-> +		"", "dio0", "", "dio1", "", "", "", "",
->  		"", "", "", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "";
->  };
->  
->  &gpio2 {
->  	gpio-line-names =
-> -		"", "", "", "", "", "", "", "",
-> -		"", "", "", "", "", "", "pcie3_wdis#", "",
-> +		"", "", "", "", "", "", "m2_pin20", "",
-> +		"", "", "", "", "", "pcie1_wdis#", "pcie3_wdis#", "",
->  		"", "", "pcie2_wdis#", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "";
->  };
->  
->  &gpio3 {
->  	gpio-line-names =
-> -		"m2_gdis#", "", "", "", "", "", "", "m2_rst#",
-> +		"", "", "", "", "", "", "m2_rst", "",
-> +		"", "", "", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "",
-> -		"m2_off#", "", "", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "";
->  };
->  
->  &gpio4 {
->  	gpio-line-names =
-> +		"", "", "m2_off#", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "",
-> -		"", "", "", "", "", "", "", "",
-> -		"", "", "", "", "m2_wdis#", "", "", "",
-> -		"", "", "", "", "", "", "", "uart_rs485";
-> +		"", "", "m2_wdis#", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "rs485_en";
->  };
->  
->  &gpio5 {
->  	gpio-line-names =
-> -		"uart_half", "uart_term", "", "", "", "", "", "",
-> +		"rs485_hd", "rs485_term", "", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "";
-> @@ -286,6 +318,12 @@ channel@8 {
->  				label = "vdd_bat";
->  			};
->  
-> +			channel@16 {
-> +				gw,mode = <4>;
-> +				reg = <0x16>;
-> +				label = "fan_tach";
-> +			};
-> +
->  			channel@82 {
->  				gw,mode = <2>;
->  				reg = <0x82>;
-> @@ -358,6 +396,11 @@ channel@a2 {
->  				gw,voltage-divider-ohms = <10000 10000>;
->  			};
->  		};
-> +
-> +		fan-controller@0 {
-
-The unit-address doesn't match 'reg' property below.
-
-Shawn
-
-> +			compatible = "gw,gsc-fan";
-> +			reg = <0x0a>;
-> +		};
->  	};
->  
->  	gpio: gpio@23 {
-> @@ -369,85 +412,6 @@ gpio: gpio@23 {
->  		interrupts = <4>;
->  	};
->  
-> -	pmic@25 {
-> -		compatible = "nxp,pca9450c";
-> -		reg = <0x25>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_pmic>;
-> -		interrupt-parent = <&gpio3>;
-> -		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-> -
-> -		regulators {
-> -			BUCK1 {
-> -				regulator-name = "BUCK1";
-> -				regulator-min-microvolt = <720000>;
-> -				regulator-max-microvolt = <1000000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -				regulator-ramp-delay = <3125>;
-> -			};
-> -
-> -			reg_arm: BUCK2 {
-> -				regulator-name = "BUCK2";
-> -				regulator-min-microvolt = <720000>;
-> -				regulator-max-microvolt = <1025000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -				regulator-ramp-delay = <3125>;
-> -				nxp,dvs-run-voltage = <950000>;
-> -				nxp,dvs-standby-voltage = <850000>;
-> -			};
-> -
-> -			BUCK4 {
-> -				regulator-name = "BUCK4";
-> -				regulator-min-microvolt = <3000000>;
-> -				regulator-max-microvolt = <3600000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			BUCK5 {
-> -				regulator-name = "BUCK5";
-> -				regulator-min-microvolt = <1650000>;
-> -				regulator-max-microvolt = <1950000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			BUCK6 {
-> -				regulator-name = "BUCK6";
-> -				regulator-min-microvolt = <1045000>;
-> -				regulator-max-microvolt = <1155000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			LDO1 {
-> -				regulator-name = "LDO1";
-> -				regulator-min-microvolt = <1650000>;
-> -				regulator-max-microvolt = <1950000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			LDO3 {
-> -				regulator-name = "LDO3";
-> -				regulator-min-microvolt = <1710000>;
-> -				regulator-max-microvolt = <1890000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			LDO5 {
-> -				regulator-name = "LDO5";
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -		};
-> -	};
-> -
->  	eeprom@50 {
->  		compatible = "atmel,24c02";
->  		reg = <0x50>;
-> @@ -559,7 +523,6 @@ fixed-link {
->  	};
->  };
->  
-> -/* off-board header */
->  &i2c3 {
->  	clock-frequency = <400000>;
->  	pinctrl-names = "default", "gpio";
-> @@ -568,6 +531,85 @@ &i2c3 {
->  	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  	status = "okay";
-> +
-> +	pmic@25 {
-> +		compatible = "nxp,pca9450c";
-> +		reg = <0x25>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		regulators {
-> +			BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <720000>;
-> +				regulator-max-microvolt = <1000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			reg_arm: BUCK2 {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <720000>;
-> +				regulator-max-microvolt = <1025000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +				nxp,dvs-run-voltage = <950000>;
-> +				nxp,dvs-standby-voltage = <850000>;
-> +			};
-> +
-> +			BUCK4 {
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3600000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			BUCK5 {
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <1650000>;
-> +				regulator-max-microvolt = <1950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			BUCK6 {
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <1045000>;
-> +				regulator-max-microvolt = <1155000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1650000>;
-> +				regulator-max-microvolt = <1950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <1710000>;
-> +				regulator-max-microvolt = <1890000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			LDO5 {
-> +				regulator-name = "LDO5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
->  };
->  
->  /* off-board header */
-> @@ -726,12 +768,14 @@ pinctrl_hog: hoggrp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
->  			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
-> -			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_OFF# */
-> -			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
-> +			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02	0x40000040 /* M2SKT_OFF# */
-> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
-> +			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x40000040 /* M2SKT_PIN20 */
-> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x40000040 /* M2SKT_PIN22 */
-> +			MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
->  			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
-> +			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
->  			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
-> -			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
-> -			MX8MP_IOMUXC_NAND_ALE__GPIO3_IO00	0x40000150 /* M2SKT_GDIS# */
->  			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
->  			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
->  			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
-> @@ -784,6 +828,13 @@ MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT	0x140
->  		>;
->  	};
->  
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SPDIF_RX__CAN1_RX		0x154
-> +			MX8MP_IOMUXC_SPDIF_TX__CAN1_TX		0x154
-> +		>;
-> +	};
-> +
->  	pinctrl_flexcan2: flexcan2grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX		0x154
-> @@ -869,7 +920,7 @@ MX8MP_IOMUXC_SD2_DATA1__GPIO2_IO16	0x10
->  
->  	pinctrl_pcie0: pciegrp {
->  		fsl,pins = <
-> -			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x110
-> +			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x106
->  		>;
->  	};
->  
-> @@ -885,12 +936,18 @@ MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x140
->  		>;
->  	};
->  
-> -	pinctrl_reg_can: regcangrp {
-> +	pinctrl_reg_can1: regcan1grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19	0x154
->  		>;
->  	};
->  
-> +	pinctrl_reg_can2: regcan2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05	0x154
-> +		>;
-> +	};
-> +
->  	pinctrl_reg_usb2: regusb2grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06	0x140
-> @@ -903,12 +960,12 @@ MX8MP_IOMUXC_NAND_DATA03__GPIO3_IO09	0x110
->  		>;
->  	};
->  
-> -	pinctrl_sai2: sai2grp {
-> +	pinctrl_spi1: spi1grp {
->  		fsl,pins = <
-> -			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC	0xd6
-> -			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00	0xd6
-> -			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK	0xd6
-> -			MX8MP_IOMUXC_SAI2_MCLK__AUDIOMIX_SAI2_MCLK	0xd6
-> +			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK	0x82
-> +			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI	0x82
-> +			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO	0x82
-> +			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09	0x140
->  		>;
->  	};
->  
-> -- 
-> 2.25.1
+> Best regards,
+> Yoshihiro Shimoda
 > 
+> > -Serge(y)
+> > 
+> > > ---
+> > >  include/uapi/linux/pci_regs.h | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > >
+> > > diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
+> > > index dc2000e0fe3a..5d48413ac28f 100644
+> > > --- a/include/uapi/linux/pci_regs.h
+> > > +++ b/include/uapi/linux/pci_regs.h
+> > > @@ -538,6 +538,12 @@
+> > >  #define  PCI_EXP_LNKCAP_SLS_16_0GB 0x00000004 /* LNKCAP2 SLS Vector bit 3 */
+> > >  #define  PCI_EXP_LNKCAP_SLS_32_0GB 0x00000005 /* LNKCAP2 SLS Vector bit 4 */
+> > >  #define  PCI_EXP_LNKCAP_SLS_64_0GB 0x00000006 /* LNKCAP2 SLS Vector bit 5 */
+> > > +#define  PCI_EXP_LNKCAP_MLW_X1	0x00000010 /* Maximum Link Width x1 */
+> > > +#define  PCI_EXP_LNKCAP_MLW_X2	0x00000020 /* Maximum Link Width x2 */
+> > > +#define  PCI_EXP_LNKCAP_MLW_X4	0x00000040 /* Maximum Link Width x4 */
+> > > +#define  PCI_EXP_LNKCAP_MLW_X8	0x00000080 /* Maximum Link Width x8 */
+> > > +#define  PCI_EXP_LNKCAP_MLW_X12	0x000000c0 /* Maximum Link Width x12 */
+> > > +#define  PCI_EXP_LNKCAP_MLW_X16	0x00000100 /* Maximum Link Width x16 */
+> > >  #define  PCI_EXP_LNKCAP_MLW	0x000003f0 /* Maximum Link Width */
+> > >  #define  PCI_EXP_LNKCAP_ASPMS	0x00000c00 /* ASPM Support */
+> > >  #define  PCI_EXP_LNKCAP_ASPM_L0S 0x00000400 /* ASPM L0s Support */
+> > > --
+> > > 2.25.1
+> > >
