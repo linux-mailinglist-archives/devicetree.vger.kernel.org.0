@@ -2,154 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E552F7228A2
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 16:19:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE59F7228DC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 16:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233137AbjFEOTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 10:19:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47116 "EHLO
+        id S234059AbjFEOd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 10:33:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233400AbjFEOS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 10:18:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6AAB10C;
-        Mon,  5 Jun 2023 07:18:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 347D66241A;
-        Mon,  5 Jun 2023 14:18:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 632DBC433EF;
-        Mon,  5 Jun 2023 14:18:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685974727;
-        bh=zq25hJ0fHK6GtehEcofkCZeAy8jNCWwt6NKJQEwBpSM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FvbA7sETZUW5ZcfTxbhvBaQKfBV28xcoqYaInME55BvENaD8mTZnOhJJubLqBfwas
-         S2+KfwHil+AQh6U5BY7kxfxfsXzIRbc9Fm1jsuCYqwhPzADC3AiOKBuPyMSCT0XqyT
-         cedzg8Vp/4wtQVT4K8gDNrunucZWVy+D0nvntkUiCe89JGFnvfxB/ML5apb7lEPBog
-         eBDa4Md6P6ZWalE+1acYuyw8GgqeNvLOy8glnwIMA+6yqLP4YDQl+3oF6ZExl56ExD
-         mffuTaNBhr+08U3L0Mdi2mJLHbRxkINhvTP/Ijb/8ECezrov4sJ5PhAhCoLumjP55S
-         unYQlpAMd6HmQ==
-Date:   Mon, 5 Jun 2023 15:18:39 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, qperret@google.com
-Subject: Re: [PATCH v13 10/24] gunyah: vm_mgr: Add/remove user memory regions
-Message-ID: <20230605141839.GD21212@willie-the-truck>
-References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
- <20230509204801.2824351-11-quic_eberman@quicinc.com>
- <20230519115948.GB2637@willie-the-truck>
- <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
+        with ESMTP id S230380AbjFEOd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 10:33:28 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F72699;
+        Mon,  5 Jun 2023 07:33:27 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-256531ad335so3977467a91.0;
+        Mon, 05 Jun 2023 07:33:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685975607; x=1688567607;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ekP3RhJtUZILk2qnuNRNNeEbC6C5GUUQiR4tbiK5e/o=;
+        b=X3va0yxh/FrQ52jqdKXXif81V9LGWorsC1qdWDnfSYKNHlmZGcMdRTyd781ze267V1
+         b/sLmA1sflcIDskKH6/XvxBDGnFXsbpfTScg4OIHsWhZ1Y/rUjZQPhJpHqjvOoVLNrXX
+         0/lg3XY/B/uYlD4PAvr3KMSLhv7B68p4zBQfxHYN9BG2C8YfsQ/w8TzzWw9zZzr0chy0
+         UiggQTvB4R6k9HsLm2yuPS/g0+bKxzQqYRbNb8oI+C1t8VoZYOmsJ1dnv/vQyDWMFiVx
+         6cNY3s9Yxis92L+W1ytpVroASmeDo8LswaxjHD94LUUFHKvoj6ta5NdVdRR368gLcAT7
+         Xc0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685975607; x=1688567607;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ekP3RhJtUZILk2qnuNRNNeEbC6C5GUUQiR4tbiK5e/o=;
+        b=DDesCiH2fQpfOEji7+uf/OiLaNfDW6XPCgkoMwG5doR3JSyucP1keKkdhC3FJbvnA0
+         sI0qfgO4ozAQR1+tGXCCeUujCUwuS1n+YP1jtZPTfmDUaSVpmlTtbmU5/9BnsqtoIfSU
+         c+B09x1DG43qdzLvxAL+L6KHNd6j06P+bvXbSXQS15xuQWBJFPgdzdQ/7iAPYkZfhxxL
+         enVRCC/W/qZtMDc6wfHtXO2mr5hXH8MwfJbXhYFDtd08fSRAL/GdjeyfOUZEzBRMuLeM
+         BO8dm3o9L4DsACM+Ipue2NdtkzgfMyezd/tFhrtXI4efb8+uvMLsf9JFcnHHjvesfRia
+         lfHg==
+X-Gm-Message-State: AC+VfDxZASbcqXN0yxy4zzOVXYDOV58XAg1LstZxEletfXoZQLC7EF8X
+        kYb/3eaY34RC5cBcUufTr3rMO2QzNVPp44jaIWxTtj0TvhY/sg==
+X-Google-Smtp-Source: ACHHUZ65GdG7b2lW9VigsylmFjnc6G6O2l/ottmoAQR9ATxdr1w08mprQ4VyjxXYojieL+qszn4CV6mu7ULBLjOZIaQ=
+X-Received: by 2002:a17:90b:ed8:b0:250:2311:1535 with SMTP id
+ gz24-20020a17090b0ed800b0025023111535mr6790908pjb.24.1685975606758; Mon, 05
+ Jun 2023 07:33:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230519142456.2588145-1-pavacic.p@gmail.com> <20230519142456.2588145-2-pavacic.p@gmail.com>
+ <20230519-emerald-void-066fad80950a@spud>
+In-Reply-To: <20230519-emerald-void-066fad80950a@spud>
+From:   Paulo Pavacic <pavacic.p@gmail.com>
+Date:   Mon, 5 Jun 2023 16:33:15 +0200
+Message-ID: <CAO9szn2sYRezCUQKFZ_qsVfne0gpWoirZoE-HpWTPS4G1U5fNQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: add fannal,c3004
+To:     Conor Dooley <conor@kernel.org>
+Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Elliot,
+Hello Conor,
 
-[+Quentin since he's looked at the MMU notifiers]
+pet, 19. svi 2023. u 18:41 Conor Dooley <conor@kernel.org> napisao je:
+>
+> Hey Paulo,
+>
+> On Fri, May 19, 2023 at 04:24:55PM +0200, Paulo Pavacic wrote:
+> >
+> > Added fannal to vendor-prefixes and dt bindings for Fannal C3004.
+> > Fannal C3004 is a 480x800 MIPI DSI Panel which requires
+> > DCS initialization sequences with certain delays between certain
+> > commands.
+> >
+> > Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+> > ---
+> > v3 changelog:
+> >   - renamed yml file
+> >   - refactored yml file to describe fannal,c3004
+> >   - added matrix URI to MAINTAINERS
+> > v2 changelog:
+> >   - revised driver title, now describes purpose
+> >   - revised description, now describes hw
+> >   - revised maintainers, now has only 1 mail
+> >   - removed diacritics from commit/commit author
+> >   - properties/compatible is now enum
+> >   - compatible using only lowercase
+> >   - revised dts example
+> >   - modified MAINTAINERS in this commit (instead of driver commit)
+> >   - dt_bindings_check checked yml
+> >   - checkpatch warning fixed
+> > ---
+> >  .../bindings/display/panel/fannal,c3004.yaml  | 75 +++++++++++++++++++
+> >  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+> >  MAINTAINERS                                   |  6 ++
+> >  3 files changed, 83 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/fannal,c3004.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/fannal,c3004.yaml b/Documentation/devicetree/bindings/display/panel/fannal,c3004.yaml
+> > new file mode 100644
+> > index 000000000000..a86b5ce02aa2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/fannal,c3004.yaml
+> > @@ -0,0 +1,75 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/fannal,c3004.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Fannal C3004 MIPI-DSI
+> > +
+> > +maintainers:
+> > +  - Paulo Pavacic <pavacic.p@gmail.com>
+> > +
+> > +description: |
+> > +  Fannal C3004 is a 480x800 panel which requires DSI DCS
+> > +  initialization sequences.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: fannal,c3004
+> > +
+> > +  reg: true
+>
+> Are there no restrictions on the number of reg entries?
 
-Sorry for the slow response, I got buried in email during a week away.
+What do you mean by this? May I have some example if possible?
 
-On Fri, May 19, 2023 at 10:02:29AM -0700, Elliot Berman wrote:
-> On 5/19/2023 4:59 AM, Will Deacon wrote:
-> > On Tue, May 09, 2023 at 01:47:47PM -0700, Elliot Berman wrote:
-> > > +	ret = account_locked_vm(ghvm->mm, mapping->npages, true);
-> > > +	if (ret)
-> > > +		goto free_mapping;
-> > > +
-> > > +	mapping->pages = kcalloc(mapping->npages, sizeof(*mapping->pages), GFP_KERNEL_ACCOUNT);
-> > > +	if (!mapping->pages) {
-> > > +		ret = -ENOMEM;
-> > > +		mapping->npages = 0; /* update npages for reclaim */
-> > > +		goto unlock_pages;
-> > > +	}
-> > > +
-> > > +	gup_flags = FOLL_LONGTERM;
-> > > +	if (region->flags & GH_MEM_ALLOW_WRITE)
-> > > +		gup_flags |= FOLL_WRITE;
-> > > +
-> > > +	pinned = pin_user_pages_fast(region->userspace_addr, mapping->npages,
-> > > +					gup_flags, mapping->pages);
-> > > +	if (pinned < 0) {
-> > > +		ret = pinned;
-> > > +		goto free_pages;
-> > > +	} else if (pinned != mapping->npages) {
-> > > +		ret = -EFAULT;
-> > > +		mapping->npages = pinned; /* update npages for reclaim */
-> > > +		goto unpin_pages;
-> > > +	}
-> > 
-> > Sorry if I missed it, but I still don't see where you reject file mappings
-> > here.
-> > 
-> 
-> Sure, I can reject file mappings. I didn't catch that was the ask previously
-> and thought it was only a comment about behavior of file mappings.
+>
+> > +  reset-gpios: true
+>
+> Can you put a blank line between properties please?
+>
+> > +
+> > +  vdd-supply:
+> > +    description: power supply voltage
+> > +  vddio-supply:
+> > +    description: power supply voltage for IO
+> > +
+> > +  width-mm:
+> > +    description: physical panel width [mm]
+> > +  height-mm:
+> > +    description: physical panel height [mm]
+>
+> Here and for the supplies too.
+>
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 82d39ab0231b..f962750f630a 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -462,6 +462,8 @@ patternProperties:
+> >      description: Facebook
+> >    "^fairphone,.*":
+> >      description: Fairphone B.V.
+> > +  "^fannal,.*":
+> > +    description: Fannal Electronics Co., Ltd
+>
+> This needs to be split into a commit of its own.
+>
+> Thanks,
+> Conor.
+>
+> >    "^faraday,.*":
+> >      description: Faraday Technology Corporation
+> >    "^fastrax,.*":
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 5c22c828ab46..62374c8424b9 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -6427,6 +6427,12 @@ T:     git git://anongit.freedesktop.org/drm/drm-misc
+> >  F:   Documentation/devicetree/bindings/display/panel/ebbg,ft8719.yaml
+> >  F:   drivers/gpu/drm/panel/panel-ebbg-ft8719.c
+> >
+> > +DRM DRIVER FOR FANNAL C3004373132019A
+> > +M:   Paulo Pavacic <pavacic.p@gmail.com>
+> > +S:   Maintained
+> > +C:   matrix:r/mipi-dsi-bringup:matrix.org
+> > +F:   Documentation/devicetree/bindings/display/panel/panel-fannal,c3004.yaml
+> > +
+> >  DRM DRIVER FOR FARADAY TVE200 TV ENCODER
+> >  M:   Linus Walleij <linus.walleij@linaro.org>
+> >  S:   Maintained
+> > --
+> > 2.40.1
+> >
 
-I thought the mention of filesystem corruption was clear enough! It's
-definitely something we shouldn't allow.
-
-> > This is also the wrong interface for upstream. Please get involved with
-> > the fd-based guest memory discussions [1] and port your series to that.
-> > 
-> 
-> The user interface design for *shared* memory aligns with
-> KVM_SET_USER_MEMORY_REGION.
-
-I don't think it does. For example, file mappings don't work (as above),
-you're placing additional rlimit requirements on the caller, read-only
-memslots are not functional, the memory cannot be swapped or migrated,
-dirty logging doesn't work etc. pKVM is in the same boat, but that's why
-we're not upstreaming this part in its current form.
-
-> I understood we want to use restricted memfd for giving guest-private memory
-> (Gunyah calls this "lending memory"). When I went through the changes, I
-> gathered KVM is using restricted memfd only for guest-private memory and not
-> for shared memory. Thus, I dropped support for lending memory to the guest
-> VM and only retained the shared memory support in this series. I'd like to
-> merge what we can today and introduce the guest-private memory support in
-> tandem with the restricted memfd; I don't see much reason to delay the
-> series.
-
-Right, protected guests will use the new restricted memfd ("guest mem"
-now, I think?), but non-protected guests should implement the existing
-interface *without* the need for the GUP pin on guest memory pages. Yes,
-that means full support for MMU notifiers so that these pages can be
-managed properly by the host kernel. We're working on that for pKVM, but
-it requires a more flexible form of memory sharing over what we currently
-have so that e.g. the zero page can be shared between multiple entities.
-
-Will
+Thanks,
+Paulo
