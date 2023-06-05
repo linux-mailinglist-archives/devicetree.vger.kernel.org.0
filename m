@@ -2,86 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2708F722106
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 10:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4702172210E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 10:34:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbjFEIbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 04:31:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59428 "EHLO
+        id S229745AbjFEIeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 04:34:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjFEIbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 04:31:42 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14EBBB0
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 01:31:40 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f736e0c9b1so13931885e9.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 01:31:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685953898; x=1688545898;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :content-language:references:cc:to:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w33NFs9NKaKx4FHgTPgRsKul7wuRuEzUhG9qWfveVqg=;
-        b=meHNHj71nk1G60egTOikZNzf9bGrnks19/urL0IAx6KDFZ7WDQNSe5z1z2c5luucvW
-         mLsgV16m+mzY+jpIynxJdxNkXoVaH8pM45s3bZxOtqzPGPq3Vj6U1OpC9eeAuGM9/MFN
-         iYQMg45Yhb1txDr1lFH+0Y2fREIvXsTTKrFqQ9f5QbhP94HO1jTehFE7D1bVE0m1ySo+
-         KabJL6ckbF64Ms1hkYrKylRrsXN7miNeUxzsnFqgtFCtC7R6pA7MfkteYKAul853tVmn
-         TdSFVMdne26vXwwSN/XvdypOJ1/+67dApglhlzQEj3CQRES5ptEm0j2iU4WhE3Mesq3t
-         IG2w==
+        with ESMTP id S229724AbjFEIeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 04:34:03 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D289DC7;
+        Mon,  5 Jun 2023 01:34:01 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-33b00ce51caso17365425ab.2;
+        Mon, 05 Jun 2023 01:34:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685953898; x=1688545898;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :content-language:references:cc:to:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=w33NFs9NKaKx4FHgTPgRsKul7wuRuEzUhG9qWfveVqg=;
-        b=LxvMgUpLdlKWdbGKLquhiIutbeCJjSbXSuLwDG5BDW4Zw1pw0DgMWrni/wOc5ZGJno
-         fNTo2K7c0jDasviY0yxSSaOFmbXzm0QD4GBrxiKF4U3vlmpNKWC4WgkacXKvt6Zp5Mgt
-         /ouu6jz0hfBhsXCsKLoNnAOgaLimbUjR6LtgeJgO13Gdpaa5HvBjlkmoJPNFA0xsGtAv
-         VSNoO4XIwsvxTkfs4qB/EIRCTAZSAbycIVzyCP0gQKP5W8lxEUYPc8/I9GRkGQMlQBUd
-         zTUAhZWwqi6mcpC+sxCvJShkb0UVZ1iB3R/ziviDtOiWPwuF6Pee/BBqIw01ILKIpvpc
-         GZ0g==
-X-Gm-Message-State: AC+VfDzYeWwuo6zN1WX2dAe0rlWEMgoxfTlQmNFlkmmFNIHLwy+FI29h
-        l0nexAMHZC+zFifWqNovAGTUuA==
-X-Google-Smtp-Source: ACHHUZ5sBks7sH2tdACY7VhIK2H5kjcJrT+ivIsWNVtKwfHiV7wgcAqbq8su7V3Isk1sH3Mkf4lmEw==
-X-Received: by 2002:a05:600c:2146:b0:3f7:3636:358c with SMTP id v6-20020a05600c214600b003f73636358cmr3253241wml.11.1685953898454;
-        Mon, 05 Jun 2023 01:31:38 -0700 (PDT)
-Received: from [192.168.7.188] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id m4-20020a5d6a04000000b0030aea925fbesm8969116wru.50.2023.06.05.01.31.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 01:31:38 -0700 (PDT)
-Message-ID: <e491ac11-e21b-f737-7b4e-851b85c1408b@linaro.org>
-Date:   Mon, 5 Jun 2023 10:31:36 +0200
+        d=1e100.net; s=20221208; t=1685954041; x=1688546041;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bOjvC740On4cxmCmZ+ZA5JJyHC5J2DDm+AfE5TCoosc=;
+        b=KLbuwANX9h7k39bIyzcUpxZ5b1CR3prX9BMAIPnS8VXqRY8vH5pO0AuCqM+/+qvNss
+         kFPS0o9fsYSwhSK422nTgLDisp2HIdNq3nYIFbJxUWE04QRaD3bOikTE8DWQrXBJHZU/
+         d6jfD998k3Cj4Xg4+KzOSTgnNOgU74CtzKOZMj26y0q0rL2ipOFuskCpCmj7baYoNj28
+         lg54Jpae5C2fQr1bs//XTXbiOGnkk5us0J0gU+l9R9d5NB/OPj+kF8LHs5Ssk04JFVnI
+         SB6jPxHEKu3cjnw1kBmYTz1Qs5YWKfEL5uJohHIJXaeJpumQgftJVcdlDXZ77aS/IjTD
+         Uy/Q==
+X-Gm-Message-State: AC+VfDxW/H2pNPBphyVJJMRkOTbZJYps376mkUFJAVt/vYgh0Uk+N92b
+        AgmY17/0Zc7WAzsUEdhVcA==
+X-Google-Smtp-Source: ACHHUZ4d+PH4LnVmRIQ81wOVcfEQYf0UiqGR2sd3uq2AHz4k5TauRk+/drYNhLvLXsLopUkmEnnoMg==
+X-Received: by 2002:a92:da89:0:b0:334:c74c:4403 with SMTP id u9-20020a92da89000000b00334c74c4403mr15650410iln.11.1685954040924;
+        Mon, 05 Jun 2023 01:34:00 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id m16-20020a92c530000000b0033b2a123254sm2218432ili.61.2023.06.05.01.33.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jun 2023 01:34:00 -0700 (PDT)
+Received: (nullmailer pid 208973 invoked by uid 1000);
+        Mon, 05 Jun 2023 08:33:58 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230601-topic-sm8x50-upstream-redriver-v1-0-6ad21094ff6f@linaro.org>
- <20230601-topic-sm8x50-upstream-redriver-v1-2-6ad21094ff6f@linaro.org>
- <ZH2brE5oq5d7tQbO@kuha.fi.intel.com>
-Content-Language: en-US
-Organization: Linaro Developer Services
-Subject: Re: [PATCH 2/2] usb: typec: add support for the nb7vpq904m Type-C
- Linear Redriver
-In-Reply-To: <ZH2brE5oq5d7tQbO@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-remoteproc@vger.kernel.org
+In-Reply-To: <20230531-rpm-rproc-v1-5-e0a3b6de1f14@gerhold.net>
+References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
+ <20230531-rpm-rproc-v1-5-e0a3b6de1f14@gerhold.net>
+Message-Id: <168595403632.208907.7805006523202767813.robh@kernel.org>
+Subject: Re: [PATCH 05/14] dt-bindings: remoteproc: Add Qualcomm RPM
+ processor/subsystem
+Date:   Mon, 05 Jun 2023 02:33:58 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,62 +71,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 05/06/2023 10:24, Heikki Krogerus wrote:
-> Hi Neil,
+On Mon, 05 Jun 2023 09:08:21 +0200, Stephan Gerhold wrote:
+> On Qualcomm platforms, most subsystems (e.g. audio/modem DSP) are
+> described as remote processors in the device tree, with a dedicated
+> node where properties and services related to them can be described.
 > 
-> On Thu, Jun 01, 2023 at 11:21:13AM +0200, neil.armstrong@linaro.org wrote:
->> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>
->> Add support for the ON Semiconductor NB7VPQ904M Type-C USB SuperSpeed
->> and DisplayPort ALT Mode Linear Redriver chip found on some devices
->> with a Type-C port.
->>
->> The redriver compensates ultra High-Speeed DisplayPort and USB
->> Super Speed signal integrity losses mainly due to PCB & transmission
->> cables.
->>
->> The redriver doesn't support SuperSpeed lines swapping, but
->> can support Type-C SBU lines swapping.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/usb/typec/mux/Kconfig      |   8 +
->>   drivers/usb/typec/mux/Makefile     |   1 +
->>   drivers/usb/typec/mux/nb7vpq904m.c | 526 +++++++++++++++++++++++++++++++++++++
->>   3 files changed, 535 insertions(+)
+> The Resource Power Manager (RPM) is also such a subsystem, with a
+> remote processor that is running a special firmware. Unfortunately,
+> the RPM never got a dedicated node representing it properly in the
+> device tree. Most of the RPM services are described below a top-level
+> /smd or /rpm-glink node.
 > 
-> This looks good to me, but I think you should register a retimer
-> instead of a mode switch (the orientation switch is fine).
-
-Indeed, I'm not familiar with namings but by looking around it seems that
-redriver and retimers for USB-C applications are exactly the same.
-
+> However, SMD/GLINK is just one of the communication channels to the RPM
+> firmware. For example, the MPM interrupt functionality provided by the
+> RPM does not use SMD/GLINK but writes directly to a special memory
+> region allocated by the RPM firmware in combination with a mailbox.
+> Currently there is no good place in the device tree to describe this
+> functionality. It doesn't belong below SMD/GLINK but it's not an
+> independent top-level device either.
 > 
-> Retimers are handled just like the muxes, so this patch would not need
-> that many changes, but you would need to change the first patch too.
-> You would need to declare a "redriver-switch" instead of "mode-switch"
-> property in your DT (or perhaps make it just "redriver" instead of
-> "redriver-switch"?).
-
-So it would need some additional handling to also set the retimer state
-along the mux, but I was wondering, why having a separate handling
-while the retimer state struct is exactly the same as the mux ?
-
+> Introduce a new "qcom,rpm-proc" compatible that allows describing the
+> RPM as a remote processor/subsystem like all others. The SMD/GLINK node
+> is moved to a "smd-edge"/"glink-edge" subnode consistent with other
+> existing bindings. Additional subnodes (e.g. interrupt-controller for
+> MPM, rpm-master-stats) can be also added there.
 > 
-> We just need to add a device type for redrivers to the retimer class -
-> check the attached diff. Something like that.
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  .../bindings/remoteproc/qcom,rpm-proc.yaml         | 125 +++++++++++++++++++++
+>  1 file changed, 125 insertions(+)
 > 
-> Let me know what you guys think.
 
-I think I'll switch to retimer, thanks for pointing it to me...
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Thanks,
-Neil
+yamllint warnings/errors:
 
-> 
-> thanks,
-> 
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/remoteproc/qcom,rpm-proc.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/soc/qcom/qcom,rpm-master-stats.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230531-rpm-rproc-v1-5-e0a3b6de1f14@gerhold.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
