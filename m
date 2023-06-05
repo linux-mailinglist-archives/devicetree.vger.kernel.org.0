@@ -2,237 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A26C722403
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C303722405
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbjFEK6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 06:58:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32824 "EHLO
+        id S230219AbjFEK6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 06:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbjFEK6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:58:30 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F1DFEA
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 03:58:28 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b1b2ca09b9so34529311fa.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 03:58:28 -0700 (PDT)
+        with ESMTP id S229802AbjFEK6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:58:43 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5ACEA;
+        Mon,  5 Jun 2023 03:58:41 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b1b30445cfso36784221fa.1;
+        Mon, 05 Jun 2023 03:58:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685962707; x=1688554707;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V3tihtb81X94mKBcG9ORrh7rgJe6/rC9mmtLE/xRMNM=;
-        b=N1FGd8wmX+c3WPg3dQvP6O28V36dQjrAjlYfk4JknSrMcAmdbpBzmM+E1lIuz621es
-         deeG4hGRjduz/z5SWMYIoEeGy9kNytmxsFhDAGNSjOI+BudrxjV186STB3lHgJZpgqHK
-         Qzk2C4LFg8HV0L08vIKRE5YG75RrmrXYClTVgQnSZ6GqJP6Y6MXTkofIXue0mBL7Hxzh
-         1V1eAuI3l88FEjVRSvOYT+sfWRfjOVIOysZgLTMld+/822+X7ycst9KvMN40SZSaiFWJ
-         AuOkQWcghkbx+VJ2XNkUQ7+7yDuk2w1t8/kpuDPRGgn9sprGbG9olKSbKKFtVbM/dHp5
-         efQA==
+        d=gmail.com; s=20221208; t=1685962719; x=1688554719;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7GwBjzdlFiqH9/htrq3/gTiCUQ+rn2YtMAR4ZlxAmMk=;
+        b=cd1sGThJWyGiYTP0LEQ4AcWRcxlBQTg/p47lL9Dv+5rwOUqdlNJTim1hrEefNtPm6u
+         Z24ju/MFuFKzAn7dluHBkaFxO2J5DhvlJ2X4lsSXcipyZZkMvHxjEMCj9GrsjFUV9Vw0
+         fz9zgApWZ1gNAT8LE4A5EK2JeBjnHn/f9Tje4KjUZ3lpdMdfYzXB3XwPEypJrcIpjDCN
+         G41DeZLQIb4k88HA9QwQU/uuf3Pp/JIMXZgKZSCdcMjcKUmjLWvz0ST2gEC2vzXWqbzB
+         kdTMu01+m/28Y+jknJRg6gbw7hQrIYb0NHv0Wowc9KVWExiMiGyjzTkoB7ctVxhT+rZt
+         nzDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685962707; x=1688554707;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V3tihtb81X94mKBcG9ORrh7rgJe6/rC9mmtLE/xRMNM=;
-        b=gszHHUYjkRN4rJdKqOGKeu4bwYHM57q86fMf3jkm1IJ9/klHxGFKEU5BZrfeL5F24I
-         Szf0aysmpS+S8ex9uKaKsU7EFu46ecnnygzWtzwaiRIBR1qsljrEJjHZjSvsa+d/oEMT
-         T4ei3wLpcE6hyNKCfx1pOlK6GfpLfF3JvDQZa0RsNj/brVQuwdFwupLj10+mfCbIxogv
-         zhZLBz3kEfIn8If1fZO6en9u6fqpyPRUUVUeaJyxg09dDNft2mdpVURPiZ+bUryULD3k
-         69JEDW0BrjO8G+9IG2Enbg2NhwDmykAd0+sMrGR10+cCYG5F6t4WqoIXK0wQRNuvo8Px
-         I8fA==
-X-Gm-Message-State: AC+VfDwiwZCC0WS9lc9w5f4A1yuu0r7C2358m1cmQyT6/mYL5TXz6cOX
-        RIZxM82J5l1jawaPkEBMbCU=
-X-Google-Smtp-Source: ACHHUZ61soi2lF34JJHuru/zpu0B1LGmsMae6KmLkOr/W6KJVK0NYNoJf5Vqr/i5RGUGq0g1oB2X+Q==
-X-Received: by 2002:a2e:7c16:0:b0:2b1:e5d7:6339 with SMTP id x22-20020a2e7c16000000b002b1e5d76339mr1100266ljc.8.1685962706378;
-        Mon, 05 Jun 2023 03:58:26 -0700 (PDT)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id t17-20020a2e9c51000000b002ac7a25c001sm1388430ljj.24.2023.06.05.03.58.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 03:58:25 -0700 (PDT)
-Message-ID: <87db0e40-0fa3-47e0-2a50-c0ec908eed58@gmail.com>
-Date:   Mon, 5 Jun 2023 12:58:23 +0200
+        d=1e100.net; s=20221208; t=1685962719; x=1688554719;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7GwBjzdlFiqH9/htrq3/gTiCUQ+rn2YtMAR4ZlxAmMk=;
+        b=KBaoNJP+uf/pT9SZFFsQaa1Ciy/1lLehaYqY/TVH6n0tmFonfskMv8TMdNo/E6itNI
+         R0dYhF7F2Oi2rR3BZB64cadaZigLMw1VH7pQ3A0Mgd8WdRTn8TSUYnczarEFAesx/hu0
+         PlYvJtWtx1OehqzQcKIaUuPEjfW6xTbbRqKIH7KrJtQ2hPLbFRfFQCFEhUmFVd8ACNh/
+         vxGDetM50IMjiwk6UT6IDkt05mmCDLTpGw7+6KN5Nvw1j7RGQjrMjfT6V3DXq00zuuJE
+         r2MVfDf4iDjkwNTXg8nKha4bft99nNTnY6euG3uayZY/VnRGoZgNJsODc0Ms5SjNBh8I
+         jGdg==
+X-Gm-Message-State: AC+VfDxWrSvtOFgGHhQ3OYK5LgqhOnR+cDmkjRcTONWWeEJmuJd51RuP
+        YOgHxxOlp3BuQCXXGWvnbP4=
+X-Google-Smtp-Source: ACHHUZ57P9cW4s65TelliT9WOwKpN9ocbjXvamYeGPg+nAgaOAdNv0XmkX3vc1127aIjExtaaV6/Tw==
+X-Received: by 2002:a2e:3203:0:b0:2b0:2976:172d with SMTP id y3-20020a2e3203000000b002b02976172dmr4052358ljy.9.1685962719245;
+        Mon, 05 Jun 2023 03:58:39 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id p15-20020a2ea40f000000b002adb6dd5a97sm1406292ljn.27.2023.06.05.03.58.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jun 2023 03:58:38 -0700 (PDT)
+Date:   Mon, 5 Jun 2023 13:58:36 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
+        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
+        kishon@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v16 11/22] PCI: dwc: Add dw_pcie_link_set_max_cap_width()
+Message-ID: <20230605105836.ddvbrhlf6xfnkd2y@mobilestation>
+References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230510062234.201499-12-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1 2/3] ARM: MR26: fix dt schema violations
-To:     Christian Lamparter <chunkeey@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <869354dba00f01d4e6bde897a44180ad1658389c.1685801691.git.chunkeey@gmail.com>
- <c2f56e4fb234418be45e640faf67f04ae66401b6.1685801691.git.chunkeey@gmail.com>
-Content-Language: en-US
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <c2f56e4fb234418be45e640faf67f04ae66401b6.1685801691.git.chunkeey@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230510062234.201499-12-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-I've include "BCM5301X: " in the subject line.
-
-See below too.
-
-On 3.06.2023 16:16, Christian Lamparter wrote:
-> fixes the "duplex-full" typo, adds phy-modes for the internal
-> switch and the PHY-chip. This also includs adding pause support
-> for the internal cpu port. Furthermore, both erronous unit properties
-> in the gpio-keys node are removed (#size-cells, #address-cells don't
-> belong here).
+On Wed, May 10, 2023 at 03:22:23PM +0900, Yoshihiro Shimoda wrote:
+> Add dw_pcie_link_set_max_cap_width() to set PCI_EXP_LNKCAP_MLW.
+> In accordance with the DW PCIe RC/EP HW manuals [1,2,3,...] aside with
+> the PORT_LINK_CTRL_OFF.LINK_CAPABLE and GEN2_CTRL_OFF.NUM_OF_LANES[8:0]
+> field there is another one which needs to be updated. It's
+> LINK_CAPABILITIES_REG.PCIE_CAP_MAX_LINK_WIDTH. If it isn't done at
+> the very least the maximum link-width capability CSR won't expose
+> the actual maximum capability.
 > 
-> | ports:port@5:fixed-link: 'oneOf' conditional failed, one must be fixed:
-> |   'anyOf' conditional failed, one must be fixed:
-> |   {'speed': [[1000]], 'duplex-full': True} is not of type 'array'
-> |   'duplex-full' does not match any of the regexes
-> | ports:port@5: 'phy-mode' is a required property
-> | keys: '#address-cells', '#size-cells' do not match any of the regexes:
-> | [...] From schema: gpio-keys.yaml
+> [1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+>     Version 4.60a, March 2015, p.1032
+> [2] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+>     Version 4.70a, March 2016, p.1065
+> [3] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+>     Version 4.90a, March 2016, p.1057
+> ...
+> [X] DesignWare Cores PCI Express Controller Databook - DWC PCIe Endpoint,
+>       Version 5.40a, March 2019, p.1396
+> [X+1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+>       Version 5.40a, March 2019, p.1266
 > 
-> Fixes: 935327a73553 ("ARM: dts: BCM5301X: Add DT for Meraki MR26")
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> The commit description is suggested by Serge Semin.
+> 
+> Suggested-by: Serge Semin <fancer.lancer@gmail.com>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->   arch/arm/boot/dts/bcm53015-meraki-mr26.dts | 7 ++++---
->   1 file changed, 4 insertions(+), 3 deletions(-)
+>  drivers/pci/controller/dwc/pcie-designware.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-> index 9ea4ffc1bb71..9acadf393dd9 100644
-> --- a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-> +++ b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-> @@ -38,8 +38,6 @@ led-1 {
->   
->   	keys {
->   		compatible = "gpio-keys";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 5dc423dd2f21..8b2978c6eb23 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -758,6 +758,21 @@ static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
+>  	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, lwsc);
+>  }
+>  
+> +static void dw_pcie_link_set_max_cap_width(struct dw_pcie *pci, int num_lanes)
+> +{
 
-FWIW I've already sent patch for that:
-[PATCH 2/2] ARM: dts: BCM5301X: Drop invalid properties from Meraki MR32 keys
+> +	u32 val;
+> +	u8 cap;
+> +
+> +	if (!num_lanes)
+> +		return;
+> +
+> +	cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> +	val = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
+> +	val &= ~PCI_EXP_LNKCAP_MLW;
+> +	val |= num_lanes << PCI_EXP_LNKSTA_NLW_SHIFT;
+> +	dw_pcie_writel_dbi(pci, cap + PCI_EXP_LNKCAP, val);
 
+Once again. Please move this code to the
+dw_pcie_link_set_max_link_width() method as I already asked here:
+https://lore.kernel.org/linux-pci/20230501195753.o3qfcs7qyergccnr@mobilestation/
+There is no point in creating a separate method for the action which
+is implied by the already defined and incomplete
+dw_pcie_link_set_max_link_width() function.
 
->   		key-restart {
->   			label = "Reset";
-> @@ -127,16 +125,19 @@ ports {
->   		port@0 {
->   			reg = <0>;
->   			label = "poe";
-> +			phy-mode = "rgmii";
->   		};
+Also as we already agreed please replace the hard-coded bitwise shift
+operation with the FIELD_PREP(PCI_EXP_LNKCAP_MLW, num_lanes)
+statement.
 
-It was never clear to me how to exactly specify "phy-mode".
+-Serge(y)
 
-It'd values are documented in the:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-
-In Broadcom's bcmrobo.c we can find:
-#define PAGE_GPHY_MII_P0	0x10	/* Port0 Internal GPHY MII registers page */
-#define PAGE_GPHY_MII_P4	0x14	/* Last/Port4 Internal GPHY MII registers page */
-
-That suggests ports 0, 1, 2, 3 and 4 use internal MII.
-
-Does it make "rgmii" a valid value for that?
-
-Could we just specify a proper value for all 5 ports in the bcm-ns.dtsi?
-
-
->   		port@5 {
->   			reg = <5>;
->   			label = "cpu";
->   			ethernet = <&gmac0>;
-> +			phy-mode = "internal";
->   
->   			fixed-link {
->   				speed = <1000>;
-> -				duplex-full;
-> +				full-duplex;
-> +				pause;
->   			};
->   		};
->   	};
-
-Same here: could we specify "phy-mode" and "fixed-link" for ports 5, 7
-and 8 in the bcm-ns.dtsi? There are more devices with warnings:
-
-   DTC_CHK arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm4708-luxul-xap-1510.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm4708-netgear-r6250.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm4708-netgear-r6250.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm4708-smartrg-sr400ac.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm4708-smartrg-sr400ac.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47081-luxul-xap-1410.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm4709-netgear-r8000.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm4709-netgear-r8000.dtb: ethernet-switch@18007000: ports:port@8: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dtb: ethernet-switch@18007000: ports:port@7: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dtb: ethernet-switch@18007000: ports:port@8: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-dlink-dir-885l.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dtb: ethernet-switch@18007000: ports:port@8: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-linksys-panamera.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: ethernet-switch@18007000: ports:port@8: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: switch@0: ports:port@8: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-luxul-abr-4500.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-luxul-abr-4500.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-luxul-xap-1610.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-luxul-xap-1610.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-luxul-xbr-4500.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-luxul-xbr-4500.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm53015-meraki-mr26.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm53015-meraki-mr26.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm53016-meraki-mr32.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm53016-meraki-mr32.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-   DTC_CHK arch/arm/boot/dts/bcm953012er.dtb
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm953012er.dtb: ethernet-switch@18007000: ports:port@5: 'phy-mode' is a required property
-         From schema: /home/rmilecki/linux/linux-next/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-
+> +}
+> +
+>  void dw_pcie_iatu_detect(struct dw_pcie *pci)
+>  {
+>  	int max_region, ob, ib;
+> @@ -1040,4 +1055,5 @@ void dw_pcie_setup(struct dw_pcie *pci)
+>  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+>  
+>  	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
+> +	dw_pcie_link_set_max_cap_width(pci, pci->num_lanes);
+>  }
+> -- 
+> 2.25.1
+> 
