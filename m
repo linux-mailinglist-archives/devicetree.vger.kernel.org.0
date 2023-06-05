@@ -2,80 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B24F721E12
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD37721E2B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjFEG0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 02:26:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47412 "EHLO
+        id S229823AbjFEGfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 02:35:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjFEG0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:26:17 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F941E9
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:26:15 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-977c8423dccso326054866b.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:26:15 -0700 (PDT)
+        with ESMTP id S229821AbjFEGfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:35:15 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2F2ED
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:35:13 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5151934a4e3so6558690a12.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:35:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685946374; x=1688538374;
+        d=linaro.org; s=google; t=1685946912; x=1688538912;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JKNxhsEFUtYjzQxD0J9q5LbYbALidtpnh+E1K51aRgc=;
-        b=DfT8Qmh3d0Z8MndjKU4WDIDM5R4fi8RaQjuJ3Gu318n1xtvZKBsj3qglFm1KwZtHfC
-         JGHn7hFoLui5gzXAWn9inVA1ZRrFMHbFT4X55JZhJAVxkW5e1ZGGObg5g2dhavmd5LiR
-         v1v+G5Lyt5MN2kq1fGZ3hLJAdDaNS7Uo9ulWxgJyPmW02CG0DvaEiaovCkzZ3+NbU6JC
-         jaVR9/xcrz+MuT75tz3MpkvdfLubRlvj2pl8Y69ogLvAHMwentNIsCXOyDIR2ZME6dom
-         DKm9fl/yq+O5bSVOclLemPKJ2fFu8fZe2FnXaPd88U2qVe60cYgUtQrP3o+5J99KHp6H
-         qS3Q==
+        bh=HAkCrvHOWXDqwj1iMGZRedd16rhqvqKQgu07G0b3u+w=;
+        b=e7E3JztSPDwCFOVrzxyEbVKg2EBeBOYgZaTU4BRpwJs1h7uHWXDo+l4Zk5OwWH3gxO
+         EqYoWrI2nluRnjKjwdlqLEnBcCpOkMVsq/NL07i8ATGoappT2Y7Iu+bHCO+sxDx/d6PF
+         m1yW2VgipEcnRLFaW68NCN+FFcFIJPbw/eYHR3Y07vtSoQ9V57ZsG/OrkuBfp0zcE7uO
+         mUMJdZb3Ktm56WuGjYfV4znaUsZVjWccpeON3w72rzjU7HO+wQmcEKdi3vZPb9spMHEO
+         MAxQO8sclY35BjwjlYS1iRkx51Kv62cQ0tFvY3zdkd4n9Jlo0VDzxWWtcb/m129XFaB6
+         19jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685946374; x=1688538374;
+        d=1e100.net; s=20221208; t=1685946912; x=1688538912;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JKNxhsEFUtYjzQxD0J9q5LbYbALidtpnh+E1K51aRgc=;
-        b=DONmYWSbrUsq6ALAW/s6LF9HNHIXMu2DtXif4LQFP4rQHgtsSI2PS6BYg/+BU2xQtj
-         khouUAObVqANcQxK3mE98aNULQc0Zcyb1NLoEQsDL862vbOUMfW3TvYDIAl0nj6Rzq9S
-         MUHtDvDm2VJnHTS31PBrdmn6XW5P1v0BiLdABNOamUzGCP+amlSfyTtEOFV1a8MoK7W4
-         pYjHwleFKLcjfgGFIEhspy1C8zBSKIBYhurZsndO7IHT1sHJok/ZMmFmyXXtOJheqjPu
-         m2hZTa9hjhJ9DMuKfwMNPHboth23uOl2FI3UShJwD5DyoGSLgHpICa/6RAoVvhQYFQwt
-         ZLfA==
-X-Gm-Message-State: AC+VfDz0e0jlfpnjKJEX/6p45KkLF12/oRwfioS70fzATFHW/seyEfvL
-        fxUucWPYAXUt6FqaB1w/NpHRYA==
-X-Google-Smtp-Source: ACHHUZ4I1WSNJJSHpNb+jq73kUifdOulRKcOLRCfEgk8bjsqMW/HDusbgfA+8LYUBWK+Zo1wnqD2Mw==
-X-Received: by 2002:a17:907:1c0a:b0:977:daec:4017 with SMTP id nc10-20020a1709071c0a00b00977daec4017mr1525296ejc.30.1685946374070;
-        Sun, 04 Jun 2023 23:26:14 -0700 (PDT)
+        bh=HAkCrvHOWXDqwj1iMGZRedd16rhqvqKQgu07G0b3u+w=;
+        b=VqMdJETy3SLTq8zoLGNsKfSrggz8K3pO+Zxj7bx4r7jJBMeRX98X6myPMa7jRkwHar
+         AKv9LKOw9NTAiW98ihHFOXO5eFYsziJ8YwqRv3z44RcYfhfu7IY9OHwJMnd5X+yxK+Dv
+         1cN2Q4YoeMFiqcujB77cJMoFR+hBC7rdgL6zyIYtGS0VEOrCmB1rPp9lN0VtvDwurKUd
+         UjxGaaRFULFJ1wnMHROa10YqWDcEALUbiUNav6Lbc09aHWTq4UXfpnn5b4oLT/L+WYiC
+         EuqKTDsE4RuZvXoZEueZDR4lQk5ApeS+RYSMbLkL+04k4aSZWezJ+ePM/GXok5cZNi2X
+         J3bA==
+X-Gm-Message-State: AC+VfDyf8iL3WltEZBMGIU+B7zMuhf2a4fyTQuZbLo7GM5a6R+BWdvCA
+        7MPpkh4nTeaYxbqHvDog/X5huA==
+X-Google-Smtp-Source: ACHHUZ4BgooRJqWw2thRF8QqkzdRcCJ+hGa1VmZ7YEgpaG6Ikj580m9cbKbqSO9oirFRyquUlSnLew==
+X-Received: by 2002:aa7:cd10:0:b0:513:53f7:8ca2 with SMTP id b16-20020aa7cd10000000b0051353f78ca2mr6734317edw.9.1685946911857;
+        Sun, 04 Jun 2023 23:35:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id qh8-20020a170906eca800b009600ce4fb53sm3871846ejb.37.2023.06.04.23.26.12
+        by smtp.gmail.com with ESMTPSA id v1-20020aa7dbc1000000b005163a0f84a1sm3636951edt.48.2023.06.04.23.35.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Jun 2023 23:26:13 -0700 (PDT)
-Message-ID: <35e62a74-c86e-b274-a013-a2f8f312c265@linaro.org>
-Date:   Mon, 5 Jun 2023 08:26:11 +0200
+        Sun, 04 Jun 2023 23:35:11 -0700 (PDT)
+Message-ID: <c72f45ec-c185-8676-b31c-ec48cd46278c@linaro.org>
+Date:   Mon, 5 Jun 2023 08:35:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Add
- SDM660 compatible
+Subject: Re: [PATCH 01/21] dt-bindings: microchip: atmel,at91rm9200-tcb: add
+ sam9x60 compatible
 Content-Language: en-US
-To:     Alexey Minnekhanov <alexeymin@postmarketos.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230604061421.3787649-1-alexeymin@postmarketos.org>
+To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+        tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        gregkh@linuxfoundation.org, linux@armlinux.org.uk,
+        mturquette@baylibre.com, sboyd@kernel.org, sre@kernel.org,
+        broonie@kernel.org, arnd@arndb.de, gregory.clement@bootlin.com,
+        sudeep.holla@arm.com, balamanikandan.gunasundar@microchip.com,
+        mihai.sain@microchip.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
+        durai.manickamkr@microchip.com, manikandan.m@microchip.com,
+        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
+        balakrishnan.s@microchip.com
+References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
+ <20230603200243.243878-2-varshini.rajendran@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230604061421.3787649-1-alexeymin@postmarketos.org>
+In-Reply-To: <20230603200243.243878-2-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,14 +91,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/06/2023 08:14, Alexey Minnekhanov wrote:
-> Mention sdm660-mss-pil in compatibles list.
+On 03/06/2023 22:02, Varshini Rajendran wrote:
+> Add sam9x60 compatible string support in the schema file
 > 
-> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 > ---
+>  .../devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml  | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+> index a46411149571..c70c77a5e8e5 100644
+> --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+> +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+> @@ -20,6 +20,7 @@ properties:
+>            - atmel,at91rm9200-tcb
+>            - atmel,at91sam9x5-tcb
+>            - atmel,sama5d2-tcb
+> +          - microchip,sam9x60-tcb
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No wildcards.
 
 Best regards,
 Krzysztof
