@@ -2,110 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B559872241D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 13:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD4B722428
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 13:07:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231768AbjFELFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 07:05:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35252 "EHLO
+        id S230440AbjFELG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 07:06:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231578AbjFELFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 07:05:01 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F0A5F2;
-        Mon,  5 Jun 2023 04:04:59 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 355B4lvN008502;
-        Mon, 5 Jun 2023 06:04:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685963087;
-        bh=ZgUYvyiKVgnOmW4p//WF3VcF42d3FC8Xm2zYqVM7i28=;
-        h=From:To:CC:Subject:Date;
-        b=UAW7cTULI4+z6p4wQnd8oTCXKUQGppslINJup18ncMrK3otzWMxs1rJw0Su9anl/L
-         Eot1l7NmGZdm9OXze81iC3lfJ5OHolQg65iUHp69nvi3lARpvRasPV4Q5YCJJLzltG
-         mQ+NqpOQj/UcpftIOlekvVyF5Cpu7idKSDxHUIII=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 355B4lUq114003
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 5 Jun 2023 06:04:47 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- Jun 2023 06:04:47 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 Jun 2023 06:04:47 -0500
-Received: from ula0497641.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 355B4ieT111266;
-        Mon, 5 Jun 2023 06:04:44 -0500
-From:   Neha Malcom Francis <n-francis@ti.com>
-To:     <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <n-francis@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721s2: Change CPTS clock parent
-Date:   Mon, 5 Jun 2023 16:34:43 +0530
-Message-ID: <20230605110443.84568-1-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232308AbjFELGW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 07:06:22 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E055BD;
+        Mon,  5 Jun 2023 04:06:21 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b1c30a1653so16859311fa.2;
+        Mon, 05 Jun 2023 04:06:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685963179; x=1688555179;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=H7M30gPRF1S9FmsectECqP03XbemHmNsuKOYVOI7zWc=;
+        b=YETGDHrlvlPXeuRrT+vezPoWYnsr7Xid2LpIK5AyVz3kNTn9HUBGpXZdHE0PoAupVc
+         uPEp2hIwRV6QqQXRkdj3HAnCZ4l9o0zjcpR+OPa7yNPle1K3A5T15RWP3hTP4Xuh+kep
+         ABMBanCYpppHk/rzmN+6jlJNcVwPS8gMU5aGELd+nhh3/qrxUBEWhVT++C2FHM9zpM9h
+         zavp90/YNL80eTU3ndAWSCmGoaUoiD4WhuZiTQZlZpvFSHi5YjoERSBWXS1XMBEEENR4
+         fTFQHItGpLes1oaXrzRNUK/OCejNTuGu7o/0Hz+fjMo+Qi40UwvTP+Gzwvb8USbSrOGE
+         P/sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685963179; x=1688555179;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H7M30gPRF1S9FmsectECqP03XbemHmNsuKOYVOI7zWc=;
+        b=k9y8KM1NlbRR60gOEdSA8QMpl5z8vOWcTfekpJ3b3yomFcMBk2XKDpMRgSlyMo9ts5
+         tbMF5YYTNEFG/tzHfWpwuUZgWVqtzNOblLQmiiiL4+QuXLi552zrmM9BxQQ3p3QRIKhh
+         z69EWKaUv1A564BgqV2J50RH1tWHYYhRA6kWHy93QpJU8lzhSXlBgPzbtfFHlRNtdbSM
+         1gnVT619trVwXjS8/CrD3ZSgAqyobamc+1prCR7L1g4SwditVMoQBE1HF5D83Arf4mP/
+         rlnfP6SZPhdDa4mvvLhO3FtqB9H49UrHqYeL7QgoM02Kzxl1sqYHV14b4c8T418ZnbRL
+         VJsQ==
+X-Gm-Message-State: AC+VfDx/WzR3r88gneJuwGwCdXOOaUJM4n/8vdwg/J4vxdsot0F9a6YX
+        TwQxaGyW7/FBLjDqmDQSkv4=
+X-Google-Smtp-Source: ACHHUZ4W/mP7rRFDsy2/31Pt+q8ndVpZ9XK1lT5mr7917K/HPvUfBLgNp/FOioqFsZIVqOyNWeRuiA==
+X-Received: by 2002:a2e:3502:0:b0:2b1:eb62:ffc8 with SMTP id z2-20020a2e3502000000b002b1eb62ffc8mr293673ljz.6.1685963179228;
+        Mon, 05 Jun 2023 04:06:19 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id n21-20020a2e82d5000000b002a8c1462ecbsm1413836ljh.137.2023.06.05.04.06.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jun 2023 04:06:18 -0700 (PDT)
+Date:   Mon, 5 Jun 2023 14:06:16 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
+        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
+        kishon@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH v16 12/22] PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting.
+Message-ID: <20230605110616.k7l2o7fwwiy62jau@mobilestation>
+References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230510062234.201499-13-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230510062234.201499-13-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MAIN_PLL0 has a flag set in DM (Device Manager) that removes it's
-capability to re-initialise clock frequencies. CPTS and RGMII has
-MAIN_PLL3 as their parent which does not have this flag. While RGMII
-needs this reinitialisation to default frequency to be able to get
-250MHz with its divider, CPTS can not get its required 200MHz with its
-divider. Thus, move CPTS clock parent on J721S2 from MAIN_PLL3_HSDIV1 to
-MAIN_PLL0_HSDIV6.
+On Wed, May 10, 2023 at 03:22:24PM +0900, Yoshihiro Shimoda wrote:
+> dw_pcie_setup() will set PCI_EXP_LNKSTA_NLW to PCI_EXP_LNKCAP register
+> so that drop such setting from tegra_pcie_dw_host_init().
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
 
-(Note: even GTC will be moved from MAIN_PLL3 to MAIN_PLL0 in U-Boot side
-for the same reason)
+AFAICS this update isn't supposed to bring any regression since the
+tegra_pcie_dw_host_init() call is always followed by the
+dw_pcie_setup_rc() method invocation which thanks to your patches now
+fully performs the link width setups. So from my point of view:
 
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 2 ++
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 ++
- 2 files changed, 4 insertions(+)
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 2dd7865f7654..331e0c9b4db8 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -738,6 +738,8 @@ cpts@310d0000 {
- 			reg-names = "cpts";
- 			clocks = <&k3_clks 226 5>;
- 			clock-names = "cpts";
-+			assigned-clocks = <&k3_clks 226 5>; /* NAVSS0_CPTS_0_RCLK */
-+			assigned-clock-parents = <&k3_clks 226 7>; /* MAIN_0_HSDIVOUT6_CLK */
- 			interrupts-extended = <&main_navss_intr 391>;
- 			interrupt-names = "cpts";
- 			ti,cpts-periodic-outputs = <6>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index a353705a7463..b55a3e9daf85 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -333,6 +333,8 @@ cpts@3d000 {
- 			reg = <0x0 0x3d000 0x0 0x400>;
- 			clocks = <&k3_clks 29 3>;
- 			clock-names = "cpts";
-+			assigned-clocks = <&k3_clks 29 3>; /* CPTS_RFT_CLK */
-+			assigned-clock-parents = <&k3_clks 29 5>; /* MAIN_0_HSDIVOUT6_CLK */
- 			interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "cpts";
- 			ti,cpts-ext-ts-inputs = <4>;
--- 
-2.34.1
+Though testing this on a real hw would be very welcome.
 
+-Serge(y)
+
+> ---
+>  drivers/pci/controller/dwc/pcie-tegra194.c | 6 ------
+>  1 file changed, 6 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+> index 4adba379b83d..723a22ccd58c 100644
+> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+> @@ -901,12 +901,6 @@ static int tegra_pcie_dw_host_init(struct dw_pcie_rp *pp)
+>  		AMBA_ERROR_RESPONSE_CRS_SHIFT);
+>  	dw_pcie_writel_dbi(pci, PORT_LOGIC_AMBA_ERROR_RESPONSE_DEFAULT, val);
+>  
+> -	/* Configure Max lane width from DT */
+> -	val = dw_pcie_readl_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKCAP);
+> -	val &= ~PCI_EXP_LNKCAP_MLW;
+> -	val |= (pcie->num_lanes << PCI_EXP_LNKSTA_NLW_SHIFT);
+> -	dw_pcie_writel_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKCAP, val);
+> -
+>  	/* Clear Slot Clock Configuration bit if SRNS configuration */
+>  	if (pcie->enable_srns) {
+>  		val_16 = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base +
+> -- 
+> 2.25.1
+> 
