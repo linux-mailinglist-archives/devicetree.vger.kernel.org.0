@@ -2,130 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83B19722677
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94536722680
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233655AbjFEMyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 08:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46294 "EHLO
+        id S233857AbjFEMzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 08:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232885AbjFEMyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:54:49 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF51113;
-        Mon,  5 Jun 2023 05:54:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685969679; x=1717505679;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=a+Tn4FBYo0QLrStvlRhVV+bb1iI8O3ndmJkkVSEip2g=;
-  b=UrrUXL2U0aZ/WMYl2TJe4L43Ci0uiIw0ckuebDEMyk9b1eYP6uiGyDm1
-   QZRIV5jHc+n3XRaeYEk9uhNAYpdU2xGvA9w52JKjIivntKsEBbxQD2gtz
-   qLodBXgsC8Dy07GEB+uZMJN37HwXju2ZVRXY/bIs1nLrGaza64xOwcBJQ
-   G29brtYJmJpxPcnYi7M52et78zAPQL+akRqBoScTHRNyJDz4lM9jDd8g1
-   1LasS3xwWpcnIVFa5nO4dqBT6YxnWjGudYhHeJTwJ377WKs6Krxz7FUhu
-   trA+KDCqek4yAFVl+Y/jpwvIaP/209vgvOlQBUweu+/2y2F8ZCCq5d+yY
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
-   d="scan'208";a="155562864"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Jun 2023 05:54:38 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 5 Jun 2023 05:54:37 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 5 Jun 2023 05:54:25 -0700
-Message-ID: <bf0ab4e0-7e0b-3fb6-f54e-d75acb54ce5e@microchip.com>
-Date:   Mon, 5 Jun 2023 14:54:18 +0200
+        with ESMTP id S233809AbjFEMzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:55:25 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6CADB;
+        Mon,  5 Jun 2023 05:55:23 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 355CoAMo020912;
+        Mon, 5 Jun 2023 07:55:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=ovavvxguYhP7lE3de7Dx9uUiv68d/9lD/PPJEy5POXo=;
+ b=oB75JlX26RfNhCVfpoz5QSdaeaplfrbTuIk9VvvbQ5t/dL7wXZnUl6eb6qBQE2clLfyv
+ T3u1vnQouJb2Rfr7TW9xOCD/mtAXnRs0C1312FDCmpGlnG6bERCfwpapfRA/zzR4NIDv
+ srsSopMsPegSS5ahoV4mnHrgWKnIJXvtcWQZEAAnlBgcg+gHuPApszyNDpnD36AkGqFn
+ zPMGhU3KGfRSpF003/oWSJ/JWfro5OzRx8hQ3BRl5qDFhxnYhU/ZofY4z21fHQbYXMFc
+ Dq4cVH2QDwfKXoeb49uHdm4xAgWwJYErjc+I7WLK7TX6jcQn6ssMHLJA52MjJpECfRSI Ww== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3r02x19tf1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 05 Jun 2023 07:55:06 -0500
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Mon, 5 Jun
+ 2023 13:55:04 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 5 Jun 2023 13:55:04 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 95354458;
+        Mon,  5 Jun 2023 12:55:04 +0000 (UTC)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <lee@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <vkoul@kernel.org>
+CC:     <robh+dt@kernel.org>, <conor+dt@kernel.org>, <lgirdwood@gmail.com>,
+        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
+        <pierre-louis.bossart@linux.intel.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/6] Add cs42l43 PC focused SoundWire CODEC
+Date:   Mon, 5 Jun 2023 13:54:58 +0100
+Message-ID: <20230605125504.2570158-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 03/21] dt-bindings: usb: generic-ehci: Document
- clock-names property
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>,
-        Varshini Rajendran <varshini.rajendran@microchip.com>
-CC:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <gregkh@linuxfoundation.org>,
-        <linux@armlinux.org.uk>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <sre@kernel.org>, <broonie@kernel.org>,
-        <arnd@arndb.de>, <gregory.clement@bootlin.com>,
-        <sudeep.holla@arm.com>, <balamanikandan.gunasundar@microchip.com>,
-        <mihai.sain@microchip.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <Hari.PrasathGE@microchip.com>,
-        <cristian.birsan@microchip.com>, <durai.manickamkr@microchip.com>,
-        <manikandan.m@microchip.com>, <dharma.b@microchip.com>,
-        <nayabbasha.sayed@microchip.com>, <balakrishnan.s@microchip.com>
-References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
- <20230603200243.243878-4-varshini.rajendran@microchip.com>
- <20230603-skincare-ideology-bfbc3fd384c5@spud>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20230603-skincare-ideology-bfbc3fd384c5@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: 1l0hYwqJH1-DijCrh4sIhysib1-pdjZT
+X-Proofpoint-GUID: 1l0hYwqJH1-DijCrh4sIhysib1-pdjZT
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2023 at 23:15, Conor Dooley wrote:
-> Hey Varshini,
-> 
-> On Sun, Jun 04, 2023 at 01:32:25AM +0530, Varshini Rajendran wrote:
->> Document the property clock-names in the schema.
->>
->> It fixes the dtbs_warning,
-> s/dtbs_warning/dtbs_check warning/?
-> 
->> 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-> Does this fix a warning currently in the tree, or fix a warning
-> introduced by some patches in this series? (Or both?)
+This patch chain adds support for the Cirrus Logic cs42l43 PC focused
+SoundWire CODEC. The chain is currently based of Lee's for-mfd-next
+branch.
 
-Our USB DT pattern is the same on all our newer SoC, to it mustn't be 
-introduced by the addition of this one.
+Thanks,
+Charles
 
-Best regards,
-   Nicolas
+Charles Keepax (4):
+  dt-bindings: mfd: cirrus,cs42l43: Add initial DT binding
+  mfd: cs42l43: Add support for cs42l43 core driver
+  pinctrl: cs42l43: Add support for the cs42l43
+  ASoC: cs42l43: Add support for the cs42l43
 
->> Signed-off-by: Varshini Rajendran<varshini.rajendran@microchip.com>
->> ---
->>   Documentation/devicetree/bindings/usb/generic-ehci.yaml | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
->> index 7e486cc6cfb8..542ac26960fc 100644
->> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
->> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
->> @@ -102,6 +102,10 @@ properties:
->>           - if a USB DRD channel: first clock should be host and second
->>             one should be peripheral
->>   
->> +  clock-names:
->> +    minItems: 1
->> +    maxItems: 4
->> +
->>     power-domains:
->>       maxItems: 1
->>   
->> -- 
->> 2.25.1
+Lucas Tanure (2):
+  soundwire: bus: Allow SoundWire peripherals to register IRQ handlers
+  spi: cs42l43: Add SPI controller support
+
+ .../bindings/sound/cirrus,cs42l43.yaml        |  313 +++
+ MAINTAINERS                                   |    4 +
+ drivers/mfd/Kconfig                           |   23 +
+ drivers/mfd/Makefile                          |    3 +
+ drivers/mfd/cs42l43-i2c.c                     |   86 +
+ drivers/mfd/cs42l43-sdw.c                     |  213 ++
+ drivers/mfd/cs42l43.c                         | 1141 +++++++++
+ drivers/mfd/cs42l43.h                         |   23 +
+ drivers/pinctrl/cirrus/Kconfig                |   11 +
+ drivers/pinctrl/cirrus/Makefile               |    2 +
+ drivers/pinctrl/cirrus/pinctrl-cs42l43.c      |  609 +++++
+ drivers/soundwire/bus.c                       |   31 +
+ drivers/soundwire/bus_type.c                  |   12 +
+ drivers/spi/Kconfig                           |    7 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-cs42l43.c                     |  281 ++
+ include/linux/mfd/cs42l43-regs.h              | 1172 +++++++++
+ include/linux/mfd/cs42l43.h                   |  102 +
+ include/linux/soundwire/sdw.h                 |    9 +
+ include/sound/cs42l43.h                       |   17 +
+ sound/soc/codecs/Kconfig                      |   16 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/cs42l43-jack.c               |  967 +++++++
+ sound/soc/codecs/cs42l43-sdw.c                |   74 +
+ sound/soc/codecs/cs42l43.c                    | 2278 +++++++++++++++++
+ sound/soc/codecs/cs42l43.h                    |  131 +
+ 26 files changed, 7530 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml
+ create mode 100644 drivers/mfd/cs42l43-i2c.c
+ create mode 100644 drivers/mfd/cs42l43-sdw.c
+ create mode 100644 drivers/mfd/cs42l43.c
+ create mode 100644 drivers/mfd/cs42l43.h
+ create mode 100644 drivers/pinctrl/cirrus/pinctrl-cs42l43.c
+ create mode 100644 drivers/spi/spi-cs42l43.c
+ create mode 100644 include/linux/mfd/cs42l43-regs.h
+ create mode 100644 include/linux/mfd/cs42l43.h
+ create mode 100644 include/sound/cs42l43.h
+ create mode 100644 sound/soc/codecs/cs42l43-jack.c
+ create mode 100644 sound/soc/codecs/cs42l43-sdw.c
+ create mode 100644 sound/soc/codecs/cs42l43.c
+ create mode 100644 sound/soc/codecs/cs42l43.h
 
 -- 
-Nicolas Ferre
+2.30.2
 
