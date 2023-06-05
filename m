@@ -2,83 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E74721E6F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03787721E78
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 08:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbjFEGnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 02:43:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
+        id S229964AbjFEGpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 02:45:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbjFEGns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:43:48 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC0AF19A
-        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:43:27 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51458e3af68so6652524a12.2
-        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:43:27 -0700 (PDT)
+        with ESMTP id S230102AbjFEGoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 02:44:44 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707E51A7
+        for <devicetree@vger.kernel.org>; Sun,  4 Jun 2023 23:44:20 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-973bf581759so713589866b.0
+        for <devicetree@vger.kernel.org>; Sun, 04 Jun 2023 23:44:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685947405; x=1688539405;
+        d=linaro.org; s=google; t=1685947458; x=1688539458;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uw934CvNepJzyaQQUV31TxbXFbtnqLugvutH4AccEcs=;
-        b=C7MPx2JRwVd1TLHaSaegjE/x0aHabVAcj4AfLdl1uPogVTjWmjrm5JgVDsmb8Jv6+G
-         lD4mgcLc9zSYKqw7y3QUkQOkeID0pomCw5pteniMt5ltImNIhbxfuK/jPDopO3jDPodr
-         4dIF4ysieJewoJkSMHGN++J4sRbE33hRvCsoQra/lezrXaovAdbix1NMwkodXTb95OV2
-         8WtdelzV0uZxVHChiPRNirjygvHToX1LRNHtj2yIhAJhSY7BllYpYb7ssOo9jhMachYN
-         Fk5lCTgbWvzlPCEJjhVkRBscV7Gds8MwE/NG6S6F8VU7J8o+ToleRn2Ae56GkZEy/oqR
-         Yanw==
+        bh=RUGCYeOScHhssGielwBu6OShRHtxTVGNeYBVmelokvM=;
+        b=Y3hi0KNyXSzEYKMvg+MDTVHjRG6F+Kktuiaj4Da85HCaJjgiUomvJmHGQvQME2xvIf
+         RGSWI57KJ99Ori4rrlFP+8DBBQzFLU6rBY2g/0ZJo1hiWWrXAEzTFL7vCFAreC5iP/AG
+         +6tul+68Tllyue+r4cmcuHQXJatb2LakNUYVB3NyHE07AuySQBravQOnvFjpl15kK1MW
+         VoCs08vRcpJViLY0VuiOo3vdxHoIwxJl6CAhRJvsh+RvLozfGhYZNxTars9/QGWBz15B
+         Q9b3QBfjegFYvJC4SnI7FXGp/hSUb5oDiURzpF6s/d7ugNqWiol5BbCGTwFWvo51eCz1
+         HLqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685947405; x=1688539405;
+        d=1e100.net; s=20221208; t=1685947458; x=1688539458;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uw934CvNepJzyaQQUV31TxbXFbtnqLugvutH4AccEcs=;
-        b=luIHADSbOrMlYzLZ4KxoSjGmyWtWLPWfcvpK5YWcaMVxokMvBvpkoCfVF0Ghy2dS5C
-         +aesLcOVdX+EtyyM/F/A4O5SD5hcivUzkBZsIjq0H2smIPEGBTxyg4G2Xd3uh+ZFTtDl
-         NbYoB8edvqfUhX/IvqOlyP/vblbYKjorDhIs5dtRbBQKBUp4hk0GpnUf9+PXD0EaIqw9
-         IB2vqhmUMxwOCHEzIw8a0krw76icFOLbFjLBmu2rJFlsogmVJq7dfef2jn+2NQjMWH5F
-         PfezSvX2sjPrZwxyOy0D3JWHEEt05idQLZnuFa8oi9BgUv2ajUnKiAy4nqtZDO69tiNH
-         P29A==
-X-Gm-Message-State: AC+VfDyZ/cy5YKq+Hh5GImdgMLwN9pJlO2PZ8B/wp+t/n46oulXcmqxS
-        6po8yQ06fCYQgQ2nEB6ms1L3eQ==
-X-Google-Smtp-Source: ACHHUZ6uVGxy9xFnG9Y9A3SHNYvD3NcLQFCgeDBBJmRjdb3lXsh4QvFCpVy68MhjoZMM0vV+dWuDgg==
-X-Received: by 2002:a17:906:9b88:b0:973:91f7:5092 with SMTP id dd8-20020a1709069b8800b0097391f75092mr7422310ejc.2.1685947405338;
-        Sun, 04 Jun 2023 23:43:25 -0700 (PDT)
+        bh=RUGCYeOScHhssGielwBu6OShRHtxTVGNeYBVmelokvM=;
+        b=dBCHVeeJiC8LDEbB/JQnLiM5SLWoXAG1820ECde7xTjkuUrvxHDTzPT6AyKAf4YRIQ
+         yHnW9JGXh9RRSqwHbL+rEys4kARBdWH/L6B6LVfuExmrtJu+dABUddR2M9FgVxT/ym41
+         vsyAvxz1DLE6kewBaKEZFNFmUzWbqhG9Fgl0smQ43ch6FqePG5WfPnhSV/mZEyCkzv0D
+         tK5KAHVGSRbvYoq7BnIhvmTm3qp1DACyFCbTk+bCfm7IKtdERlWMQ8LOpJM+Dm929Hj4
+         Wh6G3qcsroFgSoS6ecWrFEPeTUsQibVC1i3QksmnnaJVQJFerTtJDBUrfB/9RjJx60mX
+         Hfug==
+X-Gm-Message-State: AC+VfDydXhgN6NLJunQzZ1+3OUEmC6HdaYvDEQ/M8keNBatOTf3vBLYn
+        dowlYs1+wUH08t8SqpufEqvSng==
+X-Google-Smtp-Source: ACHHUZ5+qQg5JWv/PBzryjhJ2KpeTQWGfg3wSLbmTG3o/Dcw24uO+D5wNXzGHUhrb/s3P273RT1zBw==
+X-Received: by 2002:a17:907:728f:b0:966:4bb3:df63 with SMTP id dt15-20020a170907728f00b009664bb3df63mr5464988ejc.63.1685947457973;
+        Sun, 04 Jun 2023 23:44:17 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id o22-20020a1709061b1600b00977c50476f7sm2602597ejg.44.2023.06.04.23.43.22
+        by smtp.gmail.com with ESMTPSA id g6-20020a170906594600b009745e1b6226sm3859246ejr.125.2023.06.04.23.44.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Jun 2023 23:43:24 -0700 (PDT)
-Message-ID: <2a538004-351f-487a-361c-df723d186c27@linaro.org>
-Date:   Mon, 5 Jun 2023 08:43:18 +0200
+        Sun, 04 Jun 2023 23:44:17 -0700 (PDT)
+Message-ID: <d26d0a24-eaa5-9b32-4888-61217a24925e@linaro.org>
+Date:   Mon, 5 Jun 2023 08:44:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 17/21] power: reset: at91-poweroff: lookup for proper pmc
- dt node for sam9x7
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add Allwinner
+ D1/T113s/R329/T507 SoCs GPADC
 Content-Language: en-US
-To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
-        tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        gregkh@linuxfoundation.org, linux@armlinux.org.uk,
-        mturquette@baylibre.com, sboyd@kernel.org, sre@kernel.org,
-        broonie@kernel.org, arnd@arndb.de, gregory.clement@bootlin.com,
-        sudeep.holla@arm.com, balamanikandan.gunasundar@microchip.com,
-        mihai.sain@microchip.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
-        durai.manickamkr@microchip.com, manikandan.m@microchip.com,
-        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
-        balakrishnan.s@microchip.com
-References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
- <20230603200243.243878-18-varshini.rajendran@microchip.com>
+To:     Maksim Kiselev <bigunclemax@gmail.com>, linux-iio@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230604185336.1943889-1-bigunclemax@gmail.com>
+ <20230604185336.1943889-3-bigunclemax@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230603200243.243878-18-varshini.rajendran@microchip.com>
+In-Reply-To: <20230604185336.1943889-3-bigunclemax@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,25 +105,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2023 22:02, Varshini Rajendran wrote:
-> Use sam9x7 pmc's compatible to lookup for in the SHDWC driver
+On 04/06/2023 20:53, Maksim Kiselev wrote:
+> From: Maxim Kiselev <bigunclemax@gmail.com>
 > 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-> ---
->  drivers/power/reset/at91-sama5d2_shdwc.c | 1 +
->  1 file changed, 1 insertion(+)
+> Allwinner's D1/T113s/R329/T507 SoCs have a new general purpose ADC.
+> This ADC is the same for all of this SoCs. The only difference is
+> the number of available channels.
 > 
-> diff --git a/drivers/power/reset/at91-sama5d2_shdwc.c b/drivers/power/reset/at91-sama5d2_shdwc.c
-> index d8ecffe72f16..d0f29b99f25e 100644
-> --- a/drivers/power/reset/at91-sama5d2_shdwc.c
-> +++ b/drivers/power/reset/at91-sama5d2_shdwc.c
-> @@ -326,6 +326,7 @@ static const struct of_device_id at91_pmc_ids[] = {
->  	{ .compatible = "atmel,sama5d2-pmc" },
->  	{ .compatible = "microchip,sam9x60-pmc" },
->  	{ .compatible = "microchip,sama7g5-pmc" },
-> +	{ .compatible = "microchip,sam9x7-pmc" },
 
-Why do you need new entry if these are compatible?
+Patch is still broken. Don't send code which does not work - does not
+compile, does not pass basic usage tests.
 
 Best regards,
 Krzysztof
