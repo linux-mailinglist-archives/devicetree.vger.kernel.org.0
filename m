@@ -2,98 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0DE722E66
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 256E0722E67
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbjFESMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 14:12:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41696 "EHLO
+        id S230077AbjFESMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 14:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234104AbjFESMW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:12:22 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8215DF4
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:12:19 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-3f7fdbdf68eso56779551cf.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:12:19 -0700 (PDT)
+        with ESMTP id S229698AbjFESMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:12:54 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1499BD3
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:12:53 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id 5614622812f47-39855d57240so3467521b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:12:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1685988738; x=1688580738;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kv/NqwZTv5tFEziDJWKKNrmUnG9ql30ssEX7nut5hj8=;
-        b=amoDqy19HvWTcHNnXX/tkDLXOLXuNzXCfImZXUpkLtk8MEA0kRMzNfEAVoBOQfR26T
-         4UnB7EmS+lJ88SkfEMKpOe7z8s/0jya+imroKONCSJF8k5yvpPOanD9YpjpC0rkx0gi7
-         dQFsMvWJVgrygHmXS24tgbqCusTA+QEuaSLAE=
+        d=broadcom.com; s=google; t=1685988772; x=1688580772;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZPwG54jVrJ9SWxVgH+myKop3oNBRUgUyk86d03qcALQ=;
+        b=cRvMJbD6Do5ac2HF+Vc1/RRm1w9VHzlQrGCMpywkZPKBNVJKREPb/u235+yIobaSt4
+         XolsTDMtYHuJPf0wcL+fg0dfMJA5E66/0oa5EaBzvsZGhdWoXyiANDLG7dbvHHRQpITu
+         q8/QsJAUMm4kbQfHFQG2NcVlpB88pX0KF9oNI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685988738; x=1688580738;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kv/NqwZTv5tFEziDJWKKNrmUnG9ql30ssEX7nut5hj8=;
-        b=SHLPH3oVtx9fLZ1K4kLhhhvSLeGzittC5ItBZDEoeQrtSXtfs3Fwb7H2kmkjXUI4mJ
-         RsewmeEyidggY/icAL7Zf9NQchqu2fOoL+PoOoHIxe0UTCID3t5XLxb7ph/oO0lHc38v
-         3qk+1JzyxaGJBbt1auLH/GiEmE6A/6p8DXzww7vskk12IdV4tqiz7IvfLbf9m1pHtQLq
-         kG+zAWLE5wbQxUbxD75Iu7fC92nw7+PzpG3TGUWesv/YKXgkvFvTLPhN8UQ5G0O3LFOz
-         GiGVgyaQhVkor6jFWaWK2ONIJuorXnUr6bwN8Fsl+pnOgu5lUcuc1dVwZ+ktVfi7hY28
-         LS7g==
-X-Gm-Message-State: AC+VfDxifxqoMgXmG37ZocWgnQa2BNhpnOsc/TTO16sA4W1Z5K0LUPk1
-        HziIoabPe0w0aoIZH3TuSGPzTw==
-X-Google-Smtp-Source: ACHHUZ5tr7ehxSuHzyUpH4gtOLIWUE72zXS92dJT2gOvAvufsaiTufDVHoqFzhB/djxyhBRymXVgTw==
-X-Received: by 2002:ac8:7d44:0:b0:3f6:b91a:e55e with SMTP id h4-20020ac87d44000000b003f6b91ae55emr10040984qtb.16.1685988738611;
-        Mon, 05 Jun 2023 11:12:18 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id fw15-20020a05622a4a8f00b003f8e6071e43sm1875982qtb.3.2023.06.05.11.12.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 11:12:18 -0700 (PDT)
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
+        d=1e100.net; s=20221208; t=1685988772; x=1688580772;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZPwG54jVrJ9SWxVgH+myKop3oNBRUgUyk86d03qcALQ=;
+        b=AaekKXKDzhHK1GQHlBT4XvGjPP79k0rji4H/uNanxisWmjxryu+iNZVe12xvPd2e8b
+         FOoObMY+JGgHQBmCaVVTNuASPOoVc36jaxwpG62BcLYFcy1Wz7V28Zmiah76c70xlGFj
+         HF0Gxah5zxcNLmI5xtkVDzQwIEQcNQNT99QDxAmBZaPRGd8F+ahOgvUNI2J0cKcxPlL4
+         /Qd27mgW5TnVrfyePal3k53xMAq+sJctLNBuabdt/Bv5op/FglEl8XqS+cjmYZRDzP1e
+         9gYih3uJ/BrfnLm9tOvME3rWq5F2ZhOJb4HNrqkMzpWWCOftoE+rKyyZ51tLUqa/6NLa
+         jUvQ==
+X-Gm-Message-State: AC+VfDyiH+MLhAL0R2sqs1ffA2uuxqnDDXtcfzEDaWsXIGP6fJqhH6P8
+        3wgOyXDNrN1U4HXWyFjWJPWlxA==
+X-Google-Smtp-Source: ACHHUZ6Iwa/dceltV3jP7Y1384PlhU+tcvheQ7gkUpCjpipOSwcYlW8Jzg0TkQdXIuv//anl3q8oVg==
+X-Received: by 2002:a05:6808:6245:b0:39a:b567:be0f with SMTP id dt5-20020a056808624500b0039ab567be0fmr2751560oib.14.1685988772284;
+        Mon, 05 Jun 2023 11:12:52 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id jy7-20020a0562142b4700b006238ac6c3f3sm4835393qvb.33.2023.06.05.11.12.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jun 2023 11:12:51 -0700 (PDT)
+Message-ID: <852526b7-a546-e80c-ca40-76e48192384c@broadcom.com>
+Date:   Mon, 5 Jun 2023 11:12:41 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Use updated "spi-gpio" binding
+ properties
+To:     Florian Fainelli <florian.fainelli@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Drop invalid properties from Meraki MR32 keys
-Date:   Mon,  5 Jun 2023 11:12:15 -0700
-Message-Id: <20230605181215.2253875-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230602133455.7441-2-zajec5@gmail.com>
-References: <20230602133455.7441-1-zajec5@gmail.com> <20230602133455.7441-2-zajec5@gmail.com>
-MIME-Version: 1.0
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230602145458.6655-1-zajec5@gmail.com>
+ <20230605181102.2253414-1-florian.fainelli@broadcom.com>
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+In-Reply-To: <20230605181102.2253414-1-florian.fainelli@broadcom.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000e0ab1905fd65d752"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        boundary="000000000000e3352f05fd65d97c"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000e0ab1905fd65d752
-Content-Type: text/plain; charset=UTF-8
+--000000000000e3352f05fd65d97c
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Florian Fainelli <f.fainelli@gmail.com>
-
-On Fri,  2 Jun 2023 15:34:55 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 6/5/23 11:11, Florian Fainelli wrote:
+> From: Florian Fainelli <f.fainelli@gmail.com>
 > 
-> This fixes:
-> arch/arm/boot/dts/bcm53015-meraki-mr26.dtb: keys: '#address-cells', '#size-cells' do not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/input/gpio-keys.yaml
+> On Fri,  2 Jun 2023 16:54:58 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> Switch away from deprecated properties.
+>>
+>> This fixes:
+>> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: gpio-sck: False schema does not allow [[6, 7, 0]]
+>>          From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+>> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: gpio-mosi: False schema does not allow [[6, 4, 0]]
+>>          From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+>> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: 'sck-gpios' is a required property
+>>          From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+>> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dtb: spi: Unevaluated properties are not allowed ('gpio-mosi', 'gpio-sck' were unexpected)
+>>          From schema: Documentation/devicetree/bindings/spi/spi-gpio.yaml
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+> Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
+Dropped that one and applied v2 instead.
+-- 
 Florian
 
---000000000000e0ab1905fd65d752
+
+--000000000000e3352f05fd65d97c
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -164,14 +181,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIKFYuQqY6JaPlPat
-gi/jIWj7PqE1rYfHkrRvwFDRQDZKMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDYwNTE4MTIxOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIDG+DIutf4YAE7om
+e5QygijjsKUfmbmeiPiCUhmpbr7LMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDYwNTE4MTI1MlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQADOWbSawKSvbXYWj/Umn1JtPIRXk3K4CLI
-K956Il0hn0mtdkMMV3UlLGNt10Nh3xeXlWs+V2n8XwVeAhexPNMNKpJYvjjKeF0pIqJBcM1FDNqE
-CYKueMlrL3jJ2yZrSDsSDyoKuirq6CjZ/n8hfDQXRuE/8sVbp3ye1HaucJk+Svx1xWjcYe4kZZpv
-l82c2cPChdb70YrpA4NpdhYNdL+HyEctiYb+1otmEXogWgebimrjb1Nx24tM/srLdyMIwqdof5r5
-MqGDgbnwRvg9rC5gXo8bpEG1FAg6CdGLr1rx3X7O91gJOpwXhqgAQgraQfW2NTmUhZ/UeyrAweUW
-osA5
---000000000000e0ab1905fd65d752--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAscnDxAIl4L5KrLnfV5kc2km9kgHLql/4u
+qNil1FB8+hzQzzEn1hFCBMmU435sYOf2H/xmNKGgZCIHpZcybIXpFo48Q6mJR+UY8gNAEcdAJXTc
+cFBBK82tKY901r/g/gUYF+Vexq3/m3QY99V1xfS1cLbZ5kHmjcdPfQ7fuiQ31sq80QRHstvRxCNU
+Q7YDvQ9OcTaQtHOrmWljMMexgu70g6nP3R799tZLcKpvEDBajXaQ5U0E6MYaHQo6gzpNLVwXLpnq
+ATM5+EitLVbygTKRcMNJRRt8mpZxIE6gBc60GfTFkljUnFTwf1aUWTEVsH2dhzHfKNnUYTQTAo71
+BTUk
+--000000000000e3352f05fd65d97c--
