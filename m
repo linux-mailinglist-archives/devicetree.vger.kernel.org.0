@@ -2,191 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 507E97223C3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A389E7223E4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 12:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231772AbjFEKqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 06:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56378 "EHLO
+        id S229794AbjFEKxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 06:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbjFEKqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:46:00 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46EF0EA;
-        Mon,  5 Jun 2023 03:45:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685961959; x=1717497959;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=p5URlSMRlx8Wq02hvARuSDlMSFf/lU44gWl/ckAOxo8=;
-  b=UX4tWJ8x0MblyLcx+Jd5tfqW+gAaeghFljVTxAKg2086tvLSf2+XkK2I
-   SyIoN7wjshEIOD8P+qCLu8g4N8oMGEOSh9Utdf4Ku+AN6cPsRvcsGEJPU
-   bAuMx5/6eO642/c29lg2yePjfPZgnqhXWlAXfEaWJ8M1oPyJXiVGp6lpn
-   6mmePpHWUqgKip8Qk52bY2xfC4YcpCsrwHJDpvtcc0Vlgzum+OwxglHU4
-   GIvWjYaUzFCxZOGOVn1U6tka8bGFVRS0QudO2+1tQioN4K6vXb/XN33mV
-   dYkoy0FAJ9S0z7tpujlPz//cmJoy8zJNDpzfEAXp2fFE2j36IcWdDrFU9
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="335954387"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
-   d="scan'208";a="335954387"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2023 03:45:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="852929198"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
-   d="scan'208";a="852929198"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 05 Jun 2023 03:45:51 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 05 Jun 2023 13:45:50 +0300
-Date:   Mon, 5 Jun 2023 13:45:50 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH RFC 3/7] usb: ucsi: glink: use the connector orientation
- GPIO to provide switch events
-Message-ID: <ZH283tlyRffPMXGm@kuha.fi.intel.com>
-References: <20230601-topic-sm8550-upstream-type-c-v1-0-d4d97b4d8bab@linaro.org>
- <20230601-topic-sm8550-upstream-type-c-v1-3-d4d97b4d8bab@linaro.org>
+        with ESMTP id S229570AbjFEKxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 06:53:30 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFBF0EA;
+        Mon,  5 Jun 2023 03:53:26 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b1b06af50eso36839151fa.1;
+        Mon, 05 Jun 2023 03:53:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685962405; x=1688554405;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KSRoaU6MsSHM4EqamjXT1zsk+53BlQcjMgqZZmifUn8=;
+        b=A77Xz69YxUGaRkiX8/O1yS6+dnwZXYLCwxSDVON2hVBi70jCDooSqDpt116UC+IVzh
+         42zwDUKbcR/Vcw7bqjmlgxHucYZ5RQ1rh1KggwyZyPLiJ2sso48TILcnDlS3Yl9C5Sju
+         O3WTQlCjOD/hJ9lBmuwzEmRtWVJVdw59EEr34JHrXYmlWgS+UAeTeJpANrJcBJJxaw0M
+         RL7EAQGaTXPl9w/TA+9N7G00AJ1im1W38eqETibddRjElYUhPdLnG6A53pwApdeDdLhO
+         h9Rv1FThwBR0dY2w8dzRNWYvYwrNZrnIXucbjY8GbHEyV07Dp/VlP9cUM6g5bM1AGKlf
+         WGaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685962405; x=1688554405;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KSRoaU6MsSHM4EqamjXT1zsk+53BlQcjMgqZZmifUn8=;
+        b=UYeGF81jYmUGnDwkjrHBx6jp4SoczGHbhCMM9jJoOVeGI8fD/YSiyjKW2PbtL37f7U
+         pu1mh2gIC67dOyfthIwtd0CZ+pe/Bs4gCMqOiRgpBlIk4Qpp1P9TxmX15b9gDQV/Ii0C
+         rvLsQKN/WBkK/9Ab/6BBDuhIdOaPnMIn/nUoBHugqVKek9VJoQLrrSYo9B7NaShY4uxE
+         MlC6e5nEl2RAglk60Q3PWlgy5nk0aeJW77j6hgXfg3J73AinYVsVM6bEG/fnaNjLO9e+
+         fqADmiptAnSlc3D3qEQio25gbYdVSPplB8ISND9bhq7nQTPB78AeqFOPoMO3ahzR58HF
+         oz8g==
+X-Gm-Message-State: AC+VfDxPRekduBQX/ZwrrpGlDgGu4ILuM8duEpxYSSqHqm2cVsjCit8F
+        D9MAe/CqKdJpT3YQXhnhwd2NfoxP+BVxJQ==
+X-Google-Smtp-Source: ACHHUZ6G/HWw7tuPO8u1dkQWfzU1WHbd6JG5n5fQUR2Fs98RUfwOL36rNdJMWrR0NC1QRW1yR+q3kA==
+X-Received: by 2002:a2e:8ec4:0:b0:2ac:82c1:5a3d with SMTP id e4-20020a2e8ec4000000b002ac82c15a3dmr3660296ljl.23.1685962404619;
+        Mon, 05 Jun 2023 03:53:24 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id x13-20020a2e880d000000b002ac7b0fc473sm1393329ljh.38.2023.06.05.03.53.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jun 2023 03:53:24 -0700 (PDT)
+Date:   Mon, 5 Jun 2023 13:53:22 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
+        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
+        kishon@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v16 10/22] PCI: dwc: Modify PCIE_PORT_LINK_CONTROL
+ handling
+Message-ID: <20230605105322.orc3rtgu5rr3ovot@mobilestation>
+References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230510062234.201499-11-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230601-topic-sm8550-upstream-type-c-v1-3-d4d97b4d8bab@linaro.org>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230510062234.201499-11-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 01, 2023 at 04:07:03PM +0200, Neil Armstrong wrote:
-> On SM8550, the non-altmode orientation is not given anymore within
-> altmode events, even with USB SVIDs events.
-> 
-> On the other side, the Type-C connector orientation is correctly
-> reported by a signal from the PMIC.
-> 
-> Take this gpio signal when we detect some Type-C port activity
-> to notify any Type-C switches tied to the Type-C port connectors.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Wed, May 10, 2023 at 03:22:22PM +0900, Yoshihiro Shimoda wrote:
+> To improve code readability, modify PCIE_PORT_LINK_CONTROL handling.
 
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+So basically you are doing the same update as in the Patch 9:
+detaching the already implemented link width setups into a separate
+method. Why do you split them up into the incremental updates? Just
+squash this patch into the patch 9. The resultant patch would be an
+atomic update and a preparation before adding the PCI_EXP_LNKCAP field
+update. The later would lead to the fully coherent maximum link width
+setup method in accordance with the DW PCIe hardware manual.
 
+-Serge(y)
+
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  drivers/usb/typec/ucsi/ucsi_glink.c | 52 ++++++++++++++++++++++++++++++++++++-
->  1 file changed, 51 insertions(+), 1 deletion(-)
+>  drivers/pci/controller/dwc/pcie-designware.c | 40 +++++++-------------
+>  1 file changed, 13 insertions(+), 27 deletions(-)
 > 
-> diff --git a/drivers/usb/typec/ucsi/ucsi_glink.c b/drivers/usb/typec/ucsi/ucsi_glink.c
-> index 1fe9cb5b6bd9..88491dbff7e3 100644
-> --- a/drivers/usb/typec/ucsi/ucsi_glink.c
-> +++ b/drivers/usb/typec/ucsi/ucsi_glink.c
-> @@ -9,9 +9,13 @@
->  #include <linux/mutex.h>
->  #include <linux/property.h>
->  #include <linux/soc/qcom/pdr.h>
-> +#include <linux/usb/typec_mux.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/soc/qcom/pmic_glink.h>
->  #include "ucsi.h"
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 68aefbbcd68c..5dc423dd2f21 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -721,28 +721,40 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci, u32 link_gen)
 >  
-> +#define PMIC_GLINK_MAX_PORTS	2
-> +
->  #define UCSI_BUF_SIZE                   48
->  
->  #define MSG_TYPE_REQ_RESP               1
-> @@ -53,6 +57,9 @@ struct ucsi_notify_ind_msg {
->  struct pmic_glink_ucsi {
->  	struct device *dev;
->  
-> +	struct gpio_desc *port_orientation[PMIC_GLINK_MAX_PORTS];
-> +	struct typec_switch *port_switch[PMIC_GLINK_MAX_PORTS];
-> +
->  	struct pmic_glink_client *client;
->  
->  	struct ucsi *ucsi;
-> @@ -221,8 +228,20 @@ static void pmic_glink_ucsi_notify(struct work_struct *work)
->  	}
->  
->  	con_num = UCSI_CCI_CONNECTOR(cci);
-> -	if (con_num)
-> +	if (con_num) {
-> +		if (con_num < PMIC_GLINK_MAX_PORTS &&
-> +		    ucsi->port_orientation[con_num - 1]) {
-> +			int orientation = gpiod_get_value(ucsi->port_orientation[con_num - 1]);
-> +
-> +			if (orientation >= 0) {
-> +				typec_switch_set(ucsi->port_switch[con_num - 1],
-> +						 orientation ? TYPEC_ORIENTATION_REVERSE
-> +							     : TYPEC_ORIENTATION_NORMAL);
-> +			}
-> +		}
-> +
->  		ucsi_connector_change(ucsi->ucsi, con_num);
-> +	}
->  
->  	if (ucsi->sync_pending && cci & UCSI_CCI_BUSY) {
->  		ucsi->sync_val = -EBUSY;
-> @@ -283,6 +302,7 @@ static int pmic_glink_ucsi_probe(struct auxiliary_device *adev,
+>  static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
 >  {
->  	struct pmic_glink_ucsi *ucsi;
->  	struct device *dev = &adev->dev;
-> +	struct fwnode_handle *fwnode;
->  	int ret;
+> -	u32 lwsc;
+> +	u32 lwsc, plc;
 >  
->  	ucsi = devm_kzalloc(dev, sizeof(*ucsi), GFP_KERNEL);
-> @@ -310,6 +330,36 @@ static int pmic_glink_ucsi_probe(struct auxiliary_device *adev,
+>  	if (!num_lanes)
+>  		return;
 >  
->  	ucsi_set_drvdata(ucsi->ucsi, ucsi);
+> +	/* Set the number of lanes */
+> +	plc = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
+> +	plc &= ~PORT_LINK_MODE_MASK;
+> +
+>  	/* Set link width speed control register */
+>  	lwsc = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
+>  	lwsc &= ~PORT_LOGIC_LINK_WIDTH_MASK;
+>  	switch (num_lanes) {
+>  	case 1:
+> +		plc |= PORT_LINK_MODE_1_LANES;
+>  		lwsc |= PORT_LOGIC_LINK_WIDTH_1_LANES;
+>  		break;
+>  	case 2:
+> +		plc |= PORT_LINK_MODE_2_LANES;
+>  		lwsc |= PORT_LOGIC_LINK_WIDTH_2_LANES;
+>  		break;
+>  	case 4:
+> +		plc |= PORT_LINK_MODE_4_LANES;
+>  		lwsc |= PORT_LOGIC_LINK_WIDTH_4_LANES;
+>  		break;
+>  	case 8:
+> +		plc |= PORT_LINK_MODE_8_LANES;
+>  		lwsc |= PORT_LOGIC_LINK_WIDTH_8_LANES;
+>  		break;
+> +	default:
+> +		dev_err(pci->dev, "num-lanes %u: invalid value\n", num_lanes);
+> +		return;
+>  	}
+> +	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, plc);
+>  	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, lwsc);
+>  }
 >  
-> +	device_for_each_child_node(dev, fwnode) {
-> +		u32 port;
-> +
-> +		ret = fwnode_property_read_u32(fwnode, "reg", &port);
-> +		if (ret < 0) {
-> +			dev_err(dev, "missing reg property of %pOFn\n", fwnode);
-> +			return ret;
-> +		}
-> +
-> +		if (port >= PMIC_GLINK_MAX_PORTS) {
-> +			dev_warn(dev, "invalid connector number, ignoring\n");
-> +			continue;
-> +		}
-> +
-> +		ucsi->port_orientation[port] = devm_fwnode_gpiod_get(&adev->dev, fwnode,
-> +								     "orientation",
-> +								     GPIOD_IN, NULL);
-> +		if (IS_ERR(ucsi->port_orientation[port]))
-> +			return dev_err_probe(dev, PTR_ERR(ucsi->port_orientation[port]),
-> +					     "unable to acquire orientation gpio\n");
-> +
-> +		if (!ucsi->port_orientation[port])
-> +			continue;
-> +
-> +		ucsi->port_switch[port] = fwnode_typec_switch_get(fwnode);
-> +		if (IS_ERR(ucsi->port_switch[port]))
-> +			return dev_err_probe(dev, PTR_ERR(ucsi->port_switch[port]),
-> +					"failed to acquire orientation-switch\n");
-> +	}
-> +
->  	ucsi->client = devm_pmic_glink_register_client(dev,
->  						       PMIC_GLINK_OWNER_USBC,
->  						       pmic_glink_ucsi_callback,
-> 
+> @@ -1027,31 +1039,5 @@ void dw_pcie_setup(struct dw_pcie *pci)
+>  	val |= PORT_LINK_DLL_LINK_EN;
+>  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+>  
+> -	if (!pci->num_lanes) {
+> -		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+> -		return;
+> -	}
+> -
+> -	/* Set the number of lanes */
+> -	val &= ~PORT_LINK_MODE_MASK;
+> -	switch (pci->num_lanes) {
+> -	case 1:
+> -		val |= PORT_LINK_MODE_1_LANES;
+> -		break;
+> -	case 2:
+> -		val |= PORT_LINK_MODE_2_LANES;
+> -		break;
+> -	case 4:
+> -		val |= PORT_LINK_MODE_4_LANES;
+> -		break;
+> -	case 8:
+> -		val |= PORT_LINK_MODE_8_LANES;
+> -		break;
+> -	default:
+> -		dev_err(pci->dev, "num-lanes %u: invalid value\n", pci->num_lanes);
+> -		return;
+> -	}
+> -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+> -
+>  	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
+>  }
 > -- 
-> 2.34.1
-
--- 
-heikki
+> 2.25.1
+> 
