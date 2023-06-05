@@ -2,68 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E220A722258
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 11:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F00972226C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 11:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230169AbjFEJg4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 5 Jun 2023 05:36:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56890 "EHLO
+        id S230219AbjFEJpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 05:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbjFEJg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 05:36:56 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DC6B7;
-        Mon,  5 Jun 2023 02:36:54 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2E89C80C4;
-        Mon,  5 Jun 2023 17:36:52 +0800 (CST)
-Received: from EXMBX064.cuchost.com (172.16.6.64) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 5 Jun
- 2023 17:36:52 +0800
-Received: from EXMBX067.cuchost.com (172.16.6.67) by EXMBX064.cuchost.com
- (172.16.6.64) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 5 Jun
- 2023 17:36:52 +0800
-Received: from EXMBX067.cuchost.com ([fe80::a825:bd30:18ff:b2f8]) by
- EXMBX067.cuchost.com ([fe80::a825:bd30:18ff:b2f8%16]) with mapi id
- 15.00.1497.044; Mon, 5 Jun 2023 17:36:51 +0800
-From:   Mason Huo <mason.huo@starfivetech.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Shengyu Qu <wiagn233@outlook.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v3 0/3] Add JH7110 cpufreq support
-Thread-Topic: [PATCH v3 0/3] Add JH7110 cpufreq support
-Thread-Index: AdmXkDPLZg25EWWrSjqYc22BpOYTbg==
-Date:   Mon, 5 Jun 2023 09:36:51 +0000
-Message-ID: <c5bde0d92d514250a21120ed33e0f6b2@EXMBX067.cuchost.com>
-References: <20230421031431.23010-1-mason.huo@starfivetech.com>
- <457c35b5-aec4-1147-673f-947052b5f944@starfivetech.com>
- <20230505-gusty-corset-e451d947c10d@wendy>
-In-Reply-To: <20230505-gusty-corset-e451d947c10d@wendy>
-Accept-Language: en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [183.27.98.75]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        with ESMTP id S229915AbjFEJpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 05:45:15 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DA8BD;
+        Mon,  5 Jun 2023 02:45:14 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B436660037C;
+        Mon,  5 Jun 2023 10:45:12 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685958313;
+        bh=mEfqt1dlBpfVkkk0bVWukCJts1hAaNVDDjN5Ccn0QLg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KDUnQXgkC9ssK+JFoXAIULspaWCPeNInczzPilPctimIMqTZMBvIug63Uy3+ip4CI
+         kCslNHgJuqVI8H5CAzB5DmFp8yvwGZZEt37PO8qA1rIjKEz9cijA6nxaTBEXwS5S4B
+         NovRUyiHzBBM2n7xDQdP3SlfWWhLXYwmCGA6qYSNIUT7u9JRFh5eftB+KQ5FabO1uA
+         wRvs1PJECv+/bXWWJR08AhfL7sP0ZAwwIiQEuuFBdcThi77aIN3evYZm+uVv3T/TRv
+         +Ip7IJjbaIBQCqq3sMQmCK6xrLwc7Q45QE4HV3I/vmzJlWWA6lUZHOXvGmHcJbmzBH
+         /N8f0NQlpIj3g==
+Message-ID: <511269ce-2493-1d21-d8fe-a9d78828e018@collabora.com>
+Date:   Mon, 5 Jun 2023 11:45:10 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8192: Add missing dma-ranges to
+ soc node
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     kernel@collabora.com, Yong Wu <yong.wu@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20230601203221.3675915-1-nfraprado@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230601203221.3675915-1-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,19 +64,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
-
-> On Fri, May 05, 2023 at 09:38:38AM +0800, Mason Huo wrote:
->> Hi Conor & Shengyu,
->> 
->> Thanks for your review, and is there any comments about these v3 patches?
-
-> Firstly there appears to have been some mess-up with the driver/bindings for 1/3, so I am waiting to see if the binding gets reverted before doing anything and secondly it's the merge window so I can't do anything about 3/3 until next week.
+Il 01/06/23 22:32, Nícolas F. R. A. Prado ha scritto:
+> In the series "Adjust the dma-ranges for MTK IOMMU", the mtk-iommu
+> driver was adapted to separate the iova range based on the larb used,
+> and a dma-ranges property was added to the soc node in the devicetree of
+> the affected SoCs allowing the whole 16GB iova range to be used. Except
+> that for mt8192, there was no patch adding dma-ranges.
 > 
-> Cheers,
-> Conor.
+> Add the missing dma-ranges property to the soc node like was done for
+> mt8195 and mt8186. This fixes the usage of the vcodec, which would
+> otherwise trigger iommu faults.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+> ---
+> Matthias,
+> 
+> this is a very simple but important fix for the vcodec functionality.
+> Since the vcodec node for mt8192 was just merged, can we please get this
+> in in this merge window as well?
 
-Could you help to check if this patch can be moved on?
++1
 
-Thanks
-Mason
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> 
+> Thanks,
+> Nícolas
+> 
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 7ff183c35494..a3612de8e9d1 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -401,6 +401,7 @@ soc {
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+>   		compatible = "simple-bus";
+> +		dma-ranges = <0x0 0x0 0x0 0x0 0x4 0x0>;
+>   		ranges;
+>   
+>   		gic: interrupt-controller@c000000 {
+
