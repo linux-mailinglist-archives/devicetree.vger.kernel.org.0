@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0969722F04
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 20:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0A7722F0D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 21:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbjFES4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 14:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57372 "EHLO
+        id S229977AbjFETA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 15:00:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233728AbjFES4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 14:56:50 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17599ED
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 11:56:49 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f4db9987f8so7748813e87.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 11:56:49 -0700 (PDT)
+        with ESMTP id S231586AbjFETA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 15:00:56 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FAB8F1
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 12:00:54 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f5f728c4aaso5814213e87.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 12:00:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685991407; x=1688583407;
+        d=linaro.org; s=google; t=1685991652; x=1688583652;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zf9IQLOk9qUiw4+eKsxED5sbQsuv3zgHnrekOBoQCZY=;
-        b=dD0uqtWPTZYJ805B0ICMKkvEA/I3vIhmdEkIg15nHwOFAY0YhO2rP5/t8XOZ0W7Kr/
-         h1E+oAi9/3qjR7k+XaKMI6zhD9aEVA+9kMujNNEbc4ra6R75mFcX4cBXnWnzs9cDU+5d
-         k1srCr1L2rSc3y8utqLQfA78KU6cUZvyyVdW1fKW4YgUMFfzKuHGqW6pFuBqyliLqhoQ
-         of0XHgyVUTfEBUz/FPK2F+BP/GCkKBQlgofJwncTqNv0HGhBaF/lFCkwYFKepUYeeLCk
-         q44xjvcSL5uABmMC7Y3MihiWpTmW2NXL7bl9H5BRKqpuri5JPAt7i/vf8KBElRcINCbS
-         n8yw==
+        bh=UMwzIPlODC0QOUJdlXUZkOVWqPlnGZwWFxdHkZLNYGA=;
+        b=dz23iTnVRgYqMunvVhbF5seqyhwo16GwcjqDUUyYIk+d7gPwsscuTKnwUG4FsoieW2
+         KsiNXTgp6oKjD8aDjS4LzZmmCu2gDVWFkDiUREbYMNTwE6v7ZFa3OGwXpvbuBQ5G/qSP
+         9wfSF/VnyizQ8/fTP+b8HfYGU4bqub16McKfE6WjqTpzPoUX16BJIZGMTDBb4SOucgbZ
+         0XpCsQ1Ux3y47v4GtCIvAdv6ty8np+GyZjWQNLjiPxLB9nMqjLjcUmxvRF74HojLSXHQ
+         G8rkZNXglwYzsr16sYQTVf5H3i29DOoVq5TCLpDnrRl1sS1+iofHK7aJlI33GYYUMe9h
+         imFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685991407; x=1688583407;
+        d=1e100.net; s=20221208; t=1685991652; x=1688583652;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zf9IQLOk9qUiw4+eKsxED5sbQsuv3zgHnrekOBoQCZY=;
-        b=kWDrcOtc6BF4k+UFpz+G5msHqgp7PNk6GkTZZ/j+X+GLDuO2A9hiVN45wZE3Bl3InO
-         SnbThlnkyauJWX0+Ke9e+bmeCla7LyJxZw/rQXHJ0WWQb4eidLEmQtrLb78YOO2uNMp1
-         zqSOKtt7t7u0hZt0V+++psEFkDavZttPlNSN5d07ntM7A5a7hUnjeMzvaxoXkOIUGDX8
-         rp9q0RYOf1Ds3+FKlNWtgHNHVKORYWP0FeY1W2XAPNJLB6TpJND/NG06PH+sd/jSNehu
-         aeQt3ch5h8Uzs7YwKIQPZiF97byQaovPNx+IX0YS+WtN+604kxTEjUY2t0pzpU14kEoK
-         2g1g==
-X-Gm-Message-State: AC+VfDwdN0D5HL7UzOEYZxcSAj6KWdZSI3PvQg6q5g02w8kiNlekeEmw
-        Grdn5iyO/U9vv0pP6d++17FOTKiAx1gbInWVbl4=
-X-Google-Smtp-Source: ACHHUZ6RcPsWNJ5Yda66n5r6s3wlCCAlW5igzqj+bL4sDG4u5ngM7yYBkHa7BDXWujHyaxQ+PHzLPg==
-X-Received: by 2002:a05:6512:6cc:b0:4f3:b55d:f9cc with SMTP id u12-20020a05651206cc00b004f3b55df9ccmr3694506lff.20.1685991407371;
-        Mon, 05 Jun 2023 11:56:47 -0700 (PDT)
+        bh=UMwzIPlODC0QOUJdlXUZkOVWqPlnGZwWFxdHkZLNYGA=;
+        b=R5tQrJ4Mx6lWJc2/38nzjy+N+gPaDpg7m0zs7LMDCwXjySMUPJ6VJM1yl+4H6MaQ4r
+         CoQdg9A8cxh7hiN7WxEvLdTmCztlDC9w1Byrxx+tLazXb/ncCFoHpbYVsX78bwlimVTh
+         q4btL2JEeCVMXUvVmKEUWdeE1jwSd+2Wt3/vY7CAkY+9gvD38DPr7YNAndKsO6UPs7wI
+         SjaOm1zj1TNhaD+nP5WzyjupF+ciVjXQDtLNQgTJe38rYA2I6axf++KCktYqmaEIkScs
+         uUdIlzkhE3YGJc/gxpANJAFMAOdfPgi3r0diGF0Mf7DlTjzHgVjG3OC5fdP7MOrcuSfi
+         nitQ==
+X-Gm-Message-State: AC+VfDzktvPgMzF9pmm+x2+8mo6z2i6z2Ir//9i0LI3ctPxXX3h7xy4H
+        RnWvtxT0GR+DxFwmne+emqVgBittTUIseAm7kUM=
+X-Google-Smtp-Source: ACHHUZ5jhXh2yuwV2j+EjO2cLgcazZrzCa396tGgJWOala/a5rOOH1VJ/jmql+DUdSG05Xb8HCMzrA==
+X-Received: by 2002:a05:6512:33c5:b0:4f4:f38a:4423 with SMTP id d5-20020a05651233c500b004f4f38a4423mr4465933lfg.27.1685991652353;
+        Mon, 05 Jun 2023 12:00:52 -0700 (PDT)
 Received: from [192.168.1.101] (abyj96.neoplus.adsl.tpnet.pl. [83.9.29.96])
-        by smtp.gmail.com with ESMTPSA id s16-20020ac25ff0000000b004b5979f9ba8sm1202377lfg.210.2023.06.05.11.56.45
+        by smtp.gmail.com with ESMTPSA id i2-20020a056512006200b004f60ca8aa2asm1217829lfo.55.2023.06.05.12.00.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 11:56:46 -0700 (PDT)
-Message-ID: <0f48649e-27d6-97f7-98b8-fe10b99d0236@linaro.org>
-Date:   Mon, 5 Jun 2023 20:56:44 +0200
+        Mon, 05 Jun 2023 12:00:51 -0700 (PDT)
+Message-ID: <4d2e6530-ec72-6b76-ed75-c623071bba53@linaro.org>
+Date:   Mon, 5 Jun 2023 21:00:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 09/14] rpmsg: qcom_smd: Use qcom_smem_is_available()
+Subject: Re: [PATCH 14/14] ARM: dts: qcom: apq8064: Drop redundant /smd node
 Content-Language: en-US
 To:     Stephan Gerhold <stephan@gerhold.net>,
         Bjorn Andersson <andersson@kernel.org>
@@ -65,9 +65,9 @@ Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
 References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
- <20230531-rpm-rproc-v1-9-e0a3b6de1f14@gerhold.net>
+ <20230531-rpm-rproc-v1-14-e0a3b6de1f14@gerhold.net>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230531-rpm-rproc-v1-9-e0a3b6de1f14@gerhold.net>
+In-Reply-To: <20230531-rpm-rproc-v1-14-e0a3b6de1f14@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,52 +83,76 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 5.06.2023 09:08, Stephan Gerhold wrote:
-> Rather than looking up a dummy item from SMEM, use the new
-> qcom_smem_is_available() function to make the code more clear
-> (and reduce the overhead slightly).
+> The "smd-edge"s for remote processors are typically specified below the
+> remoteproc nodes. For some reason apq8064 also has them all listed in a
+> top-level /smd node, disabled by default. None of the boards enable them.
 > 
-> Add the same check to qcom_smd_register_edge() as well to ensure that
-> it only succeeds if SMEM is already available - if a driver calls the
-> function and SMEM is not available yet then the initial state will be
-> read incorrectly and the RPMSG devices might never become available.
+> Right now apq8064 only has support for WCNSS/riva, but there the
+> smd-edge is already defined with the same interrupt etc below the
+> riva-pil node.
+> 
+> Drop these redundant definitions since the /smd top-level node is now
+> deprecated.
 > 
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->  drivers/rpmsg/qcom_smd.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/rpmsg/qcom_smd.c b/drivers/rpmsg/qcom_smd.c
-> index 7b9c298aa491..43f601c84b4f 100644
-> --- a/drivers/rpmsg/qcom_smd.c
-> +++ b/drivers/rpmsg/qcom_smd.c
-> @@ -1479,6 +1479,9 @@ struct qcom_smd_edge *qcom_smd_register_edge(struct device *parent,
->  	struct qcom_smd_edge *edge;
->  	int ret;
->  
-> +	if (!qcom_smem_is_available())
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +
->  	edge = kzalloc(sizeof(*edge), GFP_KERNEL);
->  	if (!edge)
->  		return ERR_PTR(-ENOMEM);
-> @@ -1553,12 +1556,9 @@ EXPORT_SYMBOL(qcom_smd_unregister_edge);
->  static int qcom_smd_probe(struct platform_device *pdev)
->  {
->  	struct device_node *node;
-> -	void *p;
->  
-> -	/* Wait for smem */
-> -	p = qcom_smem_get(QCOM_SMEM_HOST_ANY, smem_items[0].alloc_tbl_id, NULL);
-> -	if (PTR_ERR(p) == -EPROBE_DEFER)
-> -		return PTR_ERR(p);
-> +	if (!qcom_smem_is_available())
-> +		return -EPROBE_DEFER;
->  
->  	for_each_available_child_of_node(pdev->dev.of_node, node)
->  		qcom_smd_register_edge(&pdev->dev, node);
-Hm.. we're not checking the return value here, at all.. Perhaps that
-could be improved and we could only check for smem presence inside
-qcom_smd_register_edge()?
+Hm, 2012 is calling.. it wants it dead code back!
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  arch/arm/boot/dts/qcom-apq8064.dtsi | 40 -------------------------------------
+>  1 file changed, 40 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> index d2289205ff81..e0adf237fc5c 100644
+> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> @@ -226,46 +226,6 @@ smem {
+>  		hwlocks = <&sfpb_mutex 3>;
+>  	};
+>  
+> -	smd {
+> -		compatible = "qcom,smd";
+> -
+> -		modem-edge {
+> -			interrupts = <0 37 IRQ_TYPE_EDGE_RISING>;
+> -
+> -			qcom,ipc = <&l2cc 8 3>;
+> -			qcom,smd-edge = <0>;
+> -
+> -			status = "disabled";
+> -		};
+> -
+> -		q6-edge {
+> -			interrupts = <0 90 IRQ_TYPE_EDGE_RISING>;
+> -
+> -			qcom,ipc = <&l2cc 8 15>;
+> -			qcom,smd-edge = <1>;
+> -
+> -			status = "disabled";
+> -		};
+> -
+> -		dsps-edge {
+> -			interrupts = <0 138 IRQ_TYPE_EDGE_RISING>;
+> -
+> -			qcom,ipc = <&sps_sic_non_secure 0x4080 0>;
+> -			qcom,smd-edge = <3>;
+> -
+> -			status = "disabled";
+> -		};
+> -
+> -		riva-edge {
+> -			interrupts = <0 198 IRQ_TYPE_EDGE_RISING>;
+> -
+> -			qcom,ipc = <&l2cc 8 25>;
+> -			qcom,smd-edge = <6>;
+> -
+> -			status = "disabled";
+> -		};
+> -	};
+> -
+>  	smsm {
+>  		compatible = "qcom,smsm";
+>  
 > 
