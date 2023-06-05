@@ -2,134 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 605E2722BA4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 17:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10DFD722BE2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 17:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235084AbjFEPnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 11:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44544 "EHLO
+        id S234678AbjFEPtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 11:49:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234338AbjFEPna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 11:43:30 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AB6171E;
-        Mon,  5 Jun 2023 08:43:10 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b1a7e31dcaso52811041fa.2;
-        Mon, 05 Jun 2023 08:43:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685979758; x=1688571758;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K9Mq4zTWNZxgXmn77g79M7jiTcegyvnCqH1d/BABQRw=;
-        b=aQX9HeNtpVpdgQ5rkNy9e/6N27UtHbD1pztf3G5AN6CbHwTfHqydU5sPtRCg1rsd4z
-         /hJNEGtUAe2arMvipUml6/O2Y9k2oL5BN7WQtISetrK8aNYY1z+TVGXkPv+WQgGmY3Tz
-         P70wNbzF/J5ZkQi+UnsvLRA4EywEkHb6HqLPrJZEcIkyOqFDr0PYutv9sbVDzIgkkURm
-         8wjc0OsQ+IeYQwUi4k+otpWxE39ZwsgZaI93dcjYopdSKxH+YotxeUIdso8fEonjKOE4
-         pvfn8uIg2wLWneQXwCrvCHAz4FPgvOL8c33+mbrOHTTCsEsquZ5kag7H2aoqolzW2gFA
-         w7wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685979758; x=1688571758;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K9Mq4zTWNZxgXmn77g79M7jiTcegyvnCqH1d/BABQRw=;
-        b=gSkFnnjhqGB7p+KG5zewC1I0dus0FCQWTwzaq/mrLnKS/BmmW7jTR9A+Ulf+8Scf9e
-         DI9NAUxoFEK+UTDRuUymb7Pi/veZCys4HwvFij3rBAtHK0ajehm1T4M79GuiA2m9rUmG
-         1teb1UEZYulqrU0Nonoytfo1wV73j8ONvi+J4ZGb0zo1U9Ohl81xWtj+7j1XGlWgPTtR
-         DrEX7bxpjb9aiIcwlt0Dc1t9OM7jzY1j91j9EmxK7Dt6iUcbJFoSWarywDtY/An4IeUh
-         9qmxlgRKpm80baP/YC5ftxuO3fnwTfT7s0lCfkifDtumQfssfuU3dV5TAtE6rpYi0hnN
-         itdg==
-X-Gm-Message-State: AC+VfDzfs9ZYQeKjLlvmX0SPUnEcyNxKvg5e2aieN2j8CDwRPN5wrvS6
-        SCuUfmWlmbcY5gdpeIdJuO4=
-X-Google-Smtp-Source: ACHHUZ7uSBvK8+Gq54/3tBpKPjqxsA98DAXoC1lr+6bS+RiMtEsjbD/Dyri+Gt+JQE1vDHfM71o6RA==
-X-Received: by 2002:a2e:9d54:0:b0:2b1:bf83:4165 with SMTP id y20-20020a2e9d54000000b002b1bf834165mr3095783ljj.37.1685979758010;
-        Mon, 05 Jun 2023 08:42:38 -0700 (PDT)
-Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id sd17-20020a170906ce3100b0095fbb1b72c2sm4400844ejb.63.2023.06.05.08.42.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 08:42:37 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S235265AbjFEPtR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 11:49:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60FC11733;
+        Mon,  5 Jun 2023 08:48:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 50B0A627A6;
+        Mon,  5 Jun 2023 15:43:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0EFBC4339E;
+        Mon,  5 Jun 2023 15:43:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685979826;
+        bh=LzpzvXyyXQzwkwbSAIUoLeJNTmxmMIl7hNCUv+YezGY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FEXeNhlnAbRnfis4uneWkVDGIAApQq24LkbdjlApCcdmF2u9UZ9gPwEtoKRSBYn3P
+         W42S45nu69RxPfio4wZnLsJlnoa3RqgWdMcfywTnVQ99Khx03M1+SW58TTW+CUFod6
+         9JIz23UQwgAHP/223iyqdDNwykJqS2SRu1LHhy0UnWOAxPSu4Yauw8coJq+XoJX7/Y
+         Q1NJynk5OgSV+DCHUg0Kqy00N+WSOKhDtBmJnVKIz27Vua4pfPyJmCmNkjj9YJs3mo
+         GQ2JJJqWCSZsHobX+7U8YxIAiROvLyS0ASnpHuBq0nq4338R27NZaAJa6L/lGcDwAw
+         1si4ag9Xvy8DA==
+Date:   Mon, 5 Jun 2023 16:43:39 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, Rob Herring <robh@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v5 3/3] arm64: tegra: Add Tegra234 pin controllers
-Date:   Mon,  5 Jun 2023 17:42:30 +0200
-Message-Id: <20230605154230.2910847-4-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230605154230.2910847-1-thierry.reding@gmail.com>
-References: <20230605154230.2910847-1-thierry.reding@gmail.com>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Subject: Re: [PATCH v5 00/12] SM63(50|75) DPU support
+Message-ID: <20230605154338.GC21796@willie-the-truck>
+References: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
+ <0fbe5ddb-c3de-0724-fb69-a99e4980b26c@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0fbe5ddb-c3de-0724-fb69-a99e4980b26c@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Prathamesh Shete <pshete@nvidia.com>
+On Thu, Jun 01, 2023 at 03:16:52AM +0300, Dmitry Baryshkov wrote:
+> On 23/05/2023 10:46, Konrad Dybcio wrote:
+> 
+> [skipped the changelog]
+> 
+> > ---
+> > Konrad Dybcio (12):
+> >        dt-bindings: display/msm: dsi-controller-main: Add SM6350
+> >        dt-bindings: display/msm: dsi-controller-main: Add SM6375
+> >        dt-bindings: display/msm: sc7180-dpu: Describe SM6350 and SM6375
+> >        dt-bindings: display/msm: Add SM6350 MDSS
+> >        dt-bindings: display/msm: Add SM6375 MDSS
+> >        drm/msm/dpu: Add SM6350 support
+> >        drm/msm: mdss: Add SM6350 support
+> >        drm/msm/dpu: Add SM6375 support
+> >        drm/msm: mdss: Add SM6375 support
+> >        iommu/arm-smmu-qcom: Sort the compatible list alphabetically
+> >        iommu/arm-smmu-qcom: Add SM6375 DPU compatible
+> >        iommu/arm-smmu-qcom: Add SM6350 DPU compatible
+> 
+> As we are now nearly ready to merge this series, Will, Robin, what should be
+> the merge strategy for these three patches? Would you take them through the
+> arm-smmu/iommu tree?
 
-Add the device tree nodes for the MAIN and AON pin controllers found on
-the Tegra234 family of SoCs.
+I'm happy to take the three IOMMU changes, but the bulk of this series is
+replated to display and GPU so I don't think it makes sense for me to take
+those.
 
-Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v3:
-- use correct value for #address-cells and #size-cells
-- correct gpio-ranges property name
-
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 133b2d32d19b..9dba05be03d2 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -109,6 +109,7 @@ gpio: gpio@2200000 {
- 			interrupt-controller;
- 			#gpio-cells = <2>;
- 			gpio-controller;
-+			gpio-ranges = <&pinmux 0 0 164>;
- 		};
- 
- 		ethernet@2310000 {
-@@ -147,6 +148,11 @@ codec@242c000 {
- 			status = "disabled";
- 		};
- 
-+		pinmux: pinmux@2430000 {
-+			compatible = "nvidia,tegra234-pinmux";
-+			reg = <0x0 0x2430000 0x0 0x19100>;
-+		};
-+
- 		gpcdma: dma-controller@2600000 {
- 			compatible = "nvidia,tegra234-gpcdma",
- 				     "nvidia,tegra186-gpcdma";
-@@ -1805,6 +1811,12 @@ gpio_aon: gpio@c2f0000 {
- 			interrupt-controller;
- 			#gpio-cells = <2>;
- 			gpio-controller;
-+			gpio-ranges = <&pinmux_aon 0 0 32>;
-+		};
-+
-+		pinmux_aon: pinmux@c300000 {
-+			compatible = "nvidia,tegra234-pinmux-aon";
-+			reg = <0x0 0xc300000 0x0 0x4000>;
- 		};
- 
- 		pwm4: pwm@c340000 {
--- 
-2.40.1
-
+Will
