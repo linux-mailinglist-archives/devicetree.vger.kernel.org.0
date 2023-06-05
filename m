@@ -2,158 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 976E3722878
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 16:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E552F7228A2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 16:19:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234337AbjFEONI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 10:13:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
+        id S233137AbjFEOTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 10:19:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234335AbjFEOMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 10:12:52 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106DAE79;
-        Mon,  5 Jun 2023 07:11:57 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685974292;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=uHfp+IyYPxqhLvbm8OYS3Lo9uaz8M1hK/LpKpngruro=;
-        b=I2dvsEv0zE3yipuHlMDg7UA6Ckx9wEa+H7t4VCmIJcET1px6TWlt7rNFPhb/SO9IEr87xN
-        wBDLyJFUk2WuVLIjnpLpNczEg7ezgRrWzNXcHfM72l4s1aK3/1FBXifJpSNNg7ovgpqdnU
-        sEbgtIJ38z5zNlZtLiHlgEiq1hUq9FBgXbrBSv7ldAgs719ePTGOKJszV3E6vSlhEkmwO6
-        3Y8BW+LvafTVtnj1GhZ43dI/oLHQTUVjlzbkrqkGemXrN7lKXZWEQbi28a5jY0iiatAb96
-        D7cll8e4nHqA9hc6bkHvRmCcrDjnK9xkByDt3YyE/qSkEUNvWMff9ZOfwZSYKw==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 32278C0003;
-        Mon,  5 Jun 2023 14:11:30 +0000 (UTC)
-Date:   Mon, 5 Jun 2023 16:11:29 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S233400AbjFEOS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 10:18:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6AAB10C;
+        Mon,  5 Jun 2023 07:18:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 347D66241A;
+        Mon,  5 Jun 2023 14:18:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 632DBC433EF;
+        Mon,  5 Jun 2023 14:18:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685974727;
+        bh=zq25hJ0fHK6GtehEcofkCZeAy8jNCWwt6NKJQEwBpSM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FvbA7sETZUW5ZcfTxbhvBaQKfBV28xcoqYaInME55BvENaD8mTZnOhJJubLqBfwas
+         S2+KfwHil+AQh6U5BY7kxfxfsXzIRbc9Fm1jsuCYqwhPzADC3AiOKBuPyMSCT0XqyT
+         cedzg8Vp/4wtQVT4K8gDNrunucZWVy+D0nvntkUiCe89JGFnvfxB/ML5apb7lEPBog
+         eBDa4Md6P6ZWalE+1acYuyw8GgqeNvLOy8glnwIMA+6yqLP4YDQl+3oF6ZExl56ExD
+         mffuTaNBhr+08U3L0Mdi2mJLHbRxkINhvTP/Ijb/8ECezrov4sJ5PhAhCoLumjP55S
+         unYQlpAMd6HmQ==
+Date:   Mon, 5 Jun 2023 15:18:39 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 5/9] iio: inkern: Add a helper to query an available
- minimum raw value
-Message-ID: <20230605161129.4ac3231b@bootlin.com>
-In-Reply-To: <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
-References: <20230523151223.109551-1-herve.codina@bootlin.com>
-        <20230523151223.109551-6-herve.codina@bootlin.com>
-        <ZHtIdTZbULl6t4RT@surfacebook>
-        <20230605094637.7615b689@bootlin.com>
-        <CAHp75Vec3fXT6phqvLGSn0c09USCXXF6ZoE+X1VNJGM6jyf=aQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, qperret@google.com
+Subject: Re: [PATCH v13 10/24] gunyah: vm_mgr: Add/remove user memory regions
+Message-ID: <20230605141839.GD21212@willie-the-truck>
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+ <20230509204801.2824351-11-quic_eberman@quicinc.com>
+ <20230519115948.GB2637@willie-the-truck>
+ <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi Elliot,
 
-On Mon, 5 Jun 2023 12:45:24 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+[+Quentin since he's looked at the MMU notifiers]
 
-> On Mon, Jun 5, 2023 at 10:46 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> > On Sat, 3 Jun 2023 17:04:37 +0300
-> > andy.shevchenko@gmail.com wrote:  
-> > > Tue, May 23, 2023 at 05:12:19PM +0200, Herve Codina kirjoitti:  
-> 
-> ...
-> 
-> > > > +           case IIO_VAL_INT:
-> > > > +                   *val = vals[--length];  
-> > >  
-> > > > +                   while (length) {  
-> > >
-> > >                       while (length--) {
-> > >
-> > > will do the job and at the same time...
-> > >  
-> > > > +                           if (vals[--length] < *val)
-> > > > +                                   *val = vals[length];  
-> > >
-> > > ...this construction becomes less confusing (easier to parse).  
-> >
-> > Indeed, I will change in the next iteration.  
-> 
-> And looking into above line, this whole construction I would prefer to
-> have a macro in minmax.h like
-> 
-> #define min_array(array, len) \
-> {( \
->   typeof(len) __len = (len); \
->   typeof(*(array)) __element = (array)[--__len]; \
->   while (__len--) \
->     __element = min(__element, (array)[__len]); \
->   __element; \
-> )}
-> 
-> (it might need more work, but you got the idea)
+Sorry for the slow response, I got buried in email during a week away.
 
-I will also introduce max_array() and update both iio_channel_read_max()
-and iio_channel_read_min() to use these macros.
+On Fri, May 19, 2023 at 10:02:29AM -0700, Elliot Berman wrote:
+> On 5/19/2023 4:59 AM, Will Deacon wrote:
+> > On Tue, May 09, 2023 at 01:47:47PM -0700, Elliot Berman wrote:
+> > > +	ret = account_locked_vm(ghvm->mm, mapping->npages, true);
+> > > +	if (ret)
+> > > +		goto free_mapping;
+> > > +
+> > > +	mapping->pages = kcalloc(mapping->npages, sizeof(*mapping->pages), GFP_KERNEL_ACCOUNT);
+> > > +	if (!mapping->pages) {
+> > > +		ret = -ENOMEM;
+> > > +		mapping->npages = 0; /* update npages for reclaim */
+> > > +		goto unlock_pages;
+> > > +	}
+> > > +
+> > > +	gup_flags = FOLL_LONGTERM;
+> > > +	if (region->flags & GH_MEM_ALLOW_WRITE)
+> > > +		gup_flags |= FOLL_WRITE;
+> > > +
+> > > +	pinned = pin_user_pages_fast(region->userspace_addr, mapping->npages,
+> > > +					gup_flags, mapping->pages);
+> > > +	if (pinned < 0) {
+> > > +		ret = pinned;
+> > > +		goto free_pages;
+> > > +	} else if (pinned != mapping->npages) {
+> > > +		ret = -EFAULT;
+> > > +		mapping->npages = pinned; /* update npages for reclaim */
+> > > +		goto unpin_pages;
+> > > +	}
+> > 
+> > Sorry if I missed it, but I still don't see where you reject file mappings
+> > here.
+> > 
+> 
+> Sure, I can reject file mappings. I didn't catch that was the ask previously
+> and thought it was only a comment about behavior of file mappings.
 
-Will be available in the next series iteration.
+I thought the mention of filesystem corruption was clear enough! It's
+definitely something we shouldn't allow.
 
-Thanks,
-Hervé
+> > This is also the wrong interface for upstream. Please get involved with
+> > the fd-based guest memory discussions [1] and port your series to that.
+> > 
+> 
+> The user interface design for *shared* memory aligns with
+> KVM_SET_USER_MEMORY_REGION.
 
-> 
-> > > > +                   }
-> > > > +                   break;  
-> 
-> ...
-> 
-> > > > +           default:
-> > > > +                   /* FIXME: learn about min for other iio values */  
-> > >
-> > > I believe in a final version this comment won't be here.  
-> >
-> > We have the same FIXME comment in the iio_channel_read_max() function I
-> > copied to create this iio_channel_read_min() and, to be honest, I
-> > don't really know how to handle these other cases.
-> >
-> > In this series, I would prefer to keep this FIXME.  
-> 
-> I see, Jonathan needs to be involved here then.
-> 
-> > > > +                   return -EINVAL;  
-> 
+I don't think it does. For example, file mappings don't work (as above),
+you're placing additional rlimit requirements on the caller, read-only
+memslots are not functional, the memory cannot be swapped or migrated,
+dirty logging doesn't work etc. pKVM is in the same boat, but that's why
+we're not upstreaming this part in its current form.
+
+> I understood we want to use restricted memfd for giving guest-private memory
+> (Gunyah calls this "lending memory"). When I went through the changes, I
+> gathered KVM is using restricted memfd only for guest-private memory and not
+> for shared memory. Thus, I dropped support for lending memory to the guest
+> VM and only retained the shared memory support in this series. I'd like to
+> merge what we can today and introduce the guest-private memory support in
+> tandem with the restricted memfd; I don't see much reason to delay the
+> series.
+
+Right, protected guests will use the new restricted memfd ("guest mem"
+now, I think?), but non-protected guests should implement the existing
+interface *without* the need for the GUP pin on guest memory pages. Yes,
+that means full support for MMU notifiers so that these pages can be
+managed properly by the host kernel. We're working on that for pKVM, but
+it requires a more flexible form of memory sharing over what we currently
+have so that e.g. the zero page can be shared between multiple entities.
+
+Will
