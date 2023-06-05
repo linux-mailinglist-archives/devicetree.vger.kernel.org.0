@@ -2,146 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A171E722D29
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6125F722D36
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 19:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234871AbjFERB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 13:01:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32824 "EHLO
+        id S231293AbjFERDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 13:03:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231667AbjFERB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:01:27 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B599C
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 10:01:25 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f4b384c09fso6315426e87.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 10:01:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685984484; x=1688576484;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lRDMBVk4vz1Ythlxetf7Gr54/89mc98k3y6FPQIUZHg=;
-        b=LLPUjN7ht3lheGOgE29J26cFxSTOEEskEKkrW/KvuK18WSoArlVLQlMPeQkKlxArFC
-         am/kJz3hndT2PEsVFERJQr2CUl1g3mAXUhho7+Yt3WmQbWtErunZaeKFvUUE4ohHifn1
-         Xz4w7SzBTPY/FG0UOd/vLmMsZ/nU/ftO8Ajop6k7aS2TtLMydhCYV+7AmxNdjx9INH2g
-         qkWYOe+PEyHylGVPhKT/agDeqsVrLW4sV4M+gYnLCm/BOdLvuM8rB40q8UM5cSzQoeo1
-         5T+Pc3D1lHn7Twb18+mXZxWZ/C1QdN9DZtqfIiix+JwQDxxlORwgzEGAkJsChgplviIK
-         Z5Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685984484; x=1688576484;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lRDMBVk4vz1Ythlxetf7Gr54/89mc98k3y6FPQIUZHg=;
-        b=cRKyNc5mE2NQoehuggbez3eTJsTR2WPbGOa5ZV5xZGrtojnMH2zF+4yBO92hJeokKc
-         lIDoi6324HGwgPl/tqxnrt+1YvXdpoUO0pYOqABOVBUifeA0XzU4hjDHuD5oCAfM/gM+
-         oCjoruZopIGZcJLPmkzlsJyY7FEXREHPcFCe1oUNMVgmycFAcuKvGJEPBuIg1bS0rpP9
-         6UnieptYo6kkmFGOS+Q8qwwtC1AU8wmUClp9W0sPL3z+/5SDx/q/qh3+m58M0fCs+kUN
-         27F0JktS3wUqkVfGpuULiwOk9fkUwBHwZ1haQELDHQUMSvHzaFbVJDdA7CAsSsZEjtqI
-         TkIg==
-X-Gm-Message-State: AC+VfDybhlEMXksQHGb+UxRYGR4Lh5nT8SBfMmVV4BOOajmM458LxMj7
-        UTAUJVG/Dmf5SHII3rRLYsoH+w==
-X-Google-Smtp-Source: ACHHUZ4BWd4RPSnyw8163lZCr4pIJB0FfrOTLxiCGnSFr7EaUQX8/0srT7bEgU+FJp5yBMlxzY96uw==
-X-Received: by 2002:ac2:54a9:0:b0:4f4:dd51:aecd with SMTP id w9-20020ac254a9000000b004f4dd51aecdmr5265334lfk.54.1685984484053;
-        Mon, 05 Jun 2023 10:01:24 -0700 (PDT)
-Received: from [192.168.1.101] (abyj96.neoplus.adsl.tpnet.pl. [83.9.29.96])
-        by smtp.gmail.com with ESMTPSA id m8-20020a056512014800b004eff32d6a21sm1189005lfo.121.2023.06.05.10.01.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 10:01:23 -0700 (PDT)
-Message-ID: <ea8d1808-b04c-332f-834a-c3f237e0b931@linaro.org>
-Date:   Mon, 5 Jun 2023 19:01:19 +0200
+        with ESMTP id S232856AbjFERDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 13:03:02 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4828BE62;
+        Mon,  5 Jun 2023 10:02:35 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 355H2Nd1091456;
+        Mon, 5 Jun 2023 12:02:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685984543;
+        bh=RuYR7IYFkECl4W0iqlW22Tj9fVd8u3TlObzGxgDPA0k=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=fuPwlMcTMQ2PKeUKbN/T2tLcs3zh1vrkVnK7eOkDqMv/UqIx8MdSMI8vHgJr7XDH7
+         uapWuTgDCLQt0V0hCYVatpuCiVrgMlt3Z/xLjZmspNyKf+sYOpmt7aU+XZjV0lQJx5
+         MPLbqhw1/LhdilpBe4LuG/tQ0VcCzr4KG24n0Erk=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 355H2N8t041575
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Jun 2023 12:02:23 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ Jun 2023 12:02:23 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 Jun 2023 12:02:23 -0500
+Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 355H2JGl083839;
+        Mon, 5 Jun 2023 12:02:20 -0500
+Message-ID: <720c8c43-9a95-d7b5-3267-405ff0149eea@ti.com>
+Date:   Mon, 5 Jun 2023 22:32:18 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v5 05/12] dt-bindings: display/msm: Add SM6375 MDSS
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev
-References: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
- <20230411-topic-straitlagoon_mdss-v5-5-998b4d2f7dd1@linaro.org>
- <e9da7236-5915-b9df-59dc-c2baa960f52b@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 08/12] arm64: dts: ti: k3-am64-evm: Fixup reference to
+ phandles array
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <e9da7236-5915-b9df-59dc-c2baa960f52b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <u-kumar1@ti.com>
+References: <20230601152636.858553-1-nm@ti.com>
+ <20230601152636.858553-9-nm@ti.com>
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230601152636.858553-9-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Nishanth
+
+On 6/1/2023 8:56 PM, Nishanth Menon wrote:
+> When referring to array of phandles, using <> to separate the array
+> entries is better notation as it makes potential errors with phandle and
+> cell arguments easier to catch. Fix the outliers to be consistent with
+> the rest of the usage.
+>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am642-evm.dts | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> index 91bdc6026d1f..fef68a778ac9 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> @@ -467,8 +467,8 @@ &usb0 {
+>   
+>   &cpsw3g {
+>   	pinctrl-names = "default";
+> -	pinctrl-0 = <&rgmii1_pins_default
+> -		     &rgmii2_pins_default>;
+> +	pinctrl-0 = <&rgmii1_pins_default>,
+> +		    <&rgmii2_pins_default>;
 
 
-On 4.06.2023 20:04, Krzysztof Kozlowski wrote:
-> On 23/05/2023 09:46, Konrad Dybcio wrote:
->> Document the SM6375 MDSS.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 216 +++++++++++++++++++++
->>  1 file changed, 216 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
->> new file mode 100644
->> index 000000000000..3aa4f0470c95
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
->> @@ -0,0 +1,216 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6375-mdss.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SM6375 Display MDSS
->> +
->> +maintainers:
->> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
->> +
->> +description:
->> +  SM6375 MSM Mobile Display Subsystem (MDSS), which encapsulates sub-blocks
->> +  like DPU display controller, DSI and DP interfaces etc.
->> +
->> +$ref: /schemas/display/msm/mdss-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: qcom,sm6375-mdss
->> +
-> 
-> Same as 6350 - drop items.
-Ack
+Please see, if  pinctrl-0 can be defined in one line, instead of two, to 
+be inline with most of changes in this series.
 
-> 
-> Similar concern about interconnects, although we don't have header file
-> for them, so I assume we will fill it up later.
-Yep, they'll come later and other SoCs may need a bump up for a third icc
-path soon..
-
-Konrad
-> 
-> Best regards,
-> Krzysztof
-> 
+> [..]
