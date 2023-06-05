@@ -2,83 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69928721F8C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 09:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD172721FA1
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 09:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230403AbjFEHbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 03:31:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55222 "EHLO
+        id S229636AbjFEHel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 03:34:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230437AbjFEHao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 03:30:44 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 016B9BD
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 00:30:42 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-30ae95c4e75so4614807f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 00:30:42 -0700 (PDT)
+        with ESMTP id S229494AbjFEHek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 03:34:40 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E46D3
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 00:34:38 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51456392cbbso11751504a12.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 00:34:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685950241; x=1688542241;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NFReZyZu2iufJZ3PDykLvhpXb6SdQ7mEv/WAkqm0RQ4=;
-        b=G02f0WmoAeY4+9XZg+1cZOAQP3nXivmQNupC0n58RdCR20l7Cklw6KwEqnY+0sZY+3
-         nX0bl1m8bjeHTwSdTKgZhuat7x8KOrzfwmPMVwFqjhNlxis5GGXB+Ew6yLMKJaRAbmBV
-         k0Ipxom2LnOuYjGjDcLAS9xREEsh+hk1vgOY6N4ogJeNyUDEj//4oicRgj2houMThQbS
-         C8Vws74jZta+oyDEO2XPoHlF1ltIEPou/MIgHVSYLkDtG9COJEetZkGSIbbYwyjq5w9d
-         w40Cq/ILqZa/JNT9qlM7h5zfy5eHKf947k7+TIUwnnZfYOyKsfXmK9bCdZMerLNnrQm9
-         cJIw==
+        d=linaro.org; s=google; t=1685950477; x=1688542477;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8g/uCudoNru8NUO2fRncIkM8apZtWaRSA3Sr+dRP0vE=;
+        b=EZqnx3qFRzHckRGwu64NGFgrgksidmNU1uyIQBt8oEIuivVfPmQQm2nf+4hU2lw/iP
+         1RnUU91boWEi92AIWXrVDRMKsf80YofR1suYBsd/Fh7jgN3vq3oi+e0GOve1rJlCOnYD
+         ikUKL7snfLrifOPTbfuyEMtcWzU4tpJqOpLlIuxSzwxo7gDnZjAy4tgm1ZhSXoEoJhfi
+         O/L42N6w2VrH4KG42Ck/GUYtS3ru2VgfcC0u37bz9U2vS0y2zCHEyOSH+zkOWwMTMO3C
+         pgDe8kPdWaMNjqVxVX4vD5cDv3zKdgiTnURbLu7hBWruQBn1ChoKt4prNtdvXB33umNT
+         0ORg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685950241; x=1688542241;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NFReZyZu2iufJZ3PDykLvhpXb6SdQ7mEv/WAkqm0RQ4=;
-        b=Pw1PsfWZgrX5ZwwjDxCP+WFTYoiKvwl39UFLA+LLAieXhxaL3O/n9b1aHk/JnbHibL
-         cxTgwcn3CL2pYgg2alJfDIm/ITX0Nb789DIBFb7xjM3+NHHp2dQ4zRjJk0Uu0IdfLxok
-         Rq0XbllCAln4Alk0wMdoJ/sJaAaVTksJ4KlGevOscUVN+XNp9j34F7UQVL6TIeFf6X3a
-         oSUXqr+0y4hKR39CovfH5deu8bKZu2y6nNfwaYiGfbtzAmvCqosLPiHHw3Bc626YpCTQ
-         E84cRsWRZm8lK+24p6gyCvo3VfxCW6H6bQF53ImwdbruODjtqpYJygiocM3DwKDtnryF
-         1+nQ==
-X-Gm-Message-State: AC+VfDxzy5b399tpEs57iqCkukTjrHS8/oE4xE9JLmIYO/JWkroqKbmU
-        CICCzp0EC8WtpCRGZcv9/IA6ew==
-X-Google-Smtp-Source: ACHHUZ6DpZpxjDccEpr6NoOK08qI/JWn6PS5N8QU7mRlJwWTPUm7Jom2HtRWIntgSYG9nDc9HaANvg==
-X-Received: by 2002:a05:6000:10c4:b0:30e:1fc4:d0c9 with SMTP id b4-20020a05600010c400b0030e1fc4d0c9mr3668177wrx.9.1685950241092;
-        Mon, 05 Jun 2023 00:30:41 -0700 (PDT)
-Received: from [192.168.7.188] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id k16-20020a056000005000b003079986fd71sm8921578wrx.88.2023.06.05.00.30.40
+        d=1e100.net; s=20221208; t=1685950477; x=1688542477;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8g/uCudoNru8NUO2fRncIkM8apZtWaRSA3Sr+dRP0vE=;
+        b=LfPhX0vbbGHYmCK+FCcc1RGianqJcAy9zSNff/8vf0YLc3JN8YyJevAvbNztozU6U+
+         hsnFktXaCf2AdlVTRVakTC51MwUgD2PHijn0GSpdtq+p3edgTl0bNm/+umIAOiYZYWXW
+         93hoFwtZDSWReqEscsC8SHhDfMIgujHLze3WwirTdeTxu/b6QN+8Qup30gznKrZFJ3UN
+         OUt4nX3C48IVbzPY2tUKbQFWKZJCodL1GmtzrQUDVvE9ry5y8i42iRlW/UfsrhU3iIcu
+         olqgY4BhckbcfAotySQyhOgsexOaFtK27cjJJpTSCnnGGj08XpPjt47quioso8Gsdw/W
+         7wzA==
+X-Gm-Message-State: AC+VfDw4mqgKaXMKfyJtcUU2xtAdKzAo4r7glm+s+vBOCCJRWSgIcJbI
+        rCo+cDSS0DoHl4UHSI3DcFnOKA==
+X-Google-Smtp-Source: ACHHUZ6O0Ax8DYnAnWLCNsurzFRYdg0Bla791PJzJB/LCSFqUBdwOYwfakFHXzUGj5RgB1RVZModzA==
+X-Received: by 2002:a17:907:16a6:b0:977:c405:6c76 with SMTP id hc38-20020a17090716a600b00977c4056c76mr5497706ejc.14.1685950476974;
+        Mon, 05 Jun 2023 00:34:36 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id j21-20020a170906431500b00966265be7adsm3910219ejm.22.2023.06.05.00.34.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 00:30:40 -0700 (PDT)
-Message-ID: <d7da64a8-8d49-595f-f519-9cdc2092d9e7@linaro.org>
-Date:   Mon, 5 Jun 2023 09:30:40 +0200
+        Mon, 05 Jun 2023 00:34:36 -0700 (PDT)
+Message-ID: <d4509ee4-3eb7-0499-36f8-7d7848ab4928@linaro.org>
+Date:   Mon, 5 Jun 2023 09:34:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH RFC 1/7] dt-bindings: connector: usb-connector: add a gpio
- used to determine the Type-C port plug orientation
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+Subject: Re: [PATCH 01/21] dt-bindings: microchip: atmel,at91rm9200-tcb: add
+ sam9x60 compatible
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Varshini Rajendran <varshini.rajendran@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        krzysztof.kozlowski+dt@linaro.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230601-topic-sm8550-upstream-type-c-v1-0-d4d97b4d8bab@linaro.org>
- <20230601-topic-sm8550-upstream-type-c-v1-1-d4d97b4d8bab@linaro.org>
- <0fbf55e7-2140-751d-5347-f907a46ef78c@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <0fbf55e7-2140-751d-5347-f907a46ef78c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Balamanikandan Gunasundar 
+        <balamanikandan.gunasundar@microchip.com>,
+        "Mihai.Sain" <mihai.sain@microchip.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Netdev <netdev@vger.kernel.org>, linux-usb@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
+        durai.manickamkr@microchip.com, manikandan.m@microchip.com,
+        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
+        balakrishnan.s@microchip.com
+References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
+ <20230603200243.243878-2-varshini.rajendran@microchip.com>
+ <c72f45ec-c185-8676-b31c-ec48cd46278c@linaro.org>
+ <d95d37f5-5bef-43a9-b319-0bbe0ac366b4@app.fastmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d95d37f5-5bef-43a9-b319-0bbe0ac366b4@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -89,42 +108,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2023 22:22, Dmitry Baryshkov wrote:
-> On 01/06/2023 17:07, Neil Armstrong wrote:
->> On some platforms, the Type-C plug orientation is given on a GPIO line.
+On 05/06/2023 09:04, Arnd Bergmann wrote:
+> On Mon, Jun 5, 2023, at 08:35, Krzysztof Kozlowski wrote:
+>> On 03/06/2023 22:02, Varshini Rajendran wrote:
+>>> Add sam9x60 compatible string support in the schema file
+>>>
+>>> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+>>> ---
+>>>  .../devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml  | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+>>> index a46411149571..c70c77a5e8e5 100644
+>>> --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+>>> @@ -20,6 +20,7 @@ properties:
+>>>            - atmel,at91rm9200-tcb
+>>>            - atmel,at91sam9x5-tcb
+>>>            - atmel,sama5d2-tcb
+>>> +          - microchip,sam9x60-tcb
 >>
->> Document this optional Type-C connector property, and take the
->> assumption an active level represents an inverted/flipped orientation.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   Documentation/devicetree/bindings/connector/usb-connector.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> index ae515651fc6b..c3884eed6ba4 100644
->> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> @@ -114,6 +114,11 @@ properties:
->>       description: Set this property if the Type-C connector has no power delivery support.
->>       type: boolean
->> +  orientation-gpios:
->> +    description: An input gpio for Type-C connector orientation, used to detect orientation
->> +      of the Type-C connector. GPIO active level means "CC2" or Reversed/Flipped orientation.
->> +    maxItems: 1
+>> No wildcards.
 > 
-> Should this be a property of the connector or of the parent device node? I mean, unlike usb-b-connector (where ID and Vbus can be simple GPIOs nearly directly connected to the pins of the connector) for the USB-C the orientation is not a connector's GPIO, but rather some additional not elementary logic.
+> sam9x60 is the actual name of the chip, it's no wildcard. For sam9x70,
+> sam9x72 and sam9x75, I think using sam9x7 as the compatible string
+> is probably fine, as long as they are actually the same chip. Again,
+> the 'x' in there is not a wildcard but part of the name.
 
-I don't see the issue, orientation is a property of the connector itself,
-even if it's provided by another ic.
+OK, if that's the case.
 
-Neil
-
-> 
->> +
->>     # The following are optional properties for "usb-c-connector" with power
->>     # delivery support.
->>     source-pdos:
->>
-> 
+Best regards,
+Krzysztof
 
