@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04643722462
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 13:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F508722469
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 13:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbjFELQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 07:16:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41472 "EHLO
+        id S232125AbjFELSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 07:18:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232068AbjFELQv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 07:16:51 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3D2FE
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 04:16:43 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f7a8089709so9942155e9.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 04:16:43 -0700 (PDT)
+        with ESMTP id S230178AbjFELSE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 07:18:04 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 628CDEA
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 04:17:53 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f6d38a140bso33430565e9.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 04:17:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1685963801; x=1688555801;
+        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1685963872; x=1688555872;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yjLDTJGJ7gcKQe6cRrz0+RPM8MdVynP8SzGMRz6EXRE=;
-        b=yupI5Hyr8/63VXtONk7KEtUcvaNRATnn2q61utrbyqFJkpfSmIGnO4QQo5xCMAk73e
-         c+8P6fMQWbKsb/RZvj4F6mSXgsg7ekLhz+pLHxO5j37eVNQoMj+F47OckwOvEJMkjSGt
-         Yup9bYX42yTiDX1eYG0E+gaQYEsbS0u8TB8cz53FSRo/o5VMyKfbHX4sk2eQ2rZ/AYH7
-         3EhdJnez+br/Y8p76XdyNtS5ckvhiRprmY+RiRjJCyZKTntFHzdXc+aix6FNVRzq2pEu
-         RFMQGcwG7ue3Y6xB5/vlTJC4GTTeNtuJk56li4MHmAMXiE7/pszMblLRTt9mrnYlKqEh
-         eWyg==
+        bh=cE1s1SBRasCQ26tTjz3vS7kkfu8oXf1VV0juiyMiwK8=;
+        b=m4HZI5EmdHgPw2WGHg9wxlsh0bqAzRSeSWrByjeIZHspybo++CFpucOhCtrbQtUODD
+         9TBeM5JPTmg36p+B598Y2AbG7LEmYvEsYEp8wEUR+E63eUmw3eOzgjuLldwAF+E5/Szp
+         Sp0cuf+F9OXFAmEJJ35HpkN1YXcPhUUOBzsZrx1ARJbFOMxti0vkHNUQRyqhzPsEvbeZ
+         qcqbWjEdwx6pttTbEXm8StNP3/EEHdmfOS7lx+tCmT7aERdvtotUE53ADc6Qp5k+69Zj
+         LLxkcmwD/CujrADXyXCEenYEtwNM+V5s3TKQe8eVKXTtghV2G8lTFmVKazMF52hLDVYW
+         SdUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685963801; x=1688555801;
+        d=1e100.net; s=20221208; t=1685963872; x=1688555872;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yjLDTJGJ7gcKQe6cRrz0+RPM8MdVynP8SzGMRz6EXRE=;
-        b=hygpAs66uBgs7AxrjxlSKcblowrqR7CbWFXmYWzjCMgUVPSm9agSmreq6bima3K0jC
-         uFDI9pnIzxoLFqMH12YNlL/uBET4DSm9o8jUd9sFhGAda+i5fLBYLMAp5puRFl9GqdbI
-         m/aJYSGWeiSHfuoIliWJEA0oqzQFU0oiLeJ2N29+UbQPeWYnhk+x5HUTXowtrblE/H+Q
-         UJ6lKBcWsgQ9DatE8YSBpKzBYOtUgiT0dJYzQXD37CvdodsHnPOn3IX0EASo+8Gj7I9v
-         OgF4OBX1/ElszhoSEKxYcGubgdeVAePat4Gq90VEZUFvk6/n4Rxeso2aazNxunwvRo4f
-         oxPg==
-X-Gm-Message-State: AC+VfDx6mrVDcW/zDAaeq8+NPTRP2sI6CpiHjVuy8WLVe+gHvbnIvr4J
-        Yg7qz/6Izc0DqGHsgr/i+TdT4g==
-X-Google-Smtp-Source: ACHHUZ6uCGF9jDQfSvX2LlSatKK2oefzLJvDA+ZIb32oU5nr1ALsg6A2Fyt1pUEb+UEnCs77l6hZPw==
-X-Received: by 2002:a1c:7411:0:b0:3f6:89a:94c8 with SMTP id p17-20020a1c7411000000b003f6089a94c8mr7325660wmc.24.1685963801713;
-        Mon, 05 Jun 2023 04:16:41 -0700 (PDT)
+        bh=cE1s1SBRasCQ26tTjz3vS7kkfu8oXf1VV0juiyMiwK8=;
+        b=Z7p96+OKtEelLaxQnR/2gcM0W/rn65gfxR6ptLxFzoUj+E8Mpx/0errLcpvdC3/nQH
+         CLj2cNvtHi4Q3kVRBxyvFigWSvEOg4fx7qOwxFWSyFi1Zn4vzhoMZpA/xq399pOo/iyx
+         QBKiCR9BFIXzHeUuWxLKuWtBy5Fe9NT3c57a+CMwZ035R1C2zxwkIw/MtJKInB/rjYek
+         loiUdA1zA4f/N2cT0wRMSMSsdwwxyKid19fnrNDEFeMxwaHgpWlQRyQRuS5FgzHp5dOa
+         WgUtqk1VD8IQFVeXBWEg4IsE7rUi1agKOvJXoYNYHsRYGQLXmdgIwLyF4H+fQmyg+Kdk
+         +5jA==
+X-Gm-Message-State: AC+VfDzBkqxFzxLr7w6u+glB+FIPIeHmYw0e1jWI37zkexDrAKye2CKd
+        bIjwhgOofLTTBkYb1vKMpqcnKQ==
+X-Google-Smtp-Source: ACHHUZ6aLiqxnvjM26ak+7OYnd6YE8gM65tnKeFRHFkgrmqIUL8IWqvKo9CzWSj59s0bV3Yu6lPdJg==
+X-Received: by 2002:a1c:f305:0:b0:3f7:148b:c310 with SMTP id q5-20020a1cf305000000b003f7148bc310mr7496069wmq.13.1685963871878;
+        Mon, 05 Jun 2023 04:17:51 -0700 (PDT)
 Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id bg22-20020a05600c3c9600b003f4283f5c1bsm26464337wmb.2.2023.06.05.04.16.40
+        by smtp.gmail.com with ESMTPSA id o10-20020a1c750a000000b003f60101074dsm14129919wmc.33.2023.06.05.04.17.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 04:16:40 -0700 (PDT)
-Message-ID: <5fdd9d89-4636-8e43-5dd7-55bbbdcae7e0@monstr.eu>
-Date:   Mon, 5 Jun 2023 13:16:39 +0200
+        Mon, 05 Jun 2023 04:17:51 -0700 (PDT)
+Message-ID: <54ee38d1-5924-8305-0da8-0a2d35ff80a7@monstr.eu>
+Date:   Mon, 5 Jun 2023 13:17:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v2 6/6] arm64: zynqmp: Used fixed-partitions for QSPI in
- k26
+Subject: Re: [PATCH] dt-bindings: xilinx: Remove Rajan, Jolly and Manish
 Content-Language: en-US
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Krishna Potthuri <sai.krishna.potthuri@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Parth Gajjar <parth.gajjar@amd.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Srinivas Neeli <srinivas.neeli@xilinx.com>,
-        Vishal Sagar <vishal.sagar@amd.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <cover.1684767562.git.michal.simek@amd.com>
- <7368dc772d8dc29477a880ac2065e2ecb98cf3f5.1684767562.git.michal.simek@amd.com>
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+References: <9b252dd71c82593fa6b137eca2174d9ab6e57f7a.1684828606.git.michal.simek@amd.com>
 From:   Michal Simek <monstr@monstr.eu>
-In-Reply-To: <7368dc772d8dc29477a880ac2065e2ecb98cf3f5.1684767562.git.michal.simek@amd.com>
+In-Reply-To: <9b252dd71c82593fa6b137eca2174d9ab6e57f7a.1684828606.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,199 +84,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 5/22/23 16:59, Michal Simek wrote:
-> Using fixed partitions is recommended way how to describe QSPI. Also add
-> label for qspi flash memory to be able to reference it in future.
+On 5/23/23 09:56, Michal Simek wrote:
+> Rajan, Jolly and Manish are no longer work for AMD/Xilinx and there is no
+> activity from them to continue to maintain bindings that's why remove them.
 > 
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
 > 
-> (no changes since v1)
+>   Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml    | 2 --
+>   .../bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml        | 1 -
+>   .../bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml         | 1 -
+>   .../devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml        | 1 -
+>   4 files changed, 5 deletions(-)
 > 
-> ---
->   .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 169 +++++++++---------
->   1 file changed, 88 insertions(+), 81 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-> index 84e18fdce775..dfd1a18f5a10 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-> @@ -127,87 +127,94 @@ spi_flash: flash@0 { /* MT25QU512A */
->   		spi-tx-bus-width = <4>;
->   		spi-rx-bus-width = <4>;
->   		spi-max-frequency = <40000000>; /* 40MHz */
-> -		partition@0 {
-> -			label = "Image Selector";
-> -			reg = <0x0 0x80000>; /* 512KB */
-> -			read-only;
-> -			lock;
-> -		};
-> -		partition@80000 {
-> -			label = "Image Selector Golden";
-> -			reg = <0x80000 0x80000>; /* 512KB */
-> -			read-only;
-> -			lock;
-> -		};
-> -		partition@100000 {
-> -			label = "Persistent Register";
-> -			reg = <0x100000 0x20000>; /* 128KB */
-> -		};
-> -		partition@120000 {
-> -			label = "Persistent Register Backup";
-> -			reg = <0x120000 0x20000>; /* 128KB */
-> -		};
-> -		partition@140000 {
-> -			label = "Open_1";
-> -			reg = <0x140000 0xC0000>; /* 768KB */
-> -		};
-> -		partition@200000 {
-> -			label = "Image A (FSBL, PMU, ATF, U-Boot)";
-> -			reg = <0x200000 0xD00000>; /* 13MB */
-> -		};
-> -		partition@f00000 {
-> -			label = "ImgSel Image A Catch";
-> -			reg = <0xF00000 0x80000>; /* 512KB */
-> -			read-only;
-> -			lock;
-> -		};
-> -		partition@f80000 {
-> -			label = "Image B (FSBL, PMU, ATF, U-Boot)";
-> -			reg = <0xF80000 0xD00000>; /* 13MB */
-> -		};
-> -		partition@1c80000 {
-> -			label = "ImgSel Image B Catch";
-> -			reg = <0x1C80000 0x80000>; /* 512KB */
-> -			read-only;
-> -			lock;
-> -		};
-> -		partition@1d00000 {
-> -			label = "Open_2";
-> -			reg = <0x1D00000 0x100000>; /* 1MB */
-> -		};
-> -		partition@1e00000 {
-> -			label = "Recovery Image";
-> -			reg = <0x1E00000 0x200000>; /* 2MB */
-> -			read-only;
-> -			lock;
-> -		};
-> -		partition@2000000 {
-> -			label = "Recovery Image Backup";
-> -			reg = <0x2000000 0x200000>; /* 2MB */
-> -			read-only;
-> -			lock;
-> -		};
-> -		partition@2200000 {
-> -			label = "U-Boot storage variables";
-> -			reg = <0x2200000 0x20000>; /* 128KB */
-> -		};
-> -		partition@2220000 {
-> -			label = "U-Boot storage variables backup";
-> -			reg = <0x2220000 0x20000>; /* 128KB */
-> -		};
-> -		partition@2240000 {
-> -			label = "SHA256";
-> -			reg = <0x2240000 0x40000>; /* 256B but 256KB sector */
-> -			read-only;
-> -			lock;
-> -		};
-> -		partition@2280000 {
-> -			label = "Secure OS Storage";
-> -			reg = <0x2280000 0x20000>; /* 128KB */
-> -		};
-> -		partition@22A0000 {
-> -			label = "User";
-> -			reg = <0x22A0000 0x1d60000>; /* 29.375 MB */
-> +
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			partition@0 {
-> +				label = "Image Selector";
-> +				reg = <0x0 0x80000>; /* 512KB */
-> +				read-only;
-> +				lock;
-> +			};
-> +			partition@80000 {
-> +				label = "Image Selector Golden";
-> +				reg = <0x80000 0x80000>; /* 512KB */
-> +				read-only;
-> +				lock;
-> +			};
-> +			partition@100000 {
-> +				label = "Persistent Register";
-> +				reg = <0x100000 0x20000>; /* 128KB */
-> +			};
-> +			partition@120000 {
-> +				label = "Persistent Register Backup";
-> +				reg = <0x120000 0x20000>; /* 128KB */
-> +			};
-> +			partition@140000 {
-> +				label = "Open_1";
-> +				reg = <0x140000 0xC0000>; /* 768KB */
-> +			};
-> +			partition@200000 {
-> +				label = "Image A (FSBL, PMU, ATF, U-Boot)";
-> +				reg = <0x200000 0xD00000>; /* 13MB */
-> +			};
-> +			partition@f00000 {
-> +				label = "ImgSel Image A Catch";
-> +				reg = <0xF00000 0x80000>; /* 512KB */
-> +				read-only;
-> +				lock;
-> +			};
-> +			partition@f80000 {
-> +				label = "Image B (FSBL, PMU, ATF, U-Boot)";
-> +				reg = <0xF80000 0xD00000>; /* 13MB */
-> +			};
-> +			partition@1c80000 {
-> +				label = "ImgSel Image B Catch";
-> +				reg = <0x1C80000 0x80000>; /* 512KB */
-> +				read-only;
-> +				lock;
-> +			};
-> +			partition@1d00000 {
-> +				label = "Open_2";
-> +				reg = <0x1D00000 0x100000>; /* 1MB */
-> +			};
-> +			partition@1e00000 {
-> +				label = "Recovery Image";
-> +				reg = <0x1E00000 0x200000>; /* 2MB */
-> +				read-only;
-> +				lock;
-> +			};
-> +			partition@2000000 {
-> +				label = "Recovery Image Backup";
-> +				reg = <0x2000000 0x200000>; /* 2MB */
-> +				read-only;
-> +				lock;
-> +			};
-> +			partition@2200000 {
-> +				label = "U-Boot storage variables";
-> +				reg = <0x2200000 0x20000>; /* 128KB */
-> +			};
-> +			partition@2220000 {
-> +				label = "U-Boot storage variables backup";
-> +				reg = <0x2220000 0x20000>; /* 128KB */
-> +			};
-> +			partition@2240000 {
-> +				label = "SHA256";
-> +				reg = <0x2240000 0x40000>; /* 256B but 256KB sector */
-> +				read-only;
-> +				lock;
-> +			};
-> +			partition@2280000 {
-> +				label = "Secure OS Storage";
-> +				reg = <0x2280000 0x20000>; /* 128KB */
-> +			};
-> +			partition@22A0000 {
-> +				label = "User";
-> +				reg = <0x22A0000 0x1d60000>; /* 29.375 MB */
-> +			};
->   		};
->   	};
->   };
+> diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> index 93ae349cf9e9..5cbb34d0b61b 100644
+> --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> @@ -8,8 +8,6 @@ title: Xilinx Versal clock controller
+>   
+>   maintainers:
+>     - Michal Simek <michal.simek@amd.com>
+> -  - Jolly Shah <jolly.shah@xilinx.com>
+> -  - Rajan Vaja <rajan.vaja@xilinx.com>
+>   
+>   description: |
+>     The clock controller is a hardware block of Xilinx versal clock tree. It
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml b/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+> index 6b62d5d83476..87ff9ee098f5 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+> @@ -8,7 +8,6 @@ title: Synopsys DesignWare Universal Multi-Protocol Memory Controller
+>   
+>   maintainers:
+>     - Krzysztof Kozlowski <krzk@kernel.org>
+> -  - Manish Narani <manish.narani@xilinx.com>
+>     - Michal Simek <michal.simek@amd.com>
+>   
+>   description: |
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml b/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
+> index 7864a1c994eb..75143db51411 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
+> @@ -8,7 +8,6 @@ title: Zynq A05 DDR Memory Controller
+>   
+>   maintainers:
+>     - Krzysztof Kozlowski <krzk@kernel.org>
+> -  - Manish Narani <manish.narani@xilinx.com>
+>     - Michal Simek <michal.simek@amd.com>
+>   
+>   description:
+> diff --git a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> index cdebfa991e06..24ad0614e61b 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> @@ -8,7 +8,6 @@ title: Xilinx ZynqMP Pinctrl
+>   
+>   maintainers:
+>     - Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> -  - Rajan Vaja <rajan.vaja@xilinx.com>
+>   
+>   description: |
+>     Please refer to pinctrl-bindings.txt in this directory for details of the
 
 Applied.
 M
@@ -288,4 +157,3 @@ Maintainer of Linux kernel - Xilinx Microblaze
 Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP/Versal ARM64 SoCs
 U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal/Versal NET SoCs
 TF-A maintainer - Xilinx ZynqMP/Versal/Versal NET SoCs
-
