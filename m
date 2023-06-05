@@ -2,110 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05295722471
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 13:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F65072247F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 13:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232217AbjFELTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 07:19:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43406 "EHLO
+        id S231285AbjFELYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 07:24:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232133AbjFELTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 07:19:46 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C019EE6
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 04:19:44 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f6d3f83d0cso47658615e9.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 04:19:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1685963983; x=1688555983;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/2GeFZgT1WnJNC/NfN0WVTSVRdYPWxbrrbu9DBaBK6U=;
-        b=kjW0C+MgFAKdQgVjJ2kuxLTkFdjuMI93nt+89oMUVU4sEkzaImU4Ao1UB2XYA++Li2
-         owjEqGJthIzUrTfr5f0Tf3Rm/iQJxly/E5p+zI/sKwfQ8Z1zpWa8pcUJzoti8akxAKpr
-         P/c+ooVhOeVXTmQ/fD1h3WaB6bL7E3AAgk1V9gNBdYNJO2Kj9sqpRc6qE2hudvi+FYCn
-         RmVD6i0xiInGI2GZyPudWSuRZ5Sv+RUGwEbH7Ob5/Dxfw/UgLZ1USa91nKKppX8lGYOx
-         wLwW61JrWzEuv1DF6oQn1O7WgLsKsYTyhlM6iHX6os2mrChpHddLKx5xe1tErP2qWYwE
-         ZrDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685963983; x=1688555983;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/2GeFZgT1WnJNC/NfN0WVTSVRdYPWxbrrbu9DBaBK6U=;
-        b=T8K7PNb4pRy3RaNU+PAaRzUUR2Ah/2+HTes6W2p9D12LroOiTuozU2pSh0gY6K1aTp
-         f/xpZAdvUUDb7O5GbhuK/SVWh6Ya+tJof8XudeJmcddxU/B8NPjiQpHO0IW3IyiHwb2c
-         GXce0dGtqD0lAGhECnmiSprysSPakywPxm3ylkXcqGwq+WtECUQL2fb985VBCL/ZcrP8
-         bJvjP2IvzciWe1GnaZapkeXlzrj5Om9cEGSLGAAneZlF7j3JuarfBTJ1sB3H/FXoOxhe
-         +JL7Uf5C72tcaqdL364L6rXfoOVdkdU25naPWxqq5ogoFmPCWSit5ymvMM25lwKTPcl5
-         +7CQ==
-X-Gm-Message-State: AC+VfDwQ6MPkRdcCUg9fOPf56kCLaIuuvkh0hQcQHHts/zYHwSVZoUgh
-        h32ibgUsz47NQ+PCZiGdWsHSDg==
-X-Google-Smtp-Source: ACHHUZ6mGNEpvRyPdwOomBqN4k3CM+jb0DWupcVuQVVUi4/vhJIrU2g7E8GK/nmWc2Q2KOGB8Trk/w==
-X-Received: by 2002:a05:600c:b43:b0:3f5:ffe2:91c0 with SMTP id k3-20020a05600c0b4300b003f5ffe291c0mr8173985wmr.0.1685963983279;
-        Mon, 05 Jun 2023 04:19:43 -0700 (PDT)
-Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id y24-20020a7bcd98000000b003f42314832fsm10406288wmj.18.2023.06.05.04.19.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 04:19:42 -0700 (PDT)
-Message-ID: <18921e62-e7f9-f6ff-7657-e755335a81ba@monstr.eu>
-Date:   Mon, 5 Jun 2023 13:19:41 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH] dt-bindings: usb: xilinx: Replace Manish by Piyush
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com, piyush.mehta@amd.com
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S231418AbjFELYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 07:24:49 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E1B4EA;
+        Mon,  5 Jun 2023 04:24:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hd+zEJMYfEb88bm25iwmEHSAuZekPxM6ugTVvGhEdGRUcekiHVLM6kkmFB5z8qKb+WiHmLe18MvwJHKOp3mSkAhf2N1M2OGf0uYT5Q7eyDOxriK6OgPQdX+58qNzBppJL+8hkt5GuLutFpp+tyqBIpVDPpYkMUYtsr1caf/ZJtAs89HyXjRBBG/Ejeq6pEm3TdfQKA/a7e0qeaXiMdzvGaI026sHhwd10jOxKDkObu54d9QjTg9p4f3gbTOJpON9HmKuyH0L0oJze9vm9XUxEeO8o+chUuTDFZZJonv88Y+mGk2sRSOjGhusZw+IZgsfZuHKnszipgraM8xA03vIAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u9IfMW9Wb8lXcRnDo0SY1I0Phx0iEfo/RzwYxM9pMGM=;
+ b=CudDDZ+pwED9FNf9HJJGw+LsBH8erdL3hBaQjIqv6Tnp+rbn9WIeTBv0fDRV2KE6TwsaZEAC5PQeu6OssgG/z39Ri7w9nBQQwhNjWd6RmZLA8AOYFMz/4fvR9Kx7TnMWziSV+hbQYO4WKcM3Y2RN/TVkvuQpgtHA6eG7P8F7LuvR0KMQeExCqjTR8ASzhWZZ55hQHttmkgiHXeqrrSmAJ9+xYGyrsJTmxZgtsALaeFowxaFHY/qAIDZO90Fuarcb+VmBvyQjpP+PiIQeWNUUMyKiinQyGmMZKluABvUrKZYhp6JF8A74AC8ghxTi6fC9nA1+A1dCSjJ2EbHXsbJSuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u9IfMW9Wb8lXcRnDo0SY1I0Phx0iEfo/RzwYxM9pMGM=;
+ b=frRGGHKaL1Q+kDgi5vEbw4Z85frSQVQXYZXikYh1wxTn0bAfNguTFqLfbBCP3KzBdKxh5OSmaJAVQA4GpH/Qh1eTYoc9bcsg07gslSQglo52+7q7BqkkzkKED+x2+cBYmYS+Fo6JTrTHNI/k79d0Q1uLK5owFLFtf4MBbGIG3DI=
+Received: from BN9PR03CA0768.namprd03.prod.outlook.com (2603:10b6:408:13a::23)
+ by SJ2PR12MB8739.namprd12.prod.outlook.com (2603:10b6:a03:549::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.31; Mon, 5 Jun
+ 2023 11:24:42 +0000
+Received: from BN8NAM11FT087.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13a:cafe::35) by BN9PR03CA0768.outlook.office365.com
+ (2603:10b6:408:13a::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
+ Transport; Mon, 5 Jun 2023 11:24:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT087.mail.protection.outlook.com (10.13.177.24) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.33 via Frontend Transport; Mon, 5 Jun 2023 11:24:42 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 5 Jun
+ 2023 06:24:01 -0500
+From:   Michal Simek <michal.simek@amd.com>
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        Harini Katakam <harini.katakam@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-References: <504444f5c2f4e725ac39cba1d72032d5a00c7cda.1684828805.git.michal.simek@amd.com>
- <34a95a76-97f9-517f-e09b-a74a06d8da34@linaro.org>
-From:   Michal Simek <monstr@monstr.eu>
-In-Reply-To: <34a95a76-97f9-517f-e09b-a74a06d8da34@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        "Radhey Shyam Pandey" <radhey.shyam.pandey@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        Tanmay Shah <tanmay.shah@amd.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v3 0/1] arm64: zynqmp: Misc zynqmp changes
+Date:   Mon, 5 Jun 2023 13:23:57 +0200
+Message-ID: <cover.1685964230.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=881; i=michal.simek@amd.com; h=from:subject:message-id; bh=ExAoccWAoaRFQsAo6gJT+hg5NRnjbplpAi4wlzIenLg=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpTao8fZH/B2/d1z/VLyZuudy1ZvZLP3zGtU1PXsq4g4/ eZYne/2jlgWBkEmBlkxRRZpmytn9lbOmCJ88bAczBxWJpAhDFycAjCRuRsZ5soccDyxUvZJwQHj K/k/D1kdPKz4WYdhDs/Orafn2f6fUzx7/U/vcw94a/xLOwA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT087:EE_|SJ2PR12MB8739:EE_
+X-MS-Office365-Filtering-Correlation-Id: e87b74f0-ebe6-4b5e-c952-08db65b77531
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: p5yroPk1ecz3q6ZByEs1EQf7GL9qG+Yl3IPnG6s1aPrRGpeavbfEwJPyN1ySGnFVRq8Sfkh4V9ZsbLWLvTs7Tjvqf0i1rEObNOLx7mal4GPRXAIQR0DhmUli0pAUYp2PACXbB4321C9yZSshcYon0++g3VjLHOanbVQtflv2H3j80wrIcZU6v7Jd2oyu5H7Ao4L5wYE7wekix/jWXalpWta/LrL4BPukFPrsRZ0Kr5QFKL0yG2TJBrQpmmcdQreQQW+n7CzhDL1B283nSLlpf5Xew0Hhcjfj6ZPgBaw+WVeg/H63W0Pv+MVJWNJ7mhDtFHB71Cl951jwK60s7VU0riZlnyPnrEX9vi4DxZ3gOIviP+HH3m34FPGzfhmJLElWiAE2bvnf4UkMv3jWFOY+KBjNG8VhwEiyl13w+2gUzdKYsKomzTNXKk1Xi66hW4vgRbsVs5szItiheCZ97QvwfHNtPRiMpprd7pbCswg2P1DHKygXp4aFT4Nxu1S56s8YB4me4VK8K+04SmjA7fVSNlnJyFu72NkNTLldKlWHuAcVC2m5gzzjKmNpmYO/M8VdGW5Ro9SEgLwPZG88nVxmBIV8hk7TVzOKU0xAEh8sXmVHr32XUWcmnuVMa0DBi3QlwGwD33g6n45JCrDhF3ec2hqCxtYGtmR5oSH5PE+Uu/XRR8VtHwpV3HC8/mLz5oUcfgVs3fnpgrg7+JLGbPwA5a7pA6i/xSqwKrOMyjPWqKy++YCSbu0aSj5qx3ZKwdNvrYhmJvq23MUK6iIrJYRRRA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(346002)(396003)(39860400002)(451199021)(46966006)(40470700004)(36840700001)(41300700001)(8936002)(4326008)(8676002)(81166007)(82740400003)(356005)(110136005)(70206006)(70586007)(5660300002)(7416002)(44832011)(54906003)(316002)(36860700001)(478600001)(47076005)(82310400005)(83380400001)(40460700003)(426003)(4744005)(2906002)(2616005)(336012)(40480700001)(86362001)(6666004)(966005)(36756003)(186003)(26005)(16526019)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2023 11:24:42.2206
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e87b74f0-ebe6-4b5e-c952-08db65b77531
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT087.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8739
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+the series is syncing the latest dt changes based on board status and the
+latest DT schema.
+The patches are based on
+https://lore.kernel.org/all/20230321070619.29440-1-parth.gajjar@amd.com/
 
-On 6/2/23 15:16, Krzysztof Kozlowski wrote:
-> Resending as my previous email probably got lost. If you got it twice,
-> apologies.
+I have applied patches which were reviewed already to have smaller series.
+Patches can be found https://github.com/Xilinx/linux-xlnx/tree/zynqmp/dt
+or they are in Linux-next already.
 
-I got also the first one.
+v1 is at
+https://lore.kernel.org/r/7d034b9e-e4e6-5d72-8b37-78e25918aa59@amd.com.
 
-> 
-> On 23/05/2023 10:00, Michal Simek wrote:
->> Manish no longer works for AMD/Xilinx and there is also no activity from
->> him. That's why proposing Piyush as the best candidate instead.
->>
->> Signed-off-by: Michal Simek <michal.simek@amd.com>
->> ---
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+v2 is at
+https://lore.kernel.org/r/cover.1684767562.git.michal.simek@amd.com
 
-Anyway I will take it via my tree and soc tree.
+Thanks,
+Michal
 
-Applied.
-M
+Changes in v3:
+- Add missing cache-unified
+
+Changes in v2:
+- Update commit message to remove Linux part - reported by Laurent
+
+Radhey Shyam Pandey (1):
+  arm64: zynqmp: Add L2 cache nodes
+
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 -- 
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP/Versal ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal/Versal NET SoCs
-TF-A maintainer - Xilinx ZynqMP/Versal/Versal NET SoCs
+2.36.1
+
