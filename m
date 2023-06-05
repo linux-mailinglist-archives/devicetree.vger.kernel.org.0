@@ -2,81 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5218C72253B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4D17722546
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jun 2023 14:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231866AbjFEMIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 08:08:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
+        id S233270AbjFEMKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 08:10:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbjFEMIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:08:22 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E6B92;
-        Mon,  5 Jun 2023 05:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685966901; x=1717502901;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=dQT6oVcoi6OibIBbA3hTG2i3vMqElgYwkRHP4oreT70=;
-  b=Jy9z2fXDE2qtQ1lqdFjdSSv3OFFyUsvnrDAtls8Lz7O+vre+hby6wRkb
-   2eg8yY1nJdM3WDrNHMwdbYK7oxxIMCYD4ihvxIyOHM2tS441oGoXrHVcu
-   SS4dQs2a3WOapQ+NrPC61tcGW9gNEHhnvA20BLNl3fqcjBe9U6rTJUPKS
-   lHQu1lNA2pkYLeXve66pfzLyGvUxaurrkQDe6HUL9nDb5SsTa8bxx6wli
-   0bAALD/ykGl0iENyxunBdInRUkaZr7Oti9OIQ1MESnCMTUEmcsbPquKaL
-   hKFt/9c7QZZXEyBPYPWhX+sMJm/HASBa3v7x8mMl9K0V211OR5bow1g/a
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; 
-   d="scan'208";a="214645686"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Jun 2023 05:08:19 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 5 Jun 2023 05:07:46 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 5 Jun 2023 05:07:39 -0700
-Message-ID: <3e262485-bf5f-1a98-e399-e02add3eaa89@microchip.com>
-Date:   Mon, 5 Jun 2023 14:07:32 +0200
+        with ESMTP id S230296AbjFEMKc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 08:10:32 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EABA392;
+        Mon,  5 Jun 2023 05:10:30 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 355CAKPo022936;
+        Mon, 5 Jun 2023 07:10:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685967020;
+        bh=Bna0OJEO37zY8GKg8ty2AAFUPBuJk2joFarkAdMMNVo=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=i7S3K7PWMO3QWBxvtxbJZgfCEcjiQRna9Ggr3+WTjQre3WcvAZxNuF9bim6w0ttJ+
+         HaUKYhUOY8b56dar5WEWdWDHgihMYan3DYGUc02Ce1IWid0gB82pQhuZfAtGJ1w4no
+         Q30f1OnB9/vl1v5ZWYdlyz+5EFI+2fwvt+CzTLjg=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 355CAK5h095221
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Jun 2023 07:10:20 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ Jun 2023 07:10:20 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 Jun 2023 07:10:20 -0500
+Received: from [172.24.145.152] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 355CAH5N021196;
+        Mon, 5 Jun 2023 07:10:17 -0500
+Message-ID: <e420c3dd-033b-b0db-ecfa-7165b9990270@ti.com>
+Date:   Mon, 5 Jun 2023 17:40:16 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 21/21] net: macb: add support for gmac to sam9x7
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2: Change CPTS clock parent
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Varshini Rajendran <varshini.rajendran@microchip.com>,
-        <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <gregkh@linuxfoundation.org>,
-        <linux@armlinux.org.uk>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <sre@kernel.org>, <broonie@kernel.org>,
-        <arnd@arndb.de>, <gregory.clement@bootlin.com>,
-        <sudeep.holla@arm.com>, <balamanikandan.gunasundar@microchip.com>,
-        <mihai.sain@microchip.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-CC:     <Hari.PrasathGE@microchip.com>, <cristian.birsan@microchip.com>,
-        <durai.manickamkr@microchip.com>, <manikandan.m@microchip.com>,
-        <dharma.b@microchip.com>, <nayabbasha.sayed@microchip.com>,
-        <balakrishnan.s@microchip.com>
-References: <20230603200243.243878-1-varshini.rajendran@microchip.com>
- <20230603200243.243878-22-varshini.rajendran@microchip.com>
- <be3716e0-383f-e79a-b441-c606c0e049df@linaro.org>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <be3716e0-383f-e79a-b441-c606c0e049df@linaro.org>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vigneshr@ti.com>, <kristo@kernel.org>
+References: <20230605110443.84568-1-n-francis@ti.com>
+ <20230605114924.56ccpd6rvddnr463@undying>
+From:   Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <20230605114924.56ccpd6rvddnr463@undying>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,41 +68,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 at 08:42, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> On 03/06/2023 22:02, Varshini Rajendran wrote:
->> From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Hi Nishanth
+
+On 05/06/23 17:19, Nishanth Menon wrote:
+> On 16:34-20230605, Neha Malcom Francis wrote:
+>> MAIN_PLL0 has a flag set in DM (Device Manager) that removes it's
+>> capability to re-initialise clock frequencies. CPTS and RGMII has
+>> MAIN_PLL3 as their parent which does not have this flag. While RGMII
+>> needs this reinitialisation to default frequency to be able to get
+>> 250MHz with its divider, CPTS can not get its required 200MHz with its
+>> divider. Thus, move CPTS clock parent on J721S2 from MAIN_PLL3_HSDIV1 to
+>> MAIN_PLL0_HSDIV6.
 >>
->> Add support for GMAC in sam9x7 SoC family
+>> (Note: even GTC will be moved from MAIN_PLL3 to MAIN_PLL0 in U-Boot side
+>> for the same reason)
 >>
->> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
->> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
 >> ---
->>   drivers/net/ethernet/cadence/macb_main.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
->> index 29a1199dad14..609c8e9305ba 100644
->> --- a/drivers/net/ethernet/cadence/macb_main.c
->> +++ b/drivers/net/ethernet/cadence/macb_main.c
->> @@ -4913,6 +4913,7 @@ static const struct of_device_id macb_dt_ids[] = {
->>        { .compatible = "microchip,mpfs-macb", .data = &mpfs_config },
->>        { .compatible = "microchip,sama7g5-gem", .data = &sama7g5_gem_config },
->>        { .compatible = "microchip,sama7g5-emac", .data = &sama7g5_emac_config },
->> +     { .compatible = "microchip,sam9x7-gem", .data = &sama7g5_gem_config },
+>>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 2 ++
+>>   arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 ++
 > 
-> These are compatible, aren't they? Why do you need new entry?
+> 
+> Is this the only device with this change? or are we doing that across
+> the board? if so, could you please do this in a single series so that we
+> don't have a mix?
+> 
 
-The hardware itself is different, even if the new features are not 
-supported yet in the macb driver.
-The macb driver will certainly evolve in order to add these features so 
-we decided to match a new compatible string all the way to the driver.
+Currently, this is the only device that has moved this flag in DM side. 
+None of the other devices (except for J784S4 which also made a similar 
+change both in DM and U-BOOT) have this change in flag for the upcoming 
+firmware release.
 
-Best regards,
-   Nicolas
-
+>>   2 files changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>> index 2dd7865f7654..331e0c9b4db8 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>> @@ -738,6 +738,8 @@ cpts@310d0000 {
+>>   			reg-names = "cpts";
+>>   			clocks = <&k3_clks 226 5>;
+>>   			clock-names = "cpts";
+>> +			assigned-clocks = <&k3_clks 226 5>; /* NAVSS0_CPTS_0_RCLK */
+>> +			assigned-clock-parents = <&k3_clks 226 7>; /* MAIN_0_HSDIVOUT6_CLK */
+>>   			interrupts-extended = <&main_navss_intr 391>;
+>>   			interrupt-names = "cpts";
+>>   			ti,cpts-periodic-outputs = <6>;
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+>> index a353705a7463..b55a3e9daf85 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+>> @@ -333,6 +333,8 @@ cpts@3d000 {
+>>   			reg = <0x0 0x3d000 0x0 0x400>;
+>>   			clocks = <&k3_clks 29 3>;
+>>   			clock-names = "cpts";
+>> +			assigned-clocks = <&k3_clks 29 3>; /* CPTS_RFT_CLK */
+>> +			assigned-clock-parents = <&k3_clks 29 5>; /* MAIN_0_HSDIVOUT6_CLK */
+>>   			interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
+>>   			interrupt-names = "cpts";
+>>   			ti,cpts-ext-ts-inputs = <4>;
+>> -- 
+>> 2.34.1
+>>
+> 
 
 -- 
-Nicolas Ferre
-
+Thanking You
+Neha Malcom Francis
