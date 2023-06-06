@@ -2,110 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C49CA724ABB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B1A724AC3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:02:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233844AbjFFSB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:01:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54610 "EHLO
+        id S233537AbjFFSCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233537AbjFFSB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:01:27 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8A2D3
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:01:26 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S237728AbjFFSCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:02:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDD31706;
+        Tue,  6 Jun 2023 11:02:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 849A085BC7;
-        Tue,  6 Jun 2023 20:01:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1686074484;
-        bh=ZkrXtW7QXzDGiDCI1hv3GtHU5o9XqNlgPIISeVGTLJY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=krHPc8w9DpiMpw6oWX2aYaHd+/GhJyHD2uS06pATYZ08fMyH3HJcVToh+FzoHpiGY
-         U2RSdo1l+NUpu4Ay0btWu0G/jp6a9gMhu965H/Y47pQnuNO6KPTyH6n0We3R5vCusU
-         xkWTFE2YU8DeCHHb7hdbumOfmQ2NSZRt0VbfBrOBoGGu8A+ItoM/GFKEbROxCe1oBk
-         GwvTOAHeZ6LpkMqaOncE4YZ0ROvcHQQ+sEgbbIMotqZHVtg9JjpCjCjFRtDAmM+1nm
-         8Cf6XjRGiZ8v6w4WYfvDN3RwXucaSrWjoXb5rUu2Z4a5awFjlZgenkMzxan5iEifpg
-         GNYLnLTGJFelQ==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 551866341A;
+        Tue,  6 Jun 2023 18:02:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EC47C433D2;
+        Tue,  6 Jun 2023 18:02:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686074559;
+        bh=dFwKeulfNWCG8UJG4DaHFrjsPfB1yDRqXJKDxpAVLdI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pNT9+YCLC8Hkr1JN7fnvDLqgrYCGGM9hXMTQFQO2Ji0Eecg1iW5gouf6kpGqSOLH8
+         jSko7oQg4HS5nopGiYhw3wzvN1u9TspP4NvwQ9K896NyndK0H7jjSSBiy3O28j2VoI
+         xuGu0Pl4Q+haguo9suObFX7Yq5YOZTJ+jOg1qCuKJARORdW3qr92YNxwIEby5iqZPy
+         Wd5qHY9+3d7V9hjjvl1YpePfqQLShPBKx3PEeMm1c3BRjd9ds8nWTg7OYg6hRfX+gy
+         +fzDxMFKVPy4g3rIdPMKShA4whjcqQzQ8IXMZOm65qRdsKQvQ7xKaDzq1rQgEU2X2x
+         DCb+9JUZ3A8lg==
+Date:   Tue, 6 Jun 2023 19:02:31 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Tommaso Merciai <tomm.merciai@gmail.com>,
+        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
+        michael.roeder@avnet.eu, linuxfancy@googlegroups.com,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        kernel@dh-electronics.com, linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Fix audio routing on STM32MP15xx DHCOM PDK2
-Date:   Tue,  6 Jun 2023 20:01:12 +0200
-Message-Id: <20230606180112.215896-1-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
+        Bjorn Andersson <andersson@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add prefix
+ alliedvision
+Message-ID: <20230606-stopper-posting-0cb541626f4a@spud>
+References: <20230606155416.260941-1-tomm.merciai@gmail.com>
+ <20230606155416.260941-2-tomm.merciai@gmail.com>
+ <20230606162911.GH25679@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="K/kHIo6bma44g0Jo"
+Content-Disposition: inline
+In-Reply-To: <20230606162911.GH25679@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The audio routing flow is not correct, the flow should be from source
-(second element in the pair) to sink (first element in the pair). The
-flow now is from "HP_OUT" to "Playback", where "Playback" is source
-and "HP_OUT" is sink, i.e. the direction is swapped and there is no
-direct link between the two either.
 
-Fill in the correct routing, where "HP_OUT" supplies the "Headphone Jack",
-"Line In Jack" supplies "LINE_IN" input, "Microphone Jack" supplies "MIC_IN"
-input and "Mic Bias" supplies "Microphone Jack".
+--K/kHIo6bma44g0Jo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 34e0c7847dcf ("ARM: dts: stm32: Add DH Electronics DHCOM STM32MP1 SoM and PDK2 board")
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+On Tue, Jun 06, 2023 at 07:29:11PM +0300, Laurent Pinchart wrote:
+> Hi Tommaso,
+>=20
+> Thank you for the patch.
+>=20
+> On Tue, Jun 06, 2023 at 05:54:02PM +0200, Tommaso Merciai wrote:
+> > Add a vendor prefix entry for Allied Vision Inc.
+> > (https://www.alliedvision.com)
+> >=20
+> > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+>=20
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
-index 4709677151aac..46b87a27d8b37 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
-@@ -137,10 +137,13 @@ reg_panel_supply: regulator-panel-supply {
- 
- 	sound {
- 		compatible = "audio-graph-card";
--		routing =
--			"MIC_IN", "Capture",
--			"Capture", "Mic Bias",
--			"Playback", "HP_OUT";
-+		widgets = "Headphone", "Headphone Jack",
-+			  "Line", "Line In Jack",
-+			  "Microphone", "Microphone Jack";
-+		routing = "Headphone Jack", "HP_OUT",
-+			  "LINE_IN", "Line In Jack",
-+			  "MIC_IN", "Microphone Jack",
-+			  "Microphone Jack", "Mic Bias";
- 		dais = <&sai2a_port &sai2b_port>;
- 		status = "okay";
- 	};
--- 
-2.39.2
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
+
+--K/kHIo6bma44g0Jo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH90twAKCRB4tDGHoIJi
+0rMeAQCoIRgZojaBE1obkHs+f87CH6LARNQ5uWCzpwgpIwRbRgEA86YPQXzYLjOX
++espViovxfVXGjq3GGjrrDbaO3szOgk=
+=b4vR
+-----END PGP SIGNATURE-----
+
+--K/kHIo6bma44g0Jo--
