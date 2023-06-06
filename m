@@ -2,130 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F69F7243B1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9B6F7243C1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237990AbjFFNHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 09:07:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35854 "EHLO
+        id S237896AbjFFNIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 09:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238018AbjFFNHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:07:19 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16379171D;
-        Tue,  6 Jun 2023 06:06:58 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-977d7bdde43so472023166b.0;
-        Tue, 06 Jun 2023 06:06:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686056785; x=1688648785;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hbRuTKSJa327MMe46wnpPr1MlEYQnbVCq5j+kBpMA9Y=;
-        b=XYNENxLWJV8LmgOmo72mYj7Nl1w0IBGKQ2Za2sue8MnQicolz86Roa5piUa3OOJ54R
-         eNaBhIz3GLPwy8672KLztE/rFjNweBMBZrdfNMF1aOP74EBKUZmzcAGC70QObyVeYzLY
-         Xsu2VWaxK6oPMEWykWD5Vv+SDqxDMA3Gb31HU+INDswCkQNLDW1Tpin5hE5aKHrXrvYA
-         c3JoDibc9oS6tg98o7bs8QGtgtD7YpRcSi98dPffCxm3etSPbAbEcG0J8oH4r4ur4Vav
-         fEBbIUAs75zeoFv6bANwUgiVLQ6r8BosPMkqp4I6m2ZLlJcxzp4minNDKVvzfb2rdcaX
-         CWOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686056785; x=1688648785;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hbRuTKSJa327MMe46wnpPr1MlEYQnbVCq5j+kBpMA9Y=;
-        b=TFxSsRaGQO3pXB1Ma3oSGSz1gv4evJI7jb6/thLdDdWzeZBo5TacXdS1+reuYWQxaY
-         wqi0x0PX+fbEI5zwLI0ePeexvu1ZBBItkMOAX8JoaInO+tRK027RX23M6PkXRalSaN9y
-         woCaVy4WziNYT+sTTSRIYGstcZ19DpM6H4YnTVZONeNYp5qqm1Phs0v4dhAxaFJGshdw
-         gTXOyZosTEl8C+HVa6J4mUnROmrvtL7MFHhitZvFpNmeO9eFI7ox0zo11aPYGUDI820K
-         EtX89vVKHoOXdIOrLVQVW4AFGlLsaIL+2n19WiQKkykqk9YFTTThON3Prp+nS1Jo2MtJ
-         FfZQ==
-X-Gm-Message-State: AC+VfDyw4bONOdeBvZQRm+K99AO0HNzIYUPeFiuTeZQe2Bk17JaOb/t9
-        LvE59qJwkFLrQRy/7rmpdSk=
-X-Google-Smtp-Source: ACHHUZ7pm1qriWAhP+7SOTS/XwbpjYej4j34vGXzH12ikHDckVjL75Xnty3gkDhJb6CBSH7aouretg==
-X-Received: by 2002:a17:907:9288:b0:973:87d3:80d4 with SMTP id bw8-20020a170907928800b0097387d380d4mr2464682ejc.18.1686056784862;
-        Tue, 06 Jun 2023 06:06:24 -0700 (PDT)
-Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id d18-20020a1709064c5200b0094f44bdf7acsm5487883ejw.57.2023.06.06.06.06.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 06:06:24 -0700 (PDT)
-Date:   Tue, 6 Jun 2023 15:06:22 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v2 0/3] arm64: tegra: Support Jetson Orin Nano
- Developer Kit
-Message-ID: <ZH8vTj1WXeadC2VN@orome>
-References: <20230516095850.2426604-1-thierry.reding@gmail.com>
- <168605652835.2915879.11202169691767509843.b4-ty@nvidia.com>
+        with ESMTP id S238011AbjFFNIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:08:19 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 297781703;
+        Tue,  6 Jun 2023 06:08:02 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356D7NPM076728;
+        Tue, 6 Jun 2023 08:07:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686056843;
+        bh=NuUYsHBctHkJMAM4oZx7kb45p1rXxq5XgORegvDCYw4=;
+        h=Date:From:Subject:To:CC:References:In-Reply-To;
+        b=pIVjpiVCW0mKGIOZujeX/n3m6RaCdFugM9CfU+/F2P2BcQYVv+uuhArBgxkwu8yz4
+         bUckort9opdNxBmjAvL2YqM/scSTqxGEx1/x06o7UVWfSYDchPNtpgo++j/sfObGJt
+         dG7IgtXeT2Nfn5QhnaDMrdH97Aaju5jiMTW5z1wA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356D7N1X111130
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Jun 2023 08:07:23 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 08:07:22 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Jun 2023 08:07:23 -0500
+Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356D7IMd005842;
+        Tue, 6 Jun 2023 08:07:19 -0500
+Message-ID: <d8336b60-d7cc-0479-2a70-2f707c0a1156@ti.com>
+Date:   Tue, 6 Jun 2023 18:37:18 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="s+5FPmNXuKyMtEl3"
-Content-Disposition: inline
-In-Reply-To: <168605652835.2915879.11202169691767509843.b4-ty@nvidia.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+Subject: Re: [PATCH 0/6] arm64: dts: ti: k3-j721s2: Mux fixups and eeprom misc
+To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Nitin Yadav <n-yadav@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>, <u-kumar1@ti.com>
+References: <20230602153554.1571128-1-nm@ti.com>
+Content-Language: en-US
+In-Reply-To: <20230602153554.1571128-1-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks Nishanth
 
---s+5FPmNXuKyMtEl3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 6/2/2023 9:05 PM, Nishanth Menon wrote:
+> Hi,
+>
+> This is an expansion of Sinthu's series[1] for J721s2, fixing a few aspects
+> of his patches and adding uart, eeprom detection etc.
+>
+> This set of changes picksup fixes seen in u-boot and else where an
+> consolidates into kernel as the definitive device tree description
+>
+> Testing logs: https://gist.github.com/nmenon/2acfc566d0b215fe941c42317d9ac955
+>
+> Changes:
+> * Fixups to the wkup_pmx0 patch to limit stable tree to 6.3
+> * Fixups to Rpi header patch for mcu_i2c0 pinmux
+> * Additional patches for eeprom and wkup/mcu uarts.
+>
+> -- Sinthu's series history:
+> Changes in V5[1]:
+> -Remove main padconfig split patch which is not required.
+>
+> Changes in V4:
+> - Address review comments
+>    * Update main and wakeup domain IO padconfig
+>    * Correct the pinctrl node offsets as per the newly split wkup_pmx*
+>      and main_pmx* nodes.
+>
+> Changes in V3:
+> - Add Fixes tag.
+>
+> Changes in V2:
+> - Update commit description.
+> - Update the offset value to 0x194 as 0x190 is the last register of the
+>    IO PADCONFIG register set.
+>
+> V1: https://lore.kernel.org/all/20230123135831.4184-1-sinthu.raja@ti.com/
+> V2: https://lore.kernel.org/lkml/20230124120311.7323-1-sinthu.raja@ti.com/T/
+> V3: https://lore.kernel.org/linux-arm-kernel/20230316114102.3602-2-sinthu.raja@ti.com/T/
+> V4: https://lore.kernel.org/lkml/20230424081536.12123-1-sinthu.raja@ti.com/
+> V5[1]: https://lore.kernel.org/linux-arm-kernel/20230504073432.6438-1-sinthu.raja@ti.com/
+>
+> Nishanth Menon (4):
+>    arm64: dts: ti: k3-am68-sk-base-board: Add uart pinmux
+>    arm64: dts: ti: k3-am68-sk-som: Enable wakeup_i2c0 and eeprom
+>    arm64: dts: ti: k3-j721s2-common-proc-board: Add uart pinmux
+>    arm64: dts: ti: k3-j721s2-som-p0: Enable wakeup_i2c0 and eeprom
+>
+> Sinthu Raja (2):
+>    arm64: dts: ti: k3-j721s2: Fix wkup pinmux range
+>    arm64: dts: ti: k3-am68-sk-base-board: Add pinmux for RPi Header
 
-On Tue, Jun 06, 2023 at 03:03:32PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
->=20
-> On Tue, 16 May 2023 11:58:47 +0200, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Hi,
-> >=20
-> > this series documents the compatible strings for the Jetson Orin Nano
-> > module and the corresponding developer kit.
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [1/3] dt-bindings: tegra: Document Jetson Orin Nano
->       commit: b4032e1726648cb156f45ae756c8730d6d39a5de
-> [2/3] dt-bindings: tegra: Document Jetson Orin Nano Developer Kit
->       commit: 5f027147e4796e9fc11083b2ad50a91c1ac36ede
 
-I've actually also applied patch 3/3. I think b4 got confused somehow
-because I applied these to different branches.
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-Thierry
 
---s+5FPmNXuKyMtEl3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmR/L04ACgkQ3SOs138+
-s6HcHRAAwCJJ6FuX1aR1sEIbsQwTOu1IX5VV/FyF94p21qvhgoc8p1yV4FYLviJJ
-aFz6VZciMKJbb1pBkbHLKn8P7VdR/8GUmPKgWCLRgTJ7dMIfW+moSsfa1xoEPrgJ
-wyVoq78cbHNUuTfRKyHHHv/VgYJuU5l+0Dw63V18P/1gP+g9HIvZKclzTpH5F64d
-f5x011E1ZT8qA/XlGumhwemRPiYz+zavIxsYwq2EItG9JtZDvx7N78ALAcfBtpwN
-LDiaz7+BfTw2jQ9VtIpA1kOIsTscVr87nQu6tcUUPDL5nNRzUAXS/wPwMQ0UpJoI
-cuAP7gJjE+nYr6MPS7gtjuqk7xfg7j4kTx3T+PqINUkMljUW/kkdVGizEeWaefaP
-eNmyRqvLDMxuhpRutgMpwwtVumIxVFNSeM3JiIvLySRcwYNEfVH62/KmAeh7XFNj
-/BRgjC7wQ2mjFWRc7LnKYlEsXjyMc4bH0x9DD2mCHgb3at261XKmZQyT4lClUh1u
-Aq0Abb583zRTWlAyhH4opuJLYWtRYqZHs1KF9KRTCVq/sU5R9Wr6e+ASbPfWcaGf
-JGFIYrmEk3Kud3thKeZ1afRqKuMpV1Ai9ooJhNsLFCI78FL8pNez3VvB6/76sImL
-6AUsNRCCUR4q3uv/zKO5YoXitUaMiYh/UUV4o97SoSfc2ONqMsU=
-=Ewu+
------END PGP SIGNATURE-----
-
---s+5FPmNXuKyMtEl3--
+>   .../boot/dts/ti/k3-am68-sk-base-board.dts     | 145 +++++++++++++++---
+>   arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi    |  22 +++
+>   .../dts/ti/k3-j721s2-common-proc-board.dts    |  99 +++++++-----
+>   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  29 +++-
+>   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  22 +++
+>   5 files changed, 255 insertions(+), 62 deletions(-)
+>
