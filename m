@@ -2,106 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DF86724918
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4625D724920
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231232AbjFFQ3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 12:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60554 "EHLO
+        id S237681AbjFFQaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 12:30:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237773AbjFFQ3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:29:22 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C13E5E;
-        Tue,  6 Jun 2023 09:29:16 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (om126253223039.31.openmobile.ne.jp [126.253.223.39])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BD44C283;
-        Tue,  6 Jun 2023 18:28:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1686068928;
-        bh=y5ixXw0zAGVCiQTHB3djsxXTl/8rQt2eWHzwOjlnJJI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lZFj9W2yBeX0SUPlggU8ByZSX6BRpJ1Fu5x0TYB+udJS1Hlv+PiLUJIi7kLtrjl0Q
-         gFDXZEjUcoVGMqzXAcVw1FCo+Q97ZEXT2ilUXspWRWumNkmseTrg66jT5TK+SB3FXI
-         0/23EoWSaGDaPXKzpQL8BCGg4NKa2ggd5jdiPPw8=
-Date:   Tue, 6 Jun 2023 19:29:11 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
-        michael.roeder@avnet.eu, linuxfancy@googlegroups.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add prefix
- alliedvision
-Message-ID: <20230606162911.GH25679@pendragon.ideasonboard.com>
-References: <20230606155416.260941-1-tomm.merciai@gmail.com>
- <20230606155416.260941-2-tomm.merciai@gmail.com>
+        with ESMTP id S238477AbjFFQ34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:29:56 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DABD10C2;
+        Tue,  6 Jun 2023 09:29:54 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356GThi3046714;
+        Tue, 6 Jun 2023 11:29:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686068984;
+        bh=xMmy6tn/ZnbYHQDsM4p6GJF+gLp6N0ez2+1xOK5ceWo=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=B19e+HwpRn3OGBMk1aE329hYMpDUcBx1NgSIS2hJXjaE4M6nedCvKWf7CQpSALgAq
+         oFJR7c5l+rSxmmQr8KR+bo3V6JeLDY5Cky9ceP5C27d9K7TsfhAUoCOtqldHAXLPQV
+         rOPJIHT5s3LjjpleBigxKA+f3cUJ60QU0ezcH2Y0=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356GThvL124198
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Jun 2023 11:29:43 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 11:29:43 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Jun 2023 11:29:43 -0500
+Received: from [10.250.37.94] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356GThI1058724;
+        Tue, 6 Jun 2023 11:29:43 -0500
+Message-ID: <ef3e537e-353a-b641-bfc5-1d7b84e2f0af@ti.com>
+Date:   Tue, 6 Jun 2023 11:29:42 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230606155416.260941-2-tomm.merciai@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V2 1/4] arm64: dts: ti: k3-am65-main: Fix mux controller
+ node name
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+References: <20230606160643.3618390-1-nm@ti.com>
+ <20230606160643.3618390-2-nm@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230606160643.3618390-2-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tommaso,
-
-Thank you for the patch.
-
-On Tue, Jun 06, 2023 at 05:54:02PM +0200, Tommaso Merciai wrote:
-> Add a vendor prefix entry for Allied Vision Inc.
-> (https://www.alliedvision.com)
+On 6/6/23 11:06 AM, Nishanth Menon wrote:
+> Add unit address to form a proper node name.
 > 
-> Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+This is only needed when the node has a reg property, which
+we have not added yet to this node. This patch instead adds a
+warning:
 
+> node has a unit name, but no reg or ranges property
+
+Andrew
+
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> No change since V1
+> V1: https://lore.kernel.org/r/20230424144949.244135-3-nm@ti.com
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 82d39ab0231b..7bd678956b3d 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -77,6 +77,8 @@ patternProperties:
->      description: ALFA Network Inc.
->    "^allegro,.*":
->      description: Allegro DVT
-> +  "^alliedvision,.*":
-> +    description: Allied Vision Inc.
->    "^allo,.*":
->      description: Allo.com
->    "^allwinner,.*":
-
--- 
-Regards,
-
-Laurent Pinchart
+>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 1adba2f2c153..f64b4e782ec3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -506,7 +506,7 @@ serdes1_clk: clock@4090 {
+>   			reg = <0x00004090 0x4>;
+>   		};
+>   
+> -		serdes_mux: mux-controller {
+> +		serdes_mux: mux-controller@4080 {
+>   			compatible = "mmio-mux";
+>   			#mux-control-cells = <1>;
+>   			mux-reg-masks = <0x4080 0x3>, /* SERDES0 lane select */
