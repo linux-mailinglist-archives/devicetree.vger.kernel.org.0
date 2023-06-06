@@ -2,417 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBF59723D1B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 11:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F0E723D55
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 11:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237390AbjFFJWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 05:22:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35198 "EHLO
+        id S237289AbjFFJ3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 05:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237408AbjFFJWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 05:22:25 -0400
-Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45DBBE6E
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 02:22:20 -0700 (PDT)
-Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
-        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
-        id a061915a-044b-11ee-a9de-005056bdf889;
-        Tue, 06 Jun 2023 12:22:16 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Tue, 6 Jun 2023 12:22:15 +0300
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jdelvare@suse.com, linux@roeck-us.net, andy.shevchenko@gmail.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] gpio: gxp: Add HPE GXP GPIO
-Message-ID: <ZH76x6E9cbfrJHeu@surfacebook>
-References: <20230606014234.29491-1-nick.hawkins@hpe.com>
- <20230606014234.29491-3-nick.hawkins@hpe.com>
+        with ESMTP id S235977AbjFFJ27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 05:28:59 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2130.outbound.protection.outlook.com [40.107.114.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E42EE5F;
+        Tue,  6 Jun 2023 02:28:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QkDjtz6zzXk0Wc+rN6WooNH1ifWFQRUI9BrAZDT7H9/EUOWXgu4z+Q0aDffIOOhi/r1mR4b/Ji0uubeePaycpQoBpz+SrDSrytApoPVwEpdIkmMP1m1IErfQ8S9U1a5E+sZQIYkWmHtfRhy2tEjzBXF0KBpy7vCZPsql51lYUWozOuwtPGNrbxY2eQFUMGOBGozOwLnM1Pp4uJm8ZZ8ZBDCPMrs3nXX3Cse0kzpIEugzfqK04XlnxpvgAd8yXq4bAXtHOa3sRoRUgpndjkqrBviqoCopQbungWUcwLyDdfISdnyAZxf9dLQCh9Dh74WD8pFet2MV13wa0PBnNiCEVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UvcoB70J/QurM5A66y72xu32KICLcmKiT/rhwoAVh1s=;
+ b=Uh4/+QyLQ6Eap8HvGUfyqvDHItvCdNoZhVLPmvLP+Oik9KGKlEmjC2qNe1S+5/UAOaz8sE69Z+YL+8Pe4AZBvWARS0IXiJ4ErG4YgomXNzxGTAeZtkgJZ9lEBEzuykcp1F9VAinBRLhMq12qpCjmBGVg+0HWo6dHTQqNDk9tttw2EN/+WsomeZTOskCya6LRZCtvkNGSXTA9fOQkTjrUl6MtSS1NtsGA/BlN1e0kHWl4GoRpb/0npKPFEeykWCt0jMx5B/QXqpdykjJexVIejkcHfyZ5fkHh9K+ogtdYfMX7WpE+/WmcVhbSCDeabAWw+s6q1miSxgm2dAU0pHJW7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UvcoB70J/QurM5A66y72xu32KICLcmKiT/rhwoAVh1s=;
+ b=l7eXYAAKS/v4puZ9e5cd0A2Jc4L7tvLC/C0pCmNlh3C2FNE1Wg1P3TpHxvHcaNFaU5e7LjmDP7tXxMYGXNPnpIjo7Nm7bLJ8q2PEyTzuFS8ACdCUe0RORf/o0UH12NLNlCMGSanYJV0KzOjrL4zlyRljD0kbIWcpEhlGapyRLt0=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYWPR01MB8808.jpnprd01.prod.outlook.com
+ (2603:1096:400:167::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
+ 2023 09:28:55 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::711d:f870:2e08:b6e1]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::711d:f870:2e08:b6e1%3]) with mapi id 15.20.6455.030; Tue, 6 Jun 2023
+ 09:28:55 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Serge Semin <fancer.lancer@gmail.com>
+CC:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "kishon@kernel.org" <kishon@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v16 10/22] PCI: dwc: Modify PCIE_PORT_LINK_CONTROL
+ handling
+Thread-Topic: [PATCH v16 10/22] PCI: dwc: Modify PCIE_PORT_LINK_CONTROL
+ handling
+Thread-Index: AQHZgwfRIvGyi4exN022S1Uv63z/ta98MdQAgAF4aiA=
+Date:   Tue, 6 Jun 2023 09:28:55 +0000
+Message-ID: <TYBPR01MB5341D8166C735011795A369BD852A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230510062234.201499-11-yoshihiro.shimoda.uh@renesas.com>
+ <20230605105322.orc3rtgu5rr3ovot@mobilestation>
+In-Reply-To: <20230605105322.orc3rtgu5rr3ovot@mobilestation>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYWPR01MB8808:EE_
+x-ms-office365-filtering-correlation-id: 20e090f1-f9d3-4631-6dd1-08db667072fe
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: TiI29M1XHNtyJXApZqymR06dlHa0aAU4dr3DenYHtwQf69sUGcwC8ECP7ClEW67mVznK28KVVQRd9niVRbsyowgslNh9b1kd5LNVcI110sWWiXdH9Vnb8Dx11NojJ2AZDN1DcTuMe6aswq3UQ509SGYbnskZOH+E9Jouk5hGBW3Q8N7GpHBi3X7Bx8Is/+S+gTR+JZIyMzWEKo1dlFl4Gau+C5SRWE1MmthQQ4XONHDvEPP0HSddhyxyl8KRXA8Sbb+UXkGz75DAosnXSS5LRseZvRQ7pCyr2huiIxYj9gnKfB/J1vdhBFNWVf9O1m0k80HGJEJgYxpt/plV8Ydjo+EyeNRWndDsa9VpmuQMAzw7Su07zeWNgvn7az7fNXkf6gBb/qtIHzE0ixCv7tSBZSShTFJuB0SIvFwmvR1RNRRp//TPZXsv1Q3mWcaIVNFDxzlqipVQtWtGN/wydvvOyHpy65rKK3dsTTJ9/AOc6ei67S18Z6guYI6NZiJWRpoP9SJ6FXgaOQw86PwMjIwLniSBPa0zISUHo5O3AGrrll46jnohN4w+qy7uN3PUhyn354cB2JxyPXnMuEdOImv+S0kS4aFzeCWguHTzf3J/Qhxv7I9PaSBXeUXefNdhRZAJ
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(39860400002)(366004)(136003)(346002)(451199021)(54906003)(71200400001)(478600001)(5660300002)(8936002)(52536014)(7416002)(86362001)(2906002)(38070700005)(8676002)(33656002)(122000001)(4326008)(66476007)(6916009)(66556008)(64756008)(66446008)(316002)(66946007)(55016003)(76116006)(38100700002)(83380400001)(41300700001)(6506007)(9686003)(186003)(7696005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bVLtye/Abp4VBVMkLeUYlDNTd5pM9yl5c9lVHskrgq49rf3WjGxFjc8zWSfA?=
+ =?us-ascii?Q?pUmrCQeujMNYII0hFYImPDJ41XeAPZWmhIV0rf6dcaukZlXNlDU8y2yxIdy/?=
+ =?us-ascii?Q?GdSoai3rQFyXc9sEPKkICSpzPIW+X0Ng/S6eT5OsXXA+/zdT1eEaZPNJLJWm?=
+ =?us-ascii?Q?NEoFD7yIg2DccmGZGb3xn8j5MUuXEBHLExmV7gSOsLeCX7MQzfj3K0t7IPd4?=
+ =?us-ascii?Q?RlY5X62sRz++q7v/sjKVbqaqMpbO94iwkqyrgaX4BkrsMII4dx1X8JdDIprS?=
+ =?us-ascii?Q?PT8s4JDnVbRfHgXwYjnMJuH6FEZRpbvQ/JbznskBkPQNHpLoEzZ5RC/ScgAz?=
+ =?us-ascii?Q?Pp32YX9jDuSGcfFE1/nIEM91WjhJrR5ldWQZy9EGQaGIHsFsbSDvCaUVYaJJ?=
+ =?us-ascii?Q?mQhYiRj0dsvXjPsUg5R4bhMULKAKte8hkrqEBBOeGJ/USMhYF8EVn1t1s1Pr?=
+ =?us-ascii?Q?1XUiwxH5SPwejLTGcR/HLqCUxXJizG3pFKVVXS8hV1YIyKXX91/0BoKaE5sd?=
+ =?us-ascii?Q?BohIQRldBpRwP6d6dvgPPiAupKniKzdXW3Q4H0HEGGAi+3h64dELH4Ac4eOZ?=
+ =?us-ascii?Q?JBJ7OKVg+jZxVOmq1HasO1Cwp2gvCTatsIqdh6diTa6lMALd2xmpVbA8b1Y3?=
+ =?us-ascii?Q?yohkp+4FbN2RLDJgQCHRHNvu1weeWB4hCW9AxPI7tXJyxjShGnMR1a5vRsai?=
+ =?us-ascii?Q?3wMfQzDOGdoHnQtjSZmmaXrZfFtgLuH67e+wQmjzQVzPJSe439gapnkBmxaU?=
+ =?us-ascii?Q?lqxTgZ+NI6Kanh1mBQ7isvpploDNE0mGjkrzZZMg0UWNnRXawSI1MFdlpUlz?=
+ =?us-ascii?Q?Rcf33RMd9yo3KOO3CAPRN/c9gdS47ruB+ysN8vhywdp7Slvn0RuC5NsZf8qa?=
+ =?us-ascii?Q?BeR3YK6B6b4zmqjcqVMBtHH8y+N8tNuqzkLvPBK/m4Lbz9OSQTDNcz0FuB2K?=
+ =?us-ascii?Q?RxjOR3vKcpjoDktudy82mGmE90DAJoAycWVPMP8fp3A5/ldxWWIFXTZThXJp?=
+ =?us-ascii?Q?wrrw1+DWJ4JyY45yluGZGKzOuvgH++ZLGphV39OUPu4qhj58WUNbvImnUZgc?=
+ =?us-ascii?Q?27dHh2L9C8qyIA3N6K8W17iEF4HDvHLCfo32TQPUHmZ3evFjDAUuES9bmQg5?=
+ =?us-ascii?Q?PFXH3pka1FTFEKG7MXfki+GqS7fU+BdQc7+nvJyj331Mei9vF4djN4KsiAT6?=
+ =?us-ascii?Q?I64SOYP99OGFz5eB/u3Z6zIDn2p8VK/py+9mQ5Guwytnznp8yaCEjNW/TwAg?=
+ =?us-ascii?Q?qTVUJvIwR1qP5F0yxlLIAsO/lSg8CvObhjVV+EOO9UGX0ZBRNEnKSC2UrDw6?=
+ =?us-ascii?Q?u7ZomlayoMYMtEi76WjqUSqQY8YZIYK1uhKixoIdaAwoJeIu+eKRILXWVkoV?=
+ =?us-ascii?Q?CnJ1FRQsTIL0u6Syb/KVhvPkXNKAM9mGIrcxYw9aRVVnRhAQN47TYfAygVor?=
+ =?us-ascii?Q?fZ1cRZ8kNpxtnGYWcIM5ceWvDsbwAa0hnAOLEN7WIfwvvsRwvnJvispZFLMy?=
+ =?us-ascii?Q?+z30aQKfDftZrBY5zvQGuY6x5AbaVmNsPY3IbtgkmwgfXcohdGLnWAn8lElp?=
+ =?us-ascii?Q?c8DOcroVYk0unAa7vHj7FccNClVhbGqgdOl9VBg4DY1vcFfW03HRbGLVHYPJ?=
+ =?us-ascii?Q?frGY5Uv+AtFRS21VDo5N34CzRXjpRFIZGYB0jl9q7aq8EQRVdN5wc4SSZmQV?=
+ =?us-ascii?Q?B+SdFA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230606014234.29491-3-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20e090f1-f9d3-4631-6dd1-08db667072fe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2023 09:28:55.4254
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: u+REyvH8ZOs9F7If94nzC4hT2E/6qsakC+J+kOfRgxW1H+znrerRYC8maDq5lG0Jlz7PPS8kqPNDeOq+ONjST8uDSLhU5F6VnhZ7jebTDqSXdjmlgdYHQuO+u0UUnEiu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8808
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mon, Jun 05, 2023 at 08:42:31PM -0500, nick.hawkins@hpe.com kirjoitti:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> The GXP SoC supports GPIO on multiple interfaces. The interfaces are
-> CPLD and Host. The GPIOs is a combination of both physical and virtual
-> I/O across the interfaces. The gpio-gxp driver specifically covers the
-> CSM(physical), FN2(virtual), and VUHC(virtual) which are the host. The
-> gpio-gxp-pl driver covers the CPLD which takes physical I/O from the
-> board and shares it with GXP via a propriety interface that maps the I/O
-> onto a specific register area of the GXP. The drivers both support
-> interrupts but from different interrupt parents.
-
-Thank you.
-This needs some work to be done. See my comments below.
-
-...
-
-> +/* Remember last PSU config */
-
-Would be nice to add why this is a global variable.
-
-> +u8 psu_presence;
-
-...
-
-> +struct gxp_gpio_drvdata {
-> +	struct regmap *base;
-> +	struct regmap *interrupt;
-
-> +	struct gpio_chip chip;
-
-Making this the first member might save a few bytes of code.
-
-> +	int irq;
-> +};
-
-> +static struct regmap *gxp_gpio_init_regmap(struct platform_device *pdev,
-> +					   char *reg_name, u8 bits)
-> +{
-> +	struct regmap_config regmap_config = {
-> +		.reg_bits = 32,
-> +		.reg_stride = 4,
-> +		.val_bits = 32,
-> +	};
-
-Move it out and make static const.
-
-> +	void __iomem *base;
-
-> +	if (bits == 8) {
-> +		regmap_config.reg_bits = 8;
-> +		regmap_config.reg_stride = 1;
-> +		regmap_config.val_bits = 8;
-> +		regmap_config.max_register = 0xff;
-> +	}
-
-Just make two regmap configs and choose them based on the bits.
-
-> +	base = devm_platform_ioremap_resource_byname(pdev, reg_name);
-> +	if (IS_ERR(base))
-> +		return ERR_CAST(base);
-> +
-> +	regmap_config.name = reg_name;
-> +
-> +	return devm_regmap_init_mmio(&pdev->dev, base, &regmap_config);
-
-Why are you not using gpio-regmap?
-
-> +}
-
-...
-
-> +static int gxp_gpio_pl_get(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	struct gxp_gpio_drvdata *drvdata = dev_get_drvdata(chip->parent);
-> +	unsigned int val;
-
-> +	int ret = 0;
-
-Unneeded.
-
-> +	switch (offset) {
-> +	case IOP_LED1 ... IOP_LED8:
-> +		regmap_read(drvdata->base, PLREG_IOP_LED, &val);
-> +		ret = (val & BIT(offset)) ? 1 : 0;
-> +		break;
-> +	case FAN1_INST ...FAN8_INST:
-> +		regmap_read(drvdata->base, PLREG_FAN_INST, &val);
-> +		ret = (val & BIT((offset - FAN1_INST))) ? 1 : 0;
-> +		break;
-> +	case FAN1_FAIL ... FAN8_FAIL:
-> +		regmap_read(drvdata->base, PLREG_FAN_FAIL, &val);
-> +		ret = (val & BIT((offset - FAN1_FAIL))) ? 1 : 0;
-> +		break;
-> +	case PWR_BTN_INT ... SLP_INT:
-> +		regmap_read(drvdata->base, PLREG_INT_GRP5_FLAG, &val);
-> +		/* Active low */
-> +		ret = (val & BIT((offset - PWR_BTN_INT) + 16)) ? 0 : 1;
-> +		break;
-> +	case  PSU1_INST ... PSU8_INST:
-> +		regmap_read(drvdata->base, PLREG_PSU_INST, &val);
-> +		psu_presence = (u8)val;
-> +		ret = (psu_presence & BIT((offset - PSU1_INST))) ? 1 : 0;
-> +		break;
-> +	case PSU1_AC ... PSU8_AC:
-> +		regmap_read(drvdata->base, PLREG_PSU_AC, &val);
-> +		ret = (val & BIT((offset - PSU1_AC))) ? 1 : 0;
-> +		break;
-> +	case PSU1_DC ... PSU8_DC:
-> +		regmap_read(drvdata->base, PLREG_PSU_DC, &val);
-> +		ret = (val & BIT((offset - PSU1_DC))) ? 1 : 0;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-
-Obviously what needs to be done in a switch case is to assing offset adjustment
-and register name. Then here you read and return the value based on that.
-
-Same approach may be used in other switch-cases in the driver.
-
-> +	return ret;
-> +}
-
-...
-
-> +static int gxp_gpio_pl_get_direction(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	int ret = GXP_GPIO_DIR_IN;
-
-Useless variable. Return directly.
-
-> +	switch (offset) {
-> +	case IOP_LED1 ... IOP_LED8:
-> +	case LED_IDENTIFY ... LED_HEALTH_AMBER:
-> +	case ACM_FORCE_OFF:
-> +	case ACM_REQ_N:
-> +		ret = GXP_GPIO_DIR_OUT;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int gxp_gpio_pl_direction_input(struct gpio_chip *chip,
-> +				       unsigned int offset)
-> +{
-> +	int ret = -EOPNOTSUPP;
-
-Ditto.
-Also note, GPIOLIB uses ENOTSUPP.
-
-> +	switch (offset) {
-> +	case 8 ... 55:
-> +		ret = GXP_GPIO_DIR_OUT;
-> +		break;
-> +	case 59 ... 65:
-> +		ret = GXP_GPIO_DIR_OUT;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-
-Same comments as above may be applied to other function implementations in the
-driver.
-
-...
-
-> +static irqreturn_t gxp_gpio_pl_irq_handle(int irq, void *_drvdata)
-> +{
-> +	struct gxp_gpio_drvdata *drvdata = (struct gxp_gpio_drvdata *)_drvdata;
-
-Redundant casting.
-
-> +	unsigned int val, girq, i;
-> +
-> +	/* Check group 5 interrupts */
-> +
-> +	regmap_read(drvdata->base, PLREG_INT_GRP5_FLAG, &val);
-
-No error check? So it will spit a spurious interrupts here and there?
-
-> +	if (val) {
-
-Redundant conditional.
-
-> +		for_each_set_bit(i, (unsigned long *)&val, 3) {
-
-This casting is red flag. It has 3 issues. So, no. Just make the copy in the
-unsigned long type.
-
-> +			girq = irq_find_mapping(drvdata->chip.irq.domain,
-> +						i + PWR_BTN_INT);
-> +			generic_handle_irq(girq);
-
-generic_handle_domain_irq()
-
-> +		}
-> +
-> +		/* Clear latched interrupt */
-> +		regmap_update_bits(drvdata->interrupt, PLREG_INT_GRP5_FLAG,
-> +				   0xFF, 0xFF);
-
-GENMASK()
-
-> +		regmap_update_bits(drvdata->interrupt, PLREG_INT_GRP5_BASE,
-> +				   BIT(0) | BIT(2), 0);
-> +	}
-> +
-> +	/* Check group 6 interrupts */
-> +
-> +	regmap_read(drvdata->base, PLREG_INT_GRP6_FLAG, &val);
-> +
-> +	if (val & BIT(2)) {
-> +		u8 old_psu = psu_presence;
-> +
-> +		regmap_read(drvdata->base, PLREG_PSU_INST, &val);
-> +		psu_presence = (u8)val;
-> +
-> +		if (old_psu != psu_presence) {
-> +			/* Identify all bits which differs */
-> +			u8 current_val = psu_presence;
-> +			u8 old_val = old_psu;
-
-> +			for (i = 0 ; i < 8 ; i++) {
-> +				if ((current_val & 0x1) != (old_val & 0x1)) {
-
-Make them unsigned long, use bitmap_xor() or just ^ followed by
-for_each_set_bit().
-
-> +				/* PSU state has changed */
-> +					girq = irq_find_mapping(drvdata->chip.irq.domain,
-> +								i + PSU1_INST);
-> +					if (girq)
-> +						generic_handle_irq(girq);
-
-See above.
-
-> +				}
-
-> +				current_val = current_val >> 1;
-> +				old_val = old_val >> 1;
-
-No need with the above suggestion.
-
-> +			}
-> +		}
-> +	}
-> +
-> +	/* Clear latched interrupt */
-> +	regmap_update_bits(drvdata->interrupt, PLREG_INT_GRP6_FLAG,
-> +			   0xFF, 0xFF);
-
-GENMASK()
-
-> +	regmap_update_bits(drvdata->interrupt, PLREG_INT_GRP6_BASE,
-> +			   BIT(2), 0);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static struct gpio_chip plreg_chip = {
-
-Make it const and mark as a template (in the name).
-
-> +	.label			= "gxp_gpio_plreg",
-> +	.owner			= THIS_MODULE,
-> +	.get			= gxp_gpio_pl_get,
-> +	.set			= gxp_gpio_pl_set,
-> +	.get_direction = gxp_gpio_pl_get_direction,
-> +	.direction_input = gxp_gpio_pl_direction_input,
-> +	.direction_output = gxp_gpio_pl_direction_output,
-> +	.base = -1,
-> +};
-> +
-> +static struct irq_chip gxp_plreg_irqchip = {
-
-Make it const and immutable.
-
-> +	.name		= "gxp_plreg",
-> +	.irq_ack	= gxp_gpio_pl_irq_ack,
-> +	.irq_mask	= gxp_gpio_pl_irq_mask,
-> +	.irq_unmask	= gxp_gpio_pl_irq_unmask,
-> +	.irq_set_type	= gxp_gpio_pl_set_type,
-> +};
-
-...
-
-> +	psu_presence = (u8)val;
-
-Why casting?
-
-...
-
-> +	ret = devm_gpiochip_add_data(&pdev->dev, &drvdata->chip, drvdata);
-> +	if (ret < 0)
-
-What is the meaning of positive returned value? Why do we not care about it?
-
-> +		dev_err_probe(&pdev->dev, ret, "Could not register gpiochip for plreg\n");
-
-...
-
-> +	ret = platform_get_irq(pdev, 0);
-> +	if (ret < 0)
-> +		return dev_err_probe(&pdev->dev, ret, "Get irq from platform fail\n");
-
-No need to repeat what the API already messages to the user.
-
-...
-
-> +	ret = devm_request_irq(&pdev->dev, drvdata->irq, gxp_gpio_pl_irq_handle,
-> +			       IRQF_SHARED, "gxp-pl", drvdata);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-
-	return devm_request_irq(...);
-
-> +}
-
-
-...
-
-> +static int gxp_gpio_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	struct gxp_gpio_drvdata *drvdata;
-> +
-> +	/* Initialize global vars */
-> +	psu_presence = 0;
-
-> +	drvdata = devm_kzalloc(&pdev->dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, drvdata);
-
-> +	ret = gxp_gpio_pl_init(pdev);
-> +
-> +	return ret;
-
-	return gxp_...;
-
-But why that function is separate?
-
-> +}
-
-...
-
-> +++ b/drivers/gpio/gpio-gxp.c
-
-Take all above comments and apply here as well.
-
-...
-
-Split this to two patches, one per driver. It makes easier reviews and flexible
-handling of the driver maintenance.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Hello Serge,
+
+> From: Serge Semin, Sent: Monday, June 5, 2023 7:53 PM
+>=20
+> On Wed, May 10, 2023 at 03:22:22PM +0900, Yoshihiro Shimoda wrote:
+> > To improve code readability, modify PCIE_PORT_LINK_CONTROL handling.
+>=20
+> So basically you are doing the same update as in the Patch 9:
+> detaching the already implemented link width setups into a separate
+> method. Why do you split them up into the incremental updates?
+
+I thought that splitting them was review-friendly. But, it's wrong...
+
+> Just
+> squash this patch into the patch 9. The resultant patch would be an
+> atomic update and a preparation before adding the PCI_EXP_LNKCAP field
+> update. The later would lead to the fully coherent maximum link width
+> setup method in accordance with the DW PCIe hardware manual.
+
+I got it.
+
+Best regards,
+Yoshihiro Shimoda
+
+> -Serge(y)
+>=20
+> >
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > ---
+> >  drivers/pci/controller/dwc/pcie-designware.c | 40 +++++++-------------
+> >  1 file changed, 13 insertions(+), 27 deletions(-)
+> >
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci=
+/controller/dwc/pcie-designware.c
+> > index 68aefbbcd68c..5dc423dd2f21 100644
+> > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > @@ -721,28 +721,40 @@ static void dw_pcie_link_set_max_speed(struct dw_=
+pcie *pci, u32 link_gen)
+> >
+> >  static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 n=
+um_lanes)
+> >  {
+> > -	u32 lwsc;
+> > +	u32 lwsc, plc;
+> >
+> >  	if (!num_lanes)
+> >  		return;
+> >
+> > +	/* Set the number of lanes */
+> > +	plc =3D dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
+> > +	plc &=3D ~PORT_LINK_MODE_MASK;
+> > +
+> >  	/* Set link width speed control register */
+> >  	lwsc =3D dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
+> >  	lwsc &=3D ~PORT_LOGIC_LINK_WIDTH_MASK;
+> >  	switch (num_lanes) {
+> >  	case 1:
+> > +		plc |=3D PORT_LINK_MODE_1_LANES;
+> >  		lwsc |=3D PORT_LOGIC_LINK_WIDTH_1_LANES;
+> >  		break;
+> >  	case 2:
+> > +		plc |=3D PORT_LINK_MODE_2_LANES;
+> >  		lwsc |=3D PORT_LOGIC_LINK_WIDTH_2_LANES;
+> >  		break;
+> >  	case 4:
+> > +		plc |=3D PORT_LINK_MODE_4_LANES;
+> >  		lwsc |=3D PORT_LOGIC_LINK_WIDTH_4_LANES;
+> >  		break;
+> >  	case 8:
+> > +		plc |=3D PORT_LINK_MODE_8_LANES;
+> >  		lwsc |=3D PORT_LOGIC_LINK_WIDTH_8_LANES;
+> >  		break;
+> > +	default:
+> > +		dev_err(pci->dev, "num-lanes %u: invalid value\n", num_lanes);
+> > +		return;
+> >  	}
+> > +	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, plc);
+> >  	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, lwsc);
+> >  }
+> >
+> > @@ -1027,31 +1039,5 @@ void dw_pcie_setup(struct dw_pcie *pci)
+> >  	val |=3D PORT_LINK_DLL_LINK_EN;
+> >  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+> >
+> > -	if (!pci->num_lanes) {
+> > -		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+> > -		return;
+> > -	}
+> > -
+> > -	/* Set the number of lanes */
+> > -	val &=3D ~PORT_LINK_MODE_MASK;
+> > -	switch (pci->num_lanes) {
+> > -	case 1:
+> > -		val |=3D PORT_LINK_MODE_1_LANES;
+> > -		break;
+> > -	case 2:
+> > -		val |=3D PORT_LINK_MODE_2_LANES;
+> > -		break;
+> > -	case 4:
+> > -		val |=3D PORT_LINK_MODE_4_LANES;
+> > -		break;
+> > -	case 8:
+> > -		val |=3D PORT_LINK_MODE_8_LANES;
+> > -		break;
+> > -	default:
+> > -		dev_err(pci->dev, "num-lanes %u: invalid value\n", pci->num_lanes);
+> > -		return;
+> > -	}
+> > -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+> > -
+> >  	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
+> >  }
+> > --
+> > 2.25.1
+> >
