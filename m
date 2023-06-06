@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9501A7237D9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B898D723807
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231438AbjFFGis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 02:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45014 "EHLO
+        id S235213AbjFFGqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 02:46:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231410AbjFFGir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:38:47 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E76E91;
-        Mon,  5 Jun 2023 23:38:46 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f6d3f83d0cso57581545e9.2;
-        Mon, 05 Jun 2023 23:38:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686033525; x=1688625525;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6fEU/R7uNwrXrN5ufRI3K2w4J1jDo62wX5QshySlKS8=;
-        b=DwTa7+n95K1HQKKXsmzPr9gwM9zVzm4EZkE46cS0gVQdUMKT9aXwvsP+6sBT34NavM
-         5uiomYMmuRlRv7b8eWQE38KIVR6ro+YkduDcBoqzrKYe01jmcSFTwCwsLUeIXr32BAEf
-         WwQ6i3rXE8Wqc3AhzehQeBQg24EGKzT+gN8f8dptZkua+mhPB1UFasY+Rm529PTSXv1s
-         wgFqzRDeMQD8WGFuDk3cMN2+hyFKI7K35JcbycWRrqXX6QKcrJ0xLC3RodO674Yp7l5h
-         tvRVxJKYJ+Xx9+3avlD8tqrjGMRNJ+nADQ56US1cOvQu0lUpr4QWI2QIEA1e4rzY1sD6
-         vuqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686033525; x=1688625525;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6fEU/R7uNwrXrN5ufRI3K2w4J1jDo62wX5QshySlKS8=;
-        b=UX/GIr9i7ahEmeJnsUytPyl5BGyLSO4cGJLmx8EzD1DkhgYVgh1AZoXatayjsF2maQ
-         2pkmT9ysKY3G3NW2K/q5C179+whG/P/yE+xdCIR7OBmeUXS8XZ6zWObyPXbyfUG+ujra
-         lduY+RSawOF3E0d1IjdJm1Ri8LqiflS6m4f5sfScFQqXzMziDzCfNoK3WwhIE62tFcm9
-         VuNbilB3BK8CzgmVni2z2B3iQToz0oH4KIWOLFPmRCHN/7H3dSXiS/CpmazrggqQBc6y
-         BBrHmvXKqRZspVUlGvAMCcF0DN7GOruS85h+5gn5+gHgDuHAQIsGZQacjqm79k2v8SjY
-         8j3A==
-X-Gm-Message-State: AC+VfDxPkHpXHjGDgkyFTzOD5qkJjlccwd6MlirOHLxQsYl3h5coyqcY
-        UVHFygF8vumlHoqKOy/s3MY1Sg3Ec4OTDA==
-X-Google-Smtp-Source: ACHHUZ6McQEZGjaQQTvaXPkSyIOv0cPTfkqYwCLndHUKJE5szBrihG/e54vaM6kpFk9nYG4TidsD4A==
-X-Received: by 2002:a7b:c857:0:b0:3f4:447d:f74a with SMTP id c23-20020a7bc857000000b003f4447df74amr1365631wml.26.1686033524788;
-        Mon, 05 Jun 2023 23:38:44 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id k16-20020a056000005000b003079986fd71sm11707026wrx.88.2023.06.05.23.38.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 23:38:43 -0700 (PDT)
-Message-ID: <4b2fdd36-0871-ecc7-5d64-e088d7f51987@gmail.com>
-Date:   Tue, 6 Jun 2023 08:38:42 +0200
+        with ESMTP id S235342AbjFFGq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:46:28 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB97E6E;
+        Mon,  5 Jun 2023 23:46:25 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3565Llea029016;
+        Tue, 6 Jun 2023 06:45:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=sfnxKqeN6rlAEiTZ1mzOdeejWs11olEug3M+FT/MiNY=;
+ b=b0Xe3XKfZHe8zobR76t9D/B7P0fJrgnDhw756zwzVVinZ3SXQs+90upn6faMbQdFdZ2Z
+ ia8rCGw+UXS/KPPmlz/FT2mB4u+awrXbHuQTgimvJwCrnMhS6F9aYRs8mTWLusPGg81o
+ kjOtDPSVBDFrOdL4sNOVxnhj9Dkk/jchJN3sHvpA/BKaFoqB+CmYscT9C6f8r1JTl2ln
+ +tE1SZfH2sWLWt1tT3vLPYMkSd1yKb6QNUTjhCYuUnxn2VG8ro5h+lFruuqLFHIbcpgd
+ h1dWVTAM4bwrwW/jQV/As3IYPFQ5bQibdkzr7CtUJ4tTC3JoosIg5zA3m9eFztv7yhJc Fg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r1arntuq3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Jun 2023 06:45:54 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3566jrdo000595
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 6 Jun 2023 06:45:53 GMT
+Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 5 Jun 2023
+ 23:45:46 -0700
+Message-ID: <d9b6bdd9-25cd-7db2-f191-0f83dfb83816@quicinc.com>
+Date:   Tue, 6 Jun 2023 12:15:43 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8192: Fix CPUs capacity-dmips-mhz
-Content-Language: en-US, ca-ES, es-ES
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     kernel@collabora.com, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20230602183515.3778780-1-nfraprado@collabora.com>
- <01c88a42-274c-f8cf-73a6-29741579d9db@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <01c88a42-274c-f8cf-73a6-29741579d9db@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: Add support for GCC and RPMHCC
+ for SDX75
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <tglx@linutronix.de>, <maz@kernel.org>, <will@kernel.org>,
+        <robin.murphy@arm.com>, <joro@8bytes.org>, <mani@kernel.org>,
+        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux.dev>, Imran Shaik <quic_imrashai@quicinc.com>
+References: <1685982557-28326-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1685982557-28326-8-git-send-email-quic_rohiagar@quicinc.com>
+ <CAA8EJpogj0uzQdk-kDqm7Pju7Q5aXJg6FHswkJy+ugawqePWLw@mail.gmail.com>
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <CAA8EJpogj0uzQdk-kDqm7Pju7Q5aXJg6FHswkJy+ugawqePWLw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ARtj0sVEzsWWamT4rq2HGVBrnpcGfWug
+X-Proofpoint-GUID: ARtj0sVEzsWWamT4rq2HGVBrnpcGfWug
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-06_04,2023-06-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
+ phishscore=0 spamscore=0 clxscore=1011 malwarescore=0 adultscore=0
+ mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306060057
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,37 +90,102 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 6/6/2023 12:00 AM, Dmitry Baryshkov wrote:
+> On Mon, 5 Jun 2023 at 19:30, Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
+>> From: Imran Shaik <quic_imrashai@quicinc.com>
+>>
+>> Add support for GCC and RPMHCC clock nodes for SDX75 platform.
+>>
+>> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdx75.dtsi | 37 ++++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 36 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> index 3d1646b..f83eef8 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> @@ -7,6 +7,7 @@
+>>    */
+>>
+>>   #include <dt-bindings/clock/qcom,rpmh.h>
+>> +#include <dt-bindings/clock/qcom,sdx75-gcc.h>
+>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>>
+>> @@ -22,7 +23,21 @@
+>>                  reg = <0 0x80000000 0 0>;
+>>          };
+>>
+>> -       clocks { };
+>> +       clocks {
+>> +               xo_board: xo_board {
+> No underscores in node names
+>
+>> +                       compatible = "fixed-clock";
+>> +                       clock-frequency = <76800000>;
+>> +                       clock-output-names = "xo_board";
+> Why do you need this?
+>
+>> +                       #clock-cells = <0>;
+>> +               };
+>> +
+>> +               sleep_clk: sleep_clk {
+> No underscores in node names
+>
+>> +                       compatible = "fixed-clock";
+>> +                       clock-frequency = <32000>;
+>> +                       clock-output-names = "sleep_clk";
+> Why do you need this?
+>
+>> +                       #clock-cells = <0>;
+>> +               };
+>> +       };
+>>
+>>          cpus {
+>>                  #address-cells = <2>;
+>> @@ -358,6 +373,18 @@
+>>                  ranges = <0 0 0 0 0x10 0>;
+>>                  dma-ranges = <0 0 0 0 0x10 0>;
+>>
+>> +               gcc: clock-controller@80000 {
+>> +                       compatible = "qcom,sdx75-gcc";
+>> +                       reg = <0x0 0x0080000 0x0 0x1f7400>;
+>> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
+>> +                                <&sleep_clk>;
+>> +                       clock-names = "bi_tcxo",
+>> +                                     "sleep_clk";
+> As this is a new platform, it should not be using clock-names to bind
+> gcc clocks. Please use clock indices instead.
+Will update all as suggested,
 
-On 05/06/2023 10:21, AngeloGioacchino Del Regno wrote:
-> Il 02/06/23 20:35, Nícolas F. R. A. Prado ha scritto:
->> The capacity-dmips-mhz parameter was miscalculated: this SoC runs
->> the first (Cortex-A55) cluster at a maximum of 2000MHz and the
->> second (Cortex-A76) cluster at a maximum of 2200MHz.
+Thanks,
+Rohit.
+>> +                       #clock-cells = <1>;
+>> +                       #reset-cells = <1>;
+>> +                       #power-domain-cells = <1>;
+>> +               };
+>> +
+>>                  tcsr_mutex: hwlock@1f40000 {
+>>                          compatible = "qcom,tcsr-mutex";
+>>                          reg = <0x0 0x01f40000 0x0 0x40000>;
+>> @@ -520,6 +547,14 @@
+>>                          apps_bcm_voter: bcm_voter {
+>>                                  compatible = "qcom,bcm-voter";
+>>                          };
+>> +
+>> +                       rpmhcc: clock-controller {
+>> +                               compatible = "qcom,sdx75-rpmh-clk";
+>> +                               clocks = <&xo_board>;
+>> +                               clock-names = "xo";
+>> +                               #clock-cells = <1>;
+>> +                       };
+>> +
+>>                  };
+>>          };
 >>
->> In order to calculate the right capacity-dmips-mhz, the following
->> test was performed:
->> 1. CPUFREQ governor was set to 'performance' on both clusters
->> 2. Ran dhrystone with 500000000 iterations for 10 times on each cluster
->> 3. Calculated the mean result for each cluster
->> 4. Calculated DMIPS/MHz: dmips_mhz = dmips_per_second / cpu_mhz
->> 5. Scaled results to 1024:
->>     result_c0 = dmips_mhz_c0 / dmips_mhz_c1 * 1024
+>> --
+>> 2.7.4
 >>
->> The mean results for this SoC are:
->> Cluster 0 (LITTLE): 12016411 Dhry/s
->> Cluster 1 (BIG): 31702034 Dhry/s
->>
->> The calculated scaled results are:
->> Cluster 0: 426.953226899238 (rounded to 427)
->> Cluster 1: 1024
->>
->> Fixes: 48489980e27e ("arm64: dts: Add Mediatek SoC MT8192 and evaluation board 
->> dts and Makefile")
->> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>
-> 
-
-Applied, thanks
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> 
+>
