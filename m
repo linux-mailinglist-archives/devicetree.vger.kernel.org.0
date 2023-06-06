@@ -2,109 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 669CC724084
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C091C724087
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:10:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235392AbjFFLJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 07:09:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42622 "EHLO
+        id S235791AbjFFLKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 07:10:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236661AbjFFLJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:09:17 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D92C1BD7
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 04:08:08 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1b011cffe7fso27534315ad.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 04:08:08 -0700 (PDT)
+        with ESMTP id S235562AbjFFLJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:09:33 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28051100
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 04:09:11 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5147a478c38so8447172a12.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 04:09:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686049687; x=1688641687;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qVSJj1sRiRvqAoJoUbfYZTV6sidf/krCZCWHmgJCGhk=;
-        b=oWir6YuIJqL+Gp4V0Fk0VI2xVPrF4usjZ6/Xlw+2+DQYHFSkQ2ZrlnS4VOYaSXcis8
-         nqoM/nTyzPQ2MYzMhjiIIh19XVfHEh9KpH1WCL8f38Dp+u5ck7Zn1FwhJustPdB+tTvY
-         TYkYoeZ/yrCzMuh8Anlqo19kkZgwUoqXdkKMjn7i5plWwRwtCG7Qk3ubLmw0OUB5WPTq
-         eVKVGWKcnhaflts7Cbq0wBv3kUiFyi8cQca5vJLxMEdamv4UCTAP9/LB0EtrmQJb5qkb
-         6BqxjmXwvcY3Qqcxqmmq0DepdnshiPMXzKz6OLMtkNZG5TtsT0Xrv39548SbG/nrv9vD
-         9+2g==
+        d=linaro.org; s=google; t=1686049749; x=1688641749;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qHk4lqJIMcJBU3trXI4CY2TRCxArO5+ul5qmG1V8eqo=;
+        b=G15eD3KJMo3aFVqvegLN3NDwVxTxKL++spzhKVfGJ83neywWRLBRRNVPJZhl291VRQ
+         svnJLFZalIbHpcw47QVCUjguT3fC9zvyAW7UGl6b5hzg/8ZpftPlg/TjY1wVjqg3kRaK
+         uKVqnsiw3aDHP3h8PZaARSp9hJe5zQwNbn5/txstfPi1TiZYSk/CwZyk9MdIjIqy3Qso
+         iO7J4tcc4fBPTHTMSPMmC89gepIeWJ3bL245t4L78Z0cWx3ozw+eHO5jiJteKTRuBn9X
+         pQ/IJDwrEcM4B9Iv7+taNYv0pxpJUm+5IGE6P00CatGu+9jiI+8yOvXTSyoz5auwaYd/
+         kfxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686049687; x=1688641687;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qVSJj1sRiRvqAoJoUbfYZTV6sidf/krCZCWHmgJCGhk=;
-        b=g8oMPHM7/vN8szZUBiJlRwgGfnkAFom5iwh8QVc4O+wHotmAXXl2s83doXyaMRd+b1
-         Em85Mbo3hywSkgmRaajy8DKniyix7Y43++5FJsdutAkdIHa2WrGsUkyt62lNJPhTdSwy
-         yol5L/V/6cxUeaumf5ZitCauv9+2DIJ1Pl4d/AudtiWtBc0xpP2FOXmhUNodp67jbYcE
-         A5cC0I+oztaKZIHVMkOJZcu46bK4FiLoiCb6xYeAl3iYt7K/kKenB4USEIy5FK7FcpI6
-         FcYVU21JHdDNpt+SeN3XwnBVCSHw6BXZ99uuZNj1d802HOpDG3OZIvIAnOyOGUwKBqQv
-         RDgw==
-X-Gm-Message-State: AC+VfDyscPnNyhQVIac2muNuO6sYM2vlxsTb7wv9Kn52qAz1CaJP1FeS
-        CXQY4N9aTHRa3cEaFHlncW1mIw==
-X-Google-Smtp-Source: ACHHUZ6mVC+QRBEFN/QISRGq+0SEodzIsqkq5FhAjV/IBoQmblkm6QfiIf/q/U5ysSZwmO7ec2umTg==
-X-Received: by 2002:a17:902:da8c:b0:1b0:5ca0:41a8 with SMTP id j12-20020a170902da8c00b001b05ca041a8mr609279plx.39.1686049687471;
-        Tue, 06 Jun 2023 04:08:07 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id s22-20020a170902989600b0019c13d032d8sm8229012plp.253.2023.06.06.04.08.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 04:08:06 -0700 (PDT)
-Date:   Tue, 6 Jun 2023 16:38:04 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Mason Huo <mason.huo@starfivetech.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Shengyu Qu <wiagn233@outlook.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 2/3] cpufreq: dt-platdev: Add JH7110 SOC to the
- allowlist
-Message-ID: <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
-References: <20230606105656.124355-1-mason.huo@starfivetech.com>
- <20230606105656.124355-3-mason.huo@starfivetech.com>
+        d=1e100.net; s=20221208; t=1686049749; x=1688641749;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qHk4lqJIMcJBU3trXI4CY2TRCxArO5+ul5qmG1V8eqo=;
+        b=ONcscEQBMLc0Lo1dVJ+bQwrm0la7LEah5TGtAlJqBp+ZnAU/50lObWBxT4X/iFbMtv
+         a19ZFKGpdZYSs5Uu7dV8e5C9GJPppLwXl3pQVM4wBgoV7x/VOUR2fdIdaTJdK5ks4CXM
+         L+to3EUMZN/Fd9Cym7lDGBQY/2/GmgDt7avsOB9ZA1c7vQVTwMiA2c2B0TV8KT0RvYAj
+         cbuuY9Oh42Y1aNRfKEMxJ+qoNs3r/1CROs/doglyNSbNL+IUcxuL1CwAFr7NVbDV3UCf
+         RiJ8ao30BdxEjEbNhWAteQvr0HeoMBfmnjMkUWmR2RVfEki1f3tM8F+pHDtCywEK7FcQ
+         BK/g==
+X-Gm-Message-State: AC+VfDy4+Dc5ESZAFZ5GWk32btJ6DGdfjQxSITIi62rSzFNkwjMtVaBS
+        pdQa0pvC6K9a7n/LQW7XMhfczg==
+X-Google-Smtp-Source: ACHHUZ6Td/Zq2iecy9zyqO0qmTu5v5uoKcssxEATLV/trUubfg0NXZMg4drbubb11J+fBRgW9tHqwA==
+X-Received: by 2002:a17:907:60d5:b0:962:582d:89d7 with SMTP id hv21-20020a17090760d500b00962582d89d7mr1784234ejc.38.1686049749621;
+        Tue, 06 Jun 2023 04:09:09 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id d21-20020a056402517500b0050bc6c04a66sm4952793ede.40.2023.06.06.04.09.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 04:09:09 -0700 (PDT)
+Message-ID: <5bfb5573-2de4-887b-0f10-e4dd6f084c39@linaro.org>
+Date:   Tue, 6 Jun 2023 13:09:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230606105656.124355-3-mason.huo@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "richard@nod.at" <richard@nod.at>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "conor@kernel.org" <conor@kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "enachman@marvell.com" <enachman@marvell.com>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
+ <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
+ <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
+ <785368df-1881-e62e-6172-d902cee814a8@alliedtelesis.co.nz>
+ <eaf9d7cf-c9f5-a5d5-67af-c43761c3c6cf@linaro.org>
+ <4ea0b16e-0cec-00db-c598-e0364a7edef8@alliedtelesis.co.nz>
+ <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
+ <20230606094855.1ab005eb@xps-13>
+ <845924ba-d9bf-d0ec-e1f2-f721366f43c0@linaro.org>
+ <20230606122812.411b223a@xps-13>
+ <e0d14527-8147-5e8b-6a43-ee043e0d0f8b@linaro.org>
+ <d0b2cdc5-12fd-9a19-b38c-0653b4147c2b@linaro.org>
+ <20230606125724.126a4685@xps-13>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230606125724.126a4685@xps-13>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-06-23, 18:56, Mason Huo wrote:
-> Add the compatible strings for supporting the generic
-> cpufreq driver on the StarFive JH7110 SoC.
+On 06/06/2023 12:57, Miquel Raynal wrote:
 > 
-> Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
-> ---
->  drivers/cpufreq/cpufreq-dt-platdev.c | 2 ++
->  1 file changed, 2 insertions(+)
+>>
+>> Now for actual paragraph:
+>>
+>> "If yes, then it means we would need to list *all* the nand chip
+>> properties in each schema,"
+>>
+>> No, why? I don't understand. Use the same pattern as all other bindings,
+>> this is not special. Absolutely all have the same behavior, e.g.
+>> mentioned leds. You finish with unevaluatedProps and you're done, which
+>> is what I wrote here long, long time ago.
 > 
-> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-> index 338cf6cc6596..14aa8281c7f4 100644
-> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> @@ -85,6 +85,8 @@ static const struct of_device_id allowlist[] __initconst = {
->  	{ .compatible = "st-ericsson,u9500", },
->  	{ .compatible = "st-ericsson,u9540", },
->  
-> +	{ .compatible = "starfive,jh7110", },
-> +
->  	{ .compatible = "ti,omap2", },
->  	{ .compatible = "ti,omap4", },
->  	{ .compatible = "ti,omap5", },
+> Maybe because so far we did not bother referencing another schema in
+> the NAND chip nodes? For your hint to work I guess we should have, in
+> each controller binding, something along:
+> 
+>  patternProperties:
+>    "^nand@[a-f0-9]$":
+>      type: object
+> +    $ref: nand-chip.yaml#
+>      properties:
+> 
+> If yes, please ignore the series sent aside, I will work on it again
+> and send a v2.
 
-I thought I already merged it ?
+nand-controller.yaml has it, so ideally each device binding should not
+need it, because it already references nand-controller.yaml. However if
+it doesn't work, then you need nand-chip in each device binding.
 
--- 
-viresh
+Best regards,
+Krzysztof
+
