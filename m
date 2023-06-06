@@ -2,282 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4FD723C47
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:55:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12783723C68
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:59:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237326AbjFFIz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 04:55:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44708 "EHLO
+        id S236565AbjFFI71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 04:59:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237319AbjFFIzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:55:55 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B45DE8;
-        Tue,  6 Jun 2023 01:55:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686041751; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=GW0xPc4Sa1cylTuKVowWNeWjralIkTs84iUHFe2GtdvcgzCiupPhcC/egtmFxpXSbt
-    P5jV1VNjr6UeubxRyPHLHhdfCG3Zahig1tM9HYP0bofsUXXilZ/zK9hc7FCFxzFBOC71
-    JaKVOCm3rO1PhhwINKTDk2phyqm1bgrNqZ+UAEDnACuBVcPaAenEPByGiUfrxk5uK9cF
-    Epv4iCmrDOzAuwyd0r+8DGJeF9O7MKUxGINY9C/m5z18SPVbAtzXi/cTHHUtdRZiZEli
-    +yzFNHGDmqu6/x5XewOOHxWJN7cwJ6LAnvPcnwW8MuD4m6IDeKwR5vJQ3KVK1mEKEodf
-    Se7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686041751;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=BexHV/0Sl/N5FJTkcmkKNLN4abHpu5qYlg15VyapGS8=;
-    b=G0qrqe1HfEHmqoN65iw4WwAE9B/CvHenQZVy+6ZIMbvCjIE2EX3TUCBLbJ3l/oVV9m
-    OGa8sq5kTKZvvXoWb++xvxLBEObGsHDr8fG+iTVebGKNQZZcrVjxYA2HDg5eC0JVcjLP
-    SJyzL9x11PE8dFsAGq0A10IqT8B8EDLf5HhNmNnfJmxlpybuxinGxKj1uVfgrXF0L6p+
-    hgy9PJSdHecBuywZB64lghZx+n6oI7arYTiiyoQ0JTrGKGKbOKMUB4Fxx8OoTUaUda7r
-    wAXUC+5WsU8cSEOmtySyhc5BztLA8yDxp1keDEpSLrSnrMhFBKFGb/G6mLcfetuGmwp1
-    0Yxw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686041751;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=BexHV/0Sl/N5FJTkcmkKNLN4abHpu5qYlg15VyapGS8=;
-    b=nHm0deeRWOaQfsLdsAlkY4MSx9ONDFylu1nW5rl1bmU+2eJ3iCaKknXIjMVNSInO02
-    RoEBCo/iBHriaUT11HeDtzZZfAIvarlMTLRiaH+agt1f8dxGkis++f5OzHJ4TQHIgNpi
-    TuliB9fNB3b0oSjyF6Gis95KvViH1L3Yzaxbz1PWMHASdBipL4A1mFnOzhbovdy1rCyD
-    /p1vMvl8SCq9H50xS9wY4wLIkx7hjmDR5roK7dbH4DJisfUgSijjBBhLY5HaX7KYn7V9
-    Wi10yI5nKziI5FiGOyM8UOr10QhqmyGe859jtTaN0VwFFpeVIlsSZlZeQrrQo0fusEg4
-    YEyw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686041751;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=BexHV/0Sl/N5FJTkcmkKNLN4abHpu5qYlg15VyapGS8=;
-    b=zPGX7uvSTet/UZk5nNx+mYgomR+tsZc6ha73lFMFBOxhzYmv1jIyRct9ByK3kutf+R
-    xhXOrCdT5EvJn9k6YLBg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8Z+J1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.5.3 DYNA|AUTH)
-    with ESMTPSA id Z82ec2z568toDD9
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 6 Jun 2023 10:55:50 +0200 (CEST)
-Date:   Tue, 6 Jun 2023 10:55:44 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 05/14] dt-bindings: remoteproc: Add Qualcomm RPM
- processor/subsystem
-Message-ID: <ZH70kG7jZZgd9Esi@gerhold.net>
-References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
- <20230531-rpm-rproc-v1-5-e0a3b6de1f14@gerhold.net>
- <2a479fd0-1d3c-2c28-d2fd-86a8cf610cf9@linaro.org>
+        with ESMTP id S230499AbjFFI70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:59:26 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2137.outbound.protection.outlook.com [40.107.114.137])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B14E49;
+        Tue,  6 Jun 2023 01:59:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k1vxuBGrVMf3rELs7XuWUPPeOun0tFAVSCgjrYfXMawPb+S7yxULBMi0tLJ6F4Py5L2+BGTVtKXVjW+dgQtVHKJFJD09YDhN6U/u77AlkrU19QTk8GycgQaWqrAxld/9PTpzL3kewhyvEDP2Sq1hVD2dpzHi+LDpFxZtb0lOhoaP+EpgAu1xydaOhVYf5AnV1OHb3C1MTL5DuYp1YSA9bZnW/qpc5hBzJtV0Ai4up0GeH1nftx56Hy8G/FOjCyEdRMDRm4iMFfGAPgY+ZWMlz0F5TqsAeAmN3PuCSyW5MPxYviy44KHPpbApk0NoAihyb0dbPCZ3PQ0t5H0YxvaV9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kmQA9EYFeoVP4XzA0QbzFGKzSAYFgJ0ijPCcwpqKOog=;
+ b=F7bquGKD5mkwNEssRg1MxCzkJJuz1Uyo4PPQs0KRFzzUyF+S/RWYC8v9/mj0OKF7BckgX3XuXVK9w8h2It2JinvExMQUvXk6n47zqs9DL1nfd9nFg0T8H6WMh2QjnnLPyms1KGKoFLmYSD5q6zGOTR47tHQmg5b0aWDAo1M/hlmAfSlBCZw6XwRV2S5kt4GX5821hSZhFQ+qPvVjo4Bx6PL5L8UAgG2KSEyRBAi3nZJb6pcZlEKMUmf9H3A/WElOS6SJBbSHF4fMIwQJERifiho0KbsvHMFz2LZrbKdhsXk/ASf30rflSlQR9nRBd44om2pCP1i08/ZS7QbajLupcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kmQA9EYFeoVP4XzA0QbzFGKzSAYFgJ0ijPCcwpqKOog=;
+ b=Z1+FWmjbVCzUHibsmK2HZL8ZBQa0M3NymUo7ZnfK/dvFS3Y28MNioe0Rvb/nxcGIkM7wzEvfM86mMIL14swmyoczAYVDP8fi7164ZSaMHMwElsav/XEfZYWzzpI99B/1dvH3tLZUzwzo9FFolsh2VRGg46B/Q/N5ocqMCFejZas=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYCPR01MB8613.jpnprd01.prod.outlook.com
+ (2603:1096:400:152::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Tue, 6 Jun
+ 2023 08:59:22 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::711d:f870:2e08:b6e1]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::711d:f870:2e08:b6e1%3]) with mapi id 15.20.6455.030; Tue, 6 Jun 2023
+ 08:59:22 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Simon Horman <simon.horman@corigine.com>
+CC:     "s.shtylyov@omp.ru" <s.shtylyov@omp.ru>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate
+ limiter
+Thread-Topic: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate
+ limiter
+Thread-Index: AQHZkgTPigbr2NDJIU2hZvqbiDJN569zNgeAgApPegA=
+Date:   Tue, 6 Jun 2023 08:59:21 +0000
+Message-ID: <TYBPR01MB5341ED437E01EBC646BCC85FD852A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230529080840.1156458-6-yoshihiro.shimoda.uh@renesas.com>
+ <ZHZOkTChN5pAl417@corigine.com>
+In-Reply-To: <ZHZOkTChN5pAl417@corigine.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYCPR01MB8613:EE_
+x-ms-office365-filtering-correlation-id: 96b2e917-cabf-413c-5a13-08db666c51f4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Tia5pb5ZnM30zakXgRPWLNxJKBZeagQaWwdd5vhYj+KjYVhe6dbdBPwJKrAfKyf2K7LEjowD0yDiktdVa8DK2ehDjdQN11l22EnNfthr5/5jjmOrUcYStcR/DVo7jImc0zn4BvRH7bGjPW8mZvxIPjcrJLiLMM+hsfnmLh5F1okqcZhWJs/uSiX6Q1rwmzEKaqu1AbMUjeUiDTvO2lLyiA0gIykDQEQG+/0mRTw2AITIXTCSCnyhFrt1hUzK0OD8M0WcCEFfBbf1Ri0aMQhsP90YblHtTC36eovgN9N9jMzCVvJM3mBknn7rKUySDNHBIdHqTa7W9eM1N2UGXrlz9j8tvsiybLaSOdRCDSptWQzwEmv4l6qVBPtX+IcxTPavdXLbeTLrNbJPq+U//WYY8mbk3XUtHAmKw4F9LGLu4AaJGLHsvs4C8owQ3E72bJ0zx3iaU3/LzVy3AC0CCM2CAiMSCOV535s2YZhprDUB6t7pzTCXyaSWtptrplqVWOdxwZQSw6Wqn/BiC/fzFWOUv8SxR8tAVDaOFrgDS7Yiq6jU1N72sXMhtrdlvMeDZEqXn5/3+C50SdcL/tIjukT6F7wiupY3teUw6uQaBJZJ2nA=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(39860400002)(346002)(396003)(136003)(366004)(451199021)(6506007)(9686003)(38100700002)(41300700001)(83380400001)(966005)(186003)(7696005)(71200400001)(478600001)(54906003)(55016003)(64756008)(122000001)(66446008)(66556008)(66476007)(4326008)(316002)(52536014)(66946007)(76116006)(6916009)(7416002)(5660300002)(8676002)(33656002)(86362001)(8936002)(38070700005)(2906002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AZ/+nBSxmcMrKxiihXfOAvsTLSeE9dvBTjBsFpujJNPuZ2AXhdrUsi/9wEPY?=
+ =?us-ascii?Q?kILz2x4PpPIEQ7etJcOg1r9vNG7HOXd77bgDoWI3cMF6fe5ar0jxU73cHGnq?=
+ =?us-ascii?Q?yPbN8t2XX/1AfQ7CbobduupZ2gbzKlNYWjRCkDwYpT9al7aZRsIvGUtBIoTV?=
+ =?us-ascii?Q?jS7uPzpGNqxt6edgq8DHa6A4VbIxtPHfzFXJ+pNaQOnuwHg1l4HbIoQF72hP?=
+ =?us-ascii?Q?joHDtk/f+6fpVeauCxw85USPc7Rn1nbXo62+hiZeYlN5/Cod07raLDneqe8x?=
+ =?us-ascii?Q?1IGOz8/ayWBJfvaQ7j5amTsT8u5scrAkXxYsnqsq89Nxu8nODaz7pgp+hKgv?=
+ =?us-ascii?Q?MlbCTENKSN3pPUMhRkSou8tMgTk9H99KI7UdIPwam9qbApcEKxBXwJMQhohk?=
+ =?us-ascii?Q?jdMC1+PBfRFPFg3henECNYl5lxfg8QKgvMnAaPlcfzUESkR5MqBsx86yhxvb?=
+ =?us-ascii?Q?bN+ny32VK++y8HHHELZt+Yojpfv+mLiyEq2/RmXaxmS+CPQnVBrHQ64SBsTs?=
+ =?us-ascii?Q?bvaemfENYMtSDtb2+PFwITLbJxOH+PYnYbr3p/OaTAZnCV+H/VD92WdCRmJy?=
+ =?us-ascii?Q?cHtyZEZ8fzd6r+/PaQzqiOHINhhhO1jNGm9e54+0vRm/GbYgx8NQaPfnabUU?=
+ =?us-ascii?Q?+piaOoWv5eGLRljxRC0Vtg7TU4acQZFmlB8cWO5RAt97ozRBx4E73aCUg/Nv?=
+ =?us-ascii?Q?IsCMKBOOMEV5h3WI5ifOa0UUMdfzmaD1nH2bm8PBDoYo6C0srwvXnWD/j8ql?=
+ =?us-ascii?Q?FjzciGRMqt8pbMvYGfBjZ7s1xHf2DCGwBns3+j2G6CX6lIX0RWJKDe5buDK9?=
+ =?us-ascii?Q?dkSHqz/A2/c6GItBko3F4CbicJ/6Wp0HNIU2E11TS3CS6iuuVujsgWJcsXTr?=
+ =?us-ascii?Q?qzwsDJ32C+isLgMV6xeion0XQ5+6JXt61Fw+lEqWVJx0c9eruY+4ikAVP3/y?=
+ =?us-ascii?Q?4Ro4A2zmp9WEHW7ymTNkOGpCAQ4I0vJpwUOMwo9oAdKQomXHmc8ST/fjPIDP?=
+ =?us-ascii?Q?Hoa9VcLk4q6e7pib/3E0XTICMk3b24FLXeJlC/lsPuKsEpJEMDUT10FrCnzq?=
+ =?us-ascii?Q?iKPvkQD/Limvk2dIgaNa7SlICqwlyWrlqVvdiv6tpmaU8J5jvm4QeQjA5yVj?=
+ =?us-ascii?Q?Ri29xo6Rk8wrUlrXgB+VxhFgsXbzTGl/mmIgEGaaRo9hK6qwV9TDwU5yPRVj?=
+ =?us-ascii?Q?LdclhKpqmQng5+pFTr3jxIeWZfbba7+hvgkR5277Yk1q8N+WWwmvJLIb6bke?=
+ =?us-ascii?Q?e3xZN00/HDwZ7IM+UUD7+LjaK+DLr0bkhLnYgMx4dSarkoxkEjT+3o1kxacT?=
+ =?us-ascii?Q?qL/PppSps0IRpBr2kU4bLNQAeE2WaTxYUx5uLXfbKVCsWG4QmEBCeEQbrzuE?=
+ =?us-ascii?Q?qbztHj5hNaID0fiJKsjKe884EYwMTP0rlATugvhWkuLAtrqxkk0uy7qB3+bY?=
+ =?us-ascii?Q?/VBnfs2sDDOhc6NkPDyq4uKB1RwJOA2YaNE+dZOoWC686CuNxCCE5VUbHErx?=
+ =?us-ascii?Q?AV7m/72U7iYO0TVd1TiRjEF+Uiio5lgQBmJkGfiHpC8sGvSCG/pFL6ZZgMy6?=
+ =?us-ascii?Q?v7hcQeX46/j/g2hVwR/w+WBRv6IJuxbD4+37YcJgqRXv8y6wUIwVifD3JNjj?=
+ =?us-ascii?Q?ZIosCt69QvgW8jySQPO2QKRYgMCFUDDDplHAVlfc3pKVJRUBAXaiomNg2ojr?=
+ =?us-ascii?Q?VlYfbQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2a479fd0-1d3c-2c28-d2fd-86a8cf610cf9@linaro.org>
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96b2e917-cabf-413c-5a13-08db666c51f4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2023 08:59:22.0268
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WjN4MNe4RxdSZ/y5AUN1Wv/FDEW5Q04CWvMvjU56Xna4vp1TNecBAxJReFrB6SgwSYdQnrqsV8UFV822rvCHVaYHZpbFAeWjaHEPMemc1sYCvvJz8odvRsT25Wp0VOOk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8613
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-<On Tue, Jun 06, 2023 at 08:36:10AM +0200, Krzysztof Kozlowski wrote:
-> On 05/06/2023 09:08, Stephan Gerhold wrote:
-> > On Qualcomm platforms, most subsystems (e.g. audio/modem DSP) are
-> > described as remote processors in the device tree, with a dedicated
-> > node where properties and services related to them can be described.
-> > 
-> > The Resource Power Manager (RPM) is also such a subsystem, with a
-> > remote processor that is running a special firmware. Unfortunately,
-> > the RPM never got a dedicated node representing it properly in the
-> > device tree. Most of the RPM services are described below a top-level
-> > /smd or /rpm-glink node.
-> 
-> Then what is rpm-requests? This is the true RPM. It looks like you now
-> duplicate half of it in a node above. Unless you want here to describe
-> ways to communicate with the RPM, not the RPM itself.
->
+Hi Simon-san,
 
-I think you're confusing hardware and firmware here. The rpm-proc node
-represents the RPM hardware block (or perhaps the RPM firmware overall),
-while rpm-requests is just *one* communication interface provided by the
-RPM firmware. Here is a rough picture of the RPM "subsystem" I'm trying
-to describe:
-
-                +--------------------------------------------+      
-                |       RPM subsystem (qcom,rpm-proc)        |      
-                |                                            |      
-          reset | +---------------+     +-----+  +-----+     |      
-        --------->|               |     | MPM |  | CPR | ... |      
- IPC interrupts | | ARM Cortex-M3 |     +-----+  +-----+     |      
------------------>|               |---     |        |        |      
-                | +---------------+  |---------------------- |      
-                | +---------------+  |                       |      
-                | |   Code RAM    |--|  +------------------+ |      
-                | +---------------+  |  |                  | |      
-                | +---------------+  |  |   Message RAM    | |      
-                | |   Data RAM    |--|--|                  | |      
-                | +---------------+  |  +------------------+ |      
-                +--------------------|-----------------------+      
-                                     v                              
-                                    NoC                             
-
-(Somewhat adapted from Figure 8-1 RPM overview in the APQ8016E Technical
- Reference Manual, but I added some extra stuff.)
-
-As you can see neither "SMD" nor "rpm-requests" exist in hardware.
-Again, it's just one communication protocol implemented by the RPM
-firmware running on the Cortex-M3 processor, much like a webserver
-running on a PC.
-
-When the SoC is started only the hardware block exists. Usually a
-component in the boot chain loads firmware into the code/data RAM and
-then de-asserts the reset line to start the Cortex-M3 processor.
-
-This is not guaranteed to happen. For example, I have a special firmware
-version where the firmware is only loaded but not brought out of reset.
-In this case Linux is responsible to de-assert the reset line.
-In follow-up patches I add that to the outer qcom,rpm-proc node:
-
-	remoteproc {
-		compatible = "qcom,msm8916-rpm-proc", "qcom,rpm-proc";
-		resets = <&gcc GCC_RPM_RESET>;
-		iommus = <&apps_smmu 0x0040>;
-
-		smd-edge {
-			/* ... */
-			rpm-requests {
-				qcom,smd-channels = "rpm_requests";
-			};
-		};
-	};
-
-This reset line cannot be described on the rpm-requests node. Until the
-firmware is started there is no such thing as "SMD" or "rpm-requests".
-
-When the RPM firmware is started it sets up some data structures in the
-message RAM and then begins serving requests, perhaps like this:
-
-               +----------------------------------+                                    
-               |          ARM Cortex-M3           |                                    
-               | +------------------------------+ |  +--------------------------------+
-               | |  RPM Firmware                | |  |          Message RAM           |
- IPC Interrupt | | +----------------------+     | |  | +----------------------------+ |
------------------->| SMD Server           |     | |  | | SMD Data Structures & FIFO | |
-               | | | +--------------+     |     | |  | | +--------------+           | |
-               | | | | rpm_requests | ... |     | |  | | | rpm_requests |    ...    | |
-               | | | +--------------+     | ... | |  | | +--------------+           | |
-               | | +----------------------+     | |  | +----------------------------+ |
-               | +------------------------------+ |  |                ...             |
-               +----------------------------------+  +--------------------------------+
-
-The "smd-edge" node represents the SMD part and "rpm_requests" is one
-of the communication channels that can be used to talk to the RPM firmware.
-
-Everything below rpm-requests: clocks, regulators, power domains are
-pure firmware constructions. They do not exist in the RPM hardware block,
-the firmware just acts as a proxy to collect votes from different
-clients and then configures the actual hardware.
- 
-> 
-> > However, SMD/GLINK is just one of the communication channels to the RPM
-> > firmware. For example, the MPM interrupt functionality provided by the
-> > RPM does not use SMD/GLINK but writes directly to a special memory
-> > region allocated by the RPM firmware in combination with a mailbox.
-> > Currently there is no good place in the device tree to describe this
-> > functionality. It doesn't belong below SMD/GLINK but it's not an
-> > independent top-level device either.
-> > 
-> > Introduce a new "qcom,rpm-proc" compatible that allows describing the
-> > RPM as a remote processor/subsystem like all others. The SMD/GLINK node
-> > is moved to a "smd-edge"/"glink-edge" subnode consistent with other
-> > existing bindings. Additional subnodes (e.g. interrupt-controller for
-> > MPM, rpm-master-stats) can be also added there.
-> 
-> If this was about to stay, you should also update the qcom,smd.yaml, so
-> there will be no duplication.
-> 
-
-qcom,smd.yaml is deprecated in the next patch (PATCH 07/14).
-
-> > 
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> From: Simon Horman, Sent: Wednesday, May 31, 2023 4:29 AM
+>=20
+> On Mon, May 29, 2023 at 05:08:40PM +0900, Yoshihiro Shimoda wrote:
+> > Use per-queue rate limiter instead of global rate limiter. Otherwise
+> > TX performance will be low when we use multiple ports at the same time.
+> >
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > > ---
-> >  .../bindings/remoteproc/qcom,rpm-proc.yaml         | 125 +++++++++++++++++++++
-> >  1 file changed, 125 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,rpm-proc.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,rpm-proc.yaml
-> > new file mode 100644
-> > index 000000000000..c06dd4f66503
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,rpm-proc.yaml
-> > @@ -0,0 +1,125 @@
-> > [...]
-> > +  interrupt-controller:
-> > +    type: object
-> > +    $ref: /schemas/interrupt-controller/qcom,mpm.yaml#
-> > +    description:
-> > +      MSM Power Manager (MPM) interrupt controller that monitors interrupts
-> > +      when the system is asleep.
-> 
-> Isn't this a service of RPM?
-> 
-> > +
-> > +  master-stats:
-> > +    $ref: /schemas/soc/qcom/qcom,rpm-master-stats.yaml#
-> > +    description:
-> > +      Subsystem-level low-power mode statistics provided by RPM.
-> 
-> The same question.
-> 
+> >  drivers/net/ethernet/renesas/rswitch.c | 51 +++++++++++++++++---------
+> >  drivers/net/ethernet/renesas/rswitch.h | 15 +++++++-
+> >  2 files changed, 47 insertions(+), 19 deletions(-)
+> >
+> > diff --git a/drivers/net/ethernet/renesas/rswitch.c b/drivers/net/ether=
+net/renesas/rswitch.c
+> > index 4ae34b0206cd..a7195625a2c7 100644
+> > --- a/drivers/net/ethernet/renesas/rswitch.c
+> > +++ b/drivers/net/ethernet/renesas/rswitch.c
+> > @@ -156,22 +156,31 @@ static int rswitch_gwca_axi_ram_reset(struct rswi=
+tch_private *priv)
+> >  	return rswitch_reg_wait(priv->addr, GWARIRM, GWARIRM_ARR, GWARIRM_ARR=
+);
+> >  }
+> >
+> > -static void rswitch_gwca_set_rate_limit(struct rswitch_private *priv, =
+int rate)
+> > +static void rswitch_gwca_set_rate_limit(struct rswitch_private *priv,
+> > +					struct rswitch_gwca_queue *txq)
+> >  {
+> > -	u32 gwgrlulc, gwgrlc;
+> > +	u64 period_ps;
+> > +	unsigned long rate;
+> > +	u32 gwrlc;
+>=20
+> Hi Shimoda-san,
+>=20
+> a minor not from my side: please use reverse xmas tree order - longest li=
+ne
+> to shortest - for local variable declarations in networking code.
+>=20
+> 	unsigned long rate;
+> 	u64 period_ps;
+> 	u32 gwrlc;
 
-Yes, they are services of the RPM firmware. But they have no relation to
-the SMD/GLINK channel.
+Thank you for your comment! I completely forgot that network driver should =
+use
+reverse xmas tree order...
 
-To clarify this I extend my picture from above with MPM:
+JFYI, I found another way to improve the performance. So, I dropped this pa=
+tch on v2 [1].
 
-                 +----------------------------------+                                    
-                 |          ARM Cortex-M3           |                                    
-                 | +------------------------------+ |  +--------------------------------+
-                 | |  RPM Firmware                | |  |          Message RAM           |
- IPC Interrupt 0 | | +----------------------+     | |  | +----------------------------+ |
- ------------------->| SMD Server           |     | |  | | SMD Data Structures & FIFO | |
-                 | | | +--------------+     |     | |  | | +--------------+           | |
-                 | | | | rpm_requests | ... |     | |  | | | rpm_requests |    ...    | |
-                 | | | +--------------+     | ... | |  | | +--------------+           | |
-                 | | +----------------------+     | |  | +----------------------------+ |
- IPC Interrupt 1 | | +----------------------+     | |  | +----------------------------+ |
- ------------------->| MPM virtualization   |<-----------| MPM register copy (vMPM)   | |
-                 | | +----------------------+     | |  | +----------------------------+ |
-                 | +-----------|------------------+ |  |              ...               |
-                 +-------------v--------------------+  +--------------------------------+
-                       +--------------+                                                  
-                       | MPM Hardware |                                                  
-                       +--------------+                                                  
+[1] https://lore.kernel.org/all/20230606085558.1708766-1-yoshihiro.shimoda.=
+uh@renesas.com/
 
-As you can see, SMD and MPM are siblings. The MPM functionality
-implemented by the RPM firmware is not a child of the SMD server.
+Best regards,
+Yoshihiro Shimoda
 
-It's a bit like a webserver and emailserver running on the same PC.
-Two separate services accessible via different ports and protocols.
+> --
+> pw-bot: cr
 
-Thanks,
-Stephan
-
-NOTE: All of this is just my interpretation based on the public hints
-that exist. I have no access to internal documentation or source code
-that would prove that all of this is correct.
