@@ -2,91 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2524E7246ED
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C29C8724700
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237833AbjFFOzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 10:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58948 "EHLO
+        id S232681AbjFFO5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 10:57:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238419AbjFFOyw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:54:52 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1CEE42;
-        Tue,  6 Jun 2023 07:54:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686063286; x=1717599286;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=7tq23lNIKA2SguU6N65nqWksRBv5EvXmrFt7DAmX+o8=;
-  b=PSgC23dHuJTwuuIghhY9AZJ2gy8FAvM7QJqQI5bXB5zEjX1RfwWUrzS+
-   Q+MOkI/nvtahJfKo6n96mEw3tNfL1YGpjB3tFRnPc/6u5Ze0BNRvUPzVJ
-   vntJN9Dqg9tEOMK+mzjW+fQzNCzn1nNtgAmgAOh3IQN3bdhd7Q2qN9E66
-   2bbpy/LCa2FlZ4TG7Tj4QsIhNQlpu2fFz9+37sSIPURb1P41MdLiCoMkW
-   1lqNWjCvJ+drGrA1VZrQKXC2IYwkXE6GI+sobAlKnLuwfkRibBsPnrbJ6
-   VtzJgEeEtpgHkuCW+Hqr8Rk2S4o/3suQw0VdKHcBX9y2uGeTWCoII205w
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="337050769"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; 
-   d="scan'208";a="337050769"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jun 2023 07:54:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="853480012"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; 
-   d="scan'208";a="853480012"
-Received: from ekohande-desk2.vc.intel.com ([10.234.35.153])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jun 2023 07:54:46 -0700
-From:   Abe Kohandel <abe.kohandel@intel.com>
-To:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238455AbjFFO4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:56:52 -0400
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C2F1706;
+        Tue,  6 Jun 2023 07:56:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+        s=default2211; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
+        Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References;
+        bh=mG4IMudBJKH36bwynHlTgxCd0dsFreE582/bDJnk7SY=; b=WYs3yRs7cIQBYA5vz+sxPx/dcs
+        ZGh7wpk0yHrIXdOrQGpU8JkDwBBW8i5HGN+MnRrzYIdJvh5KAh1/RaIrtRVMgFcaHRMkRBPAla/ik
+        i4N0iJTlFqES1LWhThtXmaiaqUPtlBbwIgIw+tqqb/0QVHGU6wgSQ2IkZyZ9t7ZsH0o1ubyO3XMPb
+        4amur3HOO/eVLjCLfelVwxtGCBT9kpTk3WiSldUvGUlJtOSiqAJVjnEZmJKgT2P4Iegt9LcP0oUsZ
+        Z+M1RB/PyVLzlRRs75cug9TVJjCYnbkLar+Ky06CLWqVvqloZJeDEbdF6QYmM06HiqNqMNHRhswLn
+        w/+3nBpw==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <sean@geanix.com>)
+        id 1q6Y6i-000Pmz-1z; Tue, 06 Jun 2023 16:56:24 +0200
+Received: from [185.17.218.86] (helo=zen..)
+        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sean@geanix.com>)
+        id 1q6Y6h-0006D0-I7; Tue, 06 Jun 2023 16:56:23 +0200
+From:   Sean Nyekjaer <sean@geanix.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Abe Kohandel <abe.kohandel@intel.com>
-Subject: [PATCH 2/2] dt-bindings: spi: snps,dw-apb-ssi: Add compatible for Intel Mount Evans SoC
-Date:   Tue,  6 Jun 2023 07:54:02 -0700
-Message-Id: <20230606145402.474866-3-abe.kohandel@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230606145402.474866-1-abe.kohandel@intel.com>
-References: <20230606145402.474866-1-abe.kohandel@intel.com>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     Sean Nyekjaer <sean@geanix.com>, dantuguf14105@gmail.com,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 1/5] ARM: dts: stm32: Add alternate pinmux for i2s pins
+Date:   Tue,  6 Jun 2023 16:55:50 +0200
+Message-Id: <20230606145555.2155664-1-sean@geanix.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26930/Tue Jun  6 09:25:07 2023)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the DesignWare SSI controller compatible for Intel Mount Evans
-Integrated Management Complex SoC.
+Add another mux option for i2s pins, this is used on Octavo OSD32MP1-RED board.
 
-Signed-off-by: Abe Kohandel <abe.kohandel@intel.com>
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
 ---
- Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index 12ca108864c6..a47cb144b09f 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -74,6 +74,8 @@ properties:
-         const: intel,keembay-ssi
-       - description: Intel Thunder Bay SPI Controller
-         const: intel,thunderbay-ssi
-+      - description: Intel Mount Evans Integrated Management Complex SPI Controller
-+        const: intel,mountevans-imc-ssi
-       - description: AMD Pensando Elba SoC SPI Controller
-         const: amd,pensando-elba-spi
-       - description: Baikal-T1 SPI Controller
+diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+index e86d989dd351..d79f89f37bc7 100644
+--- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+@@ -686,6 +686,25 @@ pins {
+ 		};
+ 	};
+ 
++	i2s2_pins_b: i2s2-1 {
++		pins {
++			pinmux = <STM32_PINMUX('C',  3, AF5)>, /* I2S2_SDO */
++				 <STM32_PINMUX('B', 12, AF5)>, /* I2S2_WS */
++				 <STM32_PINMUX('B', 13, AF5)>; /* I2S2_CK */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <1>;
++		};
++	};
++
++	i2s2_sleep_pins_b: i2s2-sleep-1 {
++		pins {
++			pinmux = <STM32_PINMUX('C', 3, ANALOG)>, /* I2S2_SDO */
++				 <STM32_PINMUX('B', 12, ANALOG)>, /* I2S2_WS */
++				 <STM32_PINMUX('B', 13, ANALOG)>; /* I2S2_CK */
++		};
++	};
++
+ 	ltdc_pins_a: ltdc-0 {
+ 		pins {
+ 			pinmux = <STM32_PINMUX('G',  7, AF14)>, /* LCD_CLK */
 -- 
-2.40.1
+2.40.0
 
