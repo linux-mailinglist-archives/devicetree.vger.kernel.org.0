@@ -2,178 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C16723501
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 04:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 215FD72350A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 04:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233538AbjFFCGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 22:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44366 "EHLO
+        id S233769AbjFFCGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 22:06:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233223AbjFFCGT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 22:06:19 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C8611C
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 19:06:17 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-256cda5c1c1so2553366a91.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 19:06:17 -0700 (PDT)
+        with ESMTP id S233152AbjFFCGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 22:06:32 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3277E44;
+        Mon,  5 Jun 2023 19:06:26 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id 6a1803df08f44-62614a1dd47so41111576d6.2;
+        Mon, 05 Jun 2023 19:06:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1686017177; x=1688609177;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1686017186; x=1688609186;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wW68YijPC5M/xCRpMcVO/BAMrMv1lIZeTHggFsWAt3k=;
-        b=Pq4XeiWh+lt9vOCi+qa+rwki0ALN2wovdTXzj/yfLh6mcIwEK7tz36PZoeODDyeVyY
-         5IVp7VF/3+bVlNhLh2I7bkMRtoDtKdajzIvABZzoFoCc9uCwlxxYum5WqcBFBiiju6uS
-         F7l7pXUDcT9DfV1rSZCb7VWPwbTuKycuoiDcHXKBI8UEY/6xomtSIYdGiGazzXXrLsKC
-         jpXLlWOzarRebIxCt0posCCgYb45rxxubvH69KwTVk4t/Tkbzu6qArecsLw4rGb00r6j
-         Xs9Pm1NTUfG4IQvYUGLGpmT7setkDeEtLQnWWfFYikIw4WfJ58bknXw3awJTrF4O8eet
-         Gc6A==
+        bh=fHxYxgoeO4Fz6rNQej/wSf+qvSfbEPqyAolfpowpldM=;
+        b=acthjTFnSNF5zKRRlhGw+vu3sBJkQfXpmpXAoiZAvL7d24CZE6ZABgRhPubR/9PFEU
+         bM3XFVjFd+D8kAZrZs7FwT4ohc3FMIDX1HcpQm8G+1XhEY90fk+RYl2XPyTMNrWGt/UT
+         dOCFIn0mguhJ4RgtpFXtp6JsxXig1i41Z09BWYzkjB9kabDK/K2KA8VgVB+aD+qNcG2N
+         cDjIs98Mnbc7YvvyGXtQZ8SttnUO0QJLWVkTTu4Tn7HSxf7K022xiC3UUy60PEyhy732
+         hWNRKp6OLIYnq9iSZIbDk5MyDtr3YbSo0LHulc+HB3YEgGGJeu8oGFWGsZq+TvwahBXP
+         X6Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686017177; x=1688609177;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wW68YijPC5M/xCRpMcVO/BAMrMv1lIZeTHggFsWAt3k=;
-        b=C+7cQQsaC2uKqiwc3MlqK7f6pFijJlvwfhdJnDVQ0oHWP7NsiLS3Tv3aH8PMFhvqo4
-         sjC2XS/WoHiG/xoc13Z10SqMp3Rihba9nllT2WyGX/teLL5jMZVdkjIzNVSFYK7mssRQ
-         HrmJyIisQx6tLiz4Y014xMpE1aslt0bGcH5qD23N5OFC/mPH9BWcYS2ZXrCF//7A5i5D
-         O07lhdSCgziZCbCX1i9UKy/HCz9nQ+T7Au3wxat0vGeIMCHucnDDgxCo6ZcI3pRDUrL1
-         6R4tNkqXNcIHQZUoYaLq8jtfnqpd5hulSYOgnv06MfLwI4AA7Pee80g+ypg+JM93PwDk
-         Jxmg==
-X-Gm-Message-State: AC+VfDx+KkQaSCVGUdQTEg3eIbwUfsf5hOeAjPIH7af1rFgX20qNzRq5
-        xBrflf78HL8BftBbZvv0rKG8s7SgmmzAfoHjxxLpdw==
-X-Google-Smtp-Source: ACHHUZ7KiGCkrKfrTiI8e3B0XsDL6OBdSXWbPBmvfSKZ8Xi7N2zKyEhVQXjxnnhXYn1HPOsTnC3vANQxkzd4E01FlJY=
-X-Received: by 2002:a17:90b:2353:b0:256:f86:fa6e with SMTP id
- ms19-20020a17090b235300b002560f86fa6emr214511pjb.48.1686017177023; Mon, 05
- Jun 2023 19:06:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230605060524.1178164-1-yangcong5@huaqin.corp-partner.google.com>
- <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com> <20230605-anyway-grab-f7a35aa199fb@spud>
-In-Reply-To: <20230605-anyway-grab-f7a35aa199fb@spud>
-From:   cong yang <yangcong5@huaqin.corp-partner.google.com>
-Date:   Tue, 6 Jun 2023 10:06:05 +0800
-Message-ID: <CAHwB_NK_j1SJ1BBkVqafFM_+fWSyvwjCpMmHQxjLjnz_KHR=KA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
- touchscreen chip
-To:     Conor Dooley <conor@kernel.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        d=1e100.net; s=20221208; t=1686017186; x=1688609186;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fHxYxgoeO4Fz6rNQej/wSf+qvSfbEPqyAolfpowpldM=;
+        b=RiuqxPlY7eYlFtKXWLhsPMdTfsX9ilLPlHr13na2WgaZTcEqQ9o8JNmAc5DVjh9jlC
+         kV631bo3o5n9SHiXRRgrz1VeNBS9odywlc9YJt9HnVLWd8B2GKb7e7S7WI54HFmeSKce
+         5wRfTSswaKTvhgKe8d2mEdgayYAexyYzH586XBTxENbIgZ+Xgyprw5sempWkd9jQ/vCp
+         8GtdIxlf50DxrgiB3raXhFJ1xt789YIAtRzm+jlOGbSiq8B/8ZRbNfyj35TYG1FY4P0P
+         pCIUd90iiei4tQjC8sfki57Wyo0uoGkUcZ76BhjqTKaMNuhIaW8wb712bBCypBQqXEIY
+         4e0Q==
+X-Gm-Message-State: AC+VfDxEgoTap+YEJJLTBbHtJfHyVR97lXogq4KTT6c3O7eAV/GF6f28
+        NXMp4oZ4b3gSqcNyY4/MtYYCrE6mSE3JGQ==
+X-Google-Smtp-Source: ACHHUZ40R/7DwONJjQlPcqGT36cqBtgKGygl2J4alUiZu16uhr29ahIhA1q8+RczUQBCu26cwcVQvA==
+X-Received: by 2002:a05:6214:f25:b0:623:a5d0:1daf with SMTP id iw5-20020a0562140f2500b00623a5d01dafmr767371qvb.48.1686017185826;
+        Mon, 05 Jun 2023 19:06:25 -0700 (PDT)
+Received: from localhost ([2600:4040:2007:9800:ab:4faa:880f:7b91])
+        by smtp.gmail.com with ESMTPSA id v6-20020ad45286000000b006257e64474asm5022256qvr.113.2023.06.05.19.06.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jun 2023 19:06:25 -0700 (PDT)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 05 Jun 2023 22:06:23 -0400
+Message-Id: <CT577LF6NJLX.3OVACDQO6WGDE@Latitude-E6420>
+From:   "Rudraksha Gupta" <guptarud@gmail.com>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        <linux-phy@lists.infradead.org>, "Olof Johansson" <olof@lixom.net>,
+        "Vinod Koul" <vkoul@kernel.org>, "Arnd Bergmann" <arnd@arndb.de>,
+        <soc@kernel.org>, <devicetree@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Andy Gross" <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v3 2/4] dt-bindings: phy: qcom,usb-hs-phy: Add
+ compatible
+X-Mailer: aerc 0.8.2
+References: <20230604063032.365775-1-guptarud@gmail.com>
+ <20230604063032.365775-3-guptarud@gmail.com>
+ <168586340547.3052749.2763112173580157119.robh@kernel.org>
+In-Reply-To: <168586340547.3052749.2763112173580157119.robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,Conor,
-
-On Mon, Jun 5, 2023 at 6:20=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
+On Sun Jun 4, 2023 at 3:23 AM EDT, Rob Herring wrote:
 >
-> Hey Cong Yang,
->
-> On Mon, Jun 05, 2023 at 02:05:23PM +0800, Cong Yang wrote:
-> > Add an ilitek touch screen chip ili9882t.
->
-> Could you add a comment here mentioning the relationship between these
-> chips?
-
-Okay, I will add in V3 version.
-
-> On Mon, Jun 05, 2023 at 02:05:23PM +0800, Cong Yang wrote:
->
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> On Sun, 04 Jun 2023 02:30:19 -0400, Rudraksha Gupta wrote:
+> > Adds qcom,usb-hs-phy-msm8960 compatible
+> >=20
+> > Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 > > ---
-> >  .../bindings/input/elan,ekth6915.yaml         | 23 ++++++++++++++++---
-> >  1 file changed, 20 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml=
- b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> > index 05e6f2df604c..f0e7ffdce605 100644
-> > --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> > +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> > @@ -15,11 +15,14 @@ description:
-> >
-> >  properties:
-> >    compatible:
-> > -    items:
-> > -      - const: elan,ekth6915
-> > +    enum:
-> > +      - elan,ekth6915
-> > +      - ilitek,ili9882t
-> >
-> >    reg:
-> > -    const: 0x10
-> > +    enum:
-> > +      - 0x10
-> > +      - 0x41
+> >  Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> >=20
 >
-> Is 0x10 only valid for the elan,ekth6915 & 0x41 for the ilitek one?
-> If so, please add some enforcement of the values based on the
-> compatible.
-
-I don't think 0x10 is the only address for ekth6915,(nor is 0x41 the
-only address for ili9882t). It depends on the hardware design.
-
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 >
-> >
-> >    interrupts:
-> >      maxItems: 1
-> > @@ -29,11 +32,13 @@ properties:
-> >
+> yamllint warnings/errors:
 >
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/p=
+hy/qcom,usb-hs-phy.example.dtb: phy: resets: [[4294967295, 10], [1, 0]] is =
+too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicet=
+ree/bindings/phy/qcom,usb-hs-phy.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/p=
+hy/qcom,usb-hs-phy.example.dtb: phy: reset-names:0: 'por' was expected
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicet=
+ree/bindings/phy/qcom,usb-hs-phy.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/p=
+hy/qcom,usb-hs-phy.example.dtb: phy: reset-names: ['phy', 'por'] is too lon=
+g
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicet=
+ree/bindings/phy/qcom,usb-hs-phy.yaml
 >
-> >    vcc33-supply:
-> >      description: The 3.3V supply to the touchscreen.
-> > +                 If using ili9882t then this supply will not be needed=
-.
-> >
-> >    vccio-supply:
-> >      description:
-> >        The IO supply to the touchscreen. Need not be specified if this =
-is the
-> >        same as the 3.3V supply.
-> > +      If using ili9882t, the IO supply is required.
+> doc reference errors (make refcheckdocs):
 >
-> There's no need for these sort of comments, you can rely on the required
-> sections to describe these relationships.
-
-Got it ,thanks.
-
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202306=
+04063032.365775-3-guptarud@gmail.com
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+I see. Why is it off the latest rc1 and not off the latest commit?
 
 >
-> Cheers,
-> Conor.
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
 >
-> >
-> >  required:
-> >    - compatible
-> > @@ -41,6 +46,18 @@ required:
-> >    - interrupts
-> >    - vcc33-supply
-> >
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: ilitek,ili9882t
-> > +then:
-> > +  required:
-> > +    - compatible
-> > +    - reg
-> > +    - interrupts
-> > +    - vccio-supply
-> > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> > --
-> > 2.25.1
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
+Thanks. I didn't see these errors as I was only looking for expressatt
+binding errors.
