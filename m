@@ -2,72 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E198E7233DC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 02:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F47C723403
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 02:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232755AbjFFAAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 20:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33760 "EHLO
+        id S233119AbjFFAWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 20:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231629AbjFFAAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 20:00:32 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51895F7
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 17:00:30 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-568f9caff33so53006287b3.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 17:00:30 -0700 (PDT)
+        with ESMTP id S231844AbjFFAWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 20:22:39 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5640910C;
+        Mon,  5 Jun 2023 17:22:35 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-64d44b198baso3987638b3a.0;
+        Mon, 05 Jun 2023 17:22:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1686009629; x=1688601629;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TsbKSW9JVbhL1wyuCDwpF4ByVkNni40r/SR21ozZR2o=;
-        b=JKH7PpcciV5tJ54qIiSmVG6eqyNgLcbYrySuyMCKnykc7DAxyKfCUBpPSFWPA03JO2
-         s+/IrO15jPEpi8w3LCnjkIJIgkIMqYuM8QgyF7cl9w6+TZONOio5LbfjKpuQbSmE7VbT
-         3nrwMUvlXKQsOBrZVt4AkNKV8xf1MXXJuMo6m4jA2MjzUZCfloC5wqdrKpw+cEIwlaxL
-         XKhjm9IfYArC0fKXlozX1xoS/1bDSU5r9acuDV/7gHyrNayMpqU/NyiLllYzOI+ceZz6
-         FhsLCYYYrQ5FAK38bkVuKeog+DSobDcT4CKUD5hxtdhR5OYjIVX4yIWSkLUDgC9TYuGJ
-         /EOQ==
+        d=gmail.com; s=20221208; t=1686010955; x=1688602955;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8xsgi8h0/gWbwF/9vxde8zYt2yWPTotfNJ3hd15YXYw=;
+        b=fuyd1QkftQjaqBgJCR7pHQRV/4mS4JsaAK4dIpl+5VpJhDUVO1HOudY2aIOZ0A1i1w
+         9NU3tkUtk3xluoT9FCveO/2tKXzBZT5Q6muks0cczHutINSj9X/j4n0YAriBqHvc90kO
+         XHg/94rTB1tmxyuVxlQ8i1Jkxp2rSGBtdo4UBBbKeoxj0pwZKl0zCL6/JH6nN5lBvzQ6
+         4to+8MHTaR82zAr8fs+0aUdB+yZ/i/9NUJThQgwSMGAOD8q84UtRFp3h+8/qFAL0ENka
+         zYMt0zBGOqH0mIjTlp/FO18RLHYbbGHwmVWSPrDfn/Z6Br/QKp+aZ8Vo1Pifh6Psr1ld
+         KEWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686009629; x=1688601629;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TsbKSW9JVbhL1wyuCDwpF4ByVkNni40r/SR21ozZR2o=;
-        b=P1k90z+4IA5QZZTh+fy3Y8CAZ5cfiAoOfcLShxuZnP/DJ7LxMSJ4+adP+bI9THzu/I
-         +88sIH5KSlJ1bd3cf472VPi11zZdRgMmjENpkBJMJtuPNWGWXZ5AKxfYLgZfqwnnvqvD
-         dg4fwUKon0gWRCjhnDjIptJ+CzscSGIa9ZVM4tzkvytp+pWsrLvqkgu+aFiKwWd82BZ4
-         vy1Ne51fjhaamyfm8PYZ8XShOomEt2+KyZ59PytNse5o+adXEQyZNYR7ZydmN71gkaBV
-         KcZ6UD5KLnyZHTCJ0cZVNhox2E2t+vs4+pqy4HVMiGDvrwC/g1110raoGQ0moLPkDDhH
-         vfWw==
-X-Gm-Message-State: AC+VfDwLi7jUWvWM5ORSbOADncqdOb2n05nBzDF2Ultv9TAd595BnETt
-        IY9YnkaKiaVMm84F3tomUVczsChW4CtJNuTiCUcBCQ==
-X-Google-Smtp-Source: ACHHUZ7cC4776/Z0Kpgd/VabrciyjHzXEBo7N6V9TCllS8Nm/kQlhg8mOGFZxvcU+/wXfod3KOapjz2R88y43vElRIs=
-X-Received: by 2002:a81:6645:0:b0:564:e951:a7cc with SMTP id
- a66-20020a816645000000b00564e951a7ccmr76517ywc.45.1686009629423; Mon, 05 Jun
- 2023 17:00:29 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686010955; x=1688602955;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8xsgi8h0/gWbwF/9vxde8zYt2yWPTotfNJ3hd15YXYw=;
+        b=UFLC7kErGUYLqoHK0bboV5BbR3DAS7fwvA2ONouSylybop96/VCsRe8iZZrgEstkuj
+         KzG/wDtSBI2FrnCt36aJLvdhyrm3Tmix68AhJVUz9ZqQN2Lv7sGLXiAxpHHzSJFZL0W5
+         +hM0OeGE3iZf1HIaQmngG5keK9/ZOidpE8RcSFo+lO+uoadzI2XMbwaXedqTAHVFk2xL
+         HR/y9H+sy9z1ZYgc5oRpnKS/UTLLnjT0hSWqYNxmw/+PBGgYhwgcDShM/o3M/6yUtyC3
+         f+LvNiElineqUl/tG563cz9MgX2Ob3b1B4UdHL0lli7AWUY/5ojOqVXiUeZoPI78t797
+         dU9A==
+X-Gm-Message-State: AC+VfDx2O5XdukkWuXi3htYjcEyhqSX9dZBDhZX2YeXisLr/yX7ejITM
+        NzjgQGd65Iyee1QLAGmRJ9g=
+X-Google-Smtp-Source: ACHHUZ6+u5JzbxQeAVeBqh6J0AJPG7UMhOouIcY6ORewRrgw1dtexSbLmRI8wYvz7xH+jnmPS7rbOA==
+X-Received: by 2002:a05:6a00:1c92:b0:64d:42b9:6895 with SMTP id y18-20020a056a001c9200b0064d42b96895mr1158644pfw.5.1686010954559;
+        Mon, 05 Jun 2023 17:22:34 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id n3-20020aa79043000000b0064389eab4c8sm5664113pfo.126.2023.06.05.17.22.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jun 2023 17:22:34 -0700 (PDT)
+Message-ID: <c57453ce-341c-ef89-5e71-58ad63466b11@gmail.com>
+Date:   Tue, 6 Jun 2023 08:22:29 +0800
 MIME-Version: 1.0
-References: <20230601193112.4083934-1-tharvey@gateworks.com> <20230605002154.GT4199@dragon>
-In-Reply-To: <20230605002154.GT4199@dragon>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 5 Jun 2023 17:00:18 -0700
-Message-ID: <CAJ+vNU29qdtYTnby6XBJvnawbAKWc7O8uRVFBY7pPHOBRfNpxA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v13 00/10] Introduce Nuvoton ma35d1 SoC
+To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, soc@kernel.org, schung@nuvoton.com,
+        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230605040749.67964-1-ychuang570808@gmail.com>
+ <9dc45c49-02aa-4e63-a176-97e3536f14f4@app.fastmail.com>
+Content-Language: en-US
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <9dc45c49-02aa-4e63-a176-97e3536f14f4@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,167 +87,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 4, 2023 at 5:22=E2=80=AFPM Shawn Guo <shawnguo@kernel.org> wrot=
-e:
->
-> On Thu, Jun 01, 2023 at 12:31:12PM -0700, Tim Harvey wrote:
-> > Update the imx8mp-venice-gw74xx for revB:
-> >  - add CAN1
-> >  - add TIS-TPM on SPI2
-> >  - add FAN controller
-> >  - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
-> >    backward compatible option)
-> >  - M2 socket GPIO's moved
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  .../dts/freescale/imx8mp-venice-gw74xx.dts    | 261 +++++++++++-------
-> >  1 file changed, 159 insertions(+), 102 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/a=
-rch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> > index eb51d648359b..0e389ec5c2d4 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> > @@ -125,12 +125,22 @@ reg_usb2_vbus: regulator-usb2 {
-> >               regulator-max-microvolt =3D <5000000>;
-> >       };
-> >
-> > +     reg_can1_stby: regulator-can1-stby {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_reg_can1>;
-> > +             regulator-name =3D "can1_stby";
-> > +             gpio =3D <&gpio3 19 GPIO_ACTIVE_LOW>;
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +     };
-> > +
-> >       reg_can2_stby: regulator-can2-stby {
-> >               compatible =3D "regulator-fixed";
-> >               pinctrl-names =3D "default";
-> > -             pinctrl-0 =3D <&pinctrl_reg_can>;
-> > +             pinctrl-0 =3D <&pinctrl_reg_can2>;
-> >               regulator-name =3D "can2_stby";
-> > -             gpio =3D <&gpio3 19 GPIO_ACTIVE_LOW>;
-> > +             gpio =3D <&gpio5 5 GPIO_ACTIVE_LOW>;
-> >               regulator-min-microvolt =3D <3300000>;
-> >               regulator-max-microvolt =3D <3300000>;
-> >       };
-> > @@ -164,6 +174,21 @@ &A53_3 {
-> >       cpu-supply =3D <&reg_arm>;
-> >  };
-> >
-> > +&ecspi1 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_spi1>;
-> > +     cs-gpios =3D <&gpio5 9 GPIO_ACTIVE_LOW>;
-> > +     status =3D "okay";
-> > +
-> > +     tpm@0 {
-> > +             compatible =3D "tcg,tpm_tis-spi";
-> > +             #address-cells =3D <0x1>;
-> > +             #size-cells =3D <0x1>;
-> > +             reg =3D <0x0>;
-> > +             spi-max-frequency =3D <36000000>;
-> > +     };
-> > +};
-> > +
-> >  /* off-board header */
-> >  &ecspi2 {
-> >       pinctrl-names =3D "default";
-> > @@ -204,6 +229,13 @@ fixed-link {
-> >       };
-> >  };
-> >
-> > +&flexcan1 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_flexcan1>;
-> > +     xceiver-supply =3D <&reg_can1_stby>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> >  &flexcan2 {
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&pinctrl_flexcan2>;
-> > @@ -214,38 +246,38 @@ &flexcan2 {
-> >  &gpio1 {
-> >       gpio-line-names =3D
-> >               "", "", "", "", "", "", "", "",
-> > -             "", "", "dio0", "", "dio1", "", "", "",
-> > +             "", "dio0", "", "dio1", "", "", "", "",
-> >               "", "", "", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "";
-> >  };
-> >
-> >  &gpio2 {
-> >       gpio-line-names =3D
-> > -             "", "", "", "", "", "", "", "",
-> > -             "", "", "", "", "", "", "pcie3_wdis#", "",
-> > +             "", "", "", "", "", "", "m2_pin20", "",
-> > +             "", "", "", "", "", "pcie1_wdis#", "pcie3_wdis#", "",
-> >               "", "", "pcie2_wdis#", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "";
-> >  };
-> >
-> >  &gpio3 {
-> >       gpio-line-names =3D
-> > -             "m2_gdis#", "", "", "", "", "", "", "m2_rst#",
-> > +             "", "", "", "", "", "", "m2_rst", "",
-> > +             "", "", "", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "",
-> > -             "m2_off#", "", "", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "";
-> >  };
-> >
-> >  &gpio4 {
-> >       gpio-line-names =3D
-> > +             "", "", "m2_off#", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "",
-> > -             "", "", "", "", "", "", "", "",
-> > -             "", "", "", "", "m2_wdis#", "", "", "",
-> > -             "", "", "", "", "", "", "", "uart_rs485";
-> > +             "", "", "m2_wdis#", "", "", "", "", "",
-> > +             "", "", "", "", "", "", "", "rs485_en";
-> >  };
-> >
-> >  &gpio5 {
-> >       gpio-line-names =3D
-> > -             "uart_half", "uart_term", "", "", "", "", "", "",
-> > +             "rs485_hd", "rs485_term", "", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "",
-> >               "", "", "", "", "", "", "", "";
-> > @@ -286,6 +318,12 @@ channel@8 {
-> >                               label =3D "vdd_bat";
-> >                       };
-> >
-> > +                     channel@16 {
-> > +                             gw,mode =3D <4>;
-> > +                             reg =3D <0x16>;
-> > +                             label =3D "fan_tach";
-> > +                     };
-> > +
-> >                       channel@82 {
-> >                               gw,mode =3D <2>;
-> >                               reg =3D <0x82>;
-> > @@ -358,6 +396,11 @@ channel@a2 {
-> >                               gw,voltage-divider-ohms =3D <10000 10000>=
-;
-> >                       };
-> >               };
-> > +
-> > +             fan-controller@0 {
->
-> The unit-address doesn't match 'reg' property below.
->
-> Shawn
->
 
-Shawn,
 
-Thanks - I'll fix this in v2
+On 2023/6/5 下午 08:00, Arnd Bergmann wrote:
+> On Mon, Jun 5, 2023, at 06:07, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>
+>> This patchset adds initial support for the Nuvoton ma35d1 SoC, including
+>> initial device tree, clock driver, reset driver, and serial driver.
+>>
+>> This patchset cover letter is based from the initial support for Nuvoton
+>> ma35d1 to keep tracking the version history.
+>>
+>> This patchset had been applied to Linux kernel 6.4.0-rc5
+>> and tested on the Nuvoton ma35d1 SOM evaluation board.
+>>
+>> (ma35d1 information:
+>> https://www.nuvoton.com/products/microprocessors/arm-cortex-a35-mpus/)
+>> MA35D1 porting on linux-5.10.y can be found at:
+>> https://github.com/OpenNuvoton/MPU-Family
+>>
+>> v13:
+>>    - Modify serial driver
+>>      - Added a check for oops_in_progress in ma35d1serial_console_write to
+>>        determine whether to perform the spin_lock.
+>>      - Rebased drivers/tty/serial/Kconfig and recreate the patch
+>>      - Rebased MAINTAINERS and recreate the patch
+> Hi Jacky,
+>
+> This is looking good to me, thanks for getting it this far.
+> I see all patches aside from the last one have been reviewed by
+> at least one person. The clock driver is still missing an Ack
+> from the clk maintainers, but I see that you have addressed
+> Stephen's concerns from an earlier review round, so I expect
+> this to be fine.
+> Stephen, let me know if you have any final concerns about this driver.
+>
+> The serial port driver was still getting some last changes, so
+> I only picked up the binding but not the driver here. If Greg
+> and Jiri are happy with this version, I'd prefer to just add
+> this with their Ack as well, otherwise please send only that
+> patch for any follow-up revisions. If you can finish this
+> before the linux-6.5 merge window, I'd add it on top of the
+> other patches, otherwise it should just go through Greg's
+> tree.
+>
+> If anything else should come up, let's handle this as patches on
+> top of the branch I have now pushed in [1], no need to resend
+> these.
+>
+>        Arnd
+>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/log/?h=nuvoton/ma35d1
+
+Dear Arnd,
+
+I'm glad to see that these patches have finally been accepted.
+Thank you very much for all the assistance you have provided.
+Once the device tree is merged, we will start submitting drivers
+such as pinctrl, gpio, rtc, and so on.
+
 
 Best Regards,
+Jacky Huang
 
-Tim
+
+
+
+
