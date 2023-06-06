@@ -2,176 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCFEF724BEC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F250D724C04
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 21:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239153AbjFFS4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35174 "EHLO
+        id S233945AbjFFTCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 15:02:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239152AbjFFS4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:56:50 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF2F3EA
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:56:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686077764;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=LE0zlkK0Esy2QlS2Gp22uMzjSQSBkqRGf4r5LqwTAGQ=;
-        b=eW82TLC4ZosgOjBluXPTckRAzV1rxxxe+NogTFvXzGvPcrTqaOxz7a48EUwePDqBaJgryE
-        Q4u+m7zwa6IC9C0doBN1fMUtBp5qJwM+rQxczxy8UNeqACtfOeR/oEHtcpwtnBIgtD+9Zl
-        xiqR4CO5YeRW/sQwMjWWY10u3dtK0fk=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-673-4fAWCWXCNL2zngIYEKFgsA-1; Tue, 06 Jun 2023 14:56:02 -0400
-X-MC-Unique: 4fAWCWXCNL2zngIYEKFgsA-1
-Received: by mail-ej1-f71.google.com with SMTP id a640c23a62f3a-976c92459cbso373370966b.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 11:56:02 -0700 (PDT)
+        with ESMTP id S238931AbjFFTCH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 15:02:07 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A14B810D5;
+        Tue,  6 Jun 2023 12:02:05 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-543d32eed7cso882733a12.2;
+        Tue, 06 Jun 2023 12:02:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686078125; x=1688670125;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zorJynEf8LptTjq6m+OnDgS8VLEV9nuJA4KmkfWWNG8=;
+        b=ZbWuK61Uqo6PeYq7Bqzwio2drMqyWcH/IU2N3d6E16gOmNN2z9maqpqUr81gt9atwP
+         vdudEdOr0jhihTNZUDVlJQjuSBMz94I61e+oo1aIW89fVgXImvD2DCoyDJXX3cz2+2n8
+         I+KPuiETAaL501bjYz9VWmKCeHdEAHt/BjEp5h38jH5883WJNBSvNiKuGMmywKjoN9nS
+         uw7O6OA4b1EjZBklW/AE3WzHARGy0G2W4jo7WTfPTPjP5hqOnnothhFXW5AyYSiL3cXN
+         pd76lvwLfWHKylBmGefA1n1ikkBl09LCeqYGKqWyIrmNd813dBqT7RktiglAZdo/i8fs
+         /tGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686077761; x=1688669761;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LE0zlkK0Esy2QlS2Gp22uMzjSQSBkqRGf4r5LqwTAGQ=;
-        b=hP+d2OjekX6TPbx/qOXJG9M5iUli995p72Zkol4bwmGRaK2Rl/B7SYro0OpspjENPT
-         E6q0FNRBK8p+A2g4xnAuEzSQhb9NJNLxoi1gp8L2Whil3DlfoKfcOqmr35tQCdOTH6LQ
-         10LYac1kdUG/GkR8Jq0PRBir8+Fq44ELnE6GIppRtXsYIsUGbiYiU22AysNHl6uGIiLL
-         iYgy4PCGblUaD8wAm+9hj9qBW6Sxy3ct4hu0H/XXW0xKVdDC3m1RhJp84KVOdKKJWLrQ
-         nApcw+KeYxXvFQFXN9ULoZfOrPoMA8pPLWTF8vDCsVJe7s/Nu6G3xxu7CCdS3f5QxZ/b
-         KxGQ==
-X-Gm-Message-State: AC+VfDyYJl00zhaCi4itB8X1VhCWtcXEHYLOA3r9CxnS+3ao8pNhwKAJ
-        2InAGnASb31031JlRzA6YJEYd1fRlnukswNF/4swMiZfmhuPhb62ZwUJ1cwVr5diQPyp2WsTkPR
-        PqJGaDn1TMqxjn14etK1ckA==
-X-Received: by 2002:a17:907:94d6:b0:96f:905e:6117 with SMTP id dn22-20020a17090794d600b0096f905e6117mr3640950ejc.56.1686077761707;
-        Tue, 06 Jun 2023 11:56:01 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6cXhiJ5i+1LwJ/b/vtSM76Z2jdjV+ztB2B6zIEYsNRP1PxHkp/3US7hq/6SbKn7rQ9ptdINw==
-X-Received: by 2002:a17:907:94d6:b0:96f:905e:6117 with SMTP id dn22-20020a17090794d600b0096f905e6117mr3640938ejc.56.1686077761370;
-        Tue, 06 Jun 2023 11:56:01 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:2a07:3a01:67e5:daf9:cec0:df6? (2001-1c00-2a07-3a01-67e5-daf9-cec0-0df6.cable.dynamic.v6.ziggo.nl. [2001:1c00:2a07:3a01:67e5:daf9:cec0:df6])
-        by smtp.gmail.com with ESMTPSA id u12-20020a1709060b0c00b009749b769c95sm5606394ejg.158.2023.06.06.11.56.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 11:56:00 -0700 (PDT)
-Message-ID: <1a7bdcc1-c737-83c4-24af-eb0028ed45f4@redhat.com>
-Date:   Tue, 6 Jun 2023 20:55:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH RFC 0/4] input: touchscreen: add initial support for
- Goodix Berlin touchscreen IC
-To:     neil.armstrong@linaro.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        d=1e100.net; s=20221208; t=1686078125; x=1688670125;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zorJynEf8LptTjq6m+OnDgS8VLEV9nuJA4KmkfWWNG8=;
+        b=G5x3vSqnTEjK2W4s23NaFjI0iHXVMkCWqIoL1AwAI64Zmqx885nNOOpU8DMomAvsJg
+         +U+AHHd7FmjvlNtaa9gHP6FPJ3Gd29tgz66/00TsSLaJWHjEpHREF1XsCh3iEKuR5zm5
+         61l2RkJZhCCf6Ypd76GSwKGW/Pmb1TnQitQO+c8QrNYj9WuZj6QzHA/jgSrWbM/Vv2+9
+         5xLxxbSlgm75yjp+ZRK4zTPlAmUuTUOzcG1d2Gf/e5H6LZHk8VdXHH+sBYnrq18FArEu
+         rOASW68azrdI3GmAg33DuPG5lSo9oQxGQ9X532wEa+alAmhHVmFAuSwJidO3z3TJaJCp
+         IUpA==
+X-Gm-Message-State: AC+VfDwiVyKXprF+hBlwQj30bWJz/AOaz99dh8iR0bwv/yl/1MCIJaZO
+        2KPb/OMMt8STlGB+ZIoQwlM=
+X-Google-Smtp-Source: ACHHUZ6Qk17vBLxhsvAUdKKB6ZljlKIyCDj81ro9Z7d7yrElU6XmjFTVfl6sjofEU7M+iFnoUn1mJA==
+X-Received: by 2002:a17:903:1110:b0:1a6:74f6:fa92 with SMTP id n16-20020a170903111000b001a674f6fa92mr1952737plh.19.1686078124951;
+        Tue, 06 Jun 2023 12:02:04 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:f59e:5ad5:28cc:2003])
+        by smtp.gmail.com with ESMTPSA id c1-20020a170903234100b00199193e5ea1sm8899234plh.61.2023.06.06.12.02.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jun 2023 12:02:04 -0700 (PDT)
+Date:   Tue, 6 Jun 2023 12:02:01 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Hans de Goede <hdegoede@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Bastien Nocera <hadess@hadess.net>,
-        Henrik Rydberg <rydberg@bitmath.org>
-Cc:     linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 0/4] input: touchscreen: add initial support for
+ Goodix Berlin touchscreen IC
+Message-ID: <ZH+CqXOFt6WsdZ8L@google.com>
 References: <20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org>
  <f5f20de8-851a-fe20-4664-62b6de14ebd7@redhat.com>
  <2677ae8c-59d3-b658-dc3f-918838ac0fb6@linaro.org>
-Content-Language: en-US
-From:   Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <2677ae8c-59d3-b658-dc3f-918838ac0fb6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+ <ZH9+ndrF0RIgFhnI@google.com>
+ <665c9aa5-ef70-65ce-7d9c-4b3b93874934@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <665c9aa5-ef70-65ce-7d9c-4b3b93874934@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 6/6/23 20:12, Neil Armstrong wrote:
-> Hi,
+On Tue, Jun 06, 2023 at 08:55:35PM +0200, Neil Armstrong wrote:
+> Hi Dmitry,
 > 
-> On 06/06/2023 17:31, Hans de Goede wrote:
->> Hi Neil,
->>
->> On 6/6/23 16:31, Neil Armstrong wrote:
->>> These touchscreen ICs support SPI, I2C and I3C interface, up to
->>> 10 finger touch, stylus and gestures events.
->>>
->>> This initial driver is derived from the Goodix goodix_ts_berlin
->>> available at [1] and [2] and only supports the GT9916 IC
->>> present on the Qualcomm SM8550 MTP & QRD touch panel.
->>>
->>> The current implementation only supports BerlinD, aka GT9916.
->>>
->>> Support for advanced features like:
->>> - Firmware & config update
->>> - Stylus events
->>> - Gestures events
->>> - Previous revisions support (BerlinA or BerlinB)
->>> is not included in current version.
->>>
->>> The current support will work with currently flashed firmware
->>> and config, and bail out if firmware or config aren't flashed yet.
->>
->> What I'm missing here / in the commit msg of
->> "input: touchscreen: add core support for Goodix Berlin Touchscreen IC"
->>
->> is an explanation why this is a new driver instead of adding
->> support to the existing goodix.c code.
->>
->> I assume you have good reasons for this, but it would be good
->> if you can write the reasons for this down.
+> On 06/06/2023 20:44, Dmitry Torokhov wrote:
+> > On Tue, Jun 06, 2023 at 08:12:04PM +0200, Neil Armstrong wrote:
+> > > Hi,
+> > > 
+> > > On 06/06/2023 17:31, Hans de Goede wrote:
+> > > > Hi Neil,
+> > > > 
+> > > > On 6/6/23 16:31, Neil Armstrong wrote:
+> > > > > These touchscreen ICs support SPI, I2C and I3C interface, up to
+> > > > > 10 finger touch, stylus and gestures events.
+> > > > > 
+> > > > > This initial driver is derived from the Goodix goodix_ts_berlin
+> > > > > available at [1] and [2] and only supports the GT9916 IC
+> > > > > present on the Qualcomm SM8550 MTP & QRD touch panel.
+> > > > > 
+> > > > > The current implementation only supports BerlinD, aka GT9916.
+> > > > > 
+> > > > > Support for advanced features like:
+> > > > > - Firmware & config update
+> > > > > - Stylus events
+> > > > > - Gestures events
+> > > > > - Previous revisions support (BerlinA or BerlinB)
+> > > > > is not included in current version.
+> > > > > 
+> > > > > The current support will work with currently flashed firmware
+> > > > > and config, and bail out if firmware or config aren't flashed yet.
+> > > > 
+> > > > What I'm missing here / in the commit msg of
+> > > > "input: touchscreen: add core support for Goodix Berlin Touchscreen IC"
+> > > > 
+> > > > is an explanation why this is a new driver instead of adding
+> > > > support to the existing goodix.c code.
+> > > > 
+> > > > I assume you have good reasons for this, but it would be good
+> > > > if you can write the reasons for this down.
+> > > 
+> > > Sure, should I write it down here and/or update the commit message in a new revision ?
+> > > 
+> > > Anyway, here's the reasons:
+> > > - globally the event handling "looks like" the current goodix.c, but again the offsets
+> > > are again different and none of the register address are the same, and unlike the current
+> > > support all registers are provided by the "ic_info" structure
+> > > - while with the current code it *could* be possible to merge it, with a lot of changes,
+> > > the firmware management looks really different, and it would be really hard to merge.
+> > > 
+> > > But I may be wrong, and may be misleaded by the goodix driver structure (even if it
+> > > went through a really heavy cleaning process).
+> > > 
+> > > Globally it seems they tried to match the "event handling" process of the previous
+> > > generations, but the firmware interface is completely different.
+> > 
+> > It is not unprecedented for drivers to share event processing and
+> > implement several ways/generations of firmware update mechanisms.
 > 
-> Sure, should I write it down here and/or update the commit message in a new revision ?
-
-Yes please add this to the commit msg for the next version.
-
-> Anyway, here's the reasons:
-> - globally the event handling "looks like" the current goodix.c, but again the offsets
-> are again different and none of the register address are the same, and unlike the current
-> support all registers are provided by the "ic_info" structure
-> - while with the current code it *could* be possible to merge it, with a lot of changes,
-> the firmware management looks really different, and it would be really hard to merge.
+> Thanks for your reply, I'm perfectly aware of that, this is why I posted
+> this as RFC.
 > 
-> But I may be wrong, and may be misleaded by the goodix driver structure (even if it
-> went through a really heavy cleaning process).
-
-No doing a new separate driver sounds about right to me. The current goodix driver already has a lot of different code-paths. So since there does not seem to be a whole lot of code sharing potential adding yet more special case handling / paths is not desirable IMHO.
-
-Regards,
-
-Hans
-
-
-
->>> [1] https://github.com/goodix/goodix_ts_berlin
->>> [2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
->>>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> ---
->>> Neil Armstrong (4):
->>>        dt-bindings: input: document Goodix Berlin Touchscreen IC
->>>        input: touchscreen: add core support for Goodix Berlin Touchscreen IC
->>>        input: touchscreen: add I2C support for Goodix Berlin Touchscreen IC
->>>        input: touchscreen: add SPI support for Goodix Berlin Touchscreen IC
->>>
->>>   .../bindings/input/touchscreen/goodix-berlin.yaml  |  81 ++
->>>   drivers/input/touchscreen/Kconfig                  |  33 +
->>>   drivers/input/touchscreen/Makefile                 |   3 +
->>>   drivers/input/touchscreen/goodix_berlin.h          | 228 +++++
->>>   drivers/input/touchscreen/goodix_berlin_core.c     | 935 +++++++++++++++++++++
->>>   drivers/input/touchscreen/goodix_berlin_i2c.c      |  76 ++
->>>   drivers/input/touchscreen/goodix_berlin_spi.c      | 183 ++++
->>>   7 files changed, 1539 insertions(+)
->>> ---
->>> base-commit: 6db29e14f4fb7bce9eb5290288e71b05c2b0d118
->>> change-id: 20230606-topic-goodix-berlin-upstream-initial-ba97e8ec8f4c
->>>
->>> Best regards,
->>
+> If the event handling is vaguely similar, I'm not sure it's worth refactoring the
+> current driver since I do not have the old and current IC datasheet nor
+> HW to check for current support non-regression.
 > 
+> What I'm sure is that not a single register address, flag or struct is even close
+> to the current upstream defined ones.
 
+OK, it looks like Hans' preference is also to have a separate driver, so
+let's keep them separate.
+
+Thanks.
+
+-- 
+Dmitry
