@@ -2,72 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 590D1724B62
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D655C724B52
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238534AbjFFS2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:28:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45094 "EHLO
+        id S238362AbjFFSZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:25:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233653AbjFFS2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:28:49 -0400
+        with ESMTP id S238979AbjFFSZa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:25:30 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C9A11D;
-        Tue,  6 Jun 2023 11:28:48 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46EE81BDB
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:25:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B63B2636B1;
-        Tue,  6 Jun 2023 18:23:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A157C433D2;
-        Tue,  6 Jun 2023 18:23:35 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ED72762CEC
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 18:25:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEC3BC433D2;
+        Tue,  6 Jun 2023 18:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686075820;
-        bh=T+JI2ckyFu8VOR3qL8ljjpZpkbu8FJMpdeuRNK5j1WE=;
+        s=k20201202; t=1686075910;
+        bh=MiC4MxybN7xK1R36PsZKM5Zy6JeOjaqBkCPfv7Ncn0U=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VdOOJgmvG/YB+5sHAaFhY5A1/u8H5VgzQ7ybtKfQFNamKSS9dJ4/2MKitMx+RX8YA
-         Y32N4YPmL+OSm1EWmcEEE0K0IKBbZ3PLd883eAlzxXu7mAkzMSlzYk7vflhxq/8Vh/
-         7IEOHX+NR72Q1mUOV1QALhWSQGgfMKj3bP61tpr5DGD6dFraRH6orAyBAFf0ESBwgf
-         JYajhMXowNPNKau/sp5QRce4Vb2fnSrBLEUv4700TxaqE/6t7QDZqkSsccwKU/brf8
-         Qhcze7tgo6uoSPF8KFW8zEhMbc+Tm6W2qexRbJrzVaIgoGWiGtOjB4qy+n+mVFxjei
-         07Q0q5FHVkpRg==
-Date:   Tue, 6 Jun 2023 19:23:32 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Tommaso Merciai <tomm.merciai@gmail.com>,
-        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
-        michael.roeder@avnet.eu, linuxfancy@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=DfIPCZvMLrwThIq6RwTpqfyIOWEgHlxG2AEBVlA11dcAWqecYnb3fo2Xb6hsG9fpv
+         itxbTw3f7Pf7YLwnv11DeUFbsJLdt3uIJl3oZWAWa7rMUj121myceeOf+NUkH2Buhm
+         9Ws5h3GvnZHJW/jSytZQM1mv3Mm9puhXZOqWtsshKV9ytuoEdA785/JaUag5Dq/RUU
+         zuv58Hlue9x15bklQLYEKX6wg+Sd93lkuSVkJbPt8fFqBWOhDpXSy3iUdvu1MazI0a
+         8puNkXvKCatPDqUTgpAb0Ze/UEKiETQG5zzfFfUxMVXzp2YfgzBUFUlzAL0tyOUJn2
+         X+59Sf6pxpMUg==
+Date:   Tue, 6 Jun 2023 19:25:05 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] media: dt-bindings: alvium: add document YAML
- binding
-Message-ID: <20230606-create-catchable-e16113afac82@spud>
-References: <20230606155416.260941-1-tomm.merciai@gmail.com>
- <20230606155416.260941-3-tomm.merciai@gmail.com>
- <20230606163656.GI25679@pendragon.ideasonboard.com>
- <20230606-jaundice-womankind-7e583789fb7a@spud>
- <20230606181752.GC14101@pendragon.ideasonboard.com>
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
+Subject: Re: [PATCH] ASoC: dt-bindings: audio-graph-card: Expand 'widgets'
+ documentation
+Message-ID: <d40f2c63-0b8a-425e-90a9-dd8f552ba782@sirena.org.uk>
+References: <20230606175951.215740-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="/wO+rvK5rRihXazv"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="UC3JHzLeJunBTnWc"
 Content-Disposition: inline
-In-Reply-To: <20230606181752.GC14101@pendragon.ideasonboard.com>
+In-Reply-To: <20230606175951.215740-1-marex@denx.de>
+X-Cookie: Keep out of the sunlight.
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -79,81 +60,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---/wO+rvK5rRihXazv
+--UC3JHzLeJunBTnWc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 06, 2023 at 09:17:52PM +0300, Laurent Pinchart wrote:
-> On Tue, Jun 06, 2023 at 07:07:42PM +0100, Conor Dooley wrote:
-> > Hey Laurent, Tommaso,
-> >=20
-> > On Tue, Jun 06, 2023 at 07:36:56PM +0300, Laurent Pinchart wrote:
-> > > On Tue, Jun 06, 2023 at 05:54:03PM +0200, Tommaso Merciai wrote:
-> >=20
-> > > > +  alliedvision,lp2hs-delay-us:
-> > > > +    maxItems: 1
-> > > > +    description:
-> > > > +      Low power to high speed delay time in microseconds.
-> > >=20
-> > > You can drop "in microseconds", that's implied by the suffix.
-> > >=20
-> > > > +      The purpose of this property is force a DPhy reset for the p=
-eriod
-> > > > +      described by the microseconds on the property, before it sta=
-rts
-> > > > +      streaming. To be clear, with that value bigger than 0 the Al=
-vium
-> > > > +      forces a dphy-reset on all lanes for that period. That means=
- all
-> > > > +      lanes go up into low power state. This may help a csi2 rx ip=
- to
-> > > > +      reset if that IP can't deal with a continous clock.
-> > >=20
-> > > I'd like to propose what I think is a clearer version:
-> > >=20
-> > >     description: |
-> > >       Low power to high speed delay time.
-> > >=20
-> > >       If the value is larger than 0, the camera forces a reset of all
-> > >       D-PHY lanes for the duration specified by this property. All la=
-nes
-> > >       will transition to the low-power state and back to the high-spe=
-ed
-> > >       state after the delay. Otherwise the lanes will transition to a=
-nd
-> > >       remain in the high-speed state immediately after power on.
-> > >=20
-> > >       This is meant to help CSI-2 receivers synchronizing their D-PHY
-> > >       RX.
-> >=20
-> > Question about the property.
-> > Why not make it have a minimum value of 1 and drop the special-case
-> > behaviour for zero?
->=20
-> The property is optional, so it can indeed be omitted if no delay is
-> desired. I have no strong preference on whether or not to allow 0 as a
-> valid value.
+On Tue, Jun 06, 2023 at 07:59:51PM +0200, Marek Vasut wrote:
 
-FWIW, I prefer the semantics of the property if it doesn't have the
-limbo state of being present but doing nothing.
+> Document the encoding of 'widgets' property to avoid confusion.
 
-Cheers,
-Conor.
+>    widgets:
+> -    description: User specified audio sound widgets.
+> +    description: |
+> +      User specified audio sound widgets.
+> +      Each entry is a pair of strings, the first being the type of
+> +      widget ("Microphone", "Line", "Headphone", "Speaker"), the
+> +      second being the machine specific name for the widget.
 
-BTW, I seem to get bounces from shawnx.tu@intel.com, who is listed in
-MAINTAINERS for several drivers. Do you know if they have a non-intel
-address to replace those entries with, or should they be dropped?
+This looks sensible to me, I don't know if there's a way we can get the
+tooling to validate either the length or (ideally) the widget type
+strings?
 
---/wO+rvK5rRihXazv
+--UC3JHzLeJunBTnWc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH95pAAKCRB4tDGHoIJi
-0ku3AP4ggWo9VZWGTA9FT9GGznavW3AY/aadgCo0GxyloBybbgEAzzzwXaC7fzis
-PR8yODKfvMxBuv0CdqCLPm6e3sft8AI=
-=hRQC
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR/egAACgkQJNaLcl1U
+h9BHwQf7B3p7OHMVFGQjrwAGXxP88n+12WctJbd/JuCiDXICv76wLFydE/BnHC6z
+5D5KgJTDJ+MZ6yw1j1mNVAhuUP3BlhqvSeZtwd0R0c5bs28FPmngxG8anPllVzpT
+gYc/Nhfj1u/TKFncmY5CXq4HJtKji9VsD033cbJ5T1KvJzQ5gD0ljOkkR7UjzmXh
+wCU7H6CHHMBR9Vz03MDeOW4Ep6Eb79KeUdzPiZjRn4u0skdh/+p1XRQxK7Uddypn
+Os+nZxdP8kXvHFr/X1qZz7fCQPNpRXCF2aKNbNS+qtsQEAbiX7G3fWiEqkdlIsrO
+mxv7s3749KvviEyyauFfHf6WuE4G0w==
+=MyiD
 -----END PGP SIGNATURE-----
 
---/wO+rvK5rRihXazv--
+--UC3JHzLeJunBTnWc--
