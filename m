@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B34BF7240D5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A1E7240E7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:31:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235791AbjFFL2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 07:28:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53788 "EHLO
+        id S235855AbjFFLbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 07:31:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235259AbjFFL2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:28:32 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51688B1
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 04:28:31 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-974f4897d87so642300966b.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 04:28:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686050910; x=1688642910;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=utFeka+9yLICmbetZMFezs6Zq+yNbOQcRunr7yjZBJQ=;
-        b=Qdhs0Hl2+JaE3/asNnbSTqPp+raEcB3hNpariCCxePYPH3jQL/cmWUP5KxdBCjhSR8
-         YNFZeP+hdKbQYlOoDbrfKuPSLaK5iqm3HerePEuC1fJ+Di40rOfG5hSZzMCtixTBqSWU
-         yhoD2ZIWh6kH5qEv1+0RbidtMiQoIwdZyYsQ3G+GfBMjgzmWINoCGBszGT4o2ZgbwHEu
-         /l4y62c+X1D1y5hCITw+Qpx9R2iSkz3Oh+Bwt+IUleXEeIkZRNbGOj3bnMZeynuI2dTK
-         bSJthP70JAglhPW5mujPg0R1dofyGmeD4lwMLK6nqQEcbe8JLgc0yrLhuD0uxuxCcOll
-         BcYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686050910; x=1688642910;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=utFeka+9yLICmbetZMFezs6Zq+yNbOQcRunr7yjZBJQ=;
-        b=Fd957TSVUe4UbkWxz41r/ctLFKSPmNeCYBYCPVRvGpUVHM6AKEN2k8272X0AgSnzoO
-         BlYhGwUBdDVB/Kdkgb2gOcH5sWG3kwmmLcIurGhfWefNdhzBgvuMuD+6kcpCkF/cCd4E
-         N/0fRWkEnAaKIoxCjZwJDZBC6oLDw9OT4fnrnEq3uW0YV+J9/K2OWpZDfwZNGFQqd5RO
-         bRnsiSNy1PMaE8LN6ENW8uRcfYhOz2nqQVUpqSyHNn+KIgo8G8rEnWS1qlDwDCgNKued
-         qPS0ByJ8bVrF3YNuYYae/xtV4+kn7zJqfMW60VVu6c/u40IKf59TvjSKYhEPiI0ohlB4
-         v6hQ==
-X-Gm-Message-State: AC+VfDxbFOVNNZfXCSDv8GsnySikrusApA6WXpeQAOcbNg2rTSZoZVzE
-        t+dovY2lnbm8OyXIF8gW9+fJIVuCxOBfrtWgR8LZQA==
-X-Google-Smtp-Source: ACHHUZ4btnhep2dxOX+EtQzTSaJyfXbSiLkcT4PdQhg9liSwnoIRQowJatIOkGMVy3mo17MPq2w+sA==
-X-Received: by 2002:a17:906:fe0d:b0:96f:1f79:c0a6 with SMTP id wy13-20020a170906fe0d00b0096f1f79c0a6mr2058936ejb.70.1686050909851;
-        Tue, 06 Jun 2023 04:28:29 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id m19-20020a170906235300b00967a18df1easm5454195eja.117.2023.06.06.04.28.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 04:28:29 -0700 (PDT)
-Message-ID: <d4970017-86b5-884f-fe67-6fede30469b4@linaro.org>
-Date:   Tue, 6 Jun 2023 13:28:27 +0200
+        with ESMTP id S229879AbjFFLbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:31:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50239B1;
+        Tue,  6 Jun 2023 04:31:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686051110; x=1717587110;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PX4wIJsd0NfghjQ/uFE2ySZMqtdfL0c7FgIDmxAuXAg=;
+  b=EmefW5k/qjg0vop9SHsOkiZslyAtKTM+KimyR5Z8oqx2HJ1ABOcHh8O+
+   WfcyHXJt9sgqRPSA4xP2EOYPdgxrIaeAQ67FfrJfJqBofA7OZS2ypjF34
+   VdTgrRxds2jsZG79n5a6LssD1ZeHUrSqD23ILIE6FLvTezyvxtYTGRf5A
+   6NioUXYC5oW5PJwhpi5sRe9BCLzisTxLZsVW6vqyfUEN8bSpj/rg8musF
+   IKF5SwR9LiG9bRet6CDWMSY8pi3ssRyJKEtdEK07OMXyaRskrj24yNeVK
+   lvw64o67qi78LsjuLheib3UlduLFxwx5OluY+E/Rv2KewconKbUDEJzq7
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; 
+   d="asc'?scan'208";a="155753414"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Jun 2023 04:31:49 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 6 Jun 2023 04:31:47 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 6 Jun 2023 04:31:45 -0700
+Date:   Tue, 6 Jun 2023 12:31:21 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     Mason Huo <mason.huo@starfivetech.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Shengyu Qu <wiagn233@outlook.com>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v4 2/3] cpufreq: dt-platdev: Add JH7110 SOC to the
+ allowlist
+Message-ID: <20230606-unsmooth-slip-c80fab59c9b4@wendy>
+References: <20230606105656.124355-1-mason.huo@starfivetech.com>
+ <20230606105656.124355-3-mason.huo@starfivetech.com>
+ <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: document MI04.1 board based
- on IPQ5332 family
-Content-Language: en-US
-To:     Hariharan K <quic_harihk@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com
-References: <20230606095732.12884-1-quic_harihk@quicinc.com>
- <20230606095732.12884-2-quic_harihk@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230606095732.12884-2-quic_harihk@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PVnj5Dy2DGpzU6zM"
+Content-Disposition: inline
+In-Reply-To: <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,29 +77,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 11:57, Hariharan K wrote:
-> Document the MI04.1 (Reference Design Platform 446) board based on IPQ5332
-> family of SoCs.
-> 
-> Signed-off-by: Hariharan K <quic_harihk@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 8302d1ee280d..165a815337f7 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -93,6 +93,7 @@ description: |
->          ap-mi01.2
->          ap-mi01.3
->          ap-mi01.6
-> +        ap-mi04.1
+--PVnj5Dy2DGpzU6zM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I think we need to stop adding them here... This was supposed to be
-limited list for Qualcomm bootloader. Are you sure Qualcomm bootloader
-requires such names with versions?
+On Tue, Jun 06, 2023 at 04:38:04PM +0530, Viresh Kumar wrote:
+> On 06-06-23, 18:56, Mason Huo wrote:
+> > Add the compatible strings for supporting the generic
+> > cpufreq driver on the StarFive JH7110 SoC.
+> >=20
+> > Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
+> > ---
+> >  drivers/cpufreq/cpufreq-dt-platdev.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpu=
+freq-dt-platdev.c
+> > index 338cf6cc6596..14aa8281c7f4 100644
+> > --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> > +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+> > @@ -85,6 +85,8 @@ static const struct of_device_id allowlist[] __initco=
+nst =3D {
+> >  	{ .compatible =3D "st-ericsson,u9500", },
+> >  	{ .compatible =3D "st-ericsson,u9540", },
+> > =20
+> > +	{ .compatible =3D "starfive,jh7110", },
+> > +
+> >  	{ .compatible =3D "ti,omap2", },
+> >  	{ .compatible =3D "ti,omap4", },
+> >  	{ .compatible =3D "ti,omap5", },
+>=20
+> I thought I already merged it ?
 
-Best regards,
-Krzysztof
+You did, 4b4c0d37164c ("cpufreq: dt-platdev: Add JH7110 SOC to the
+allowlist").
 
+--PVnj5Dy2DGpzU6zM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH8ZCQAKCRB4tDGHoIJi
+0rJnAQDaPUiev8/jv4DVEX6KPrP+2lQ61lVWp7MZRr2EUXwcuwD/RmDLMvupVtZR
+NAUW47q4A9h7saZRU5kbxp63KRZKOAQ=
+=RJ+E
+-----END PGP SIGNATURE-----
+
+--PVnj5Dy2DGpzU6zM--
