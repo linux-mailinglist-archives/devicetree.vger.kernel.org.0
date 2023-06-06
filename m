@@ -2,135 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 175B2724AD3
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 551C9724AFA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238918AbjFFSH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:07:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57004 "EHLO
+        id S238646AbjFFSMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238897AbjFFSHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:07:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC3B31702;
-        Tue,  6 Jun 2023 11:07:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 604CD63677;
-        Tue,  6 Jun 2023 18:07:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17E34C433EF;
-        Tue,  6 Jun 2023 18:07:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686074869;
-        bh=+g7AH2Cprbi9FFx9hvRKBw23s6nCP3oe6Nu3HsJbAdw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jF9Ece+gc3Z3hCwaxXvycaYKX1a8RvkNq2LwhQK8lXeuwErIWMoSjRfZLELHNYUnn
-         rhtfPvPPGdjwz32yX1WDCR2+YFjPqKYQXxgP8ckTudg86unWuRJLv3lVONtMkgU2Jg
-         FDyYjKb2vKMwhTFv2RpAJxtzInCaUNkbturfD/FJ5q1i78vqsl0ECB57VW2VpSPAQS
-         pRTBlCdu80t6krhiwYulgYYo1cJU+CTqzgJuOzb0z4nQ6GIw/fk0RZKBn0d/fKNkk1
-         FvVvy3M9SVo1XBfp0fcGuoe57ZJCa5zFKsa7kte/hT5hDCqde5PLQ+qaw8gJzX5LQs
-         rLcuvJBkmI9ew==
-Date:   Tue, 6 Jun 2023 19:07:42 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Tommaso Merciai <tomm.merciai@gmail.com>,
-        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
-        michael.roeder@avnet.eu, linuxfancy@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S237519AbjFFSMP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:12:15 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899BD170A
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:12:07 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-307d20548adso5256415f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 11:12:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686075126; x=1688667126;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kYoqAND0o4BTOUj5sWEzm+/BHDSbhCWoaP3pRrbOvnA=;
+        b=bnio+IJxvuO9HXe0vGhyEhDhF6pAAy7aBhSPJDOJzsCiZZGe9PAkzHeROllMfCXdpH
+         V36EzPcr1yVaLDOgUTBiiQ7jyXiWvLdGwoO7F1ZthZHxMG1Tcgh+Ro+7cc2NJEHJabpJ
+         JsySQycsMVypyhq6yM3Am+EbPoV9rtrNTwARsAi567Fhk+v3wiTD8a2Z9JaLtnDYG4do
+         agE67HcVt8HKI5YPZ0MxTItLm80+4WNsZNV2ic65li1BguKhFTUs8/u6izZhaar3Ge83
+         O3PH82aK/FWVb0vWY3JnyaVvtYJK+u90m7FIjreMslf/RBJNgYQNXG3uvGUnxwKomkRh
+         0Kdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686075126; x=1688667126;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kYoqAND0o4BTOUj5sWEzm+/BHDSbhCWoaP3pRrbOvnA=;
+        b=Oua0uCWlFg0zBhmbLsA90ZidAj5cH+DTaEMK1PoxZC2XFw2T7A7Vpw4JjSqCzY6A3+
+         7GirgeciNSi8XLGMuFvRN0qhYuSamjV0cOrkrGtJ8VjoDhIqxi6IhxE+dw2HrxAgavkB
+         NOLfTDhg2xsrDdrVyXsQ3/zOG66Sj029H4kf82MzqielbQ0l48WXcfWqQdpgSucySOpZ
+         sUNHYqBpE9Jcet4YwZb5ys+iFY73fhYdyV49ctmOD29/R2cfwrrJscFhcnSIi2H2I/Ca
+         0SuAdgwFIqI3wgLgTfTfkl7ARNaHbdyENcetpkOdXKgcplqDUR5ygfWLkU22PV5TP4Ta
+         Boaw==
+X-Gm-Message-State: AC+VfDyrQPT3DYOqPTGZjkv1UEAgyNnMh1r384jDWmdu6zLStEJwYqhY
+        TRuwhwvY1gVqoybPYsu1erPxyQ==
+X-Google-Smtp-Source: ACHHUZ6HSztp6UVppsTYnipYHlgsZqFOwW2WmOoYocekK9mHRxrdmR0MwdUdA5lCgkvEmSXCq6mphA==
+X-Received: by 2002:a05:6000:149:b0:306:297b:927f with SMTP id r9-20020a056000014900b00306297b927fmr2094739wrx.25.1686075125909;
+        Tue, 06 Jun 2023 11:12:05 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4973:1165:b171:fa69? ([2a01:e0a:982:cbb0:4973:1165:b171:fa69])
+        by smtp.gmail.com with ESMTPSA id y6-20020a5d4ac6000000b002c70ce264bfsm13397523wrs.76.2023.06.06.11.12.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 11:12:05 -0700 (PDT)
+Message-ID: <2677ae8c-59d3-b658-dc3f-918838ac0fb6@linaro.org>
+Date:   Tue, 6 Jun 2023 20:12:04 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Content-Language: en-US
+To:     Hans de Goede <hdegoede@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] media: dt-bindings: alvium: add document YAML
- binding
-Message-ID: <20230606-jaundice-womankind-7e583789fb7a@spud>
-References: <20230606155416.260941-1-tomm.merciai@gmail.com>
- <20230606155416.260941-3-tomm.merciai@gmail.com>
- <20230606163656.GI25679@pendragon.ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="+RoPVQsdZoEGL6As"
-Content-Disposition: inline
-In-Reply-To: <20230606163656.GI25679@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Bastien Nocera <hadess@hadess.net>,
+        Henrik Rydberg <rydberg@bitmath.org>
+Cc:     linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org>
+ <f5f20de8-851a-fe20-4664-62b6de14ebd7@redhat.com>
+Organization: Linaro Developer Services
+Subject: Re: [PATCH RFC 0/4] input: touchscreen: add initial support for
+ Goodix Berlin touchscreen IC
+In-Reply-To: <f5f20de8-851a-fe20-4664-62b6de14ebd7@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---+RoPVQsdZoEGL6As
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 06/06/2023 17:31, Hans de Goede wrote:
+> Hi Neil,
+> 
+> On 6/6/23 16:31, Neil Armstrong wrote:
+>> These touchscreen ICs support SPI, I2C and I3C interface, up to
+>> 10 finger touch, stylus and gestures events.
+>>
+>> This initial driver is derived from the Goodix goodix_ts_berlin
+>> available at [1] and [2] and only supports the GT9916 IC
+>> present on the Qualcomm SM8550 MTP & QRD touch panel.
+>>
+>> The current implementation only supports BerlinD, aka GT9916.
+>>
+>> Support for advanced features like:
+>> - Firmware & config update
+>> - Stylus events
+>> - Gestures events
+>> - Previous revisions support (BerlinA or BerlinB)
+>> is not included in current version.
+>>
+>> The current support will work with currently flashed firmware
+>> and config, and bail out if firmware or config aren't flashed yet.
+> 
+> What I'm missing here / in the commit msg of
+> "input: touchscreen: add core support for Goodix Berlin Touchscreen IC"
+> 
+> is an explanation why this is a new driver instead of adding
+> support to the existing goodix.c code.
+> 
+> I assume you have good reasons for this, but it would be good
+> if you can write the reasons for this down.
 
-Hey Laurent, Tommaso,
+Sure, should I write it down here and/or update the commit message in a new revision ?
 
-On Tue, Jun 06, 2023 at 07:36:56PM +0300, Laurent Pinchart wrote:
-> On Tue, Jun 06, 2023 at 05:54:03PM +0200, Tommaso Merciai wrote:
+Anyway, here's the reasons:
+- globally the event handling "looks like" the current goodix.c, but again the offsets
+are again different and none of the register address are the same, and unlike the current
+support all registers are provided by the "ic_info" structure
+- while with the current code it *could* be possible to merge it, with a lot of changes,
+the firmware management looks really different, and it would be really hard to merge.
 
-> > +  alliedvision,lp2hs-delay-us:
-> > +    maxItems: 1
-> > +    description:
-> > +      Low power to high speed delay time in microseconds.
->=20
-> You can drop "in microseconds", that's implied by the suffix.
->=20
-> > +      The purpose of this property is force a DPhy reset for the period
-> > +      described by the microseconds on the property, before it starts
-> > +      streaming. To be clear, with that value bigger than 0 the Alvium
-> > +      forces a dphy-reset on all lanes for that period. That means all
-> > +      lanes go up into low power state. This may help a csi2 rx ip to
-> > +      reset if that IP can't deal with a continous clock.
->=20
-> I'd like to propose what I think is a clearer version:
->=20
->     description: |
->       Low power to high speed delay time.
->=20
->       If the value is larger than 0, the camera forces a reset of all
->       D-PHY lanes for the duration specified by this property. All lanes
->       will transition to the low-power state and back to the high-speed
->       state after the delay. Otherwise the lanes will transition to and
->       remain in the high-speed state immediately after power on.
->=20
->       This is meant to help CSI-2 receivers synchronizing their D-PHY
->       RX.
+But I may be wrong, and may be misleaded by the goodix driver structure (even if it
+went through a really heavy cleaning process).
 
-Question about the property.
-Why not make it have a minimum value of 1 and drop the special-case
-behaviour for zero?
+Globally it seems they tried to match the "event handling" process of the previous
+generations, but the firmware interface is completely different.
 
-Cheers,
-Conor.
+Neil
 
---+RoPVQsdZoEGL6As
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Regards,
+> 
+> Hans
+> 
+> 
+> 
+>>
+>> [1] https://github.com/goodix/goodix_ts_berlin
+>> [2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>> Neil Armstrong (4):
+>>        dt-bindings: input: document Goodix Berlin Touchscreen IC
+>>        input: touchscreen: add core support for Goodix Berlin Touchscreen IC
+>>        input: touchscreen: add I2C support for Goodix Berlin Touchscreen IC
+>>        input: touchscreen: add SPI support for Goodix Berlin Touchscreen IC
+>>
+>>   .../bindings/input/touchscreen/goodix-berlin.yaml  |  81 ++
+>>   drivers/input/touchscreen/Kconfig                  |  33 +
+>>   drivers/input/touchscreen/Makefile                 |   3 +
+>>   drivers/input/touchscreen/goodix_berlin.h          | 228 +++++
+>>   drivers/input/touchscreen/goodix_berlin_core.c     | 935 +++++++++++++++++++++
+>>   drivers/input/touchscreen/goodix_berlin_i2c.c      |  76 ++
+>>   drivers/input/touchscreen/goodix_berlin_spi.c      | 183 ++++
+>>   7 files changed, 1539 insertions(+)
+>> ---
+>> base-commit: 6db29e14f4fb7bce9eb5290288e71b05c2b0d118
+>> change-id: 20230606-topic-goodix-berlin-upstream-initial-ba97e8ec8f4c
+>>
+>> Best regards,
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH917gAKCRB4tDGHoIJi
-0ihzAQCALlESrN9lQINq5At4m8i/cKUpv33zVdz16wSfgQJyrAD/ffwmWbpPLax3
-TT8InwBknLiZT8TQTt34eMlSoorRlAA=
-=0a/j
------END PGP SIGNATURE-----
-
---+RoPVQsdZoEGL6As--
