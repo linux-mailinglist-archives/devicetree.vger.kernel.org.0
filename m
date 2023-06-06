@@ -2,64 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8683724A25
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:25:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 105E6724A2A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:28:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238729AbjFFRZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 13:25:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35058 "EHLO
+        id S231470AbjFFR22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 13:28:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231470AbjFFRZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:25:21 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F35E42;
-        Tue,  6 Jun 2023 10:25:20 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356HPBsT032729;
-        Tue, 6 Jun 2023 12:25:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686072311;
-        bh=WtY6LblahE/joq91g99eyQWj4duOr1M1WEmEUEPrxIw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=rQLvCliDEAh3b8HOfSZIkM7zDIjGlUDCcGr4qSVLwdn8kKU2ZEYZKNRgTTBI184Kc
-         nHT3eVnoVoY7niRBrvMVdF2iLiGgt1SjrSIjeWkLTCij9eHPG8Qb/wWFvMq/DJFxsI
-         3N0Op/KFsg2yiSfxh2z5woxc3+Wcv+2shyaHpAyE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356HPBGM049268
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Jun 2023 12:25:11 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Jun 2023 12:25:10 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Jun 2023 12:25:10 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356HP7eU108772;
-        Tue, 6 Jun 2023 12:25:08 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH 0/7] arm64: dts: ti: k3-am65: Cleanups and minor additions
-Date:   Tue, 6 Jun 2023 22:55:01 +0530
-Message-ID: <168607229292.2083722.2030065242930574931.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230419225913.663448-1-nm@ti.com>
-References: <20230419225913.663448-1-nm@ti.com>
+        with ESMTP id S233652AbjFFR21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:28:27 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602B010F8
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:28:24 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 011038211C;
+        Tue,  6 Jun 2023 19:28:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1686072501;
+        bh=O5vqdbylVz3feV+qU6lPkZROfIuMwAV3pRI3BH9Ak9I=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=sbQ50PoUTm1YxFTO+Dr3EEes+Nr09aXD13fnojaNkYC8gXYL2LsOPmvfpKYjaOXBk
+         OXXZpdJrtb4u0ANoDW6VV0mtoUjqP1cak8qQH3AKU3xui1cuh2wbXE2rX+eWHOuZkL
+         6zD4TiHRgSiqy5KNzuhfDhIJ77h3UiY9ZTrP3jXUjGtU/sRg2OY2P4aukaEniXgSy2
+         MrGtFW411vpasF5eFg6D8W3SrtZ+3LENkAuoT/nkcFXKagSsJG7oKQwbKe4cgmp+8Y
+         zoeAxSpR0xuuJU0TC+XIft+wcEZqqhJQc6galrPVlHDX5JppMwn4WmlRxYZCuzgCz3
+         7voZg5jR4HeLQ==
+Message-ID: <0d304968-74c8-47ce-f87a-127449f36f4b@denx.de>
+Date:   Tue, 6 Jun 2023 19:28:20 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
+ mailbox for emtrion emSBC-Argon
+Content-Language: en-US
+To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "kernel@dh-electronics.com" <kernel@dh-electronics.com>
+References: <20230518011246.438097-1-marex@denx.de>
+ <PAXPR10MB471850924065C987981634C1F14B9@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+ <133c8b4a-8680-f613-807a-2d7931d0a186@denx.de>
+ <PAXPR10MB4718D37242FF00D47DF0CEF1F1499@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+ <81f4574d-38c2-21f2-b947-d13e5fc99c60@denx.de>
+ <PAXPR10MB471825B145645894D626F070F152A@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <PAXPR10MB471825B145645894D626F070F152A@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,53 +72,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth Menon,
+On 6/6/23 18:21, Arnaud POULIQUEN wrote:
+> Hi,
 
-On Wed, 19 Apr 2023 17:59:06 -0500, Nishanth Menon wrote:
-> This is a result of looking to cleanup u-boot and realizing there are
-> pieces missing in kernel that need to be pushed out.
+Hi,
+
+>>>> I assume that if the firmware does not use the detach mailbox, then
+>>>> the detach mailbox is just ignored and unused, so there is no problem
+>>>> with having it described in the DT in any case ?
+>>>
+>>> Yes, The aim of the ST evaluation board is to provide a DT  to a
+>>> support different firmwares for demo and tests.  But it is not the case of all
+>> boards...
+>>> If your boards provide demo using the "detach" it is justified.
+>>> If you just add it as a workaround to mask the warnings, you just mask the
+>> issue.
+>>
+>> Then it seems there is no issue with the boards modified here, because as far
+>> as I can tell, those are all general purpose SoMs and evaluation boards. With
+>> such systems, you cannot predict what the user would like to use those for,
+>> that could include whatever ST demo.
+>>
+>>>> And if that's the case, then I would much rather prefer to have all
+>>>> the boards describe the same set of mailboxes, so they don't diverge
+>>>> . What do you think ?
+>>>>
+>>>
+>>> I would avoid this.  It is only a configuration by default for current demo.
+>>
+>> That current demo is restricted to ST produced boards only, or can it also be
+>> run on development kits manufactured by other vendors ? I think it is the
+>> later, and I don't see why those should be kept out.[]
 > 
-> So, minor cleanups and adding a few missing pieces.
+> ST Demos are boards dependent.
+
+I was under the impression those demos can be built from this CubeMX 
+stuff for any board, all you need is the CubeMX BSP ?
+
+[...]
+
+>>>>> Rather than adding unused optional mailbox, I will more in favor of
+>>>>> having a mbox_request_channel_byname_optional helper or something
+>>>>> similar
+>>>>
+>>>> See above, I think it is better to have the mailbox described in DT
+>>>> always and not use it (the user can always remove it), than to not
+>>>> have it described on some boards and have it described on other boards
+>> (inconsistency).
+>>>
+>>> Adding it in the DT ( and especially in the Soc DTSI) can also be
+>>> interpreted as "it is defined so you must use it". I would expect that
+>>> the Bindings already provide the information to help user to add it on need.
+>>
+>> Why should every single board add it separately and duplicate the same stuff,
+>> if they can all start with it, and if anyone needs to tweak the mailbox
+>> allocation, then they can do that in the board DT ? I really don't like the
+>> duplication suggestion here.
 > 
-> Bootlog: https://gist.github.com/nmenon/f4dc43aef616dfcb3d38701cc074ff6d
+> I was speaking about "detach mailbox. Here is what I would like to propose to
+> you
 > 
-> [...]
+> 1)  move all the mailbox declaration in the DTSI except "detach"
+> 2) don't declare "detach" in boards DTS ( except ST board for legacy compliance)
+> 3) as a next step we will have to fix the unexpected warning on the
+>     "detach" mailbox.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Why not make the mailbox available by default on all boards ?
 
-[1/7] arm64: dts: ti: k3-am654-base-board: Add missing pinmux wkup_uart, mcu_uart and mcu_i2c
-      commit: 3ae28642a110485f71091f0a631492e78b396b2b
-[2/7] arm64: dts: ti: k3-am654-base-board: Rename regulator node name
-      commit: ec1b54824f022a7e65d858abbe74f5d7effc9817
-[3/7] arm64: dts: ti: k3-am654-base-board: Add VTT GPIO regulator for DDR
-      commit: 5292f504827c56406975b463eda1270d144cf06f
-[4/7] arm64: dts: ti: k3-am654-base-board: Add missing PMIC
-      commit: 282621ed6e790ccf7288c4c0aadbb34f1fe25c11
-[5/7] arm64: dts: ti: k3-am654-base-board: Add board detect eeprom
-      commit: 895e2f4f9852e54c0e6d16ddea9882b9b2065eae
-[6/7] arm64: dts: ti: k3-am654-base-board: Add aliases
-      commit: 692e8888a84357232574caba74f60ceea7364016
-[7/7] arm64: dts: ti: k3-am65: Drop aliases
-      commit: ffc449e016e269ce4d19e648bae584f8e5afd59f
+As far as I can tell, if the software is not using the detach mailbox, 
+there is no downside, it would just be unused. User can always remove it 
+in their DT if really needed.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+I believe once can build demos using the detach mailbox for boards with 
+stm32mp15xx not manufactured by ST, correct ?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+[...]
