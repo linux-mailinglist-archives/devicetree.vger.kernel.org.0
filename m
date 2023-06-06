@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EBC5724A19
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8683724A25
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:25:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238711AbjFFRWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 13:22:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
+        id S238729AbjFFRZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 13:25:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238712AbjFFRWM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:22:12 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5119B170A;
-        Tue,  6 Jun 2023 10:22:08 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356HM0eV059062;
-        Tue, 6 Jun 2023 12:22:00 -0500
+        with ESMTP id S231470AbjFFRZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:25:21 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F35E42;
+        Tue,  6 Jun 2023 10:25:20 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356HPBsT032729;
+        Tue, 6 Jun 2023 12:25:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686072120;
-        bh=CbsxA7Opw8YBgVHuESQ555SiftJM1F+9Xytnpav4JHE=;
+        s=ti-com-17Q1; t=1686072311;
+        bh=WtY6LblahE/joq91g99eyQWj4duOr1M1WEmEUEPrxIw=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Wp9hzI7jPFQC97k30Pd4+zljXc7+O5xBRKaw6E2fuwiQNq37q5vhc0HLcjsqRp3YD
-         S++AILYYbu6ClhFgAe6riZ8swAH1HpllUpyLUommCuLZOtiYPkq9+HoJc0a/OhNLFi
-         VH9oPskqnRJnH551oCsd+YGIqA1yHKdXnbpuOkUE=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356HM0pq052828
+        b=rQLvCliDEAh3b8HOfSZIkM7zDIjGlUDCcGr4qSVLwdn8kKU2ZEYZKNRgTTBI184Kc
+         nHT3eVnoVoY7niRBrvMVdF2iLiGgt1SjrSIjeWkLTCij9eHPG8Qb/wWFvMq/DJFxsI
+         3N0Op/KFsg2yiSfxh2z5woxc3+Wcv+2shyaHpAyE=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356HPBGM049268
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Jun 2023 12:22:00 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 6 Jun 2023 12:25:11 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Jun 2023 12:22:00 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 12:25:10 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Jun 2023 12:22:00 -0500
+ Frontend Transport; Tue, 6 Jun 2023 12:25:10 -0500
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356HLvSB076208;
-        Tue, 6 Jun 2023 12:21:58 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356HP7eU108772;
+        Tue, 6 Jun 2023 12:25:08 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, Bryan Brattlof <bb@ti.com>
-Subject: Re: [PATCH 0/3] arm64: dts: ti: k3-am62a: Add timers, wdt and fixup
-Date:   Tue, 6 Jun 2023 22:51:32 +0530
-Message-ID: <168607161908.2072651.15533240609144219974.b4-ty@ti.com>
+        Tero Kristo <kristo@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+Subject: Re: [PATCH 0/7] arm64: dts: ti: k3-am65: Cleanups and minor additions
+Date:   Tue, 6 Jun 2023 22:55:01 +0530
+Message-ID: <168607229292.2083722.2030065242930574931.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230418012717.1230882-1-nm@ti.com>
-References: <20230418012717.1230882-1-nm@ti.com>
+In-Reply-To: <20230419225913.663448-1-nm@ti.com>
+References: <20230419225913.663448-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -68,26 +69,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Nishanth Menon,
 
-On Mon, 17 Apr 2023 20:27:14 -0500, Nishanth Menon wrote:
-> This is a series that adds wdt, timers to am62ax support, and adds the
-> missing description for uart1 and wkup_uart that is used by firmware.
+On Wed, 19 Apr 2023 17:59:06 -0500, Nishanth Menon wrote:
+> This is a result of looking to cleanup u-boot and realizing there are
+> pieces missing in kernel that need to be pushed out.
 > 
-> Nishanth Menon (3):
->   arm64: dts: ti: k3-am62a: Add general purpose timers
->   arm64: dts: ti: k3-am62a: Add watchdog nodes
->   arm64: dts: ti: k3-am62a7-evm: Describe main_uart1 and wkup_uart
+> So, minor cleanups and adding a few missing pieces.
+> 
+> Bootlog: https://gist.github.com/nmenon/f4dc43aef616dfcb3d38701cc074ff6d
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/3] arm64: dts: ti: k3-am62a: Add general purpose timers
-      commit: 68dd81a75192248a2c29650d21da495069c74ffa
-[2/3] arm64: dts: ti: k3-am62a: Add watchdog nodes
-      commit: 804702e4c2aa5eae4611e9389833631a6b22e913
-[3/3] arm64: dts: ti: k3-am62a7-evm: Describe main_uart1 and wkup_uart
-      (no commit info)
+[1/7] arm64: dts: ti: k3-am654-base-board: Add missing pinmux wkup_uart, mcu_uart and mcu_i2c
+      commit: 3ae28642a110485f71091f0a631492e78b396b2b
+[2/7] arm64: dts: ti: k3-am654-base-board: Rename regulator node name
+      commit: ec1b54824f022a7e65d858abbe74f5d7effc9817
+[3/7] arm64: dts: ti: k3-am654-base-board: Add VTT GPIO regulator for DDR
+      commit: 5292f504827c56406975b463eda1270d144cf06f
+[4/7] arm64: dts: ti: k3-am654-base-board: Add missing PMIC
+      commit: 282621ed6e790ccf7288c4c0aadbb34f1fe25c11
+[5/7] arm64: dts: ti: k3-am654-base-board: Add board detect eeprom
+      commit: 895e2f4f9852e54c0e6d16ddea9882b9b2065eae
+[6/7] arm64: dts: ti: k3-am654-base-board: Add aliases
+      commit: 692e8888a84357232574caba74f60ceea7364016
+[7/7] arm64: dts: ti: k3-am65: Drop aliases
+      commit: ffc449e016e269ce4d19e648bae584f8e5afd59f
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
