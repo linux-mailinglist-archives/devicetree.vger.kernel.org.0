@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 907857243BF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03B967243C8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:09:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238019AbjFFNIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 09:08:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36924 "EHLO
+        id S238056AbjFFNJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 09:09:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238028AbjFFNIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:08:16 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB208198B;
-        Tue,  6 Jun 2023 06:07:56 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51475e981f0so8949863a12.1;
-        Tue, 06 Jun 2023 06:07:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686056871; x=1688648871;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U2fbb8azWMwhLT2kLfdp06eGPdi0Pd4eejTK1A07kSw=;
-        b=p52hJwxlKJj7jrVAIRuK7sBpYvtPzg8ez597LxrtYWalz6FM4fa0rXKvA3SrKlYzCs
-         WRz2WOvcQlqw8GtB9MZqDUgcCn5lbJCr0p3jXqO8/MdxmqB17LVLumiU6K4qVAbVtfBR
-         wCQb5ZTerz66aYcbDBlzSByOszemZXKo9ErVYqycH9OGD5awSM8IQnpq+wtYwuRQvHQK
-         wMu31eFMEHYDDEwTM3tpmqZjeapbzhx3XX5foz8nbLu2f/t1EKOzvAWQNuIiEQRoVIpd
-         iuYdXQgQv8dtPey2FAfLHiSF9kGT9jaODvw2P7z9aN3qrPG6+g937d+jAUEdu2X4Vp1e
-         IT4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686056871; x=1688648871;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U2fbb8azWMwhLT2kLfdp06eGPdi0Pd4eejTK1A07kSw=;
-        b=ME0+iL8xoErvl9ip9MgSDLl63AEG8frWWjvoHClFJQzBcLLfVevjYnK6IGxE9xn+JB
-         KIdbvHxnV4zduv1/ZGuImjhj98xO9VQrfRJyuGuApO2HgmzMv3erGzrmUQ7UHBLRnoiE
-         b4VJQ4NQ/b/AQu9slTabMXxnIFioTR7Kpw9nHxwDA16QqEkTqmX1aw6wYsKxHBK0sEii
-         ThkFl2cSuwkxHVwEJ6drTcapaw0fC4+hiJa3tDOMRNCcl0PquyBBN66ZifTjBhVuHYxJ
-         tFpRV/8/H8Nazw031kZsorgjBcl7WjDj46XFcO2mLMITgvqWyiSqaKcAo78MdrMipSkN
-         5dbg==
-X-Gm-Message-State: AC+VfDw6VPNe1D3QL1H3gbe9OlQdrit1b2bFS3QaDOdQ0gDgzRRIjXeA
-        NZKRtQZtNJtdwL8Fxpf2gi4FC/HmZiA=
-X-Google-Smtp-Source: ACHHUZ7wTnp9Kwhh2GXBgRgIQ1o+XM7SMnM6xxZ2AxQjDogAYsb8Fn33Ra92zxSjTSNZJOOkB1ZDnA==
-X-Received: by 2002:a17:907:60d4:b0:974:1c90:643f with SMTP id hv20-20020a17090760d400b009741c90643fmr2632768ejc.18.1686056870432;
-        Tue, 06 Jun 2023 06:07:50 -0700 (PDT)
-Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ks9-20020a170906f84900b00965fdb90801sm5552014ejb.153.2023.06.06.06.07.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 06:07:50 -0700 (PDT)
-Date:   Tue, 6 Jun 2023 15:07:48 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] pinctrl: tegra: Add Tegra234 pinmux driver
-Message-ID: <ZH8vpP-J30qThiDp@orome>
-References: <20230605154230.2910847-1-thierry.reding@gmail.com>
+        with ESMTP id S238043AbjFFNJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:09:06 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5855810C0;
+        Tue,  6 Jun 2023 06:08:42 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356D8EN6102247;
+        Tue, 6 Jun 2023 08:08:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686056894;
+        bh=br8C969Tk/Q3upf8dFCWCpzUM36C2jIPTueuAaa4o/c=;
+        h=Date:From:Subject:To:CC:References:In-Reply-To;
+        b=LMg/8LauN8UGZLpxQBK5C1p/Nm9WnAWvcGLddSYkPk7bYcn4gUOJZqyIjmmgVuKPV
+         F18PhjuqMgsRzNDXxaTP5ZXFB3UZfBJ2cg/IXUQXyBh0ek9syiwRGU8/DTJPlqcT5H
+         449OBvDKKJreEusfMYYmDuBDpACFsTAOGHqzAy2M=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356D8EUQ019053
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Jun 2023 08:08:14 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 08:08:14 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Jun 2023 08:08:14 -0500
+Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356D8AhN006614;
+        Tue, 6 Jun 2023 08:08:11 -0500
+Message-ID: <97d14e4a-956c-790f-f3e3-ec8174a9f0b1@ti.com>
+Date:   Tue, 6 Jun 2023 18:38:10 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="oZqmczWLljUjEOrw"
-Content-Disposition: inline
-In-Reply-To: <20230605154230.2910847-1-thierry.reding@gmail.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+Subject: Re: [PATCH 4/7] arm64: dts: ti: k3-j7200-mcu: Add mcu_secproxy
+To:     Nishanth Menon <nm@ti.com>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nitin Yadav <n-yadav@ti.com>, Andrew Davis <afd@ti.com>,
+        <u-kumar1@ti.com>
+References: <20230530165900.47502-1-nm@ti.com>
+ <20230530165900.47502-5-nm@ti.com>
+ <e25936b9-d85c-dfe8-0eb1-07b51fdfff1e@ti.com>
+ <20230531173906.zznrzuxfytk5feun@spied>
+Content-Language: en-US
+In-Reply-To: <20230531173906.zznrzuxfytk5feun@spied>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,94 +76,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---oZqmczWLljUjEOrw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 5/31/2023 11:09 PM, Nishanth Menon wrote:
+> On 22:37-20230531, Kumar, Udit wrote:
+> [...]
+>>> +	secure_proxy_mcu: mailbox@2a480000 {
+>> I think, we should start name as  mailbox@2a380000
+>>> +		compatible = "ti,am654-secure-proxy";
+>>> +		#mbox-cells = <1>;
+>>> +		reg-names = "target_data", "rt", "scfg";
+>>> +		reg = <0x0 0x2a480000 0x0 0x80000>,
+>>> +		      <0x0 0x2a380000 0x0 0x80000>,
+>>> +		      <0x0 0x2a400000 0x0 0x80000>;
+>> I think, we should have increasing order for reg. Unless there is some
+>> strong reason to keep in this way.
+> Binding is defined this way - the items section in the binding
+> enforces the order. As a result the first reg entry(target_data)
+> address causes the node name.
 
-On Mon, Jun 05, 2023 at 05:42:27PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> Hi,
->=20
-> this is an updated version of v4 of the series, which can be found here:
->=20
-> 	http://patchwork.ozlabs.org/project/linux-tegra/list/?series=3D357888
->=20
-> This adds the missing DT bindings example for the AON pinmux controller
-> and addresses some review comments from Andy that I had previously
-> missed.
->=20
-> Changes in v5:
-> - add missing DT bindings example for AON controller
-> - use generic device_get_match_data() instead of OF-specific variant
-> - drop comma for of_device_id table sentinel entry
-> - drop unneeded .owner initialization
-> - drop redundant license text
-> - add missing includes
->=20
-> Once accepted, patches 1 and 2 can go through the pinctrl tree and I can
-> pick up patch 3 into the Tegra tree. Alternatively I can also pick up
-> patch 1 into the Tegra tree to help with validation. We're not quite at
-> a point yet where the Tegra DTs fully validate, so it doesn't matter
-> much which way these get applied.
 
-Linus,
+Ok thanks, u boot defined in other way but i don't see problem post sync,
 
-I've applied patches 1 and 3 to the Tegra tree. Let me know if you'd
-prefer to pick up patch 1 along with patch 2 and I can drop it.
+As u-boot driver is getting node address based upon name instead of index.
 
-Thanks,
-Thierry
 
->=20
-> Thanks,
-> Thierry
->=20
-> Prathamesh Shete (3):
->   dt-bindings: pinctrl: Document Tegra234 pin controllers
->   pinctrl: tegra: Add Tegra234 pinmux driver
->   arm64: tegra: Add Tegra234 pin controllers
->=20
->  .../pinctrl/nvidia,tegra234-pinmux-aon.yaml   |   78 +
->  .../nvidia,tegra234-pinmux-common.yaml        |   66 +
->  .../pinctrl/nvidia,tegra234-pinmux.yaml       |  139 ++
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   12 +
->  drivers/pinctrl/tegra/Kconfig                 |    4 +
->  drivers/pinctrl/tegra/Makefile                |    1 +
->  drivers/pinctrl/tegra/pinctrl-tegra234.c      | 1961 +++++++++++++++++
->  drivers/soc/tegra/Kconfig                     |    1 +
->  8 files changed, 2262 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegr=
-a234-pinmux-aon.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegr=
-a234-pinmux-common.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegr=
-a234-pinmux.yaml
->  create mode 100644 drivers/pinctrl/tegra/pinctrl-tegra234.c
->=20
-> --=20
-> 2.40.1
->=20
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
---oZqmczWLljUjEOrw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmR/L6QACgkQ3SOs138+
-s6EH/Q//e4lA58vLX1uB2T5RNI5NYedfmWmLmtrTPxlSHO4IGma4VR46NOw/5yVx
-QKjN6Uvx33uKL2rsN8Brg1owVnN4FIbQGIFG5Y1HOOOdq1TKfH4Q6m4O6Hfuo/oD
-8kg54Y+VKeY3o/vigQao3kFSDn5GYBor+eGDDpA8zpIndlcztuwL2VeLBOJL0jH8
-m9X4h1ucqLuTPLiObrDnlVnmytsmhVA1Ba7gM6zwuiJ/pDQAbtrtkChNyxSEHaDC
-YHspy9k1rPSBUGNWTcxHAe3SXvb7uet7VVTJh6FYBpH8AtmCtq87FlQD2nN8C72l
-eHFfaj0rh4Gj4r/hi2vwsozDfWJYQSZ3nayZu7PaU5dZSpi33EMOdUFgx+TBx5ix
-/nt/6ZC5jKsQXwQaIlBE2M2X3vuXtQLkUH2PO2DhPCz6i5BIzwMtdUI+G5wrWt5G
-Uesi5VQ/bn6DwJOHnwWVmNIA+Uu0IiYYsB7hyd5ALTgbo35idchd/CjTDAw5DJtc
-cFx37IIZrFfGx8kyCU4J40UZkhr/qOzSOgtZKMgRs8N6nC8clMDF0IGefAyAf8uq
-mA99VNxBJfBUWjdoM9/RJEZAa8YQOVpu7hMlX79AGpvIGp/YBVyiyZnKXXafz/xi
-QW2oYSUs9ZbovwuquZm0iCTHuPXz96Gv3OekYN2sJk1m84gPi/8=
-=B8Zj
------END PGP SIGNATURE-----
-
---oZqmczWLljUjEOrw--
