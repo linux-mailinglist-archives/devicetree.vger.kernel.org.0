@@ -2,137 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4DF723E72
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 11:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08819723E8F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 11:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237119AbjFFJyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 05:54:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57384 "EHLO
+        id S235673AbjFFJ6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 05:58:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237289AbjFFJx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 05:53:57 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DD810C3;
-        Tue,  6 Jun 2023 02:53:52 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3569rgVw034489;
-        Tue, 6 Jun 2023 04:53:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686045222;
-        bh=X3kd7Gz3ZxWL8Zz//FBnWoD8BPO8kiQPqVkOujANyQo=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=RT2sKXS/L4CVUW9iiqhbxXgYDeLe4QxbLOvhdnQxMKzEGWpnnM/WNUZ6Qn9ebZ6Sk
-         6wvyZUiVbnlUOLZS3NOPT1bXWFD6EusaYJcY4KGQV7oUo3+6jDQ2NJBMY9G7QaiUwH
-         wk9pqqiPnL7CxzzimepiTBkrsaP99pza4lVESKQY=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3569rgFO023485
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Jun 2023 04:53:42 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Jun 2023 04:53:42 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Jun 2023 04:53:42 -0500
-Received: from [172.24.156.168] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3569rcXU007073;
-        Tue, 6 Jun 2023 04:53:39 -0500
-Message-ID: <fb128289-f459-4fe2-0426-6cd6cac93c1a@ti.com>
-Date:   Tue, 6 Jun 2023 15:23:37 +0530
+        with ESMTP id S232005AbjFFJ6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 05:58:12 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABDF710CE;
+        Tue,  6 Jun 2023 02:57:59 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3565JLSg006141;
+        Tue, 6 Jun 2023 09:57:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=cFNE3AsLsdfFP0DlIBu4Q/vElQ0Paf0vkWTxq3N08qE=;
+ b=OLv2GaCsER2fP1dYYsLjlFZxOFIU6I7ylQOAS3Z681VA+KCdQjXQGiPSGG1ADpvwy+9I
+ 92JfItzmoRgCVdum15CtG3l2Ta0ckD/qof+aRUFj5wyH9Xr0pOscT8huRHl32a0LQB8Q
+ 4B76iyvXTV/5cM5E5uEDHWfM6LkWLvqwiqgKiW7xiKt9C9QUQuJa+kuuo3choAKkadc4
+ 8k/Dd4c38DUPvXlzGnPsEclhr+WYdIuIMAHUeXgbVm5rGGlcL6Xwcvk3Uq1TY2W82Vea
+ 45lAiuo753K6RmTiEf6vjC52Nb1TKRrshafdecjKirchCIf7r0Y7fO+1vBSpqMHNYADm Mw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r1s4uh3ks-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Jun 2023 09:57:56 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3569vtVY002102
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 6 Jun 2023 09:57:55 GMT
+Received: from harihk-linux.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 6 Jun 2023 02:57:50 -0700
+From:   Hariharan K <quic_harihk@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>
+Subject: [PATCH 0/2] Add initial support for RDP446 of IPQ5332 family
+Date:   Tue, 6 Jun 2023 15:27:30 +0530
+Message-ID: <20230606095732.12884-1-quic_harihk@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 3/6] arm64: dts: ti: k3-am68-sk-base-board: Add uart
- pinmux
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Nitin Yadav <n-yadav@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-References: <20230602153554.1571128-1-nm@ti.com>
- <20230602153554.1571128-4-nm@ti.com>
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230602153554.1571128-4-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 2MndvQh7kuzpjOK-MP9aXJXfLqNiKzut
+X-Proofpoint-GUID: 2MndvQh7kuzpjOK-MP9aXJXfLqNiKzut
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-06_06,2023-06-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 mlxlogscore=829 impostorscore=0 malwarescore=0 bulkscore=0
+ adultscore=0 priorityscore=1501 clxscore=1011 mlxscore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306060084
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+Add the initial device tree support for the Reference Design
+Platform(RDP) 446 based on IPQ5332 family of SoC. This patch carries
+the support for Console UART, SPI NOR and I2C.
 
-On 6/2/2023 9:05 PM, Nishanth Menon wrote:
-> Define the wakeup uart pin-mux for completeness and add explicit
-> muxing for mcu_uart0. This allows the device tree usage in bootloader
-> and firmwares that can configure the same appropriately.
->
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
-> New patch in the series
->
->   .../boot/dts/ti/k3-am68-sk-base-board.dts     | 26 +++++++++++++++++++
->   1 file changed, 26 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> index 014ff13d1032..979898bc5b02 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -22,6 +22,8 @@ chosen {
->   	};
->   
->   	aliases {
-> +		serial0 = &wkup_uart0;
-> +		serial1 = &mcu_uart0;
->   		serial2 = &main_uart8;
->   		mmc1 = &main_sdhci1;
->   		can0 = &mcu_mcan0;
-> @@ -202,6 +204,15 @@ J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
->   };
->   
->   &wkup_pmx2 {
-> +	wkup_uart0_pins_default: wkup-uart0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x070, PIN_INPUT, 0) /* (E25) WKUP_GPIO0_6.WKUP_UART0_CTSn */
-> +			J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (F28) WKUP_GPIO0_7.WKUP_UART0_RTSn */
-> +			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (D28) WKUP_UART0_RXD */
-> +			J721S2_WKUP_IOPAD(0x04c, PIN_OUTPUT, 0) /* (D27) WKUP_UART0_TXD */
-> +		>;
-> +	};
-> +
->   	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
->   		pinctrl-single,pins = <
->   			J721S2_WKUP_IOPAD(0x02C, PIN_INPUT, 0) /* (B22) MCU_RGMII1_RD0 */
-> @@ -254,6 +265,13 @@ J721S2_WKUP_IOPAD(0x07c, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
->   		>;
->   	};
->   
-> +	mcu_uart0_pins_default: mcu-uart0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C24) WKUP_GPIO0_13.MCU_UART0_RXD */
-> +			J721S2_WKUP_IOPAD(0x088, PIN_OUTPUT, 0) /* (C25) WKUP_GPIO0_12.MCU_UART0_TXD */
-> +		>;
-> +	};
+Hariharan K (2):
+  dt-bindings: arm: qcom: document MI04.1 board based on IPQ5332 family
+  arm64: dts: qcom: ipq5332: add support for the RDP446 variant
 
-Series look good.
+ .../devicetree/bindings/arm/qcom.yaml         |  2 +
+ arch/arm64/boot/dts/qcom/Makefile             |  1 +
+ arch/arm64/boot/dts/qcom/ipq5332-rdp446.dts   | 83 +++++++++++++++++++
+ 3 files changed, 86 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp446.dts
 
-One small question, We don't have CTS and RTS Pin for mcu uart ,
+-- 
+2.17.1
 
-is this due to board connections ?
-
-
-> [..]
