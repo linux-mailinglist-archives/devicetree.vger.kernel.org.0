@@ -2,78 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB3EF7248FD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97935724907
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:25:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbjFFQYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 12:24:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57376 "EHLO
+        id S233514AbjFFQZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 12:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231700AbjFFQYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:24:10 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DCBD171A
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 09:23:34 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686068613;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=jmZpdXlMp5uDwoWVTcrxVkLUK6iiazTIo6P0BWoSqI4=;
-        b=orBUTnTXiEgUwoeeJi0ZPXGNg69S03p5BoFJQ7yvl0Dn3n5DiYt9CyeZAU0DYH8+XtVzhH
-        SC+1XHiudL4icq2bLqAz+gB93QQpRkZi70u6CiG7xtl8WZOX15XrCObo81I4NOJ7SXQjvj
-        XzxMfYdDBR55hkrhfKcU5v3jMw3fq5YX6s4QzB0KyU+J5WVeVrthdr3yP5IICaHHIUkHSn
-        X+BlPtuqG1btFFbR0PnLPfq3pL8wXpD6nLXCU6QdIvX5szC4XFM8PIVOysVJVmmGZD+doC
-        D8SQYN6e87MMoAVjtuXj5o/fiYjzda5aLqIE0oiggSDkNiOLminK75WHu4EE8Q==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AB2A2C000A;
-        Tue,  6 Jun 2023 16:23:29 +0000 (UTC)
-Date:   Tue, 6 Jun 2023 18:23:28 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        <linux-mtd@lists.infradead.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/3] Fix a couple of missing unevaluated properties
-Message-ID: <20230606182328.2ac7f0da@xps-13>
-In-Reply-To: <20230606103057.137711-1-miquel.raynal@bootlin.com>
-References: <20230606103057.137711-1-miquel.raynal@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S238506AbjFFQZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:25:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 174D510FE;
+        Tue,  6 Jun 2023 09:24:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A75B562862;
+        Tue,  6 Jun 2023 16:24:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DAABC433EF;
+        Tue,  6 Jun 2023 16:24:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686068679;
+        bh=W4Tp8jO+9JqisoEdQWJbb+RxEjWeGO6Ebj3B6m7pPCA=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=nrr/ZR5dfX1JBaKxwqI6JBfjB+mB2pSi42JI/AOhWuf9o0OsOS52k8JgXS8rdI8y6
+         2vYNaoTtpW+NpBoEnH/1OmXSGKzv9ThUyzeoQXOvIP1tHfCnwKVaA6XDjPyWRg8dvY
+         U3ZRT462HdmSIbet9gXFc+aKZW1SCpSUfD5eEYDCHNa7tRMF483mEyNy+w4JEJE0is
+         h1/hwSTqweKkAwG8GPJOZNlO3So+SEHsyil9mK2FhoR5WQWerZri4uVgE8/HdSMWE8
+         LgwLZD9x1XfJjz/TKY8SwckJINOicGboKPdh02sbc8XKkCuIj00C9gYfRRC+AFELbe
+         SuWHZ2vhYhyKQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Abe Kohandel <abe.kohandel@intel.com>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20230606145402.474866-1-abe.kohandel@intel.com>
+References: <20230606145402.474866-1-abe.kohandel@intel.com>
+Subject: Re: [PATCH 0/2] spi: dw: Add compatible for Intel Mount Evans SoC
+Message-Id: <168606867693.49694.16483038401822255147.b4-ty@kernel.org>
+Date:   Tue, 06 Jun 2023 17:24:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bfdf5
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,45 +58,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-miquel.raynal@bootlin.com wrote on Tue,  6 Jun 2023 12:30:54 +0200:
-
-> As discussed with Krzysztof and Chris, it seems like each NAND
-> controller binding should actually explicitely list all the allowed
-> properties in a schema and use "unevaluatedProperties: false" in both
-> the NAND controller and the NAND chip sections. While this restriction
-> always applied on the controller side, this was not enforced on the
-> chips side AFAIR.
->=20
-> Link: https://lore.kernel.org/all/a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@li=
-naro.org/
-
-The discussion pointed above has lead to another observation which also
-needs to be fixed in this series. A v2 is coming soon.
-
-> While converting Marvell controller bindings, Chris explicitely pointed
-> similar bindings which would also trigger errors when using
-> "unevaluatedProperties: false" because of the reg/partitions/etc
-> properties not being described. Here is an attempt at making these more
-> precise and robust.
->=20
-> These change made me realize the qcom,boot-partition property
-> description was broken, so here is a fix for it.
->=20
+On Tue, 06 Jun 2023 07:54:00 -0700, Abe Kohandel wrote:
+> The Intel Mount Evans SoC's Integrated Management Complex has a DW
+> apb_ssi_v4.02a controller. This series adds support for this controller.
+> 
+> No SoC level chip select override is provided and as such no DMA
+> configuration is done for the controller.
+> 
 > Thanks,
-> Miqu=C3=A8l
->=20
-> Miquel Raynal (3):
->   dt-bindings: mtd: qcom: Fix a property position
->   dt-bindings: mtd: qcom: Prevent NAND chip unevaluated properties
->   dt-bindings: mtd: ingenic: Prevent NAND chip unevaluated properties
->=20
->  .../devicetree/bindings/mtd/ingenic,nand.yaml | 11 +++++
->  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 47 ++++++++++++-------
->  2 files changed, 42 insertions(+), 16 deletions(-)
->=20
+> Abe
+> 
+> [...]
 
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/2] spi: dw: Add compatible for Intel Mount Evans SoC
+      commit: 0760d5d0e9f0c0e2200a0323a61d1995bb745dee
+[2/2] dt-bindings: spi: snps,dw-apb-ssi: Add compatible for Intel Mount Evans SoC
+      commit: 7bac98a338d63efb0b44ce4b79d53838491f00df
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Miqu=C3=A8l
+Mark
+
