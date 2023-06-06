@@ -2,109 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C33D72372B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07477723738
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:09:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234446AbjFFGHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 02:07:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55546 "EHLO
+        id S234251AbjFFGJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 02:09:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234091AbjFFGHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:07:07 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F088100
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 23:06:52 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-974f4897d87so590440766b.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 23:06:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686031611; x=1688623611;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=70U1Q012Arkvcx5mvXubiW/F2gAfaONAjH5lT/7WlvU=;
-        b=FwdJwg7KgSK2Wwy3ECLHhpcdMeuZtbx74g2OGRGidhbgcQ6qiPYftWQ6JompvNiqEk
-         ik1DnRnNyTyx2AxisrtPJIx3kSzcb14U8FuIBxYtLUviWKbYtdfgz3TG1zCNgK3XWPE8
-         y1RcCHxueGsKoE/KC8gIjB7fGXBMtd876kdjdEaVhklRfO3fLQlAaYaZDNfx+eJ94SLZ
-         WlsjkjCJALb5Do+A1uF51PSYL3/tbkK3bh5C93nXPAHUywZBCYPdV+FNJasQEL/QVHx1
-         at4UlUi3vSsDOdSYAZ0kVU9VKD4p70Lecc6EiCjKdDoX0gOaKYptJT+SgwKMBQDuia8y
-         1gsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686031611; x=1688623611;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=70U1Q012Arkvcx5mvXubiW/F2gAfaONAjH5lT/7WlvU=;
-        b=FQfa7tZ0FCGyMH4aRr0UdRdAm90OhEFhTobsKvNi7AT0Yx5Fr46t3M3+xhXYBVL/Sb
-         +A8I+rEwxGwecoqzbEmuhS3ypVhNYXVJypjkFbnhCaLkpIeIaa7lrLlZxW5cc65dJcUJ
-         ebF0FPDN4Ub6ck/PBgYuY3qLxaa/r35iL4bEqzFHVIdJMkEgNvRlf2s9uDaZIbRrOuHY
-         KR3J6CAZwVUi899RYLo5z8U5v+BklcStGi0F9kgIWfsdE4xjDH7tP3nsYh4q8zCYywBW
-         Nk1eT4/A7hQAG+VhJM7CLVwbYQPAmIbEClz2P/zG7whiO1wiAq/pMLTI2sWlsb+8tEKT
-         snyA==
-X-Gm-Message-State: AC+VfDwE1hloLNyynOCwZwAL9TaQWeve1TlYuXQh9Lch+mDv15GOeIC0
-        CpbxM7Os8N5HmOPIe6NsCdwbKQ==
-X-Google-Smtp-Source: ACHHUZ7K+10SlLxGan8XiIuR06mM+0EdUD7vth1kPHI0gcVWF/WLesu537LbR8tywrkYFsC332XcBQ==
-X-Received: by 2002:a17:907:60d5:b0:973:ff35:a9b8 with SMTP id hv21-20020a17090760d500b00973ff35a9b8mr1062659ejc.62.1686031610221;
-        Mon, 05 Jun 2023 23:06:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h26-20020aa7c95a000000b00514bddcb87csm4669771edt.31.2023.06.05.23.06.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 23:06:49 -0700 (PDT)
-Message-ID: <a2761197-7121-d6bc-6bb3-a716339f4e26@linaro.org>
-Date:   Tue, 6 Jun 2023 08:06:47 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 09/10] arm64: dts: qcom: Enable the QUPv3 UART console
- for SDX75
-Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        rafael@kernel.org, viresh.kumar@linaro.org, tglx@linutronix.de,
-        maz@kernel.org, will@kernel.org, robin.murphy@arm.com,
-        joro@8bytes.org, mani@kernel.org, robimarko@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev
-References: <1685982557-28326-1-git-send-email-quic_rohiagar@quicinc.com>
- <1685982557-28326-10-git-send-email-quic_rohiagar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1685982557-28326-10-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230071AbjFFGIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:08:50 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D9C83;
+        Mon,  5 Jun 2023 23:08:49 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 3D9E75C01FC;
+        Tue,  6 Jun 2023 02:08:49 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Tue, 06 Jun 2023 02:08:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm1; t=
+        1686031729; x=1686118129; bh=jWnd+Tu93Ydyd0XWIfSLCz4ZEAGnqPSE7yv
+        GS7uwiVk=; b=SSoZ+7I0c9Fwv2n5Hn515aFeknC06tGYFxgzpP1yl+fz4c4+cfz
+        685JrWK/U9/LC0FTpCnJg20SeaYXRFSKBIim3AY8EE6zoHfGvAhBnALYYvYRKIq3
+        qbi2MIa4tR7v72JR6JDzblr8WLQvqRqpfhytNZ2YjSY72XguwvR9QR/YlNZye8iH
+        uZF6vvrKihuAuyM37QhIjvY+kHKYctuTI9XSH1VFoPZ6q+BIAVcx7KF0T+71S6zu
+        dZogg9CxBSwUsL9uqpDALybi1q15TZJsyF/DFRQHrtKVEMotcb1EJxJhUiBXphXS
+        ITwi9nnJJDmNg6sigEUd2p5fogCx+JqkjcA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1686031729; x=1686118129; bh=jWnd+Tu93Ydyd0XWIfSLCz4ZEAGnqPSE7yv
+        GS7uwiVk=; b=eYsVkHkjsOb7rRAyl98E0Jcwr8/9bmekhSRQ8hv9jldeDtxXBrL
+        mtQ1zNy6Gk6YjffscBlEiUrsHktliRFYzGP+CwvkTsQz7GgA9o1+F+jmiFlfL+kn
+        7cQWGecJkl2Gr7mIn/JF/luqhuhlyZXQ+XRou0etPp3mrcYSDovzShCch8iMwHiE
+        HDz9CzpFqxDlExv++HYgqSiTbJMe3Njhj0S0PIYoXxzyPaIqAhv2SIflF28V4oZj
+        IZ6yhmC3jjbi3tIU2ZkV3zCBaQEB0jYteN5+Q2m3q5YeVmyWO6LQjcdWuW693CKj
+        8BpjJTNpuZ4HkDVxAG0sJAf9cT3YTAXCslg==
+X-ME-Sender: <xms:cM1-ZIIwjYF1VFsJK7COwEnOuf67AdF6Fw4SpR1SWTedqOz6jIYqnw>
+    <xme:cM1-ZIKPgL7wM-O7vXlSfBRo9AThdEPpx7OIB1PjY4KGBP5PmyMwwiJeBbkMp8ntF
+    hxR9WPfAL41op40bj0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgedttddguddtvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    tehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrf
+    grthhtvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudek
+    tdfgjeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:cM1-ZIs-5JwC2kaEVBxOYGJuU0ODDRl3q7w8BCh3mQ_aVh1UJQD8lg>
+    <xmx:cM1-ZFbvZlSVBfwhmLps7V0XV2lVrMaAAE8G_91IOG1thZ5-tClb0g>
+    <xmx:cM1-ZPbvZt6NWfUJFC9cZBG0Aqn0GJ18m18X8TLAMShrXceHc2TycQ>
+    <xmx:cc1-ZMSRFsAbeEkqS__3eaSeemwET6EzJI8YKz11xBNnI-ai0-fBNg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 38310B60086; Tue,  6 Jun 2023 02:08:48 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-447-ge2460e13b3-fm-20230525.001-ge2460e13
+Mime-Version: 1.0
+Message-Id: <4f85ea74-5788-471d-bf3f-01402652a6b8@app.fastmail.com>
+In-Reply-To: <c57453ce-341c-ef89-5e71-58ad63466b11@gmail.com>
+References: <20230605040749.67964-1-ychuang570808@gmail.com>
+ <9dc45c49-02aa-4e63-a176-97e3536f14f4@app.fastmail.com>
+ <c57453ce-341c-ef89-5e71-58ad63466b11@gmail.com>
+Date:   Tue, 06 Jun 2023 08:08:27 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Jacky Huang" <ychuang570808@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Jiri Slaby" <jirislaby@kernel.org>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, soc@kernel.org, schung@nuvoton.com,
+        mjchen@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
+Subject: Re: [PATCH v13 00/10] Introduce Nuvoton ma35d1 SoC
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 18:29, Rohit Agarwal wrote:
-> Enable the debug uart console for the SDX75 IDP board.
-> 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sdx75-idp.dts | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-> index 1e08f25..cbe5cdf 100644
-> --- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-> @@ -11,8 +11,23 @@
->  	model = "Qualcomm Technologies, Inc. SDX75 IDP";
->  	compatible = "qcom,sdx75-idp", "qcom,sdx75";
->  
-> +	aliases {
-> +		serial0 = &uart1;
-> +	};
+On Tue, Jun 6, 2023, at 02:22, Jacky Huang wrote:
+> On 2023/6/5 =E4=B8=8B=E5=8D=88 08:00, Arnd Bergmann wrote:
+>> On Mon, Jun 5, 2023, at 06:07, Jacky Huang wrote:
+>
+> I'm glad to see that these patches have finally been accepted.
+> Thank you very much for all the assistance you have provided.
+> Once the device tree is merged, we will start submitting drivers
+> such as pinctrl, gpio, rtc, and so on.
 
-You just added this board. Don't add it without serial, it is basic
-functionality.
+I think you can start submitting all the drivers to their
+respective maintainers now, just mention that the SoC support
+is currently in linux-next in case they get confused about the
+dependencies.
 
-Best regards,
-Krzysztof
-
+     Arnd
