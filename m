@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8A1E7240E7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB7F724130
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235855AbjFFLbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 07:31:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
+        id S237232AbjFFLlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 07:41:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbjFFLbv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:31:51 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50239B1;
-        Tue,  6 Jun 2023 04:31:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686051110; x=1717587110;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PX4wIJsd0NfghjQ/uFE2ySZMqtdfL0c7FgIDmxAuXAg=;
-  b=EmefW5k/qjg0vop9SHsOkiZslyAtKTM+KimyR5Z8oqx2HJ1ABOcHh8O+
-   WfcyHXJt9sgqRPSA4xP2EOYPdgxrIaeAQ67FfrJfJqBofA7OZS2ypjF34
-   VdTgrRxds2jsZG79n5a6LssD1ZeHUrSqD23ILIE6FLvTezyvxtYTGRf5A
-   6NioUXYC5oW5PJwhpi5sRe9BCLzisTxLZsVW6vqyfUEN8bSpj/rg8musF
-   IKF5SwR9LiG9bRet6CDWMSY8pi3ssRyJKEtdEK07OMXyaRskrj24yNeVK
-   lvw64o67qi78LsjuLheib3UlduLFxwx5OluY+E/Rv2KewconKbUDEJzq7
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; 
-   d="asc'?scan'208";a="155753414"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Jun 2023 04:31:49 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 6 Jun 2023 04:31:47 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 6 Jun 2023 04:31:45 -0700
-Date:   Tue, 6 Jun 2023 12:31:21 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-CC:     Mason Huo <mason.huo@starfivetech.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237257AbjFFLku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:40:50 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F47410C2;
+        Tue,  6 Jun 2023 04:40:44 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356BeSOp108309;
+        Tue, 6 Jun 2023 06:40:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686051628;
+        bh=mDNAxOdRFHKWWkcbYdc4LhKHrvJv1X2OIGRqqEmTtR4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=GnhYJb4LExQCtNmwcxpdvXYpY0it7mkD3Ahwvfn01biS26NXJKaJOKqEeqSHLD+Nj
+         EnA+OYsT17ZlajPTxaRYcFolX/GZHoHJUOUSUnujt3D/5ppVAu79Dz3qnkyvd0di0+
+         yV4niOGVFFFkeJKjv6/Hh3LnScISbvatVZtA0EeI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356BeSI9117720
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Jun 2023 06:40:28 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 06:40:28 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Jun 2023 06:40:28 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356BeSj4075600;
+        Tue, 6 Jun 2023 06:40:28 -0500
+Date:   Tue, 6 Jun 2023 06:40:28 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     "Kumar, Udit" <u-kumar1@ti.com>
+CC:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Shengyu Qu <wiagn233@outlook.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v4 2/3] cpufreq: dt-platdev: Add JH7110 SOC to the
- allowlist
-Message-ID: <20230606-unsmooth-slip-c80fab59c9b4@wendy>
-References: <20230606105656.124355-1-mason.huo@starfivetech.com>
- <20230606105656.124355-3-mason.huo@starfivetech.com>
- <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Nitin Yadav <n-yadav@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: Re: [PATCH 3/6] arm64: dts: ti: k3-am68-sk-base-board: Add uart
+ pinmux
+Message-ID: <20230606114028.croeykqxsf6zvhhh@boxer>
+References: <20230602153554.1571128-1-nm@ti.com>
+ <20230602153554.1571128-4-nm@ti.com>
+ <fb128289-f459-4fe2-0426-6cd6cac93c1a@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="PVnj5Dy2DGpzU6zM"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
+In-Reply-To: <fb128289-f459-4fe2-0426-6cd6cac93c1a@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,51 +73,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---PVnj5Dy2DGpzU6zM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 15:23-20230606, Kumar, Udit wrote:
+[...]
+> Series look good.
 
-On Tue, Jun 06, 2023 at 04:38:04PM +0530, Viresh Kumar wrote:
-> On 06-06-23, 18:56, Mason Huo wrote:
-> > Add the compatible strings for supporting the generic
-> > cpufreq driver on the StarFive JH7110 SoC.
-> >=20
-> > Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
-> > ---
-> >  drivers/cpufreq/cpufreq-dt-platdev.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpu=
-freq-dt-platdev.c
-> > index 338cf6cc6596..14aa8281c7f4 100644
-> > --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> > +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> > @@ -85,6 +85,8 @@ static const struct of_device_id allowlist[] __initco=
-nst =3D {
-> >  	{ .compatible =3D "st-ericsson,u9500", },
-> >  	{ .compatible =3D "st-ericsson,u9540", },
-> > =20
-> > +	{ .compatible =3D "starfive,jh7110", },
-> > +
-> >  	{ .compatible =3D "ti,omap2", },
-> >  	{ .compatible =3D "ti,omap4", },
-> >  	{ .compatible =3D "ti,omap5", },
->=20
-> I thought I already merged it ?
+Could you confirm by providing a Reviewed-by Tag to the cover-letter?
 
-You did, 4b4c0d37164c ("cpufreq: dt-platdev: Add JH7110 SOC to the
-allowlist").
+> 
+> One small question, We don't have CTS and RTS Pin for mcu uart ,
+> 
+> is this due to board connections ?
 
---PVnj5Dy2DGpzU6zM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH8ZCQAKCRB4tDGHoIJi
-0rJnAQDaPUiev8/jv4DVEX6KPrP+2lQ61lVWp7MZRr2EUXwcuwD/RmDLMvupVtZR
-NAUW47q4A9h7saZRU5kbxp63KRZKOAQ=
-=RJ+E
------END PGP SIGNATURE-----
-
---PVnj5Dy2DGpzU6zM--
+yup.
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
