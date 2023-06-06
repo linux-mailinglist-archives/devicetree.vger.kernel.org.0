@@ -2,116 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EFDA724B0C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC12724B1E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:21:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233287AbjFFSSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:18:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36620 "EHLO
+        id S238386AbjFFSVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:21:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbjFFSR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:17:59 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7794E43;
-        Tue,  6 Jun 2023 11:17:58 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (om126253223039.31.openmobile.ne.jp [126.253.223.39])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4AB13289;
-        Tue,  6 Jun 2023 20:17:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1686075451;
-        bh=DRb6m39CrBBWcLpikvhKIWv1Q1828m7KdCBih5G281w=;
+        with ESMTP id S238277AbjFFSVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:21:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47F01707
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:21:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3812B62EA6
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 18:21:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97451C4339B;
+        Tue,  6 Jun 2023 18:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686075666;
+        bh=ljqurGBoA0H7WQzAb4F6v9Hp/eKC0Sg99g1tREoBxqo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Qu3Z1XQ809WqGdIgjtY3f05JMvA+RplMGGce+5p7si2wI02VVNK37bm7kNk3fAwme
-         DkrfdofKgq73NsSIp9Ww/8znc/hgIvYPXWRYLEnD9cJoP21QaDwanWWss6Yugn2dti
-         NffhH7KDR6MYu/RDbVJjBgH1+v7kVn0iyzSiR+f0=
-Date:   Tue, 6 Jun 2023 21:17:52 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Tommaso Merciai <tomm.merciai@gmail.com>,
-        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
-        michael.roeder@avnet.eu, linuxfancy@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        b=DIfRPazOwePfOs8ItJHcVxQd/JaMVUVirQtozSQPh62uj7KLmHQuAGoTIBmAlrcx3
+         Q4tm8cXhsn3Lg/13OJrXi8SfIcnfgDnLZqMOdCQ3iPCNzpOMDgjdk88hRTN8Z/OYuU
+         +XQZpHcfgvssoVtFQObRWcsfi4zGH+xGM8r2IqpE3aU3HP+DDy1kHK8bQDWtMY56tU
+         bmBnFtUl79QXkorGmYshMMbAmLZ+agt/UBwEv/9T9DwKrZsTIUAOInqq08Myf8yD0O
+         LkgfiZq7ifSbMr8JOV/pMN0XF6lZLt5et+64o+jOxqq7sq7BjQqra3sQEcutkyZD9Y
+         nqGYxztA1u17w==
+Date:   Tue, 6 Jun 2023 19:21:02 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] media: dt-bindings: alvium: add document YAML
- binding
-Message-ID: <20230606181752.GC14101@pendragon.ideasonboard.com>
-References: <20230606155416.260941-1-tomm.merciai@gmail.com>
- <20230606155416.260941-3-tomm.merciai@gmail.com>
- <20230606163656.GI25679@pendragon.ideasonboard.com>
- <20230606-jaundice-womankind-7e583789fb7a@spud>
+        Liu Ying <victor.liu@nxp.com>, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: phy: mixel,mipi-dsi-phy: Remove
+ assigned-clock* properties
+Message-ID: <20230606-implement-canning-0353ca9afddb@spud>
+References: <20230606144447.775942-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zYuBaMqGZQxpQNI4"
 Content-Disposition: inline
-In-Reply-To: <20230606-jaundice-womankind-7e583789fb7a@spud>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230606144447.775942-1-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 07:07:42PM +0100, Conor Dooley wrote:
-> Hey Laurent, Tommaso,
-> 
-> On Tue, Jun 06, 2023 at 07:36:56PM +0300, Laurent Pinchart wrote:
-> > On Tue, Jun 06, 2023 at 05:54:03PM +0200, Tommaso Merciai wrote:
-> 
-> > > +  alliedvision,lp2hs-delay-us:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Low power to high speed delay time in microseconds.
-> > 
-> > You can drop "in microseconds", that's implied by the suffix.
-> > 
-> > > +      The purpose of this property is force a DPhy reset for the period
-> > > +      described by the microseconds on the property, before it starts
-> > > +      streaming. To be clear, with that value bigger than 0 the Alvium
-> > > +      forces a dphy-reset on all lanes for that period. That means all
-> > > +      lanes go up into low power state. This may help a csi2 rx ip to
-> > > +      reset if that IP can't deal with a continous clock.
-> > 
-> > I'd like to propose what I think is a clearer version:
-> > 
-> >     description: |
-> >       Low power to high speed delay time.
-> > 
-> >       If the value is larger than 0, the camera forces a reset of all
-> >       D-PHY lanes for the duration specified by this property. All lanes
-> >       will transition to the low-power state and back to the high-speed
-> >       state after the delay. Otherwise the lanes will transition to and
-> >       remain in the high-speed state immediately after power on.
-> > 
-> >       This is meant to help CSI-2 receivers synchronizing their D-PHY
-> >       RX.
-> 
-> Question about the property.
-> Why not make it have a minimum value of 1 and drop the special-case
-> behaviour for zero?
 
-The property is optional, so it can indeed be omitted if no delay is
-desired. I have no strong preference on whether or not to allow 0 as a
-valid value.
+--zYuBaMqGZQxpQNI4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Regards,
+On Tue, Jun 06, 2023 at 04:44:46PM +0200, Alexander Stein wrote:
+> These properties are allowed anyway and some SoC (e.g. imx8mq) configure
+> more than just one clock using these properties.
 
-Laurent Pinchart
+What does "allowed anyway" mean?
+And following from that, why not modify the min/maxItems to suit
+reality, rather than remove them. Is there enforcement from elsewhere?
+
+> Fixes: f9b0593dd4fc6 ("dt-bindings: phy: Convert mixel,mipi-dsi-phy to js=
+on-schema")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> I can't reproduce the mentioned mis-matches in commit f9b0593dd4fc6
+> ("dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema").
+
+I suspect that meant that the property was in the dt but not in the
+binding at the time of the conversion.
+
+Cheers,
+Conor.
+
+>=20
+> Since commit 62270eeb2b639 ("arm64: dts: imx8mq: Add clock parents for
+> mipi dphy") imx8mq.dtsi configures several clocks using assigned-clocks*
+> properties.
+>=20
+>  .../devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml      | 9 ---------
+>  1 file changed, 9 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yam=
+l b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+> index 786cfd71cb7eb..3c28ec50f0979 100644
+> --- a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+> @@ -32,15 +32,6 @@ properties:
+>    clock-names:
+>      const: phy_ref
+> =20
+> -  assigned-clocks:
+> -    maxItems: 1
+> -
+> -  assigned-clock-parents:
+> -    maxItems: 1
+> -
+> -  assigned-clock-rates:
+> -    maxItems: 1
+> -
+>    "#phy-cells":
+>      const: 0
+> =20
+> --=20
+> 2.34.1
+>=20
+
+--zYuBaMqGZQxpQNI4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH95DgAKCRB4tDGHoIJi
+0rvVAQDERPS8mYHAeyrLw9/psX3Krt144EkLLSbL9ZBnSfTzdAD+MprMmNGN1NUt
+KeSL/x1kVbv2OiE9zwyJBdXs6CJeswE=
+=fngN
+-----END PGP SIGNATURE-----
+
+--zYuBaMqGZQxpQNI4--
