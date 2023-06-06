@@ -2,140 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4896B7245C1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 835B67245E4
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231935AbjFFOYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 10:24:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57940 "EHLO
+        id S237576AbjFFO1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 10:27:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235857AbjFFOX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:23:59 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D29FD10C8
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 07:23:56 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9745c5fed21so759984366b.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 07:23:56 -0700 (PDT)
+        with ESMTP id S237857AbjFFO1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:27:38 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188C81718;
+        Tue,  6 Jun 2023 07:27:33 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-75e1ec47c3fso203995185a.2;
+        Tue, 06 Jun 2023 07:27:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686061435; x=1688653435;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZrVZ+SOBI/x4uatGRzhwg8fwXrewUsr2gOgY5H5Ft9g=;
-        b=fjsh3FJuBj9U15nWQpVdEMJbpDHN4ljEkK9i2Vw7zwBuDx4W8rMjbHbsp9EmQtjyMn
-         eJF3j78A6GgKT5UmL33X70+Hn7Vza2duvJhoTuMmw2WP9K0uDsTiDNGs9f79C6arQHPg
-         9jVHZeruC6m8xpteMR0Dla+l2bhyabByCOIwilQYD4nT33q7Pbu31UeXpHuYVaaVGTBZ
-         CC4NtSF+mfmdaB3EUVgPZWPkbVVb8i81qGDd4Gj//FwS3EtZ7pyGd9yqlQkcYI1T4rVB
-         nGmGUBb9O5E9PZSf45Qkw5rPLiKqEavRcfFfNH7iu9n14Y5qV4u03o9Dy3NyKApuUmvb
-         vduQ==
+        d=gmail.com; s=20221208; t=1686061652; x=1688653652;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JJyXRnfhFkINlRUyK+QjXtrQLlNiUgrBBt6eFT43tDY=;
+        b=DNd/kMiQRIIQpg04PdEmqFSvnHjgjCWWhVR5no38lxjnNhirVN2K9CbYPzqU34l9HC
+         4oY2+6+thwYUX0PPIhTr/L4Hw4d/PLCfB2HjnuYOu9iSLckigw2Al9668tqy4uY6ptZ/
+         jRYZawCtxngClpopfSoBCb3QXh3SP6HwP70WMlJ2qqCHYmTr9LL79QzOVEpyK5//ZszG
+         WeGP6VB9o7Ap9Zngfc0Q/tR1Ixd7zM3x2iMC3ZmidCQ5DLRH5Ic+hAFHmTFlufhfcAZB
+         SlOP+dzX4zKX3Z92EBaTarlF70/W2RCNEKEEsmMo3J2kG4bBOg63isEJNDY7/FcYkZj3
+         tOvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686061435; x=1688653435;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZrVZ+SOBI/x4uatGRzhwg8fwXrewUsr2gOgY5H5Ft9g=;
-        b=JugwqxeihLlf7xkUHXlLtINb/ZbWcrsAQd6uhbklZsbePQd6aHF7o1/+8U0CepBUwu
-         X/AVZ02Sofkio8jtnUJDLtQ7wuEkdWapkU8qbb+KcAnXrUAVbMWvml7fXF3BU8k6EIdB
-         Og1lk+slaHU0UD4L9UT4cYIeFiQmHRzPzDHIyCnY4J+/ybIfwJMSo+yiwvkBzuCwiG60
-         RBbt/RcivlUQeFAP9Q4Fs/OyI3OA6CDLVesde6bCIm5jnRsti0gyjbJLYTuvCfRpckWO
-         BsHCAm3Q+bjAZhGnxn/mED495zPM0mK0KuItXmBTiqmx303w52N43OTHm+x87/be2nm1
-         PExA==
-X-Gm-Message-State: AC+VfDyI23VaYJMSd9uGG8rsq2R3XaxULVj9qnAEZlPC2jm2e1KEOlZ9
-        XqvKaXPi7S7Sm/3nRalfHMIMmQ==
-X-Google-Smtp-Source: ACHHUZ4tNfkNmafis8UY8kYNaoiMX1MZKlLqdyE0bOdqVbjV255h69EPHklsSAMRYGIU1YtOe+jhjQ==
-X-Received: by 2002:a17:907:2da9:b0:966:5730:c3fe with SMTP id gt41-20020a1709072da900b009665730c3femr2925794ejc.52.1686061435313;
-        Tue, 06 Jun 2023 07:23:55 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id qc16-20020a170906d8b000b00965d294e633sm5624319ejb.58.2023.06.06.07.23.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 07:23:54 -0700 (PDT)
-Message-ID: <c28f963e-d13c-6b5c-c389-996e986f81d5@linaro.org>
-Date:   Tue, 6 Jun 2023 16:23:52 +0200
+        d=1e100.net; s=20221208; t=1686061652; x=1688653652;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JJyXRnfhFkINlRUyK+QjXtrQLlNiUgrBBt6eFT43tDY=;
+        b=UKodVvWFhNkKTMcVQ40iSozF+0hOgWgZE3uXVbT+J5DjzcJdr1Bhrv2x8Ga0WeAWP0
+         pZUOTWl3L3ZLYyYJsho0MEgiWLUmtzzlQQ8FSxaaTT6OHwctBgaWupRriKu4BvILILvJ
+         JId5mxkqV+S9Rkjt9R/bW6tlHOkgtEJnT3NNQ49CWD+Lr8lVrmCVFwjLNPQ1c1cCOuUC
+         p6qCAxZax9YjfXcD21qeZzNWPMXoj1TUxiDh/Hiu/Bu6mfCbpRQz4z5NZLlrHFbdf3TD
+         rNvyyEXlk7HpaPPqOAmLO1Er7fnAbxOU8+QVY+jU4xxGRi2UYblQbQESDdzbNuMrNc6T
+         SxCQ==
+X-Gm-Message-State: AC+VfDwUFdWU/Sa9ACsitCOFa98HYPnJ/ZbwP2r8t2ncbfbFu7+cYwPD
+        9dZssViTCvf9Q6jnLCRIDa3G6e5vhCS4HvXUaeo=
+X-Google-Smtp-Source: ACHHUZ5b/yKHVwPJvcasJ5lXLQxqrPkVm3aDYAuuKbySUu8+FKz3bUdCkTR/5IOsfuz7EdzPJ+nrvky5PEJFSPFM1PU=
+X-Received: by 2002:ad4:5bc6:0:b0:62b:2d61:f696 with SMTP id
+ t6-20020ad45bc6000000b0062b2d61f696mr2488357qvt.42.1686061652049; Tue, 06 Jun
+ 2023 07:27:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [v5 3/5] dt-bindings: mfd: Add aspeed pwm-tach binding
-Content-Language: en-US
-To:     Patrick Williams <patrick@stwcx.xyz>
-Cc:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        lee@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, corbet@lwn.net,
-        p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
+References: <20230601152636.858553-1-nm@ti.com> <20230601152636.858553-4-nm@ti.com>
+ <f1e54167-15bd-8a0b-454d-53b90b18a343@ti.com> <20230605204930.3hlg3d36zwtbkal7@scone>
+ <cbd314b6-08a9-7a07-7538-c2e3f1b333e9@ti.com>
+In-Reply-To: <cbd314b6-08a9-7a07-7538-c2e3f1b333e9@ti.com>
+From:   Robert Nelson <robertcnelson@gmail.com>
+Date:   Tue, 6 Jun 2023 09:27:06 -0500
+Message-ID: <CAOCHtYiV68syEKU9+rhuFntAX1wHw5KBJ8Zcp2eN-hPJjV2x6Q@mail.gmail.com>
+Subject: Re: [PATCH 03/12] arm64: dts: ti: k3-j721e-beagleboneai64: Fixup
+ reference to phandles array
+To:     "Kumar, Udit" <u-kumar1@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20230606094535.5388-1-billy_tsai@aspeedtech.com>
- <20230606094535.5388-4-billy_tsai@aspeedtech.com>
- <35bf0a69-bcf6-ae35-eb3c-e74cfcf9c571@linaro.org>
- <ZH89fXknZlhGmM_H@heinlein.vulture-banana.ts.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZH89fXknZlhGmM_H@heinlein.vulture-banana.ts.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 16:06, Patrick Williams wrote:
-> On Tue, Jun 06, 2023 at 12:49:04PM +0200, Krzysztof Kozlowski wrote:
-> 
-> Hi Krzysztof,
-> 
-> Thank you for reviewing this from Billy.
-> 
-> The Aspeed chip is heavily used by the OpenBMC community and the 2600
-> has been used in production systems for almost 2 years now.  Many
-> companies are having to carry previous versions of these as patches, and
-> some of the APIs changed since the last revision from Billy.  So, I had
-> asked him to submit the latest patch set with as many revisions as he
-> understood what to change, since the conversation seemed to have died
-> since last time he submitted.  
-> 
-> I don't believe Billy is intentionally ignoring your feedback and he is
-> motivated to get this patch set wrapped up into an acceptable state.
-> 
->> On 06/06/2023 11:45, Billy Tsai wrote:
->  
->> NAK. You got here clear comment. You cannot have simple MFD with
->> resources. It is not simple anymore.
->>
-> 
-> In fairness, Billy asked for clarification from you on this point and didn't
-> receive it.
-> 
-> https://lore.kernel.org/lkml/24DD1FEB-95F3-47BE-BE61-8B0E6FBDE20F@aspeedtech.com/
+On Mon, Jun 5, 2023 at 11:27=E2=80=AFPM Kumar, Udit <u-kumar1@ti.com> wrote=
+:
+>
+> Hi Nishanth,
+>
+> On 6/6/2023 2:19 AM, Nishanth Menon wrote:
+> > On 22:31-20230605, Kumar, Udit wrote:
+> > [...]
+> >>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arc=
+h/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> >>> index 37c24b077b6a..c13246a9ed8f 100644
+> >>> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> >>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> > [...]
+> >>> @@ -639,7 +639,7 @@ &main_i2c6 {
+> >>>    &wkup_i2c0 {
+> >>>     status =3D "okay";
+> >>>     pinctrl-names =3D "default";
+> >>> -   pinctrl-0 =3D <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
+> >>> +   pinctrl-0 =3D <&wkup_i2c0_pins_default>, <&eeprom_wp_pins_default=
+>;
+> >>>     clock-frequency =3D <400000>;
+> >> Why we need more than 2 pio lines for i2c node ,
+> > pio lines? I am not sure I understand. If you are suggesting
+> > eeprom_wp_pins to be moved to the eeprom node, It is probably
+> > un-related to this series, but OK, i think it is probably a valid
+> > change (unless Robert sees a reason why he did it the way he did).
+>
+> correct, I am suggesting to move  eeprom_wp_pins_default to eeprom node.
+>
+> i2c needs 2 lines which are defined in wkup_i2c0_pins_default, Adding
+> eeprom_wp_pins_default will not be true representation of i2c node.
+>
+> It will be good to have similar changes in main_i2c1 and main_i2c5  node
+> for csi0_gpio_pins_default and csi1_gpio_pins_default.
 
-I gave the instruction what Billy should do:
+I agree, moving eeprom_wp_pins_default into the eeprom node itself is
+much cleaner going forward.
 
-https://lore.kernel.org/lkml/41500a04-b004-0e2c-20a1-3a3092b90e6d@linaro.org/
+While we may have a lot of historical situations in the git tree where
+we just dumped all pin configurations into the base node, that's not
+the best practice going forward today.
 
-What about other ignored comments? About subject, quotes and more? Even
-if this one was unclear, then why ignoring all the rest?
+Regards,
 
-> 
-> He felt what he was trying to accomplish met the documented
-> expectations.  Are there some changes that need to be done in mfd.txt to
-> further clarify when to use it and when not to?
-
-I think mfd.txt clearly states:
-"For more complex devices, when the nexus driver has to
-probe registers to figure out what child devices exist etc, this should
-not be used. In the latter case the child devices will be determined by
-the operating system."
-
-Also, repeated many times:
-https://lore.kernel.org/all/YXhINE00HG6hbQI4@robh.at.kernel.org/
-https://lore.kernel.org/all/20220701000959.GA3588170-robh@kernel.org/
-https://osseu2022.sched.com/event/15z0W
-
-Best regards,
-Krzysztof
-
+--=20
+Robert Nelson
+https://rcn-ee.com/
