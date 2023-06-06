@@ -2,69 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA24B724788
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A6C7247B0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:27:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233893AbjFFPWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 11:22:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46392 "EHLO
+        id S233201AbjFFP1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 11:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233201AbjFFPWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:22:24 -0400
-Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E942E40;
-        Tue,  6 Jun 2023 08:22:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686064932; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=fQLWl1OJQgI+y16x11Nujul31DbOOZGxHC9Jy8zMjwxNcByl6utzoadZEJzxSzhNwgQSQR3t3Dx9vfA9DrFp3Ogd2vwDp0rJ1W2xuqNnhMpUW9LZ21qfBPhORyTL+ao3OiVm3dgmiQwJtPV8zyK/jKp5VISSWnflbg5c7vgPdpk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1686064932; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=5NyaYE9lJ5b6pxkKhpQXFKjTx0CZyg+2SN/WxV0H/pM=; 
-        b=HfYmxrltidB8T7t4j0LIUlRUBJn8iwKkW0HPCNfy1NeG1eMgpncli0qKzUhFXrbl5n5okqo8uzpS+GWDH5DXWhlpBVy5qxtd3IuyBBOwSj8DucooeeE+T0Ob5hYyYArrCnoErnGaL5JGy59+O6UecRPyBFkbppCW2OXMJRlTX/c=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1686064932;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=5NyaYE9lJ5b6pxkKhpQXFKjTx0CZyg+2SN/WxV0H/pM=;
-        b=V8pesKFOFlk+xfIWUrAdHLdhU7/6hSNS4K7kAycDr9s5XlbNTvtm+jLRqQZN7u1x
-        SK7YnJufRxJbtFPdvhLZp2srQfEkFQfqrtRGJFIycXL/DaqdlIyHMbGICLOQMfJhZi3
-        VmbONVjuEOKSlsdboUXc6fOQ3Y5cB5morJ1iOP8E=
-Received: from [192.168.99.249] (178-147-169-233.haap.dm.cosmote.net [178.147.169.233]) by mx.zohomail.com
-        with SMTPS id 1686064930095554.2192890935327; Tue, 6 Jun 2023 08:22:10 -0700 (PDT)
-Message-ID: <3895c69f-6033-0976-0902-b9aab644bd0e@arinc9.com>
-Date:   Tue, 6 Jun 2023 18:22:04 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 1/2] mips: dts: ralink: Add support for TP-Link HC220
- G5 v1 board
-To:     Liviu Dudau <liviu@dudau.co.uk>
+        with ESMTP id S232817AbjFFP1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:27:16 -0400
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215E0100;
+        Tue,  6 Jun 2023 08:27:14 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1q6YaE-0067mg-TF; Tue, 06 Jun 2023 15:26:55 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     linux-arm-kernel@lists.infradead.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230605150114.601102-1-liviu@dudau.co.uk>
- <20230605150114.601102-2-liviu@dudau.co.uk>
- <552b4604-d1b3-0052-62aa-424944c5ecb1@arinc9.com>
- <ZH5NJsbY6ZLXYJYz@bart.dudau.co.uk>
- <43c95286-a3f4-6c68-c59c-0c86bbb74928@arinc9.com>
- <ZH9DP+QdwRu/uS2D@bart.dudau.co.uk>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <ZH9DP+QdwRu/uS2D@bart.dudau.co.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v2] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
+Date:   Tue,  6 Jun 2023 08:26:52 -0700
+Message-Id: <20230606152652.1447659-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,118 +44,420 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.06.2023 17:31, Liviu Dudau wrote:
-> On Tue, Jun 06, 2023 at 08:24:48AM +0300, Arınç ÜNAL wrote:
->> On 6.06.2023 00:01, Liviu Dudau wrote:
->>> On Mon, Jun 05, 2023 at 07:35:44PM +0300, Arınç ÜNAL wrote:
->>>> On 5.06.2023 18:01, Liviu Dudau wrote:
->>>>> This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
->>>>> a MT7603 2.4GHz WiFi and a MT7613 5GHz WiFi chips integrated on the board,
->>>>> connected to the main SoC over PCIe.
->>>>>
->>>>> The device uses NMBM over NAND, which is not currently supported in the
->>>>> mainline, so NAND node is skipped in this revision.
->>>>>
->>>>> Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
->>>>> ---
->>>>>     arch/mips/boot/dts/ralink/Makefile            |  3 +-
->>>>>     .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 92 +++++++++++++++++++
->>>>>     2 files changed, 94 insertions(+), 1 deletion(-)
->>>>>     create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
->>>>>
->>>>> diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
->>>>> index 11732b8c8163a..d27d7e8c700fe 100644
->>>>> --- a/arch/mips/boot/dts/ralink/Makefile
->>>>> +++ b/arch/mips/boot/dts/ralink/Makefile
->>>>> @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
->>>>>     dtb-$(CONFIG_SOC_MT7621) += \
->>>>>     	mt7621-gnubee-gb-pc1.dtb \
->>>>> -	mt7621-gnubee-gb-pc2.dtb
->>>>> +	mt7621-gnubee-gb-pc2.dtb \
->>>>> +	mt7621-tplink-hc220-g5-v1.dtb
->>>>>     obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
->>>>> diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
->>>>> new file mode 100644
->>>>> index 0000000000000..859aaa1c1bc2b
->>>>> --- /dev/null
->>>>> +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
->>>>> @@ -0,0 +1,92 @@
->>>>> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +/dts-v1/;
->>>>> +
->>>>> +#include "mt7621.dtsi"
->>>>> +
->>>>> +#include <dt-bindings/gpio/gpio.h>
->>>>> +#include <dt-bindings/input/input.h>
->>>>> +#include <dt-bindings/leds/common.h>
->>>>> +
->>>>> +/ {
->>>>> +	compatible = "tplink,hc220-g5-v1", "mediatek,mt7621-soc";
->>>>> +	model = "TP-Link HC220 G5 v1";
->>>>> +
->>>>> +	memory@0 {
->>>>> +		device_type = "memory";
->>>>> +		reg = <0x00000000 0x8000000>;
->>>>
->>>> Please use 8 digit addressing for the memory start and size offsets:
->>>>
->>>> 0x00000000 0x08000000
->>>
->>> Will do.
->>>
->>>>
->>>>> +	};
->>>>> +
->>>>> +	chosen {
->>>>> +		bootargs = "earlycon console=ttyS0,115200";
->>>>> +	};
->>>>> +
->>>>> +	gpio-keys {
->>>>> +		compatible = "gpio-keys";
->>>>> +
->>>>> +		key-reset {
->>>>> +			label = "reset";
->>>>> +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
->>>>> +			linux,code = <KEY_RESTART>;
->>>>> +		};
->>>>> +
->>>>> +		key-wps {
->>>>> +			label = "wps";
->>>>> +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
->>>>> +			linux,code = <KEY_WPS_BUTTON>;
->>>>> +		};
->>>>> +	};
->>>>> +
->>>>> +	leds {
->>>>> +		compatible = "gpio-leds";
->>>>> +
->>>>> +		red {
->>>>
->>>> Usually the led name would point to the component the LED is used for.
->>>
->>> These are "generic" LEDs controlled from the userspace. The original firmware
->>> uses GREEN for normal operations, RED for faults and BLUE for when WPS is
->>> enabled. I'm not sure if there are any standard bindings that I can use here.
->>
->> Looking at:
->>
->> https://www.kernel.org/doc/html/latest/leds/leds-class.html#led-device-naming
->>
->> You could use red:fault, green:power, and blue:wps. For node names,
->> led-fault, led-power, and led-wps.
-> 
-> Without making any changes in the device tree, because of the use of 'function' property,
-> I get this:
-> 
-> # ls -al /sys/class/leds/
-> drwxr-xr-x    2 root     root             0 Jun  6 14:24 .
-> drwxr-xr-x   37 root     root             0 Jan  1  1970 ..
-> lrwxrwxrwx    1 root     root             0 Jun  6 14:24 blue:wps -> ../../devices/platform/leds/leds/blue:wps
-> lrwxrwxrwx    1 root     root             0 Jun  6 14:24 green:power -> ../../devices/platform/leds/leds/green:power
-> lrwxrwxrwx    1 root     root             0 Jun  6 14:24 red:fault -> ../../devices/platform/leds/leds/red:fault
-> 
-> May I suggest that I change only the node names and not add a label, keeping the 'function' property instead?
+Update the imx8mp-venice-gw74xx for revB:
+ - add CAN1
+ - add TIS-TPM on SPI2
+ - add FAN controller
+ - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
+   backward compatible option)
+ - M2 socket GPIO's moved
 
-It seems to achieve the same result so, sure.
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+v2:
+ - fix fan-controller unit-address
+---
+ .../dts/freescale/imx8mp-venice-gw74xx.dts    | 261 +++++++++++-------
+ 1 file changed, 159 insertions(+), 102 deletions(-)
 
-Arınç
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+index eb51d648359b..764ff8b5c01b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+@@ -125,12 +125,22 @@ reg_usb2_vbus: regulator-usb2 {
+ 		regulator-max-microvolt = <5000000>;
+ 	};
+ 
++	reg_can1_stby: regulator-can1-stby {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_can1>;
++		regulator-name = "can1_stby";
++		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
+ 	reg_can2_stby: regulator-can2-stby {
+ 		compatible = "regulator-fixed";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_reg_can>;
++		pinctrl-0 = <&pinctrl_reg_can2>;
+ 		regulator-name = "can2_stby";
+-		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
++		gpio = <&gpio5 5 GPIO_ACTIVE_LOW>;
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+@@ -164,6 +174,21 @@ &A53_3 {
+ 	cpu-supply = <&reg_arm>;
+ };
+ 
++&ecspi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1>;
++	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
++	status = "okay";
++
++	tpm@0 {
++		compatible = "tcg,tpm_tis-spi";
++		#address-cells = <0x1>;
++		#size-cells = <0x1>;
++		reg = <0x0>;
++		spi-max-frequency = <36000000>;
++	};
++};
++
+ /* off-board header */
+ &ecspi2 {
+ 	pinctrl-names = "default";
+@@ -204,6 +229,13 @@ fixed-link {
+ 	};
+ };
+ 
++&flexcan1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_flexcan1>;
++	xceiver-supply = <&reg_can1_stby>;
++	status = "okay";
++};
++
+ &flexcan2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexcan2>;
+@@ -214,38 +246,38 @@ &flexcan2 {
+ &gpio1 {
+ 	gpio-line-names =
+ 		"", "", "", "", "", "", "", "",
+-		"", "", "dio0", "", "dio1", "", "", "",
++		"", "dio0", "", "dio1", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+ 
+ &gpio2 {
+ 	gpio-line-names =
+-		"", "", "", "", "", "", "", "",
+-		"", "", "", "", "", "", "pcie3_wdis#", "",
++		"", "", "", "", "", "", "m2_pin20", "",
++		"", "", "", "", "", "pcie1_wdis#", "pcie3_wdis#", "",
+ 		"", "", "pcie2_wdis#", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+ 
+ &gpio3 {
+ 	gpio-line-names =
+-		"m2_gdis#", "", "", "", "", "", "", "m2_rst#",
++		"", "", "", "", "", "", "m2_rst", "",
++		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+-		"m2_off#", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+ 
+ &gpio4 {
+ 	gpio-line-names =
++		"", "", "m2_off#", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+-		"", "", "", "", "", "", "", "",
+-		"", "", "", "", "m2_wdis#", "", "", "",
+-		"", "", "", "", "", "", "", "uart_rs485";
++		"", "", "m2_wdis#", "", "", "", "", "",
++		"", "", "", "", "", "", "", "rs485_en";
+ };
+ 
+ &gpio5 {
+ 	gpio-line-names =
+-		"uart_half", "uart_term", "", "", "", "", "", "",
++		"rs485_hd", "rs485_term", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+@@ -286,6 +318,12 @@ channel@8 {
+ 				label = "vdd_bat";
+ 			};
+ 
++			channel@16 {
++				gw,mode = <4>;
++				reg = <0x16>;
++				label = "fan_tach";
++			};
++
+ 			channel@82 {
+ 				gw,mode = <2>;
+ 				reg = <0x82>;
+@@ -358,6 +396,11 @@ channel@a2 {
+ 				gw,voltage-divider-ohms = <10000 10000>;
+ 			};
+ 		};
++
++		fan-controller@a {
++			compatible = "gw,gsc-fan";
++			reg = <0x0a>;
++		};
+ 	};
+ 
+ 	gpio: gpio@23 {
+@@ -369,85 +412,6 @@ gpio: gpio@23 {
+ 		interrupts = <4>;
+ 	};
+ 
+-	pmic@25 {
+-		compatible = "nxp,pca9450c";
+-		reg = <0x25>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_pmic>;
+-		interrupt-parent = <&gpio3>;
+-		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+-
+-		regulators {
+-			BUCK1 {
+-				regulator-name = "BUCK1";
+-				regulator-min-microvolt = <720000>;
+-				regulator-max-microvolt = <1000000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-				regulator-ramp-delay = <3125>;
+-			};
+-
+-			reg_arm: BUCK2 {
+-				regulator-name = "BUCK2";
+-				regulator-min-microvolt = <720000>;
+-				regulator-max-microvolt = <1025000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-				regulator-ramp-delay = <3125>;
+-				nxp,dvs-run-voltage = <950000>;
+-				nxp,dvs-standby-voltage = <850000>;
+-			};
+-
+-			BUCK4 {
+-				regulator-name = "BUCK4";
+-				regulator-min-microvolt = <3000000>;
+-				regulator-max-microvolt = <3600000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			BUCK5 {
+-				regulator-name = "BUCK5";
+-				regulator-min-microvolt = <1650000>;
+-				regulator-max-microvolt = <1950000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			BUCK6 {
+-				regulator-name = "BUCK6";
+-				regulator-min-microvolt = <1045000>;
+-				regulator-max-microvolt = <1155000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			LDO1 {
+-				regulator-name = "LDO1";
+-				regulator-min-microvolt = <1650000>;
+-				regulator-max-microvolt = <1950000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			LDO3 {
+-				regulator-name = "LDO3";
+-				regulator-min-microvolt = <1710000>;
+-				regulator-max-microvolt = <1890000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			LDO5 {
+-				regulator-name = "LDO5";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-		};
+-	};
+-
+ 	eeprom@50 {
+ 		compatible = "atmel,24c02";
+ 		reg = <0x50>;
+@@ -559,7 +523,6 @@ fixed-link {
+ 	};
+ };
+ 
+-/* off-board header */
+ &i2c3 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default", "gpio";
+@@ -568,6 +531,85 @@ &i2c3 {
+ 	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
++
++	pmic@25 {
++		compatible = "nxp,pca9450c";
++		reg = <0x25>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pmic>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++
++		regulators {
++			BUCK1 {
++				regulator-name = "BUCK1";
++				regulator-min-microvolt = <720000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <3125>;
++			};
++
++			reg_arm: BUCK2 {
++				regulator-name = "BUCK2";
++				regulator-min-microvolt = <720000>;
++				regulator-max-microvolt = <1025000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <3125>;
++				nxp,dvs-run-voltage = <950000>;
++				nxp,dvs-standby-voltage = <850000>;
++			};
++
++			BUCK4 {
++				regulator-name = "BUCK4";
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3600000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			BUCK5 {
++				regulator-name = "BUCK5";
++				regulator-min-microvolt = <1650000>;
++				regulator-max-microvolt = <1950000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			BUCK6 {
++				regulator-name = "BUCK6";
++				regulator-min-microvolt = <1045000>;
++				regulator-max-microvolt = <1155000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO1 {
++				regulator-name = "LDO1";
++				regulator-min-microvolt = <1650000>;
++				regulator-max-microvolt = <1950000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO3 {
++				regulator-name = "LDO3";
++				regulator-min-microvolt = <1710000>;
++				regulator-max-microvolt = <1890000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO5 {
++				regulator-name = "LDO5";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
+ };
+ 
+ /* off-board header */
+@@ -726,12 +768,14 @@ pinctrl_hog: hoggrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
+ 			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
+-			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_OFF# */
+-			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
++			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02	0x40000040 /* M2SKT_OFF# */
++			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
++			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x40000040 /* M2SKT_PIN20 */
++			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x40000040 /* M2SKT_PIN22 */
++			MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
+ 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
++			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
+ 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
+-			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
+-			MX8MP_IOMUXC_NAND_ALE__GPIO3_IO00	0x40000150 /* M2SKT_GDIS# */
+ 			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
+ 			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
+ 			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
+@@ -784,6 +828,13 @@ MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT	0x140
+ 		>;
+ 	};
+ 
++	pinctrl_flexcan1: flexcan1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SPDIF_RX__CAN1_RX		0x154
++			MX8MP_IOMUXC_SPDIF_TX__CAN1_TX		0x154
++		>;
++	};
++
+ 	pinctrl_flexcan2: flexcan2grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX		0x154
+@@ -869,7 +920,7 @@ MX8MP_IOMUXC_SD2_DATA1__GPIO2_IO16	0x10
+ 
+ 	pinctrl_pcie0: pciegrp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x110
++			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x106
+ 		>;
+ 	};
+ 
+@@ -885,12 +936,18 @@ MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x140
+ 		>;
+ 	};
+ 
+-	pinctrl_reg_can: regcangrp {
++	pinctrl_reg_can1: regcan1grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19	0x154
+ 		>;
+ 	};
+ 
++	pinctrl_reg_can2: regcan2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05	0x154
++		>;
++	};
++
+ 	pinctrl_reg_usb2: regusb2grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06	0x140
+@@ -903,12 +960,12 @@ MX8MP_IOMUXC_NAND_DATA03__GPIO3_IO09	0x110
+ 		>;
+ 	};
+ 
+-	pinctrl_sai2: sai2grp {
++	pinctrl_spi1: spi1grp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC	0xd6
+-			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00	0xd6
+-			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK	0xd6
+-			MX8MP_IOMUXC_SAI2_MCLK__AUDIOMIX_SAI2_MCLK	0xd6
++			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK	0x82
++			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI	0x82
++			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO	0x82
++			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09	0x140
+ 		>;
+ 	};
+ 
+-- 
+2.25.1
+
