@@ -2,192 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E5337233CC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 01:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E198E7233DC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 02:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbjFEXwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 19:52:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60026 "EHLO
+        id S232755AbjFFAAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 20:00:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230328AbjFEXwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 19:52:18 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05929EC;
-        Mon,  5 Jun 2023 16:52:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PB7OSh9a92KGk8IrNVaYSq4Kow+DB4sM3E8q64aUpCM6DPVFtWBHLgR+Fqdqi9zM++R+rIrlrvART6bhzw3Ein193Ewa/J+Ug9+zCVejrfqtY5r3qHzAlcpv1Hqp9mtkGpvBivhDQcpUZ2qSPoK2nIYZ8g0HHH0t/Fg1+Gj7VSviXYi+6nHnse9ygbwgOj3Nbata+4eN9El7xge8Sjq4XRSc3vFGucPxAbvjHHkl/JiwqtRf4OzpDNZMA6BzCI0y4fWxkcgDGbD4E66+FFsSIdh9iSu/hWoau+WgCGc3UBA1/jxSjOjcfbqG0GZvGD63qy2ZtOcmXbKm23y+Ya0RIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xmRXQKoS1DobXu9N0G82hgBuSnWgeQD53idvpe52tsM=;
- b=kSYdc/NvVol8sfm3vFeENhhNyon2BnOT3CY+1MyNy714NQAArEz4kSeGRIWMsY14CVrMeu5WQWs/Gc/M6ackKO7SGl4fCnkgx50Ift51lRzrfFebR9aHLsgfCy/DdWW3uDEv59HUYIM8qTIB8zCoofeW2yDmzEsey53qABhg2Q3WCPK7pL3iKArqkZ9jyFbV+4fJkSAxRtYbzsz1wlBvHFGXyyyOspkotbn6jyqEI2++dXyq/sUwd7sLjXZ/Y8tSJtRKZpUYWIP0GexZbbMTzRqKG1svUvG/Ci42EbhmmB2RL2nrYWYeb10W+LVJ0msaSk9ATab07dhIHUiQU7E/Pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linux-m68k.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xmRXQKoS1DobXu9N0G82hgBuSnWgeQD53idvpe52tsM=;
- b=PcFDJjuY75d0S1aUazUS9vOubYVedVMkVQcB0hGZm+SN5jXDUbDgz5WvXRIEN+SxerWeZ2by8S7l1kILyc/9aTfqtwZxM5wnbT5IKeTQovWOOslDzFQ1vlXpf/TN6Zq2ZA3W/kUtU021fbtVcBj5NWxvl87DgPgCuybWwekZ/xA=
-Received: from DM6PR06CA0089.namprd06.prod.outlook.com (2603:10b6:5:336::22)
- by CH3PR12MB7570.namprd12.prod.outlook.com (2603:10b6:610:149::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Mon, 5 Jun
- 2023 23:52:13 +0000
-Received: from DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:336:cafe::14) by DM6PR06CA0089.outlook.office365.com
- (2603:10b6:5:336::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
- Transport; Mon, 5 Jun 2023 23:52:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT033.mail.protection.outlook.com (10.13.172.221) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.33 via Frontend Transport; Mon, 5 Jun 2023 23:52:12 +0000
-Received: from platform-dev1.pensando.io (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Mon, 5 Jun 2023 18:52:08 -0500
-From:   Brad Larson <blarson@amd.com>
-To:     <geert@linux-m68k.org>
-CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
-        <andy.shevchenko@gmail.com>, <arnd@arndb.de>, <blarson@amd.com>,
-        <brendan.higgins@linux.dev>, <briannorris@chromium.org>,
-        <broonie@kernel.org>, <catalin.marinas@arm.com>,
-        <conor+dt@kernel.org>, <davidgow@google.com>,
-        <devicetree@vger.kernel.org>, <fancer.lancer@gmail.com>,
-        <gerg@linux-m68k.org>, <gsomlo@gmail.com>,
-        <hal.feng@starfivetech.com>, <hasegawa-hitomi@fujitsu.com>,
-        <j.neuschaefer@gmx.net>, <joel@jms.id.au>, <kernel@esmil.dk>,
-        <krzk@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <lee.jones@linaro.org>, <lee@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <michal.simek@amd.com>,
-        <p.zabel@pengutronix.de>, <rdunlap@infradead.org>,
-        <robh+dt@kernel.org>, <samuel@sholland.org>,
-        <skhan@linuxfoundation.org>, <suravee.suthikulpanit@amd.com>,
-        <thomas.lendacky@amd.com>, <tonyhuang.sunplus@gmail.com>,
-        <ulf.hansson@linaro.org>, <vaishnav.a@ti.com>,
-        <walker.chen@starfivetech.com>, <will@kernel.org>,
-        <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v14 6/8] arm64: dts: Add AMD Pensando Elba SoC support
-Date:   Mon, 5 Jun 2023 16:52:02 -0700
-Message-ID: <20230605235202.15670-1-blarson@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <CAMuHMdWQGEoB_LLsfLurOV8fT0BO-RYGcsS_Gra49CPiGH9J=g@mail.gmail.com>
-References: <CAMuHMdWQGEoB_LLsfLurOV8fT0BO-RYGcsS_Gra49CPiGH9J=g@mail.gmail.com>
+        with ESMTP id S231629AbjFFAAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 20:00:32 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51895F7
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 17:00:30 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-568f9caff33so53006287b3.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 17:00:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1686009629; x=1688601629;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TsbKSW9JVbhL1wyuCDwpF4ByVkNni40r/SR21ozZR2o=;
+        b=JKH7PpcciV5tJ54qIiSmVG6eqyNgLcbYrySuyMCKnykc7DAxyKfCUBpPSFWPA03JO2
+         s+/IrO15jPEpi8w3LCnjkIJIgkIMqYuM8QgyF7cl9w6+TZONOio5LbfjKpuQbSmE7VbT
+         3nrwMUvlXKQsOBrZVt4AkNKV8xf1MXXJuMo6m4jA2MjzUZCfloC5wqdrKpw+cEIwlaxL
+         XKhjm9IfYArC0fKXlozX1xoS/1bDSU5r9acuDV/7gHyrNayMpqU/NyiLllYzOI+ceZz6
+         FhsLCYYYrQ5FAK38bkVuKeog+DSobDcT4CKUD5hxtdhR5OYjIVX4yIWSkLUDgC9TYuGJ
+         /EOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686009629; x=1688601629;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TsbKSW9JVbhL1wyuCDwpF4ByVkNni40r/SR21ozZR2o=;
+        b=P1k90z+4IA5QZZTh+fy3Y8CAZ5cfiAoOfcLShxuZnP/DJ7LxMSJ4+adP+bI9THzu/I
+         +88sIH5KSlJ1bd3cf472VPi11zZdRgMmjENpkBJMJtuPNWGWXZ5AKxfYLgZfqwnnvqvD
+         dg4fwUKon0gWRCjhnDjIptJ+CzscSGIa9ZVM4tzkvytp+pWsrLvqkgu+aFiKwWd82BZ4
+         vy1Ne51fjhaamyfm8PYZ8XShOomEt2+KyZ59PytNse5o+adXEQyZNYR7ZydmN71gkaBV
+         KcZ6UD5KLnyZHTCJ0cZVNhox2E2t+vs4+pqy4HVMiGDvrwC/g1110raoGQ0moLPkDDhH
+         vfWw==
+X-Gm-Message-State: AC+VfDwLi7jUWvWM5ORSbOADncqdOb2n05nBzDF2Ultv9TAd595BnETt
+        IY9YnkaKiaVMm84F3tomUVczsChW4CtJNuTiCUcBCQ==
+X-Google-Smtp-Source: ACHHUZ7cC4776/Z0Kpgd/VabrciyjHzXEBo7N6V9TCllS8Nm/kQlhg8mOGFZxvcU+/wXfod3KOapjz2R88y43vElRIs=
+X-Received: by 2002:a81:6645:0:b0:564:e951:a7cc with SMTP id
+ a66-20020a816645000000b00564e951a7ccmr76517ywc.45.1686009629423; Mon, 05 Jun
+ 2023 17:00:29 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230601193112.4083934-1-tharvey@gateworks.com> <20230605002154.GT4199@dragon>
+In-Reply-To: <20230605002154.GT4199@dragon>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 5 Jun 2023 17:00:18 -0700
+Message-ID: <CAJ+vNU29qdtYTnby6XBJvnawbAKWc7O8uRVFBY7pPHOBRfNpxA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT033:EE_|CH3PR12MB7570:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e16ff86-1265-4a58-82d0-08db661fe216
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s6VGflHSajwVzi8as5yZ3HIf/7H1LrNTWH8zWs3XUvdfPeu/1P85+JZX+RaS0HFvpTaQMFDro/AenD9Z82ZqnDTofqIaLA6cTw6AP18dUYaRV3k5lF7o/Tig9P1ojkfK6PrJCSgbe/kJmG+kOfj/1M+8wuOi3TKeLXdbDCXERVzuUgi2SYYjUcMjM26KripskFY5cfHBzvJ5WA8AoYRvN4cwWhp4GdeB9qCj4ab7yceDymnW8tRFiHDLzNk2+9Wbzm1t9esr2K74xOtcE/3xV1ACZWqslObOShjcn1rcOrxrtrhXT3h309kCpR2X91mGdZb+rHko/JZ3O8uis0rlAzs9DyRXVtVB4KpM6F2FUL0UeNUaIWT2qBOIR7bNyMwtYAAp53mY0ctUBo4Ff28vQTH6jIVVj5WjnYeVWq2WUUcQJjvmGeLbeFRWIsjLAugdI6SHZ0hc6qfqGKoLxZ3ZgfC3GQNxMRUZNDv3E/oEfDUruySh8+ka6FP/WDTVhiIo0nG1lpJ6of5yVg74UW36SJN+rbcv6EsYvdjvqBAwnOm3PIi6jgRQljRVAbkF2RdtqqoeqCOhBKLVMFnjrjYaxoeuxTRqC5jvHN+utAUYeRSMpXfhZfT9rxgOlO6S0jq7RMYwoBAQvWxYWJIAczzO9XHtS6ajmSZ/rwe3uXqhy8TZRPfDEwDrO7sr0IYPxvUi55dOlq0Uj+ouniMnRRJ+2TbBkhIZptV9Nn7xyQ8ZjdufmdUsOJ9ZWhFmiqquOHrTfzQDNDC2Ac71LiHb9Q9rzQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(39860400002)(376002)(136003)(451199021)(40470700004)(46966006)(36840700001)(40480700001)(70586007)(54906003)(356005)(81166007)(478600001)(82740400003)(8676002)(8936002)(41300700001)(4326008)(6916009)(316002)(70206006)(2616005)(186003)(426003)(336012)(16526019)(36860700001)(47076005)(40460700003)(6666004)(1076003)(26005)(53546011)(82310400005)(5660300002)(7416002)(7406005)(2906002)(36756003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2023 23:52:12.5421
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e16ff86-1265-4a58-82d0-08db661fe216
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7570
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Wed, May 31, 2023 at 15:09 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Wed, May 31, 2023 at 12:04 AM Brad Larson <blarson@amd.com> wrote:
->> On Wed, May 24, 2023 at 13:52 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->> > On Tue, May 23, 2023 at 9:30â€¯PM Brad Larson <blarson@amd.com> wrote:
->> >> On 5/16/23 09:54, Michal Simek wrote:
->> >> > On 5/15/23 20:16, Brad Larson wrote:
-...
->> >> >> +            /* CLUSTER 0 */
->> >> >> +            cpu0: cpu@0 {
->> >> >> +                    device_type = "cpu";
->> >> >> +                    compatible = "arm,cortex-a72";
->> >> >> +                    reg = <0 0x0>;
->> >> >
->> >> > Do you really need 2/0 split here. The first cell is 0 anyway.
->> >>
->> >> Yes following 64-bit system definition
->> >
->> > You mean for the 64-bit main address space?
->> > The CPU address space under /cpus is unrelated.
->>
->> Yes, the reg prop for this node is CPU/threads per dt spec.  Checked the history and
->> the Elba dt was derived from socionext for these nodes and this is how those device
->> trees are configured along with over a dozen other devices.  I changed to
->> address-cells = <1> and dropped the leading zero from all cpu* reg<> and booting
->> the system I'm observing no change.  Looking in drivers/of I'm not seeing where
->> cpu*/reg is read and used, any recommendation?
+On Sun, Jun 4, 2023 at 5:22=E2=80=AFPM Shawn Guo <shawnguo@kernel.org> wrot=
+e:
 >
-> drivers/of/cpu.c
+> On Thu, Jun 01, 2023 at 12:31:12PM -0700, Tim Harvey wrote:
+> > Update the imx8mp-venice-gw74xx for revB:
+> >  - add CAN1
+> >  - add TIS-TPM on SPI2
+> >  - add FAN controller
+> >  - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
+> >    backward compatible option)
+> >  - M2 socket GPIO's moved
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > ---
+> >  .../dts/freescale/imx8mp-venice-gw74xx.dts    | 261 +++++++++++-------
+> >  1 file changed, 159 insertions(+), 102 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/a=
+rch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> > index eb51d648359b..0e389ec5c2d4 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> > @@ -125,12 +125,22 @@ reg_usb2_vbus: regulator-usb2 {
+> >               regulator-max-microvolt =3D <5000000>;
+> >       };
+> >
+> > +     reg_can1_stby: regulator-can1-stby {
+> > +             compatible =3D "regulator-fixed";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_reg_can1>;
+> > +             regulator-name =3D "can1_stby";
+> > +             gpio =3D <&gpio3 19 GPIO_ACTIVE_LOW>;
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +     };
+> > +
+> >       reg_can2_stby: regulator-can2-stby {
+> >               compatible =3D "regulator-fixed";
+> >               pinctrl-names =3D "default";
+> > -             pinctrl-0 =3D <&pinctrl_reg_can>;
+> > +             pinctrl-0 =3D <&pinctrl_reg_can2>;
+> >               regulator-name =3D "can2_stby";
+> > -             gpio =3D <&gpio3 19 GPIO_ACTIVE_LOW>;
+> > +             gpio =3D <&gpio5 5 GPIO_ACTIVE_LOW>;
+> >               regulator-min-microvolt =3D <3300000>;
+> >               regulator-max-microvolt =3D <3300000>;
+> >       };
+> > @@ -164,6 +174,21 @@ &A53_3 {
+> >       cpu-supply =3D <&reg_arm>;
+> >  };
+> >
+> > +&ecspi1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_spi1>;
+> > +     cs-gpios =3D <&gpio5 9 GPIO_ACTIVE_LOW>;
+> > +     status =3D "okay";
+> > +
+> > +     tpm@0 {
+> > +             compatible =3D "tcg,tpm_tis-spi";
+> > +             #address-cells =3D <0x1>;
+> > +             #size-cells =3D <0x1>;
+> > +             reg =3D <0x0>;
+> > +             spi-max-frequency =3D <36000000>;
+> > +     };
+> > +};
+> > +
+> >  /* off-board header */
+> >  &ecspi2 {
+> >       pinctrl-names =3D "default";
+> > @@ -204,6 +229,13 @@ fixed-link {
+> >       };
+> >  };
+> >
+> > +&flexcan1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_flexcan1>;
+> > +     xceiver-supply =3D <&reg_can1_stby>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> >  &flexcan2 {
+> >       pinctrl-names =3D "default";
+> >       pinctrl-0 =3D <&pinctrl_flexcan2>;
+> > @@ -214,38 +246,38 @@ &flexcan2 {
+> >  &gpio1 {
+> >       gpio-line-names =3D
+> >               "", "", "", "", "", "", "", "",
+> > -             "", "", "dio0", "", "dio1", "", "", "",
+> > +             "", "dio0", "", "dio1", "", "", "", "",
+> >               "", "", "", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "";
+> >  };
+> >
+> >  &gpio2 {
+> >       gpio-line-names =3D
+> > -             "", "", "", "", "", "", "", "",
+> > -             "", "", "", "", "", "", "pcie3_wdis#", "",
+> > +             "", "", "", "", "", "", "m2_pin20", "",
+> > +             "", "", "", "", "", "pcie1_wdis#", "pcie3_wdis#", "",
+> >               "", "", "pcie2_wdis#", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "";
+> >  };
+> >
+> >  &gpio3 {
+> >       gpio-line-names =3D
+> > -             "m2_gdis#", "", "", "", "", "", "", "m2_rst#",
+> > +             "", "", "", "", "", "", "m2_rst", "",
+> > +             "", "", "", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "",
+> > -             "m2_off#", "", "", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "";
+> >  };
+> >
+> >  &gpio4 {
+> >       gpio-line-names =3D
+> > +             "", "", "m2_off#", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "",
+> > -             "", "", "", "", "", "", "", "",
+> > -             "", "", "", "", "m2_wdis#", "", "", "",
+> > -             "", "", "", "", "", "", "", "uart_rs485";
+> > +             "", "", "m2_wdis#", "", "", "", "", "",
+> > +             "", "", "", "", "", "", "", "rs485_en";
+> >  };
+> >
+> >  &gpio5 {
+> >       gpio-line-names =3D
+> > -             "uart_half", "uart_term", "", "", "", "", "", "",
+> > +             "rs485_hd", "rs485_term", "", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "",
+> >               "", "", "", "", "", "", "", "";
+> > @@ -286,6 +318,12 @@ channel@8 {
+> >                               label =3D "vdd_bat";
+> >                       };
+> >
+> > +                     channel@16 {
+> > +                             gw,mode =3D <4>;
+> > +                             reg =3D <0x16>;
+> > +                             label =3D "fan_tach";
+> > +                     };
+> > +
+> >                       channel@82 {
+> >                               gw,mode =3D <2>;
+> >                               reg =3D <0x82>;
+> > @@ -358,6 +396,11 @@ channel@a2 {
+> >                               gw,voltage-divider-ohms =3D <10000 10000>=
+;
+> >                       };
+> >               };
+> > +
+> > +             fan-controller@0 {
 >
-> Looks like there are lots of DTS files that use #address-cells = <2> for
-> CPU nodes :-(
+> The unit-address doesn't match 'reg' property below.
 >
->     git grep -w -A1 cpus -- "*dts*" | grep address-cells | grep "<2>"
+> Shawn
 >
-> I would use <1> is the first cell is always zero...
 
-I'll do that.  Tha variation across DTS is likely coming from ~5.10 devicetree/bindings/arm/cpus.txt
+Shawn,
 
-        - #address-cells
-...
-                        # On ARM v8 64-bit systems value should be set to 2,
-                          that corresponds to the MPIDR_EL1 register size.
-                          If MPIDR_EL1[63:32] value is equal to 0 on all CPUs
-                          in the system, #address-cells can be set to 1, since
-                          MPIDR_EL1[63:32] bits are not used for CPUs
-                          identification.
+Thanks - I'll fix this in v2
 
-where the size of MPIDR_EL1 register is 2 for Elba cores.  However the shorthand is
-allowed if MPIDR_EL1[63:32] bita are not used.
+Best Regards,
 
-Latest version:
-
-      On ARM v8 64-bit systems this property is required
-        and matches the MPIDR_EL1 register affinity bits.
-
-        * If cpus node's #address-cells property is set to 2
-
-          The first reg cell bits [7:0] must be set to
-          bits [39:32] of MPIDR_EL1.
-
-          The second reg cell bits [23:0] must be set to
-          bits [23:0] of MPIDR_EL1.
-
-        * If cpus node's #address-cells property is set to 1
-
-          The reg cell bits [23:0] must be set to bits [23:0]
-          of MPIDR_EL1.
-
-      All other bits in the reg cells must be set to 0.
-
-Regards,
-Brad
+Tim
