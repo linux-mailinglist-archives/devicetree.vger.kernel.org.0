@@ -2,144 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF717723FD4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45753723FDC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237243AbjFFKlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 06:41:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57458 "EHLO
+        id S237179AbjFFKnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 06:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234915AbjFFKlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:41:10 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2124.outbound.protection.outlook.com [40.107.22.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C0AD3;
-        Tue,  6 Jun 2023 03:38:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Moh6fAuybGLvk0vehIIn0xGbBjDmzTOuAC7uhq5ppym7twdsWHZxMD6nJ0yDtTcS9UgrBY/1yIAbbel19twy9uuy75shRpiqQCuT+ssOq9SlUYULm2yybKaDn/0Vc0rWCUBnoWBT5L5PbQJ7a/oO5YfqXoaRk9KHumrX4gk79Jn28cjPucmomZnYvD8F92e0cJGL0TER5B1pT1lEzkVlTcV9KktMXqYRhi8Afn3L+kP6o6R9pD8pbl/XEsqzwKLEUnApvI+M9qpLc4DoIoPmibNmNWkGmfsnCm4Tx+eMw6XnRLiAtCE8moakG0fnMZtdCfNnV260F86EUmXr82510g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OLnLwixFECpdUGD7Xlh//bwcbT9vqCFeRxxkxFe+eI4=;
- b=N35h4miXFqcCKf59XTiBg49U7llT1HPH3IYQa25NGl8Q8UwKC5o+ifvJGmH0RIsyHj+FfQ4ZMXNvu8/he77T04ogmAt3EdmnNNPsWBz74L9pvlxG0seSJnkSAVk6KBWWKH5wyn3cpH4fP7/4ZF+IakOf/uWgk08ksAHCELXW6xdlP166H1f4rwQeWuHgt/r7MHkcQd26v1OQq451TDhPn5bXajHjJbS8srAMDfAsUmzQM4mWO5gY/vTlfTNubQCHR+QeIJuPqNBqTeyNODizy0eNrImo0zTvdhwDY9v9XA8YMhUAAWd9MOkzFQOIjfmqdjRd0XMJh1K7c5oiS5MqFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OLnLwixFECpdUGD7Xlh//bwcbT9vqCFeRxxkxFe+eI4=;
- b=KLmf/KYuaReGp+zJhzSk4Mnh6WuJvIjtCuVVbRzC4ySf8Nrix7UhxPj05lBSlPuDUjnPSqXJB95CcdVAS0/OHPaV7EilW+TBTPrWU1kCZ9ToMknohMhVnb1hIjNF5G5HXPT3VAAPH9+a3CtOhsdZk2E+HsghmuJli3dtRcvCwV4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from VI1PR02MB4445.eurprd02.prod.outlook.com (2603:10a6:803:ab::28)
- by PAWPR02MB9221.eurprd02.prod.outlook.com (2603:10a6:102:340::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
- 2023 10:38:38 +0000
-Received: from VI1PR02MB4445.eurprd02.prod.outlook.com
- ([fe80::b703:24c6:975a:bf84]) by VI1PR02MB4445.eurprd02.prod.outlook.com
- ([fe80::b703:24c6:975a:bf84%4]) with mapi id 15.20.6455.030; Tue, 6 Jun 2023
- 10:38:37 +0000
-Message-ID: <f5e1ea82-75b7-8164-f82a-5ad6054ccb5e@axentia.se>
-Date:   Tue, 6 Jun 2023 12:38:35 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] dt-bindings: iio: afe: voltage-divider: Spelling
- s/curcuit/circuit/
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <a8597e54b55dedc51025fe3073d25ef0d659d0dc.1686045793.git.geert+renesas@glider.be>
-Content-Language: sv-SE
-From:   Peter Rosin <peda@axentia.se>
-In-Reply-To: <a8597e54b55dedc51025fe3073d25ef0d659d0dc.1686045793.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MM0P280CA0049.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:190:b::10) To VI1PR02MB4445.eurprd02.prod.outlook.com
- (2603:10a6:803:ab::28)
+        with ESMTP id S236182AbjFFKmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:42:21 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02A661BDA
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 03:40:49 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-97458c97333so742510466b.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 03:40:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686048047; x=1688640047;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HLj774D+pz6YB3btZ/z2RD1vhvv9nZxLfJinEPA2x5A=;
+        b=hP+B6dClgEY2Qbo3BxxHoolPl488Dk1P3+SkvYr9cN+giOYMeF/zUD6ZhUh/kt3R+S
+         bXreUkYm0xrr1Ap2pmeeNBLYwwplyQ6MT6YVZFqMzSuCgmmQ6OIcnBsvhgUie0AcR9ti
+         MWN2bfGRoQX2TINwDhPtmOpCOvU3AcaBWiq4yOzV2Vvs53JMuAC3t3vox5iLXDj9/Dua
+         64YjbSwjbrfArANmaKVqTOPb+FKqU3DlhSLLX4vYoJVVJvx32Wkvj4j2SwK0fuqug82M
+         aSPKLni2klECNNnM3MTppAoY/5Q/2qVnnwIRocgbzjCXYDyG22RSLY+HIgGLsVZC14M9
+         ws3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686048047; x=1688640047;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HLj774D+pz6YB3btZ/z2RD1vhvv9nZxLfJinEPA2x5A=;
+        b=OTNrO8ZxnelR7EamsVNABhRMgEV1FVNGT9GT29i9KTAxYMe/zj4WWMApR7rhUQSgwA
+         3zum61l+QE16Sat2wNcBsHIgWUGhWln4f08yEnN2c7CI6Ja+9Okm5sB7+i2Hoa6JoT/Y
+         wP2K+CyZv71zx5ItamEANrlFEw9qonW3enRmWDUbHD93CdfiVv7UGmE+ahzOQEb3MRuC
+         MT31LgoGRHiGa26MDAW07RkWbMfKAu84u5q7ALwpN4Gxt1g4L7UWJCwT4PXzcOXpaMiR
+         JqbCx5joDm3q32SJOniYoPKzYKJ2JSZ2evuqVsaszjVK1fNbtgdF2A9be4dQcrVaUcTt
+         4C2w==
+X-Gm-Message-State: AC+VfDxQYMon8PNT6goZvZ93tx9QSgM/kAAosjRGXQfIME8naomB3hnC
+        gy4MDAwj+WQ/GOSJrYYtsPqgnQ==
+X-Google-Smtp-Source: ACHHUZ7C1r42ySwDtx7lw0ifHfagwC8YL/zV9fl+XnaVQwq9v2QbktwuXbmkZ3A92llvOeCemuSEvw==
+X-Received: by 2002:a17:907:3f24:b0:974:1c99:7d3 with SMTP id hq36-20020a1709073f2400b009741c9907d3mr2303998ejc.25.1686048047487;
+        Tue, 06 Jun 2023 03:40:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id gr24-20020a170906e2d800b0096f5b48fe43sm5431043ejb.47.2023.06.06.03.40.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 03:40:47 -0700 (PDT)
+Message-ID: <d0b2cdc5-12fd-9a19-b38c-0653b4147c2b@linaro.org>
+Date:   Tue, 6 Jun 2023 12:40:45 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR02MB4445:EE_|PAWPR02MB9221:EE_
-X-MS-Office365-Filtering-Correlation-Id: af974ff6-ea41-4a34-56b0-08db667a2f8b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Un8Do94W4K3/i+KTQOM28pTgtYpq0Ccl98zHkZK8wVJ25F1NSJrfNgZRzN7M53HIjhoP6+9DFDmScJbXanpO4aO86VIwHMbRFoAWgGFPiICQrobR+BxhNqZK/69HcCQgH6rz/3IiPT3aBFoGgWBv17RAIMNgEqbn09z+o3tOHEyI3ztp9+kNGycZfiY1xBX5k50Mf5cuWj7LC8lGTLD3o8Ns7RjRjBmrxLz0nQ5MC1f6p09wnVEeLpEhhs1u3rD26uH+e6e3BWW7d1SpGhCDMtLPvwNkiwh7/ThXlKA/Q0RUxJDVJ7n4P0paO0VTQPtNt32h7+JI+5a2+TKCu4S+pE5gilHuwoicMBGeBBL9ivmGQLDRg8x9Dtvh+rTjLApq1v7jTfHOh0KizNKSKTytUTTlIT86KZCLe68dYVwVz4nbNzwaPwewzJIR4oskMuh9W9obcBiV4Ds9bh0qRAB9t8+Wbd16kK4fhYU3urWhwc+qyTGv1aQKMu55KrIeZrFTXYqyCHofiJJewJuaHD4VJiKAxSDr4acH150l/3hiplLgieAcZA6cOAR3I0yys0at0LvEbnVmtT13yiygYTPNo9ajPpCE2hbrNKSUxCrBc2mdHQi51b0xgF0ySYp++FvX58zRAX2FxN7/OzCAAPPHWg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR02MB4445.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(396003)(376002)(366004)(136003)(39830400003)(346002)(451199021)(6512007)(6506007)(38100700002)(2616005)(41300700001)(6486002)(31686004)(26005)(186003)(478600001)(110136005)(66556008)(66476007)(66946007)(316002)(4326008)(5660300002)(8676002)(8936002)(31696002)(2906002)(86362001)(558084003)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZDFXNUZOZmxxSzVna0tNWWo0YVFBWHhodG4wRm5pMEljbkFFV0U0Mm1uQzVR?=
- =?utf-8?B?QXRoaTlTazlNR1JUMHBhMzZQQ042YzNoQVhibzNCc3YzcHMvTGpOQ3pqem9w?=
- =?utf-8?B?SVJUMjdFSWprc25IaTh3d1luRjFhMkJzTDRIYjZWbktDcFVCRk1jOHJEMkV3?=
- =?utf-8?B?dmtvZnZETmN3MEFnQys2SmFPSHNETnQvSThTMzJWSEQ4L0hSWHJBT1piRXZ2?=
- =?utf-8?B?eDU2elZoVm1lU1ZKaGdDRWFkZFhLVE0zL3NmT0F5QldsZTFOS0I5dzY4Mjhm?=
- =?utf-8?B?NTh3RVNvRitvK3ZURVIwVDd1QVZpeFZ5Njhxb3lpK0Rvd01IeG9TTVlDZG4v?=
- =?utf-8?B?MFJ4NmNscVZ2dGdrUitHMDFxUGNxZXYrcWZMckhnNmJWd1lsRDlrd3ZCQ2Ez?=
- =?utf-8?B?WnIvN3dVaThoOXI2clVGLzBTZS9ydWRWdFdiSjdVTVhCNC96TlhuZHZiMHR6?=
- =?utf-8?B?WmE2VDZSNmtxSytrTi9kZkw4c3BIMXhPaXp4M014TFNMS3cxOW5FWEgzTnN5?=
- =?utf-8?B?SlE2b1FUUG16YXREUkRGN3k3RFRaNFV4ZDFIMGpJdTdscng3Snl5enFIbmUx?=
- =?utf-8?B?TDlyMUVMZUhkdFFzSDlnY1U2WmhwRWtJaFVJNFYrMjduTmhMSkFiM1lPWVBv?=
- =?utf-8?B?YnIvQjd2RUZOTkNmaW1zQVR6Q3lmMmVEWS85eHI2RjNSQ0E4YW11d2tvOG1O?=
- =?utf-8?B?OXJiZDJtU29YeGJScnpXRC9GTWhSQ3pwL0c4dHUwRGFycGtmZ2RneWxrcU90?=
- =?utf-8?B?UkFpa3R3QUZBZWJjRnNHTkRNMGxqbWsrK0w3REQ5RnRWczdUcEttc1YvMzhp?=
- =?utf-8?B?dnA0QmhTVE5RRG1scGwvR1d3MlY1SUFaTU5qMWRNdmUzb3hydWM1amNZSHds?=
- =?utf-8?B?a0lYMjNHK2FpT01yOEFxRUY3ZDdhWVpGUlJ4djdkRW8xSmYzL1BoeUJrRUFu?=
- =?utf-8?B?TGhKK3NYSVN4QW5IZDllMWxHV2hlVW10WmhNTWNMWHFSOXlySjVOeTFiYTdh?=
- =?utf-8?B?bUhYVm1HKy9pajg4VmtkQ1NHVzZZS1RIckFkR1p3Sm5oZGRLRE9kSUxnb3Z6?=
- =?utf-8?B?b2JVbWVmRTZqc2c1Q1FGZkkwQ2Nla083Y2N1VzJURjdKV3NlU3FxYkFEaTMr?=
- =?utf-8?B?bGNsZXJMTHNPWWoveVgvV2ppaXQ2ckR2S0JOb2RhSCt3bVVzZitKc2ZqTkVj?=
- =?utf-8?B?U3B4c25lcVcvekIrVklPTmRlbHBZNzRaMFlvUXk3WWE2aEtMcHpXWSs0QXIy?=
- =?utf-8?B?cjBDNnNoVE9zUVZ4bVFVNW1Nc3M2TWUrY0g3ZGx5dXBVWWpaL2RDTFNqY0ND?=
- =?utf-8?B?b294UG5uaXFrbm1TeVVmVmpxdnZFSDFVY2NLVzZybHl3UittQVdZTlhYU2xK?=
- =?utf-8?B?dzRxNTRCQzZTZzVORnVpbWtvUk9VTHNhL1I5OGlBUkVMNVN4ZCt1UDRXekFn?=
- =?utf-8?B?eG1FeXBHbGZMZDNVSERDUWFzeE1FRllieWdsSFc5SkttdXpmNFdZRFpqcGZ6?=
- =?utf-8?B?ZllGeFZqbFNmNnBoUk9VbU1lTEl6MmcyNXlCRkw0WjlYSWRTUzMweG1FZjVB?=
- =?utf-8?B?VXl1NXZsQ0poQW03K0dDQlNNU29qazh3M09hV21ncU1FZkl3amxiVlIwZ1hu?=
- =?utf-8?B?NWZrMER6K3VRZzJ1VTd1a0o5Qi9TbUREbk4yS3lxZyt3ZVR0dEFPNStQWWsr?=
- =?utf-8?B?Vkc4UEtEOURmTTFXVEJyTThuejh2MVc3TnE4ci9pTzJDUTJXOEY0aVhZTVBS?=
- =?utf-8?B?YkIzTTczY3lraXp5NVl6bU1WZUJIZWZoNndDMU1YRzNGUzduTnhqa2dSdkwx?=
- =?utf-8?B?Tys2bSt2aU83UTduMWJjaE5ud2RlOWpxTFlybXk2R1d0MWpMSVBLaERqSVpW?=
- =?utf-8?B?Y3RkRkZyWVp5WEpadGsxWEJrZXJlLzVrL1ZqenkvWXl6Q21aQ0tOUjV1OWVB?=
- =?utf-8?B?dXpRWFYzamZORFNUMkpkTmxmVnA0dUltZEpISUJrb0NoL1FtZ090VVpqR2Vy?=
- =?utf-8?B?NmNBNFRjbkJ1OE5GZXBNc3ExRVByU1BvVjM0azBlL0FKUXBYdUlyVjNDR3Nz?=
- =?utf-8?B?dXVIZFE4SHVyaWlMVk5NQVNBY3g1ekE5czV2VU0rTjFLZTUyTVBXWDNOeFhz?=
- =?utf-8?Q?2qSJ4FpvUqLo2UzIATJbs/WaE?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: af974ff6-ea41-4a34-56b0-08db667a2f8b
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR02MB4445.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 10:38:37.6342
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fut20HtC9APxJv8DFOff3kQTog1FKz84hMAMw8UVqklrN8Mp/IGP+IKVHoTrfKSh
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR02MB9221
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "richard@nod.at" <richard@nod.at>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "conor@kernel.org" <conor@kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "enachman@marvell.com" <enachman@marvell.com>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
+ <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
+ <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
+ <785368df-1881-e62e-6172-d902cee814a8@alliedtelesis.co.nz>
+ <eaf9d7cf-c9f5-a5d5-67af-c43761c3c6cf@linaro.org>
+ <4ea0b16e-0cec-00db-c598-e0364a7edef8@alliedtelesis.co.nz>
+ <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
+ <20230606094855.1ab005eb@xps-13>
+ <845924ba-d9bf-d0ec-e1f2-f721366f43c0@linaro.org>
+ <20230606122812.411b223a@xps-13>
+ <e0d14527-8147-5e8b-6a43-ee043e0d0f8b@linaro.org>
+In-Reply-To: <e0d14527-8147-5e8b-6a43-ee043e0d0f8b@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-
-2023-06-06 at 12:03, Geert Uytterhoeven wrote:
-> Fix a misspelling of "circuit".
+On 06/06/2023 12:37, Krzysztof Kozlowski wrote:
+> On 06/06/2023 12:28, Miquel Raynal wrote:
+>> Hi Krzysztof,
+>>
+>> krzysztof.kozlowski@linaro.org wrote on Tue, 6 Jun 2023 10:44:34 +0200:
+>>
+>>> On 06/06/2023 09:48, Miquel Raynal wrote:
+>>>>>>>>>> +          it (otherwise it is harmless).
+>>>>>>>>>> +        $ref: /schemas/types.yaml#/definitions/flag
+>>>>>>>>>> +        deprecated: true
+>>>>>>>>>> +
+>>>>>>>>>> +    additionalProperties: false    
+>>>>>>>>> unevaluatedProperties: false    
+>>>>>>>> It was hiding by '"^nand@[0-3]$":'. Should I move it here?    
+>>>>>>> You cannot have both additionalProps and unevaluatedProps at the same
+>>>>>>> time, so we do not talk about same thing or this was never working?    
+>>>>>>
+>>>>>> Hmm, I'm a little confused then. At various times I've been told to 
+>>>>>> put 'additionalProperties: false' or 'unevaluatedProperties: false' 
+>>>>>> (although never at the same time). I'm not sure when to use one or the 
+>>>>>> other.
+>>>>>>
+>>>>>> From what I've been able to glean 'additionalProperties: true' 
+>>>>>> indicates that the node is expected to have child nodes defined in a 
+>>>>>> different schema so I would have thought 'additionalProperties: false' 
+>>>>>> would be appropriate for a schema covering a leaf node. 
+>>>>>> 'unevaluatedProperties: false' seems to enable stricter checking which 
+>>>>>> makes sense when all the properties are described in the schema.    
+>>>>>
+>>>>> So I think this might be the problem. If I look at qcom,nandc.yaml or 
+>>>>> ingenic,nand.yaml which both have a partitions property in their 
+>>>>> example. Neither have 'unevaluatedProperties: false' on the nand@... 
+>>>>> subnode. If I add it sure enough I start getting complaints about the 
+>>>>> 'partitions' node being unexpected.  
+>>>>
+>>>> Sorry if that was unclear, I think the whole logic around the yaml
+>>>> files is to progressively constrain the descriptions, schema after
+>>>> schema. IOW, in the marvell binding you should set
+>>>> unevaluatedProperties: false for the NAND controller. What is inside
+>>>> (NAND chips, partition container, partition parsers, "mtd" properties,
+>>>> etc) will be handled by other files. Of course you can constrain a bit
+>>>> what can/cannot be used inside these subnodes, but I think you don't
+>>>> need to set unevaluatedProperties in these subnodes (the NAND chip in
+>>>> this case, or even the partitions) because you already reference
+>>>> nand-controller.yaml which references nand-chip.yaml, mtd.yaml,
+>>>> partitions.yaml, etc. *they* will make the generic checks and hopefully
+>>>> apply stricter checks, when deemed relevant.  
+>>>
+>>> No, neither nand-controller.yaml nor nand-chip.yaml limit the properties
+>>> in this context, so each device schema must have unevaluatedProperties:
+>>> false, for which I asked few emails ago.
+>>
+>> The controller description shall be guarded by unevaluatedProperties:
+>> false, we agree. Do you mean the nand chip description in each nand
+>> controller binding should also include it at its own level? Because
+>> that is not what we enforced so far IIRC. I am totally fine doing so
+>> starting from now on if this is a new requirement (which makes sense).
+>>
+>> If yes, then it means we would need to list *all* the nand
+>> chip properties in each schema, which clearly involves a lot of
+>> duplication as you would need to define all types of partitions,
+>> partition parsers, generic properties, etc in order for the examples to
+>> pass all the checks. Only the properties like pinctrl-* would not need
+>> to be listed I guess.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Yes, this is what should be done. Each node should have either
 
-Acked-by: Peter Rosin <peda@axentia.se>
+Eh, no, I responded in wrong part of message. My yes was for:
 
-Cheers,
-Peter
+" Do you mean the nand chip description in each nand
+controller binding should also include it at its own level?"
 
-> -  a curcuit.
-> +  a circuit.
+Now for actual paragraph:
+
+"If yes, then it means we would need to list *all* the nand chip
+properties in each schema,"
+
+No, why? I don't understand. Use the same pattern as all other bindings,
+this is not special. Absolutely all have the same behavior, e.g.
+mentioned leds. You finish with unevaluatedProps and you're done, which
+is what I wrote here long, long time ago.
+
+Best regards,
+Krzysztof
+
