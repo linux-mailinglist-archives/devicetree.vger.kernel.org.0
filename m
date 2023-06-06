@@ -2,170 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542D47236C5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 07:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 114A47236FC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 07:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231318AbjFFFZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 01:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45394 "EHLO
+        id S231178AbjFFF6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 01:58:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbjFFFZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 01:25:33 -0400
-Received: from sender3-op-o19.zoho.com (sender3-op-o19.zoho.com [136.143.184.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B90B197;
-        Mon,  5 Jun 2023 22:25:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686029097; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=d/DqrB0VcCvMNNwiGP0PDTYPvnQSp+LO7Y+tmw5nChOsFuhNypCMJBcwKdDbrbBtinya9au0W9gZhMOrg1VCCOl6xkYy4U9hcduIl8B1yd0LPTfddbqu2KZaCvG7uHi/IUf5vYY3dN0XqCom5uSJ3gBYc4YzXpw8ox3x7YXR+r0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1686029097; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=9Po+XWXaAzNpUyuRg3cTc3e8NRWFI9cCB7gdE96Q3dI=; 
-        b=kun1f2Q0tedGLnesfebku0h56uvHzhzaKPSvFFOJag7pBaRbVTekSKFBLiev5kHP8wtK2jZlj93sle4IqSwGrA0yl5INUTSCGYvXLu8BjItUQBVc3Ryt6v1wd+C9IPSJniniGFjcXBbjCjB7yJr19Pkw3Jx+jflTUJedR/bOEf4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1686029097;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=9Po+XWXaAzNpUyuRg3cTc3e8NRWFI9cCB7gdE96Q3dI=;
-        b=TZbYP4Tk0akq4Khzhtdf81C7Y42puFgW6WFEg7tm0vV3QoTB50RRkoWtSjPyakpT
-        QMEt6MyoQ07hxySqfuLmzhwl284fW1/wJLnC5lcaunRhoTNrxPPNmJSq80ZEUTC2OF8
-        /nGiuMQj7iPPnEJ4i6qNEb+R/PeAbDsOzWskc4no=
-Received: from [192.168.66.198] (178-147-169-233.haap.dm.cosmote.net [178.147.169.233]) by mx.zohomail.com
-        with SMTPS id 1686029095455783.4973963121519; Mon, 5 Jun 2023 22:24:55 -0700 (PDT)
-Message-ID: <43c95286-a3f4-6c68-c59c-0c86bbb74928@arinc9.com>
-Date:   Tue, 6 Jun 2023 08:24:48 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 1/2] mips: dts: ralink: Add support for TP-Link HC220
- G5 v1 board
-To:     Liviu Dudau <liviu@dudau.co.uk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230605150114.601102-1-liviu@dudau.co.uk>
- <20230605150114.601102-2-liviu@dudau.co.uk>
- <552b4604-d1b3-0052-62aa-424944c5ecb1@arinc9.com>
- <ZH5NJsbY6ZLXYJYz@bart.dudau.co.uk>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <ZH5NJsbY6ZLXYJYz@bart.dudau.co.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S229693AbjFFF6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 01:58:11 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2074.outbound.protection.outlook.com [40.107.7.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A9911B
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 22:58:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YoaPrmpRqOhnSGlueuik3h+fYpLhNxsfJBFVTafXy4PiMaGiBdTyTZxfgJov2zQJMcwET2h8fa9DJL35nJJxrn9pEJzU7TDZSU1gjE3ZSUgWXt+8iG3wtgtosjRWYYzMCat5KLDelDVjzk5ShZsE5mBxBu+Mmu9xpMKPTqfMfQJyHeT9+PqD73RfwsHGd8JB2dpBVhGiZaqdV+m3OHFZjQR4IXUynsdRAgloIF8tUR88tBuyP1vaP96lHG5AIomqO0WhVrXGlsHnd+Cay+KdzdyO+IU+2OhU/ynRXWC+jg4/lquAyLTCSrkbhLJ1ORvCYayKyJfkfXxTxxPJlOcWHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cbcbmylVxV80sb/FTJvR8cOsJXkUnyQhtIbQ6PXf8TY=;
+ b=KKBr318hCDNXzyU5SvQtLETZOgajc3BDSb0wnksKyS2kqXmWiZVywyIgactLD/DqZI34A+LK8xCI6PmlHyxdqbqnnvq1gTuK4bloXU2Rs5QOp1KH6kTzETwWRseIqMLD8XEetazvoUgK6iEKHS2/fLObaVp5bASswlvYIQag9OR/O51BaLSR1/zc90VcjV5ccqBkZWBLmdW/0t5M8N3SzB5MiFl2avyZO+wpQ7BiwxWBiGol4ExfbfpkGS1q98JXCHX/3DyRbRYjfKuTxlPNxTIrA2whhSyV8gQHHJJbnb2CFq1yU7utKxXo5QWIN4rRqS8FzD8LZYxmt4IdzvSMkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cbcbmylVxV80sb/FTJvR8cOsJXkUnyQhtIbQ6PXf8TY=;
+ b=RDA6pcr1lRGed/fBNkh4tRBBbxCz2eoh3vdh4f0RpCLieqluVl7t+hQpbRBvTU2yAyktEmKDTZtu+ZncUfbgYlxm3n7kf/VKauynib86oryLAo5o9n13ylPiSMtWW0kwGP9AqElej5rAVN9uC8QMOuxst8WdMWZlhkH2UFHXUrI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
+ DBBPR04MB7675.eurprd04.prod.outlook.com (2603:10a6:10:207::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6455.32; Tue, 6 Jun 2023 05:58:06 +0000
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::f9b0:8c34:e57:92a4]) by DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::f9b0:8c34:e57:92a4%7]) with mapi id 15.20.6455.030; Tue, 6 Jun 2023
+ 05:58:06 +0000
+From:   Xu Yang <xu.yang_2@nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org
+Cc:     conor+dt@kernel.org, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, xu.yang_2@nxp.com,
+        jun.li@nxp.com
+Subject: [PATCH] ARM: dts: imx6sll: fix wrong property name in usbphy node
+Date:   Tue,  6 Jun 2023 14:01:06 +0800
+Message-Id: <20230606060106.2948626-1-xu.yang_2@nxp.com>
+X-Mailer: git-send-email 2.34.1
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0008.apcprd02.prod.outlook.com
+ (2603:1096:4:194::12) To DB7PR04MB4505.eurprd04.prod.outlook.com
+ (2603:10a6:5:39::26)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4505:EE_|DBBPR04MB7675:EE_
+X-MS-Office365-Filtering-Correlation-Id: 512b5f33-7361-46bf-86d9-08db6652ff3e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: p5GSnfysNu76n6DeRe2m1OlJVCfkYy0WSd+6fq3BKlQh0w4Jw1c67Tu+YEE3nF47nYMMzvGI/QzlhQrldA+89dMoepg8EFP8RkzHAAy3DgCvbmC6OJ4HY95R1ZyemXGD/pWdUJUuYznJGIPGYOeGKxP2TzRsPPK5YFlJMAEH5L1BMhzqc1tSqz0unwzAe/2QoF6vQ57h0weGDwKklMtdXtAhz0fgE0X6dsGgOhjj0ib3GfozMmIShoNKgwY8HqJb5cSM1l+ubuwLZyXSLEpU2eRI+rULzUh69XvHfR7CSco1+hIQEiujrJ5iYqFXQjTqMBk4HuznTvDZDt4RWJeIlcqHrmaFa2EZubmE/QzF9deAfnKbhdgauyQILFOJSLdOPcys5lSkUU9v8lIuJb0w0ae4jZysRY2z35wje9ZRZqcTgsKVRCEQ4tbYqPI2cpZ52rsfYlzmFDejCLMctzf+AGHlTD+zQ/HF/6+YA4+37xCiKUJ7q/UfqIWKrjGsyckIgg+RFsXv0jJ11ZiLM3FJjX3DXHA6BOYkGGn/2mrfxMkcxfoWgSgZx5ZZeRjj0SJVzAv6+GrPxGeuOMY3N4rapPKg/Gb9eRDbuQgtezelZly4N+WeNt944t6wZxJxsvkgmClb9MHCW1nu7zuOLx5XfA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(346002)(396003)(136003)(376002)(39860400002)(451199021)(8936002)(8676002)(478600001)(41300700001)(52116002)(5660300002)(6506007)(316002)(6486002)(1076003)(26005)(4326008)(66556008)(66476007)(66946007)(6512007)(2616005)(186003)(83380400001)(2906002)(4744005)(38350700002)(38100700002)(86362001)(36756003)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VID10Bj00+yH7mwFJ6Slaj7JR/4xXH0S+AO0WmgSkQtZo35cy3Cq+mrfa/ty?=
+ =?us-ascii?Q?0iKRrlxKNMRYwKeceYSJk6kNutM9Z8lG434BFOF+/UlphcriTGL5GkR5lnRz?=
+ =?us-ascii?Q?yid3csrmbHxuTzMyCpEs9uVTZBFIfqTxjpi/rt16w59Rgg5L4yp7Hefkf7s7?=
+ =?us-ascii?Q?gO5Akv8yh6zxGMnjcTCU04tdeF0k3Y1r6OHpny6Kzf1AXWInFBNMNTU6vlBs?=
+ =?us-ascii?Q?Re2HqO7kGNxwgLN8Id6Ju9H+7tjxBcAG/XEcJhRhsQhdruIrmQOaogFzqexu?=
+ =?us-ascii?Q?y3V9ivEWYSZ6kifOqVCU3Kcpo1++pSo1ImLJqwT6xBtxJFaXtUFE8q9EXywU?=
+ =?us-ascii?Q?pmGjY403V3WwkBEVxznL200OpZMDqq/QEs0X2H8/wrUMQOVrOk8ZQPLw6aTd?=
+ =?us-ascii?Q?1SQm22hmKFmRz9RMum1ZhNB04ZJZFv0hRsULCE1Oh3ncsuaEeHInhCSdTqNH?=
+ =?us-ascii?Q?gWHFkkbOxepS/Pgap40r+Zv8rvfZbBtsziWBNPTFCPbJEA/38l8CLRRxPgz9?=
+ =?us-ascii?Q?bCRRPMZnmm1RXlmlXFkQuOiG5gRvAt5Wpp9IXBl/earHxQJpVCCNbYCTzGTa?=
+ =?us-ascii?Q?qCCJu19Khs2zfQvijOWosE9VHgdtrnm8mCU+qb73MNTkgx88FwJGxYmnBNGW?=
+ =?us-ascii?Q?HW80+qcku5EBu8SDDE+yjKkgn2gxaHnwUn38TpkAer+YvqG5n0sbBrxm0CG8?=
+ =?us-ascii?Q?ESY+xE3DvAQNuBJlugnfGVsK8XkiHXkCr3Qb+ib+dnKJEdf0qz1gj3FBxtQ/?=
+ =?us-ascii?Q?dZxyhLKsJysNfVabrZHo4HLL5H3uP60LTQXKKrFTNe9H2XMjYn+Vnnu4FCOy?=
+ =?us-ascii?Q?btzCc76PEKEDo6ZHYAsg5/agBVhKsovu6Vw4rwV2oRzgnghnEyPjH8dZP1zn?=
+ =?us-ascii?Q?0oRG/EXc6SR/FjZbS5b/rSJ3xGxFLkv/c4QFyfmZx3Y/jaykgegk737utA+w?=
+ =?us-ascii?Q?U/hXCMqX5BlEZr31WynWNEtj5bXaVtXD/nfYSpc+nbfbsLI/Xmw2QImIY1Dr?=
+ =?us-ascii?Q?p7VZ+lmHu98Pisz9RrYu/hE6dm9H0Qanr4yu8tGSDZr7+fyf96XLdimIcScX?=
+ =?us-ascii?Q?k+ARykaDJtZZN6b+NwgYasFmj2oR75/nQNRH5Sm7h7diVW3E6VVfrFO48xLi?=
+ =?us-ascii?Q?xNUAJ5oQ3gQLpHl6h6HodoXaXTSeZ2RFT7n625AAXZpVG4Z7NILCcUafLKeD?=
+ =?us-ascii?Q?OO1QouMYDyjUILoTw9HBQG/sW4YzB2k7e0Vk5iqF34I+R89qD4wkinZoFJSF?=
+ =?us-ascii?Q?ldKpL4Joo6ogluUjq4Wvr6Ju/ALwcRukKsn8XNdIItfJvODHRIp7NBWVQ70F?=
+ =?us-ascii?Q?h/QkVvIISwHfoW103qGV8QJJtCoyv/ia4w7+y9XURI9VeAkqkq+m5v5euyLd?=
+ =?us-ascii?Q?winQVzwmaxPGve3y4p4GqmcfqGy7r6STA5JLje4NONmx3aBbit+39G2Vu5nr?=
+ =?us-ascii?Q?HnDEH4HrBYqYCyQdabXvEmhx9SSEQasdpmFPXS9OYMAKWEewhzd+NFgsTdav?=
+ =?us-ascii?Q?R1Vlpo0SYIoYiUpFQ0XccaRWUAFJhS99lWBvjMTdGUwuBiOJQvrB6s3yow/B?=
+ =?us-ascii?Q?1AquxFbDI7Tve9Eo60vuAeAtUu4csUE02ZNO4W2d?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 512b5f33-7361-46bf-86d9-08db6652ff3e
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 05:58:06.2154
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7y/dLsMvgyOONpzbXO+jbXEvo9ZwhZgSTsLcfoRTTH2J75Cnoy5Wgl69J6Qth4CL2A+CIUo4mA7ADLdpk3FY5Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7675
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.06.2023 00:01, Liviu Dudau wrote:
-> On Mon, Jun 05, 2023 at 07:35:44PM +0300, Arınç ÜNAL wrote:
->> On 5.06.2023 18:01, Liviu Dudau wrote:
->>> This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
->>> a MT7603 2.4GHz WiFi and a MT7613 5GHz WiFi chips integrated on the board,
->>> connected to the main SoC over PCIe.
->>>
->>> The device uses NMBM over NAND, which is not currently supported in the
->>> mainline, so NAND node is skipped in this revision.
->>>
->>> Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
->>> ---
->>>    arch/mips/boot/dts/ralink/Makefile            |  3 +-
->>>    .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 92 +++++++++++++++++++
->>>    2 files changed, 94 insertions(+), 1 deletion(-)
->>>    create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
->>>
->>> diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
->>> index 11732b8c8163a..d27d7e8c700fe 100644
->>> --- a/arch/mips/boot/dts/ralink/Makefile
->>> +++ b/arch/mips/boot/dts/ralink/Makefile
->>> @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
->>>    dtb-$(CONFIG_SOC_MT7621) += \
->>>    	mt7621-gnubee-gb-pc1.dtb \
->>> -	mt7621-gnubee-gb-pc2.dtb
->>> +	mt7621-gnubee-gb-pc2.dtb \
->>> +	mt7621-tplink-hc220-g5-v1.dtb
->>>    obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
->>> diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
->>> new file mode 100644
->>> index 0000000000000..859aaa1c1bc2b
->>> --- /dev/null
->>> +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
->>> @@ -0,0 +1,92 @@
->>> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +/dts-v1/;
->>> +
->>> +#include "mt7621.dtsi"
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/input/input.h>
->>> +#include <dt-bindings/leds/common.h>
->>> +
->>> +/ {
->>> +	compatible = "tplink,hc220-g5-v1", "mediatek,mt7621-soc";
->>> +	model = "TP-Link HC220 G5 v1";
->>> +
->>> +	memory@0 {
->>> +		device_type = "memory";
->>> +		reg = <0x00000000 0x8000000>;
->>
->> Please use 8 digit addressing for the memory start and size offsets:
->>
->> 0x00000000 0x08000000
-> 
-> Will do.
-> 
->>
->>> +	};
->>> +
->>> +	chosen {
->>> +		bootargs = "earlycon console=ttyS0,115200";
->>> +	};
->>> +
->>> +	gpio-keys {
->>> +		compatible = "gpio-keys";
->>> +
->>> +		key-reset {
->>> +			label = "reset";
->>> +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
->>> +			linux,code = <KEY_RESTART>;
->>> +		};
->>> +
->>> +		key-wps {
->>> +			label = "wps";
->>> +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
->>> +			linux,code = <KEY_WPS_BUTTON>;
->>> +		};
->>> +	};
->>> +
->>> +	leds {
->>> +		compatible = "gpio-leds";
->>> +
->>> +		red {
->>
->> Usually the led name would point to the component the LED is used for.
-> 
-> These are "generic" LEDs controlled from the userspace. The original firmware
-> uses GREEN for normal operations, RED for faults and BLUE for when WPS is
-> enabled. I'm not sure if there are any standard bindings that I can use here.
+Property name "phy-3p0-supply" is used instead of "phy-reg_3p0-supply".
 
-Looking at:
+Fixes: 9f30b6b1a957 ("ARM: dts: imx: Add basic dtsi file for imx6sll")
+cc: <stable@vger.kernel.org>
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+---
+ arch/arm/boot/dts/imx6sll.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://www.kernel.org/doc/html/latest/leds/leds-class.html#led-device-naming
+diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
+index 2873369a57c0..3659fd5ecfa6 100644
+--- a/arch/arm/boot/dts/imx6sll.dtsi
++++ b/arch/arm/boot/dts/imx6sll.dtsi
+@@ -552,7 +552,7 @@ usbphy2: usb-phy@20ca000 {
+ 				reg = <0x020ca000 0x1000>;
+ 				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX6SLL_CLK_USBPHY2>;
+-				phy-reg_3p0-supply = <&reg_3p0>;
++				phy-3p0-supply = <&reg_3p0>;
+ 				fsl,anatop = <&anatop>;
+ 			};
+ 
+-- 
+2.34.1
 
-You could use red:fault, green:power, and blue:wps. For node names, 
-led-fault, led-power, and led-wps.
-
-Arınç
