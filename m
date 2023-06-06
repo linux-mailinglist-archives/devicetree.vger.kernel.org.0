@@ -2,71 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03597725094
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 01:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BC0E7250BF
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 01:23:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240233AbjFFXPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 19:15:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49044 "EHLO
+        id S240295AbjFFXW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 19:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240232AbjFFXOj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 19:14:39 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281C119B7
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 16:14:36 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-75d57fdb014so307775885a.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 16:14:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1686093275; x=1688685275;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fciUx9xtdCQ/QGbRftPxIRFPxqzNECjDW+lOFRUikCw=;
-        b=bB/GGuYiBQ2DIJ11u0mpVmBdAR6CbRnEZvt10ezoTAgShgR/Z8VkalXtU9MOoJhdhY
-         +dH1D/lb2xWRxF+8nzwZZ7itAuka5/SklGDMI07sjeEAJzpGivsjHOBNQUq1+u9VY/OY
-         AyD0L72VP4nFp1hGqOgZh167rYzHsD2gwF7aI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686093275; x=1688685275;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fciUx9xtdCQ/QGbRftPxIRFPxqzNECjDW+lOFRUikCw=;
-        b=V4ipvDrWA5ZlxcEpUt/vReMSBJaVIw3A/07e4jDLP2nIWgqArA9ZJI3TYesL83CbsS
-         LOeD1mEZlRcjAW6L5OZmytLoIn0UEMEJHxurC9XZNpXwiM0DqlmDICCR7TD8QwzFBJ1X
-         1OjCoJDEAwW6NyCRHaN5k7zhtBCAZ4ZfEu0AaHZ5hOeI7GLy4LJym0nfkJgmVGHqnMw2
-         wvzd13iKpKKQJXtV9DNNc2ezDzZpKyaI5NnNAQZzgDnZ/EJ8jWHipkN6MCHNjggb/kPZ
-         q9PG12sLnk57cOqcNi3tet+tAzc6UKy+ymgYdMfebwnLtv4x43kYaUjtZgOYnrl1WEiR
-         CE5g==
-X-Gm-Message-State: AC+VfDwEFDvasR+ejzMxGl5reN7UqS4Ne5gLK+BTiKylXxzaIOwIw/Iz
-        qoRlUKOjcnr3V8YhTIfOc1HSJA==
-X-Google-Smtp-Source: ACHHUZ6KeIVF23V+rneWN/zjyYjbxPIkpWgQ0wLFTcMkMUyJLesoZunx0euMzbhzby+nGgVwIKEh5A==
-X-Received: by 2002:a05:620a:2856:b0:75b:23a0:d9f6 with SMTP id h22-20020a05620a285600b0075b23a0d9f6mr89094qkp.76.1686093275107;
-        Tue, 06 Jun 2023 16:14:35 -0700 (PDT)
-Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id x9-20020ae9e909000000b0075b23e55640sm5221519qkf.123.2023.06.06.16.14.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 16:14:34 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        Linux MTD List <linux-mtd@lists.infradead.org>
-Cc:     f.fainelli@gmail.com, rafal@milecki.pl, kursad.oney@broadcom.com,
-        joel.peshkin@broadcom.com, computersforpeace@gmail.com,
-        anand.gore@broadcom.com, dregan@mail.com, kamal.dasu@broadcom.com,
-        tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233844AbjFFXWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 19:22:51 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE2518E;
+        Tue,  6 Jun 2023 16:22:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686093770; x=1717629770;
+  h=date:from:to:cc:subject:message-id:references:
+   in-reply-to:mime-version;
+  bh=LYjQtsCKY9y43ae55XDUrcU9sxIRA7qgOrj9bKQMc8A=;
+  b=DcqQqJ3/SeXCYpedFUSXZcV3d8Jhw1H4dwY7Y9NhJJvBLHIiNh8fQ0J+
+   i7YvGlg6+gdehvc7HEIMaai1vwxdHr2uTS47mx2kxj+7rv2t15IRUiynq
+   0ZKwsnNQLiRS/KssUXwW3Y96uzrlLcEO/shXANdkpSIW8UYxJl7IdBYx7
+   ZP1hHw51TAcYCdX3RoIxR3fiSo3TeHd7GhAS8uDGR4CTFSc7VyTrUZtWQ
+   sU+NFjRCDsCeK3sID7KETpXQQtzza2yhVPoQ285sECuRBaQOrCZLKDx5S
+   2qwIPDW2ghzXouzeQ7iWOPb+CY+TsuUs347mQtLA/gkyc0yHBDEd6TWcb
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="422665522"
+X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; 
+   d="scan'208";a="422665522"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jun 2023 16:22:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="774294135"
+X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; 
+   d="scan'208";a="774294135"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by fmsmga008.fm.intel.com with ESMTP; 06 Jun 2023 16:22:05 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Tue, 6 Jun 2023 16:22:05 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Tue, 6 Jun 2023 16:22:05 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Tue, 6 Jun 2023 16:22:05 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Tue, 6 Jun 2023 16:22:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kIUWm+QUwA3rSfw+pjEq4XID3OI2hcs1b5ASyoPEcz1+uaCYgRvD0JLBlotChGSP6Ztc4WT0E9bvgWXZA6ojbqPuF7oOW07OkmxowWtcW6D64OgTo4FQFsuChwE7qpRjdCSorxhZ3acb7BNx6CSu4kTs/hlal3SiJkklXDu7+BgG3m39P7FotQ1bhqykIpHYNRHpx9PwSf3DN8f8E2s2BswzS5cRY/jmWx5s4+kL9EmjwbIm4R3UntCEhihty9nHi+GNRyaKcPd2w/LNqylHzztGpVmq83mxhi80iLCtaojTZB/NmMARsIgTddlLmsuAoCJF/UrnFfzijsDEUT4mew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vWpaTMZ+zP7m3XAesGipfHZn4D+oHLTreJcSixR33jE=;
+ b=Bp+KVYgTYAp4yqRHZ0KbjXi7WfvrZMKzgz7v/M0y1kQOp29UtO6HnFjrzE2T9AmlWUvbwUFqDKqMfxgusFDwFVggqmBLf0lSwPjro0G4xDKwwMKKc94v6FNnoMTzvw/EytjblzqHJjEDSXceLH9e20+cbN8AUvpOopaIBXiYZKn7ZvJh3YftrDOD1cU9dK6nqXt2kqnveB5slwztnAGuZ2Pd1+Y/GIczUPpvwfAgQfEuWXkBXXCKK+KRUTU2Hf7c4h+xEtTn0ZHTAYy4+QsArxE1f+FItxDMXrPWLEP55m8+c9I4P8Gxnr5yoH96hWKv8qShRs0VT68UHRHVZ4SqrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MW3PR11MB4729.namprd11.prod.outlook.com (2603:10b6:303:5d::24)
+ by IA1PR11MB7919.namprd11.prod.outlook.com (2603:10b6:208:3fa::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
+ 2023 23:22:02 +0000
+Received: from MW3PR11MB4729.namprd11.prod.outlook.com
+ ([fe80::2439:c11e:512b:9edf]) by MW3PR11MB4729.namprd11.prod.outlook.com
+ ([fe80::2439:c11e:512b:9edf%6]) with mapi id 15.20.6455.030; Tue, 6 Jun 2023
+ 23:22:02 +0000
+Date:   Tue, 6 Jun 2023 16:21:59 -0700
+From:   Abe Kohandel <abe.kohandel@intel.com>
+To:     Serge Semin <fancer.lancer@gmail.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 07/12] arm64: dts: broadcom: bcmbca: Add NAND controller node
-Date:   Tue,  6 Jun 2023 16:12:47 -0700
-Message-Id: <20230606231252.94838-8-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230606231252.94838-1-william.zhang@broadcom.com>
-References: <20230606231252.94838-1-william.zhang@broadcom.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 1/2] spi: dw: Add compatible for Intel Mount Evans SoC
+Message-ID: <ZH+/l4kVIiz0D0j+@ekohande-desk2>
+References: <20230606145402.474866-1-abe.kohandel@intel.com>
+ <20230606145402.474866-2-abe.kohandel@intel.com>
+ <20230606172836.rbvhaxala2voaany@mobilestation>
+ <ZH+EDLkdn+u2Rgwe@ekohande-desk2>
+ <20230606191333.247ucbf7h3tlooxf@mobilestation>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230606191333.247ucbf7h3tlooxf@mobilestation>
+X-ClientProxiedBy: BYAPR05CA0066.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::43) To MW3PR11MB4729.namprd11.prod.outlook.com
+ (2603:10b6:303:5d::24)
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000bd845805fd7e2e7f"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW3PR11MB4729:EE_|IA1PR11MB7919:EE_
+X-MS-Office365-Filtering-Correlation-Id: b17ed144-395b-4c89-016c-08db66e4d5a0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: szuYijNgH/gbcIqfRWoHgawZtvdAs30kf0XBgkYxYbmr9Gjh2hFJKZGU/8lTP+zQeLtAriTls7hpB73DjQneJ0QlhU0IZc4ipGcmxCNnRjbEyaOW791eyz/oOrMyzahnsLP828DaOslt9yPap7mJYt6F68cRr9mUyhHd2SkgkUFSxX+vvxS2jl2MP2uXqnDb6f61XhkmX5SLRCetBuHpOdpuKJwNTPsD/dcMY9HhfxG0jkhBlWsfC14rj6fo3THAmAt0Nb48bxcnxL04UsFErgFNIV4s2blMMv0O3fMI1eJVu2WzOuoACThEMkdmSsSji3KsBLtZ89D8xmdshsYB5h4FVpOO6VzkFeTwv4h9iPtNZtWprmljWb8tYjavhY8490w2k4NAQyX2Glm+Xmt7foMIQX53FC90dG4BOwXZqaknmirBZwQar4+kG99ajmNKX6rqkrPNTHIAwMoIMdDyopdcwlytTXc9MVUiy9bUotfSIAK43K6oi38m9si0o71N6JtBuH3F5r0pVm4eanF0lpB86hhspub7lQkkugOffy6eWs456oV0/+QmdrdOgEq1RHHHMdno14NdYkdQJ5r5fg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW3PR11MB4729.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(39860400002)(376002)(366004)(136003)(346002)(396003)(451199021)(66946007)(2906002)(478600001)(6916009)(316002)(8676002)(4744005)(4326008)(41300700001)(8936002)(54906003)(44832011)(66556008)(6666004)(5660300002)(6486002)(66476007)(6506007)(26005)(9686003)(966005)(6512007)(33716001)(186003)(38100700002)(82960400001)(86362001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cM2llSOgBQLOuPbmnHBF8N92lpicslzMJTrjSldNAvuAAYZkW/4v3j7CuBCE?=
+ =?us-ascii?Q?0G5sAvsmr7XtROE61QKxu1O/XREzlILI2K/y3g85kXUNCWkFiflXTvoOgxEo?=
+ =?us-ascii?Q?PzdwQOgBcmh5Db7Vha+/jdFTpZA7F7w2mitg85xLWJnUNUAewOyxdnUBA2l7?=
+ =?us-ascii?Q?ZcCW4BhkN9urfLEhG5KhFu8dYm8fg41gv/ye/mBMg6n7j+EHy0S8rZyru8MT?=
+ =?us-ascii?Q?t9x2o/8Yk7G4iF/Dm9ijRnY8/TcP5lEz7kZ7Hx+rqNlddaWGRUNA+Y0wMrMN?=
+ =?us-ascii?Q?NzhQzkp5Y499go9ozq6fkgljXCLjLK0gekaVRLzUKFZ6coRue0NWjEjUIzyw?=
+ =?us-ascii?Q?U4tcQV2NNjNzIuI+Kn6Z15i0UrxvFErYLFaAWaY0Y0MyN8Zk7HSvfFyzKFTh?=
+ =?us-ascii?Q?d3pVbVXO2QytcXjlSBzNhr/PeSc8u2ncPDD0Te+pfvHWNsivgd8z1JfIKaxK?=
+ =?us-ascii?Q?6EYjJ6Jf8cN1S3w2jmN5VntUt2xcveyFj4m8O1FIca1tgm7toH79civkckGu?=
+ =?us-ascii?Q?/pS3f1fel3+2+00MOh1exLrkGcwiGVZTzWrV1Y1+nDH+MaLCDw7BeGc+OfUF?=
+ =?us-ascii?Q?Ulwab6xR+/sxCIB5ncxCOT1ajVRir7VKrhfuOWckAff4xsVuerl4BjitZQZh?=
+ =?us-ascii?Q?T/vlyAiYj1Z8uUgmqickcjGt9bOZU1cIbAPXStYdoGK9aqNzixiMgKYenmd7?=
+ =?us-ascii?Q?Pk72cYVIq6kGtPuVwjEzZRdZd77zDfvyjcBn9IFzG9E/VIw2fSAFicRMZmwC?=
+ =?us-ascii?Q?1O7+u0z8BArSfherI/AImlwgGIsAJVOF0zbti2upPP/t72/ElTU99ZqlBpjk?=
+ =?us-ascii?Q?zJ/VilJXY6bLEV5actC0O3X6idheMeVQu1IoLhpDfzZJ9a51igi95eklbZ3T?=
+ =?us-ascii?Q?XX8WiS4WlQnl5gV7HmB/MFqP62RuuMYari3WAS0+GqkM8FzoY+hRW2y/RCEg?=
+ =?us-ascii?Q?OrGNhwMYEtrJgNlxP5NYSGxcIe083DgXUONBIhaopGz+dbSZpqF4sNj2ZAmN?=
+ =?us-ascii?Q?zZJmM1tg3M0BHE+MpKZ3S8bVz1UxdeibKFRoIcUdxybGnN/HG7BSl/eLJU2d?=
+ =?us-ascii?Q?NkNkdxI4TZHoUhb7wVaEzxsAZEXDWKu/keL6OUo1KfysbB1zi0hc1J/lP5Ko?=
+ =?us-ascii?Q?URO+2e6TUEWEnChUxH6pggAqYEgZ/CW8Ow0FCRCVBNXupIw9rDf44IQVQBgW?=
+ =?us-ascii?Q?qHUx+H6x5hYYU+heUBS2uSq7iizmimTo0vNmrMWXQRXKUISV1In0Yfr6yMAY?=
+ =?us-ascii?Q?6i9rK8zFX/K2LDsOj3JoGc/2NvSn2ffQF8HxNSrXVoGltZFDCh1APGi4J6v8?=
+ =?us-ascii?Q?Gbm+7OmyKSHPyuujpVsQNiUxs4k5vfwssfVoJx/6eJS9ET+Zd8xZuUNe3mn9?=
+ =?us-ascii?Q?mP9cy4RyDYXkcqlgmmNE9vt7gnqgmWnd0YriH6OhE/XQpPPAYgeNdgns9oPq?=
+ =?us-ascii?Q?gQ+/zKYLKV0rvPUPdX7fx3wMJo1pMrQ0TCdmjIeW9ZrWWly+GRPJ/EkhKnS+?=
+ =?us-ascii?Q?dZ8Sitzy6mYRBSkbfe65JAVRCSFs10GAmHEqXbOUilY60N5xFp9GzbKWLrsR?=
+ =?us-ascii?Q?M9T5ZveXFScgyCRAQz3Z1miUCekBIiKIAjp3hOR1ys8TMyrx3Ycm7RvaGCGT?=
+ =?us-ascii?Q?ew=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b17ed144-395b-4c89-016c-08db66e4d5a0
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4729.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 23:22:02.7027
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ki2AiJm5KdoEiPlP1VF3VL19BjTGjicvGc6y7WhgtL7j4XSsRvCSTHmkQhaFcOnitFOEUzzuau+Rr602B+p/OA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7919
+X-OriginatorOrg: intel.com
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,376 +156,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000bd845805fd7e2e7f
-Content-Transfer-Encoding: 8bit
+Hi Serge,
 
-Add support for Broadcom STB NAND controller in BCMBCA ARMv8 chip dts 
-files.
+> Ok. Thanks. Could you submit a fixup patch then? Mark has already
+> merged the series in as is:
+> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?id=0760d5d0e9f0c0e2200a0323a61d1995bb745dee
 
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
----
+Patch submited in:
+  https://lore.kernel.org/linux-spi/20230606231844.726272-1-abe.kohandel@intel.com/
 
- .../arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi |  5 ++++-
- .../arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi | 17 +++++++++++++++++
- .../boot/dts/broadcom/bcmbca/bcm63146.dtsi      | 17 +++++++++++++++++
- .../boot/dts/broadcom/bcmbca/bcm63158.dtsi      | 17 +++++++++++++++++
- .../arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi | 17 +++++++++++++++++
- .../arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi | 17 +++++++++++++++++
- .../arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi | 17 +++++++++++++++++
- .../arm64/boot/dts/broadcom/bcmbca/bcm94912.dts |  4 ++++
- .../boot/dts/broadcom/bcmbca/bcm963146.dts      |  4 ++++
- .../boot/dts/broadcom/bcmbca/bcm963158.dts      |  4 ++++
- .../arm64/boot/dts/broadcom/bcmbca/bcm96813.dts |  4 ++++
- .../arm64/boot/dts/broadcom/bcmbca/bcm96856.dts |  4 ++++
- .../arm64/boot/dts/broadcom/bcmbca/bcm96858.dts |  4 ++++
- 13 files changed, 130 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-index 457805efb385..acfedff89d19 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-@@ -591,16 +591,19 @@ hsspi: spi@1000{
- 		nand-controller@1800 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			compatible = "brcm,nand-bcmbca", "brcm,brcmnand-v7.1", "brcm,brcmnand";
- 			reg = <0x1800 0x600>, <0x2000 0x10>;
- 			reg-names = "nand", "nand-int-base";
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "nand_ctlrdy";
-+			brcm,nand-use-wp = <0>;
- 			status = "okay";
- 
- 			nandcs: nand@0 {
- 				compatible = "brcm,nandcs";
- 				reg = <0>;
-+				nand-on-flash-bbt;
-+				brcm,nand-ecc-use-strap;
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi
-index 46aa8c0b7971..7c611c1978ac 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi
-@@ -137,6 +137,23 @@ hsspi: spi@1000 {
- 			status = "disabled";
- 		};
- 
-+		nand_controller: nand-controller@1800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "brcm,nand-bcmbca", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			reg = <0x1800 0x600>, <0x2000 0x10>;
-+			reg-names = "nand", "nand-int-base";
-+			brcm,nand-use-wp = <0>;
-+			status = "disabled";
-+
-+			nandcs: nand@0 {
-+				compatible = "brcm,nandcs";
-+				reg = <0>;
-+				nand-on-flash-bbt;
-+				brcm,nand-ecc-use-strap;
-+			};
-+		};
-+
- 		uart0: serial@12000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x12000 0x1000>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi
-index 7020f2e995e2..faf8b1198d8e 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi
-@@ -118,6 +118,23 @@ hsspi: spi@1000 {
- 			status = "disabled";
- 		};
- 
-+		nand_controller: nand-controller@1800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "brcm,nand-bcmbca", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			reg = <0x1800 0x600>, <0x2000 0x10>;
-+			reg-names = "nand", "nand-int-base";
-+			brcm,nand-use-wp = <0>;
-+			status = "disabled";
-+
-+			nandcs: nand@0 {
-+				compatible = "brcm,nandcs";
-+				reg = <0>;
-+				nand-on-flash-bbt;
-+				brcm,nand-ecc-use-strap;
-+			};
-+		};
-+
- 		uart0: serial@12000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x12000 0x1000>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
-index 6a0242cbea57..24c344ed5dba 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
-@@ -136,6 +136,23 @@ hsspi: spi@1000 {
- 			status = "disabled";
- 		};
- 
-+		nand_controller: nand-controller@1800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "brcm,nand-bcmbca", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			reg = <0x1800 0x600>, <0x2000 0x10>;
-+			reg-names = "nand", "nand-int-base";
-+			brcm,nand-use-wp = <0>;
-+			status = "disabled";
-+
-+			nandcs: nand@0 {
-+				compatible = "brcm,nandcs";
-+				reg = <0>;
-+				nand-on-flash-bbt;
-+				brcm,nand-ecc-use-strap;
-+			};
-+		};
-+
- 		uart0: serial@12000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x12000 0x1000>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi
-index 1a12905266ef..c3416146c946 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi
-@@ -137,6 +137,23 @@ hsspi: spi@1000 {
- 			status = "disabled";
- 		};
- 
-+		nand_controller: nand-controller@1800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "brcm,nand-bcmbca", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			reg = <0x1800 0x600>, <0x2000 0x10>;
-+			reg-names = "nand", "nand-int-base";
-+			brcm,nand-use-wp = <0>;
-+			status = "disabled";
-+
-+			nandcs: nand@0 {
-+				compatible = "brcm,nandcs";
-+				reg = <0>;
-+				nand-on-flash-bbt;
-+				brcm,nand-ecc-use-strap;
-+			};
-+		};
-+
- 		uart0: serial@12000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x12000 0x1000>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-index f41ebc30666f..ab6866ab6107 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-@@ -107,6 +107,23 @@ uart0: serial@640 {
- 			status = "disabled";
- 		};
- 
-+		nand_controller: nand-controller@1800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "brcm,nand-bcmbca", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			reg = <0x1800 0x600>, <0x2000 0x10>;
-+			reg-names = "nand", "nand-int-base";
-+			brcm,nand-use-wp = <0>;
-+			status = "disabled";
-+
-+			nandcs: nand@0 {
-+				compatible = "brcm,nandcs";
-+				reg = <0>;
-+				nand-on-flash-bbt;
-+				brcm,nand-ecc-use-strap;
-+			};
-+		};
-+
- 		hsspi: spi@1000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-index fa2688f41f06..390d5da67a3b 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-@@ -155,5 +155,22 @@ hsspi: spi@1000 {
- 			num-cs = <8>;
- 			status = "disabled";
- 		};
-+
-+		nand_controller: nand-controller@1800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "brcm,nand-bcmbca", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			reg = <0x1800 0x600>, <0x2000 0x10>;
-+			reg-names = "nand", "nand-int-base";
-+			brcm,nand-use-wp = <0>;
-+			status = "disabled";
-+
-+			nandcs: nand@0 {
-+				compatible = "brcm,nandcs";
-+				reg = <0>;
-+				nand-on-flash-bbt;
-+				brcm,nand-ecc-use-strap;
-+			};
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm94912.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm94912.dts
-index e69cd683211a..4d1ea501e384 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm94912.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm94912.dts
-@@ -32,3 +32,7 @@ &uart0 {
- &hsspi {
- 	status = "okay";
- };
-+
-+&nand_controller {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm963146.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm963146.dts
-index db2c82d6dfd8..810b5a23da7b 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm963146.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm963146.dts
-@@ -32,3 +32,7 @@ &uart0 {
- &hsspi {
- 	status = "okay";
- };
-+
-+&nand_controller {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts
-index 25c12bc63545..3aaae5dbb568 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts
-@@ -32,3 +32,7 @@ &uart0 {
- &hsspi {
- 	status = "okay";
- };
-+
-+&nand_controller {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm96813.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96813.dts
-index faba21f03120..6b167cc2af76 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm96813.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96813.dts
-@@ -32,3 +32,7 @@ &uart0 {
- &hsspi {
- 	status = "okay";
- };
-+
-+&nand_controller {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts
-index 9808331eede2..d598cd618b57 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts
-@@ -32,3 +32,7 @@ &uart0 {
- &hsspi {
- 	status = "okay";
- };
-+
-+&nand_controller {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm96858.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96858.dts
-index 1f561c8e13b0..e50ddbf6f58c 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm96858.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96858.dts
-@@ -32,3 +32,7 @@ &uart0 {
- &hsspi {
- 	status = "okay";
- };
-+
-+&nand_controller {
-+	status = "okay";
-+};
--- 
-2.37.3
-
-
---000000000000bd845805fd7e2e7f
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICqVwmWBlaY0Nu5TifdgGvlM4qPc
-w/AyykSinuKfVHKXMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDYwNjIzMTQzNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQAhjnKbJ3jgV9kiAvbLRotnnNOP7Dm9GOx7dDl9EkWxmhPb
-hrSpuUXLjbQbZZpSmd6AvWsXhFSzfc3oAAJ5fRaHwHxhbLdq2VpXUTOqYdXizCCEOrHr+Anu5hzs
-oc+Ts+ze5OzPf/Qau7ALjp5aBSn7Sud2eM410wMEPoGW6L9vht1KNH83iiOxykCVQnv2z0s/1aFs
-2yg+cyjtgPjrscW3oh+Vhn86u4/qN98v42nJCxNV9Hu28vOKLF6dUFKuxD66FrnXJmuJ9b63pZLN
-AB713da/3p6OKyM/Fji1DUwtno+jvvrfbvMPdu9yYJb3GBKsjpnkzeH4jCvbD1PCIzT3
---000000000000bd845805fd7e2e7f--
+Thanks,
+Abe
