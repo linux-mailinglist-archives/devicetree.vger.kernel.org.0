@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CABD27234C8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 03:47:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90C16723501
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 04:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbjFFBrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jun 2023 21:47:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34800 "EHLO
+        id S233538AbjFFCGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jun 2023 22:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234018AbjFFBrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 21:47:11 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76A6D196;
-        Mon,  5 Jun 2023 18:46:54 -0700 (PDT)
-Received: from pps.filterd (m0148663.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 355K9M3p028783;
-        Tue, 6 Jun 2023 01:46:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : in-reply-to : references; s=pps0720;
- bh=xvkw3Lsix1pEQ13DPdZhGV5WNJRpv6i2oLO2iDOOmRY=;
- b=E6ah9mCzsjV/UjnmCBRMLTIZckRdDWhEcbd3hUHzZlxh439ddVqzgGX6iVm0xcVIwoRD
- Y4ntDrwDQTOG+TGap/ydEBmleYwgLXLgkIhOxlXxLGFWUOOKu6acwObLh9+wCbixi0lo
- jFrZAgs/kp9R05IExrrBPeBWxvC0fAXmhPhG+NMlFRR0yaIen+sxoQtcR2fJcRGUvqAR
- /56Ox2Om3HSb5L5Dj2cSnyV5tAoBf1vNIGwjF3m5fbEo6KHbwZKcPjHsECuOlqmawBCb
- e8a19tq/WHtWLoEQ1gCIXMsEbWY8kqz3y0QxKnQ1HnQ41ymaRuvzaokRCSFCJVfC3nPR bw== 
-Received: from p1lg14881.it.hpe.com (p1lg14881.it.hpe.com [16.230.97.202])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3r1pg3sqrs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 06 Jun 2023 01:46:34 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14881.it.hpe.com (Postfix) with ESMTPS id C772C804DD9;
-        Tue,  6 Jun 2023 01:46:33 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id 23DD980A256;
-        Tue,  6 Jun 2023 01:46:33 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     verdun@hpe.com, nick.hawkins@hpe.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
-        linux@roeck-us.net, andy.shevchenko@gmail.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: [PATCH v3 5/5] MAINTAINERS: hpe: Add GPIO
-Date:   Mon,  5 Jun 2023 20:42:34 -0500
-Message-Id: <20230606014234.29491-6-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230606014234.29491-1-nick.hawkins@hpe.com>
-References: <20230606014234.29491-1-nick.hawkins@hpe.com>
-X-Proofpoint-ORIG-GUID: WJTcWNn644XUUJYRLuAdAKVbsw2GRVKe
-X-Proofpoint-GUID: WJTcWNn644XUUJYRLuAdAKVbsw2GRVKe
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-05_35,2023-06-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- phishscore=0 mlxlogscore=957 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 impostorscore=0 suspectscore=0 spamscore=0
- clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306060014
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        with ESMTP id S233223AbjFFCGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jun 2023 22:06:19 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C8611C
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 19:06:17 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-256cda5c1c1so2553366a91.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 19:06:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1686017177; x=1688609177;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wW68YijPC5M/xCRpMcVO/BAMrMv1lIZeTHggFsWAt3k=;
+        b=Pq4XeiWh+lt9vOCi+qa+rwki0ALN2wovdTXzj/yfLh6mcIwEK7tz36PZoeODDyeVyY
+         5IVp7VF/3+bVlNhLh2I7bkMRtoDtKdajzIvABZzoFoCc9uCwlxxYum5WqcBFBiiju6uS
+         F7l7pXUDcT9DfV1rSZCb7VWPwbTuKycuoiDcHXKBI8UEY/6xomtSIYdGiGazzXXrLsKC
+         jpXLlWOzarRebIxCt0posCCgYb45rxxubvH69KwTVk4t/Tkbzu6qArecsLw4rGb00r6j
+         Xs9Pm1NTUfG4IQvYUGLGpmT7setkDeEtLQnWWfFYikIw4WfJ58bknXw3awJTrF4O8eet
+         Gc6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686017177; x=1688609177;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wW68YijPC5M/xCRpMcVO/BAMrMv1lIZeTHggFsWAt3k=;
+        b=C+7cQQsaC2uKqiwc3MlqK7f6pFijJlvwfhdJnDVQ0oHWP7NsiLS3Tv3aH8PMFhvqo4
+         sjC2XS/WoHiG/xoc13Z10SqMp3Rihba9nllT2WyGX/teLL5jMZVdkjIzNVSFYK7mssRQ
+         HrmJyIisQx6tLiz4Y014xMpE1aslt0bGcH5qD23N5OFC/mPH9BWcYS2ZXrCF//7A5i5D
+         O07lhdSCgziZCbCX1i9UKy/HCz9nQ+T7Au3wxat0vGeIMCHucnDDgxCo6ZcI3pRDUrL1
+         6R4tNkqXNcIHQZUoYaLq8jtfnqpd5hulSYOgnv06MfLwI4AA7Pee80g+ypg+JM93PwDk
+         Jxmg==
+X-Gm-Message-State: AC+VfDx+KkQaSCVGUdQTEg3eIbwUfsf5hOeAjPIH7af1rFgX20qNzRq5
+        xBrflf78HL8BftBbZvv0rKG8s7SgmmzAfoHjxxLpdw==
+X-Google-Smtp-Source: ACHHUZ7KiGCkrKfrTiI8e3B0XsDL6OBdSXWbPBmvfSKZ8Xi7N2zKyEhVQXjxnnhXYn1HPOsTnC3vANQxkzd4E01FlJY=
+X-Received: by 2002:a17:90b:2353:b0:256:f86:fa6e with SMTP id
+ ms19-20020a17090b235300b002560f86fa6emr214511pjb.48.1686017177023; Mon, 05
+ Jun 2023 19:06:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230605060524.1178164-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com> <20230605-anyway-grab-f7a35aa199fb@spud>
+In-Reply-To: <20230605-anyway-grab-f7a35aa199fb@spud>
+From:   cong yang <yangcong5@huaqin.corp-partner.google.com>
+Date:   Tue, 6 Jun 2023 10:06:05 +0800
+Message-ID: <CAHwB_NK_j1SJ1BBkVqafFM_+fWSyvwjCpMmHQxjLjnz_KHR=KA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
+ touchscreen chip
+To:     Conor Dooley <conor@kernel.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, dianders@chromium.org,
+        hsinyi@google.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,42 +73,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+Hi,Conor,
 
-List the files added for GPIO.
+On Mon, Jun 5, 2023 at 6:20=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
+e:
+>
+> Hey Cong Yang,
+>
+> On Mon, Jun 05, 2023 at 02:05:23PM +0800, Cong Yang wrote:
+> > Add an ilitek touch screen chip ili9882t.
+>
+> Could you add a comment here mentioning the relationship between these
+> chips?
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+Okay, I will add in V3 version.
 
----
+> On Mon, Jun 05, 2023 at 02:05:23PM +0800, Cong Yang wrote:
+>
+> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> > ---
+> >  .../bindings/input/elan,ekth6915.yaml         | 23 ++++++++++++++++---
+> >  1 file changed, 20 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml=
+ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> > index 05e6f2df604c..f0e7ffdce605 100644
+> > --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> > +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> > @@ -15,11 +15,14 @@ description:
+> >
+> >  properties:
+> >    compatible:
+> > -    items:
+> > -      - const: elan,ekth6915
+> > +    enum:
+> > +      - elan,ekth6915
+> > +      - ilitek,ili9882t
+> >
+> >    reg:
+> > -    const: 0x10
+> > +    enum:
+> > +      - 0x10
+> > +      - 0x41
+>
+> Is 0x10 only valid for the elan,ekth6915 & 0x41 for the ilitek one?
+> If so, please add some enforcement of the values based on the
+> compatible.
 
-v3:
- *No change
-v2:
- *Removed reference to PSU changes as they have been discarded.
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+I don't think 0x10 is the only address for ekth6915,(nor is 0x41 the
+only address for ili9882t). It depends on the hardware design.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a3b14ec33830..6157d9466a58 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2239,6 +2239,7 @@ M:	Nick Hawkins <nick.hawkins@hpe.com>
- S:	Maintained
- F:	Documentation/hwmon/gxp-fan-ctrl.rst
- F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-+F:	Documentation/devicetree/bindings/gpio/hpe,gxp-gpio.yaml
- F:	Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
- F:	Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
- F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
-@@ -2247,6 +2248,7 @@ F:	arch/arm/boot/dts/hpe-bmc*
- F:	arch/arm/boot/dts/hpe-gxp*
- F:	arch/arm/mach-hpe/
- F:	drivers/clocksource/timer-gxp.c
-+F:	drivers/gpio/gpio-gxp.c
- F:	drivers/hwmon/gxp-fan-ctrl.c
- F:	drivers/i2c/busses/i2c-gxp.c
- F:	drivers/spi/spi-gxp.c
--- 
-2.17.1
+>
+> >
+> >    interrupts:
+> >      maxItems: 1
+> > @@ -29,11 +32,13 @@ properties:
+> >
+>
+>
+> >    vcc33-supply:
+> >      description: The 3.3V supply to the touchscreen.
+> > +                 If using ili9882t then this supply will not be needed=
+.
+> >
+> >    vccio-supply:
+> >      description:
+> >        The IO supply to the touchscreen. Need not be specified if this =
+is the
+> >        same as the 3.3V supply.
+> > +      If using ili9882t, the IO supply is required.
+>
+> There's no need for these sort of comments, you can rely on the required
+> sections to describe these relationships.
 
+Got it ,thanks.
+
+
+>
+> Cheers,
+> Conor.
+>
+> >
+> >  required:
+> >    - compatible
+> > @@ -41,6 +46,18 @@ required:
+> >    - interrupts
+> >    - vcc33-supply
+> >
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: ilitek,ili9882t
+> > +then:
+> > +  required:
+> > +    - compatible
+> > +    - reg
+> > +    - interrupts
+> > +    - vccio-supply
+> > +
+> >  additionalProperties: false
+> >
+> >  examples:
+> > --
+> > 2.25.1
