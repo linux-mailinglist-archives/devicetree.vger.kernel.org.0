@@ -2,151 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CAA7247CB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE177247CC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:32:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237311AbjFFPcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 11:32:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52348 "EHLO
+        id S238491AbjFFPcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 11:32:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238628AbjFFPcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:32:35 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E81A6
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 08:31:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686065504;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=i1t0pmKIt5vaJFpwmXmGq+ZDjgfyGlSjiNP3LMD+ACA=;
-        b=JE3dpdRHc5SeWtBdAiMUszlu4Ih7z8Yona617Cg7dRfqCOvljfmM3LBRgnLaStZaNHidoh
-        IWWvP8lOO9tqwzlJOZJu/EsITYIUcVljEZewozvpWRDE2k4gfuUi+/hgxiP6CaL6wSrS5v
-        7Lxh/NsSP4qXI8F81CcH9QameA1A4OM=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-443-EakoksBnNnKsdlm4W1ofkQ-1; Tue, 06 Jun 2023 11:31:42 -0400
-X-MC-Unique: EakoksBnNnKsdlm4W1ofkQ-1
-Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-9745c72d99cso436323566b.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 08:31:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686065501; x=1688657501;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i1t0pmKIt5vaJFpwmXmGq+ZDjgfyGlSjiNP3LMD+ACA=;
-        b=USbKeUkKW5IP6HaAHNj8wGG+LLZDbt3I6+0898oKkoZS1K/7L/LQquAH+2LhXY6E7M
-         QABnNFE7CgtSCJr4gOxaUw7CitsD5GpemQdl0KEN9Rwxc6apdRZyo+aB2EKbcSouc+XU
-         zISNyUHFNmjQtDNNmsfWqrZcf+6mjDKBsbs+XzSR9H/vQIb0qyimtMVNQgQKYsoHXfd+
-         0vThi4mZxrVKmY2ozMJFbJTH/3FL0hHbhkBDcWzoCR/pzKz8rejYSRAxiiRjGi24yYDe
-         Dla0RTJyqJHpEd1Ph7aiG+xYf8Npj11x6BiLv8ki7F2BDhXMRN3sCJmmj3DNM2m7d8Oo
-         0FcA==
-X-Gm-Message-State: AC+VfDwz8fKPLwUbiAo2IyOUwiqOXgnWUA1PQ6FaDiYeMrYDOOSwJ5xH
-        nKExrekLEeGy1cqoq1oQBFsDlf3bJiSQSvV/fH8AUgwqG7ZFOQ9r27h+orriXGa//PsZvS2oEFH
-        YE4HWWW56U7abG9qXZixLOw==
-X-Received: by 2002:a17:907:948c:b0:96f:f6a6:58cc with SMTP id dm12-20020a170907948c00b0096ff6a658ccmr2663393ejc.15.1686065501295;
-        Tue, 06 Jun 2023 08:31:41 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7fmsq+XYgnJ2EVJ0RhRfL6yxjqnq4cY+vHlsWelX09825PP4Sa5cKe57yjCaKRFE9J9fQwCQ==
-X-Received: by 2002:a17:907:948c:b0:96f:f6a6:58cc with SMTP id dm12-20020a170907948c00b0096ff6a658ccmr2663381ejc.15.1686065501036;
-        Tue, 06 Jun 2023 08:31:41 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:2a07:3a01:67e5:daf9:cec0:df6? (2001-1c00-2a07-3a01-67e5-daf9-cec0-0df6.cable.dynamic.v6.ziggo.nl. [2001:1c00:2a07:3a01:67e5:daf9:cec0:df6])
-        by smtp.gmail.com with ESMTPSA id x22-20020a1709060a5600b0096f6a131b9fsm5689719ejf.23.2023.06.06.08.31.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 08:31:40 -0700 (PDT)
-Message-ID: <f5f20de8-851a-fe20-4664-62b6de14ebd7@redhat.com>
-Date:   Tue, 6 Jun 2023 17:31:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH RFC 0/4] input: touchscreen: add initial support for
- Goodix Berlin touchscreen IC
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238196AbjFFPcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:32:54 -0400
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC4810D1;
+        Tue,  6 Jun 2023 08:32:49 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1q6Yfn-0067nH-SD; Tue, 06 Jun 2023 15:32:40 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Henrik Rydberg <rydberg@bitmath.org>
-Cc:     linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org>
-Content-Language: en-US
-From:   Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mm-venice-gw7901: add cpu-supply node for cpufreq
+Date:   Tue,  6 Jun 2023 08:32:38 -0700
+Message-Id: <20230606153238.1448463-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+Add regulator config for cpu-supply in order to support cpufreq.
 
-On 6/6/23 16:31, Neil Armstrong wrote:
-> These touchscreen ICs support SPI, I2C and I3C interface, up to
-> 10 finger touch, stylus and gestures events.
-> 
-> This initial driver is derived from the Goodix goodix_ts_berlin
-> available at [1] and [2] and only supports the GT9916 IC
-> present on the Qualcomm SM8550 MTP & QRD touch panel.
-> 
-> The current implementation only supports BerlinD, aka GT9916.
-> 
-> Support for advanced features like:
-> - Firmware & config update
-> - Stylus events
-> - Gestures events
-> - Previous revisions support (BerlinA or BerlinB)
-> is not included in current version.
-> 
-> The current support will work with currently flashed firmware
-> and config, and bail out if firmware or config aren't flashed yet.
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ .../dts/freescale/imx8mm-venice-gw7901.dts     | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-What I'm missing here / in the commit msg of
-"input: touchscreen: add core support for Goodix Berlin Touchscreen IC"
-
-is an explanation why this is a new driver instead of adding
-support to the existing goodix.c code.
-
-I assume you have good reasons for this, but it would be good
-if you can write the reasons for this down.
-
-Regards,
-
-Hans
-
-
-
-> 
-> [1] https://github.com/goodix/goodix_ts_berlin
-> [2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> Neil Armstrong (4):
->       dt-bindings: input: document Goodix Berlin Touchscreen IC
->       input: touchscreen: add core support for Goodix Berlin Touchscreen IC
->       input: touchscreen: add I2C support for Goodix Berlin Touchscreen IC
->       input: touchscreen: add SPI support for Goodix Berlin Touchscreen IC
-> 
->  .../bindings/input/touchscreen/goodix-berlin.yaml  |  81 ++
->  drivers/input/touchscreen/Kconfig                  |  33 +
->  drivers/input/touchscreen/Makefile                 |   3 +
->  drivers/input/touchscreen/goodix_berlin.h          | 228 +++++
->  drivers/input/touchscreen/goodix_berlin_core.c     | 935 +++++++++++++++++++++
->  drivers/input/touchscreen/goodix_berlin_i2c.c      |  76 ++
->  drivers/input/touchscreen/goodix_berlin_spi.c      | 183 ++++
->  7 files changed, 1539 insertions(+)
-> ---
-> base-commit: 6db29e14f4fb7bce9eb5290288e71b05c2b0d118
-> change-id: 20230606-topic-goodix-berlin-upstream-initial-ba97e8ec8f4c
-> 
-> Best regards,
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+index df3b2c93d2d5..d022b5807a24 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+@@ -242,6 +242,22 @@ reg_wifi: regulator-wifi {
+ 	};
+ };
+ 
++&A53_0 {
++	cpu-supply = <&buck2>;
++};
++
++&A53_1 {
++	cpu-supply = <&buck2>;
++};
++
++&A53_2 {
++	cpu-supply = <&buck2>;
++};
++
++&A53_3 {
++	cpu-supply = <&buck2>;
++};
++
+ &ddrc {
+ 	operating-points-v2 = <&ddrc_opp_table>;
+ 
+@@ -511,7 +527,7 @@ BUCK1 {
+ 			};
+ 
+ 			/* vdd_arm: 0.805-1.0V (typ=0.9V) */
+-			BUCK2 {
++			buck2: BUCK2 {
+ 				regulator-name = "buck2";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
+-- 
+2.25.1
 
