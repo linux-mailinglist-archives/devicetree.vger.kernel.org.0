@@ -2,72 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3DCC72379E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB6A7237A5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235297AbjFFG0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 02:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
+        id S235423AbjFFG1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 02:27:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235290AbjFFGZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:25:48 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1A61738;
-        Mon,  5 Jun 2023 23:24:31 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3566O1c9116622;
-        Tue, 6 Jun 2023 01:24:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686032641;
-        bh=1oF8jYUUOFXRvok3JCIbs1nq6NypvZAwnqD3d/2He+U=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=g30x9dBF1zC36PjMPwA0ig95TppWAlatcYk4tDbenNbbuWS3jWW4jQ7KTMM7kEj9g
-         V+l4yCgwT8rrQ5YV2dqJF/3ld+/ubIBJf2y+3kWIodN44kBfNYjrc34FvBJo8L7u8Q
-         qdnOTPPspSzjNxvgUTM1U2V/4HoMf4v+nZPL23nU=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3566O1ex060770
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Jun 2023 01:24:01 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Jun 2023 01:24:01 -0500
-Received: from DLEE105.ent.ti.com ([fe80::d8b7:9c27:242c:8236]) by
- DLEE105.ent.ti.com ([fe80::d8b7:9c27:242c:8236%17]) with mapi id
- 15.01.2507.023; Tue, 6 Jun 2023 01:24:01 -0500
-From:   "Raja, M Sinthu" <sinthu.raja@ti.com>
-To:     "Menon, Nishanth" <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "Kumar, Udit" <u-kumar1@ti.com>, "Yadav, Nitin" <n-yadav@ti.com>,
-        "Francis, Neha" <n-francis@ti.com>
-Subject: Re: [PATCH 4/6] arm64: dts: ti: k3-am68-sk-som: Enable wakeup_i2c0
- and eeprom
-Thread-Topic: [PATCH 4/6] arm64: dts: ti: k3-am68-sk-som: Enable wakeup_i2c0
- and eeprom
-Thread-Index: AQHZlWftKL498kU7mk6eWjSIJ3iMGa99U6jD
-Date:   Tue, 6 Jun 2023 06:24:01 +0000
-Message-ID: <3eb70e7f2aed4d7893714c9f5ddc70c1@ti.com>
-References: <20230602153554.1571128-1-nm@ti.com>,<20230602153554.1571128-5-nm@ti.com>
-In-Reply-To: <20230602153554.1571128-5-nm@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.134.136]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S234651AbjFFG0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:26:43 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96BA31BD5
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 23:25:34 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-97000a039b2so897899466b.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 23:25:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686032733; x=1688624733;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AmuejoJeHN8EldA6gQK9in2sBXKsFxRHE2nxemHliVA=;
+        b=H2t73c/MUrxYkiy6d/FXdt7ZLMZLAIM5COmSQl9zxydRjd6AepsMfAOtmnHik0Guc+
+         rc9lNjHORqxoWdA7OblI2Oh8ysIHBtk/ekXpSqOxhz9AwPM37E/EpwXMc9Rg2PAQ0fWP
+         dt8sAQHbxrtWkt5rhaxxi3jikHAuLmpn1aEneZArnesqQ0udnbFF6+87Po4UVUFNEFo8
+         JMb8FWrTp3MozQX+jopYovc9bd5nsUv0X2c8cZVL4drEWsc6hMgTRZrMZRQ6xAsdo+eq
+         K9rJ66YB4yXOi2TFheMJ2yMNzloMpPx4EduS9AltjqxXW9OuLTeY5I/LqvOyTVl/v6Lh
+         TxmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686032733; x=1688624733;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AmuejoJeHN8EldA6gQK9in2sBXKsFxRHE2nxemHliVA=;
+        b=UyF5n88kSDb9YWMIl6OrTBkAj2yr26KpjVSIoBNRkE+XGZzE7C8ehAvFSjYIigSyEe
+         eT8bxpHpAf1s3JOM/5igsA/XH0ZDQylhTyH0LsWsps06GPz+F5vCiqj2NnnTE+iwwkzX
+         fRg2uxdZ5Z5a5GJtYnChBgFPZ7AVy+SW8i6GEsqwUZBrTT8GzxZOYjIbodpK/VcINxUY
+         7ONahHumEUMUnqb4dOsDS5jRmi3YgilDlAmRao1bz0TxeZGuI04Ale9d2g0wT0Opp906
+         wyaAoWT8R3Ay0vbJi0EYMqkm6yzMHQM5xt64sRtbz/xaoOr0GA8YPjm7HAEyYLlrVkkk
+         T93A==
+X-Gm-Message-State: AC+VfDz63zxp8wCBUm8J+BIWvdOwyKXRBIgZ2XxLeuVumZWA1fK894yo
+        naeGKxEO5UhndE66pclahQtZkIiN7p1O/ycx4OAQiw==
+X-Google-Smtp-Source: ACHHUZ5L6idkzO3bEQLABFvgweINi4eaoibE5pbJn7hFTY2jsvzdv0qJjx8fzYBbg9thOKHgpDVh3A==
+X-Received: by 2002:a17:907:80c:b0:974:218d:c048 with SMTP id wv12-20020a170907080c00b00974218dc048mr1441420ejb.26.1686032732482;
+        Mon, 05 Jun 2023 23:25:32 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id d10-20020a170906640a00b00965e1be3002sm5157877ejm.166.2023.06.05.23.25.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jun 2023 23:25:32 -0700 (PDT)
+Message-ID: <d2313558-c25d-ed58-c508-dac574183d08@linaro.org>
+Date:   Tue, 6 Jun 2023 08:25:30 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 01/14] dt-bindings soc: qcom: smd-rpm: Fix sort order
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
+ <20230531-rpm-rproc-v1-1-e0a3b6de1f14@gerhold.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230531-rpm-rproc-v1-1-e0a3b6de1f14@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,70 +82,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nishanth,
+On 05/06/2023 09:08, Stephan Gerhold wrote:
+> Some of the enum entries are not properly ordered, fix that.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Best regards,
+Krzysztof
 
-
-From: Menon, Nishanth
-Sent: Friday, June 2, 2023 9:05 PM
-To: Conor Dooley; Krzysztof Kozlowski; Rob Herring; Tero Kristo; Raghavendr=
-a, Vignesh
-Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-ker=
-nel@lists.infradead.org; Menon, Nishanth; Kumar, Udit; Yadav, Nitin; Franci=
-s, Neha; Raja, M Sinthu
-Subject: [PATCH 4/6] arm64: dts: ti: k3-am68-sk-som: Enable wakeup_i2c0 and=
- eeprom
-=A0  =20
-Enable wakeup_i2c. While at it, describe the board detection eeprom
-present on the board.
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-new patch
-
-=A0arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 22 ++++++++++++++++++++++
-=A01 file changed, 22 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/d=
-ts/ti/k3-am68-sk-som.dtsi
-index e92431250729..e2c80fff7478 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-@@ -27,3 +27,25 @@ secure_ddr: optee@9e800000 {
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 };
-=A0=A0=A0=A0=A0=A0=A0=A0 };
-=A0};
-+
-+&wkup_pmx2 {
-+=A0=A0=A0=A0=A0=A0 wkup_i2c0_pins_default: wkup-i2c0-pins-default {
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 pinctrl-single,pins =3D <
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 J721S2_=
-WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (H24) WKUP_I2C0_SCL */
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 J721S2_=
-WKUP_IOPAD(0x09c, PIN_INPUT, 0) /* (H27) WKUP_I2C0_SDA */
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 >;
-+=A0=A0=A0=A0=A0=A0 };
-+};
-+
-+&wkup_i2c0 {
-+=A0=A0=A0=A0=A0=A0 status =3D "okay";
-+=A0=A0=A0=A0=A0=A0 pinctrl-names =3D "default";
-+=A0=A0=A0=A0=A0=A0 pinctrl-0 =3D <&wkup_i2c0_pins_default>;
-+=A0=A0=A0=A0=A0=A0 clock-frequency =3D <400000>;
-+
-+=A0=A0=A0=A0=A0=A0 eeprom@51 {
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /* AT24C512C-MAHM-T */
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 compatible =3D "atmel,24c512";
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D <0x51>;
-+=A0=A0=A0=A0=A0=A0 };
-+};
-
-LGTM
-
-Reviewed-by: Sinthu Raja <sinthu.raja@ti.com>
-
---=20
-2.40.0
-
-    =
