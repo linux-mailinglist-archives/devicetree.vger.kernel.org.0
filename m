@@ -2,79 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38151725008
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 00:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCE0172503C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 00:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238101AbjFFWiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 18:38:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35300 "EHLO
+        id S240080AbjFFWwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 18:52:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240063AbjFFWi3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 18:38:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B491FDC;
-        Tue,  6 Jun 2023 15:38:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6AFCB638B1;
-        Tue,  6 Jun 2023 22:38:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AFA2C433EF;
-        Tue,  6 Jun 2023 22:37:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686091081;
-        bh=+d7JeMeUUdZO2aVYQ8oGUF7pb9l8qtsCjpkX1+tKZ0w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ah/xpfYXpLSl/KXOtkf2COQ1AifCQwoMbz5GdNd9ACRL9pAXI9y5pmZwAaJiuFZTy
-         onaUd+OM2JgRXTnepEsVZZZyWcLJkgZfFeKsIsfdH7ovQw9K9sgVTVYjMcqM7D6nA9
-         hp6MJNabTZ5pUEYGZD3ZDKgehKx1/cBeVeWGsAexmiW6Du23w+QR4x5A55TodM83oa
-         91QKw/L/4nPKp2Cz68Z8OsFWACnxb0UsfN1nQG3MO4QLalWNIWmH7MH7HksH3/FyDv
-         mzpv63FSaBnTJ9AtPkRKj+sxtFNOsBR6Y5Sz/icdY9vgSCXdvfBFqUv4w9/M10dyUA
-         jCnwRE4nixJyA==
-Date:   Tue, 6 Jun 2023 23:37:53 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc:     Keith Zhao <keith.zhao@starfivetech.com>,
-        Shengyu Qu <wiagn233@outlook.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S238521AbjFFWwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 18:52:44 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4FEC171B
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 15:52:41 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b1b72dc2feso54047251fa.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 15:52:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686091960; x=1688683960;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=odYCRHRQ0gkwKhK+y2SacO/W7W8SAPtOlMi46abCh4k=;
+        b=K9ZToqVtYGeJMr3uPq06q4SXo0Xq4+O+99N/PMJ9Ke4Ms2BdMzE0YmefueHuQ7M0OZ
+         J2xV9v7QD+F5H48AMROR6Y1F7cSRGWtDmRnC5h3JFdcB73y0kP0fKUjLUKOTgzDLVQbF
+         L58m+FCmvnEK+hWzax1fO7D5NxwCmV0FggQuCxZNzgefDhHfDDixiSeQ0mHY3+ltWchw
+         A36nq4b4dKE0wV+J/TJbdftu4xTPA+1hSjw4U0V1QjS/UcDVffs14Pu5DqFD4V9/cYYl
+         h39pJrDIfFbwsNSEzh511kg+bWQoW6WwFA6FQwnuCkGMhvb5H/cI+xUxiGzC3vOmvziO
+         hJOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686091960; x=1688683960;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=odYCRHRQ0gkwKhK+y2SacO/W7W8SAPtOlMi46abCh4k=;
+        b=LQG4cvyol8YREfq44Vago8UuuOqaXwBQAur8EwvQfIMekzo9yVc7arfXqc/EXLbyuu
+         wDnVQV/myAccRBgQFiRyGLvDdnh5q9j71fyBbZXT76aOC5RvYWMuwBza56zRWbBuLSog
+         uaM4eod/HruUDz2WevDDNy7cN4lJuNmzsid2eX1fgl4TrOkXBYe2ntA3E/SWOAekPSp+
+         VCiFCtRv2fqyZekj7SzZXqpd8I3vN/Hd/gzmtQ8Lnidlm9AgOBg4D+7SBVJWMJfT4V1M
+         J/v+PiL924ihPR5bvpEymihyyPn1Pnu2R8JecHdtzb3s4/9BfStP8HCRHc/qLuLy9qke
+         EXLg==
+X-Gm-Message-State: AC+VfDyuNdmEDtahNXLLztygW3gUt8zlxcmWkclVoQJKTlRDNIbRuQbS
+        eMs2rQmiyQlYgMfaQ0/ebkClAA==
+X-Google-Smtp-Source: ACHHUZ4KZwQFOH7rrX32p1/vKfvhKjWp355/Mrl2AujBs9Yoiklg4fAZ5RK401e3IXIMMlADj4lGhA==
+X-Received: by 2002:a2e:9096:0:b0:2af:3141:a52b with SMTP id l22-20020a2e9096000000b002af3141a52bmr2047883ljg.22.1686091959916;
+        Tue, 06 Jun 2023 15:52:39 -0700 (PDT)
+Received: from [192.168.1.101] (abyl150.neoplus.adsl.tpnet.pl. [83.9.31.150])
+        by smtp.gmail.com with ESMTPSA id v5-20020a2e87c5000000b002ad9a1bfa8esm2033169ljj.1.2023.06.06.15.52.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 15:52:39 -0700 (PDT)
+Message-ID: <974f68dc-b667-c9a7-94c4-1023ef271fab@linaro.org>
+Date:   Wed, 7 Jun 2023 00:52:37 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8250-edo: Panel framebuffer is
+ 2.5k instead of 4k
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH 1/9] dt-bindings: display: Add yamls for JH7110 display
- subsystem
-Message-ID: <20230606-geometry-blurb-1f0f07d4bf6a@spud>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602-uncommon-rejoicing-e73c0c475f9f@spud>
- <TY3P286MB26116576E3E502CAE53834599852A@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <1991848.PYKUYFuaPT@diego>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="1lwN/EJcI4S+S54L"
-Content-Disposition: inline
-In-Reply-To: <1991848.PYKUYFuaPT@diego>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230606211418.587676-1-marijn.suijten@somainline.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230606211418.587676-1-marijn.suijten@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,71 +87,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---1lwN/EJcI4S+S54L
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 07, 2023 at 12:22:33AM +0200, Heiko St=FCbner wrote:
-> Am Dienstag, 6. Juni 2023, 20:41:17 CEST schrieb Shengyu Qu:
-> > > On Fri, Jun 02, 2023 at 03:40:35PM +0800, Keith Zhao wrote:
-> > >> Add bindings for JH7110 display subsystem which
-> > >> has a display controller verisilicon dc8200
-> > >> and an HDMI interface.
+On 6.06.2023 23:14, Marijn Suijten wrote:
+> The framebuffer configuration for edo pdx203, written in edo dtsi (which
+> is overwritten in pdx206 dts for its smaller panel) has to use a
+> 1096x2560 configuration as this is what the panel (and framebuffer area)
+> has been initialized to.  Downstream userspace also has access to (and
+> uses) this 2.5k mode by default, and only switches the panel to 4k when
+> requested.
+> 
+> This is similar to commit be8de06dc397 ("arm64: dts: qcom:
+> sm8150-kumano: Panel framebuffer is 2.5k instead of 4k") which fixed the
+> same for the previous generation Sony platform.
+> 
+> Fixes: 69cdb97ef652 ("arm64: dts: qcom: sm8250: Add support for SONY Xperia 1 II / 5 II (Edo platform)")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+And so I derped again.
 
-> > >> +description:
-> > >> +  The StarFive SoC uses the HDMI signal transmiter based on innosil=
-icon IP
-> > > Is innosilicon the same thing as verisilicon? Also
-> > > s/transmiter/transmitter/, both here and in the title.
-> >=20
-> > I think that is not the same, I remember Rockchip has used a HDMI=20
-> > transmitter from
-> >=20
-> > Innosilicon, and there is a existing driver for that in mainline.
->=20
-> Yep, I think Innosilicon is the company you turn to when you want to save
-> a bit of money ;-) . In the bigger SoCs Rockchip most of the time uses
-> Designware hdmi blocks and looking at the history only the rk3036 ever
-> used an Innosilicon block.
->=20
-> Looking at the history, 2016 really was a long time ago :-D.
->=20
-> > So Keith, if that's true, I think it is better to seperate the HDMI=20
-> > stuff and reuse existing driver.
->=20
-> I'm not so sure about that - at least from a cursory glance :-) .
->=20
-> The registers do look slightly different and I don't know how much
-> the IP changed between the rk3036-version and the jh7110 version.
->=20
-> At the very least, I know my rk3036 board isn't booting right now, so
-> I can't really provide help for generalizing the rockchip-driver.
->=20
-> At the very least both the binding and driver could drop the "starfive-hd=
-mi"
-> and actually use the Innosilicon in the naming somewhere, so that it's
-> clear for future developers :-)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Seeing "based on" always makes me a little bit nervous to be honest when
-it comes to using a compatible from the IP. Is it the IP? What version
-is it? etc. Perhaps "starfive,jh7110-hdmi" & falling back to some sort
-of "innosilicon,hdmi" would be more future/IP-silliness proof.
-Driver can always be generic & bind against "innosilicon,hdmi" until
-that becomes impossible.
-
-Cheers,
-Conor.
-
---1lwN/EJcI4S+S54L
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH+1QQAKCRB4tDGHoIJi
-0ihwAQC+3gfFJAPFBOT76QYpqrSJuQHRjE1iNJt0+04zAqcRDgD+KopK8i99wbS9
-4s+s9CpPS+b/RBAa5Zq6Zq0Bynk3jgc=
-=XnKq
------END PGP SIGNATURE-----
-
---1lwN/EJcI4S+S54L--
+Konrad
+> 
+> Changes since v2:
+> - Rename griffin (copy-paste from related patch) to pdx203 in comment.
+> 
+>  arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> index 3d22be747f042..8f867f841cb83 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> @@ -54,9 +54,10 @@ chosen {
+>  		framebuffer: framebuffer@9c000000 {
+>  			compatible = "simple-framebuffer";
+>  			reg = <0 0x9c000000 0 0x2300000>;
+> -			width = <1644>;
+> -			height = <3840>;
+> -			stride = <(1644 * 4)>;
+> +			/* pdx203 BL initializes in 2.5k mode, not 4k */
+> +			width = <1096>;
+> +			height = <2560>;
+> +			stride = <(1096 * 4)>;
+>  			format = "a8r8g8b8";
+>  		};
+>  	};
