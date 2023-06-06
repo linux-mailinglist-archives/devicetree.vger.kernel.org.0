@@ -2,103 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E64B72418B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:59:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 137BC7241A9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 14:07:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237465AbjFFL73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 07:59:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41940 "EHLO
+        id S232989AbjFFMHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 08:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237463AbjFFL7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:59:13 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D20B310CA;
-        Tue,  6 Jun 2023 04:58:56 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 356AaQoO029854;
-        Tue, 6 Jun 2023 13:58:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=etScZROVZivSDtjba/HeKk4V8ZOYP8P+whT8Ekuy10E=;
- b=7fWa4PGq7YSpphz7+iScpPRV42fgEXON4jYhnEXDMEzqgGbQXXNmD/sh9mC2lQ5yL6oS
- ylh60gGzcsL2ES8eq46pnw0KPbHTeyGjhBygkndqOBCsYydtWV9MdZHydmhTCzxpVMo+
- nCzTUJHMxhYKKnCs7bB+aN0iIIklKCU3I75lUoEM7dhiwyQMQei7VHr1TzWtoak5wVh/
- GpNZJVfQfC1xrYQgSoY0sjgHUsC47OI4MF+rEYawotFyy6sh625CrwZlFanKbMY5c5Sf
- zZA0FL9NbODrc0WeDdVs41yJXxSfxN3eJvYBtXOQYexNzloSU4ZOKhrn4K6rSK5efg3v oA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r236qrfm9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 06 Jun 2023 13:58:47 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 30C4810002A;
-        Tue,  6 Jun 2023 13:58:47 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 253072248DC;
-        Tue,  6 Jun 2023 13:58:47 +0200 (CEST)
-Received: from localhost (10.201.20.178) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 6 Jun
- 2023 13:58:46 +0200
-From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232984AbjFFMHw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 08:07:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D16AE78
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 05:07:46 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1q6VTI-0006uM-0P; Tue, 06 Jun 2023 14:07:32 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1q6VTG-0003Qv-HJ; Tue, 06 Jun 2023 14:07:30 +0200
+Date:   Tue, 6 Jun 2023 14:07:30 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     Olivier Moysan <olivier.moysan@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] ARM: dts: stm32: fix i2s endpoint format property for stm32mp15xx-dkx
-Date:   Tue, 6 Jun 2023 13:56:04 +0200
-Message-ID: <20230606115605.1633595-4-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230606115605.1633595-1-olivier.moysan@foss.st.com>
-References: <20230606115605.1633595-1-olivier.moysan@foss.st.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Markus Niebel <Markus.Niebel@tq-group.com>,
+        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject: Re: [PATCH 1/3] dt-bindings: arm: add TQMa8Xx boards
+Message-ID: <20230606120730.6exdpylr24qn6hdw@pengutronix.de>
+References: <20230606112108.685885-1-alexander.stein@ew.tq-group.com>
+ <20230606112108.685885-2-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.178]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-06_08,2023-06-06_02,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230606112108.685885-2-alexander.stein@ew.tq-group.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use "dai-format" to configure DAI audio format as specified in
-audio-graph-port.yaml bindings.
+Hi Alexander,
 
-Fixes: 144d1ba70548 ("ARM: dts: stm32: Adapt STM32MP157 DK boards to stm32 DT diversity")
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 23-06-06, Alexander Stein wrote:
+> TQMa8Xx is a SOM series featuring NXP i.MX8X SoC.
+> They are called TQMa8XQP and TQMa8XDP respectively.
+> MBa8Xx is an evaluation mainboard for this SOM
+> 
+> Signed-off-by: Markus Niebel <Markus.Niebel@tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 2510eaa8906dd..c4dcdac43bafb 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1195,6 +1195,23 @@ properties:
+>            - const: toradex,colibri-imx8x
+>            - const: fsl,imx8qxp
+>  
+> +      - description:
+> +          TQMa8Xx is a series of SOM featuring NXP i.MX8X system-on-chip
+> +          variants. It is designed to be clicked on different carrier boards
+> +          MBa8Xx is the starterkit
+> +        oneOf:
+> +          - items:
+> +              - enum:
+> +                  - tq,imx8dxp-tqma8xdp-mba8xx # TQ-Systems GmbH TQMa8XDP SOM on MBa8Xx
+> +              - const: tq,imx8dxp-tqma8xdp     # TQ-Systems GmbH TQMa8XDP SOM (with i.MX8DXP)
+> +              - const: fsl,imx8dxp
+> +              - const: fsl,imx8qxp
+				^
+Should be removed? The rest lgtm, so feel free to add my:
 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-index e78ba956b9d0..511113f2e399 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-@@ -446,7 +446,7 @@ &i2s2 {
- 	i2s2_port: port {
- 		i2s2_endpoint: endpoint {
- 			remote-endpoint = <&sii9022_tx_endpoint>;
--			format = "i2s";
-+			dai-format = "i2s";
- 			mclk-fs = <256>;
- 		};
- 	};
--- 
-2.25.1
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 
+Nit: Please check the dts(i) files for C++ comments '//' and replace
+them with '/**/'. There was at least one C++ comment.
+
+Regards,
+  Marco
+
+> +          - items:
+> +              - enum:
+> +                  - tq,imx8qxp-tqma8xqp-mba8xx # TQ-Systems GmbH TQMa8XQP SOM on MBa8Xx
+> +              - const: tq,imx8qxp-tqma8xqp     # TQ-Systems GmbH TQMa8XQP SOM (with i.MX8QXP)
+> +              - const: fsl,imx8qxp
+> +
+>        - description: i.MX8ULP based Boards
+>          items:
+>            - enum:
+> -- 
+> 2.34.1
+> 
+> 
+> 
