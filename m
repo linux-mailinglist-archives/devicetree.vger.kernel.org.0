@@ -2,486 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16B85723A98
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 09:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 960B2723AE7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235822AbjFFHxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 03:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56314 "EHLO
+        id S235879AbjFFIDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 04:03:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236248AbjFFHws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 03:52:48 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BD7E5F;
-        Tue,  6 Jun 2023 00:49:01 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686037739;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
+        with ESMTP id S235878AbjFFIDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:03:17 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EE561FDF;
+        Tue,  6 Jun 2023 01:01:39 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id F0FC01FD63;
+        Tue,  6 Jun 2023 08:01:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1686038497; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=W/kMANKOTi/tFXc0hJon5PuO8vrm2esi8pRQ+Mx6YY8=;
-        b=SwWxSbuUS5bFt445yNo85PxVU12H/0UMPIIxIOPbJ+m8fp+ik9pyEFL9NVwAyFZM051N3p
-        NzPltO+/RkB5DCY7R5Q3SUrvfqqTOkBhUMf6bQ0+iNpyp0bnWnQzOOAPWUy6Kf/anzqLKJ
-        qI0X+azrFp6wSGK9Kk2uxHsMFEFrDth7G0jL19IeTZF0tsQx6PJ//DZi3RjOg9olqslz2a
-        U9Um1/ClMPL01vI3zWobFe0x5c+c5lu//SeRWEvzhSRGKg6f0v0FnMzToupmHjV3Yhq6v9
-        NPulL984sOp8TDlGDUCGWKdiWblwR1e2yaprd0pGsntkXZEP8+3AGYt8J33hPw==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4D55B1BF20C;
-        Tue,  6 Jun 2023 07:48:56 +0000 (UTC)
-Date:   Tue, 6 Jun 2023 09:48:55 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "conor@kernel.org" <conor@kernel.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "enachman@marvell.com" <enachman@marvell.com>,
-        Vadym Kochan <vadym.kochan@plvision.eu>
-Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML
- DT scheme
-Message-ID: <20230606094855.1ab005eb@xps-13>
-In-Reply-To: <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
-References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
-        <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
-        <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
-        <785368df-1881-e62e-6172-d902cee814a8@alliedtelesis.co.nz>
-        <eaf9d7cf-c9f5-a5d5-67af-c43761c3c6cf@linaro.org>
-        <4ea0b16e-0cec-00db-c598-e0364a7edef8@alliedtelesis.co.nz>
-        <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        bh=Q/TE6zVCRq29HuGy5d7GIpLOa+ICFNR+J5+3C//QsCM=;
+        b=uKJ5ggFn/WW+0FZko2JGOegGPip8/4GkaQfVv60LhMeW1sK7+o0Btz1YtdZ3lVDzwx/XJD
+        kcSueOlXjeG1VGVgUH0Ck+T8mM0e+Q8tlyFYHsV9UMQKa5eP520r3MGDNNiM+hGzsz2sZ7
+        ly3uXD5xfvk/rToqS1pD5pZSPf2GT1M=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1686038497;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Q/TE6zVCRq29HuGy5d7GIpLOa+ICFNR+J5+3C//QsCM=;
+        b=V52dAcAoEB23yBsJMqOIxepI/ju/rhCEPGThjzkJYqo9a5V6Xh8FVVBlCsZEqg5n88WwGZ
+        nauwrBDA7eAWgRBQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B987313519;
+        Tue,  6 Jun 2023 08:01:37 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id kRRiLOHnfmRcIQAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Tue, 06 Jun 2023 08:01:37 +0000
+Message-ID: <6b0a12bf-a8d4-43df-860c-3aa271cfc624@suse.de>
+Date:   Tue, 6 Jun 2023 10:01:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 0/5] drm/ssd130x: A few enhancements and cleanups
+Content-Language: en-US
+To:     Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20230605074753.562332-1-javierm@redhat.com>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20230605074753.562332-1-javierm@redhat.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------CyUiPeozYYacUyESNr435dOY"
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------CyUiPeozYYacUyESNr435dOY
+Content-Type: multipart/mixed; boundary="------------GpYSlaN0KD7buWrEyk10G0FZ";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ linux-kernel@vger.kernel.org
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Message-ID: <6b0a12bf-a8d4-43df-860c-3aa271cfc624@suse.de>
+Subject: Re: [PATCH 0/5] drm/ssd130x: A few enhancements and cleanups
+References: <20230605074753.562332-1-javierm@redhat.com>
+In-Reply-To: <20230605074753.562332-1-javierm@redhat.com>
 
-Chris.Packham@alliedtelesis.co.nz wrote on Tue, 6 Jun 2023 04:38:01
-+0000:
+--------------GpYSlaN0KD7buWrEyk10G0FZ
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-> On 6/06/23 08:44, Chris Packham wrote:
-> >
-> > On 4/06/23 21:26, Krzysztof Kozlowski wrote: =20
-> >> On 02/06/2023 01:06, Chris Packham wrote: =20
-> >>> Hi Krzystof,
-> >>>
-> >>> On 1/06/23 19:05, Krzysztof Kozlowski wrote: =20
-> >>>> On 01/06/2023 01:49, Chris Packham wrote: =20
-> >>>>> From: Vadym Kochan <vadym.kochan@plvision.eu>
-> >>>>>
-> >>>>> Switch the DT binding to a YAML schema to enable the DT validation.
-> >>>>>
-> >>>>> The text binding didn't mention it as a requirement but existing=20
-> >>>>> usage
-> >>>>> has
-> >>>>>
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "marvell,armada-8k-nand-con=
-troller",
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "marvell,armada370-nand-controller";
-> >>>>>
-> >>>>> so the YAML allows this in addition to the individual compatible=20
-> >>>>> values.
-> >>>>>
-> >>>>> There was also an incorrect reference to dma-names being "rxtx" whe=
-re
-> >>>>> the driver and existing device trees actually use dma-names =3D=20
-> >>>>> "data" so
-> >>>>> this is corrected in the conversion.
-> >>>>>
-> >>>>> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-> >>>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> >>>>> ---
-> >>>>>
-> >>>>> Notes:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Changes in v8:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Mark deprecated compatible values =
-as such
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Allow "marvell,armada-8k-nand-cont=
-roller" without
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "marvell,armada370-nand-=
-controller"
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Make dma-names usage reflect reali=
-ty
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Update commit message
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Chang=
-es in v7:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Restore "label" and "partitions" p=
-roperties (should be=20
-> >>>>> picked up via
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-controller.yaml but=
- aren't) =20
-> >>>> What do you mean by "aren't"? They are not needed. =20
-> >>> (sorry I keep responding to snippets rather than putting all the=20
-> >>> replies
-> >>> in one place. For posterity here's the same response I provided in a
-> >>> separate message).
-> >>>
-> >>> I mean I simply cannot make it work and I'm out of ideas (I'm also=20
-> >>> in an
-> >>> awkward timezone so it takes 24hrs for me to ask a question and get a
-> >>> response which leads to me making guesses instead of waiting).
-> >>>
-> >>> nand-controller.yaml references nand-chip.yaml which references=20
-> >>> mtd.yaml
-> >>> which defines the "label" and "partitions" property.
-> >>>
-> >>> I thought marvell,nand-controller.yaml could just say `$ref:
-> >>> nand-controller.yaml` and it would mean I'd get all the definitions=20
-> >>> down
-> >>> the chain but this doesn't seem to work the way I expect (or more=20
-> >>> likely
-> >>> I'm not doing it right). I thought it might have something to do with
-> >>> the different patternProperties pattern but even when I make that mat=
-ch
-> >>> what is used in nand-controller.yaml it doesn't seem to pick up those
-> >>> properties. =20
-> >> Then you are doing something different than all other bindings. =20
-> >
-> > Not intentionally. I should probably check that the existing bindings=20
-> > actually work as expected.
-> >
-> > One thing that this has that the others don't is including "label" and=
-=20
-> > "partitions" in the examples.
-> > =20
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Add/restore nand-on-flash-bbt and =
-nand-ecc-mode which=20
-> >>>>> aren't covered
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 by nand-controller.yaml.
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Use "unevalautedProperties: false"
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Corrections for clock-names, dma-n=
-ames, nand-rb and=20
-> >>>>> nand-ecc-strength
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Add pxa3xx-nand-controller example
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Chang=
-es in v6:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - remove properties covered by nand-=
-controller.yaml
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - add example using armada-8k compat=
-ible
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 earli=
-er changes:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v5:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1) Get back "label=
-" and "partitions" properties but without
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-ref to the "partition.yaml" which was wrongly used.
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 2) Add "additionalProperties: false" for nand@=20
-> >>>>> because all possible
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-properties are described.
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v4:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1) Remove "label" =
-and "partitions" properties
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 2) Use 2 clocks for A7K/8K platform which is a=20
-> >>>>> requirement
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v3:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1) Remove txt version fr=
-om the MAINTAINERS list
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 2) Use enum for some of compatible strings
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 3) Drop:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 #address-cells
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 #size-cells:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 as they are inherited from the nand-controller.yaml
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 4) Add restriction to use 2 clocks for A8K SoC
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 5) Dropped description for clock-names and extend it=20
-> >>>>> with
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minIte=
-ms: 1
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 6) Drop description for "dmas"
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 7) Use "unevalautedProperties: false"
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 8) Drop quites from yaml refs.
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 9) Use 4-space indentation for the example section
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v2:
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1) Fixed warning by yaml=
-lint with incorrect indentation=20
-> >>>>> for compatible list
-> >>>>>
-> >>>>> =C2=A0=C2=A0 .../bindings/mtd/marvell,nand-controller.yaml | 223=20
-> >>>>> ++++++++++++++++++
-> >>>>> =C2=A0=C2=A0 .../devicetree/bindings/mtd/marvell-nand.txt=C2=A0 | 1=
-26 ----------
-> >>>>> =C2=A0=C2=A0 MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
-> >>>>> =C2=A0=C2=A0 3 files changed, 223 insertions(+), 127 deletions(-)
-> >>>>> =C2=A0=C2=A0 create mode 100644=20
-> >>>>> Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> >>>>> =C2=A0=C2=A0 delete mode 100644=20
-> >>>>> Documentation/devicetree/bindings/mtd/marvell-nand.txt
-> >>>>>
-> >>>>> diff --git=20
-> >>>>> a/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yam=
-l=20
-> >>>>> b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> >>>>> new file mode 100644
-> >>>>> index 000000000000..433feb430555
-> >>>>> --- /dev/null
-> >>>>> +++=20
-> >>>>> b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> >>>>> @@ -0,0 +1,223 @@
-> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>>> +%YAML 1.2
-> >>>>> +---
-> >>>>> +$id:=20
-> >>>>> http://scanmail.trustwave.com/?c=3D20988&d=3DyNj85IkMld8k0XBdA9CH4p=
-QjE5peaXAdz-exk_Hdww&u=3Dhttp%3a%2f%2fdevicetree%2eorg%2fschemas%2fmtd%2fma=
-rvell%2cnand-controller%2eyaml%23
-> >>>>> +$schema:=20
-> >>>>> http://scanmail.trustwave.com/?c=3D20988&d=3DyNj85IkMld8k0XBdA9CH4p=
-QjE5peaXAdz-PkkPSLlg&u=3Dhttp%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcor=
-e%2eyaml%23
-> >>>>> +
-> >>>>> +title: Marvell NAND Flash Controller (NFC)
-> >>>>> +
-> >>>>> +maintainers:
-> >>>>> +=C2=A0 - Miquel Raynal <miquel.raynal@bootlin.com>
-> >>>>> +
-> >>>>> +properties:
-> >>>>> +=C2=A0 compatible:
-> >>>>> +=C2=A0=C2=A0=C2=A0 oneOf:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: ma=
-rvell,armada-8k-nand-controller
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: ma=
-rvell,armada370-nand-controller
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - marvell,a=
-rmada-8k-nand-controller
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - marvell,a=
-rmada370-nand-controller
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - marvell,p=
-xa3xx-nand-controller
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: legacy bindings
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 deprecated: true
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - marvell,a=
-rmada-8k-nand
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - marvell,a=
-rmada370-nand
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - marvell,p=
-xa3xx-nand
-> >>>>> +
-> >>>>> +=C2=A0 reg:
-> >>>>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> >>>>> +
-> >>>>> +=C2=A0 interrupts:
-> >>>>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> >>>>> +
-> >>>>> +=C2=A0 clocks:
-> >>>>> +=C2=A0=C2=A0=C2=A0 description:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shall reference the NAND controller=
- clocks, the second one is
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 is only needed for the Armada 7K/8K=
- SoCs
-> >>>>> +=C2=A0=C2=A0=C2=A0 minItems: 1
-> >>>>> +=C2=A0=C2=A0=C2=A0 maxItems: 2
-> >>>>> +
-> >>>>> +=C2=A0 clock-names:
-> >>>>> +=C2=A0=C2=A0=C2=A0 minItems: 1
-> >>>>> +=C2=A0=C2=A0=C2=A0 items:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: core
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: reg
-> >>>>> +
-> >>>>> +=C2=A0 dmas:
-> >>>>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> >>>>> +
-> >>>>> +=C2=A0 dma-names:
-> >>>>> +=C2=A0=C2=A0=C2=A0 items:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: data
-> >>>>> +
-> >>>>> +=C2=A0 marvell,system-controller:
-> >>>>> +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/phandle
-> >>>>> +=C2=A0=C2=A0=C2=A0 description: Syscon node that handles NAND cont=
-roller related=20
-> >>>>> registers
-> >>>>> +
-> >>>>> +patternProperties:
-> >>>>> +=C2=A0 "^nand@[0-3]$":
-> >>>>> +=C2=A0=C2=A0=C2=A0 type: object
-> >>>>> +=C2=A0=C2=A0=C2=A0 unevaluatedProperties: false
-> >>>>> +=C2=A0=C2=A0=C2=A0 properties:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minimum: 0
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 3
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-rb:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 1 =20
-> >>>> Drop minItems.
-> >>>> =20
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1 =20
-> >>>> Didn't you have here minimum and maximum? I think I did not ask to
-> >>>> remove them. =20
-> >>> I did but I couldn't figure out how to do minimum and maximum with an
-> >>> array would the following be correct (note removing both minItems and
-> >>> maxItems as dtb_check complains if I have maxItems and items). =20
-> >> items:
-> >> =C2=A0=C2=A0 minimum: n
-> >> =C2=A0=C2=A0 maximum: n
-> >> =C2=A0=C2=A0 maxItems: n
-> >>
-> >> or
-> >>
-> >> items:
-> >> =C2=A0 - minimum: n
-> >> =C2=A0=C2=A0=C2=A0 maximum: n
-> >>
-> >> See for example Documentation/devicetree/bindings/arm/l2c2x0.yaml =20
-> > Thanks, so my suggestion below should be OK then. =20
-> >>> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-rb:
-> >>> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> >>> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minim=
-um: 0
-> >>> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 maximum: 1
-> >>> =20
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-ecc-step-size:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: 512
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-ecc-strength:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [1, 4, 8, 12, 16]
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-on-flash-bbt:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.ya=
-ml#/definitions/flag
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-ecc-mode:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: hw
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.ya=
-ml#/definitions/string =20
-> >>>> Drop label
-> >>>> =20
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 partitions:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 type: object =20
-> >>>> Drop partitions. =20
-> >>> This is the part I can't get to work. It should pick it up via
-> >>> nand-controller.yaml but nothing I do seems to work.
-> >>> =20
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 marvell,nand-keep-config:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Orders the =
-driver not to take the timings from the core=20
-> >>>>> and
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 leaving the=
-m completely untouched. Bootloader timings=20
-> >>>>> will then
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 be used.
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.ya=
-ml#/definitions/flag
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 marvell,nand-enable-arbiter:
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 To enable t=
-he arbiter, all boards blindly used it,
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 this bit wa=
-s set by the bootloader for many boards and=20
-> >>>>> even if
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it is marke=
-d reserved in several datasheets, it might=20
-> >>>>> be needed to set
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it (otherwi=
-se it is harmless).
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.ya=
-ml#/definitions/flag
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 deprecated: true
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0 additionalProperties: false =20
-> >>>> unevaluatedProperties: false =20
-> >>> It was hiding by '"^nand@[0-3]$":'. Should I move it here? =20
-> >> You cannot have both additionalProps and unevaluatedProps at the same
-> >> time, so we do not talk about same thing or this was never working? =20
-> >
-> > Hmm, I'm a little confused then. At various times I've been told to=20
-> > put 'additionalProperties: false' or 'unevaluatedProperties: false'=20
-> > (although never at the same time). I'm not sure when to use one or the=
-=20
-> > other.
-> >
-> > From what I've been able to glean 'additionalProperties: true'=20
-> > indicates that the node is expected to have child nodes defined in a=20
-> > different schema so I would have thought 'additionalProperties: false'=
-=20
-> > would be appropriate for a schema covering a leaf node.=20
-> > 'unevaluatedProperties: false' seems to enable stricter checking which=
-=20
-> > makes sense when all the properties are described in the schema. =20
->=20
-> So I think this might be the problem. If I look at qcom,nandc.yaml or=20
-> ingenic,nand.yaml which both have a partitions property in their=20
-> example. Neither have 'unevaluatedProperties: false' on the nand@...=20
-> subnode. If I add it sure enough I start getting complaints about the=20
-> 'partitions' node being unexpected.
+SGkgSmF2aWVybSwNCg0KSSd2ZSByZWFkIHRocm91Z2ggdGhlIHBhdGNoZXMgYW5kIHRoZXkg
+bG9vayBjb3JyZWN0IHRvIG1lLg0KDQpSZXZpZXdlZC1ieTogVGhvbWFzIFppbW1lcm1hbm4g
+PHR6aW1tZXJtYW5uQHN1c2UuZGU+DQoNCkJ1dCBJIGhhZCBvbmUgcXVlc3Rpb24gYWJvdXQg
+dGhlIHBhZ2Ugc2l6ZS4gWW91IHJvdW5kIHVwIHRvIG11bHRpcGxlcyBvZiANCnBhZ2Vfc2l6
+ZSBpbiBzZXZlcmFsIHBsYWNlcy4gVGhhdCBjb3VsZCBsZWFkIHRvIGFuIG91dC1vZi1ib3Vu
+ZHMgYWNjZXNzLiANCkRvIHlvdSBuZWVkIHRvIGFsbG9jYXRlIEdFTSBidWZmZXJzIHRvIGJl
+IG11bHRpcGxlcyBvZiBwYWdlX3NpemUgYXMgd2VsbD8NCg0KQmVzdCByZWdhcmRzDQpUaG9t
+YXMNCg0KQW0gMDUuMDYuMjMgdW0gMDk6NDcgc2NocmllYiBKYXZpZXIgTWFydGluZXogQ2Fu
+aWxsYXM6DQo+IEhlbGxvLA0KPiANCj4gV2hpbGUgd29ya2luZyBvbiBhZGRpbmcgc3VwcG9y
+dCBmb3IgdGhlIFNTRDEzMlggZmFtaWx5IG9mIDQtYml0IGdyYXlzY2FsZQ0KPiBTb2xvbW9u
+IE9MRUQgcGFuZWwgY29udHJvbGxlcnMsIEkgbm90aWNlZCBhIGZldyB0aGluZ3MgaW4gdGhl
+IGRyaXZlciB0aGF0DQo+IGNhbiBiZSBpbXByb3ZlZCBhbmQgbWFrZSBleHRlbmRpbmcgdG8g
+c3VwcG9ydCBvdGhlciBjaGlwIGZhbWlsaWVzIGVhc2llci4NCj4gDQo+IEkndmUgc3BsaXQg
+dGhlIHByZXBhcmF0b3J5IHBhdGNoZXMgaW4gdGhpcyBzZXJpZXMgYW5kIHdpbGwgcG9zdCB0
+aGUgYWN0dWFsDQo+IFNTRDEzMlggc3VwcG9ydCBhcyBhIHNlcGFyYXRlIHBhdGNoLXNldCBv
+bmNlIHRoaXMgb25lIGlzIG1lcmdlZC4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gSmF2aWVy
+DQo+IA0KPiANCj4gSmF2aWVyIE1hcnRpbmV6IENhbmlsbGFzICg1KToNCj4gICAgZHJtL3Nz
+ZDEzMHg6IE1ha2UgZGVmYXVsdCB3aWR0aCBhbmQgaGVpZ2h0IHRvIGJlIGNvbnRyb2xsZXIg
+ZGVwZW5kZW50DQo+ICAgIGR0LWJpbmRpbmdzOiBkaXNwbGF5OiBzc2QxMzA3ZmI6IFJlbW92
+ZSBkZWZhdWx0IHdpZHRoIGFuZCBoZWlnaHQNCj4gICAgICB2YWx1ZXMNCj4gICAgZHJtL3Nz
+ZDEzMHg6IFNldCB0aGUgcGFnZSBoZWlnaHQgdmFsdWUgaW4gdGhlIGRldmljZSBpbmZvIGRh
+dGENCj4gICAgZHJtL3NzZDEzMHg6IERvbid0IGFsbG9jYXRlIGJ1ZmZlcnMgb24gZWFjaCBw
+bGFuZSB1cGRhdGUNCj4gICAgZHJtL3NzZDEzMHg6IFJlbW92ZSBoYXJkY29kZWQgYml0cy1w
+ZXItcGl4ZWwgaW4gc3NkMTMweF9idWZfYWxsb2MoKQ0KPiANCj4gICAuLi4vYmluZGluZ3Mv
+ZGlzcGxheS9zb2xvbW9uLHNzZDEzMDdmYi55YW1sICAgfCAgIDggKy0NCj4gICBkcml2ZXJz
+L2dwdS9kcm0vc29sb21vbi9zc2QxMzB4LmMgICAgICAgICAgICAgfCAxMjQgKysrKysrKysr
+KysrLS0tLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL3NvbG9tb24vc3NkMTMweC5oICAgICAg
+ICAgICAgIHwgICA2ICsNCj4gICAzIGZpbGVzIGNoYW5nZWQsIDkzIGluc2VydGlvbnMoKyks
+IDQ1IGRlbGV0aW9ucygtKQ0KPiANCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhp
+Y3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBH
+bWJIDQpGcmFua2Vuc3RyYXNzZSAxNDYsIDkwNDYxIE51ZXJuYmVyZywgR2VybWFueQ0KR0Y6
+IEl2byBUb3RldiwgQW5kcmV3IE15ZXJzLCBBbmRyZXcgTWNEb25hbGQsIEJvdWRpZW4gTW9l
+cm1hbg0KSFJCIDM2ODA5IChBRyBOdWVybmJlcmcpDQo=
 
-Sorry if that was unclear, I think the whole logic around the yaml
-files is to progressively constrain the descriptions, schema after
-schema. IOW, in the marvell binding you should set
-unevaluatedProperties: false for the NAND controller. What is inside
-(NAND chips, partition container, partition parsers, "mtd" properties,
-etc) will be handled by other files. Of course you can constrain a bit
-what can/cannot be used inside these subnodes, but I think you don't
-need to set unevaluatedProperties in these subnodes (the NAND chip in
-this case, or even the partitions) because you already reference
-nand-controller.yaml which references nand-chip.yaml, mtd.yaml,
-partitions.yaml, etc. *they* will make the generic checks and hopefully
-apply stricter checks, when deemed relevant.
+--------------GpYSlaN0KD7buWrEyk10G0FZ--
 
-Thanks,
-Miqu=C3=A8l
+--------------CyUiPeozYYacUyESNr435dOY
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmR+5+AFAwAAAAAACgkQlh/E3EQov+Ax
+uhAAnjqM2/S3q0LTwmr7+H3d22qxVMTSWB9v+d/XEEx+CAkmIb50OLBOrvv/47ZtpWudhd/fwgly
+4FDp/DR/e3Kalv4RQB62THzPCvJ+m8LsyeHcB2mWTk+NsEL3GLqJp3orXqRdNnwhNTwqguVsLn9A
+AXzA4q/O3i23OYEbvOezpQbBLaVcM9XLrrSUlktghzNsdJ7hAvnwYshrxcOqEvgwjESffe/IBCl6
+1p72+TxUWQVsQrHeaDQvDw4o0d1pGd8+ckWVuZ2AlUPuGrgPzQ55rzF5P3NeNAj7+XvRN9BHmYnw
+IHHnO4/dQ3tCLIAOXSSPaOJnE+RVlMDHf2AiQvU6jxeXW0191a7E3bLJJhJY7tXT2BW8GuegiFVg
+5A/WUjQRSooiDkqMX7NnJwomjLEEAS2/pyHGkRpOhbQYGYKjEXMPvMjBsXvIlPF9iQYinP/3CryO
+pW5ZRRX+/3pVm8YL7AWISyROfNtNE9UwRKEjiwjPaOWtDNHqLgT5/2lTG8xEyDMATQSX55ySy0wo
+45PzUfMA9aOrAg6zsUkZCmeMvmJgzG6CTQ75ulHg9CkLxVmTumxWBcU7K+moXeWyIzNQxsomyuE7
+SWBDQSMu8ZcnfgcjJj9UK3VWS3IpSImI4CxVWIWDBcBIBzqz5zqUPmL/aXGecLA05aIg6unA+vUk
+x6w=
+=0+0j
+-----END PGP SIGNATURE-----
+
+--------------CyUiPeozYYacUyESNr435dOY--
