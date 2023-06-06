@@ -2,196 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12783723C68
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5787A723C87
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 11:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236565AbjFFI71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 04:59:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48128 "EHLO
+        id S229803AbjFFJG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 05:06:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230499AbjFFI70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:59:26 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2137.outbound.protection.outlook.com [40.107.114.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B14E49;
-        Tue,  6 Jun 2023 01:59:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k1vxuBGrVMf3rELs7XuWUPPeOun0tFAVSCgjrYfXMawPb+S7yxULBMi0tLJ6F4Py5L2+BGTVtKXVjW+dgQtVHKJFJD09YDhN6U/u77AlkrU19QTk8GycgQaWqrAxld/9PTpzL3kewhyvEDP2Sq1hVD2dpzHi+LDpFxZtb0lOhoaP+EpgAu1xydaOhVYf5AnV1OHb3C1MTL5DuYp1YSA9bZnW/qpc5hBzJtV0Ai4up0GeH1nftx56Hy8G/FOjCyEdRMDRm4iMFfGAPgY+ZWMlz0F5TqsAeAmN3PuCSyW5MPxYviy44KHPpbApk0NoAihyb0dbPCZ3PQ0t5H0YxvaV9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kmQA9EYFeoVP4XzA0QbzFGKzSAYFgJ0ijPCcwpqKOog=;
- b=F7bquGKD5mkwNEssRg1MxCzkJJuz1Uyo4PPQs0KRFzzUyF+S/RWYC8v9/mj0OKF7BckgX3XuXVK9w8h2It2JinvExMQUvXk6n47zqs9DL1nfd9nFg0T8H6WMh2QjnnLPyms1KGKoFLmYSD5q6zGOTR47tHQmg5b0aWDAo1M/hlmAfSlBCZw6XwRV2S5kt4GX5821hSZhFQ+qPvVjo4Bx6PL5L8UAgG2KSEyRBAi3nZJb6pcZlEKMUmf9H3A/WElOS6SJBbSHF4fMIwQJERifiho0KbsvHMFz2LZrbKdhsXk/ASf30rflSlQR9nRBd44om2pCP1i08/ZS7QbajLupcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kmQA9EYFeoVP4XzA0QbzFGKzSAYFgJ0ijPCcwpqKOog=;
- b=Z1+FWmjbVCzUHibsmK2HZL8ZBQa0M3NymUo7ZnfK/dvFS3Y28MNioe0Rvb/nxcGIkM7wzEvfM86mMIL14swmyoczAYVDP8fi7164ZSaMHMwElsav/XEfZYWzzpI99B/1dvH3tLZUzwzo9FFolsh2VRGg46B/Q/N5ocqMCFejZas=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYCPR01MB8613.jpnprd01.prod.outlook.com
- (2603:1096:400:152::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Tue, 6 Jun
- 2023 08:59:22 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::711d:f870:2e08:b6e1]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::711d:f870:2e08:b6e1%3]) with mapi id 15.20.6455.030; Tue, 6 Jun 2023
- 08:59:22 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Simon Horman <simon.horman@corigine.com>
-CC:     "s.shtylyov@omp.ru" <s.shtylyov@omp.ru>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate
- limiter
-Thread-Topic: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate
- limiter
-Thread-Index: AQHZkgTPigbr2NDJIU2hZvqbiDJN569zNgeAgApPegA=
-Date:   Tue, 6 Jun 2023 08:59:21 +0000
-Message-ID: <TYBPR01MB5341ED437E01EBC646BCC85FD852A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
- <20230529080840.1156458-6-yoshihiro.shimoda.uh@renesas.com>
- <ZHZOkTChN5pAl417@corigine.com>
-In-Reply-To: <ZHZOkTChN5pAl417@corigine.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYCPR01MB8613:EE_
-x-ms-office365-filtering-correlation-id: 96b2e917-cabf-413c-5a13-08db666c51f4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Tia5pb5ZnM30zakXgRPWLNxJKBZeagQaWwdd5vhYj+KjYVhe6dbdBPwJKrAfKyf2K7LEjowD0yDiktdVa8DK2ehDjdQN11l22EnNfthr5/5jjmOrUcYStcR/DVo7jImc0zn4BvRH7bGjPW8mZvxIPjcrJLiLMM+hsfnmLh5F1okqcZhWJs/uSiX6Q1rwmzEKaqu1AbMUjeUiDTvO2lLyiA0gIykDQEQG+/0mRTw2AITIXTCSCnyhFrt1hUzK0OD8M0WcCEFfBbf1Ri0aMQhsP90YblHtTC36eovgN9N9jMzCVvJM3mBknn7rKUySDNHBIdHqTa7W9eM1N2UGXrlz9j8tvsiybLaSOdRCDSptWQzwEmv4l6qVBPtX+IcxTPavdXLbeTLrNbJPq+U//WYY8mbk3XUtHAmKw4F9LGLu4AaJGLHsvs4C8owQ3E72bJ0zx3iaU3/LzVy3AC0CCM2CAiMSCOV535s2YZhprDUB6t7pzTCXyaSWtptrplqVWOdxwZQSw6Wqn/BiC/fzFWOUv8SxR8tAVDaOFrgDS7Yiq6jU1N72sXMhtrdlvMeDZEqXn5/3+C50SdcL/tIjukT6F7wiupY3teUw6uQaBJZJ2nA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(39860400002)(346002)(396003)(136003)(366004)(451199021)(6506007)(9686003)(38100700002)(41300700001)(83380400001)(966005)(186003)(7696005)(71200400001)(478600001)(54906003)(55016003)(64756008)(122000001)(66446008)(66556008)(66476007)(4326008)(316002)(52536014)(66946007)(76116006)(6916009)(7416002)(5660300002)(8676002)(33656002)(86362001)(8936002)(38070700005)(2906002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AZ/+nBSxmcMrKxiihXfOAvsTLSeE9dvBTjBsFpujJNPuZ2AXhdrUsi/9wEPY?=
- =?us-ascii?Q?kILz2x4PpPIEQ7etJcOg1r9vNG7HOXd77bgDoWI3cMF6fe5ar0jxU73cHGnq?=
- =?us-ascii?Q?yPbN8t2XX/1AfQ7CbobduupZ2gbzKlNYWjRCkDwYpT9al7aZRsIvGUtBIoTV?=
- =?us-ascii?Q?jS7uPzpGNqxt6edgq8DHa6A4VbIxtPHfzFXJ+pNaQOnuwHg1l4HbIoQF72hP?=
- =?us-ascii?Q?joHDtk/f+6fpVeauCxw85USPc7Rn1nbXo62+hiZeYlN5/Cod07raLDneqe8x?=
- =?us-ascii?Q?1IGOz8/ayWBJfvaQ7j5amTsT8u5scrAkXxYsnqsq89Nxu8nODaz7pgp+hKgv?=
- =?us-ascii?Q?MlbCTENKSN3pPUMhRkSou8tMgTk9H99KI7UdIPwam9qbApcEKxBXwJMQhohk?=
- =?us-ascii?Q?jdMC1+PBfRFPFg3henECNYl5lxfg8QKgvMnAaPlcfzUESkR5MqBsx86yhxvb?=
- =?us-ascii?Q?bN+ny32VK++y8HHHELZt+Yojpfv+mLiyEq2/RmXaxmS+CPQnVBrHQ64SBsTs?=
- =?us-ascii?Q?bvaemfENYMtSDtb2+PFwITLbJxOH+PYnYbr3p/OaTAZnCV+H/VD92WdCRmJy?=
- =?us-ascii?Q?cHtyZEZ8fzd6r+/PaQzqiOHINhhhO1jNGm9e54+0vRm/GbYgx8NQaPfnabUU?=
- =?us-ascii?Q?+piaOoWv5eGLRljxRC0Vtg7TU4acQZFmlB8cWO5RAt97ozRBx4E73aCUg/Nv?=
- =?us-ascii?Q?IsCMKBOOMEV5h3WI5ifOa0UUMdfzmaD1nH2bm8PBDoYo6C0srwvXnWD/j8ql?=
- =?us-ascii?Q?FjzciGRMqt8pbMvYGfBjZ7s1xHf2DCGwBns3+j2G6CX6lIX0RWJKDe5buDK9?=
- =?us-ascii?Q?dkSHqz/A2/c6GItBko3F4CbicJ/6Wp0HNIU2E11TS3CS6iuuVujsgWJcsXTr?=
- =?us-ascii?Q?qzwsDJ32C+isLgMV6xeion0XQ5+6JXt61Fw+lEqWVJx0c9eruY+4ikAVP3/y?=
- =?us-ascii?Q?4Ro4A2zmp9WEHW7ymTNkOGpCAQ4I0vJpwUOMwo9oAdKQomXHmc8ST/fjPIDP?=
- =?us-ascii?Q?Hoa9VcLk4q6e7pib/3E0XTICMk3b24FLXeJlC/lsPuKsEpJEMDUT10FrCnzq?=
- =?us-ascii?Q?iKPvkQD/Limvk2dIgaNa7SlICqwlyWrlqVvdiv6tpmaU8J5jvm4QeQjA5yVj?=
- =?us-ascii?Q?Ri29xo6Rk8wrUlrXgB+VxhFgsXbzTGl/mmIgEGaaRo9hK6qwV9TDwU5yPRVj?=
- =?us-ascii?Q?LdclhKpqmQng5+pFTr3jxIeWZfbba7+hvgkR5277Yk1q8N+WWwmvJLIb6bke?=
- =?us-ascii?Q?e3xZN00/HDwZ7IM+UUD7+LjaK+DLr0bkhLnYgMx4dSarkoxkEjT+3o1kxacT?=
- =?us-ascii?Q?qL/PppSps0IRpBr2kU4bLNQAeE2WaTxYUx5uLXfbKVCsWG4QmEBCeEQbrzuE?=
- =?us-ascii?Q?qbztHj5hNaID0fiJKsjKe884EYwMTP0rlATugvhWkuLAtrqxkk0uy7qB3+bY?=
- =?us-ascii?Q?/VBnfs2sDDOhc6NkPDyq4uKB1RwJOA2YaNE+dZOoWC686CuNxCCE5VUbHErx?=
- =?us-ascii?Q?AV7m/72U7iYO0TVd1TiRjEF+Uiio5lgQBmJkGfiHpC8sGvSCG/pFL6ZZgMy6?=
- =?us-ascii?Q?v7hcQeX46/j/g2hVwR/w+WBRv6IJuxbD4+37YcJgqRXv8y6wUIwVifD3JNjj?=
- =?us-ascii?Q?ZIosCt69QvgW8jySQPO2QKRYgMCFUDDDplHAVlfc3pKVJRUBAXaiomNg2ojr?=
- =?us-ascii?Q?VlYfbQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229669AbjFFJG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 05:06:58 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC02E8;
+        Tue,  6 Jun 2023 02:06:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686042414; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=iDCNYdm7JTLiDLNmFtfUAjZr1UiesJxNO8/KTf5OlGv6WaSHk1cfpluOhHKYdnNgQi
+    YRlva+6qyWHAJ+EBpybp0N7BWx0rfyqcD+qbHgHgzUuuU1spLmwxYEDMy/nWG4Pdeg5x
+    YbV6GoY+hx4dT3VsuEu0VvB/W5BVEsl+KNWGIY4vscN3KPbNfwbgP46pGKEIzQ9/DSZ6
+    hwNU+02Qp7ShjhfqM0/xeI4wqnwDihuutvuyyY/j3K1Ovukdq1rv+WuMH6wtfbs9MoFT
+    KPsv4zXuwQuhc+FA83ABtm3xpSTDLcT71hcOFHsN8dCx2/Fl410ik1sjzjBE2VJc6lxv
+    XzCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686042414;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=MxljD7ks5H/LgsphPWxQ4t5v0cK2mi0IBL2/Ko8mMDc=;
+    b=aPCHaPCXgIzHF5ea2rVIfvll1o7hQytOKlcC/FHoPFKnF7BJxwi1DwUbs1mMgoHs0L
+    L/Rr/Dq7XmzsrKUV7Bm7vBnuCbCuNiQsHdWeBScL0b8QSqBP6nH9GOuruS1z1OrLccfO
+    JLgM2jCh9vYLehIiQIP0bOMFH9VwABN9kRGb5RRxLH5Eet8IQ9GiG0kGMUZm44dRlQ/I
+    eKm0V0azlJ4bRd9ndkas62zrU9JXhhZxSNwERCedRRxVtKJvvAyWg91hFZnSc/7BMXiN
+    lPewi5mvoaK7DAb5D+lLIkV4zQXaxmajMV9DCQSZaNZrcPnuem+BgBcqIHmNuN6UMX7E
+    8cGQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686042414;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=MxljD7ks5H/LgsphPWxQ4t5v0cK2mi0IBL2/Ko8mMDc=;
+    b=Nivw6PPvm02HZYqAm05b3lzcVMCMSsJfhE2uHUSDWDO0K9NL/8QqHNX7R6iqJRzpI8
+    S6GPRXpzPVj80e/Rp63uZBqNgdARi1MLeEOhyE3HUCXeaSz9R8VJiUQY8kX3As/FNwrP
+    CBwAitMqjmx7HQEaab3xyrRH6nhrL3s1NvB7wZDH3ZjCqCx7/2mBgSCWKMrIrb5qbHgv
+    ascfbvbSG0IK+bAxkKLYnVPhBSPgG59bUOLo311KliuygFO46F5gzRy/B2qAnfxNjxWT
+    4t4I/VcqycbnuMTR9GHV92BL4C8mAj8HqQNKD4KCkb8lPbclPjk+yYDrjru86I1RhLVd
+    q5dA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686042414;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=MxljD7ks5H/LgsphPWxQ4t5v0cK2mi0IBL2/Ko8mMDc=;
+    b=0o844zOm9ZCfU50CXT8WN6pfx0hJyuhU1CUluPy8qDAZJQgnHL+buhlBpa46FvQwKd
+    9HqoUeQS87NnLxdRnABQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8Z+J1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.5.3 DYNA|AUTH)
+    with ESMTPSA id Z82ec2z5696sDLQ
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 6 Jun 2023 11:06:54 +0200 (CEST)
+Date:   Tue, 6 Jun 2023 11:06:47 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 06/14] dt-bindings: soc: qcom: smd-rpm: Use qcom,rpm-proc
+ in example
+Message-ID: <ZH73JxLd1i1vUcyw@gerhold.net>
+References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
+ <20230531-rpm-rproc-v1-6-e0a3b6de1f14@gerhold.net>
+ <d0fa3b01-edab-fe8e-c309-036cbbcec7ab@linaro.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96b2e917-cabf-413c-5a13-08db666c51f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2023 08:59:22.0268
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WjN4MNe4RxdSZ/y5AUN1Wv/FDEW5Q04CWvMvjU56Xna4vp1TNecBAxJReFrB6SgwSYdQnrqsV8UFV822rvCHVaYHZpbFAeWjaHEPMemc1sYCvvJz8odvRsT25Wp0VOOk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8613
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d0fa3b01-edab-fe8e-c309-036cbbcec7ab@linaro.org>
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon-san,
-
-> From: Simon Horman, Sent: Wednesday, May 31, 2023 4:29 AM
->=20
-> On Mon, May 29, 2023 at 05:08:40PM +0900, Yoshihiro Shimoda wrote:
-> > Use per-queue rate limiter instead of global rate limiter. Otherwise
-> > TX performance will be low when we use multiple ports at the same time.
-> >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On Tue, Jun 06, 2023 at 08:37:04AM +0200, Krzysztof Kozlowski wrote:
+> On 05/06/2023 09:08, Stephan Gerhold wrote:
+> > Use the new top-level rpm-proc node instead of having a dummy top-level
+> > /smd node that only contains the RPM but not other remote processors.
+> > 
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > > ---
-> >  drivers/net/ethernet/renesas/rswitch.c | 51 +++++++++++++++++---------
-> >  drivers/net/ethernet/renesas/rswitch.h | 15 +++++++-
-> >  2 files changed, 47 insertions(+), 19 deletions(-)
-> >
-> > diff --git a/drivers/net/ethernet/renesas/rswitch.c b/drivers/net/ether=
-net/renesas/rswitch.c
-> > index 4ae34b0206cd..a7195625a2c7 100644
-> > --- a/drivers/net/ethernet/renesas/rswitch.c
-> > +++ b/drivers/net/ethernet/renesas/rswitch.c
-> > @@ -156,22 +156,31 @@ static int rswitch_gwca_axi_ram_reset(struct rswi=
-tch_private *priv)
-> >  	return rswitch_reg_wait(priv->addr, GWARIRM, GWARIRM_ARR, GWARIRM_ARR=
-);
-> >  }
-> >
-> > -static void rswitch_gwca_set_rate_limit(struct rswitch_private *priv, =
-int rate)
-> > +static void rswitch_gwca_set_rate_limit(struct rswitch_private *priv,
-> > +					struct rswitch_gwca_queue *txq)
-> >  {
-> > -	u32 gwgrlulc, gwgrlc;
-> > +	u64 period_ps;
-> > +	unsigned long rate;
-> > +	u32 gwrlc;
->=20
-> Hi Shimoda-san,
->=20
-> a minor not from my side: please use reverse xmas tree order - longest li=
-ne
-> to shortest - for local variable declarations in networking code.
->=20
-> 	unsigned long rate;
-> 	u64 period_ps;
-> 	u32 gwrlc;
+> >  Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+> > index c6930706bfa9..06e574239bd4 100644
+> > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+> > @@ -120,10 +120,10 @@ examples:
+> > [...]
+> > +        compatible = "qcom,msm8916-rpm-proc", "qcom,rpm-proc";
+> >  
+> > -        rpm {
+> > +        smd-edge {
+> 
+> What about binding updates?
+>
 
-Thank you for your comment! I completely forgot that network driver should =
-use
-reverse xmas tree order...
+The binding for this is in PATCH 05/14. The old binding replaced here is
+deprecated in PATCH 07/14.
+ 
+> Anyway, this should be squashed with previous one.
+> 
 
-JFYI, I found another way to improve the performance. So, I dropped this pa=
-tch on v2 [1].
+Sure, I can squash in v2.
 
-[1] https://lore.kernel.org/all/20230606085558.1708766-1-yoshihiro.shimoda.=
-uh@renesas.com/
-
-Best regards,
-Yoshihiro Shimoda
-
-> --
-> pw-bot: cr
-
+Thanks,
+Stephan
