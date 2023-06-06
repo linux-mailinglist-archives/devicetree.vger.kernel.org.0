@@ -2,462 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92A6C7247B0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D577247BF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:30:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233201AbjFFP1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 11:27:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50160 "EHLO
+        id S236640AbjFFPaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 11:30:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232817AbjFFP1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:27:16 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215E0100;
-        Tue,  6 Jun 2023 08:27:14 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1q6YaE-0067mg-TF; Tue, 06 Jun 2023 15:26:55 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233274AbjFFPae (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:30:34 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A963F100;
+        Tue,  6 Jun 2023 08:30:33 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 356FMeV0016037;
+        Tue, 6 Jun 2023 15:30:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=5rjeQ+adxEPAtRMVme/yLgNBpCtZv2fDyPstcl0ZWqI=;
+ b=gJisIJDkXCyRs/n48/uyAdwP60E2kH2F6N1J43wlrrT10s95z+QUfvaNcGMKDtmZH1Zq
+ /yG4gDVqpPWTPTCphrULT22L/DIrEZ2UAdmpcGxGJyo6PZ2t0Hsx+H4Nt4Mw/JVUqGwx
+ l0xaExo+/OElusF4X5pmTH/VVtY0Q9dD+3pN+co1y+DXuw0g2vwXLwp5vIhf42+2n7f5
+ gChOdSN5sVuminoTluvu3GvuxeWTEGeeSGgy3tyN1NjSbBlptGwZ2b++yNyuY8/qPTCk
+ 2DopesnkTDxUMB5eh1wXjjoDhHzM0UkSOdP1T/4ppU3o2kDguIi7ie8lp0+DzVARmP0e 6Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r1s4uhtyd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Jun 2023 15:30:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 356FUMdb029459
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 6 Jun 2023 15:30:22 GMT
+Received: from akhilpo-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 6 Jun 2023 08:30:16 -0700
+Date:   Tue, 6 Jun 2023 21:00:13 +0530
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v2] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
-Date:   Tue,  6 Jun 2023 08:26:52 -0700
-Message-Id: <20230606152652.1447659-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Rob Clark <robdclark@chromium.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Subject: Re: [PATCH v8 04/18] drm/msm/a6xx: Move force keepalive vote removal
+ to a6xx_gmu_force_off()
+Message-ID: <23c2tadnl5hyeyo2i4onxfgx76dfsc6zefasdhxcdzoebsn7rg@24noupcp5h2h>
+References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
+ <20230223-topic-gmuwrapper-v8-4-69c68206609e@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230223-topic-gmuwrapper-v8-4-69c68206609e@linaro.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: PbliB0h2FTeeYlppe_S__3dezpyGlQH_
+X-Proofpoint-GUID: PbliB0h2FTeeYlppe_S__3dezpyGlQH_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-06_11,2023-06-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 mlxlogscore=989 impostorscore=0 malwarescore=0 bulkscore=0
+ adultscore=0 priorityscore=1501 clxscore=1011 mlxscore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306060132
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the imx8mp-venice-gw74xx for revB:
- - add CAN1
- - add TIS-TPM on SPI2
- - add FAN controller
- - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
-   backward compatible option)
- - M2 socket GPIO's moved
-
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2:
- - fix fan-controller unit-address
----
- .../dts/freescale/imx8mp-venice-gw74xx.dts    | 261 +++++++++++-------
- 1 file changed, 159 insertions(+), 102 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-index eb51d648359b..764ff8b5c01b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-@@ -125,12 +125,22 @@ reg_usb2_vbus: regulator-usb2 {
- 		regulator-max-microvolt = <5000000>;
- 	};
- 
-+	reg_can1_stby: regulator-can1-stby {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_can1>;
-+		regulator-name = "can1_stby";
-+		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	reg_can2_stby: regulator-can2-stby {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_reg_can>;
-+		pinctrl-0 = <&pinctrl_reg_can2>;
- 		regulator-name = "can2_stby";
--		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
-+		gpio = <&gpio5 5 GPIO_ACTIVE_LOW>;
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 	};
-@@ -164,6 +174,21 @@ &A53_3 {
- 	cpu-supply = <&reg_arm>;
- };
- 
-+&ecspi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1>;
-+	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	tpm@0 {
-+		compatible = "tcg,tpm_tis-spi";
-+		#address-cells = <0x1>;
-+		#size-cells = <0x1>;
-+		reg = <0x0>;
-+		spi-max-frequency = <36000000>;
-+	};
-+};
-+
- /* off-board header */
- &ecspi2 {
- 	pinctrl-names = "default";
-@@ -204,6 +229,13 @@ fixed-link {
- 	};
- };
- 
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	xceiver-supply = <&reg_can1_stby>;
-+	status = "okay";
-+};
-+
- &flexcan2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan2>;
-@@ -214,38 +246,38 @@ &flexcan2 {
- &gpio1 {
- 	gpio-line-names =
- 		"", "", "", "", "", "", "", "",
--		"", "", "dio0", "", "dio1", "", "", "",
-+		"", "dio0", "", "dio1", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
- 
- &gpio2 {
- 	gpio-line-names =
--		"", "", "", "", "", "", "", "",
--		"", "", "", "", "", "", "pcie3_wdis#", "",
-+		"", "", "", "", "", "", "m2_pin20", "",
-+		"", "", "", "", "", "pcie1_wdis#", "pcie3_wdis#", "",
- 		"", "", "pcie2_wdis#", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
- 
- &gpio3 {
- 	gpio-line-names =
--		"m2_gdis#", "", "", "", "", "", "", "m2_rst#",
-+		"", "", "", "", "", "", "m2_rst", "",
-+		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
--		"m2_off#", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
- 
- &gpio4 {
- 	gpio-line-names =
-+		"", "", "m2_off#", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
--		"", "", "", "", "", "", "", "",
--		"", "", "", "", "m2_wdis#", "", "", "",
--		"", "", "", "", "", "", "", "uart_rs485";
-+		"", "", "m2_wdis#", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "rs485_en";
- };
- 
- &gpio5 {
- 	gpio-line-names =
--		"uart_half", "uart_term", "", "", "", "", "", "",
-+		"rs485_hd", "rs485_term", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
-@@ -286,6 +318,12 @@ channel@8 {
- 				label = "vdd_bat";
- 			};
- 
-+			channel@16 {
-+				gw,mode = <4>;
-+				reg = <0x16>;
-+				label = "fan_tach";
-+			};
-+
- 			channel@82 {
- 				gw,mode = <2>;
- 				reg = <0x82>;
-@@ -358,6 +396,11 @@ channel@a2 {
- 				gw,voltage-divider-ohms = <10000 10000>;
- 			};
- 		};
-+
-+		fan-controller@a {
-+			compatible = "gw,gsc-fan";
-+			reg = <0x0a>;
-+		};
- 	};
- 
- 	gpio: gpio@23 {
-@@ -369,85 +412,6 @@ gpio: gpio@23 {
- 		interrupts = <4>;
- 	};
- 
--	pmic@25 {
--		compatible = "nxp,pca9450c";
--		reg = <0x25>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_pmic>;
--		interrupt-parent = <&gpio3>;
--		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
--
--		regulators {
--			BUCK1 {
--				regulator-name = "BUCK1";
--				regulator-min-microvolt = <720000>;
--				regulator-max-microvolt = <1000000>;
--				regulator-boot-on;
--				regulator-always-on;
--				regulator-ramp-delay = <3125>;
--			};
--
--			reg_arm: BUCK2 {
--				regulator-name = "BUCK2";
--				regulator-min-microvolt = <720000>;
--				regulator-max-microvolt = <1025000>;
--				regulator-boot-on;
--				regulator-always-on;
--				regulator-ramp-delay = <3125>;
--				nxp,dvs-run-voltage = <950000>;
--				nxp,dvs-standby-voltage = <850000>;
--			};
--
--			BUCK4 {
--				regulator-name = "BUCK4";
--				regulator-min-microvolt = <3000000>;
--				regulator-max-microvolt = <3600000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			BUCK5 {
--				regulator-name = "BUCK5";
--				regulator-min-microvolt = <1650000>;
--				regulator-max-microvolt = <1950000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			BUCK6 {
--				regulator-name = "BUCK6";
--				regulator-min-microvolt = <1045000>;
--				regulator-max-microvolt = <1155000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			LDO1 {
--				regulator-name = "LDO1";
--				regulator-min-microvolt = <1650000>;
--				regulator-max-microvolt = <1950000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			LDO3 {
--				regulator-name = "LDO3";
--				regulator-min-microvolt = <1710000>;
--				regulator-max-microvolt = <1890000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			LDO5 {
--				regulator-name = "LDO5";
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--		};
--	};
--
- 	eeprom@50 {
- 		compatible = "atmel,24c02";
- 		reg = <0x50>;
-@@ -559,7 +523,6 @@ fixed-link {
- 	};
- };
- 
--/* off-board header */
- &i2c3 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default", "gpio";
-@@ -568,6 +531,85 @@ &i2c3 {
- 	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9450c";
-+		reg = <0x25>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+
-+		regulators {
-+			BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			reg_arm: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1025000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+				nxp,dvs-run-voltage = <950000>;
-+				nxp,dvs-standby-voltage = <850000>;
-+			};
-+
-+			BUCK4 {
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3600000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			BUCK5 {
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <1045000>;
-+				regulator-max-microvolt = <1155000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO3 {
-+				regulator-name = "LDO3";
-+				regulator-min-microvolt = <1710000>;
-+				regulator-max-microvolt = <1890000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
- };
- 
- /* off-board header */
-@@ -726,12 +768,14 @@ pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
- 			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
--			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_OFF# */
--			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
-+			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02	0x40000040 /* M2SKT_OFF# */
-+			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
-+			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x40000040 /* M2SKT_PIN20 */
-+			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x40000040 /* M2SKT_PIN22 */
-+			MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
- 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
-+			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
- 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
--			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
--			MX8MP_IOMUXC_NAND_ALE__GPIO3_IO00	0x40000150 /* M2SKT_GDIS# */
- 			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
- 			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
- 			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
-@@ -784,6 +828,13 @@ MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT	0x140
- 		>;
- 	};
- 
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SPDIF_RX__CAN1_RX		0x154
-+			MX8MP_IOMUXC_SPDIF_TX__CAN1_TX		0x154
-+		>;
-+	};
-+
- 	pinctrl_flexcan2: flexcan2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX		0x154
-@@ -869,7 +920,7 @@ MX8MP_IOMUXC_SD2_DATA1__GPIO2_IO16	0x10
- 
- 	pinctrl_pcie0: pciegrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x110
-+			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x106
- 		>;
- 	};
- 
-@@ -885,12 +936,18 @@ MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x140
- 		>;
- 	};
- 
--	pinctrl_reg_can: regcangrp {
-+	pinctrl_reg_can1: regcan1grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19	0x154
- 		>;
- 	};
- 
-+	pinctrl_reg_can2: regcan2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05	0x154
-+		>;
-+	};
-+
- 	pinctrl_reg_usb2: regusb2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06	0x140
-@@ -903,12 +960,12 @@ MX8MP_IOMUXC_NAND_DATA03__GPIO3_IO09	0x110
- 		>;
- 	};
- 
--	pinctrl_sai2: sai2grp {
-+	pinctrl_spi1: spi1grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC	0xd6
--			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00	0xd6
--			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK	0xd6
--			MX8MP_IOMUXC_SAI2_MCLK__AUDIOMIX_SAI2_MCLK	0xd6
-+			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK	0x82
-+			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI	0x82
-+			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO	0x82
-+			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09	0x140
- 		>;
- 	};
- 
--- 
-2.25.1
-
+On Mon, May 29, 2023 at 03:52:23PM +0200, Konrad Dybcio wrote:
+> 
+> As pointed out by Akhil during the review process of GMU wrapper
+> introduction [1], it makes sense to move this write into the function
+> that's responsible for forcibly shutting the GMU off.
+> 
+> It is also very convenient to move this to GMU-specific code, so that
+> it does not have to be guarded by an if-condition to avoid calling it
+> on GMU wrapper targets.
+> 
+> Move the write to the aforementioned a6xx_gmu_force_off() to achieve
+> that. No effective functional change.
+Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+-Akhil.
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/20230501194022.GA18382@akhilpo-linux.qualcomm.com/
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 6 ++++++
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 6 ------
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> index 87babbb2a19f..9421716a2fe5 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> @@ -912,6 +912,12 @@ static void a6xx_gmu_force_off(struct a6xx_gmu *gmu)
+>  	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+>  	struct msm_gpu *gpu = &adreno_gpu->base;
+>  
+> +	/*
+> +	 * Turn off keep alive that might have been enabled by the hang
+> +	 * interrupt
+> +	 */
+> +	gmu_write(&a6xx_gpu->gmu, REG_A6XX_GMU_GMU_PWR_COL_KEEPALIVE, 0);
+> +
+>  	/* Flush all the queues */
+>  	a6xx_hfi_stop(gmu);
+>  
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> index 9fb214f150dd..e34aa15156a4 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> @@ -1274,12 +1274,6 @@ static void a6xx_recover(struct msm_gpu *gpu)
+>  	/* Halt SQE first */
+>  	gpu_write(gpu, REG_A6XX_CP_SQE_CNTL, 3);
+>  
+> -	/*
+> -	 * Turn off keep alive that might have been enabled by the hang
+> -	 * interrupt
+> -	 */
+> -	gmu_write(&a6xx_gpu->gmu, REG_A6XX_GMU_GMU_PWR_COL_KEEPALIVE, 0);
+> -
+>  	pm_runtime_dont_use_autosuspend(&gpu->pdev->dev);
+>  
+>  	/* active_submit won't change until we make a submission */
+> 
+> -- 
+> 2.40.1
+> 
