@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A0AB723F80
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17F0A723F9D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236485AbjFFKbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 06:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52628 "EHLO
+        id S236753AbjFFKeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 06:34:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236256AbjFFKbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:31:10 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7EE2E67
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 03:31:08 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686047467;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=/XqwqUEqxTRlwuqyScbemHhCwtlpbBoBEzWo4M8PRqg=;
-        b=eVRsuvQOID4SslV5pOtJFf6FwsVvh+pzjF7/1v7gtPn1HGM/Wog5CPSFVjvLr0CE1b25uq
-        ayetjfpNHYQsVCFo7fwCIgJXBnEARxK6z/H1bDk0vZRV8edsniTtmC3dHkemDaqBm2EyEt
-        HgwCl8LhvV0GQH8gGCOKYwZqk6eYB5dCYp9R3lE7PV/+IZ1b5BCnmSM0IhlDODDkC3mX+Q
-        BLNEni6DUPO+DuBSTpoLl+k6uD9xOjNfBL20ha3k/j1pnTO5w+77sywQZQA5CQe9QuDydi
-        Q8KfT4XSAYYFT9N85WpgY/gSBrlKhLdSCPOwB7ijcA24BJqveIgJYnLuhn2Umg==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5FE2DFF814;
-        Tue,  6 Jun 2023 10:31:05 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        <linux-mtd@lists.infradead.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 3/3] dt-bindings: mtd: ingenic: Prevent NAND chip unevaluated properties
-Date:   Tue,  6 Jun 2023 12:30:57 +0200
-Message-Id: <20230606103057.137711-4-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230606103057.137711-1-miquel.raynal@bootlin.com>
-References: <20230606103057.137711-1-miquel.raynal@bootlin.com>
+        with ESMTP id S236904AbjFFKeH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:34:07 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E71BE42;
+        Tue,  6 Jun 2023 03:34:03 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3567GQVM002049;
+        Tue, 6 Jun 2023 10:33:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=i9Rvne1JjTYZ/ypfVKCw95t74IgXT4Np+ksPCaAY24k=;
+ b=Tie28ARwQLbryfYKumOz5+aJdQxAspVYZwGvIja6JmbOmSlEnjpnTkzfq4LUzkTjP/xG
+ hSeu3jQE6OMHPnjzmoHCfSey8cnoQy8/DOs0z8jzL3RhVmYDWZJ4KZwvPZ3sEBTUVvbY
+ YdTlKLklNaiA4aR17AOIkH+JTkihhcg9D9rjYOnPcnNeNkpEZ/jIT9LuvkwerMSemLbu
+ rmztMo9oViKPpfupyGDMsWMWwftTNulXJMANDkdXuHfREKSVD3dom8MElxnZvNFumz8X
+ rx42/HHiZI5KsdOcQengNB1hzrOOh6Tc2EnK99inHnhcwPg0Mk5brT8eXYLW1GRWlQ5x JQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r1s4uh5r8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Jun 2023 10:33:59 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 356AXwCb026081
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 6 Jun 2023 10:33:58 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 6 Jun 2023 03:33:53 -0700
+Date:   Tue, 6 Jun 2023 16:03:49 +0530
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 0/3] Enable IPQ9574 TSENS support
+Message-ID: <20230606103349.GA675@varda-linux.qualcomm.com>
+References: <cover.1685703605.git.quic_varada@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <cover.1685703605.git.quic_varada@quicinc.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: xTn3_lGA0rZMujC2FP7xnrbhfsZgpH54
+X-Proofpoint-GUID: xTn3_lGA0rZMujC2FP7xnrbhfsZgpH54
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-06_06,2023-06-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 mlxlogscore=954 impostorscore=0 malwarescore=0 bulkscore=0
+ adultscore=0 priorityscore=1501 clxscore=1015 mlxscore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306060089
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
@@ -81,43 +80,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-List all the possible properties in the NAND chip as per the example and
-set unevaluatedProperties to false in the NAND chip section.
+On Fri, Jun 02, 2023 at 04:33:49PM +0530, Varadarajan Narayanan wrote:
+> This patch set enables tsens in IPQ9574
+>
+> Depends on
+> 	https://lore.kernel.org/linux-arm-msm/20230406061314.10916-1-quic_devipriy@quicinc.com/
+> [v5]:
+> 	Fix make DT_CHECKER_FLAGS=-m dt_binding_check and make dtbs_check errors without removing existing entries
+>
+> [v4]:
+> 	Drop the sm6375-tsens and qcm2290-tsens related bindings
+> 	fix as it is already posted
+>
+> 	Remove unnecessary changes from previous version
+>
+> [v3]:
+> 	Fix make DT_CHECKER_FLAGS=-m dt_binding_check and make dtbs_check errors
+>
+> [v2]:
+> 	Drop the driver change (https://lore.kernel.org/lkml/b45d33d38a334aabbd52c83b0d6028af1f4c74c8.1682682753.git.quic_varada@quicinc.com/)
+> 	since the tsens device is compatible with 8074's tsens
+> 	and use 8074's compatible itself
+>
+> 	Rename clusterX nodes as cpussX
+>
+> [v1]:
+> 	Fix DT node names
+>
+> [v0]:
+> 	Initial patch introducing TSENS support
+>
+> Praveenkumar I (1):
+>   dt-bindings: thermal: tsens: Add ipq9574 compatible
+>
+> Varadarajan Narayanan (2):
+>   arm64: dts: qcom: ipq9574: add tsens node
+>   arm64: dts: qcom: ipq9574: add thermal zone nodes
+>
+>  .../devicetree/bindings/thermal/qcom-tsens.yaml    |   6 +
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi              | 218 +++++++++++++++++++++
+>  2 files changed, 224 insertions(+)
+>
+> --
+> 2.7.4
+>
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- .../devicetree/bindings/mtd/ingenic,nand.yaml         | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Bjorn,
 
-diff --git a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-index a7bdb5d3675c..facb44ebcaa6 100644
---- a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-@@ -40,6 +40,8 @@ patternProperties:
-   "^nand@[a-f0-9]$":
-     type: object
-     properties:
-+      reg: true
-+
-       rb-gpios:
-         description: GPIO specifier for the busy pin.
-         maxItems: 1
-@@ -48,6 +50,15 @@ patternProperties:
-         description: GPIO specifier for the write-protect pin.
-         maxItems: 1
- 
-+      nand-ecc-step-size: true
-+      nand-ecc-strength: true
-+      nand-ecc-mode: true
-+      nand-on-flash-bbt: true
-+
-+      partitions: true
-+
-+    unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
--- 
-2.34.1
+Can this series be taken for 6.5?
+All comments have been addressed.
 
+Thanks
+Varada
