@@ -2,95 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E17F6724584
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E4B0724595
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237307AbjFFOQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 10:16:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53016 "EHLO
+        id S233653AbjFFOSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 10:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232718AbjFFOQq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:16:46 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C125A6
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 07:16:42 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f6d3f83d0cso62756405e9.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 07:16:42 -0700 (PDT)
+        with ESMTP id S233365AbjFFOSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:18:34 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A430E18B;
+        Tue,  6 Jun 2023 07:18:33 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1b02d0942caso28854185ad.1;
+        Tue, 06 Jun 2023 07:18:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686061001; x=1688653001;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jAJKlhfbMyQplK7V4LBuMFmDWCWyf09orv4Khsn/h98=;
-        b=ADRP1bQCKU0JZgIwyThrHejXZNS6SNtFkb6zSc3+4bezjfXOJL3O1QvSWzx0VvpR8C
-         2vq87FZ5pL5J2j4gFKw0Nwzn6WP2VJwm2pji9kwz8kD9umkqWuR8ESx5xE8BvO3f9nQA
-         rEArD1O/c16OLFBalQbBhIMTaqGfXHsGVLWTkNwqxa/OJ3FGO281KY65uA5CUAJ9TX2C
-         fQtrjAMHE+Ogw71XfCqYa3gJZjSpf698KrNAaHYPPYv8Nm1fzkxSi7OAJDBMRqYW7VDW
-         4zwGz4OgW+D3M6Zk+StsGM5Nb4Vk6V0Bi+JxKP6ZDCQXP8d4YXin8NoyPTBBI8kxzyWo
-         eADA==
+        d=gmail.com; s=20221208; t=1686061113; x=1688653113;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+JU5bs373RCUOgXJLUDTSML0K5+ZCRMog9EmfC27Cho=;
+        b=TgULhQk1Qffs+vjFYJckFp6sI812uCDLS3xBoVRd+823Rwwpi8mxXSngSIqM1/Rrts
+         Rcdqu+pv8MeCxsLVZsDm5mQJ6aYN24vL2LMNIGRTo7Sds1IZxnNNOaErqHSImCJslcMx
+         zlBdkPLZfIlyc0Hrjal3QWcM5AtB4MAUZ7XndMvLWhKUFReX0qzqTdn0KZAPl/ZsryvT
+         foJQ6LejTAOIqtwmy7r8hdpCZGslzDWaGJkwyIIS9i+fSb0mhZhi6j2icU+CwpcQ1vKh
+         XHm+89z3ooeHKCFPhuenknZAiUoc4CyUUqLzk8kgiS0t/cFfCicDnIkkqroC0pPa5Me+
+         sGiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686061001; x=1688653001;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jAJKlhfbMyQplK7V4LBuMFmDWCWyf09orv4Khsn/h98=;
-        b=YmFQQ9ER5vVwkpKf7b+kO+Q1sYXqoVZgtr0sFxpRvmjAP8qHHBm7zoS2aioSGBKaSJ
-         SVoJyyOp18Cx8j2eiNHJzO7JAbuc7piQCF9kybzSgbbDA0mysmUPrNW9WSMSg2GrqZ84
-         jpXWalg/liZp3leyIWmwM5Jym8PTEKOmLYxXNqku7MZtY3ekgrTOE0kfz5E28++NAWWi
-         Z16guTMBaS6resbiapubU29SxAYdd2Dqk0EEJgIs/GEfWzBxj/s6BCGRYEKQnk9q9FBW
-         ekZL+qvFxN+PPGLAxn5yk2IkvFP/RFpKm+Yxk3A4wqdZw6Kz6FQrknTsQkTJm3KV5ngz
-         H1pQ==
-X-Gm-Message-State: AC+VfDykrqgfwj5OQsItgnK7DjgDnxB11CoAupPtvqcKY4f9TduhwZMT
-        FmfPlUhRgAmKCmeY4H53+CfAsA==
-X-Google-Smtp-Source: ACHHUZ4B+HMXMA37SveRg95J8RPbhX92Kzuddi7nlYWzpXsyavm7U7yYxf7JFrAAtLM2rTtQfbDpPg==
-X-Received: by 2002:a05:600c:b49:b0:3f7:8fd5:567 with SMTP id k9-20020a05600c0b4900b003f78fd50567mr2601919wmr.2.1686061000705;
-        Tue, 06 Jun 2023 07:16:40 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id y24-20020a7bcd98000000b003f42314832fsm14077795wmj.18.2023.06.06.07.16.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 07:16:40 -0700 (PDT)
-Message-ID: <e925728b-ae6b-6347-20f9-2510f046d598@baylibre.com>
-Date:   Tue, 6 Jun 2023 16:16:38 +0200
+        d=1e100.net; s=20221208; t=1686061113; x=1688653113;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+JU5bs373RCUOgXJLUDTSML0K5+ZCRMog9EmfC27Cho=;
+        b=jNQYFtN93+qlQ0GCSTCOlE21QXeEjfpq7+QhQ2NrjbDzW1uxmdy//p+oTOcSmCE3+O
+         xNTv9XYVuzNmSbf4ueTESAs3FyYJL5e/wfCTQr4MVnzIJFGcdU/cS5f0p+tRbGujVgRx
+         33alg4r6dD8jxuVcVAItKnF3rjaL4tD9o1IENU7kRm4XATls8AEZ8YQ9o9CCF7LigwmJ
+         f1/byLnTpsv+TwzOrD1vB2PSTpevSQJ6GUXH41IU5/09PRoCps4l8IYSxCqi8y7yzrIJ
+         LxEgr8ghVTKZrPwuweJcL9d7tQCtyiJc18S6J17xHXv2NGOqtq1nsh8j4q2n3j1Xllim
+         6olw==
+X-Gm-Message-State: AC+VfDwO6u2hKohD/W9sTzx3NY74JxZ7k6I9clvqqg6jlctYvigV+h8L
+        LHD6KfmioZ/uNVEHLo+aG68=
+X-Google-Smtp-Source: ACHHUZ5UKJgO5MIyr1LCARXSsR3GdPMcC2rCTCQhTsMaHYFgMYIhNslpRd7axkM5nWnCaY7+s7D04g==
+X-Received: by 2002:a17:902:c412:b0:1b0:34c6:3be2 with SMTP id k18-20020a170902c41200b001b034c63be2mr1421801plk.1.1686061113033;
+        Tue, 06 Jun 2023 07:18:33 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id q1-20020a170902b10100b001a6a6169d45sm8596280plr.168.2023.06.06.07.18.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jun 2023 07:18:32 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 6 Jun 2023 07:18:31 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     nick.hawkins@hpe.com
+Cc:     verdun@hpe.com, linus.walleij@linaro.org, brgl@bgdev.pl,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jdelvare@suse.com, andy.shevchenko@gmail.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] hwmon: (gxp_fan_ctrl) Provide fan info via gpio
+Message-ID: <22d5f12e-578b-4484-a90e-6e81289ed458@roeck-us.net>
+References: <20230606014234.29491-1-nick.hawkins@hpe.com>
+ <20230606014234.29491-5-nick.hawkins@hpe.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v12 5/7] iommu/mediatek: Add MT8188 IOMMU Support
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
-        jianjiao.zeng@mediatek.com, chengci.xu@mediatek.com
-References: <20230602090227.7264-1-yong.wu@mediatek.com>
- <20230602090227.7264-6-yong.wu@mediatek.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230602090227.7264-6-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230606014234.29491-5-nick.hawkins@hpe.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2023 11:02, Yong Wu wrote:
-> MT8188 has 3 IOMMU, containing 2 MM IOMMUs, one is for vdo, the other
-> is for vpp. and 1 INFRA IOMMU.
+On Mon, Jun 05, 2023 at 08:42:33PM -0500, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+> 
+> The fan driver now is independent of the fan plreg GPIO information.
+> Therefore there will no longer be presence or fail information available
+> from the driver. Part of the changes includes removing a system power check
+> as the GPIO driver needs it to report power state to host.
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+For my reference:
 
--- 
-Regards,
-Alexandre
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
+Let me know if you want me to apply this patch now or if I should wait
+for the gpio patches to be accepted.
+
+Guenter
