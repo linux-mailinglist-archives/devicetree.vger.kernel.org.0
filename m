@@ -2,116 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FA8724816
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC36172483D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:53:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjFFPoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 11:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33244 "EHLO
+        id S232681AbjFFPxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 11:53:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232681AbjFFPoF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:44:05 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0146139
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 08:44:03 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b1b30445cfso56944441fa.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 08:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686066242; x=1688658242;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MEL7N0xABt5lwW2BNneMngEG2im8DPkGRrkGXcmCmFE=;
-        b=c/fuJoG3OR34YXhbhDyWdahDHUtp2lekJSM2rGS8cebvmkCSQ8M21Tl3KggiFUjavX
-         EBM6soblQ3QChwIj1aXGCBfDcwugHnu9uN82wGL5RkFCp5LmCYF80HVNNgJ606znzKi+
-         HO8709GveI2WjuX5Ba0zecziWsvHu1ttXTC0/Xp2Htd2YYQLtmdW6jqYZAd6ZRu9A4Ta
-         GdjZL7oFfmtefp33c2mQp31w+rejk73z4oZIarbPQcu48elAaMC1+cqz0fcMvhBTvdY7
-         DA+o15dxtHixvT0fD/Oa9mCgENB7wXqw8WU/AWO1k9lWm/pjA9lES4BAr3v3phMqSE5X
-         LtEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686066242; x=1688658242;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MEL7N0xABt5lwW2BNneMngEG2im8DPkGRrkGXcmCmFE=;
-        b=WKZDe9Wk3lxHtkmoQF7w5bj9Q8Eh2ikuU0p1lMkzKGfcfcJfn/y3dMDdPWL5gNoiQi
-         MKnHBuLb7DVaNpXfyl4lhL4HQvBmCsCKFuk72OXAhZlUPh2ClLAnkBl+X/OV+Z0S8Vfd
-         1nNNJijEc7DB1VCxdTbNmTA3H14BwXFc9xuIhXJU9Oe0Zj9fC3flsm6SkxP4ooGGU1aj
-         yTAIMLjx9tadY2lMb8oLAGRFR278Xm6vOnmTC0pywAltSb7TqswIcB8mJmuUuTsLn6K4
-         HjffWiU/W2PDaSsVwGIfQdlKShrseE4V5dUzVwDYT2sq24r5Mckj2LjHInT02TbVLgxx
-         Y+Sg==
-X-Gm-Message-State: AC+VfDy7Xyobz3s0gnrqTxDZjCmqq7VCsayHixUigjGKsnlnnobks70t
-        tgTraCQM3eF50XduroG7BvIiR2bmXwby2FsFWIAkWA==
-X-Google-Smtp-Source: ACHHUZ76TwCC8/bPVQTChMClfy288Z4nIeiy2u/xVeHNdL8bJyzAkjbnddDdlXZN6+kzn/yz/jf9nMLqajSDRF1SSqo=
-X-Received: by 2002:a2e:854b:0:b0:2b1:cf7c:a892 with SMTP id
- u11-20020a2e854b000000b002b1cf7ca892mr1280324ljj.30.1686066241847; Tue, 06
- Jun 2023 08:44:01 -0700 (PDT)
+        with ESMTP id S231963AbjFFPxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:53:08 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEFE310D4;
+        Tue,  6 Jun 2023 08:53:06 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 356DEQeu008547;
+        Tue, 6 Jun 2023 17:52:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=5IUJcU++ZB9s6cZHOpqcQtT4Gl5x6kOb3LYpwx9uNqM=;
+ b=5phnNVXAg0S1bGNk39K8BxToytCsg8Awgy5cWSNaAaDB1msYRI+sCqDzr4omyICCRDOV
+ 0Vs+hX1js3kygaZM5B0OMx2w53sxupvpjQx8JwPuOb/ZPTSBhK99R93Ft0SV9c7uEmIU
+ DHxbc+n8O2P5FlDyMAlpZKFW2N9mr61riQ811ikQxF/SzCy3pPhQrBEDQ1yKxwIl2dmJ
+ U11hPHhxZTrl75WdHP/GaOhFk11o6rcpQIl8koQVdBqxxKikw5gz13gi+RfT3RrhmI6W
+ 905hfF6h3a/1FuElAEmWHuRIoRJCkm8PliGu1SGljYt3tpRu97Me8vlpyX+Tj4gTwv0O WA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r25gp0whn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Jun 2023 17:52:36 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 42E9110002A;
+        Tue,  6 Jun 2023 17:52:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1868422D195;
+        Tue,  6 Jun 2023 17:52:16 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 6 Jun
+ 2023 17:52:14 +0200
+Message-ID: <fd5b0cb6-a6ae-0ff5-d657-ddde6651ac9f@foss.st.com>
+Date:   Tue, 6 Jun 2023 17:52:13 +0200
 MIME-Version: 1.0
-References: <ab68df6b056a3b381d1d53cf1502e814812c4f96.1686045675.git.geert+renesas@glider.be>
-In-Reply-To: <ab68df6b056a3b381d1d53cf1502e814812c4f96.1686045675.git.geert+renesas@glider.be>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 6 Jun 2023 17:43:49 +0200
-Message-ID: <CAMRc=Mf7hm298NjPrSKYHQosB=M3Y3CaPi+DVt56D_yrYSCU9A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: gpio-delay: Spelling s/curcuit/circuit/
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 0/3] ASoC: stm32: fix dtbs_check warnings
+Content-Language: en-US
+To:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        "Lucas Tanure" <tanureal@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexander Stein <linux@ew.tq-group.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     Alexandre Torgue <alexandre.torgue@st.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230531140912.819373-1-olivier.moysan@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230531140912.819373-1-olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-06_11,2023-06-06_02,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 6, 2023 at 12:01=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Fix misspellings of "circuit".
->
-> Fixes: c7239a3da1628767 ("dt-bindings: gpio: Add gpio-delay binding docum=
-ent")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-delay.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml b/Doc=
-umentation/devicetree/bindings/gpio/gpio-delay.yaml
-> index 7c16a4e1a768ef72..1cebc4058e272660 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-> @@ -11,7 +11,7 @@ maintainers:
->
->  description: |
->    This binding describes an electrical setup where setting an GPIO outpu=
-t
-> -  is delayed by some external setup, e.g. RC curcuit.
-> +  is delayed by some external setup, e.g. RC circuit.
->
->    +----------+                    +-----------+
->    |          |             VCC_B  |           |
-> @@ -30,7 +30,7 @@ description: |
->                             GND
->
->    If the input on the consumer is controlled by an open-drain signal
-> -  attached to an RC curcuit the ramp-up delay is not under control
-> +  attached to an RC circuit the ramp-up delay is not under control
->    of the GPIO controller.
->
->  properties:
-> --
-> 2.34.1
->
+Mark
 
-Applied, thanks!
+On 5/31/23 16:09, Olivier Moysan wrote:
+> Fix dtbs_check warnings in STM32MP15 DK boards Devices Trees for
+> STM32 I2S and Cirrus CS42L51 codec.
+> 
+> - Add OF graph port property in I2S and CS42L51 DT bindings.
+>    Fixes warnings:
+>    audio-controller@4000b000: Unevaluated properties are not allowed
+>    ('port' was unexpected)
+>    cs42l51@4a: Unevaluated properties are not allowed
+>    ('port' was unexpected)
+> - Correct OF graph DAI audio format property for STM32MP15x Dkx I2S node
+> 
+> Olivier Moysan (3):
+>    ASoC: dt-bindings: stm32: document audio of graph port for i2s
+>    ASoC: dt-bindings: document audio of graph port for cs42l51
+>    ARM: dts: stm32: fix i2s endpoint format property for stm32mp15xx-dkx
+> 
+>   Documentation/devicetree/bindings/sound/cirrus,cs42l51.yaml | 4 ++++
+>   Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml   | 4 ++++
+>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi                      | 2 +-
+>   3 files changed, 9 insertions(+), 1 deletion(-)
+> 
 
-Bart
+Bindings patches have been acked, do you plan to take patches [1][2] in 
+your ASOC tree ? I'll take patch[3].
+
+cheers
+Alex
