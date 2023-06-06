@@ -2,166 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EDBE72375B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:14:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8FCF72378A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234736AbjFFGOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 02:14:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59782 "EHLO
+        id S235355AbjFFGVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 02:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232906AbjFFGOj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:14:39 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1318A100
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 23:14:38 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5149e65c218so8566925a12.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 23:14:37 -0700 (PDT)
+        with ESMTP id S235063AbjFFGVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:21:18 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44AFFE5D
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 23:21:03 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51491b87565so8580211a12.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 23:21:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686032076; x=1688624076;
+        d=linaro.org; s=google; t=1686032462; x=1688624462;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c9/ke8vQiyBtX+dMh7jOybxE1aXL3oACs0/tXuO+L4U=;
-        b=eWY5hKNC6JKDtcg4koedkUquXkdz4Qm7ioMxMxeSjG40XG3NTMTnzK7wOpWQfTHpZM
-         3UipQrboWk2BEtNpxv9nzlw7CkPmQzMREcltPyxNq7b+1A48GKNiLAYrDYMQDD2CxpgU
-         jKFLfBUWdm1nlGtj5XilnON1j3BW3L0Vfde6K1BcsaaJAHUoDPUCrwiygj+BBINUFoQG
-         +mfNC3eVh7aFzeMtwa4CM0CjLBCegI8dvl1QgNKPSF62tBw2cUrpCPzE92UTSO/rWrSD
-         vKVw291npS8n956cbRw5LDbVtiwsemu4h3S1VOup36wy3m1ZJpmQpb1Djcf4XRP2IgbL
-         Tq5Q==
+        bh=ghjbsto09XqPnsXCUmUZKd24RXiWGjP2OfhheXx+RZE=;
+        b=TupcBBlW5YEsh9v8j0nYCbVHO7kh1ulyfMEcAnHSvqrsAxbcWEijEqcLa3NoDkrLNC
+         VZ5CLdNHUWr4YbJo1wXbRo6ScBX1r4AqA6CpiILcBP0d8KyHdJS/h5JH5fcbSimOV3TF
+         CoQRcqjIH5RKYiXQLZf0jRjIsFnNiyqbFvMvbfIh1sSwe/RwpK0D57LcVg3u7Je4g9Xo
+         5flyiey/WV3vroipsE+6eGIp8rgRrH2WAub63Rc3eUdapbw9iH5Ws3qdjT55fpvu+Kmc
+         Nq0FzgL743GFM8WbmcVJ7QQn51V/xseA2jDS8D3WILlA9ZC7UJh4W0TwxA2wMN6qzXny
+         cm/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686032076; x=1688624076;
+        d=1e100.net; s=20221208; t=1686032462; x=1688624462;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c9/ke8vQiyBtX+dMh7jOybxE1aXL3oACs0/tXuO+L4U=;
-        b=dek6w1u9v1OIImELBcx22m2t7zemVvpYLgRa76mCE6BZ7MAQKkYr0EF1w1nRGX+QOH
-         tDII3+z4NMBncyMzgW+rSmnImZXa9HlbvcZZiTWH4oKsIIwJhHidsvnQZuwlz3H6h+Oo
-         zBOqiHoV+u3V6TnU/f7ps1yYb+h+rJ/cnESf3keEBv/u0+YCEy+4tSXgPn5SmMLawRrc
-         q9PhbBuGpCJ7EQPVYux3yR48xyDu139YSLltqCWz3VLB822SEhmee9rsdxsVeG6FSeiD
-         Z8JcgjYGowuXfUC6XIrW+u1wwWg/ysdCuPFhaZc/TtNZkFAMrJ5smUU1fhC4WeeIANNf
-         r26g==
-X-Gm-Message-State: AC+VfDyIgNYnznB5BJFwmmIqFyOviZiSrvuqn544Xlm6CcTyY1uRmeGP
-        2A3VzuGeCjXzhT0CDmS4RIDThg==
-X-Google-Smtp-Source: ACHHUZ64Z9lKKWilVnf6tdOypQFOM3iC4izULYvUu+KGcG0PYJwTnO62ZR0THx9JxKoLkPlyBtVhVA==
-X-Received: by 2002:aa7:d3c3:0:b0:516:4394:244f with SMTP id o3-20020aa7d3c3000000b005164394244fmr954905edr.12.1686032076496;
-        Mon, 05 Jun 2023 23:14:36 -0700 (PDT)
+        bh=ghjbsto09XqPnsXCUmUZKd24RXiWGjP2OfhheXx+RZE=;
+        b=GmUavIH6HqlPyd9Wu/jcKN3UH3x10j7ex36kF9zLPrcav2mVw4fcpTseBxoy2+by1a
+         CeoYLpqJSwys5+GlNj5tqG6hNdIndZ3oCjEWl8Aca+YoPlth8rO1pLf5a8oYodU6LNrY
+         fMLCWDUaTF+7lhCSYWagK6xgqVwFSGSLKqpy/o8KiF2MH83UE98TuTTfQvHTHQBpBPTP
+         gStvBZW3VcXX5kp9bTgcHsmGsxsF2Wjz59+fGwyUEWULpyApFW0XcmUKens8BizbxUZS
+         gsK6/uSS58leW7AFPGyQFVao3aeGrEey5h/27mpNC5nEVffNwD8QTADwS20cqracJCQU
+         wG3Q==
+X-Gm-Message-State: AC+VfDz1TWWGs1wHG435nsWH6olFDz7QwBxEGIXuLviHgJDFqIpotqub
+        7rI7OBuPgnCCtgWEkeMz9KC5/g==
+X-Google-Smtp-Source: ACHHUZ5BBOuUVEcj0d9nizDVIPtOnYGoIXZ8X7BWvAVGbZl4oKgdIvd4Behhvjfjmvzv3MOC84YPMQ==
+X-Received: by 2002:aa7:c507:0:b0:50c:3dc:2262 with SMTP id o7-20020aa7c507000000b0050c03dc2262mr990172edq.39.1686032461745;
+        Mon, 05 Jun 2023 23:21:01 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id s25-20020aa7c559000000b005163c39645bsm4672584edr.51.2023.06.05.23.14.33
+        by smtp.gmail.com with ESMTPSA id q22-20020aa7d456000000b0051631518aabsm4613727edr.93.2023.06.05.23.20.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 23:14:36 -0700 (PDT)
-Message-ID: <d187eafb-4a80-9479-d063-3a01b47d8efa@linaro.org>
-Date:   Tue, 6 Jun 2023 08:14:33 +0200
+        Mon, 05 Jun 2023 23:21:01 -0700 (PDT)
+Message-ID: <ee60f6ff-42bc-d30e-8465-39d00320d48b@linaro.org>
+Date:   Tue, 6 Jun 2023 08:20:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH V2 01/13] dt-bindings: remoteproc: qcom: Add support for
- multipd model
+Subject: Re: [PATCH v3 2/4] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
 Content-Language: en-US
-To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jassisinghbrar@gmail.com,
-        mathieu.poirier@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, quic_eberman@quicinc.com, quic_mojha@quicinc.com,
-        kvalo@kernel.org, loic.poulain@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com, quic_varada@quicinc.com,
-        quic_devipriy@quicinc.com
-References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
- <20230521222852.5740-2-quic_mmanikan@quicinc.com>
- <7940c743-815f-f864-d015-43d7e916ecfa@linaro.org>
- <a1456f62-d0a7-d5ec-b379-db1b6035c89c@quicinc.com>
+To:     Rudraksha Gupta <guptarud@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230604063032.365775-1-guptarud@gmail.com>
+ <20230604063032.365775-3-guptarud@gmail.com>
+ <3c781ae6-4a45-1d6d-840c-d25f33684b00@linaro.org>
+ <CT583OP69XTU.3E141NE263OR3@Latitude-E6420>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a1456f62-d0a7-d5ec-b379-db1b6035c89c@quicinc.com>
+In-Reply-To: <CT583OP69XTU.3E141NE263OR3@Latitude-E6420>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 14:02, Manikanta Mylavarapu wrote:
->>> +  memory-region:
->>> +    items:
->>> +      - description: Q6 pd reserved region
->>> +
->>> +  glink-edge:
->>> +    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
->>> +    description:
->>> +      Qualcomm G-Link subnode which represents communication edge, channels
->>> +      and devices related to the Modem.
->>> +
->>> +patternProperties:
->>> +  "^pd-1|pd-2|pd-3":
->>> +    type: object
->>> +    description:
->>> +      In Multipd model, WCSS pd depends on Q6 pd i.e Q6 pd should be up before
->>> +      WCSS. It can be achieved by keeping wcss pd node as subnode of Q6
->>> +      device node.
->>
->> That's not enough. Your description does not say what is this, why you
->> have two protection domains for same compatible. What's more, it a bit
->> deviates from hardware description.
->>
-> WCSS means 'wireless connectivity sub system', in simple words it's a
-> wifi radio block.
+On 06/06/2023 04:48, Rudraksha Gupta wrote:
+ted patch soon that addresses this.
 > 
-> IPQ5018 SOC has both internal (AHB) wifi radio/WCSS and external (PCIE)
-> wifi radio/WCSS. In Q6, Root protection domain will provide services to
-> both internal (AHB) and external (PCIE) wifi radio's protection domain.
-> So we have two protection domains for IPQ5018, one is for internal(AHB) 
-> and other is for external(PCIE) wifi radio.
+>>
+>> It does not look like you tested the bindings, at least after quick
+>> look. Please run `make dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>> Maybe you need to update your dtschema and yamllint.
+>>
+>> Best regards,
+>> Krzysztof
+> Sorry. I was only looking for expressatt errors/warnings and failed to
+> see the other errors/warnings in the sea of text.
 
-So it is now in email, but not in the code...
-> 
->>> +
->>> +    properties:
->>> +      compatible:
->>> +        enum:
->>> +          - qcom,ipq5018-wcss-ahb-mpd
->>> +          - qcom,ipq9574-wcss-ahb-mpd
->>> +          - qcom,ipq5018-wcss-pcie-mpd
->>
->> Keep rather alphabetical order (so both 5018 together).
->>
->> I also do not understand these at all. Why adding bus type to
->> compatible? This rarely is allowed (unless it is PCIe controller within
->> soc).
->>
-> IPQ5018 SOC has in-built PCIE controller. Here QDSP6 will bring up
-> external(PCIE) and internal (AHB) wifi radio's. To separate AHB, PCIE 
-> radio's properties, i have added bus type to compatible.
-
-It's the same device - WCSS - right? We do not create multiple nodes and
-compatibles for the same devices. Bus suffixes are almost never parts of
-compatibles.
-
-
->>
->> Drop.
->>
->>> +
->>> +unevaluatedProperties: false
->>
->> This changed... why?
->>
->>
-> 'unevaluatedProperties' is similar to 'additionalProperties' except
-> that it recognize properties declared in subschemas as well.
-
-You don't have to explain me what are unevaluatedProperties or
-additionalProperties. Let's assume that I know them. What you should
-explain is why you changed it. Where is the reference to other schema?
-
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
 
 Best regards,
 Krzysztof
