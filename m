@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5BC724A9E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F226724A9F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:53:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238834AbjFFRxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 13:53:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51290 "EHLO
+        id S238411AbjFFRxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 13:53:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238841AbjFFRxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:53:09 -0400
+        with ESMTP id S238839AbjFFRxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:53:11 -0400
 Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4A51707
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:53:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DF6170C
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:53:09 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686073986;
+        t=1686073987;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=4kfIuXZ862NfBNqkNzjOoL2n7IQGJSSziZCLzt22Iz0=;
-        b=bfxmYkh7cf7Mr6pfnNvNDG1oa6a0dEI/EsNu5KnGXFXmoo/RSACKIpyb5rcT/t/88NLDRB
-        eiNXMmo9FsKTdU0PlF04nnnLN96Js4av4KXPRcf3/SzAN6Bu5vm6re+L62y0IetWdX/uOR
-        PQjesYCMym2g6K3pPU81L9fLGK+nug9+Ok87Ct85P0jAHN8uabip9yDkh/Hkdky1DTv6cY
-        L2h5nPFtXi5wED41cYo8Ogvxff/YY5WUR0yjpLCRo65JK1RvB39ESwuDqRhuVMiOGi2XGp
-        yICXHS+J7uD916ZhI0yxGU+Xs8oUOya37AAvEIKIK9v284TxZ2m+ae+UyGUW3w==
+        bh=C6EJzVOZe63W7NYiDkawHzrYNIvAcHq5gU/Vn9AKthU=;
+        b=cJF72/zXPaZX6glBGXsAWASn7NYCkj5bKaM53eYwNCXUfv7rLed0afrpmUrtPhNpYL5rDU
+        g2YsS2DO3cYVblHbi+6S6n4gETmv8OP+sOqzidJ30E4agoq/YNp/Orin1cypYjaI+ZJR6l
+        LquZEV2Sx4QOE+vGzr7cmcbgiuEEzdzZHM3E43jj9OzetPkmTE3SJbRd4Jm3uQ3Wo4CGTI
+        +OmntTJrrsR9RXRxyEFsPSBD/eHceKlVXxhBxIeOc6ZfA58vN/k/kfGQPZacXcRJt2FrPS
+        nOuc1xHkm+/ATd+35Ls+DwVo3jKWGTE63U1VpgwA7Mt8jfmuefaHTF7IdnIHHA==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -39,11 +39,8 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 228F21C0006;
-        Tue,  6 Jun 2023 17:53:05 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B796E1C0005;
+        Tue,  6 Jun 2023 17:53:06 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -56,13 +53,10 @@ To:     Richard Weinberger <richard@nod.at>,
 Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v2 08/17] dt-bindings: mtd: sunxi: Prevent NAND chip unevaluated properties
-Date:   Tue,  6 Jun 2023 19:52:37 +0200
-Message-Id: <20230606175246.190465-9-miquel.raynal@bootlin.com>
+        Liang Yang <liang.yang@amlogic.com>
+Subject: [PATCH v2 09/17] dt-bindings: mtd: meson: Prevent NAND chip unevaluated properties
+Date:   Tue,  6 Jun 2023 19:52:38 +0200
+Message-Id: <20230606175246.190465-10-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230606175246.190465-1-miquel.raynal@bootlin.com>
 References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
@@ -79,52 +73,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-nand-ecc-mode is a generic property which may apply to any raw NAND
-chip, it does not need to be listed in each controller
-description. Instead, let's reference the raw NAND chip description file
-which contains the property. The description contained
-"additionalProperties: false" which is wrong as other properties such as
-partitions might very well be added in the final .dts, and anyway needs
-to be converted into "unexpectedProperties: false" to fit the property
-change new requirements.
+Ensure all raw NAND chip properties are valid by referencing the
+relevant schema and set unevaluatedProperties to false in the NAND chip
+section to avoid spurious additions of random properties.
 
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Samuel Holland <samuel@sholland.org>
+Cc: Liang Yang <liang.yang@amlogic.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- .../devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml    | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-index e7ec0c59bca6..f9bb695e13d4 100644
---- a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-@@ -49,13 +49,12 @@ properties:
+diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+index 28fb9a7dd70f..00810b04dcde 100644
+--- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
++++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+@@ -40,6 +40,7 @@ properties:
  patternProperties:
-   "^nand@[a-f0-9]$":
+   "^nand@[0-7]$":
      type: object
 +    $ref: raw-nand-chip.yaml
      properties:
        reg:
          minimum: 0
-         maximum: 7
+@@ -58,6 +59,8 @@ patternProperties:
+             meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
+             meson-axg-nfc 8
  
--      nand-ecc-mode: true
--
-       nand-ecc-algo:
-         const: bch
- 
-@@ -75,7 +74,7 @@ patternProperties:
-           minimum: 0
-           maximum: 1
- 
--    additionalProperties: false
 +    unevaluatedProperties: false
- 
++
  required:
    - compatible
+   - reg
 -- 
 2.34.1
 
