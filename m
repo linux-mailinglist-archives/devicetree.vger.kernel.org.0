@@ -2,67 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1B0A723F6A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDC1723F70
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236028AbjFFK1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 06:27:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49824 "EHLO
+        id S236244AbjFFK2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 06:28:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231826AbjFFK13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:27:29 -0400
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DDACE55;
-        Tue,  6 Jun 2023 03:27:28 -0700 (PDT)
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7748d634a70so229920839f.2;
-        Tue, 06 Jun 2023 03:27:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686047248; x=1688639248;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JAPwM9u2F/Ud8Dzoq+JTM/HoPHsb9s153yZMWbPc3GE=;
-        b=PKTRNP9chvoAjEIzlHfBHCw2r/ttla4TUGpqBQZsijSTR0fhQ6HIs7/iE20gRvLXiH
-         bc9nx7HtcQPDEogQNUoTkt6NrsERSN2uH0yV39f37Ikk3YTgBWqfSgn0VVdznJtGnclq
-         NY+dxPqmYX42WirHI166x1+JMIXkMDhLaMZ+BBU/asqSo1EGrNG8tjErKUQStW8YPEXX
-         3jZOOb2Qq4v+5oZFWmnuLREb+D0uHOCTLux4nccmSZ5Jfi+McX9inphI43HTG0EXCfHp
-         vp8wCfvhJjZ1RsDssoJzMZeQFjzPaMMRAZC1EYzZutFjwHdRtB23AW8mQrBwayQ62ImU
-         YXNA==
-X-Gm-Message-State: AC+VfDwARxDjfCXKiHHwLgX84NEP4vSfhC8RUadwzz81X9R2hNB9zJUG
-        KhKvbdG6i2t9UlN+wy73xw==
-X-Google-Smtp-Source: ACHHUZ68E0V6jIRjSy2wh4tmUQtFk1OPqANyFaBsAC3f1lK9fAcvLfnZ2Yb+yr9jd5qlQIhh7Sju9w==
-X-Received: by 2002:a5d:9544:0:b0:775:8241:724a with SMTP id a4-20020a5d9544000000b007758241724amr1726719ios.16.1686047247601;
-        Tue, 06 Jun 2023 03:27:27 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id o22-20020a02c6b6000000b00408df9534c9sm2670058jan.130.2023.06.06.03.27.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 03:27:26 -0700 (PDT)
-Received: (nullmailer pid 411520 invoked by uid 1000);
-        Tue, 06 Jun 2023 10:27:24 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S236621AbjFFK2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:28:20 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6B0DE67;
+        Tue,  6 Jun 2023 03:28:18 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686047297;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=MbOwpIPwd7ecKKCdWUaXxk1gMTlweGrlfTRorHHoufY=;
+        b=m24Uwt3PtvDcGDw8hY4xSFXyyh9gm3u4OIwNTmSu/dQoeVeBZ1MnVppSZrBMqIu/M6yDvi
+        U0fjurhQl/AJJaHAvrsolInpAAiTznZ+r3yK2X+qGbjRmvpFovpbZHWvAcbwuV1u8qA+ET
+        BMlT3V3eMQUQBTpUFvPQZ/AVVi8wxLW+ivwAcGF/hnJWZAubBn1C6lrBjyQlsmFatjC2WX
+        I+PRH3eDvRdV+/YwbBujtndbU44UxDW4Xwq9facrRSbE99ZmyobpLNuEA0Z+GhTg4w93LJ
+        C8+yL84A+unRUTSzDoqitydxRaCWKtoJLReE5CBZZ3TV/QP9RPCgn1abnTsYpQ==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0CD9140003;
+        Tue,  6 Jun 2023 10:28:13 +0000 (UTC)
+Date:   Tue, 6 Jun 2023 12:28:12 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "richard@nod.at" <richard@nod.at>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "conor@kernel.org" <conor@kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "enachman@marvell.com" <enachman@marvell.com>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML
+ DT scheme
+Message-ID: <20230606122812.411b223a@xps-13>
+In-Reply-To: <845924ba-d9bf-d0ec-e1f2-f721366f43c0@linaro.org>
+References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
+        <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
+        <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
+        <785368df-1881-e62e-6172-d902cee814a8@alliedtelesis.co.nz>
+        <eaf9d7cf-c9f5-a5d5-67af-c43761c3c6cf@linaro.org>
+        <4ea0b16e-0cec-00db-c598-e0364a7edef8@alliedtelesis.co.nz>
+        <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
+        <20230606094855.1ab005eb@xps-13>
+        <845924ba-d9bf-d0ec-e1f2-f721366f43c0@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     andrew@aj.id.au, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-doc@vger.kernel.org,
-        u.kleine-koenig@pengutronix.de, linux-aspeed@lists.ozlabs.org,
-        lee@kernel.org, linux-pwm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jdelvare@suse.com,
-        linux-hwmon@vger.kernel.org, p.zabel@pengutronix.de,
-        joel@jms.id.au, patrick@stwcx.xyz, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, linux@roeck-us.net, corbet@lwn.net,
-        thierry.reding@gmail.com
-In-Reply-To: <20230606094535.5388-4-billy_tsai@aspeedtech.com>
-References: <20230606094535.5388-1-billy_tsai@aspeedtech.com>
- <20230606094535.5388-4-billy_tsai@aspeedtech.com>
-Message-Id: <168604724448.411496.12229634069665354962.robh@kernel.org>
-Subject: Re: [v5 3/5] dt-bindings: mfd: Add aspeed pwm-tach binding
-Date:   Tue, 06 Jun 2023 04:27:24 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,49 +94,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
-On Tue, 06 Jun 2023 17:45:33 +0800, Billy Tsai wrote:
-> Add device binding for aspeed pwm-tach device which is a multi-function
-> device include pwm and tach function.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> 
-> ---
->  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
-> 
+krzysztof.kozlowski@linaro.org wrote on Tue, 6 Jun 2023 10:44:34 +0200:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> On 06/06/2023 09:48, Miquel Raynal wrote:
+> >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it (other=
+wise it is harmless).
+> >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.=
+yaml#/definitions/flag
+> >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 deprecated: true
+> >>>>>>> +
+> >>>>>>> +=C2=A0=C2=A0=C2=A0 additionalProperties: false   =20
+> >>>>>> unevaluatedProperties: false   =20
+> >>>>> It was hiding by '"^nand@[0-3]$":'. Should I move it here?   =20
+> >>>> You cannot have both additionalProps and unevaluatedProps at the same
+> >>>> time, so we do not talk about same thing or this was never working? =
+  =20
+> >>>
+> >>> Hmm, I'm a little confused then. At various times I've been told to=20
+> >>> put 'additionalProperties: false' or 'unevaluatedProperties: false'=20
+> >>> (although never at the same time). I'm not sure when to use one or th=
+e=20
+> >>> other.
+> >>>
+> >>> From what I've been able to glean 'additionalProperties: true'=20
+> >>> indicates that the node is expected to have child nodes defined in a=
+=20
+> >>> different schema so I would have thought 'additionalProperties: false=
+'=20
+> >>> would be appropriate for a schema covering a leaf node.=20
+> >>> 'unevaluatedProperties: false' seems to enable stricter checking whic=
+h=20
+> >>> makes sense when all the properties are described in the schema.   =20
+> >>
+> >> So I think this might be the problem. If I look at qcom,nandc.yaml or=
+=20
+> >> ingenic,nand.yaml which both have a partitions property in their=20
+> >> example. Neither have 'unevaluatedProperties: false' on the nand@...=20
+> >> subnode. If I add it sure enough I start getting complaints about the=
+=20
+> >> 'partitions' node being unexpected. =20
+> >=20
+> > Sorry if that was unclear, I think the whole logic around the yaml
+> > files is to progressively constrain the descriptions, schema after
+> > schema. IOW, in the marvell binding you should set
+> > unevaluatedProperties: false for the NAND controller. What is inside
+> > (NAND chips, partition container, partition parsers, "mtd" properties,
+> > etc) will be handled by other files. Of course you can constrain a bit
+> > what can/cannot be used inside these subnodes, but I think you don't
+> > need to set unevaluatedProperties in these subnodes (the NAND chip in
+> > this case, or even the partitions) because you already reference
+> > nand-controller.yaml which references nand-chip.yaml, mtd.yaml,
+> > partitions.yaml, etc. *they* will make the generic checks and hopefully
+> > apply stricter checks, when deemed relevant. =20
+>=20
+> No, neither nand-controller.yaml nor nand-chip.yaml limit the properties
+> in this context, so each device schema must have unevaluatedProperties:
+> false, for which I asked few emails ago.
 
-yamllint warnings/errors:
+The controller description shall be guarded by unevaluatedProperties:
+false, we agree. Do you mean the nand chip description in each nand
+controller binding should also include it at its own level? Because
+that is not what we enforced so far IIRC. I am totally fine doing so
+starting from now on if this is a new requirement (which makes sense).
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dts:37.15-28: Warning (reg_format): /example-0/pwm-tach@1e610000/tach/fan@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dts:36.19-38.15: Warning (avoid_default_addr_size): /example-0/pwm-tach@1e610000/tach/fan@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dts:36.19-38.15: Warning (avoid_default_addr_size): /example-0/pwm-tach@1e610000/tach/fan@0: Relying on default #size-cells value
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+If yes, then it means we would need to list *all* the nand
+chip properties in each schema, which clearly involves a lot of
+duplication as you would need to define all types of partitions,
+partition parsers, generic properties, etc in order for the examples to
+pass all the checks. Only the properties like pinctrl-* would not need
+to be listed I guess.
 
-doc reference errors (make refcheckdocs):
+As Chris was having issues comparing his work with the ingenic and qcom
+yaml files, I gave your input a try and hopefully "fixed" these
+bindings. I'll Cc Chris on the submission so that he has an example of
+working -but maybe not fully valid, let's see- binding to take as
+example.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230606094535.5388-4-billy_tsai@aspeedtech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks,
+Miqu=C3=A8l
