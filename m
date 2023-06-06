@@ -2,85 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF3D2723ECA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86890723ED8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232371AbjFFKBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 06:01:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60636 "EHLO
+        id S236080AbjFFKDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 06:03:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232131AbjFFKBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:01:48 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3523E10D9
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 03:01:45 -0700 (PDT)
+        with ESMTP id S236271AbjFFKDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:03:44 -0400
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65EC3E6B
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 03:03:43 -0700 (PDT)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:a3e8:6562:a823:d832])
-        by albert.telenet-ops.be with bizsmtp
-        id 5m1j2A00L1Tjf1k06m1jxG; Tue, 06 Jun 2023 12:01:44 +0200
+        by xavier.telenet-ops.be with bizsmtp
+        id 5m3h2A0011Tjf1k01m3hbX; Tue, 06 Jun 2023 12:03:41 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtp (Exim 4.95)
         (envelope-from <geert@linux-m68k.org>)
-        id 1q6TVC-005IKf-UG;
-        Tue, 06 Jun 2023 12:01:43 +0200
+        id 1q6TX6-005Jhm-3M;
+        Tue, 06 Jun 2023 12:03:40 +0200
 Received: from geert by rox.of.borg with local (Exim 4.95)
         (envelope-from <geert@linux-m68k.org>)
-        id 1q6TVX-00Bh5i-NE;
-        Tue, 06 Jun 2023 12:01:43 +0200
+        id 1q6TXQ-00Bjv3-ST;
+        Tue, 06 Jun 2023 12:03:40 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexander Stein <linux@ew.tq-group.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: gpio: gpio-delay: Spelling s/curcuit/circuit/
-Date:   Tue,  6 Jun 2023 12:01:40 +0200
-Message-Id: <ab68df6b056a3b381d1d53cf1502e814812c4f96.1686045675.git.geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: iio: afe: voltage-divider: Spelling s/curcuit/circuit/
+Date:   Tue,  6 Jun 2023 12:03:39 +0200
+Message-Id: <a8597e54b55dedc51025fe3073d25ef0d659d0dc.1686045793.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix misspellings of "circuit".
+Fix a misspelling of "circuit".
 
-Fixes: c7239a3da1628767 ("dt-bindings: gpio: Add gpio-delay binding document")
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- Documentation/devicetree/bindings/gpio/gpio-delay.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-index 7c16a4e1a768ef72..1cebc4058e272660 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-@@ -11,7 +11,7 @@ maintainers:
+diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+index df2589f214e18b50..dddf97b50549f001 100644
+--- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
++++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+@@ -13,7 +13,7 @@ description: |
+   When an io-channel measures the midpoint of a voltage divider, the
+   interesting voltage is often the voltage over the full resistance
+   of the divider. This binding describes the voltage divider in such
+-  a curcuit.
++  a circuit.
  
- description: |
-   This binding describes an electrical setup where setting an GPIO output
--  is delayed by some external setup, e.g. RC curcuit.
-+  is delayed by some external setup, e.g. RC circuit.
- 
-   +----------+                    +-----------+
-   |          |             VCC_B  |           |
-@@ -30,7 +30,7 @@ description: |
-                            GND
- 
-   If the input on the consumer is controlled by an open-drain signal
--  attached to an RC curcuit the ramp-up delay is not under control
-+  attached to an RC circuit the ramp-up delay is not under control
-   of the GPIO controller.
- 
- properties:
+     Vin ----.
+             |
 -- 
 2.34.1
 
