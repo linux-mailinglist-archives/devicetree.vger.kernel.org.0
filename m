@@ -2,123 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D1A5724BC9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B633724BE3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237689AbjFFSwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:52:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60460 "EHLO
+        id S233955AbjFFSzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:55:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239093AbjFFSwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:52:09 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF081702
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:52:07 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-777a78739ccso148510239f.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 11:52:07 -0700 (PDT)
+        with ESMTP id S237163AbjFFSzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:55:40 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D91EA
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:55:38 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-30d5931d17aso3080150f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 11:55:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686077736; x=1688669736;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WF84323liifZi1X4RPGsffn6FGJtYs7l55Hl/A+Mj44=;
+        b=JAOB0+kh1vSX3idIL/rmdxFvoBbODqG5NOuctGiVfsDv054ZAxp2vZ7/fO/UzOWbLr
+         kff7kWXFbDZph9g4kGpjeZ5v7xJ19kkYhGw/U7q98tZZz48rujZ2G5mzufn7OZxo2gwp
+         o3+oKFzKJxs9rGKdQ0htR33AYx6u7oc8jrC9+iyyX3t7k+XERPGsQ7lUsoYHg8lTAIhD
+         +FzM/AmenlzKWgZ0DYUOT5ihe7QhgNfnBTbfh8gRayHGWhJjPByclj3vBF4ZV743NCOP
+         duAp2zdi0Efa4XuTUCDZTla6AiwJu2vXBNpm77yJpiOlUivsbKlytz9uLggqAZXqR+3s
+         PCAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686077526; x=1688669526;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mbTz3L0KOieu2PiZ8/3f4rcShzBA+Lhe0vv5LvOZlFQ=;
-        b=ZZG+jfcX+d26gsQkoNdlsf0aq2a9QJPaE0x6CrjTaGc/4NXO1JY5aV5DvcP28kFiTP
-         vYAkxv9gCYKZoDCCDnLyei9MVAGykJRu4svBQm66VXrGli+bG55SCKDwsPnbQYOhwsEM
-         6cxQ6Apt26YLk7nU3o6SSo0pXhCbqv0l0QRb7qVUokqtE8j6z9tF381/IxkhHjCNyzDw
-         lUDARog06Sz8TYg+m21yv2rQmK1+GoYxGcc++91++mq3cpH8G7GWbdUWspgY8UPBOF1D
-         qX/aLJPWNxsUZa8koT3cHtYgymorwA7MVMNrhLQM+2t9iZnCMPHsSyf/jN4E68Fk4+zq
-         F2zg==
-X-Gm-Message-State: AC+VfDz90AGZzUQzbW9jBCNmQxLC5RAkYVTq8sTK21PwpmQWsDPtGplB
-        Z3+erQ5Xut99LK3MsWeRCw==
-X-Google-Smtp-Source: ACHHUZ5Sq/LO+6kNTTuEb8BcXJe7Qx8KdEQpo/fTTTmeNTLsvky/8jqy90OxORpqg+yw44P6jflFTg==
-X-Received: by 2002:a05:6602:1859:b0:766:48cf:6ca9 with SMTP id d25-20020a056602185900b0076648cf6ca9mr4506499ioi.12.1686077526284;
-        Tue, 06 Jun 2023 11:52:06 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id t2-20020a05663801e200b0041643b78cbesm3045952jaq.120.2023.06.06.11.52.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 11:52:05 -0700 (PDT)
-Received: (nullmailer pid 1468451 invoked by uid 1000);
-        Tue, 06 Jun 2023 18:52:00 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1686077736; x=1688669736;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WF84323liifZi1X4RPGsffn6FGJtYs7l55Hl/A+Mj44=;
+        b=Jf87FjL2ME+ndyerEqWPd9HRVsGiKjXeDT17jl/3/Ojfn9jW3Yt0sXKw0BgIwlhyXV
+         VpGd/xUHLpHCUp2iqqKXtAeercKp+rdLebETtb3+xR5+PeUaPTIF81rcBsmUqn7H36eV
+         MXcNlhtbR88IhEJE3GRJ71c0M7in/scG0ZdvyWsdgfHEb6mnyaWUwEtXRf7k4XSBFjbj
+         VjT7sHTgBxsU9LES1bVYwryh84HcIgUdusACSlzNgTxwiujsXqYFWqGkIua2U43qWMWJ
+         v1jumpwKHdCHge+EJJsOppujSBEKIpZ0MGE8d5jDmcI24C8kQukZvldD2Rr0N7oqsWOo
+         Nt8w==
+X-Gm-Message-State: AC+VfDxiX9qSrmdyhnX61ACTVmQJBo65IwBrduRulPADINr9Lk4wrruJ
+        lQG7QrvSPLDK7mSgquP2vuax/g==
+X-Google-Smtp-Source: ACHHUZ7VduePN/2ZpGfRhK0O16LzqsCyivVAEc2VSdGTMLYkolaWsUhsc23qiWuit4FOcR7ohBiYAA==
+X-Received: by 2002:a5d:56c4:0:b0:30a:bdfd:5c3c with SMTP id m4-20020a5d56c4000000b0030abdfd5c3cmr2392137wrw.17.1686077736430;
+        Tue, 06 Jun 2023 11:55:36 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4973:1165:b171:fa69? ([2a01:e0a:982:cbb0:4973:1165:b171:fa69])
+        by smtp.gmail.com with ESMTPSA id z6-20020a1c4c06000000b003f42ceb3bf4sm15015265wmf.32.2023.06.06.11.55.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 11:55:36 -0700 (PDT)
+Message-ID: <665c9aa5-ef70-65ce-7d9c-4b3b93874934@linaro.org>
+Date:   Tue, 6 Jun 2023 20:55:35 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
-        linux-mtd@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>
-In-Reply-To: <20230606175246.190465-16-miquel.raynal@bootlin.com>
-References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
- <20230606175246.190465-16-miquel.raynal@bootlin.com>
-Message-Id: <168607751913.1468392.4718392727141734461.robh@kernel.org>
-Subject: Re: [PATCH v2 15/17] dt-bindings: mtd: mediatek: Reference
- raw-nand-chip.yaml
-Date:   Tue, 06 Jun 2023 12:52:00 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Content-Language: en-US
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Hans de Goede <hdegoede@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org>
+ <f5f20de8-851a-fe20-4664-62b6de14ebd7@redhat.com>
+ <2677ae8c-59d3-b658-dc3f-918838ac0fb6@linaro.org>
+ <ZH9+ndrF0RIgFhnI@google.com>
+Organization: Linaro Developer Services
+Subject: Re: [PATCH RFC 0/4] input: touchscreen: add initial support for
+ Goodix Berlin touchscreen IC
+In-Reply-To: <ZH9+ndrF0RIgFhnI@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Dmitry,
 
-On Tue, 06 Jun 2023 19:52:44 +0200, Miquel Raynal wrote:
-> The mediatek NAND controller should reference the new raw-nand-chip.yaml
-> binding instead of the original nand-chip.yaml which does not contain
-> *all* the properties that may be used to fully describe the NAND
-> devices, certain properties being actually described under
-> nand-controller.yaml.
+On 06/06/2023 20:44, Dmitry Torokhov wrote:
+> On Tue, Jun 06, 2023 at 08:12:04PM +0200, Neil Armstrong wrote:
+>> Hi,
+>>
+>> On 06/06/2023 17:31, Hans de Goede wrote:
+>>> Hi Neil,
+>>>
+>>> On 6/6/23 16:31, Neil Armstrong wrote:
+>>>> These touchscreen ICs support SPI, I2C and I3C interface, up to
+>>>> 10 finger touch, stylus and gestures events.
+>>>>
+>>>> This initial driver is derived from the Goodix goodix_ts_berlin
+>>>> available at [1] and [2] and only supports the GT9916 IC
+>>>> present on the Qualcomm SM8550 MTP & QRD touch panel.
+>>>>
+>>>> The current implementation only supports BerlinD, aka GT9916.
+>>>>
+>>>> Support for advanced features like:
+>>>> - Firmware & config update
+>>>> - Stylus events
+>>>> - Gestures events
+>>>> - Previous revisions support (BerlinA or BerlinB)
+>>>> is not included in current version.
+>>>>
+>>>> The current support will work with currently flashed firmware
+>>>> and config, and bail out if firmware or config aren't flashed yet.
+>>>
+>>> What I'm missing here / in the commit msg of
+>>> "input: touchscreen: add core support for Goodix Berlin Touchscreen IC"
+>>>
+>>> is an explanation why this is a new driver instead of adding
+>>> support to the existing goodix.c code.
+>>>
+>>> I assume you have good reasons for this, but it would be good
+>>> if you can write the reasons for this down.
+>>
+>> Sure, should I write it down here and/or update the commit message in a new revision ?
+>>
+>> Anyway, here's the reasons:
+>> - globally the event handling "looks like" the current goodix.c, but again the offsets
+>> are again different and none of the register address are the same, and unlike the current
+>> support all registers are provided by the "ic_info" structure
+>> - while with the current code it *could* be possible to merge it, with a lot of changes,
+>> the firmware management looks really different, and it would be really hard to merge.
+>>
+>> But I may be wrong, and may be misleaded by the goodix driver structure (even if it
+>> went through a really heavy cleaning process).
+>>
+>> Globally it seems they tried to match the "event handling" process of the previous
+>> generations, but the firmware interface is completely different.
 > 
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Cc: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> It is not unprecedented for drivers to share event processing and
+> implement several ways/generations of firmware update mechanisms.
+
+Thanks for your reply, I'm perfectly aware of that, this is why I posted
+this as RFC.
+
+If the event handling is vaguely similar, I'm not sure it's worth refactoring the
+current driver since I do not have the old and current IC datasheet nor
+HW to check for current support non-regression.
+
+What I'm sure is that not a single register address, flag or struct is even close
+to the current upstream defined ones.
+
+Neil
+
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/mtd/raw-nand-chip.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.example.dtb: nand-controller@1100d000: nand@0: False schema does not allow {'reg': [[0]], 'nand-on-flash-bbt': True, 'nand-ecc-mode': ['hw'], 'nand-ecc-step-size': [[1024]], 'nand-ecc-strength': [[24]], 'partitions': {'compatible': ['fixed-partitions'], '#address-cells': [[1]], '#size-cells': [[1]], 'preloader@0': {'label': ['pl'], 'read-only': True, 'reg': [[0, 4194304]]}, 'android@400000': {'label': ['android'], 'reg': [[4194304, 314572800]]}}}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.example.dtb: nand-controller@1100d000: nand@0: Unevaluated properties are not allowed ('nand-ecc-step-size', 'nand-ecc-strength', 'partitions' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230606175246.190465-16-miquel.raynal@bootlin.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> Thanks.
+> 
 
