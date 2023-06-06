@@ -2,159 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13ED772409B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:14:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C96D47240AE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:17:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232637AbjFFLO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 07:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47414 "EHLO
+        id S232798AbjFFLRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 07:17:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232926AbjFFLOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:14:25 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A59C5E40
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 04:14:23 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-970056276acso884678666b.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 04:14:23 -0700 (PDT)
+        with ESMTP id S230451AbjFFLRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:17:43 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D6E9E
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 04:17:42 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-973f78329e3so947261266b.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 04:17:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686050062; x=1688642062;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1686050260; x=1688642260;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lZSmA8DY0eTLKSTs9zFUI42k53ST/DbB3g3jLk/VVH4=;
-        b=rCaOS62Yrkxmzf8yxhctHVMGqbGEnvBbPAPUum2pPYYLMqQ16bKL7AcLgocA1/0Lec
-         jcBSGmJ/YMduP30NT0m33MVzOgohuUQxM22FbiVRT5+KBSqpeZb01zlIiD3amv5cewKF
-         HNo+uOfiN1lOJjmKumu1r2ABFRFtTazGXI2OuBTMl+vMoUPy18+pcQaQqlJIqc21no4D
-         /mdFcxLbSIpqfM5gL7K9RQn+KNyU5KP6wBOdpgTwtAbx+P1IETZi341c4Vortt5X5Y5O
-         mcNJu2XF/X1JpLT+dzDDJ997Db+0z1jgnPOQMrsTh1CVNRugZGQf4L7oxpcDky4jH8iI
-         3jtw==
+        bh=puWSxyEb8/Kw716+h9Vpnt9V9aCiUnXQS7Vne/6ny8Y=;
+        b=rG6XJSNeW3aZCKyvUVceGTviLzac47fRGA/d2aezsBh3Qj9NGoPf2r4gUiZZNJYgc6
+         A3zm1hUz33nzNFwFVpE+JoKF2Cn3JaJot1o+jrQiyZcuYbs+AmBWwwpVN4KCl9hHrSQs
+         myr/Yl9QL5l5zNNM7gw4fccsvlW7BTo11y2YXfYq7Bvt8540RkRdnkRw00H9w4OV5UoV
+         o76SZUG+NgdKKMwmAvtJO6+rBTRaYu8wozhDnsA3TL1c/hWEtA3Uo6V9bGvDe/IOJUo/
+         RPvrLUoppR+UoaMt+LEsALwafN9v/USiJrhQiS309nK7LhoIu1C0p7vZzkcUy6lF9ply
+         BSRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686050062; x=1688642062;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20221208; t=1686050260; x=1688642260;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lZSmA8DY0eTLKSTs9zFUI42k53ST/DbB3g3jLk/VVH4=;
-        b=UP0+QXAwq4CcHy7dYZZxCD0FHvgMWRIf714UosdqeN01CpiEySCIzLQJTslrOxMxSk
-         UmUIEC6W8o2wRrRBx0+XE6bi///gBvrl5G5IVrTVXSHfC4RSTPi+9dUA5pJTd6u+4LPY
-         JL7cMuaAnWoqLVt0dZfQM23xzxDIq2wX2UHCUalfoklfM3p2P+mC9n0gi+QGrKYnvWSO
-         /0FAczAggXnSDN+nerXJ5xfT0BFNuP+/dtsblX8n39DTrbXYO3k156pbef9nfzoFmQ21
-         k/u4a0HGlTYx12TLqa/JsQXBCTNQzTs9XpJBGdzITqMujix/W6Y057q3bR0fUI1JNqGE
-         gNBw==
-X-Gm-Message-State: AC+VfDxmqxrxN8/5wGW+rZqf6SzeWr9ji+O0+ZQ6jkSzRztdQ6R/j+3U
-        TmIPL4hpqBLjewTbgGA3JNKYYw==
-X-Google-Smtp-Source: ACHHUZ7Te2mWiSqGZNgHvL+5bOOq01EPLyHtb7WGfPbOM1p4qruYTL10yBMBpLJ3aF5t8VoUPsjUQQ==
-X-Received: by 2002:a17:907:3f8f:b0:969:f54c:dee2 with SMTP id hr15-20020a1709073f8f00b00969f54cdee2mr2171446ejc.26.1686050062111;
-        Tue, 06 Jun 2023 04:14:22 -0700 (PDT)
+        bh=puWSxyEb8/Kw716+h9Vpnt9V9aCiUnXQS7Vne/6ny8Y=;
+        b=B+n/ON1GROaUMHzdrzsQXagQ6XGaHtD0ANHlg0LUrXnlv/6ePISgfOKFMz4bRExSbM
+         74eQmkPoivEWTPm9Ei/noxzqrzbhud15FMNmf9lk/EyX3jPNmTyNdVG/H0dFWeuxw/2Z
+         RqNBdK3OL9C50HaeUJ8yK9FptoIeolKwh0JV62BrChKXOBfdO2EdprbuwYEXThm3wCUn
+         JXxjaoOjZvxFO6jRM7FiLhdB4F2lTVzXD3f0fHCfGn9lSCzGlSQalmtc7xVX+i9Y16ac
+         7qfpqLkeS1K44CQAl5mHdvjHOboMkSo2xKx50c6LCfvmDR8733raFPPvpycbdv6Se6p4
+         ADmw==
+X-Gm-Message-State: AC+VfDxg1oltObqPFTw0wCo9Z2Beu/3DnEWIYtMutfZ8ty99SnBusWHG
+        JYKPSESPmrma79yskWnmByfLog==
+X-Google-Smtp-Source: ACHHUZ5i7YgYO/xWZPq9YEpkGCBLgexJR2WSHXqHVhEbLQmTBSNPTCghveNnHHv5JmJLxeIAAa1g0w==
+X-Received: by 2002:a17:907:6eaa:b0:94a:5819:5a2b with SMTP id sh42-20020a1709076eaa00b0094a58195a2bmr2706639ejc.33.1686050257590;
+        Tue, 06 Jun 2023 04:17:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id o18-20020a170906601200b0096f71ace804sm5463236ejj.99.2023.06.06.04.14.20
+        by smtp.gmail.com with ESMTPSA id sa25-20020a170906edb900b00965f98eefc1sm5342726ejb.116.2023.06.06.04.17.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 04:14:21 -0700 (PDT)
-Message-ID: <49a33caf-e310-fcfb-7786-6731dcc747f5@linaro.org>
-Date:   Tue, 6 Jun 2023 13:14:19 +0200
+        Tue, 06 Jun 2023 04:17:37 -0700 (PDT)
+Message-ID: <1285e0d8-17ee-cb40-f188-31bd815b8054@linaro.org>
+Date:   Tue, 6 Jun 2023 13:17:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
- scheme
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-delay: Spelling
+ s/curcuit/circuit/
 Content-Language: en-US
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexander Stein <linux@ew.tq-group.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+References: <ab68df6b056a3b381d1d53cf1502e814812c4f96.1686045675.git.geert+renesas@glider.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "conor@kernel.org" <conor@kernel.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "enachman@marvell.com" <enachman@marvell.com>,
-        Vadym Kochan <vadym.kochan@plvision.eu>
-References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
- <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
- <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
- <785368df-1881-e62e-6172-d902cee814a8@alliedtelesis.co.nz>
- <eaf9d7cf-c9f5-a5d5-67af-c43761c3c6cf@linaro.org>
- <4ea0b16e-0cec-00db-c598-e0364a7edef8@alliedtelesis.co.nz>
- <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
- <20230606094855.1ab005eb@xps-13>
- <845924ba-d9bf-d0ec-e1f2-f721366f43c0@linaro.org>
- <20230606122812.411b223a@xps-13>
- <e0d14527-8147-5e8b-6a43-ee043e0d0f8b@linaro.org>
- <d0b2cdc5-12fd-9a19-b38c-0653b4147c2b@linaro.org>
- <20230606125724.126a4685@xps-13> <20230606130719.5350174c@xps-13>
- <037f5455-35c1-e13d-814c-16317a2a15f3@linaro.org>
-In-Reply-To: <037f5455-35c1-e13d-814c-16317a2a15f3@linaro.org>
+In-Reply-To: <ab68df6b056a3b381d1d53cf1502e814812c4f96.1686045675.git.geert+renesas@glider.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 13:11, Krzysztof Kozlowski wrote:
->>> If yes, please ignore the series sent aside, I will work on it again
->>> and send a v2.
->>
->> Actually I already see a problem, let's the ingenic,nand.yaml example.
->> The goal, IIUC, is to do:
->>
->>  patternProperties:
->>    "^nand@[a-f0-9]$":
->>      type: object
->> +    $ref: nand-chip.yaml
->>      properties:
->>
->>        ...
->>
->> +    unevaluatedProperties: false
->>
->> The example in this file uses a property, nand-on-flash-bbt, which is
->> described inside nand-controller.yaml instead of nand-chip.yaml.
->> Indeed, the former actually describes many properties which are a bit
->> more controller related than chip related. With the above description,
->> the example fails because nand-on-flash-bbt is not allowed (it is not
->> listed in nand-chip.yaml).
->>
->> How would you proceed in this case?
->>
->> Maybe I could move all the NAND chip properties which are somehow
->> related to NAND controllers (and defined in nand-controller.yaml) in a
->> dedicated file and reference it from nand-chip.yaml? Any other idea is
->> welcome.
+On 06/06/2023 12:01, Geert Uytterhoeven wrote:
+> Fix misspellings of "circuit".
 > 
-> Yes, this would work and seems reasonable. 
-
-Actually, since nand-chip is used by both SPI and NAND, then I think
-better would be to create separate file - nand-only-chip.yaml (name to
-be discussed):
-
-nand-controller.yaml:
-  "^nand@[a-f0-9]$":
-    $ref: nand-only-chip.yaml
-
-nand-only-chip.yaml:
-  $ref: nand-chip.yaml
-  all nand-controller-chip properties follow
+> Fixes: c7239a3da1628767 ("dt-bindings: gpio: Add gpio-delay binding document")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 
-
-> Other way could be to add
-> unevaluatedProperties:false on this level (so after ref:nand-chip.yaml)
-> in nand-controller.yaml. This however would not allow any new properties
-> to be defined in device bindings.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
