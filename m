@@ -2,117 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 137BC7241A9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 14:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5212F7241BC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 14:10:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232989AbjFFMHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 08:07:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
+        id S235566AbjFFMKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 08:10:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232984AbjFFMHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 08:07:52 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D16AE78
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 05:07:46 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1q6VTI-0006uM-0P; Tue, 06 Jun 2023 14:07:32 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1q6VTG-0003Qv-HJ; Tue, 06 Jun 2023 14:07:30 +0200
-Date:   Tue, 6 Jun 2023 14:07:30 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Markus Niebel <Markus.Niebel@tq-group.com>,
-        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 1/3] dt-bindings: arm: add TQMa8Xx boards
-Message-ID: <20230606120730.6exdpylr24qn6hdw@pengutronix.de>
-References: <20230606112108.685885-1-alexander.stein@ew.tq-group.com>
- <20230606112108.685885-2-alexander.stein@ew.tq-group.com>
+        with ESMTP id S237347AbjFFMKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 08:10:34 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844DD10D3;
+        Tue,  6 Jun 2023 05:10:14 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356CA0Ho089369;
+        Tue, 6 Jun 2023 07:10:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686053400;
+        bh=S4YNGDBdV23hnWy0uTndF8WiempTRHZpHbLE2gBg+W4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=x98FWjLPJXTsPF5c5rggFAypgw+IPyNOEwsrjMtm7mYF/MBkiXMKJivWtoSRYx34l
+         k+K84IwjnwApflxxqOkMN8qcFN9ZFrHMJN2GLKvVX5gJer040THsDa0hWjkBnANR9P
+         tW5zk3jXxQgjuhKSESMhRwKvBXYJ8KtQql3oHSCQ=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356CA0Xi058293
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Jun 2023 07:10:00 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 07:09:59 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Jun 2023 07:09:59 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356C9xHu001052;
+        Tue, 6 Jun 2023 07:09:59 -0500
+Date:   Tue, 6 Jun 2023 07:09:59 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Udit Kumar <u-kumar1@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <conor+dt@kernel.org>, <m-chawdhry@ti.com>, <n-francis@ti.com>
+Subject: Re: [PATCH v3 5/5] arm64: dts: ti: k3-j7200-common-proc-board: Add
+ uart pin mux in wkup_pmx0
+Message-ID: <20230606120959.r4pnxuigknl7qkjr@outpour>
+References: <20230604045525.1889083-1-u-kumar1@ti.com>
+ <20230604045525.1889083-6-u-kumar1@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230606112108.685885-2-alexander.stein@ew.tq-group.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230604045525.1889083-6-u-kumar1@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
-
-On 23-06-06, Alexander Stein wrote:
-> TQMa8Xx is a SOM series featuring NXP i.MX8X SoC.
-> They are called TQMa8XQP and TQMa8XDP respectively.
-> MBa8Xx is an evaluation mainboard for this SOM
+On 10:25-20230604, Udit Kumar wrote:
+> Add uart pin mux of wkup domain into common board file.
 > 
-> Signed-off-by: Markus Niebel <Markus.Niebel@tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+>  .../dts/ti/k3-j7200-common-proc-board.dts     | 22 ++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 2510eaa8906dd..c4dcdac43bafb 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1195,6 +1195,23 @@ properties:
->            - const: toradex,colibri-imx8x
->            - const: fsl,imx8qxp
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index e12d93f56c51..809d1c910015 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> @@ -79,6 +79,24 @@ vdd_sd_dv: gpio-regulator-TLV71033 {
+>  	};
+>  };
 >  
-> +      - description:
-> +          TQMa8Xx is a series of SOM featuring NXP i.MX8X system-on-chip
-> +          variants. It is designed to be clicked on different carrier boards
-> +          MBa8Xx is the starterkit
-> +        oneOf:
-> +          - items:
-> +              - enum:
-> +                  - tq,imx8dxp-tqma8xdp-mba8xx # TQ-Systems GmbH TQMa8XDP SOM on MBa8Xx
-> +              - const: tq,imx8dxp-tqma8xdp     # TQ-Systems GmbH TQMa8XDP SOM (with i.MX8DXP)
-> +              - const: fsl,imx8dxp
-> +              - const: fsl,imx8qxp
-				^
-Should be removed? The rest lgtm, so feel free to add my:
-
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-
-Nit: Please check the dts(i) files for C++ comments '//' and replace
-them with '/**/'. There was at least one C++ comment.
-
-Regards,
-  Marco
-
-> +          - items:
-> +              - enum:
-> +                  - tq,imx8qxp-tqma8xqp-mba8xx # TQ-Systems GmbH TQMa8XQP SOM on MBa8Xx
-> +              - const: tq,imx8qxp-tqma8xqp     # TQ-Systems GmbH TQMa8XQP SOM (with i.MX8QXP)
-> +              - const: fsl,imx8qxp
+> +&wkup_pmx0 {
+> +	mcu_uart0_pins_default: mcu_uart0_pins_default {
+> +		pinctrl-single,pins = <
+> +			J721E_WKUP_IOPAD(0xf4, PIN_INPUT, 0) /* (D20) MCU_UART0_RXD */
+> +			J721E_WKUP_IOPAD(0xf0, PIN_OUTPUT, 0) /* (D19) MCU_UART0_TXD */
+> +			J721E_WKUP_IOPAD(0xf8, PIN_INPUT, 0) /* (E20) MCU_UART0_CTSn */
+> +			J721E_WKUP_IOPAD(0xfc, PIN_OUTPUT, 0) /* (E21) MCU_UART0_RTSn */
+> +		>;
+> +	};
 > +
->        - description: i.MX8ULP based Boards
->          items:
->            - enum:
+> +	wkup_uart0_pins_default: wkup_uart0_pins_default {
+
+Could you add the pins to wkup_uart0 node as well?
+
+> +		pinctrl-single,pins = <
+> +			J721E_WKUP_IOPAD(0xb0, PIN_INPUT, 0) /* (B14) WKUP_UART0_RXD */
+> +			J721E_WKUP_IOPAD(0xb4, PIN_OUTPUT, 0) /* (A14) WKUP_UART0_TXD */
+> +		>;
+> +	};
+> +};
+
+We are also missing pinmux for main_uart1 and main_uart2
+
+> +
+>  &wkup_pmx2 {
+>  	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
+>  		pinctrl-single,pins = <
+> @@ -157,7 +175,9 @@ &wkup_uart0 {
+>  
+>  &mcu_uart0 {
+>  	status = "okay";
+> -	/* Default pinmux */
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_uart0_pins_default>;
+> +	clock-frequency = <96000000>;
+>  };
+>  
+>  &main_uart0 {
 > -- 
 > 2.34.1
 > 
-> 
-> 
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
