@@ -2,86 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2745723794
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:23:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3DCC72379E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235090AbjFFGXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 02:23:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
+        id S235297AbjFFG0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 02:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235111AbjFFGXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:23:35 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A5A10C0
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 23:22:28 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-97460240863so687770266b.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 23:22:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686032546; x=1688624546;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=awyPqVAflJ9HW7mRusvVZFjRIMdP5oGweyBZiHENeLc=;
-        b=HREL2QlbSNI55ddaivjqqQYDRAsordq18Ce41nZK8NNcZ0E+Qu0nBM6LjzFjBpOjz1
-         8nc6/233uTZNDMOERCxjsLH4/n7sxno888oZ1x+W3QRY/6RcoYDr590Qju+kfa1EHU/I
-         VGSJcd/umzLBH5Kqg5gd+XcKWzM/4ix6CKLz2Se1IUNDLZ0b4YMmucBI2mhIJIYeHpZy
-         Iyth1qVfMPh/Gq3dTJJ9+ldDPEs3IJSXAUeocQBVhJ78pTj/GKX11zOpvHcPf6GzGD0Q
-         pcd4emFAMIgNxxFMhNSYIHKh03KUpI/wTyo8fpom6B3rsSCzYBWKbS/P/aGv2/8rDVdv
-         EN9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686032546; x=1688624546;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=awyPqVAflJ9HW7mRusvVZFjRIMdP5oGweyBZiHENeLc=;
-        b=aJ1i8YXXTjrvgItedfzloT8wC0nCbXb1ZlKLHnS5SZMb3ZBt2HCcbK92scx09BhDk9
-         7VSi1fnpiUk0w4gh/07WwuWXwECEc0a695x4PjRPb2JIGf1iMCVhW0Mxfb1DH2jHcmtB
-         FZu+TQHIq5PgWIEufsv0KrTOdx+x5tMcHblYDU4VOhOOh7/cAhH9OKQ7F5BlTGOWeljk
-         GAfGxpwAYGUyCcO2PeFnJhoh0iRrz5fLaCxuQ8s8Q9ZQioluxrs8iPe1buLPamwpA0xB
-         AssuYPzH2EueO641up6twFtFy5VQKRS2w9SW40il3dDtGdcQtJ5myfxJBMhDm5w2pUrL
-         CiPg==
-X-Gm-Message-State: AC+VfDw9PYz7jzajql3+xDN2LXfNa/Ka5+xQHQHbcHqBQhl5cpE2aAAR
-        7wVjGIf10afSbpnHI9ER57olTw==
-X-Google-Smtp-Source: ACHHUZ4lQQLCUHb0etGsOAcpL6rQaxYC2rekThP+u2yThClAae5wuLBDKidMXKm5OdkorlU2aQ+dtg==
-X-Received: by 2002:a17:907:97cd:b0:973:d84a:33a4 with SMTP id js13-20020a17090797cd00b00973d84a33a4mr1234857ejc.6.1686032546349;
-        Mon, 05 Jun 2023 23:22:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u23-20020aa7d897000000b0050cc4461fc5sm4622224edq.92.2023.06.05.23.22.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 23:22:25 -0700 (PDT)
-Message-ID: <29b720ab-4b9f-c415-3caa-e4c1b04aa568@linaro.org>
-Date:   Tue, 6 Jun 2023 08:22:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 3/5] dt-bindings: hwmon: hpe,gxp-fanctrl: remove fn2
- and pl regs
-Content-Language: en-US
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        with ESMTP id S235290AbjFFGZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:25:48 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1A61738;
+        Mon,  5 Jun 2023 23:24:31 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3566O1c9116622;
+        Tue, 6 Jun 2023 01:24:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686032641;
+        bh=1oF8jYUUOFXRvok3JCIbs1nq6NypvZAwnqD3d/2He+U=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=g30x9dBF1zC36PjMPwA0ig95TppWAlatcYk4tDbenNbbuWS3jWW4jQ7KTMM7kEj9g
+         V+l4yCgwT8rrQ5YV2dqJF/3ld+/ubIBJf2y+3kWIodN44kBfNYjrc34FvBJo8L7u8Q
+         qdnOTPPspSzjNxvgUTM1U2V/4HoMf4v+nZPL23nU=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3566O1ex060770
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Jun 2023 01:24:01 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 01:24:01 -0500
+Received: from DLEE105.ent.ti.com ([fe80::d8b7:9c27:242c:8236]) by
+ DLEE105.ent.ti.com ([fe80::d8b7:9c27:242c:8236%17]) with mapi id
+ 15.01.2507.023; Tue, 6 Jun 2023 01:24:01 -0500
+From:   "Raja, M Sinthu" <sinthu.raja@ti.com>
+To:     "Menon, Nishanth" <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        "Raghavendra, Vignesh" <vigneshr@ti.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20230531151918.105223-1-nick.hawkins@hpe.com>
- <20230531151918.105223-4-nick.hawkins@hpe.com>
- <d2232369-c7e9-c572-8528-243800f0bc08@linaro.org>
- <DM4PR84MB1927707FA782DC565C22B8A2884DA@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM4PR84MB1927707FA782DC565C22B8A2884DA@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "Kumar, Udit" <u-kumar1@ti.com>, "Yadav, Nitin" <n-yadav@ti.com>,
+        "Francis, Neha" <n-francis@ti.com>
+Subject: Re: [PATCH 4/6] arm64: dts: ti: k3-am68-sk-som: Enable wakeup_i2c0
+ and eeprom
+Thread-Topic: [PATCH 4/6] arm64: dts: ti: k3-am68-sk-som: Enable wakeup_i2c0
+ and eeprom
+Thread-Index: AQHZlWftKL498kU7mk6eWjSIJ3iMGa99U6jD
+Date:   Tue, 6 Jun 2023 06:24:01 +0000
+Message-ID: <3eb70e7f2aed4d7893714c9f5ddc70c1@ti.com>
+References: <20230602153554.1571128-1-nm@ti.com>,<20230602153554.1571128-5-nm@ti.com>
+In-Reply-To: <20230602153554.1571128-5-nm@ti.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.134.136]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,22 +75,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 18:52, Hawkins, Nick wrote:
->>> Remove the fn2 register and pl register references as these memory areas
->>> are now consumed by the GXP GPIO driver. The fan driver now gathers fan
->>> information from GPIO driver.
-> 
->> How is it expressed in bindings? I don't see it.
-> 
-> Greetings Krzysztof,
-> 
-> Thanks for the feedback. Just to confirm: Is this comment referring to the
-> content of the patch description? For the third version I want to make sure
-> I address your concern.
+Nishanth,
 
-The concern was that one of your drivers have clear dependency on other.
-How do you solve probe ordering and dependency?
 
-Best regards,
-Krzysztof
 
+
+From: Menon, Nishanth
+Sent: Friday, June 2, 2023 9:05 PM
+To: Conor Dooley; Krzysztof Kozlowski; Rob Herring; Tero Kristo; Raghavendr=
+a, Vignesh
+Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-ker=
+nel@lists.infradead.org; Menon, Nishanth; Kumar, Udit; Yadav, Nitin; Franci=
+s, Neha; Raja, M Sinthu
+Subject: [PATCH 4/6] arm64: dts: ti: k3-am68-sk-som: Enable wakeup_i2c0 and=
+ eeprom
+=A0  =20
+Enable wakeup_i2c. While at it, describe the board detection eeprom
+present on the board.
+
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+new patch
+
+=A0arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 22 ++++++++++++++++++++++
+=A01 file changed, 22 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/d=
+ts/ti/k3-am68-sk-som.dtsi
+index e92431250729..e2c80fff7478 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+@@ -27,3 +27,25 @@ secure_ddr: optee@9e800000 {
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 };
+=A0=A0=A0=A0=A0=A0=A0=A0 };
+=A0};
++
++&wkup_pmx2 {
++=A0=A0=A0=A0=A0=A0 wkup_i2c0_pins_default: wkup-i2c0-pins-default {
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 pinctrl-single,pins =3D <
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 J721S2_=
+WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (H24) WKUP_I2C0_SCL */
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 J721S2_=
+WKUP_IOPAD(0x09c, PIN_INPUT, 0) /* (H27) WKUP_I2C0_SDA */
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 >;
++=A0=A0=A0=A0=A0=A0 };
++};
++
++&wkup_i2c0 {
++=A0=A0=A0=A0=A0=A0 status =3D "okay";
++=A0=A0=A0=A0=A0=A0 pinctrl-names =3D "default";
++=A0=A0=A0=A0=A0=A0 pinctrl-0 =3D <&wkup_i2c0_pins_default>;
++=A0=A0=A0=A0=A0=A0 clock-frequency =3D <400000>;
++
++=A0=A0=A0=A0=A0=A0 eeprom@51 {
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /* AT24C512C-MAHM-T */
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 compatible =3D "atmel,24c512";
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D <0x51>;
++=A0=A0=A0=A0=A0=A0 };
++};
+
+LGTM
+
+Reviewed-by: Sinthu Raja <sinthu.raja@ti.com>
+
+--=20
+2.40.0
+
+    =
