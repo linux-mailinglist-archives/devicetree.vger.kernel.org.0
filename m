@@ -2,91 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4A07240B2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 911B87240B9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 13:21:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233348AbjFFLSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 07:18:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
+        id S233663AbjFFLVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 07:21:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233097AbjFFLSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:18:10 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F5AB1
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 04:18:08 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5147e8972a1so9028156a12.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 04:18:08 -0700 (PDT)
+        with ESMTP id S233204AbjFFLVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 07:21:17 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C33069E
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 04:21:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686050286; x=1688642286;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EUO2Y7R4sryhFLipqD8QTEW4Squ9pl2T7SF+Sy0Hbbs=;
-        b=IS4GBWkdVOksnu+DcLgSF7UJuWFu2/bP3irnW6SvHw0gNQNGIQKIXDeB2HDvx+4pVs
-         xOz0vYD8Y2/mzYtIWGLeebFQfwv0JgdTlTays6MEaUYhU5+kmHcwrWNJCGyFqKaruZTF
-         +KmfhX8veUV+ylk3tUcZMH39ebPFQFI56Q8MdPEod9wlfpVGL23ew4KgjRnPFGd4SLuE
-         MkYulTvVsxmm/rPqwApl0oAXlBi4+BEPZy7rEGS/aHc8YQb6O0f3flgeI4DoW1u03KwJ
-         sV9q40rIrgUR/lfU4jczwFyll/YpD3MH1fzTRFfarjjCKMxL03U2oDdZXsrHqv2g6SOD
-         824Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686050286; x=1688642286;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EUO2Y7R4sryhFLipqD8QTEW4Squ9pl2T7SF+Sy0Hbbs=;
-        b=Rku2AdTilFEmnQaGYdgYxEiUguoDX39GaMy4DvFf/O9oPn686hqE5fU04lVcPBA5hP
-         PV55kRcdK9XSvVAkTTL3UFD1SB+etA4PNaEQ5Nrmv3ujIKJmwYoMXjUs7aySWaCN69Rz
-         TdEkNRzbwyoeSsKEIa9aZpufbXNKs0mjLdBVCjxA/GkZ+khtTATn0sp6sTFkEoaxeeSe
-         PBFskx4ksjYteYTOqrfJLdvZrZbSlH86hDoD3rHKDR7WgVULy8QQPj1iF2cWKmc4Ek+8
-         CcFsUg2hpSinRNEcxDbySMog2mwBLvQxhKeDe2ex10Fxdb88xOwnWpIvDeKMs/COYykD
-         xbVQ==
-X-Gm-Message-State: AC+VfDxct8QwRJXmOl9AGgD54xo/f3/2lpXQXoKncKfPnmGy1XpAfgqs
-        hj1FR7yHQN5stGny6p+3cl1nZQ==
-X-Google-Smtp-Source: ACHHUZ4lDZd0RSISYwyslBv1IrIlPUzTmBIBeSlbKJLvRvmb1ZB2tAtWNMB8WLORQ6PkhRGDZoHURQ==
-X-Received: by 2002:a17:907:2d92:b0:947:335f:5a0d with SMTP id gt18-20020a1709072d9200b00947335f5a0dmr2136295ejc.62.1686050286633;
-        Tue, 06 Jun 2023 04:18:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id q20-20020a170906a09400b009786ae9ed50sm763390ejy.194.2023.06.06.04.18.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 04:18:06 -0700 (PDT)
-Message-ID: <e4f78311-18af-71f7-463b-a8f7dfe67bbe@linaro.org>
-Date:   Tue, 6 Jun 2023 13:18:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH] dt-bindings: iio: afe: voltage-divider: Spelling
- s/curcuit/circuit/
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Peter Rosin <peda@axentia.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686050476; x=1717586476;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=SOLsS4soTnFlUoExZdkGGL8EWPpDP+dPkPZ+JsGCvDg=;
+  b=SM9f6JsjzaU0jl8Z1WeSUy9/x3k0LyJJ5ZuiMvXBY4MUcCJUv5/JoHcY
+   f2yBjXPTJkiZpirv7D9y7B14cQWUlLZvidcItyIf2VL+7ZFw0WSwl2tWr
+   ltD6IapqTZjUJcVX2NqshDlIbn5WxJi2pS0In6IqPslHESALyOLd/FWn3
+   UYH1Nb+hq//Dt77xhpGB0qZo28MP7+Yw2GjwsfyKn7nkr6xdJY07byabT
+   1gPUw8gwDVKQ7o1ViM61+jNxcCXiXDGE3liJwW1JgvEx9+zASUNq9L24Q
+   iPM1054me6CZz3rUHwC/DQXimeqxacy/REDo6/WZZwOnSwxMWrTGKqw+A
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,221,1681164000"; 
+   d="scan'208";a="31301042"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Jun 2023 13:21:13 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 06 Jun 2023 13:21:14 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 06 Jun 2023 13:21:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686050474; x=1717586474;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=SOLsS4soTnFlUoExZdkGGL8EWPpDP+dPkPZ+JsGCvDg=;
+  b=VRUywzZaWQ+fxqurHoHZ+N+tp8Fx8o4IkBBQG3iltRh0co2wpvrIQv9Q
+   Mef7LgNU3alwyGzVxXhUo4/qAzpnTILGYTq4c3yuYcZPKsEF8xWchPyqK
+   s0NhcF2fnDXCavKTQo7rDZeeBAwoJ7gp7X8LAeqDlwrTn7Ll5nmi+6UKg
+   c0C8Bm7VQ84dZ5lsJH1+r7vyLYiv9TfbTauKkJGmE2BPt76xNrOWmlF2U
+   cLU5kYUSl31Z5gpYWxnLAW1iBXb7Dqnpo9miWZ7Vxp7j1vkv1efiwKaxa
+   wFRf4dLuV9am5l3btJ26VyrqcPt5+zxkV/Yq/QhH3xrXdoSvzGzPYTs0O
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,221,1681164000"; 
+   d="scan'208";a="31301041"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Jun 2023 13:21:13 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8F849280090;
+        Tue,  6 Jun 2023 13:21:13 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <a8597e54b55dedc51025fe3073d25ef0d659d0dc.1686045793.git.geert+renesas@glider.be>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a8597e54b55dedc51025fe3073d25ef0d659d0dc.1686045793.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux@ew.tq-group.com
+Subject: [PATCH 0/3] TQMa8Xx (i.MX8XQP) support
+Date:   Tue,  6 Jun 2023 13:21:05 +0200
+Message-Id: <20230606112108.685885-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 12:03, Geert Uytterhoeven wrote:
-> Fix a misspelling of "circuit".
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Hi,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+this series adds initial support for the TQ TQMa8Xx series, namely
+TQMa8XQP (imx8qxp based).
+This series depends on [1] for the PWM reference.
+The device tree is split into generic mba8xx.dtsi and tqma8xx.dtsi which
+can be used for both imx8qxp and (yet to be written) imx8dxp based
+hardware.
 
 Best regards,
-Krzysztof
+Alexander
+
+[1] https://lore.kernel.org/linux-arm-kernel/20230424082108.26512-1-alexander.stein@ew.tq-group.com/
+
+Alexander Stein (3):
+  dt-bindings: arm: add TQMa8Xx boards
+  arm64: dts: freescale: add initial device tree for TQMa8XQP with
+    i.MX8QXP
+  arm64: defconfig: Enable i.MX8QXP device drivers
+
+ .../devicetree/bindings/arm/fsl.yaml          |  17 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8qxp-tqma8xqp-mba8xx.dts |  16 +
+ .../boot/dts/freescale/imx8qxp-tqma8xqp.dtsi  |  14 +
+ arch/arm64/boot/dts/freescale/mba8xx.dtsi     | 485 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/tqma8xx.dtsi    | 263 ++++++++++
+ arch/arm64/configs/defconfig                  |   4 +
+ 7 files changed, 800 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-tqma8xqp-mba8xx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-tqma8xqp.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/mba8xx.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/tqma8xx.dtsi
+
+-- 
+2.34.1
 
