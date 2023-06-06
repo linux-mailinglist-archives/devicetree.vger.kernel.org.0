@@ -2,45 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7304724AB7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C49CA724ABB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:01:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233711AbjFFSAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54104 "EHLO
+        id S233844AbjFFSB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:01:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233537AbjFFSAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:00:08 -0400
+        with ESMTP id S233537AbjFFSB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:01:27 -0400
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED8ED3
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:00:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8A2D3
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:01:26 -0700 (PDT)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 66DB185BC7;
-        Tue,  6 Jun 2023 20:00:04 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 849A085BC7;
+        Tue,  6 Jun 2023 20:01:24 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1686074405;
-        bh=F5ZNqjEs3oTfsrAMdqCV2n+Sc4o/8z8mTGUPDw5VqgU=;
+        s=phobos-20191101; t=1686074484;
+        bh=ZkrXtW7QXzDGiDCI1hv3GtHU5o9XqNlgPIISeVGTLJY=;
         h=From:To:Cc:Subject:Date:From;
-        b=H12XuWtKt+LOY+ZzWB7JyHe/yLSRGfungMIQF/RrGyTGtj2w8RVnkwt+C0IDb9i/A
-         2phvVb/YqRQWQENBNGZTtrfngwJYwrxCfgIzZiKnpL6LZ6vKwg+KGsG6Si0IVEaf3O
-         +kpK7QEBuo01zHcOSZGLeqnaIrpT64mCTQJmk/Tr986+TRm5YZ71hRnb24KCdT5+AS
-         gw/BVGJFj0WdvH4/qz24q9m4HxiqRmNDy1cNEqaE5VWmZeOAv7/XF7xk/HVfrfgeNt
-         GcZQt9iw12yY8S7BMyP8NJW87uxxgKKi8WLmNYRL0qkroXKJDuLA3jmC2F+AxnIln5
-         wPgyArGVR9Xyg==
+        b=krHPc8w9DpiMpw6oWX2aYaHd+/GhJyHD2uS06pATYZ08fMyH3HJcVToh+FzoHpiGY
+         U2RSdo1l+NUpu4Ay0btWu0G/jp6a9gMhu965H/Y47pQnuNO6KPTyH6n0We3R5vCusU
+         xkWTFE2YU8DeCHHb7hdbumOfmQ2NSZRt0VbfBrOBoGGu8A+ItoM/GFKEbROxCe1oBk
+         GwvTOAHeZ6LpkMqaOncE4YZ0ROvcHQQ+sEgbbIMotqZHVtg9JjpCjCjFRtDAmM+1nm
+         8Cf6XjRGiZ8v6w4WYfvDN3RwXucaSrWjoXb5rUu2Z4a5awFjlZgenkMzxan5iEifpg
+         GNYLnLTGJFelQ==
 From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
+To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
-Subject: [PATCH] ASoC: dt-bindings: audio-graph-card: Expand 'widgets' documentation
-Date:   Tue,  6 Jun 2023 19:59:51 +0200
-Message-Id: <20230606175951.215740-1-marex@denx.de>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        kernel@dh-electronics.com, linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] ARM: dts: stm32: Fix audio routing on STM32MP15xx DHCOM PDK2
+Date:   Tue,  6 Jun 2023 20:01:12 +0200
+Message-Id: <20230606180112.215896-1-marex@denx.de>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -56,38 +57,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the encoding of 'widgets' property to avoid confusion.
+The audio routing flow is not correct, the flow should be from source
+(second element in the pair) to sink (first element in the pair). The
+flow now is from "HP_OUT" to "Playback", where "Playback" is source
+and "HP_OUT" is sink, i.e. the direction is swapped and there is no
+direct link between the two either.
 
+Fill in the correct routing, where "HP_OUT" supplies the "Headphone Jack",
+"Line In Jack" supplies "LINE_IN" input, "Microphone Jack" supplies "MIC_IN"
+input and "Mic Bias" supplies "Microphone Jack".
+
+Fixes: 34e0c7847dcf ("ARM: dts: stm32: Add DH Electronics DHCOM STM32MP1 SoM and PDK2 board")
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Marek Vasut <marex@denx.de>
 Cc: Mark Brown <broonie@kernel.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: alsa-devel@alsa-project.org
 Cc: devicetree@vger.kernel.org
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
 ---
- Documentation/devicetree/bindings/sound/audio-graph.yaml | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/audio-graph.yaml b/Documentation/devicetree/bindings/sound/audio-graph.yaml
-index c87eb91de1593..ed31e04ff6a68 100644
---- a/Documentation/devicetree/bindings/sound/audio-graph.yaml
-+++ b/Documentation/devicetree/bindings/sound/audio-graph.yaml
-@@ -24,7 +24,11 @@ properties:
-       connection's sink, the second being the connection's source.
-     $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-   widgets:
--    description: User specified audio sound widgets.
-+    description: |
-+      User specified audio sound widgets.
-+      Each entry is a pair of strings, the first being the type of
-+      widget ("Microphone", "Line", "Headphone", "Speaker"), the
-+      second being the machine specific name for the widget.
-     $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-   convert-rate:
-     $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-rate
+diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
+index 4709677151aac..46b87a27d8b37 100644
+--- a/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
++++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
+@@ -137,10 +137,13 @@ reg_panel_supply: regulator-panel-supply {
+ 
+ 	sound {
+ 		compatible = "audio-graph-card";
+-		routing =
+-			"MIC_IN", "Capture",
+-			"Capture", "Mic Bias",
+-			"Playback", "HP_OUT";
++		widgets = "Headphone", "Headphone Jack",
++			  "Line", "Line In Jack",
++			  "Microphone", "Microphone Jack";
++		routing = "Headphone Jack", "HP_OUT",
++			  "LINE_IN", "Line In Jack",
++			  "MIC_IN", "Microphone Jack",
++			  "Microphone Jack", "Mic Bias";
+ 		dais = <&sai2a_port &sai2b_port>;
+ 		status = "okay";
+ 	};
 -- 
 2.39.2
 
