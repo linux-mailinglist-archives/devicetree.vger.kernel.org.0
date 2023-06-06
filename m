@@ -2,133 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CC12724B1E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF300724B32
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:23:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238386AbjFFSVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:21:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38492 "EHLO
+        id S232580AbjFFSW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238277AbjFFSVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:21:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47F01707
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 11:21:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3812B62EA6
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 18:21:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97451C4339B;
-        Tue,  6 Jun 2023 18:21:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686075666;
-        bh=ljqurGBoA0H7WQzAb4F6v9Hp/eKC0Sg99g1tREoBxqo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DIfRPazOwePfOs8ItJHcVxQd/JaMVUVirQtozSQPh62uj7KLmHQuAGoTIBmAlrcx3
-         Q4tm8cXhsn3Lg/13OJrXi8SfIcnfgDnLZqMOdCQ3iPCNzpOMDgjdk88hRTN8Z/OYuU
-         +XQZpHcfgvssoVtFQObRWcsfi4zGH+xGM8r2IqpE3aU3HP+DDy1kHK8bQDWtMY56tU
-         bmBnFtUl79QXkorGmYshMMbAmLZ+agt/UBwEv/9T9DwKrZsTIUAOInqq08Myf8yD0O
-         LkgfiZq7ifSbMr8JOV/pMN0XF6lZLt5et+64o+jOxqq7sq7BjQqra3sQEcutkyZD9Y
-         nqGYxztA1u17w==
-Date:   Tue, 6 Jun 2023 19:21:02 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233675AbjFFSWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:22:55 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08EBA1981;
+        Tue,  6 Jun 2023 11:22:38 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356IMNfL019415;
+        Tue, 6 Jun 2023 13:22:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686075743;
+        bh=PJgqz0kh/FBk5jEhPe/SR1hC1VgO9snRF9ReAW7NWIo=;
+        h=From:To:CC:Subject:Date;
+        b=jQE05N87CWxMDPo/rAP0yVkohG93FKY2amapD2cGC2p/cdbz8123zcBM2nMiRRLgQ
+         6di/AMNMvgOl7s9Q45v8jxa2wh6I8O38uQERaL4Tlcz+84Xep1BwO1Iv5jtZ2NooGg
+         P81eoTwmRAOd/XJLsfZg8j9lg2dM3IeivKuU5mXg=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356IMNC4012367
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Jun 2023 13:22:23 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 13:22:22 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Jun 2023 13:22:22 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356IMMoM024130;
+        Tue, 6 Jun 2023 13:22:22 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liu Ying <victor.liu@nxp.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: phy: mixel,mipi-dsi-phy: Remove
- assigned-clock* properties
-Message-ID: <20230606-implement-canning-0353ca9afddb@spud>
-References: <20230606144447.775942-1-alexander.stein@ew.tq-group.com>
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Udit Kumar <u-kumar1@ti.com>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH V2 00/14] arm64: dts: ti: Fix up references to phandles
+Date:   Tue, 6 Jun 2023 13:22:06 -0500
+Message-ID: <20230606182220.3661956-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zYuBaMqGZQxpQNI4"
-Content-Disposition: inline
-In-Reply-To: <20230606144447.775942-1-alexander.stein@ew.tq-group.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+When referring to array of phandles, using <> to separate the array
+entries is better notation as it makes potential errors with phandle and
+cell arguments easier to catch. Fix the outliers to be consistent with
+the rest of the usage.
 
---zYuBaMqGZQxpQNI4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This set was caught by using: git grep '\s&' arch/arm64/boot/dts/ti/
+and manually going through the list.
 
-On Tue, Jun 06, 2023 at 04:44:46PM +0200, Alexander Stein wrote:
-> These properties are allowed anyway and some SoC (e.g. imx8mq) configure
-> more than just one clock using these properties.
+Changes since V1:
+* Few formatting changes included to keep consistent
+* Picked a Reviewed-by
+* ai64 gets a few fixes as part of the cleanup (patches #3, #4)
+* Picked up Reviewed-by from Jan.
 
-What does "allowed anyway" mean?
-And following from that, why not modify the min/maxItems to suit
-reality, rather than remove them. Is there enforcement from elsewhere?
+V1: https://lore.kernel.org/all/20230601152636.858553-1-nm@ti.com/
 
-> Fixes: f9b0593dd4fc6 ("dt-bindings: phy: Convert mixel,mipi-dsi-phy to js=
-on-schema")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> I can't reproduce the mentioned mis-matches in commit f9b0593dd4fc6
-> ("dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema").
+Nishanth Menon (14):
+  arm64: dts: ti: k3-j721e-sk: Fixup reference to phandles array
+  arm64: dts: ti: k3-j721e-som-p0/common-proc-board: Fixup reference to
+    phandles array
+  arm64: dts: ti: k3-j721e-beagleboneai64: Move camera gpio pinctrl to
+    gpio node
+  arm64: dts: ti: k3-j721e-beagleboneai64: Move eeprom WP gpio pinctrl
+    to eeprom node
+  arm64: dts: ti: k3-j721e-beagleboneai64: Fixup reference to phandles
+    array
+  arm64: dts: ti: k3-am642-phyboard-electra-rdk: Fixup reference to
+    phandles array
+  arm64: dts: ti: k3-j7200-som/common-proc-board: Fixup reference to
+    phandles array
+  arm64: dts: ti: k3-j721s2-common-proc-board: Fixup reference to
+    phandles array
+  arm64: dts: ti: k3-am625-sk: Fixup reference to phandles array
+  arm64: dts: ti: k3-am64-evm: Fixup reference to phandles array
+  arm64: dts: ti: k3-am64-sk: Fixup reference to phandles array
+  arm64: dts: ti: k3-am65-iot*: Fixup reference to phandles array
+  arm64: dts: ti: k3-am654-base-board: Fixup reference to phandles array
+  arm64: dts: ti: k3-am68-sk-base-board: Fixup reference to phandles
+    array
 
-I suspect that meant that the property was in the dt but not in the
-binding at the time of the conversion.
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts        |  3 +-
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 11 +++---
+ .../dts/ti/k3-am642-phyboard-electra-rdk.dts  |  2 +-
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        | 11 +++---
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 17 +++++----
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |  4 +--
+ .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  | 18 +++++-----
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     |  2 +-
+ .../dts/ti/k3-j7200-common-proc-board.dts     |  2 +-
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   |  8 ++---
+ .../boot/dts/ti/k3-j721e-beagleboneai64.dts   | 36 +++++++++++--------
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  4 +--
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 20 +++++------
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   | 18 +++++-----
+ .../dts/ti/k3-j721s2-common-proc-board.dts    |  2 +-
+ 15 files changed, 80 insertions(+), 78 deletions(-)
 
-Cheers,
-Conor.
+-- 
+2.40.0
 
->=20
-> Since commit 62270eeb2b639 ("arm64: dts: imx8mq: Add clock parents for
-> mipi dphy") imx8mq.dtsi configures several clocks using assigned-clocks*
-> properties.
->=20
->  .../devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml      | 9 ---------
->  1 file changed, 9 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yam=
-l b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
-> index 786cfd71cb7eb..3c28ec50f0979 100644
-> --- a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
-> @@ -32,15 +32,6 @@ properties:
->    clock-names:
->      const: phy_ref
-> =20
-> -  assigned-clocks:
-> -    maxItems: 1
-> -
-> -  assigned-clock-parents:
-> -    maxItems: 1
-> -
-> -  assigned-clock-rates:
-> -    maxItems: 1
-> -
->    "#phy-cells":
->      const: 0
-> =20
-> --=20
-> 2.34.1
->=20
-
---zYuBaMqGZQxpQNI4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH95DgAKCRB4tDGHoIJi
-0rvVAQDERPS8mYHAeyrLw9/psX3Krt144EkLLSbL9ZBnSfTzdAD+MprMmNGN1NUt
-KeSL/x1kVbv2OiE9zwyJBdXs6CJeswE=
-=fngN
------END PGP SIGNATURE-----
-
---zYuBaMqGZQxpQNI4--
