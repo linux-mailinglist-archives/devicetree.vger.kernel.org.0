@@ -2,83 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 010EC723CCB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 11:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 052C3723CE5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 11:17:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233112AbjFFJQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 05:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
+        id S235566AbjFFJRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 05:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233319AbjFFJQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 05:16:23 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11714E79
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 02:16:17 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9768fd99c0cso741513166b.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 02:16:16 -0700 (PDT)
+        with ESMTP id S236138AbjFFJRQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 05:17:16 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9921E4B
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 02:17:04 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-977cf86aae5so375581566b.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 02:17:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686042975; x=1688634975;
+        d=linaro.org; s=google; t=1686043023; x=1688635023;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XBYlIdpTft+IILWfU8QKB41NOLs5b4pNVwgWdOe7tqc=;
-        b=vncFQqDlNQD4M5UowqZ7dH5lQ9V03vmSMwGeG54OCxGVIfCL8ROEWg+2m0+709wKLt
-         5WzqpiXlaMYIFX/QL93ikhZg08bbq3bKsm0NaUBQr61w4+MqTKBj1BADt+v3PC+X+V9Q
-         xidNvJRdtIIHT4eEOg9pPWnD2/hX23fZfSiWghBEClSAa5KX31VnDo6U0IkFnMg8/mMQ
-         gDfyxMq/BUJuV6WrO3voT7uDVUpFYdqFlyDJvPgrcpxnTJU495rJsoi789X0U822pN21
-         eba/ZjepKoQ2alj2V0QLqWdFEaDnZXHcX0fAPoDcmaaZOY/WK71/A6B1QgqmA/OJsD7w
-         EDDw==
+        bh=WFZO1quiYCb7WK7FGJd2k62/gfvxHreHYp1ujyVcgQE=;
+        b=YI0x4LbkmazNjw9SPHR89qxvIBqKi+rZQM2uGk0dQ2QkSg17hxKx9pO3DDbhwse1th
+         qLjZSeAtWLki/tTjyWSkemYjyXXNrhfa6xnCifIKWNPMtUn8ni7fmv4owW0b70Ndu9zj
+         a6a0A4sInpNznlHuzIYI00Mls+GuEGSVYqcJbnl9Nbys5CktNl49x/GIi4ey+IvbrC8t
+         gV8z1YB1TZAFZ/qop2kQolfl8pE2HI7nLIEvpd3Z4O5pJHiZBW+9hUGZD41lJ1d7xy7V
+         0iTIgudvlsGTLeFLlGrHWVNBkL0JTOOI2xwPrv6bntw9BEcbB5Z/fj4DokQIFPJMp/35
+         oTgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686042975; x=1688634975;
+        d=1e100.net; s=20221208; t=1686043023; x=1688635023;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XBYlIdpTft+IILWfU8QKB41NOLs5b4pNVwgWdOe7tqc=;
-        b=jEg64wrRkmPl9/taBFD6NvZ3dAa+uucZRGK43Kvvg2dio+yMQ+W39daBbLpHI6pj53
-         7JuokweGgMZU1vM+Z4J7/4MZ48mq0d/+3aVDDFs9BFEQ/ZKRCW3nQJM0GUl56zatwdrn
-         ifJh8JahnBHVQD4xmhSJDiMQz0rdwLIDlhoqLZ9UwbyVeqNexMGue8jY+6rWfailAFTK
-         Y5cQhdLDc6GI7q9gTUXfW8SukUKcFhJpOMMrx0i5mabcRAdsgfqUpTP1mmuj24jTDfHL
-         FIkpu5BE61zDfK5SWLQer3KCrCodOYHcdkSo/xCBMaxnIcuOAbLe6g9CjxGCSKU57QVM
-         iPIg==
-X-Gm-Message-State: AC+VfDxT7ovK9VbPy0wwmNZxAgTAiaBSaOedMWMjQz5aiVRK6/NO2v0D
-        msnedhQ6Ye9BoH5RmrESgKXQqg==
-X-Google-Smtp-Source: ACHHUZ4PZb7TYXvL7RYHNqfdcJ+lt6xZPJBxKI73CgRYcLmtnpjkmNEq8NjmkFFBYXv2bKypsJ0oAw==
-X-Received: by 2002:a17:907:9405:b0:973:93c3:16a1 with SMTP id dk5-20020a170907940500b0097393c316a1mr7380863ejc.19.1686042975479;
-        Tue, 06 Jun 2023 02:16:15 -0700 (PDT)
+        bh=WFZO1quiYCb7WK7FGJd2k62/gfvxHreHYp1ujyVcgQE=;
+        b=fJZdjqkIyslrE/4DM2k5A3gNcp7czQ7KcoqXwdmhS8NZhImA3YvZ+AZGERp9sROP1b
+         ExD/ZQWLJjOEPVzS/P1Yu8ie8QuvDIX8I733hMcDD0SVXRB4Pwg/f7DvwWjbYrvV5eor
+         jfT3iY/ET7zjPmAWubMuYCStINE45kVeEW6vov9qq7/XQleUZUedCABIhFRA13auSdFM
+         z7kNgXmVKTYv4DorY0JfKbNjj4Nv4g7KUaLfdiYXYctXYp8zzc4QnBlyEKHL45iFc0VX
+         CCAA9ex6sG6TUYDOJI6v4+t9v1rGO973lJtwQqhoUN7I0Mot/wdXQhXl6BA+DRfcJqE3
+         KUTA==
+X-Gm-Message-State: AC+VfDzMtxNe8zBdsSP5tpmkRL3I8XoowDLwkt0NHJMcsrKf/3ZtQaW+
+        loPTNBKklLj9BCfZDznWe5oA+Q==
+X-Google-Smtp-Source: ACHHUZ4PAeDI8t67bUJhdaqBmTvjv2z7fbXLke2PqprP5R52QQZ3TpwVeTM5xT7yvCcvZsEeW6ORAg==
+X-Received: by 2002:a17:907:3ea9:b0:973:7dfc:f052 with SMTP id hs41-20020a1709073ea900b009737dfcf052mr1649432ejc.30.1686043022772;
+        Tue, 06 Jun 2023 02:17:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id n7-20020a170906700700b00965d4b2bd4csm5415416ejj.141.2023.06.06.02.16.13
+        by smtp.gmail.com with ESMTPSA id l12-20020a170906a40c00b00971433ed5fesm5214639ejz.184.2023.06.06.02.17.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 02:16:15 -0700 (PDT)
-Message-ID: <6d476d6d-7100-7674-2e08-661516b75f43@linaro.org>
-Date:   Tue, 6 Jun 2023 11:16:12 +0200
+        Tue, 06 Jun 2023 02:17:02 -0700 (PDT)
+Message-ID: <30c702b2-18c6-ed38-ce7e-6f098a38d3c3@linaro.org>
+Date:   Tue, 6 Jun 2023 11:17:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 3/6] media: dt-bindings: mediatek,vcodec: Remove VDEC_SYS
- for mt8183
+Subject: Re: [PATCH 06/14] dt-bindings: soc: qcom: smd-rpm: Use qcom,rpm-proc
+ in example
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20230605162030.274395-1-nfraprado@collabora.com>
- <20230605162030.274395-4-nfraprado@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20230531-rpm-rproc-v1-0-e0a3b6de1f14@gerhold.net>
+ <20230531-rpm-rproc-v1-6-e0a3b6de1f14@gerhold.net>
+ <d0fa3b01-edab-fe8e-c309-036cbbcec7ab@linaro.org>
+ <ZH73JxLd1i1vUcyw@gerhold.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230605162030.274395-4-nfraprado@collabora.com>
+In-Reply-To: <ZH73JxLd1i1vUcyw@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -89,104 +85,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 18:20, Nícolas F. R. A. Prado wrote:
-> The binding expects the first register space to be VDEC_SYS. But on
-> mt8183, which uses the stateless decoders, this space is used only for
-> controlling clocks and resets, which are better described as separate
-> clock-controller and reset-controller nodes.
+On 06/06/2023 11:06, Stephan Gerhold wrote:
+> On Tue, Jun 06, 2023 at 08:37:04AM +0200, Krzysztof Kozlowski wrote:
+>> On 05/06/2023 09:08, Stephan Gerhold wrote:
+>>> Use the new top-level rpm-proc node instead of having a dummy top-level
+>>> /smd node that only contains the RPM but not other remote processors.
+>>>
+>>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+>>> ---
+>>>  Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 6 +++---
+>>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+>>> index c6930706bfa9..06e574239bd4 100644
+>>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+>>> @@ -120,10 +120,10 @@ examples:
+>>> [...]
+>>> +        compatible = "qcom,msm8916-rpm-proc", "qcom,rpm-proc";
+>>>  
+>>> -        rpm {
+>>> +        smd-edge {
+>>
+>> What about binding updates?
+>>
 > 
-> In fact, in mt8173's devicetree there are already such separate
-> clock-controller nodes, which cause duplicate addresses between the
-> vdecsys node and the vcodec node. But for this SoC, since the stateful
-> decoder code makes other uses of the VDEC_SYS register space, it's not
-> straightforward to remove it.
-> 
-> In order to avoid the same address conflict to happen on mt8183,
-> since the only current use of the VDEC_SYS register space in
-> the driver is to read the status of a clock that indicates the hardware
-> is active, remove the VDEC_SYS register space from the binding and
-> describe an extra clock that will be used to directly check the hardware
-> status.
-> 
-> Also add reg-names to be able to tell that this new register schema is
-> used, so the driver can keep backward compatibility.
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
-> 
->  .../media/mediatek,vcodec-decoder.yaml        | 29 +++++++++++++++++--
->  1 file changed, 27 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
-> index 6447e6c86f29..36a53b2484d6 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
-> @@ -21,17 +21,21 @@ properties:
->        - mediatek,mt8183-vcodec-dec
->  
->    reg:
-> +    minItems: 11
->      maxItems: 12
->  
-> +  reg-names:
-> +    minItems: 11
+> The binding for this is in PATCH 05/14. The old binding replaced here is
+> deprecated in PATCH 07/14.
 
-maxItems
-
-> +
->    interrupts:
->      maxItems: 1
->  
->    clocks:
-> -    minItems: 1
-> +    minItems: 2
-
-It does not make any sense. Just two patches ago you made it 1! Don't
-add incorrect values which are immediately changed in the same patchset.
-
->      maxItems: 8
->  
->    clock-names:
-> -    minItems: 1
-> +    minItems: 2
->      maxItems: 8
->  
->    assigned-clocks: true
-> @@ -84,6 +88,24 @@ allOf:
->          clock-names:
->            items:
->              - const: vdec
-> +            - const: active
-> +
-> +        reg:
-> +          maxItems: 11
-> +
-> +        reg-names:
-> +          items:
-> +            - const: misc
-> +            - const: ld
-> +            - const: top
-> +            - const: cm
-> +            - const: ad
-> +            - const: av
-> +            - const: pp
-> +            - const: hwd
-> +            - const: hwq
-> +            - const: hwb
-> +            - const: hwg
->  
->    - if:
->        properties:
-> @@ -108,6 +130,9 @@ allOf:
->              - const: venc_lt_sel
->              - const: vdec_bus_clk_src
->  
-> +        reg:
-> +          minItems: 12
-
-so max can be 1000?
-
-
+So changing example without changing binding is not an atomic change.
 
 Best regards,
 Krzysztof
