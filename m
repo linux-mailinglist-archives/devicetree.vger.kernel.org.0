@@ -2,97 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EAE2724B2F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 590D1724B62
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 20:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238689AbjFFSW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 14:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39970 "EHLO
+        id S238534AbjFFS2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 14:28:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238620AbjFFSWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:22:55 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D2F1717;
-        Tue,  6 Jun 2023 11:22:38 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356IMOC3044671;
-        Tue, 6 Jun 2023 13:22:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686075744;
-        bh=gGrbyt8jHmoAAvL8xxlbapNNF6I9JwF2SlrUyt0FqtQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=cXWVmQpX/CIiKAH86C+uLrhTT0o/wlukoqdkFBcDgcjzDBq8Iwe4t2yxgU8LzvEw1
-         lrvkNqJOzFoUUsmVpx60yMrfMsXB2s6lIWOmZPrBVDghJcZ2oozlGoSa4qPiF4tnVl
-         OtEDQdpu7HjtK2HDzhQGIsuD2P/bolqojGKBY250=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356IMNxm089043
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Jun 2023 13:22:23 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Jun 2023 13:22:23 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Jun 2023 13:22:23 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356IMNRC024148;
-        Tue, 6 Jun 2023 13:22:23 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S233653AbjFFS2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 14:28:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C9A11D;
+        Tue,  6 Jun 2023 11:28:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B63B2636B1;
+        Tue,  6 Jun 2023 18:23:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A157C433D2;
+        Tue,  6 Jun 2023 18:23:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686075820;
+        bh=T+JI2ckyFu8VOR3qL8ljjpZpkbu8FJMpdeuRNK5j1WE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VdOOJgmvG/YB+5sHAaFhY5A1/u8H5VgzQ7ybtKfQFNamKSS9dJ4/2MKitMx+RX8YA
+         Y32N4YPmL+OSm1EWmcEEE0K0IKBbZ3PLd883eAlzxXu7mAkzMSlzYk7vflhxq/8Vh/
+         7IEOHX+NR72Q1mUOV1QALhWSQGgfMKj3bP61tpr5DGD6dFraRH6orAyBAFf0ESBwgf
+         JYajhMXowNPNKau/sp5QRce4Vb2fnSrBLEUv4700TxaqE/6t7QDZqkSsccwKU/brf8
+         Qhcze7tgo6uoSPF8KFW8zEhMbc+Tm6W2qexRbJrzVaIgoGWiGtOjB4qy+n+mVFxjei
+         07Q0q5FHVkpRg==
+Date:   Tue, 6 Jun 2023 19:23:32 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Tommaso Merciai <tomm.merciai@gmail.com>,
+        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
+        michael.roeder@avnet.eu, linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Udit Kumar <u-kumar1@ti.com>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH V2 14/14] arm64: dts: ti: k3-am68-sk-base-board: Fixup reference to phandles array
-Date:   Tue, 6 Jun 2023 13:22:20 -0500
-Message-ID: <20230606182220.3661956-15-nm@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230606182220.3661956-1-nm@ti.com>
-References: <20230606182220.3661956-1-nm@ti.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] media: dt-bindings: alvium: add document YAML
+ binding
+Message-ID: <20230606-create-catchable-e16113afac82@spud>
+References: <20230606155416.260941-1-tomm.merciai@gmail.com>
+ <20230606155416.260941-3-tomm.merciai@gmail.com>
+ <20230606163656.GI25679@pendragon.ideasonboard.com>
+ <20230606-jaundice-womankind-7e583789fb7a@spud>
+ <20230606181752.GC14101@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="/wO+rvK5rRihXazv"
+Content-Disposition: inline
+In-Reply-To: <20230606181752.GC14101@pendragon.ideasonboard.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When referring to array of phandles, using <> to separate the array
-entries is better notation as it makes potential errors with phandle and
-cell arguments easier to catch. Fix the outliers to be consistent with
-the rest of the usage.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-No Changes since V1
-V1: https://lore.kernel.org/r/20230601152636.858553-13-nm@ti.com
- arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--/wO+rvK5rRihXazv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index 27a43a8ecffd..ae9116655a83 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -287,7 +287,7 @@ &main_sdhci1 {
- 
- &mcu_cpsw {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
-+	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
- };
- 
- &davinci_mdio {
--- 
-2.40.0
+On Tue, Jun 06, 2023 at 09:17:52PM +0300, Laurent Pinchart wrote:
+> On Tue, Jun 06, 2023 at 07:07:42PM +0100, Conor Dooley wrote:
+> > Hey Laurent, Tommaso,
+> >=20
+> > On Tue, Jun 06, 2023 at 07:36:56PM +0300, Laurent Pinchart wrote:
+> > > On Tue, Jun 06, 2023 at 05:54:03PM +0200, Tommaso Merciai wrote:
+> >=20
+> > > > +  alliedvision,lp2hs-delay-us:
+> > > > +    maxItems: 1
+> > > > +    description:
+> > > > +      Low power to high speed delay time in microseconds.
+> > >=20
+> > > You can drop "in microseconds", that's implied by the suffix.
+> > >=20
+> > > > +      The purpose of this property is force a DPhy reset for the p=
+eriod
+> > > > +      described by the microseconds on the property, before it sta=
+rts
+> > > > +      streaming. To be clear, with that value bigger than 0 the Al=
+vium
+> > > > +      forces a dphy-reset on all lanes for that period. That means=
+ all
+> > > > +      lanes go up into low power state. This may help a csi2 rx ip=
+ to
+> > > > +      reset if that IP can't deal with a continous clock.
+> > >=20
+> > > I'd like to propose what I think is a clearer version:
+> > >=20
+> > >     description: |
+> > >       Low power to high speed delay time.
+> > >=20
+> > >       If the value is larger than 0, the camera forces a reset of all
+> > >       D-PHY lanes for the duration specified by this property. All la=
+nes
+> > >       will transition to the low-power state and back to the high-spe=
+ed
+> > >       state after the delay. Otherwise the lanes will transition to a=
+nd
+> > >       remain in the high-speed state immediately after power on.
+> > >=20
+> > >       This is meant to help CSI-2 receivers synchronizing their D-PHY
+> > >       RX.
+> >=20
+> > Question about the property.
+> > Why not make it have a minimum value of 1 and drop the special-case
+> > behaviour for zero?
+>=20
+> The property is optional, so it can indeed be omitted if no delay is
+> desired. I have no strong preference on whether or not to allow 0 as a
+> valid value.
 
+FWIW, I prefer the semantics of the property if it doesn't have the
+limbo state of being present but doing nothing.
+
+Cheers,
+Conor.
+
+BTW, I seem to get bounces from shawnx.tu@intel.com, who is listed in
+MAINTAINERS for several drivers. Do you know if they have a non-intel
+address to replace those entries with, or should they be dropped?
+
+--/wO+rvK5rRihXazv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZH95pAAKCRB4tDGHoIJi
+0ku3AP4ggWo9VZWGTA9FT9GGznavW3AY/aadgCo0GxyloBybbgEAzzzwXaC7fzis
+PR8yODKfvMxBuv0CdqCLPm6e3sft8AI=
+=hRQC
+-----END PGP SIGNATURE-----
+
+--/wO+rvK5rRihXazv--
