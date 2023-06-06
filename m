@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5482723C23
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 909ED723C26
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:48:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237257AbjFFIru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 04:47:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41048 "EHLO
+        id S237261AbjFFIsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 04:48:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232579AbjFFIrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:47:49 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A75EA
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 01:47:48 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5147e441c33so11997600a12.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 01:47:48 -0700 (PDT)
+        with ESMTP id S231659AbjFFIsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:48:51 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C803FA
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 01:48:49 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-514924b4f8cso8895706a12.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 01:48:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686041267; x=1688633267;
+        d=linaro.org; s=google; t=1686041328; x=1688633328;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MqvLNtzOcoA6lE0OUx3cxAki4G4TTRB/eUS1eKn5IiQ=;
-        b=mGUB4rRPLreji445pbvUUQlFZLEeEODhkx7liEznPzs3HTP5I6/lVqmEc/EgrVP5gU
-         CJ40AEdvYbTKgeL7WfqH/8rBVsVwhHg0c8w++9SCPVIfQXxE2/uiNACAZhdUzMTQ2XE0
-         6Bfe9bGzoHF0BreZQCJMTJ0n5N7lSqJR5ZFUax6tE2b2hWVsSV5BqrHrOEYR8HKw6JHC
-         IwDMgLhURJu3IqLYGkUY4nQ/XsAFje6gTFnbIv1A1FQ1EnjxkaVrI4Ph2ms7zeDK+e9B
-         D/KdacfMbvEbTa/dZjnVjU/s4eRZGc0unCPVRdskMdyaVLn8UBU2a2mmjNQeagGUeABV
-         FKNA==
+        bh=hEQ4HPULxJqLeCH0M0TT69ZvT5utSd01v7nSaj1PvbU=;
+        b=A9gNWmcYIIRYaDF807Oc872JCxo8NSUJuIf4qlKishgVQMwiQuZ4iRC0aq7QqO6b3k
+         sP2IwTl6dmvYZQqpEOpHJxjKJ8B81I7rmi064X5aoWTYnpFmiIUQLYcFwJFoXlByTcpr
+         Ha8eZaxcilxZtJb7NOWtvf0AgHCHYtHbuSlj3VN7Lbe+ShKekdgPznj62a2sF3Fwliox
+         3H9xrV5WwQz6dYWCrGWFRcXmUcNDCQ/aI70zTMITc0hbNLZwoBgglp7MRlske0JhD7XQ
+         ahtMLwHaw+z1e7gTCt0tkOhcJGRHa4vFFPYWo1s+Qv1YB6x7QY2fl5HfarICQ6/Qa5zO
+         DrBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686041267; x=1688633267;
+        d=1e100.net; s=20221208; t=1686041328; x=1688633328;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MqvLNtzOcoA6lE0OUx3cxAki4G4TTRB/eUS1eKn5IiQ=;
-        b=HXW/KOQpjlr/b0KsswapHGK5bfYgNvPcbqjuAh6c3g0RfE8KaFRdBqDG8vDyq8BhF0
-         cgwr+7qvK+ucAM1lBAjifxnFhBqm6rjpkytPaeaGWIvH9xQIRbe+Wa4FEWVvEuKb1MdB
-         3tx/py0e2nmEmb1Vlc61h+qV/eciF9s2VIcyWsS4ooJ6jDobJZ9fDBOUUZW34oEFwMKI
-         ydpyU3aipAHT2KZwU+tBlwTnFl+BkH9o6hM+revNfRLd1wBglyKkR23FrcH8MH2Mko2G
-         5ehZuzjNUVAPny2R+LpofzPRza5p9cXpzXQao3cyyoAiW5+xgpBkP+ueFHePvCR8uDIH
-         +0CA==
-X-Gm-Message-State: AC+VfDwwiQr0BkR7bRlPt591QL+C8lK/Vue/1XpWA35qkylRtpoEIpdy
-        Yzh7EGy93dKSh7XhIa/+0B/+fQ==
-X-Google-Smtp-Source: ACHHUZ5Wn8CYpvBevllVEGv2YBS/ROGEmwALvyAp1heG4h3t31HB6N+lHW2q/tZnpOHN2538kq91XA==
-X-Received: by 2002:aa7:da41:0:b0:514:a669:d064 with SMTP id w1-20020aa7da41000000b00514a669d064mr1683373eds.16.1686041266848;
-        Tue, 06 Jun 2023 01:47:46 -0700 (PDT)
+        bh=hEQ4HPULxJqLeCH0M0TT69ZvT5utSd01v7nSaj1PvbU=;
+        b=EN9FQ70b/KQKXuAfYU+t/DZyGxl01Ap9eh+6BOahgE7+UICj1noKYBmOxCrueQLP/v
+         TUb9K6UGT8ekGZWHPZGtJtPgEq+F9DryhU11Z9YrhPEl5v1e2zbuOscCc2nEhVTua8wK
+         miXd0jPEKaXh0DyPNiCDX16/NksPvmcVZLjRCuzKd/MSXpBG8xFFg07JQIOBCFZCRUp2
+         rDmHv3wUh8RMgy8DGxuV+fkiwn6c6R3+2Km/DwWqCnnXyb/UlZDN4nE3fQMvNIr0y9LQ
+         8MtRbczzqhs+QqKYaFFVZIc2MsyAJgwWBiaDKEu+SFQLk5iNbSvjijPsfqCmwAtK6v9y
+         rjOg==
+X-Gm-Message-State: AC+VfDy2vIbXYhe9b5vrehqfoeuwswx3CFLwME8NM2MDXA3roWTfEc7t
+        MMj2cCIwI8STS1q1fq2Um+hDEA==
+X-Google-Smtp-Source: ACHHUZ6EgOGCiNQhxd/unjp+HDUP7doEpWuo3o4zdAJNkkBfLrPpOX9anpQ0M/lpmLuAEHlh/YUhkw==
+X-Received: by 2002:a17:907:6d04:b0:973:946d:36b2 with SMTP id sa4-20020a1709076d0400b00973946d36b2mr1483816ejc.56.1686041328098;
+        Tue, 06 Jun 2023 01:48:48 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id f22-20020a056402161600b00514aef7daacsm4775336edv.76.2023.06.06.01.47.44
+        by smtp.gmail.com with ESMTPSA id l14-20020a1709060e0e00b009745eddf997sm5307905eji.198.2023.06.06.01.48.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 01:47:46 -0700 (PDT)
-Message-ID: <1b7829bf-698e-a076-849e-403bb9938955@linaro.org>
-Date:   Tue, 6 Jun 2023 10:47:44 +0200
+        Tue, 06 Jun 2023 01:48:47 -0700 (PDT)
+Message-ID: <859da276-959d-b1e8-52e2-45e02f65c3ce@linaro.org>
+Date:   Tue, 6 Jun 2023 10:48:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v5 1/3] dt-bindings: pinctrl: Document Tegra234 pin
- controllers
+Subject: Re: [PATCH v4 1/2] dt-bindings: clock: fixed-clock: Add nvmem support
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Mike Looijmans <mike.looijmans@topic.nl>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20230605154230.2910847-1-thierry.reding@gmail.com>
- <20230605154230.2910847-2-thierry.reding@gmail.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.2d27bfea-4746-444c-89f4-e5d35cb7de66@emailsignatures365.codetwo.com>
+ <20230605140149.16841-1-mike.looijmans@topic.nl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230605154230.2910847-2-thierry.reding@gmail.com>
+In-Reply-To: <20230605140149.16841-1-mike.looijmans@topic.nl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,17 +79,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 17:42, Thierry Reding wrote:
-> From: Prathamesh Shete <pshete@nvidia.com>
+On 05/06/2023 16:01, Mike Looijmans wrote:
+> Add bindings for a fixed-rate clock that retrieves its rate from an
+> NVMEM provider. This allows to store clock settings in EEPROM or EFUSE
+> or similar device.
 > 
-> Tegra234 contains two pin controllers. Document their compatible strings
-> and describe the list of pins and functions that they provide.
+> Component shortages lead to boards being shipped with different clock
+> crystals, based on what was available at the time. The clock frequency
+> was written to EEPROM at production time. Systems can adapt to a wide
+> range of input frequencies using the clock framework, but this required
+> us to patch the devicetree at runtime or use some custom driver. This
+> provides a more generic solution.
 > 
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v5:
-> - add missing example for AON controller
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 > 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
