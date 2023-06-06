@@ -2,44 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B969724812
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:43:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7FA8724816
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233040AbjFFPnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 11:43:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32880 "EHLO
+        id S229827AbjFFPoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 11:44:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjFFPni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:43:38 -0400
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E54100;
-        Tue,  6 Jun 2023 08:43:36 -0700 (PDT)
-Received: from local
-        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1q6YqK-0004lq-1R;
-        Tue, 06 Jun 2023 15:43:32 +0000
-Date:   Tue, 6 Jun 2023 16:43:20 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Weijie Gao <weijie.gao@mediatek.com>
-Subject: [PATCH] arm64: dts: mt7986: increase bl2 partition on NAND of
- Bananapi R3
-Message-ID: <ZH9UGF99RgzrHZ88@makrotopia.org>
+        with ESMTP id S232681AbjFFPoF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:44:05 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0146139
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 08:44:03 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b1b30445cfso56944441fa.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 08:44:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686066242; x=1688658242;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MEL7N0xABt5lwW2BNneMngEG2im8DPkGRrkGXcmCmFE=;
+        b=c/fuJoG3OR34YXhbhDyWdahDHUtp2lekJSM2rGS8cebvmkCSQ8M21Tl3KggiFUjavX
+         EBM6soblQ3QChwIj1aXGCBfDcwugHnu9uN82wGL5RkFCp5LmCYF80HVNNgJ606znzKi+
+         HO8709GveI2WjuX5Ba0zecziWsvHu1ttXTC0/Xp2Htd2YYQLtmdW6jqYZAd6ZRu9A4Ta
+         GdjZL7oFfmtefp33c2mQp31w+rejk73z4oZIarbPQcu48elAaMC1+cqz0fcMvhBTvdY7
+         DA+o15dxtHixvT0fD/Oa9mCgENB7wXqw8WU/AWO1k9lWm/pjA9lES4BAr3v3phMqSE5X
+         LtEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686066242; x=1688658242;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MEL7N0xABt5lwW2BNneMngEG2im8DPkGRrkGXcmCmFE=;
+        b=WKZDe9Wk3lxHtkmoQF7w5bj9Q8Eh2ikuU0p1lMkzKGfcfcJfn/y3dMDdPWL5gNoiQi
+         MKnHBuLb7DVaNpXfyl4lhL4HQvBmCsCKFuk72OXAhZlUPh2ClLAnkBl+X/OV+Z0S8Vfd
+         1nNNJijEc7DB1VCxdTbNmTA3H14BwXFc9xuIhXJU9Oe0Zj9fC3flsm6SkxP4ooGGU1aj
+         yTAIMLjx9tadY2lMb8oLAGRFR278Xm6vOnmTC0pywAltSb7TqswIcB8mJmuUuTsLn6K4
+         HjffWiU/W2PDaSsVwGIfQdlKShrseE4V5dUzVwDYT2sq24r5Mckj2LjHInT02TbVLgxx
+         Y+Sg==
+X-Gm-Message-State: AC+VfDy7Xyobz3s0gnrqTxDZjCmqq7VCsayHixUigjGKsnlnnobks70t
+        tgTraCQM3eF50XduroG7BvIiR2bmXwby2FsFWIAkWA==
+X-Google-Smtp-Source: ACHHUZ76TwCC8/bPVQTChMClfy288Z4nIeiy2u/xVeHNdL8bJyzAkjbnddDdlXZN6+kzn/yz/jf9nMLqajSDRF1SSqo=
+X-Received: by 2002:a2e:854b:0:b0:2b1:cf7c:a892 with SMTP id
+ u11-20020a2e854b000000b002b1cf7ca892mr1280324ljj.30.1686066241847; Tue, 06
+ Jun 2023 08:44:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+References: <ab68df6b056a3b381d1d53cf1502e814812c4f96.1686045675.git.geert+renesas@glider.be>
+In-Reply-To: <ab68df6b056a3b381d1d53cf1502e814812c4f96.1686045675.git.geert+renesas@glider.be>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 6 Jun 2023 17:43:49 +0200
+Message-ID: <CAMRc=Mf7hm298NjPrSKYHQosB=M3Y3CaPi+DVt56D_yrYSCU9A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-delay: Spelling s/curcuit/circuit/
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexander Stein <linux@ew.tq-group.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,41 +72,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The bootrom burned into the MT7986 SoC will try multiple locations on
-the SPI-NAND flash to load bl2 in case the bl2 image located at the the
-previously attempted offset is corrupt.
+On Tue, Jun 6, 2023 at 12:01=E2=80=AFPM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> Fix misspellings of "circuit".
+>
+> Fixes: c7239a3da1628767 ("dt-bindings: gpio: Add gpio-delay binding docum=
+ent")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio-delay.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml b/Doc=
+umentation/devicetree/bindings/gpio/gpio-delay.yaml
+> index 7c16a4e1a768ef72..1cebc4058e272660 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> @@ -11,7 +11,7 @@ maintainers:
+>
+>  description: |
+>    This binding describes an electrical setup where setting an GPIO outpu=
+t
+> -  is delayed by some external setup, e.g. RC curcuit.
+> +  is delayed by some external setup, e.g. RC circuit.
+>
+>    +----------+                    +-----------+
+>    |          |             VCC_B  |           |
+> @@ -30,7 +30,7 @@ description: |
+>                             GND
+>
+>    If the input on the consumer is controlled by an open-drain signal
+> -  attached to an RC curcuit the ramp-up delay is not under control
+> +  attached to an RC circuit the ramp-up delay is not under control
+>    of the GPIO controller.
+>
+>  properties:
+> --
+> 2.34.1
+>
 
-Use 0x100000 instead of 0x80000 as partition size for bl2 on SPI-NAND,
-allowing for up to four redundant copies of bl2 (typically sized a
-bit less than 0x40000).
+Applied, thanks!
 
-Fixes: 8e01fb15b8157 ("arm64: dts: mt7986: add Bananapi R3")
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso     | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-index 15ee8c568f3c3..543c13385d6e3 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-@@ -29,13 +29,13 @@ partitions {
- 
- 					partition@0 {
- 						label = "bl2";
--						reg = <0x0 0x80000>;
-+						reg = <0x0 0x100000>;
- 						read-only;
- 					};
- 
--					partition@80000 {
-+					partition@100000 {
- 						label = "reserved";
--						reg = <0x80000 0x300000>;
-+						reg = <0x100000 0x280000>;
- 					};
- 
- 					partition@380000 {
--- 
-2.41.0
-
+Bart
