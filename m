@@ -2,255 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5F38725059
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 00:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE43E72507E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 01:04:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239599AbjFFW6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 18:58:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43894 "EHLO
+        id S240171AbjFFXE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 19:04:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240129AbjFFW6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 18:58:31 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D4F1726
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 15:58:26 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-39a3f165ac5so5753811b6e.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 15:58:26 -0700 (PDT)
+        with ESMTP id S240161AbjFFXE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 19:04:26 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5169A1723
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 16:04:24 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f4b384c09fso8184027e87.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 16:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1686092305; x=1688684305;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=xf/mc/jcf2DkfiCh5x2dBugolySk7NE587qsAeuhO5s=;
-        b=HMmnprKVWoQ4e46ead3g4xPY3bt67TYTUhySCu8vA2Z/Y6C2RF/O9GC7jPCaFHp2W1
-         0IdVl0wKtbbxFqoupCQU0yFQA88Jf9OUScRe2UtHumd52+Z7ARemSvsG6tlKqlFl7J3k
-         d2itvFRM+FS3QrJe3cjWftqb1Tal5PwNI56Po=
+        d=linaro.org; s=google; t=1686092662; x=1688684662;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BX36jW40IzH6+V8/Zm6XQYAycJ9Ld3LGaHQyXOj8PuE=;
+        b=oK+V6WlOxYmT5DHf2wZOEmcYGKgLPWugNd8GIMOhUCRcV0BqzRhLrph4+yM2ysgvU+
+         g2B1/A5hQonodSDusJByBH4ZAVL+Zz+x3k9+vqZRGskar/Xv4GDIABOYPnAU4V9aCRvB
+         Gdsvh5cuw/wY1C5v8VC6Z9Ndby0EwRkdKzXZEjZbLwauh7y8yFU7F62SwMvYpFs2r9MT
+         gx/SOc/7+EMIbbxHLBFCbiRa8VsJKB9xxyfrHi8pF+DOsj9WQRTU2i1YS2TFytO4K3IX
+         0QUNlBMJ89HTDrZ9jvui4XNyAlXRJNVC1wASYQy4dwmrnjgkWzbiDrAZo0L2zIZEDIMW
+         Xz3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686092305; x=1688684305;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xf/mc/jcf2DkfiCh5x2dBugolySk7NE587qsAeuhO5s=;
-        b=FnaLLEatp5bsdlfORUnPrtFHtBZZTDwtS61GJe92Usezt+3CDXLWyylT+4b6o/mc5o
-         ngvyb105s0LqLoBabc7F6NxTgLfUoPFB9APpVJ/nQBDLqUtrlN428HuCCsPgQ3lOROOt
-         ndIuLbcS9mGs5YJ+N1CAPPoyBSam9/HoFe7kskh8XxGpSgEy/U3JU7wQzrGEu0ep83Rk
-         1+XBYb4VLNokTSR1sHDbdOT5EMEqCwTjkC+2mDGsQJDrKQDxEwuP19gW5zzJ6iKCtd+a
-         oj68bJHlJ3KLIl27msuUwT1gCBmuKjCR1GtiMrD7+EbVu64tbeYfJyaN3vVr+3XhMHaI
-         hg5g==
-X-Gm-Message-State: AC+VfDzOwZx4Gx9txYDaU5TRRiFl/XKm8IQwRVap6T+1IDF2YC2VIZbE
-        +e1nQ1OiGOggLOJC4MHQ8cipog==
-X-Google-Smtp-Source: ACHHUZ697HsQRJCyCMlLNIPxV2mlkOm/g4O0OEbsibU0NM/vg/UGiFsv0pj+f/FoSInChgJS+tXaEw==
-X-Received: by 2002:a05:6358:cb26:b0:129:c905:27ec with SMTP id gr38-20020a056358cb2600b00129c90527ecmr1443883rwb.13.1686092305261;
-        Tue, 06 Jun 2023 15:58:25 -0700 (PDT)
-Received: from [10.69.71.77] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id gk21-20020a17090b119500b0025930e46596sm41825pjb.55.2023.06.06.15.58.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 15:58:23 -0700 (PDT)
-Message-ID: <956dc20f-386c-f4fe-b827-1a749ee8af02@broadcom.com>
-Date:   Tue, 6 Jun 2023 15:58:21 -0700
+        d=1e100.net; s=20221208; t=1686092662; x=1688684662;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BX36jW40IzH6+V8/Zm6XQYAycJ9Ld3LGaHQyXOj8PuE=;
+        b=bROeIAGYI/C5sz0kk26sqb2krbGRHqUfuI/zkUpacRXrb61PhiDoaFylt93v52gPYp
+         7NPJvlHXcKpfqJsDhXBT6Mpj/T/lpGQiVGPHm67zWC1lc8xmLJuax0cvBLv8mS3S/PQo
+         q7AviNIQKLbIo9a+xMrPut/2Nogm0/iXehXLW6oMJcWoRwe+rr8xtuZXx9Tw2dcqJvmW
+         iDIpENkzhayz2VKQSqP37qohw2HfZjPkXrarYZ+plDyQO0s14dbVdlB7JrWRuysCJPuJ
+         IC3Yh6OZRRKgyWSwES8d9D5yULYcq3i1LE4jFObY+Gj+fZcG6vEmaqDuA+PxWKOkIoJl
+         Ec+A==
+X-Gm-Message-State: AC+VfDxoe+52blNvggvmsJV2MUAVZ3QUYPZ/hFC2k6sY8+kE9r0N5xXi
+        bcAGNOBpEYPch0JnqG9tMo2LvQ==
+X-Google-Smtp-Source: ACHHUZ6EQzwHC/KXZudfaahcH/egh5V/t9i5eUSngtXc5jrH4LhhjUNaackdLPt9PSRjU6x/gQXVRQ==
+X-Received: by 2002:a2e:818f:0:b0:2ac:6858:45ba with SMTP id e15-20020a2e818f000000b002ac685845bamr1543688ljg.48.1686092662529;
+        Tue, 06 Jun 2023 16:04:22 -0700 (PDT)
+Received: from [192.168.1.101] (abyl150.neoplus.adsl.tpnet.pl. [83.9.31.150])
+        by smtp.gmail.com with ESMTPSA id e25-20020a2e8199000000b002adbf24212esm2052384ljg.49.2023.06.06.16.04.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jun 2023 16:04:22 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Date:   Wed, 07 Jun 2023 01:04:19 +0200
+Subject: [PATCH v2] arm64: dts: qcom: qcm2290: Add CPU idle states
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.1
-Subject: Re: [PATCH net-next v6 3/6] net: bcmasp: Add support for ASP2.0
- Ethernet controller
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        florian.fainelli@broadcom.com, davem@davemloft.net,
-        edumazet@google.com, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        opendmb@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, richardcochran@gmail.com,
-        sumit.semwal@linaro.org, christian.koenig@amd.com,
-        simon.horman@corigine.com
-References: <1685657551-38291-1-git-send-email-justin.chen@broadcom.com>
- <1685657551-38291-4-git-send-email-justin.chen@broadcom.com>
- <20230602235859.79042ff0@kernel.org>
-From:   Justin Chen <justin.chen@broadcom.com>
-In-Reply-To: <20230602235859.79042ff0@kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000f2e78d05fd7df4c7"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230606-topic-qcm2290_idlestates-v2-1-580a5a2d28c9@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAHK7f2QC/42NWw6CMBREt0L6bU2pWpQv92GI6eMCN6kttpVoC
+ Hv3ygr8PDOZOQvLkBAya6uFJZgxYwwEclcxO+owAEdHzKSQB6GE4iVOaPnTPqS8iDs6D7noApm
+ fDNXSiP5oFaO50Rm4STrYkQ7Cy3sKpwQ9vjffrSMeMZeYPpt+rn/pH6a55jV3rmkAeiHOCq4eg
+ 05xH9PAunVdv9GMJLDWAAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1686092661; l=3464;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=9nKmu31YD8GcSD2/6NbQ7qO/EwtCV6fy082gMFHlK5U=;
+ b=wKP8/iEbDbsH4/RtM8CoEhKALhodBs3ASHW8Wx+4US6dv653eMVIW2uhT3l2wZEtVWr5DKFBj
+ 8+pjviD33GgBUtazu7ddpyt1V0JBRi2tfLEFGmo/K0d7KVS3qYYBEsA
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000f2e78d05fd7df4c7
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Add the (scarce) idle states for the individual CPUs, as well as the
+whole cluster. This enables deeper-than-WFI cpuidle
 
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- Add missing BIT(24) ("last in power level")
+- Use the correct CPU low-power state (0x3 instead of 0x4)
+- Link to v1: https://lore.kernel.org/r/20230606-topic-qcm2290_idlestates-v1-1-dd77eef0086e@linaro.org
+---
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi | 61 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+index b29bc4e4b837..0ed11e80e5e2 100644
+--- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+@@ -48,6 +48,8 @@ CPU0: cpu@0 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD0>;
++			power-domain-names = "psci";
+ 			L2_0: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -65,6 +67,8 @@ CPU1: cpu@1 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD1>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU2: cpu@2 {
+@@ -77,6 +81,8 @@ CPU2: cpu@2 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD2>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU3: cpu@3 {
+@@ -89,6 +95,8 @@ CPU3: cpu@3 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD3>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		cpu-map {
+@@ -110,6 +118,30 @@ core3 {
+ 				};
+ 			};
+ 		};
++
++		domain-idle-states {
++			CLUSTER_SLEEP: cluster-sleep-0 {
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x41000043>;
++				entry-latency-us = <800>;
++				exit-latency-us = <2118>;
++				min-residency-us = <7376>;
++			};
++		};
++
++		idle-states {
++			entry-method = "psci";
++
++			CPU_SLEEP: cpu-sleep-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <290>;
++				exit-latency-us = <376>;
++				min-residency-us = <1182>;
++				local-timer-stop;
++			};
++		};
+ 	};
+ 
+ 	firmware {
+@@ -135,6 +167,35 @@ pmu {
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: power-domain-cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&CPU_SLEEP>;
++		};
++
++		CPU_PD1: power-domain-cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&CPU_SLEEP>;
++		};
++
++		CPU_PD2: power-domain-cpu2 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&CPU_SLEEP>;
++		};
++
++		CPU_PD3: power-domain-cpu3 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&CPU_SLEEP>;
++		};
++
++		CLUSTER_PD: power-domain-cpu-cluster {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_SLEEP>;
++		};
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
 
-On 6/2/23 11:58 PM, Jakub Kicinski wrote:
-> On Thu,  1 Jun 2023 15:12:28 -0700 Justin Chen wrote:
->> +	/* general stats */
->> +	STAT_NETDEV(rx_packets),
->> +	STAT_NETDEV(tx_packets),
->> +	STAT_NETDEV(rx_bytes),
->> +	STAT_NETDEV(tx_bytes),
->> +	STAT_NETDEV(rx_errors),
->> +	STAT_NETDEV(tx_errors),
->> +	STAT_NETDEV(rx_dropped),
->> +	STAT_NETDEV(tx_dropped),
->> +	STAT_NETDEV(multicast),
-> 
-> please don't report standard interface stats in ethtool -S
-> 
+---
+base-commit: 6db29e14f4fb7bce9eb5290288e71b05c2b0d118
+change-id: 20230606-topic-qcm2290_idlestates-5b6062b0f4c6
 
-These are not netdev statistics but MAC block counters. Guess it is not 
-clear with the naming here, will fix this. We have a use case where the 
-MAC traffic may be redirected from the associated net dev, so the 
-counters may not be the same.
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
->> +	/* UniMAC RSV counters */
->> +	STAT_BCMASP_MIB_RX("rx_64_octets", mib.rx.pkt_cnt.cnt_64),
->> +	STAT_BCMASP_MIB_RX("rx_65_127_oct", mib.rx.pkt_cnt.cnt_127),
->> +	STAT_BCMASP_MIB_RX("rx_128_255_oct", mib.rx.pkt_cnt.cnt_255),
->> +	STAT_BCMASP_MIB_RX("rx_256_511_oct", mib.rx.pkt_cnt.cnt_511),
->> +	STAT_BCMASP_MIB_RX("rx_512_1023_oct", mib.rx.pkt_cnt.cnt_1023),
->> +	STAT_BCMASP_MIB_RX("rx_1024_1518_oct", mib.rx.pkt_cnt.cnt_1518),
->> +	STAT_BCMASP_MIB_RX("rx_vlan_1519_1522_oct", mib.rx.pkt_cnt.cnt_mgv),
->> +	STAT_BCMASP_MIB_RX("rx_1522_2047_oct", mib.rx.pkt_cnt.cnt_2047),
->> +	STAT_BCMASP_MIB_RX("rx_2048_4095_oct", mib.rx.pkt_cnt.cnt_4095),
->> +	STAT_BCMASP_MIB_RX("rx_4096_9216_oct", mib.rx.pkt_cnt.cnt_9216),
-> 
-> these should also be removed, and you should implement @get_rmon_stats.
-> 
->> +	STAT_BCMASP_MIB_RX("rx_pkts", mib.rx.pkt),
->> +	STAT_BCMASP_MIB_RX("rx_bytes", mib.rx.bytes),
->> +	STAT_BCMASP_MIB_RX("rx_multicast", mib.rx.mca),
->> +	STAT_BCMASP_MIB_RX("rx_broadcast", mib.rx.bca),
->> +	STAT_BCMASP_MIB_RX("rx_fcs", mib.rx.fcs),
-> 
-> there's a FCS error statistic in the standard stats, no need to
-> duplicate
-> 
-
-Same comment as above
-
->> +	STAT_BCMASP_MIB_RX("rx_control", mib.rx.cf),
->> +	STAT_BCMASP_MIB_RX("rx_pause", mib.rx.pf),
-> 
-> @get_pause_stats
-> 
->> +	STAT_BCMASP_MIB_RX("rx_unknown", mib.rx.uo),
->> +	STAT_BCMASP_MIB_RX("rx_align", mib.rx.aln),
->> +	STAT_BCMASP_MIB_RX("rx_outrange", mib.rx.flr),
->> +	STAT_BCMASP_MIB_RX("rx_code", mib.rx.cde),
->> +	STAT_BCMASP_MIB_RX("rx_carrier", mib.rx.fcr),
->> +	STAT_BCMASP_MIB_RX("rx_oversize", mib.rx.ovr),
->> +	STAT_BCMASP_MIB_RX("rx_jabber", mib.rx.jbr),
-> 
-> these look like candidates from standard stats, too.
-> Please read thru:
-> 
-> https://docs.kernel.org/next/networking/statistics.html
-> 
-
-Looks like the way we are doing stats are a bit outdated. Thanks for 
-pointing it out. I got a bit of refactoring to do.
-
->> +	STAT_BCMASP_MIB_RX("rx_mtu_err", mib.rx.mtue),
->> +	STAT_BCMASP_MIB_RX("rx_good_pkts", mib.rx.pok),
->> +	STAT_BCMASP_MIB_RX("rx_unicast", mib.rx.uc),
->> +	STAT_BCMASP_MIB_RX("rx_ppp", mib.rx.ppp),
->> +	STAT_BCMASP_MIB_RX("rx_crc", mib.rx.rcrc),
-> 
-> hm, what's the difference between rx_crc and rx_fcs ?
-
-This looks like some debug feature that really has nothing to do with 
-verifying crcs. I will remove it.
-
-Apologies, probably should have done my due diligence with each stats 
-instead of blindly including everything.
-
-Thanks,
-Justin
-
---000000000000f2e78d05fd7df4c7
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIQagYJKoZIhvcNAQcCoIIQWzCCEFcCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-gg3BMIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
-MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
-vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
-rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
-aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
-e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
-cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
-MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
-KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
-/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
-TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
-YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
-b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
-c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
-CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
-BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
-jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
-9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
-/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
-jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
-AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
-dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
-MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
-IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
-SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
-XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
-J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
-nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBUkwggQxoAMCAQICDCPwEotc2kAt96Z1EDANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjM5NTBaFw0yNTA5MTAxMjM5NTBaMIGM
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xFDASBgNVBAMTC0p1c3RpbiBDaGVuMScwJQYJKoZIhvcNAQkB
-FhhqdXN0aW4uY2hlbkBicm9hZGNvbS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB
-AQDKX7oyRqaeT81UCy+OTzAUHJeHABD6GDVZu7IJxt8GWSGx+ebFexFz/gnRO/sgwnPzzrC2DwM1
-kaDgYe+pI1lMzUZvAB5DfS1qXKNGoeeNv7FoNFlv3iD4bvOykX/K/voKtjS3QNs0EDnwkvETUWWu
-yiXtMiGENBBJcbGirKuFTT3U/2iPoSL5OeMSEqKLdkNTT9O79KN+Rf7Zi4Duz0LUqqpz9hZl4zGc
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIFgLTkmgtO27eFP8Ei7ojHPElv1J8EXYAF5a
-a7w6pRo4MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMDYwNjIy
-NTgyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQAGBXj/LL3yfEZgMarW/7O2dluO/5cS9Y+CnzCxLAvh39TR9TOUXvB5
-zuev8pQwHOTqb9lRfDs87R5mpkyG4AyOcKGUTdbFA1uvlzVwb9b1UPrE4HSmdbZ7Yb9MwyTIa8Z8
-6A9PYRF12+Y2kGN7B5qoNEmPe1Q4/fUlZjJ2lw8/w8oJ+ihcPUHC6JMyL+N9+aEIYTIj5uJMFRCa
-u3NsCHb0NYzuJohOoZ7qzLUgO6YvLp7APGMZ0JWvGojlvtu6KeEBIm+RIGMJtlOw1KRYaOluEakP
-skqa+qtDsybhC/ucXHdJ/PS1Lx5EX8C1AlHOnI/RtHaPOvXD28LzocXunf9z
---000000000000f2e78d05fd7df4c7--
