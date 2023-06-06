@@ -2,133 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17F0A723F9D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3823723FC8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 12:40:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236753AbjFFKeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 06:34:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55202 "EHLO
+        id S236784AbjFFKkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 06:40:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236904AbjFFKeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:34:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E71BE42;
-        Tue,  6 Jun 2023 03:34:03 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3567GQVM002049;
-        Tue, 6 Jun 2023 10:33:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=i9Rvne1JjTYZ/ypfVKCw95t74IgXT4Np+ksPCaAY24k=;
- b=Tie28ARwQLbryfYKumOz5+aJdQxAspVYZwGvIja6JmbOmSlEnjpnTkzfq4LUzkTjP/xG
- hSeu3jQE6OMHPnjzmoHCfSey8cnoQy8/DOs0z8jzL3RhVmYDWZJ4KZwvPZ3sEBTUVvbY
- YdTlKLklNaiA4aR17AOIkH+JTkihhcg9D9rjYOnPcnNeNkpEZ/jIT9LuvkwerMSemLbu
- rmztMo9oViKPpfupyGDMsWMWwftTNulXJMANDkdXuHfREKSVD3dom8MElxnZvNFumz8X
- rx42/HHiZI5KsdOcQengNB1hzrOOh6Tc2EnK99inHnhcwPg0Mk5brT8eXYLW1GRWlQ5x JQ== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r1s4uh5r8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 06 Jun 2023 10:33:59 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 356AXwCb026081
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 6 Jun 2023 10:33:58 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 6 Jun 2023 03:33:53 -0700
-Date:   Tue, 6 Jun 2023 16:03:49 +0530
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 0/3] Enable IPQ9574 TSENS support
-Message-ID: <20230606103349.GA675@varda-linux.qualcomm.com>
-References: <cover.1685703605.git.quic_varada@quicinc.com>
+        with ESMTP id S236809AbjFFKjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 06:39:44 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2BA19B6
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 03:37:40 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9786c67ec32so92567866b.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 03:37:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686047859; x=1688639859;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QpFJU/IqFR4e+DTduLLpRyhdstc+HgSzigyth1/+/Co=;
+        b=Ck/7CWY5+neMVyfUxgW8MYTH/zWqy/Yu7zovm2HHe7oYFPZj6YSxWtOQSKEwxIE/34
+         XGw9zpunLOYPQSe9WRiv222R4bEzRt0SSPSAZsdXdFFE4DcakFjJRKeHxorkTNVs/539
+         M6GxyivK2L88pUKJ9VQvc+0fsWGlSp5yMoHphFhd7skVWU9tCEJ3a3dFcxbqbTyO6Gyo
+         h6C4zO8b3ERxOcZUtQ31hEYgnKB7kTG3KD6kB9S4do1VPdKqd1n2ZfGU4zkpMfLWHpgq
+         ZqYObGe7D8sVV8RfMleKxtAcCvwuRhirGrT9Yv7t7QluwMEr1zf+8vAkJGBcC35hswBI
+         VPsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686047859; x=1688639859;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QpFJU/IqFR4e+DTduLLpRyhdstc+HgSzigyth1/+/Co=;
+        b=FI9IceCK4OnbLjAIpb5Ja7DOomWgouHEYtWmsTBEYi30N0J+8AksG0WxGFwu2zu+O7
+         Jn6u+Q8BUbymjTaw5HjftmqeNmzu7jfsEtakb57lT7p6Gqbq9lrFq17vIOqfzF6KJclN
+         hCxqW2A4/FFJFVM5u2/P/IMvy0jn9lBccla7BnAJaNY0yEBQdy0vPaOV93GmGx307EL2
+         WaejlTL9SBIWTE4197+1orDk+4BGVSrz5p8NmFPhS+62XYgj1QhCVHW0fyLbANRXz1wW
+         Is4khTMfKq5MnHUiqO/2TOv0p3ZVk9XqOf2dxWHo5KY8MZo7/bkyF1Uq8lLKpLjSJs8C
+         WprA==
+X-Gm-Message-State: AC+VfDwj3UyyNcA5S/prE0Jk04JCVWV+nWDxuafJ25LN4M/dYysDlaog
+        FMfHM8KUhByC1UtFLczB8og5DA==
+X-Google-Smtp-Source: ACHHUZ7KnV3/A9DLydmlg/VE9hatPc63P79rhG5BvWGL9kzRkq0H7TADwkeZqK2QNk9a2ZBNhPubqQ==
+X-Received: by 2002:a17:907:2d0b:b0:974:62d7:1467 with SMTP id gs11-20020a1709072d0b00b0097462d71467mr1985000ejc.5.1686047859225;
+        Tue, 06 Jun 2023 03:37:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id y26-20020a17090668da00b00947ed087a2csm5365258ejr.154.2023.06.06.03.37.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 03:37:38 -0700 (PDT)
+Message-ID: <e0d14527-8147-5e8b-6a43-ee043e0d0f8b@linaro.org>
+Date:   Tue, 6 Jun 2023 12:37:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <cover.1685703605.git.quic_varada@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: xTn3_lGA0rZMujC2FP7xnrbhfsZgpH54
-X-Proofpoint-GUID: xTn3_lGA0rZMujC2FP7xnrbhfsZgpH54
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-06_06,2023-06-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 mlxlogscore=954 impostorscore=0 malwarescore=0 bulkscore=0
- adultscore=0 priorityscore=1501 clxscore=1015 mlxscore=0 suspectscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306060089
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "richard@nod.at" <richard@nod.at>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "conor@kernel.org" <conor@kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "enachman@marvell.com" <enachman@marvell.com>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
+ <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
+ <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
+ <785368df-1881-e62e-6172-d902cee814a8@alliedtelesis.co.nz>
+ <eaf9d7cf-c9f5-a5d5-67af-c43761c3c6cf@linaro.org>
+ <4ea0b16e-0cec-00db-c598-e0364a7edef8@alliedtelesis.co.nz>
+ <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
+ <20230606094855.1ab005eb@xps-13>
+ <845924ba-d9bf-d0ec-e1f2-f721366f43c0@linaro.org>
+ <20230606122812.411b223a@xps-13>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230606122812.411b223a@xps-13>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 02, 2023 at 04:33:49PM +0530, Varadarajan Narayanan wrote:
-> This patch set enables tsens in IPQ9574
->
-> Depends on
-> 	https://lore.kernel.org/linux-arm-msm/20230406061314.10916-1-quic_devipriy@quicinc.com/
-> [v5]:
-> 	Fix make DT_CHECKER_FLAGS=-m dt_binding_check and make dtbs_check errors without removing existing entries
->
-> [v4]:
-> 	Drop the sm6375-tsens and qcm2290-tsens related bindings
-> 	fix as it is already posted
->
-> 	Remove unnecessary changes from previous version
->
-> [v3]:
-> 	Fix make DT_CHECKER_FLAGS=-m dt_binding_check and make dtbs_check errors
->
-> [v2]:
-> 	Drop the driver change (https://lore.kernel.org/lkml/b45d33d38a334aabbd52c83b0d6028af1f4c74c8.1682682753.git.quic_varada@quicinc.com/)
-> 	since the tsens device is compatible with 8074's tsens
-> 	and use 8074's compatible itself
->
-> 	Rename clusterX nodes as cpussX
->
-> [v1]:
-> 	Fix DT node names
->
-> [v0]:
-> 	Initial patch introducing TSENS support
->
-> Praveenkumar I (1):
->   dt-bindings: thermal: tsens: Add ipq9574 compatible
->
-> Varadarajan Narayanan (2):
->   arm64: dts: qcom: ipq9574: add tsens node
->   arm64: dts: qcom: ipq9574: add thermal zone nodes
->
->  .../devicetree/bindings/thermal/qcom-tsens.yaml    |   6 +
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi              | 218 +++++++++++++++++++++
->  2 files changed, 224 insertions(+)
->
-> --
-> 2.7.4
->
+On 06/06/2023 12:28, Miquel Raynal wrote:
+> Hi Krzysztof,
+> 
+> krzysztof.kozlowski@linaro.org wrote on Tue, 6 Jun 2023 10:44:34 +0200:
+> 
+>> On 06/06/2023 09:48, Miquel Raynal wrote:
+>>>>>>>>> +          it (otherwise it is harmless).
+>>>>>>>>> +        $ref: /schemas/types.yaml#/definitions/flag
+>>>>>>>>> +        deprecated: true
+>>>>>>>>> +
+>>>>>>>>> +    additionalProperties: false    
+>>>>>>>> unevaluatedProperties: false    
+>>>>>>> It was hiding by '"^nand@[0-3]$":'. Should I move it here?    
+>>>>>> You cannot have both additionalProps and unevaluatedProps at the same
+>>>>>> time, so we do not talk about same thing or this was never working?    
+>>>>>
+>>>>> Hmm, I'm a little confused then. At various times I've been told to 
+>>>>> put 'additionalProperties: false' or 'unevaluatedProperties: false' 
+>>>>> (although never at the same time). I'm not sure when to use one or the 
+>>>>> other.
+>>>>>
+>>>>> From what I've been able to glean 'additionalProperties: true' 
+>>>>> indicates that the node is expected to have child nodes defined in a 
+>>>>> different schema so I would have thought 'additionalProperties: false' 
+>>>>> would be appropriate for a schema covering a leaf node. 
+>>>>> 'unevaluatedProperties: false' seems to enable stricter checking which 
+>>>>> makes sense when all the properties are described in the schema.    
+>>>>
+>>>> So I think this might be the problem. If I look at qcom,nandc.yaml or 
+>>>> ingenic,nand.yaml which both have a partitions property in their 
+>>>> example. Neither have 'unevaluatedProperties: false' on the nand@... 
+>>>> subnode. If I add it sure enough I start getting complaints about the 
+>>>> 'partitions' node being unexpected.  
+>>>
+>>> Sorry if that was unclear, I think the whole logic around the yaml
+>>> files is to progressively constrain the descriptions, schema after
+>>> schema. IOW, in the marvell binding you should set
+>>> unevaluatedProperties: false for the NAND controller. What is inside
+>>> (NAND chips, partition container, partition parsers, "mtd" properties,
+>>> etc) will be handled by other files. Of course you can constrain a bit
+>>> what can/cannot be used inside these subnodes, but I think you don't
+>>> need to set unevaluatedProperties in these subnodes (the NAND chip in
+>>> this case, or even the partitions) because you already reference
+>>> nand-controller.yaml which references nand-chip.yaml, mtd.yaml,
+>>> partitions.yaml, etc. *they* will make the generic checks and hopefully
+>>> apply stricter checks, when deemed relevant.  
+>>
+>> No, neither nand-controller.yaml nor nand-chip.yaml limit the properties
+>> in this context, so each device schema must have unevaluatedProperties:
+>> false, for which I asked few emails ago.
+> 
+> The controller description shall be guarded by unevaluatedProperties:
+> false, we agree. Do you mean the nand chip description in each nand
+> controller binding should also include it at its own level? Because
+> that is not what we enforced so far IIRC. I am totally fine doing so
+> starting from now on if this is a new requirement (which makes sense).
+> 
+> If yes, then it means we would need to list *all* the nand
+> chip properties in each schema, which clearly involves a lot of
+> duplication as you would need to define all types of partitions,
+> partition parsers, generic properties, etc in order for the examples to
+> pass all the checks. Only the properties like pinctrl-* would not need
+> to be listed I guess.
 
-Bjorn,
+Yes, this is what should be done. Each node should have either
+additional or unevaluatedProperties: false. It might come from
+referenced schema or from final (device) schema), but it looks here it
+is missing. It's exactly the same in all bindings. You will find plenty
+of examples, e.g. individual leds children and common.yaml.
 
-Can this series be taken for 6.5?
-All comments have been addressed.
 
-Thanks
-Varada
+> 
+> As Chris was having issues comparing his work with the ingenic and qcom
+> yaml files, I gave your input a try and hopefully "fixed" these
+> bindings.
+
+Both are wrong in this matter. You can easily test it. Patch like:
+
+diff --git a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
+b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
+index a7bdb5d3675c..968c42f6b5a2 100644
+--- a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
++++ b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
+@@ -97,6 +97,8 @@ examples:
+                 nand-ecc-mode = "hw";
+                 nand-on-flash-bbt;
+
++                fake-stuff;
++
+                 pinctrl-names = "default";
+                 pinctrl-0 = <&pins_nemc_cs1>;
+
+should trigger warning as this is clearly fake-stuff. No warning though...
+
+Best regards,
+Krzysztof
+
