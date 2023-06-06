@@ -2,166 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 848EF724E9F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 23:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF64C724EBE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 23:23:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238497AbjFFVQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 17:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
+        id S238562AbjFFVXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 17:23:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238677AbjFFVQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 17:16:10 -0400
-Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B9E69173A;
-        Tue,  6 Jun 2023 14:16:06 -0700 (PDT)
-Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
-        by smtp.dudau.co.uk (Postfix) with SMTP id 0B4AA41D13AD;
-        Tue,  6 Jun 2023 22:16:05 +0100 (BST)
-Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Tue, 06 Jun 2023 22:16:05 +0100
-From:   Liviu Dudau <liviu@dudau.co.uk>
-To:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Liviu Dudau <liviu@dudau.co.uk>
-Subject: [PATCH v4 2/2] mips: dts: ralink: Add support for TP-Link HC220 G5 v1 board
-Date:   Tue,  6 Jun 2023 22:16:00 +0100
-Message-Id: <20230606211600.1601694-3-liviu@dudau.co.uk>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230606211600.1601694-1-liviu@dudau.co.uk>
-References: <20230606211600.1601694-1-liviu@dudau.co.uk>
+        with ESMTP id S232511AbjFFVXQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 17:23:16 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3688B1703
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 14:23:15 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f62cf9755eso3019385e87.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 14:23:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686086593; x=1688678593;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qm+1lx1YXkD1jHHZgscMNvbufDc9utDAdpArAxBAlyA=;
+        b=kmrXSqSh4cW9xvUjFytgwMKOBH4BL4FrdtWsRkD3fN7ns6zhunGx54UTNW+SxsfWZi
+         JIQ1T2ZwxsCf6t1ZfZ2w6NBfG6h2Jkz/U4Vk2jvuIZ7w9j7PIj3vfAQJH7EFOtPPvVyv
+         S+mK3AXM9X8jK2Ukz8lnIeQ/ZWhoCEZwkfYfiSVPvT4GEE7vnAIupqty8ZJbaMN6iKpW
+         w7pMdQQIcNSk7O7Fg+ult4sYwwOhD4Ei0mMc/5IsmTDZ1XNmoAur1XzQxX0ZDQDCKwUG
+         ilzc8wft9smotqhT9uJgncQdOocq5p82oyI/dsWlwm+GLhQn35EsCzzZbr8SgzVSPT79
+         eAUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686086593; x=1688678593;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qm+1lx1YXkD1jHHZgscMNvbufDc9utDAdpArAxBAlyA=;
+        b=Bz4iosG99CyqgyMco03HJk13GoMXwaVGB7nouwMEqPYheLUGJKn6AfiwnWIBy08rrm
+         pJAkby0BkbnLqIjjJBpmrem08KCe+vAUGBWpEoCwCbnKFPxV7Lpp8G403Ry0inSHaUnf
+         plhIbJYc9sJG9I8TaS7ZUIeWzcWcJqNtaIrMuN4+H3/2iL3UDF9p/Z/aAoalTOFNvjYr
+         ao54lYctUoMx/zYEW7zzW0UEcIgY73Lpi8HuwdgVDgRJ/3rOZMR5ZmWN/AnAkdl0RcGY
+         ANuEWYCARo97yu/SqyV+TKdIZKUjRQo2xZgT73D3pyuNS56H291eiCacEGgAXb0gNhiZ
+         6U8w==
+X-Gm-Message-State: AC+VfDyvwdaWK0apjnGEyBp1XNDd02Xj6M934BAMk0da+LJ4YcLnYsl8
+        z/4EqmrWd2zW75WzEWVpmZok4g==
+X-Google-Smtp-Source: ACHHUZ6Cgfa4QzAt71x2+ybGkQOjk0ihlvj0vPwo9qq05LgKH348JxPQdxmBq06Ji+aBNZ74L/JP+A==
+X-Received: by 2002:a05:6512:146:b0:4f4:d6d3:33ec with SMTP id m6-20020a056512014600b004f4d6d333ecmr1882831lfo.1.1686086593440;
+        Tue, 06 Jun 2023 14:23:13 -0700 (PDT)
+Received: from [192.168.1.101] (abyl150.neoplus.adsl.tpnet.pl. [83.9.31.150])
+        by smtp.gmail.com with ESMTPSA id p22-20020ac246d6000000b004f606755537sm1562595lfo.298.2023.06.06.14.23.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 14:23:13 -0700 (PDT)
+Message-ID: <99d3c317-515e-3f1f-b134-a90607846269@linaro.org>
+Date:   Tue, 6 Jun 2023 23:23:11 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: qcom: qcm2290: Add CPU idle states
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230606-topic-qcm2290_idlestates-v1-1-dd77eef0086e@linaro.org>
+ <ZH-Wcxy3aev9hjBU@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZH-Wcxy3aev9hjBU@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
-a MT7603 2.4GHz WiFi and a MT7613 5GHz WiFi chips integrated on the board,
-connected to the main SoC over PCIe.
 
-The device uses NMBM over NAND, which is not currently supported in the
-mainline, so NAND node is skipped in this revision.
 
-Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
----
- arch/mips/boot/dts/ralink/Makefile            |  3 +-
- .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 84 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 1 deletion(-)
- create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+On 6.06.2023 22:26, Stephan Gerhold wrote:
+> On Tue, Jun 06, 2023 at 06:15:28PM +0200, Konrad Dybcio wrote:
+>> Add the (scarce) idle states for the individual CPUs, as well as the
+>> whole cluster. This enables deeper-than-WFI cpuidle
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qcm2290.dtsi | 61 +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 61 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+>> index b29bc4e4b837..a8a1ce58c0b7 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+>> @@ -48,6 +48,8 @@ CPU0: cpu@0 {
+>>  			enable-method = "psci";
+>>  			next-level-cache = <&L2_0>;
+>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>> +			power-domains = <&CPU_PD0>;
+>> +			power-domain-names = "psci";
+>>  			L2_0: l2-cache {
+>>  				compatible = "cache";
+>>  				cache-level = <2>;
+>> @@ -65,6 +67,8 @@ CPU1: cpu@1 {
+>>  			enable-method = "psci";
+>>  			next-level-cache = <&L2_0>;
+>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>> +			power-domains = <&CPU_PD1>;
+>> +			power-domain-names = "psci";
+>>  		};
+>>  
+>>  		CPU2: cpu@2 {
+>> @@ -77,6 +81,8 @@ CPU2: cpu@2 {
+>>  			enable-method = "psci";
+>>  			next-level-cache = <&L2_0>;
+>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>> +			power-domains = <&CPU_PD2>;
+>> +			power-domain-names = "psci";
+>>  		};
+>>  
+>>  		CPU3: cpu@3 {
+>> @@ -89,6 +95,8 @@ CPU3: cpu@3 {
+>>  			enable-method = "psci";
+>>  			next-level-cache = <&L2_0>;
+>>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>> +			power-domains = <&CPU_PD3>;
+>> +			power-domain-names = "psci";
+>>  		};
+>>  
+>>  		cpu-map {
+>> @@ -110,6 +118,30 @@ core3 {
+>>  				};
+>>  			};
+>>  		};
+>> +
+>> +		domain-idle-states {
+>> +			CLUSTER_SLEEP: cluster-sleep-0 {
+>> +				compatible = "domain-idle-state";
+>> +				arm,psci-suspend-param = <0x40000044>;
+> 
+> Are you sure this is correct? Based on lpm-levels/scuba-pm downstream
+> I would expect:
+> 
+>  - That the CPU mode part (last digit) is equal to the deepest per-CPU
+>    state (0x3) and only the cluster mode part (digit before) changes
+>  - That you pass the "last in power level" needed for OSI in << 24
+0x3 I agree (though by luck it turns out that 0x4 is also implemented!)
 
-diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
-index 11732b8c8163a..d27d7e8c700fe 100644
---- a/arch/mips/boot/dts/ralink/Makefile
-+++ b/arch/mips/boot/dts/ralink/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
- 
- dtb-$(CONFIG_SOC_MT7621) += \
- 	mt7621-gnubee-gb-pc1.dtb \
--	mt7621-gnubee-gb-pc2.dtb
-+	mt7621-gnubee-gb-pc2.dtb \
-+	mt7621-tplink-hc220-g5-v1.dtb
- 
- obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
-new file mode 100644
-index 0000000000000..2d2eadc6b95f3
---- /dev/null
-+++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
-@@ -0,0 +1,84 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/dts-v1/;
-+
-+#include "mt7621.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	compatible = "tplink,hc220-g5-v1", "mediatek,mt7621-soc";
-+	model = "TP-Link HC220 G5 v1";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x08000000>;
-+	};
-+
-+	chosen {
-+		bootargs = "earlycon console=ttyS0,115200";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-reset {
-+			label = "reset";
-+			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_RESTART>;
-+		};
-+
-+		key-wps {
-+			label = "wps";
-+			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_WPS_BUTTON>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-fault {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_FAULT;
-+			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-power {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		led-wps {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_WPS;
-+			gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&pcie {
-+	status = "okay";
-+};
-+
-+&switch0 {
-+	ports {
-+		port@0 {
-+			status = "okay";
-+			label = "lan2";
-+		};
-+
-+		port@1 {
-+			status = "okay";
-+			label = "lan1";
-+		};
-+
-+		port@2 {
-+			status = "okay";
-+			label = "wan";
-+		};
-+	};
-+};
--- 
-2.40.1
+BIT(24) - right, the firmware could fail to power off the shared cluster
+resources (like Ln$) with that missing.. Thanks for catching this!
 
+Konrad
+> 
+> Some of the numbers in sm6115.dtsi also look suspicious if you want to
+> recheck those...
+> 
+> Thanks,
+> Stephan
