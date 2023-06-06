@@ -2,112 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C8CE7246A0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68F9E7246AE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:46:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237482AbjFFOqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 10:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47452 "EHLO
+        id S235266AbjFFOq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 10:46:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238885AbjFFOpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:45:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B891A1FC0;
-        Tue,  6 Jun 2023 07:44:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233040AbjFFOql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:46:41 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1B32139
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 07:45:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686062727; x=1717598727;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=E9N6gczqBRtzStfelmYrMFPt3bD/yQja4D7peLE7F1A=;
+  b=fKkTDQ8mfBOarr2fuTCZEbd8r8fBh7bDm664dqGCyqazgUJ35cmUZI7V
+   hrP8j1nWklywZW0vtGK8yb/fzoK7wo7akpe4hz4tPtQN524Bvs6rbLAwu
+   BjVrFByVOMTOL3zan5zfo5nWKhxUxKlOPJwC+iIPp0tZiwZXO5FnzF4aO
+   yg/SPqRKJi4rNJSDunb0RJixqCrTZeqYcw0HkR08e0rVwBhCt2TIj7On3
+   bHSM6WM7LGP+Hq7L3znzzmqMpcQWSoBLUuI5KJtBOSt669rGbbLhJ01wN
+   +G/tuDrCPMWVAzVl2grQV9oup2qed+1DZmnHxLsqkMOD5aJWFlqMkCwbK
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,221,1681164000"; 
+   d="scan'208";a="31307737"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Jun 2023 16:44:50 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 06 Jun 2023 16:44:50 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 06 Jun 2023 16:44:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686062690; x=1717598690;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=E9N6gczqBRtzStfelmYrMFPt3bD/yQja4D7peLE7F1A=;
+  b=JRnGx8y66FpnViI9fVHfcRva2PJpBp7gjP1MIaS3NRMg27KqLVLBIxTU
+   l6hw9Lco8GCPaVW+xEwFJT3sa87aZ37yUmjYtUi0mGOv6Yl3Cg2zu8Cpt
+   7S56ljX6WoELB7Kne+hFBURa+Px7kaLqY4Hf2AQmdHnVXQWZ7AyDSBb9v
+   48dCaJP/2HeeCDW2MV/6kMqe4oxqlAywQIqvPnWnx576q4cyR5EbWH+cd
+   tiDAmLoA2LpmVH7a+8M7HDu0/tpRL4fExvIkODy2bd2VBIOg1wnBPxFJ8
+   it/9RjfEkxB87rKkP3+VVFlzCH3g6e6lf+PrlnqxBKZB1uUmSGOQPONKl
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,221,1681164000"; 
+   d="scan'208";a="31307736"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Jun 2023 16:44:50 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CFB0862B8A;
-        Tue,  6 Jun 2023 14:44:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 026F9C433EF;
-        Tue,  6 Jun 2023 14:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686062657;
-        bh=wFUgnv9X7h+10TvBMgGnbWC8jZFNlyHek1/kayw6i4w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dPgXlMXM9+tUnPCqQC8K9lL66aMDmmv6YC1LEtfxW9cwJMlfPSjEnkDJ6K0qGvlXa
-         /wynmBuDOsCJb1wbdYBWIT2ydTpFmbkT+9r2YNSyVHibmd2IBrt9YtKFVOw7LON65o
-         Ea7G+1D/3OLF/YrZkyQGyXT6yuEW8x7tFU/fPJg6uh1sa6C0yVqObNhBYahVRb69+x
-         ekrDxvRzFcVrTxoBsDRAy+KXCoiduv62hy2LQHmqxiTsaqHt6ioWZd7FA5E4dhOK8n
-         h6hgKE1aiHmZxaVE8dd2ifAMYT3IvFvWrv/UUm1Uvc2Fkw3Q+MQ6Buq24tlcMDafCE
-         UpclfIJtHt1gg==
-Date:   Tue, 6 Jun 2023 15:44:11 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7AEE6280090;
+        Tue,  6 Jun 2023 16:44:50 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 1/2] spi: dt-bindings: introduce linux,use-rt-queue flag
-Message-ID: <a1a1bf95-6333-40a8-9f08-4c952cd070df@sirena.org.uk>
-References: <20230602115201.415718-1-matthias.schiffer@ew.tq-group.com>
- <628b7411-7d12-4915-80c8-cabb74ac6590@sirena.org.uk>
- <CACRpkdYhFmG-Cb-5+dt1Huktnm+tkOjSGO5ZFPjGeOXRott6Dw@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Liu Ying <victor.liu@nxp.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/1] dt-bindings: phy: mixel,mipi-dsi-phy: Remove assigned-clock* properties
+Date:   Tue,  6 Jun 2023 16:44:46 +0200
+Message-Id: <20230606144447.775942-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MqPioFIbuFc0cwHs"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYhFmG-Cb-5+dt1Huktnm+tkOjSGO5ZFPjGeOXRott6Dw@mail.gmail.com>
-X-Cookie: Keep out of the sunlight.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These properties are allowed anyway and some SoC (e.g. imx8mq) configure
+more than just one clock using these properties.
 
---MqPioFIbuFc0cwHs
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: f9b0593dd4fc6 ("dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema")
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+I can't reproduce the mentioned mis-matches in commit f9b0593dd4fc6
+("dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema").
 
-On Tue, Jun 06, 2023 at 04:37:08PM +0200, Linus Walleij wrote:
-> On Fri, Jun 2, 2023 at 2:22=E2=80=AFPM Mark Brown <broonie@kernel.org> wr=
-ote:
-> > On Fri, Jun 02, 2023 at 01:52:00PM +0200, Matthias Schiffer wrote:
+Since commit 62270eeb2b639 ("arm64: dts: imx8mq: Add clock parents for
+mipi dphy") imx8mq.dtsi configures several clocks using assigned-clocks*
+properties.
 
-> > > We have seen a number of downstream patches that allow enabling the
-> > > realtime feature of the SPI subsystem to reduce latency. These were
-> > > usually implemented for a specific SPI driver, even though the actual
-> > > handling of the rt flag is happening in the generic SPI controller co=
-de.
+ .../devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml      | 9 ---------
+ 1 file changed, 9 deletions(-)
 
-> > > Introduce a generic linux,use-rt-queue flag that can be used with any
-> > > controller driver. The now redundant driver-specific pl022,rt flag is
-> > > marked as deprecated.
+diff --git a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+index 786cfd71cb7eb..3c28ec50f0979 100644
+--- a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+@@ -32,15 +32,6 @@ properties:
+   clock-names:
+     const: phy_ref
+ 
+-  assigned-clocks:
+-    maxItems: 1
+-
+-  assigned-clock-parents:
+-    maxItems: 1
+-
+-  assigned-clock-rates:
+-    maxItems: 1
+-
+   "#phy-cells":
+     const: 0
+ 
+-- 
+2.34.1
 
-> > This is clearly OS specific tuning so out of scope for DT...
-
-> In a sense, but to be fair anything prefixed linux,* is out of scope for =
-DT,
-> Documentation/devicetree/bindings/input/matrix-keymap.yaml being
-> the most obvious offender.
-
-That's at least a description of hardware though.  This is a performance
-tuning thing, if it needs to be configured at all it should be
-configured at runtime.  Some applications might see things work better,
-some might see performance reduced and new versions might have different
-performance characteristics and need different configuration.
-
---MqPioFIbuFc0cwHs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR/RjoACgkQJNaLcl1U
-h9AUVwf8CyAFfKVAo6ZDMUEq91ADRzXoi6CPFs0i/7YXDA4Bn+W7SBBAPcKlRntJ
-pVeTavERw1fr6/DDrDwUBZFFAVGZVUIEi7PIk7f6im3YXyNNS8OXA7MN7W6SKJ+R
-n2U1q+52cc+HbL8G3YDb4LQEtZMswrQfo9GC3SvsjDiWGwfIEyHArmOQPNzdK9dE
-v2d1MqoBBGfLQWObYaiZ2nhtvvwr/K4q+VetO71CoG9daEJH2DBmSNIzsAG89dHE
-8sViWI52rk21q7VzDsFtTFcmzlQbavd449EaNuCoooB5mBgkfZ3F3qRvj1d57W7r
-HAwIdgBeFqzA8E5CExcO2zlNRc2bLA==
-=VCQk
------END PGP SIGNATURE-----
-
---MqPioFIbuFc0cwHs--
