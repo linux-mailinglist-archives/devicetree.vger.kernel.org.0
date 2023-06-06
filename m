@@ -2,148 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D45EE723C15
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5CA723C19
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 10:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235716AbjFFIom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 04:44:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39156 "EHLO
+        id S237243AbjFFIqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 04:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236609AbjFFIok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:44:40 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D2C711B
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 01:44:39 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-974f4897d87so614419166b.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 01:44:39 -0700 (PDT)
+        with ESMTP id S232131AbjFFIqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 04:46:16 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E2CF4
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 01:46:15 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-977e7d6945aso259559366b.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 01:46:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686041077; x=1688633077;
+        d=linaro.org; s=google; t=1686041173; x=1688633173;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XDg6FhswbLnxmS80mCt2IqXJuf8NCtYRpgYnIYW/CqI=;
-        b=D+o10JAiGV/K8Dk8o+sTomnICPqQiKXQqiasLdnFHwrRq8AdmQ2PfydvWTEeDP84N/
-         dStB8WQGQgAtmYa8scNzeiqDHoprVOcygCaYiDK3wjFU78QB4eHxEmyNDsCakwGUWDQR
-         B6p/fW+n3tOogKlmTpCCJTZb4iQzwuOMP4Qluuma4aIBAm/OkXE9Jru0pAomBhb1ZPXJ
-         LJb1uYH90Qw4T14XSm0AGDG0+QJl4b+ZCwjJXmEg4VaxZlg65OPOsGT29y29qv2D0xz5
-         3rDYnN2DY4C0kwM//FLiQ7UcJFFThl78c6JoWIZWYUvlZI0+xtbnz20IdvLB5ucl+8GT
-         te9w==
+        bh=zhXwQM1axbZVP2R8OTg/nTjRF7LjBSXFyA1Pe1rgXwU=;
+        b=jXpQDLQejxxBFd0UfnOFHTyEnRcBuSf14kQhGyzGTpjiML3LMNEoe3EgxnCScam58x
+         1JL7xSQS5fMTU/kBRVY7Vegdg8w7DyHxUS/ZboO/VYEYKaXeUJ/Hk3AvHVyMWlY+66xl
+         v97q3SFJiLjCLMaTXa1lE6APNloD3Bt2rTRlyyjI3geQ04ywLZyon4/ROVhrI3pUTYdD
+         8EZg33enMYWuuqQefJ4UQj8yS/mdyAHR5jGcWgzTyPXyGWs1SMm9f9oO3b3KZ8ImQlan
+         K2HgcN1eNbzJVwl7I7K6iO2hPcRYcuZYdAEhq3XSs8ebCGeyXVLPe0aXG0AP0oA9sPfb
+         4H1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686041077; x=1688633077;
+        d=1e100.net; s=20221208; t=1686041173; x=1688633173;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XDg6FhswbLnxmS80mCt2IqXJuf8NCtYRpgYnIYW/CqI=;
-        b=IyiXaGV7ivr/t8L75Uq3/4vWy557L1NhAsnHymlXu1Ro82JEHoo3qYzpIDvRurwPSo
-         00oKrWiMfUrGjt08duT8vxVImQMBwCRj5rqQsvt6rz3fRj3pGOlhxzmiDF7smukfVJWx
-         MuYUguqjbbTRZ3uu99b15M3FiDbAyZ5k3nRNcAJmZ4R37hISb53zir6sMwX2EDeG0T1z
-         ih8bYOIEP27LEybUzHmgZovmlCDVnjj5SgdwSGtuJqQKhroDoYzN3Myyd2YQLs9A1qBF
-         LXiJaehbTh4wS1yCoFEflBAUbgLo/n9ArnDXbej1aPpTdriRHP2AconJHuZkqCD08T6V
-         C0dQ==
-X-Gm-Message-State: AC+VfDz9LfzA+YX3HuSAblNVTYkFrWyadcmjfr/gaWKmjDaCL1thUsQN
-        iGp4YcEFC2eiKioA5fNVXPB1Iw==
-X-Google-Smtp-Source: ACHHUZ6wAfRnXikBVJbGi1CsiXd+lwR0OYsSoSocIDBbbRBkyIdkfClvyjFYznjWuYv6kxmoRkeiFA==
-X-Received: by 2002:a17:907:3ea5:b0:973:9f60:c57e with SMTP id hs37-20020a1709073ea500b009739f60c57emr2012710ejc.2.1686041077566;
-        Tue, 06 Jun 2023 01:44:37 -0700 (PDT)
+        bh=zhXwQM1axbZVP2R8OTg/nTjRF7LjBSXFyA1Pe1rgXwU=;
+        b=KnEGaUKihwnuXv+bwrZx8pla2Tg6khDzaxasK0VxQRmuJlfNzXWliNyFyi41xXu64I
+         Jti6ozPKwDggZosyNsbn/3lL9ypSvrXNEThDbptCVeTcLZhLZQ/aLajZbWSRT09JVsBo
+         SdArt6LLf4yBQBhAySG5q9lZ1dVZ19HSZiLQOPmlEKTg7JWK0oZ/wvSBhYlbdG7QpgIF
+         fDWuUJdBiN3hc48hB1UmlFd5ho4corPQohx3V2lcIe4SCM4eQo2uPVb9piyuPOV97/rv
+         enwLdLQfQBOTBGGMxuLILtTq7cobjXwwDOAUaq4gsXPcfZfO6JY4aCb3MCccsEhzdhqv
+         zI7g==
+X-Gm-Message-State: AC+VfDxKxgZaf4aZgQkS21XVXSg/5ak7+Ru2j/QJfxsDjG8o3q/+HZya
+        I5Yg6II1FXHFGZTTON82W0T0+Q==
+X-Google-Smtp-Source: ACHHUZ6XPMkYalRlyNWE2pAPL43aV20Dl8/aCIgapDRm3k9iQeuNZMX/aNkFgm3+1GqDSzEW+qa8mg==
+X-Received: by 2002:a17:907:9496:b0:970:19a2:7303 with SMTP id dm22-20020a170907949600b0097019a27303mr1672203ejc.19.1686041173683;
+        Tue, 06 Jun 2023 01:46:13 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id d4-20020a17090694c400b0096f67b55b0csm5265406ejy.115.2023.06.06.01.44.35
+        by smtp.gmail.com with ESMTPSA id e4-20020a170906504400b0095342bfb701sm5455841ejk.16.2023.06.06.01.46.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 01:44:37 -0700 (PDT)
-Message-ID: <845924ba-d9bf-d0ec-e1f2-f721366f43c0@linaro.org>
-Date:   Tue, 6 Jun 2023 10:44:34 +0200
+        Tue, 06 Jun 2023 01:46:13 -0700 (PDT)
+Message-ID: <2c3fa1f1-1859-0914-b39f-05f1f4186179@linaro.org>
+Date:   Tue, 6 Jun 2023 10:46:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
- scheme
+Subject: Re: [PATCH v4 2/4] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
 Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "conor@kernel.org" <conor@kernel.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "enachman@marvell.com" <enachman@marvell.com>,
-        Vadym Kochan <vadym.kochan@plvision.eu>
-References: <20230531234923.2307013-1-chris.packham@alliedtelesis.co.nz>
- <20230531234923.2307013-4-chris.packham@alliedtelesis.co.nz>
- <a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org>
- <785368df-1881-e62e-6172-d902cee814a8@alliedtelesis.co.nz>
- <eaf9d7cf-c9f5-a5d5-67af-c43761c3c6cf@linaro.org>
- <4ea0b16e-0cec-00db-c598-e0364a7edef8@alliedtelesis.co.nz>
- <9fc57052-5049-ed50-ca95-cfd1d0420dd9@alliedtelesis.co.nz>
- <20230606094855.1ab005eb@xps-13>
+To:     Rudraksha Gupta <guptarud@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230606040529.122433-1-guptarud@gmail.com>
+ <20230606040529.122433-3-guptarud@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230606094855.1ab005eb@xps-13>
+In-Reply-To: <20230606040529.122433-3-guptarud@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 09:48, Miquel Raynal wrote:
->>>>>>> +          it (otherwise it is harmless).
->>>>>>> +        $ref: /schemas/types.yaml#/definitions/flag
->>>>>>> +        deprecated: true
->>>>>>> +
->>>>>>> +    additionalProperties: false  
->>>>>> unevaluatedProperties: false  
->>>>> It was hiding by '"^nand@[0-3]$":'. Should I move it here?  
->>>> You cannot have both additionalProps and unevaluatedProps at the same
->>>> time, so we do not talk about same thing or this was never working?  
->>>
->>> Hmm, I'm a little confused then. At various times I've been told to 
->>> put 'additionalProperties: false' or 'unevaluatedProperties: false' 
->>> (although never at the same time). I'm not sure when to use one or the 
->>> other.
->>>
->>> From what I've been able to glean 'additionalProperties: true' 
->>> indicates that the node is expected to have child nodes defined in a 
->>> different schema so I would have thought 'additionalProperties: false' 
->>> would be appropriate for a schema covering a leaf node. 
->>> 'unevaluatedProperties: false' seems to enable stricter checking which 
->>> makes sense when all the properties are described in the schema.  
->>
->> So I think this might be the problem. If I look at qcom,nandc.yaml or 
->> ingenic,nand.yaml which both have a partitions property in their 
->> example. Neither have 'unevaluatedProperties: false' on the nand@... 
->> subnode. If I add it sure enough I start getting complaints about the 
->> 'partitions' node being unexpected.
+On 06/06/2023 06:05, Rudraksha Gupta wrote:
+> Adds qcom,usb-hs-phy-msm8960 compatible
 > 
-> Sorry if that was unclear, I think the whole logic around the yaml
-> files is to progressively constrain the descriptions, schema after
-> schema. IOW, in the marvell binding you should set
-> unevaluatedProperties: false for the NAND controller. What is inside
-> (NAND chips, partition container, partition parsers, "mtd" properties,
-> etc) will be handled by other files. Of course you can constrain a bit
-> what can/cannot be used inside these subnodes, but I think you don't
-> need to set unevaluatedProperties in these subnodes (the NAND chip in
-> this case, or even the partitions) because you already reference
-> nand-controller.yaml which references nand-chip.yaml, mtd.yaml,
-> partitions.yaml, etc. *they* will make the generic checks and hopefully
-> apply stricter checks, when deemed relevant.
+> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+> index aa97478dd016..bdeffb52340b 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+> @@ -13,7 +13,9 @@ if:
+>    properties:
+>      compatible:
+>        contains:
+> -        const: qcom,usb-hs-phy-apq8064
+> +        anyOf:
 
-No, neither nand-controller.yaml nor nand-chip.yaml limit the properties
-in this context, so each device schema must have unevaluatedProperties:
-false, for which I asked few emails ago.
-
+Look at existing bindings how this is done. This should be enum.
 Best regards,
 Krzysztof
 
