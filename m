@@ -2,105 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F76172437C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC9AD724389
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236448AbjFFNBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 09:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60004 "EHLO
+        id S231431AbjFFNDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 09:03:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237873AbjFFNBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:01:11 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB354F4;
-        Tue,  6 Jun 2023 06:01:01 -0700 (PDT)
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 836906606EBB;
-        Tue,  6 Jun 2023 14:00:58 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686056460;
-        bh=5X1vYezIwDbqeMCS78Q98whyEA5uh7OHIVeHGqM+EtI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Bfbe3+nAwOOs1sT8xUYl78AUiOqTLNLqOgHUc/MMsJpbI2TDRkVIX6ZshuNRESg9i
-         CdTefngagGRRzKM4hy1+okSH2ATYC5alLYo+nqBMbCr8XQZc/FeMDRo77evveNN2f4
-         BnDSjSwiV0mwF3IkIGbs6zsl/GjEX0rb/SG6NDtMJwajllD3EQWPXu3P9CNUY6WYb5
-         +tJAmdnnTF1NlgPxo4erKN7XTd90KoNPywzu47sO77C/9mlBtrAD+e7XMK71xaQtHl
-         Vs1bC8qAw/u7GPyFqqkgOHqkpWqAtBQ7NDwl8W9btme5JJ+7PWhae+nF4+OHx+w1sQ
-         e9LrCwjcVgdJg==
-Date:   Tue, 6 Jun 2023 09:00:54 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S237650AbjFFNDn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:03:43 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C12012F;
+        Tue,  6 Jun 2023 06:03:40 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b1ac373c9eso58038411fa.0;
+        Tue, 06 Jun 2023 06:03:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686056618; x=1688648618;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ppUEUXlfyDGcaV0Jk4+G607lI9ilV+0ZgoY188YnfSQ=;
+        b=Ut6Ha7/oKQLGtaZcztB4EZThpCKpwD1mPBhMjYcbC90aMnBsY+CE5/RZf0TdBX3kuv
+         /zN73+kZjhXDsEHIr3aaDJXpuKVXsNkuEHII/iq8pX6hmGzzgQuWYDX+6x4HvmUoGK/8
+         2o4Mc0vCZ9VuzCNJymNexG/sz4mw3BxsKYU4TSsXuupPV3qjBTsDpUsMMFvqnL/rbFo2
+         KQoklukO+7yNDzKbONPJo9b51t5We52YXoGhg6CFlxgrIcJIVlZK/i2wFJA2L7262CRv
+         renGC8gO7LTaraMXRCiDOU+kaF3YIo5/E3FJ+UiR5KZWDIDYoJ+9tdvtKlNIg/dXJiXe
+         IQug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686056618; x=1688648618;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ppUEUXlfyDGcaV0Jk4+G607lI9ilV+0ZgoY188YnfSQ=;
+        b=Uk/ryi+BPMPNuUyhqUo5lpl2p/2Vw/mh0wjikbWP4qf4TJfZZXN7rMXZgZFgyPsx+4
+         U6PXu6yL8H2vFpRC4PCFz4+xTT3mNC84czceZV18kylAcG0k2mzmzynU3ycXe2UhIIoP
+         ssBU4KIKMrrITAAuNx7QCkYMJ9s8Hsdi9HaLa6FlhVsRAH+l2q280PNfZOuzl5AVvKwM
+         6CV3jDxhDhIEt8xa7bbE7OGzjAkYXPbSTdfrzyoW2hdajzt+VEqfiS1Z1s/Qo0B3q9Z4
+         7oLzhbhR4vW+QsymCYWxraUJsk/bJCBeR3nR/tWX8SfXTf6HR4wV/ToZzQa4kSRXa7lX
+         Mccg==
+X-Gm-Message-State: AC+VfDzlr1hbeYYfcXFfy3gQDE8SyEbk8DrD5IEEdukjOkxctfkkZglN
+        20+CQnE/ISOz+aBMdVacyZc=
+X-Google-Smtp-Source: ACHHUZ7c5v7ZUuZzUT2aRx9lo+JMnfZDIoxL3gPXVn+mYZ8BIM9S0INRJYrfcgSBOqnTW4JCIEw65Q==
+X-Received: by 2002:a2e:8e8d:0:b0:2b0:497a:2029 with SMTP id z13-20020a2e8e8d000000b002b0497a2029mr1229759ljk.23.1686056618099;
+        Tue, 06 Jun 2023 06:03:38 -0700 (PDT)
+Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id b15-20020a056512024f00b004ec8b638115sm1452891lfo.193.2023.06.06.06.03.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jun 2023 06:03:37 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8192: Fix CPUs capacity-dmips-mhz
-Message-ID: <0e9667dc-8f91-49a0-903e-6725204e11ad@notapiano>
-References: <20230602183515.3778780-1-nfraprado@collabora.com>
- <01c88a42-274c-f8cf-73a6-29741579d9db@collabora.com>
- <4b2fdd36-0871-ecc7-5d64-e088d7f51987@gmail.com>
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 0/3] arm64: tegra: Support Jetson Orin Nano Developer Kit
+Date:   Tue,  6 Jun 2023 15:03:32 +0200
+Message-Id: <168605652835.2915879.11202169691767509843.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230516095850.2426604-1-thierry.reding@gmail.com>
+References: <20230516095850.2426604-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4b2fdd36-0871-ecc7-5d64-e088d7f51987@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 08:38:42AM +0200, Matthias Brugger wrote:
-> 
-> 
-> On 05/06/2023 10:21, AngeloGioacchino Del Regno wrote:
-> > Il 02/06/23 20:35, Nícolas F. R. A. Prado ha scritto:
-> > > The capacity-dmips-mhz parameter was miscalculated: this SoC runs
-> > > the first (Cortex-A55) cluster at a maximum of 2000MHz and the
-> > > second (Cortex-A76) cluster at a maximum of 2200MHz.
-> > > 
-> > > In order to calculate the right capacity-dmips-mhz, the following
-> > > test was performed:
-> > > 1. CPUFREQ governor was set to 'performance' on both clusters
-> > > 2. Ran dhrystone with 500000000 iterations for 10 times on each cluster
-> > > 3. Calculated the mean result for each cluster
-> > > 4. Calculated DMIPS/MHz: dmips_mhz = dmips_per_second / cpu_mhz
-> > > 5. Scaled results to 1024:
-> > >     result_c0 = dmips_mhz_c0 / dmips_mhz_c1 * 1024
-> > > 
-> > > The mean results for this SoC are:
-> > > Cluster 0 (LITTLE): 12016411 Dhry/s
-> > > Cluster 1 (BIG): 31702034 Dhry/s
-> > > 
-> > > The calculated scaled results are:
-> > > Cluster 0: 426.953226899238 (rounded to 427)
-> > > Cluster 1: 1024
-> > > 
-> > > Fixes: 48489980e27e ("arm64: dts: Add Mediatek SoC MT8192 and
-> > > evaluation board dts and Makefile")
-> > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > > 
-> > 
-> 
-> Applied, thanks
+From: Thierry Reding <treding@nvidia.com>
 
-Hi Matthias,
 
-this patch doesn't show in your v6.4-next/dts64 branch, while the other patch
-you just applied does, so I just wanted to double check it was really applied.
+On Tue, 16 May 2023 11:58:47 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Hi,
+> 
+> this series documents the compatible strings for the Jetson Orin Nano
+> module and the corresponding developer kit.
+> 
+> [...]
 
-Thanks,
-Nícolas
+Applied, thanks!
+
+[1/3] dt-bindings: tegra: Document Jetson Orin Nano
+      commit: b4032e1726648cb156f45ae756c8730d6d39a5de
+[2/3] dt-bindings: tegra: Document Jetson Orin Nano Developer Kit
+      commit: 5f027147e4796e9fc11083b2ad50a91c1ac36ede
+
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
