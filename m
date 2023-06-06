@@ -2,72 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22FB8724408
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C125272441C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:16:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238264AbjFFNNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 09:13:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39334 "EHLO
+        id S238086AbjFFNQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 09:16:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238128AbjFFNNJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:13:09 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E311FDF;
-        Tue,  6 Jun 2023 06:12:04 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51456392cbbso14749441a12.0;
-        Tue, 06 Jun 2023 06:12:04 -0700 (PDT)
+        with ESMTP id S237954AbjFFNQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:16:01 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC65410D5
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 06:15:59 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f63a2e1c5fso688414e87.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 06:15:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686057123; x=1688649123;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M0CGQqG20YTOK9LtWqZipWk8Qea+usdqMmamyt9olJQ=;
-        b=kCfc++5woXhXDsKwdJGD7o1GoiNdpJvwOZBcc9rWclcEP9mVRbi2TzgJCbBumFdorz
-         GBQN/5K8/gY/x0GC/n8K026i1rgdp7qtb1LPOwh8BTaG8FKmSnTzQ44gq8OrBkg/jBhM
-         tGBdf2w2eFxAVsITJwg5fp7cJO7Zqngbk/Px6YhTg/eZ9o4WoSYkpuZ79SzM+QDwmJGS
-         UaGk1htiOzcru+TyUg/N/sUnUPZi8iWgkyRGMcdqyZfw047TRz01By+BNTRKRA6MgJ2j
-         zPisCL1g+cuTIcktIQa9uqMRSGljFICnnYgohl8hmQJvYMO8PqLtE0KSW//OOBXNuYrm
-         zhNg==
+        d=linaro.org; s=google; t=1686057358; x=1688649358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xjfzzwF9PKOo4h8atONi+JyNDf6hWNqVhb1cXUpUuTE=;
+        b=bkUafAYRKMl7obj5VZygpxdv6WKJzh7W8Bb+29JXza6gHHAqmLDU+78nB11IssGpd2
+         1OeSum7JKLGe3AtmgU5duJPPseFOzrBDJHxkWtC8xAriHYwZsuiRZNV0WyUHUMVXDqs/
+         5T+r6JPzh4cjODp1oLHDLadYkWRq0SkPAG50aRYOWQBmQJkX8za0enofCFOgea0+xUPJ
+         mEWMIw4B5I9d4+VN+gnf21j5Zx8wkVTRWusz4qlZRFJwfD5kIPYq47812k3B+AI2wAt0
+         1ZAQqI48j85LezYeg6NFuP+L1py0Xqx0soGRpegawL23Og9ZjOTj3Iw1tPK6zpNc22Zk
+         AA+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686057123; x=1688649123;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M0CGQqG20YTOK9LtWqZipWk8Qea+usdqMmamyt9olJQ=;
-        b=F9/10j5F8/jv9oeEbqclFCDYlW36eC6r2B2Ttrkoo/ajNu1capKjI+m3BwhJB9Hr6s
-         pVrKiKddcYfWsRbV+m3GWRcaCPeBnoIgFaoVpJ8G0OTcyOlR/LgYEkP9/0dTnGa+72wa
-         N98pDnho6y8ZxTHJmxj1P27Q8IOnyELTiaB7uIBsaqHGrrCYC22ABKqHw7N7hoSdmEVN
-         R2iBW9wbITm9wdyrm4PRe0ArVWy18Nd8UU6RByA3JJmAYD5bMwN9VySg6CeAjMuTIoLQ
-         qYYcBsfbEIS6SRianfmR9O+EXjGzuwPL898vlHr7JCTpECtn6SP8JrFA2lDw4SrE4q8P
-         1p0g==
-X-Gm-Message-State: AC+VfDzg88qAZhePF8YXutoPEE3pu90LhAaYhH6V1aqjNoCyIFv+31Yb
-        hhJbMCWXvHngaKKfGAqex7k=
-X-Google-Smtp-Source: ACHHUZ5RIERdp9ITRhu3Mx9yKlN745/O2iK+/1eCC17frhA/GMWA92Y1cLKumsLL7TO6pDeiygbMxA==
-X-Received: by 2002:a05:6402:2713:b0:514:8eb1:1aaa with SMTP id y19-20020a056402271300b005148eb11aaamr14434647edd.11.1686057122864;
-        Tue, 06 Jun 2023 06:12:02 -0700 (PDT)
-Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id b11-20020a05640202cb00b005147f604965sm5082399edx.24.2023.06.06.06.12.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 06:12:02 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: tegra: Enable USB device for Jetson AGX Orin
-Date:   Tue,  6 Jun 2023 15:12:02 +0200
-Message-Id: <168605710403.2916503.121426897498738904.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230530140232.53854-1-jonathanh@nvidia.com>
-References: <20230530140232.53854-1-jonathanh@nvidia.com>
+        d=1e100.net; s=20221208; t=1686057358; x=1688649358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xjfzzwF9PKOo4h8atONi+JyNDf6hWNqVhb1cXUpUuTE=;
+        b=kMqvSaynsH2Zfl4b4hxLSWsaq0SjsnSm7oOAAXDM/QEhsiQ4+ggOBOa5mWLwuoSv9w
+         GJ1nfv2xZIQJLhJ5YajnOh5s/GMIcVQ9k1TmKcfS0T0s1NvaWlFh7e1XOjtDMkTxbEZL
+         lm513cR+3r8tjD/JNzT2OXLmaQnp3+V9qNGL/FKAf3DDAqK1XiN8JJVeexp3WBNrD90n
+         hqZA7BtgZw9+57tXSgICh+aKasbhwm0jaRwauYmPQf8epHQ9mByConN/PF2N0RwZYleG
+         3YO4poWWAIPc5hnCQtOknQSCusWQfu+8hxzhv0Vyum7xiqp7AAcJ7LZCLdxwbbX018Bv
+         E8Qw==
+X-Gm-Message-State: AC+VfDxgVCszHsKa1WpAI3cfiueyA9Pde3ZlruKPJpTSLb4YURIi7XyN
+        nTn60Lgv+CrGTKKy9M57TOuseQ==
+X-Google-Smtp-Source: ACHHUZ5IDqB1ip1czs+yGIxH79eoli8GF0lqxAjULpLkARWJnwH4tpKVVQ2/mhJde3ptIOTiIdA83g==
+X-Received: by 2002:a05:651c:8c:b0:2b1:e8f8:e0ff with SMTP id 12-20020a05651c008c00b002b1e8f8e0ffmr1430127ljq.10.1686057358069;
+        Tue, 06 Jun 2023 06:15:58 -0700 (PDT)
+Received: from [192.168.1.101] (abyl150.neoplus.adsl.tpnet.pl. [83.9.31.150])
+        by smtp.gmail.com with ESMTPSA id x13-20020a2e880d000000b002ac7b0fc473sm1850597ljh.38.2023.06.06.06.15.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 06:15:57 -0700 (PDT)
+Message-ID: <6548a1d5-9635-7d97-7a0a-0114c463b152@linaro.org>
+Date:   Tue, 6 Jun 2023 15:15:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: ipq9574: add tsens node
+Content-Language: en-US
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>
+References: <cover.1685703605.git.quic_varada@quicinc.com>
+ <dcb682766d8e01f8f4eed7f26fcbfba1b4091137.1685703605.git.quic_varada@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <dcb682766d8e01f8f4eed7f26fcbfba1b4091137.1685703605.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,22 +80,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
 
 
-On Tue, 30 May 2023 15:02:31 +0100, Jon Hunter wrote:
-> Enable USB device support for the Jetson AGX Orin platform and update
-> the mode for the usb2-0 port to be on-the-go.
+On 2.06.2023 13:03, Varadarajan Narayanan wrote:
+> IPQ9574 has a tsens v2.3.1 peripheral which monitors temperatures
+> around the various subsystems on the die.
 > 
+> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> [v5]:
+> 	Incorporate review comments
+"fix bug" is too vague..
+
 > 
+> [v2]:
+> 	Add "qcom,ipq8074-tsens" as fallback compatible
+> ---
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 0baeb10..cda3fd4 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -206,6 +206,16 @@
+>  			#size-cells = <1>;
+>  		};
+>  
+> +		tsens: thermal-sensor@4a9000 {
+> +			compatible = "qcom,ipq9574-tsens", "qcom,ipq8074-tsens";
+> +			reg = <0x004a9000 0x1000>, /* TM */
+> +			      <0x004a8000 0x1000>; /* SROT */
+The comments are unnecessary, we've been copypasting them from SoC to SoC
+but it's time we stop.
 
-Applied, thanks!
+With that:
 
-[1/2] arm64: tegra: Enable USB device for Jetson AGX Orin
-      commit: 620405856d591ef95b01ee3e275af3a636c05010
-[2/2] arm64: tegra: Update USB phy-name for Jetson Orin NX
-      commit: 86d24f98b75d3a58503554e8d1dd277ae7386966
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+Konrad
+> +			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "combined";
+> +			#qcom,sensors = <16>;
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+>  		tlmm: pinctrl@1000000 {
+>  			compatible = "qcom,ipq9574-tlmm";
+>  			reg = <0x01000000 0x300000>;
