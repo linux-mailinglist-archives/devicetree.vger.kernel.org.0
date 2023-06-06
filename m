@@ -2,101 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97935724907
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DF86724918
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233514AbjFFQZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 12:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58008 "EHLO
+        id S231232AbjFFQ3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 12:29:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238506AbjFFQZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:25:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 174D510FE;
-        Tue,  6 Jun 2023 09:24:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A75B562862;
-        Tue,  6 Jun 2023 16:24:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DAABC433EF;
-        Tue,  6 Jun 2023 16:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686068679;
-        bh=W4Tp8jO+9JqisoEdQWJbb+RxEjWeGO6Ebj3B6m7pPCA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=nrr/ZR5dfX1JBaKxwqI6JBfjB+mB2pSi42JI/AOhWuf9o0OsOS52k8JgXS8rdI8y6
-         2vYNaoTtpW+NpBoEnH/1OmXSGKzv9ThUyzeoQXOvIP1tHfCnwKVaA6XDjPyWRg8dvY
-         U3ZRT462HdmSIbet9gXFc+aKZW1SCpSUfD5eEYDCHNa7tRMF483mEyNy+w4JEJE0is
-         h1/hwSTqweKkAwG8GPJOZNlO3So+SEHsyil9mK2FhoR5WQWerZri4uVgE8/HdSMWE8
-         LgwLZD9x1XfJjz/TKY8SwckJINOicGboKPdh02sbc8XKkCuIj00C9gYfRRC+AFELbe
-         SuWHZ2vhYhyKQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Abe Kohandel <abe.kohandel@intel.com>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        with ESMTP id S237773AbjFFQ3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:29:22 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C13E5E;
+        Tue,  6 Jun 2023 09:29:16 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (om126253223039.31.openmobile.ne.jp [126.253.223.39])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BD44C283;
+        Tue,  6 Jun 2023 18:28:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1686068928;
+        bh=y5ixXw0zAGVCiQTHB3djsxXTl/8rQt2eWHzwOjlnJJI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lZFj9W2yBeX0SUPlggU8ByZSX6BRpJ1Fu5x0TYB+udJS1Hlv+PiLUJIi7kLtrjl0Q
+         gFDXZEjUcoVGMqzXAcVw1FCo+Q97ZEXT2ilUXspWRWumNkmseTrg66jT5TK+SB3FXI
+         0/23EoWSaGDaPXKzpQL8BCGg4NKa2ggd5jdiPPw8=
+Date:   Tue, 6 Jun 2023 19:29:11 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
+        michael.roeder@avnet.eu, linuxfancy@googlegroups.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20230606145402.474866-1-abe.kohandel@intel.com>
-References: <20230606145402.474866-1-abe.kohandel@intel.com>
-Subject: Re: [PATCH 0/2] spi: dw: Add compatible for Intel Mount Evans SoC
-Message-Id: <168606867693.49694.16483038401822255147.b4-ty@kernel.org>
-Date:   Tue, 06 Jun 2023 17:24:36 +0100
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add prefix
+ alliedvision
+Message-ID: <20230606162911.GH25679@pendragon.ideasonboard.com>
+References: <20230606155416.260941-1-tomm.merciai@gmail.com>
+ <20230606155416.260941-2-tomm.merciai@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230606155416.260941-2-tomm.merciai@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Jun 2023 07:54:00 -0700, Abe Kohandel wrote:
-> The Intel Mount Evans SoC's Integrated Management Complex has a DW
-> apb_ssi_v4.02a controller. This series adds support for this controller.
+Hi Tommaso,
+
+Thank you for the patch.
+
+On Tue, Jun 06, 2023 at 05:54:02PM +0200, Tommaso Merciai wrote:
+> Add a vendor prefix entry for Allied Vision Inc.
+> (https://www.alliedvision.com)
 > 
-> No SoC level chip select override is provided and as such no DMA
-> configuration is done for the controller.
+> Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Thanks,
-> Abe
-> 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 82d39ab0231b..7bd678956b3d 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -77,6 +77,8 @@ patternProperties:
+>      description: ALFA Network Inc.
+>    "^allegro,.*":
+>      description: Allegro DVT
+> +  "^alliedvision,.*":
+> +    description: Allied Vision Inc.
+>    "^allo,.*":
+>      description: Allo.com
+>    "^allwinner,.*":
 
-Applied to
+-- 
+Regards,
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/2] spi: dw: Add compatible for Intel Mount Evans SoC
-      commit: 0760d5d0e9f0c0e2200a0323a61d1995bb745dee
-[2/2] dt-bindings: spi: snps,dw-apb-ssi: Add compatible for Intel Mount Evans SoC
-      commit: 7bac98a338d63efb0b44ce4b79d53838491f00df
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Laurent Pinchart
