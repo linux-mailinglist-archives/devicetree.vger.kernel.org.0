@@ -2,59 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99D2B72497F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509407249D5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233272AbjFFQrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 12:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43338 "EHLO
+        id S238654AbjFFRIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 13:08:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233619AbjFFQrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:47:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7ED9E6B;
-        Tue,  6 Jun 2023 09:47:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 84737630C1;
-        Tue,  6 Jun 2023 16:47:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E033FC433D2;
-        Tue,  6 Jun 2023 16:47:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686070065;
-        bh=h5qXADfp5iiHf5MldklfzUICOJ9UUo9FqnfqQoU50+8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ravdK7JRjrbpZQJXRxpzY2TO5yOug/TyvCUu/I5jnTGVcKdN159z0lEfOVSmP67uJ
-         41MtN0iYA+OJE89RvAmHGPEo6F5Q8cr9TFu8WkRbXvRwSWM/2zATy3U2NlZx+tmuRD
-         RQzLcBpsd5vYbT22DcCu/IzfcP2W5Y5tWKAuoL28M4wdILnD10zkA561w9chFyEscf
-         1fo/fgcx1uqc1cdPxvhSgXatNaQ5YskiSMeFmFz8mL6SuUgY+2Q4M3RVCEYxbQXujU
-         27TX3Rs3gFv/WqZxEFrL8T1zsPSAQyfRfsmgNYrJubWncrxvJ2VQsi0xZdktPrtufd
-         jIxgNsLT4iY4Q==
-Date:   Tue, 6 Jun 2023 17:47:40 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Abe Kohandel <abe.kohandel@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238593AbjFFRH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:07:56 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 833541735;
+        Tue,  6 Jun 2023 10:07:40 -0700 (PDT)
+Received: from [91.65.34.120] (helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1q6a9N-0001ED-9t; Tue, 06 Jun 2023 19:07:17 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Conor Dooley <conor+dt@kernel.org>,
+        Zhu Ning <zhuning0077@gmail.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Daniel Drake <drake@endlessm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 0/2] spi: dw: Add compatible for Intel Mount Evans SoC
-Message-ID: <7696b01e-c388-45f2-9694-e427dde84b2b@sirena.org.uk>
-References: <20230606145402.474866-1-abe.kohandel@intel.com>
- <168606867693.49694.16483038401822255147.b4-ty@kernel.org>
- <20230606164040.s3ozznrkcclozugx@mobilestation>
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/3] ES8316 audio codec fixes on Rock5B
+Date:   Tue,  6 Jun 2023 19:07:09 +0200
+Message-Id: <168607097312.1436521.13454183292358558195.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230530181140.483936-1-cristian.ciocaltea@collabora.com>
+References: <20230530181140.483936-1-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5ishfBgfXgGNSCq9"
-Content-Disposition: inline
-In-Reply-To: <20230606164040.s3ozznrkcclozugx@mobilestation>
-X-Cookie: Keep out of the sunlight.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,36 +56,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 30 May 2023 21:11:37 +0300, Cristian Ciocaltea wrote:
+> This patch series handles a few issues related to the ES8316 audio
+> codec, discovered while doing some testing on the Rock 5B board.
+> 
+> Changes in v2:
+>  - Preserved original dB gain range in PATCH 1
+>  - Rewrote PATCH 2 conditional statement, per Mark's review
+>  - Rebased series onto next-20230530
+>  - v1: https://lore.kernel.org/all/20230524074156.147387-1-cristian.ciocaltea@collabora.com/
+> 
+> [...]
 
---5ishfBgfXgGNSCq9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied, thanks!
 
-On Tue, Jun 06, 2023 at 07:40:40PM +0300, Serge Semin wrote:
+[3/3] arm64: dts: rockchip: Assign ES8316 MCLK rate on rk3588-rock-5b
+      commit: 28ee08cef4f838c343013330a3cd12674c4dd113
 
-> Mark, next time please wait at least for a few days before applying.
-> Give me a chance to review.)
-
-It's a trivial quirk for a platform, it seemed more hassle to wait TBH.
-
-> * In this case I have had a question regarding the in-code comment
-> which may have been needed to be fixed a bit.
-
-That can always be fixed incrementally if there's issues.
-
---5ishfBgfXgGNSCq9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR/YysACgkQJNaLcl1U
-h9CxQAf/VtujR3HvlFC6goCYk8294SlUDYFVXzT6M6n11QIlRbX9IAfYBveFXPo4
-6LGOn1rTPQIpI3iw51jahj6D2MF9YAqz2hilaCrvdq7JQm03GT20eAeJ1aUZEtxO
-4xhoujdH2dv8bpXsZhJVPKcGOCPCxXySXKMtbv8OszgYEzLG2unYxC7PixB6BsNp
-jkTEbCSxtQGu02Rjyl2Z+I2XbUScs0L55TUc8U5etEub9yYkoWf2voaTkHU5XXnU
-V1HZMwTLCrcxFoJaV8+W4hC96NVUTf3Go/FDr5KWmaIxl4J6OVk8jXrIdcU71uUw
-4+/fLXQW2lSxoX3lCVeCIJvOfopvFQ==
-=Q3jY
------END PGP SIGNATURE-----
-
---5ishfBgfXgGNSCq9--
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
