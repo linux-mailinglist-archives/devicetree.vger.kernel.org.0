@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EC672421D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 14:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1615724293
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 14:44:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234890AbjFFMaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 08:30:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60390 "EHLO
+        id S237528AbjFFMoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 08:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237058AbjFFM3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 08:29:50 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C7A10C7
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 05:29:49 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-977d02931d1so404035666b.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 05:29:49 -0700 (PDT)
+        with ESMTP id S237657AbjFFMoG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 08:44:06 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90EB170E
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 05:43:44 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-97454836448so788203766b.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 05:43:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686054588; x=1688646588;
+        d=linaro.org; s=google; t=1686055418; x=1688647418;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IWikzPZh1zj0Jzec8+iwxQzR4oRLa0VpL+JvaJGvhls=;
-        b=IpNPSsZFEKJSvceLXdy306ddTKK0i9CHCuV0Ga9Z1pUmOuR1HClSLLk1gSLTRch0BA
-         HB0toQBkGC8tYf5tr22ugA6iyZ8dC5ZUJby7XM92Pkj3Hx/jUqnWHapLmcQg7AEcJhx8
-         ydELIzuXQqmqaOM3ZsSfF6t5ATY2uY8CKoYpTprBRZjHXdOIa/HLPPZtIgmsVxqA3meL
-         ElohgLKkIsH77MWCI0VhbvwzY6lWIXWmYiuidArTQBwnvcN4S5euF6x14PtR9RB0YqSN
-         ywKsWdqikwPUSYLGdUleMp7OZ5WuFTY3O6UnKWgJoczuD3q+BhSxWmNCdGQrnGAZVja2
-         QuYQ==
+        bh=mK220acPIp0Asjpx7WaUgqj2OH9AJX77DYV3xxqd5iA=;
+        b=Cr+0sfqBACoG5qRB689ltZloU3SiTrSDK3yRSMTcaISF7FGdum9egCI2nWA5gxmRaK
+         daLOjhx4q2TDLeXael2GAEIpJ3MY6rNaWvlmqQtVlzOuUj52kLeOD/W/1YTEKLcvS7y6
+         RxCOX9icXKTpyNMZ5yktWxvMTafFaEOYJStoz17+gOmrKpHS5ThtoVczItCNjcUT/qPH
+         Cb8guFYO9ai5gR8ixCbF5WSDIAtUCY7PkM0kqphHq+xAi/xNUzysDaooV54ffoXgmwov
+         wd+rmvepiTVyutsV1BhxZfYw+tLcyTNzQlZtP4IHfSLG1YZqWiv9/tfxIEkWWHZibGoO
+         eqGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686054588; x=1688646588;
+        d=1e100.net; s=20221208; t=1686055418; x=1688647418;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IWikzPZh1zj0Jzec8+iwxQzR4oRLa0VpL+JvaJGvhls=;
-        b=Cwx69RRWiMosSCVGeWU3FZWCZS0JJKQgrH4wJ4MoP1lgcHDHV9ep5fm33fx9yND4u8
-         iAGuZ3nxh9mKCPvwlE7VlUMZWi3IP5NOTn+84Lxwnz1D80lBmBFhJVEqa9VOsKZ3BpW6
-         qgElCupxWd2k97mWDtLu8Q8+9BI72FatsubTZFiiPMQtQku/vJb2P4mzd51npdepD7zx
-         Xlq45qkb1dV4q6+52KiskYyrXOYeGImBTESO6SYgDJ08AObrfqAHYVPrSOnME2TiqHrX
-         kXX5QKvYiGofbLUw0iLhXMWylZMJgMjIZ9VO0TQdurd454x5TfSW/6BlVA9F0DpsPNQ3
-         bYNQ==
-X-Gm-Message-State: AC+VfDxfhB482hoBgwiwRkfuSoDelgnHCRllROHrWieV/eNuDOiE4V76
-        crlZNwuHz6Q06Mdkqd6W68+sBA==
-X-Google-Smtp-Source: ACHHUZ5zOg8bkEZM/LhbfO1EfpnR310YUUK4irlHnUHd29W7mmxUx2p7kOjYjbn0vsniaRz/2W3tQw==
-X-Received: by 2002:a17:907:9688:b0:96f:2b3f:61 with SMTP id hd8-20020a170907968800b0096f2b3f0061mr2668594ejc.7.1686054587815;
-        Tue, 06 Jun 2023 05:29:47 -0700 (PDT)
+        bh=mK220acPIp0Asjpx7WaUgqj2OH9AJX77DYV3xxqd5iA=;
+        b=gbaFfW6pqB+7tLWcRaY8wcoNOzxYnqNTkiQ92Rtwxu5piBvJxo52ywEAXiXdRc1if4
+         AUIY5vAlCnszPhN4QwdN53GBIix06Vge0I1UauBR6UpyTyE9IxZbfM3wKHp+iBA8Fl+H
+         OfWKc3ez58GJ3u41RmBQM3QWE/ruETgqU8OaSMH+knKWtKRVdxXieFXZpVGjXFb4j3aW
+         SayONKis562lLLydTauq4w8uhKzF0V/Z0yZbfbRyWLNQIppqttf8nMrijaAW2XIhBYHX
+         /Hd3eulEz5GlOvqEQIbjmcWAjQZUX1z0U82nSAYyrijVW70ZFxpxOj0YCZO3UaXQNBV6
+         57cA==
+X-Gm-Message-State: AC+VfDzW/RIEZjGtb7jpwxwERpYiSQuzAtgFqcNrc3gGZ+HESU3ElaW4
+        W2mX2eGL0iyqrR6RMp2n8nO1MdC4KthUOqSEKeI+4A==
+X-Google-Smtp-Source: ACHHUZ5XRAYpRQYNod5PLa/diyi4g2ViUz8nWrxI8quciVUCIMB853yrvygjxAT8AI5273ZGNyDfyg==
+X-Received: by 2002:a17:907:7b9b:b0:974:5e14:29c5 with SMTP id ne27-20020a1709077b9b00b009745e1429c5mr2615396ejc.32.1686055418440;
+        Tue, 06 Jun 2023 05:43:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h27-20020a1709062ddb00b00965cfc209d5sm5499841eji.8.2023.06.06.05.29.45
+        by smtp.gmail.com with ESMTPSA id z21-20020a170906815500b0096ace7ae086sm5589502ejw.174.2023.06.06.05.43.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jun 2023 05:29:47 -0700 (PDT)
-Message-ID: <ef6bc190-ca7e-485e-ae45-e03fddfd3f0c@linaro.org>
-Date:   Tue, 6 Jun 2023 14:29:45 +0200
+        Tue, 06 Jun 2023 05:43:38 -0700 (PDT)
+Message-ID: <e148c599-8521-3264-f994-529ffc18f836@linaro.org>
+Date:   Tue, 6 Jun 2023 14:43:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: document audio of graph port
- for cs42l51
+Subject: Re: [PATCH v2 1/3] dt-bindings: qspi: cdns,qspi-nor: Add clocks for
+ StarFive JH7110 SoC
 Content-Language: en-US
-To:     Olivier Moysan <olivier.moysan@foss.st.com>,
-        James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Lucas Tanure <tanureal@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230606115605.1633595-1-olivier.moysan@foss.st.com>
- <20230606115605.1633595-3-olivier.moysan@foss.st.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>
+References: <20230602084925.215411-1-william.qiu@starfivetech.com>
+ <20230602084925.215411-2-william.qiu@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230606115605.1633595-3-olivier.moysan@foss.st.com>
+In-Reply-To: <20230602084925.215411-2-william.qiu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,16 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 13:56, Olivier Moysan wrote:
-> When linking the CS42L51 to another DAI component, according
-> to audio graph cards bindings, an OF graph port property is expected
-> in the node. Document the port property.
+On 02/06/2023 10:49, William Qiu wrote:
+> The QSPI controller needs three clock items to work properly on StarFive
+> JH7110 SoC, so there is need to change the maxItems's value to 3. Other
+> platforms do not have this constraint.
 > 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+>  
+> @@ -69,9 +81,6 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> -  clocks:
+> -    maxItems: 1
+
+Properties should be defined in top-level properties. Don't remove them
+from here.
 
 Best regards,
 Krzysztof
