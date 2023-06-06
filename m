@@ -2,97 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2D06724A51
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22BC5724A96
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233348AbjFFRdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 13:33:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40684 "EHLO
+        id S233778AbjFFRw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 13:52:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233418AbjFFRdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:33:17 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C156010FF;
-        Tue,  6 Jun 2023 10:33:16 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b1c910ee19so33334361fa.3;
-        Tue, 06 Jun 2023 10:33:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686072795; x=1688664795;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7NXKJbFz1nKDKoVlMVlm8aQEKkrV2KIiDCqPS9XhHh0=;
-        b=ZEw9yUBSxHAopkpmwxzN8xEPjxgsPjv8z8etXX4uAkXqVTLnc7Zqs/nbxm4evTnPYx
-         J+Omm0ydUBktRZTLrKqs9LiCkqeCWU3jPapWRXrILrv6PEaGJwrcLIhICnoq+JZQwdgm
-         /2NLcUAAIqvEWVR7j+Sc6GZ9DSpn2l2kgBErJV+71vHOi9nZ7Z1AQNPoBTF4C/uA54l/
-         WXZRJxlt38eemJkwDbL0qh1xoe/YdOtJc9APQDAKIouLkX+FzxMMXPv2xuMAyB/wo75h
-         rLAQg4TkRrW68a7bN187GZBhQmMZjeHy/zG3Uahh8nok66OL4MBimuetJyEB0L2cxtMg
-         1Fpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686072795; x=1688664795;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7NXKJbFz1nKDKoVlMVlm8aQEKkrV2KIiDCqPS9XhHh0=;
-        b=MqjeHcthCvAecb8OYQVCg40FlRlF5WGjtFQ/nGTlk9fnbBXVrLq1ZQA8VrE0SaKphS
-         IBiR7WutCgwFvCM85R4iHovXcEVHMTimTdYfLY0Imkfrceiw6ordLIuSgebVKFK2o0h2
-         K54aCa9qJLYPc5mzflW75ksP44vJjqTztMo88yChgB7Ag6Ig1kAP9oBOr9K0UNdFjJqp
-         kMUMKt5ApJkCqKORHoMsV65sR5zmlqciXLx8zQaMajpsTcZg/anTG+VG2tpud3j49MuN
-         4ZihUxT2ZBz9vAAtmdk6pnk9xyqRXmI5kfBvS8v3oivhAkHxpDHG41pZmhCmAoUQcNXi
-         zUKQ==
-X-Gm-Message-State: AC+VfDzAgAbyJYSrAuTAzvb/CnRGSen8XS3sw/eoMrvxoXuUcc6BCtZY
-        eHtEw3OtXPDfM6PoBtUA2os=
-X-Google-Smtp-Source: ACHHUZ6E4u1pwCQ4bGQbdToV6BQJplhi2ZNf72qvhp2dQ5/aVBqJv5anArQ6qcFH9gKG5ZLw8DKUBw==
-X-Received: by 2002:a2e:994e:0:b0:2b1:eb62:ffc8 with SMTP id r14-20020a2e994e000000b002b1eb62ffc8mr1448240ljj.6.1686072794884;
-        Tue, 06 Jun 2023 10:33:14 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id d14-20020a2e96ce000000b002a8a5afb87csm1941338ljj.20.2023.06.06.10.33.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 10:33:14 -0700 (PDT)
-Date:   Tue, 6 Jun 2023 20:33:12 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Abe Kohandel <abe.kohandel@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 0/2] spi: dw: Add compatible for Intel Mount Evans SoC
-Message-ID: <20230606173312.wfrowqc7irecow2s@mobilestation>
-References: <20230606145402.474866-1-abe.kohandel@intel.com>
- <168606867693.49694.16483038401822255147.b4-ty@kernel.org>
- <20230606164040.s3ozznrkcclozugx@mobilestation>
- <7696b01e-c388-45f2-9694-e427dde84b2b@sirena.org.uk>
+        with ESMTP id S233040AbjFFRw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:52:58 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE911E54
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:52:56 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686073975;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Ed7HST+fb6/FcGdKVdCSMGnOVxlQQtUu+Y5PDlptoSU=;
+        b=WgI1ldBdO0U+IrO79NLdyHrhqIn1l8o4TkbvbeCvfN3TAm+9yCGlRmKiBbBchmAB1T2SKh
+        KjhYX2zq2Ks8FhWvLVirabewR/sCZc72k4dLxu9HehzuybHBKUuDDoE6zCRO2mXyaRFrrD
+        WbwRTRvEvzT55kWVZx/Bm5cioL11FtBAmJdlpIjs8CJsVsyOLZjogBxoHc36OYaeabMTzQ
+        VBxzxEd/YdGU3p8QNgJ3TU3Vg+8zhpK/NnBR/9kqh1Spej2Lh/L86MJCQ+eekjxMWH3GhD
+        9K55I2eiSfXkLX7Bii5cacHLYer5SWwJ8FxuOxNKBBi84AlcaBKI0C9dYIUpXA==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DF04A1C0005;
+        Tue,  6 Jun 2023 17:52:46 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Samuel Holland <samuel@sholland.org>,
+        Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>,
+        Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+Subject: [PATCH v2 00/17] Prevent NAND chip unevaluated properties
+Date:   Tue,  6 Jun 2023 19:52:29 +0200
+Message-Id: <20230606175246.190465-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7696b01e-c388-45f2-9694-e427dde84b2b@sirena.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 05:47:40PM +0100, Mark Brown wrote:
-> On Tue, Jun 06, 2023 at 07:40:40PM +0300, Serge Semin wrote:
-> 
-> > Mark, next time please wait at least for a few days before applying.
-> > Give me a chance to review.)
-> 
-> It's a trivial quirk for a platform, it seemed more hassle to wait TBH.
-> 
-> > * In this case I have had a question regarding the in-code comment
-> > which may have been needed to be fixed a bit.
-> 
+As discussed with Krzysztof and Chris, it seems like each NAND
+controller binding should actually restrain the properties allowed in
+the NAND chip node with its own "unevaluatedProperties: false". This
+only works if we reference a yaml schema which contains all the possible
+properties *in the NAND chip node*. Indeed, the NAND controller yaml
+schema contains properties for the NAND chip which are not evaluated
+with this construction.
 
-> That can always be fixed incrementally if there's issues.
+Link: https://lore.kernel.org/all/a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@linaro.org/
 
-Ok. I've sent my comment in that regards. Let's see what the author
-responds.
+While converting Marvell controller bindings, Chris explicitly pointed
+similar bindings which would also trigger errors when using
+"unevaluatedProperties: false" because of the problem mentioned above.
 
--Serge(y)
+Here is an attempt at making this logic more robust:
+* All NAND chip properties which are specific to the raw NAND world are
+  moved into a raw-nand-chip.yaml file.
+* raw-nand-chip.yaml is referenced by all NAND controller bindings when
+  the NAND chip must be further constrained.
+* raw-nand-chip.yaml and spi-nand.yaml reference nand-chip.yaml.
+
+These change made me realize the qcom,boot-partition property
+description was broken, and a few other descriptions needed small
+updates. Here is a batch of updates to fix all these.
+
+Thanks,
+Miquèl
+
+Miquel Raynal (17):
+  dt-bindings: mtd: Accept nand related node names
+  dt-bindings: mtd: Create a file for raw NAND chip properties
+  dt-bindings: mtd: Mark nand-ecc-placement deprecated
+  dt-bindings: mtd: Describe nand-ecc-mode
+  dt-bindings: mtd: qcom: Fix a property position
+  dt-bindings: mtd: qcom: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: ingenic: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: sunxi: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: meson: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: brcmnand: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: denali: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: intel: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: rockchip: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: stm32: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: mediatek: Reference raw-nand-chip.yaml
+  dt-bindings: mtd: mediatek: Prevent NAND chip unevaluated properties
+  dt-bindings: mtd: ti,am654: Prevent unevaluated properties
+
+ .../mtd/allwinner,sun4i-a10-nand.yaml         |   5 +-
+ .../bindings/mtd/amlogic,meson-nand.yaml      |   3 +
+ .../bindings/mtd/brcm,brcmnand.yaml           |   3 +
+ .../devicetree/bindings/mtd/denali,nand.yaml  |   9 +-
+ .../devicetree/bindings/mtd/ingenic,nand.yaml |   4 +
+ .../bindings/mtd/intel,lgm-ebunand.yaml       |   5 +-
+ .../bindings/mtd/mediatek,mtk-nfc.yaml        |   3 +-
+ .../devicetree/bindings/mtd/mtd.yaml          |   2 +-
+ .../bindings/mtd/nand-controller.yaml         |  85 +-------------
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   |  45 ++++---
+ .../bindings/mtd/raw-nand-chip.yaml           | 111 ++++++++++++++++++
+ .../mtd/rockchip,nand-controller.yaml         |   3 +
+ .../bindings/mtd/st,stm32-fmc2-nand.yaml      |   3 +
+ .../bindings/mtd/ti,am654-hbmc.yaml           |   2 +
+ 14 files changed, 172 insertions(+), 111 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
+
+-- 
+2.34.1
+
