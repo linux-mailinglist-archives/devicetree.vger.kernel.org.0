@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7663724AA0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD56B724AA1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238839AbjFFRxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 13:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51338 "EHLO
+        id S236749AbjFFRxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 13:53:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238263AbjFFRxL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:53:11 -0400
+        with ESMTP id S238263AbjFFRxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:53:13 -0400
 Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F032E47
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:53:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D10931706
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:53:11 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686073989;
+        t=1686073990;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=iCK0DHm6UzryjKAJtjsJk2QooGSXLb+4h/3MbZr7jOk=;
-        b=c+Nnmcctkd5vhWErOF+5bl7WgJlryebgwVCf4LAr8aZgaoQyKSSo47s7UQy+wFfn/ly1IJ
-        FDR9FjMOzYQs6AQhQV7vyStdtGmP+G3vH76YBEiU/hZIA6lanhYaRbKb0DPqUN5dwPNpoW
-        2jq/fFiBWOy+/mmfRa20KEos8Ynkiy24ai0eoq0/kG/WJqiYpQKG51nyLic6AWN9WIn2Vq
-        RtVhpj9aa/sSVDkKDMwVWIavPrmjsQFKYA/2pqvmsNAghr0MGsfgOii+zwI9n6mil2iDLG
-        VQa6ncI/W5JzLAZCc7DLJy4rcv9VTaUGXRIiiDtE1QV/telSdnhghEIv5R2G+A==
+        bh=Ycgd0NeFF0Qi01QxdVs9F5FiBcqy4Oj5vlvdXkOnpCU=;
+        b=lQtIm6KN46pA/jFPeLBuy4GotM0U1rEKX53gt2EAj2hRkrKq3/EkjSmVv9FCvQyAAzyke3
+        PCRFzcMv1Flpif89+NSTnQ5DwBSVYb77adje2J6mqo8LnxCOfgXIz4A/2ysDync48Gdvya
+        5nVGSzVSxbIiNPuT1gx5FewLdarhlOdO7ZVVu194yfhn16sTWOLqS7v+znb4YmOVk20Qo3
+        hxlFuHrNBCMltDEIxAqzX7csBrg1Vtmc47sTI/9ilka0YiA7q0eR2IxLpa7hon6javzjDN
+        fH7EUOMty6/ld3Ufr04qbE7nyt7JOVRYxVpy3blot//796n9ApSvYgSSHhA5ug==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -39,9 +39,8 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 04F831C0007;
-        Tue,  6 Jun 2023 17:53:07 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E7B81C0004;
+        Tue,  6 Jun 2023 17:53:09 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -54,11 +53,10 @@ To:     Richard Weinberger <richard@nod.at>,
 Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>
-Subject: [PATCH v2 10/17] dt-bindings: mtd: brcmnand: Prevent NAND chip unevaluated properties
-Date:   Tue,  6 Jun 2023 19:52:39 +0200
-Message-Id: <20230606175246.190465-11-miquel.raynal@bootlin.com>
+        Masahiro Yamada <yamada.masahiro@socionext.com>
+Subject: [PATCH v2 11/17] dt-bindings: mtd: denali: Prevent NAND chip unevaluated properties
+Date:   Tue,  6 Jun 2023 19:52:40 +0200
+Message-Id: <20230606175246.190465-12-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230606175246.190465-1-miquel.raynal@bootlin.com>
 References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
@@ -79,34 +77,56 @@ Ensure all raw NAND chip properties are valid by referencing the
 relevant schema and set unevaluatedProperties to false in the NAND chip
 section to avoid spurious additions of random properties.
 
-Cc: Brian Norris <computersforpeace@gmail.com>
-Cc: Kamal Dasu <kdasu.kdev@gmail.com>
+Doing this in one location also saves us from dupplicating the
+description of the NAND chip object.
+
+Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/mtd/denali,nand.yaml | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-index 1571024aa119..f57e96374e67 100644
---- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-@@ -114,6 +114,7 @@ properties:
- patternProperties:
-   "^nand@[a-f0-9]$":
-     type: object
-+    $ref: raw-nand-chip.yaml
-     properties:
-       compatible:
-         const: brcm,nandcs
-@@ -136,6 +137,8 @@ patternProperties:
-           layout.
-         $ref: /schemas/types.yaml#/definitions/uint32
+diff --git a/Documentation/devicetree/bindings/mtd/denali,nand.yaml b/Documentation/devicetree/bindings/mtd/denali,nand.yaml
+index 0be83ad42970..81f95538d415 100644
+--- a/Documentation/devicetree/bindings/mtd/denali,nand.yaml
++++ b/Documentation/devicetree/bindings/mtd/denali,nand.yaml
+@@ -63,6 +63,12 @@ properties:
+     minItems: 1
+     maxItems: 2
  
++patternProperties:
++  "^nand@[a-f0-9]$":
++    type: object
++    $ref: raw-nand-chip.yaml
 +    unevaluatedProperties: false
 +
  allOf:
-   - $ref: nand-controller.yaml#
-   - if:
+   - $ref: nand-controller.yaml
+ 
+@@ -74,7 +80,6 @@ allOf:
+     then:
+       patternProperties:
+         "^nand@[a-f0-9]$":
+-          type: object
+           properties:
+             nand-ecc-strength:
+               enum:
+@@ -92,7 +97,6 @@ allOf:
+     then:
+       patternProperties:
+         "^nand@[a-f0-9]$":
+-          type: object
+           properties:
+             nand-ecc-strength:
+               enum:
+@@ -111,7 +115,6 @@ allOf:
+     then:
+       patternProperties:
+         "^nand@[a-f0-9]$":
+-          type: object
+           properties:
+             nand-ecc-strength:
+               enum:
 -- 
 2.34.1
 
