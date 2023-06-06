@@ -2,124 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 835B67245E4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F30D724602
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 16:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237576AbjFFO1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 10:27:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32798 "EHLO
+        id S233179AbjFFObc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 10:31:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237857AbjFFO1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:27:38 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188C81718;
-        Tue,  6 Jun 2023 07:27:33 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-75e1ec47c3fso203995185a.2;
-        Tue, 06 Jun 2023 07:27:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686061652; x=1688653652;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JJyXRnfhFkINlRUyK+QjXtrQLlNiUgrBBt6eFT43tDY=;
-        b=DNd/kMiQRIIQpg04PdEmqFSvnHjgjCWWhVR5no38lxjnNhirVN2K9CbYPzqU34l9HC
-         4oY2+6+thwYUX0PPIhTr/L4Hw4d/PLCfB2HjnuYOu9iSLckigw2Al9668tqy4uY6ptZ/
-         jRYZawCtxngClpopfSoBCb3QXh3SP6HwP70WMlJ2qqCHYmTr9LL79QzOVEpyK5//ZszG
-         WeGP6VB9o7Ap9Zngfc0Q/tR1Ixd7zM3x2iMC3ZmidCQ5DLRH5Ic+hAFHmTFlufhfcAZB
-         SlOP+dzX4zKX3Z92EBaTarlF70/W2RCNEKEEsmMo3J2kG4bBOg63isEJNDY7/FcYkZj3
-         tOvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686061652; x=1688653652;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JJyXRnfhFkINlRUyK+QjXtrQLlNiUgrBBt6eFT43tDY=;
-        b=UKodVvWFhNkKTMcVQ40iSozF+0hOgWgZE3uXVbT+J5DjzcJdr1Bhrv2x8Ga0WeAWP0
-         pZUOTWl3L3ZLYyYJsho0MEgiWLUmtzzlQQ8FSxaaTT6OHwctBgaWupRriKu4BvILILvJ
-         JId5mxkqV+S9Rkjt9R/bW6tlHOkgtEJnT3NNQ49CWD+Lr8lVrmCVFwjLNPQ1c1cCOuUC
-         p6qCAxZax9YjfXcD21qeZzNWPMXoj1TUxiDh/Hiu/Bu6mfCbpRQz4z5NZLlrHFbdf3TD
-         rNvyyEXlk7HpaPPqOAmLO1Er7fnAbxOU8+QVY+jU4xxGRi2UYblQbQESDdzbNuMrNc6T
-         SxCQ==
-X-Gm-Message-State: AC+VfDwUFdWU/Sa9ACsitCOFa98HYPnJ/ZbwP2r8t2ncbfbFu7+cYwPD
-        9dZssViTCvf9Q6jnLCRIDa3G6e5vhCS4HvXUaeo=
-X-Google-Smtp-Source: ACHHUZ5b/yKHVwPJvcasJ5lXLQxqrPkVm3aDYAuuKbySUu8+FKz3bUdCkTR/5IOsfuz7EdzPJ+nrvky5PEJFSPFM1PU=
-X-Received: by 2002:ad4:5bc6:0:b0:62b:2d61:f696 with SMTP id
- t6-20020ad45bc6000000b0062b2d61f696mr2488357qvt.42.1686061652049; Tue, 06 Jun
- 2023 07:27:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230601152636.858553-1-nm@ti.com> <20230601152636.858553-4-nm@ti.com>
- <f1e54167-15bd-8a0b-454d-53b90b18a343@ti.com> <20230605204930.3hlg3d36zwtbkal7@scone>
- <cbd314b6-08a9-7a07-7538-c2e3f1b333e9@ti.com>
-In-Reply-To: <cbd314b6-08a9-7a07-7538-c2e3f1b333e9@ti.com>
-From:   Robert Nelson <robertcnelson@gmail.com>
-Date:   Tue, 6 Jun 2023 09:27:06 -0500
-Message-ID: <CAOCHtYiV68syEKU9+rhuFntAX1wHw5KBJ8Zcp2eN-hPJjV2x6Q@mail.gmail.com>
-Subject: Re: [PATCH 03/12] arm64: dts: ti: k3-j721e-beagleboneai64: Fixup
- reference to phandles array
-To:     "Kumar, Udit" <u-kumar1@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S232951AbjFFObb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 10:31:31 -0400
+Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F03CF186;
+        Tue,  6 Jun 2023 07:31:29 -0700 (PDT)
+Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
+        by smtp.dudau.co.uk (Postfix) with SMTP id 92CF241D13A6;
+        Tue,  6 Jun 2023 15:31:27 +0100 (BST)
+Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Tue, 06 Jun 2023 15:31:27 +0100
+Date:   Tue, 6 Jun 2023 15:31:27 +0100
+From:   Liviu Dudau <liviu@dudau.co.uk>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] mips: dts: ralink: Add support for TP-Link HC220
+ G5 v1 board
+Message-ID: <ZH9DP+QdwRu/uS2D@bart.dudau.co.uk>
+References: <20230605150114.601102-1-liviu@dudau.co.uk>
+ <20230605150114.601102-2-liviu@dudau.co.uk>
+ <552b4604-d1b3-0052-62aa-424944c5ecb1@arinc9.com>
+ <ZH5NJsbY6ZLXYJYz@bart.dudau.co.uk>
+ <43c95286-a3f4-6c68-c59c-0c86bbb74928@arinc9.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <43c95286-a3f4-6c68-c59c-0c86bbb74928@arinc9.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 5, 2023 at 11:27=E2=80=AFPM Kumar, Udit <u-kumar1@ti.com> wrote=
-:
->
-> Hi Nishanth,
->
-> On 6/6/2023 2:19 AM, Nishanth Menon wrote:
-> > On 22:31-20230605, Kumar, Udit wrote:
-> > [...]
-> >>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arc=
-h/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> >>> index 37c24b077b6a..c13246a9ed8f 100644
-> >>> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> >>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> > [...]
-> >>> @@ -639,7 +639,7 @@ &main_i2c6 {
-> >>>    &wkup_i2c0 {
-> >>>     status =3D "okay";
-> >>>     pinctrl-names =3D "default";
-> >>> -   pinctrl-0 =3D <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
-> >>> +   pinctrl-0 =3D <&wkup_i2c0_pins_default>, <&eeprom_wp_pins_default=
->;
-> >>>     clock-frequency =3D <400000>;
-> >> Why we need more than 2 pio lines for i2c node ,
-> > pio lines? I am not sure I understand. If you are suggesting
-> > eeprom_wp_pins to be moved to the eeprom node, It is probably
-> > un-related to this series, but OK, i think it is probably a valid
-> > change (unless Robert sees a reason why he did it the way he did).
->
-> correct, I am suggesting to move  eeprom_wp_pins_default to eeprom node.
->
-> i2c needs 2 lines which are defined in wkup_i2c0_pins_default, Adding
-> eeprom_wp_pins_default will not be true representation of i2c node.
->
-> It will be good to have similar changes in main_i2c1 and main_i2c5  node
-> for csi0_gpio_pins_default and csi1_gpio_pins_default.
+On Tue, Jun 06, 2023 at 08:24:48AM +0300, Arınç ÜNAL wrote:
+> On 6.06.2023 00:01, Liviu Dudau wrote:
+> > On Mon, Jun 05, 2023 at 07:35:44PM +0300, Arınç ÜNAL wrote:
+> > > On 5.06.2023 18:01, Liviu Dudau wrote:
+> > > > This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
+> > > > a MT7603 2.4GHz WiFi and a MT7613 5GHz WiFi chips integrated on the board,
+> > > > connected to the main SoC over PCIe.
+> > > > 
+> > > > The device uses NMBM over NAND, which is not currently supported in the
+> > > > mainline, so NAND node is skipped in this revision.
+> > > > 
+> > > > Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
+> > > > ---
+> > > >    arch/mips/boot/dts/ralink/Makefile            |  3 +-
+> > > >    .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 92 +++++++++++++++++++
+> > > >    2 files changed, 94 insertions(+), 1 deletion(-)
+> > > >    create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+> > > > 
+> > > > diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
+> > > > index 11732b8c8163a..d27d7e8c700fe 100644
+> > > > --- a/arch/mips/boot/dts/ralink/Makefile
+> > > > +++ b/arch/mips/boot/dts/ralink/Makefile
+> > > > @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
+> > > >    dtb-$(CONFIG_SOC_MT7621) += \
+> > > >    	mt7621-gnubee-gb-pc1.dtb \
+> > > > -	mt7621-gnubee-gb-pc2.dtb
+> > > > +	mt7621-gnubee-gb-pc2.dtb \
+> > > > +	mt7621-tplink-hc220-g5-v1.dtb
+> > > >    obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+> > > > diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+> > > > new file mode 100644
+> > > > index 0000000000000..859aaa1c1bc2b
+> > > > --- /dev/null
+> > > > +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+> > > > @@ -0,0 +1,92 @@
+> > > > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +/dts-v1/;
+> > > > +
+> > > > +#include "mt7621.dtsi"
+> > > > +
+> > > > +#include <dt-bindings/gpio/gpio.h>
+> > > > +#include <dt-bindings/input/input.h>
+> > > > +#include <dt-bindings/leds/common.h>
+> > > > +
+> > > > +/ {
+> > > > +	compatible = "tplink,hc220-g5-v1", "mediatek,mt7621-soc";
+> > > > +	model = "TP-Link HC220 G5 v1";
+> > > > +
+> > > > +	memory@0 {
+> > > > +		device_type = "memory";
+> > > > +		reg = <0x00000000 0x8000000>;
+> > > 
+> > > Please use 8 digit addressing for the memory start and size offsets:
+> > > 
+> > > 0x00000000 0x08000000
+> > 
+> > Will do.
+> > 
+> > > 
+> > > > +	};
+> > > > +
+> > > > +	chosen {
+> > > > +		bootargs = "earlycon console=ttyS0,115200";
+> > > > +	};
+> > > > +
+> > > > +	gpio-keys {
+> > > > +		compatible = "gpio-keys";
+> > > > +
+> > > > +		key-reset {
+> > > > +			label = "reset";
+> > > > +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+> > > > +			linux,code = <KEY_RESTART>;
+> > > > +		};
+> > > > +
+> > > > +		key-wps {
+> > > > +			label = "wps";
+> > > > +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
+> > > > +			linux,code = <KEY_WPS_BUTTON>;
+> > > > +		};
+> > > > +	};
+> > > > +
+> > > > +	leds {
+> > > > +		compatible = "gpio-leds";
+> > > > +
+> > > > +		red {
+> > > 
+> > > Usually the led name would point to the component the LED is used for.
+> > 
+> > These are "generic" LEDs controlled from the userspace. The original firmware
+> > uses GREEN for normal operations, RED for faults and BLUE for when WPS is
+> > enabled. I'm not sure if there are any standard bindings that I can use here.
+> 
+> Looking at:
+> 
+> https://www.kernel.org/doc/html/latest/leds/leds-class.html#led-device-naming
+> 
+> You could use red:fault, green:power, and blue:wps. For node names,
+> led-fault, led-power, and led-wps.
 
-I agree, moving eeprom_wp_pins_default into the eeprom node itself is
-much cleaner going forward.
+Without making any changes in the device tree, because of the use of 'function' property,
+I get this:
 
-While we may have a lot of historical situations in the git tree where
-we just dumped all pin configurations into the base node, that's not
-the best practice going forward today.
+# ls -al /sys/class/leds/
+drwxr-xr-x    2 root     root             0 Jun  6 14:24 .
+drwxr-xr-x   37 root     root             0 Jan  1  1970 ..
+lrwxrwxrwx    1 root     root             0 Jun  6 14:24 blue:wps -> ../../devices/platform/leds/leds/blue:wps
+lrwxrwxrwx    1 root     root             0 Jun  6 14:24 green:power -> ../../devices/platform/leds/leds/green:power
+lrwxrwxrwx    1 root     root             0 Jun  6 14:24 red:fault -> ../../devices/platform/leds/leds/red:fault
 
-Regards,
+May I suggest that I change only the node names and not add a label, keeping the 'function' property instead?
 
---=20
-Robert Nelson
-https://rcn-ee.com/
+Best regards,
+Liviu
+
+> 
+> Arınç
+
+-- 
+Everyone who uses computers frequently has had, from time to time,
+a mad desire to attack the precocious abacus with an axe.
+       	   	      	     	  -- John D. Clark, Ignition!
