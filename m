@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F226724A9F
+	by mail.lfdr.de (Postfix) with ESMTP id A7663724AA0
 	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 19:53:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238411AbjFFRxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S238839AbjFFRxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 6 Jun 2023 13:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51330 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238839AbjFFRxL (ORCPT
+        with ESMTP id S238263AbjFFRxL (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 13:53:11 -0400
 Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DF6170C
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:53:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F032E47
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 10:53:10 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686073987;
+        t=1686073989;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=C6EJzVOZe63W7NYiDkawHzrYNIvAcHq5gU/Vn9AKthU=;
-        b=cJF72/zXPaZX6glBGXsAWASn7NYCkj5bKaM53eYwNCXUfv7rLed0afrpmUrtPhNpYL5rDU
-        g2YsS2DO3cYVblHbi+6S6n4gETmv8OP+sOqzidJ30E4agoq/YNp/Orin1cypYjaI+ZJR6l
-        LquZEV2Sx4QOE+vGzr7cmcbgiuEEzdzZHM3E43jj9OzetPkmTE3SJbRd4Jm3uQ3Wo4CGTI
-        +OmntTJrrsR9RXRxyEFsPSBD/eHceKlVXxhBxIeOc6ZfA58vN/k/kfGQPZacXcRJt2FrPS
-        nOuc1xHkm+/ATd+35Ls+DwVo3jKWGTE63U1VpgwA7Mt8jfmuefaHTF7IdnIHHA==
+        bh=iCK0DHm6UzryjKAJtjsJk2QooGSXLb+4h/3MbZr7jOk=;
+        b=c+Nnmcctkd5vhWErOF+5bl7WgJlryebgwVCf4LAr8aZgaoQyKSSo47s7UQy+wFfn/ly1IJ
+        FDR9FjMOzYQs6AQhQV7vyStdtGmP+G3vH76YBEiU/hZIA6lanhYaRbKb0DPqUN5dwPNpoW
+        2jq/fFiBWOy+/mmfRa20KEos8Ynkiy24ai0eoq0/kG/WJqiYpQKG51nyLic6AWN9WIn2Vq
+        RtVhpj9aa/sSVDkKDMwVWIavPrmjsQFKYA/2pqvmsNAghr0MGsfgOii+zwI9n6mil2iDLG
+        VQa6ncI/W5JzLAZCc7DLJy4rcv9VTaUGXRIiiDtE1QV/telSdnhghEIv5R2G+A==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -39,8 +39,9 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B796E1C0005;
-        Tue,  6 Jun 2023 17:53:06 +0000 (UTC)
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 04F831C0007;
+        Tue,  6 Jun 2023 17:53:07 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -53,10 +54,11 @@ To:     Richard Weinberger <richard@nod.at>,
 Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
-        Liang Yang <liang.yang@amlogic.com>
-Subject: [PATCH v2 09/17] dt-bindings: mtd: meson: Prevent NAND chip unevaluated properties
-Date:   Tue,  6 Jun 2023 19:52:38 +0200
-Message-Id: <20230606175246.190465-10-miquel.raynal@bootlin.com>
+        Brian Norris <computersforpeace@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>
+Subject: [PATCH v2 10/17] dt-bindings: mtd: brcmnand: Prevent NAND chip unevaluated properties
+Date:   Tue,  6 Jun 2023 19:52:39 +0200
+Message-Id: <20230606175246.190465-11-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230606175246.190465-1-miquel.raynal@bootlin.com>
 References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
@@ -77,33 +79,34 @@ Ensure all raw NAND chip properties are valid by referencing the
 relevant schema and set unevaluatedProperties to false in the NAND chip
 section to avoid spurious additions of random properties.
 
-Cc: Liang Yang <liang.yang@amlogic.com>
+Cc: Brian Norris <computersforpeace@gmail.com>
+Cc: Kamal Dasu <kdasu.kdev@gmail.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 3 +++
+ Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-index 28fb9a7dd70f..00810b04dcde 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-@@ -40,6 +40,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+index 1571024aa119..f57e96374e67 100644
+--- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
++++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+@@ -114,6 +114,7 @@ properties:
  patternProperties:
-   "^nand@[0-7]$":
+   "^nand@[a-f0-9]$":
      type: object
 +    $ref: raw-nand-chip.yaml
      properties:
-       reg:
-         minimum: 0
-@@ -58,6 +59,8 @@ patternProperties:
-             meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
-             meson-axg-nfc 8
+       compatible:
+         const: brcm,nandcs
+@@ -136,6 +137,8 @@ patternProperties:
+           layout.
+         $ref: /schemas/types.yaml#/definitions/uint32
  
 +    unevaluatedProperties: false
 +
- required:
-   - compatible
-   - reg
+ allOf:
+   - $ref: nand-controller.yaml#
+   - if:
 -- 
 2.34.1
 
