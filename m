@@ -2,141 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D8E723790
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2745723794
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 08:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235236AbjFFGWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 02:22:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
+        id S235090AbjFFGXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 02:23:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235255AbjFFGVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:21:24 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4D610D1
-        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 23:21:14 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5147f4bbfdaso7575298a12.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 23:21:14 -0700 (PDT)
+        with ESMTP id S235111AbjFFGXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 02:23:35 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A5A10C0
+        for <devicetree@vger.kernel.org>; Mon,  5 Jun 2023 23:22:28 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-97460240863so687770266b.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jun 2023 23:22:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686032473; x=1688624473;
+        d=linaro.org; s=google; t=1686032546; x=1688624546;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EKXvzn2poVGJdsfYKbvuXacn3q92H1IebHnIe7X+uN0=;
-        b=jlJ3EkL3KfeusIjNW1MwW8L0u5QdNAbDTCOSSlvaa4+8ByqWx8eKehlhPyVomF14YR
-         Q4yMNx/ZNO+tbA06TnmOt5ZbY4skTbuT7ciVuRnISUxPLfBBAOU86l4FJEHL+O5YDD1D
-         Ay7k2m4XLJtb+5S1L+//MRgJMhsab0PcpkMjuHulBXJLjdXDL6aSMlkna1zmqRZnfnjN
-         /+DBT0Om4KsggecIH6iJ/94zgTzD9Fmnn32tzXLzRVnpPgynouzfNvjoSioFWfNywY8j
-         3f8F3zKmVF/tJ5MXUWj3LeLgQ7mTAcTf+TYlzDFyAGnoAjF6qDvsyTCV97bsw69Oykzi
-         PgSQ==
+        bh=awyPqVAflJ9HW7mRusvVZFjRIMdP5oGweyBZiHENeLc=;
+        b=HREL2QlbSNI55ddaivjqqQYDRAsordq18Ce41nZK8NNcZ0E+Qu0nBM6LjzFjBpOjz1
+         8nc6/233uTZNDMOERCxjsLH4/n7sxno888oZ1x+W3QRY/6RcoYDr590Qju+kfa1EHU/I
+         VGSJcd/umzLBH5Kqg5gd+XcKWzM/4ix6CKLz2Se1IUNDLZ0b4YMmucBI2mhIJIYeHpZy
+         Iyth1qVfMPh/Gq3dTJJ9+ldDPEs3IJSXAUeocQBVhJ78pTj/GKX11zOpvHcPf6GzGD0Q
+         pcd4emFAMIgNxxFMhNSYIHKh03KUpI/wTyo8fpom6B3rsSCzYBWKbS/P/aGv2/8rDVdv
+         EN9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686032473; x=1688624473;
+        d=1e100.net; s=20221208; t=1686032546; x=1688624546;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EKXvzn2poVGJdsfYKbvuXacn3q92H1IebHnIe7X+uN0=;
-        b=mDzzwjuRSVsWtIc9nVo1vCUkLP0IB2Zzx8l4hfzxn+58uH4+atkA3UubIOZzXcbQWG
-         R13G/q/FL6z18QAAK1EC6Vz4VPbmqRUwyNh4JxiMwLZI+YbiFNGs4u0KabAbZrJie9A7
-         LLXIQDenag7lSl8FMRMo/T1WKhMIMSLLHuhBxTiXKUUeKJZ1wnsion15l0ncdxnsfGxa
-         8K/DFlC6wH+5oMBmq4/Nr3s89GFCDUX186MvXtX1BDFe0l7pQz7+zhOuTqz76R1iJ9L5
-         thw9OMEoEOWq0H3vuh/LZPPYPR+1x0MTpl8C4VIO7vGuHARG4s6SHRyEbTij26h2HM3L
-         +7vg==
-X-Gm-Message-State: AC+VfDxoAGP9V2Bum1U4CmEllMcXeQmJHa+7M1gC/zk6I9oK4+HYwDzB
-        EEJT98QSw3pGxf//xXSw4PXHmQ==
-X-Google-Smtp-Source: ACHHUZ6LrRzgCaH4R/n3oEQswN/bZeXWD6KgFX1d8mHfrscBkVJdCfpXHpiKQnpgvPEbD5V6/MdiVw==
-X-Received: by 2002:a17:907:96a7:b0:967:d161:61c6 with SMTP id hd39-20020a17090796a700b00967d16161c6mr1476109ejc.3.1686032473046;
-        Mon, 05 Jun 2023 23:21:13 -0700 (PDT)
+        bh=awyPqVAflJ9HW7mRusvVZFjRIMdP5oGweyBZiHENeLc=;
+        b=aJ1i8YXXTjrvgItedfzloT8wC0nCbXb1ZlKLHnS5SZMb3ZBt2HCcbK92scx09BhDk9
+         7VSi1fnpiUk0w4gh/07WwuWXwECEc0a695x4PjRPb2JIGf1iMCVhW0Mxfb1DH2jHcmtB
+         FZu+TQHIq5PgWIEufsv0KrTOdx+x5tMcHblYDU4VOhOOh7/cAhH9OKQ7F5BlTGOWeljk
+         GAfGxpwAYGUyCcO2PeFnJhoh0iRrz5fLaCxuQ8s8Q9ZQioluxrs8iPe1buLPamwpA0xB
+         AssuYPzH2EueO641up6twFtFy5VQKRS2w9SW40il3dDtGdcQtJ5myfxJBMhDm5w2pUrL
+         CiPg==
+X-Gm-Message-State: AC+VfDw9PYz7jzajql3+xDN2LXfNa/Ka5+xQHQHbcHqBQhl5cpE2aAAR
+        7wVjGIf10afSbpnHI9ER57olTw==
+X-Google-Smtp-Source: ACHHUZ4lQQLCUHb0etGsOAcpL6rQaxYC2rekThP+u2yThClAae5wuLBDKidMXKm5OdkorlU2aQ+dtg==
+X-Received: by 2002:a17:907:97cd:b0:973:d84a:33a4 with SMTP id js13-20020a17090797cd00b00973d84a33a4mr1234857ejc.6.1686032546349;
+        Mon, 05 Jun 2023 23:22:26 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id d5-20020aa7ce05000000b0051632dc69absm4649926edv.86.2023.06.05.23.21.11
+        by smtp.gmail.com with ESMTPSA id u23-20020aa7d897000000b0050cc4461fc5sm4622224edq.92.2023.06.05.23.22.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jun 2023 23:21:12 -0700 (PDT)
-Message-ID: <1ba84b37-ae64-ef0b-b7cd-8941916962ca@linaro.org>
-Date:   Tue, 6 Jun 2023 08:21:10 +0200
+        Mon, 05 Jun 2023 23:22:25 -0700 (PDT)
+Message-ID: <29b720ab-4b9f-c415-3caa-e4c1b04aa568@linaro.org>
+Date:   Tue, 6 Jun 2023 08:22:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
- touchscreen chip
+Subject: Re: [PATCH v2 3/5] dt-bindings: hwmon: hpe,gxp-fanctrl: remove fn2
+ and pl regs
 Content-Language: en-US
-To:     cong yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230605060524.1178164-1-yangcong5@huaqin.corp-partner.google.com>
- <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com>
- <6818f4b0-4222-c3bb-c55f-bc0d26d7a681@linaro.org>
- <CAHwB_NLOrecxxP0kGS2ycXAw93XOSOiR+qPo50D292tDNKiqQQ@mail.gmail.com>
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20230531151918.105223-1-nick.hawkins@hpe.com>
+ <20230531151918.105223-4-nick.hawkins@hpe.com>
+ <d2232369-c7e9-c572-8528-243800f0bc08@linaro.org>
+ <DM4PR84MB1927707FA782DC565C22B8A2884DA@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAHwB_NLOrecxxP0kGS2ycXAw93XOSOiR+qPo50D292tDNKiqQQ@mail.gmail.com>
+In-Reply-To: <DM4PR84MB1927707FA782DC565C22B8A2884DA@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 04:18, cong yang wrote:
-> Hi,Krzysztof
+On 05/06/2023 18:52, Hawkins, Nick wrote:
+>>> Remove the fn2 register and pl register references as these memory areas
+>>> are now consumed by the GXP GPIO driver. The fan driver now gathers fan
+>>> information from GPIO driver.
 > 
-> On Mon, Jun 5, 2023 at 6:34 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 05/06/2023 08:05, Cong Yang wrote:
->>> Add an ilitek touch screen chip ili9882t.
->>>
->>> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
->>> ---
->>>  .../bindings/input/elan,ekth6915.yaml         | 23 ++++++++++++++++---
->>>  1 file changed, 20 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
->>> index 05e6f2df604c..f0e7ffdce605 100644
->>> --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
->>> +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
->>> @@ -15,11 +15,14 @@ description:
->>>
->>>  properties:
->>>    compatible:
->>> -    items:
->>> -      - const: elan,ekth6915
->>> +    enum:
->>> +      - elan,ekth6915
->>> +      - ilitek,ili9882t
->>>
->>>    reg:
->>> -    const: 0x10
->>> +    enum:
->>> +      - 0x10
->>> +      - 0x41
->>>
->>>    interrupts:
->>>      maxItems: 1
->>> @@ -29,11 +32,13 @@ properties:
->>>
->>>    vcc33-supply:
->>>      description: The 3.3V supply to the touchscreen.
->>> +                 If using ili9882t then this supply will not be needed.
->>
->> What does it mean "will not be needed"? Describe the hardware, not your
->> drivers.
->>
->> I don't think you tested your DTS. Submit DTS users, because I do not
->> believe you are testing your patches. You already got such comment and I
->> don't see much of improvements here.
+>> How is it expressed in bindings? I don't see it.
 > 
-> I ran make dt_binding_check in the codebase root directory before
-> sending the V2 Patch, and there were no errors or warnings (the V1
-> version run reported some errors). Is there some other way to test DTS
-> ?
+> Greetings Krzysztof,
+> 
+> Thanks for the feedback. Just to confirm: Is this comment referring to the
+> content of the patch description? For the third version I want to make sure
+> I address your concern.
 
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-
+The concern was that one of your drivers have clear dependency on other.
+How do you solve probe ordering and dependency?
 
 Best regards,
 Krzysztof
