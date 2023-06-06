@@ -2,387 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0715A7244F4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32433724510
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 15:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232457AbjFFNyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 09:54:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
+        id S236774AbjFFN7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 09:59:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231915AbjFFNyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:54:12 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3941483;
-        Tue,  6 Jun 2023 06:54:09 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686059647;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=SAhoSqGeAkfXPjkbbMuSr5Vpspi7VqAd/1OCMoVSMQI=;
-        b=lFDCNIwYTXXY3EsOHA8kz+XStHjjrzljUTbDoxAtgSr4GJEJYQXHeyrdjEzj457b9yKekc
-        yO8KmG7ay0HhebF7nIA1fCRk50oKmItgXzWG2OsMyLli5WDozzodqD5R8UTUAaztRe3TYv
-        JQIxBmOlQ81IBhb9zRTEisNVJ+Cq0iZFgtVp2JgUUdXFkXGLNaodXPat6py6ds//t8XpIP
-        B0ibMMPLIre1pzHE4nfLEJdOqRtwbXpRQbeaKu0WIPMem+y+ni+shghIj72ST7kI2JLIa/
-        2jz7LsM/vBTBKuLk/of+AeYR2hlGmhO8AzkLSZQQ5JPJEdNpi9+JuKqs1Sl/Jg==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 243ADC0010;
-        Tue,  6 Jun 2023 13:54:05 +0000 (UTC)
-Date:   Tue, 6 Jun 2023 15:54:04 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     andy.shevchenko@gmail.com
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 7/9] ASoC: codecs: Add support for the generic IIO
- auxiliary devices
-Message-ID: <20230606155404.28ada064@bootlin.com>
-In-Reply-To: <ZHuFywIrTnEFpX6e@surfacebook>
-References: <20230523151223.109551-1-herve.codina@bootlin.com>
-        <20230523151223.109551-8-herve.codina@bootlin.com>
-        <ZHuFywIrTnEFpX6e@surfacebook>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S236184AbjFFN7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 09:59:37 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BCF310D1
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 06:59:36 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-30af0aa4812so5385534f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 06:59:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686059974; x=1688651974;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tSLIBOkc8AT3ecozvTP01c4tDm7xKenl/SZU7EiNLBM=;
+        b=ZElHMU2eHbQorA8SEksHZGZB6pSzWIHr4CQl1Gv7JRjgnkWuri5p2co1ZR+Gag4h1V
+         aYAQEhIAd/TAJDVHyR7u4S7lX5hfqJlPD5H6455N16jbtTlWkU3Kky8oZ4+CtgeHABnr
+         G+nGLUrLX82SFoyzVX04Jm/RguqzG3PpO/KBW2vw7QiBMvjkEurhW0LGzGo+WRBT9J4L
+         Pzf/Tce1UEU3vP1rQUgeWw33JoDNZebAS7O/mDAcPYD6KOJUOyV6FPciw4Tft/4v/LT0
+         rSFXFlstWyr2Y4TnW7Pd6c2B3TYg/LiB67H3tFzTDx7ymTsgpEzKsxJ1vWzG/w0qxUs6
+         AjHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686059974; x=1688651974;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tSLIBOkc8AT3ecozvTP01c4tDm7xKenl/SZU7EiNLBM=;
+        b=SaUMXKOuiHPb47GNggRcTatyh66Vhku0NlQ51Lw/rA7K/NIugugcPSTzaHPisEfeV4
+         3c/v70rkLBVJGwPn5jLvzJIVceryqhJFzXwRkp1CncSBR8svlSk1ERNZw1YMG10EUkhA
+         Hr5LXBKUPdOxNIWkCKn5fJ6YPc3LJrXjmfT0HgY8syGOeGKcXbiHG3J+nQheqAUf2JPb
+         VwRQOesu2/0HDAz2ls8YHpQmUNJcE+y9zCFcOA9G011lQNivfpwLdPeDj5DG5es511G/
+         DxCcL1gSM0NCQMB0RlaNK+Rv7dgA23xtvNYGLUkefVvLXkSPmUvDOIr9XN/S0DZb+xNp
+         HvMw==
+X-Gm-Message-State: AC+VfDzzZ6ja50CMpu8C+YQ/hgpd+QD9Pz+6443XdVjTM2LQgoYcQgoN
+        xZdv5HXSLWuvVmkZHI7ntK5M5g==
+X-Google-Smtp-Source: ACHHUZ5QcrIk/sG7EBlfot3tzH/HEAB3ctiWzutPWmL77jqVYxFiOWDX1sdw4eI4ZiPy7xpCxRh+1Q==
+X-Received: by 2002:a5d:5088:0:b0:309:4cd5:76f8 with SMTP id a8-20020a5d5088000000b003094cd576f8mr1986798wrt.2.1686059974630;
+        Tue, 06 Jun 2023 06:59:34 -0700 (PDT)
+Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id h14-20020a5d504e000000b00300aee6c9cesm12757402wrt.20.2023.06.06.06.59.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 06:59:34 -0700 (PDT)
+Message-ID: <fa5147f8-26e2-c4e6-ff3e-ba7b22027a81@baylibre.com>
+Date:   Tue, 6 Jun 2023 15:59:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v12 2/7] iommu/mediatek: Fix two IOMMU share pagetable
+ issue
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        jianjiao.zeng@mediatek.com, chengci.xu@mediatek.com
+References: <20230602090227.7264-1-yong.wu@mediatek.com>
+ <20230602090227.7264-3-yong.wu@mediatek.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230602090227.7264-3-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On 02/06/2023 11:02, Yong Wu wrote:
+> Prepare for mt8188 to fix a two IOMMU HWs share pagetable issue.
+> 
+> We have two MM IOMMU HWs in mt8188, one is VPP-IOMMU, the other is
+> VDO-IOMMU. The 2 MM IOMMU HWs share pagetable don't work in this case:
+>   a) VPP-IOMMU probe firstly.
+>   b) VDO-IOMMU probe.
+>   c) The master for VDO-IOMMU probe (means frstdata is vpp-iommu).
+>   d) The master in another domain probe. No matter it is vdo or vpp.
+> Then it still create a new pagetable in step d). The problem is
+> "frstdata->bank[0]->m4u_dom" was not initialized. Then when d) enter, it
+> still create a new one.
+> 
+> In this patch, we create a new variable "share_dom" for this share
+> pgtable case, it should be helpful for readable. and put all the share
+> pgtable logic in the mtk_iommu_domain_finalise.
+> 
+> In mt8195, the master of VPP-IOMMU probes before than VDO-IOMMU
+> from its dtsi node sequence, we don't see this issue in it. Prepare for
+> mt8188.
 
-On Sat, 3 Jun 2023 21:26:19 +0300
-andy.shevchenko@gmail.com wrote:
-
-> Tue, May 23, 2023 at 05:12:21PM +0200, Herve Codina kirjoitti:
-> > Industrial I/O devices can be present in the audio path.
-> > These devices needs to be used as audio components in order to be fully
-> > integrated in the audio path.
-> > 
-> > This support allows to consider these Industrial I/O devices as auxliary
-> > audio devices and allows to control them using mixer controls.  
-> 
-> ...
-> 
-> > +// audio-iio-aux.c  --  ALSA SoC glue to use IIO devices as audio components  
-> 
-> Putting file name into file is not a good idea in case the file will be renamed
-> in the future.
-
-Indeed, the file name will be removed in the nest iteration.
-
-> 
-> ...
-> 
-> > +struct audio_iio_aux_chan {
-> > +	struct iio_channel *iio_chan;
-> > +	const char *name;
-> > +	bool is_invert_range;  
-> 
-> If you put bool after int:s it may save a few bytes in some cases.
-
-I will mode is_invert_range after the int members.
-
-> 
-> > +	int max;
-> > +	int min;  
-> 
-> Wondering if there is already a data type for the ranges (like linear_range.h,
-> but not sure it's applicable here).
-
-Seems not applicable here.
- - IIO does not use linear_range or something similar. It just uses simple int.
- - ASoC does not use linear_range or something similar. It just uses simple long.
-
-So, I keep the simple int min and max.
-
-> 
-> > +};  
-> 
-> ...
-> 
-> > +	if (val < 0)
-> > +		return -EINVAL;
-> > +	if (val > max - min)  
-> 
-> Btw, who will validate that max > min?
-
-By construction,
-min = 0
-max = iio_read_max_channel_raw() - iio_read_min_channel_raw()
-
-and iio_read_max_channel_raw() returns a value greater or equal to
-iio_read_min_channel_raw().
-
-But to be sure, I will check the last asumption at probe() and swap
-the minimum and maximum values if needed.
-
-> 
-> > +		return -EINVAL;  
-> 
-> ...
-> 
-> > +	return 1; /* The value changed */  
-> 
-> Perhaps this 1 needs a definition?
-
-Yes but to be coherent, in ASoC code, many places need to be changed too
-in order to use the newly defined value.
-I don't think these modifications should be part of this series.
-
-> 
-> ...
-> 
-> > +static struct snd_soc_dapm_widget widgets[3] = {0};
-> > +static struct snd_soc_dapm_route routes[2] = {0};  
-> 
-> 0:s are not needed. Moreover, the entire assingments are redundant
-> as this is guaranteed by the C standard.
-
-Indeed, the 0 assignment will be removed in the next iteration.
-
-> 
-> ...
-> 
-> > +	char *input_name = NULL;
-> > +	char *output_name = NULL;
-> > +	char *pga_name = NULL;  
-> 
-> Redundant assignments if you properly label the freeing.
-
-I will rework the error paths (gotos) to avoid these assignement.
-
-> 
-> ...
-> 
-> > +	BUILD_BUG_ON(ARRAY_SIZE(widgets) < 3);  
-> 
-> Use static_assert() at the place where the array is defined.
-
-Will be done in next iteration.
-
-> 
-> ...
-> 
-> > +	BUILD_BUG_ON(ARRAY_SIZE(routes) < 2);  
-> 
-> Ditto.
-Will be done in next iteration.
-
-> 
-> ...
-> 
-> > +end:  
-> 
-> out_free:
-> 
-> > +	/* Allocated names are no more needed (duplicated in ASoC internals) */
-> > +	kfree(pga_name);
-> > +	kfree(output_name);
-> > +	kfree(input_name);
-> > +
-> > +	return ret;  
-> 
-> ...
-> 
-> > +	for (i = 0; i < iio_aux->num_chans; i++) {
-> > +		chan = iio_aux->chans + i;
-> > +
-> > +		ret = iio_read_max_channel_raw(chan->iio_chan, &chan->max);
-> > +		if (ret) {
-> > +			dev_err(component->dev, "chan[%d] %s: Cannot get max raw value (%d)\n",
-> > +				i, chan->name, ret);
-> > +			return ret;  
-> 
-> It sounds like a part of ->probe() flow, correct?
-> Can dev_err_probe() be used here?
-
-Will be changed in the next iteration.
-
-> 
-> > +		}
-> > +
-> > +		ret = iio_read_min_channel_raw(chan->iio_chan, &chan->min);
-> > +		if (ret) {
-> > +			dev_err(component->dev, "chan[%d] %s: Cannot get min raw value (%d)\n",
-> > +				i, chan->name, ret);
-> > +			return ret;  
-> 
-> Ditto.
-
-Will be changed in the next iteration.
-
-> 
-> > +		}
-> > +
-> > +		/* Set initial value */
-> > +		ret = iio_write_channel_raw(chan->iio_chan,
-> > +					    chan->is_invert_range ? chan->max : chan->min);
-> > +		if (ret) {
-> > +			dev_err(component->dev, "chan[%d] %s: Cannot set initial value (%d)\n",
-> > +				i, chan->name, ret);
-> > +			return ret;  
-> 
-> Ditto.
-
-Will be changed in the next iteration.
-
-> 
-> > +		}  
-> 
-> ...
-> 
-> > +		dev_dbg(component->dev, "chan[%d]: Added %s (min=%d, max=%d, invert=%s)\n",
-> > +			i, chan->name, chan->min, chan->max,
-> > +			chan->is_invert_range ? "on" : "off");  
-> 
-> str_on_off()
-
-Indeed, I didn't know str_on_off().
-Thanks for pointing.
-Will be use in next iteration.
-
-> 
-> > +	}  
-> 
-> ...
-> 
-> > +	count = of_property_count_strings(np, "io-channel-names");
-> > +	if (count < 0) {  
-> 
-> > +		dev_err(iio_aux->dev, "%pOF: failed to read io-channel-names\n", np);
-> > +		return count;  
-> 
-> 		return dev_err_probe();
-Will be changed in next iteration.
-> 
-> > +	}  
-> 
-> ...
-> 
-> > +	for (i = 0; i < iio_aux->num_chans; i++) {
-> > +		iio_aux_chan = iio_aux->chans + i;
-> > +
-> > +		ret = of_property_read_string_index(np, "io-channel-names", i,
-> > +						    &iio_aux_chan->name);
-> > +		if (ret < 0) {
-> > +			dev_err(iio_aux->dev, "%pOF: failed to read io-channel-names[%d]\n", np, i);
-> > +			return ret;  
-> 
-> Ditto.
-Will be changed in next iteration.
-> 
-> > +		}  
-> 
-> > +		tmp = 0;
-> > +		of_property_read_u32_index(np, "snd-control-invert-range", i, &tmp);  
-> 
-> > +		iio_aux_chan->is_invert_range = tmp;  
-> 
-> You can use this variable directly.
-
-Not sure, is_invert_range is a bool and tmp is a u32.
-
-In previous iteration, I wrote
-  iio_aux_chan->is_invert_range = !!tmp;
-
-> 
-> > +	}  
-> 
-> Btw, can you avoid using OF APIs? It's better to have device property/fwnode
-> API to be used from day 1.
-
-Hum, this comment was raised in the previous iteration
-  https://lore.kernel.org/linux-kernel/20230501162456.3448c494@jic23-huawei/
-
-I didn't find any equivalent to of_property_read_u32_index() in the 
-device_property_read_*() function family.
-I mean I did find anything available to get a value from an array using an index.
-
-In the previous iteration it was concluded that keeping OF APIs in this series
-seemed "reasonable".
-
-> 
-> ...
-> 
-> > +	platform_set_drvdata(pdev, iio_aux);  
-> 
-> Which callback is using this driver data?
-
-None -> I will remove platform_set_drvdata().
-
-> 
-> ...
-> 
-> > +static const struct of_device_id audio_iio_aux_ids[] = {
-> > +	{ .compatible = "audio-iio-aux", },  
-> 
-> Inner comma is not needed.
-
-Will be fixed.
-
-> 
-> > +	{ }
-> > +};  
-> 
-> ...
-> 
-> > +static struct platform_driver audio_iio_aux_driver = {
-> > +	.driver = {
-> > +		.name = "audio-iio-aux",
-> > +		.of_match_table = audio_iio_aux_ids,
-> > +	},
-> > +	.probe = audio_iio_aux_probe,
-> > +};  
-> 
-> > +  
-> 
-> Redundant blank line
-
-Will be fixed.
-
-> 
-> > +module_platform_driver(audio_iio_aux_driver);  
-> 
-
-
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
 -- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Regards,
+Alexandre
+
