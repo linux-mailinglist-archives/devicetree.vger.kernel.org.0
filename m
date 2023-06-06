@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C01372487C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:07:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D2D372487B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 18:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233192AbjFFQG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 12:06:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43822 "EHLO
+        id S237948AbjFFQG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 12:06:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237956AbjFFQG5 (ORCPT
+        with ESMTP id S233222AbjFFQG5 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 12:06:57 -0400
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E94D610DB;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A5B10D5;
         Tue,  6 Jun 2023 09:06:56 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356G6jBd016148;
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356G6j1D016152;
         Tue, 6 Jun 2023 11:06:45 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
         s=ti-com-17Q1; t=1686067605;
-        bh=whwfbFwwRorwVWsr9vpBR5ox/1Rjt5+auclY1HZ3W10=;
-        h=From:To:CC:Subject:Date;
-        b=HRDZnONpF2fuRWbSlJPtqkuGM4vr4AoZMZHxOXIUBd96y91kHhK1mK5a3exhQzY7y
-         uat9Nno46M8SnnryPc/PpG5EhhsrzXDptiahbcX6ILqcp5i7nl0CpIJxP3rkbDivBj
-         nY2fxi+z4uyWpHxv/MujFU961AcppJZGMMAORmkk=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356G6jts062106
+        bh=wAuwG6gGG3VasJWse8NQqXNrXByfQmV0b8aWJh6rGTo=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=Rjz0P43a0bzdIzLfEberbViSIcT5oOXWqJfINMSuuBkipveP/BcLhO3NWPv23ftpV
+         6Kg9aySeTeM6bBMD0LSnK55aUZaEGgaUBw/4z4Ok8MR4YULXNXaht5R4JNOTTSOCzK
+         vWpJTwfa/ff1NHzSryah/w2uIyEpJ+nUHNIK2V4k=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356G6jN9114477
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
         Tue, 6 Jun 2023 11:06:45 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
  Jun 2023 11:06:44 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Tue, 6 Jun 2023 11:06:44 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356G6idY002944;
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356G6ikJ014064;
         Tue, 6 Jun 2023 11:06:44 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Conor Dooley <conor+dt@kernel.org>,
@@ -49,10 +49,12 @@ CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Jan Kiszka <jan.kiszka@siemens.com>, Andrew Davis <afd@ti.com>,
         Nishanth Menon <nm@ti.com>
-Subject: [PATCH V2 0/4] arm64: dts: ti: k3-am65: dtbs_check warnings fixups
-Date:   Tue, 6 Jun 2023 11:06:39 -0500
-Message-ID: <20230606160643.3618390-1-nm@ti.com>
+Subject: [PATCH V2 1/4] arm64: dts: ti: k3-am65-main: Fix mux controller node name
+Date:   Tue, 6 Jun 2023 11:06:40 -0500
+Message-ID: <20230606160643.3618390-2-nm@ti.com>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230606160643.3618390-1-nm@ti.com>
+References: <20230606160643.3618390-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -67,27 +69,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add unit address to form a proper node name.
 
-Series of minor fixups for AM65x device tree to cleanup some of the
-dtbs_check warnings.
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+No change since V1
+V1: https://lore.kernel.org/r/20230424144949.244135-3-nm@ti.com
 
-Changes Since V1:
-* Dropped syscon conversion and FSS node rename changes.
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-V1: https://lore.kernel.org/all/20230424144949.244135-1-nm@ti.com/
-
-Nishanth Menon (4):
-  arm64: dts: ti: k3-am65-main: Fix mux controller node name
-  arm64: dts: ti: k3-am65-main: Fix mcan node name
-  arm64: dts: ti: k3-am65-main: Drop deprecated ti,otap-del-sel property
-  arm64: dts: ti: k3-am65-iot2050-common: Rename rtc8564 nodename
-
- arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 2 +-
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi           | 3 +--
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi            | 4 ++--
- 3 files changed, 4 insertions(+), 5 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 1adba2f2c153..f64b4e782ec3 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -506,7 +506,7 @@ serdes1_clk: clock@4090 {
+ 			reg = <0x00004090 0x4>;
+ 		};
+ 
+-		serdes_mux: mux-controller {
++		serdes_mux: mux-controller@4080 {
+ 			compatible = "mmio-mux";
+ 			#mux-control-cells = <1>;
+ 			mux-reg-masks = <0x4080 0x3>, /* SERDES0 lane select */
 -- 
 2.40.0
 
