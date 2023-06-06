@@ -2,123 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 076AC72474C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA24B724788
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jun 2023 17:22:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234842AbjFFPKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 11:10:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40836 "EHLO
+        id S233893AbjFFPWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 11:22:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233277AbjFFPKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:10:53 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A61F7126
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 08:10:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686064252; x=1717600252;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=DPnPrh9S1jAin1zEtS4sXsKQlQFOgosVJOCmatsRQLY=;
-  b=Mo7XbXqH+6OMY3zmBDf1WWnOODByqNk2nAaHKXVr2aXFG3aUx43vFAVW
-   HWqKMwdcigiwKUBtaYte/M5Bf37T+fJmwt6QigFtxlH5MmULqseOMdZgy
-   qOzh3VJd7gSQ2N8u/5r95kj4TewM7qTKlvZ/E0cqvOtBBD526t/VaRX+F
-   vBpke1RKxU7r8rMPHLFNogKDZxQ8NKdtxGQNqW7x3+IUDA67dXgxq69bS
-   DeZsupebFd9Tqidackbb11KG4iRDY4G48mqOZUpiu0qQxUZsrrVwvQ5c6
-   Odto0zlAsY3hAIGQHZ+UHqQGPhkxxRUb1Yjdvmr/mRc8owCZxEVzOn+oE
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,221,1681164000"; 
-   d="scan'208";a="31308252"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 06 Jun 2023 17:10:51 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 06 Jun 2023 17:10:51 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 06 Jun 2023 17:10:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686064251; x=1717600251;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=DPnPrh9S1jAin1zEtS4sXsKQlQFOgosVJOCmatsRQLY=;
-  b=L9hjcktwqGPvdaM8eRk/4DN144KTLaGmE6BFSSdrFq7rNYKzgKkj+dLy
-   vfq9etqAJGhlvRRarUgZWkmWxTR46fbNUFQr/7RlClsMbfn6jq3sqtFuu
-   UaNEjBxIYzr0wMxzmWy6YefaXdRUnx0CYJe3/jqUmj8odAo6UbGM7oHVn
-   cMVDwcTbi56zrVCQs37yxX1ZVa2OrZlH3PLOsQU9FoxsUEg045FRgDuZo
-   CIT5Sw53cEHaRdbz8j/PjzF/CBHvAXRxBlI4slKDq8KTJl1CEck5c89iN
-   hORV8HzsG+aaSxt9MtsFXJ0Bfa5eciaQA2AN9hJcJ6rXtnPpnW5mKy5Fa
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,221,1681164000"; 
-   d="scan'208";a="31308251"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 06 Jun 2023 17:10:51 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D838E280090;
-        Tue,  6 Jun 2023 17:10:50 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8mq-tqma8mq-mba8mx: Remove invalid properties
-Date:   Tue,  6 Jun 2023 17:10:48 +0200
-Message-Id: <20230606151048.778653-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S233201AbjFFPWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 11:22:24 -0400
+Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E942E40;
+        Tue,  6 Jun 2023 08:22:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686064932; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=fQLWl1OJQgI+y16x11Nujul31DbOOZGxHC9Jy8zMjwxNcByl6utzoadZEJzxSzhNwgQSQR3t3Dx9vfA9DrFp3Ogd2vwDp0rJ1W2xuqNnhMpUW9LZ21qfBPhORyTL+ao3OiVm3dgmiQwJtPV8zyK/jKp5VISSWnflbg5c7vgPdpk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1686064932; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=5NyaYE9lJ5b6pxkKhpQXFKjTx0CZyg+2SN/WxV0H/pM=; 
+        b=HfYmxrltidB8T7t4j0LIUlRUBJn8iwKkW0HPCNfy1NeG1eMgpncli0qKzUhFXrbl5n5okqo8uzpS+GWDH5DXWhlpBVy5qxtd3IuyBBOwSj8DucooeeE+T0Ob5hYyYArrCnoErnGaL5JGy59+O6UecRPyBFkbppCW2OXMJRlTX/c=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1686064932;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=5NyaYE9lJ5b6pxkKhpQXFKjTx0CZyg+2SN/WxV0H/pM=;
+        b=V8pesKFOFlk+xfIWUrAdHLdhU7/6hSNS4K7kAycDr9s5XlbNTvtm+jLRqQZN7u1x
+        SK7YnJufRxJbtFPdvhLZp2srQfEkFQfqrtRGJFIycXL/DaqdlIyHMbGICLOQMfJhZi3
+        VmbONVjuEOKSlsdboUXc6fOQ3Y5cB5morJ1iOP8E=
+Received: from [192.168.99.249] (178-147-169-233.haap.dm.cosmote.net [178.147.169.233]) by mx.zohomail.com
+        with SMTPS id 1686064930095554.2192890935327; Tue, 6 Jun 2023 08:22:10 -0700 (PDT)
+Message-ID: <3895c69f-6033-0976-0902-b9aab644bd0e@arinc9.com>
+Date:   Tue, 6 Jun 2023 18:22:04 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 1/2] mips: dts: ralink: Add support for TP-Link HC220
+ G5 v1 board
+To:     Liviu Dudau <liviu@dudau.co.uk>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230605150114.601102-1-liviu@dudau.co.uk>
+ <20230605150114.601102-2-liviu@dudau.co.uk>
+ <552b4604-d1b3-0052-62aa-424944c5ecb1@arinc9.com>
+ <ZH5NJsbY6ZLXYJYz@bart.dudau.co.uk>
+ <43c95286-a3f4-6c68-c59c-0c86bbb74928@arinc9.com>
+ <ZH9DP+QdwRu/uS2D@bart.dudau.co.uk>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <ZH9DP+QdwRu/uS2D@bart.dudau.co.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-They originated from the downstream kernel and slipped into mainline.
-Remove them to silence also dtbs_check warnings:
-pcie@33800000: Unevaluated properties are not allowed ('epdev_on-supply',
-  'hard-wired' were unexpected)
-pcie@33c00000: Unevaluated properties are not allowed ('epdev_on-supply',
-  'hard-wired' were unexpected)
+On 6.06.2023 17:31, Liviu Dudau wrote:
+> On Tue, Jun 06, 2023 at 08:24:48AM +0300, Arınç ÜNAL wrote:
+>> On 6.06.2023 00:01, Liviu Dudau wrote:
+>>> On Mon, Jun 05, 2023 at 07:35:44PM +0300, Arınç ÜNAL wrote:
+>>>> On 5.06.2023 18:01, Liviu Dudau wrote:
+>>>>> This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
+>>>>> a MT7603 2.4GHz WiFi and a MT7613 5GHz WiFi chips integrated on the board,
+>>>>> connected to the main SoC over PCIe.
+>>>>>
+>>>>> The device uses NMBM over NAND, which is not currently supported in the
+>>>>> mainline, so NAND node is skipped in this revision.
+>>>>>
+>>>>> Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
+>>>>> ---
+>>>>>     arch/mips/boot/dts/ralink/Makefile            |  3 +-
+>>>>>     .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 92 +++++++++++++++++++
+>>>>>     2 files changed, 94 insertions(+), 1 deletion(-)
+>>>>>     create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+>>>>>
+>>>>> diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
+>>>>> index 11732b8c8163a..d27d7e8c700fe 100644
+>>>>> --- a/arch/mips/boot/dts/ralink/Makefile
+>>>>> +++ b/arch/mips/boot/dts/ralink/Makefile
+>>>>> @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
+>>>>>     dtb-$(CONFIG_SOC_MT7621) += \
+>>>>>     	mt7621-gnubee-gb-pc1.dtb \
+>>>>> -	mt7621-gnubee-gb-pc2.dtb
+>>>>> +	mt7621-gnubee-gb-pc2.dtb \
+>>>>> +	mt7621-tplink-hc220-g5-v1.dtb
+>>>>>     obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+>>>>> diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+>>>>> new file mode 100644
+>>>>> index 0000000000000..859aaa1c1bc2b
+>>>>> --- /dev/null
+>>>>> +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dts
+>>>>> @@ -0,0 +1,92 @@
+>>>>> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +/dts-v1/;
+>>>>> +
+>>>>> +#include "mt7621.dtsi"
+>>>>> +
+>>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>>> +#include <dt-bindings/input/input.h>
+>>>>> +#include <dt-bindings/leds/common.h>
+>>>>> +
+>>>>> +/ {
+>>>>> +	compatible = "tplink,hc220-g5-v1", "mediatek,mt7621-soc";
+>>>>> +	model = "TP-Link HC220 G5 v1";
+>>>>> +
+>>>>> +	memory@0 {
+>>>>> +		device_type = "memory";
+>>>>> +		reg = <0x00000000 0x8000000>;
+>>>>
+>>>> Please use 8 digit addressing for the memory start and size offsets:
+>>>>
+>>>> 0x00000000 0x08000000
+>>>
+>>> Will do.
+>>>
+>>>>
+>>>>> +	};
+>>>>> +
+>>>>> +	chosen {
+>>>>> +		bootargs = "earlycon console=ttyS0,115200";
+>>>>> +	};
+>>>>> +
+>>>>> +	gpio-keys {
+>>>>> +		compatible = "gpio-keys";
+>>>>> +
+>>>>> +		key-reset {
+>>>>> +			label = "reset";
+>>>>> +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+>>>>> +			linux,code = <KEY_RESTART>;
+>>>>> +		};
+>>>>> +
+>>>>> +		key-wps {
+>>>>> +			label = "wps";
+>>>>> +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
+>>>>> +			linux,code = <KEY_WPS_BUTTON>;
+>>>>> +		};
+>>>>> +	};
+>>>>> +
+>>>>> +	leds {
+>>>>> +		compatible = "gpio-leds";
+>>>>> +
+>>>>> +		red {
+>>>>
+>>>> Usually the led name would point to the component the LED is used for.
+>>>
+>>> These are "generic" LEDs controlled from the userspace. The original firmware
+>>> uses GREEN for normal operations, RED for faults and BLUE for when WPS is
+>>> enabled. I'm not sure if there are any standard bindings that I can use here.
+>>
+>> Looking at:
+>>
+>> https://www.kernel.org/doc/html/latest/leds/leds-class.html#led-device-naming
+>>
+>> You could use red:fault, green:power, and blue:wps. For node names,
+>> led-fault, led-power, and led-wps.
+> 
+> Without making any changes in the device tree, because of the use of 'function' property,
+> I get this:
+> 
+> # ls -al /sys/class/leds/
+> drwxr-xr-x    2 root     root             0 Jun  6 14:24 .
+> drwxr-xr-x   37 root     root             0 Jan  1  1970 ..
+> lrwxrwxrwx    1 root     root             0 Jun  6 14:24 blue:wps -> ../../devices/platform/leds/leds/blue:wps
+> lrwxrwxrwx    1 root     root             0 Jun  6 14:24 green:power -> ../../devices/platform/leds/leds/green:power
+> lrwxrwxrwx    1 root     root             0 Jun  6 14:24 red:fault -> ../../devices/platform/leds/leds/red:fault
+> 
+> May I suggest that I change only the node names and not add a label, keeping the 'function' property instead?
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts | 4 ----
- 1 file changed, 4 deletions(-)
+It seems to achieve the same result so, sure.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-index c5244b608524d..afb3ceb067517 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-@@ -108,8 +108,6 @@ &pcie0 {
- 		 <&pcie0_refclk>,
- 		 <&clk IMX8MQ_CLK_PCIE1_PHY>,
- 		 <&clk IMX8MQ_CLK_PCIE1_AUX>;
--	epdev_on-supply = <&reg_vcc_3v3>;
--	hard-wired = <1>;
- 	status = "okay";
- };
- 
-@@ -122,8 +120,6 @@ &pcie1 {
- 		 <&pcie1_refclk>,
- 		 <&clk IMX8MQ_CLK_PCIE2_PHY>,
- 		 <&clk IMX8MQ_CLK_PCIE2_AUX>;
--	epdev_on-supply = <&reg_vcc_3v3>;
--	hard-wired = <1>;
- 	status = "okay";
- };
- 
--- 
-2.34.1
-
+Arınç
