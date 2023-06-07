@@ -2,79 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 849FB725284
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 05:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF0547252C1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 06:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240736AbjFGDp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 23:45:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60658 "EHLO
+        id S229603AbjFGEV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 00:21:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240831AbjFGDpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 23:45:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 622B61BC2;
-        Tue,  6 Jun 2023 20:45:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C0D8B63A20;
-        Wed,  7 Jun 2023 03:45:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40975C4339B;
-        Wed,  7 Jun 2023 03:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686109502;
-        bh=23b85ddF74DRpHqNGxTgfBMNcy0hEkGn39jASt7LXGY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=KozwMzbBcxqF3yspohCRX5N5zMV5Za8U22w+oHAcz4yDr/yx1eMfv3Zq40lwSaijF
-         x0eJyRdVwKLJ5NPv9mpvUfstSDXmaXlFVfo34sWCVZGru8tfdtocvayA4TeNF9Idp9
-         UyUJaAe2AgbYmC4GdN/M3yHcRS3KEZ79wX8Oe5mQV0F5bXNFUWoWC8zS5WELlJj4Dj
-         obSKgYeqc9TnlFJn/AMk5GftaUWN2PwejIPzl3Z2Tyd2ZANoYWY7TGLx4enOa1SO9U
-         GoyaGShdEoxet7hftBuqRs9b9NwWeZs0dDCSJDgrh48NEQnUJO8oyI1tmKgKo6XNim
-         D7EnPd94tiBww==
-Date:   Tue, 6 Jun 2023 20:45:00 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Justin Chen <justin.chen@broadcom.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        florian.fainelli@broadcom.com, davem@davemloft.net,
-        edumazet@google.com, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        opendmb@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, richardcochran@gmail.com,
-        sumit.semwal@linaro.org, christian.koenig@amd.com,
-        simon.horman@corigine.com
-Subject: Re: [PATCH net-next v6 3/6] net: bcmasp: Add support for ASP2.0
- Ethernet controller
-Message-ID: <20230606204500.04083bd8@kernel.org>
-In-Reply-To: <024a6733-f552-c538-2b59-26058c750d66@broadcom.com>
-References: <1685657551-38291-1-git-send-email-justin.chen@broadcom.com>
-        <1685657551-38291-4-git-send-email-justin.chen@broadcom.com>
-        <20230602235859.79042ff0@kernel.org>
-        <956dc20f-386c-f4fe-b827-1a749ee8af02@broadcom.com>
-        <20230606171605.3c20ae79@kernel.org>
-        <8601be87-4bcb-8e6b-5124-1c63150c7c40@broadcom.com>
-        <20230606185453.582d3831@kernel.org>
-        <024a6733-f552-c538-2b59-26058c750d66@broadcom.com>
+        with ESMTP id S232681AbjFGEUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 00:20:06 -0400
+Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EF12D7F
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 21:17:04 -0700 (PDT)
+Received: by mail-vk1-xa36.google.com with SMTP id 71dfb90a1353d-46010179da6so1385598e0c.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 21:17:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686111416; x=1688703416;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HuclnzYeNveopGINoAYYFBKbv8upkWfI9n54Jz9FA3Q=;
+        b=HLlrWnnIp3/857Ow5qeDqtw3NjB9CVpT6YULmY8/ShYw3BRtRs6eVS8w4oVv6qPd/4
+         pOnXWj3man0TB5NnoQdqR2WroMM3EbJRRgkUgy0pwEHRpAnjN9gkeCykrPqB+kZ33+J7
+         R+7DQTVVxGt6wIUelZMT1VCbAnBWHfYHVhFBM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686111416; x=1688703416;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HuclnzYeNveopGINoAYYFBKbv8upkWfI9n54Jz9FA3Q=;
+        b=aalbk7N15fHx4GReLRnkX1z2A1w1yPo8xJCHocwq6aWCEcnxpjsGKZopZHmNUeBqf/
+         cOW7qJ343arx/+yN9WtQJRnjWLdQv6YaMsJqiHKwcaznIcqBpYAxgzyz44rxsjrxdmCn
+         j90jCCJwzDkTMXQJ1e/cyUgjQ7WKtJiVp1b6i7/eZKVrRd7tdXRuduGRR/Yo2prQ6t7D
+         EykvwMbzMA3eFLiT3EN7BoGov8u7yUELvmtG2CS+0xek64vg5eFkTKGXt5U1ZE5UTbFT
+         fXMjBEEEdbdXlVp1FWXAFTKREjFm5q3WVZiu749HT/o+y8K4Gx/66aK/nDTRQsUQtchd
+         szfw==
+X-Gm-Message-State: AC+VfDxmle24fV9wIZnml4J0W/qt4soAh98RrUTfF5Q/fL1HeXl+XkvU
+        zQRBT1SWsfuN/2sMnJi6BCqtjgcNVwd0CyyXuJY=
+X-Google-Smtp-Source: ACHHUZ6rufghWYfQ54DSuz/KZmKHKjLcAYHcULwNZRWCQmHCoY2uB/YoLDvx1be3W/S7e3BecnxvfQ==
+X-Received: by 2002:a1f:6058:0:b0:464:c5aa:3338 with SMTP id u85-20020a1f6058000000b00464c5aa3338mr1475933vkb.15.1686111416603;
+        Tue, 06 Jun 2023 21:16:56 -0700 (PDT)
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com. [209.85.221.174])
+        by smtp.gmail.com with ESMTPSA id q81-20020a1f2a54000000b0046618661761sm310699vkq.53.2023.06.06.21.16.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 21:16:55 -0700 (PDT)
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-464f8a20c05so914160e0c.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 21:16:53 -0700 (PDT)
+X-Received: by 2002:a1f:6d81:0:b0:457:134a:50ef with SMTP id
+ i123-20020a1f6d81000000b00457134a50efmr1490189vkc.0.1686111413362; Tue, 06
+ Jun 2023 21:16:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230525014009.23345-1-yunfei.dong@mediatek.com>
+ <20230525014009.23345-2-yunfei.dong@mediatek.com> <b32b82f5-8555-39cf-9311-017a42b24e66@collabora.com>
+In-Reply-To: <b32b82f5-8555-39cf-9311-017a42b24e66@collabora.com>
+From:   Fei Shao <fshao@chromium.org>
+Date:   Wed, 7 Jun 2023 12:16:17 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nhM26=2FTtVjVvo6d0aWqo+KVa1s9=8xHL1VgYSqkuDvQ@mail.gmail.com>
+Message-ID: <CAC=S1nhM26=2FTtVjVvo6d0aWqo+KVa1s9=8xHL1VgYSqkuDvQ@mail.gmail.com>
+Subject: Re: [PATCH v4,1/4] media: mediatek: vcodec: Avoid unneeded error logging
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Jun 2023 19:33:13 -0700 Justin Chen wrote:
-> >> Not netdevs per se, but packets can be redirected to an offload
-> >> co-processor.  
-> > 
-> > How is the redirecting configured?
-> 
-> Through filters that can be programmed by the Host cpu or co-processor.
+On Thu, May 25, 2023 at 4:11=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 25/05/23 03:40, Yunfei Dong ha scritto:
+> > Since the LAT decoder works faster than its CORE, getting the trans
+> > buffer may be done only after CORE finishes processing: avoid printing
+> > an error if the decode function returns -EAGAIN, as this means that
+> > the buffer from CORE is not yet available, but will be at a later time.
+> >
+> > Also change the log level for calls to vdec_msg_queue_dqbuf() in H264
+> > and VP9 LAT decoder drivers to avoid excessive logging.
+> >
+> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
 
-How are the filter programmed by the host (in terms of user API)?
+Reviewed-by: Fei Shao <fshao@chromium.org>
