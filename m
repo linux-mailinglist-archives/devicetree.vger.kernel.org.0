@@ -2,121 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2608725A69
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65FAB725A94
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239971AbjFGJ3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 05:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49044 "EHLO
+        id S240196AbjFGJeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 05:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235626AbjFGJ3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:29:49 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA04AA;
-        Wed,  7 Jun 2023 02:29:47 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id 5614622812f47-394c7ba4cb5so4847492b6e.1;
-        Wed, 07 Jun 2023 02:29:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686130187; x=1688722187;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OmfrPg999neWX9s3M1zxfSUyWf/prJhvEaWFAiQaaNY=;
-        b=IBsaOvK/uVHM3lREN8AMM9yEVo1Xd6I7yfSEz8mue99kPhB/8t8WanbqtRa7i8BdoO
-         SWQf6vsygtojPOj0AQmu6SNrkRD3jyKhTGtw383Qvncs+5gDHvpIcuuEa+rVZXny/IPT
-         pb8pAhz3frMOZLENbbZpwlXNlDdsHs00knMr8mSIo1EJWbcs/sR4QABohUkd5ZCftzlB
-         uVE8fvWsBdjY9Q0TYwu8Gw7iUWZnPxHbKSpa7VOp6QGqAPukdzLzYL0OWbXZIrOOjsk1
-         hPbYfFz+4LzkZPOoQnxQPzj6QmXzc124bK+/T2nKG9MHum1FeZNNMkxT4sLFW1+4d9HU
-         tE4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686130187; x=1688722187;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OmfrPg999neWX9s3M1zxfSUyWf/prJhvEaWFAiQaaNY=;
-        b=X67b93UwcX/0cyMhtDQmtIyvXdMA+Wl46+8aXl8eTDZzDY0ibsL2kGuj2HW/bYL9Ib
-         iNxToGWXkVWSoYu8tu/8hzTqYTEVKv7XPrh7vWhNUo+gudzUmVxkLXlGcOKHqpVXYiXm
-         djGS/NV5chvBlfh7G7RD0evygo4onsO7zP/Tyf8vC3NYvRICmMzRySLNRAlYC/Xrwy/x
-         yA/HBm2s3kSYgLzsg7wsLtBg03DeMzqWWaydLEm9Y7heKpOpqiAvfz/bJxVjfhzKlxs2
-         ggVGRX4mUiVIN+nZqofgS7pG5hXPOCGI08CrVK1YU3SLrPlxp1DeIh/ul7/vOqk54jk0
-         V9uw==
-X-Gm-Message-State: AC+VfDxBbQ/RdoHBW6lgaFLTYomvIGqNjAmCPYRch3SITlgR8Y2QvWXs
-        G+o4xyakTofFjNHpe9EUBG+WE1WKFN65cDPWzUQ42ivYmAe+urAy
-X-Google-Smtp-Source: ACHHUZ7Qk+jpHAzTBaSr66IffeL7iiuj6egRj7ybLFDxSM222reY+UmlAVuzuWXXi32jct9e4nbPBvG5eT/9JeS1goc=
-X-Received: by 2002:aca:2b09:0:b0:386:d4f7:6791 with SMTP id
- i9-20020aca2b09000000b00386d4f76791mr4441087oik.37.1686130186597; Wed, 07 Jun
- 2023 02:29:46 -0700 (PDT)
+        with ESMTP id S240193AbjFGJdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:33:50 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A63E1BF1
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 02:33:24 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686130397;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yq+u6KBIixoyRRSctbLzLzxRpq6stiZ8c6Ns65RSIuA=;
+        b=Q2Y+AHSyZBKNzlTG+6grWLT4eLbw6EXKMBRCq3tIWdwxpDsTeOkFfwFca4sK2tQwx9s07+
+        zDbpsRoG40WZCRtp/aFscYccumUovEDaKHCNRQx/lOouwjeOKBHwAlpeyqNVWZEEP2gcCE
+        hLG2nZiyhFSDdiLs0DeQUuduHW4+4gEDxPotjX84VOR12lwK2lIqZjju60dYMmUfSP2MPu
+        v1Q14VenbLFWgU3mUqvvgZSyIoKirqgvZTLu2AePmvg60gJHjIW7UG/7WjMw4SiTZRM0Kb
+        2KO7Wjgt43uwMG34to2ovhVF8LQDaBdPBHXbiqX9lt3QiVPlXVnVKFD5cqipMg==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1227A24000F;
+        Wed,  7 Jun 2023 09:33:14 +0000 (UTC)
+Date:   Wed, 7 Jun 2023 11:33:14 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Walle <michael@walle.cc>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Richard Weinberger <richard@nod.at>
+Subject: Re: [PATCH v2 07/17] dt-bindings: mtd: ingenic: Prevent NAND chip
+ unevaluated properties
+Message-ID: <20230607113314.5da62276@xps-13>
+In-Reply-To: <168607750937.1468225.8457774415279003681.robh@kernel.org>
+References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
+        <20230606175246.190465-8-miquel.raynal@bootlin.com>
+        <168607750937.1468225.8457774415279003681.robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20230606140757.818705-1-pavacic.p@gmail.com> <20230606140757.818705-3-pavacic.p@gmail.com>
- <cac57af0-aa0f-0a60-3376-234e1da7f4eb@linaro.org>
-In-Reply-To: <cac57af0-aa0f-0a60-3376-234e1da7f4eb@linaro.org>
-From:   Paulo Pavacic <pavacic.p@gmail.com>
-Date:   Wed, 7 Jun 2023 11:29:35 +0200
-Message-ID: <CAO9szn3+u_yuWb5y_aQGWA8RhW2=qPVcxcZvGWz8MbHH_DamNg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: panel: add fannal,c3004
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Hi Rob,
 
-uto, 6. lip 2023. u 16:43 Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> napisao je:
->
-> On 06/06/2023 16:07, Paulo Pavacic wrote:
-> > Added fannal to vendor-prefixes and dt bindings for Fannal C3004.
-> > Fannal C3004 is a 480x800 MIPI DSI Panel which requires
-> > DCS initialization sequences with certain delays between certain
-> > commands.
-> >
-> > Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+robh@kernel.org wrote on Tue, 06 Jun 2023 12:52:00 -0600:
+
+> On Tue, 06 Jun 2023 19:52:36 +0200, Miquel Raynal wrote:
+> > List all the possible properties in the NAND chip as per the example and
+> > set unevaluatedProperties to false in the NAND chip section.
+> >=20
+> > Cc: Paul Cercueil <paul@crapouillou.net>
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > > ---
-> > v4 changelog:
-> >   - add spaces between properties
->
-> ???
+> >  Documentation/devicetree/bindings/mtd/ingenic,nand.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >  =20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/mtd/ingenic,nand.yaml: Unable to find=
+ schema file matching $id: http://devicetree.org/schemas/mtd/raw-nand-chip.=
+yaml
 
-Added empty lines between properties in yml file
+It seems like your automated tooling failed to apply the second patch
+in this series (creating raw-nand-chip.yaml). It says "sha1 information
+is lacking or useless". This work is based on a recent -rc so I'm not
+sure what is "lacking or useless" in this case.
 
->
-> I pointed out last incorrect versioning. This is v3, not v4. Or is it v4?
-
-It is v4 of the patch but v3 of the patchset. I wasn't sure whether
-somebody would complain if I were to name [patch 2/3] in a patch set
-with different version. I will try to edit changelog to match patchset
-version.
-
->
-> What about my tag?
->
-
-I have changed in MAINTAINERS file from "+C:
-matrix:r/mipi-dsi-bringup:matrix.org" to " +C:
-matrix:r/linux-drm:matrix.org". So I wasn't sure whether to add it.
-I will add it in future version of the patch.
-
-> What about my comment?
->
-
-I thought you wanted me to have more generalized MAINTAINERS community
-URI that's why I have changed it to linux-drm. I will remove community
-URI in future version of the patch.
-
-> Best regards,
-> Krzysztof
->
+Anyway, do you plan to give this series a look anyway? Or should I
+rebase against a specific branch?
 
 Thanks,
-Paulo
+Miqu=C3=A8l
+
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
+td/ingenic,nand.example.dtb: nand-controller@1: nand@1: False schema does n=
+ot allow {'reg': [[1]], 'nand-ecc-step-size': [[1024]], 'nand-ecc-strength'=
+: [[24]], 'nand-ecc-mode': ['hw'], 'nand-on-flash-bbt': True, 'pinctrl-name=
+s': ['default'], 'pinctrl-0': [[4294967295]], 'partitions': {'compatible': =
+['fixed-partitions'], '#address-cells': [[2]], '#size-cells': [[2]], 'parti=
+tion@0': {'label': ['u-boot-spl'], 'reg': [[0, 0, 0, 8388608]]}, 'partition=
+@800000': {'label': ['u-boot'], 'reg': [[0, 8388608, 0, 2097152]]}, 'partit=
+ion@a00000': {'label': ['u-boot-env'], 'reg': [[0, 10485760, 0, 2097152]]},=
+ 'partition@c00000': {'label': ['boot'], 'reg': [[0, 12582912, 0, 67108864]=
+]}, 'partition@4c00000': {'label': ['system'], 'reg': [[0, 79691776, 1, 421=
+5275520]]}}}
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicet=
+ree/bindings/mtd/ingenic,nand.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
+td/ingenic,nand.example.dtb: nand-controller@1: nand@1: Unevaluated propert=
+ies are not allowed ('nand-ecc-mode', 'nand-ecc-step-size', 'nand-ecc-stren=
+gth', 'nand-on-flash-bbt', 'partitions', 'reg' were unexpected)
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicet=
+ree/bindings/mtd/ingenic,nand.yaml
+>=20
+> doc reference errors (make refcheckdocs):
+>=20
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202306=
+06175246.190465-8-miquel.raynal@bootlin.com
+>=20
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+>=20
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>=20
+> pip3 install dtschema --upgrade
+>=20
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
+>=20
+
