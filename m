@@ -2,149 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40BCD7261DC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4D0F72623F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 16:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235696AbjFGN7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 09:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
+        id S241019AbjFGOGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 10:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240240AbjFGN7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:59:39 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E74C1FF0
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:59:22 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9788554a8c9so104398566b.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:59:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686146360; x=1688738360;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RFkWycW6XB7DoQU4+95hgOLZaJ9MmCqICTZvyaEpZIQ=;
-        b=SSFsJiZ2QNhdfivj8wIBcOvp2mvz3U7ksiMOIbUuDJHz1Njd+i0eUjquASK61xr5Y4
-         RxpypbPzfSe7ZtbnZ4M13nvUEzzOet4ihVRFfIv1QR8PqHgD9AZsjT35qOsw/nOh2Dj2
-         Vkz19SgOYGj6YlEWv30zIKHtjU7dDHP+xU2LiJug88NNvnbLidJc50S8bAOVvEZ2MJuX
-         h/dT2Ykm48wpYlKDQUWjZHa4tBwYa2+MEsfX1y7w9ud2aBV/j1uIQjnax71kV6kAI44J
-         mhpzflmNQXy/woniEXj3XLlQ76toGSh+mW0xuClNxAsS9kyS9traJZcjC9lw3P02LCNQ
-         9VwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686146360; x=1688738360;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RFkWycW6XB7DoQU4+95hgOLZaJ9MmCqICTZvyaEpZIQ=;
-        b=jx3+16lDqqnUmZWp6p8QDpr4JNtUA2TUwLQyGsE2YcJxUIZmWmC1JlG9cm7TFG0SsP
-         a1lQWmSPrhoQaxnY1xxrresTMEr04AktO1uRlmVphWlNNtYI8iWqIYYX8oD+ZIFbwROO
-         YVJ7WITiFkTOVn+cMq7nwkhRqLiPjvZDalN9NS6RCMViu6L9onebGCi3r0f0yZ7HJqbd
-         2fuYX2RnLLFC80FrCt+T3m7rDTDl5j7J2COlb1pY0AUGUw8dCkHtThQuJvc6EinxrUQv
-         L/zRCDinQf0Gu5KqcuctAFiD4CQCHJjGfSrK4EOFunf9RqDvts2WDfYKqd4coGRuXC2M
-         NGxQ==
-X-Gm-Message-State: AC+VfDzHm4qnJ6KFMHYeuWQ/7xIza71jvWCQ1J+jl31xyGwmNIoQux8b
-        5xtwbGo5rszRy7jKq/4Mam8/rg==
-X-Google-Smtp-Source: ACHHUZ7cl+L2KXdFp2rG5iVWinOrwOQOqHXvKEINORKaqwRPBu4nKgHpT831KsNV51xiwHZybriR6g==
-X-Received: by 2002:a17:907:a426:b0:94f:2852:1d2b with SMTP id sg38-20020a170907a42600b0094f28521d2bmr5966494ejc.72.1686146360623;
-        Wed, 07 Jun 2023 06:59:20 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h26-20020aa7de1a000000b005148f0e8568sm6202646edv.39.2023.06.07.06.59.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 06:59:20 -0700 (PDT)
-Message-ID: <f591d7d3-a728-af1f-d74d-24aec140fd46@linaro.org>
-Date:   Wed, 7 Jun 2023 15:59:18 +0200
+        with ESMTP id S240830AbjFGOGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 10:06:31 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F551FD8;
+        Wed,  7 Jun 2023 07:05:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:MIME-Version:
+        Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=RjILqyo6Pm+1+5Bm6J1R2tqjfoDi1hW1WpsiHeD9ku0=; b=b9Cz7dkKjXIlEEHUqgf6c248BW
+        GR8+KFSxc6A7uBpOdimpKNvyNV16tq1wwqpXbs+2w9qgp94tQYuzz1qQVPNadbmkvXltn9gkIjHWI
+        /2w+fdj0itjHVLA0K4EIKxv39BYwOW/Gu+/+O9Tyy1BDlaCYlObhcjgxCzbRQXGWDaD4=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:57832 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q6tn0-0005dF-T0; Wed, 07 Jun 2023 10:05:31 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        jesse.sung@canonical.com, isaac.true@canonical.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com,
+        linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date:   Wed,  7 Jun 2023 10:05:14 -0400
+Message-Id: <20230607140525.833982-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: ilitek: Introduce
- bindings for Ilitek ili9882t
-Content-Language: en-US
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230607133458.4075667-1-yangcong5@huaqin.corp-partner.google.com>
- <20230607133458.4075667-2-yangcong5@huaqin.corp-partner.google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230607133458.4075667-2-yangcong5@huaqin.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: [PATCH v8 00/10] serial: sc16is7xx: fix GPIO regression and rs485 improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 15:34, Cong Yang wrote:
-> The ili9882t touch screen chip same as Elan eKTH6915 controller
-> has a reset gpio. The difference is that ili9882t needs to use
-> vccio-supply instead of vcc33-supply. Doug's series[1] allows panels
-> and touchscreens to power on/off together, let's add a phandle for this.
-> 
-> [1]: https: //lore.kernel.org/all/20230523193017.4109557-1-dianders@chromium.org/
-> 
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../bindings/input/ilitek,ili9882t.yaml       | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml b/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
-> new file mode 100644
-> index 000000000000..f69fa3aaf4c5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/ilitek,ili9882t.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ilitek ili9882t touchscreen controller
-> +
-> +maintainers:
-> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> +
-> +description:
-> +  Supports the Ilitek ili9882t touchscreen controller.
-> +  This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
-> +
-> +properties:
-> +  compatible:
-> +    items:
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Drop items, just const.
+Hello,
+this patch series mainly fixes a GPIO regression and improve RS485 flags and
+properties detection from DT.
 
-> +      - const: ilitek,ili9882t
-> +
-> +  reg:
-> +    const: 0x41
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  panel:
-> +    description: If this is a touchscreen, the panel it's connected to. This
-> +      indicates that the panel and touchscreen are expected to be power
-> +      sequenced together.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+It now also includes various small fixes and improvements that were previously
+sent as separate patches, but that made testing everything difficult.
 
-"If this is a touchscreen"? Doesn't you description say this is
-touchscreen controller? Then how this could be also not a touchscreen?
+Patch 1 fixes an issue with init of first port during probing.
 
-> +
-> +  reset-gpios:
-> +    description: Reset GPIO.
+Patch 2 fixes an issue when debugging IOcontrol register, but it is also
+necessary for patch "fix regression with GPIO configuration" to work.
 
-missing maxItems
+Patch 3 fixes an incorrect label in sc16is7xx_probe() cleanup code.
+
+Patch 4 is a refactor of GPIO registration code in preparation for patch 5.
+
+Patches 5 and 6 fix a GPIO regression by (re)allowing to choose GPIO function
+for GPIO pins shared with modem status lines.
+
+Patch 7 fixes a bug with the output value when first setting the GPIO direction.
+
+Patch 8 allows to read common rs485 device-tree flags and properties.
+
+Patch 9 introduces a delay after a reset operation to respect datasheet
+timing recommandations.
+
+Patch 10 improves comments about chip variants.
+
+I have tested the changes on a custom board with two SC16IS752 DUART using a
+Variscite IMX8MN NANO SOM.
+
+Thank you.
+
+Link: [v1] https://lkml.org/lkml/2023/5/17/967
+      [v1] https://lkml.org/lkml/2023/5/17/777
+      [v1] https://lkml.org/lkml/2023/5/17/780
+      [v1] https://lkml.org/lkml/2023/5/17/785
+      [v1] https://lkml.org/lkml/2023/5/17/1311
+      [v2] https://lkml.org/lkml/2023/5/18/516
+      [v3] https://lkml.org/lkml/2023/5/25/7
+      [v4] https://lkml.org/lkml/2023/5/29/656
+      [v5] https://lkml.org/lkml/2023/6/1/1046
+      [v6] https://lkml.org/lkml/2023/6/1/1328
+      [v7] https://lkml.org/lkml/2023/6/2/861
+
+Changes for V3:
+- Integrated all patches into single serie to facilitate debugging and tests.
+- Reduce number of exported GPIOs depending on new property
+  nxp,modem-control-line-ports
+- Added additional example in DT bindings
+
+Changes for V4:
+- Increase reset post delay to relax scheduler.
+- Put comments patches at the end.
+- Remove Fixes tag for patch "mark IOCONTROL register as volatile".
+- Improve commit messages after reviews.
+- Fix coding style issues after reviews.
+- Change GPIO registration to always register the maximum number of GPIOs
+  supported by the chip, but maks-out GPIOs declared as modem control lines.
+- Add patch to refactor GPIO registration.
+- Remove patch "serial: sc16is7xx: fix syntax error in comments".
+- Remove patch "add dump registers function"
+
+Changes for V5:
+- Change patch order to facilitate stable backport(s).
+- Change duplicate device addresses in DT binding examples.
+- Use GENMASK for bit masks.
+- Replace of_property_for_each_u32() with device_property_read_u32_array
+- Add "Cc: stable..." tags
+
+Changes for V6:
+- Fix compilation bug introduced by patch 3
+
+Changes for V7:
+- Minor changes and coding style fixes after review for
+  patch 5 "fix regression with GPIO configuration".
+
+Changes for V8:
+- Move mctrl_mask to "struct sc16is7xx_port" to avoid compiler warning when
+  CONFIG_GPIOLIB is undefined.
+- Add "struct device" member to "struct sc16is7xx_port", in order to avoid
+  passing a raw "struct device" to called functions from sc16is7xx_probe().
+- Add new patch "serial: sc16is7xx: remove obsolete out_thread label"
+
+Hugo Villeneuve (10):
+  serial: sc16is7xx: fix broken port 0 uart init
+  serial: sc16is7xx: mark IOCONTROL register as volatile
+  serial: sc16is7xx: remove obsolete out_thread label
+  serial: sc16is7xx: refactor GPIO controller registration
+  dt-bindings: sc16is7xx: Add property to change GPIO function
+  serial: sc16is7xx: fix regression with GPIO configuration
+  serial: sc16is7xx: fix bug when first setting GPIO direction
+  serial: sc16is7xx: add call to get rs485 DT flags and properties
+  serial: sc16is7xx: add post reset delay
+  serial: sc16is7xx: improve comments about variants
+
+ .../bindings/serial/nxp,sc16is7xx.txt         |  46 +++++
+ drivers/tty/serial/sc16is7xx.c                | 177 +++++++++++++-----
+ 2 files changed, 181 insertions(+), 42 deletions(-)
 
 
-Best regards,
-Krzysztof
+base-commit: a4d7d701121981e3c3fe69ade376fe9f26324161
+-- 
+2.30.2
 
