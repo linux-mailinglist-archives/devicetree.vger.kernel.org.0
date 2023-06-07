@@ -2,158 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2CE72547E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01DB672548D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235289AbjFGGlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 02:41:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60604 "EHLO
+        id S237591AbjFGGnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 02:43:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233989AbjFGGlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:41:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1469AAA;
-        Tue,  6 Jun 2023 23:41:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A55F063AF8;
-        Wed,  7 Jun 2023 06:41:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90074C433EF;
-        Wed,  7 Jun 2023 06:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686120067;
-        bh=Px4yR+6OsZ1b/yH6ZdWEW0dyGLZ2w09Hzl1kzNrtJw0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bQg+1HP7Qdi4iQUKM9u6T9UtZIm5jIp8wQ9ZmIp5NRyJ86hGU+vePDRhiuSAYNRm6
-         Jqk3k+DVuCc5FGFzNbK5Rn2ivpsN+lXHm6xghGiAaTBw+vXoIb8b+rIQrhXf8LZe1D
-         FzfQShhS4fXXIzN2QaQKrcs2vOf4o+QNrU1ke91Petu2OhppYwnsN47DUoVLk+GuO1
-         YiT05Z7VfeTyJguCpkfDhKUfEdcHdRCHcQ2CZ1BEHDJysLT+AcRemIMpF/WoZkbiEj
-         ITOzCH9XmQGcZJTlesoEmjljCT20DtVddq8SEALOmI5RK4DGy2iRhf7brapBRnVvTY
-         SRomxqX/O+acQ==
-Date:   Wed, 7 Jun 2023 08:41:04 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        Keith Zhao <keith.zhao@starfivetech.com>,
-        Shengyu Qu <wiagn233@outlook.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH 1/9] dt-bindings: display: Add yamls for JH7110 display
- subsystem
-Message-ID: <ifgjvonhkzcwrklzch5efguor2x6az4m737dwte4uyow7ar5dr@z4glaxse6dou>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602-uncommon-rejoicing-e73c0c475f9f@spud>
- <TY3P286MB26116576E3E502CAE53834599852A@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <1991848.PYKUYFuaPT@diego>
- <20230606-geometry-blurb-1f0f07d4bf6a@spud>
+        with ESMTP id S235293AbjFGGnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:43:04 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B851723
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 23:43:03 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-565e6beb7aaso90720117b3.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 23:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1686120182; x=1688712182;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dsg7fMeOwWf6duFi3SL6qXsSugXJIk0Q5FLHDNP0ztQ=;
+        b=kVd/MnqaoIb5oxrldwJ5KKFEpysXJo1vKiAhaP19lZrkPC6P9oUh93qci0bfIU3RYr
+         FOzKnA6wBqU6vXDEPXVRMXQ54vUNAsclDBESzc7L+maa4WBFhljs6Xr+L827WRe4vcD/
+         aB9DVry9wy72Eh4u11rbQThzzLKuFbWeSnLWs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686120182; x=1688712182;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dsg7fMeOwWf6duFi3SL6qXsSugXJIk0Q5FLHDNP0ztQ=;
+        b=F3vbMQJa+ubM52o/hSQCBUVeMxl1TfX7gUv40XTyvV0aE3jJDXDiTZFZ1/avXGPF+x
+         8al6pKiTpX5Imev5pu56f1jNVisiFIaZwlsxrbjFoJ9uTmmvhvYvnBpX5ry4M6DCydut
+         eQNubEodHlm9kiKqcGN9ml+rYlUjqspzpU0RdWQuiMhG+C6pLDKyTT6nHTPFX5a+PwEq
+         5nNTomncSqm0xGJzulLRsgDo3v5wYJC/tkrPwQjqy+K5NcGZSUfupRWUo8a1Gzh9fNlw
+         Dv9IyZaOrRix8jjCpeueGJB5bU18W6x+E4YE2PBVNKVxy46u9OUeq5Uztnqp6yNqMAlt
+         xpQA==
+X-Gm-Message-State: AC+VfDyTrkmH6ToJNjhUQ7yjC6iF92XGFi1WvfR2lwUT76oMFwfxjIaP
+        4ag2F/E2Ru8P5sQc0/ZlSGxgpkgVekqHQ/uA3IBEKm1Il1xIFMaO5CPgf97R
+X-Google-Smtp-Source: ACHHUZ6sjnQG6odBG4w0qQkBK4LJZGwQU7CqikJozkVHCbSGSE0jcdrkgzVwr1fXZBKKMsum+q741mo0WSCe/CRDp74=
+X-Received: by 2002:a81:8450:0:b0:565:b22c:4165 with SMTP id
+ u77-20020a818450000000b00565b22c4165mr5933812ywf.11.1686120181918; Tue, 06
+ Jun 2023 23:43:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fpldas4cn62wqe46"
-Content-Disposition: inline
-In-Reply-To: <20230606-geometry-blurb-1f0f07d4bf6a@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com> <20230607063139.621351-4-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20230607063139.621351-4-dario.binacchi@amarulasolutions.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 7 Jun 2023 12:12:50 +0530
+Message-ID: <CAMty3ZDCkQ_T+j96iXtMAhkOLFBm=hZHk=sZzSGA=MOQQUOv7g@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 3/6] ARM: dts: stm32: support display on
+ stm32f746-disco board
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        michael@amarulasolutions.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 7, 2023 at 12:01=E2=80=AFPM Dario Binacchi
+<dario.binacchi@amarulasolutions.com> wrote:
+>
+> Add support to Rocktech RK043FN48H display on stm32f746-disco board.
+>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+>
+> (no changes since v1)
+>
+>  arch/arm/boot/dts/stm32f746-disco.dts | 51 +++++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/stm32f746-disco.dts b/arch/arm/boot/dts/st=
+m32f746-disco.dts
+> index c11616ed5fc6..cda423b6a874 100644
+> --- a/arch/arm/boot/dts/stm32f746-disco.dts
+> +++ b/arch/arm/boot/dts/stm32f746-disco.dts
+> @@ -60,10 +60,41 @@ memory@c0000000 {
+>                 reg =3D <0xC0000000 0x800000>;
+>         };
+>
+> +       reserved-memory {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <1>;
+> +               ranges;
+> +
+> +               linux,cma {
+> +                       compatible =3D "shared-dma-pool";
+> +                       no-map;
+> +                       size =3D <0x80000>;
+> +                       linux,dma-default;
+> +               };
+> +       };
 
---fpldas4cn62wqe46
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This looks unrelated to display enablement, isn't it?
 
-On Tue, Jun 06, 2023 at 11:37:53PM +0100, Conor Dooley wrote:
-> On Wed, Jun 07, 2023 at 12:22:33AM +0200, Heiko St=FCbner wrote:
-> > Am Dienstag, 6. Juni 2023, 20:41:17 CEST schrieb Shengyu Qu:
-> > > > On Fri, Jun 02, 2023 at 03:40:35PM +0800, Keith Zhao wrote:
-> > > >> Add bindings for JH7110 display subsystem which
-> > > >> has a display controller verisilicon dc8200
-> > > >> and an HDMI interface.
->=20
-> > > >> +description:
-> > > >> +  The StarFive SoC uses the HDMI signal transmiter based on innos=
-ilicon IP
-> > > > Is innosilicon the same thing as verisilicon? Also
-> > > > s/transmiter/transmitter/, both here and in the title.
-> > >=20
-> > > I think that is not the same, I remember Rockchip has used a HDMI=20
-> > > transmitter from
-> > >=20
-> > > Innosilicon, and there is a existing driver for that in mainline.
-> >=20
-> > Yep, I think Innosilicon is the company you turn to when you want to sa=
-ve
-> > a bit of money ;-) . In the bigger SoCs Rockchip most of the time uses
-> > Designware hdmi blocks and looking at the history only the rk3036 ever
-> > used an Innosilicon block.
-> >=20
-> > Looking at the history, 2016 really was a long time ago :-D.
-> >=20
-> > > So Keith, if that's true, I think it is better to seperate the HDMI=
-=20
-> > > stuff and reuse existing driver.
-> >=20
-> > I'm not so sure about that - at least from a cursory glance :-) .
-> >=20
-> > The registers do look slightly different and I don't know how much
-> > the IP changed between the rk3036-version and the jh7110 version.
-> >=20
-> > At the very least, I know my rk3036 board isn't booting right now, so
-> > I can't really provide help for generalizing the rockchip-driver.
-> >=20
-> > At the very least both the binding and driver could drop the "starfive-=
-hdmi"
-> > and actually use the Innosilicon in the naming somewhere, so that it's
-> > clear for future developers :-)
->=20
-> Seeing "based on" always makes me a little bit nervous to be honest when
-> it comes to using a compatible from the IP. Is it the IP? What version
-> is it? etc. Perhaps "starfive,jh7110-hdmi" & falling back to some sort
-> of "innosilicon,hdmi" would be more future/IP-silliness proof.
-> Driver can always be generic & bind against "innosilicon,hdmi" until
-> that becomes impossible.
-
-Given that Neil was saying that there's at least two
-generations/revisions/models of an HDMI controller from Innosilicon, I'm
-not sure that compatible is enough to reach that goal anyway.
-
-Maxime
-
---fpldas4cn62wqe46
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZIAmgAAKCRDj7w1vZxhR
-xaQ+AQDViFCjrmBh/FOmfkZnsbFEZqUbyPu3G+ff5Kfs9al3LgEA4TGU5Z1tubCB
-079K0fi4BmqB2ZgKk65Uxw0vctIlIAE=
-=TcBS
------END PGP SIGNATURE-----
-
---fpldas4cn62wqe46--
+Jagan.
