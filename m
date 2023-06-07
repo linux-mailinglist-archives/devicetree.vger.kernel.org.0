@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32172726965
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B73BC72696E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230046AbjFGTEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 15:04:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
+        id S231151AbjFGTFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 15:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbjFGTEF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:04:05 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 487511BF5;
-        Wed,  7 Jun 2023 12:04:05 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-33b1da9a8acso8010545ab.3;
-        Wed, 07 Jun 2023 12:04:05 -0700 (PDT)
+        with ESMTP id S233097AbjFGTFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:05:24 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8AF1BF7;
+        Wed,  7 Jun 2023 12:05:24 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-33b0bfb76cfso6072545ab.2;
+        Wed, 07 Jun 2023 12:05:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686164644; x=1688756644;
+        d=1e100.net; s=20221208; t=1686164723; x=1688756723;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2DWn/Ze0Ut4orMd0/mcdLsynCVi5Qtok/YstQsgHfNM=;
-        b=PhIm70mR6s1/WapHKUFBpr+n3dUbEdCFRUzmXKtfEk/LTDRfdEJRuE6QWbO8b2Zzv6
-         STqu9FWvf7B2RplF8TY055c3oXvP6HF3QZWLItzkMGcP/cdaoUdh+k2g41cnV3VfN/+c
-         FrTE9TMEpfdp6UGPE0tj9R2ztCZcBMWyfEjpAV71Yws1RxslZlhHbF/C3fi9juR7PuIN
-         DcKoIO1mLM9nnVSCRkeoQX31iHdO0+3R7FHxKqrpk0fTMghBc8d6/JJPVQbt39S2jJwJ
-         +dBNb3Bft+DroglnznjwyJF1ZASnfTcBVgpayx8HPiHNsDyDVX0yV1OqUdSRzRH4z4KP
-         3Luw==
-X-Gm-Message-State: AC+VfDyZXlzizZmquXZpI4jLyBHeflpIrkotNXiH3ou8/zT5Z9q7Po/f
-        dCJ2NYi5+Ntt+S/Xn/Tq4Q==
-X-Google-Smtp-Source: ACHHUZ4LmyzEXnj/xRHWPuspG/WLerGfcXl235yaTAXTT0UAZR5KZoKSo+SSHLfTDzHl0HlaGOa1Gg==
-X-Received: by 2002:a92:cf4e:0:b0:331:105c:81f9 with SMTP id c14-20020a92cf4e000000b00331105c81f9mr9944539ilr.29.1686164644451;
-        Wed, 07 Jun 2023 12:04:04 -0700 (PDT)
+        bh=figfwtvOwiBf/xUpTgDHOe/+/jU9SkWfSgFbF/zJYLM=;
+        b=BCQcBXPqnR5ihQvI+2WzdLbrQA6FaZpRWGM5Zm7UNU+jcGA2s2xHpmLGp7grjDB+p0
+         YPAjuFmyuu6LdWNQ7R+c0IgvUGtYFK49P6Dt4kY7HtY2fdqiBfKimNoyw2QADmHtwdPQ
+         hpZtIUxxDAuA58znxyQvfRSzodluUGTuwIAmDV4x1iKDrPw49U1Rj9MujGJDDPawvLP3
+         18TCgvW8a5Hm/uSdr4Yz2v6nYQqTj3yLcRQv414qXkP5u10XSGdx8v6C7K8PT4FLPIpo
+         af0AwmfqypNAv8FshrD8YmVjWZUJNnvKe2F6wBFPUE6SxJRhNIRiaNJ0YmFckyBAnIYG
+         yphg==
+X-Gm-Message-State: AC+VfDyoQTIOdmSGZQR6d6qhBYogb7dATtlPcxpG0dCSP/gA2b7nRYzx
+        a8krp6CB/0OHDxSwMt5MTg==
+X-Google-Smtp-Source: ACHHUZ4xcqktIrvSensylRmtZw8kuAdpLj5SvxnY4MXQFmF5N/oMep/sLguTKrjxJpwtErgjNBzItw==
+X-Received: by 2002:a92:db48:0:b0:32b:75bc:cda2 with SMTP id w8-20020a92db48000000b0032b75bccda2mr4888663ilq.22.1686164723349;
+        Wed, 07 Jun 2023 12:05:23 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id l9-20020a056e0205c900b0033568b32890sm3908892ils.24.2023.06.07.12.04.02
+        by smtp.gmail.com with ESMTPSA id p8-20020a92d488000000b003383276d260sm3807794ilg.40.2023.06.07.12.05.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 12:04:03 -0700 (PDT)
-Received: (nullmailer pid 3777477 invoked by uid 1000);
-        Wed, 07 Jun 2023 19:04:01 -0000
-Date:   Wed, 7 Jun 2023 13:04:01 -0600
+        Wed, 07 Jun 2023 12:05:22 -0700 (PDT)
+Received: (nullmailer pid 3779658 invoked by uid 1000);
+        Wed, 07 Jun 2023 19:05:20 -0000
+Date:   Wed, 7 Jun 2023 13:05:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Diederik de Haas <didi.debian@cknow.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Eric Dumazet <edumazet@google.com>,
+To:     Patrick Delaunay <patrick.delaunay@foss.st.com>
+Cc:     linux-kernel@vger.kernel.org, gabriel.fernandez@foss.st.com,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>, gabriel.fernandez@st.com,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>
-Subject: Re: [PATCH v2] dt-bindings: net: realtek-bluetooth: Fix double
- RTL8723CS in desc
-Message-ID: <168616464041.3777410.7010613597646626440.robh@kernel.org>
-References: <20230509141500.275887-1-didi.debian@cknow.org>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: rcc: stm32: Sync with u-boot copy for
+ STM32MP13 SoC
+Message-ID: <168616471902.3779570.15724807223592608191.robh@kernel.org>
+References: <20230510184305.v2.1.I417093ddcea282be479f10a37147d1935a9050b7@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230509141500.275887-1-didi.debian@cknow.org>
+In-Reply-To: <20230510184305.v2.1.I417093ddcea282be479f10a37147d1935a9050b7@changeid>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,21 +73,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 09 May 2023 16:15:01 +0200, Diederik de Haas wrote:
-> The description says 'RTL8723CS/RTL8723CS/...' whereas the title and
-> other places reference 'RTL8723BS/RTL8723CS/...'.
+On Wed, 10 May 2023 18:51:40 +0200, Patrick Delaunay wrote:
+> Minor cosmetic change, aligned with files in U-Boot:
+> - change obsolete SPDX id : GPL-2.0+ and use the same license
+>   GPL-2.0-only for the 2 files
+> - use correct mail address gabriel.fernandez@foss.st.com
+> - remove extra space
 > 
-> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 > ---
-> Changes since v1:
-> - Rebased on top of 6.4-rc1
-> - Added Acked-by from Krzysztof Kozlowski
-> v1: https://lore.kernel.org/netdev/20230312155435.12334-1-didi.debian@cknow.org/
 > 
->  Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes in v2:
+> - Change title "Fix STM32MP13 include file"
+> - Use the same license for the 2 files GPL-2.0-only as recommended
+>   to avoid check-patch issue on next
+> 
+>  include/dt-bindings/clock/stm32mp13-clks.h   | 6 +++---
+>  include/dt-bindings/reset/stm32mp13-resets.h | 4 ++--
+>  2 files changed, 5 insertions(+), 5 deletions(-)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
 
