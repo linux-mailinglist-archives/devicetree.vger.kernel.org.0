@@ -2,168 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B45C572565D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 09:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D73725661
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 09:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239368AbjFGHv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 03:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43528 "EHLO
+        id S239439AbjFGHvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 03:51:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239369AbjFGHvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 03:51:00 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A59A272D
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 00:49:10 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-973f78329e3so1139553866b.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 00:49:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686124148; x=1688716148;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sUmif8+PJuo1t9H5/fS1dgHw3TEAkR2eQjvlt4ezA7Y=;
-        b=P//BIhq2msQubwmODXxKb6JMeyvTjBvQ7lbTXY2gQ08CaAF0kghL3k6b9lqkt8FzMC
-         l5d1TtpqSOvfyUtwOs6t9fJGjGr6OAOOFCr8KdA/0CiuTDZGpOw9QcDvrVghXtVi5/Ua
-         jfBXi0gYHDWW8D+3aXrjQg47fdqv19wnx5RGN79FZcRb1uKUjriNk1SbCDUdcw944Mm7
-         eHpxaVbt/HIWxvO6ffpXA8QYIF9JLhWdqZIp8x00pl4dGrrFpm3Z/1Qdb/epsMjWiZra
-         hVk+egKKHJOATS9i7uAE2hJh02f8jyO5P3Y22+OSefH1M/AU6I9MT47/6vczZqSfdLbZ
-         UBvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686124148; x=1688716148;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sUmif8+PJuo1t9H5/fS1dgHw3TEAkR2eQjvlt4ezA7Y=;
-        b=cxEJWLLQmydGpVgwGPGILH9PI1kB57u5q+XP192dnLiImYIDnCnkhxM6QNu3I4i9ZW
-         Jnp/ESymraOp4sm3cS48RWHFBpe9h4et/zQVJ/XQjV+hpkWthBUTIgA9n5sVNI9fGJMQ
-         EacMQsSTUaen1ioEdF/R/+Flm1H2zuJmKAe6JK/DCLC5Euyny1oWQnuiZ1GDKYYHUGGm
-         ephCn3NRH1IeoAhobpUFox6aeSwRMf2E+MJCRr1FLA70+f1RLD9HOY2lOQt+gk33ExFx
-         gwHnJjfQbQjqdV66cyv60voeBLyLW6k4N8zlIJndCx7XP3EutP69Tb1wAnZdd8bCdzxg
-         nf6Q==
-X-Gm-Message-State: AC+VfDw2C4mPc4cJeKHSYGWlpPn83x5qdMexAF/2eIl6ZvSV2V6KpsTZ
-        KjATO+78fsNnrKO+GV7J2SwLpw==
-X-Google-Smtp-Source: ACHHUZ4tHicUEQZZDx3qvkqytJ1UUjgre5Dp5VZ4TgLhAgMrJ77wvl2/vrm+tWipBTJaMBWuLCjwNw==
-X-Received: by 2002:a17:907:6e0d:b0:974:c32c:b485 with SMTP id sd13-20020a1709076e0d00b00974c32cb485mr4637812ejc.45.1686124148561;
-        Wed, 07 Jun 2023 00:49:08 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id x22-20020a1709060a5600b0096f6a131b9fsm6533605ejf.23.2023.06.07.00.49.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 00:49:08 -0700 (PDT)
-Message-ID: <d0dfdfba-7a70-7d12-2c30-ad32b3f95bb8@linaro.org>
-Date:   Wed, 7 Jun 2023 09:49:06 +0200
+        with ESMTP id S239393AbjFGHvC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 03:51:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C24A10D7;
+        Wed,  7 Jun 2023 00:49:37 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1FA686606EF8;
+        Wed,  7 Jun 2023 08:49:35 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686124175;
+        bh=btdp22YPcE4rcsqawF/Dzg9wpsgaMB/+rd1QkI94JJs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YB4veNFvvKChhZJyxJdNkRiWGLv0BqdmQ2Jvm3MluU20wVsRbStjIAdp0YBsMIO1s
+         UAmp5RRx0zee1Mj5aSasJlPssCpjLjs36+rwXH6g8L8h725EaOR+7J5o87rtgtNfSV
+         p5Q6Vt6RVOkxeMQMju4jD81D56lvNb3FjvN7P+QAko0nbMF5plJk1JnYRgJx83+q7R
+         jZtzKDNObC0D6o4zdZKJQNqiJTzFcoYhVJCTOVC5JRqoYPJn+oWMK45ykvmlYpZKC2
+         z3dfrTXRMsUYW1edEUalyb/rpyZa4V932lwbR6M8ZJNdmXyps6tLE1NE1Jn9CgAWGQ
+         uJytNuNohHNnw==
+Message-ID: <3024a2a8-8e64-dfab-a9a3-0d4f51b345d9@collabora.com>
+Date:   Wed, 7 Jun 2023 09:49:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes
- up
+Subject: Re: [PATCH v13 07/11] remoteproc: mediatek: Add scp_boot_peers and
+ scp_shutdown_peers operations
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
         Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        regressions <regressions@lists.linux.dev>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230602161246.1855448-1-amit.pundir@linaro.org>
- <CAD=FV=U9xwxC4+wDYFMSoLWaj8vaLH_jettZ=nxEZP+1tNk=oA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=U9xwxC4+wDYFMSoLWaj8vaLH_jettZ=nxEZP+1tNk=oA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230607072222.8628-1-tinghan.shen@mediatek.com>
+ <20230607072222.8628-8-tinghan.shen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230607072222.8628-8-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 01:34, Doug Anderson wrote:
-> Hi,
+Il 07/06/23 09:22, Tinghan Shen ha scritto:
+> Due to that SCP core 0 controls the SCP clock and SRAM power, add two
+> new mtk_scp_of_data operations, scp_boot_peers and scp_shutdown_peers,
+> to manage the boot sequence and watchdog timeout handling of SCP core 1.
+> It ensures that core 1 boots after or shuts down before core 0 for
+> maintaining the proper control flow over SCP core 1.
 > 
-> On Fri, Jun 2, 2023 at 9:12 AM Amit Pundir <amit.pundir@linaro.org> wrote:
->>
->> Move lvs1 and lvs2 regulator nodes up in the rpmh-regulators
->> list to workaround a boot regression uncovered by the upstream
->> commit ad44ac082fdf ("regulator: qcom-rpmh: Revert "regulator:
->> qcom-rpmh: Use PROBE_FORCE_SYNCHRONOUS"").
->>
->> Without this fix DB845c fail to boot at times because one of the
->> lvs1 or lvs2 regulators fail to turn ON in time.
->>
->> Link: https://lore.kernel.org/all/CAMi1Hd1avQDcDQf137m2auz2znov4XL8YGrLZsw5edb-NtRJRw@mail.gmail.com/
->> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 24 +++++++++++-----------
->>  1 file changed, 12 insertions(+), 12 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> index e14fe9bbb386..df2fde9063dc 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> @@ -301,6 +301,18 @@ regulators-0 {
->>                 vdd-l26-supply = <&vreg_s3a_1p35>;
->>                 vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
->>
->> +               vreg_lvs1a_1p8: lvs1 {
->> +                       regulator-min-microvolt = <1800000>;
->> +                       regulator-max-microvolt = <1800000>;
->> +                       regulator-always-on;
->> +               };
->> +
->> +               vreg_lvs2a_1p8: lvs2 {
->> +                       regulator-min-microvolt = <1800000>;
->> +                       regulator-max-microvolt = <1800000>;
->> +                       regulator-always-on;
->> +               };
->> +
->>                 vreg_s3a_1p35: smps3 {
->>                         regulator-min-microvolt = <1352000>;
->>                         regulator-max-microvolt = <1352000>;
->> @@ -381,18 +393,6 @@ vreg_l26a_1p2: ldo26 {
->>                         regulator-max-microvolt = <1200000>;
->>                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->>                 };
->> -
->> -               vreg_lvs1a_1p8: lvs1 {
->> -                       regulator-min-microvolt = <1800000>;
->> -                       regulator-max-microvolt = <1800000>;
->> -                       regulator-always-on;
->> -               };
->> -
->> -               vreg_lvs2a_1p8: lvs2 {
->> -                       regulator-min-microvolt = <1800000>;
->> -                       regulator-max-microvolt = <1800000>;
->> -                       regulator-always-on;
->> -               };
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>   drivers/remoteproc/mtk_common.h |  3 ++
+>   drivers/remoteproc/mtk_scp.c    | 55 +++++++++++++++++++++++++++++++++
+>   2 files changed, 58 insertions(+)
 > 
-> This is a hack, but it at least feels less bad than reverting the
-> async probe patch. I'll leave it to Bjorn to decide if he's OK with
-> it. Personally, it feels like this would deserve a comment in the dts
-> to document that these regulators need to be listed first.
-> 
-> Ideally, we could still work towards a root cause. I added a few more
-> ideas to help with root causing in reply to the original thread about
-> this.
-> 
-> https://lore.kernel.org/r/CAD=FV=UKyjRNZG-ED2meUAR9aXdco+AbUTHiKixTzjCkaJbjTg@mail.gmail.com/
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index 56395e8664cb..0bfd242c41cc 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -93,6 +93,8 @@ struct mtk_scp_of_data {
+>   	void (*scp_reset_deassert)(struct mtk_scp *scp);
+>   	void (*scp_stop)(struct mtk_scp *scp);
+>   	void *(*scp_da_to_va)(struct mtk_scp *scp, u64 da, size_t len);
+> +	void (*scp_boot_peers)(struct mtk_scp *scp);
+> +	void (*scp_shutdown_peers)(struct mtk_scp *scp);
+>   
+>   	u32 host_to_scp_reg;
+>   	u32 host_to_scp_int_bit;
+> @@ -130,6 +132,7 @@ struct mtk_scp {
+>   	struct rproc_subdev *rpmsg_subdev;
+>   
+>   	struct list_head elem;
+> +	struct list_head *cluster;
+>   };
+>   
+>   /**
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index d644e232dfec..edbf71f4c21e 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -74,8 +74,21 @@ void scp_put(struct mtk_scp *scp)
+>   }
+>   EXPORT_SYMBOL_GPL(scp_put);
+>   
+> +static void mt8195_scp_shutdown_peers(struct mtk_scp *scp)
+> +{
+> +	struct mtk_scp *next_scp;
+> +
+> +	next_scp = list_next_entry(scp, elem);
+> +	list_for_each_entry_from(next_scp, scp->cluster, elem) {
+> +		rproc_shutdown(next_scp->rproc);
+> +	}
 
-We do not shape DTS based on given OS behavior. AOSP needs this, BSD
-needs that and Linux needs something else. Next time someone will move
-these regulators down because on his system probing is from end of list,
-not beginning and he has the same problem.
+braces are not needed here; after fixing that,
 
-No, really, are we going to reshuffle nodes because AOSP needs it?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Best regards,
-Krzysztof
 
