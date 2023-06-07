@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7BC2726E3B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:49:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACCEE726E5A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235103AbjFGUtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 16:49:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48482 "EHLO
+        id S234974AbjFGUuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 16:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235091AbjFGUs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:48:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D0C2707;
-        Wed,  7 Jun 2023 13:48:14 -0700 (PDT)
+        with ESMTP id S235116AbjFGUtr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:49:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A426226A1;
+        Wed,  7 Jun 2023 13:49:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 80C75646D2;
-        Wed,  7 Jun 2023 20:48:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D9AC433A0;
-        Wed,  7 Jun 2023 20:48:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 83EED646F0;
+        Wed,  7 Jun 2023 20:49:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C9EFC433EF;
+        Wed,  7 Jun 2023 20:49:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686170887;
-        bh=9sKpccaxmX9doTAUeC3c++CWO+L3WAFAUsJBLGfryic=;
+        s=k20201202; t=1686170970;
+        bh=5n8uz7/OdoveYJZFYQcsiPzaefRRvV8mnA90h29ZFuc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fIsvz5WXnc3KC+vrIgKCXPjOp7pVxra0afjmTXtZYxBhAyh0TCjpGrRqqUzM81Fre
-         JLpwFUT+JPPCvxrXaDreIYLPCmqmG3UhCqkvUvXhUaaNf7Ns9jQJBcHXMG1uzjBXvY
-         s32dTk9EYb2jLd37hl+8xeK+MH9Ysb+BurBcOa/ihAwveSXoXfu9Ta956KwEbsj1Us
-         xw1vRfuqetfGySFuKRs2/mmvwjhvr27R/oS5cjCw/1nI2i70c6bP31KNgK8U5Ede8R
-         14kdSyDzae/0/M6tPb8NKbW1+feSvwLw2jpIvTxr3Rfou9OPKp0xk5k/SeMesCHBeo
-         n20DjSCaaVvFg==
-Date:   Wed, 7 Jun 2023 21:48:03 +0100
+        b=EL7Hqwj7fU/ewEGQULixw5yNU9qW6YPCQ52Jo4fOjOcwTMO7n4lT/HOg1vkfnKW/F
+         x5o+mwPKgQB9VnE7eYpTBVi9eEtgeznyXi1aiem966NiucNWp3lpn4VNgpuPN07bWM
+         6KSzfFNsNK6Od4gt5wXe6o82zTUKrpwwU6WevDEhjBi6vUS3lyO9FKNGpt+adMyJJd
+         dliH2tEPl6CMkop7NmjaWIVxkv4WQMEL4o9YExNsrO6OxNvbZD1FKcOlyqPgGeeUka
+         G5zv2JsPq7JrTkhX8qM5/l+KxzXJI2Ba0zsYupLRweDFO77wxSF0HX8keVKfnzCNQh
+         Hqi9HvkOI5rhQ==
+Date:   Wed, 7 Jun 2023 21:49:26 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        sre@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: power: reset: atmel,sama5d2-shdwc:
- convert to yaml
-Message-ID: <20230607-refute-acrobat-3b3f645da71b@spud>
-References: <20230524123528.439082-1-claudiu.beznea@microchip.com>
- <20230524123528.439082-4-claudiu.beznea@microchip.com>
- <20230524-blizzard-hunting-4da815e634e2@spud>
- <20230607204351.GA3984668-robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: misc: qcom,fastrpc: drop unneeded quotes
+Message-ID: <20230607-promenade-yesterday-e1c0c2412856@spud>
+References: <20230607184147.420352-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="CRbTNylh+HJ+G0nN"
+        protocol="application/pgp-signature"; boundary="qakZvi7HjRW1Dgal"
 Content-Disposition: inline
-In-Reply-To: <20230607204351.GA3984668-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230607184147.420352-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,48 +63,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---CRbTNylh+HJ+G0nN
+--qakZvi7HjRW1Dgal
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 07, 2023 at 02:43:51PM -0600, Rob Herring wrote:
-> On Wed, May 24, 2023 at 08:19:08PM +0100, Conor Dooley wrote:
-> > On Wed, May 24, 2023 at 03:35:27PM +0300, Claudiu Beznea wrote:
-> > > Convert Atmel SAMA5D2 shutdown controller to YAML. SAMA7G5 SHDWC DT n=
-ode
-> > > (available in arch/arm/boot/dts/sama7g5.dtsi) has syscon along with i=
-ts
-> > > compatible. There is no usage of this syscon in the current code but =
-it
-> > > may be necessary in future as some registers of SHDWC are accessed in
-> > > different drivers (at91-sama5d2_shdwc.c and arch/arm/mach-at91/pm.c).
-> > > Thus update the YAML with it to make DT checkers happy.
-> > >=20
-> > > Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> >=20
-> > Modulo the license thing that I mentioned on v1,
+On Wed, Jun 07, 2023 at 08:41:47PM +0200, Krzysztof Kozlowski wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 >=20
-> Should be fine given it's an Microchip employee changing a Microchip=20
-> binding.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Aye, that part I figured was fine - it was the when I looked at the
-blame for the files & they were filled with your name that I wondered
-about the licensing.
-If you're okay with it though then clearly there's not an issue :)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
---CRbTNylh+HJ+G0nN
+--qakZvi7HjRW1Dgal
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIDtAwAKCRB4tDGHoIJi
-0ouDAP4mi4vjAQvARowdJZWeA1v9bVnwZ8/8xHXHfrAuJy+fYgEAqbtuOxnkH91I
-6ywA3pjB+Up3KD43T5iS3FJxRRTMnwQ=
-=iVKO
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIDtVQAKCRB4tDGHoIJi
+0knbAQCat0P71T2mjheUiPreYTP+aGiFXhON8Hhn0RLntASI3AD6A8y1H0yTgxLN
+Y4i2870aGDg2CkVEDTcsB5nrN1Z5+gM=
+=ZIfs
 -----END PGP SIGNATURE-----
 
---CRbTNylh+HJ+G0nN--
+--qakZvi7HjRW1Dgal--
