@@ -2,93 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CB07272F6
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 01:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0358272732F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 01:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbjFGX2y convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 7 Jun 2023 19:28:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41410 "EHLO
+        id S229968AbjFGXjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 19:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbjFGX2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 19:28:52 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC002689;
-        Wed,  7 Jun 2023 16:28:44 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 24D9B7F8A;
-        Thu,  8 Jun 2023 07:28:36 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Jun
- 2023 07:28:36 +0800
-Received: from EXMBX067.cuchost.com (172.16.6.67) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Jun
- 2023 07:28:35 +0800
-Received: from EXMBX067.cuchost.com ([fe80::a825:bd30:18ff:b2f8]) by
- EXMBX067.cuchost.com ([fe80::a825:bd30:18ff:b2f8%16]) with mapi id
- 15.00.1497.044; Thu, 8 Jun 2023 07:28:35 +0800
-From:   Mason Huo <mason.huo@starfivetech.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Viresh Kumar <viresh.kumar@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S233382AbjFGXjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 19:39:22 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8720426A6
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 16:39:09 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b1b8593263so60475191fa.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 16:39:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686181148; x=1688773148;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XONB9T8Mj7o/MLrEwoJSSBYj969JG7tPSlspH2W5BIw=;
+        b=GTSY7qEdobWh7LkTRnOAImvPKZUJQfgOgETcJ+tk6DI5sF/chuwr6uFDqqlVN23O2W
+         //yo7tNg480hQs0zkZINMpSZx3sk/T3RykwcV+TsgCqjcm6lxUr7OIiZgxIFpwSR5GDM
+         4G0wg5Ie0zBjwOhgMcBHNt5pPR8zWZkXbyFtqUc4AfJayZmsCu3RwDeCa8spwMuwj3kd
+         l7IFXSZtuqtnQi6PcQ7vFnWwXhpYhZaVzrLSjtc6apATcNyaMuyKL3dvg8eSImkt7HNR
+         s3HuH1jxWmY/bYrPhnN5PoHhxg9HXsMayW/9mjwSHTu08V8Fjpsb3fvDLgVQ95kyqjtA
+         HJ8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686181148; x=1688773148;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XONB9T8Mj7o/MLrEwoJSSBYj969JG7tPSlspH2W5BIw=;
+        b=TaHlTWY8cmagV5VPgGWqSRQo+KoZqjJvr9cfsM4SP5LojkyJ03cPyEwIJyEVMeiQMK
+         Me1OE7sG1uA8Zh+AbZs6CMc5T5I9hZlBt4bpkmai8Azl8vRMVmpbnkfGaEkd8R7twWoz
+         2F05c7R7Z/b9HKtOX701JHjQzGUqy395xxhsTis0pCIOjsqgwdpKURBj0qkbgbZOGhZh
+         dPtYjThcRQCdnzSFnFyKiHn685sJUfp7sywY4m0441csgKce+plubHz4M2hVaNnXwkEj
+         o0zowASQ8CN11GUFvqWLAZfl/JDiHlMtV4Y18jJYT1lltvXMoXc/dAOjj4E4UmLfWRPU
+         RRYg==
+X-Gm-Message-State: AC+VfDwq5Qsc95fpT2W8EuM3v7y7hwmTvbq7EHRA9JAr4vYykCzDHQIZ
+        utRX19X4H/qE6FBM0bSVOne5Hg==
+X-Google-Smtp-Source: ACHHUZ5Ti07xNp1+TYebI62vHoSL/r5taUDlEmn3ZQRy27Ik7N84bpsPjsq4VfKfSjqdaopI0zXg+A==
+X-Received: by 2002:a2e:730c:0:b0:2a7:7100:ff5a with SMTP id o12-20020a2e730c000000b002a77100ff5amr2976356ljc.6.1686181147775;
+        Wed, 07 Jun 2023 16:39:07 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id o15-20020a2e90cf000000b002b1b92910c8sm346ljg.86.2023.06.07.16.39.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 16:39:07 -0700 (PDT)
+Message-ID: <e70b266b-85bb-f23f-dac8-47702a2aaf37@linaro.org>
+Date:   Thu, 8 Jun 2023 02:39:06 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 00/12] SM63(50|75) DPU support
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Shengyu Qu <wiagn233@outlook.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v4 2/3] cpufreq: dt-platdev: Add JH7110 SOC to the
- allowlist
-Thread-Topic: [PATCH v4 2/3] cpufreq: dt-platdev: Add JH7110 SOC to the
- allowlist
-Thread-Index: AdmZl0L4sSafDUJ/QNiXDpDKpSg6Fw==
-Date:   Wed, 7 Jun 2023 23:28:35 +0000
-Message-ID: <50e49e25f1c841aa82cd8334db934849@EXMBX067.cuchost.com>
-References: <20230606105656.124355-1-mason.huo@starfivetech.com>
- <20230606105656.124355-3-mason.huo@starfivetech.com>
- <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
- <20230606-unsmooth-slip-c80fab59c9b4@wendy>
- <f29a14dad3d744bba54e561a050bdfaa@EXMBX067.cuchost.com>
- <20230607-process-spinal-321ccf04d7e6@wendy>
-In-Reply-To: <20230607-process-spinal-321ccf04d7e6@wendy>
-Accept-Language: en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [183.27.98.122]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
-MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20230411-topic-straitlagoon_mdss-v6-0-dee6a882571b@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230411-topic-straitlagoon_mdss-v6-0-dee6a882571b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor & Viresh,
+On 06/06/2023 15:43, Konrad Dybcio wrote:
 
-> On Wed, Jun 07, 2023 at 02:04:37AM +0000, Mason Huo wrote:
-> > Hi Viresh & Conor,
-> > 
-> > Sorry for the confusion. 
-> > Should I re-send the patch series and remove this patch?
-> > Or you can just ignore it?
+[skipped the changelog]
+
+> ---
+> Konrad Dybcio (12):
+>        dt-bindings: display/msm: dsi-controller-main: Add SM6350
+>        dt-bindings: display/msm: dsi-controller-main: Add SM6375
+>        dt-bindings: display/msm: sc7180-dpu: Describe SM6350 and SM6375
+>        dt-bindings: display/msm: Add SM6350 MDSS
+>        dt-bindings: display/msm: Add SM6375 MDSS
+>        drm/msm/dpu: Add SM6350 support
+>        drm/msm: mdss: Add SM6350 support
+>        drm/msm/dpu: Add SM6375 support
+>        drm/msm: mdss: Add SM6375 support
+
+Will, we have finally picked up the display related patches. Could you 
+please pick up the IOMMU patches if they look fine to you.
+
+>        iommu/arm-smmu-qcom: Sort the compatible list alphabetically
+>        iommu/arm-smmu-qcom: Add SM6375 DPU compatible
+>        iommu/arm-smmu-qcom: Add SM6350 DPU compatible
 > 
-> I applied the two dts patches yesterday, you shouldn't need to do anything.
+>   .../bindings/display/msm/dsi-controller-main.yaml  |   4 +
+>   .../bindings/display/msm/qcom,sc7180-dpu.yaml      |  23 ++-
+>   .../bindings/display/msm/qcom,sm6350-mdss.yaml     | 213 ++++++++++++++++++++
+>   .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 215 +++++++++++++++++++++
+>   .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h | 173 +++++++++++++++++
+>   .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_9_sm6375.h | 139 +++++++++++++
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   6 +
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   2 +
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   2 +
+>   drivers/gpu/drm/msm/msm_mdss.c                     |  10 +
+>   drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c         |   6 +-
+>   11 files changed, 790 insertions(+), 3 deletions(-)
+> ---
+> base-commit: 6db29e14f4fb7bce9eb5290288e71b05c2b0d118
+> change-id: 20230411-topic-straitlagoon_mdss-8f34cacd5e26
+> 
+> Best regards,
 
-Thank you for your help & review.
+-- 
+With best wishes
+Dmitry
 
-B.R
-Mason
