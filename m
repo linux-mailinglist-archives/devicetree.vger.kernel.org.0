@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C692725723
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7B5372579A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:28:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238723AbjFGIPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 04:15:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57748 "EHLO
+        id S239459AbjFGI2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 04:28:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239582AbjFGIPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:15:21 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25EC9170E
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 01:15:20 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f78a32266bso33024575e9.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 01:15:20 -0700 (PDT)
+        with ESMTP id S238263AbjFGI2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:28:03 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E971B5
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 01:28:01 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-977c89c47bdso735330766b.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 01:28:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686125718; x=1688717718;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qgIJSCejdHbYC6I5SehTRhoGCRpBeLeg1t9A/6zhpJo=;
-        b=CIa64ozSdrDVRVg1jUgCTAiz36xySfnySuAigODI+An3r6XQLwAc3N8g+VaXmEjiEg
-         He1RlJVQUxoLOzw6647ujk2cBWuG5dLxGbvmEZLSDY/gUh0iyjzUzrkaqmUzjpAHIVto
-         lNKKf85hRuxVY5yhehspifd10g2gJM3UEbPTZy8ervc6l0QMC7MVrs7qvS0wu/HlEg80
-         1VnX3ZT8NUJESTVrBaVbM2EbqeHm1gyq8NkjCit3BV9MxDJJala3XneiAODy5RWorTMY
-         SR8xwkEIMgMIl5LO04gTuqe42G4s/GQE4SzegI6ubCioeBvlyAmb1IvNom+TsBe8gpYj
-         WQig==
+        d=linaro.org; s=google; t=1686126479; x=1688718479;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=udzaaw6qDHSkruTSqapZilAwmBDTeRd1WqYkzLxfxKw=;
+        b=mCSLZ0SpTD8dM8IYBeH0NsSoPs/RoeEsK3Gz91De8m0o/bkR9A1JQfbDdPRCwXNkao
+         j/mft2XNI0lezzVQ1Cap/N2JFPUjdDIhTTCvRIKrDzoR2ad3g8QWoD6RNPiPwm01U9p8
+         wiY2wli1m7w3XwWE8qhD6lMF7711UkDsI5Cb/qGK2ngdGOMqY7y7ejLnMacZJ/13YmyE
+         WbO9efLR2U4tFZxeIMadh6qY7gdLmP2+n78s6lXZeBUR7Jz95SQq77xJE5tnVSqnAuJD
+         Y2ZJrNPTob5s5pGAakoVOXqp+EabmPcxfb5CjySIaRtfDqSX0TqngwuP2spaJBVNmvjw
+         2lVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686125718; x=1688717718;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qgIJSCejdHbYC6I5SehTRhoGCRpBeLeg1t9A/6zhpJo=;
-        b=laIWq0clZaxSvmiwFcTqdqg4Uil0TWosZI7vL+KK2mTBTvXHZ+wTSBekTS5drcyyxF
-         Bj6N6lFY7cfxi5bAVXWDcbjWY/42ICnYIToztpbr+qlEkhU52ssTNGgTA3QnbxewJSjj
-         rB4oqUXs91SLBZYctvXYCAilwmJ+WqCXzgEi9q9OKVehZCV1VLqWv1OywLWt2JC2IrLw
-         QbU15YnXIDflgESrBZVvoRagS6FO9g2uXrV8rTvWl2gmRXLGBa+P8i7z/yf/olyXsEYw
-         7DNqNrF+Ro7Hp1kazTt12ia4HMNSys/yva/knlLIS1k9XA5ognn/3uonJb64Qnfad3A2
-         zRWw==
-X-Gm-Message-State: AC+VfDzSow4J5odumD7lJ/Nrf8cGU0PNd9+zd6HiHxSPnd/TTFlMdN/g
-        y0MYgxXcJ8dqeQrW6be8I6Sn2A==
-X-Google-Smtp-Source: ACHHUZ5tk6FymA5P3QCBia2YNIyTmWdjetu2eTi8qhNYTXKqJxyKEcwTWpSXM+EeMCN65Vy6Ap03GQ==
-X-Received: by 2002:a7b:c411:0:b0:3f7:3545:4630 with SMTP id k17-20020a7bc411000000b003f735454630mr5745200wmi.20.1686125718557;
-        Wed, 07 Jun 2023 01:15:18 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id f8-20020a1c6a08000000b003f72a7918e7sm1228212wmc.45.2023.06.07.01.15.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 01:15:18 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     linux-kernel@vger.kernel.org,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        michael@amarulasolutions.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com>
-References: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com>
-Subject: Re: (subset) [RESEND PATCH v2 0/6] Add display support on the
- stm32f746-disco board
-Message-Id: <168612571728.2521024.1084005865126960680.b4-ty@linaro.org>
-Date:   Wed, 07 Jun 2023 10:15:17 +0200
+        d=1e100.net; s=20221208; t=1686126479; x=1688718479;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=udzaaw6qDHSkruTSqapZilAwmBDTeRd1WqYkzLxfxKw=;
+        b=Pv9NXoRaPytzG/DQ4bMtRwLRFBC1ypcxSoVuA2q+R/aSwcF3Aw7pkhHDp7K8GDg/dI
+         uHG3P8xMB8cSlUNhSLUmBEw5228Jaaoj8Sg8KauvfoviLUIkCBNmEZreGgjk+XhCrAYZ
+         B+2mZqH3BfLidg4/SHKNRxMnuNAUwiGg34SE9MFPUb2gK1Vp165g6xJTKU6VZRSdqq3L
+         B+2xL3JNOyk19+WooM1iSC1WbayZagdyvbtrjhk9nbb8LeJIvsqlNX01r+j3Wgy68A2w
+         TsGDGuntC9f17fuyHpELJ1EMsN5pY/vGxCxZOhYXH17c9qXtmhQcOUPstXPlO/45i8u3
+         rNfw==
+X-Gm-Message-State: AC+VfDyrRF2ENCwosT+mg6W0vQdE1TuhbcJqzP49e+9znNLAj0f1LAgN
+        vDq0qfr6v4vWseYspXxNNHkdPg==
+X-Google-Smtp-Source: ACHHUZ551irlhGeCoLFUsmqhKcmyEYKhUagCEadWq9J9KXqoa5i4D87g/vHnCHUNgfj3GYF+SJNTGg==
+X-Received: by 2002:a17:907:7e9c:b0:96f:bcea:df87 with SMTP id qb28-20020a1709077e9c00b0096fbceadf87mr4846126ejc.42.1686126479436;
+        Wed, 07 Jun 2023 01:27:59 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id uz13-20020a170907118d00b009775eb0343bsm5439900ejb.79.2023.06.07.01.27.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 01:27:59 -0700 (PDT)
+Message-ID: <5f9cc367-eaa5-4c19-4e5e-7052b0259ccf@linaro.org>
+Date:   Wed, 7 Jun 2023 10:27:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH V2 01/13] dt-bindings: remoteproc: qcom: Add support for
+ multipd model
+To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
+        Kalle Valo <kvalo@kernel.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jassisinghbrar@gmail.com,
+        mathieu.poirier@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, quic_eberman@quicinc.com, quic_mojha@quicinc.com,
+        loic.poulain@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-clk@vger.kernel.org,
+        quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com, quic_varada@quicinc.com,
+        quic_devipriy@quicinc.com
+References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
+ <20230521222852.5740-2-quic_mmanikan@quicinc.com>
+ <7940c743-815f-f864-d015-43d7e916ecfa@linaro.org>
+ <a1456f62-d0a7-d5ec-b379-db1b6035c89c@quicinc.com>
+ <d187eafb-4a80-9479-d063-3a01b47d8efa@linaro.org>
+ <feb0d11d-0930-d0b8-ab6e-cf477bbf114b@quicinc.com>
+ <87edmoitu3.fsf@kernel.org>
+ <0555c089-9d0d-7d19-9646-f0f9b8630d12@quicinc.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0555c089-9d0d-7d19-9646-f0f9b8630d12@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,28 +93,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, 07 Jun 2023 08:31:33 +0200, Dario Binacchi wrote:
-> The series adds support for the display on the stm32f746-disco board,
-> along with a generic patch that adds the "bpp" parameter to the stm-drm
-> module. The intention is to allow users to size, within certain limits,
-> the memory footprint required by the framebuffer.
+On 07/06/2023 10:10, Manikanta Mylavarapu wrote:
 > 
-> Changes in v2:
-> - Add 'Acked-by' tag of Conor Dooley.
-> - Fix build warning reported by kernel test robot.
-> - Add 'Reported-by' tag of kernel test robot.
 > 
-> [...]
+> On 6/6/2023 7:19 PM, Kalle Valo wrote:
+>> Manikanta Mylavarapu <quic_mmanikan@quicinc.com> writes:
+>>
+>>>>>>> +
+>>>>>>> +    properties:
+>>>>>>> +      compatible:
+>>>>>>> +        enum:
+>>>>>>> +          - qcom,ipq5018-wcss-ahb-mpd
+>>>>>>> +          - qcom,ipq9574-wcss-ahb-mpd
+>>>>>>> +          - qcom,ipq5018-wcss-pcie-mpd
+>>>>>>
+>>>>>> Keep rather alphabetical order (so both 5018 together).
+>>>>>>
+>>>>>> I also do not understand these at all. Why adding bus type to
+>>>>>> compatible? This rarely is allowed (unless it is PCIe controller within
+>>>>>> soc).
+>>>>>>
+>>>>> IPQ5018 SOC has in-built PCIE controller. Here QDSP6 will bring up
+>>>>> external(PCIE) and internal (AHB) wifi radio's. To separate AHB, PCIE
+>>>>> radio's properties, i have added bus type to compatible.
+>>>>
+>>>> It's the same device - WCSS - right? We do not create multiple nodes and
+>>>> compatibles for the same devices. Bus suffixes are almost never parts of
+>>>> compatibles.
+>>>
+>>>
+>>> No it's not the same device. WCSS on inside IPQ5018 and WCSS attached
+>>> via pcie to IPQ5018. Here QDSP6 managing both WCSS's.
+>>>
+>>> So for better clarity i will use attached SOC ID in compatible.
+>>> Below are the new compatible's.
+>>>
+>>> - qcom,ipq5018-wcss-mpd //IPQ5018 internal radio
+>>> - qcom,ipq9574-wcss-mpd	//IPQ9574 internal radio
+>>> - qcom,qcn6122-wcss-mpd //IPQ5018 attached radio
+>>
+>> What mandates that there's just one QCN6122 device attached to PCI?
+>> Assuming fixed PCI configurations like that makes me worried.
+>>
+> 
+> IPQ5018 always has one internal radio, attached pcie radio's depends on 
+> no of pcie ports. IPQ5018 has 2 pcie ports, so it supports max two 
+> qcn6122 devices. One compatible (qcom,qcn6122-wcss-mpd) itself support's 
+> number of pcie devices controlled by QDSP6.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+So this is hot-pluggable (or at least board-pluggable), then should not
+be a part of static DTS.
 
-[4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c42a37a27c777d63961dd634a30f7c887949491a
-[5/6] drm/panel: simple: add support for Rocktech RK043FN48H panel
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=13cdd12a9f934158f4ec817cf048fcb4384aa9dc
+Some concepts of virtual-processes is anyway far away from hardware
+description, thus does not fit into DTS. Adding now to the equation PCIe
+with variable number of such processes, brings us even further.
 
--- 
-Neil
+This is not a DT property. Remember - DT describes hardware.
+
+Best regards,
+Krzysztof
 
