@@ -2,180 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00DBE7263BD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 17:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1977263C5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 17:11:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241257AbjFGPJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 11:09:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54242 "EHLO
+        id S240665AbjFGPLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 11:11:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241252AbjFGPJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 11:09:40 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68F1C1FDF;
-        Wed,  7 Jun 2023 08:09:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=Vx9cwnR0h/Gk7Vtn0kVtgoY9YazEZrpbYkc4+ccNUtQ=; b=B8TzNT+x6aV/TOJb80goPEBhL/
-        pty5+F9J3etVMAY8MOmAm7RkCqTAXd6Oe/e+UtDtrALwh9VVhUfRHPSrSrSxnrBWlrgNn89SCx3dE
-        6JQHnMn/Oalwen1sSXVy7YsjcK+76/pIzkEbHb438lEOGSI4HrvjYR0oPxjFGaiaEMlw=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:42856 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q6umn-0006L3-PN; Wed, 07 Jun 2023 11:09:22 -0400
-Date:   Wed, 7 Jun 2023 11:09:21 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        jesse.sung@canonical.com, isaac.true@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230607110921.029b4bc8cf49cad5525cb429@hugovil.com>
-In-Reply-To: <881d6357-7190-7ef1-22a3-63a9b8533b4f@linaro.org>
-References: <20230607140525.833982-1-hugo@hugovil.com>
-        <20230607140525.833982-6-hugo@hugovil.com>
-        <f5cfc81d-d8ae-d270-f29a-c2b45b07a651@linaro.org>
-        <20230607104100.0186b1afc872e583cb9466b8@hugovil.com>
-        <a6301c0e-b774-8963-8eb1-8e0948b1468c@linaro.org>
-        <20230607105249.6dc95ed226e3578a3c9116aa@hugovil.com>
-        <881d6357-7190-7ef1-22a3-63a9b8533b4f@linaro.org>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S239458AbjFGPLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 11:11:35 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32521720;
+        Wed,  7 Jun 2023 08:11:33 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-977c8423dccso148608266b.1;
+        Wed, 07 Jun 2023 08:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686150692; x=1688742692;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fVGis/rTcZr0vzPZaXtByS8SSJioRsVHgE4mgu1eoWM=;
+        b=spq/RM/dNbFQuTXPY2sPsA/aibgvpksiop/LevkGp/FWybfXYU2k1nvoislNHdCw4W
+         wSdAHMDyz7EVjlm5OErhFBu/dybUozjzN00xXwhbrlyTeI3ZGzVRouvB+1WPEhkgF1Vr
+         OWiMFSwBv7N9IYdwU68QAeNgcda30cfuy66UiZHx3wEdmhLkMxBEJvTwU/ya6ncO1GmR
+         kqBqn0R+2HvlH6bGbBM4ndaFrTW1ak7eREiK0UFRUGJD4v+9+s/+isgtov/wT1+lxYmq
+         gW6ijZbyd8Zi49JyJ0tWW+sQsPWXoV8vlQjN2w8aaaEHVLsozhlbet2K752E6fDC3Xof
+         87Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686150692; x=1688742692;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fVGis/rTcZr0vzPZaXtByS8SSJioRsVHgE4mgu1eoWM=;
+        b=UiyirWoMNWqUwwxzM1eDe+Sn8dsVecBCp4d3vBmbWxudE4DO/YJRdiPkd+lIpitgrg
+         IqCMObyDewQTXSsDN45NyyVDUnQC2V7IQr+PErkpXskMrjvArQtATxA0w6jezHlDEaae
+         Q4yW8jtrVmsUR1GikLoiVf73Ha9Q5FYkzqZmudUo22PI5dGFpwbbCOtgJWfglovKH0Kx
+         9T8Q+/psesS4SSUg817oMA8GbL+r96epFa+4emTuivSO6CPJ0HOiwr9jhSyyXR6nbV0K
+         KAUygtZBS8/Q8W6CwgbgKLTORPqoVheFU3JACntPmlI/wbm7pMXeFQsgHttO34RTD9PB
+         Ziyw==
+X-Gm-Message-State: AC+VfDxGipULk9gXQ7vMvLEZ8z110DB+UuWv4XoF9jDZ7juhVBYT8DuN
+        GF6PGlqcVa9wesLu7EMY5Oo=
+X-Google-Smtp-Source: ACHHUZ7b7bz7T9J2KeyxrecP+EhKZCCXFFupI1T8bkMfAEqF3RD87rlXw9HCzXySDal0y7jqrODRrQ==
+X-Received: by 2002:a17:906:5d07:b0:96a:2210:7dd8 with SMTP id g7-20020a1709065d0700b0096a22107dd8mr5206553ejt.38.1686150691954;
+        Wed, 07 Jun 2023 08:11:31 -0700 (PDT)
+Received: from fedora.. ([46.188.160.176])
+        by smtp.gmail.com with ESMTPSA id m19-20020a170906235300b00967a18df1easm7006222eja.117.2023.06.07.08.11.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 08:11:31 -0700 (PDT)
+From:   Paulo Pavacic <pavacic.p@gmail.com>
+To:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Paulo Pavacic <pavacic.p@gmail.com>
+Subject: [PATCH v4 0/3] drm/panel: add fannal c3004 panel
+Date:   Wed,  7 Jun 2023 17:11:24 +0200
+Message-Id: <20230607151127.1542024-1-pavacic.p@gmail.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v8 05/10] dt-bindings: sc16is7xx: Add property to change
- GPIO function
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Jun 2023 16:57:48 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Fannal C3004 is a 2 lane MIPI DSI 480x800 panel which requires initialization with DSI DCS
+commands. After few initialization commands delay is required.
 
-> On 07/06/2023 16:52, Hugo Villeneuve wrote:
-> > On Wed, 7 Jun 2023 16:46:56 +0200
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > 
-> >> On 07/06/2023 16:41, Hugo Villeneuve wrote:
-> >>> On Wed, 7 Jun 2023 16:30:26 +0200
-> >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >>>
-> >>>> On 07/06/2023 16:05, Hugo Villeneuve wrote:
-> >>>>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >>>>>
-> >>>>> Some variants in this series of UART controllers have GPIO pins that
-> >>>>> are shared between GPIO and modem control lines.
-> >>>>>
-> >>>>> The pin mux mode (GPIO or modem control lines) can be set for each
-> >>>>> ports (channels) supported by the variant.
-> >>>>>
-> >>>>> This adds a property to the device tree to set the GPIO pin mux to
-> >>>>> modem control lines on selected ports if needed.
-> >>>>>
-> >>>>> Cc: <stable@vger.kernel.org> # 6.1.x
-> >>>>> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >>>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >>>>> Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
-> >>>>> ---
-> >>>>>  .../bindings/serial/nxp,sc16is7xx.txt         | 46 +++++++++++++++++++
-> >>>>>  1 file changed, 46 insertions(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> >>>>> index 0fa8e3e43bf8..1a7e4bff0456 100644
-> >>>>> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> >>>>> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> >>>>> @@ -23,6 +23,9 @@ Optional properties:
-> >>>>>      1 = active low.
-> >>>>>  - irda-mode-ports: An array that lists the indices of the port that
-> >>>>>  		   should operate in IrDA mode.
-> >>>>> +- nxp,modem-control-line-ports: An array that lists the indices of the port that
-> >>>>> +				should have shared GPIO lines configured as
-> >>>>> +				modem control lines.
-> >>>>>  
-> >>>>>  Example:
-> >>>>>          sc16is750: sc16is750@51 {
-> >>>>> @@ -35,6 +38,26 @@ Example:
-> >>>>>                  #gpio-cells = <2>;
-> >>>>>          };
-> >>>>>  
-> >>>>> +	sc16is752: sc16is752@53 {
-> >>>>
-> >>>> Since you keep sending new versions, fix the names. nNode names should
-> >>>> be generic. See also explanation and list of examples in DT specification:
-> >>>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> >>>
-> >>> Hi,
-> >>> by the way, I do not "keep sending new versions" just for the fun of
-> >>> it...
-> >>
-> >> Sure, I know. So when the next version is necessary to send, fix also this.
-> >>
-> >>>
-> >>> Even after reading your link, I cannot see what is wrong with that
-> >>> name.
-> >>
-> >> They are not generic. They are specific.
-> > 
-> > What do you mean by "They"? My patch adds only a new property...
-> 
-> Your patch adds multiple new examples. My comment was at appropriate
-> place to fix, although only the first place. I did not refer to
-> unrelated pieces or other parts of the code. Specifically - I wrote
-> nothing about property.
+Paulo Pavacic (3):
+  dt-bindings: add fannal vendor prefix
+  dt-bindings: display: panel: add fannal,c3004
+  drm/panel-fannal-c3004: Add fannal c3004 DSI panel
 
-Ahhh!!!!!!!!!!!!
+ .../bindings/display/panel/fannal,c3004.yaml  |  78 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-fannal-c3004.c    | 314 ++++++++++++++++++
+ 6 files changed, 412 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/fannal,c3004.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-fannal-c3004.c
 
-Ok, now I see.
+-- 
+2.40.1
 
-But I simply added new examples based on the previous examples, which
-already used "inappropriate" names.
-
-If I modify only the node names in my new examples, this will clash
-with the existing examples.
-
-I have already prepared a new patch, that I will send one day if we can
-ever finish this never ending series, to convert the binding to YAML,
-and to fix a few things with old properties missing vendor prefix,
-etc.
-
-I will modify all the examples in this new series to follow what you
-suggest and incorporate it into this new serie.
-
-Hugo.
-
-
-> > This patch will not fix old names, but a future patch could do it.
-> 
-> No worries, I asked for new code.
-> 
-> > 
-> > And what do you mean by "They are not generic. They are specific". Of
-> > course the property is specific, because it relates to something very
-> > specific to this chip?
-> 
-> Again, I did not comment under a property. I did not refer to any property.
-> 
-> 
-> Best regards,
-> Krzysztof
