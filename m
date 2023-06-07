@@ -2,109 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C597265E5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 18:28:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D417265F9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 18:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232291AbjFGQ2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 12:28:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49554 "EHLO
+        id S232056AbjFGQbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 12:31:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231755AbjFGQ1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 12:27:35 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38741FEC
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 09:27:31 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-977cf86aae5so649402766b.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 09:27:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686155250; x=1688747250;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Aj2uGEddUvm2YSMazOH62CPVR32K30vnHRS73Clh5nI=;
-        b=G/rQv35xZ/aHsQB7/Ky+W6Q7KPQGRYZ+0vUeNzYoFUFi4mLOsegl/v/UnoNfXi3hlz
-         uqU+Wke78B7nM+ck2wPIo2p/kfKK+Tk+JK072t3Bqeg05rpd4lHMUakybO+OZ710yHXu
-         dF1M1C45fzNS6tUcXPMGetZrCLaLK0DEUo/yHRE1Bsemg3omAArsdlHHd4hAXtGmww8r
-         mCy7junxRo7YdEq7iV1P3yYw/pSfbtAtUyuYVLxMc6wKwW32ksPaf2qcPSwuKtCjpgsi
-         IwZPxEnevyTZjPteCIDrmnxYnFgLd7z4ckZbdfSwPORJUlQ7CQPG2QzHOPucaOhsIcT3
-         FcCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686155250; x=1688747250;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Aj2uGEddUvm2YSMazOH62CPVR32K30vnHRS73Clh5nI=;
-        b=X5b0tOHz4Cy8erIpCgzOrxZrmnkXcVUOi25wd52EtEiSELbc/s/w+jaBco+1BvMeYs
-         0izL5W16Aob2zr/vYNQSS6DnN0WtC9CZLe439GUVM2s7x8oYpbOsFI48mspXqvjsdcYn
-         W9mv/3olbrleLd0OjHNY31PfWhlA+NkLsWmLGDBFE0OtIP4ytjYud4a1SbebrblJ0bJw
-         GqM9Au12Y7pGrrdizaxRjvtie1xemDJWXHsbfzuOQ2f/UjlwFY01eZHKkto1aMS+saET
-         yV5wpvyaV0KvoWGbIAxc6fmvMFJt/VyevCagEpv6g9EGKHhmyzeoqDyDXVMYgbgSD3OW
-         Gw+g==
-X-Gm-Message-State: AC+VfDyVVwp/OrCkGwOeEP4cR9EUO6Fc5ZZMSuqy/qcv2kdcpMkQbL++
-        YJCGDwd8+X6ucLk6nglE4CxLyA==
-X-Google-Smtp-Source: ACHHUZ7eNiJq5WQXyq2bfvEZ1lOkGLfEQBy9mj531JYcuc2jACZnDyn6XQeTGuLB4PbOF9A+zu45dg==
-X-Received: by 2002:a17:907:60c9:b0:977:e99c:c958 with SMTP id hv9-20020a17090760c900b00977e99cc958mr6742836ejc.10.1686155250276;
-        Wed, 07 Jun 2023 09:27:30 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id fx22-20020a170906b75600b00977da5d3350sm4043375ejb.107.2023.06.07.09.27.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 09:27:29 -0700 (PDT)
-Message-ID: <4bee93d7-0613-3b15-d34d-c62cbb367547@linaro.org>
-Date:   Wed, 7 Jun 2023 18:27:28 +0200
+        with ESMTP id S232093AbjFGQax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 12:30:53 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69E9D2111;
+        Wed,  7 Jun 2023 09:30:33 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 357G8qsi010792;
+        Wed, 7 Jun 2023 16:30:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=TOZfVF/9xmbn180Ru8MNahMQR5iJqpzYSTRbhQM3/kM=;
+ b=Y3q8Ca6OyYYvEeJfXVkgF90sMkULwT+R0GGcgQMCv2HhECuAWddvXqH8naIl7rAv0rqZ
+ lZh8PDqhmh4pBWq58jz3IzdvMVBIf4EKE95aVxG3aGKNyqyI+gJu0hpfLHygpkKuGsu0
+ JKXsALEVCPnlmwmw7iDjhhPibJ0OSAgSN8MFa0Vl10EAC4S+Hq1OkOU0Sz41TJhYyoEz
+ kjCN+0Xucec+DEPNwhHDh0AdXl+0+40SAVqhZ6cIqHHCkdfvcooeYVN34YsRfUWbh1nO
+ NNA7XXdXtjZDHOZwKmWm9NuwLJRY4AmYHlSR5ia/hEZcI6nirLAM0Wk5q2m4YQ6FQGSL tA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r2w5501mm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 07 Jun 2023 16:30:18 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 357GUHhD009362
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 7 Jun 2023 16:30:17 GMT
+Received: from ekangupt-linux.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 7 Jun 2023 09:30:12 -0700
+From:   Ekansh Gupta <quic_ekangupt@quicinc.com>
+To:     <srinivas.kandagatla@linaro.org>, <linux-arm-msm@vger.kernel.org>
+CC:     Ekansh Gupta <quic_ekangupt@quicinc.com>,
+        <ekangupt@qti.qualcomm.com>, <gregkh@linuxfoundation.org>,
+        <linux-kernel@vger.kernel.org>,
+        <fastrpc.upstream@qti.qualcomm.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+Subject: [RESEND PATCH v1 0/2] Privileged process support on remote subsystem
+Date:   Wed, 7 Jun 2023 22:00:05 +0530
+Message-ID: <1686155407-20054-1-git-send-email-quic_ekangupt@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Add Gateworks i.MX8M Mini GW7905-0x
- board
-Content-Language: en-US
-To:     Tim Harvey <tharvey@gateworks.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230607162438.2009738-1-tharvey@gateworks.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230607162438.2009738-1-tharvey@gateworks.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: G5fFzBcDiXE7ohCLu_4MzHy6vxEKMWvP
+X-Proofpoint-ORIG-GUID: G5fFzBcDiXE7ohCLu_4MzHy6vxEKMWvP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-07_07,2023-06-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0 malwarescore=0
+ mlxscore=0 suspectscore=0 impostorscore=0 clxscore=1011 bulkscore=0
+ mlxlogscore=902 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306070140
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 18:24, Tim Harvey wrote:
-> Add DT compatible string for a Gateworks GW7905-0x board based on
-> the i.MX8M Mini from NXP.
-> 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 2510eaa8906d..b19444dc23da 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -915,6 +915,7 @@ properties:
->                - gw,imx8mm-gw7901          # i.MX8MM Gateworks Board
->                - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
->                - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
-> +              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gateworks Board
+Add support to run remote user process as privileged on remote
+subsystem. The privileged user process can be given prioritized
+access to remote processor resources. This is achieved in kernel
+based on the group ID of the process. The kernel will have a
+pre-defined fastrpc group ID and if the process's group ID matches
+with it, then the process is treated as a privileged process. This
+information is sent to the remote processor during PD initialization
+and the PD is treated as a privileged PD.
 
-Are you sure you are using correct prefix? Anyway, keep alphabetical
-order, so before "gw".
+Ekansh Gupta (2):
+  dt-bindings: misc: fastrpc: add fastrpc group IDs property
+  misc: fastrpc: detect privileged processes based on group ID
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/misc/qcom,fastrpc.yaml     |   6 +
+ drivers/misc/fastrpc.c                             | 124 +++++++++++++++++++++
+ 2 files changed, 130 insertions(+)
+
+-- 
+2.7.4
 
