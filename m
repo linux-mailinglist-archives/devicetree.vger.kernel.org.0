@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA5F725988
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0ED672598B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:08:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235711AbjFGJIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 05:08:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32812 "EHLO
+        id S239815AbjFGJIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 05:08:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234210AbjFGJHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:07:41 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4311E2101
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 02:07:03 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id 006d021491bc7-55afbc16183so1815234eaf.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 02:07:03 -0700 (PDT)
+        with ESMTP id S238188AbjFGJHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:07:43 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148941FFE
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 02:07:05 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-2564dc37c3eso299931a91.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 02:07:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686128822; x=1688720822;
+        d=chromium.org; s=google; t=1686128824; x=1688720824;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Nz76j0qRG7M80pmlEKyVRAG1FYXj27a46ctowWFtgUI=;
-        b=EwJ6ylXOZhGaP+0ge6C4IJsrjlSUexk1wQ6jL3h3wsudSISMlA/XDzEVnr91bilrJY
-         ctT78e5Tf15nGS3bKaNGTd0zw4MoJ/EAwEfIcwuz2YEKYPhx6pX96frDRMCVbZKPXuIf
-         zUPolFsiG4YV2W9LmDFX6U3BILbEJB4grFYuU=
+        bh=3wS6HxZPw2hCtPpYfVzkDvRLSG1OCC/WwrM2i4bBWC8=;
+        b=baZZe3lqESYWGumgMh7CEq9Lxbk6JmjVPVuWT4RYgVvGzdaGR1uLOopN/dMuwj7eru
+         zep0o9s8amPjMM4/2Bg9fmE3at6+zmzgKCpn5ug1C1Hp18YouV5JYgurvWFKxKYoNqfq
+         S0B3if2E6tv5VbOber8WdL2jUoeAXEIvxbIhw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686128822; x=1688720822;
+        d=1e100.net; s=20221208; t=1686128824; x=1688720824;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Nz76j0qRG7M80pmlEKyVRAG1FYXj27a46ctowWFtgUI=;
-        b=O76eh+yGsgfJumvrhf4IqSCiSqh6H1dqvb5SpDPnBVP2bTHy7x1C1U4fsMf5mIhoWK
-         bFPx4ESd66H6MY1vYr8x+MTt33drA32iyPfD3mcfAzNYgazENnZB/Lzv9MHXTP4x7VDb
-         H3YxyQmGw+teQyFTz1Pr7P7FTiYUtOpAdQS7a6y+eHp8TZxG1FuIhaFHT22EcJ2ZUMew
-         IVfSYWpzp3zWZDbUkU9lfEjQ2+Yvy2qSFOIZRgd/91kydfyNkHl2J9OGjn+NGivh9sSb
-         s9IWO6xodfQr+nJ7nZTrVLAr3647VmTfGQpl6ssIOOcjHoy0JZG9loKj3KJQ6RZ19IV4
-         H2oQ==
-X-Gm-Message-State: AC+VfDxxEBv5DjCzomonCiEI4mcNa/VNpBzpWrbk6qFkUQgV+SJ6kBEo
-        Xzu78yUolFA2aMKPWFdtqgofiQ==
-X-Google-Smtp-Source: ACHHUZ7hcSVOowiPXhPeqmmoXLnSzASTWamdqYbyKBsrA0/VfrVRfq1YMn7GAAugHeW71s9tNSygag==
-X-Received: by 2002:a05:6358:c591:b0:125:a552:4389 with SMTP id fc17-20020a056358c59100b00125a5524389mr2980713rwb.22.1686128822414;
-        Wed, 07 Jun 2023 02:07:02 -0700 (PDT)
+        bh=3wS6HxZPw2hCtPpYfVzkDvRLSG1OCC/WwrM2i4bBWC8=;
+        b=hJ+N6+jAKwoe4zbzn+1iJGLF9phHSO0he2wu8ek1bOpiWNg4TL7dkYGDN6hpE+fXsY
+         9JMqrwwuNYm3V5b/qUvYlmGLZejxId5dueONk7X4l7LutYWDCSt67OvkPIzvSPGwgc6G
+         qIzLwQAEn5U2dLRrh072x7xV9Cz5bu57HAhQ/GoWrQavqA32QSDmODF6P5+aqGfKVtYk
+         AtI7a8U1Od6N7SlvBp2iBs4eREAGL6NRpFjZ9a9f/nWIwO1+qY9sAL5WXGdgK23fJRu3
+         NlSb0OamcnNtSd9U9XyUOG4fTGxh0WAqG6EzyYAe5rRSMVab3/MS3F0lwbCTz7WxiV9p
+         TkMA==
+X-Gm-Message-State: AC+VfDx8dpQ0rboESq2fuTBnG6X1o4n75dMn8YYuu3X7aRz4XFL5/NZ3
+        OLE+uaiQWDeN6jtcnuegSxrCIw==
+X-Google-Smtp-Source: ACHHUZ6h8JcuMSr2FthOK/WjB3Ue97GVrH04em6wr2nFCYYUR2itTbKu81vB4TLCqzX9H2XPfYKuGg==
+X-Received: by 2002:a17:90a:67ca:b0:256:9b5c:2aa2 with SMTP id g10-20020a17090a67ca00b002569b5c2aa2mr5718892pjm.6.1686128824493;
+        Wed, 07 Jun 2023 02:07:04 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:443b:29bb:b677:185d])
-        by smtp.gmail.com with ESMTPSA id b38-20020a631b66000000b0051eff0a70d7sm8505732pgm.94.2023.06.07.02.07.00
+        by smtp.gmail.com with ESMTPSA id b38-20020a631b66000000b0051eff0a70d7sm8505732pgm.94.2023.06.07.02.07.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 02:07:02 -0700 (PDT)
+        Wed, 07 Jun 2023 02:07:04 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
@@ -56,9 +56,9 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH 1/4] arm64: dts: mediatek: mt8186: Add CCI node and CCI OPP table
-Date:   Wed,  7 Jun 2023 17:06:49 +0800
-Message-ID: <20230607090653.2468317-2-wenst@chromium.org>
+Subject: [PATCH 2/4] arm64: dts: mediatek: mt8186: Wire up CPU frequency/voltage scaling
+Date:   Wed,  7 Jun 2023 17:06:50 +0800
+Message-ID: <20230607090653.2468317-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.41.0.rc0.172.g3f132b7071-goog
 In-Reply-To: <20230607090653.2468317-1-wenst@chromium.org>
 References: <20230607090653.2468317-1-wenst@chromium.org>
@@ -67,206 +67,363 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device node for the CCI (cache coherent interconnect) and an OPP
-table for it. The OPP table was taken from the downstream ChromeOS
-kernel.
+This adds clocks, dynamic power coefficients, and OPP tables for the CPU
+cores, so that everything required at the SoC level for CPU freqency and
+voltage scaling is available.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 117 +++++++++++++++++++++++
- 1 file changed, 117 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 274 +++++++++++++++++++++++
+ 1 file changed, 274 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index 8c02232cac38..1b754f7a0725 100644
+index 1b754f7a0725..6735c1feb26d 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -27,6 +27,115 @@ aliases {
- 		rdma1 = &rdma1;
+@@ -136,6 +136,240 @@ cci_opp_15: opp-1400000000 {
+ 		};
  	};
  
-+	cci: cci {
-+		compatible = "mediatek,mt8186-cci";
-+		clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>,
-+			 <&apmixedsys CLK_APMIXED_MAINPLL>;
-+		clock-names = "cci", "intermediate";
-+		operating-points-v2 = <&cci_opp>;
-+	};
-+
-+	cci_opp: opp-table-cci {
++	cluster0_opp: opp-table-cluster0 {
 +		compatible = "operating-points-v2";
 +		opp-shared;
 +
-+		cci_opp_0: opp-500000000 {
++		opp-500000000 {
 +			opp-hz = /bits/ 64 <500000000>;
 +			opp-microvolt = <600000>;
 +			opp-level = <15>;
++			required-opps = <&cci_opp_0>;
 +		};
 +
-+		cci_opp_1: opp-560000000 {
-+			opp-hz = /bits/ 64 <560000000>;
++		opp-774000000 {
++			opp-hz = /bits/ 64 <774000000>;
 +			opp-microvolt = <675000>;
 +			opp-level = <14>;
++			required-opps = <&cci_opp_1>;
 +		};
 +
-+		cci_opp_2: opp-612000000 {
-+			opp-hz = /bits/ 64 <612000000>;
-+			opp-microvolt = <693750>;
-+			opp-level = <13>;
-+		};
-+
-+		cci_opp_3: opp-682000000 {
-+			opp-hz = /bits/ 64 <682000000>;
-+			opp-microvolt = <718750>;
-+			opp-level = <12>;
-+		};
-+
-+		cci_opp_4: opp-752000000 {
-+			opp-hz = /bits/ 64 <752000000>;
-+			opp-microvolt = <743750>;
-+			opp-level = <11>;
-+		};
-+
-+		cci_opp_5: opp-822000000 {
-+			opp-hz = /bits/ 64 <822000000>;
-+			opp-microvolt = <768750>;
-+			opp-level = <10>;
-+		};
-+
-+		cci_opp_6: opp-875000000 {
++		opp-875000000 {
 +			opp-hz = /bits/ 64 <875000000>;
-+			opp-microvolt = <781250>;
-+			opp-level = <9>;
++			opp-microvolt = <700000>;
++			opp-level = <13>;
++			required-opps = <&cci_opp_2>;
 +		};
 +
-+		cci_opp_7: opp-927000000 {
-+			opp-hz = /bits/ 64 <927000000>;
++		opp-975000000 {
++			opp-hz = /bits/ 64 <975000000>;
++			opp-microvolt = <725000>;
++			opp-level = <12>;
++			required-opps = <&cci_opp_3>;
++		};
++
++		opp-1075000000 {
++			opp-hz = /bits/ 64 <1075000000>;
++			opp-microvolt = <750000>;
++			opp-level = <11>;
++			required-opps = <&cci_opp_4>;
++		};
++
++		opp-1175000000 {
++			opp-hz = /bits/ 64 <1175000000>;
++			opp-microvolt = <775000>;
++			opp-level = <10>;
++			required-opps = <&cci_opp_5>;
++		};
++
++		opp-1275000000 {
++			opp-hz = /bits/ 64 <1275000000>;
 +			opp-microvolt = <800000>;
++			opp-level = <9>;
++			required-opps = <&cci_opp_6>;
++		};
++
++		opp-1375000000 {
++			opp-hz = /bits/ 64 <1375000000>;
++			opp-microvolt = <825000>;
 +			opp-level = <8>;
++			required-opps = <&cci_opp_7>;
 +		};
 +
-+		cci_opp_8: opp-980000000 {
-+			opp-hz = /bits/ 64 <980000000>;
-+			opp-microvolt = <818750>;
++		opp-1500000000 {
++			opp-hz = /bits/ 64 <1500000000>;
++			opp-microvolt = <856250>;
 +			opp-level = <7>;
++			required-opps = <&cci_opp_8>;
 +		};
 +
-+		cci_opp_9: opp-1050000000 {
-+			opp-hz = /bits/ 64 <1050000000>;
-+			opp-microvolt = <843750>;
++		opp-1618000000 {
++			opp-hz = /bits/ 64 <1618000000>;
++			opp-microvolt = <875000>;
 +			opp-level = <6>;
++			required-opps = <&cci_opp_9>;
 +		};
 +
-+		cci_opp_10: opp-1120000000 {
-+			opp-hz = /bits/ 64 <1120000000>;
-+			opp-microvolt = <862500>;
++		opp-1666000000 {
++			opp-hz = /bits/ 64 <1666000000>;
++			opp-microvolt = <900000>;
 +			opp-level = <5>;
++			required-opps = <&cci_opp_10>;
 +		};
 +
-+		cci_opp_11: opp-1155000000 {
-+			opp-hz = /bits/ 64 <1155000000>;
-+			opp-microvolt = <887500>;
++		opp-1733000000 {
++			opp-hz = /bits/ 64 <1733000000>;
++			opp-microvolt = <925000>;
 +			opp-level = <4>;
++			required-opps = <&cci_opp_11>;
 +		};
 +
-+		cci_opp_12: opp-1190000000 {
-+			opp-hz = /bits/ 64 <1190000000>;
-+			opp-microvolt = <906250>;
-+			opp-level = <3>;
-+		};
-+
-+		cci_opp_13: opp-1260000000 {
-+			opp-hz = /bits/ 64 <1260000000>;
++		opp-1800000000 {
++			opp-hz = /bits/ 64 <1800000000>;
 +			opp-microvolt = <950000>;
++			opp-level = <3>;
++			required-opps = <&cci_opp_12>;
++		};
++
++		opp-1866000000 {
++			opp-hz = /bits/ 64 <1866000000>;
++			opp-microvolt = <981250>;
 +			opp-level = <2>;
++			required-opps = <&cci_opp_13>;
 +		};
 +
-+		cci_opp_14: opp-1330000000 {
-+			opp-hz = /bits/ 64 <1330000000>;
-+			opp-microvolt = <993750>;
++		opp-1933000000 {
++			opp-hz = /bits/ 64 <1933000000>;
++			opp-microvolt = <1006250>;
 +			opp-level = <1>;
++			required-opps = <&cci_opp_14>;
 +		};
 +
-+		cci_opp_15: opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
++		opp-2000000000 {
++			opp-hz = /bits/ 64 <2000000000>;
 +			opp-microvolt = <1031250>;
 +			opp-level = <0>;
++			required-opps = <&cci_opp_15>;
++		};
++	};
++
++	cluster1_opp: opp-table-cluster1 {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-774000000 {
++			opp-hz = /bits/ 64 <774000000>;
++			opp-microvolt = <675000>;
++			opp-level = <15>;
++			required-opps = <&cci_opp_0>;
++		};
++
++		opp-835000000 {
++			opp-hz = /bits/ 64 <835000000>;
++			opp-microvolt = <693750>;
++			opp-level = <14>;
++			required-opps = <&cci_opp_1>;
++		};
++
++		opp-919000000 {
++			opp-hz = /bits/ 64 <919000000>;
++			opp-microvolt = <718750>;
++			opp-level = <13>;
++			required-opps = <&cci_opp_2>;
++		};
++
++		opp-1002000000 {
++			opp-hz = /bits/ 64 <1002000000>;
++			opp-microvolt = <743750>;
++			opp-level = <12>;
++			required-opps = <&cci_opp_3>;
++		};
++
++		opp-1085000000 {
++			opp-hz = /bits/ 64 <1085000000>;
++			opp-microvolt = <775000>;
++			opp-level = <11>;
++			required-opps = <&cci_opp_4>;
++		};
++
++		opp-1169000000 {
++			opp-hz = /bits/ 64 <1169000000>;
++			opp-microvolt = <800000>;
++			opp-level = <10>;
++			required-opps = <&cci_opp_5>;
++		};
++
++		opp-1308000000 {
++			opp-hz = /bits/ 64 <1308000000>;
++			opp-microvolt = <843750>;
++			opp-level = <9>;
++			required-opps = <&cci_opp_6>;
++		};
++
++		opp-1419000000 {
++			opp-hz = /bits/ 64 <1419000000>;
++			opp-microvolt = <875000>;
++			opp-level = <8>;
++			required-opps = <&cci_opp_7>;
++		};
++
++		opp-1530000000 {
++			opp-hz = /bits/ 64 <1530000000>;
++			opp-microvolt = <912500>;
++			opp-level = <7>;
++			required-opps = <&cci_opp_8>;
++		};
++
++		opp-1670000000 {
++			opp-hz = /bits/ 64 <1670000000>;
++			opp-microvolt = <956250>;
++			opp-level = <6>;
++			required-opps = <&cci_opp_9>;
++		};
++
++		opp-1733000000 {
++			opp-hz = /bits/ 64 <1733000000>;
++			opp-microvolt = <981250>;
++			opp-level = <5>;
++			required-opps = <&cci_opp_10>;
++		};
++
++		opp-1796000000 {
++			opp-hz = /bits/ 64 <1796000000>;
++			opp-microvolt = <1012500>;
++			opp-level = <4>;
++			required-opps = <&cci_opp_11>;
++		};
++
++		opp-1860000000 {
++			opp-hz = /bits/ 64 <1860000000>;
++			opp-microvolt = <1037500>;
++			opp-level = <3>;
++			required-opps = <&cci_opp_12>;
++		};
++
++		opp-1923000000 {
++			opp-hz = /bits/ 64 <1923000000>;
++			opp-microvolt = <1062500>;
++			opp-level = <2>;
++			required-opps = <&cci_opp_13>;
++		};
++
++		cluster1_opp_14: opp-1986000000 {
++			opp-hz = /bits/ 64 <1986000000>;
++			opp-microvolt = <1093750>;
++			opp-level = <1>;
++			required-opps = <&cci_opp_14>;
++		};
++
++		cluster1_opp_15: opp-2050000000 {
++			opp-hz = /bits/ 64 <2050000000>;
++			opp-microvolt = <1118750>;
++			opp-level = <0>;
++			required-opps = <&cci_opp_15>;
 +		};
 +	};
 +
  	cpus {
  		#address-cells = <1>;
  		#size-cells = <0>;
-@@ -83,6 +192,7 @@ cpu0: cpu@0 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu1: cpu@100 {
-@@ -101,6 +211,7 @@ cpu1: cpu@100 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -119,6 +230,7 @@ cpu2: cpu@200 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -137,6 +249,7 @@ cpu3: cpu@300 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu4: cpu@400 {
-@@ -155,6 +268,7 @@ cpu4: cpu@400 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu5: cpu@500 {
-@@ -173,6 +287,7 @@ cpu5: cpu@500 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu6: cpu@600 {
-@@ -191,6 +306,7 @@ cpu6: cpu@600 {
- 			d-cache-sets = <256>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu7: cpu@700 {
-@@ -209,6 +325,7 @@ cpu7: cpu@700 {
- 			d-cache-sets = <256>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		idle-states {
+@@ -182,6 +416,11 @@ cpu0: cpu@0 {
+ 			reg = <0x000>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2000000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_LL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster0_opp>;
++			dynamic-power-coefficient = <84>;
+ 			capacity-dmips-mhz = <382>;
+ 			cpu-idle-states = <&cpu_ret_l &cpu_off_l>;
+ 			i-cache-size = <32768>;
+@@ -201,6 +440,11 @@ cpu1: cpu@100 {
+ 			reg = <0x100>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2000000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_LL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster0_opp>;
++			dynamic-power-coefficient = <84>;
+ 			capacity-dmips-mhz = <382>;
+ 			cpu-idle-states = <&cpu_ret_l &cpu_off_l>;
+ 			i-cache-size = <32768>;
+@@ -220,6 +464,11 @@ cpu2: cpu@200 {
+ 			reg = <0x200>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2000000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_LL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster0_opp>;
++			dynamic-power-coefficient = <84>;
+ 			capacity-dmips-mhz = <382>;
+ 			cpu-idle-states = <&cpu_ret_l &cpu_off_l>;
+ 			i-cache-size = <32768>;
+@@ -239,6 +488,11 @@ cpu3: cpu@300 {
+ 			reg = <0x300>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2000000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_LL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster0_opp>;
++			dynamic-power-coefficient = <84>;
+ 			capacity-dmips-mhz = <382>;
+ 			cpu-idle-states = <&cpu_ret_l &cpu_off_l>;
+ 			i-cache-size = <32768>;
+@@ -258,6 +512,11 @@ cpu4: cpu@400 {
+ 			reg = <0x400>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2000000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_LL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster0_opp>;
++			dynamic-power-coefficient = <84>;
+ 			capacity-dmips-mhz = <382>;
+ 			cpu-idle-states = <&cpu_ret_l &cpu_off_l>;
+ 			i-cache-size = <32768>;
+@@ -277,6 +536,11 @@ cpu5: cpu@500 {
+ 			reg = <0x500>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2000000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_LL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster0_opp>;
++			dynamic-power-coefficient = <84>;
+ 			capacity-dmips-mhz = <382>;
+ 			cpu-idle-states = <&cpu_ret_l &cpu_off_l>;
+ 			i-cache-size = <32768>;
+@@ -296,6 +560,11 @@ cpu6: cpu@600 {
+ 			reg = <0x600>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2050000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_BL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster1_opp>;
++			dynamic-power-coefficient = <335>;
+ 			capacity-dmips-mhz = <1024>;
+ 			cpu-idle-states = <&cpu_ret_b &cpu_off_b>;
+ 			i-cache-size = <65536>;
+@@ -315,6 +584,11 @@ cpu7: cpu@700 {
+ 			reg = <0x700>;
+ 			enable-method = "psci";
+ 			clock-frequency = <2050000000>;
++			clocks = <&mcusys CLK_MCU_ARMPLL_BL_SEL>,
++				 <&apmixedsys CLK_APMIXED_MAINPLL>;
++			clock-names = "cpu", "intermediate";
++			operating-points-v2 = <&cluster1_opp>;
++			dynamic-power-coefficient = <335>;
+ 			capacity-dmips-mhz = <1024>;
+ 			cpu-idle-states = <&cpu_ret_b &cpu_off_b>;
+ 			i-cache-size = <65536>;
 -- 
 2.41.0.rc0.172.g3f132b7071-goog
 
