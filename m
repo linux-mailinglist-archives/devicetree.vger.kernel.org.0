@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3132D725FE4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 14:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF4AB72600C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 14:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239795AbjFGMr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 08:47:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54534 "EHLO
+        id S239550AbjFGMuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 08:50:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241044AbjFGMrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 08:47:17 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF291BE3
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 05:47:08 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f61b45ee0dso5468837e87.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 05:47:08 -0700 (PDT)
+        with ESMTP id S239106AbjFGMur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 08:50:47 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D0E1FF3
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 05:50:21 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-565cfe4ece7so82013467b3.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 05:50:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686142026; x=1688734026;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=amarulasolutions.com; s=google; t=1686142188; x=1688734188;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yEZ1VzAf/ewGDW/CO5YjzDFKyIheYAdlDwMj1VXqtFc=;
-        b=nPt/QsfPsptDpzewzdY7leTqIaUAJpiotvO0q3HqPzfmRErlMhhkfRuG0nRMHSjLBO
-         8vmDV4DrC7wghEALhqJhenkRYBm34v31CKfmEpgJiwiIi7GfJf3cL/kE3o0RlgD/TDUx
-         KcxT101ueVqqtxYh/wUrXE5us7BGYsrV4dO8K/ZyYDv5TmfZYumby23yLPpsi35zd/w3
-         YaUJoH9ZivYsDJ8dPmRiloUWxrAF2yVGnpoQJsnqrnE5G+Llf0CPgza1htQ37ekmWic2
-         xA1jjjIEwAG1d4WQsvi+lXv1itWcWXIMaoECCjoWdh0v0dj4x4bAMiQ9+UTNb6Ho1KcH
-         7r7w==
+        bh=8AxgroMuIH5NoBbtLc+ad3Qph59KMeN5Cm1Y0j7Ly7E=;
+        b=ZbKfKcjvgFXKqwj0h5Tewi1lK9Xd76DukZKwpNIXejMBEEIVgX1ml9V5uECiRVpV9C
+         qpIGXKmcNrTBr1q1m39Ibv5tpSIkf8YqnsD3sVX2jKG2S8whdARNgj06BRqknITaqsfU
+         xRKVeXzvJSMs4tI9tPs9ap5Lf66e2PkfUr6L8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686142026; x=1688734026;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1686142188; x=1688734188;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yEZ1VzAf/ewGDW/CO5YjzDFKyIheYAdlDwMj1VXqtFc=;
-        b=ELvJG4lvKZDt/A73KE14vB1tKyl5tAM/HVBjhuQTKxydoF8aT5BhzvIUmIVc24ey+N
-         GQk+aYRKCw/dTR+NcTx8sHkGlfbXkV3pX/luen3xITcpqLD4s7wtIEC8/2o0w0g+QT5p
-         O86p2CbPDqQnM0KBVeWit9afh5UnFy3dNhPX5aK+cPxKck7L14bV15VM0lfOk9qn4FGd
-         g83d7CCXnUBXsl4I9UY+WZzvG5LKwBiqMWrCNXkMSfjpbOZ5Da0ky1/M1GKnwzP4OcX5
-         Gm5LnsKIxxkstQJzF92Q7n00AVVg9QC76193s7xW8nNZzOclby7uA8vFr6ZSMuX+3OG1
-         mLOQ==
-X-Gm-Message-State: AC+VfDxVkWnVLN10f2M4bP6t/nBdvgnFGxfTYK7+/7U057vYF+0FDod3
-        MlG7nZAnTjQVFN8VFv9XBh1xgg==
-X-Google-Smtp-Source: ACHHUZ7oEGJSSteDCq7mlPuEP2JPf6TfeU0SKmori9ql3yVzxm5aBdyrwavRPyxl4ojjTJ0lwm1s7Q==
-X-Received: by 2002:a05:6512:14b:b0:4f6:171e:48e with SMTP id m11-20020a056512014b00b004f6171e048emr1979036lfo.22.1686142026612;
-        Wed, 07 Jun 2023 05:47:06 -0700 (PDT)
-Received: from uffe-tuxpro14.. (h-94-254-63-18.NA.cust.bahnhof.se. [94.254.63.18])
-        by smtp.gmail.com with ESMTPSA id z7-20020a19f707000000b004f4b3e9e0cesm1781708lfe.297.2023.06.07.05.47.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 05:47:06 -0700 (PDT)
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Nikunj Kela <nkela@quicinc.com>,
-        Prasad Sodagudi <psodagud@quicinc.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 09/16] dt-bindings: firmware: arm,scmi: Extend bindings for protocol@13
-Date:   Wed,  7 Jun 2023 14:46:21 +0200
-Message-Id: <20230607124628.157465-10-ulf.hansson@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230607124628.157465-1-ulf.hansson@linaro.org>
-References: <20230607124628.157465-1-ulf.hansson@linaro.org>
+        bh=8AxgroMuIH5NoBbtLc+ad3Qph59KMeN5Cm1Y0j7Ly7E=;
+        b=cxDJ4ym2ugP2vFeFZkJyaLnYg25wbhZzx7h96KMG+TcydxRFOsawluyjCp8UxbgjC2
+         +cEsMTclMPWIdKTUcDt5Yi65IYk+wU1JnFA6+XVLQ/M30KItMo1l4j6JA6a3jghdCp4L
+         YcwpviYJHXEn7pROLLJ6keul1ZcjKw8lcmJSjuOkqw6gR+iPerSvzMC11lSbMMoDqcUW
+         M4WtRMW7Rx8WttOlBVbvPxXGWtSvnpOIO9/7yRc54fIsnHtkQu9dEkHe/cHyuXro2/7o
+         As0vCyptH9/KmY5wEtHK7sVM6YGKCnfom+jWKethLZCUHyZSjI7k7ENTYdeB50tiYGZw
+         U1+Q==
+X-Gm-Message-State: AC+VfDyMkjSrB7xnH06B6yTwZbKzY1D+rhg3kJLFXIkfvhjIy1QwJa0b
+        xV6QC4AQp+Fi0m74uGwHHl8MvEF3BSzP+wI1tdXr6LJCLIpQo2ITOz2L5A==
+X-Google-Smtp-Source: ACHHUZ7hBI1yQy3hOqMs3IywMmiWVgkBaT4CmmHgTUdbu1gUndSUOaqBclPy1zulKt9pLMxC7qjpriQ1ztOABz2tp58=
+X-Received: by 2002:a81:834b:0:b0:568:b6a5:9100 with SMTP id
+ t72-20020a81834b000000b00568b6a59100mr6838026ywf.42.1686142188079; Wed, 07
+ Jun 2023 05:49:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com>
+ <20230607063139.621351-4-dario.binacchi@amarulasolutions.com> <CAMty3ZDCkQ_T+j96iXtMAhkOLFBm=hZHk=sZzSGA=MOQQUOv7g@mail.gmail.com>
+In-Reply-To: <CAMty3ZDCkQ_T+j96iXtMAhkOLFBm=hZHk=sZzSGA=MOQQUOv7g@mail.gmail.com>
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date:   Wed, 7 Jun 2023 14:49:36 +0200
+Message-ID: <CABGWkvq_DevgJeR+KfBy-4ME+u-iORW93BAT4FTMVRuG0KU1Zg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 3/6] ARM: dts: stm32: support display on
+ stm32f746-disco board
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        michael@amarulasolutions.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -80,39 +78,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The protocol@13 node is describing the performance scaling option for the
-ARM SCMI interface, as a clock provider. This is unnecessary limiting, as
-performance scaling is in many cases not limited to switching a clock's
-frequency.
+Hi Jagan,
 
-Therefore, let's extend the binding so the interface can be modelled as a
-generic "performance domain" too. The common way to describe this, is to
-use the "power-domain" bindings, so let's use that.
+On Wed, Jun 7, 2023 at 8:43=E2=80=AFAM Jagan Teki <jagan@amarulasolutions.c=
+om> wrote:
+>
+> On Wed, Jun 7, 2023 at 12:01=E2=80=AFPM Dario Binacchi
+> <dario.binacchi@amarulasolutions.com> wrote:
+> >
+> > Add support to Rocktech RK043FN48H display on stm32f746-disco board.
+> >
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > ---
+> >
+> > (no changes since v1)
+> >
+> >  arch/arm/boot/dts/stm32f746-disco.dts | 51 +++++++++++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/stm32f746-disco.dts b/arch/arm/boot/dts/=
+stm32f746-disco.dts
+> > index c11616ed5fc6..cda423b6a874 100644
+> > --- a/arch/arm/boot/dts/stm32f746-disco.dts
+> > +++ b/arch/arm/boot/dts/stm32f746-disco.dts
+> > @@ -60,10 +60,41 @@ memory@c0000000 {
+> >                 reg =3D <0xC0000000 0x800000>;
+> >         };
+> >
+> > +       reserved-memory {
+> > +               #address-cells =3D <1>;
+> > +               #size-cells =3D <1>;
+> > +               ranges;
+> > +
+> > +               linux,cma {
+> > +                       compatible =3D "shared-dma-pool";
+> > +                       no-map;
+> > +                       size =3D <0x80000>;
+> > +                       linux,dma-default;
+> > +               };
+> > +       };
+>
+> This looks unrelated to display enablement, isn't it?
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
----
- Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Without the "reserved-memory" node, it is not possible to allocate
+memory for the framebuffer.
+I got this error:
+stm32-display 40016800.display-controller: [drm] *ERROR* failed to
+allocate buffer with size 139264
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 5824c43e9893..cff9d1e4cea1 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -145,8 +145,8 @@ properties:
-       '#clock-cells':
-         const: 1
- 
--    required:
--      - '#clock-cells'
-+      '#power-domain-cells':
-+        const: 1
- 
-   protocol@14:
-     $ref: '#/$defs/protocol-node'
--- 
-2.34.1
+Thanks and regards,
+Dario
 
+>
+> Jagan.
+
+
+
+--
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
