@@ -2,79 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CE53725614
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 09:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E93EC72561E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 09:44:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238425AbjFGHmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 03:42:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39092 "EHLO
+        id S239250AbjFGHoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 03:44:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbjFGHln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 03:41:43 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365083ABD;
-        Wed,  7 Jun 2023 00:39:10 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A3BBB6606EF8;
-        Wed,  7 Jun 2023 08:39:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686123545;
-        bh=zAuyPUiU9jrv+aiquvtaEM4Y+1gjNV1uCT3NGbu8FtA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=adTfqgtati+QaTsV5DsXyXXB9UECFWsmnnhMNSaLvcCiWgrHBJZ8/TPWNCe0sOysg
-         ikT6wE4gS7OyNA7h7f3XUewaPDhJxDMCbCuacZbrYGB33XhXdVo/b5vAsdLz/A3BcM
-         ip9MjTkt4kfoY6LvSvzXzZX2McKTItw0SP2ppyDyG9A3OzV9tb7FRd0tk1D7Tpfuap
-         /xvSExOke4QPCAlfVODhMJUiUZbOkzOoNqHIbvaar4GqcHrZhNC7La3SH2ZjcACd4t
-         s0WpSuQeL3kmhVH69U0WTTdq699e6kOqdeGP1S8Zgd6VKvXi2PsTep3swOFGDdmJfd
-         gv78y6SDWWBKA==
-Message-ID: <90cf0b1a-d847-a2c0-7a54-babea8747c4f@collabora.com>
-Date:   Wed, 7 Jun 2023 09:39:01 +0200
+        with ESMTP id S237056AbjFGHnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 03:43:37 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0472421C
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 00:40:41 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-51458e3af68so845213a12.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 00:40:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686123640; x=1688715640;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QzNzUxBgctT5U3+gB3td/wPDXx9tt+J9TkByw444vb4=;
+        b=dpiv/lAao6jUqNRWIwDa/t6LO1tyPxkPWni1OUv3MwCcaBvBG9TZJWlQAsTwrpJG8z
+         WiSLr3KTYWPNapPhFe4g/UQTjDvdv2Kh5m3vUHx2Uvn0qhMaWW7936pz4POvuJM/IQsq
+         Nj5IuPvfSkJvvk2/lgKSqanZnlPWCLIWckttk5fd61hIvF0Cv5Sw1t5kE8iZvriviEW+
+         In+gf5HZQY8yoXdiDm/zttqRTvXjVTxgNdcYNhuap4h3KffjSa1/I4wWvgR5nzhKYxNl
+         ilEXGjb2B7MxuIK+KjltPks5gdQ0IXXIg2nLLmfmXMao4M6uuWPsgMMFy1+JhqAIHqER
+         v4DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686123640; x=1688715640;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QzNzUxBgctT5U3+gB3td/wPDXx9tt+J9TkByw444vb4=;
+        b=WenaaqR+Al2OYaG4oPQm5zLkqpQ1d5dFrpBVn9zt47sFkjaHem5cDi6BS+6ulRmFAB
+         XdglNWaYUZbi2NTFHREzhKNa7hsSpNL/hL4Nvk1EHqU+WpJ9sMOg1ArAZCOGRKiWKTUW
+         XR5T0cN9Vbkp6ur1yHa4CvCKAblFCMosGs2I1rN5KY82Lz798yQHJwZfTnps0kc/vyNB
+         OQmQ05EGjbMavkSlyCiU/ds/Mryihfy1Jqe4beVc8/7PPRxsyh0rxKGPhlvl0c+GkCkQ
+         SluvprkMAw/dfe3yLaJrM/Xavm/KF80+EpaAwuuX2VkoruET96KQUflgCXuG97AD3in9
+         uong==
+X-Gm-Message-State: AC+VfDz3uZ4o7O+3qJa3DMjgXW8aH/flC2qCO/zj4avGImnboW7X1VWX
+        AieNjZAzlyROF8mHN0ren75kDg==
+X-Google-Smtp-Source: ACHHUZ6nIjpeIRlx7fPahFZ5gzxmNl29452UMvG6AuY1y9w+PrjwLC4zGKqXZHhvW+xhYzrUW9v6Ug==
+X-Received: by 2002:a17:907:9403:b0:965:cc76:7716 with SMTP id dk3-20020a170907940300b00965cc767716mr4912526ejc.76.1686123640173;
+        Wed, 07 Jun 2023 00:40:40 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id k16-20020a1709065fd000b00977db7d08cbsm3376124ejv.74.2023.06.07.00.40.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 00:40:39 -0700 (PDT)
+Message-ID: <f141a538-23b8-d10e-227c-5f0ad191c3a6@linaro.org>
+Date:   Wed, 7 Jun 2023 09:40:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v13 01/11] dt-bindings: remoteproc: mediatek: Improve the
- rpmsg subnode definition
+Subject: Re: [PATCH 2/7] dt-bindings: pwm: restrict node name suffixes
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230607072222.8628-1-tinghan.shen@mediatek.com>
- <20230607072222.8628-2-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230607072222.8628-2-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Thierry Reding <thierry.reding@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dilip Kota <eswara.kota@linux.intel.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
+        linux-watchdog@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
+ <20230530144851.92059-3-krzysztof.kozlowski@linaro.org>
+ <20230607073652.hoyrernfcuoryrqs@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230607073652.hoyrernfcuoryrqs@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/06/23 09:22, Tinghan Shen ha scritto:
-> Improve the definition of the rpmsg subnode by
-> assigning a distinct node name and adding the
-> definition source of node properties.
+On 07/06/2023 09:36, Uwe Kleine-König wrote:
+> On Tue, May 30, 2023 at 04:48:46PM +0200, Krzysztof Kozlowski wrote:
+>> Make the pattern matching node names a bit stricter to improve DTS
+>> consistency.  The pattern is restricted to:
+>> 1. Only one unit address or one -N suffix,
+>> 2. -N suffixes to decimal numbers.
+>>
+>> Suggested-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+>>
+>> ---
+>>
+>> Cc: Tony Lindgren <tony@atomide.com>
+>> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+>> ---
+>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
+>> index 3c01f85029e5..abd9fa873354 100644
+>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+>> @@ -13,7 +13,7 @@ select: false
+>>  
+>>  properties:
+>>    $nodename:
+>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
+>> +    pattern: "^pwm(@.*|-([0-9]|[1-9][0-9]+))?$"
+> 
+> With this patch we forbid now the following patterns:
+> 
+> 	pwm-[0-9a-f][@-].*
+> 	pwm-0[0-9a-f]+
+> 	pwm-[a-f]([@-].*)?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Yes, this was discussed last time:
+https://lore.kernel.org/all/20221127182232.GA128974-robh@kernel.org/
 
+> 
+> Checking for such names:
+> 
+> 	$ git grep -oP '\bpwm-([0-9a-f][@-].*|0[0-9a-f]+|[0-9]*[a-f][0-9a-f]*)(*pla:\s*\{)' arch/*/boot/dts
+> 	arch/arm/boot/dts/meson8.dtsi:pwm-f-ao
+> 	arch/arm/boot/dts/meson8.dtsi:pwm-e
+> 	arch/arm/boot/dts/meson8b.dtsi:pwm-d
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-a
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-b-x7
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-b-x19
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-c-c
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-c-x5
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-c-x8
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-d-x3
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-d-x6
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-e
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-f-z
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-f-a
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-f-x
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-f-h
+> 	arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:pwm-a-e
+
+Are you sure these are pwms, not pins?
+
+> 
+> These are all pinmux-settings and no pwm nodes, so the change is fine.
+> (But arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi isn't properly
+> sorted alphabetically.)
+
+Exactly...
+
+> 
+> Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+
+
+Best regards,
+Krzysztof
 
