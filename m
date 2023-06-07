@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62487726D04
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E499D726DB0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:44:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234156AbjFGUia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 16:38:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37892 "EHLO
+        id S234664AbjFGUoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 16:44:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234250AbjFGUi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:38:26 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D1951706;
-        Wed,  7 Jun 2023 13:38:06 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-77ac30e95caso72989339f.2;
-        Wed, 07 Jun 2023 13:38:06 -0700 (PDT)
+        with ESMTP id S234696AbjFGUok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:44:40 -0400
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2A0269A;
+        Wed,  7 Jun 2023 13:44:24 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-33b9a56e261so7707895ab.0;
+        Wed, 07 Jun 2023 13:44:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686170247; x=1688762247;
+        d=1e100.net; s=20221208; t=1686170635; x=1688762635;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+zgUfZbj8UgwFs6zorpXckRZL+p/Z8v5AChyDByc05I=;
-        b=dOKG64yR48vpx9BAa3+Ssnlqgi8R96GRo5f46JFafWEQsAKX25eLZFwX2NvYZQSYHu
-         LAZkoeR+2wyqSPdaODJl8Chk027ob3z4/xT6X9iRdJeSd7z4rNw2heuPwlF8c0mSKFrx
-         5D7O6kKKzzuuvqNYPAI3H9QYru4d4Oku2XAVHlCC1TjRIDlVb2DpH2bDIGc8lhLvmHu6
-         YcmKfCqvpyR380F6xcetaVVZtJq1+h2Z5N1u13parVKmXpeP8PDBXu69K0y0x0Ws5QOP
-         U2e0mA2i4S/Y54MWxq26OfImcx73ZzSiHy+XuZTatHLe+VNjkap3zEcqEq5t4/VAI+KH
-         5wwA==
-X-Gm-Message-State: AC+VfDx+By+NYP6ql/osi86Y2+Q0UFTBtjzKa0uaDicTqMiKZZDNLip4
-        vUOVkX07Bkxd7V+PpDZ3mw==
-X-Google-Smtp-Source: ACHHUZ4Gh0jUQjI7Mx3OVJyPWIKhQiVbqlhuwxeWKu1Od7VcNnyvF5RraLcM3DWUt/PYxm6w3oVW+g==
-X-Received: by 2002:a6b:dd13:0:b0:76c:898c:9b10 with SMTP id f19-20020a6bdd13000000b0076c898c9b10mr8694413ioc.0.1686170246861;
-        Wed, 07 Jun 2023 13:37:26 -0700 (PDT)
+        bh=RIJj+RIryKrqEnTfrnBmC9GgMPZG3FLKuNsXROM4OMM=;
+        b=TBfN4HWSwe+HX6H3optamkgA1fV4eLieFGbiPnZuJ/St0PRgjPpyTmxa9At9S+O0L3
+         vTvzk0057jkz/FMbnzkB7jUrdWt1GjIrstcNhIzjeYevn44ArqWFuviDQWrVg2i3q1s8
+         AtRP81MZw5EAOwujCeJJSzCspLyFB8UaK+g6V96tAXCmL5GmBtIj2Kh0e3vu+erWPiqQ
+         hSLkPXasrFdcvDUxslKhXZ76TrAZqqYU0zIpJcl8eiC5z5Zc9PPBi9lAiJmK6h4jChXD
+         v/Fp2602TUsSI9izlFOYTNpOzuesNXHkjU1Hm/bvlPzGVCvg9WYOlCHgTMiTOjj8vgwI
+         tNyQ==
+X-Gm-Message-State: AC+VfDx6AksdWqEOfobFqGmZuL09XsjvwdPZvvqp/39vurABv6pV0HUq
+        +QEwxc8O81TBH+VBwx7jnA==
+X-Google-Smtp-Source: ACHHUZ7RjquUYmIYHP3bF6+3teSYZ+l4qrU3YZYTuT6fvCYrT3KCXiOEQABgjKo0X9Wsx+UrQe1FRA==
+X-Received: by 2002:a92:c14a:0:b0:338:b887:b674 with SMTP id b10-20020a92c14a000000b00338b887b674mr6729837ilh.2.1686170634754;
+        Wed, 07 Jun 2023 13:43:54 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id w7-20020a02cf87000000b00420c5d10c38sm611082jar.74.2023.06.07.13.37.24
+        by smtp.gmail.com with ESMTPSA id m26-20020a02c89a000000b00420bf02fc47sm873569jao.28.2023.06.07.13.43.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 13:37:25 -0700 (PDT)
-Received: (nullmailer pid 3979185 invoked by uid 1000);
-        Wed, 07 Jun 2023 20:37:23 -0000
-Date:   Wed, 7 Jun 2023 14:37:23 -0600
+        Wed, 07 Jun 2023 13:43:54 -0700 (PDT)
+Received: (nullmailer pid 3988267 invoked by uid 1000);
+        Wed, 07 Jun 2023 20:43:51 -0000
+Date:   Wed, 7 Jun 2023 14:43:51 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     khilman@baylibre.com, jian.hu@amlogic.com,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        martin.blumenstingl@googlemail.com, jbrunet@baylibre.com,
-        linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        neil.armstrong@linaro.org, kernel@sberdevices.ru,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        rockosov@gmail.com, mturquette@baylibre.com
-Subject: Re: [PATCH v16 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-Message-ID: <168617024273.3979125.14701905013273806999.robh@kernel.org>
-References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
- <20230523135351.19133-6-ddrokosov@sberdevices.ru>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        sre@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: power: reset: atmel,sama5d2-shdwc:
+ convert to yaml
+Message-ID: <20230607204351.GA3984668-robh@kernel.org>
+References: <20230524123528.439082-1-claudiu.beznea@microchip.com>
+ <20230524123528.439082-4-claudiu.beznea@microchip.com>
+ <20230524-blizzard-hunting-4da815e634e2@spud>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230523135351.19133-6-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230524-blizzard-hunting-4da815e634e2@spud>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,23 +69,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 23 May 2023 16:53:50 +0300, Dmitry Rokosov wrote:
-> Add documentation and dt bindings for the Amlogic A1 Peripherals clock
-> controller.
-> A1 PLL clock controller has references to A1 Peripherals clock
-> controller objects, so reflect them in the schema.
+On Wed, May 24, 2023 at 08:19:08PM +0100, Conor Dooley wrote:
+> On Wed, May 24, 2023 at 03:35:27PM +0300, Claudiu Beznea wrote:
+> > Convert Atmel SAMA5D2 shutdown controller to YAML. SAMA7G5 SHDWC DT node
+> > (available in arch/arm/boot/dts/sama7g5.dtsi) has syscon along with its
+> > compatible. There is no usage of this syscon in the current code but it
+> > may be necessary in future as some registers of SHDWC are accessed in
+> > different drivers (at91-sama5d2_shdwc.c and arch/arm/mach-at91/pm.c).
+> > Thus update the YAML with it to make DT checkers happy.
+> > 
+> > Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 > 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> ---
->  .../clock/amlogic,a1-peripherals-clkc.yaml    |  73 +++++++++++
->  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   5 +-
->  .../clock/amlogic,a1-peripherals-clkc.h       | 115 ++++++++++++++++++
->  3 files changed, 191 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
-> 
+> Modulo the license thing that I mentioned on v1,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Should be fine given it's an Microchip employee changing a Microchip 
+binding.
 
+Rob
