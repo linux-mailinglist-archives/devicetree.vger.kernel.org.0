@@ -2,176 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1289A726197
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 938E27261CC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239953AbjFGNpQ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 7 Jun 2023 09:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60042 "EHLO
+        id S240029AbjFGN5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 09:57:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239001AbjFGNpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:45:15 -0400
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B0319BF;
-        Wed,  7 Jun 2023 06:45:14 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-bb3d122a19fso1530335276.0;
-        Wed, 07 Jun 2023 06:45:14 -0700 (PDT)
+        with ESMTP id S240102AbjFGN5Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:57:16 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C821FCC
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:57:11 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51496f57e59so1339136a12.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:57:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686146229; x=1688738229;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kKpvPu5Rm/nURTMMsBy+tWBtqwgLaFCv5S24g6y4mow=;
+        b=lMeYAGAQIoc851Xz0eJb0PtiX9acHzzCcIRcU/RyTCtJylY8kOce+BtmAAlbchfgaM
+         ux+d4RvKhJql1f2hncN91Yae4vn9KVyIXDZvMApIjJJqotSYy9KErr8ln1HSA9AqQyLj
+         QIxdWloAaOUglN1CJzxmEbLFF6S9bmUUeF5KZLKtDC8W5pY5ZG07/IBa480wngvl+pgw
+         21f3vyl4N40oShuNEk1gxWHWooKKFb6NMW8ElfrfxNAKnFR4Nt+Hn3BGGE354AXtFJmQ
+         UlwcouKzzYJNk++/7CYeYPcBZFy1JC6M3V2I5fXnuIaT5kb6gF26yMald57+QMWk4rjA
+         DHqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686145513; x=1688737513;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=89KRlV/r+fdosLxqMDM4AtIM18bITUmtBR0bjcUA6Gw=;
-        b=dVt7Mmy24Jnr1w5AHw+yYvTMZC9HH2AQR1BCM66kBO7lMKj73cGg1nFEjeQpcs28Rr
-         LKSs8WHhipL5MdzZREjVd+N4MURmc/4EMwSoDyMsJImRCkgCeeFAiqCyrM7bIM0xiakt
-         CJlX9jWMnsBAO6zaaHf+TKCh8MK/mpRJnPVW0XLYBpcXrargQLz3Pb8DHYTrFaxgowB6
-         ojcIu+0hldIl/YT78NDZY96K4UI8quV1UcY+Ez57d1kbWVGPx82R0RELud7WxjM6L+sG
-         6TtYAeQ/p3ef4M65yqvNiLzdrBbJDiv39q43pYjiHHkqteUU1v41bR7oC1HBmXmQAdRF
-         HOJw==
-X-Gm-Message-State: AC+VfDwxNfoUg+Ygxh9DU2d5+x4/D8pj2Iz9KHkx5YVOiG7ujAzVS3hp
-        7+0of8G5EsG3J6oXUP9/KdfAABvU3kygKQ==
-X-Google-Smtp-Source: ACHHUZ7kIhsE9/1CUUMEq3Q32FQchYhWgrQP6VG9GQo67SUM/r/XaA+VBXILaIqR44Q88gyrlqhTjQ==
-X-Received: by 2002:a25:6086:0:b0:bb3:8945:d6fd with SMTP id u128-20020a256086000000b00bb38945d6fdmr5060140ybb.12.1686145510547;
-        Wed, 07 Jun 2023 06:45:10 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id e66-20020a25e745000000b00ba6ffc7ef35sm3834778ybh.65.2023.06.07.06.45.09
+        d=1e100.net; s=20221208; t=1686146229; x=1688738229;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kKpvPu5Rm/nURTMMsBy+tWBtqwgLaFCv5S24g6y4mow=;
+        b=FGVFcvG92yUco7tskYKpH8tHumZUBIJ+g/57ZkGNd8vJDre6V4VvGOvD75Aol6FMgG
+         xCJCQrlbo87kNeCWQcU0ezCZlUO1WidIsByPvVYSRx8EO2lceERSAmCsqa+jB6xiJoAA
+         u8xTbNR0qvxICNArvm7uBuO7l1C/y07sJyLw0xiq87Ugoq5zKy4OXDsSq3fppRHgR5W2
+         PTZGhb3FcrzxHlYxcS3hPKW20d1yrUWo6M9aNR6Q7OgyRVIdqYMmPA+klCgq4gzrMddO
+         rXuQFcewlrwOuaSQf4EJbx6e+BlHnu7uWP1HWaSTl97mO5GMZiNHo5fdqUqF5k68huFL
+         pGAQ==
+X-Gm-Message-State: AC+VfDzw6YMrzg6JA2NtSDAkAWFYHqyJadG4uglZ84dLOVVjr2UNWwAH
+        v7T5qWMx/aC/cfGJafcmUrWP2w==
+X-Google-Smtp-Source: ACHHUZ7EcYvo+spZ1Zu2vN1Sav3wheuQzpa99azcDZ/IzhZp4uRXdRVAhEfFaElWL4x4m1MwMFpu5Q==
+X-Received: by 2002:a05:6402:2142:b0:514:9edb:185a with SMTP id bq2-20020a056402214200b005149edb185amr4634692edb.9.1686146229452;
+        Wed, 07 Jun 2023 06:57:09 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id p19-20020aa7cc93000000b005166779bfd2sm2893476edt.6.2023.06.07.06.57.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 06:45:09 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-bacf9edc87bso8672364276.1;
-        Wed, 07 Jun 2023 06:45:09 -0700 (PDT)
-X-Received: by 2002:a25:3289:0:b0:ba8:2473:bb4c with SMTP id
- y131-20020a253289000000b00ba82473bb4cmr5294364yby.31.1686145509569; Wed, 07
- Jun 2023 06:45:09 -0700 (PDT)
+        Wed, 07 Jun 2023 06:57:08 -0700 (PDT)
+Message-ID: <14fab6aa-2f9a-c3bc-5ed4-0d4fb20b20d6@linaro.org>
+Date:   Wed, 7 Jun 2023 15:57:06 +0200
 MIME-Version: 1.0
-References: <20230530112050.5635-1-aford173@gmail.com> <20230530112050.5635-3-aford173@gmail.com>
- <CAMuHMdXJaZCSN18aB1yBvhuTk=DQoe4B6aVHgoZvyLsZcRfrDA@mail.gmail.com> <CAHCN7xJbi4ej2s6SOvC7o7aMcjv2awztKkNoAZTiVFn4GJRVXw@mail.gmail.com>
-In-Reply-To: <CAHCN7xJbi4ej2s6SOvC7o7aMcjv2awztKkNoAZTiVFn4GJRVXw@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 7 Jun 2023 15:44:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX9vrnwZ5cA1_u9MtRetME-wt+BaaU=JX=Yc4jeJb9H9g@mail.gmail.com>
-Message-ID: <CAMuHMdX9vrnwZ5cA1_u9MtRetME-wt+BaaU=JX=Yc4jeJb9H9g@mail.gmail.com>
-Subject: Re: [RFC 3/3] arm64: dts: renesas: r8a774a1: Add GPU Node
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
-        marek.vasut+renesas@gmail.com, cstevens@beaconembedded.com,
-        aford@beaconembedded.com, Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
+Content-Language: en-US
+To:     Paulo Pavacic <pavacic.p@gmail.com>
+Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230606140757.818705-1-pavacic.p@gmail.com>
+ <20230606140757.818705-4-pavacic.p@gmail.com>
+ <dfe2c108-0268-c4d0-226e-b3d2bc8c3369@linaro.org>
+ <CAO9szn3PyQQRKsxdsOrmVNMP2xuvN4_dHwb1_TWEqmhnr3TLPA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAO9szn3PyQQRKsxdsOrmVNMP2xuvN4_dHwb1_TWEqmhnr3TLPA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+On 07/06/2023 15:38, Paulo Pavacic wrote:
+> Hello,
+> 
+> uto, 6. lip 2023. u 16:45 Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> napisao je:
+>>
+>> On 06/06/2023 16:07, Paulo Pavacic wrote:
+>>> Fannal C3004 is a 480x800 display made by fannal that requires
+>>> DCS initialization sequences.
+>>>
+>>> Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+>>> ---
+>>> v4 changelog:
+>>>  - formatting and style changes
+>>
+>> Are you sure? I see other changes - removal of some code, handling
+>> errors and GPIO.
+>>
+>>>  - change community room
+>>
+>> What does it mean? Where is this change in this patch?
+>>
+>> ...
+>>
+>>> +
+>>> +static const struct drm_panel_funcs fannal_panel_funcs = {
+>>> +     .prepare = fannal_panel_prepare,
+>>> +     .unprepare = fannal_panel_unprepare,
+>>> +     .enable = fannal_panel_enable,
+>>> +     .disable = fannal_panel_disable,
+>>> +     .get_modes = fannal_panel_get_modes,
+>>> +};
+>>> +
+>>> +static int fannal_panel_probe(struct mipi_dsi_device *dsi)
+>>> +{
+>>> +     struct device *dev = &dsi->dev;
+>>> +     struct fannal_panel_data *panel_data;
+>>> +     int ret;
+>>> +
+>>> +     panel_data = devm_kzalloc(&dsi->dev, sizeof(*panel_data), GFP_KERNEL);
+>>> +
+>>
+>> Drop blank line.
+>>
+>>> +     if (!panel_data)
+>>> +             return -ENOMEM;
+>>> +
+>>> +     panel_data->reset =
+>>
+>> You have wrong wrapping here. devm_gpiod_get_optional() goes after =.
+> 
+> I'm not sure why, but clang-format makes it that way. I'm using this
+> style: https://raw.githubusercontent.com/torvalds/linux/master/.clang-format
+> Do you have some other style?
 
-On Wed, Jun 7, 2023 at 3:31 PM Adam Ford <aford173@gmail.com> wrote:
-> On Wed, Jun 7, 2023 at 8:21 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Tue, May 30, 2023 at 1:21 PM Adam Ford <aford173@gmail.com> wrote:
-> > > With the 3dge and ZG clocks now available, the generic GPU node can
-> > > be added.  Until proper firmware is made, it is not usable.
-> > >
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > ---
-> > > This is based on the assumption that the Rogue 6250 could use
-> > > generic driver [1] and firmware [2] being implemebted by the Mesa group
-> > > and others.  In practice, the firmware isn't really compatible since
-> > > the 6250 in the RZ/G2M appears to be a different variant.
-> > >
-> > > [1] - https://gitlab.freedesktop.org/frankbinns/powervr/-/tree/powervr-next
-> > > [2] - https://gitlab.freedesktop.org/frankbinns/linux-firmware/-/tree/powervr/powervr
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> > > +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> > > @@ -226,6 +226,27 @@ extalr_clk: extalr {
-> > >                 clock-frequency = <0>;
-> > >         };
-> > >
-> > > +       gpu_opp_table: opp-table {
-> > > +               compatible = "operating-points-v2";
-> > > +
-> > > +               opp-200000000 {
-> > > +                       opp-hz = /bits/ 64 <200000000>;
-> > > +                       opp-microvolt = <830000>;
-> > > +               };
-> > > +               opp-300000000 {
-> > > +                       opp-hz = /bits/ 64 <300000000>;
-> > > +                       opp-microvolt = <830000>;
-> > > +               };
-> > > +               opp-400000000 {
-> > > +                       opp-hz = /bits/ 64 <400000000>;
-> > > +                       opp-microvolt = <830000>;
-> > > +               };
-> > > +               opp-600000000 {
-> > > +                       opp-hz = /bits/ 64 <600000000>;
-> > > +                       opp-microvolt = <830000>;
-> > > +               };
-> > > +       };
-> > > +
-> > >         /* External PCIe clock - can be overridden by the board */
-> > >         pcie_bus_clk: pcie_bus {
-> > >                 compatible = "fixed-clock";
-> > > @@ -2347,6 +2368,18 @@ gic: interrupt-controller@f1010000 {
-> > >                         resets = <&cpg 408>;
-> > >                 };
-> > >
-> > > +               gpu@fd000000 {
-> > > +                       compatible = "img,powervr-series6xt";
-> > > +                       reg = <0 0xfd000000 0 0x40000>;
-> > > +                       interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                       clocks = <&cpg CPG_MOD 112>, <&cpg CPG_MOD 112>,<&cpg CPG_MOD 112>;
-> > > +                       clock-names = "core", "mem", "sys";
-> > > +                       interrupt-names = "gpu";
-> > > +                       operating-points-v2 = <&gpu_opp_table>;
-> > > +                       power-domains = <&sysc R8A774A1_PD_3DG_B>;
-> > > +                       resets = <&cpg 112>;
-> > > +               };
-> > > +
-> > >                 pciec0: pcie@fe000000 {
-> > >                         compatible = "renesas,pcie-r8a774a1",
-> > >                                      "renesas,pcie-rcar-gen3";
-> >
-> > LGTM.  But obviously I cannot take this as-is, as there are no DT bindings
-> > for this device, and it didn't work for you...
->
-> It was mostly to follow up to the previous ones with links for the
-> mainline Rogue video driver in the hopes that someone from Renesas
-> might have some input on whether or not Renesas might be able to
-> support this and have a discussion.  I knew when I submitted it that
-> it wouldn't be accepted which is why I posted it as an RFC.
-> If I address concerns you have in the previous patches, would you be
-> OK with me submitting then as a formal patch to at least get the rest
-> of the system ready in the event the GPU driver/firmware becomes
-> available?  It seems harmless, but I also see the argument that it's
-> dead code without the GPU node.
+Linux kernel coding style.
 
-The clock patches are almost there, and I'm happy to accept them
-when the last rough edges have been removed.
+https://elixir.bootlin.com/linux/v6.4-rc5/source/Documentation/process/coding-style.rst
 
-> If not, I'll shelve this for now, and hope to get some responses from Renesas.
+Don't use clang or other non-kernel formatters.
 
-Good luck! ;-)
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
