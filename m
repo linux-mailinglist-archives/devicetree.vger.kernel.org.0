@@ -2,84 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F635725F6B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 14:29:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3132D725FE4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 14:47:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240433AbjFGM3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 08:29:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42386 "EHLO
+        id S239795AbjFGMr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 08:47:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240918AbjFGM3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 08:29:25 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E7D1BE5
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 05:29:21 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f61d79b0f2so5415903e87.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 05:29:21 -0700 (PDT)
+        with ESMTP id S241044AbjFGMrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 08:47:17 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF291BE3
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 05:47:08 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f61b45ee0dso5468837e87.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 05:47:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686140960; x=1688732960;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vvv5K2Fa6/qw28wNbL34OYbssjD8GFHlsFB1b17V23M=;
-        b=KV9fpP2jx6guTOKgEAlO6GhkKJpM1TSY2zJSafASqc7HPVMhRuJY8j8GDFnHslXoXd
-         tsQmZ4Ybww03zHKPSbSH7K0bX/W/4m6cefd8Ete87G9T723V5io/oaflGpqX6BmhMTuj
-         r6dnnncuVDGRCrJDxHt5dxeB6bhDplAltZqEodABoowDtqyLRmdILjXwpojH9A0BGOPl
-         dyMydx8sDJM4tCFZ4EFkKpdKlWbKCEEC8CVYMANtLM/vSx11Nhju3RDTRkTCpSMXVErj
-         AfPMqMS8hQE1YvwrwM5WbZuZJ6KppZuQIKCY2hzogJ5NT/V0Q5B/0h62P0I7fLhET1dv
-         l64Q==
+        d=linaro.org; s=google; t=1686142026; x=1688734026;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yEZ1VzAf/ewGDW/CO5YjzDFKyIheYAdlDwMj1VXqtFc=;
+        b=nPt/QsfPsptDpzewzdY7leTqIaUAJpiotvO0q3HqPzfmRErlMhhkfRuG0nRMHSjLBO
+         8vmDV4DrC7wghEALhqJhenkRYBm34v31CKfmEpgJiwiIi7GfJf3cL/kE3o0RlgD/TDUx
+         KcxT101ueVqqtxYh/wUrXE5us7BGYsrV4dO8K/ZyYDv5TmfZYumby23yLPpsi35zd/w3
+         YaUJoH9ZivYsDJ8dPmRiloUWxrAF2yVGnpoQJsnqrnE5G+Llf0CPgza1htQ37ekmWic2
+         xA1jjjIEwAG1d4WQsvi+lXv1itWcWXIMaoECCjoWdh0v0dj4x4bAMiQ9+UTNb6Ho1KcH
+         7r7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686140960; x=1688732960;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vvv5K2Fa6/qw28wNbL34OYbssjD8GFHlsFB1b17V23M=;
-        b=btu0YuFj2e/axOEIP9SeLFAb1sehoaND/NCgC9qW4DxVKJ9UupkCVEpRJ9krxuNrTU
-         0sGBTkU69OBuBaeQFPgEkJr8So6kT4DaYTZYshPkeX45SpawPJ4C1B/31TWwGEMbOfvA
-         uTkBNe2J63PWVRBswMv0RloF8Q4dgSCzcN/uSc3p8k49Nr955B/ntyolPLMrmw7ois4K
-         cu6YbIxnI/7HJNlBtlPbnvzxzmqSUYkfZQm/OV+MlA06qMy/Ql8dUzqPX5J0Syh2lSWb
-         s4ljZkT8v5AKOZkzIAudMXCdhYYpbjXWywhSCXlSQZz7NJ1tLjNwe2kZ5k+UVwSt+1s6
-         hPug==
-X-Gm-Message-State: AC+VfDySy8BB5qgfhK7IzHRyVil4abvU67XFdPe/+zRyWd9M56oYORsy
-        5w65Y5aOcRStK9bD9EPyBcsPsA==
-X-Google-Smtp-Source: ACHHUZ44ZMWKvFqzo9F7XcBtsUXfQ+FLzrGKodpTdTU2l21B1LHoRvSCpL1whhvOLHLsLTnYvfreGQ==
-X-Received: by 2002:a05:6512:40a:b0:4f6:19e0:8ab6 with SMTP id u10-20020a056512040a00b004f619e08ab6mr2021712lfk.30.1686140959818;
-        Wed, 07 Jun 2023 05:29:19 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id u4-20020a056512040400b004f262997496sm1798376lfk.76.2023.06.07.05.29.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 05:29:19 -0700 (PDT)
-Message-ID: <cf3c98c1-e283-3fac-3144-5a7354378a6b@linaro.org>
-Date:   Wed, 7 Jun 2023 15:29:18 +0300
+        d=1e100.net; s=20221208; t=1686142026; x=1688734026;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yEZ1VzAf/ewGDW/CO5YjzDFKyIheYAdlDwMj1VXqtFc=;
+        b=ELvJG4lvKZDt/A73KE14vB1tKyl5tAM/HVBjhuQTKxydoF8aT5BhzvIUmIVc24ey+N
+         GQk+aYRKCw/dTR+NcTx8sHkGlfbXkV3pX/luen3xITcpqLD4s7wtIEC8/2o0w0g+QT5p
+         O86p2CbPDqQnM0KBVeWit9afh5UnFy3dNhPX5aK+cPxKck7L14bV15VM0lfOk9qn4FGd
+         g83d7CCXnUBXsl4I9UY+WZzvG5LKwBiqMWrCNXkMSfjpbOZ5Da0ky1/M1GKnwzP4OcX5
+         Gm5LnsKIxxkstQJzF92Q7n00AVVg9QC76193s7xW8nNZzOclby7uA8vFr6ZSMuX+3OG1
+         mLOQ==
+X-Gm-Message-State: AC+VfDxVkWnVLN10f2M4bP6t/nBdvgnFGxfTYK7+/7U057vYF+0FDod3
+        MlG7nZAnTjQVFN8VFv9XBh1xgg==
+X-Google-Smtp-Source: ACHHUZ7oEGJSSteDCq7mlPuEP2JPf6TfeU0SKmori9ql3yVzxm5aBdyrwavRPyxl4ojjTJ0lwm1s7Q==
+X-Received: by 2002:a05:6512:14b:b0:4f6:171e:48e with SMTP id m11-20020a056512014b00b004f6171e048emr1979036lfo.22.1686142026612;
+        Wed, 07 Jun 2023 05:47:06 -0700 (PDT)
+Received: from uffe-tuxpro14.. (h-94-254-63-18.NA.cust.bahnhof.se. [94.254.63.18])
+        by smtp.gmail.com with ESMTPSA id z7-20020a19f707000000b004f4b3e9e0cesm1781708lfe.297.2023.06.07.05.47.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 05:47:06 -0700 (PDT)
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Nikunj Kela <nkela@quicinc.com>,
+        Prasad Sodagudi <psodagud@quicinc.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 09/16] dt-bindings: firmware: arm,scmi: Extend bindings for protocol@13
+Date:   Wed,  7 Jun 2023 14:46:21 +0200
+Message-Id: <20230607124628.157465-10-ulf.hansson@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230607124628.157465-1-ulf.hansson@linaro.org>
+References: <20230607124628.157465-1-ulf.hansson@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 3/9] phy: qcom-m31: Introduce qcom,m31 USB phy driver
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Varadarajan Narayanan <quic_varada@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, arnd@arndb.de, geert+renesas@glider.be,
-        neil.armstrong@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, rafal@milecki.pl, quic_srichara@quicinc.com,
-        quic_varada@quicinc.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org
-References: <cover.1686126439.git.quic_varada@quicinc.com>
- <6bb345c6a57ee27516764f36ba7d34fd1a719b87.1686126439.git.quic_varada@quicinc.com>
- <416bef68-6df3-d5c4-2aed-ef1ae7c78d7b@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <416bef68-6df3-d5c4-2aed-ef1ae7c78d7b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,158 +80,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two minor nits on top of the review:
+The protocol@13 node is describing the performance scaling option for the
+ARM SCMI interface, as a clock provider. This is unnecessary limiting, as
+performance scaling is in many cases not limited to switching a clock's
+frequency.
 
-On 07/06/2023 14:54, Konrad Dybcio wrote:
-> On 7.06.2023 12:56, Varadarajan Narayanan wrote:
->> Add the M31 USB2 phy driver
->>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-m31.c | 360 ++++++++++++++++++++++++++++++++++++
->>   1 file changed, 360 insertions(+)
->>   create mode 100644 drivers/phy/qualcomm/phy-qcom-m31.c
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-m31.c b/drivers/phy/qualcomm/phy-qcom-m31.c
->> new file mode 100644
->> index 0000000..d29a91e
->> --- /dev/null
->> +++ b/drivers/phy/qualcomm/phy-qcom-m31.c
->> @@ -0,0 +1,360 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Copyright (c) 2014-2016, 2020, The Linux Foundation. All rights reserved.
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <linux/kernel.h>
->> +#include <linux/err.h>
->> +#include <linux/slab.h>
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/io.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/usb/phy.h>
->> +#include <linux/reset.h>
->> +#include <linux/of_device.h>
-> Please sort these
-> 
->> +
->> +enum clk_reset_action {
->> +	CLK_RESET_DEASSERT	= 0,
->> +	CLK_RESET_ASSERT	= 1
->> +};
->> +
->> +#define USB2PHY_PORT_POWERDOWN		0xA4
->> +#define POWER_UP			BIT(0)
->> +#define POWER_DOWN			0
->> +
->> +#define USB2PHY_PORT_UTMI_CTRL1	0x40
->> +
->> +#define USB2PHY_PORT_UTMI_CTRL2	0x44
->> +#define UTMI_ULPI_SEL			BIT(7)
->> +#define UTMI_TEST_MUX_SEL		BIT(6)
->> +
->> +#define HS_PHY_CTRL_REG			0x10
->> +#define UTMI_OTG_VBUS_VALID             BIT(20)
->> +#define SW_SESSVLD_SEL                  BIT(28)
->> +
->> +#define USB_PHY_CFG0			0x94
->> +#define USB_PHY_UTMI_CTRL5		0x50
->> +#define USB_PHY_FSEL_SEL		0xB8
->> +#define USB_PHY_HS_PHY_CTRL_COMMON0	0x54
->> +#define USB_PHY_REFCLK_CTRL		0xA0
->> +#define USB_PHY_HS_PHY_CTRL2		0x64
->> +#define USB_PHY_UTMI_CTRL0		0x3c
->> +#define USB2PHY_USB_PHY_M31_XCFGI_1	0xBC
->> +#define USB2PHY_USB_PHY_M31_XCFGI_4	0xC8
->> +#define USB2PHY_USB_PHY_M31_XCFGI_5	0xCC
->> +#define USB2PHY_USB_PHY_M31_XCFGI_11	0xE4
-> Could you sort them address-wise?
+Therefore, let's extend the binding so the interface can be modelled as a
+generic "performance domain" too. The common way to describe this, is to
+use the "power-domain" bindings, so let's use that.
 
-... and lowercase the hex values, please.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+ Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 
->> +
->> +#define USB2_0_TX_ENABLE		BIT(2)
->> +#define HSTX_SLEW_RATE_565PS		3
->> +#define PLL_CHARGING_PUMP_CURRENT_35UA	(3 << 3)
->> +#define ODT_VALUE_38_02_OHM		(3 << 6)
->> +#define ODT_VALUE_45_02_OHM		BIT(2)
->> +#define HSTX_PRE_EMPHASIS_LEVEL_0_55MA	(1)
-> Weird mix of values, bits, bitfields.. perhaps BIT(n) and
-> GENMASK() (+ FIELD_PREP) would be more suitable?
-> 
->> +
->> +#define UTMI_PHY_OVERRIDE_EN		BIT(1)
->> +#define POR_EN				BIT(1)
-> Please associate these with their registers, like
-> 
-> #define FOO_REG		0xf00
->   #define POR_EN		BIT(1)
-> 
->> +#define FREQ_SEL			BIT(0)
->> +#define COMMONONN			BIT(7)
->> +#define FSEL				BIT(4)
->> +#define RETENABLEN			BIT(3)
->> +#define USB2_SUSPEND_N_SEL		BIT(3)
->> +#define USB2_SUSPEND_N			BIT(2)
->> +#define USB2_UTMI_CLK_EN		BIT(1)
->> +#define CLKCORE				BIT(1)
->> +#define ATERESET			~BIT(0)
->> +#define FREQ_24MHZ			(5 << 4)
->> +#define XCFG_COARSE_TUNE_NUM		(2 << 0)
->> +#define XCFG_FINE_TUNE_NUM		(1 << 3)
-> same comment
-> 
->> +
->> +static void m31usb_write_readback(void *base, u32 offset,
->> +					const u32 mask, u32 val);
-> We don't need this forward-definition, just move the function up.
-> 
->> +
->> +struct m31usb_phy {
->> +	struct usb_phy		phy;
->> +	void __iomem		*base;
->> +	void __iomem		*qscratch_base;
->> +
->> +	struct reset_control	*phy_reset;
->> +
->> +	bool			cable_connected;
->> +	bool			suspended;
->> +	bool			ulpi_mode;
->> +};
->> +
->> +static void m31usb_reset(struct m31usb_phy *qphy, u32 action)
->> +{
->> +	if (action == CLK_RESET_ASSERT)
->> +		reset_control_assert(qphy->phy_reset);
->> +	else
->> +		reset_control_deassert(qphy->phy_reset);
->> +	wmb(); /* ensure data is written to hw register */
-> Please move the comment above the call.
-> 
->> +}
-
-Or even better just inline the function. I was never a fan of such 
-multiplexers.
-
-Also does wmb() make sense here? Doesn't regmap (which is used by reset 
-controller) remove the need for it?
-
->> +
->> +static void m31usb_phy_enable_clock(struct m31usb_phy *qphy)
->> +{
->> +	/* Enable override ctrl */
->> +	writel(UTMI_PHY_OVERRIDE_EN, qphy->base + USB_PHY_CFG0);
-> Some of the comments are missing a space before '*/'
-> 
-> Also, please consider adding some newlines to logically split the
-> actions.
-
-
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index 5824c43e9893..cff9d1e4cea1 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -145,8 +145,8 @@ properties:
+       '#clock-cells':
+         const: 1
+ 
+-    required:
+-      - '#clock-cells'
++      '#power-domain-cells':
++        const: 1
+ 
+   protocol@14:
+     $ref: '#/$defs/protocol-node'
 -- 
-With best wishes
-Dmitry
+2.34.1
 
