@@ -2,189 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E77E72614F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ED9272615B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:35:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240790AbjFGNbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 09:31:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52748 "EHLO
+        id S239848AbjFGNfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 09:35:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235683AbjFGNbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:31:43 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4596919BF;
-        Wed,  7 Jun 2023 06:31:42 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-25691a1b2b8so3108722a91.1;
-        Wed, 07 Jun 2023 06:31:42 -0700 (PDT)
+        with ESMTP id S240328AbjFGNfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:35:11 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197DE1BF0
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:35:09 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1b05e96dabbso41925095ad.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:35:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686144701; x=1688736701;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i0lMNuEbXOOcWGfHtGlJsdDwFKP9YumhUcl+P6RDGn4=;
-        b=Y4TRVi/zBzYTgwHSBjrv/UBECrHxL0YS5U1fbNvrt9G/XWdydeS2CIUrFOWtiDQT2E
-         HvxyrF7R2ExSH5a/HbyzyLbDO5U66tnOh45aVr4N0ZvF8yGhSKRohrMfiBBqFSsI+Zm0
-         4DrCTKeOY+miL237Q5aso/eJiVgjheRehAA8cS9TnssvQGGimKaCQG3tUTxmfreLITIi
-         2b3l+8oudik8rZksFhPOvH+mpz1JNX2MSxfMu1X72KC0w86TIkD9aUxq0dNAgX/GZGc3
-         a9+DnDbQhE8uLLSs1vHiIDg+Oagzs7eKJ834Y1XGnnhcsrv9dR64YvuXLMwchXqfg+NW
-         gVlQ==
+        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1686144908; x=1688736908;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tt5aghotCpqk7KxGy2xmtz+Xzjn0V+JF8TzHnw1tUFU=;
+        b=23QJvzYKUPEpLA5BbZngjp7upUZYRzdXhU2KEt+tzd54O9+LwdHHoff1TBavV/M65T
+         qL7cy9H8IqQelgWU2QK02vYBoHgiahPWt223nFIagID69DsvCG5j4JvTBzW4U3pYRagp
+         GxpXOgNbrMO2fp8H7g/f7VvULlb9zA2GDzokgnQ02F5CzPWoo23w4CoM5ms7kXdQH0cJ
+         3pTqEw7qUtDor/2ZUbuOhQvJbK0vpBTON6MdRQpsQ7jfOyQk+9u1sT0DCjjIJEO560A/
+         cImYEDwTVDgfgS48QB/TC2aIiw8qB1r2j9mF+9y7unQZnn60yuSccGpzXjYhjkP5TQ74
+         Tnlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686144701; x=1688736701;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i0lMNuEbXOOcWGfHtGlJsdDwFKP9YumhUcl+P6RDGn4=;
-        b=TYmk+iiwgzK3DCCr0U3qQqiMpxze8FR77obKuAaiM6tZs6en1wblll9frF7pMGB0dc
-         A0AerNCMyQwh6hR+1lb9HWZaO/UbxdiEMCvqwLyKe0mROmE1Vbt9uNcZwJsYwwhWKYIu
-         cdgqgU88EBwn5trs/gjtd4e7wT22VcX6iiL1z3WsL/aHtZ9r+jifX9gUO4e3ADmq3aG6
-         Nn8lY2rJxogzPcnr1j+/8cuZrBizGWpTRY6x4w4VsHqcb+fjiPus4KIZbEFpnhdzF6N2
-         FJ8WktrFlUbMfO/I+NDmPqv6eTvxMDd2NX1ktbackVL8rvaC0jEsniSNSlOdlXEzAMMt
-         A00Q==
-X-Gm-Message-State: AC+VfDxTQc5M1uFiC/PWQSWAYX7HNXwdYJ8erLVq6JibJQB2s5P6A8B/
-        KR5PR1YfPSrbMpOjGXkCHSzBartCWF6iQjNpWbjKO4E6
-X-Google-Smtp-Source: ACHHUZ6t8r1I7+AsOx4AC+q6Tn9eyYuc2j7dLPVzQGIuTRwkVdvVLply4JXh/XKZWiF1nCUeDVM9FLwuRdlGbth57Ak=
-X-Received: by 2002:a17:90a:1db:b0:259:cafc:4e08 with SMTP id
- 27-20020a17090a01db00b00259cafc4e08mr321667pjd.29.1686144701405; Wed, 07 Jun
- 2023 06:31:41 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686144908; x=1688736908;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Tt5aghotCpqk7KxGy2xmtz+Xzjn0V+JF8TzHnw1tUFU=;
+        b=QUQbZ6kE/glLsSzatoG2+wfCjNPYiZQudpWuQR1xockx0h8dYXTe5wkXZyjeAIFhBm
+         h+JwZstxy3lPc1YMsOit6MEm+hkGYmcIFZ+z4q40LcQAWra/zwfaRw09r8V6NiL8d4t4
+         x66q4ipjpZEN+zTTepgEh3nt+0wBqXgwYbQvLXKvvl41qyxZWskCf1rn9w7/mjOzuS36
+         1qEU9I8raXKXAM3HopkBjbdRIY/ryXNk1+MoTx1TycYNtR09f0bSJvNJEiiCb23As3e2
+         jry8Vjsxr2k8hofTVWCkzV+mwJ80bIrr9MWQRSdSI3bRiMY8JhY8PMlkwr8Pj1mdPsk8
+         ic/g==
+X-Gm-Message-State: AC+VfDxTA/VVvJJpcHnFHM256uj+ooIONjfsUpbeKfXDK18bvrxvCKqg
+        BLSu5NAJ+fyRWjBzTBZX++eFvw==
+X-Google-Smtp-Source: ACHHUZ6wa5A02yErnRiD3wwIIVf+hicOoG8k26WAOjNmyJFhXIPuj4AH0DxD2L/nIEdXAK/EtuStqA==
+X-Received: by 2002:a17:902:e742:b0:1b0:e0a:b7ab with SMTP id p2-20020a170902e74200b001b00e0ab7abmr4299474plf.31.1686144908502;
+        Wed, 07 Jun 2023 06:35:08 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.214])
+        by smtp.gmail.com with ESMTPSA id y20-20020a170902ed5400b001b034faf49csm10405680plb.285.2023.06.07.06.35.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 06:35:08 -0700 (PDT)
+From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, dianders@chromium.org,
+        hsinyi@google.com
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Subject: [PATCH v3 0/2] Add ili9882t bindings and timing
+Date:   Wed,  7 Jun 2023 21:34:56 +0800
+Message-Id: <20230607133458.4075667-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230530112050.5635-1-aford173@gmail.com> <20230530112050.5635-3-aford173@gmail.com>
- <CAMuHMdXJaZCSN18aB1yBvhuTk=DQoe4B6aVHgoZvyLsZcRfrDA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXJaZCSN18aB1yBvhuTk=DQoe4B6aVHgoZvyLsZcRfrDA@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 7 Jun 2023 08:31:30 -0500
-Message-ID: <CAHCN7xJbi4ej2s6SOvC7o7aMcjv2awztKkNoAZTiVFn4GJRVXw@mail.gmail.com>
-Subject: Re: [RFC 3/3] arm64: dts: renesas: r8a774a1: Add GPU Node
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
-        marek.vasut+renesas@gmail.com, cstevens@beaconembedded.com,
-        aford@beaconembedded.com,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 7, 2023 at 8:21=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Adam,
->
-> On Tue, May 30, 2023 at 1:21=E2=80=AFPM Adam Ford <aford173@gmail.com> wr=
-ote:
-> > With the 3dge and ZG clocks now available, the generic GPU node can
-> > be added.  Until proper firmware is made, it is not usable.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> > This is based on the assumption that the Rogue 6250 could use
-> > generic driver [1] and firmware [2] being implemebted by the Mesa group
-> > and others.  In practice, the firmware isn't really compatible since
-> > the 6250 in the RZ/G2M appears to be a different variant.
-> >
-> > [1] - https://gitlab.freedesktop.org/frankbinns/powervr/-/tree/powervr-=
-next
-> > [2] - https://gitlab.freedesktop.org/frankbinns/linux-firmware/-/tree/p=
-owervr/powervr
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> > @@ -226,6 +226,27 @@ extalr_clk: extalr {
-> >                 clock-frequency =3D <0>;
-> >         };
-> >
-> > +       gpu_opp_table: opp-table {
-> > +               compatible =3D "operating-points-v2";
-> > +
-> > +               opp-200000000 {
-> > +                       opp-hz =3D /bits/ 64 <200000000>;
-> > +                       opp-microvolt =3D <830000>;
-> > +               };
-> > +               opp-300000000 {
-> > +                       opp-hz =3D /bits/ 64 <300000000>;
-> > +                       opp-microvolt =3D <830000>;
-> > +               };
-> > +               opp-400000000 {
-> > +                       opp-hz =3D /bits/ 64 <400000000>;
-> > +                       opp-microvolt =3D <830000>;
-> > +               };
-> > +               opp-600000000 {
-> > +                       opp-hz =3D /bits/ 64 <600000000>;
-> > +                       opp-microvolt =3D <830000>;
-> > +               };
-> > +       };
-> > +
-> >         /* External PCIe clock - can be overridden by the board */
-> >         pcie_bus_clk: pcie_bus {
-> >                 compatible =3D "fixed-clock";
-> > @@ -2347,6 +2368,18 @@ gic: interrupt-controller@f1010000 {
-> >                         resets =3D <&cpg 408>;
-> >                 };
-> >
-> > +               gpu@fd000000 {
-> > +                       compatible =3D "img,powervr-series6xt";
-> > +                       reg =3D <0 0xfd000000 0 0x40000>;
-> > +                       interrupts =3D <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH=
->;
-> > +                       clocks =3D <&cpg CPG_MOD 112>, <&cpg CPG_MOD 11=
-2>,<&cpg CPG_MOD 112>;
-> > +                       clock-names =3D "core", "mem", "sys";
-> > +                       interrupt-names =3D "gpu";
-> > +                       operating-points-v2 =3D <&gpu_opp_table>;
-> > +                       power-domains =3D <&sysc R8A774A1_PD_3DG_B>;
-> > +                       resets =3D <&cpg 112>;
-> > +               };
-> > +
-> >                 pciec0: pcie@fe000000 {
-> >                         compatible =3D "renesas,pcie-r8a774a1",
-> >                                      "renesas,pcie-rcar-gen3";
->
-> LGTM.  But obviously I cannot take this as-is, as there are no DT binding=
-s
-> for this device, and it didn't work for you...
+Add bindings for Ilitek. The ili9882t touch screen chip same as
+Elan eKTH6915 controller has a reset gpio. The difference is that
+ilitek9882 needs to use vccio-supply instead of vcc33-supply. 
+From Dmitry suggestion, it would make more sense to distinguish the
+binging of ili9882 and eKTH6915.
 
-It was mostly to follow up to the previous ones with links for the
-mainline Rogue video driver in the hopes that someone from Renesas
-might have some input on whether or not Renesas might be able to
-support this and have a discussion.  I knew when I submitted it that
-it wouldn't be accepted which is why I posted it as an RFC.
-If I address concerns you have in the previous patches, would you be
-OK with me submitting then as a formal patch to at least get the rest
-of the system ready in the event the GPU driver/firmware becomes
-available?  It seems harmless, but I also see the argument that it's
-dead code without the GPU node.
+From The datasheet specifies there should be 60ms between touch SDA
+sleep and panel RESX. so we can add the 65 ms delay in i2c_hid_core_suspend.
 
-If not, I'll shelve this for now, and hope to get some responses from Renes=
-as.
 
-adam
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+
+Changes in v3:
+- PATCH 1/2: Introduce bindings for Ilitek.
+- Link to v2: https://lore.kernel.org/all/20230605060524.1178164-1-yangcong5@huaqin.corp-partner.google.com/
+
+Changes in v2:
+- PATCH 1/2: fix ran make dt_binding_check warnings/errors.
+- PATCH 1/2: remove oneOf,just enum.
+- Link to v1: https://lore.kernel.org/all/20230602140948.2138668-1-yangcong5@huaqin.corp-partner.google.com/
+
+Cong Yang (2):
+  dt-bindings: HID: i2c-hid: ilitek: Introduce bindings for Ilitek
+    ili9882t
+  HID: i2c-hid: elan: Add ili9882t timing
+
+ .../bindings/input/ilitek,ili9882t.yaml       | 67 +++++++++++++++++++
+ drivers/hid/i2c-hid/i2c-hid-of-elan.c         | 20 ++++--
+ 2 files changed, 83 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
+
+-- 
+2.25.1
+
