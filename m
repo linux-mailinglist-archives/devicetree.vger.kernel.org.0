@@ -2,105 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B728726878
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA3FF726893
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbjFGSWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 14:22:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38400 "EHLO
+        id S229960AbjFGSYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:24:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233061AbjFGSWB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:22:01 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65CCA269F
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:21:33 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 357IL8OT109728;
-        Wed, 7 Jun 2023 13:21:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686162068;
-        bh=de9RUCxdGyH5Q+wecxOocRcZMyT59SDxevTGu41dm7w=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=qKLKRxLyL5FDiwp8QladOlIUcKzeu2C/tndX8aAiPn0K0hMaMZ5IW8wRG29ElbC/D
-         5raCXuYpsTPOPY05aMoTBbpzyh2qBzA/Bxuma7tY1zsmb3/xTN78FpRYNucmR9kUsF
-         Vky/zI7E6HT5hPU66f6m36BNxvvaUVx3YIhClmpY=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 357IL8Vn029924
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 7 Jun 2023 13:21:08 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Jun 2023 13:21:07 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Jun 2023 13:21:07 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 357IL7Db028019;
-        Wed, 7 Jun 2023 13:21:07 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: Unify pinctrl-single pin group nodes for keystone
-Date:   Wed, 7 Jun 2023 13:21:07 -0500
-Message-ID: <168616205424.4005716.480606081058029642.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230523074845.59433-1-tony@atomide.com>
-References: <20230523074845.59433-1-tony@atomide.com>
+        with ESMTP id S231319AbjFGSYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:24:41 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3A7211B
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:24:18 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f4b384c09fso9305763e87.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:24:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686162248; x=1688754248;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GCynyLWoW2V3VpBJECgKopAvXwYKryE2bi0AEhbuOKc=;
+        b=UORlCDAJSTYZ4uIWUmqhcz5py1aYRNayzTtulmKmCRBhjbvUp5Sc4fYPJFnCb75juH
+         uWwpIburuUdUDyFMAIFi8TeiKQuQ6ndhBSsS5tOWCe3itNJG+EtJSRLhAPIX1MjX3f6n
+         oK6t/bVYLQ1CzirArOwccdOg/exui1KseunFxziTYoMvJqkLa8VvUdaH+edeqNCcOK25
+         dstAnZ5d9iOqhh4Vfo6OUP6MHv5/Oh7LrY4ClO8mkR6x0AAOXPd78wcv4HgUaEtAwvih
+         a0VEseZTwFw4fOa6vy/q6yFt2LPcjoswaEAKG2PUkOnoKRsZXXTYfiCsL7wDRFPlkX4C
+         9IrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686162248; x=1688754248;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GCynyLWoW2V3VpBJECgKopAvXwYKryE2bi0AEhbuOKc=;
+        b=lbHnC5/F0sMgYgMPGk+DYNQox40I5A/wT1+MEwhSNvy30CrqZExCP7s8WtbDs5/Doo
+         PMdfLkydV6t2E5KIs8o3TuQCBFgOeKtiDL4OpJ/tSnQrhpYhATsylD+oJTHgNRT2oy4H
+         XTpBHiC+JkeR7KChOWkb055i7hDT0jM7yLOMW7xFllUNS/TUCCukR3hUtvHrqh49G//2
+         6xmrpfZ7kjfFL5LbbPEjn2sUFHWWiY+q+KvhN+uONRbsg8I96l5+wkHwLZJxja+V58p7
+         yRfJ17S4NUVWATElMjIcdvpvFJLTGP5lM7B0xu5zBo6wzsJVfYzj9kwpTko/Pcx1z/gF
+         ZAdA==
+X-Gm-Message-State: AC+VfDzKfyyATW4g4J1wbaUiPe8sS+PB71oppnNaxGEo2MzGfKhrgWWj
+        DMnNpoGW78dL8cVbuL79OZCdyw==
+X-Google-Smtp-Source: ACHHUZ7cQ53ZaeBJXCSc0n79qlL4eVvWwXaB9K9+BZIUq9VFZ/qoirsRWNkWsGjBsklIkcutqeGZhA==
+X-Received: by 2002:ac2:4c8e:0:b0:4f6:2629:6cf3 with SMTP id d14-20020ac24c8e000000b004f626296cf3mr2269056lfl.46.1686162247872;
+        Wed, 07 Jun 2023 11:24:07 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id o5-20020ac24345000000b004f004c0498esm1879989lfl.71.2023.06.07.11.24.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 11:24:07 -0700 (PDT)
+Message-ID: <ff8c76e4-fb6c-106d-eae3-45edc06b0c0b@linaro.org>
+Date:   Wed, 7 Jun 2023 20:24:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Content-Language: en-US
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, gregkh@linuxfoundation.org,
+        catalin.marinas@arm.com, will@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
+        geert+renesas@glider.be, neil.armstrong@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org, rafal@milecki.pl,
+        quic_srichara@quicinc.com, quic_varada@quicinc.org,
+        quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+References: <cover.1686126439.git.quic_varada@quicinc.com>
+ <1b48e737aa14f5b5539cbf04d473182121d5b1ad.1686126439.git.quic_varada@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH 7/9] arm64: dts: qcom: ipq5332: Add USB related nodes
+In-Reply-To: <1b48e737aa14f5b5539cbf04d473182121d5b1ad.1686126439.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony Lindgren,
 
-On Tue, 23 May 2023 10:48:43 +0300, Tony Lindgren wrote:
-> We want to unify the pinctrl-single pin group nodes to use naming "pins".
-> Otherwise non-standad pin group names will add make dtbs checks errors
-> when the pinctrl-single yaml binding gets merged.
+
+On 7.06.2023 12:56, Varadarajan Narayanan wrote:
+> Add USB phy and controller nodes
 > 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 55 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> index c2d6cc65..3183357 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> @@ -383,6 +383,61 @@
+>  				status = "disabled";
+>  			};
+>  		};
+> +
+> +		usb_0_m31phy: hs_m31phy@7b000 {
+> +			compatible = "qcom,ipq5332-m31-usb-hsphy";
+> +			reg = <0x0007b000 0x12C>,
+random uppercase hex
 
-I have applied the following to branch ti-keystone-dts-next on [1].
-Thank you!
+> +			      <0x08af8800 0x400>;
+> +			reg-names = "m31usb_phy_base",
+> +				    "qscratch_base";
+> +			phy_type= "utmi";
+Missing space before '='
 
-[1/1] ARM: dts: Unify pinctrl-single pin group nodes for keystone
-      commit: 98788f7914af3fcb41101d76f02e1daed5e450a0
+> +
+> +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> +			reset-names = "usb2_phy_reset";
+> +
+> +			status = "okay";
+If you're only defining the node, it's enabled by default
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+In this case, you'd probably want to disable it by default.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> +		};
+> +
+> +		usb2: usb2@8a00000 {
+> +			compatible = "qcom,ipq5332-dwc3", "qcom,dwc3";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+Please push these 3 properties to the end
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+And add status = "disabled" below them.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> +
+> +			reg = <0x08af8800 0x100>;
+> +
+> +			clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> +				<&gcc GCC_SNOC_USB_CLK>,
+> +				<&gcc GCC_USB0_SLEEP_CLK>,
+> +				<&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +
+Please remove this newline.
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> +			clock-names = "core",
+> +				"iface",
+> +				"sleep",
+> +				"mock_utmi";
+Please align this, and all other similar lists.
 
+> +
+> +			interrupts-extended = <&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+interrupts-extended is unnecessary with just a single interrupt
+source.. you can make it `interrupts` and drop the GIC reference.
+
+It would also be nice to push the interrupt properties below 'reg'.
+We're working on documenting and automating checking the preferred
+property order.
+
+> +			interrupt-names = "pwr_event";
+> +
+> +			resets = <&gcc GCC_USB_BCR>;
+> +
+> +			qcom,select-utmi-as-pipe-clk;
+> +
+> +			usb2_0_dwc: usb@8a00000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x08a00000 0xe000>;
+> +				clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +				clock-names = "ref";
+> +				interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> +				usb-phy = <&usb_0_m31phy>;
+> +				tx-fifo-resize;
+> +				snps,is-utmi-l1-suspend;
+> +				snps,hird-threshold = /bits/ 8 <0x0>;
+> +				snps,dis_u2_susphy_quirk;
+> +				snps,dis_u3_susphy_quirk;
+> +				snps,ref-clock-period-ns = <21>;
+1/21 is 0.0476..  that doesn't seem to correspond to the ref
+clk frequency?
+
+Konrad
+> +			};
+> +		};
+>  	};
+>  
+>  	timer {
