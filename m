@@ -2,129 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3EFE72676C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29E93726782
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbjFGRcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 13:32:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
+        id S232101AbjFGRe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 13:34:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbjFGRcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:32:22 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBE1D1FDA;
-        Wed,  7 Jun 2023 10:32:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686159129; x=1717695129;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AsVSg3Faz1IxnTa3HiL4YpkQZ7wQ38kBaOY0hJhpXrU=;
-  b=QPHU595MaVDvKre3Peir1jxavI9OQzZVmTbV+HaAfwK8NJ01pKdKw1ik
-   kJtt205TWGqUGEtDdgdLWmetYwwNO+Q3j9CoguJ5XM0FmijjPnJVhYLIw
-   r+tDti17rhar5A0ds1ikVyPCIQNRZcR3rH/nb1DDhpe3x2hcHSJ+H/7gE
-   y90WmKr6oSstlN6aC97m6Q4AMqFBpefDija2IBeU2tQvP8n9vual/Bap1
-   JEoVrtVbdYFk4jI9f/AxLOWR/d7vuE5g1w1R+5q83zrw7wKAPn98PDeZ4
-   7EW6QF7qpogc8bGQEdXA4HqAEOzGb9kQT96TVbgmplSPxK9JHhD5PEGXI
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="420614934"
-X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; 
-   d="scan'208";a="420614934"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2023 10:32:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="854002886"
-X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; 
-   d="scan'208";a="854002886"
-Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 07 Jun 2023 10:32:04 -0700
-Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q6x0u-0006mA-0K;
-        Wed, 07 Jun 2023 17:32:04 +0000
-Date:   Thu, 8 Jun 2023 01:31:15 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Stanley Chang <stanley_chang@realtek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ray Chi <raychi@google.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] phy: realtek: usb: Add driver for the Realtek SoC
- USB 2.0 PHY
-Message-ID: <202306080128.Gh3c2H1O-lkp@intel.com>
-References: <20230607062500.24669-2-stanley_chang@realtek.com>
+        with ESMTP id S231755AbjFGReU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:34:20 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5152B26AB;
+        Wed,  7 Jun 2023 10:33:58 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-33b3f679cafso5088075ab.1;
+        Wed, 07 Jun 2023 10:33:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686159236; x=1688751236;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ifvHsSrfgeIcTvAsIeYExAkFBsAsOW3wN6CFaDak0ak=;
+        b=Iv9bSay5LS2kEPuZiwndx4ovET+jzVprAMMcEE74kVKT9vHcwqYdcKp0Pw9eHDlSx+
+         FrOWAtlrh7xdsklTvrT1VMxyixW+rziNLA4/idBY2BvE/22YPq5m2J+Gdl9FXbtGETDv
+         6nhAY7Z4Wui8uNxQF51FycPv98bfkBiNycWLYQkMKV/NFqGEo7dmCs8p2Tj8LfcBen4K
+         UQPBcZ26tKYTpGBJ/cTXW7ffYljHqSHgV/yEji+yZzZiH9fd7MreQDjkC/0wYJj7fE7S
+         cs5UAK3jqfr9qzF8gkhrNeeHIoQGO6WeBf5gNfovbq2eIGJ3/wAyrCwMRM6fWVwiot3Y
+         eEhA==
+X-Gm-Message-State: AC+VfDz55y5D65L9ZO4VLq0gyYCQ79Ghb6+3WuRPye5tv/U4GyYOMLkx
+        loP86ibJDtGmX105QpVmTQ==
+X-Google-Smtp-Source: ACHHUZ4oOXRGnUSWhKStEGpwOqs79jvUdrL1G7Py5e078ZLrAaLBYtTFxhYdiixTt+hgpUmdJe1eZg==
+X-Received: by 2002:a05:6e02:803:b0:33e:5b02:17ce with SMTP id u3-20020a056e02080300b0033e5b0217cemr955193ilm.24.1686159236017;
+        Wed, 07 Jun 2023 10:33:56 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id b3-20020a05663801a300b004161a1fbb06sm3601911jaq.121.2023.06.07.10.33.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 10:33:55 -0700 (PDT)
+Received: (nullmailer pid 3608594 invoked by uid 1000);
+        Wed, 07 Jun 2023 17:33:51 -0000
+Date:   Wed, 7 Jun 2023 11:33:51 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Julien Panis <jpanis@baylibre.com>,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        corbet@lwn.net, arnd@arndb.de, gregkh@linuxfoundation.org,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
+        macro@orcam.me.uk, baolu.lu@linux.intel.com, yi.l.liu@intel.com,
+        jirislaby@kernel.org, rostedt@goodmis.org, revest@chromium.org,
+        gehao@kylinos.cn, akpm@linux-foundation.org, jgg@ziepe.ca,
+        razor@blackwall.org, stephen@networkplumber.org,
+        prabhakar.csengg@gmail.com, contact@emersion.fr,
+        alex.williamson@redhat.com, akrowiak@linux.ibm.com,
+        mark.rutland@arm.com, ye.xingchen@zte.com.cn, ojeda@kernel.org,
+        me@kloenk.de, milan@mdaverde.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        sterzik@ti.com, u-kumar1@ti.com, eblanc@baylibre.com,
+        jneanne@baylibre.com, aseketeli@baylibre.com
+Subject: Re: [PATCH v7 2/6] mfd: tps6594: Add driver for TI TPS6594 PMIC
+Message-ID: <20230607173351.GA3605615-robh@kernel.org>
+References: <20230511095126.105104-1-jpanis@baylibre.com>
+ <20230511095126.105104-3-jpanis@baylibre.com>
+ <20230518150740.GN404509@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230607062500.24669-2-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230518150740.GN404509@google.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stanley,
+On Thu, May 18, 2023 at 04:07:40PM +0100, Lee Jones wrote:
+> On Thu, 11 May 2023, Julien Panis wrote:
+> 
+> > This patch adds support for TPS6594 PMIC MFD core. It provides
+> > communication through the I2C and SPI interfaces, and supports
+> > protocols with embedded CRC data fields for safety applications.
+> > 
+> > Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> > Acked-for-MFD-by: Lee Jones <lee@kernel.org>
+> > ---
+> >  drivers/mfd/Kconfig         |   32 ++
+> >  drivers/mfd/Makefile        |    3 +
+> >  drivers/mfd/tps6594-core.c  |  462 ++++++++++++++++
+> >  drivers/mfd/tps6594-i2c.c   |  244 +++++++++
+> >  drivers/mfd/tps6594-spi.c   |  129 +++++
+> >  include/linux/mfd/tps6594.h | 1020 +++++++++++++++++++++++++++++++++++
+> >  6 files changed, 1890 insertions(+)
+> >  create mode 100644 drivers/mfd/tps6594-core.c
+> >  create mode 100644 drivers/mfd/tps6594-i2c.c
+> >  create mode 100644 drivers/mfd/tps6594-spi.c
+> >  create mode 100644 include/linux/mfd/tps6594.h
+> 
+> Applied - current being build tested.
+> 
+> Once complete, I'll send out a pull-request for the other maintainers.
 
-kernel test robot noticed the following build errors:
+Some reason the binding wasn't applied too? The compatible strings are 
+now reported as undocumented (make dt_compatible_check).
 
-[auto build test ERROR on usb/usb-testing]
-[also build test ERROR on usb/usb-next usb/usb-linus robh/for-next linus/master v6.4-rc5 next-20230607]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Stanley-Chang/phy-realtek-usb-Add-driver-for-the-Realtek-SoC-USB-2-0-PHY/20230607-142704
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-patch link:    https://lore.kernel.org/r/20230607062500.24669-2-stanley_chang%40realtek.com
-patch subject: [PATCH v3 2/5] phy: realtek: usb: Add driver for the Realtek SoC USB 2.0 PHY
-config: arm64-randconfig-r014-20230607 (https://download.01.org/0day-ci/archive/20230608/202306080128.Gh3c2H1O-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.3.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git remote add usb https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
-        git fetch usb usb-testing
-        git checkout usb/usb-testing
-        b4 shazam https://lore.kernel.org/r/20230607062500.24669-2-stanley_chang@realtek.com
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306080128.Gh3c2H1O-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-ERROR: modpost: "devm_usb_get_phy_by_phandle" [drivers/power/supply/wm831x_power.ko] undefined!
->> ERROR: modpost: "devm_usb_get_phy" [drivers/power/supply/da9150-charger.ko] undefined!
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for USB_PHY
-   Depends on [n]: USB_SUPPORT [=n]
-   Selected by [y]:
-   - PHY_RTK_RTD_USB2PHY [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
