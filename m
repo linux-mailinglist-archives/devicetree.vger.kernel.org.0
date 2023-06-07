@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01DB672548D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C387254C2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237591AbjFGGnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 02:43:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33358 "EHLO
+        id S238172AbjFGGvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 02:51:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235293AbjFGGnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:43:04 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B851723
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 23:43:03 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-565e6beb7aaso90720117b3.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 23:43:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1686120182; x=1688712182;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dsg7fMeOwWf6duFi3SL6qXsSugXJIk0Q5FLHDNP0ztQ=;
-        b=kVd/MnqaoIb5oxrldwJ5KKFEpysXJo1vKiAhaP19lZrkPC6P9oUh93qci0bfIU3RYr
-         FOzKnA6wBqU6vXDEPXVRMXQ54vUNAsclDBESzc7L+maa4WBFhljs6Xr+L827WRe4vcD/
-         aB9DVry9wy72Eh4u11rbQThzzLKuFbWeSnLWs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686120182; x=1688712182;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dsg7fMeOwWf6duFi3SL6qXsSugXJIk0Q5FLHDNP0ztQ=;
-        b=F3vbMQJa+ubM52o/hSQCBUVeMxl1TfX7gUv40XTyvV0aE3jJDXDiTZFZ1/avXGPF+x
-         8al6pKiTpX5Imev5pu56f1jNVisiFIaZwlsxrbjFoJ9uTmmvhvYvnBpX5ry4M6DCydut
-         eQNubEodHlm9kiKqcGN9ml+rYlUjqspzpU0RdWQuiMhG+C6pLDKyTT6nHTPFX5a+PwEq
-         5nNTomncSqm0xGJzulLRsgDo3v5wYJC/tkrPwQjqy+K5NcGZSUfupRWUo8a1Gzh9fNlw
-         Dv9IyZaOrRix8jjCpeueGJB5bU18W6x+E4YE2PBVNKVxy46u9OUeq5Uztnqp6yNqMAlt
-         xpQA==
-X-Gm-Message-State: AC+VfDyTrkmH6ToJNjhUQ7yjC6iF92XGFi1WvfR2lwUT76oMFwfxjIaP
-        4ag2F/E2Ru8P5sQc0/ZlSGxgpkgVekqHQ/uA3IBEKm1Il1xIFMaO5CPgf97R
-X-Google-Smtp-Source: ACHHUZ6sjnQG6odBG4w0qQkBK4LJZGwQU7CqikJozkVHCbSGSE0jcdrkgzVwr1fXZBKKMsum+q741mo0WSCe/CRDp74=
-X-Received: by 2002:a81:8450:0:b0:565:b22c:4165 with SMTP id
- u77-20020a818450000000b00565b22c4165mr5933812ywf.11.1686120181918; Tue, 06
- Jun 2023 23:43:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com> <20230607063139.621351-4-dario.binacchi@amarulasolutions.com>
-In-Reply-To: <20230607063139.621351-4-dario.binacchi@amarulasolutions.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 7 Jun 2023 12:12:50 +0530
-Message-ID: <CAMty3ZDCkQ_T+j96iXtMAhkOLFBm=hZHk=sZzSGA=MOQQUOv7g@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2 3/6] ARM: dts: stm32: support display on
- stm32f746-disco board
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        michael@amarulasolutions.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S238102AbjFGGvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:51:49 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A02F21730;
+        Tue,  6 Jun 2023 23:51:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686120704; x=1717656704;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DhWndPpddaoxUPxyEmfRWSwqvWtGZRWshWcQJxBubLM=;
+  b=j7QdwPT0HFYLz2X4G6haAJBuKvrQJyzmdzWH/J+f6PBu/peCbkwN+ni3
+   XwAhJGLaUslWqNPzfP4bt4DbOMoF1DxnGlvoplyrMRzFfSh3c/6nWlGS7
+   98pvE3PU41eQGGuqwYtn5KhZcLu98i7pn9Pupg2cguzr7jbcAyP6uWtCk
+   kpdaxtvk+7hugVIoXgz3HT94F4q/jZIcFhOH7ueVOBIuO4xaLv8hnk5hA
+   gT35iZcK62sJSTAf/8JPTlW19rssv5TEeTKwYKfHv3Et3poWyckVa0+QE
+   bu2VfUnp2UI0CIzNuqWRRIBuq3r7Jt0S/wswEaSiRXGkyj7FUJb5/hheZ
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; 
+   d="asc'?scan'208";a="217189778"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Jun 2023 23:51:43 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 6 Jun 2023 23:51:43 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 6 Jun 2023 23:51:40 -0700
+Date:   Wed, 7 Jun 2023 07:51:16 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Mason Huo <mason.huo@starfivetech.com>
+CC:     Viresh Kumar <viresh.kumar@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Shengyu Qu <wiagn233@outlook.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v4 2/3] cpufreq: dt-platdev: Add JH7110 SOC to the
+ allowlist
+Message-ID: <20230607-process-spinal-321ccf04d7e6@wendy>
+References: <20230606105656.124355-1-mason.huo@starfivetech.com>
+ <20230606105656.124355-3-mason.huo@starfivetech.com>
+ <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
+ <20230606-unsmooth-slip-c80fab59c9b4@wendy>
+ <f29a14dad3d744bba54e561a050bdfaa@EXMBX067.cuchost.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PguniYfT8h3J0i0C"
+Content-Disposition: inline
+In-Reply-To: <f29a14dad3d744bba54e561a050bdfaa@EXMBX067.cuchost.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,41 +81,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 7, 2023 at 12:01=E2=80=AFPM Dario Binacchi
-<dario.binacchi@amarulasolutions.com> wrote:
->
-> Add support to Rocktech RK043FN48H display on stm32f746-disco board.
->
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> ---
->
-> (no changes since v1)
->
->  arch/arm/boot/dts/stm32f746-disco.dts | 51 +++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/stm32f746-disco.dts b/arch/arm/boot/dts/st=
-m32f746-disco.dts
-> index c11616ed5fc6..cda423b6a874 100644
-> --- a/arch/arm/boot/dts/stm32f746-disco.dts
-> +++ b/arch/arm/boot/dts/stm32f746-disco.dts
-> @@ -60,10 +60,41 @@ memory@c0000000 {
->                 reg =3D <0xC0000000 0x800000>;
->         };
->
-> +       reserved-memory {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <1>;
-> +               ranges;
-> +
-> +               linux,cma {
-> +                       compatible =3D "shared-dma-pool";
-> +                       no-map;
-> +                       size =3D <0x80000>;
-> +                       linux,dma-default;
-> +               };
-> +       };
+--PguniYfT8h3J0i0C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This looks unrelated to display enablement, isn't it?
+On Wed, Jun 07, 2023 at 02:04:37AM +0000, Mason Huo wrote:
+> Hi Viresh & Conor,
+>=20
+> Sorry for the confusion.=20
+> Should I re-send the patch series and remove this patch?
+> Or you can just ignore it?
 
-Jagan.
+I applied the two dts patches yesterday, you shouldn't need to do
+anything.
+
+--PguniYfT8h3J0i0C
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIAo5AAKCRB4tDGHoIJi
+0pBVAP4k0GCPxUv/B+QjWRQshcDqTHSTrBRdE0zfT3GoMOfxDwD7B9gQAFoFQrw3
+IP3CJDRJ4Wg/8jlq6a5qKq/d/BjOmQs=
+=3vSO
+-----END PGP SIGNATURE-----
+
+--PguniYfT8h3J0i0C--
