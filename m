@@ -2,189 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 575917270F3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 23:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 118A1727199
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 00:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbjFGVyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 17:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55028 "EHLO
+        id S231259AbjFGWZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 18:25:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232353AbjFGVxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 17:53:45 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB3DD269F
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 14:53:30 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-543c6a2aa07so1893885a12.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 14:53:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686174810; x=1688766810;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tXrYtUuCuWvkbV7L1gPu5v5c01AxUbntKP7msewlmBY=;
-        b=VPtavFwrSLAnsChx0O9sOQZYBq1ojrqZEAOSN9K2H5D+oyhkPzKm1AqgA4P47Pf5oh
-         O8BG7TF+uwHJXH1rO/mOL9Oga2y26MvCYhRwbSAF/7bdKs8d+B6F5pZXdFPrDqgi3EQP
-         EzWvrRr+x12vJ7tl4U0Canch7ihXb8a8DBjks=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686174810; x=1688766810;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tXrYtUuCuWvkbV7L1gPu5v5c01AxUbntKP7msewlmBY=;
-        b=iBJzXxRNxJ372PD03fDABub7FNAqA1HQmkCJdR+xIMIaQsIFTjJ7g4M2A447uZHqiH
-         9RNsb99C4+1H5Bgj7iZmEUC4pWCXws8hqc1hqb8z3LP3+xhV/mmmnR4No338lj9vdUAm
-         K1s+UCFOWRcggqbbfq896/SRfnoIEJKJrknbk0OVHSFsThTtjXv9tJ/IKLim6xsa8A8l
-         P2UblwrnysjKDuq9eagxmslkryd1gAQhQpxZCSVonsE9GL+pKatCcU72/Wew2tNZ2Hw/
-         Jq6X8UliypxoZ9CwWJrEi7tD+cPgeshmcAXn5HhfPkXTQei4QbeJmtkVJ+gldmNi76mx
-         WaYw==
-X-Gm-Message-State: AC+VfDyw+UXPJmfOdYcTvRXnaktey7yZG6ZsHrlZQvD1vsVfuvxVSkGr
-        6HU4aWEMsfklXej8t6h1I6XNvw==
-X-Google-Smtp-Source: ACHHUZ5bFX6isITbSdGTCwRLcU7Gw3ebiIVWNaaFurz8NR3mHaewyosZt0XNEE7p9+xHiFDr1q+2Qg==
-X-Received: by 2002:a05:6a20:9384:b0:111:92ef:314e with SMTP id x4-20020a056a20938400b0011192ef314emr2361644pzh.35.1686174810186;
-        Wed, 07 Jun 2023 14:53:30 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:34b2:b638:6b53:f6c2])
-        by smtp.gmail.com with ESMTPSA id j25-20020aa78d19000000b0065dd1e7c2c1sm1376486pfe.63.2023.06.07.14.53.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 14:53:29 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        linux-kernel@vger.kernel.org, hsinyi@google.com,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        yangcong5@huaqin.corp-partner.google.com,
-        linux-arm-msm@vger.kernel.org,
-        Chris Morgan <macroalpha82@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: [PATCH v2 10/10] arm64: dts: qcom: sc7180: Link trogdor touchscreens to the panels
-Date:   Wed,  7 Jun 2023 14:49:32 -0700
-Message-ID: <20230607144931.v2.10.Ia06c340e3482563e6bfd3106ecd0d3139f173ca4@changeid>
-X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
-In-Reply-To: <20230607215224.2067679-1-dianders@chromium.org>
-References: <20230607215224.2067679-1-dianders@chromium.org>
+        with ESMTP id S231376AbjFGWZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 18:25:38 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D812694
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 15:25:00 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B6F0B809A5;
+        Thu,  8 Jun 2023 00:23:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1686176629;
+        bh=I6alclyLIEhEYIQZU3G+U5WK5aYI/CFmzZozxEUpp84=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=zIsacbbbNwXmSfC6jzDeucnnOf7f0+k5pR/RdnF4cgJrAU4unhOmu5/QKC67L9VbA
+         Kwjk+dKa019KO0D/EO6f3NG/pmNeAJ2wU3xQ8Didwf28X38Pb7L0kN7WaHGtFHnuWj
+         Q/FrAVJkEOe+QDIbyfbrFN9xBbDWw2jaZfeOMD1nIlFciwwOoG//0zAoJd0o+WfCOy
+         CjfCT2K79ZfSD+t9H2wrkNVWFWQzYwztvOZElWwZBeYEipPMOY9+wuVXVT4kU79T8h
+         L8DZ5lVXPbdCE1dp7hm6y62kQX6dlDUnQCRRsc8rcx9LYFpU9USV0YKzdqS7Lpjp5q
+         o4QdbXxqZrs5g==
+Message-ID: <eb608fd4-7b97-8d7b-5855-0f953832bf9a@denx.de>
+Date:   Thu, 8 Jun 2023 00:23:48 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: timer: fsl,imxgpt: Add i.MX8MP variant
+Content-Language: en-US
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20230327173526.851734-1-u.kleine-koenig@pengutronix.de>
+ <20230327173526.851734-2-u.kleine-koenig@pengutronix.de>
+ <20230514221729.zk3xvgmkeubooiwd@pengutronix.de>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230514221729.zk3xvgmkeubooiwd@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let's provide the proper link from the touchscreen to the panel on
-trogdor devices where the touchscreen support it. This allows the OS
-to power sequence the touchscreen more properly.
+On 5/15/23 00:17, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Mon, Mar 27, 2023 at 07:35:25PM +0200, Uwe Kleine-König wrote:
+>> The i.MX8MP has the same register layout as the i.MX6DL, so add it as a
+>> variant allowing to add the GPT IP blocks to the i.MX8MP's dtsi file.
+>>
+>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>> ---
+>>   Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+>> index 716c6afcca1f..f5f8b297da13 100644
+>> --- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+>> +++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+>> @@ -31,6 +31,7 @@ properties:
+>>             - enum:
+>>                 - fsl,imx6sl-gpt
+>>                 - fsl,imx6sx-gpt
+>> +              - fsl,imx8mp-gpt
+>>                 - fsl,imxrt1050-gpt
+>>                 - fsl,imxrt1170-gpt
+>>             - const: fsl,imx6dl-gpt
+> 
+> Patch 2 (which makes use of fsl,imx8mp-gpt in the imx8mp.dtsi) is
+> already applied. I wonder who will pick up this one?!
 
-For the most part, this is just expected to marginally improve power
-consumption while the screen is off. However, in at least one trogdor
-model (wormdingler) it's suspected that this will fix some behavorial
-corner cases when the panel power cycles (like for a modeset) without
-the touchscreen power cycling.
+Rob, since you just applied
 
-NOTE: some trogdor variants use touchscreens that don't (yet) support
-linking the touchscreen and the panel. Those variants are left alone.
+[PATCH V4 2/2] dt-bindings: imxgpt: add imx6ul compatible
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-
-(no changes since v1)
-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi        | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi      | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi         | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi        | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi   | 1 +
- 6 files changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index 8b8ea8af165d..b4f328d3e1f6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -104,6 +104,7 @@ ap_ts: touchscreen@5d {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
- 
- 		vdd-supply = <&pp3300_ts>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-index b3ba23a88a0b..88aeb415bd5b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-@@ -116,6 +116,7 @@ ap_ts: touchscreen@14 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
- 
- 		vdd-supply = <&pp3300_touch>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-index 269007d73162..c65f18ea3e5c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-@@ -43,6 +43,7 @@ ap_ts: touchscreen@10 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <20>;
- 		hid-descr-addr = <0x0001>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index 6c5287bd27d6..d2aafd1ea672 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -102,6 +102,7 @@ ap_ts: touchscreen@10 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <20>;
- 		hid-descr-addr = <0x0001>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-index 8e7b42f843d4..0785873d1345 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-@@ -99,6 +99,7 @@ ap_ts: touchscreen@10 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <20>;
- 		hid-descr-addr = <0x0001>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-index 262d6691abd9..f70f5b42c845 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-@@ -154,6 +154,7 @@ ap_ts: touchscreen@1 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <70>;
- 		hid-descr-addr = <0x0001>;
- 
--- 
-2.41.0.162.gfafddb0af9-goog
-
+Can you please also pick this one ?
