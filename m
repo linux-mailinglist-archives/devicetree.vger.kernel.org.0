@@ -2,136 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0358272732F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 01:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E8EB727350
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 01:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbjFGXjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 19:39:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47726 "EHLO
+        id S229917AbjFGXuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 19:50:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233382AbjFGXjW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 19:39:22 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8720426A6
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 16:39:09 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b1b8593263so60475191fa.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 16:39:09 -0700 (PDT)
+        with ESMTP id S232690AbjFGXuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 19:50:13 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236EA212E
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 16:50:12 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id e9e14a558f8ab-33e5054ba6fso8183905ab.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 16:50:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686181148; x=1688773148;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XONB9T8Mj7o/MLrEwoJSSBYj969JG7tPSlspH2W5BIw=;
-        b=GTSY7qEdobWh7LkTRnOAImvPKZUJQfgOgETcJ+tk6DI5sF/chuwr6uFDqqlVN23O2W
-         //yo7tNg480hQs0zkZINMpSZx3sk/T3RykwcV+TsgCqjcm6lxUr7OIiZgxIFpwSR5GDM
-         4G0wg5Ie0zBjwOhgMcBHNt5pPR8zWZkXbyFtqUc4AfJayZmsCu3RwDeCa8spwMuwj3kd
-         l7IFXSZtuqtnQi6PcQ7vFnWwXhpYhZaVzrLSjtc6apATcNyaMuyKL3dvg8eSImkt7HNR
-         s3HuH1jxWmY/bYrPhnN5PoHhxg9HXsMayW/9mjwSHTu08V8Fjpsb3fvDLgVQ95kyqjtA
-         HJ8g==
+        d=chromium.org; s=google; t=1686181808; x=1688773808;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zh1qTh2owhTw6iheqxXCV3Jh42E0lrVswaTb+2hzc4w=;
+        b=gIfyyVs9Ca9SVZqTAi6/yw1HErHG28yWRd7i6AwxZSuQO+fqjj6rtwUQ10tcKurCje
+         G1kp79WcXgvE1Hk0uQ9CKAJ9OoCw5bzXOuKd5wWBBSd2XCluBU869A2ahAdfGotrg8cl
+         mjzpMRLmXyf6TGvU62RoU8dNYtyf2RetwIOwc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686181148; x=1688773148;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XONB9T8Mj7o/MLrEwoJSSBYj969JG7tPSlspH2W5BIw=;
-        b=TaHlTWY8cmagV5VPgGWqSRQo+KoZqjJvr9cfsM4SP5LojkyJ03cPyEwIJyEVMeiQMK
-         Me1OE7sG1uA8Zh+AbZs6CMc5T5I9hZlBt4bpkmai8Azl8vRMVmpbnkfGaEkd8R7twWoz
-         2F05c7R7Z/b9HKtOX701JHjQzGUqy395xxhsTis0pCIOjsqgwdpKURBj0qkbgbZOGhZh
-         dPtYjThcRQCdnzSFnFyKiHn685sJUfp7sywY4m0441csgKce+plubHz4M2hVaNnXwkEj
-         o0zowASQ8CN11GUFvqWLAZfl/JDiHlMtV4Y18jJYT1lltvXMoXc/dAOjj4E4UmLfWRPU
-         RRYg==
-X-Gm-Message-State: AC+VfDwq5Qsc95fpT2W8EuM3v7y7hwmTvbq7EHRA9JAr4vYykCzDHQIZ
-        utRX19X4H/qE6FBM0bSVOne5Hg==
-X-Google-Smtp-Source: ACHHUZ5Ti07xNp1+TYebI62vHoSL/r5taUDlEmn3ZQRy27Ik7N84bpsPjsq4VfKfSjqdaopI0zXg+A==
-X-Received: by 2002:a2e:730c:0:b0:2a7:7100:ff5a with SMTP id o12-20020a2e730c000000b002a77100ff5amr2976356ljc.6.1686181147775;
-        Wed, 07 Jun 2023 16:39:07 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id o15-20020a2e90cf000000b002b1b92910c8sm346ljg.86.2023.06.07.16.39.06
+        d=1e100.net; s=20221208; t=1686181808; x=1688773808;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zh1qTh2owhTw6iheqxXCV3Jh42E0lrVswaTb+2hzc4w=;
+        b=G+2Ck9ValsmxxrBpTTIsabL+HWwBXJIhHsk7XpOS1eBoVyOJ9IkZ+hzrLFQ2WeJu+O
+         vcsr4mwrNS3QyZbJdR5FoIS1L9N4RgboAQGZPNzPEzzZ5kXnjC7eAdiYXcdj0tGS8N2a
+         YNAz3pXpybnSGQuDbVRf7IMXQoeimo33fcdRK2uWmUKRcGLml9q+u2MuEaW1CFS2XPdG
+         oamO+WpOoPhXFwsHXXHj6EBrsC4pwjnndbUN/asiH9uGqBOYxXJHBTV+FAHco06lIo3E
+         VLj4CNoKGPyCJYsFd9A0xMp4ix5GgfPt11NyEXdihqgFJmdkOUzYMSKRNZuFJ1WxxsUL
+         AaaA==
+X-Gm-Message-State: AC+VfDzFK1m0Qjv2wBCINg/alnvBlYUu03YeOhgz0bKV5FBuhk0dcbX4
+        zVAtPo2eR9HdDsRAhZVR4VSo4vtQyGnjMQLueIw=
+X-Google-Smtp-Source: ACHHUZ6fu02SHHHBoVXkoARnDzsVx2OqbwYxLiV1laujaEFtueHE2S7i1+4zir7H/+g79zlla2CMiA==
+X-Received: by 2002:a92:cf4e:0:b0:331:105c:81f9 with SMTP id c14-20020a92cf4e000000b00331105c81f9mr10669611ilr.29.1686181808399;
+        Wed, 07 Jun 2023 16:50:08 -0700 (PDT)
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com. [209.85.166.50])
+        by smtp.gmail.com with ESMTPSA id b18-20020a920b12000000b003244d7f2292sm50274ilf.32.2023.06.07.16.50.02
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 16:39:07 -0700 (PDT)
-Message-ID: <e70b266b-85bb-f23f-dac8-47702a2aaf37@linaro.org>
-Date:   Thu, 8 Jun 2023 02:39:06 +0300
+        Wed, 07 Jun 2023 16:50:05 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-77acb04309dso27494439f.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 16:50:02 -0700 (PDT)
+X-Received: by 2002:a5e:8c15:0:b0:763:5a8f:fe6 with SMTP id
+ n21-20020a5e8c15000000b007635a8f0fe6mr9992800ioj.21.1686181802445; Wed, 07
+ Jun 2023 16:50:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 00/12] SM63(50|75) DPU support
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20230411-topic-straitlagoon_mdss-v6-0-dee6a882571b@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230411-topic-straitlagoon_mdss-v6-0-dee6a882571b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230607133458.4075667-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230607133458.4075667-3-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20230607133458.4075667-3-yangcong5@huaqin.corp-partner.google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 7 Jun 2023 16:49:50 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Uy=UNKDEhqeguhVGn_aTPk5+MppsXChpNOinVc4HJjYg@mail.gmail.com>
+Message-ID: <CAD=FV=Uy=UNKDEhqeguhVGn_aTPk5+MppsXChpNOinVc4HJjYg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] HID: i2c-hid: elan: Add ili9882t timing
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, hsinyi@google.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 15:43, Konrad Dybcio wrote:
+Hi,
 
-[skipped the changelog]
+On Wed, Jun 7, 2023 at 6:35=E2=80=AFAM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> The ili9882t is a TDDI IC (Touch with Display Driver). The
+> datasheet specifies there should be 60ms between touch SDA
+> sleep and panel RESX. Doug's series[1] allows panels and
+> touchscreens to power on/off together, so we can add the 65 ms
+> delay in i2c_hid_core_suspend before panel_unprepare.
+>
+> [1]: https: //lore.kernel.org/all/20230523193017.4109557-1-dianders@chrom=
+ium.org/
 
+FWIW: I posted v2 today:
+
+https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromium.org
+
+
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 > ---
-> Konrad Dybcio (12):
->        dt-bindings: display/msm: dsi-controller-main: Add SM6350
->        dt-bindings: display/msm: dsi-controller-main: Add SM6375
->        dt-bindings: display/msm: sc7180-dpu: Describe SM6350 and SM6375
->        dt-bindings: display/msm: Add SM6350 MDSS
->        dt-bindings: display/msm: Add SM6375 MDSS
->        drm/msm/dpu: Add SM6350 support
->        drm/msm: mdss: Add SM6350 support
->        drm/msm/dpu: Add SM6375 support
->        drm/msm: mdss: Add SM6375 support
+>  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 20 ++++++++++++++++----
+>  1 file changed, 16 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/=
+i2c-hid-of-elan.c
+> index 76ddc8be1cbb..411d7ea2725d 100644
+> --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> @@ -18,7 +18,8 @@
+>  #include "i2c-hid.h"
+>
+>  struct elan_i2c_hid_chip_data {
+> -       unsigned int post_gpio_reset_delay_ms;
+> +       unsigned int post_gpio_reset_on_delay_ms;
+> +       unsigned int post_gpio_reset_off_delay_ms;
+>         unsigned int post_power_delay_ms;
+>         u16 hid_descriptor_address;
+>  };
 
-Will, we have finally picked up the display related patches. Could you 
-please pick up the IOMMU patches if they look fine to you.
+I would prefer it if you would add something to the
+"elan_i2c_hid_chip_data" indicating the name of the main supply. Set
+it to "vcc33" for the elan touchscreen and the NULL for your new one.
 
->        iommu/arm-smmu-qcom: Sort the compatible list alphabetically
->        iommu/arm-smmu-qcom: Add SM6375 DPU compatible
->        iommu/arm-smmu-qcom: Add SM6350 DPU compatible
-> 
->   .../bindings/display/msm/dsi-controller-main.yaml  |   4 +
->   .../bindings/display/msm/qcom,sc7180-dpu.yaml      |  23 ++-
->   .../bindings/display/msm/qcom,sm6350-mdss.yaml     | 213 ++++++++++++++++++++
->   .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 215 +++++++++++++++++++++
->   .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h | 173 +++++++++++++++++
->   .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_9_sm6375.h | 139 +++++++++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   6 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   2 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   2 +
->   drivers/gpu/drm/msm/msm_mdss.c                     |  10 +
->   drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c         |   6 +-
->   11 files changed, 790 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 6db29e14f4fb7bce9eb5290288e71b05c2b0d118
-> change-id: 20230411-topic-straitlagoon_mdss-8f34cacd5e26
-> 
-> Best regards,
-
--- 
-With best wishes
-Dmitry
-
+It's probably worth adding a comment next to where you set it to NULL
+that this touchscreen is tightly integrated with the panel and assumes
+that the relevant power rails (other than the IO rail) have already
+been turned on by the panel driver because we're a panel follower.
+Otherwise someone is going to be super confused about how this could
+work.
