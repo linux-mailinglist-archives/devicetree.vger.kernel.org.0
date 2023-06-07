@@ -2,819 +2,667 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F79725DA0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 13:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 221A7725DAC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 13:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238219AbjFGLsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 07:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41156 "EHLO
+        id S239978AbjFGLwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 07:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240408AbjFGLsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 07:48:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F281BC2;
-        Wed,  7 Jun 2023 04:48:05 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 357AoZcs018420;
-        Wed, 7 Jun 2023 11:47:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=WRbuNIhh2Vm0Kirh//fBKABrlilYaOTOLGk7Nkyrnns=;
- b=bNQ2LbZFDNFtK9nam6wGMFbwi6PdqgBrkNCjMiehppJhu0BuOwp2C5HU1arY4h2I4CrR
- UEU5hzXnG1T33SARc2mcJ6M54DKoPUKr9dxQ9HEFQOFTIkkg8uN58Xh6r9ScyMNzXRUR
- DiaM2D7wzrkAGz9JQYCto9RrySXur+ZbdEIGS55btGz8XI/W7oNiTAzh/wkQCJ5yg6nG
- GiYuhAVcbHjk0gWOJSWzzTz0LOalbN+4/VQDwL9iHo271+9KWTf932JE3Xgiki9DFbUO
- hKrF769MqM6/Fk8lVl9sQjBW3BERN2ZI8+hPiA84niFCNWMZGfH4dNsv9PmRnpDhw4Jd Ig== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r2a6y9qv2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 07 Jun 2023 11:47:56 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 357BlrIo030950;
-        Wed, 7 Jun 2023 11:47:53 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3qyxkm28pw-1;
-        Wed, 07 Jun 2023 11:47:53 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 357BlqZt030931;
-        Wed, 7 Jun 2023 11:47:53 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 357BlqFk030923;
-        Wed, 07 Jun 2023 11:47:53 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 6FA1F5F28; Wed,  7 Jun 2023 17:17:52 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
-        tglx@linutronix.de, maz@kernel.org, mani@kernel.org,
-        robimarko@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v3 5/5] arm64: dts: qcom: Add SDX75 platform and IDP board support
-Date:   Wed,  7 Jun 2023 17:17:49 +0530
-Message-Id: <1686138469-1464-6-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1686138469-1464-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1686138469-1464-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qK-i0noDlo6Ikj2k1-iNClh66gZRBiIq
-X-Proofpoint-ORIG-GUID: qK-i0noDlo6Ikj2k1-iNClh66gZRBiIq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-07_06,2023-06-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
- clxscore=1015 suspectscore=0 adultscore=0 spamscore=0 bulkscore=0
- mlxscore=0 priorityscore=1501 lowpriorityscore=0 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306070097
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S239831AbjFGLwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 07:52:42 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B0E519BF
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 04:52:40 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5149bdb59daso1102510a12.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 04:52:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686138758; x=1688730758;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=D24yblh8M2wbDLcZhpK9nT1oK0h4QFEUd0Odb6kt/DI=;
+        b=a4DDOHjY61G9Z4sac9Z0dzfj94q0De5RzBh/fz9CDTP8mewT9DANFb1b190UlB5U/u
+         g40LnQu/QL+gx1y4L82z6kkqA6WdM+4e6nJcOIpDbS5Tp5gRfB/Tg5gvx832zY08WJIv
+         i5a+Etqtd4wx2SxWw1Wr5SZqFvgIqwkpRutVDVEm/NzH6rpOKemG2beYEneZHWIdxp99
+         3X5BPL/KnrJq0i7zdVGb7gBq0XGZaKyF1kbOh1wCN+2NT+NR7dlHDlCYNzTAaYg1VaGH
+         jp+KILME0G8ei3X8tTNnS1WnxrDloZzDDmReWtbDEzo8YEvDHFNulf9TW8Bx81WHOu1T
+         AIDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686138758; x=1688730758;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D24yblh8M2wbDLcZhpK9nT1oK0h4QFEUd0Odb6kt/DI=;
+        b=TjgIXsnHNH0HRU5HlCnat+P3Sl74g5qjxheF27pB42/3Fkcity3yAGHvX0ZymrXA6h
+         1vjv0XgzQccX0vdHiJ7Nn/xFHJ+NfYJhdmLR4Mz02hkz+W8GcjDOCwVgQu4PCh95pXkJ
+         jGm7mb3DvRkCVknKJdpeAH1DCLKsidgFy9cT/6nRQzW06aY/Oq/30PcpM36v0O49DcQ2
+         DXZFzETLKIaK3oEiNxm39NkLK1Gr7ORp2vbcVLTZOSnT4Sx1ksmvjmeJyvCxnAsjAkiJ
+         3v+X8nkMPmGhDetQ833VkImcFCTEidIt3STWxzLWgGoYtM/Nk8MBJfX+VDN2cVrq/xbX
+         D22w==
+X-Gm-Message-State: AC+VfDy1ez4jvdsoANcHekJPFAqj8wPM1Qgpa4YoZGE8mhyhmtbLMYlp
+        nDfubngcwPCX69m41Nrt1rQ+JA==
+X-Google-Smtp-Source: ACHHUZ7+a9+a6QmaEB7QGUtAAB1+s3uUqlYNvSB4b/wGPQPPz4VtqYN6n6u4am6a89nRgPKkgHwWSA==
+X-Received: by 2002:a17:907:a424:b0:960:ce5:20c0 with SMTP id sg36-20020a170907a42400b009600ce520c0mr5542571ejc.20.1686138758421;
+        Wed, 07 Jun 2023 04:52:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a23-20020a170906671700b009787b13d1ddsm966631ejp.51.2023.06.07.04.52.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 04:52:37 -0700 (PDT)
+Message-ID: <a9a2f3d0-9580-f027-8ec3-ac6e6bed5ed6@linaro.org>
+Date:   Wed, 7 Jun 2023 13:52:36 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 3/5] phy: realtek: usb: Add driver for the Realtek SoC
+ USB 3.0 PHY
+Content-Language: en-US
+To:     Stanley Chang <stanley_chang@realtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ray Chi <raychi@google.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20230607062500.24669-1-stanley_chang@realtek.com>
+ <20230607062500.24669-3-stanley_chang@realtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230607062500.24669-3-stanley_chang@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic devicetree support for SDX75 platform and IDP board from
-Qualcomm. The SDX75 platform features an ARM Cortex A55 CPU which forms
-the Application Processor Sub System (APSS) along with standard Qualcomm
-peripherals like GCC, TLMM, UART, QPIC, and BAM etc... Also, there
-exists the networking parts such as IPA, MHI, PCIE-EP, EMAC, and Modem
-etc..
+On 07/06/2023 08:24, Stanley Chang wrote:
+> Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB
+> controller. Added the driver to drive the USB 3.0 PHY transceivers.
+> 
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+> ---
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile      |   1 +
- arch/arm64/boot/dts/qcom/sdx75-idp.dts |  33 ++
- arch/arm64/boot/dts/qcom/sdx75.dtsi    | 660 +++++++++++++++++++++++++++++++++
- 3 files changed, 694 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdx75-idp.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sdx75.dtsi
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index d42c595..4fd5a18 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -173,6 +173,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-polaris.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdx75-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6115p-lenovo-j606f.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-new file mode 100644
-index 0000000..cbe5cdf
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sdx75.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. SDX75 IDP";
-+	compatible = "qcom,sdx75-idp", "qcom,sdx75";
-+
-+	aliases {
-+		serial0 = &uart1;
-+	};
-+};
-+
-+&chosen {
-+	stdout-path = "serial0:115200n8";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <110 6>;
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-new file mode 100644
-index 0000000..40fa579
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-@@ -0,0 +1,660 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * SDX75 SoC device tree source
-+ *
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ *
-+ */
-+
-+#include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sdx75-gcc.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	interrupt-parent = <&intc>;
-+
-+	chosen: chosen { };
-+
-+	clocks {
-+		xo_board: xo-board {
-+			compatible = "fixed-clock";
-+			clock-frequency = <76800000>;
-+			#clock-cells = <0>;
-+		};
-+
-+		sleep_clk: sleep-clk {
-+			compatible = "fixed-clock";
-+			clock-frequency = <32000>;
-+			#clock-cells = <0>;
-+		};
-+	};
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		CPU0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			clocks = <&cpufreq_hw 0>;
-+			enable-method = "psci";
-+			power-domains = <&CPU_PD0>;
-+			power-domain-names = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
-+			next-level-cache = <&L2_0>;
-+
-+			L2_0: l2-cache {
-+				compatible = "cache";
-+				next-level-cache = <&L3_0>;
-+				L3_0: l3-cache {
-+					compatible = "cache";
-+				};
-+			};
-+		};
-+
-+		CPU1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x100>;
-+			clocks = <&cpufreq_hw 0>;
-+			enable-method = "psci";
-+			power-domains = <&CPU_PD1>;
-+			power-domain-names = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
-+			next-level-cache = <&L2_100>;
-+
-+			L2_100: l2-cache {
-+				compatible = "cache";
-+				next-level-cache = <&L3_0>;
-+			};
-+		};
-+
-+		CPU2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x200>;
-+			clocks = <&cpufreq_hw 0>;
-+			enable-method = "psci";
-+			power-domains = <&CPU_PD2>;
-+			power-domain-names = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
-+			next-level-cache = <&L2_200>;
-+
-+			L2_200: l2-cache {
-+				compatible = "cache";
-+				next-level-cache = <&L3_0>;
-+			};
-+		};
-+
-+		CPU3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x300>;
-+			clocks = <&cpufreq_hw 0>;
-+			enable-method = "psci";
-+			power-domains = <&CPU_PD3>;
-+			power-domain-names = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
-+			next-level-cache = <&L2_300>;
-+
-+			L2_300: l2-cache {
-+				compatible = "cache";
-+				next-level-cache = <&L3_0>;
-+			};
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&CPU0>;
-+				};
-+
-+				core1 {
-+					cpu = <&CPU1>;
-+				};
-+
-+				core2 {
-+					cpu = <&CPU2>;
-+				};
-+
-+				core3 {
-+					cpu = <&CPU3>;
-+				};
-+			};
-+		};
-+
-+		idle-states {
-+			entry-method = "psci";
-+
-+			CPU_OFF: cpu-sleep-0 {
-+				compatible = "arm,idle-state";
-+				entry-latency-us = <235>;
-+				exit-latency-us = <428>;
-+				min-residency-us = <1774>;
-+				arm,psci-suspend-param = <0x40000003>;
-+				local-timer-stop;
-+			};
-+
-+			CPU_RAIL_OFF: cpu-rail-sleep-1 {
-+				compatible = "arm,idle-state";
-+				entry-latency-us = <800>;
-+				exit-latency-us = <750>;
-+				min-residency-us = <4090>;
-+				arm,psci-suspend-param = <0x40000004>;
-+				local-timer-stop;
-+			};
-+
-+		};
-+
-+		domain-idle-states {
-+			CLUSTER_SLEEP_0: cluster-sleep-0 {
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x41000044>;
-+				entry-latency-us = <1050>;
-+				exit-latency-us = <2500>;
-+				min-residency-us = <5309>;
-+			};
-+
-+			CLUSTER_SLEEP_1: cluster-sleep-1 {
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x41001344>;
-+				entry-latency-us = <2761>;
-+				exit-latency-us = <3964>;
-+				min-residency-us = <8467>;
-+			};
-+
-+			CLUSTER_SLEEP_2: cluster-sleep-2 {
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x4100b344>;
-+				entry-latency-us = <2793>;
-+				exit-latency-us = <4023>;
-+				min-residency-us = <9826>;
-+			};
-+		};
-+	};
-+
-+	firmware {
-+		scm: scm {
-+			compatible = "qcom,scm-sdx75", "qcom,scm";
-+		};
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x0>;
-+	};
-+
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+
-+		CPU_PD0: power-domain-cpu0 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&CPU_OFF &CPU_RAIL_OFF>;
-+		};
-+
-+		CPU_PD1: power-domain-cpu1 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&CPU_OFF &CPU_RAIL_OFF>;
-+		};
-+
-+		CPU_PD2: power-domain-cpu2 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&CPU_OFF &CPU_RAIL_OFF>;
-+		};
-+
-+		CPU_PD3: power-domain-cpu3 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&CPU_OFF &CPU_RAIL_OFF>;
-+		};
-+
-+		CLUSTER_PD: power-domain-cpu-cluster0 {
-+			#power-domain-cells = <0>;
-+			domain-idle-states = <&CLUSTER_SLEEP_0 &CLUSTER_SLEEP_1 &CLUSTER_SLEEP_2>;
-+		};
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gunyah_hyp_mem: gunyah-hyp@80000000 {
-+			reg = <0x0 0x80000000 0x0 0x800000>;
-+			no-map;
-+		};
-+
-+		hyp_elf_package_mem: hyp-elf-package@80800000 {
-+			reg = <0x0 0x80800000 0x0 0x200000>;
-+			no-map;
-+		};
-+
-+		access_control_db_mem: access-control-db@81380000 {
-+			reg = <0x0 0x81380000 0x0 0x80000>;
-+			no-map;
-+		};
-+
-+		qteetz_mem: qteetz@814e0000 {
-+			reg = <0x0 0x814e0000 0x0 0x2a0000>;
-+			no-map;
-+		};
-+
-+		trusted_apps_mem: trusted-apps@81780000 {
-+			reg = <0x0 0x81780000 0x0 0xa00000>;
-+			no-map;
-+		};
-+
-+		xbl_ramdump_mem: xbl-ramdump@87a00000 {
-+			reg = <0x0 0x87a00000 0x0 0x1c0000>;
-+			no-map;
-+		};
-+
-+		cpucp_fw_mem: cpucp-fw@87c00000 {
-+			reg = <0x0 0x87c00000 0x0 0x100000>;
-+			no-map;
-+		};
-+
-+		xbl_dtlog_mem: xbl-dtlog@87d00000 {
-+			reg = <0x0 0x87d00000 0x0 0x40000>;
-+			no-map;
-+		};
-+
-+		xbl_sc_mem: xbl-sc@87d40000 {
-+			reg = <0x0 0x87d40000 0x0 0x40000>;
-+			no-map;
-+		};
-+
-+		modem_efs_shared_mem: modem-efs-shared@87d80000 {
-+			reg = <0x0 0x87d80000 0x0 0x10000>;
-+			no-map;
-+		};
-+
-+		aop_image_mem: aop-image@87e00000 {
-+			reg = <0x0 0x87e00000 0x0 0x20000>;
-+			no-map;
-+		};
-+
-+		smem_mem: smem@87e20000 {
-+			reg = <0x0 0x87e20000 0x0 0xc0000>;
-+			no-map;
-+		};
-+
-+		aop_cmd_db_mem: aop-cmd-db@87ee0000 {
-+			compatible = "qcom,cmd-db";
-+			reg = <0x0 0x87ee0000 0x0 0x20000>;
-+			no-map;
-+		};
-+
-+		aop_config_mem: aop-config@87f00000 {
-+			reg = <0x0 0x87f00000 0x0 0x20000>;
-+			no-map;
-+		};
-+
-+		ipa_fw_mem: ipa-fw@87f20000 {
-+			reg = <0x0 0x87f20000 0x0 0x10000>;
-+			no-map;
-+		};
-+
-+		secdata_mem: secdata@87f30000 {
-+			reg = <0x0 0x87f30000 0x0 0x1000>;
-+			no-map;
-+		};
-+
-+		tme_crashdump_mem: tme-crashdump@87f31000 {
-+			reg = <0x0 0x87f31000 0x0 0x40000>;
-+			no-map;
-+		};
-+
-+		tme_log_mem: tme-log@87f71000 {
-+			reg = <0x0 0x87f71000 0x0 0x4000>;
-+			no-map;
-+		};
-+
-+		uefi_log_mem: uefi-log@87f75000 {
-+			reg = <0x0 0x87f75000 0x0 0x10000>;
-+			no-map;
-+		};
-+
-+		qdss_mem: qdss@88800000 {
-+			reg = <0x0 0x88800000 0x0 0x300000>;
-+			no-map;
-+		};
-+
-+		audio_heap_mem: audio-heap@88b00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x88b00000 0x0 0x400000>;
-+			no-map;
-+		};
-+
-+		mpss_dsmharq_mem: mpss-dsmharq@88f00000 {
-+			reg = <0x0 0x88f00000 0x0 0x5080000>;
-+			no-map;
-+		};
-+
-+		q6_mpss_dtb_mem: q6-mpss-dtb@8df80000 {
-+			reg = <0x0 0x8df80000 0x0 0x80000>;
-+			no-map;
-+		};
-+
-+		mpssadsp_mem: mpssadsp@8e000000 {
-+			reg = <0x0 0x8e000000 0x0 0xf400000>;
-+			no-map;
-+		};
-+
-+		gunyah_trace_buffer_mem: gunyah-trace-buffer@bdb00000 {
-+			reg = <0x0 0xbdb00000 0x0 0x2000000>;
-+			no-map;
-+		};
-+
-+		smmu_debug_buf_mem: smmu-debug-buf@bfb00000 {
-+			reg = <0x0 0xbfb00000 0x0 0x100000>;
-+			no-map;
-+		};
-+
-+		hyp_smmu_s2_pt_mem: hyp-smmu-s2-pt@bfc00000 {
-+			reg = <0x0 0xbfc00000 0x0 0x400000>;
-+			no-map;
-+		};
-+	};
-+
-+	smem: qcom,smem {
-+		compatible = "qcom,smem";
-+		memory-region = <&smem_mem>;
-+		hwlocks = <&tcsr_mutex 3>;
-+	};
-+
-+	soc: soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0 0 0 0 0x10 0>;
-+		dma-ranges = <0 0 0 0 0x10 0>;
-+
-+		gcc: clock-controller@80000 {
-+			compatible = "qcom,sdx75-gcc";
-+			reg = <0x0 0x0080000 0x0 0x1f7400>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&sleep_clk>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		qupv3_id_0: geniqup@9c0000 {
-+			compatible = "qcom,geni-se-qup";
-+			reg = <0x0 0x009c0000 0x0 0x2000>;
-+			clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
-+				 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-+			clock-names = "m-ahb",
-+				      "s-ahb";
-+			iommus = <&apps_smmu 0xe3 0x0>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+			status = "disabled";
-+
-+			uart1: serial@984000 {
-+				compatible = "qcom,geni-debug-uart";
-+				reg = <0x0 0x00984000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
-+				clock-names = "se";
-+				interrupts = <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-0 = <&qupv3_se1_2uart_active>;
-+				pinctrl-1 = <&qupv3_se1_2uart_sleep>;
-+				pinctrl-names = "default",
-+						"sleep";
-+				status = "disabled";
-+			};
-+		};
-+
-+		tcsr_mutex: hwlock@1f40000 {
-+			compatible = "qcom,tcsr-mutex";
-+			reg = <0x0 0x01f40000 0x0 0x40000>;
-+			#hwlock-cells = <1>;
-+		};
-+
-+		pdc: interrupt-controller@b220000 {
-+			compatible = "qcom,sdx75-pdc", "qcom,pdc";
-+			reg = <0x0 0xb220000 0x0 0x30000>,
-+			      <0x0 0x174000f0 0x0 0x64>;
-+			qcom,pdc-ranges = <0 147 52>,
-+					  <52 266 32>,
-+					  <84 500 59>;
-+			#interrupt-cells = <2>;
-+			interrupt-parent = <&intc>;
-+			interrupt-controller;
-+		};
-+
-+		tlmm: pinctrl@f000000 {
-+			compatible = "qcom,sdx75-tlmm";
-+			reg = <0x0 0x0f000000 0x0 0x400000>;
-+			interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&tlmm 0 0 133>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			wakeup-parent = <&pdc>;
-+
-+			qupv3_se1_2uart_active: qupv3-se1-2uart-active-state {
-+				tx {
-+					pins = "gpio12";
-+					function = "qup_se1_l2_mira";
-+					drive-strength= <2>;
-+					bias-disable;
-+				};
-+
-+				rx {
-+					pins = "gpio13";
-+					function = "qup_se1_l3_mira";
-+					drive-strength= <2>;
-+					bias-disable;
-+				};
-+			};
-+
-+			qupv3_se1_2uart_sleep: qupv3-se1-2uart-sleep-state {
-+				pins = "gpio12", "gpio13";
-+				function = "gpio";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+		};
-+
-+		apps_smmu: iommu@15000000 {
-+			compatible = "qcom,sdx75-smmu-500", "arm,mmu-500";
-+			reg = <0x0 0x15000000 0x0 0x40000>;
-+			#iommu-cells = <2>;
-+			#global-interrupts = <2>;
-+			dma-coherent;
-+			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		intc: interrupt-controller@17200000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			#redistributor-regions = <1>;
-+			redistributor-stride = <0x0 0x20000>;
-+			reg = <0x0 0x17200000 0x0 0x10000>,
-+			      <0x0 0x17260000 0x0 0x80000>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		timer@17420000 {
-+			compatible = "arm,armv7-timer-mem";
-+			reg = <0x0 0x17420000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0x20000000>;
-+
-+			frame@17421000 {
-+				reg = <0x17421000 0x1000>,
-+				      <0x17422000 0x1000>;
-+				frame-number = <0>;
-+				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
-+			frame@17423000 {
-+				reg = <0x17423000 0x1000>;
-+				frame-number = <1>;
-+				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			frame@17425000 {
-+				reg = <0x17425000 0x1000>;
-+				frame-number = <2>;
-+				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			frame@17427000 {
-+				reg = <0x17427000 0x1000>;
-+				frame-number = <3>;
-+				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			frame@17429000 {
-+				reg = <0x17429000 0x1000>;
-+				frame-number = <4>;
-+				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			frame@1742b000 {
-+				reg = <0x1742b000 0x1000>;
-+				frame-number = <5>;
-+				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			frame@1742d000 {
-+				reg = <0x1742d000 0x1000>;
-+				frame-number = <6>;
-+				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		apps_rsc: rsc@17a00000 {
-+			label = "apps_rsc";
-+			compatible = "qcom,rpmh-rsc";
-+			reg = <0x0 0x17a00000 0x0 0x10000>,
-+			      <0x0 0x17a10000 0x0 0x10000>,
-+			      <0x0 0x17a20000 0x0 0x10000>;
-+			reg-names = "drv-0", "drv-1", "drv-2";
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			power-domains = <&CLUSTER_PD>;
-+			qcom,tcs-offset = <0xd00>;
-+			qcom,drv-id = <2>;
-+			qcom,tcs-config = <ACTIVE_TCS    3>,
-+					  <SLEEP_TCS     2>,
-+					  <WAKE_TCS      2>,
-+					  <CONTROL_TCS   0>;
-+
-+			apps_bcm_voter: bcm_voter {
-+				compatible = "qcom,bcm-voter";
-+			};
-+
-+			rpmhcc: clock-controller {
-+				compatible = "qcom,sdx75-rpmh-clk";
-+				clocks = <&xo_board>;
-+				clock-names = "xo";
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		cpufreq_hw: cpufreq@17d91000 {
-+			compatible = "qcom,sdx75-cpufreq-epss", "qcom,cpufreq-epss";
-+			reg = <0x0 0x17d91000 0x0 0x1000>;
-+			reg-names = "freq-domain0";
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GPLL0>;
-+			clock-names = "xo",
-+				      "alternate";
-+			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "dcvsh-irq-0";
-+			#freq-domain-cells = <1>;
-+			#clock-cells = <1>;
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+};
--- 
-2.7.4
+> +static inline int utmi_wait_register(void __iomem *reg, u32 mask, u32 result)
+> +{
+> +	int ret;
+> +	unsigned int val;
+> +
+> +	ret = read_poll_timeout(readl, val, ((val & mask) == result),
+> +		    PHY_IO_DELAY_US, PHY_IO_TIMEOUT_USEC, false, reg);
+> +	if (ret) {
+> +		pr_err("%s can't program USB phy\n", __func__);
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int rtk_usb_phy3_wait_vbusy(struct reg_addr *regAddr)
+> +{
+> +	return utmi_wait_register(regAddr->reg_mdio_ctl, USB_MDIO_CTRL_PHY_BUSY, 0);
+> +}
+> +
+> +static u16 rtk_usb_phy_read(struct reg_addr *regAddr, char addr)
+> +{
+> +	unsigned int regVal;
+> +	u32 value;
+> +
+> +	regVal = (addr << USB_MDIO_CTRL_PHY_ADDR_SHIFT);
+> +
+> +	writel(regVal, regAddr->reg_mdio_ctl);
+> +
+> +	rtk_usb_phy3_wait_vbusy(regAddr);
+> +
+> +	value = readl(regAddr->reg_mdio_ctl);
+> +	value = value >> USB_MDIO_CTRL_PHY_DATA_SHIFT;
+> +
+> +	return (u16)value;
+> +}
+> +
+> +static int rtk_usb_phy_write(struct reg_addr *regAddr, char addr, u16 data)
+> +{
+> +	unsigned int regVal;
+> +
+> +	regVal = USB_MDIO_CTRL_PHY_WRITE |
+> +		    (addr << USB_MDIO_CTRL_PHY_ADDR_SHIFT) |
+> +		    (data << USB_MDIO_CTRL_PHY_DATA_SHIFT);
+> +
+> +	writel(regVal, regAddr->reg_mdio_ctl);
+> +
+> +	rtk_usb_phy3_wait_vbusy(regAddr);
+> +
+> +	return 0;
+> +}
+> +
+> +static void do_rtk_usb3_phy_toggle(struct rtk_usb_phy *rtk_phy, int i,
+> +	    bool isConnect)
+> +{
+> +	struct reg_addr *regAddr;
+> +	struct phy_data *phy_data;
+> +	struct phy_parameter *phy_parameter;
+> +	size_t index;
+> +
+> +	regAddr = &((struct reg_addr *)rtk_phy->reg_addr)[i];
+> +	phy_data = &((struct phy_data *)rtk_phy->phy_data)[i];
+> +
+> +	if (!phy_data) {
+> +		dev_err(rtk_phy->dev, "%s phy_data is NULL!\n", __func__);
+
+???
+
+> +		return;
+> +	}
+> +
+> +	if (!phy_data->do_toggle)
+> +		return;
+> +
+> +	phy_parameter = phy_data->parameter;
+> +
+> +	index = PHY_ADDR_MAP_ARRAY_INDEX(PHY_ADDR_0x09);
+> +
+> +	if (index < phy_data->size) {
+> +		u8 addr = (phy_parameter + index)->addr;
+> +		u16 data = (phy_parameter + index)->data;
+> +
+> +		if (addr == 0xFF) {
+> +			addr = ARRAY_INDEX_MAP_PHY_ADDR(index);
+> +			data = rtk_usb_phy_read(regAddr, addr);
+> +			(phy_parameter + index)->addr = addr;
+> +			(phy_parameter + index)->data = data;
+> +		}
+> +		mdelay(1);
+> +		dev_info(rtk_phy->dev,
+> +			    "%s ########## to toggle PHY addr 0x09 BIT(9)\n",
+> +			    __func__);
+> +		rtk_usb_phy_write(regAddr, addr, data&(~BIT(9)));
+> +		mdelay(1);
+> +		rtk_usb_phy_write(regAddr, addr, data);
+> +	}
+> +	dev_info(rtk_phy->dev, "%s ########## PHY addr 0x1f = 0x%04x\n",
+> +		    __func__, rtk_usb_phy_read(regAddr, PHY_ADDR_0x1F));
+
+Please drop all simple debug success messages. Linux has already
+infrastructure for this.
+
+
+...
+
+> +	return 0;
+> +}
+> +
+> +static int rtk_usb_phy_init(struct phy *phy)
+> +{
+> +	struct rtk_usb_phy *rtk_phy = phy_get_drvdata(phy);
+> +	int ret = 0;
+> +	int i;
+> +	unsigned long phy_init_time = jiffies;
+> +
+> +	if (!rtk_phy) {
+> +		pr_err("%s rtk_phy is NULL!\n", __func__);
+
+What? How is this possible?
+
+> +		return -ENODEV;
+> +	}
+> +
+> +	dev_dbg(rtk_phy->dev, "Init RTK USB 3.0 PHY\n");
+> +	for (i = 0; i < rtk_phy->phyN; i++)
+> +		ret = do_rtk_usb_phy_init(rtk_phy, i);
+> +
+> +	dev_info(rtk_phy->dev, "Initialized RTK USB 3.0 PHY (take %dms)\n",
+> +		    jiffies_to_msecs(jiffies - phy_init_time));
+
+Please drop all simple debug success messages. Linux has already
+infrastructure for this.
+
+> +	return ret;
+> +}
+> +
+> +static int rtk_usb_phy_exit(struct phy *phy)
+> +{
+> +	struct rtk_usb_phy *rtk_phy = phy_get_drvdata(phy);
+> +
+> +	if (!rtk_phy) {
+> +		pr_err("%s rtk_phy is NULL!\n", __func__);
+> +		return -ENODEV;
+> +	}
+> +
+> +	dev_dbg(rtk_phy->dev, "Exit RTK USB 3.0 PHY\n");
+
+Please drop all simple debug success messages. Linux has already
+infrastructure for this.
+
+> +static void rtk_usb_phy_toggle(struct usb_phy *usb3_phy, bool isConnect, int port)
+> +{
+> +	int index = port;
+> +	struct rtk_usb_phy *rtk_phy = NULL;
+> +
+> +	if (usb3_phy != NULL && usb3_phy->dev != NULL)
+> +		rtk_phy = dev_get_drvdata(usb3_phy->dev);
+> +
+> +	if (rtk_phy == NULL) {
+> +		pr_err("%s ERROR! NO this device\n", __func__);
+
+Your error messages are not helping. No need to shout, no need to handle
+some non-existing cases. If this is real case, you have broken driver. I
+actually suspect that.
+
+How can you interface with a driver where there is no device?
+
+> +		return;
+> +	}
+> +
+> +	if (index > rtk_phy->phyN) {
+> +		pr_err("%s %d ERROR! port=%d > phyN=%d\n",
+> +			    __func__, __LINE__, index, rtk_phy->phyN);
+> +		return;
+> +	}
+> +
+> +	do_rtk_usb3_phy_toggle(rtk_phy, index, isConnect);
+> +}
+> +
+> +static int rtk_usb_phy_notify_port_status(struct usb_phy *x, int port,
+> +	    u16 portstatus, u16 portchange)
+> +{
+> +	bool isConnect = false;
+
+This is not C++. Don't use camelcase. See Coding style document.
+
+> +
+> +	pr_debug("%s port=%d portstatus=0x%x portchange=0x%x\n",
+> +		    __func__, port, (int)portstatus, (int)portchange);
+> +	if (portstatus & USB_PORT_STAT_CONNECTION)
+> +		isConnect = true;
+> +
+
+...
+
+> +
+> +static int rtk_usb3_set_parameter_show(struct seq_file *s, void *unused)
+> +{
+> +	struct rtk_usb_phy *rtk_phy = s->private;
+> +	const struct file *file = s->file;
+> +	const char *file_name = file_dentry(file)->d_iname;
+> +	struct dentry *p_dentry = file_dentry(file)->d_parent;
+> +	const char *phy_dir_name = p_dentry->d_iname;
+> +	int ret, index;
+> +	struct phy_data *phy_data = NULL;
+> +
+> +	for (index = 0; index < rtk_phy->phyN; index++) {
+> +		size_t sz = 30;
+> +		char name[30] = {0};
+> +
+> +		snprintf(name, sz, "phy%d", index);
+> +		if (strncmp(name, phy_dir_name, strlen(name)) == 0) {
+> +			phy_data = &((struct phy_data *)rtk_phy->phy_data)[index];
+> +			break;
+> +		}
+> +	}
+> +	if (!phy_data) {
+> +		dev_err(rtk_phy->dev,
+> +				    "%s: No phy_data for %s/%s\n",
+> +				    __func__, phy_dir_name, file_name);
+
+Mess wrapping/indentation. Actually everywhere in the file...
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = __get_parameter_at_page(s, rtk_phy, phy_data->parameter, file_name);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	seq_puts(s, "Set phy parameter by following command\n");
+> +	seq_printf(s, "echo \"value\" > %s/%s\n",
+> +		    phy_dir_name, file_name);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rtk_usb3_set_parameter_open(struct inode *inode, struct file *file)
+> +{
+> +	return single_open(file, rtk_usb3_set_parameter_show, inode->i_private);
+> +}
+> +
+> +static ssize_t rtk_usb3_set_parameter_write(struct file *file,
+> +		const char __user *ubuf, size_t count, loff_t *ppos)
+> +{
+> +	const char *file_name = file_dentry(file)->d_iname;
+> +	struct dentry *p_dentry = file_dentry(file)->d_parent;
+> +	const char *phy_dir_name = p_dentry->d_iname;
+> +	struct seq_file		*s = file->private_data;
+> +	struct rtk_usb_phy		*rtk_phy = s->private;
+> +	struct reg_addr *regAddr = NULL;
+> +	struct phy_data *phy_data = NULL;
+> +	int ret = 0;
+> +	char buffer[40] = {0};
+> +	int index;
+> +
+> +	if (copy_from_user(&buffer, ubuf,
+> +		    min_t(size_t, sizeof(buffer) - 1, count)))
+> +		return -EFAULT;
+> +
+> +	for (index = 0; index < rtk_phy->phyN; index++) {
+> +		size_t sz = 30;
+> +		char name[30] = {0};
+> +
+> +		snprintf(name, sz, "phy%d", index);
+> +		if (strncmp(name, phy_dir_name, strlen(name)) == 0) {
+> +			regAddr = &((struct reg_addr *)rtk_phy->reg_addr)[index];
+> +			phy_data = &((struct phy_data *)rtk_phy->phy_data)[index];
+> +			break;
+
+
+Where is the ABI documentation for user interface?
+
+
+> +
+> +static inline void create_debug_files(struct rtk_usb_phy *rtk_phy)
+> +{
+> +	struct dentry *phy_debug_root = NULL;
+> +	struct dentry *set_parameter_dir = NULL;
+> +
+> +	phy_debug_root = create_phy_debug_root();
+> +
+> +	if (!phy_debug_root) {
+> +		dev_err(rtk_phy->dev, "%s Error phy_debug_root is NULL",
+> +			    __func__);
+> +		return;
+> +	}
+> +	rtk_phy->debug_dir = debugfs_create_dir(dev_name(rtk_phy->dev),
+> +		    phy_debug_root);
+> +	if (!rtk_phy->debug_dir) {
+> +		dev_err(rtk_phy->dev, "%s Error debug_dir is NULL", __func__);
+
+Are you sure you run checkpatch on this? Error messages on debugfs are
+almost always incorrect.
+
+> +		return;
+> +	}
+> +
+> +	if (!debugfs_create_file("parameter", 0444,
+> +		    rtk_phy->debug_dir, rtk_phy,
+> +		    &rtk_usb3_parameter_fops))
+> +		goto file_error;
+> +
+> +	set_parameter_dir = debugfs_create_dir("set_parameter",
+> +		    rtk_phy->debug_dir);
+> +	if (set_parameter_dir) {
+> +		int index, ret;
+> +
+> +		for (index = 0; index < rtk_phy->phyN; index++) {
+> +			struct dentry *phy_dir;
+> +			struct phy_data *phy_data;
+> +			size_t sz = 30;
+> +			char name[30] = {0};
+> +
+> +			snprintf(name, sz, "phy%d", index);
+> +
+> +			phy_data = &((struct phy_data *)rtk_phy->phy_data)[index];
+> +
+> +			phy_dir = debugfs_create_dir(name, set_parameter_dir);
+> +			if (!phy_dir) {
+> +				dev_err(rtk_phy->dev,
+> +					    "%s Error create folder %s fail\n",
+> +					    name, __func__);
+> +				goto file_error;
+> +			}
+> +
+> +			ret = create_debug_set_parameter_files(rtk_phy, phy_dir,
+> +				    phy_data->size);
+> +			if (ret < 0) {
+> +				dev_err(rtk_phy->dev,
+> +					    "%s Error create files fail\n",
+> +					    __func__);
+> +				goto file_error;
+> +			}
+> +		}
+> +	}
+> +
+> +	if (!debugfs_create_file("toggle", 0644, rtk_phy->debug_dir, rtk_phy,
+> +		    &rtk_usb3_toggle_fops))
+> +		goto file_error;
+> +
+> +	return;
+> +
+> +file_error:
+> +	debugfs_remove_recursive(rtk_phy->debug_dir);
+> +}
+> +
+> +static inline void remove_debug_files(struct rtk_usb_phy *rtk_phy)
+> +{
+> +	debugfs_remove_recursive(rtk_phy->debug_dir);
+> +}
+> +#else
+> +static inline void create_debug_files(struct rtk_usb_phy *rtk_phy) { }
+> +static inline void remove_debug_files(struct rtk_usb_phy *rtk_phy) { }
+> +#endif /* CONFIG_DEBUG_FS */
+> +
+> +static int __get_phy_parameter_by_efuse(struct rtk_usb_phy *rtk_phy,
+> +	    struct phy_data *phy_data, int index)
+> +{
+> +	u8 value = 0;
+> +	struct nvmem_cell *cell;
+> +
+> +	if (!phy_data->check_efuse)
+> +		goto out;
+> +
+> +	cell = nvmem_cell_get(rtk_phy->dev, "usb_u3_tx_lfps_swing_trim");
+> +	if (IS_ERR(cell)) {
+> +		dev_warn(rtk_phy->dev,
+> +			    "%s failed to get usb_u3_tx_lfps_swing_trim: %ld\n",
+> +			    __func__, PTR_ERR(cell));
+> +	} else {
+> +		unsigned char *buf;
+> +		size_t buf_size;
+> +
+> +		buf = nvmem_cell_read(cell, &buf_size);
+> +
+> +		value = buf[0] & USB_U3_TX_LFPS_SWING_TRIM_MASK;
+> +
+> +		dev_dbg(rtk_phy->dev,
+> +			    "phy index=%d buf=0x%x buf_size=%d value=0x%x\n",
+> +			    index, buf[0], (int)buf_size, value);
+> +		kfree(buf);
+> +		nvmem_cell_put(cell);
+> +	}
+> +
+> +	if ((value > 0) && (value < 0x8))
+> +		phy_data->efuse_usb_u3_tx_lfps_swing_trim = 0x8;
+> +	else
+> +		phy_data->efuse_usb_u3_tx_lfps_swing_trim = (u8)value;
+> +
+> +	dev_dbg(rtk_phy->dev, "Get Efuse usb_u3_tx_lfps_swing_trim=0x%x (value=0x%x)\n",
+> +		    phy_data->efuse_usb_u3_tx_lfps_swing_trim, value);
+> +
+> +out:
+> +	return 0;
+> +}
+> +
+> +static int __get_phy_parameter(struct device *dev, struct phy_data *phy_data,
+> +	    struct device_node *sub_node)
+> +{
+> +	struct phy_parameter *phy_parameter;
+> +	int i, ret = 0;
+> +	int data_size, num_cells = 2;
+> +
+> +	phy_data->size = MAX_USB_PHY_DATA_SIZE;
+> +	phy_data->parameter = devm_kzalloc(dev,
+> +		    sizeof(struct phy_parameter) * phy_data->size, GFP_KERNEL);
+> +	if (!phy_data->parameter)
+> +		return -ENOMEM;
+> +
+> +	if (!of_get_property(sub_node, "realtek,param", &data_size)) {
+> +		dev_dbg(dev, "%s No parameter (data_size=%d)\n",
+> +			    __func__, data_size);
+> +		data_size = 0;
+> +	}
+> +
+> +	if (!data_size)
+> +		goto out;
+> +
+> +	phy_parameter = phy_data->parameter;
+> +	/* Set default addr to 0xff for no data case */
+> +	for (i = 0; i < phy_data->size; i++)
+> +		(phy_parameter + i)->addr = 0xFF;
+> +
+> +	data_size = data_size / (sizeof(u32) * num_cells);
+> +	for (i = 0; i < data_size; i++) {
+> +		struct phy_parameter *parameter;
+> +		u32 addr, data;
+> +		int offset, index;
+> +
+> +		offset = i * num_cells;
+> +
+> +		ret = of_property_read_u32_index(sub_node, "realtek,param",
+> +			    offset, &addr);
+> +		if (ret) {
+> +			dev_err(dev, "ERROR: To get param i=%d addr=0x%x\n",
+> +				    i, addr);
+> +			break;
+> +		}
+> +
+> +		ret = of_property_read_u32_index(sub_node, "realtek,param",
+> +			    offset + 1, &data);
+> +		if (ret) {
+> +			dev_err(dev, "ERROR: To get param i=%d addr=0x%x\n",
+> +				    i, data);
+> +			break;
+> +		}
+> +
+> +		index = PHY_ADDR_MAP_ARRAY_INDEX(addr);
+> +		parameter = (phy_parameter + index);
+> +		parameter->addr = (u8)addr;
+> +		parameter->data = (u16)data;
+> +
+> +		dev_dbg(dev, "param index=%d addr=0x%x data=0x%x\n", index,
+> +			    parameter->addr, parameter->data);
+> +	}
+> +
+> +out:
+> +	return ret;
+> +}
+> +
+> +static int get_phy_parameter(struct rtk_usb_phy *rtk_phy,
+> +	    struct device_node *sub_node)
+> +{
+> +	struct device *dev = rtk_phy->dev;
+> +	struct reg_addr *addr;
+> +	struct phy_data *phy_data;
+> +	int ret = 0;
+> +	int index;
+> +
+> +	if (of_property_read_u32(sub_node, "reg", &index)) {
+> +		dev_err(dev, "sub_node without reg\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_dbg(dev, "sub_node index=%d\n", index);
+
+Please drop all simple debug success messages. Linux has already
+infrastructure for this.
+
+...
+
+> +
+> +static int rtk_usb3phy_probe(struct platform_device *pdev)
+> +{
+> +	struct rtk_usb_phy *rtk_phy;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *node;
+> +	struct device_node *sub_node;
+> +	struct phy *generic_phy;
+> +	struct phy_provider *phy_provider;
+> +	int ret, phyN;
+> +
+> +	rtk_phy = devm_kzalloc(dev, sizeof(*rtk_phy), GFP_KERNEL);
+> +	if (!rtk_phy)
+> +		return -ENOMEM;
+> +
+> +	rtk_phy->dev			= &pdev->dev;
+> +	rtk_phy->phy.dev		= rtk_phy->dev;
+> +	rtk_phy->phy.label		= "rtk-usb3phy";
+> +	rtk_phy->phy.notify_port_status = rtk_usb_phy_notify_port_status;
+> +
+> +	if (!dev->of_node) {
+> +		dev_err(dev, "%s %d No device node\n", __func__, __LINE__);
+
+How is it even possible? If you do not have device node here, how did it
+probe?
+
+> +		ret = -ENODEV;
+> +		goto err;
+> +	}
+> +
+> +	node = dev->of_node;
+> +
+> +	phyN = of_get_child_count(node);
+> +	rtk_phy->phyN = phyN;
+> +	dev_dbg(dev, "%s phyN=%d\n", __func__, rtk_phy->phyN);
+
+Please drop all simple debug success messages. Linux has already
+infrastructure for this.
+
+> +
+> +	rtk_phy->reg_addr = devm_kzalloc(dev,
+> +		    sizeof(struct reg_addr) * phyN, GFP_KERNEL);
+> +	if (!rtk_phy->reg_addr)
+> +		return -ENOMEM;
+> +
+> +	rtk_phy->phy_data = devm_kzalloc(dev,
+> +		    sizeof(struct phy_data) * phyN, GFP_KERNEL);
+> +	if (!rtk_phy->phy_data)
+> +		return -ENOMEM;
+> +
+> +	for (sub_node = of_get_next_child(node, NULL); sub_node != NULL;
+> +		    sub_node = of_get_next_child(node, sub_node)) {
+> +		ret = get_phy_parameter(rtk_phy, sub_node);
+> +		if (ret) {
+> +			dev_err(dev, "%s: get_phy_parameter fail ret=%d\n",
+> +				    __func__, ret);
+> +			goto err;
+> +		}
+> +	}
+> +
+> +	platform_set_drvdata(pdev, rtk_phy);
+> +
+> +	generic_phy = devm_phy_create(rtk_phy->dev, NULL, &ops);
+> +	if (IS_ERR(generic_phy))
+> +		return PTR_ERR(generic_phy);
+> +
+> +	phy_set_drvdata(generic_phy, rtk_phy);
+> +
+> +	phy_provider = devm_of_phy_provider_register(rtk_phy->dev,
+> +				    of_phy_simple_xlate);
+> +	if (IS_ERR(phy_provider))
+> +		return PTR_ERR(phy_provider);
+> +
+> +	ret = usb_add_phy_dev(&rtk_phy->phy);
+> +	if (ret)
+> +		goto err;
+> +
+> +	create_debug_files(rtk_phy);
+> +
+> +err:
+> +	dev_dbg(&pdev->dev, "Probe RTK USB 3.0 PHY (ret=%d)\n", ret);
+
+Please drop all simple debug success messages. Linux has already
+infrastructure for this.
+
+Best regards,
+Krzysztof
 
