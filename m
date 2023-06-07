@@ -2,123 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2127726750
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3EFE72676C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbjFGRaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 13:30:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34134 "EHLO
+        id S231843AbjFGRcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 13:32:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232007AbjFGRaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:30:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754BF1BF3;
-        Wed,  7 Jun 2023 10:29:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0E717641C9;
-        Wed,  7 Jun 2023 17:29:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34026C433D2;
-        Wed,  7 Jun 2023 17:29:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686158998;
-        bh=qUqourH5uc4ji7oEk2SQQPg4PPUxxGGcwLfKI9xx2pU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eYi8gEC8jaQFLmTpx+SOQZoh/p41OWLw3bc8+P4uA145tlTL3DM2W9OolFWIgfZJH
-         bwxz0vTvSG5opKrhIr8G/N7ww68bchAkhmrr9RuAy28/Z0xBUDu92NrIcT4Yiubdkh
-         TIIeN5vXeJV9+RaKSuuk6DK12U2gOD6MjTwt7t4O0Vz5TmpkUMg76J/6VD8YrPril5
-         WpcPsOiOGkpDdgf0V3qzrUUqCsOZe5iCGKL/4UL+1yxdstGDj0PEOzByMSGUEXJrwP
-         r/eaeUtwBNeSvq9KJ+s6HGrLEO1P3oTHwJFxQqV0ZXO/fjUEb9872X3s/S5SdO0Wjy
-         a+GOtZ15PKs3A==
-Date:   Wed, 7 Jun 2023 18:29:53 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        kernel@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 7/8] dt-bindings: arm: stm32: Add compatible string
- for Linux Automation LXA TAC
-Message-ID: <20230607-nineteen-juggle-ce240df8815e@spud>
-References: <20230607115508.2964574-1-l.goehrs@pengutronix.de>
- <20230607115508.2964574-7-l.goehrs@pengutronix.de>
+        with ESMTP id S229729AbjFGRcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:32:22 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBE1D1FDA;
+        Wed,  7 Jun 2023 10:32:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686159129; x=1717695129;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AsVSg3Faz1IxnTa3HiL4YpkQZ7wQ38kBaOY0hJhpXrU=;
+  b=QPHU595MaVDvKre3Peir1jxavI9OQzZVmTbV+HaAfwK8NJ01pKdKw1ik
+   kJtt205TWGqUGEtDdgdLWmetYwwNO+Q3j9CoguJ5XM0FmijjPnJVhYLIw
+   r+tDti17rhar5A0ds1ikVyPCIQNRZcR3rH/nb1DDhpe3x2hcHSJ+H/7gE
+   y90WmKr6oSstlN6aC97m6Q4AMqFBpefDija2IBeU2tQvP8n9vual/Bap1
+   JEoVrtVbdYFk4jI9f/AxLOWR/d7vuE5g1w1R+5q83zrw7wKAPn98PDeZ4
+   7EW6QF7qpogc8bGQEdXA4HqAEOzGb9kQT96TVbgmplSPxK9JHhD5PEGXI
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="420614934"
+X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; 
+   d="scan'208";a="420614934"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2023 10:32:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="854002886"
+X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; 
+   d="scan'208";a="854002886"
+Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 07 Jun 2023 10:32:04 -0700
+Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q6x0u-0006mA-0K;
+        Wed, 07 Jun 2023 17:32:04 +0000
+Date:   Thu, 8 Jun 2023 01:31:15 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Stanley Chang <stanley_chang@realtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Stanley Chang <stanley_chang@realtek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Ray Chi <raychi@google.com>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] phy: realtek: usb: Add driver for the Realtek SoC
+ USB 2.0 PHY
+Message-ID: <202306080128.Gh3c2H1O-lkp@intel.com>
+References: <20230607062500.24669-2-stanley_chang@realtek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vXO1s5rpo0+jzojb"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230607115508.2964574-7-l.goehrs@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230607062500.24669-2-stanley_chang@realtek.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Stanley,
 
---vXO1s5rpo0+jzojb
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+kernel test robot noticed the following build errors:
 
-On Wed, Jun 07, 2023 at 01:55:06PM +0200, Leonard G=F6hrs wrote:
-> Add DT compatible string for Linux Automation GmbH Test Automation
-> Controllers (LXA TAC).
-> LXA TACs are a development tool for embedded devices with a focus on
-> embedded Linux devices.
->=20
-> As of now there are two STM32MP157 based hardware generations (Gen 1 and
-> Gen 2) that have most of their hardware config in common.
-> In the future there will also be a STM32MP153 based hardware generation.
+[auto build test ERROR on usb/usb-testing]
+[also build test ERROR on usb/usb-next usb/usb-linus robh/for-next linus/master v6.4-rc5 next-20230607]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+url:    https://github.com/intel-lab-lkp/linux/commits/Stanley-Chang/phy-realtek-usb-Add-driver-for-the-Realtek-SoC-USB-2-0-PHY/20230607-142704
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/20230607062500.24669-2-stanley_chang%40realtek.com
+patch subject: [PATCH v3 2/5] phy: realtek: usb: Add driver for the Realtek SoC USB 2.0 PHY
+config: arm64-randconfig-r014-20230607 (https://download.01.org/0day-ci/archive/20230608/202306080128.Gh3c2H1O-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        git remote add usb https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
+        git fetch usb usb-testing
+        git checkout usb/usb-testing
+        b4 shazam https://lore.kernel.org/r/20230607062500.24669-2-stanley_chang@realtek.com
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-Cheers,
-Conor.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306080128.Gh3c2H1O-lkp@intel.com/
 
->=20
-> Signed-off-by: Leonard G=F6hrs <l.goehrs@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Doc=
-umentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index 13e34241145b4..11f8706101eca 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -143,7 +143,9 @@ properties:
->        - description: Octavo OSD32MP15x System-in-Package based boards
->          items:
->            - enum:
-> -              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
-> +              - lxa,stm32mp157c-mc1      # Linux Automation MC-1
-> +              - lxa,stm32mp157c-tac-gen1 # Linux Automation TAC (Generat=
-ion 1)
-> +              - lxa,stm32mp157c-tac-gen2 # Linux Automation TAC (Generat=
-ion 2)
->            - const: oct,stm32mp15xx-osd32
->            - enum:
->                - st,stm32mp157
-> --=20
-> 2.39.2
->=20
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
---vXO1s5rpo0+jzojb
-Content-Type: application/pgp-signature; name="signature.asc"
+ERROR: modpost: "devm_usb_get_phy_by_phandle" [drivers/power/supply/wm831x_power.ko] undefined!
+>> ERROR: modpost: "devm_usb_get_phy" [drivers/power/supply/da9150-charger.ko] undefined!
 
------BEGIN PGP SIGNATURE-----
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for USB_PHY
+   Depends on [n]: USB_SUPPORT [=n]
+   Selected by [y]:
+   - PHY_RTK_RTD_USB2PHY [=y]
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIC+kQAKCRB4tDGHoIJi
-0lf0AP48pRw+p/nwEiqZAGvkiPn8nlVnQ17FS8JChPdQ9Yc/BQEAzSCZjdBpjF5u
-s6ODLBfJNtdez0O+nzjJv/e5ktym3A4=
-=c8oD
------END PGP SIGNATURE-----
-
---vXO1s5rpo0+jzojb--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
