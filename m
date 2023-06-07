@@ -2,61 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F75D725809
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04F30725851
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238568AbjFGIkZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 7 Jun 2023 04:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44066 "EHLO
+        id S238874AbjFGIqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 04:46:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238524AbjFGIkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:40:21 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203571706;
-        Wed,  7 Jun 2023 01:40:14 -0700 (PDT)
-Received: from ip5b412278.dynamic.kabel-deutschland.de ([91.65.34.120] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1q6oi6-0006LM-Ch; Wed, 07 Jun 2023 10:40:06 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Keith Zhao <keith.zhao@starfivetech.com>,
-        Shengyu Qu <wiagn233@outlook.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S239332AbjFGIqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:46:07 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC9A419BD;
+        Wed,  7 Jun 2023 01:45:58 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 531D95FD5C;
+        Wed,  7 Jun 2023 11:45:56 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1686127556;
+        bh=uBSKsrbRuolQZg/+wG53i1qmpUFa/MrANVgb91lYcfk=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=MxOw7qzEgxWEAD9hil/w/JFHtOGjEZq5QYLAyDNyLlk4PqAwHKPEsgxnulQC02XWM
+         lwMI3vIh9DLyjXyIbeWT8xe5TzYS1QEtXolV0jCZqMx7a4pHasNKyP2rGopWt6pawi
+         vFmT/RWjjae/ieN1LLunhHErDMhKfluxORC+M1s2sAXStqpj3a9cqUY3MawSqc1b7x
+         M31vPKCMHjD0SyivSVNNf14ljs6st90g1H7Nry+Adel5Ii+nJnOLOlQWcmtrP3Cl7C
+         FAURsCHPQNWfjop1wqJ8SWRW6Ws9ioeDdmcqlnyPoAdQ5sM2edIg+jswOAXZ6EGJsN
+         IEYpbkbkq9img==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Wed,  7 Jun 2023 11:45:53 +0300 (MSK)
+Message-ID: <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
+Date:   Wed, 7 Jun 2023 11:40:59 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH 1/9] dt-bindings: display: Add yamls for JH7110 display subsystem
-Date:   Wed, 07 Jun 2023 10:40:04 +0200
-Message-ID: <3560873.iIbC2pHGDl@diego>
-In-Reply-To: <20230606-geometry-blurb-1f0f07d4bf6a@spud>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <1991848.PYKUYFuaPT@diego> <20230606-geometry-blurb-1f0f07d4bf6a@spud>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
+ <20230607095802.3adcd4f9@xps-13>
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230607095802.3adcd4f9@xps-13>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 04:52:00 #21449589
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,62 +77,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 7. Juni 2023, 00:37:53 CEST schrieb Conor Dooley:
-> On Wed, Jun 07, 2023 at 12:22:33AM +0200, Heiko St¸bner wrote:
-> > Am Dienstag, 6. Juni 2023, 20:41:17 CEST schrieb Shengyu Qu:
-> > > > On Fri, Jun 02, 2023 at 03:40:35PM +0800, Keith Zhao wrote:
-> > > >> Add bindings for JH7110 display subsystem which
-> > > >> has a display controller verisilicon dc8200
-> > > >> and an HDMI interface.
+Hello Miquel, 
+
+On 07.06.2023 10:58, Miquel Raynal wrote:
+
+> Hi Arseniy,
 > 
-> > > >> +description:
-> > > >> +  The StarFive SoC uses the HDMI signal transmiter based on innosilicon IP
-> > > > Is innosilicon the same thing as verisilicon? Also
-> > > > s/transmiter/transmitter/, both here and in the title.
-> > > 
-> > > I think that is not the same, I remember Rockchip has used a HDMI 
-> > > transmitter from
-> > > 
-> > > Innosilicon, and there is a existing driver for that in mainline.
-> > 
-> > Yep, I think Innosilicon is the company you turn to when you want to save
-> > a bit of money ;-) . In the bigger SoCs Rockchip most of the time uses
-> > Designware hdmi blocks and looking at the history only the rk3036 ever
-> > used an Innosilicon block.
-> > 
-> > Looking at the history, 2016 really was a long time ago :-D.
-> > 
-> > > So Keith, if that's true, I think it is better to seperate the HDMI 
-> > > stuff and reuse existing driver.
-> > 
-> > I'm not so sure about that - at least from a cursory glance :-) .
-> > 
-> > The registers do look slightly different and I don't know how much
-> > the IP changed between the rk3036-version and the jh7110 version.
-> > 
-> > At the very least, I know my rk3036 board isn't booting right now, so
-> > I can't really provide help for generalizing the rockchip-driver.
-> > 
-> > At the very least both the binding and driver could drop the "starfive-hdmi"
-> > and actually use the Innosilicon in the naming somewhere, so that it's
-> > clear for future developers :-)
+> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
 > 
-> Seeing "based on" always makes me a little bit nervous to be honest when
-> it comes to using a compatible from the IP. Is it the IP? What version
-> is it? etc. Perhaps "starfive,jh7110-hdmi" & falling back to some sort
-> of "innosilicon,hdmi" would be more future/IP-silliness proof.
-> Driver can always be generic & bind against "innosilicon,hdmi" until
-> that becomes impossible.
+>> Add description of 'nand-rb' property. Use "Fixes" because this property
+>> must be supported since the beginning. For this controller 'nand-rb' is
+>> stored in the controller node (not in chip), because it has only single
+>> r/b wire for all chips.
+> 
+> Sorry if I mislead you in the first place, but you could definitely
+> have two chips and only one with RB wired. It needs to be defined in
+> the chips.
 
+Ok, so to clarify: is it ok, that in bindings this property will be placed in the
+chip, but in driver, i'm trying to read it from the controller node (thus  in
+dts file it will be also in controller node)? Because in driver there is no sense
+to store this value in chip structure. In fact, in driver, I can read it from the
+chip node, but set 'no_rb_pin' flag in the controller structure.
 
-what Connor said makes a lot of sense. Just name the compatible
-after the actual implementation - aka "starfive,jh7110-hdmi" .
+Thanks, Arseniy
 
-This is similar to what the rk3036 does with its
-"rockchip,rk3036-inno-hdmi". That way you're nicely independent
-and future proof.
+> 
+> Please keep the bindings and driver changes related to this in the same
+> series.
 
+Ack
 
-Heiko
-
-
+> 
+>>
+>> Fixes: fbc00b5e746f ("dt-bindings: nand: meson: convert txt to yaml")
+>> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+>> ---
+>>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> index 28fb9a7dd70f..866edf800b81 100644
+>> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> @@ -37,6 +37,8 @@ properties:
+>>        - const: core
+>>        - const: device
+>>  
+>> +  nand-rb: true
+>> +
+>>  patternProperties:
+>>    "^nand@[0-7]$":
+>>      type: object
+>> @@ -81,6 +83,7 @@ examples:
+>>  
+>>        pinctrl-0 = <&nand_pins>;
+>>        pinctrl-names = "default";
+>> +      nand-rb = "true";
+>>  
+>>        #address-cells = <1>;
+>>        #size-cells = <0>;
+> 
+> 
+> Thanks,
+> Miqu√®l
