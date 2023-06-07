@@ -2,82 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B74726831
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 211CA726847
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbjFGSM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 14:12:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57678 "EHLO
+        id S229575AbjFGSSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:18:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233009AbjFGSMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:12:38 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26C22724
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:12:05 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51458187be1so2106134a12.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:12:05 -0700 (PDT)
+        with ESMTP id S231659AbjFGSSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:18:05 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED341210B
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:17:39 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977d0ee1736so643487666b.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:17:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686161523; x=1688753523;
+        d=linaro.org; s=google; t=1686161850; x=1688753850;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c8LLkELG8pk1deRrNltGQ2MtkxURXpppj04DS98maLQ=;
-        b=mQwtQAxpJG8jV/xuinu93mq/TbKBa7bsRoILZ55z99uqXXE5DKZVFKH7DpniJCQN1O
-         JtBEzsgI5qPT30X/q0Ql60fQqMuONlqxwLiKA7rXEx8zAscuJcOUApu9ynYG/zDz8AAZ
-         yaiZnamd97s2iyhRdQ6Okaql4+ryQb3SwBY4YNl7kNJ+HRy1qJPxw4WeNqJZaXWlbO0J
-         8j9JXYJRVIh/WIx5MtpUQNuVjTwyALsOrfeJeyaUTiYmEkPHvxCvCXSu4pxjC2GL9bN+
-         dO9tWQFuJMI96rn4DT7hGU4eGoGPA47VuIOOtE6tCe61TclepLRJE98yM/i3EPz1lMe6
-         SEtQ==
+        bh=prDRECWq9gF2HlqhPhhfLHooXy3hmv9x6uJRavIYoMM=;
+        b=K8CKxwxxN45RRYaTH7NPm1PcmY5u9Gf+agf79C9mZHlN8CYjn0SvqEmRzpevWMmaj0
+         mhpDpp0KtIdV3xImPBNLj/6AalyMVyBbvf4X+LboPXyX3/mLFTSI5X+EDBye1KGVuQm2
+         9PLdOHTQuzN6xcm4aatFX34Swjx7jlpQ21OCyutgc/ClFDXHALAPNaF3fP8ybwDpBo4n
+         xFAVxB5O9J9gpHslhAfiEwdyPj4h2ctQ0k2tNERAnpI6L/qkR3zQQwCh5QP7Pp1aE8n4
+         9znUQsLY05jSaorR006Bdcc8zqOIDdEGKP/qUY5fUyfDEkd/nBxypOV9pwbcbIbWYjk4
+         C39w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686161523; x=1688753523;
+        d=1e100.net; s=20221208; t=1686161850; x=1688753850;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c8LLkELG8pk1deRrNltGQ2MtkxURXpppj04DS98maLQ=;
-        b=IGcgTNgt8CFbqcIpftQbeuy3aIYV8ax2rbomq5nkBr8h/My5aXSYBcu7wUkhZF7wUh
-         dqOCIib6WWF0SHIxHPfZT5/2tsvS8k8GZcLnh39kj7+nsiaFw6JLU60jMbJzw5D5uzrz
-         tzjY4+NmUpS2JXC/iozwqoidMFQcadEQ/6F7Ds6iSPqkN9zR1dYl5nZG96NY+1fC6Qyt
-         5HeXLWy2pqwI0MYTl8g0yIJkP6bSkTGvPEVRxjD87HSa0YXNCJ3sbPft93YBTA1giLKb
-         /clukkydgc88llO6AKCAy7kiuDfMYfECYDclzAsAe+AQ95C0jhQKsH0UA49dB8CfD3K/
-         1w2w==
-X-Gm-Message-State: AC+VfDyos1zkuZDp5JqO6C91JPax4hFDPs6TWAPhsYFB8CruE2mhQ6ZA
-        mXll02GMPvH29IJYVmWmjWqz1g==
-X-Google-Smtp-Source: ACHHUZ4atA66ozVYI+ahtfsSLEEsIg2F4Rpb/cEGKV9GpyA79gCHhdMvWAlwmA4CitsH2GXDKLrxQQ==
-X-Received: by 2002:a17:907:7da3:b0:977:d676:d3ca with SMTP id oz35-20020a1709077da300b00977d676d3camr7269835ejc.33.1686161523172;
-        Wed, 07 Jun 2023 11:12:03 -0700 (PDT)
+        bh=prDRECWq9gF2HlqhPhhfLHooXy3hmv9x6uJRavIYoMM=;
+        b=gtM1EUwSfHSF3kvzl8WMHCUJcEJ45ylAbYOklJVVjgB1NDhUe8AV8vAiv8rQwE14S6
+         ToMzLKNLdsE11/hqxD43xpzJBfUTZPfrc9ZS93RMne2cCi/KcKOVxRLVPInQnc+XsK1d
+         GLgQfwf2DaSTLLDakMc39cjV4RY+uPavEzErpTcj0ki2ciQrI6JpUyabcx/+XyzjJGKY
+         A+5RPKMmEnfGhOmIrnILLZjqxHSzdvnKW2ZgoBbhGx/EJKCvj3dAcONUQpet0Sq5/iT2
+         cnboVeHPIUFaQxim9+rwZFGgEE7fr0vM0BlrqKWcvrMCo1k5Bl84h+nipACOy6hAcjYV
+         sO/A==
+X-Gm-Message-State: AC+VfDygzHB56RF193m3cXAu58Ilz8C5fwMSHGRf2ToZLoyWXL5lh1rh
+        k475c1nUJVD4oUU+x7bMiflMqA==
+X-Google-Smtp-Source: ACHHUZ6yoYhGvQnkxo1NhlbZPThR0OVI8Y6NmV6ZpfuYehTZsNtv3pdMlOHWJLxpGXA/52ORFV87KQ==
+X-Received: by 2002:a17:907:1606:b0:94a:7b2c:205e with SMTP id hb6-20020a170907160600b0094a7b2c205emr6065400ejc.72.1686161849737;
+        Wed, 07 Jun 2023 11:17:29 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id q20-20020a170906a09400b009786ae9ed50sm2488347ejy.194.2023.06.07.11.12.00
+        by smtp.gmail.com with ESMTPSA id gu19-20020a170906f29300b0096a1ba4e0d1sm7262812ejb.32.2023.06.07.11.17.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 11:12:02 -0700 (PDT)
-Message-ID: <7717cc1b-d258-4fb6-3379-05b2de27dc70@linaro.org>
-Date:   Wed, 7 Jun 2023 20:11:59 +0200
+        Wed, 07 Jun 2023 11:17:29 -0700 (PDT)
+Message-ID: <a4134777-e43c-4b74-58d8-bff0c0d1a6f6@linaro.org>
+Date:   Wed, 7 Jun 2023 20:17:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v6 05/12] dt-bindings: display/msm: Add SM6375 MDSS
+Subject: Re: [PATCH v6 1/1] dt-bindings: pinctrl: Update pinctrl-single to use
+ yaml
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev
-References: <20230411-topic-straitlagoon_mdss-v6-0-dee6a882571b@linaro.org>
- <20230411-topic-straitlagoon_mdss-v6-5-dee6a882571b@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20230605095216.18864-1-tony@atomide.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230411-topic-straitlagoon_mdss-v6-5-dee6a882571b@linaro.org>
+In-Reply-To: <20230605095216.18864-1-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,17 +80,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 14:43, Konrad Dybcio wrote:
-> Document the SM6375 MDSS.
+On 05/06/2023 11:52, Tony Lindgren wrote:
+> Update binding for yaml and remove the old related txt bindings. Note that
+> we are also adding the undocumented pinctrl-single,slew-rate property. And
+> we only use the first example from the old binding.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 > ---
->  .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 215 +++++++++++++++++++++
->  1 file changed, 215 insertions(+)
 > 
+> Changes since v5:
+> - Fix issues noted by Krzysztof
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> new file mode 100644
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> @@ -0,0 +1,206 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Pinctrl driver for hardware with a single register for one or more pins
+
+I asked to drop the driver references but it is still here. Bindings are
+not describing drivers.
+
+"Generic Pin Controller with a Single Register for One or More Pins"
+
+
+> +
+> +maintainers:
+> +  - Tony Lindgren <tony@atomide.com>
+> +
+> +description:
+> +  Some pin controller devices use a single register for one or more pins. The
+> +  range of pin control registers can vary from one to many for each controller
+> +  instance. Some SoCs from Altera, Broadcom, HiSilicon, Ralink, and TI have this
+> +  kind of pin controller instances.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - pinctrl-single
+> +          - pinconf-single
+> +      - items:
+> +          - enum:
+> +              - ti,am437-padconf
+> +              - ti,dra7-padconf
+> +              - ti,omap2420-padconf
+> +              - ti,omap2430-padconf
+> +              - ti,omap3-padconf
+> +              - ti,omap4-padconf
+> +              - ti,omap5-padconf
+> +          - const: pinctrl-single
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  '#pinctrl-cells':
+> +    description:
+> +      Number of cells. Usually 2, consisting of register offset, pin configuration
+> +      value, and pinmux mode. Some controllers may use 1 for just offset and value.
+> +    enum: [ 1, 2 ]
+> +
+> +  pinctrl-single,bit-per-mux:
+> +    description: Optional flag to indicate register controls more than one pin
+> +    type: boolean
+> +
+> +  pinctrl-single,function-mask:
+> +    description: Mask of the allowed register bits
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  pinctrl-single,function-off:
+> +    description: Optional function off mode for disabled state
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  pinctrl-single,register-width:
+> +    description: Width of pin specific bits in the register
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 8, 16, 32 ]
+> +
+> +  pinctrl-single,gpio-range:
+> +    description: Optional list of pin base, nr pins & gpio function
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle of a gpio-range node
+> +          - description: pin base
+> +          - description: number of pins
+> +          - description: gpio function
+> +
+> +  '#gpio-range-cells':
+> +    description: No longer needed, may exist in older files for gpio-ranges
+> +    deprecated: true
+> +    const: 3
+> +
+> +  gpio-range:
+> +    description: Optional node for gpio range cells
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      '#pinctrl-single,gpio-range-cells':
+> +        description: Number of gpio range cells
+> +        const: 3
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +patternProperties:
+> +  '-pins$|-pin':
+
+you did not implement my comments fully, probably we misunderstood each
+other. Why do you allow anything after '-pin'? Let's make it pure suffix
+for both cases: '-pins?$'
+
+
+> +    description:
+> +      Pin group node name using naming ending in -pins, or having -pin
+> +      in the node name
+> +    type: object
+> +    additionalProperties: false
+> +
+
 
 Best regards,
 Krzysztof
