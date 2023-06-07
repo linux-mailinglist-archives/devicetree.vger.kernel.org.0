@@ -2,177 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74680726260
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 16:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC5972628D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 16:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240953AbjFGOJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 10:09:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
+        id S235683AbjFGOTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 10:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234318AbjFGOJV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 10:09:21 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 292F81BF1;
-        Wed,  7 Jun 2023 07:08:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=rkWjMt2GNbfEvT17R5tH+mVMzIISMovCHFDUfGIB0Q0=; b=cGUk3O6ZxNQwpJgwqnWwggUeTk
-        9GJroCwjndZbfuvkGkexFcMpvCyq1TErIJs7Bd7PLSLHH6/vCTLHZ5PU9BaOTqHnGVxXENnSPa1NN
-        xzrU1kfKCZ1WBCaHvlJIc3opEzWfk2arBxiIq9Hcu0duPhdGhXh9FrSFXZ2hBF8/ZG84=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37910 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q6tpO-0005jo-UK; Wed, 07 Jun 2023 10:08:00 -0400
-Date:   Wed, 7 Jun 2023 10:07:58 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org, Andy Shevchenko <andy.shevchenko@gmail.com>
-Message-Id: <20230607100758.705c82abae71de6a675cbe96@hugovil.com>
-In-Reply-To: <20230604191613.ea95fa9a1bc508525fe3bbd5@hugovil.com>
-References: <20230602152626.284324-1-hugo@hugovil.com>
-        <20230602152626.284324-6-hugo@hugovil.com>
-        <2023060454-cotton-paramount-e33e@gregkh>
-        <20230604134344.73dc3cbb57d335d4a0b4b33a@hugovil.com>
-        <2023060406-scarcity-clear-cc56@gregkh>
-        <20230604191613.ea95fa9a1bc508525fe3bbd5@hugovil.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        with ESMTP id S239096AbjFGOS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 10:18:57 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C0E137
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 07:18:56 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-977d0ee1736so601507666b.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 07:18:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686147535; x=1688739535;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9R9FL/kljP7klYQURPomPx32pq9iiN+AHVHdTIo1X/s=;
+        b=fjACrGO21URflJlUAbeGX1qOr2fFE0jdLZsq/aQFNnF+WnVlp04CPLXgzqjLCtOQ9f
+         Anbh8coNHzOBSvcZ2KuvKOHUxu4W9ES9YOd88jFFRcrDlMlg9kivGBXY046dLOD/2YoZ
+         fRVwpI4VcqiMFsc/T0yoUx1JuuUmL0YLWBuTGCD2r0pdStQXXVmHKQjG6C2ZDmdu3Ion
+         Y/AOx/oIL9DI7kpFySWe/Q+2JmJTBld3MLlIatEocbQQtT3v5wTMqlUV6VIUGif94+jk
+         0V4N9qBbQwkqMIAQcB8gVSdMqb/G6OypXD6IWUGefRty3fiz2tWAPlfoEVA3JfxgfCLA
+         EJPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686147535; x=1688739535;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9R9FL/kljP7klYQURPomPx32pq9iiN+AHVHdTIo1X/s=;
+        b=PRdvDrXRS0dVeLU9S/GNOOjZEFlxI2b/c9N+R147c98m2kl7mybGcK2MSsETbftqGH
+         LuOHQ1PmD6zetl9EciiYus/Bo1kpw9qOfl0L1u5Vt+yFr2/xiBEt5zwKQMw7Dh0vN5W4
+         G0q6dOMzxnPwcLn9ZQwnfp/FL8ArQzzjt1RR+qqZF0aJHhf42bz2BnrnU0ieO+0Xkput
+         CMzXB6EmMbxcIRHRbTmzURFqpO4gcokuzgmAeiWaGJf6EBWRbaatZ0hB1aTTSdHWg329
+         8bdvAYREw+40i1YrasudLjUfD0KYn0Mfp03nRa1o350lC9UnD3NK+/wNjbc2r7cxCIMs
+         UlPg==
+X-Gm-Message-State: AC+VfDyZy9FnAx972YdeMaK/+mhFvKA23H4Axf49bwU8ePc1vfeSSFpa
+        gUdZolCUhXVwlVuQjl9BOir90g==
+X-Google-Smtp-Source: ACHHUZ7MDAz2vD1GVVLqNKd4NcRyBJmnecqHSyLjSQ4ZfNlU3ZTlLib05w5lFnYcfKTzbxBcgHEHUQ==
+X-Received: by 2002:a17:907:7baa:b0:94a:74c9:3611 with SMTP id ne42-20020a1709077baa00b0094a74c93611mr6019245ejc.35.1686147534854;
+        Wed, 07 Jun 2023 07:18:54 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id m26-20020a17090607da00b00977d6723bd6sm4311564ejc.195.2023.06.07.07.18.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 07:18:54 -0700 (PDT)
+Message-ID: <17971357-523c-f907-13a9-8f7abce90c24@linaro.org>
+Date:   Wed, 7 Jun 2023 16:18:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v4 2/3] media: dt-bindings: alvium: add document YAML
+ binding
+Content-Language: en-US
+To:     Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, michael.roeder@avnet.eu,
+        linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Shawn Tu <shawnx.tu@intel.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230607131936.382406-1-tomm.merciai@gmail.com>
+ <20230607131936.382406-3-tomm.merciai@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230607131936.382406-3-tomm.merciai@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
- configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 4 Jun 2023 19:16:13 -0400
-Hugo Villeneuve <hugo@hugovil.com> wrote:
+On 07/06/2023 15:19, Tommaso Merciai wrote:
+> Add documentation of device tree in YAML schema for the ALVIUM
+> Camera from Allied Vision Inc.
+> 
+> References:
+>  - https://www.alliedvision.com/en/products/embedded-vision-solutions
+> 
+> Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes since v1:
+>  - Fixed build error as suggested by RHerring bot
+> 
+> Changes since v2:
+>  - Fixed License as suggested by KKozlowski/CDooley
+>  - Removed rotation property as suggested by CDooley/LPinchart
+>  - Fixed example node name as suggested by CDooley
+>  - Fixed title as suggested by LPinchart
+>  - Fixed compatible name as suggested by LPinchart
+>  - Removed clock as suggested by LPinchart
+>  - Removed gpios not as suggested by LPinchart
+>  - Renamed property name streamon-delay into alliedvision,lp2hs-delay-us
+>  - Fixed vendor prefix, unit append as suggested by KKozlowski
+>  - Fixed data-lanes
+>  - Fixed blank space + example indentation (from 6 -> 4 space) as suggested by KKozlowski
+>  - Dropped status into example  as suggested by KKozlowski
+>  - Added vcc-ext-in supply as suggested by LPinchart
+>  - Dropped pinctrl into example as suggested by LPinchart
+> 
+> Changes since v3:
+>  - Fixed vcc-ext-in-supply description as suggested by LPinchart
+>  - Fixed alliedvision,lp2hs-delay-us description as suggested by LPinchart
+>  - Added maximum to alliedvision,lp2hs-delay-us as suggested by LPinchart
+>  - Collected Reviewed-by tag from LPinchart
 
-> On Sun, 4 Jun 2023 20:29:58 +0200
-> Greg KH <gregkh@linuxfoundation.org> wrote:
-> 
-> > On Sun, Jun 04, 2023 at 01:43:44PM -0400, Hugo Villeneuve wrote:
-> > > Here is what I suggest to silence the warning:
-> > > 
-> > > 	mctrl_mask = sc16is7xx_setup_mctrl_ports(dev);
-> > > 
-> > > #ifdef CONFIG_GPIOLIB
-> > > 	ret = sc16is7xx_setup_gpio_chip(dev, mctrl_mask);
-> > > 	if (ret)
-> > > 		goto out_thread;
-> > > #else
-> > > 	(void) mctrl_mask;
-> > > #endif
-> > 
-> > Eeek,  no, please no...
-> > 
-> > First off, please don't put #ifdef in .c files if at all possible.
-> 
-> Hi Greg,
-> Andy also made a similar comment, but couldn't suggest a valid
-> alternative when I asked him what to do about that.
-> 
-> Just as a sidenote, I didn't add those #ifdef, they were already
-> present in the driver in multiple places.
-> 
-> What would be your suggestion to get rid of those #ifdef, simply delete
-> them all?
-> 
-> If you suggest me what to do, I will be happy to submit a
-> future patch after this series is finalized to clean that aspect.
+You still did not test it before sending. Four versions of which none
+were tested :(
 
-Hi Greg,
-altough I just send a new V8, I am still curious to hear your point of
-view about those #ifdef...
+Best regards,
+Krzysztof
 
-Hugo.
-
-
-> > Secondly, that (void) craziness is just that.  Rework this to not be an
-> > issue some other way please.
-> > 
-> > > I could also store (define new variable) mctrl_mask directly inside struct sc16is7xx_port...
-> > 
-> > Sure, that sounds best.
-> 
-> Ok, I will do that.
-> 
-> 
-> > > > And you have a real port here, no need to pass in a "raw" struct device,
-> > > > right?
-> > > 
-> > > The function operates globally on both ports (or nr_uart), not just a single port. That is why I pass the "raw" struct device, in order to extract the 
-> > > struct sc16is7xx_port from it:
-> > > 
-> > >     struct sc16is7xx_port *s = dev_get_drvdata(dev);
-> > > 
-> > > Inside the function, I also need the "raw" struc device. If we pass a struct sc16is7xx_port to the function, then I can get the "raw" struc device with this:
-> > > 
-> > > static u8 sc16is7xx_setup_mctrl_ports(struct sc16is7xx_port *s)
-> > > {
-> > > 	struct device *dev = &s->p[0].port.dev;
-> > > 
-> > > But I find this more obfuscated and hard to understand than to simply pass a "raw" struct device...
-> > 
-> > You should never need a "raw" struct device for stuff (if so, something
-> > is really odd).  Except for error messages, but that's not really a big
-> > deal, right?
-> 
-> > Don't pass around struct device in a driver, use the real types as you
-> > know you have it and it saves odd casting around and it just doesn't
-> > look safe at all to do so.
-> 
-> If you look at the patch, you will see that I need "struct device *dev"
-> at two places in the sc16is7xx_setup_mctrl_ports() function to read the
-> device properties:
-> 
-> ...
-> +static u8 sc16is7xx_setup_mctrl_ports(struct device *dev)
-> ...
-> +	count = device_property_count_u32(dev,...
-> ...
-> +	ret = device_property_read_u32_array(dev,
-> ...
-> 
-> I do not understand why this is odd?
-> 
-> 
-> > And if you have that crazy s->p.... stuff in multiple places, the
-> > perhaps you might want to rethink the structure somehow?  Or at the very
-> > least, write an inline function to get it when needed.
-> 
-> I am not sure what you mean by that, since again that "crazy" stuff is
-> already used everywhere in this driver?
-> 
-> 
-> > Also, meta comment, you might want to use some \n characters in your
-> > emails, your lines are really long :)
-> 
-> Strange, I use sylpheed as a mail client, and the option "Wrap lines at
-> 72 characters" is enabled by default, but somehow you must also check
-> the box "Wrap on input" for it to work, not very intuitive :) Thanks for
-> pointing that to me.
-> 
-> Hugo.
