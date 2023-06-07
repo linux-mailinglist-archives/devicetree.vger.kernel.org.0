@@ -2,144 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A7DE7256B8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9939E7256C5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238579AbjFGIC5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 7 Jun 2023 04:02:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
+        id S238845AbjFGIFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 04:05:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238633AbjFGICs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:02:48 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203871735;
-        Wed,  7 Jun 2023 01:02:43 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id E591624E307;
-        Wed,  7 Jun 2023 16:02:35 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 7 Jun
- 2023 16:02:35 +0800
-Received: from [192.168.60.122] (180.164.60.184) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 7 Jun
- 2023 16:02:35 +0800
-Message-ID: <ab89b684-8b49-2088-b0d2-ca362fd9dfb4@starfivetech.com>
-Date:   Wed, 7 Jun 2023 16:02:34 +0800
+        with ESMTP id S235154AbjFGIFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:05:09 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B41B10EC
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 01:05:07 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-514953b3aa6so785638a12.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 01:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686125106; x=1688717106;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WwfN3KvY/c/aNVK3t3sR/GB3uBGYQkPJHDX8ssQfX7g=;
+        b=mwhq7l9opsippHmvHeI4AT0f+OQRdkAv9JAs5sYimXNqKUq7yN54DYqtP9q8bw7hJ0
+         1XaTRaquflQrBAStahZKedkLsIjfZ5clvTRLWb0MTjYRJoNumLhqv7CczRlZhhbg/DWK
+         0C9unRmm1AcPxPfcO3mnEJSLNKXGlW+ZhMf2tc/XzahkMCYkv3cU0eu/j55/pphKlNqc
+         3goSIOJmxWcfCxuQw8Us1LRL95vjmRXgI1RiyZXi4etgXgvzXOq9aBVzJhF0ao0ymjeb
+         wnarkE2bPTUAtrQoslklTrEi2nL5xbOoHBjG2Tn1Zz+5AiqewZoHp+pJz6hxmk7f9CbV
+         QRlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686125106; x=1688717106;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WwfN3KvY/c/aNVK3t3sR/GB3uBGYQkPJHDX8ssQfX7g=;
+        b=cl9JIOX5+zERK8iw7GisHDvfL3ZbkHbkNhxh6jr4apU51+edcQeFRd00C1Pby9e6ix
+         OEAJSr2by0wEEAa/NwLMHCdX2yjZc7F1da6hpdO26b8v3v/7aieCUu/NAh1nksWSdy/E
+         WADzLU/rCz3+5Qb76zP9Jht7U/1SwimHUT5iN8WY/4CSfI5QiZLZCgKSgwTM2c7P9Kv1
+         Ic1mbjr20OGhWmEedauKQewNS1n9SDIV09PaxA2U+h5R4jfrk+yF2OH/TnMpmRh1+PtK
+         Rr28vfffQGPiEP6bHPUtil7CaEh8+wIsZ42TUdDsw2J30b3U+w8vcg5hXakpv6ERULiq
+         vCmg==
+X-Gm-Message-State: AC+VfDznbuNlsqSCPYPg9GHdQdAcVZYE5b83jcShhWvnXAofG1NPMDQ4
+        1p8tED4nQ+doTcBP456pfFjmdw==
+X-Google-Smtp-Source: ACHHUZ5zAyQU3UGt9/z0tOmguRfc8YaUDylkDkACEDTHC39HKi295p/X1Peesuk0WkSdW1pp1Phx8g==
+X-Received: by 2002:a17:907:dab:b0:977:95f4:5cca with SMTP id go43-20020a1709070dab00b0097795f45ccamr5573295ejc.54.1686125106046;
+        Wed, 07 Jun 2023 01:05:06 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id h8-20020adfe988000000b0030ae5a0516csm14706269wrm.17.2023.06.07.01.05.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 01:05:05 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/8] arm64: qcom: add Type-C Altmode support
+Date:   Wed, 07 Jun 2023 10:04:59 +0200
+Message-Id: <20230601-topic-sm8550-upstream-type-c-v2-0-3bbdf37575c3@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/9] dt-bindings: display: Add yamls for JH7110 display
- subsystem
-Content-Language: en-US
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602-uncommon-rejoicing-e73c0c475f9f@spud>
- <TY3P286MB26116576E3E502CAE53834599852A@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <1991848.PYKUYFuaPT@diego> <20230606-geometry-blurb-1f0f07d4bf6a@spud>
- <ifgjvonhkzcwrklzch5efguor2x6az4m737dwte4uyow7ar5dr@z4glaxse6dou>
-From:   Keith Zhao <keith.zhao@starfivetech.com>
-To:     undisclosed-recipients:;
-In-Reply-To: <ifgjvonhkzcwrklzch5efguor2x6az4m737dwte4uyow7ar5dr@z4glaxse6dou>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACs6gGQC/42OQQ6CMBBFr2K6dkxBqujKexgWbRlhEmibaSESw
+ t0tnMDle4v//ioiMmEUz9MqGGeK5F2G8nwStteuQ6A2syhleZU3WUDygSzEsVZKwhRiYtQjpCU
+ gWMBamap93ItKSZEnjI4IhrWzfR5x0zBkGRg/9D2a7yZzTzF5Xo4Lc7HbP2tzARLavZejtdHmN
+ ZDT7C+eO9Fs2/YDT57e3d4AAAA=
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2538;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Mkj0wPYCZQIKUW31m33WD3TMAwvTacRLlnxcKmg9vbE=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkgDotruFhguAz80Uz+X6MCWkdyDTUicoGT2U8QFkR
+ YK2ysquJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIA6LQAKCRB33NvayMhJ0fRdD/
+ 42Yzy2x+tqdX+C8XnZMdKct16FlO/H951CU/hRgHROZinM0xfIGTfQhROO1mV42PXL9SWqoVsXLv6I
+ 5dJxZZaUYyk02hFBwNKyBw6/PwAf16Hq7bx9++VjVj40MoK+Fi5WrpQC7aDd8dE9kkSmV88I20Wutt
+ uIKJbTQUrg39hupL3E0Hj6xxUfPQcM7nyRdDw0DjzlGzX+mE+GjlxDsuV4xu/UfwbDJDm8SSypDzLv
+ EuWzVR5YLtNDW3UNgJN+Wj9zhO2SVu6VbUZFamcjn6pr0+kjPvDcoOnqzrHQPsuoE/SmwIevTCtaBI
+ iDywVg3boTJI+HUYs7w7eU57bbdvACbyZPfd1PMrl1MkVACcuaXmPmojno3/4L//g5PFpWJahjOsRk
+ btNQCF+Ojbtok2S4ipYeQU1tNJSuYT0BRJTea5hZxS56DNqQuPoSB0QVoCmQWGvP+pYZHQaEs1JlB/
+ 8ILuLwKHRstgYTNyBXjZzN6snoQLvHt+SEbcc1n3Su40o9AL109ucCAsHd/1YQKGCQAQ62FBEEQvcI
+ fovSY6zdIFCGPDy64UVX9MHSXevTKTMGl8rAGngzci/SHG/dCFJQgmuvwM5sCzBkFEvqJ0iK+nqnZE
+ hu8ckLNJhGeOP2Jwp38aMaBNnQxgp72uGBjgiCraEP6pENgSLRsFJaifINQQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds the missing bits to support the USB-C Altmode
+support on SM8550.
 
+These are the following changes since the previous SM8450 SoC:
+- No more GLINK altmode events for USB only changes, only DP
+- Type-C orientation is available on a PMIC signal connected
+  to a GPIO line
+- When altmode is disconnected, an 0xff mode event is sent.
 
-On 2023/6/7 14:41, Maxime Ripard wrote:
-> On Tue, Jun 06, 2023 at 11:37:53PM +0100, Conor Dooley wrote:
->> On Wed, Jun 07, 2023 at 12:22:33AM +0200, Heiko Stübner wrote:
->> > Am Dienstag, 6. Juni 2023, 20:41:17 CEST schrieb Shengyu Qu:
->> > > > On Fri, Jun 02, 2023 at 03:40:35PM +0800, Keith Zhao wrote:
->> > > >> Add bindings for JH7110 display subsystem which
->> > > >> has a display controller verisilicon dc8200
->> > > >> and an HDMI interface.
->> 
->> > > >> +description:
->> > > >> +  The StarFive SoC uses the HDMI signal transmiter based on innosilicon IP
->> > > > Is innosilicon the same thing as verisilicon? Also
->> > > > s/transmiter/transmitter/, both here and in the title.
-yes,innosilicon is the HDMI IP  and verisilicon is the DC-controller IP
+In order to handle those changes, a new orientation-gpios property
+is added to the usb-c connector bindings.
+The 0xff altomode is translated as a SAFE type-c mux mode.
 
->> > > 
->> > > I think that is not the same, I remember Rockchip has used a HDMI 
->> > > transmitter from
->> > > 
->> > > Innosilicon, and there is a existing driver for that in mainline.
->> > 
->> > Yep, I think Innosilicon is the company you turn to when you want to save
->> > a bit of money ;-) . In the bigger SoCs Rockchip most of the time uses
->> > Designware hdmi blocks and looking at the history only the rk3036 ever
->> > used an Innosilicon block.
->> > 
-I have done a HDMIcomparison of the rk3036 and the jh7110, and they are both based on ip Innosilicon.
+And in order to handle such info, we tie this to the UCSI connector
+events to propagate the orientation to Type-C switches.
 
-the hardware of them .
-Some parts of the hardware of the two are common, such as the logic of hdmi I2C to obtain edid, and the register definition is consistent.
+Redriver driver & bindings dependency at [1].
 
-Many registers are defined differently from the linux main line inno driver, including registers that contain specific bits
-and some registers in linux main line inno driver no longer used in my new inoo hdmi hardware.
+[1] https://lore.kernel.org/all/20230601-topic-sm8x50-upstream-redriver-v2-0-dda89b22b1c0@linaro.org/
 
->> > Looking at the history, 2016 really was a long time ago :-D.
->> > 
->> > > So Keith, if that's true, I think it is better to seperate the HDMI 
->> > > stuff and reuse existing driver.
->> > 
->> > I'm not so sure about that - at least from a cursory glance :-) .
->> > 
->> > The registers do look slightly different and I don't know how much
->> > the IP changed between the rk3036-version and the jh7110 version.
->> > 
->> > At the very least, I know my rk3036 board isn't booting right now, so
->> > I can't really provide help for generalizing the rockchip-driver.
->> > 
->> > At the very least both the binding and driver could drop the "starfive-hdmi"
->> > and actually use the Innosilicon in the naming somewhere, so that it's
->> > clear for future developers :-)
->> 
->> Seeing "based on" always makes me a little bit nervous to be honest when
->> it comes to using a compatible from the IP. Is it the IP? What version
->> is it? etc. Perhaps "starfive,jh7110-hdmi" & falling back to some sort
->> of "innosilicon,hdmi" would be more future/IP-silliness proof.
->> Driver can always be generic & bind against "innosilicon,hdmi" until
->> that becomes impossible.
-> 
-> Given that Neil was saying that there's at least two
-> generations/revisions/models of an HDMI controller from Innosilicon, I'm
-> not sure that compatible is enough to reach that goal anyway.
-> 
-> Maxime
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Updated redriver node to use retimer-switch on QRD
+- Fixed redriver data-lane according to v2 bindings
+- Added review/ack tags
+- Added new change to handle retimer-switch in pmic-glink altmode driver
+- Link to v1: https://lore.kernel.org/r/20230601-topic-sm8550-upstream-type-c-v1-0-d4d97b4d8bab@linaro.org
 
+---
+Neil Armstrong (8):
+      dt-bindings: connector: usb-connector: add a gpio used to determine the Type-C port plug orientation
+      soc: qcom: pmic_glink_altmode: handle safe mode when disconnect
+      usb: ucsi: glink: use the connector orientation GPIO to provide switch events
+      qcom: pmic_glink_altmode: add retimer-switch support
+      qcom: pmic_glink: enable altmode for SM8550
+      arm64: dts: qcom: sm8550: add ports subnodes in usb/dp qmpphy node
+      arm64: dts: qcom: sm8550-mtp: add pmic glink port/endpoints
+      arm64: dts: qcom: sm8550-qrd: add pmic glink port/endpoints
 
+ .../bindings/connector/usb-connector.yaml          |  5 ++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts            | 67 ++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts            | 99 +++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 26 ++++++
+ drivers/soc/qcom/pmic_glink.c                      |  6 +-
+ drivers/soc/qcom/pmic_glink_altmode.c              | 61 ++++++++++++-
+ drivers/usb/typec/ucsi/ucsi_glink.c                | 52 +++++++++++-
+ 7 files changed, 305 insertions(+), 11 deletions(-)
+---
+base-commit: 54bfdd3bfe0f13da0bcf6e720d0ec0020a89b4dc
+change-id: 20230601-topic-sm8550-upstream-type-c-e85b4d971450
 
-I will change the  the binding  to meet innosilicon,hdmi .
-for the drivers part , I will study the possibility of RK-HDMI reuse.
-
-Thank you for your comments
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
