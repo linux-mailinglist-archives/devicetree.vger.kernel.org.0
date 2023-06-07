@@ -2,73 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 290047256B0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7DE7256B8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235138AbjFGIBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 04:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48744 "EHLO
+        id S238579AbjFGIC5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 7 Jun 2023 04:02:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233416AbjFGIBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:01:47 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8EF7E79;
-        Wed,  7 Jun 2023 01:01:45 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 85BE46606EE7;
-        Wed,  7 Jun 2023 09:01:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686124904;
-        bh=7/zTInyb0fTEFIGhobmXUcrdn5DzghzCHPw6C0UuWec=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YjIVS2xVlYnQjrQAiuIY81ZtB6q7gAfyWuV4UcbWh30M0SgFiQqHhftI5121ESmQ4
-         B/gdRqAV0swiR9QCHPVcu7d84tLdMLid+Idhq5+eqWLpcAPnusbi46f3G+WXif5zGL
-         odSAkMB0HvUsHSX6beyNhNtpkLMrm3UWk2hTnbn4yLIX28dTXDrWKjl+WcrQjfF9up
-         E2vIVZOD6HDL0tkVHCtWkyad7EWTS2jpGi8pxK4+H7e0K/z+anHlZfGT1mw6izbHj2
-         BYrCHNIDrsp64uTw14xn6sLp/YHhrq8SYGRijOFJJm2h0W2UowfLIp4Zf5iQE+tAPI
-         6uHi4XXLTIYzQ==
-Message-ID: <60809262-26ca-50f1-9ee4-705d46723517@collabora.com>
-Date:   Wed, 7 Jun 2023 10:01:40 +0200
+        with ESMTP id S238633AbjFGICs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:02:48 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203871735;
+        Wed,  7 Jun 2023 01:02:43 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id E591624E307;
+        Wed,  7 Jun 2023 16:02:35 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 7 Jun
+ 2023 16:02:35 +0800
+Received: from [192.168.60.122] (180.164.60.184) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 7 Jun
+ 2023 16:02:35 +0800
+Message-ID: <ab89b684-8b49-2088-b0d2-ca362fd9dfb4@starfivetech.com>
+Date:   Wed, 7 Jun 2023 16:02:34 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v13 05/11] remoteproc: mediatek: Introduce cluster on
- single-core SCP
+Subject: Re: [PATCH 1/9] dt-bindings: display: Add yamls for JH7110 display
+ subsystem
 Content-Language: en-US
-To:     =?UTF-8?B?VGluZ0hhbiBTaGVuICjmsojlu7fnv7Ap?= 
-        <TingHan.Shen@mediatek.com>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20230607072222.8628-1-tinghan.shen@mediatek.com>
- <20230607072222.8628-6-tinghan.shen@mediatek.com>
- <d8053fc1-cace-b14b-57c6-387c0d664837@collabora.com>
- <9c710fca38ba53da3ba1aaf32a2221676eb584be.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <9c710fca38ba53da3ba1aaf32a2221676eb584be.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
+ <20230602-uncommon-rejoicing-e73c0c475f9f@spud>
+ <TY3P286MB26116576E3E502CAE53834599852A@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+ <1991848.PYKUYFuaPT@diego> <20230606-geometry-blurb-1f0f07d4bf6a@spud>
+ <ifgjvonhkzcwrklzch5efguor2x6az4m737dwte4uyow7ar5dr@z4glaxse6dou>
+From:   Keith Zhao <keith.zhao@starfivetech.com>
+To:     undisclosed-recipients:;
+In-Reply-To: <ifgjvonhkzcwrklzch5efguor2x6az4m737dwte4uyow7ar5dr@z4glaxse6dou>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,139 +56,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/06/23 10:00, TingHan Shen (沈廷翰) ha scritto:
-> Hi Angelo,
-> 
-> On Wed, 2023-06-07 at 09:43 +0200, AngeloGioacchino Del Regno wrote:
->> Il 07/06/23 09:22, Tinghan Shen ha scritto:
->>> This is the preliminary step for probing multi-core SCP.
->>> The initialization procedure for remoteproc is similar for both
->>> single-core and multi-core architectures and is reusing to avoid
->>> redundant code.
->>>
->>> Rewrite the probing flow of single-core SCP to adapt with the 'cluster'
->>> concept needed by probing the multi-core SCP. The main differences
->>> are,
->>> - the SCP core object(s) is maintained at the cluster list instead of at
->>>     the platofmr device driver data property.
->>
->> s/platofmr/platform/g
->>
->>> - save the cluster information at the platofmr device driver data property.
->>> - In order to keep the compatibility of exported SCP APIs which getting
->>>     the SCP core object by SCP node phandle, move the SCP core object
->>>     pointers to the platform device platform data property.
->>>
->>> The registers of config and l1tcm are shared for multi-core
->>> SCP. Reuse the mapped addresses for all cores.
->>>
->>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
->>> ---
->>>    drivers/remoteproc/mtk_common.h |   2 +
->>>    drivers/remoteproc/mtk_scp.c    | 151 +++++++++++++++++++++++---------
->>>    2 files changed, 112 insertions(+), 41 deletions(-)
->>>
->>> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
->>> index c0905aec3b4b..56395e8664cb 100644
->>> --- a/drivers/remoteproc/mtk_common.h
->>> +++ b/drivers/remoteproc/mtk_common.h
->>> @@ -128,6 +128,8 @@ struct mtk_scp {
->>>    	size_t dram_size;
->>>    
->>>    	struct rproc_subdev *rpmsg_subdev;
->>> +
->>> +	struct list_head elem;
->>>    };
->>>    
->>>    /**
->>> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
->>> index d66822dad943..c8fc6b46f82b 100644
->>> --- a/drivers/remoteproc/mtk_scp.c
->>> +++ b/drivers/remoteproc/mtk_scp.c
->>> @@ -23,6 +23,14 @@
->>>    #define MAX_CODE_SIZE 0x500000
->>>    #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
->>>    
->>> +struct mtk_scp_of_cluster {
->>> +	void __iomem *reg_base;
->>> +	void __iomem *l1tcm_base;
->>> +	size_t l1tcm_size;
->>> +	phys_addr_t l1tcm_phys;
->>> +	struct list_head mtk_scp_list;
->>> +};
->>> +
->>>    /**
->>>     * scp_get() - get a reference to SCP.
->>>     *
->>> @@ -51,7 +59,7 @@ struct mtk_scp *scp_get(struct platform_device *pdev)
->>>    		return NULL;
->>>    	}
->>>    
->>> -	return platform_get_drvdata(scp_pdev);
->>> +	return *(struct mtk_scp **)dev_get_platdata(&scp_pdev->dev);
->>>    }
->>>    EXPORT_SYMBOL_GPL(scp_get);
->>>    
->>> @@ -810,14 +818,14 @@ static void scp_unmap_memory_region(struct mtk_scp *scp)
->>>    static int scp_register_ipi(struct platform_device *pdev, u32 id,
->>>    			    ipi_handler_t handler, void *priv)
->>>    {
->>> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
->>> +	struct mtk_scp *scp = *(struct mtk_scp **)dev_get_platdata(&pdev->dev);
->>>    
->>>    	return scp_ipi_register(scp, id, handler, priv);
->>>    }
->>>    
->>>    static void scp_unregister_ipi(struct platform_device *pdev, u32 id)
->>>    {
->>> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
->>> +	struct mtk_scp *scp = *(struct mtk_scp **)dev_get_platdata(&pdev->dev);
->>>    
->>>    	scp_ipi_unregister(scp, id);
->>>    }
->>> @@ -825,7 +833,7 @@ static void scp_unregister_ipi(struct platform_device *pdev, u32 id)
->>>    static int scp_send_ipi(struct platform_device *pdev, u32 id, void *buf,
->>>    			unsigned int len, unsigned int wait)
->>>    {
->>> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
->>> +	struct mtk_scp *scp = *(struct mtk_scp **)dev_get_platdata(&pdev->dev);
->>>    
->>>    	return scp_ipi_send(scp, id, buf, len, wait);
->>>    }
->>> @@ -855,7 +863,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
->>>    	}
->>>    }
->>>    
->>> -static int scp_probe(struct platform_device *pdev)
->>> +static struct mtk_scp *scp_rproc_init(struct platform_device *pdev,
->>> +				      struct mtk_scp_of_cluster *scp_cluster)
->>>    {
->>>    	struct device *dev = &pdev->dev;
->>>    	struct device_node *np = dev->of_node;
->>> @@ -867,52 +876,42 @@ static int scp_probe(struct platform_device *pdev)
->>>    
->>>    	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
->>>    	if (ret < 0 && ret != -EINVAL)
->>> -		return ret;
->>> +		return ERR_PTR(ret);
->>>    
->>>    	rproc = devm_rproc_alloc(dev, np->name, &scp_ops, fw_name, sizeof(*scp));
->>> -	if (!rproc)
->>> -		return dev_err_probe(dev, -ENOMEM, "unable to allocate remoteproc\n");
->>> +	if (!rproc) {
->>> +		dev_err(dev, "unable to allocate remoteproc\n");
->>> +		return ERR_PTR(-ENOMEM);
->>
->> Why are you converting those dev_err_probe to dev_err->return?!
->>
->> Regards,
->> Angelo
-> 
-> It's because the return type of this function changed from "int" to "struct mtk_scp *".
-> Maybe I should change them to "ERR_PTR(dev_err_probe(...))" ?
-> 
 
-Oh, sorry - you're right. No, it's fine as you did it.
 
-Cheers
+On 2023/6/7 14:41, Maxime Ripard wrote:
+> On Tue, Jun 06, 2023 at 11:37:53PM +0100, Conor Dooley wrote:
+>> On Wed, Jun 07, 2023 at 12:22:33AM +0200, Heiko Stübner wrote:
+>> > Am Dienstag, 6. Juni 2023, 20:41:17 CEST schrieb Shengyu Qu:
+>> > > > On Fri, Jun 02, 2023 at 03:40:35PM +0800, Keith Zhao wrote:
+>> > > >> Add bindings for JH7110 display subsystem which
+>> > > >> has a display controller verisilicon dc8200
+>> > > >> and an HDMI interface.
+>> 
+>> > > >> +description:
+>> > > >> +  The StarFive SoC uses the HDMI signal transmiter based on innosilicon IP
+>> > > > Is innosilicon the same thing as verisilicon? Also
+>> > > > s/transmiter/transmitter/, both here and in the title.
+yes,innosilicon is the HDMI IP  and verisilicon is the DC-controller IP
+
+>> > > 
+>> > > I think that is not the same, I remember Rockchip has used a HDMI 
+>> > > transmitter from
+>> > > 
+>> > > Innosilicon, and there is a existing driver for that in mainline.
+>> > 
+>> > Yep, I think Innosilicon is the company you turn to when you want to save
+>> > a bit of money ;-) . In the bigger SoCs Rockchip most of the time uses
+>> > Designware hdmi blocks and looking at the history only the rk3036 ever
+>> > used an Innosilicon block.
+>> > 
+I have done a HDMIcomparison of the rk3036 and the jh7110, and they are both based on ip Innosilicon.
+
+the hardware of them .
+Some parts of the hardware of the two are common, such as the logic of hdmi I2C to obtain edid, and the register definition is consistent.
+
+Many registers are defined differently from the linux main line inno driver, including registers that contain specific bits
+and some registers in linux main line inno driver no longer used in my new inoo hdmi hardware.
+
+>> > Looking at the history, 2016 really was a long time ago :-D.
+>> > 
+>> > > So Keith, if that's true, I think it is better to seperate the HDMI 
+>> > > stuff and reuse existing driver.
+>> > 
+>> > I'm not so sure about that - at least from a cursory glance :-) .
+>> > 
+>> > The registers do look slightly different and I don't know how much
+>> > the IP changed between the rk3036-version and the jh7110 version.
+>> > 
+>> > At the very least, I know my rk3036 board isn't booting right now, so
+>> > I can't really provide help for generalizing the rockchip-driver.
+>> > 
+>> > At the very least both the binding and driver could drop the "starfive-hdmi"
+>> > and actually use the Innosilicon in the naming somewhere, so that it's
+>> > clear for future developers :-)
+>> 
+>> Seeing "based on" always makes me a little bit nervous to be honest when
+>> it comes to using a compatible from the IP. Is it the IP? What version
+>> is it? etc. Perhaps "starfive,jh7110-hdmi" & falling back to some sort
+>> of "innosilicon,hdmi" would be more future/IP-silliness proof.
+>> Driver can always be generic & bind against "innosilicon,hdmi" until
+>> that becomes impossible.
+> 
+> Given that Neil was saying that there's at least two
+> generations/revisions/models of an HDMI controller from Innosilicon, I'm
+> not sure that compatible is enough to reach that goal anyway.
+> 
+> Maxime
+
+
+
+I will change the  the binding  to meet innosilicon,hdmi .
+for the drivers part , I will study the possibility of RK-HDMI reuse.
+
+Thank you for your comments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
