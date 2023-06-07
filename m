@@ -2,84 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A695726900
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D350872690F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232820AbjFGShb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 14:37:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52664 "EHLO
+        id S231458AbjFGSl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:41:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231626AbjFGSha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:37:30 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A572121
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:37:11 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-970056276acso1161277966b.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:37:11 -0700 (PDT)
+        with ESMTP id S229436AbjFGSl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:41:56 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1971984
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:41:54 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-977d4a1cf0eso621904566b.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:41:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686163030; x=1688755030;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TBJvAcEQG2LY1vEFF1IyEE7RE0JoBORvfJiXnm2YgHM=;
-        b=qrWeIk4YwcZ/UP+m3nmcJ36ROhF2tdABqHxKNMe5BdbmFqzTHXpZ7BuVvAtn6yqK/L
-         ALPZQnxm1/nS8iSTebGIQexO+ajZd0VjL9GP+LfB9dwmBCGkLLbhO8diXgDzfX9VnEy9
-         neI7aHWUOKygd7ijcszY01vUrIiP2AqDbCCULt/jVPrp+Q5xInjGaYTwisoftEKwXDJz
-         eBzpT0E/PpX5CIiYmHj/Trw68oW2FqdWHqfC8hsHYuelvU52sYDUB8VwEyTQvYyDtb/k
-         +d8ubF6geMCquX3h4qgXNT1Oc8PiKyK6F/ZXQnKBC++F7TaqLRqiROVdKtWdTgceUjxf
-         aHdw==
+        d=linaro.org; s=google; t=1686163313; x=1688755313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XfuroyQJAbz9eJ8IYNpTYqcNYBwtnqvDKwV5tW+1tFE=;
+        b=IcfL/GcfP36E83IHgmLLRi5x1twq00fmG6Sfg8gSppBVGwe2eLmviHQPFJ44wcHFAJ
+         BZjzoqPyR/Nr8XZQTdbjkEtgGtt5h9R/QencLiOrJZBGy7AlV7sPcECAxKrtr7HM2JqY
+         /tQh38luGPEzqOFmx5LXn57Ix1WXy1sw/jzFu3DeThk/4BqOeQx7xEaP8SczU190LF+F
+         ot9K9/TfEHCHi/GYMMbzC79T88RLWwZr/L10IayHPC1szSRe9EzXx74tSGl8hENMr48i
+         VMhEbpuoRrZpj2U2c7sJL9TG895IB21QKqKiB5pTkt08w04BKsNz4j3qX/tJYP+IwaxL
+         H6AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686163030; x=1688755030;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TBJvAcEQG2LY1vEFF1IyEE7RE0JoBORvfJiXnm2YgHM=;
-        b=JvUjpkShv4a2ROP4T0ycthsbWE7/AMYo7XsGSXRwFaApS/FF80Ad7fFx4UhH5qZEVw
-         gJMX/G6XhyILvejuXxSypN+hCZcvcP1qX1flyrrI97agorUGE0hE7D9Wjl6trVGQ3RBF
-         l89RxBglYWg48kYo4TWyAnHMi3TCOeYwgjvte4+22nrYJdh3n4+GN8h6C1PrrVFe6Xv8
-         9mWO+RFNZCXjtP8HHKPmoe8k1aFFc5UDq2IP1TP0aNGe/2s8l/imtESeSBMZsdGWc5dn
-         Or9SvIW+UxNPdnUny+aVtd5MoCdA9m3xkdsADUuK4PxAJq01mDfmUDVXUV38mFYvSEIl
-         OhOA==
-X-Gm-Message-State: AC+VfDy/VP5KzVqebUDfO4D/VAKfIuKLaz45SqHWbDcTISlqxDT9u/qF
-        SlhpETjUFvY6zXXTkEKcXeZP4Q==
-X-Google-Smtp-Source: ACHHUZ4ZTFG+XhRWtjV8bpPXmdRsoCVVFTbyApWlPN15wkPN8gqENfBjyZhOMvcU//hPfzQqyCf1Qg==
-X-Received: by 2002:a17:907:a426:b0:96f:912e:5ec4 with SMTP id sg38-20020a170907a42600b0096f912e5ec4mr7063552ejc.16.1686163029840;
-        Wed, 07 Jun 2023 11:37:09 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id os20-20020a170906af7400b0097887b68c17sm803492ejb.98.2023.06.07.11.37.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 11:37:09 -0700 (PDT)
-Message-ID: <cba3834a-8ed3-b3a8-32cc-b0397fa5ae41@linaro.org>
-Date:   Wed, 7 Jun 2023 20:37:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 5/9] phy: qcom-m31: Introduce qcom,m31 USB phy
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Varadarajan Narayanan <quic_varada@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, arnd@arndb.de, geert+renesas@glider.be,
-        neil.armstrong@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, rafal@milecki.pl, quic_srichara@quicinc.com,
-        quic_varada@quicinc.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org
-References: <cover.1686126439.git.quic_varada@quicinc.com>
- <636308462efb579734de829fb6e9cbda81b982f7.1686126439.git.quic_varada@quicinc.com>
- <f007fbf0-b1a7-cb44-d662-c30bf114365e@linaro.org>
+        d=1e100.net; s=20221208; t=1686163313; x=1688755313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XfuroyQJAbz9eJ8IYNpTYqcNYBwtnqvDKwV5tW+1tFE=;
+        b=Sj7gsVN9ajwcOcs62b7X9pJgTKwyPKEovcIkQI974roxhoEXgd69h1NnjGXUqvVDgr
+         ZPagL5czOqMOUVnwkZmdBicXyiLarOZ5AeXUHTsbnMLaloOzaNlAz+J0z03uIaRNOB25
+         2+YIgkuxfsZErqhT6id8QteIdN/Eo3n4EmKP3ABtO/rrM900m4Xsr3mXj5rEAD3+PKM2
+         l5lm9rDMyWgc1W6VhqsUC34BI8WPN+286SWos7UxtrCy61YSUb9EBbAue2nF3yIBYieZ
+         8PmhJw2dtVewkt57Cl9xzqN6wx3YsXqhx/Xb4Nnttjkol3m9U1zVPHbpDZeTJEMDuBMD
+         rkkQ==
+X-Gm-Message-State: AC+VfDx5r2vEbHmGGmcnu8SXj2Nmyd443DvmydvfJ+E26tSLFoLVkf7h
+        dpSyHjuEwwVk4tGxcrDlkmvyiw==
+X-Google-Smtp-Source: ACHHUZ6zGHkNvsuGpMnZNEHMZYFlUcKqv1tGCUIBu62p6KkmSMlv2eSJHXspjLAOaPba7v7Y91kGHQ==
+X-Received: by 2002:a17:907:2da3:b0:978:337e:c417 with SMTP id gt35-20020a1709072da300b00978337ec417mr7146739ejc.60.1686163313297;
+        Wed, 07 Jun 2023 11:41:53 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id ci17-20020a170906c35100b009787ad3157bsm1435856ejb.39.2023.06.07.11.41.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 11:41:52 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f007fbf0-b1a7-cb44-d662-c30bf114365e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: misc: qcom,fastrpc: drop unneeded quotes
+Date:   Wed,  7 Jun 2023 20:41:47 +0200
+Message-Id: <20230607184147.420352-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,17 +76,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 13:20, Dmitry Baryshkov wrote:
-> On 07/06/2023 13:56, Varadarajan Narayanan wrote:
->> Introduce CONFIG_PHY_QCOM_M31_USB for including the M31 phy driver
->>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> 
-> Is there any reason to keep Kconfig, Makefile and driver in different 
-> commits?
+Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+checking for this can be enabled in yamllint.
 
-KPI? Yearly objectives/goals?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+index 1ab9588cdd89..2dc3e245fa5d 100644
+--- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
++++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+@@ -36,7 +36,7 @@ properties:
+     description:
+       A list of channels tied to this function, used for matching
+       the function to a set of virtual channels.
+-    $ref: "/schemas/types.yaml#/definitions/string-array"
++    $ref: /schemas/types.yaml#/definitions/string-array
+     items:
+       - const: fastrpcglink-apps-dsp
+ 
+@@ -48,14 +48,14 @@ properties:
+   qcom,smd-channels:
+     description:
+       Channel name used for the RPM communication
+-    $ref: "/schemas/types.yaml#/definitions/string-array"
++    $ref: /schemas/types.yaml#/definitions/string-array
+     items:
+       - const: fastrpcsmd-apps-dsp
+ 
+   qcom,vmids:
+     description:
+       Virtual machine IDs for remote processor.
+-    $ref: "/schemas/types.yaml#/definitions/uint32-array"
++    $ref: /schemas/types.yaml#/definitions/uint32-array
+ 
+   "#address-cells":
+     const: 1
+-- 
+2.34.1
 
