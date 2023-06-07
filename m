@@ -2,76 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEB6972695F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2181726962
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232161AbjFGTDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 15:03:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
+        id S233096AbjFGTDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 15:03:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjFGTDf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:03:35 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9BB1FDC;
-        Wed,  7 Jun 2023 12:03:31 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 60FB15FD05;
-        Wed,  7 Jun 2023 22:03:28 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1686164608;
-        bh=wt1HwINmc7U0q2LSsk2GPrtGj8yXHDwpkKdceOnG6Ao=;
-        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-        b=FIy47jn+U+y0e9M9AW8GTjok9l0tt+7nIHy7lMrSPSp9TGaaWXUfB4RgF5HlvHdk7
-         4AknVxtuGEWWUo78yxdctTIVBcQ+i/Qz43TBhw7QJg0/o6YkUtldpOn2nSOtf8/qak
-         dcZ178suDSV4i5839U/WEXSut14reoOM4Qwm10tziH2vkSZ62GUz2Kp53nkPYX5dwV
-         4Rk82+iW1cKFPaSrhcPUZs2wLd96ysoyWyNvqOX/WPwgIockh6Z0EO21SdB7oJOD/U
-         TYrjKWCbvjgv0aHpXlDHlZA59Ns8DSjCiV2klkyit3UtYczH5YoFTiM8fsCrQ8Jnon
-         2GIUFeLlkeogw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Wed,  7 Jun 2023 22:03:26 +0300 (MSK)
-Message-ID: <cb316711-7792-a4f6-9491-2529cfd5cba6@sberdevices.ru>
-Date:   Wed, 7 Jun 2023 21:58:31 +0300
+        with ESMTP id S232880AbjFGTDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:03:38 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25E1A193;
+        Wed,  7 Jun 2023 12:03:37 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-77499bf8e8bso316432839f.0;
+        Wed, 07 Jun 2023 12:03:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686164616; x=1688756616;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FRteKF9KdN6gJkMzhWYMSM2LNizcvL/cNXiHsNsqxCA=;
+        b=I8kNnuMJ7BaapPGae/YIYi5Wn5ynVWsK23Q+Fyg1MBuNVEZ+pXydnxkjeo6qmEJKdW
+         7g3cNAoDIRniSJTr4TkLLOsdFAX7DPKQ4k1rZe5TL6UwgelR8t3zBDMGBriZ4vxUWpkg
+         Vj6PMA4tJqbpgn3TAV43cAypnLCR1mivf65n9wpxk0u2ZreXcN9Yaz+2CNCmSOQvAiWZ
+         CtIQ98a8qmM1Bk3tFhx5Hpg3C2JvfLYPiBznjqIVR6MlxbzNdAqQWWYragRLGwcAn1Lr
+         fpvKhCN7vmCDnCviO13oBcHsZkYF4OWpGxq7pwfS8vkwvjzKB8Jz/q9Mgpc1DJItiCON
+         WJDg==
+X-Gm-Message-State: AC+VfDyz5hxEhoL5knTxnx7A++3FkVkrjfwaGRxvZlhZdDwEFnD3q4EG
+        4qPBUQ+6uoeEi8T1hkwBXQ==
+X-Google-Smtp-Source: ACHHUZ6y8qEaEdvoxKeghMmdMKHQ5KImm2mv7rSGA7rpM9ovCdbnIap1dRJaZpo5B85xz9ghfcbhuQ==
+X-Received: by 2002:a6b:da0f:0:b0:753:13ec:4ba with SMTP id x15-20020a6bda0f000000b0075313ec04bamr5802711iob.4.1686164616388;
+        Wed, 07 Jun 2023 12:03:36 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id m19-20020a056638225300b0041a9e657035sm3210343jas.48.2023.06.07.12.03.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 12:03:35 -0700 (PDT)
+Received: (nullmailer pid 3776585 invoked by uid 1000);
+        Wed, 07 Jun 2023 19:03:33 -0000
+Date:   Wed, 7 Jun 2023 13:03:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     anarsoul@gmail.com, netdev@vger.kernel.org, edumazet@google.com,
+        linux-rockchip@lists.infradead.org, conor+dt@kernel.org,
+        alistair@alistair23.me, krzysztof.kozlowski+dt@linaro.org,
+        pabeni@redhat.com, davem@davemloft.net, kuba@kernel.org,
+        heiko@sntech.de, devicetree@vger.kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>, robh+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: realtek-bluetooth: Fix RTL8821CS
+ binding
+Message-ID: <168616460571.3776366.16030523685871191721.robh@kernel.org>
+References: <20230508160811.3568213-1-macroalpha82@gmail.com>
+ <20230508160811.3568213-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1 0/2] Meson NAND: waiting w/o wired ready/busy pin
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230607145026.2899547-1-AVKrasnov@sberdevices.ru>
- <a1e048aa-ec64-bd0b-aa17-e3e9bdf18090@sberdevices.ru>
- <bd2d1770-9856-d022-5e91-6a2cdc302b73@linaro.org>
-From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <bd2d1770-9856-d022-5e91-6a2cdc302b73@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 13:30:00 #21453197
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230508160811.3568213-2-macroalpha82@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,52 +69,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 07.06.2023 21:48, Krzysztof Kozlowski wrote:
-> On 07/06/2023 17:18, Arseniy Krasnov wrote:
->>
->>
->> On 07.06.2023 17:50, Arseniy Krasnov wrote:
->>> Main thing that this patchset adds is support for waiting for command
->>> completion when there is no wired ready/busy pin. This is implemented
->>> by using Meson specific command which operates without wired pin, but
->>> supports interrupt driven waiting (default way for waiting without
->>> hardware pin is 'nand_soft_waitrdy()' which uses software loop instead
->>> of interrupt). To select which mode to use during driver initialization,
->>> common NAND controller property is used - 'nand-rb'. It is described in
->>> 'nand-controller.yaml'. But for Meson, its description was missed in
->>> 'amlogic,meson-nand.yaml', so this patchset also adds support for it.
->>>
->>> Patch for bindings was tested with dt_binding_check and dtbs_check.
->>>
->>> Arseniy Krasnov (2):
->>>   dt-bindings: nand: meson: Fix 'nand-rb' property
->>>   mtd: rawnand: meson: waiting w/o wired ready/busy pin
->>>
->>>  .../bindings/mtd/amlogic,meson-nand.yaml      |  7 ++
->>>  drivers/mtd/nand/raw/meson_nand.c             | 82 ++++++++++++++++++-
->>>  2 files changed, 85 insertions(+), 4 deletions(-)
->>>
->>
->> Changelog:
->> * Two separate patches:
->>   For bindings: https://lore.kernel.org/linux-mtd/20230606193507.35024-1-AVKrasnov@sberdevices.ru/
->>   For driver: https://lore.kernel.org/linux-mtd/20230607073015.1280085-1-AVKrasnov@sberdevices.ru/
->>   Now fixed/updated and combined to this patchset with v1 version.
->>
->> * In binding patch:
->>   * Invalid type of 'nand-rb' is fixed, it was 'bool', now it is 'uint32 array' as required. Also
->>     new declaration of 'nand-rb' contains several restrictions like number of elements and min/max
->>     value of elements.
->>   * Location of 'nand-rb' is moved from the controller object to the chip object as required.
+On Mon, 08 May 2023 11:08:10 -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Version your patchsets. This is v2, not v1.
-
-Ack, next will be v3
-
-Thanks, Arseniy
-
+> Update the fallback string for the RTL8821CS from realtek,rtl8822cs-bt
+> to realtek,rtl8723bs-bt. The difference between these two strings is
+> that the 8822cs enables power saving features that the 8723bs does not,
+> and in testing the 8821cs seems to have issues with these power saving
+> modes enabled.
 > 
-> Best regards,
-> Krzysztof
+> Fixes: 95ee3a93239e ("dt-bindings: net: realtek-bluetooth: Add RTL8821CS")
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+
+Applied, thanks!
+
