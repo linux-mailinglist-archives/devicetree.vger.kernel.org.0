@@ -2,156 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DD35725AA6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:36:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F417D725AC4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240138AbjFGJg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 05:36:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54074 "EHLO
+        id S240169AbjFGJj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 05:39:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240124AbjFGJg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:36:29 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FFC1BE8;
-        Wed,  7 Jun 2023 02:36:09 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686130568;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=XHbDoPntY8rQli1Ts2fRuiAoXXD0B+JipbbpnA9vAgs=;
-        b=eGQ0NF915O7i6T9mpLNfb9/1dCJ1f5hmxGuZY4UbmVa7sRZxXLsTZ0IY2OAb0Xya0sW4Bw
-        fdxadbzR4sNDPT+WXTwCV95HjAqA5pVZoKO/PbQiddvHIlype5TqN2Aeh0UKdgvG23l70A
-        SUOVHBz9fz+IDbyGPXPHiphK2KoTUbmUa4zBJA3Z1TWxlq2gjfTF24CsgU2yop6Ay0VBo2
-        KrD1jAJjv+2nlYkY86ds4muSAzHsSZ7AuCvGt+BlsPDFYoceJVSbrCzJmrqT2xlciThgQZ
-        1hmdVmsEJu+ab3BTfWsMVH8NLEwJSHoUP0ug9pP+tZ85SKqdqsRicafpRZaV7w==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BBD1CC0011;
-        Wed,  7 Jun 2023 09:36:06 +0000 (UTC)
-Date:   Wed, 7 Jun 2023 11:36:05 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
-Message-ID: <20230607113605.50a992bb@xps-13>
-In-Reply-To: <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
-References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
-        <20230607095802.3adcd4f9@xps-13>
-        <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
-        <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
-        <835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
-        <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
-        <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S239894AbjFGJjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:39:49 -0400
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B423EB;
+        Wed,  7 Jun 2023 02:39:47 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 081A26003C00;
+        Wed,  7 Jun 2023 10:39:45 +0100 (WEST)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+        tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+        with LMTP id KLn4ceMhBpz2; Wed,  7 Jun 2023 10:39:42 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 93FDE600301C;
+        Wed,  7 Jun 2023 10:39:42 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+        s=mail; t=1686130782;
+        bh=qzbtfG/1orL98pYWmgO/19VHpMxqF1o1TCM6v97C44A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=NFQw/reZmv8Udweim8jTuOAAaCg8M5kC7AGZLRhb67uXRQJkqwKHDOwR4knPYdAWY
+         xc2dKg8dCsB5kqDlmdHS6Shbo53t/iHriH+She9+j9xebeejNWDn6l9XDZfjLodY8f
+         OBkRNl7UDgONfu+rFCnF9f0ZgPeuodKKk2Nm1XfE=
+Received: from wslaptop (unknown [IPv6:2001:8a0:6a1a:e700:b1f6:8e31:237e:e5dd])
+        (Authenticated sender: ist187313)
+        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id BD773360075;
+        Wed,  7 Jun 2023 10:39:40 +0100 (WEST)
+Date:   Wed, 7 Jun 2023 10:39:36 +0100
+From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        arnd@arndb.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Cc:     diogo.ivo@tecnico.ulisboa.pt
+Subject: Re: [PATCH v2 0/2] Enable GPU on Smaug
+Message-ID: <x3ifhffuxyyxpgmy6m3d4xzpglihovfzrfp5vudinccepzkwma@hxvtze36gszi>
+References: <20230516082829.15326-1-diogo.ivo@tecnico.ulisboa.pt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230516082829.15326-1-diogo.ivo@tecnico.ulisboa.pt>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arseniy,
+On Tue, May 16, 2023 at 09:28:27AM +0100, Diogo Ivo wrote:
+> Hello,
+> 
+> This patch series enables the use of the GM20B GPU in the
+> Google Pixel C.
+> 
+> Patch 1 adds the needed regulator DT node for the GPU.
+> 
+> Patch 2 enables the GPU in the DT.
 
-avkrasnov@sberdevices.ru wrote on Wed, 7 Jun 2023 12:04:29 +0300:
+Hello,
 
-> On 07.06.2023 12:08, Krzysztof Kozlowski wrote:
-> > On 07/06/2023 10:57, Arseniy Krasnov wrote: =20
-> >>
-> >>
-> >> On 07.06.2023 11:53, Krzysztof Kozlowski wrote: =20
-> >>> On 07/06/2023 10:40, Arseniy Krasnov wrote: =20
-> >>>> Hello Miquel,=20
-> >>>>
-> >>>> On 07.06.2023 10:58, Miquel Raynal wrote:
-> >>>> =20
-> >>>>> Hi Arseniy,
-> >>>>>
-> >>>>> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
-> >>>>> =20
-> >>>>>> Add description of 'nand-rb' property. Use "Fixes" because this pr=
-operty
-> >>>>>> must be supported since the beginning. For this controller 'nand-r=
-b' is
-> >>>>>> stored in the controller node (not in chip), because it has only s=
-ingle
-> >>>>>> r/b wire for all chips. =20
-> >>>>>
-> >>>>> Sorry if I mislead you in the first place, but you could definitely
-> >>>>> have two chips and only one with RB wired. It needs to be defined in
-> >>>>> the chips. =20
-> >>>>
-> >>>> Ok, so to clarify: is it ok, that in bindings this property will be =
-placed in the
-> >>>> chip, but in driver, i'm trying to read it from the controller node =
-(thus  in
-> >>>> dts file it will be also in controller node)? =20
+Gentle ping on these patches.
 
-The bindings and your driver internal representation are two different
-things. Anyway, as mentioned above, wiring the RB line to one die and
-not the other would be valid hardware design and would require the rb
-property to be in the chip node. Please perform a per-chip property read
-in the driver as well.
+Thank you,
 
-> >>>
-> >>> No, because how would your DTS pass validation? I understand you did =
-not
-> >>> test the bindings, but this will improve, right? =20
-> >>
-> >> Ok, i'll follow DTS layout in the driver, "test the bindings" You mean=
- "make dt_binding_check"? =20
-> >=20
-> > Yes. They were sent without testing.
-> >=20
-> > But please also test your DTS with dtbs_check. =20
->=20
-> Got it!
->=20
-> Thanks, Arseniy
->=20
-> >=20
-> >=20
-> > Best regards,
-> > Krzysztof
-> >  =20
-
-
-Thanks,
-Miqu=C3=A8l
+Diogo Ivo
