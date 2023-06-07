@@ -2,94 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A517266F9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED84572671A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:21:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbjFGRQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 13:16:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52032 "EHLO
+        id S231611AbjFGRVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 13:21:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230037AbjFGRQy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:16:54 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC231BF1;
-        Wed,  7 Jun 2023 10:16:50 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-5344d45bfb0so392530a12.1;
-        Wed, 07 Jun 2023 10:16:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686158209; x=1688750209;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U/NZlXOYXqc88apQX7wCILgLxV86T50gknzurw4EXDE=;
-        b=fybBTZJizPvbcpoFUu7tozGJLcqG2F+Rd2NSILxctipUlYsGhd9Nzznz4S9WSc8VIN
-         AUNMSqvdjPgVOEn6hrAGEyxyYX3nBk8gUCg+rakBiI0wglGclmBd2Lvi2sjInZPD5sFF
-         jrXVUEziuIm1lzdJh81YgyuufXApvoOHXwbiFrOZdcq6kLaD2I7Wr87+DGTJ1bN3I3kt
-         EPa25QYVxADkB4jv3eRBi5FrHaPKx4Ay8VlGUBoyQCoCWJFgwT9GAYgR0tesZq2+zlbX
-         4hXzv7hRvNNYCZgiqQOi/J6sB3iQHQFf+jL1qRcXZTilNXt6qF54oPmWsAy+xnGsS2vH
-         iFTw==
+        with ESMTP id S231577AbjFGRVd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:21:33 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A067C1BF1;
+        Wed,  7 Jun 2023 10:21:32 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-33d269dd56bso4451775ab.1;
+        Wed, 07 Jun 2023 10:21:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686158209; x=1688750209;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U/NZlXOYXqc88apQX7wCILgLxV86T50gknzurw4EXDE=;
-        b=KwwE9xIuweFkgFkRgQLXH/IOrPS/8hEYjboZMoH5ez5YMlvvRPi20qeg9K2ezOneCE
-         edjuz68NhD/rIvgoM3osis9CPFyNeeBZ0CUqdvxqR4TiO76iUR8seq9KgsHMt7lmxmad
-         svOMtrcjAuzvTFQPXcRZzMnZ1qhSVJH11xnm8kKbIK70hMsckeTHCDTKM7oEkTMCAid3
-         63Jk8rwaWtwAMRISmmjjxW0rvQJADj621blKJ5rbd5fhCW5vYQ4eZv8h12p4gBPV9ymK
-         TY65rsGi766Noy6iTMu6owfjq4QRMiXgW5rk1G77P4tGUQvR1lwOorMi/4MnfGUgdIqq
-         pEEA==
-X-Gm-Message-State: AC+VfDyzMg1eOvlQZyTEkLclZSHUlD41cNHBoNHpf0q2etzCYM29sTvS
-        uU3aSuoJPTLp3llZcKhkh24lEnl98euanM7qOXCIPd4DUQE=
-X-Google-Smtp-Source: ACHHUZ7+OqQ/Ea3yCPmgSYsW0A47pePuHw/dSQd2Jw6mJ1KE/duK6IdPlUpsIfj0wVbN4I6SOKko6ZFViWJAREIhPOc=
-X-Received: by 2002:a17:902:c942:b0:1a6:6bdb:b548 with SMTP id
- i2-20020a170902c94200b001a66bdbb548mr2773869pla.1.1686158209476; Wed, 07 Jun
- 2023 10:16:49 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686158492; x=1688750492;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nkOWQ+vj49HHolrGuM8oO51BRgEeTSl4OC+gwsNtn4M=;
+        b=SOlekEQcUFLPUHJp/11oIcuneKsoNPUA8CtvvoUgTPlemTYSqZjJZUU1jL8p335Qaj
+         G1zsfMAeI4PZUxi1drXYxQYRnsW1viqxPNnGuae2xcFoEfcOYHDG8udPZ/1vyrWZFGDK
+         3L8MgNtVUl9BSELnMTGixweAFmZcBLoivW6CNbn92ZwErWtZLuEdXhX5fp+hChs2XP9R
+         7FOHlUzZQMhpR+VnUCUfkLuTvf42RXfBBfeGsSxq8+koiQ/n9Oqcz7B06z0bMxVKNwiA
+         2hmtgZXKYqT/jfO1A161UE181JLbe2B335TEafV+zLF++CT6xPvNtF9k+AE8xuDU5sdW
+         xnBg==
+X-Gm-Message-State: AC+VfDzocffZSMnvRvzOr9QsTWwfHkoqEfVBBbSla/LpozK/BLyzqc8l
+        xdm0UTMcmjDa+9918pk7xg==
+X-Google-Smtp-Source: ACHHUZ4F6h8LQOVmWn7LEoSNDCTxBGI8+w6CVKJmG5+h3YgYdC+f8K0MbjxTn8bIgxWDBjgfyWXRWg==
+X-Received: by 2002:a92:de44:0:b0:338:a648:9c8 with SMTP id e4-20020a92de44000000b00338a64809c8mr4687509ilr.17.1686158491729;
+        Wed, 07 Jun 2023 10:21:31 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id b12-20020a92c84c000000b0032ca1426ddesm3793146ilq.55.2023.06.07.10.21.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 10:21:30 -0700 (PDT)
+Received: (nullmailer pid 3589539 invoked by uid 1000);
+        Wed, 07 Jun 2023 17:21:28 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-References: <20230607171159.2019417-1-tharvey@gateworks.com> <20230607171159.2019417-2-tharvey@gateworks.com>
-In-Reply-To: <20230607171159.2019417-2-tharvey@gateworks.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 7 Jun 2023 14:16:38 -0300
-Message-ID: <CAOMZO5ASwTJpH84SJX78k7MtZzwFc0bnbGqXsSFA6JFGq+0Emg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw73xx-2x
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc:     quic_vbadigan@quicinc.com,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        quic_ramkri@quicinc.com, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        manivannan.sadhasivam@linaro.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>
+In-Reply-To: <1686154687-29356-2-git-send-email-quic_krichai@quicinc.com>
+References: <1686154687-29356-1-git-send-email-quic_krichai@quicinc.com>
+ <1686154687-29356-2-git-send-email-quic_krichai@quicinc.com>
+Message-Id: <168615848698.3589455.9774241463877355430.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: qcom: ep: Add interconnects
+ path
+Date:   Wed, 07 Jun 2023 11:21:28 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tim,
 
-On Wed, Jun 7, 2023 at 2:12=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> w=
-rote:
+On Wed, 07 Jun 2023 21:48:05 +0530, Krishna chaitanya chundru wrote:
+> Add the "pcie-mem" interconnect path to the bindings.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
 
-> +/* bluetooth HCI */
-> +&uart3 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_uart3>, <&pinctrl_bten>;
-> +       cts-gpios =3D <&gpio5 8 GPIO_ACTIVE_LOW>;
-> +       rts-gpios =3D <&gpio5 9 GPIO_ACTIVE_LOW>;
-> +       uart-has-rtscts;
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-'uart-has-rtscts' means: use native RTS and CTS lines, but you are
-passing 'cts-gpios/rts-gpios',
-which contradicts that.
+yamllint warnings/errors:
 
-I suggest you remove 'uart-has-rtscts'.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-ep.example.dtb: pcie-ep@1c00000: 'interconnects' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-ep.example.dtb: pcie-ep@1c00000: 'interconnect-names' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1686154687-29356-2-git-send-email-quic_krichai@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
