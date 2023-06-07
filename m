@@ -2,100 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE217727064
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 23:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 055297270C0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 23:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230178AbjFGVRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 17:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44696 "EHLO
+        id S231886AbjFGVxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 17:53:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbjFGVRn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 17:17:43 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7994F1BC2;
-        Wed,  7 Jun 2023 14:17:41 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-777b4716673so62429539f.1;
-        Wed, 07 Jun 2023 14:17:41 -0700 (PDT)
+        with ESMTP id S230034AbjFGVxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 17:53:09 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213791FD6
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 14:53:07 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-650bacd6250so4481793b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 14:53:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686174786; x=1688766786;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zyvg8QoYW74O3dONADg7EXfdyKnd4yv7Gmv6YiJL6Jc=;
+        b=iePh4xT2Yhrear5qpZ3eugazHSxMjjqSEgKmar+Ut8XG0gUXqV3+DPWIWO09stke09
+         0sr+XWhd8OagjvtCkuJCoF6Om04OkLWuToCO2Gt6TAD4ec0pmpgF/GmtqJihDHZ8KABU
+         x8jE5yePkFVZ6kuRL45vOx05NhD4JAgE/H3Zk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686172660; x=1688764660;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CezTeziIf00zGpoaS9kJexhOOJCksUQFj/tFMeNhKEI=;
-        b=Zdew9f6v1S43JgwN6IG53pOGdqd+3oxYD028cfcvKVFUNPiwAAb1Di9fTFPHqO2l8A
-         CNXvCCQoTTOeNPWUQxYs6+gFFYixiukNA9VNOPviIotGGj0uY9XbSZuuT+PpiCtqApeL
-         DXNtA6foVRMMa3ou5RaZ94+C9Mx8D1kritb5r+eKWoihuPexKLbB0C55K6IJ+sEgTvbq
-         9ktXDUmBRzxKHHe77uMfrrKXIQ0O23FQ3yFvVPPiug3BPwZEV/MDhsc8eDGhznsWJTC8
-         JO8GpLUrrL0XeaMHvikrFzWuE8uFpZpCnGBpLIciEjND2uNJ6BnRx0gRg01jlTxB4XRD
-         ar6w==
-X-Gm-Message-State: AC+VfDxo7ji1dkmzUove//0iSqX9/ueY7k1EVitYg+a+QpQhc0LyQKHr
-        JlTbU+yx2n2/rYLxoJlR0g==
-X-Google-Smtp-Source: ACHHUZ7xDt00NqecnMVQ7QklGZOSiZ6wbDqFwT3Bg6xKWAh7OlzGKj1NKXq780cgjNHvEXrKVPDTJg==
-X-Received: by 2002:a6b:dd10:0:b0:777:a7a5:9c80 with SMTP id f16-20020a6bdd10000000b00777a7a59c80mr219524ioc.6.1686172660649;
-        Wed, 07 Jun 2023 14:17:40 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id d26-20020a5d9bda000000b00763699c3d02sm4097710ion.0.2023.06.07.14.17.39
+        d=1e100.net; s=20221208; t=1686174786; x=1688766786;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zyvg8QoYW74O3dONADg7EXfdyKnd4yv7Gmv6YiJL6Jc=;
+        b=lPWoPkfiUxEvCRDhWzli8NuYt8EF3ote3VzmBBs94n0WdR610JeV//50aJvgZ5Ya4x
+         W3dQI1Mnda6REegP8CUmSfyolSOeu0Cy9KGyOWWnrLPcnr8gEPbfrHp3Cih3AAuQZn+x
+         UTjzOaKwycVEvSAKsyPOysY2KNQO8BUVWNPkItGBg8HytCPRQ6kqgZ6zNxfXGnXGzISw
+         hC7Mo29q9Cw/oYW9PCYEbPiLZNtCnaFgFBC0tJ3RnAejKzXHO/gOpCOm/7X11vE5sO5r
+         mjlsMOWNZCY2E6WClOa4XTTkyAdSucGoYmXoe5+Cd6Sgy8e6YvGoeTqIyFmmWJ1OZrFA
+         F6jg==
+X-Gm-Message-State: AC+VfDx2+95fBI9+XPc+TBuVKV+5FP9jZ8FSbtMEKSI8dYVtxzLqL1Jr
+        Md0Ylr+o20D0mf3rVh4bmv9kog==
+X-Google-Smtp-Source: ACHHUZ6H7ZkK58BxyoTwnLorjymlRn/oik+FiO502U+pJ/YGoiUFqx9sXjwVAXid4XKljYd63Yhfgw==
+X-Received: by 2002:a05:6a20:9384:b0:10b:f590:5a26 with SMTP id x4-20020a056a20938400b0010bf5905a26mr2885518pzh.26.1686174786491;
+        Wed, 07 Jun 2023 14:53:06 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:34b2:b638:6b53:f6c2])
+        by smtp.gmail.com with ESMTPSA id j25-20020aa78d19000000b0065dd1e7c2c1sm1376486pfe.63.2023.06.07.14.53.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 14:17:39 -0700 (PDT)
-Received: (nullmailer pid 4108377 invoked by uid 1000);
-        Wed, 07 Jun 2023 21:17:38 -0000
-Date:   Wed, 7 Jun 2023 15:17:38 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ben Dooks <ben.dooks@codethink.co.uk>
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        bhelgaas@google.com, Conor Dooley <conor+dt@kernel.org>,
-        Sudip Mukherjee <sudip.mukherjee@codethink.co.uk>,
-        Jude Onyenegecha <jude.onyenegecha@codethink.co.uk>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jeegar Lakhani <jeegar.lakhani@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 2/2] dt-bindings: updated max-link-speed for newer
- generations
-Message-ID: <20230607211738.GA4076577-robh@kernel.org>
-References: <20230531092121.291770-1-ben.dooks@codethink.co.uk>
- <20230531092121.291770-2-ben.dooks@codethink.co.uk>
+        Wed, 07 Jun 2023 14:53:05 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        linux-kernel@vger.kernel.org, hsinyi@google.com,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        linux-arm-msm@vger.kernel.org,
+        Chris Morgan <macroalpha82@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>
+Subject: [PATCH v2 00/10] drm/panel and i2c-hid: Allow panels and touchscreens to power sequence together
+Date:   Wed,  7 Jun 2023 14:49:22 -0700
+Message-ID: <20230607215224.2067679-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230531092121.291770-2-ben.dooks@codethink.co.uk>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 10:21:21AM +0100, Ben Dooks wrote:
-> Add updated max-link-speed values for newer generation PCIe link
-> speeds.
-> 
-> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/pci/pci.txt | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
-> index 6a8f2874a24d..56391e193fc4 100644
-> --- a/Documentation/devicetree/bindings/pci/pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> @@ -22,8 +22,9 @@ driver implementation may support the following properties:
->     If present this property specifies PCI gen for link capability.  Host
->     drivers could add this as a strategy to avoid unnecessary operation for
->     unsupported link speed, for instance, trying to do training for
-> -   unsupported link speed, etc.  Must be '4' for gen4, '3' for gen3, '2'
-> -   for gen2, and '1' for gen1. Any other values are invalid.
-> +   unsupported link speed, etc.  Must be '6' for gen6,  '5' for gen5,
-> +   '4' for gen4, '3' for gen3, '2' for gen2, and '1' for gen1.
-> +   Any other values are invalid.
 
-This file is a deadend to be removed.
+The big motivation for this patch series is mostly described in the patch
+("drm/panel: Add a way for other devices to follow panel state"), but to
+quickly summarize here: for touchscreens that are connected to a panel we
+need the ability to power sequence the two device together. This is not a
+new need, but so far we've managed to get by through a combination of
+inefficiency, added costs, or perhaps just a little bit of brokenness.
+It's time to do better. This patch series allows us to do better.
 
-Please update dtschema with the new values.
+Assuming that people think this patch series looks OK, we'll have to
+figure out the right way to land it. The panel patches and i2c-hid
+patches will go through very different trees and so either we'll need
+an Ack from one side or the other or someone to create a tag for the
+other tree to pull in. This will _probably_ require the true drm-misc
+maintainers to get involved, not a lowly committer. ;-)
 
-Rob
+Version 2 of this patch series doesn't change too much. At a high level:
+* I added all the forgotten "static" to functions.
+* I've hopefully made the bindings better.
+* I've integrated into fw_devlink.
+* I cleaned up a few descriptions / comments.
+
+This still needs someone to say that the idea looks OK or to suggest
+an alternative that solves the problems. ;-)
+
+Changes in v2:
+- Move the description to the generic touchscreen.yaml.
+- Update the desc to make it clearer it's only for integrated devices.
+- Add even more text to the commit message.
+- A few comment cleanups.
+- ("Add a devlink for panel followers") new for v2.
+- i2c_hid_core_initial_power_up() is now static.
+- i2c_hid_core_panel_prepared() and ..._unpreparing() are now static.
+- ihid_core_panel_prepare_work() is now static.
+- Improve documentation for smp_wmb().
+
+Douglas Anderson (10):
+  dt-bindings: HID: i2c-hid: Add "panel" property to i2c-hid backed
+    touchscreens
+  drm/panel: Check for already prepared/enabled in drm_panel
+  drm/panel: Add a way for other devices to follow panel state
+  of: property: fw_devlink: Add a devlink for panel followers
+  HID: i2c-hid: Switch to SYSTEM_SLEEP_PM_OPS()
+  HID: i2c-hid: Rearrange probe() to power things up later
+  HID: i2c-hid: Make suspend and resume into helper functions
+  HID: i2c-hid: Support being a panel follower
+  HID: i2c-hid: Do panel follower work on the system_wq
+  arm64: dts: qcom: sc7180: Link trogdor touchscreens to the panels
+
+ .../bindings/input/elan,ekth6915.yaml         |   5 +
+ .../bindings/input/goodix,gt7375p.yaml        |   5 +
+ .../bindings/input/hid-over-i2c.yaml          |   2 +
+ .../input/touchscreen/touchscreen.yaml        |   7 +
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |   1 +
+ .../dts/qcom/sc7180-trogdor-homestar.dtsi     |   1 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |   1 +
+ .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |   1 +
+ .../qcom/sc7180-trogdor-quackingstick.dtsi    |   1 +
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |   1 +
+ drivers/gpu/drm/drm_panel.c                   | 196 +++++++++-
+ drivers/hid/i2c-hid/i2c-hid-core.c            | 338 +++++++++++++-----
+ drivers/of/property.c                         |   2 +
+ include/drm/drm_panel.h                       |  89 +++++
+ 14 files changed, 555 insertions(+), 95 deletions(-)
+
+-- 
+2.41.0.162.gfafddb0af9-goog
+
