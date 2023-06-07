@@ -2,245 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAE8B7269D6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:32:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294AF7269E5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:37:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229837AbjFGTcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 15:32:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
+        id S230189AbjFGThS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 15:37:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbjFGTbl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:31:41 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 983B21FEA;
-        Wed,  7 Jun 2023 12:31:40 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-77807e43b7cso156545339f.1;
-        Wed, 07 Jun 2023 12:31:40 -0700 (PDT)
+        with ESMTP id S230057AbjFGThR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:37:17 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560E41FE0
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 12:37:15 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5147f7d045bso1866802a12.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 12:37:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686166634; x=1688758634;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eDxBlqqSJP4BTdPtvAfTFeIDcm3naOpj8m5v/60N4ng=;
+        b=Bcw+jxUmFepr5qOtAuShI24S3qZIhgNXiAlHtYUw3ieyXfSk0avo9N287CvRzoUfjz
+         Bl+262NOa6rYwq+IitQyI+Z36ER6K4Vfr8o4Evj72E9XiY01Khk98ppgt9gNCzF4b0vn
+         RtkJXqCaIjNZ/aKZowOwVyUyWtrvQ3TN33MTwAHhKu0e3XzW39vkqKyaq3Ck7HJ8FuMg
+         smey8AW7WYkdi+hj26qXHhftTVYXgV3qZp30Mhc77/X2gaxI1VxVaVZszrNxbcDDJfuG
+         rgplNpggJJh8WQi+VYJeORhilcrPcT4v7H7G8DgodsTeZMGa2yVosVzw4/MtSs0PRSQN
+         nAcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686166300; x=1688758300;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k1u2R6kgxvDFNKARcsVD2fJrn977MYP6Tc2v9DawHyk=;
-        b=SxABloHv+cgyaafDl0uV8dXDemrwDi4hObvI8bwnItiok1co6mNlKztzqKwG1JR7O6
-         PG7KjF/0Ragv0Yo5yXvR6w07KKUJirLRJGoEKcpMEITvwXuJcex3vCfMFvXAyq3BQJMi
-         2wxj6jzEq+W6Yhyja4TlF8Zkp9HY5ybximM92pwVFDDqXKIL2Ig0Cz72lBhTBhltphjd
-         GEv37o2gcMMfJWrw6SI7b0ke48IMqzmWCaz47Zu7tIVFw/apom1Qjubz6PeeR+g52Tg3
-         QIODnjaBCpfpfFz2Yc/KLY14qeHXOg79CwW+BGJXr/Sg6Aw/s/jH86nllXeO715yEWgI
-         jUxg==
-X-Gm-Message-State: AC+VfDwKLts8/TMB8ECDZ24XkKXsNuhbkB83//JVWti3e6BMPwvwyI+Y
-        1AAnhS93dQkGvuwwaRwTn5vPcFNbnw==
-X-Google-Smtp-Source: ACHHUZ5S2ceWX4iPBmKUeRfViIixtZuHANUofqYLyWjtNJqUbChDXwaucONOETKXNqf7lakhI9TD4A==
-X-Received: by 2002:a6b:6502:0:b0:777:94ea:3658 with SMTP id z2-20020a6b6502000000b0077794ea3658mr8852783iob.5.1686166299738;
-        Wed, 07 Jun 2023 12:31:39 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id t17-20020a6b0911000000b0076c872823b7sm3945979ioi.22.2023.06.07.12.31.38
+        d=1e100.net; s=20221208; t=1686166634; x=1688758634;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eDxBlqqSJP4BTdPtvAfTFeIDcm3naOpj8m5v/60N4ng=;
+        b=CrthwyrYma1HkrgdCvu2WIyNkZxoEbHGd7+2GCO9hxtOS58QyRox/jPDcGPPSRsOj/
+         x1Sp7AmyJtsrUYSoiJXKOPYVpSbgEH/uxdxfQxKlWHGMLwvG69Yc0eQNONZBFfcfresI
+         UTm3Vt+u4ca2psbXTcaAD8OpCe+NPYcJGGQfXGnFV9khURqlU52YN0nBpwrE1bFh3RI5
+         b0JezGvuSj+maLqbmhX8WiIuu+cMHIvedx2Ke3UmMu6aBrSbLh0/GWnvDBvbg1XkREOz
+         dqwQHS94sHGaBOyWhfl89wedeHNPa5V6YOLiT4BEZjYKb9tjHHSgt4AmdG/w8KYtNUFY
+         pTjw==
+X-Gm-Message-State: AC+VfDx2qTeEkbdOJJxYczoxVkYR5LK+mfH7VqK0yvlzSfdqmD+t5Ws3
+        ncU8I0SU1tmh3IQhMR86h0Q=
+X-Google-Smtp-Source: ACHHUZ7QOWIDGQ8CGdyV6bCcgKfgZCDXRP4jY5R5mojir2tNvKh7CRPFjmTr3gki9c9g6eO6SZ7yCQ==
+X-Received: by 2002:a17:907:7f27:b0:96f:aadb:bf81 with SMTP id qf39-20020a1709077f2700b0096faadbbf81mr9072118ejc.45.1686166633497;
+        Wed, 07 Jun 2023 12:37:13 -0700 (PDT)
+Received: from shift.daheim (p4fd09b31.dip0.t-ipconnect.de. [79.208.155.49])
+        by smtp.gmail.com with ESMTPSA id l1-20020a17090615c100b0096a742beb68sm7147693ejd.201.2023.06.07.12.37.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 12:31:38 -0700 (PDT)
-Received: (nullmailer pid 3880182 invoked by uid 1000);
-        Wed, 07 Jun 2023 19:31:37 -0000
-Date:   Wed, 7 Jun 2023 13:31:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 13/15] arm64: dts: qcom: sc8180x: Add pmics
-Message-ID: <20230607193137.GA3874033-robh@kernel.org>
-References: <20230530162454.51708-1-vkoul@kernel.org>
- <20230530162454.51708-14-vkoul@kernel.org>
+        Wed, 07 Jun 2023 12:37:13 -0700 (PDT)
+Received: from localhost ([127.0.0.1])
+        by shift.daheim with esmtp (Exim 4.96)
+        (envelope-from <chunkeey@gmail.com>)
+        id 1q6yy0-002UOj-1n;
+        Wed, 07 Jun 2023 21:37:12 +0200
+Message-ID: <785c76d5-bfe2-3491-45d1-e78efd750e6a@gmail.com>
+Date:   Wed, 7 Jun 2023 21:37:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230530162454.51708-14-vkoul@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Describe switch ports in the main DTS
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230605132109.7933-1-zajec5@gmail.com>
+Content-Language: de-DE
+From:   Christian Lamparter <chunkeey@gmail.com>
+In-Reply-To: <20230605132109.7933-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 09:54:52PM +0530, Vinod Koul wrote:
-> SC8180X based platforms have PM8150, PM8150C, PMC8180 and SMB2351 PMICs,
-> so add these as well
+On 6/5/23 15:21, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> All Northstar SoCs have BCM5301x switches (BCM53011, BCM53012) with 8
+> ports (0-8 without 6). By design 3 switch ports (5, 7 and 8) are
+> hardwired to 3 on-SoC Ethernet interfaces. Switch port 8 requires
+> forcing link state.
+> 
+> It seems that global Northstar .dtsi file is the best place to describe
+> those hw details. Only device specific bits (like labels) should go to
+> device .dts files.
+> 
+> This seems to fit well with a tiny exception of Asus RT-AC88U which
+> somehow was designed to have switch 5 connected to an extra switch. This
+> case was simply handled with a /delete-property/.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+No, I was wrong. Both the MR26 and MR32 use the Gbit PHY integrated into
+the SoCs. There is no extra PHY chip to be found anywhere on the PCBs.
+phytool does confirm this.
+
+# mr26 + mr32 outputs are indentical.
+| $ phytool poe/0
+| ieee-phy: id:0x600d8760
+| ieee-phy: reg:BMCR(0x00) val:0x1140
+|  flags:          -reset -loopback +aneg-enable -power-down -isolate -aneg-restart -collision-test
+|  speed:          1000-full
+|
+| ieee-phy: reg:BMSR(0x01) val:0x79ed
+|  capabilities:   -100-b4 +100-f +100-h +10-f +10-h -100-t2-f -100-t2-h
+|  flags:          +ext-status +aneg-complete -remote-fault +aneg-capable +link -jabber +ext-register
+
+Reviewed-by: Christian Lamparter <chunkeey@gmail.com> (MR32+MR26)
+
+Thank you!
 > ---
->  arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi | 326 ++++++++++++++++++++
->  1 file changed, 326 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
+
+>   arch/arm/boot/dts/bcm53015-meraki-mr26.dts    |  3 --
+>   arch/arm/boot/dts/bcm53016-meraki-mr32.dts    |  3 --
+>   22 files changed, 51 insertions(+), 163 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-> new file mode 100644
-> index 000000000000..8247af01c84a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-> @@ -0,0 +1,326 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2021-2023, Linaro Limited
-> + */
+> diff --git a/arch/arm/boot/dts/bcm-ns.dtsi b/arch/arm/boot/dts/bcm-ns.dtsi
+> index 43d670746f05..dae9c47ace76 100644
+> --- a/arch/arm/boot/dts/bcm-ns.dtsi
+> +++ b/arch/arm/boot/dts/bcm-ns.dtsi
+> @@ -313,10 +313,49 @@ srab: ethernet-switch@18007000 {
+>   
+>   		status = "disabled";
+>   
+> -		/* ports are defined in board DTS */
+>   		ports {
+>   			#address-cells = <1>;
+>   			#size-cells = <0>;
 > +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> +
-> +/ {
-> +	thermal-zones {
-> +		pmc8180-thermal {
-> +			polling-delay-passive = <100>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pmc8180_temp>;
-> +
-> +			trips {
-> +				trip0 {
-> +					temperature = <95000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				trip1 {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				trip2 {
-> +					temperature = <145000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		pmc8180c-thermal {
-> +			polling-delay-passive = <100>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pmc8180c_temp>;
-> +
-> +			trips {
-> +				trip0 {
-> +					temperature = <95000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				trip1 {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				trip2 {
-> +					temperature = <145000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&spmi_bus {
-> +	pmc8180_0: pmic@0 {
-> +		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-> +		reg = <0x0 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pon: power-on@800 {
-> +			compatible = "qcom,pm8916-pon";
-> +			reg = <0x0800>;
-> +			pwrkey {
-> +				compatible = "qcom,pm8941-pwrkey";
-> +				interrupts = <0x0 0x8 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +				linux,code = <KEY_POWER>;
-> +
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		pmc8180_temp: temp-alarm@2400 {
-> +			compatible = "qcom,spmi-temp-alarm";
-> +			reg = <0x2400>;
-> +			interrupts = <0x0 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +			io-channels = <&pmc8180_adc ADC5_DIE_TEMP>;
-> +			io-channel-names = "thermal";
-> +			#thermal-sensor-cells = <0>;
-> +		};
-> +
-> +		pmc8180_adc: adc@3100 {
-> +			compatible = "qcom,spmi-adc5";
-> +			reg = <0x3100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#io-channel-cells = <1>;
-> +			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> +
-> +			ref-gnd@0 {
-> +				reg = <ADC5_REF_GND>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "ref_gnd";
+> +			port@0 {
+> +				reg = <0>;
 > +			};
 > +
-> +			vref-1p25@1 {
-> +				reg = <ADC5_1P25VREF>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "vref_1p25";
+> +			port@1 {
+> +				reg = <1>;
 > +			};
 > +
-> +			die-temp@6 {
-> +				reg = <ADC5_DIE_TEMP>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "die_temp";
+> +			port@2 {
+> +				reg = <2>;
 > +			};
-> +		};
 > +
-> +		pmc8180_adc_tm: adc-tm@3500 {
-> +			compatible = "qcom,spmi-adc-tm5";
-> +			reg = <0x3500>;
-> +			interrupts = <0x0 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			#thermal-sensor-cells = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
+> +			port@3 {
+> +				reg = <3>;
+> +			};
 > +
-> +		rtc@6000 {
-> +			compatible = "qcom,pm8941-rtc";
-> +			reg = <0x6000>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
-> +		};
+> +			port@4 {
+> +				reg = <4>;
+> +			};
 > +
-> +		pmc8180_gpios: gpio@c000 {
-> +			compatible = "qcom,pmc8180-gpio";
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
+> +			port@5 {
+> +				reg = <5>;
+> +				ethernet = <&gmac0>;
+> +			};
 > +
-> +	pmic@1 {
-> +		compatible = "qcom,pmc8180", "qcom,spmi-pmic";
+> +			port@7 {
+> +				reg = <7>;
+> +				ethernet = <&gmac1>;
+> +			};
+> +
+> +			port@8 {
+> +				reg = <8>;
+> +				ethernet = <&gmac2>;
+> +
+> +				fixed-link {
+> +					speed = <1000>;
+> +					full-duplex;
+> +				};
+> +			};
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
+> index 071f2cb97251..24ba467c67b9 100644
+> --- a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
+> +++ b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
+> @@ -115,14 +115,11 @@ &srab {
+>   
+>   	ports {
+>   		port@0 {
+> -			reg = <0>;
+>   			label = "poe";
+>   		};
+>   
+>   		port@5 {
+> -			reg = <5>;
+>   			label = "cpu";
+> -			ethernet = <&gmac0>;
+>   
+>   			fixed-link {
+>   				speed = <1000>;
+> diff --git a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+> index 46c2c93b01d8..559d6c371d67 100644
+> --- a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+> +++ b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+> @@ -176,14 +176,11 @@ &srab {
+>   
+>   	ports {
+>   		port@0 {
+> -			reg = <0>;
+>   			label = "poe";
+>   		};
+>   
+>   		port@5 {
+> -			reg = <5>;
+>   			label = "cpu";
+> -			ethernet = <&gmac0>;
+>   
+>   			fixed-link {
+>   				speed = <1000>;
 
-Not documented.
-
-Rob
