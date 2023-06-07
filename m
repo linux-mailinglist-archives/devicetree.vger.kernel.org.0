@@ -2,117 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91F06725447
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:32:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F39725455
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233419AbjFGGca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 02:32:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54420 "EHLO
+        id S237818AbjFGGe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 02:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235218AbjFGGb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:31:57 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C39A1984
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 23:31:53 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-30ad8f33f1aso5901134f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 23:31:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1686119511; x=1688711511;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+N6ncdPhuJx70XZ6yjaTOtXW/wJdhXZgpqu86CyLnmg=;
-        b=iSFhC91P61leOakC3ZYDB1vfHeGButTdGDM1hW2MzuCfi7TC+dUY0TPp87E5Gwzxxo
-         h1o6UEBegakpxBiWmhOhHQNcKItVaIWq4KsvQsneKZ0iK3g19qU++mCSiiVscT1xka+X
-         S7IGHfHgN7WvF22pGm+WjoUgdt42UbaeJaUH8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686119511; x=1688711511;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+N6ncdPhuJx70XZ6yjaTOtXW/wJdhXZgpqu86CyLnmg=;
-        b=YxSfFqbcMykTPwjYugV2ki68+SE85xqhXWxXYPfFzB1S69Dixevor1hC9EjAJNdYZo
-         MpLUUfNu/urGJIjNaeKoPzRNtn3T7YnpC0l9pxevF8ry0pzd7Z3/I+QPHf7bb1WhwDl6
-         IbyYlRpKS7QJXiNWIaeBJwx98eN5FLKBdoaLEBnTDYeJgCRQ27D1j0SnWr2L/r4GCmUE
-         zCWmAi5/4XeXSLz0/YbY6UYWBXR10OZbooJmrnlCRo2Onq0GVarO95ehg3Sky2wI/uGk
-         qhIZOoW3IbO2v81QcyZG9MXTys4equCtwRTR86w4LtfGeAX8OaCe1OC0XY+GPdmTzdMw
-         CLEw==
-X-Gm-Message-State: AC+VfDzJhX9T7CKCLa28SYZBmHXkIr89bNMKho9bOG5TJUG1Hdpzavlg
-        IhNx+FpK68ssDcYiqjQAdJCKjQ==
-X-Google-Smtp-Source: ACHHUZ5a8gfVu2axekyl+99oSLUzWfSPuWuaqcQZYuCkNPZ73b9TII++3uuK7xQc96qqlkKElumaFA==
-X-Received: by 2002:adf:e80f:0:b0:30e:59e9:5e1f with SMTP id o15-20020adfe80f000000b0030e59e95e1fmr732503wrm.65.1686119511073;
-        Tue, 06 Jun 2023 23:31:51 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.. ([37.159.114.163])
-        by smtp.gmail.com with ESMTPSA id m6-20020adff386000000b0030630120e56sm14385127wro.57.2023.06.06.23.31.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 23:31:50 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        michael@amarulasolutions.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+        with ESMTP id S237218AbjFGGd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:33:57 -0400
+Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B990D1FEB
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 23:33:26 -0700 (PDT)
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
+        id 33f50993-04fd-11ee-a9de-005056bdf889;
+        Wed, 07 Jun 2023 09:33:24 +0300 (EEST)
+From:   andy.shevchenko@gmail.com
+Date:   Wed, 7 Jun 2023 09:33:23 +0300
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+Cc:     "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [RESEND PATCH v2 4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
-Date:   Wed,  7 Jun 2023 08:31:37 +0200
-Message-Id: <20230607063139.621351-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com>
-References: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 1/4] firmware: arm_scmi: Add optional flags to
+ extended names helper
+Message-ID: <ZIAks96OYWdO6Xjq@surfacebook>
+References: <cover.1686063941.git.oleksii_moisieiev@epam.com>
+ <2ad06a5582bb31e16fe2f497e15cb41e8455e863.1686063941.git.oleksii_moisieiev@epam.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2ad06a5582bb31e16fe2f497e15cb41e8455e863.1686063941.git.oleksii_moisieiev@epam.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible to panel-simple for Rocktech Displays Limited
-RK043FN48H 4.3" 480x272 LCD-TFT panel.
+Tue, Jun 06, 2023 at 04:22:27PM +0000, Oleksii Moisieiev kirjoitti:
+> Some recently added SCMI protocols needs an additional flags parameter to
+> be able to properly configure the command used to query the extended name
+> of a resource.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+...
 
----
+>  	put_unaligned_le32(res_id, t->tx.buf);
+> +	if (flags)
+> +		put_unaligned_le32(*flags,
+> +				   (u8 *)t->tx.buf + sizeof(res_id));
 
-Changes in v2:
-- Add 'Acked-by' tag of Conor Dooley.
+I believe this can be one line, esp. if the buffer is void *, you do not need
+an explicit casting, void * pointer arithmetics is byte-based (yes, non-standard
+but very widely used in the kernel).
 
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+>  	resp = t->rx.buf;
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 01560fe226dd..bd6a92d2b41c 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -280,6 +280,8 @@ properties:
-       - rocktech,rk101ii01d-ct
-         # Rocktech Display Ltd. RK070ER9427 800(RGB)x480 TFT LCD panel
-       - rocktech,rk070er9427
-+        # Rocktech Display Ltd. RK043FN48H 4.3" 480x272 LCD-TFT panel
-+      - rocktech,rk043fn48h
-         # Samsung 13.3" FHD (1920x1080 pixels) eDP AMOLED panel
-       - samsung,atna33xc20
-         # Samsung 12.2" (2560x1600 pixels) TFT LCD panel
 -- 
-2.32.0
+With Best Regards,
+Andy Shevchenko
+
 
