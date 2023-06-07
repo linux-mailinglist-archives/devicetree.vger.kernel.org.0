@@ -2,37 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57D0372636A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 16:55:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCCDB726380
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 16:57:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241202AbjFGOzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 10:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43982 "EHLO
+        id S240435AbjFGO5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 10:57:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241183AbjFGOzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 10:55:41 -0400
+        with ESMTP id S240595AbjFGO5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 10:57:48 -0400
 Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 990F819BB;
-        Wed,  7 Jun 2023 07:55:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66E91FDB;
+        Wed,  7 Jun 2023 07:57:29 -0700 (PDT)
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id DB3E95FD6F;
-        Wed,  7 Jun 2023 17:55:34 +0300 (MSK)
+        by mx.sberdevices.ru (Postfix) with ESMTP id AE6045FD6E;
+        Wed,  7 Jun 2023 17:57:27 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1686149734;
-        bh=rYTGCAplnRx/Dki6x4xZvyofri8ryJP0w/zMyn2mG9Y=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-        b=bAY84eRzKe8qtQzKu8mPTth0pmPT05Zhwk5cK5fGc36EFk8FXXylD4Q4H/tbLQ2Qx
-         e3fRfQ3Va9HCYbRCfuOsplfadTHCKX56CqY3YNM5UZ4U+OZC4NybXbwvc2fiA1qFuI
-         g1kmb32YRw8sm32ElgjJ2ibSUWoa5REjrHx4NP/MTd0JNtNWHTlI8wTZFXf2/K0HVk
-         2nIpunovUWxjbAfVpzB1mqgS82MDZXv/G781zbr7gBN0pWBE1DKXhXdmpdIw6bIXNs
-         cDSJNaWvNYPuhSswzIF60nVxZrCkCQ93zEVPcZj1RxEfn1U0YlS09pyn6JW5ixvYay
-         XfpiiZKCbMDzQ==
+        s=mail; t=1686149847;
+        bh=c5e9Hn2iWEoovV4OiRRedc1P1r4+v4qAhT08M7pHODc=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=gAaEepNtKegJU7Wc0IZhBJxXUjdudfDS2bXbuTPi2rcMrWr4upfpX+yvwDlMlTdMG
+         Newa/obL3r7plfg8OhFB7PwIcHtM1bnyZoKxCpHUDQggc0B/Nb4j0xL/ew1/A2Pyuq
+         DbnyxuePczlzcMcz9Px0V4rBOhnoapxGEXO12SsfxNt2s55T0Xa3qf70AejXZTBm+B
+         F7t1h9PUFWIQE+iAPINfqpNze08/oD3YeebSpID4U/atjAMZiqiZQ6skdKuB/qxc0f
+         1cXBq6Ew3jLIX0Oc1R4E19jQVNzyQEgo+iDII+8fjiR9pGG0OtTFiJ0YH+VoOc0Atr
+         pMCYg1N2lDF4Q==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
         by mx.sberdevices.ru (Postfix) with ESMTP;
-        Wed,  7 Jun 2023 17:55:34 +0300 (MSK)
-From:   Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Wed,  7 Jun 2023 17:57:27 +0300 (MSK)
+Message-ID: <6c1973d1-38c0-6048-90ad-da2f60df8238@sberdevices.ru>
+Date:   Wed, 7 Jun 2023 17:52:32 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Liang Yang <liang.yang@amlogic.com>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -40,21 +47,23 @@ To:     Liang Yang <liang.yang@amlogic.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
         <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 2/2] mtd: rawnand: meson: waiting w/o wired ready/busy pin
-Date:   Wed, 7 Jun 2023 17:50:25 +0300
-Message-ID: <20230607145026.2899547-3-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20230607145026.2899547-1-AVKrasnov@sberdevices.ru>
-References: <20230607145026.2899547-1-AVKrasnov@sberdevices.ru>
-MIME-Version: 1.0
+References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
+ <20230607095802.3adcd4f9@xps-13>
+ <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
+ <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
+ <835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
+ <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
+ <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
+ <20230607113605.50a992bb@xps-13>
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230607113605.50a992bb@xps-13>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
@@ -65,179 +74,85 @@ X-KSMG-AntiSpam-Interceptor-Info: not scanned
 X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 09:39:00 #21450961
 X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If there is no wired ready/busy pin, classic way to wait for command
-completion is to use function 'nand_soft_waitrdy()'. Meson NAND has
-special command which allows to wait for NAND_STATUS_READY bit without
-reading status in a software loop (as 'nand_soft_waitrdy()' does). To
-use it send this command along with NAND_CMD_STATUS, then wait for an
-interrupt, and after interrupt send NAND_CMD_READ0. So this feature
-allows to use interrupt driven waiting without wired ready/busy pin.
 
-Suggested-by: Liang Yang <liang.yang@amlogic.com>
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- drivers/mtd/nand/raw/meson_nand.c | 82 +++++++++++++++++++++++++++++--
- 1 file changed, 78 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 074e14225c06..935de8e4934d 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -38,6 +38,7 @@
- #define NFC_CMD_SCRAMBLER_DISABLE	0
- #define NFC_CMD_SHORTMODE_DISABLE	0
- #define NFC_CMD_RB_INT		BIT(14)
-+#define NFC_CMD_RB_INT_NO_PIN	((0xb << 10) | BIT(18) | BIT(16))
- 
- #define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
- 
-@@ -179,6 +180,7 @@ struct meson_nfc {
- 	u32 info_bytes;
- 
- 	unsigned long assigned_cs;
-+	bool no_rb_pin;
- };
- 
- enum {
-@@ -392,7 +394,42 @@ static void meson_nfc_set_data_oob(struct nand_chip *nand,
- 	}
- }
- 
--static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
-+static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int timeout_ms,
-+				    bool need_cmd_read0)
-+{
-+	u32 cmd, cfg;
-+
-+	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
-+	meson_nfc_drain_cmd(nfc);
-+	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-+
-+	cfg = readl(nfc->reg_base + NFC_REG_CFG);
-+	cfg |= NFC_RB_IRQ_EN;
-+	writel(cfg, nfc->reg_base + NFC_REG_CFG);
-+
-+	reinit_completion(&nfc->completion);
-+	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
-+	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+
-+	/* use the max erase time as the maximum clock for waiting R/B */
-+	cmd = NFC_CMD_RB | NFC_CMD_RB_INT_NO_PIN | nfc->timing.tbers_max;
-+	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+
-+	if (!wait_for_completion_timeout(&nfc->completion,
-+					 msecs_to_jiffies(timeout_ms)))
-+		return -ETIMEDOUT;
-+
-+	if (need_cmd_read0) {
-+		cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
-+		writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+		meson_nfc_drain_cmd(nfc);
-+		meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-+	}
-+
-+	return 0;
-+}
-+
-+static int meson_nfc_wait_rb_pin(struct meson_nfc *nfc, int timeout_ms)
- {
- 	u32 cmd, cfg;
- 	int ret = 0;
-@@ -420,6 +457,27 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
- 	return ret;
- }
- 
-+static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms,
-+			      bool need_cmd_read0)
-+{
-+	if (nfc->no_rb_pin) {
-+		/* This mode is used when there is no wired R/B pin.
-+		 * It works like 'nand_soft_waitrdy()', but instead of
-+		 * polling NAND_CMD_STATUS bit in the software loop,
-+		 * it will wait for interrupt - controllers checks IO
-+		 * bus and when it detects NAND_CMD_STATUS on it, it
-+		 * raises interrupt. After interrupt, NAND_CMD_READ0 is
-+		 * sent as terminator of the ready waiting procedure if
-+		 * needed (for all cases except page programming - this
-+		 * is reason of 'need_cmd_read0' flag).
-+		 */
-+		return meson_nfc_wait_no_rb_pin(nfc, timeout_ms,
-+						need_cmd_read0);
-+	} else {
-+		return meson_nfc_wait_rb_pin(nfc, timeout_ms);
-+	}
-+}
-+
- static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
- {
- 	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
-@@ -623,7 +681,7 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
- 	if (in) {
- 		nfc->cmdfifo.rw.cmd1 = cs | NFC_CMD_CLE | NAND_CMD_READSTART;
- 		writel(nfc->cmdfifo.rw.cmd1, nfc->reg_base + NFC_REG_CMD);
--		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max));
-+		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max), true);
- 	} else {
- 		meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
- 	}
-@@ -669,7 +727,7 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
- 
- 	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
--	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max));
-+	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max), false);
- 
- 	meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_TO_DEVICE);
- 
-@@ -952,7 +1010,8 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
- 			break;
- 
- 		case NAND_OP_WAITRDY_INSTR:
--			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms);
-+			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms,
-+					   true);
- 			if (instr->delay_ns)
- 				meson_nfc_cmd_idle(nfc, delay_idle);
- 			break;
-@@ -1248,6 +1307,7 @@ meson_nfc_nand_chip_init(struct device *dev,
- 	struct mtd_info *mtd;
- 	int ret, i;
- 	u32 tmp, nsels;
-+	u32 nand_rb_val;
- 
- 	nsels = of_property_count_elems_of_size(np, "reg", sizeof(u32));
- 	if (!nsels || nsels > MAX_CE_NUM) {
-@@ -1287,6 +1347,20 @@ meson_nfc_nand_chip_init(struct device *dev,
- 	mtd->owner = THIS_MODULE;
- 	mtd->dev.parent = dev;
- 
-+	ret = of_property_read_u32(np, "nand-rb", &nand_rb_val);
-+	if (ret) {
-+		/* If property was not found, don't use rb pin. */
-+		if (ret == -EINVAL)
-+			nfc->no_rb_pin = true;
-+		else
-+			return -EINVAL;
-+	} else {
-+		if (nand_rb_val)
-+			return -EINVAL;
-+
-+		nfc->no_rb_pin = false;
-+	}
-+
- 	ret = nand_scan(nand, nsels);
- 	if (ret)
- 		return ret;
--- 
-2.35.0
+On 07.06.2023 12:36, Miquel Raynal wrote:
+> Hi Arseniy,
+> 
+> avkrasnov@sberdevices.ru wrote on Wed, 7 Jun 2023 12:04:29 +0300:
+> 
+>> On 07.06.2023 12:08, Krzysztof Kozlowski wrote:
+>>> On 07/06/2023 10:57, Arseniy Krasnov wrote:  
+>>>>
+>>>>
+>>>> On 07.06.2023 11:53, Krzysztof Kozlowski wrote:  
+>>>>> On 07/06/2023 10:40, Arseniy Krasnov wrote:  
+>>>>>> Hello Miquel, 
+>>>>>>
+>>>>>> On 07.06.2023 10:58, Miquel Raynal wrote:
+>>>>>>  
+>>>>>>> Hi Arseniy,
+>>>>>>>
+>>>>>>> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
+>>>>>>>  
+>>>>>>>> Add description of 'nand-rb' property. Use "Fixes" because this property
+>>>>>>>> must be supported since the beginning. For this controller 'nand-rb' is
+>>>>>>>> stored in the controller node (not in chip), because it has only single
+>>>>>>>> r/b wire for all chips.  
+>>>>>>>
+>>>>>>> Sorry if I mislead you in the first place, but you could definitely
+>>>>>>> have two chips and only one with RB wired. It needs to be defined in
+>>>>>>> the chips.  
+>>>>>>
+>>>>>> Ok, so to clarify: is it ok, that in bindings this property will be placed in the
+>>>>>> chip, but in driver, i'm trying to read it from the controller node (thus  in
+>>>>>> dts file it will be also in controller node)?  
+> 
+> The bindings and your driver internal representation are two different
+> things. Anyway, as mentioned above, wiring the RB line to one die and
+> not the other would be valid hardware design and would require the rb
+> property to be in the chip node. Please perform a per-chip property read
+> in the driver as well.
 
+Done, I resend both patches (bindings + driver update) as a single patchset. Your review comments
+for driver code were also fixed.
+
+> 
+>>>>>
+>>>>> No, because how would your DTS pass validation? I understand you did not
+>>>>> test the bindings, but this will improve, right?  
+>>>>
+>>>> Ok, i'll follow DTS layout in the driver, "test the bindings" You mean "make dt_binding_check"?  
+>>>
+>>> Yes. They were sent without testing.
+>>>
+>>> But please also test your DTS with dtbs_check. 
+
+Done
+
+Thanks, Arseniy
+
+>>
+>> Got it!
+>>
+>> Thanks, Arseniy
+>>
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>   
+> 
+> 
+> Thanks,
+> Miquèl
