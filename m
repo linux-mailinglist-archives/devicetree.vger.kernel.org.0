@@ -2,79 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6CE7725CBF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 13:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9087725CE6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 13:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240269AbjFGLJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 07:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47354 "EHLO
+        id S240282AbjFGLTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 07:19:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240192AbjFGLJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 07:09:19 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5424C2115
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 04:08:55 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so8847146e87.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 04:08:55 -0700 (PDT)
+        with ESMTP id S240248AbjFGLTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 07:19:14 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480891BEC
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 04:19:13 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b1bdfe51f8so5880591fa.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 04:19:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686136131; x=1688728131;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1686136751; x=1688728751;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5KFnEHxnHsY5ORT5+vCk7re0Z/SbzSvLlr7u70HouNM=;
-        b=mYSSEIwoK0ohHCQN7sWH+G63YxZ9c6gvfwTapMO8sZ5t1PhYpZ34LUwboM+lXoTPNJ
-         2HDuiMgM9IJmHaJRIOLGTWptYTCvfmdu843n9KwZBw9c+I3/VMhw4IAebsUbcWSH6fvH
-         fvO/9WdCXHv1/8g5vMrtpDdATQYClGKY2aWnHF5XzH9CftipP6lHV4zhniHJ/X395IFp
-         1/g3cfeJtkZb73uu/9Jr75T/UyEEgjZDdkuu2PW1egQuLDCstB7DmKqSg82EIAAK4+sq
-         4EDXk6EEpVVkMKazN8ZJupHFTNCistQDm9XYXmrTW1gPcA9Z9d8WNTpC5C2VDt6CxC89
-         zjnA==
+        bh=fjko3QRj+cFplx9h7zbRwTk/CwypS2aJGQpsJdnJBcU=;
+        b=laRSDrsJNF9p2Ofs3Yfy7ka0nQNTWbKYMLIRRWEmQCnnCfuI+YpId+dWWU1TyPxBm5
+         6Cmq3E/iMw+YsFNd5yjGx3NZnByip7EmAV9SHAEjtlw9byALWWELgRy3SYJKPWKGBQoA
+         zd7Wx2S3Juto5ptbe+9OaIjOGSYJwY8qUnXwJ0mqTgROVxtyWUzZ4oFsGJL3roCX2sRO
+         Y9TGulY7Yqn6MCizksVHMlD+JKfiPgjQ1QLNlr3CUB3MxpTlgwcWNJXjkbSqFCSvOL13
+         QV332ueIJ64er8ta6wCXOPEjMGrVvRSizPJPSFBRJIB7bdpzGeMDVnBcH0iZ265hLEcE
+         w+SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686136131; x=1688728131;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1686136751; x=1688728751;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5KFnEHxnHsY5ORT5+vCk7re0Z/SbzSvLlr7u70HouNM=;
-        b=eUPUN4nLFSCSOUL64hhFYAGCNcGUbgGoVYnOVz4WDB45jfGIq/oByKMiDaKPbnrt//
-         IrDz+qX/4P89oo2auSQSKFWOcdWxSZV5fDMzRbuUCeXW/WymqLmTbFaziTp9+kxqPXoj
-         VW6nHkeCHi+FGMfkKMxgKsWxPPZXoSoJqwGj0l1EXoRg86LHRpGAZwYS6iNj+2uA2tTd
-         eBYwXuhVPRjFH9P6Rj8yDNtiZfpRsjjwdMxtZrrm6JR53ZtOKgAEavSAthmMTAveu6Wc
-         rSg/bepKfSuP55VvtgeM8A94KA46UZWERv6hCHx3VbGApkCo0H4SL9YdjeDBfKf1SoJx
-         z0bg==
-X-Gm-Message-State: AC+VfDzatYmbye3u05vdGaIEsQnJRlsn6qVk6/NH+ZGIO4w+CIryQaK6
-        IbemmbKOiOg7tF6Atom6VbUuxw==
-X-Google-Smtp-Source: ACHHUZ5FU7gfJqgR6Bbf9okouulqzQ/fg4hH+NUBnT1B9xe4An7hHPqqYOoHE38MR8eh9M7iMp8TFw==
-X-Received: by 2002:ac2:52b4:0:b0:4f2:5d38:2c37 with SMTP id r20-20020ac252b4000000b004f25d382c37mr2204352lfm.15.1686136130920;
-        Wed, 07 Jun 2023 04:08:50 -0700 (PDT)
+        bh=fjko3QRj+cFplx9h7zbRwTk/CwypS2aJGQpsJdnJBcU=;
+        b=XdLMP1aSLDZhuVBgUfCyONN4nRyzRhU4DyZPI0xxQGb2p6z45Wojsj2SLycKDlH5hB
+         U2cRWH0sathT6uNSX0a6qQQiUX6GqqckW4zR5GQlunIIDOsjbe+N3DV/VqPcssDsl6JV
+         vWivAZgtXSMn6b+VGMSle5kF0JJ/D5kizdmxwA5VY1LK2xGGnMRG2v8vqZsDwlEI7puE
+         sN2S5AViFdRmUOfhGSHWYRZj/0QHcVFj1ssy1Yx+8MFgwgKWQnkexogqDTVF5BdHqUld
+         OWirL5P6rLimI0/n8CibiYU1NpbF4/hZXRWHDDEz+WQafOwfxorlNKAUdeNpYz6CZ+Rj
+         wI4g==
+X-Gm-Message-State: AC+VfDziay7mm03bFYzvdfWPAJfEcxITQRBfaV1572i0qXvHDOXMAJv/
+        vVMIpw0fPCfIdxEtABOaZlgECg==
+X-Google-Smtp-Source: ACHHUZ5rgUIGYC9F4mfa/BwfD2kpufU+Xaf6Czj/chjjh9l/L1hLFCcM7s7tAr6X1R3s3BfQCW9tiA==
+X-Received: by 2002:a05:651c:2050:b0:2b0:2214:f808 with SMTP id t16-20020a05651c205000b002b02214f808mr4542941ljo.16.1686136751092;
+        Wed, 07 Jun 2023 04:19:11 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id b17-20020ac247f1000000b004f139712835sm1778576lfp.293.2023.06.07.04.08.48
+        by smtp.gmail.com with ESMTPSA id x13-20020a2e7c0d000000b002ad90c2d0dasm2222771ljc.71.2023.06.07.04.19.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 04:08:50 -0700 (PDT)
-Message-ID: <8e5e7bc4-1767-8179-b6ac-f09ac0b5361d@linaro.org>
-Date:   Wed, 7 Jun 2023 14:08:47 +0300
+        Wed, 07 Jun 2023 04:19:10 -0700 (PDT)
+Message-ID: <87810fde-c824-d494-17b3-b6ff34237bea@linaro.org>
+Date:   Wed, 7 Jun 2023 14:19:09 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v5 1/6] thermal: qcom: tsens: Drop unused legacy structs
+Subject: Re: [PATCH 4/9] clk: qcom: ipq5332: Fix USB related clock defines
 Content-Language: en-GB
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230508-msm8909-tsens-v5-0-5eb632235ba7@kernkonzept.com>
- <20230508-msm8909-tsens-v5-1-5eb632235ba7@kernkonzept.com>
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, arnd@arndb.de, geert+renesas@glider.be,
+        neil.armstrong@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, rafal@milecki.pl, quic_srichara@quicinc.com,
+        quic_varada@quicinc.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org
+References: <cover.1686126439.git.quic_varada@quicinc.com>
+ <3840e5b5795ef55ecbf25d0faa8c328f09c6d976.1686126439.git.quic_varada@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230508-msm8909-tsens-v5-1-5eb632235ba7@kernkonzept.com>
+In-Reply-To: <3840e5b5795ef55ecbf25d0faa8c328f09c6d976.1686126439.git.quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,23 +86,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 13:47, Stephan Gerhold wrote:
-> The old single-cell parsing code was removed for MSM8939, MDM9607 and
-> MSM8976 but for some reason the structs defining the bit positions etc
-> were kept around (unused). Drop them now.
+On 07/06/2023 13:56, Varadarajan Narayanan wrote:
+> Fix the USB related clock defines and add details
+> referenced by them
 > 
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Fixes: 51d78b8b1beb ("thermal/drivers/tsens: Drop single-cell code for mdm9607")
-> Fixes: dfadb4599ab0 ("thermal/drivers/tsens: Drop single-cell code for msm8939")
-> Fixes: 3a908971f7cb ("thermal/drivers/tsens: Drop single-cell code for msm8976/msm8956")
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->   drivers/thermal/qcom/tsens-v0_1.c | 36 ------------------------------------
->   drivers/thermal/qcom/tsens-v1.c   | 22 ----------------------
->   2 files changed, 58 deletions(-)
+>   drivers/clk/qcom/gcc-ipq5332.c | 34 +++++++++++++++++++++++-----------
+>   1 file changed, 23 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
+> index a75ab88..2b58558 100644
+> --- a/drivers/clk/qcom/gcc-ipq5332.c
+> +++ b/drivers/clk/qcom/gcc-ipq5332.c
+> @@ -351,6 +351,16 @@ static const struct freq_tbl ftbl_gcc_adss_pwm_clk_src[] = {
+>   	{ }
+>   };
+>   
+> +static const struct clk_parent_data gcc_usb3phy_0_cc_pipe_clk_xo[] = {
+> +	{ .fw_name = "usb3phy_0_cc_pipe_clk" },
+> +	{ .fw_name = "xo" },
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+gcc-ipq5332 uses DT indices, please don't mix that with .fw_name.
+
+> +};
+> +
+> +static const struct parent_map gcc_usb3phy_0_cc_pipe_clk_xo_map[] = {
+> +	{ P_USB3PHY_0_PIPE, 0 },
+> +	{ P_XO, 2 },
+> +};
+> +
+>   static struct clk_rcg2 gcc_adss_pwm_clk_src = {
+>   	.cmd_rcgr = 0x1c004,
+>   	.mnd_width = 0,
+> @@ -1101,16 +1111,18 @@ static struct clk_rcg2 gcc_usb0_mock_utmi_clk_src = {
+>   	},
+>   };
+>   
+> -static struct clk_regmap_phy_mux gcc_usb0_pipe_clk_src = {
+> +static struct clk_regmap_mux usb0_pipe_clk_src = {
+>   	.reg = 0x2c074,
+> +	.shift = 8,
+> +	.width = 2,
+> +	.parent_map = gcc_usb3phy_0_cc_pipe_clk_xo_map,
+>   	.clkr = {
+> -		.hw.init = &(struct clk_init_data) {
+> -			.name = "gcc_usb0_pipe_clk_src",
+> -			.parent_data = &(const struct clk_parent_data) {
+> -				.index = DT_USB_PCIE_WRAPPER_PIPE_CLK,
+> -			},
+> -			.num_parents = 1,
+> -			.ops = &clk_regmap_phy_mux_ops,
+> +		.hw.init = &(const struct clk_init_data){
+> +			.name = "usb0phy_0_cc_pipe_clk_src",
+> +			.parent_data = gcc_usb3phy_0_cc_pipe_clk_xo,
+> +			.num_parents = 2,
+> +			.ops = &clk_regmap_mux_closest_ops,
+> +			.flags = CLK_SET_RATE_PARENT,
+>   		},
+
+Soo... As you are reverting this. Is USB0 PIPE clock required to be 
+parked to the XO? I was going to write 'before turning USB0_GDSC' off, 
+but then I noticed that gcc-ipq5332 doesn't declare GDSCs. Does this 
+platform have GDSCs?
+
+>   	},
+>   };
+> @@ -3041,8 +3053,8 @@ static struct clk_branch gcc_usb0_pipe_clk = {
+>   		.enable_mask = BIT(0),
+>   		.hw.init = &(const struct clk_init_data) {
+>   			.name = "gcc_usb0_pipe_clk",
+> -			.parent_hws = (const struct clk_hw*[]) {
+> -				&gcc_usb0_pipe_clk_src.clkr.hw,
+> +			.parent_names = (const char *[]){
+> +				"usb0_pipe_clk_src"
+
+complete and definitive NAK. Do not use parent_names, we have just 
+stopped migrating from them.
+
+>   			},
+>   			.num_parents = 1,
+>   			.flags = CLK_SET_RATE_PARENT,
+> @@ -3580,7 +3592,7 @@ static struct clk_regmap *gcc_ipq5332_clocks[] = {
+>   	[GCC_PCIE3X2_PIPE_CLK_SRC] = &gcc_pcie3x2_pipe_clk_src.clkr,
+>   	[GCC_PCIE3X1_0_PIPE_CLK_SRC] = &gcc_pcie3x1_0_pipe_clk_src.clkr,
+>   	[GCC_PCIE3X1_1_PIPE_CLK_SRC] = &gcc_pcie3x1_1_pipe_clk_src.clkr,
+> -	[GCC_USB0_PIPE_CLK_SRC] = &gcc_usb0_pipe_clk_src.clkr,
+> +	[GCC_USB0_PIPE_CLK_SRC] = &usb0_pipe_clk_src.clkr,
+>   };
+>   
+>   static const struct qcom_reset_map gcc_ipq5332_resets[] = {
 
 -- 
 With best wishes
