@@ -2,108 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9984725C86
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 13:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BE64725C3B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 12:57:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240290AbjFGLAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 07:00:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37596 "EHLO
+        id S240134AbjFGK5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 06:57:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240481AbjFGLAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 07:00:09 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE0C31FD4;
-        Wed,  7 Jun 2023 03:58:49 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 357AkX5O013660;
-        Wed, 7 Jun 2023 10:57:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=JfyrxHYByNtJUYhrMn4hXvVYxwljS/KNBKAElLPjG8I=;
- b=YKoyLLsiPg9wTKlYiSEcu4mpz3dFdRbPrwHuviKAi293jPleGTq3oDgajLXBW2ZmG/HR
- GAo3zw79RgEZrzQ0Ye3qEHdvUA+97RwYU5bM88WcUPSJPmA2v4c1ofaJP8FQamPQ/4s0
- ruXsnGWDGU9Xz6XCZgx8o0ocnNC6+19h/F5K6I0xBDEMN6o4p4usSnO5OMFzcwyU/uKA
- HIZG7HF6Ou6gUas5ceekVAl1VCIjhc7bhosl3o+o5uYXMuqlWHIXZPiBoF1Rta+3hALW
- q8FgkIhVSxABkRyCFLDHSYE8q83mR3OXn/6wHjcg2yupZDJ1YVuErBfYtUFnc73StT8M bw== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r2a719np0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 07 Jun 2023 10:57:23 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 357AvMSa010124
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 7 Jun 2023 10:57:22 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 7 Jun 2023 03:57:13 -0700
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <p.zabel@pengutronix.de>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <rafal@milecki.pl>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>
-CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH 6/9] phy: qcom: Add qcom,m31 USB phy driver
-Date:   Wed, 7 Jun 2023 16:26:10 +0530
-Message-ID: <353c5affd1d638bdc7e4ed187616a938e8d763a4.1686126439.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1686126439.git.quic_varada@quicinc.com>
-References: <cover.1686126439.git.quic_varada@quicinc.com>
+        with ESMTP id S240049AbjFGK47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 06:56:59 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0725F1FE9
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 03:56:25 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f738f579ceso29713575e9.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 03:56:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686135383; x=1688727383;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f2iKHUzCB8EHUg15xjq4OMMdldskToFfPs25o8tYY9w=;
+        b=ymQSvjPpvyT7jG/isiZDKYSjksflsakM1YaZEIQlVBp8tEte6OHoV5wzQSyR40giFJ
+         6owvCmjaV8p4WDxDsicuGv8nEhAhYjhBfz1olOTwHNvr6MxKDCqVpoPbQgduASPfCVx6
+         weZ/oSsGvokYUSqusI/bYDdifZqmtrkNNt5JUvDmSXqWdZsagBRnxoqa8+VphqUB4FIO
+         m5k+tRTCPkKLltUc+swA3zhH8So+5wsxhMfCNYRtX6e6U3TJEqAsRBZS8xmJvW1iSboq
+         BZIg73q8N6lal8smXZyxMs4XJvDRqeIhspY5+zETXpeSZbLBmEXumbde9vkOmUbp8KIZ
+         HTLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686135383; x=1688727383;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f2iKHUzCB8EHUg15xjq4OMMdldskToFfPs25o8tYY9w=;
+        b=dIuF+QIuyKJ3up0Y+c1IXfz1JPP6nkJA40Y5sbklTOsoWGwmQ/P5yapwA+oyMYFPwo
+         b07MG1Hli0dvGCjhU2fx+v9VW+NR5Mqdru/KFwEEXFjkpnpSupRkHF07Xji8EgiE8pyR
+         vQ7xTIuCL09IcDDq5tkEaSiuYNfVCGNruxF1lwlpVCEu+1CA7SN3W8JKFsuJJgR1yaVb
+         0Dl32KT2qoXlgE/kqIml1hKG1HNrADufDMDKxScraSl++wAaQ7yYCJOpljcdAQY0XNaO
+         XarhwbXIvNlRx8Jt5jDrHeQ2wilwRotU5npTIl4s0xZF+bTwRfUL3Y6NYd/mPVwHfAQO
+         EvRA==
+X-Gm-Message-State: AC+VfDyQUQarU9EbD7Dmqj31Jo4CTwo66Z8VOnEMvJaZrkhJ97tVLk9Q
+        7enhsxYaF5VOJb2HmwN32zWduw==
+X-Google-Smtp-Source: ACHHUZ6/rVBwSBm+ljhsr4Hys2ZgNVqWoCxvgWyYTTUx6yhM6vnzeAM7hJ7kNTg2bIdzCNA5WPDVyg==
+X-Received: by 2002:a1c:730c:0:b0:3f7:5e3:c1f2 with SMTP id d12-20020a1c730c000000b003f705e3c1f2mr4665801wmb.8.1686135382955;
+        Wed, 07 Jun 2023 03:56:22 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id i10-20020a05600c290a00b003f60faa4612sm1761879wmd.22.2023.06.07.03.56.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 03:56:22 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 00/18] clk: meson: move all private clk IDs to public
+ dt-bindings headers
+Date:   Wed, 07 Jun 2023 12:56:11 +0200
+Message-Id: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sv5o8tnQfjGr9Ab465gX__8xLrmD_Hxi
-X-Proofpoint-ORIG-GUID: sv5o8tnQfjGr9Ab465gX__8xLrmD_Hxi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-07_06,2023-06-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 bulkscore=0 phishscore=0 spamscore=0 adultscore=0
- priorityscore=1501 mlxlogscore=730 suspectscore=0 malwarescore=0
- clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306070089
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEtigGQC/x2OywqDMBBFf0Wy7oBaq9JfKS6ScYxD8yIxpSD+e
+ 4euLucsDvdUhTJTUc/mVJk+XDgGge7WKNx1sAS8Cqu+7e/t2E5wxMQI2rtoZWsqRybtAd2bV0j
+ VOLGebdaHlGDDDscJh2F+zEqaRhcCk3XAXaqhOicyZdr4+z/xWq7rBykCF5CUAAAA
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4001;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=uJNGNauTjMkkifelIBeMDs+ah1nOQgnUxgk/5DE80k8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkgGJNOIxWQSHL0QurCTHu93otFh40QfOFcpZcxiQ2
+ nXKYJUmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIBiTQAKCRB33NvayMhJ0ZG2EA
+ CzoAL+jZ+bj25TogujANFIzdIsx4Colo13UTfPLmbq2qTRMMwRvF3v5svBmFoAkG99HVwprsLoOZUi
+ zbKzst9h2eR9kYgAHcxTxCE98trRbn6rpmpEHd19ZDls0KNmHcz/fqMI0ZFz6mbAhgi3sBYRJ+73Wj
+ NbTT/4U7et0se7GwoF3lu/q+HJNeDcc+bJ5ZBIQZjHE5U1Y/917Lj4PYPJSqGGIwVRdAY7qBC1tK+p
+ JH0cQOg6cGUSDC5naqm8NHXmf61TbJJxE7iB8jGCPvcBC3xIhpQyxmC7NYYjH8YIdttHQ/61xsgH8u
+ 6EtafiiYX+cJkY8mbE46QAjRsbs7/gse009YuvHB6msIRZntcNsRW+16FmGII4hy7fcInlKrHhJYcK
+ 4xeyTKtBu57lCEL2Qx3mdH0Vg/kw4zmgbVGBLx0RqY+LaLkPH/zInXprp7SpHP6gzznrFC/SdLW1Rj
+ QkUygqf6gVNOb7pYjCYSKvoGwgDWq6DgJgcnwKCPEiiDZ/49NvSbyzNV3ShqsAn1ZPBPLeh1/hJXUG
+ ipp4wrlJVBOZELbH8pN3Po7quSh5N0odzGDbzmFOf0y6WxC9WDtIP7MVpThFNmBDl17Uqpgak+yGaz
+ gdaSZMtKIDYWDlqCB1BK0skHlvQTLG6mVSkaydxzyWpVbR9QudnXZoMP2zdg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include M31 phy driver if CONFIG_PHY_QCOM_M31_USB is enabled
+After some complaints in the upstreaming of the A1 clock drivers,
+S4 clock driver and a tentative to use some of the private DSI
+clocks in [1], it has been decided to move out all the "private"
+clk IDs to public dt-bindings headers.
 
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+For that we must get rid of the "NR_CLKS" define and use
+ARRAY_SIZE() to get the count of hw_clks, then we can move
+the IDs and do some cleanup.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/phy/qualcomm/Makefile | 1 +
- 1 file changed, 1 insertion(+)
+Neil Armstrong (18):
+      clk: meson: migrate meson-eeclk out of hw_onecell_data to drop NR_CLKS
+      clk: meson: migrate meson-aoclk out of hw_onecell_data to drop NR_CLKS
+      clk: meson: migrate a1 clock drivers out of hw_onecell_data to drop NR_CLKS
+      clk: meson: migrate meson8b out of hw_onecell_data to drop NR_CLKS
+      clk: meson: migrate axg-audio out of hw_onecell_data to drop NR_CLKS
+      dt-bindings: clk: gxbb-clkc: expose all clock ids
+      dt-bindings: clk: axg-clkc: expose all clock ids
+      dt-bindings: clk: g12a-clks: expose all clock ids
+      dt-bindings: clk: g12a-aoclkc: expose all clock ids
+      dt-bindings: clk: meson8b-clkc: expose all clock ids
+      dt-bindings: clk: amlogic,a1-peripherals-clkc: expose all clock ids
+      dt-bindings: clk: amlogic,a1-pll-clkc: expose all clock ids
+      dt-bindings: clk: axg-audio-clkc: expose all clock ids
+      clk: meson: aoclk: move bindings include to main driver
+      clk: meson: eeclk: move bindings include to main driver
+      clk: meson: a1: move bindings include to main driver
+      clk: meson: meson8b: move bindings include to main driver
+      clk: meson: axg-audio: move bindings include to main driver
 
-diff --git a/drivers/phy/qualcomm/Makefile b/drivers/phy/qualcomm/Makefile
-index de3dc9c..79a6e75 100644
---- a/drivers/phy/qualcomm/Makefile
-+++ b/drivers/phy/qualcomm/Makefile
-@@ -21,3 +21,4 @@ obj-$(CONFIG_PHY_QCOM_USB_HS_28NM)	+= phy-qcom-usb-hs-28nm.o
- obj-$(CONFIG_PHY_QCOM_USB_SS)		+= phy-qcom-usb-ss.o
- obj-$(CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2)+= phy-qcom-snps-femto-v2.o
- obj-$(CONFIG_PHY_QCOM_IPQ806X_USB)		+= phy-qcom-ipq806x-usb.o
-+obj-$(CONFIG_PHY_QCOM_M31_USB)		+= phy-qcom-m31.o
+ drivers/clk/meson/a1-peripherals.c                 |  345 ++---
+ drivers/clk/meson/a1-peripherals.h                 |   67 -
+ drivers/clk/meson/a1-pll.c                         |   59 +-
+ drivers/clk/meson/a1-pll.h                         |   19 -
+ drivers/clk/meson/axg-aoclk.c                      |   46 +-
+ drivers/clk/meson/axg-aoclk.h                      |   18 -
+ drivers/clk/meson/axg-audio.c                      |  858 +++++------
+ drivers/clk/meson/axg-audio.h                      |   75 -
+ drivers/clk/meson/axg.c                            |  283 ++--
+ drivers/clk/meson/axg.h                            |   63 -
+ drivers/clk/meson/g12a-aoclk.c                     |   70 +-
+ drivers/clk/meson/g12a-aoclk.h                     |   32 -
+ drivers/clk/meson/g12a.c                           | 1483 ++++++++++----------
+ drivers/clk/meson/g12a.h                           |  145 --
+ drivers/clk/meson/gxbb-aoclk.c                     |   12 +-
+ drivers/clk/meson/gxbb-aoclk.h                     |   15 -
+ drivers/clk/meson/gxbb.c                           |  844 ++++++-----
+ drivers/clk/meson/gxbb.h                           |   81 --
+ drivers/clk/meson/meson-aoclk.c                    |   22 +-
+ drivers/clk/meson/meson-aoclk.h                    |    3 +-
+ drivers/clk/meson/meson-eeclk.c                    |   22 +-
+ drivers/clk/meson/meson-eeclk.h                    |    3 +-
+ drivers/clk/meson/meson8b.c                        | 1335 +++++++++---------
+ drivers/clk/meson/meson8b.h                        |  117 --
+ .../clock/amlogic,a1-peripherals-clkc.h            |   53 +
+ include/dt-bindings/clock/amlogic,a1-pll-clkc.h    |    5 +
+ include/dt-bindings/clock/axg-audio-clkc.h         |   65 +
+ include/dt-bindings/clock/axg-clkc.h               |   48 +
+ include/dt-bindings/clock/g12a-aoclkc.h            |    7 +
+ include/dt-bindings/clock/g12a-clkc.h              |  130 ++
+ include/dt-bindings/clock/gxbb-clkc.h              |   65 +
+ include/dt-bindings/clock/meson8b-clkc.h           |   97 ++
+ 32 files changed, 3205 insertions(+), 3282 deletions(-)
+---
+base-commit: 84af914404dbc01f388c440cac72428784b8a161
+change-id: 20230607-topic-amlogic-upstream-clkid-public-migration-fc1c67c44858
+
+Best regards,
 -- 
-2.7.4
+Neil Armstrong <neil.armstrong@linaro.org>
 
