@@ -2,72 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A354C72545F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EFC272547C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237851AbjFGGgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 02:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
+        id S237478AbjFGGkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 02:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234753AbjFGGf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:35:56 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C762699;
-        Tue,  6 Jun 2023 23:35:04 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-19f454bd2c8so7732371fac.3;
-        Tue, 06 Jun 2023 23:35:04 -0700 (PDT)
+        with ESMTP id S237012AbjFGGkQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:40:16 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE9E172B
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 23:40:15 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-565c3aa9e82so79931647b3.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 23:40:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686119698; x=1688711698;
+        d=amarulasolutions.com; s=google; t=1686120015; x=1688712015;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8A+z7wlEdRYbHtO/dJJM54F9I60knJM0fwL0Pnl9OAY=;
-        b=CeBxyTw4/DL2b53rqIdeqOOwXvqJymfF8VJR9+4UcxpQFiyo+OwIMesotQRktUL9Rq
-         u5L3QTBiHepyPJlpGrL6cpCvR+c6cEzdJ9TI8Dth7G8GXQLDoiOEW4g7d36caUwBN8Pu
-         aGrvbWL2o/OfQ4KUGxa14WLqLBwaluW1sN6mQDTe6DGFZ6q3QNT/jXkgBmxH+7BgvvmR
-         m8ejb2V/SoD+kBtizSYQiqZ9dtpCOXJUsLlxZ5RMrNusNoP7eN4Ve/v43YFJPMkPCmqt
-         ACvjdOU29Y/YVVtTHiVOeyYyDrfxKFfcal1NCU1nYhLeT7Vdlu8D3udsxR3foPjveeaH
-         Rd9Q==
+        bh=9d2sCd7ah2vbojw+2oUIoDVwhMBRN5y5qh24H2kySsU=;
+        b=f0RZdEMQ464ceL/uRZ10D3Eig8SLZ9Ww3zWyqBRJvU9jMbPmnw4KZw0aCajmu5ElKD
+         IlC/f7cx6mivVp7ryDID9C6k1iebxdKMJ8zYKQqeiKdzFEmn065WdfBBMoHJgRR3H6t4
+         mzKaZve8nW/ROna1hFKTqqkAxuAMflmTUNOiE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686119698; x=1688711698;
+        d=1e100.net; s=20221208; t=1686120015; x=1688712015;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8A+z7wlEdRYbHtO/dJJM54F9I60knJM0fwL0Pnl9OAY=;
-        b=fiikxvt1IiYEVQ5wjnEa7Pb+rE4a42wYpUmvQ3RR4/AhTVdEylOuOpP1ueP1dB1585
-         5zRBpaOsnTLmiDaLerwTapcS7tTzYwkIj5E2fOntSS7UR8RSW0H4jY17qsQS99hr+PZ4
-         jRGup6/V7J0FDTm8PVNdDL5psFNcznO1g/MYbK9GoBKfwJP1ATcNAmnb3UF60QxBhm46
-         2r/57xFByX20+CVvFYcmAsmeJl+vh36R8vgvt5yt/0ITcgRoRraMGtG1mClmn7GYHYJ6
-         2k1aG2GOvWDZ72i9uTkBJ6XSeYKAdYjWzpu1Leh2tEPwUzDY/9P5fUTkEOEen8B1ttNU
-         zgLw==
-X-Gm-Message-State: AC+VfDz3z0w3yD2NhKsn7oUlK8xuYtVIb4Uiq1v+2xNtOVbCPmuNN3Bo
-        YLnCrOQX2bkw08BYpFH0u8xJMVviZVgK7zD7YOsZv12P
-X-Google-Smtp-Source: ACHHUZ7QAMpiZYDHkdOXvZF5AcH1Av2L/av0UOiVWQKHozt0OEDoW4IMlurqAbfQqumtyxdobjJfLVit+WESRKIIMUo=
-X-Received: by 2002:a05:6870:c690:b0:19f:55f7:310e with SMTP id
- cv16-20020a056870c69000b0019f55f7310emr5928554oab.13.1686119698271; Tue, 06
- Jun 2023 23:34:58 -0700 (PDT)
+        bh=9d2sCd7ah2vbojw+2oUIoDVwhMBRN5y5qh24H2kySsU=;
+        b=QaNP+hYf8dgzkjrMLx4aTFOD93hS1yDN9lga+vlb9HfPbNSrtYFenc42pN3eiipoee
+         UI1m/hISmK5gJT/92AlFPVb4SGZaGj1NVkQG4AFEjosJ+QRYE1MvQjXey1mOYmb6/F9N
+         6flOtmyh/7b+WpGIG98vXfWhqO2nbjnAh/n6CuXjkH4e2XoSIA6yHWQ3aRV3lbMJb6D+
+         pbK0y1w9SPaOeeHvFnRlsyFp5fWsCZeSORBL47KQJjEeGN+RmP9nryORFjqZvGBqoRJv
+         ZEolzmiMXgSJ2E+2h8I0bYGkDWTYFNkTYYtUn4LWT0DZLrY6uYq2glq8F6oeTYIJm1Td
+         oFlQ==
+X-Gm-Message-State: AC+VfDz5dg0hHdv/xG0BcTRCkKm9q/tLdXwRw8xHaUdMT5/unUGnEruP
+        KJ8dJiJCI4TTt2OQicyUOlaI3RUqNEkOs2hN9sLYmQ==
+X-Google-Smtp-Source: ACHHUZ4FcSqI9UJuhz5QJp3BxxWbzaB69qaQ0llUyrzZcvr85u9WKmZk2Gw3vKaFZgAl6y6Ws+AbiDt3xWboKEU4CHM=
+X-Received: by 2002:a0d:d552:0:b0:566:c47:d06a with SMTP id
+ x79-20020a0dd552000000b005660c47d06amr5357912ywd.13.1686120014887; Tue, 06
+ Jun 2023 23:40:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230606211600.1601694-1-liviu@dudau.co.uk> <20230606211600.1601694-3-liviu@dudau.co.uk>
-In-Reply-To: <20230606211600.1601694-3-liviu@dudau.co.uk>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 7 Jun 2023 08:34:46 +0200
-Message-ID: <CAMhs-H-b-RmxSKsXpFjRby4XLTx3S0_M-dV-fffHueRSmebLRw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] mips: dts: ralink: Add support for TP-Link HC220
- G5 v1 board
-To:     Liviu Dudau <liviu@dudau.co.uk>
-Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com> <20230607063139.621351-5-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20230607063139.621351-5-dario.binacchi@amarulasolutions.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 7 Jun 2023 12:10:03 +0530
+Message-ID: <CAMty3ZA-8zyzqzjOehKa1=zE+GoMw8j2NbgZuythAafSjHVczw@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        michael@amarulasolutions.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
         Conor Dooley <conor+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
         devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,24 +83,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 6, 2023 at 11:16=E2=80=AFPM Liviu Dudau <liviu@dudau.co.uk> wro=
-te:
+On Wed, Jun 7, 2023 at 12:01=E2=80=AFPM Dario Binacchi
+<dario.binacchi@amarulasolutions.com> wrote:
 >
-> This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
-> a MT7603 2.4GHz WiFi and a MT7613 5GHz WiFi chips integrated on the board=
-,
-> connected to the main SoC over PCIe.
+> Add compatible to panel-simple for Rocktech Displays Limited
+> RK043FN48H 4.3" 480x272 LCD-TFT panel.
 >
-> The device uses NMBM over NAND, which is not currently supported in the
-> mainline, so NAND node is skipped in this revision.
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 >
-> Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
 > ---
->  arch/mips/boot/dts/ralink/Makefile            |  3 +-
->  .../dts/ralink/mt7621-tplink-hc220-g5-v1.dts  | 84 +++++++++++++++++++
->  2 files changed, 86 insertions(+), 1 deletion(-)
 
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-
-Thanks,
-     Sergio Paracuellos
+Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
