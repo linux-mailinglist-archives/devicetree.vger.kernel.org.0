@@ -2,148 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCFAF7254D2
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB7FD7254D9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 08:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238324AbjFGGyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 02:54:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37760 "EHLO
+        id S234075AbjFGGyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 02:54:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238240AbjFGGx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:53:57 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2065.outbound.protection.outlook.com [40.107.100.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 561A61BFC;
-        Tue,  6 Jun 2023 23:53:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NAsokwXbDT9GYWfyvMvoeKsnWSCwHxQSvDbBzv1vLisE/Da1PeN2BthseoNQakTLgcwkJjLGA0D5ZVowH4Tj91UUZwvsvBs03bZNBdNvyC7z7jtJ+OOsBtFBzohV5mudA93t5p5xXv6z96Amh/KZDLUDCRnJXYKnkd/kt1e+USq268frC9/jRQ/koYLZkWIa8YJupE5VKHUl0eVQOEEQPM1V+/Xs4RJJjNi8sW2KeIHeX2SsCveGv5hFrnf76V3Ixwy5Bj6s57ZRGSvb5qX+JYn74ecVK/OuT5cKE57gQC8b/CvjYgeiehsstxOsVLur99bBYLDODuRdlZxhV8IZ/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CfIQ/670RShMdx6/kmDzYmWvUKOjXCKAEiDiJSzQ390=;
- b=PbVxw3CnixIJrZLH1VISfhMWPfPrdCH/P4gDNvjgiN/flbQF8oqFyvUyckV+HuCMRdQv7bIttniQ78vGSI2XWdcIeqw760c6Zgr5CONED5Xk2WwLeOSe+uVIB7Pis2eIP6IbjU4z1Ks/obaIIU9I3jUP5akZ6FHns7KUUnQM2ZUWZvRQH9MEg6IArrgpO5kqm0+eQWJufwP6dnr3vQntuaxe0EU9t87CBV+pVcUOBmEzeptj6dMePNU/QK/JNKU2Z/CIMnuZ6ixxl9vcWyTD8HrL2bCZjz9q4cpeF+gvxXZ3MdoBfy4fX00/tF1Pm2YLWDV2661Ok4OxUeQK7ikh8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=pengutronix.de smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CfIQ/670RShMdx6/kmDzYmWvUKOjXCKAEiDiJSzQ390=;
- b=kvZ7MPnWWUDfLfDg0LVhv1ckJ+6FvYZgztEmhY3l+noT+fU/yRZzz1qkHvSVxASUDHbqmphAJzLsfuGmMO2V5l9O3Ap3OTfDri3hLyGjUFyUWdF0bXn6XSaO66xT7edSeF+wSnLU6rRzOY5V0rK6yNgG2Qt2lX3EZZq1mX1p8QE=
-Received: from SJ0PR05CA0051.namprd05.prod.outlook.com (2603:10b6:a03:33f::26)
- by PH7PR12MB7329.namprd12.prod.outlook.com (2603:10b6:510:20c::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.19; Wed, 7 Jun
- 2023 06:53:35 +0000
-Received: from CO1NAM11FT108.eop-nam11.prod.protection.outlook.com
- (2603:10b6:a03:33f:cafe::cd) by SJ0PR05CA0051.outlook.office365.com
- (2603:10b6:a03:33f::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.19 via Frontend
- Transport; Wed, 7 Jun 2023 06:53:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT108.mail.protection.outlook.com (10.13.175.226) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.33 via Frontend Transport; Wed, 7 Jun 2023 06:53:34 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 7 Jun
- 2023 01:53:29 -0500
-Received: from xhdnavam40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Wed, 7 Jun 2023 01:53:26 -0500
-From:   Piyush Mehta <piyush.mehta@amd.com>
-To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <michal.simek@amd.com>, <michal.simek@xilinx.com>,
-        <nava.manne@xilinx.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <siva.durga.prasad.paladugu@amd.com>, <git@amd.com>,
-        Piyush Mehta <piyush.mehta@amd.com>
-Subject: [PATCH 2/2] dt-bindings: firmware: add reset-controller property
-Date:   Wed, 7 Jun 2023 12:21:21 +0530
-Message-ID: <20230607065121.2265076-3-piyush.mehta@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230607065121.2265076-1-piyush.mehta@amd.com>
-References: <20230607065121.2265076-1-piyush.mehta@amd.com>
+        with ESMTP id S238385AbjFGGyk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 02:54:40 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FEF1BC2;
+        Tue,  6 Jun 2023 23:54:37 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f736e0c9b1so38263215e9.3;
+        Tue, 06 Jun 2023 23:54:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686120875; x=1688712875;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UI9Z3j+r3a0Ltufs6TrTDwqvLTunzcx+0NZ8vIKvHWg=;
+        b=CRReD5bCpanlduyt4/F+AGjKmFIRxliDjyfEuvzACcRLo+Hsuk6PnlGwID7Wm3/YaZ
+         WT5BD3DzJxXZRNEedYt5X0jE2Udfz9z61LK7JVL/xRx1IzwPO1dIgiMuhUk2LZ489Ovz
+         26ThTAFqkvbSTIIUtfxBEgTBCOJyFzKw8T+fettpBSVXerEmsIYOOrhLnVdNLmCyHjC3
+         B9nDeLpo1JS/j3LkUSYkUcklDprMO3vyIhU5kxtLyXEKjYrG8SOagNTemb48VDOjOVpR
+         YApgcCaLNp8/aHU/lFw1iuqAKntn7SyXk4tJ8WEWTE4U/Dfk8wPBfUvPwZL9ky5dnhYM
+         uSUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686120875; x=1688712875;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UI9Z3j+r3a0Ltufs6TrTDwqvLTunzcx+0NZ8vIKvHWg=;
+        b=UTaHAFxg+d34zRMHOpvyW4D1X9NvZGrsLM5DKNkgEqZy46WSy+LJS0o3KPVtEH+9+s
+         Ak4N+rz8guN8Nfh5xlDHIbAxMGqcQ+fv9FkAiaQTif3q9TVacUgeqMa4wY+o4Q7phQko
+         utg/IyPE7wFLZrTVjj+wNKBBUVkoh4eGyQnOycdqzM8wn0bLuuDr+Kx49JaaSg4TqkuD
+         pEwybD6tra05eWRfPn1OaBDSIBhOXHsxdLt1QmidpmNtUA1LCeWc6ohcMXEfz5dnKXXW
+         d3dBPfdY6ZknjdrfR9+I3a9BndXyO2SOW7njNqV9P88ouDO/K8uinxOwOWyS1/ATwsId
+         ZsIQ==
+X-Gm-Message-State: AC+VfDzknUotQGSa4XjBcI6seGWY+VlHSwXrD2tz3jjLHlXc/VcPqljc
+        2tzQtNmDpaQgG8SfYovCtyf4mhImNhp45w==
+X-Google-Smtp-Source: ACHHUZ6w1ibYJsDpRq3SReWTvaZuSYU3syNjGO5Cx6RZ0KZNHhZ5jYhYnttjdfluCskxahiLDJ+hJg==
+X-Received: by 2002:a05:600c:c1:b0:3f6:a65:6ff3 with SMTP id u1-20020a05600c00c100b003f60a656ff3mr3494314wmm.32.1686120875356;
+        Tue, 06 Jun 2023 23:54:35 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id h4-20020adff4c4000000b0030647d1f34bsm14633830wrp.1.2023.06.06.23.54.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jun 2023 23:54:34 -0700 (PDT)
+Message-ID: <9ec115dd-e419-ec4e-45f1-0865d703fd6a@gmail.com>
+Date:   Wed, 7 Jun 2023 08:54:33 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8192: Fix CPUs capacity-dmips-mhz
+Content-Language: en-US, ca-ES, es-ES
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230602183515.3778780-1-nfraprado@collabora.com>
+ <01c88a42-274c-f8cf-73a6-29741579d9db@collabora.com>
+ <4b2fdd36-0871-ecc7-5d64-e088d7f51987@gmail.com>
+ <0e9667dc-8f91-49a0-903e-6725204e11ad@notapiano>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <0e9667dc-8f91-49a0-903e-6725204e11ad@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT108:EE_|PH7PR12MB7329:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d30bee3-0551-4aa6-0150-08db6723e9c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eZhjb+k4m8ALHWeLAne3+EPNPdtdZ1VDvn49p3QxE9PUKbLbaSiH9rFrdTVB6N7jBy0bC81l2lUPDWRat3wsLaa8faz2z6UMpf0up5kFNzFWLP30gtj14h8LVk2Lbgs7bH/VEncHwyh//zpsw0lpYF/itoB1uHj2W8jmkdFTLuZxsDQvRn1xafNsclznbET+KdFNVXw42hQEjSwooKRIP+wVX19RXWjwRwWzWjIWO4MFsepMAHOqkLUiuhpUuzyXMKKN5RcPIgyGolccSFr+PVrt1wAD5cl9ijbunkbZ0h7ySkafZLunRYX+73JlPh/LkaTqr75DhEIjly5eWtW84Kk/U4jTm3WXNZbgAVTxnCcLe0piuahwSjb19Zuy/bOzcMHtzc8ayjtgV0WgQ9W8BZEmWG1lHlAFY94nY7UGC5R2q9S8sYUO75zwby+LRY5J+mmVlGWSMqRaSgf+0Dq3GNIhXzNDZZGGIUmIM5cslY7N9sPIWDEeE6uYq8m7aphHQcHCE5BdL+oBj7e+VQ+9U6kQpfEhIbgjNjK4mi0zJOMlWJkpzVCr+Gq7WyK+amlSa9Ga18c0pD+mUxiZ2VKtQQyPj75wJPFlY4XTC1nSUrRhkrxJOPL8eQi0NEaDZ/zVCaRXx5drvikZ3RJ/eNZJk9EaSsX5QHtmmvRt05MzXLwiKMbNQl6/trnHFHpe1oFtSlWS4YeqqA9IkMsHwrJAuv8H5GrG7lYbv7eHKgufBZ79oYM2DOTd6TfsTkOuW+KIFuAlL3ylJdZ5AGpbSL1F6lIQXAM3ZrmqMDarTsrjh0Y=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(136003)(346002)(396003)(451199021)(40470700004)(46966006)(36840700001)(86362001)(40460700003)(2906002)(110136005)(54906003)(41300700001)(8936002)(82310400005)(8676002)(5660300002)(82740400003)(356005)(36756003)(44832011)(316002)(4326008)(81166007)(70206006)(70586007)(40480700001)(6666004)(478600001)(36860700001)(186003)(83380400001)(47076005)(336012)(2616005)(426003)(26005)(1076003)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 06:53:34.5366
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d30bee3-0551-4aa6-0150-08db6723e9c8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT108.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7329
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reset controller is responsible for managing both device-level resets
-and individual PMC (Power Management Controller) block resets.
 
-To facilitate this functionality reset-controller property is added to the
-firmware device tree binding.
 
-Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
----
- .../firmware/xilinx/xlnx,zynqmp-firmware.yaml         | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On 06/06/2023 15:00, Nícolas F. R. A. Prado wrote:
+> On Tue, Jun 06, 2023 at 08:38:42AM +0200, Matthias Brugger wrote:
+>>
+>>
+>> On 05/06/2023 10:21, AngeloGioacchino Del Regno wrote:
+>>> Il 02/06/23 20:35, Nícolas F. R. A. Prado ha scritto:
+>>>> The capacity-dmips-mhz parameter was miscalculated: this SoC runs
+>>>> the first (Cortex-A55) cluster at a maximum of 2000MHz and the
+>>>> second (Cortex-A76) cluster at a maximum of 2200MHz.
+>>>>
+>>>> In order to calculate the right capacity-dmips-mhz, the following
+>>>> test was performed:
+>>>> 1. CPUFREQ governor was set to 'performance' on both clusters
+>>>> 2. Ran dhrystone with 500000000 iterations for 10 times on each cluster
+>>>> 3. Calculated the mean result for each cluster
+>>>> 4. Calculated DMIPS/MHz: dmips_mhz = dmips_per_second / cpu_mhz
+>>>> 5. Scaled results to 1024:
+>>>>      result_c0 = dmips_mhz_c0 / dmips_mhz_c1 * 1024
+>>>>
+>>>> The mean results for this SoC are:
+>>>> Cluster 0 (LITTLE): 12016411 Dhry/s
+>>>> Cluster 1 (BIG): 31702034 Dhry/s
+>>>>
+>>>> The calculated scaled results are:
+>>>> Cluster 0: 426.953226899238 (rounded to 427)
+>>>> Cluster 1: 1024
+>>>>
+>>>> Fixes: 48489980e27e ("arm64: dts: Add Mediatek SoC MT8192 and
+>>>> evaluation board dts and Makefile")
+>>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>>>
+>>>
+>>
+>> Applied, thanks
+> 
+> Hi Matthias,
+> 
+> this patch doesn't show in your v6.4-next/dts64 branch, while the other patch
+> you just applied does, so I just wanted to double check it was really applied.
+> 
 
-diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-index f14f7b454f07..04d875a535d3 100644
---- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-+++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-@@ -59,6 +59,12 @@ properties:
-       controller.
-     type: object
- 
-+  reset-controller:
-+    $ref: /schemas/reset/xlnx,zynqmp-reset.yaml#
-+    description: The reset-controller has the ability to reset lines connected
-+      to different blocks and peripherals in the SoC.
-+    type: object
-+
- required:
-   - compatible
- 
-@@ -84,6 +90,11 @@ examples:
-         clocks = <&ref>, <&alt_ref>, <&pl_alt_ref>;
-         clock-names = "ref", "alt_ref", "pl_alt_ref";
-       };
-+
-+      zynqmp_reset: reset-controller {
-+        compatible = "xlnx,zynqmp-reset";
-+        #reset-cells = <1>;
-+      };
-     };
- 
- ...
--- 
-2.25.1
+I forgot to push it, should be fixed now.
 
+Regards,
+Matthias
