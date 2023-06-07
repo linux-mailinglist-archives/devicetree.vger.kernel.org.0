@@ -2,56 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DB62725975
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C1C725985
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:08:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235218AbjFGJGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 05:06:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S239596AbjFGJIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 05:08:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238467AbjFGJFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:05:35 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 94FE82137;
-        Wed,  7 Jun 2023 02:04:43 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 28CFEAB6;
-        Wed,  7 Jun 2023 02:05:28 -0700 (PDT)
-Received: from [10.57.25.235] (unknown [10.57.25.235])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2612D3F587;
-        Wed,  7 Jun 2023 02:04:40 -0700 (PDT)
-Message-ID: <95530dcc-aad3-cf4d-f5cc-9ba504ac7abf@arm.com>
-Date:   Wed, 7 Jun 2023 10:04:38 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.1
-Subject: Re: [PATCH V5 5/6] coresight: platform: acpi: Ignore the absence of
- graph
-To:     Mike Leach <mike.leach@linaro.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        scclevenger@os.amperecomputing.com,
-        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+        with ESMTP id S234352AbjFGJHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:07:35 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C2526AA
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 02:07:00 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-256712e2be3so6110473a91.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 02:07:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686128820; x=1688720820;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TTpdalqtCpBT/NwoTNyl6O7DvunXs5YAm2ongGgRBJw=;
+        b=DXDkfPevfwjc0edifXxFdNpLngA5Bsitn9gV3nuP9WLIqA55+9us1u+CqDkdx0fuem
+         K+4yKUgwQ9SzzpcjdRg4prVxZ8TmXOzk4+Yg1tCx4M+BO6NeWfpbmpoK8zN3Tro1Bkp5
+         nxNC3hB4Aj/9tO90wJqjTqYvg8YWpoNClAiR8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686128820; x=1688720820;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TTpdalqtCpBT/NwoTNyl6O7DvunXs5YAm2ongGgRBJw=;
+        b=Kp/JdkkxITxoFv2KycRoQV3d+hcX1D8uAGrZ37Cx4+54OxPhtL4KvzoqDag/35++Ju
+         nsNA4yrVvhOvPHR0wjiuSXg865B96F2/e4Gbwnoyer0EaAvvTuPritHVt8W7lXNYs70R
+         zldpySg682zIBO23y3OxnPCU2MFNb18MDl4bXof/w74KQaRnulNxprEyG+g6VxUr8VcN
+         YjfTOGS6omdQ5hl0IEB0gUIpGmoXy66dX3/22dA5yhISyNiB59e1UsJSgwnENp2YGW6c
+         pk3jLxeCtHi8T+A2DPTBabSJZY+Az2+ypntFiDE94L3o6Oi2otgRVuDKv13siAHlrAsB
+         bOnw==
+X-Gm-Message-State: AC+VfDzwZ4e5D1+EtjErfqjSifE3r+FvUxo07Fbc/3kMugrFJGGsGimj
+        qsMCln/bP2DbloTy80LrcR5j5A==
+X-Google-Smtp-Source: ACHHUZ6VZYacMCDoBxnVNPrIRYQZUOXjx7NZRAus4oWzskwTQViwej4z93EXTX5fHBxnAHcCeorohg==
+X-Received: by 2002:a17:90a:30c:b0:259:476:b318 with SMTP id 12-20020a17090a030c00b002590476b318mr4542787pje.2.1686128820332;
+        Wed, 07 Jun 2023 02:07:00 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:443b:29bb:b677:185d])
+        by smtp.gmail.com with ESMTPSA id b38-20020a631b66000000b0051eff0a70d7sm8505732pgm.94.2023.06.07.02.06.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 02:06:59 -0700 (PDT)
+From:   Chen-Yu Tsai <wenst@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230529062511.52016-1-anshuman.khandual@arm.com>
- <20230529062511.52016-6-anshuman.khandual@arm.com>
- <CAJ9a7ViWiSuabBVPASHO-MDs9z7wGSLuCLCpPezFrh6p3AOgyA@mail.gmail.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <CAJ9a7ViWiSuabBVPASHO-MDs9z7wGSLuCLCpPezFrh6p3AOgyA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 0/4] arm64: dts: mediatek: mt8186: More DVFS nodes
+Date:   Wed,  7 Jun 2023 17:06:48 +0800
+Message-ID: <20230607090653.2468317-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.41.0.rc0.172.g3f132b7071-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,51 +71,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 09:58, Mike Leach wrote:
-> HI Ansuman,
-> 
-> On Mon, 29 May 2023 at 07:26, Anshuman Khandual
-> <anshuman.khandual@arm.com> wrote:
->>
->> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>
->> Some components may not have graph connections for describing
->> the trace path. e.g., ETE, where it could directly use the per
->> CPU TRBE. Ignore the absence of graph connections
->>
->> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-platform.c | 6 +++++-
->>   1 file changed, 5 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/drivers/hwtracing/coresight/coresight-platform.c
->> index 475899714104..c4b4fbde8550 100644
->> --- a/drivers/hwtracing/coresight/coresight-platform.c
->> +++ b/drivers/hwtracing/coresight/coresight-platform.c
->> @@ -692,8 +692,12 @@ static int acpi_coresight_parse_graph(struct acpi_device *adev,
->>
->>          pdata->nr_inport = pdata->nr_outport = 0;
->>          graph = acpi_get_coresight_graph(adev);
->> +       /*
->> +        * There are no graph connections, which is fine for some components.
->> +        * e.g., ETE
->> +        */
->>          if (!graph)
->> -               return -ENOENT;
->> +               return 0;
->>
-> 
-> Should we not determine if it is valid for a particular component not
-> to have a graph connection?
-> Prior to this patch an incorrectly configured ETMv4 - which must have
-> a graph would return an error, after this it will fail silently
+Hi,
 
-I think it doesn't call for a failure. The ETM could still
-be probed but is not usable. We provide enough information via the
-sysfs, i.e., connection links, which should be sufficient for the
-user to detect this case. Also, this change is inline with what
-we do for ETMv4 with DT.
+This adds more of the DVFS stuff at the SoC .dtsi level. This includes
+the CCI and GPU.
 
-Suzuki
+Please have a look and merge for this cycle if possible.
+
+On another note, I'm still cleaning up the MT6366 regulator's binding.
+We shouldn't upstream the boards until the PMIC is ready.
+
+ChenYu
+
+Chen-Yu Tsai (4):
+  arm64: dts: mediatek: mt8186: Add CCI node and CCI OPP table
+  arm64: dts: mediatek: mt8186: Wire up CPU frequency/voltage scaling
+  arm64: dts: mediatek: mt8186: Add GPU speed bin NVMEM cells
+  arm64: dts: mediatek: mt8186: Wire up GPU voltage/frequency scaling
+
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 538 ++++++++++++++++++++++-
+ 1 file changed, 537 insertions(+), 1 deletion(-)
+
+-- 
+2.41.0.rc0.172.g3f132b7071-goog
 
