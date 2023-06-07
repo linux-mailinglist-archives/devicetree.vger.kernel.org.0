@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 055297270C0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 23:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEFF7270C3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 23:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231886AbjFGVxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 17:53:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54646 "EHLO
+        id S229584AbjFGVxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 17:53:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230034AbjFGVxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 17:53:09 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213791FD6
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 14:53:07 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-650bacd6250so4481793b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 14:53:07 -0700 (PDT)
+        with ESMTP id S232093AbjFGVxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 17:53:11 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A51D2115
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 14:53:09 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-65292f79456so3704953b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 14:53:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686174786; x=1688766786;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zyvg8QoYW74O3dONADg7EXfdyKnd4yv7Gmv6YiJL6Jc=;
-        b=iePh4xT2Yhrear5qpZ3eugazHSxMjjqSEgKmar+Ut8XG0gUXqV3+DPWIWO09stke09
-         0sr+XWhd8OagjvtCkuJCoF6Om04OkLWuToCO2Gt6TAD4ec0pmpgF/GmtqJihDHZ8KABU
-         x8jE5yePkFVZ6kuRL45vOx05NhD4JAgE/H3Zk=
+        d=chromium.org; s=google; t=1686174789; x=1688766789;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7J6bms7QMm9w3IzcQHeVQuT7VvkTcEsATD8y00OpeXw=;
+        b=lNOTHZUjf8JdjTbU6E6X/mqcY+Zwnqg/qRWUnY9Mwi3PCLRhThFa5YBIH0SWb6uJ1+
+         rFr2+HfY1hSDBAI2d85k+n6W6gF4wlv/tcnXPvydjr0FRk5O5EZevrutN13VURxdh3VR
+         aQknU7zcndxDLitCgvK20aLmQb01W2KregYks=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686174786; x=1688766786;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zyvg8QoYW74O3dONADg7EXfdyKnd4yv7Gmv6YiJL6Jc=;
-        b=lPWoPkfiUxEvCRDhWzli8NuYt8EF3ote3VzmBBs94n0WdR610JeV//50aJvgZ5Ya4x
-         W3dQI1Mnda6REegP8CUmSfyolSOeu0Cy9KGyOWWnrLPcnr8gEPbfrHp3Cih3AAuQZn+x
-         UTjzOaKwycVEvSAKsyPOysY2KNQO8BUVWNPkItGBg8HytCPRQ6kqgZ6zNxfXGnXGzISw
-         hC7Mo29q9Cw/oYW9PCYEbPiLZNtCnaFgFBC0tJ3RnAejKzXHO/gOpCOm/7X11vE5sO5r
-         mjlsMOWNZCY2E6WClOa4XTTkyAdSucGoYmXoe5+Cd6Sgy8e6YvGoeTqIyFmmWJ1OZrFA
-         F6jg==
-X-Gm-Message-State: AC+VfDx2+95fBI9+XPc+TBuVKV+5FP9jZ8FSbtMEKSI8dYVtxzLqL1Jr
-        Md0Ylr+o20D0mf3rVh4bmv9kog==
-X-Google-Smtp-Source: ACHHUZ6H7ZkK58BxyoTwnLorjymlRn/oik+FiO502U+pJ/YGoiUFqx9sXjwVAXid4XKljYd63Yhfgw==
-X-Received: by 2002:a05:6a20:9384:b0:10b:f590:5a26 with SMTP id x4-20020a056a20938400b0010bf5905a26mr2885518pzh.26.1686174786491;
-        Wed, 07 Jun 2023 14:53:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686174789; x=1688766789;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7J6bms7QMm9w3IzcQHeVQuT7VvkTcEsATD8y00OpeXw=;
+        b=BGFfHlluverTNsX3q9Azoc2dILyaLdvu81pF4gq5GwTGewoALzyc+CuBIq69oQ3p8v
+         glD3CTZxrlKUXjLLEogwTK0QQ0FRxvrGV0lQGuxN17j1W4Hjl1ShhUjnUsOn3SbGPTDr
+         NB5T/Xbo2+dOcDv5MHXxcLJIJO0d1Lm6vozaEQmVhKcmJIYKoxNXKnmYjq6MLoU4iRyz
+         PQFTbvbXeP7WyrrxSfL4mqaZ7gHfqMEgl8bopDdyblfXpvzqvmDhAontGkokBRw39k87
+         fSlrjkdoRzSxUfrIPTJGLrcrn3+1Id+NmSPFCFUVcjsEF0xl1fpppdPwRBxRNB2TusDN
+         VJkQ==
+X-Gm-Message-State: AC+VfDxALENuw8SBfeKQv6ZabcEo6Q/GOzOqiDsAC5PXWbl3w2Q5546R
+        hqXyE5rpdrYdqCASSSR4KpwHrA==
+X-Google-Smtp-Source: ACHHUZ6msq2zIZIoWR6/BNnd7gqzLUkkb+f55DYioqbBeFy7Kfz5MTf1YZEWIMbYfJuT7GP7UJVbsw==
+X-Received: by 2002:a05:6a21:328d:b0:10b:2214:7ab0 with SMTP id yt13-20020a056a21328d00b0010b22147ab0mr2370510pzb.21.1686174788778;
+        Wed, 07 Jun 2023 14:53:08 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:34b2:b638:6b53:f6c2])
-        by smtp.gmail.com with ESMTPSA id j25-20020aa78d19000000b0065dd1e7c2c1sm1376486pfe.63.2023.06.07.14.53.04
+        by smtp.gmail.com with ESMTPSA id j25-20020aa78d19000000b0065dd1e7c2c1sm1376486pfe.63.2023.06.07.14.53.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 14:53:05 -0700 (PDT)
+        Wed, 07 Jun 2023 14:53:08 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Jiri Kosina <jikos@kernel.org>,
         Benjamin Tissoires <benjamin.tissoires@redhat.com>,
@@ -68,10 +69,12 @@ Cc:     dri-devel@lists.freedesktop.org,
         linux-arm-msm@vger.kernel.org,
         Chris Morgan <macroalpha82@gmail.com>,
         Douglas Anderson <dianders@chromium.org>
-Subject: [PATCH v2 00/10] drm/panel and i2c-hid: Allow panels and touchscreens to power sequence together
-Date:   Wed,  7 Jun 2023 14:49:22 -0700
-Message-ID: <20230607215224.2067679-1-dianders@chromium.org>
+Subject: [PATCH v2 01/10] dt-bindings: HID: i2c-hid: Add "panel" property to i2c-hid backed touchscreens
+Date:   Wed,  7 Jun 2023 14:49:23 -0700
+Message-ID: <20230607144931.v2.1.Id68e30343bb1e11470582a9078b086176cfec46b@changeid>
 X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
+In-Reply-To: <20230607215224.2067679-1-dianders@chromium.org>
+References: <20230607215224.2067679-1-dianders@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -84,71 +87,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As talked about in the patch ("drm/panel: Add a way for other devices
+to follow panel state"), touchscreens that are connected to panels are
+generally expected to be power sequenced together with the panel
+they're attached to. Today, nothing provides information allowing you
+to find out that a touchscreen is connected to a panel. Let's add a
+phandle for this.
 
-The big motivation for this patch series is mostly described in the patch
-("drm/panel: Add a way for other devices to follow panel state"), but to
-quickly summarize here: for touchscreens that are connected to a panel we
-need the ability to power sequence the two device together. This is not a
-new need, but so far we've managed to get by through a combination of
-inefficiency, added costs, or perhaps just a little bit of brokenness.
-It's time to do better. This patch series allows us to do better.
+The proerty is added to the generic touchscreen bindings and then
+enabled in the bindings for the i2c-hid backed devices. This can and
+should be added for other touchscreens in the future, but for now
+let's start small.
 
-Assuming that people think this patch series looks OK, we'll have to
-figure out the right way to land it. The panel patches and i2c-hid
-patches will go through very different trees and so either we'll need
-an Ack from one side or the other or someone to create a tag for the
-other tree to pull in. This will _probably_ require the true drm-misc
-maintainers to get involved, not a lowly committer. ;-)
-
-Version 2 of this patch series doesn't change too much. At a high level:
-* I added all the forgotten "static" to functions.
-* I've hopefully made the bindings better.
-* I've integrated into fw_devlink.
-* I cleaned up a few descriptions / comments.
-
-This still needs someone to say that the idea looks OK or to suggest
-an alternative that solves the problems. ;-)
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
 
 Changes in v2:
 - Move the description to the generic touchscreen.yaml.
 - Update the desc to make it clearer it's only for integrated devices.
-- Add even more text to the commit message.
-- A few comment cleanups.
-- ("Add a devlink for panel followers") new for v2.
-- i2c_hid_core_initial_power_up() is now static.
-- i2c_hid_core_panel_prepared() and ..._unpreparing() are now static.
-- ihid_core_panel_prepare_work() is now static.
-- Improve documentation for smp_wmb().
 
-Douglas Anderson (10):
-  dt-bindings: HID: i2c-hid: Add "panel" property to i2c-hid backed
-    touchscreens
-  drm/panel: Check for already prepared/enabled in drm_panel
-  drm/panel: Add a way for other devices to follow panel state
-  of: property: fw_devlink: Add a devlink for panel followers
-  HID: i2c-hid: Switch to SYSTEM_SLEEP_PM_OPS()
-  HID: i2c-hid: Rearrange probe() to power things up later
-  HID: i2c-hid: Make suspend and resume into helper functions
-  HID: i2c-hid: Support being a panel follower
-  HID: i2c-hid: Do panel follower work on the system_wq
-  arm64: dts: qcom: sc7180: Link trogdor touchscreens to the panels
+ Documentation/devicetree/bindings/input/elan,ekth6915.yaml | 5 +++++
+ .../devicetree/bindings/input/goodix,gt7375p.yaml          | 5 +++++
+ Documentation/devicetree/bindings/input/hid-over-i2c.yaml  | 2 ++
+ .../devicetree/bindings/input/touchscreen/touchscreen.yaml | 7 +++++++
+ 4 files changed, 19 insertions(+)
 
- .../bindings/input/elan,ekth6915.yaml         |   5 +
- .../bindings/input/goodix,gt7375p.yaml        |   5 +
- .../bindings/input/hid-over-i2c.yaml          |   2 +
- .../input/touchscreen/touchscreen.yaml        |   7 +
- .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |   1 +
- .../dts/qcom/sc7180-trogdor-homestar.dtsi     |   1 +
- .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |   1 +
- .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |   1 +
- .../qcom/sc7180-trogdor-quackingstick.dtsi    |   1 +
- .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |   1 +
- drivers/gpu/drm/drm_panel.c                   | 196 +++++++++-
- drivers/hid/i2c-hid/i2c-hid-core.c            | 338 +++++++++++++-----
- drivers/of/property.c                         |   2 +
- include/drm/drm_panel.h                       |  89 +++++
- 14 files changed, 555 insertions(+), 95 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+index 05e6f2df604c..3e2d216c6432 100644
+--- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
++++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+@@ -13,6 +13,9 @@ description:
+   Supports the Elan eKTH6915 touchscreen controller.
+   This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
+ 
++allOf:
++  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
++
+ properties:
+   compatible:
+     items:
+@@ -24,6 +27,8 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  panel: true
++
+   reset-gpios:
+     description: Reset GPIO; not all touchscreens using eKTH6915 hook this up.
+ 
+diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+index ce18d7dadae2..72212382d702 100644
+--- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
++++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+@@ -14,6 +14,9 @@ description:
+   This touchscreen uses the i2c-hid protocol but has some non-standard
+   power sequencing required.
+ 
++allOf:
++  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
++
+ properties:
+   compatible:
+     oneOf:
+@@ -30,6 +33,8 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  panel: true
++
+   reset-gpios:
+     true
+ 
+diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.yaml b/Documentation/devicetree/bindings/input/hid-over-i2c.yaml
+index 7156b08f7645..138caad96a29 100644
+--- a/Documentation/devicetree/bindings/input/hid-over-i2c.yaml
++++ b/Documentation/devicetree/bindings/input/hid-over-i2c.yaml
+@@ -44,6 +44,8 @@ properties:
+     description: HID descriptor address
+     $ref: /schemas/types.yaml#/definitions/uint32
+ 
++  panel: true
++
+   post-power-on-delay-ms:
+     description: Time required by the device after enabling its regulators
+       or powering it on, before it is ready for communication.
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+index 895592da9626..431c13335c40 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+@@ -10,6 +10,13 @@ maintainers:
+   - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+ 
+ properties:
++  panel:
++    description: If this touchscreen is integrally connected to a panel, this
++      is a reference to that panel. The presence of this reference indicates
++      that the touchscreen should be power sequenced together with the panel
++      and that they may share power and/or reset signals.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
+   touchscreen-min-x:
+     description: minimum x coordinate reported
+     $ref: /schemas/types.yaml#/definitions/uint32
 -- 
 2.41.0.162.gfafddb0af9-goog
 
