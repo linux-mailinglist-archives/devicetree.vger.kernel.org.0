@@ -2,144 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9680972613F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:27:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CC3F726149
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240729AbjFGN1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 09:27:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51210 "EHLO
+        id S240683AbjFGNbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 09:31:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235032AbjFGN1v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:27:51 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88851732;
-        Wed,  7 Jun 2023 06:27:49 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id 5614622812f47-39a50fcc719so4979069b6e.2;
-        Wed, 07 Jun 2023 06:27:49 -0700 (PDT)
+        with ESMTP id S240221AbjFGNbV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:31:21 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B9861732
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:31:20 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f78a32266bso36287325e9.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:31:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686144469; x=1688736469;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=96K7mim4wjsUFSyoNjyPRj89jwQvp4OefH01N5hbH5I=;
-        b=kKmqUbHhKvKv4wuODjZBcxBIOinIDVcbAF01ceisdhnKQA79OBhnjwwfC4LUDuxvvL
-         QRHcLkUnUsnkt8lWRCZGxshGXRe5rC7MKUSiTyh0m/h9+IHeveHim1dVe+eRE6UybS62
-         s4R7VX4U8/vdCKXJKXOY8Xlmw3nCm15dI4vQlOnvwvCreBCJSqZwFjkhPS3LAdXALnLm
-         rHT1EUk5JgDKaYdTe5RD44EIqnmnZd57XEdqdy5ApO94SoIs7Y8jWgf863APYPgwmukn
-         RNZS5y4DuvLMYB7oEXcYxyIUc6TFbL02K9yeRQ65k7v7AfwsY13sb7ad3R+cnIfz8IGy
-         0L5Q==
+        d=linaro.org; s=google; t=1686144678; x=1688736678;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1M24Nb0Jfn6VdAiAglm1uA5NvezRPZanQjJa6TxIdW8=;
+        b=MLJdW3MLn6oHWVjQz9AQQUy0BaZUszJRw2G+IehTMMlpDeniUzS9Ep4jdZJ4P1zdzz
+         +WGY8XDipLtFNo7KX7WUQa4yEb1BE7gEELCGoAhEfMCBLvvyZFNaKmnPAMoDNWteWU1S
+         i5+M/70aLYc/N7wc11TCwjSGTezfDMBJRDnocuIyZUo/lCwSTrISy1PbvV9ZED79pR8W
+         D1e2UwxbJ0OANwTbxkNRkBB0BLd2yR2iCjKRv9W2NgNKoDq1sYB3ZbKZQOi/Vs9miagc
+         lMgmlEfBq1+y1jnW1J5bz5e4Tp+mB4gKKRF5lZnbvZK95elgHzDmCjaoVQlRou+l6Dt8
+         f10A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686144469; x=1688736469;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=96K7mim4wjsUFSyoNjyPRj89jwQvp4OefH01N5hbH5I=;
-        b=NsFeCI1xaycoXmyGGnDUrBLHoID/ukUNHBWmbcAxdkjv0xhFB8TUml4Sr9CpF2y0fW
-         zYSJWfffoyU66WVOMT9lxRLkieKRRs8/w9WpdSWBInzg1NWPN8i0wYv1N76lsv1PAYSl
-         0IULA0lF995mFJFxgmkBd7cyL/wF2hHp89elztcpQF6eW9tWY0/6Je/tDUxLyFXse8XR
-         3+HMDIVPEhZm/RfyDsyc2z+JcgZRItyeq2Wa+A0fpJRWMmMoVuFTRziAYGrGKChsXZ57
-         04JRxdwyNxjPbMzzlN7vk915G6DBH1UfyH9lSCTUW1mUKO9aU86jsTcSKDItsxEK2eZL
-         rV8w==
-X-Gm-Message-State: AC+VfDxVGG+7MMkNtaK6+Nnt3P/oObnx4Qz7KIBvid4dgUmMdGcaSHd+
-        PkxV+etlzdyQhZCQODacsWfuxAbesfkrOxEQRmo=
-X-Google-Smtp-Source: ACHHUZ6nSlvk3rp1yOaaZ/dN8Pp/HWKYF5lyf8nRfNvUy82Jp6PBg92F5M4gACAMFvaoRdZYSavnkuamFvvPRm1b+yI=
-X-Received: by 2002:aca:210d:0:b0:398:6008:f460 with SMTP id
- 13-20020aca210d000000b003986008f460mr5491140oiz.28.1686144468671; Wed, 07 Jun
- 2023 06:27:48 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686144678; x=1688736678;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1M24Nb0Jfn6VdAiAglm1uA5NvezRPZanQjJa6TxIdW8=;
+        b=DGYkUDLFYPN3XPLDdBp5WwGoqZh2gquHI9dEtcRJIlmYrC7TkpeBT1NLUEi79yvv0e
+         1FFl23tor5uU2WeqhSgTFAXBaaJbwFKHR8NcCTYkhITq2xwIrOr/l4lCW5NRVvFGBAO0
+         zzPYZ/9Q0urq38GjTzb2Y0au3j6St30WSrf+adF5+sEQU5LZwvfRZxniMtyNFTENw0+n
+         8Rq3ud52Pzf8BvROOO8EazE4dtaWNFpWjErypC2eNKWrRL6M7c1lEQ5Dyqc6ZeLzX0uL
+         D4gobn5SUt2uVRwJxlykikqBF6FMl357ronYzqHnheyIOC7wpsxAZmuZkxE/i+ehzOSr
+         GnXA==
+X-Gm-Message-State: AC+VfDxrkVa4Q+7XkMonlG9djXe5w5dKMd8J7RxjdOu+mL7tSyfGQ8s3
+        PiuxVqlt4Qg6RuZHmcWgZNxhig==
+X-Google-Smtp-Source: ACHHUZ6W71GYITYJYfS1W3bqNiXWxZgpM814OxgwDwV+N6HrClGkpDrnH6yMsgi6vHPGK7+lrAiV8A==
+X-Received: by 2002:a1c:7c0d:0:b0:3f4:f7c2:d681 with SMTP id x13-20020a1c7c0d000000b003f4f7c2d681mr7365641wmc.29.1686144678500;
+        Wed, 07 Jun 2023 06:31:18 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id g7-20020a5d5407000000b0030903371ef9sm15475471wrv.22.2023.06.07.06.31.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 06:31:17 -0700 (PDT)
+Message-ID: <fea749a7-ef17-097b-847a-d73f965c841b@linaro.org>
+Date:   Wed, 7 Jun 2023 14:31:16 +0100
 MIME-Version: 1.0
-References: <20230526030559.326566-1-aford173@gmail.com> <e1379d94-66a5-8538-abdf-de7770befb7d@prevas.dk>
-In-Reply-To: <e1379d94-66a5-8538-abdf-de7770befb7d@prevas.dk>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 7 Jun 2023 08:27:37 -0500
-Message-ID: <CAHCN7xK9RaLRSK_jSbbuGBUf14-FOHsrawi2J8G29iHSOj2Nyw@mail.gmail.com>
-Subject: Re: [PATCH V8 0/7] drm: bridge: samsung-dsim: Support variable clocking
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: sc8280xp: add resets for
+ soundwire controllers
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     johan+linaro@kernel.org, agross@kernel.org,
+        konrad.dybcio@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230525122930.17141-1-srinivas.kandagatla@linaro.org>
+ <20230525122930.17141-6-srinivas.kandagatla@linaro.org>
+ <542a67da-5870-dda0-3604-9367a438e51b@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <542a67da-5870-dda0-3604-9367a438e51b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 7, 2023 at 8:15=E2=80=AFAM Rasmus Villemoes
-<rasmus.villemoes@prevas.dk> wrote:
->
-> On 26/05/2023 05.05, Adam Ford wrote:
-> > This series fixes the blanking pack size and the PMS calculation.  It t=
-hen
-> > adds support to allows the DSIM to dynamically DPHY clocks, and support
-> > non-burst mode while allowing the removal of the hard-coded clock value=
-s
-> > for the PLL for imx8m mini/nano/plus, and it allows the removal of the
-> > burst-clock device tree entry when burst-mode isn't supported by connec=
-ted
-> > devices like an HDMI brige.  In that event, the HS clock is set to the
-> > value requested by the bridge chip.
-> >
-> > This has been tested on both an i.MX8M Nano and i.MX8M Plus, and should
-> > work on i.MX8M Mini as well. Marek Szyprowski has tested it on various
-> > Exynos boards.
->
-> Hi all
->
-> We're testing this on top of v6.4-rc4 on our imx8mp board, which has a
-> ti-sn65dsi86 DSI -> DisplayPort bridge. We do get an image at
-> 1920x1200, but the monitor says it's only at 58Hz, and measuring on the
-> DSI signals does seem to confirm that the update frequency is about 57.7
-> or 57.8Hz (it's pretty hard to get a good measurement). It looks like
-> it's the lines that are too long, by a time that corresponds to about 80
-> pixels. But all the frontporch/backporch/hsync values look sane and
-> completely standard for that resolution.
->
-> Setting samsung,burst-clock-frequency explicitly to something large
-> enough or letting it be derived from the 154MHz pixel clock makes no
-> difference.
->
-> Any ideas?
 
-What refresh rate are you trying to achieve?  It seems like 57.7 or
-57.8 is really close to the 58 the Monitor states.  I would expect the
-refresh to be driven by whatever the monitor states it can handle.
 
-Have you tried using modetest to see what refresh rates are available?
- When I was doing this driver work, I would use modetest to determine
-the connector ID, then use modetest -s
-<connector-id>:<resolution>-<refresh> to display various resolutions
-and refresh rates.
+On 31/05/2023 21:03, Krzysztof Kozlowski wrote:
+> On 25/05/2023 14:29, Srinivas Kandagatla wrote:
+>> Soundwire controllers on sc8280xp needs an explicit reset, add
+>> support for this.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 23 +++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> index 6730349e34f4..39be2e89ce05 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> @@ -6,6 +6,7 @@
+>>   
+>>   #include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
+>>   #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+>> +#include <dt-bindings/clock/qcom,lpasscc-sc8280xp.h>
+>>   #include <dt-bindings/clock/qcom,rpmh.h>
+>>   #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>>   #include <dt-bindings/interconnect/qcom,sc8280xp.h>
+>> @@ -2560,6 +2561,8 @@
+>>   			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+>>   			clocks = <&rxmacro>;
+>>   			clock-names = "iface";
+>> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
+>> +			reset-names = "swr_audio_cgcr";
+>>   			label = "RX";
+>>   
+>>   			qcom,din-ports = <0>;
+>> @@ -2634,6 +2637,8 @@
+>>   			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+>>   			clocks = <&wsamacro>;
+>>   			clock-names = "iface";
+>> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_WSA_CGCR>;
+>> +			reset-names = "swr_audio_cgcr";
+>>   			label = "WSA";
+>>   
+>>   			qcom,din-ports = <2>;
+>> @@ -2656,6 +2661,14 @@
+>>   			status = "disabled";
+>>   		};
+>>   
+>> +		lpass_audiocc: clock-controller@32a9000 {
+>> +			compatible = "qcom,sc8280xp-lpassaudiocc";
+>> +			reg = <0 0x032a9000 0 0x1000>;
+>> +			qcom,adsp-pil-mode;
+> 
+> Here and...
+> 
+>> +			#clock-cells = <1>;
+>> +			#reset-cells = <1>;
+>> +		};
+>> +
+>>   		swr2: soundwire-controller@3330000 {
+>>   			compatible = "qcom,soundwire-v1.6.0";
+>>   			reg = <0 0x03330000 0 0x2000>;
+>> @@ -2665,6 +2678,8 @@
+>>   
+>>   			clocks = <&txmacro>;
+>>   			clock-names = "iface";
+>> +			resets = <&lpasscc LPASS_AUDIO_SWR_TX_CGCR>;
+>> +			reset-names = "swr_audio_cgcr";
+>>   			label = "TX";
+>>   			#sound-dai-cells = <1>;
+>>   			#address-cells = <2>;
+>> @@ -2901,6 +2916,14 @@
+>>   			};
+>>   		};
+>>   
+>> +		lpasscc: clock-controller@33e0000 {
+>> +			compatible = "qcom,sc8280xp-lpasscc";
+>> +			reg = <0 0x033e0000 0 0x12000>;
+>> +			qcom,adsp-pil-mode;
+> 
+> ... here - where do you use these properties? Driver ignores them.
+Wil add a check in driver.
 
-The 8MP shares the video-pll clock with both disp1 and disp2 clocks,
-and the imx-lcdif driver, which sends the display signals to the DSI,
-uses the disp clock, so the video-pll needs to be an exact multiple of
-the pixel clock or the output won't sink.  Modetest should also show
-you the desired pixel clock for a given resolution and refresh.
-My displays didn't show 19200x1200 as an option, so I wasn't able to
-test that configuration.
+> 
+> AFAIR, these were only for sc7280 where we supported two variants for audio.
+> 
+we can drop this property altogether, But having this flag will make 
+sure that the bindings are in a ready state to accommodate a new variant 
+of sc8280xp with dsp bypass.
 
-adam
->
-> Thanks,
-> Rasmus
->
+--srini
+
+
+
+> Best regards,
+> Krzysztof
+> 
