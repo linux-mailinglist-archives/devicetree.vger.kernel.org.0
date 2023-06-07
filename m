@@ -2,60 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACCEE726E5A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82724726F56
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:57:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234974AbjFGUuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 16:50:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49654 "EHLO
+        id S235618AbjFGU5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 16:57:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235116AbjFGUtr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:49:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A426226A1;
-        Wed,  7 Jun 2023 13:49:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S235527AbjFGU5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:57:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86EB51BEA;
+        Wed,  7 Jun 2023 13:57:31 -0700 (PDT)
+Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 83EED646F0;
-        Wed,  7 Jun 2023 20:49:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C9EFC433EF;
-        Wed,  7 Jun 2023 20:49:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686170970;
-        bh=5n8uz7/OdoveYJZFYQcsiPzaefRRvV8mnA90h29ZFuc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EL7Hqwj7fU/ewEGQULixw5yNU9qW6YPCQ52Jo4fOjOcwTMO7n4lT/HOg1vkfnKW/F
-         x5o+mwPKgQB9VnE7eYpTBVi9eEtgeznyXi1aiem966NiucNWp3lpn4VNgpuPN07bWM
-         6KSzfFNsNK6Od4gt5wXe6o82zTUKrpwwU6WevDEhjBi6vUS3lyO9FKNGpt+adMyJJd
-         dliH2tEPl6CMkop7NmjaWIVxkv4WQMEL4o9YExNsrO6OxNvbZD1FKcOlyqPgGeeUka
-         G5zv2JsPq7JrTkhX8qM5/l+KxzXJI2Ba0zsYupLRweDFO77wxSF0HX8keVKfnzCNQh
-         Hqi9HvkOI5rhQ==
-Date:   Wed, 7 Jun 2023 21:49:26 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8C01166032D2;
+        Wed,  7 Jun 2023 21:57:26 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686171449;
+        bh=3Ss4Xbs+eUeVm0wwUGrfx/rLq0kUmO44VcFrpD6blPQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Hjy4ZAVDbkJPCL4X1AXfEB2Qx119GEsaxIbUuBS0OMEF7Rq9rtwOugPt2aFyEie0i
+         fKbdk32a3zQF8wT4eUuV1aZVpksNTJFwhr1BVsRUkaY2VDNb64IagZxnCyfEsm7JSr
+         YlHGXXbaw7WuKIiJcc2wQRA2jBRFc7JifUkg+wBW/1UahWkwhXJKRg21WkAJGR8o1Q
+         hbXEVn06a0H/rFhsnkHyqGx8hSBdVRfnm9TguMpGP5QYPUYqh4VdfIR+/EFNI1YVO7
+         8YON8g1BUz0/1/D/NrO/+3mbbWR8o9CumX2U8FczxHYottf3ww5OiUX7wzyH+udumm
+         lxmDVGfI+tEOQ==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: misc: qcom,fastrpc: drop unneeded quotes
-Message-ID: <20230607-promenade-yesterday-e1c0c2412856@spud>
-References: <20230607184147.420352-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 0/5] Enable decoder for mt8183
+Date:   Wed,  7 Jun 2023 16:53:37 -0400
+Message-ID: <20230607205714.510012-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qakZvi7HjRW1Dgal"
-Content-Disposition: inline
-In-Reply-To: <20230607184147.420352-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,31 +72,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---qakZvi7HjRW1Dgal
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series enables the hardware decoder present on mt8183. At first
+glance, the only missing piece is the devicetree node for it, however,
+simply adding it as is would cause an address collision between the
+first register iospace and the clock-controller node, so a rework of the
+dt-binding and driver, as well as addition of a clock, were needed
+first.
 
-On Wed, Jun 07, 2023 at 08:41:47PM +0200, Krzysztof Kozlowski wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Tested that H264 decoding works with the hardware decoder on
+mt8183-kukui-jacuzzi-juniper-sku16, giving a fluster score of 98/135 on
+the JVT-AVC_V1 test suite. And ensured other SoCs (MT8192 and MT8195)
+still work as usual.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Changes in v2:
+- Merged commit 1 (media: dt-bindings: mediatek,vcodec: Allow single
+  clock for mt8183) into commit 3 (media: dt-bindings: mediatek,vcodec:
+  Remove VDEC_SYS for mt8183)
+- Further constrained properties in dt-binding
+- Added CLK_IGNORE_UNUSED flag to active clock
+- Reformatted reg-names in DT node
 
-Cheers,
-Conor.
+Nícolas F. R. A. Prado (4):
+  media: dt-bindings: mediatek,vcodec: Don't require assigned-clocks
+  media: dt-bindings: mediatek,vcodec: Remove VDEC_SYS for mt8183
+  media: mediatek: vcodec: Read HW active status from clock
+  clk: mediatek: mt8183: Add CLK_VDEC_ACTIVE to vdec
 
---qakZvi7HjRW1Dgal
-Content-Type: application/pgp-signature; name="signature.asc"
+Yunfei Dong (1):
+  arm64: dts: mediatek: mt8183: Add decoder
 
------BEGIN PGP SIGNATURE-----
+ .../media/mediatek,vcodec-decoder.yaml        | 65 +++++++++++++++----
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 30 +++++++++
+ drivers/clk/mediatek/clk-mt8183-vdec.c        |  5 ++
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      | 59 +++++++++++++----
+ .../mediatek/vcodec/mtk_vcodec_dec_hw.c       | 20 ++++--
+ .../mediatek/vcodec/mtk_vcodec_dec_pm.c       | 12 +++-
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |  1 +
+ include/dt-bindings/clock/mt8183-clk.h        |  3 +-
+ 8 files changed, 165 insertions(+), 30 deletions(-)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIDtVQAKCRB4tDGHoIJi
-0knbAQCat0P71T2mjheUiPreYTP+aGiFXhON8Hhn0RLntASI3AD6A8y1H0yTgxLN
-Y4i2870aGDg2CkVEDTcsB5nrN1Z5+gM=
-=ZIfs
------END PGP SIGNATURE-----
+-- 
+2.41.0
 
---qakZvi7HjRW1Dgal--
