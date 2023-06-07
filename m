@@ -2,223 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 211CA726847
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D71D272686F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjFGSSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 14:18:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35200 "EHLO
+        id S230043AbjFGSWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231659AbjFGSSF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:18:05 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED341210B
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:17:39 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977d0ee1736so643487666b.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:17:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686161850; x=1688753850;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=prDRECWq9gF2HlqhPhhfLHooXy3hmv9x6uJRavIYoMM=;
-        b=K8CKxwxxN45RRYaTH7NPm1PcmY5u9Gf+agf79C9mZHlN8CYjn0SvqEmRzpevWMmaj0
-         mhpDpp0KtIdV3xImPBNLj/6AalyMVyBbvf4X+LboPXyX3/mLFTSI5X+EDBye1KGVuQm2
-         9PLdOHTQuzN6xcm4aatFX34Swjx7jlpQ21OCyutgc/ClFDXHALAPNaF3fP8ybwDpBo4n
-         xFAVxB5O9J9gpHslhAfiEwdyPj4h2ctQ0k2tNERAnpI6L/qkR3zQQwCh5QP7Pp1aE8n4
-         9znUQsLY05jSaorR006Bdcc8zqOIDdEGKP/qUY5fUyfDEkd/nBxypOV9pwbcbIbWYjk4
-         C39w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686161850; x=1688753850;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=prDRECWq9gF2HlqhPhhfLHooXy3hmv9x6uJRavIYoMM=;
-        b=gtM1EUwSfHSF3kvzl8WMHCUJcEJ45ylAbYOklJVVjgB1NDhUe8AV8vAiv8rQwE14S6
-         ToMzLKNLdsE11/hqxD43xpzJBfUTZPfrc9ZS93RMne2cCi/KcKOVxRLVPInQnc+XsK1d
-         GLgQfwf2DaSTLLDakMc39cjV4RY+uPavEzErpTcj0ki2ciQrI6JpUyabcx/+XyzjJGKY
-         A+5RPKMmEnfGhOmIrnILLZjqxHSzdvnKW2ZgoBbhGx/EJKCvj3dAcONUQpet0Sq5/iT2
-         cnboVeHPIUFaQxim9+rwZFGgEE7fr0vM0BlrqKWcvrMCo1k5Bl84h+nipACOy6hAcjYV
-         sO/A==
-X-Gm-Message-State: AC+VfDygzHB56RF193m3cXAu58Ilz8C5fwMSHGRf2ToZLoyWXL5lh1rh
-        k475c1nUJVD4oUU+x7bMiflMqA==
-X-Google-Smtp-Source: ACHHUZ6yoYhGvQnkxo1NhlbZPThR0OVI8Y6NmV6ZpfuYehTZsNtv3pdMlOHWJLxpGXA/52ORFV87KQ==
-X-Received: by 2002:a17:907:1606:b0:94a:7b2c:205e with SMTP id hb6-20020a170907160600b0094a7b2c205emr6065400ejc.72.1686161849737;
-        Wed, 07 Jun 2023 11:17:29 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id gu19-20020a170906f29300b0096a1ba4e0d1sm7262812ejb.32.2023.06.07.11.17.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 11:17:29 -0700 (PDT)
-Message-ID: <a4134777-e43c-4b74-58d8-bff0c0d1a6f6@linaro.org>
-Date:   Wed, 7 Jun 2023 20:17:26 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v6 1/1] dt-bindings: pinctrl: Update pinctrl-single to use
- yaml
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232874AbjFGSV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:21:28 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B8A91FF9;
+        Wed,  7 Jun 2023 11:20:55 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 357IKgpC084669;
+        Wed, 7 Jun 2023 13:20:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686162042;
+        bh=Rrqd72SjZSz9opFHL2SISVrUiyRhO64sbMa3uxFg0Vc=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=MIZP0e1CnpJ9geBe/YB3RmrBSi94GqTWnT9pVlsIEw6xqQskOpQqqM4dx9LB5Z0G3
+         8ZaYIMY/6nBQrey//C/qtAhbD7IAFqIErxIrZ872/BXbhNedJB08O8kgFqQJ3YNfM2
+         a8TZyHaQhlP8CbH7O6xnXNz9eQ5R+/JEEM9fcHRk=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 357IKgd9002547
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 7 Jun 2023 13:20:42 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Jun 2023 13:20:41 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Jun 2023 13:20:42 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 357IKgFB027350;
+        Wed, 7 Jun 2023 13:20:42 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20230605095216.18864-1-tony@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230605095216.18864-1-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Andrew Davis <afd@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: (subset) [PATCH 1/5] ARM: keystone: Merge memory.h into the only file that uses it
+Date:   Wed, 7 Jun 2023 13:20:41 -0500
+Message-ID: <168616201860.4005625.11862380867220547161.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230515183515.509371-1-afd@ti.com>
+References: <20230515183515.509371-1-afd@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2023 11:52, Tony Lindgren wrote:
-> Update binding for yaml and remove the old related txt bindings. Note that
-> we are also adding the undocumented pinctrl-single,slew-rate property. And
-> we only use the first example from the old binding.
+Hi Andrew Davis,
+
+On Mon, 15 May 2023 13:35:11 -0500, Andrew Davis wrote:
+> The defines in memory.h can go into the file that makes use of them.
+> No reason to have a header here, remove.
 > 
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
 > 
-> Changes since v5:
-> - Fix issues noted by Krzysztof
 
+I have applied the following to branch ti-keystone-dts-next on [1].
+Thank you!
 
+[3/5] ARM: dts: keystone: Fix EEPROM node names
+      commit: 5ae8afd41ea5a1767d0b683ffa8f9ff3d9c7e68c
+[4/5] ARM: dts: keystone: Remove ti,keystone from soc node compatible
+      commit: 4b3498372664efe3755255402537e243bc83eb82
+[5/5] ARM: dts: keystone: Do not capitalize hex digits
+      commit: 2d62aab57d2ace03d840c08fb323ed1b9bd83a94
 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-> new file mode 100644
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-> @@ -0,0 +1,206 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Pinctrl driver for hardware with a single register for one or more pins
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-I asked to drop the driver references but it is still here. Bindings are
-not describing drivers.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-"Generic Pin Controller with a Single Register for One or More Pins"
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> +
-> +maintainers:
-> +  - Tony Lindgren <tony@atomide.com>
-> +
-> +description:
-> +  Some pin controller devices use a single register for one or more pins. The
-> +  range of pin control registers can vary from one to many for each controller
-> +  instance. Some SoCs from Altera, Broadcom, HiSilicon, Ralink, and TI have this
-> +  kind of pin controller instances.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - pinctrl-single
-> +          - pinconf-single
-> +      - items:
-> +          - enum:
-> +              - ti,am437-padconf
-> +              - ti,dra7-padconf
-> +              - ti,omap2420-padconf
-> +              - ti,omap2430-padconf
-> +              - ti,omap3-padconf
-> +              - ti,omap4-padconf
-> +              - ti,omap5-padconf
-> +          - const: pinctrl-single
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  '#pinctrl-cells':
-> +    description:
-> +      Number of cells. Usually 2, consisting of register offset, pin configuration
-> +      value, and pinmux mode. Some controllers may use 1 for just offset and value.
-> +    enum: [ 1, 2 ]
-> +
-> +  pinctrl-single,bit-per-mux:
-> +    description: Optional flag to indicate register controls more than one pin
-> +    type: boolean
-> +
-> +  pinctrl-single,function-mask:
-> +    description: Mask of the allowed register bits
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pinctrl-single,function-off:
-> +    description: Optional function off mode for disabled state
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pinctrl-single,register-width:
-> +    description: Width of pin specific bits in the register
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 8, 16, 32 ]
-> +
-> +  pinctrl-single,gpio-range:
-> +    description: Optional list of pin base, nr pins & gpio function
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle of a gpio-range node
-> +          - description: pin base
-> +          - description: number of pins
-> +          - description: gpio function
-> +
-> +  '#gpio-range-cells':
-> +    description: No longer needed, may exist in older files for gpio-ranges
-> +    deprecated: true
-> +    const: 3
-> +
-> +  gpio-range:
-> +    description: Optional node for gpio range cells
-> +    type: object
-> +    additionalProperties: false
-> +    properties:
-> +      '#pinctrl-single,gpio-range-cells':
-> +        description: Number of gpio range cells
-> +        const: 3
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +patternProperties:
-> +  '-pins$|-pin':
-
-you did not implement my comments fully, probably we misunderstood each
-other. Why do you allow anything after '-pin'? Let's make it pure suffix
-for both cases: '-pins?$'
-
-
-> +    description:
-> +      Pin group node name using naming ending in -pins, or having -pin
-> +      in the node name
-> +    type: object
-> +    additionalProperties: false
-> +
-
-
-Best regards,
-Krzysztof
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
