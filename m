@@ -2,66 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98A6D72671D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2127726750
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231153AbjFGRVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 13:21:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55088 "EHLO
+        id S229893AbjFGRaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 13:30:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbjFGRVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:21:36 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A86131725;
-        Wed,  7 Jun 2023 10:21:35 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-777ac4344f9so129627939f.0;
-        Wed, 07 Jun 2023 10:21:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686158495; x=1688750495;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OMqgVdX9Zz/X8ixIFydMOZK3AqgJ4bp/xohKlAbcPao=;
-        b=Ip7VRYWw1pgoNd4hnOyYeBI9WcXQnrFbegNzK0mWYnX9oLJvswMsCJ3uNPLxJfnnvP
-         /BXaberyyfxQfWDpMS0/Y2myZgKFz+bgU2ENh5k93QLWNZLjhD5j0Dhgtz6cRzOUYEDb
-         00GrvNN6coIV9CK9mF0oEMsYdyhR0vGAlc+8hab7aobOPJd6ryFhZOwn4XXFpPUlXxqs
-         sBqNFKvEU0hsPq/0K+oIit+ikNOOXi4nhFz+kI7l6RYSaHtduJmUSiYq0+Rv9JeUk6Fj
-         S7G9F1DVy/4R8YpvRYC3am2xTloPpPJWpxXOy+b8KKmmGXvQdDrpLGv4BMNhwbXxTrwy
-         Rhqw==
-X-Gm-Message-State: AC+VfDzTk09WeJR54LxhgJDyezjZlAjm41nsJoInaf32rmXSLM2ydpWq
-        apZP8rqnZboMSIb79q4Uiw==
-X-Google-Smtp-Source: ACHHUZ6XIddSBEqrxRfMhoQYmpM9/x70i9xG4ujpQEXjTtUsUvfCGMHBT3QLAIuDVGgwjUARpXTnBg==
-X-Received: by 2002:a05:6602:218c:b0:777:b4b7:f6ac with SMTP id b12-20020a056602218c00b00777b4b7f6acmr6950873iob.10.1686158494747;
-        Wed, 07 Jun 2023 10:21:34 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id l9-20020a056638220900b004168295d33esm3670915jas.47.2023.06.07.10.21.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 10:21:34 -0700 (PDT)
-Received: (nullmailer pid 3589542 invoked by uid 1000);
-        Wed, 07 Jun 2023 17:21:28 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S232007AbjFGRaA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:30:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754BF1BF3;
+        Wed,  7 Jun 2023 10:29:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0E717641C9;
+        Wed,  7 Jun 2023 17:29:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34026C433D2;
+        Wed,  7 Jun 2023 17:29:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686158998;
+        bh=qUqourH5uc4ji7oEk2SQQPg4PPUxxGGcwLfKI9xx2pU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eYi8gEC8jaQFLmTpx+SOQZoh/p41OWLw3bc8+P4uA145tlTL3DM2W9OolFWIgfZJH
+         bwxz0vTvSG5opKrhIr8G/N7ww68bchAkhmrr9RuAy28/Z0xBUDu92NrIcT4Yiubdkh
+         TIIeN5vXeJV9+RaKSuuk6DK12U2gOD6MjTwt7t4O0Vz5TmpkUMg76J/6VD8YrPril5
+         WpcPsOiOGkpDdgf0V3qzrUUqCsOZe5iCGKL/4UL+1yxdstGDj0PEOzByMSGUEXJrwP
+         r/eaeUtwBNeSvq9KJ+s6HGrLEO1P3oTHwJFxQqV0ZXO/fjUEb9872X3s/S5SdO0Wjy
+         a+GOtZ15PKs3A==
+Date:   Wed, 7 Jun 2023 18:29:53 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        kernel@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 7/8] dt-bindings: arm: stm32: Add compatible string
+ for Linux Automation LXA TAC
+Message-ID: <20230607-nineteen-juggle-ce240df8815e@spud>
+References: <20230607115508.2964574-1-l.goehrs@pengutronix.de>
+ <20230607115508.2964574-7-l.goehrs@pengutronix.de>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Ekansh Gupta <quic_ekangupt@quicinc.com>
-Cc:     linux-kernel@vger.kernel.org, konrad.dybcio@linaro.org,
-        srinivas.kandagatla@linaro.org, fastrpc.upstream@qti.qualcomm.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        agross@kernel.org
-In-Reply-To: <1686155407-20054-2-git-send-email-quic_ekangupt@quicinc.com>
-References: <1686155407-20054-1-git-send-email-quic_ekangupt@quicinc.com>
- <1686155407-20054-2-git-send-email-quic_ekangupt@quicinc.com>
-Message-Id: <168615848839.3589502.17296725428809710882.robh@kernel.org>
-Subject: Re: [RESEND PATCH v1 1/2] dt-bindings: misc: fastrpc: add fastrpc
- group IDs property
-Date:   Wed, 07 Jun 2023 11:21:28 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="vXO1s5rpo0+jzojb"
+Content-Disposition: inline
+In-Reply-To: <20230607115508.2964574-7-l.goehrs@pengutronix.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,43 +62,63 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 07 Jun 2023 22:00:06 +0530, Ekansh Gupta wrote:
-> Add "qcom,fastrpc-gids" property to the list of optional properties.
-> This property contains the list of privileged group IDs which is
-> used to offload process to remote subsystem with increased privileges.
-> 
-> Signed-off-by: Ekansh Gupta <quic_ekangupt@quicinc.com>
+--vXO1s5rpo0+jzojb
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jun 07, 2023 at 01:55:06PM +0200, Leonard G=F6hrs wrote:
+> Add DT compatible string for Linux Automation GmbH Test Automation
+> Controllers (LXA TAC).
+> LXA TACs are a development tool for embedded devices with a focus on
+> embedded Linux devices.
+>=20
+> As of now there are two STM32MP157 based hardware generations (Gen 1 and
+> Gen 2) that have most of their hardware config in common.
+> In the future there will also be a STM32MP153 based hardware generation.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+>=20
+> Signed-off-by: Leonard G=F6hrs <l.goehrs@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Doc=
+umentation/devicetree/bindings/arm/stm32/stm32.yaml
+> index 13e34241145b4..11f8706101eca 100644
+> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> @@ -143,7 +143,9 @@ properties:
+>        - description: Octavo OSD32MP15x System-in-Package based boards
+>          items:
+>            - enum:
+> -              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
+> +              - lxa,stm32mp157c-mc1      # Linux Automation MC-1
+> +              - lxa,stm32mp157c-tac-gen1 # Linux Automation TAC (Generat=
+ion 1)
+> +              - lxa,stm32mp157c-tac-gen2 # Linux Automation TAC (Generat=
+ion 2)
+>            - const: oct,stm32mp15xx-osd32
+>            - enum:
+>                - st,stm32mp157
+> --=20
+> 2.39.2
+>=20
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--vXO1s5rpo0+jzojb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-yamllint warnings/errors:
+-----BEGIN PGP SIGNATURE-----
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dts:36.17-18 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1512: dt_binding_check] Error 2
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIC+kQAKCRB4tDGHoIJi
+0lf0AP48pRw+p/nwEiqZAGvkiPn8nlVnQ17FS8JChPdQ9Yc/BQEAzSCZjdBpjF5u
+s6ODLBfJNtdez0O+nzjJv/e5ktym3A4=
+=c8oD
+-----END PGP SIGNATURE-----
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1686155407-20054-2-git-send-email-quic_ekangupt@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--vXO1s5rpo0+jzojb--
