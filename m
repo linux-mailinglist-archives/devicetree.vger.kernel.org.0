@@ -2,151 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B17827267D6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 19:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF44D726832
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231376AbjFGRz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 13:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49540 "EHLO
+        id S229580AbjFGSM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:12:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbjFGRzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 13:55:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956951FD7;
-        Wed,  7 Jun 2023 10:55:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 281C764247;
-        Wed,  7 Jun 2023 17:55:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2736C433EF;
-        Wed,  7 Jun 2023 17:55:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686160552;
-        bh=29SYvOZXQNlr7Jr5ID50ihTnKJ/30DgxM1zuyOrmLa4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s53HjWM6tRGYhopxJXf5xHVpWQ35vPpD7M+rna8uG1krUw5veuA74HKrPNICzCscv
-         yjVccLgS27xbUNla31Ky5Y/Wsworey4HJ8GlmoN2K407Lkfm3dDwjOmWdiGangH4K6
-         Ipo0OlpdNfaJwXOBTxzs0+hESG1qpc3b/pru12FC0AG1/EZ/OiLJIptX3Dlqo+IY/4
-         CWHQi+4mPdUxp2Mj/DKOJnRKF41Dy9kM7i1Vb0xN8NfUES0958RW8B3HBmQMkPLvWf
-         mWTgfuQA923bk5D0pBHD1kIQ6dLX5ZxQzEipypVndG0Ehli7MRhCbQFKmmXjZwH58m
-         jar/OygRKcidg==
-Date:   Wed, 7 Jun 2023 18:55:47 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>
-Cc:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
+        with ESMTP id S230471AbjFGSMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:12:30 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D2CF26BA
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:11:54 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5149aafef44so1791196a12.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:11:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686161512; x=1688753512;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=38gFDOgOs7OiOboCZ97J7wgn0Fj+LylW3p4y2EEpitY=;
+        b=lpv2yfhVs1ay4EQ/axvCEim0SnJftwinn+5AL4kiudbnjwRCz8+AwbFewKwK0pYXcm
+         m4xcxqBrZWkCJNQ5XkGbLldksMjNL9ys+rNBkLDmbLCdIS5ovgRA6+kR91H3dMyS9lkZ
+         ROCeEHqh98oSIg6SOUfyHh03KqzwZ64+uehdKviePDHwXNinpPey5n/s09H46aPU7x2t
+         +ePVU/JemqY8zfkFP1BUkfD9o8yZ3DFNxS2idpdLqTUCXbei+uyv8Lsar8NP0kdz5ybr
+         AL7jEWg4R/F5Cinb+UXx0txTu7jweBEOImKOeeHWgb3fm5EMclTY6D2nAHKp9olqMoUk
+         OPyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686161512; x=1688753512;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=38gFDOgOs7OiOboCZ97J7wgn0Fj+LylW3p4y2EEpitY=;
+        b=MyB81BHZGW9TRXyIFA2w21S6ONcMzabGe05pCmBqQqSn+EEr3JCFLbjvNBnMi30EuQ
+         BenJ6rmY8fFKp/mBQp5rRCQE5iN5AJO6BVv6FqW4XQgX70QY+47kY6fPDhyXc0zLQeEn
+         y6hmr3SppzjuBfdu2uZIFi2LrdpVdOZNe4YOZiDhE27gnTk+vx8FzLIicwfjdDsDdPPn
+         r2hsEdB72YeZXTBvM1WnoDlTDtpolDHyk8hIFxfcM8zYt44ssoagg+pq9rsrMFqkbc2b
+         odF3uwdybcLT/SdPXDAS9GErNHfxwyDAChIs4BPhlFWPO1ovgcbWNveApLvyQE5BE9xO
+         4mQA==
+X-Gm-Message-State: AC+VfDwhJvwzCT2ZFD/dOQ1KRUqpQkHAiJr8Q6d8gILoHzO2wNh5FuZE
+        QngycBkHEux3gzjiyfb6T6THJw==
+X-Google-Smtp-Source: ACHHUZ6QlGsiXyrJcXM30ikCxTwLf17/dt+bW4ffQAr6CkTuL+AYvsWCQwfGH415M7X/kOv0SIGcWQ==
+X-Received: by 2002:aa7:c3da:0:b0:514:7f39:aa80 with SMTP id l26-20020aa7c3da000000b005147f39aa80mr4770123edr.18.1686161512431;
+        Wed, 07 Jun 2023 11:11:52 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id g16-20020a056402181000b005149cb5ee2dsm6427652edy.82.2023.06.07.11.11.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 11:11:51 -0700 (PDT)
+Message-ID: <7107e83a-c607-41da-f606-277400d40010@linaro.org>
+Date:   Wed, 7 Jun 2023 20:11:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v6 04/12] dt-bindings: display/msm: Add SM6350 MDSS
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/8] dt-bindings: display: panel: mipi-dbi-spi: add
- shineworld lh133k compatible
-Message-ID: <20230607-speech-blandness-2f0ea0582ad7@spud>
-References: <20230607115508.2964574-1-l.goehrs@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qyLg4k8TFFwTgrn4"
-Content-Disposition: inline
-In-Reply-To: <20230607115508.2964574-1-l.goehrs@pengutronix.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev
+References: <20230411-topic-straitlagoon_mdss-v6-0-dee6a882571b@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v6-4-dee6a882571b@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230411-topic-straitlagoon_mdss-v6-4-dee6a882571b@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---qyLg4k8TFFwTgrn4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jun 07, 2023 at 01:55:00PM +0200, Leonard G=F6hrs wrote:
-> The Shineworld LH133K is a 1.3" 240x240px RGB LCD with a MIPI DBI
-> compatible SPI interface.
-> The initialization procedure is quite basic with the exception of
-> requiring inverted colors.
-> A basic mipi-dbi-cmd[1] script to get the display running thus looks
-> like this:
->=20
->     $ cat shineworld,lh133k.txt
->     command 0x11 # exit sleep mode
->     delay 120
->=20
->     # The display seems to require display color inversion, so enable it.
->     command 0x21 # INVON
->=20
->     # Enable normal display mode (in contrast to partial display mode).
->     command 0x13 # NORON
->     command 0x29 # MIPI_DCS_SET_DISPLAY_ON
->=20
->     $ mipi-dbi-cmd shineworld,lh133k.bin shineworld,lh133k.txt
->=20
-> [1]: https://github.com/notro/panel-mipi-dbi
->=20
-> Signed-off-by: Leonard G=F6hrs <l.goehrs@pengutronix.de>
+On 06/06/2023 14:43, Konrad Dybcio wrote:
+> Document the SM6350 MDSS.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 1 +
->  Documentation/devicetree/bindings/vendor-prefixes.yaml          | 2 ++
->  2 files changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-d=
-bi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-db=
-i-spi.yaml
-> index 9b701df5e9d28..c07da1a9e6288 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.=
-yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.=
-yaml
-> @@ -67,6 +67,7 @@ properties:
->      items:
->        - enum:
->            - sainsmart18
-> +          - shineworld,lh133k
->        - const: panel-mipi-dbi-spi
-> =20
->    write-only:
+>  .../bindings/display/msm/qcom,sm6350-mdss.yaml     | 213 +++++++++++++++++++++
+>  1 file changed, 213 insertions(+)
+> 
 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index 82d39ab0231b0..b0afa421bc4a5 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1189,6 +1189,8 @@ patternProperties:
->      description: SHIFT GmbH
->    "^shimafuji,.*":
->      description: Shimafuji Electric, Inc.
-> +  "^shineworld,.*":
-> +    description: ShineWorld Innovations
->    "^shiratech,.*":
->      description: Shiratech Solutions
->    "^si-en,.*":
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-AFAIU, these are supposed to be split into separate patches.
-Otherwise,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Best regards,
+Krzysztof
 
-Cheers,
-Conor.
-
-
---qyLg4k8TFFwTgrn4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIDEowAKCRB4tDGHoIJi
-0k2cAQDI/4hOMEiGa8q1y/zPmn3PxYzF3DgRWnwN4grkP6gGoAEAt7HNiYR6pU+y
-c2j8t8/xfY2bNykAofT/VJbKcAFxtAw=
-=OoDt
------END PGP SIGNATURE-----
-
---qyLg4k8TFFwTgrn4--
