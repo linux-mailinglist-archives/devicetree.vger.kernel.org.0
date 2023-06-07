@@ -2,195 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2108725B8B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 12:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71459725BD8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 12:48:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239204AbjFGKYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 06:24:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47142 "EHLO
+        id S238807AbjFGKsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 06:48:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238701AbjFGKYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 06:24:43 -0400
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0CA21BD8;
-        Wed,  7 Jun 2023 03:24:40 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (174-21-172-149.tukw.qwest.net [174.21.172.149])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 13008CFC;
-        Wed,  7 Jun 2023 03:18:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1686133121;
-        bh=Wi0tNbMeMIxnA5OELgarZDXHHas4dR4zF0TSjLM+/t0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UQcFsAPOgEw0D/5m+IYx2uAnFOA9vOUQM/J1vHoGB4QVEnJYUF48kp4gy0+RJMu7J
-         W1JjgcqeawV/YqmKHrhx11mLag50cCb0hm5y8P353DlvYBJ1xSzGhi85q81xqW+HVt
-         N2bs5WjhQ741nN++oU2HPzEtzhY2mfE1xPlf/h5c=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Zev Weiss <zev@bewilderbeest.net>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: [PATCH 1/2] dt-bindings: hwmon: Add Nuvoton NCT7362Y binding
-Date:   Wed,  7 Jun 2023 03:18:29 -0700
-Message-ID: <20230607101827.8544-5-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230607101827.8544-4-zev@bewilderbeest.net>
-References: <20230607101827.8544-4-zev@bewilderbeest.net>
+        with ESMTP id S238476AbjFGKsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 06:48:13 -0400
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C051C10EC;
+        Wed,  7 Jun 2023 03:48:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kernkonzept.com; s=mx1; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+        MIME-Version:Message-Id:Date:Subject:From:References:In-Reply-To:Reply-To:
+        Content-ID:Content-Description;
+        bh=l/zVS58cvAcEWC+l4J5gkSm4eGpLkpBXWoGcuN8ztvU=; b=oXe6aY4Ltjr9nd5GOoBRHVqWCA
+        ekpw4HVFlN4iDZgHRHIqOJ8WXWQMyH4DXEMjMTaCM67+GDv4AbDydFRzM5XiclHtRxZuHw+e+MdZj
+        kY/FEDPO5qeZ0QRI7pf4irii+wJvkUCGhTm4n2hkXobZPVOlIVdsjeuNOXHxaOI92GVFPQEBy/SgS
+        pT7Moxb35Pqro0ba0tCteibwgxCqtT4KR4QvppA6rWhEnpdB5oIcZucdo/Hw4keM5kYKcVc7fc3Vt
+        +IZX2hUdnI/xXUJkD/yFmsW2F4OooNIJLwUeqOYgDesMHvlk10Y6Ts97Tmdd6jG9DhBvJZwSs+dMG
+        mfExv4wA==;
+Received: from [10.22.3.24] (helo=serv1.dd1.int.kernkonzept.com)
+        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
+        id 1q6qhm-0069NL-If; Wed, 07 Jun 2023 12:47:54 +0200
+From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH v5 0/6] thermal: qcom: tsens: Fix MDM9607, add MSM8909
+Date:   Wed, 07 Jun 2023 12:47:43 +0200
+Message-Id: <20230508-msm8909-tsens-v5-0-5eb632235ba7@kernkonzept.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE9ggGQC/6WPO27DMBBEr2Kwzgr8iJLpKvcIXFDS2iQskcIuI
+ yQxdPfQblIEqVK+Bd7M7F0wUkQWp8NdEG6RY04V7MtBjMGnK0KcKgsttZFWHmHh5eikg8KYGLr
+ eGN9NrbIDiuoMnhEG8mkM1Urv81yPK+ElfjxL3s6VL5QXKIHQ/0QbZZU0zspGd70zqgcFXHCtG
+ 5orUsjz9HpDSrecvnAtzZiXR1+IXDJ9Pudv7aPgX3F/fLm1IGFySrlO63FQ7pd73vf9G7EHnUJ
+ MAQAA
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This binding describes the NCT7362Y, a 16-channel fan/GPIO controller.
+Make the MDM9607 thermal sensor support consistent with Qualcomm's
+vendor kernel (msm-3.18) by applying the correct default slope values
+and adding "correction factors" to the factory calibration values in the
+fuses. Use the same functionality to add the very similar MSM8909 SoC to
+the tsens driver.
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 ---
- .../bindings/hwmon/nuvoton,nct7362.yaml       | 123 ++++++++++++++++++
- 1 file changed, 123 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml
+Changes in v5:
+- Rebase on top of MSM8226 series that way applied by Daniel
+  (https://lore.kernel.org/linux-arm-msm/4097223e-5297-1536-18bb-512ef28c8329@linaro.org/)
+- Add review tags from Dmitry
+- Link to v4: https://lore.kernel.org/r/20230508-msm8909-tsens-v4-0-d9119622cb19@kernkonzept.com
+Changes in v4:
+- Mostly just resend, explicitly initialize zero values for
+  the MSM8909 p1/p2_calib_offset for better clarity (Konrad)
+- Link to v3: https://lore.kernel.org/r/20230315103950.2679317-1-stephan.gerhold@kernkonzept.com
+Changes in v3:
+- Drop now unused definition reported by kernel test robot
+Changes in v2:
+- Rewrite on top of per-sensor nvmem cell changes that landed in 6.3
+- Add patches to fix existing support for MDM9607
 
-diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml
-new file mode 100644
-index 000000000000..630dcce7a14c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7362.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NCT7362Y fan controller
-+
-+maintainers:
-+  - Zev Weiss <zev@bewilderbeest.net>
-+
-+description: |
-+  The Nuvoton NCT7362Y is an I2C fan controller with 16 pins that can
-+  be independently configured for PWM, fan tach, or GPIO
-+  functionality.  Each pin's functionality is represented by a child
-+  node.
-+
-+  The datasheet is not publicly available but can be requested from
-+  Nuvoton via their web site.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,nct7362
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-line-names:
-+    minItems: 1
-+    maxItems: 16
-+
-+patternProperties:
-+  "^tach@([1-8]|1[0-7])$":
-+    type: object
-+    properties:
-+      reg:
-+        maxItems: 1
-+        description: The pin number.
-+
-+      nuvoton,pulses-per-revolution:
-+        description: |
-+          The number of tach pulses per revolution of the fan.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 1
-+        default: 2
-+
-+    required:
-+      - reg
-+
-+  "^pwm@([1-8]|1[0-7])$":
-+    type: object
-+    properties:
-+      reg:
-+        maxItems: 1
-+        description: The pin number.
-+    required:
-+      - reg
-+
-+  "^gpio@([1-8]|1[0-7])$":
-+    type: object
-+    properties:
-+      reg:
-+        maxItems: 1
-+        description: The pin number.
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      fanctl@22 {
-+        compatible = "nuvoton,nct7362";
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0x22>;
-+        gpio-line-names = "", "", "", "", "", "", "", "",
-+          "", "", "", "", "", "", "led1", "led2";
-+
-+        tach@1 {
-+          reg = <1>;
-+        };
-+        tach@2 {
-+          reg = <2>;
-+          nuvoton,pulses-per-revolution = <1>;
-+        };
-+        pwm@10 {
-+          reg = <10>;
-+        };
-+        pwm@11 {
-+          reg = <11>;
-+        };
-+        gpio@16 {
-+          reg = <16>;
-+        };
-+        gpio@17 {
-+          reg = <17>;
-+        };
-+      };
-+    };
+---
+Stephan Gerhold (6):
+      thermal: qcom: tsens: Drop unused legacy structs
+      thermal: qcom: tsens-v0_1: Fix mdm9607 slope values
+      thermal: qcom: tsens-v0_1: Add mdm9607 correction offsets
+      dt-bindings: thermal: qcom-tsens: Drop redundant compatibles
+      dt-bindings: thermal: qcom-tsens: Add MSM8909 compatible
+      thermal: qcom: tsens-v0_1: Add MSM8909 data
+
+ .../devicetree/bindings/thermal/qcom-tsens.yaml    |  23 +----
+ drivers/thermal/qcom/tsens-v0_1.c                  | 101 +++++++++++++--------
+ drivers/thermal/qcom/tsens-v1.c                    |  22 -----
+ drivers/thermal/qcom/tsens.c                       |  19 +++-
+ drivers/thermal/qcom/tsens.h                       |   6 +-
+ 5 files changed, 88 insertions(+), 83 deletions(-)
+---
+base-commit: 7e25e9706bbade1b3dc670fad44a920d087064df
+change-id: 20230508-msm8909-tsens-6733a6d415be
+
+Best regards,
 -- 
-2.40.0.5.gf6e3b97ba6d2.dirty
+Stephan Gerhold
+Kernkonzept GmbH at Dresden, Germany, HRB 31129, CEO Dr.-Ing. Michael Hohmuth
 
