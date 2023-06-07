@@ -2,221 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 294AF7269E5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4C77269ED
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:39:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbjFGThS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 15:37:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51158 "EHLO
+        id S231144AbjFGTjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 15:39:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbjFGThR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:37:17 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560E41FE0
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 12:37:15 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5147f7d045bso1866802a12.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 12:37:15 -0700 (PDT)
+        with ESMTP id S230496AbjFGTjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:39:01 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73BA71FF7;
+        Wed,  7 Jun 2023 12:38:57 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-977d55ac17bso714679066b.3;
+        Wed, 07 Jun 2023 12:38:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686166634; x=1688758634;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eDxBlqqSJP4BTdPtvAfTFeIDcm3naOpj8m5v/60N4ng=;
-        b=Bcw+jxUmFepr5qOtAuShI24S3qZIhgNXiAlHtYUw3ieyXfSk0avo9N287CvRzoUfjz
-         Bl+262NOa6rYwq+IitQyI+Z36ER6K4Vfr8o4Evj72E9XiY01Khk98ppgt9gNCzF4b0vn
-         RtkJXqCaIjNZ/aKZowOwVyUyWtrvQ3TN33MTwAHhKu0e3XzW39vkqKyaq3Ck7HJ8FuMg
-         smey8AW7WYkdi+hj26qXHhftTVYXgV3qZp30Mhc77/X2gaxI1VxVaVZszrNxbcDDJfuG
-         rgplNpggJJh8WQi+VYJeORhilcrPcT4v7H7G8DgodsTeZMGa2yVosVzw4/MtSs0PRSQN
-         nAcQ==
+        d=gmail.com; s=20221208; t=1686166736; x=1688758736;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=v9mPghHb0zo1ioIAUBDYOj0SyzS0wuoa2sSWyDcE21Y=;
+        b=TMoCvkTXY/gjiABpDtpmoPrgs8TFK7QZ05E5+WWu6EBV7Gy0jTCyX33VxR8NHkQLKe
+         qlFitCGePxzK+aPNmEXd57dXg3IGTaoC7pUCtG3ERgqfwh8c99Lr32evc5+k9zi+1oZf
+         UEkjKGMFt5HcwLuAptRvkxZl1vgcH1zAeWMUiv8jGhDf2JvFPF8/MAlvNXOzRdlD6y7/
+         3SymvUlAjtm0dNSGbIOK+GKCEBLXAzwG94kFYYEsI9ZJ0isKV+dEB05ehfVCUcLVLC5B
+         XD1hgH8/RVkMQJRYVWJgBcjX9jzs6LT4PGOUfYnayYC06x3fRDBM/FrUqsQUf6HJSa5a
+         rGZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686166634; x=1688758634;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eDxBlqqSJP4BTdPtvAfTFeIDcm3naOpj8m5v/60N4ng=;
-        b=CrthwyrYma1HkrgdCvu2WIyNkZxoEbHGd7+2GCO9hxtOS58QyRox/jPDcGPPSRsOj/
-         x1Sp7AmyJtsrUYSoiJXKOPYVpSbgEH/uxdxfQxKlWHGMLwvG69Yc0eQNONZBFfcfresI
-         UTm3Vt+u4ca2psbXTcaAD8OpCe+NPYcJGGQfXGnFV9khURqlU52YN0nBpwrE1bFh3RI5
-         b0JezGvuSj+maLqbmhX8WiIuu+cMHIvedx2Ke3UmMu6aBrSbLh0/GWnvDBvbg1XkREOz
-         dqwQHS94sHGaBOyWhfl89wedeHNPa5V6YOLiT4BEZjYKb9tjHHSgt4AmdG/w8KYtNUFY
-         pTjw==
-X-Gm-Message-State: AC+VfDx2qTeEkbdOJJxYczoxVkYR5LK+mfH7VqK0yvlzSfdqmD+t5Ws3
-        ncU8I0SU1tmh3IQhMR86h0Q=
-X-Google-Smtp-Source: ACHHUZ7QOWIDGQ8CGdyV6bCcgKfgZCDXRP4jY5R5mojir2tNvKh7CRPFjmTr3gki9c9g6eO6SZ7yCQ==
-X-Received: by 2002:a17:907:7f27:b0:96f:aadb:bf81 with SMTP id qf39-20020a1709077f2700b0096faadbbf81mr9072118ejc.45.1686166633497;
-        Wed, 07 Jun 2023 12:37:13 -0700 (PDT)
-Received: from shift.daheim (p4fd09b31.dip0.t-ipconnect.de. [79.208.155.49])
-        by smtp.gmail.com with ESMTPSA id l1-20020a17090615c100b0096a742beb68sm7147693ejd.201.2023.06.07.12.37.12
+        d=1e100.net; s=20221208; t=1686166736; x=1688758736;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v9mPghHb0zo1ioIAUBDYOj0SyzS0wuoa2sSWyDcE21Y=;
+        b=PcFD2Cp/3YaaFNl9lgjbbr6v0l8pDeR37pOUe52dK+Qpv9LPMxOzAOu9NUqwMusL6F
+         Y4cYx8ud9jTD7h45G7e+qkpj5FDD0p4UJi9Uwa+ZYKh3d5JaAYZ6PXuKWt8f0jmrWwrO
+         1ng1PW9G/1Sph6a/AAl65EZDnmuPD60LVfNfK4+8kHxp+u8u7QsXmJTqyJaZjW2hMHAi
+         MDoEAaO8jgfihh2atjtXdqQahi3+LJ/k5epsEaA8z4cMoTRsKpQP0cg3qjrxhXhFlR2r
+         SFNQC6GgUnCBKdZ94H1mvyYqK4KYxUxHgRQBaFivayIL+05f9tmwfJLJugZX3fg+fDhW
+         UsKg==
+X-Gm-Message-State: AC+VfDxgKwPD1UiwBNa+wsUK4S3/AbLyDmYBjDT+XDjPuS90UKMHBCyC
+        JiNHmry1/rdMdUQkiOmpeQE=
+X-Google-Smtp-Source: ACHHUZ4Y/8td78SY0svLXTall9qR9vpoyxxDO0P4VmvMlnMotCJwzc3XyvZ9UvHWTvlWNUXQocANjg==
+X-Received: by 2002:a17:907:7da3:b0:977:d676:d3ca with SMTP id oz35-20020a1709077da300b00977d676d3camr7458256ejc.33.1686166735589;
+        Wed, 07 Jun 2023 12:38:55 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id a8-20020a17090682c800b0097889c33582sm688895ejy.215.2023.06.07.12.38.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 12:37:13 -0700 (PDT)
-Received: from localhost ([127.0.0.1])
-        by shift.daheim with esmtp (Exim 4.96)
-        (envelope-from <chunkeey@gmail.com>)
-        id 1q6yy0-002UOj-1n;
-        Wed, 07 Jun 2023 21:37:12 +0200
-Message-ID: <785c76d5-bfe2-3491-45d1-e78efd750e6a@gmail.com>
-Date:   Wed, 7 Jun 2023 21:37:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Describe switch ports in the main DTS
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Wed, 07 Jun 2023 12:38:55 -0700 (PDT)
+Date:   Wed, 7 Jun 2023 21:38:52 +0200
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, michael.roeder@avnet.eu,
+        linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230605132109.7933-1-zajec5@gmail.com>
-Content-Language: de-DE
-From:   Christian Lamparter <chunkeey@gmail.com>
-In-Reply-To: <20230605132109.7933-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Shawn Tu <shawnx.tu@intel.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] media: dt-bindings: alvium: add document YAML
+ binding
+Message-ID: <ZIDczFHCWCWyDSBo@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20230607131936.382406-1-tomm.merciai@gmail.com>
+ <20230607131936.382406-3-tomm.merciai@gmail.com>
+ <17971357-523c-f907-13a9-8f7abce90c24@linaro.org>
+ <ZICgPUDv+GjK4C5t@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+ <4673281c-0281-6fc5-97c3-b4ec821c81d5@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4673281c-0281-6fc5-97c3-b4ec821c81d5@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/5/23 15:21, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Jun 07, 2023 at 06:11:54PM +0200, Krzysztof Kozlowski wrote:
+> On 07/06/2023 17:20, Tommaso Merciai wrote:
+> > Hi Krzysztof,
+> > 
+> > On Wed, Jun 07, 2023 at 04:18:48PM +0200, Krzysztof Kozlowski wrote:
+> >> On 07/06/2023 15:19, Tommaso Merciai wrote:
+> >>> Add documentation of device tree in YAML schema for the ALVIUM
+> >>> Camera from Allied Vision Inc.
+> >>>
+> >>> References:
+> >>>  - https://www.alliedvision.com/en/products/embedded-vision-solutions
+> >>>
+> >>> Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> >>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >>> ---
+> >>> Changes since v1:
+> >>>  - Fixed build error as suggested by RHerring bot
+> >>>
+> >>> Changes since v2:
+> >>>  - Fixed License as suggested by KKozlowski/CDooley
+> >>>  - Removed rotation property as suggested by CDooley/LPinchart
+> >>>  - Fixed example node name as suggested by CDooley
+> >>>  - Fixed title as suggested by LPinchart
+> >>>  - Fixed compatible name as suggested by LPinchart
+> >>>  - Removed clock as suggested by LPinchart
+> >>>  - Removed gpios not as suggested by LPinchart
+> >>>  - Renamed property name streamon-delay into alliedvision,lp2hs-delay-us
+> >>>  - Fixed vendor prefix, unit append as suggested by KKozlowski
+> >>>  - Fixed data-lanes
+> >>>  - Fixed blank space + example indentation (from 6 -> 4 space) as suggested by KKozlowski
+> >>>  - Dropped status into example  as suggested by KKozlowski
+> >>>  - Added vcc-ext-in supply as suggested by LPinchart
+> >>>  - Dropped pinctrl into example as suggested by LPinchart
+> >>>
+> >>> Changes since v3:
+> >>>  - Fixed vcc-ext-in-supply description as suggested by LPinchart
+> >>>  - Fixed alliedvision,lp2hs-delay-us description as suggested by LPinchart
+> >>>  - Added maximum to alliedvision,lp2hs-delay-us as suggested by LPinchart
+> >>>  - Collected Reviewed-by tag from LPinchart
+> >>
+> >> You still did not test it before sending. Four versions of which none
+> >> were tested :(
+> > 
+> > You are right.. my bad. :'(
+> > 
+> > After fixing id, as suggested by Laurent/bot into:
+> > 
+> > $id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium-csi2.yaml#
+> > 
+> > I'm running the following test:
+> > 
+> > make dt_binding_check DT_SCHEMA_FILES=alliedvision,alvium-csi2.yaml
+> > 
+> > With the following result:
+> > 
+> >   LINT    Documentation/devicetree/bindings
+> >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > /home/tom/work/mainline/linux/Documentation/devicetree/bindings/media/i2c/.alliedvision,alvium-csi2.example.dts.pre.yaml: ignoring, error parsing file
+> >   DTEX    Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.example.dts
+> >   DTC_CHK Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.example.dtb
+> > 
+> > Is that correct?
 > 
-> All Northstar SoCs have BCM5301x switches (BCM53011, BCM53012) with 8
-> ports (0-8 without 6). By design 3 switch ports (5, 7 and 8) are
-> hardwired to 3 on-SoC Ethernet interfaces. Switch port 8 requires
-> forcing link state.
+> No, it doesn't look correct. You have error parsing your file. Check
+> your yaml file and its example DTSI.
 > 
-> It seems that global Northstar .dtsi file is the best place to describe
-> those hw details. Only device specific bits (like labels) should go to
-> device .dts files.
+> Be sure you have also yamlling installed.
+
+Thanks for the feedback!
+
+Regards,
+Tommaso
+
 > 
-> This seems to fit well with a tiny exception of Asus RT-AC88U which
-> somehow was designed to have switch 5 connected to an extra switch. This
-> case was simply handled with a /delete-property/.
+> Best regards,
+> Krzysztof
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-No, I was wrong. Both the MR26 and MR32 use the Gbit PHY integrated into
-the SoCs. There is no extra PHY chip to be found anywhere on the PCBs.
-phytool does confirm this.
-
-# mr26 + mr32 outputs are indentical.
-| $ phytool poe/0
-| ieee-phy: id:0x600d8760
-| ieee-phy: reg:BMCR(0x00) val:0x1140
-|  flags:          -reset -loopback +aneg-enable -power-down -isolate -aneg-restart -collision-test
-|  speed:          1000-full
-|
-| ieee-phy: reg:BMSR(0x01) val:0x79ed
-|  capabilities:   -100-b4 +100-f +100-h +10-f +10-h -100-t2-f -100-t2-h
-|  flags:          +ext-status +aneg-complete -remote-fault +aneg-capable +link -jabber +ext-register
-
-Reviewed-by: Christian Lamparter <chunkeey@gmail.com> (MR32+MR26)
-
-Thank you!
-> ---
-
->   arch/arm/boot/dts/bcm53015-meraki-mr26.dts    |  3 --
->   arch/arm/boot/dts/bcm53016-meraki-mr32.dts    |  3 --
->   22 files changed, 51 insertions(+), 163 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/bcm-ns.dtsi b/arch/arm/boot/dts/bcm-ns.dtsi
-> index 43d670746f05..dae9c47ace76 100644
-> --- a/arch/arm/boot/dts/bcm-ns.dtsi
-> +++ b/arch/arm/boot/dts/bcm-ns.dtsi
-> @@ -313,10 +313,49 @@ srab: ethernet-switch@18007000 {
->   
->   		status = "disabled";
->   
-> -		/* ports are defined in board DTS */
->   		ports {
->   			#address-cells = <1>;
->   			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +			};
-> +
-> +			port@3 {
-> +				reg = <3>;
-> +			};
-> +
-> +			port@4 {
-> +				reg = <4>;
-> +			};
-> +
-> +			port@5 {
-> +				reg = <5>;
-> +				ethernet = <&gmac0>;
-> +			};
-> +
-> +			port@7 {
-> +				reg = <7>;
-> +				ethernet = <&gmac1>;
-> +			};
-> +
-> +			port@8 {
-> +				reg = <8>;
-> +				ethernet = <&gmac2>;
-> +
-> +				fixed-link {
-> +					speed = <1000>;
-> +					full-duplex;
-> +				};
-> +			};
->   		};
->   	};
->   
-> diff --git a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-> index 071f2cb97251..24ba467c67b9 100644
-> --- a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-> +++ b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-> @@ -115,14 +115,11 @@ &srab {
->   
->   	ports {
->   		port@0 {
-> -			reg = <0>;
->   			label = "poe";
->   		};
->   
->   		port@5 {
-> -			reg = <5>;
->   			label = "cpu";
-> -			ethernet = <&gmac0>;
->   
->   			fixed-link {
->   				speed = <1000>;
-> diff --git a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
-> index 46c2c93b01d8..559d6c371d67 100644
-> --- a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
-> +++ b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
-> @@ -176,14 +176,11 @@ &srab {
->   
->   	ports {
->   		port@0 {
-> -			reg = <0>;
->   			label = "poe";
->   		};
->   
->   		port@5 {
-> -			reg = <5>;
->   			label = "cpu";
-> -			ethernet = <&gmac0>;
->   
->   			fixed-link {
->   				speed = <1000>;
-
