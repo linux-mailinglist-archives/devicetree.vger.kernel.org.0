@@ -2,57 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C43272592F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA077259A9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:11:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239614AbjFGJC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 05:02:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59500 "EHLO
+        id S239810AbjFGJK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 05:10:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239079AbjFGJB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:01:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 069A61FE0;
-        Wed,  7 Jun 2023 02:00:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 762AF63090;
-        Wed,  7 Jun 2023 09:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CDF71C4339C;
-        Wed,  7 Jun 2023 09:00:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686128421;
-        bh=F5+N75Zg/ewS0cV/xECJGMYPsMqht0e4NrsDhr0XjP8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=AjcGkpYAI0O1/OHrmPdmhO8Sb3CmVRjmE1lVgGz0lQGffqHwgxDwzlsSDcygN91gB
-         XjLNZ4AFdkZOQCo1nNREtUavVyKPwR8zUlYfMqbIrCGDVZGF4OZp4p14Fu6SFKUtD4
-         c2m+1T0fBPmtY2lp9nZFJUMCDNbwht7RlmFcuCboIDfSYe7LOavvRmlUsmaOEVin9V
-         779yk1ashNkfWVUMVTRPleemh68x6Po9Dx7+Xa4c7XvOd7yDCMVFHxfunh/vx7mPJ8
-         bKJA7yvcz1CJ90gzlgHmAYmgmT/QBDfuBXEJhnf6npZyqRotAHo8szBQfsL3ifo6cE
-         WAImxORBhu/MA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B598FE4D016;
-        Wed,  7 Jun 2023 09:00:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S240165AbjFGJKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:10:33 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AAB1BD6;
+        Wed,  7 Jun 2023 02:09:25 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 1F11E5FD63;
+        Wed,  7 Jun 2023 12:09:24 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1686128964;
+        bh=CumwjAyNcOyROazwWORMZqL/SIkAMktzdgFYOvd0NSA=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=IB7yP8h2qdh0bCixWjI5oZn9LGUy+PRnJS7dRyHwKW3sK/wVCDgbL4nhfYMJQpX3h
+         mC6z2HwjdcEBikV+mwCJs8uRoT+wICXFLt7nhaVhh0RTi4tJA/1UpYw80kh62Uq/zM
+         NX0o4F5zic0eU4W1hYSafCX2wNxIDSEfdcsXjPsa+M0IvBjcFeRewL4nqbbhdwdbZ9
+         YQePE4I43do8UExk4IGbL5m8EzUXc1tybLUKD+K8rofQjy5cxlntWchp1juebuthG2
+         PVwtr1fylnlCslB0pKiGTIF3Rfkzrqmcv1xhRZygsCphdt+knOkioMTPMWDA1PVrpF
+         0s5GtRsO6zSZw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Wed,  7 Jun 2023 12:09:23 +0300 (MSK)
+Message-ID: <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
+Date:   Wed, 7 Jun 2023 12:04:29 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/3] net: phy: realtek: Support external PHY clock
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168612842173.26370.13026780994764936762.git-patchwork-notify@kernel.org>
-Date:   Wed, 07 Jun 2023 09:00:21 +0000
-References: <20230605154010.49611-1-detlev.casanova@collabora.com>
-In-Reply-To: <20230605154010.49611-1-detlev.casanova@collabora.com>
-To:     Detlev Casanova <detlev.casanova@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        f.fainelli@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
+ <20230607095802.3adcd4f9@xps-13>
+ <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
+ <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
+ <835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
+ <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 04:52:00 #21449589
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,35 +82,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
 
-On Mon,  5 Jun 2023 11:40:07 -0400 you wrote:
-> Some PHYs can use an external clock that must be enabled before
-> communicating with them.
+On 07.06.2023 12:08, Krzysztof Kozlowski wrote:
+> On 07/06/2023 10:57, Arseniy Krasnov wrote:
+>>
+>>
+>> On 07.06.2023 11:53, Krzysztof Kozlowski wrote:
+>>> On 07/06/2023 10:40, Arseniy Krasnov wrote:
+>>>> Hello Miquel, 
+>>>>
+>>>> On 07.06.2023 10:58, Miquel Raynal wrote:
+>>>>
+>>>>> Hi Arseniy,
+>>>>>
+>>>>> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
+>>>>>
+>>>>>> Add description of 'nand-rb' property. Use "Fixes" because this property
+>>>>>> must be supported since the beginning. For this controller 'nand-rb' is
+>>>>>> stored in the controller node (not in chip), because it has only single
+>>>>>> r/b wire for all chips.
+>>>>>
+>>>>> Sorry if I mislead you in the first place, but you could definitely
+>>>>> have two chips and only one with RB wired. It needs to be defined in
+>>>>> the chips.
+>>>>
+>>>> Ok, so to clarify: is it ok, that in bindings this property will be placed in the
+>>>> chip, but in driver, i'm trying to read it from the controller node (thus  in
+>>>> dts file it will be also in controller node)?
+>>>
+>>> No, because how would your DTS pass validation? I understand you did not
+>>> test the bindings, but this will improve, right?
+>>
+>> Ok, i'll follow DTS layout in the driver, "test the bindings" You mean "make dt_binding_check"?
 > 
-> Changes since v3:
->  * Do not call genphy_suspend if WoL is enabled.
-> Changes since v2:
->  * Reword documentation commit message
-> Changes since v1:
->  * Remove the clock name as it is not guaranteed to be identical across
->    different PHYs
->  * Disable/Enable the clock when suspending/resuming
+> Yes. They were sent without testing.
+> 
+> But please also test your DTS with dtbs_check.
 
-Here is the summary with links:
-  - [v4,1/3] net: phy: realtek: Add optional external PHY clock
-    https://git.kernel.org/netdev/net-next/c/7300c9b574cc
-  - [v4,2/3] dt-bindings: net: phy: Document support for external PHY clk
-    https://git.kernel.org/netdev/net-next/c/350b7a258f20
-  - [v4,3/3] net: phy: realtek: Disable clock on suspend
-    https://git.kernel.org/netdev/net-next/c/59e227e2894b
+Got it!
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Thanks, Arseniy
 
-
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
