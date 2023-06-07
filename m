@@ -2,211 +2,346 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7374725513
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 09:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3074725519
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 09:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234797AbjFGHKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 03:10:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45930 "EHLO
+        id S238742AbjFGHKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 03:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238674AbjFGHKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 03:10:15 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA7319AA
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 00:10:11 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9786fc23505so233029566b.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 00:10:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686121809; x=1688713809;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RNbd0rV0wgo4TlBHE0Z+HQIt/9tYb3WUn2Xisg5I4Vk=;
-        b=UOSj4A+2ZRDTz2ZtgutALrHXYmvxP82XQkIEWX5OyM4RK3+i2hw5jh9/t/vT+D6xP0
-         C5jQg/TV6Qk3cOSJgmDaFnNbkCcBkNSheyfauSsdM5ZP4o3gyWe6x85+0Cd2ntOe1kRe
-         yiWkhIGIpVEr35zhrEWAYou+0Q5j/0X3PPEkS1AT4MgWBVlHVRnfZdJTGypF0t6EgUIY
-         8am/szsW/5k//patGgsMyH3FCAqRqDe6o5tZnVgouzp68VDOppdXE2Jqh3EkIkXkjW6Y
-         JGAdMAWsWWRjZOIZ70i3I6JNz7RJtrMtaVaBM57nyZdhRHS3S/NlEJYLdyBVdS1Rp5YD
-         Ud9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686121809; x=1688713809;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RNbd0rV0wgo4TlBHE0Z+HQIt/9tYb3WUn2Xisg5I4Vk=;
-        b=Xui5/AJck17hQJ42ciCfeSM2bfVFppqQbXn/UqbdOd+InKa/1IjWOH83Q2MlvLYWoV
-         yWS3E4nashVYIEzswWP9ybYYK67XKS2YUwyMU/4Bn4wzkMFoxvV4g9QuvCE7MnUJOTzk
-         oho7YGNMpnjvttWt5qlA9wYx9Pt0BXzxcQ8N4PYHXXzUSYTux8Q3AETWPMw0sM3Jrk3A
-         IYgrr5NHZUPhMvcR+MGwTotoHLrnXPT8brl/VkleH+q4xdqSUyriBUd6KyD34WxDrEB9
-         1I/Fm4DlL6kWkyI2rdp1NkRCmgqCVXYxKVzGTuJ36X8iqupXKVESOzT8l6zpFf/rzzh+
-         2P3g==
-X-Gm-Message-State: AC+VfDzXj0ESM8ipo74akJtEkztQ1FkYhPbUDxXq4NStlsUC7wzIb+aX
-        /PUbnqcJPdJwSj5bNPo5FHDDPA==
-X-Google-Smtp-Source: ACHHUZ7aeESog1csl2k7sGYQ2vfcQCGBYNFejR21FOhToVA+9TBvt7DhY+vJamrZ7lva5yKLFFVEcA==
-X-Received: by 2002:a17:907:3f9a:b0:96f:8666:5fc4 with SMTP id hr26-20020a1709073f9a00b0096f86665fc4mr6012541ejc.50.1686121809565;
-        Wed, 07 Jun 2023 00:10:09 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id fx4-20020a170906b74400b00977d0f1c5bcsm4203514ejb.69.2023.06.07.00.10.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 00:10:09 -0700 (PDT)
-Message-ID: <742d3161-3a4d-ea77-7bd4-85f6636bf400@linaro.org>
-Date:   Wed, 7 Jun 2023 09:10:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [v5 3/5] dt-bindings: mfd: Add aspeed pwm-tach binding
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        Patrick Williams <patrick@stwcx.xyz>
-Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        with ESMTP id S238695AbjFGHKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 03:10:50 -0400
+Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2086199A
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 00:10:47 -0700 (PDT)
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+        by fgw23.mail.saunalahti.fi (Halon) with ESMTP
+        id 6b8f1cc4-0502-11ee-b972-005056bdfda7;
+        Wed, 07 Jun 2023 10:10:45 +0300 (EEST)
+From:   andy.shevchenko@gmail.com
+Date:   Wed, 7 Jun 2023 10:10:44 +0300
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+Cc:     "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <20230606094535.5388-1-billy_tsai@aspeedtech.com>
- <20230606094535.5388-4-billy_tsai@aspeedtech.com>
- <35bf0a69-bcf6-ae35-eb3c-e74cfcf9c571@linaro.org>
- <ZH89fXknZlhGmM_H@heinlein.vulture-banana.ts.net>
- <c28f963e-d13c-6b5c-c389-996e986f81d5@linaro.org>
- <SG2PR06MB33652E18980E9CF8E4F0894D8B53A@SG2PR06MB3365.apcprd06.prod.outlook.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SG2PR06MB33652E18980E9CF8E4F0894D8B53A@SG2PR06MB3365.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 2/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <ZIAtdLTvM6qh4r9W@surfacebook>
+References: <cover.1686063941.git.oleksii_moisieiev@epam.com>
+ <d388c7af3f72fd47baffe0de8c6fec8074cb483c.1686063941.git.oleksii_moisieiev@epam.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d388c7af3f72fd47baffe0de8c6fec8074cb483c.1686063941.git.oleksii_moisieiev@epam.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 08:26, Billy Tsai wrote:
->         On 06/06/2023 16:06, Patrick Williams wrote:
->         >> On Tue, Jun 06, 2023 at 12:49:04PM +0200, Krzysztof Kozlowski wrote:
->         >>
->         >> Hi Krzysztof,
->         >>
->         >> Thank you for reviewing this from Billy.
->         >>
->         >> The Aspeed chip is heavily used by the OpenBMC community and the 2600
->         >> has been used in production systems for almost 2 years now.  Many
->         >> companies are having to carry previous versions of these as patches, and
->         >> some of the APIs changed since the last revision from Billy.  So, I had
->         >> asked him to submit the latest patch set with as many revisions as he
->         >> understood what to change, since the conversation seemed to have died
->         >> since last time he submitted.
->         >>
->         >> I don't believe Billy is intentionally ignoring your feedback and he is
->         >> motivated to get this patch set wrapped up into an acceptable state.
->         >>
->         >>> On 06/06/2023 11:45, Billy Tsai wrote:
->         >>
->         >>> NAK. You got here clear comment. You cannot have simple MFD with
->         >>> resources. It is not simple anymore.
->         >>>
->         >>
->         >> In fairness, Billy asked for clarification from you on this point and didn't
->         >> receive it.
->         >>
->         >> https://lore.kernel.org/lkml/24DD1FEB-95F3-47BE-BE61-8B0E6FBDE20F@aspeedtech.com/
-> 
->         > I gave the instruction what Billy should do:
-> 
->         > https://lore.kernel.org/lkml/41500a04-b004-0e2c-20a1-3a3092b90e6d@linaro.org/
-> 
->         > What about other ignored comments? About subject, quotes and more? Even
->         > if this one was unclear, then why ignoring all the rest?
-> 
-> It's possible that there was some confusion regarding your message. I apologize for any misunderstanding.
-> About the subject: I apologize for the misunderstanding. I just drop the redundant "bindings" in the commit message.
+Tue, Jun 06, 2023 at 04:22:27PM +0000, Oleksii Moisieiev kirjoitti:
+> scmi: Introduce pinctrl SCMI protocol driver
 
-Read entire message, not some parts of it.
+Seems like you forgot to remove previous line(s) in the commit message and
+the above has to be the Subject here.
 
-"Subject: drop second, redundant "bindings".
-Also use proper PATCH prefix."
+> Add basic implementation of the SCMI v3.2 pincontrol protocol
+> excluding GPIO support. All pinctrl related callbacks and operations
+> are exposed in the include/linux/scmi_protocol.h
 
-Where did you drop the bindings in the subject? I still see it, look:
-"dt-bindings: mfd: Add aspeed pwm-tach binding"
-                                       ^^^^^^^^ what is this?
+drop include/ part, everybody will understand that. Also mind the grammar
+period.
 
-> About the quotes: I believe the issue was simply related to the order of the patches, and I have resolved it. Did I misunderstand?
+...
 
-I still see them, so how did you solve them?
+> -scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
+> +scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o pinctrl.o
 
-> About the Missing description:
-> 
->> +patternProperties:
->> +  "^fan@[a-z0-9]+$":
->> +    type: object
-> 
->> Missing description. But more important - why do you have such child
->> nodes? Your example does not have them. What's the point? Do you expect
->> different number of fans per one device (one compatible)?
-> 
-> In this patch series, I have included examples and descriptions to provide additional information.
-> The child node is used to enable the channel of this tach controller.
+Why not splitting it and make it ordered?
 
-You do not need children for this.
+...
 
-> I expect that the dts will include information regarding the number of fans connected to the board and their corresponding channels.
+Missing headers:
 
-Your example DTS must be complete and nothing like this was there. There
-is still no point in the children.
+	bitfield.h
+	bits.h
+	byteorder/
+	types.h
 
-> 
->         >>
->         >> He felt what he was trying to accomplish met the documented
->         >> expectations.  Are there some changes that need to be done in mfd.txt to
->         >> further clarify when to use it and when not to?
-> 
->         > I think mfd.txt clearly states:
->         > "For more complex devices, when the nexus driver has to
->         > probe registers to figure out what child devices exist etc, this should
->         > not be used. In the latter case the child devices will be determined by
->         > the operating system."
-> 
-> About the mfd:
-> For our pwm and tach devices, there is no need to check/apply any hardware register from parent to determine child’s existence or functional.
-> They don’t have any dependency on the parent node. 
+> +#include <linux/module.h>
+> +#include <linux/scmi_protocol.h>
+> +#include <linux/slab.h>
 
-You are joking right? The dependency is clearly visible in the driver.
-You are getting parent's node to get its resources. That's the
-dependency which is not allowed. Children should take care of their
-resources, not parent's!
+Missing
 
-> In fact, it doesn’t require a specific driver to bind with the "aspeed,ast2600-pwm-tach" label. Their purpose is solely to share the same clock, reset phandle and base address.
+	asm/unaligned.h
 
-That's what the drivers are for, so you need it...
+...
 
-> The main reason for using simple-mfd in this case is because these two independent devices share the same base address. In fact, I can relocate the clock and reset configurations to the child nodes rather than the parent node.
+> +struct scmi_group_info { 
+> +       bool present; 
+> +       char name[SCMI_MAX_STR_SIZE]; 
+> +       unsigned int *group_pins; 
+> +       unsigned int nr_pins; 
+> +}; 
+ 
+So, why struct pingroup can't be embeded here?
 
-How? These are clocks of parent. Don't create fake DTS to represent
-workarounds. Or you want to say that current DTS is fake and does not
-match the hardware?
+> +struct scmi_function_info {
+> +	bool present;
+> +	char name[SCMI_MAX_STR_SIZE];
+> +	unsigned int *groups;
+> +	unsigned int nr_groups;
+> +};
 
->  In this case, I still can't use simple-mfd?
+So, why and struct pinfunction can't be embedded here (yes, you would need a
+duplication of groups as here they are integers)?
 
-For the last time: No. You cannot, because you have resources needed for
-children.
+As far as I understand these data structures are not part of any ABI (otherwise
+the wrong type(s) / padding might be in use) and hence don't see the impediments
+to use them, but would be nice to have a comment on top of each.
 
-Best regards,
-Krzysztof
+...
+
+> +struct scmi_pin_info {
+> +	bool present;
+> +	char name[SCMI_MAX_STR_SIZE];
+
+Swapping order might help compiler to generate a better code.
+Also this applies to the _group_info and _function_info.
+
+> +};
+
+...
+
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret) {
+
+Can you rather follow the usual pattern, i.e. checking for the errors?
+
+	if (ret)
+		goto out_put_xfer;
+
+> +		pi->nr_functions = GET_FUNCTIONS_NR(attr->attributes_high);
+> +		pi->nr_groups = GET_GROUPS_NR(attr->attributes_low);
+> +		pi->nr_pins = GET_PINS_NR(attr->attributes_low);
+> +	}
+
+out_put_xfer:
+
+> +	ph->xops->xfer_put(ph, t);
+> +	return ret;
+
+...
+
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret) {
+
+Ditto.
+
+> +		if (n_elems)
+> +			*n_elems = NUM_ELEMS(rx->attributes);
+> +
+> +		strscpy(name, rx->name, SCMI_SHORT_NAME_MAX_SIZE);
+> +	}
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +
+> +	/*
+> +	 * If supported overwrite short name with the extended one;
+> +	 * on error just carry on and use already provided short name.
+> +	 */
+> +	if (!ret && EXT_NAME_FLAG(rx->attributes))
+
+	if (ret)
+		return ret;
+
+> +		ph->hops->extended_name_get(ph, PINCTRL_NAME_GET, selector,
+> +					    (u32 *)&type, name,
+> +					    SCMI_MAX_STR_SIZE);
+> +	return ret;
+
+	return 0;
+
+> +}
+
+...
+
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret)
+
+	if (ret)
+		goto out_put_xfer;
+
+(but in this and similar, aka one line, cases the current wouldn't be bad, just
+matter of the consistency with the rest of the code)
+
+> +		*config_value = get_unaligned_le32(t->rx.buf);
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +	return ret;
+
+...
+
+> +	ret = ph->xops->xfer_get_init(ph, PINCTRL_RELEASE,
+> +				      sizeof(*tx), 0, &t);
+
+This is perfectly one line. Please also check entire code for such an unneeded
+wrap.
+
+...
+
+> +static int scmi_pinctrl_get_group_info(const struct scmi_protocol_handle *ph,
+> +				       u32 selector,
+> +				       struct scmi_group_info *group)
+> +{
+> +	int ret;
+> +
+> +	if (!group)
+> +		return -EINVAL;
+> +
+> +	ret = scmi_pinctrl_attributes(ph, GROUP_TYPE, selector,
+> +				      group->name,
+> +				      &group->nr_pins);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!group->nr_pins) {
+> +		dev_err(ph->dev, "Group %d has 0 elements", selector);
+> +		return -ENODATA;
+> +	}
+> +
+> +	group->group_pins = devm_kmalloc_array(ph->dev, group->nr_pins,
+> +					       sizeof(*group->group_pins),
+> +					       GFP_KERNEL);
+> +	if (!group->group_pins)
+> +		return -ENOMEM;
+> +
+> +	ret = scmi_pinctrl_list_associations(ph, selector, GROUP_TYPE,
+> +					     group->nr_pins, group->group_pins);
+> +	if (ret) {
+> +		devm_kfree(ph->dev, group->group_pins);
+
+This is a red flag. Is this function is solely used at the ->probe() stage?
+I do not think so. Why then the devm_*() is being used to begin with?
+
+Also what are the object lifetimes for device here and the _group_info
+instances?
+
+> +		return ret;
+> +	}
+> +
+> +	group->present = true;
+> +	return 0;
+> +}
+
+...
+
+> +static int scmi_pinctrl_get_function_info(const struct scmi_protocol_handle *ph,
+> +					  u32 selector,
+> +					  struct scmi_function_info *func)
+> +{
+
+As per above.
+
+> +}
+
+...
+
+> +static const struct scmi_pinctrl_proto_ops pinctrl_proto_ops = {
+> +	.get_count = scmi_pinctrl_get_count,
+> +	.get_name = scmi_pinctrl_get_name,
+> +	.get_group_pins = scmi_pinctrl_get_group_pins,
+> +	.get_function_groups = scmi_pinctrl_get_function_groups,
+> +	.set_mux = scmi_pinctrl_set_mux,
+> +	.get_config = scmi_pinctrl_get_config,
+> +	.set_config = scmi_pinctrl_set_config,
+> +	.request_pin = scmi_pinctrl_request_pin,
+> +	.free_pin = scmi_pinctrl_free_pin
+
+It's not a terminator item, so leave trailing comma. It will reduce the burden
+in case of update of this.
+
+> +};
+
+...
+
+> +static int scmi_pinctrl_protocol_init(const struct scmi_protocol_handle *ph)
+> +{
+
+> +	pinfo = devm_kzalloc(ph->dev, sizeof(*pinfo), GFP_KERNEL);
+> +	if (!pinfo)
+> +		return -ENOMEM;
+
+All the same, why devm_*() is in use and what are the object lifetimes?
+
+> +}
+
+...
+
+> +	for (i = 0; i < pi->nr_groups; i++)
+> +		if (pi->groups[i].present) {
+> +			devm_kfree(ph->dev, pi->groups[i].group_pins);
+> +			pi->groups[i].present = false;
+> +		}
+> +
+> +	for (i = 0; i < pi->nr_functions; i++)
+> +		if (pi->functions[i].present) {
+> +			devm_kfree(ph->dev, pi->functions[i].groups);
+> +			pi->functions[i].present = false;
+> +		}
+
+Missing outer {}, but see above as well.
+
+...
+
+> +static const struct scmi_protocol scmi_pinctrl = {
+> +	.id = SCMI_PROTOCOL_PINCTRL,
+
+> +	.owner = THIS_MODULE,
+
+This is not needed if you use a trick from ~15 years back...
+
+> +	.instance_init = &scmi_pinctrl_protocol_init,
+> +	.instance_deinit = &scmi_pinctrl_protocol_deinit,
+> +	.ops = &pinctrl_proto_ops,
+> +};
+> +
+
+Redundant blank line.
+
+> +DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER(pinctrl, scmi_pinctrl)
+
+...i.e. initializing the owner by this macro.
+
+It might require some update to the above macro and its users.
+
+...
+
+
+> +enum scmi_pinctrl_selector_type {
+> +	PIN_TYPE = 0,
+> +	GROUP_TYPE,
+> +	FUNCTION_TYPE
+
+Leave trailing comma.
+
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
