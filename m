@@ -2,237 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF8E7268BE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB4EE7268CD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231716AbjFGSb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 14:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47174 "EHLO
+        id S232241AbjFGSd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:33:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbjFGSb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:31:58 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AF71712
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:31:56 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-514953b3aa6so1810661a12.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:31:56 -0700 (PDT)
+        with ESMTP id S232276AbjFGSd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:33:26 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D08A1FE6
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:33:14 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-565cdb77b01so82130577b3.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:33:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686162715; x=1688754715;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6Z+U5ETKwaoIHltE2aiAd209awkqtpo2q3BiVL0nXYU=;
-        b=iUiL+koEOtPAccW4DAkC8uKKkLCRaCKzOoFR2FJlbkVPhX0BJH52rbIBFel/wEJi5n
-         OGSI2zocWFqKumJ7ZxFDcQwZbEvb1SZ5g5z7rej5gEpRa1zdfFnUHeUJyNJgrOjFuEYb
-         dY4HK37AOWyeJe1foqFmjD3e7nVJDONBSqPSAa4DGTL4aMjptAT5H7lhpZRmqiFyS6hL
-         PO5d1SbABORUMCK91wD4kEhJM6TDXlRJzE2w6M1mLl0l1tn9eySxCH9ao+/XJOdtIXNh
-         wZJSJaIIUPnfz2l4VXkPlJcaLHQhUAtiYPYvxNcpV5DhaMklDUUV015kRbZ7AeKnJoj1
-         gokw==
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1686162793; x=1688754793;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e9urOsg3XOcxz6eWa1eYoSND4lj93DSl8iQ3727M7/0=;
+        b=4+dPmbw6GeHCDQXyo+hj+MMjmXqSJTRIC0MSsq73FLUKqqVsvwyTwM0OiXbHJzsglH
+         JPI37ZXVsUZwojmlPFijwyT1mMKNTI1yQir8BK+J79GxkdnwL5KECtz1jQbQPm/boqUe
+         z7nz84uMaivMo2CRCEgTB5kU/+Ppzo3lyprsMz+35NTyXJOp5LsMJl8ZtSS+sfZPNoFR
+         5argTwBLSLldtfRudJW51TS5Aye4eKneBoT6PqqUPo/y5FScXU9gbg6VgokDAHXfxfdD
+         MzBY3qg00c+utw6MNhIyMW41FyxgVS6OqapLQ9j5NsSUcGv3REu88DQ5P5EwS7KceRy7
+         VM9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686162715; x=1688754715;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Z+U5ETKwaoIHltE2aiAd209awkqtpo2q3BiVL0nXYU=;
-        b=R4gQMAhjQmFT6VxYIHfBBFvg365mXfSJqWlTzJIVxWnEuaBwkTJi0QbAuNEAcvrMoJ
-         i6OtG8FL2b974sYsMULBbILgW2AtPntxIkZ1atQfJzEjWBpAHoxkI1w7RyGiYJ0VKfaf
-         0xuc2SqpDT03/B6fgg4KvetCXRg+1o5QXsT5MrRn3589OWeP1bH7G9N9Jc2iDkOo36D7
-         nz+lbx+xy2dflr3eORMQAYN/9Ah/oI4ef12tem6l+h1N3HlWP9Hb8O5fV7VvX9sYYGeX
-         HIvgpGvOkgAu/+T2bxEuUVovbksPPXSAVynSKwC1BrptZBSawf8m0nheZUWBlYEz5hbs
-         DIRQ==
-X-Gm-Message-State: AC+VfDxaI8enr2H+2aNh4GDGNo4bwqDjGkkizu05Q9uO6Q3FVdBaR6Mc
-        xRaMxecOKC0/F3t4CYOF7L2gCw==
-X-Google-Smtp-Source: ACHHUZ4zm6GVGkQczlCX9ubgue5IBbrzh8OwnXMHvbBaxgCxK5FXWNJMU50WbLRcua8aEYAUxOJlKQ==
-X-Received: by 2002:aa7:c7d5:0:b0:514:9df0:e3ec with SMTP id o21-20020aa7c7d5000000b005149df0e3ecmr5148935eds.0.1686162714757;
-        Wed, 07 Jun 2023 11:31:54 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h26-20020aa7de1a000000b005148f0e8568sm6450019edv.39.2023.06.07.11.31.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 11:31:54 -0700 (PDT)
-Message-ID: <98960024-7dbc-91a3-75de-90b529637916@linaro.org>
-Date:   Wed, 7 Jun 2023 20:31:50 +0200
+        d=1e100.net; s=20221208; t=1686162793; x=1688754793;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e9urOsg3XOcxz6eWa1eYoSND4lj93DSl8iQ3727M7/0=;
+        b=h5ZRP246SI28JoAn+9UQ2pkxhB1kIcnUWFi0b0l5bj1sz2+tSrS6JmyBDD1mu1qgQm
+         B9uRddKigr4xrglfAdN3xNasOUFfpAXNGGYibVuDlh1w7Z5wFt165OewzQDus3uXhBdm
+         vaMPBdaKOGXnLVFQb8bzEf5IyouLmiClgV81PQ493+kuLxwZFUqsOYspts38cgQHhUl5
+         d9Hiii9MFtu+KCCQmGV/8jx4uxcP+FbLFhQM8EIDLdo0EX00W+vyRpYP1rzwMyHfc/Gk
+         I6qefr632TWQjslglttMbhVbSTAt9Sq1hXVP71W2ZRw1J1sEtk0kc39VMzCCZgIFFnrJ
+         jjzw==
+X-Gm-Message-State: AC+VfDyk+MlW/LxLgyE3n6OT0VH57Lz9ZlNejAMNIPjLY5AetRt5p+cw
+        kLWWr+bNWq18ysGUWSzfLNzn8Z6DLv27c6qqmvYk2g==
+X-Google-Smtp-Source: ACHHUZ6479Mks/GDP+tY+qUm+7yp4hId86uacq/V/ONUw9QvsO4o5I1ukz/srPmi/DRNcFbATqlVHRlYO9tWYiBf7s0=
+X-Received: by 2002:a81:7d41:0:b0:567:6787:5c26 with SMTP id
+ y62-20020a817d41000000b0056767875c26mr7204542ywc.19.1686162793381; Wed, 07
+ Jun 2023 11:33:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 2/9] dt-bindings: phy: qcom,m31: Document qcom,m31 USB phy
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, arnd@arndb.de, geert+renesas@glider.be,
-        neil.armstrong@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, rafal@milecki.pl, quic_srichara@quicinc.com,
-        quic_varada@quicinc.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org
-References: <cover.1686126439.git.quic_varada@quicinc.com>
- <14f60578e2935c0844537eab162af3afa52ffe39.1686126439.git.quic_varada@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <14f60578e2935c0844537eab162af3afa52ffe39.1686126439.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230607171159.2019417-1-tharvey@gateworks.com>
+ <20230607171159.2019417-2-tharvey@gateworks.com> <CAOMZO5ASwTJpH84SJX78k7MtZzwFc0bnbGqXsSFA6JFGq+0Emg@mail.gmail.com>
+In-Reply-To: <CAOMZO5ASwTJpH84SJX78k7MtZzwFc0bnbGqXsSFA6JFGq+0Emg@mail.gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Wed, 7 Jun 2023 11:33:01 -0700
+Message-ID: <CAJ+vNU1zCXxiwpkCuYTUocZR6JWAg7wFGR6eQEYwW=ZSd15CGg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw73xx-2x
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 12:56, Varadarajan Narayanan wrote:
-> Document the M31 USB2 phy present in IPQ5332
+On Wed, Jun 7, 2023 at 10:16=E2=80=AFAM Fabio Estevam <festevam@gmail.com> =
+wrote:
+>
+> Hi Tim,
+>
+> On Wed, Jun 7, 2023 at 2:12=E2=80=AFPM Tim Harvey <tharvey@gateworks.com>=
+ wrote:
+>
+> > +/* bluetooth HCI */
+> > +&uart3 {
+> > +       pinctrl-names =3D "default";
+> > +       pinctrl-0 =3D <&pinctrl_uart3>, <&pinctrl_bten>;
+> > +       cts-gpios =3D <&gpio5 8 GPIO_ACTIVE_LOW>;
+> > +       rts-gpios =3D <&gpio5 9 GPIO_ACTIVE_LOW>;
+> > +       uart-has-rtscts;
+>
+> 'uart-has-rtscts' means: use native RTS and CTS lines, but you are
+> passing 'cts-gpios/rts-gpios',
+> which contradicts that.
+>
+> I suggest you remove 'uart-has-rtscts'.
 
-Full stop.
+Fabio,
 
-> 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  .../devicetree/bindings/phy/qcom,m31.yaml          | 69 ++++++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,m31.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,m31.yaml b/Documentation/devicetree/bindings/phy/qcom,m31.yaml
-> new file mode 100644
-> index 0000000..8ad4ba4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,m31.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
+Yes - will remove for a v2
 
-Drop stray blank lines.
+Thanks,
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/qcom,m31.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm M31 USB PHY
-
-What is M31?
-
-> +
-> +maintainers:
-> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> +  - Varadarajan Narayanan <quic_varada@quicinc.org>
-> +
-> +description:
-> +  This file contains documentation for the USB M31 PHY found in Qualcomm
-
-Drop redundant parts ("This file contains documentation for the").
-
-> +  IPQ5018, IPQ5332 SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-
-That's not oneOf.
-
-> +      - items:
-
-No items.
-
-> +          - enum:
-> +              - qcom,m31-usb-hsphy
-
-I am confused what's this. If m31 is coming from some IP block provider,
-then you are using wrong vendor prefix.
-https://www.m31tech.com/download_file/M31_USB.pdf
-
-
-> +              - qcom,ipq5332-m31-usb-hsphy
-
-This confuses me even more. IPQ m31?
-
-> +
-> +  reg:
-> +    description:
-> +      Offset and length of the M31 PHY register set
-
-Drop description, obvious.
-
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: m31usb_phy_base
-> +      - const: qscratch_base
-
-Drop "_base" from both.
-
-> +
-> +  phy_type:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - utmi
-> +              - ulpi
-
-This does not belong to phy, but to USB node.
-
-> +
-> +  resets:
-> +    maxItems: 1
-> +    description:
-> +      List of phandles and reset pairs, one for each entry in reset-names.
-
-Drop useless description.
-
-> +
-> +  reset-names:
-> +    items:
-> +      - const:
-> +          usb2_phy_reset
-
-Drop entire reset-names.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
-> +    hs_m31phy_0: hs_m31phy@5b00 {
-
-Node names should be generic. See also explanation and list of examples
-in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-Also, no underscores in node names.
-
-> +        compatible = "qcom,m31-usb-hsphy";
-> +        reg = <0x5b000 0x3000>,
-
-This is not what your unit address is saying.
-
-> +            <0x08af8800 0x400>;
-
-Align it.
-
-> +        reg-names = "m31usb_phy_base",
-> +                "qscratch_base";
-
-Align it.
-
-> +        phy_type = "utmi";
-> +        resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> +        reset-names = "usb2_phy_reset";
-> +
-> +        status = "ok";
-
-Drop.
-
-> +    };
-
-Best regards,
-Krzysztof
-
+Tim
