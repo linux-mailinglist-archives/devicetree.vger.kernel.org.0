@@ -2,152 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2478B726356
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 16:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D66726390
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 17:00:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240915AbjFGOxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 10:53:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42002 "EHLO
+        id S240111AbjFGPAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 11:00:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240162AbjFGOxC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 10:53:02 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5522219BC;
-        Wed,  7 Jun 2023 07:53:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=roFvECUbc6N6VAVII+7bKbq9kRXHhpLc/txbGSzYYCc=; b=xUWTEBxSBf1g8JzGgRcqmbv/zw
-        PCH8Wxjd5bYNTI0WNhgKMgGXInBOB6OJTBJWDVxz5W1tySlFIbRNwWfg/xL7//UCU3d5uLEItYs5R
-        ohIwvXmuWRgeQwpguhK6qi7Oky430FziuSCUUoIo0gCStfSm0lyqogHGJJj5Sw61+f60=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:57980 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q6uWo-000694-17; Wed, 07 Jun 2023 10:52:50 -0400
-Date:   Wed, 7 Jun 2023 10:52:49 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        jesse.sung@canonical.com, isaac.true@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230607105249.6dc95ed226e3578a3c9116aa@hugovil.com>
-In-Reply-To: <a6301c0e-b774-8963-8eb1-8e0948b1468c@linaro.org>
-References: <20230607140525.833982-1-hugo@hugovil.com>
-        <20230607140525.833982-6-hugo@hugovil.com>
-        <f5cfc81d-d8ae-d270-f29a-c2b45b07a651@linaro.org>
-        <20230607104100.0186b1afc872e583cb9466b8@hugovil.com>
-        <a6301c0e-b774-8963-8eb1-8e0948b1468c@linaro.org>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        with ESMTP id S240878AbjFGPAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 11:00:52 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B011410F8;
+        Wed,  7 Jun 2023 08:00:50 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id E2F4D5FD6C;
+        Wed,  7 Jun 2023 18:00:48 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1686150048;
+        bh=yZw7OBt/wiNYBcIeHQpsh+rQgqcW0pEIZQT5EamZdeA=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=GTLnBO4GcM/5+3XBiS+Rz3HvXus4rlcOKXcCUw52CPge+vgRqQc2Pvlmoq/Wl5stg
+         8JCEaYFOiMiNJ0Zo821HaecH+hkjm3AvF84e7Yd5CWRA3omx6Cfc4pCW/I0rlBaPxw
+         nEEbDhEPFCLClETnVHhxOHFpIiZMX95TXRnlNkRKC+fOtWlhEIHgQr0DUIB6DGd2SX
+         YgeLwo70TYNrN7a9DyHA7/Zi9O41buRZd4ZUD3hZmwdYiArGLkrdMqLplla7LNo+06
+         ut2Y/dqr0lFEz0ulzoeD4RLVFxTByjccOwDrWgBHumfBE5cNbuo6wcpRT33Tvis8cr
+         HMetNTzoQ2WMg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Wed,  7 Jun 2023 18:00:48 +0300 (MSK)
+Message-ID: <57ccf7ac-7d94-8a66-7a0e-abfe14f7df2c@sberdevices.ru>
+Date:   Wed, 7 Jun 2023 17:55:53 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
+ <20230607095802.3adcd4f9@xps-13>
+ <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
+ <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
+ <835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
+ <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
+ <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
+ <20230607113605.50a992bb@xps-13>
+ <6c1973d1-38c0-6048-90ad-da2f60df8238@sberdevices.ru>
+ <9105207b-0dfb-346f-422f-984cf3454f90@linaro.org>
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <9105207b-0dfb-346f-422f-984cf3454f90@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 09:39:00 #21450961
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v8 05/10] dt-bindings: sc16is7xx: Add property to change
- GPIO function
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Jun 2023 16:46:56 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> On 07/06/2023 16:41, Hugo Villeneuve wrote:
-> > On Wed, 7 Jun 2023 16:30:26 +0200
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > 
-> >> On 07/06/2023 16:05, Hugo Villeneuve wrote:
-> >>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >>>
-> >>> Some variants in this series of UART controllers have GPIO pins that
-> >>> are shared between GPIO and modem control lines.
-> >>>
-> >>> The pin mux mode (GPIO or modem control lines) can be set for each
-> >>> ports (channels) supported by the variant.
-> >>>
-> >>> This adds a property to the device tree to set the GPIO pin mux to
-> >>> modem control lines on selected ports if needed.
-> >>>
-> >>> Cc: <stable@vger.kernel.org> # 6.1.x
-> >>> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >>> Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
-> >>> ---
-> >>>  .../bindings/serial/nxp,sc16is7xx.txt         | 46 +++++++++++++++++++
-> >>>  1 file changed, 46 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> >>> index 0fa8e3e43bf8..1a7e4bff0456 100644
-> >>> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> >>> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> >>> @@ -23,6 +23,9 @@ Optional properties:
-> >>>      1 = active low.
-> >>>  - irda-mode-ports: An array that lists the indices of the port that
-> >>>  		   should operate in IrDA mode.
-> >>> +- nxp,modem-control-line-ports: An array that lists the indices of the port that
-> >>> +				should have shared GPIO lines configured as
-> >>> +				modem control lines.
-> >>>  
-> >>>  Example:
-> >>>          sc16is750: sc16is750@51 {
-> >>> @@ -35,6 +38,26 @@ Example:
-> >>>                  #gpio-cells = <2>;
-> >>>          };
-> >>>  
-> >>> +	sc16is752: sc16is752@53 {
-> >>
-> >> Since you keep sending new versions, fix the names. nNode names should
-> >> be generic. See also explanation and list of examples in DT specification:
-> >> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> > 
-> > Hi,
-> > by the way, I do not "keep sending new versions" just for the fun of
-> > it...
+
+On 07.06.2023 17:58, Krzysztof Kozlowski wrote:
+> On 07/06/2023 16:52, Arseniy Krasnov wrote:
+>>
+>>
+>> On 07.06.2023 12:36, Miquel Raynal wrote:
+>>> Hi Arseniy,
+>>>
+>>> avkrasnov@sberdevices.ru wrote on Wed, 7 Jun 2023 12:04:29 +0300:
+>>>
+>>>> On 07.06.2023 12:08, Krzysztof Kozlowski wrote:
+>>>>> On 07/06/2023 10:57, Arseniy Krasnov wrote:  
+>>>>>>
+>>>>>>
+>>>>>> On 07.06.2023 11:53, Krzysztof Kozlowski wrote:  
+>>>>>>> On 07/06/2023 10:40, Arseniy Krasnov wrote:  
+>>>>>>>> Hello Miquel, 
+>>>>>>>>
+>>>>>>>> On 07.06.2023 10:58, Miquel Raynal wrote:
+>>>>>>>>  
+>>>>>>>>> Hi Arseniy,
+>>>>>>>>>
+>>>>>>>>> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
+>>>>>>>>>  
+>>>>>>>>>> Add description of 'nand-rb' property. Use "Fixes" because this property
+>>>>>>>>>> must be supported since the beginning. For this controller 'nand-rb' is
+>>>>>>>>>> stored in the controller node (not in chip), because it has only single
+>>>>>>>>>> r/b wire for all chips.  
+>>>>>>>>>
+>>>>>>>>> Sorry if I mislead you in the first place, but you could definitely
+>>>>>>>>> have two chips and only one with RB wired. It needs to be defined in
+>>>>>>>>> the chips.  
+>>>>>>>>
+>>>>>>>> Ok, so to clarify: is it ok, that in bindings this property will be placed in the
+>>>>>>>> chip, but in driver, i'm trying to read it from the controller node (thus  in
+>>>>>>>> dts file it will be also in controller node)?  
+>>>
+>>> The bindings and your driver internal representation are two different
+>>> things. Anyway, as mentioned above, wiring the RB line to one die and
+>>> not the other would be valid hardware design and would require the rb
+>>> property to be in the chip node. Please perform a per-chip property read
+>>> in the driver as well.
+>>
+>> Done, I resend both patches (bindings + driver update) as a single patchset. Your review comments
+>> for driver code were also fixed.
 > 
-> Sure, I know. So when the next version is necessary to send, fix also this.
-> 
-> >
-> > Even after reading your link, I cannot see what is wrong with that
-> > name.
-> 
-> They are not generic. They are specific.
+> No, please send new version, not the same. New version means with fixed
+> comments and with patch changelog.
 
-What do you mean by "They"? My patch adds only a new property...
+Sorry, Yes, I mean new version, here it is:
+https://lore.kernel.org/linux-mtd/20230607145026.2899547-1-AVKrasnov@sberdevices.ru/
 
-This patch will not fix old names, but a future patch could do it.
+There I fixed bindings and tested it.
 
-And what do you mean by "They are not generic. They are specific". Of
-course the property is specific, because it relates to something very
-specific to this chip?
+Thanks, Arseniy
 
-
-> > You are the first one since V1 to think it is inappropriate.
-> > 
-> > Please suggest what the name should be.
-> 
-> Depends what this is. I know nothing about this device, so I cannot
-> suggest you. Therefore I gave you link with ideas to choose from.
 > 
 > Best regards,
 > Krzysztof
-> 
 > 
