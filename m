@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02873726C7F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62487726D04
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233889AbjFGUdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 16:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60492 "EHLO
+        id S234156AbjFGUia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 16:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233896AbjFGUdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:33:51 -0400
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34239211B;
-        Wed,  7 Jun 2023 13:33:46 -0700 (PDT)
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-33c37f62e24so7586695ab.3;
-        Wed, 07 Jun 2023 13:33:46 -0700 (PDT)
+        with ESMTP id S234250AbjFGUi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:38:26 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D1951706;
+        Wed,  7 Jun 2023 13:38:06 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-77ac30e95caso72989339f.2;
+        Wed, 07 Jun 2023 13:38:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686170025; x=1688762025;
+        d=1e100.net; s=20221208; t=1686170247; x=1688762247;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0iVva9TijxeCG+oO2fuJtRH4NJqlWxMczFOc2yePB7g=;
-        b=XsWtRmlUOGtnyr2RQNWcqHipVIsPvzOht0mtn2yaEk01jxgIb5FofVtWWfh6V6NOU9
-         hyFHUHdoYD/NPTj3TY/x5xAexHX/6MEaVL9MGrK2xZfKWoZ5n5RHd/hfWN8qhaHkdLFt
-         VOfF+X60fDor3rsekeGCXMPygQ2p2yaTlLJbSsimEpe0KuwnvVgSD1+UrmCntO6ag7z+
-         dkEZxNRd9NeC4rngdPYTHeXtjcFqUBj+GyapLE26+p/AY61fK/jr3biZynYFi4JiHdtB
-         3DYUVj/GykjUIZ++KgmFzcsDSpcDimm+7nLq7R1bKJNKfTsUhOGwzt0RNF5Rz4pe3qgM
-         Qb5A==
-X-Gm-Message-State: AC+VfDznPBUTv7vD4m06FyWMXd9QnwV0w1wiBA/SFlJqGn6Hi1lEgZ14
-        LKlJeNzf6TtvaPAQpTxCpg==
-X-Google-Smtp-Source: ACHHUZ4VBsK/pRdxbIVwIR7PM8P6q0QhZxOoxBwVSOfqQqZV3ZYtLKMGskrPaGb6pYE7Badlv2n2ag==
-X-Received: by 2002:a92:c00f:0:b0:33b:ca8:fdaa with SMTP id q15-20020a92c00f000000b0033b0ca8fdaamr6422297ild.6.1686170025373;
-        Wed, 07 Jun 2023 13:33:45 -0700 (PDT)
+        bh=+zgUfZbj8UgwFs6zorpXckRZL+p/Z8v5AChyDByc05I=;
+        b=dOKG64yR48vpx9BAa3+Ssnlqgi8R96GRo5f46JFafWEQsAKX25eLZFwX2NvYZQSYHu
+         LAZkoeR+2wyqSPdaODJl8Chk027ob3z4/xT6X9iRdJeSd7z4rNw2heuPwlF8c0mSKFrx
+         5D7O6kKKzzuuvqNYPAI3H9QYru4d4Oku2XAVHlCC1TjRIDlVb2DpH2bDIGc8lhLvmHu6
+         YcmKfCqvpyR380F6xcetaVVZtJq1+h2Z5N1u13parVKmXpeP8PDBXu69K0y0x0Ws5QOP
+         U2e0mA2i4S/Y54MWxq26OfImcx73ZzSiHy+XuZTatHLe+VNjkap3zEcqEq5t4/VAI+KH
+         5wwA==
+X-Gm-Message-State: AC+VfDx+By+NYP6ql/osi86Y2+Q0UFTBtjzKa0uaDicTqMiKZZDNLip4
+        vUOVkX07Bkxd7V+PpDZ3mw==
+X-Google-Smtp-Source: ACHHUZ4Gh0jUQjI7Mx3OVJyPWIKhQiVbqlhuwxeWKu1Od7VcNnyvF5RraLcM3DWUt/PYxm6w3oVW+g==
+X-Received: by 2002:a6b:dd13:0:b0:76c:898c:9b10 with SMTP id f19-20020a6bdd13000000b0076c898c9b10mr8694413ioc.0.1686170246861;
+        Wed, 07 Jun 2023 13:37:26 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id t2-20020a05663801e200b00418af04e405sm3586065jaq.116.2023.06.07.13.33.43
+        by smtp.gmail.com with ESMTPSA id w7-20020a02cf87000000b00420c5d10c38sm611082jar.74.2023.06.07.13.37.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 13:33:44 -0700 (PDT)
-Received: (nullmailer pid 3973482 invoked by uid 1000);
-        Wed, 07 Jun 2023 20:33:42 -0000
-Date:   Wed, 7 Jun 2023 14:33:42 -0600
+        Wed, 07 Jun 2023 13:37:25 -0700 (PDT)
+Received: (nullmailer pid 3979185 invoked by uid 1000);
+        Wed, 07 Jun 2023 20:37:23 -0000
+Date:   Wed, 7 Jun 2023 14:37:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, maz@kernel.org,
-        tglx@linutronix.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller:
- microchip,sama7g5-eic: use proper naming syntax
-Message-ID: <168617000060.3972795.10055026929860783252.robh@kernel.org>
-References: <20230523070637.224476-1-claudiu.beznea@microchip.com>
- <20230523070637.224476-2-claudiu.beznea@microchip.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     khilman@baylibre.com, jian.hu@amlogic.com,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        martin.blumenstingl@googlemail.com, jbrunet@baylibre.com,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        neil.armstrong@linaro.org, kernel@sberdevices.ru,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        rockosov@gmail.com, mturquette@baylibre.com
+Subject: Re: [PATCH v16 5/6] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
+Message-ID: <168617024273.3979125.14701905013273806999.robh@kernel.org>
+References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
+ <20230523135351.19133-6-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230523070637.224476-2-claudiu.beznea@microchip.com>
+In-Reply-To: <20230523135351.19133-6-ddrokosov@sberdevices.ru>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,15 +71,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 23 May 2023 10:06:36 +0300, Claudiu Beznea wrote:
-> Use the following syntax for Microchip EIC YAML file: vendor,device.yaml.
+On Tue, 23 May 2023 16:53:50 +0300, Dmitry Rokosov wrote:
+> Add documentation and dt bindings for the Amlogic A1 Peripherals clock
+> controller.
+> A1 PLL clock controller has references to A1 Peripherals clock
+> controller objects, so reflect them in the schema.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
->  .../{microchip,eic.yaml => microchip,sama7g5-eic.yaml}          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->  rename Documentation/devicetree/bindings/interrupt-controller/{microchip,eic.yaml => microchip,sama7g5-eic.yaml} (98%)
+>  .../clock/amlogic,a1-peripherals-clkc.yaml    |  73 +++++++++++
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   5 +-
+>  .../clock/amlogic,a1-peripherals-clkc.h       | 115 ++++++++++++++++++
+>  3 files changed, 191 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
 > 
 
-Applied both, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
 
