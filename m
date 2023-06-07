@@ -2,114 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D36C7268A9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:27:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF8E7268BE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231827AbjFGS1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 14:27:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43834 "EHLO
+        id S231716AbjFGSb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:31:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbjFGS1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:27:16 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB3D26A0
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:26:49 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5149b63151aso1986548a12.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:26:49 -0700 (PDT)
+        with ESMTP id S229977AbjFGSb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:31:58 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AF71712
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:31:56 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-514953b3aa6so1810661a12.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:31:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686162401; x=1688754401;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1686162715; x=1688754715;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZRj+mE8jCuZmOYVQqkftbO+ddM2GLO7xQ0oXcx+IVPg=;
-        b=pzkOcuk2QH5o8cSqzHedtXSDBcDhlF3m1WDSJvl7OVrVSK0Q3W5DgsoqMvf5fE6X1O
-         JiAdA/oH10Y2IzEdmhHsNm8PNLmX60mlHAlZAIOXaP2bSe8a+0mEOri7GwAahN3I5w+f
-         1OL1nbq2JFg8rTKxc6LBUiNSYG4iuckRDEIeTaOeihJgbOKV0yrHA8pB6c9bi1DrhM94
-         tqerLRwLfB06wLXl+kKoTWrJ4q7Zr+C2dRU4lQUXsjOcOb6mq4R8VySKoRElUYe2vN6X
-         DevUHmBVJ+Pq2mmfVm3H5BZBlHQLtIch9DGumt1Ttpem2iJLme0pspfd6gIMqNQYVqXF
-         8bqQ==
+        bh=6Z+U5ETKwaoIHltE2aiAd209awkqtpo2q3BiVL0nXYU=;
+        b=iUiL+koEOtPAccW4DAkC8uKKkLCRaCKzOoFR2FJlbkVPhX0BJH52rbIBFel/wEJi5n
+         OGSI2zocWFqKumJ7ZxFDcQwZbEvb1SZ5g5z7rej5gEpRa1zdfFnUHeUJyNJgrOjFuEYb
+         dY4HK37AOWyeJe1foqFmjD3e7nVJDONBSqPSAa4DGTL4aMjptAT5H7lhpZRmqiFyS6hL
+         PO5d1SbABORUMCK91wD4kEhJM6TDXlRJzE2w6M1mLl0l1tn9eySxCH9ao+/XJOdtIXNh
+         wZJSJaIIUPnfz2l4VXkPlJcaLHQhUAtiYPYvxNcpV5DhaMklDUUV015kRbZ7AeKnJoj1
+         gokw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686162401; x=1688754401;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1686162715; x=1688754715;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZRj+mE8jCuZmOYVQqkftbO+ddM2GLO7xQ0oXcx+IVPg=;
-        b=GCv8f1dNi9ycgcUq1nrRHVgRZAXLwsBNSaJrhmr6CvvJqhrsD5ntuEkgDUiERuge4Z
-         7XGEJU8tkEa5qpt3VlymE4/+R6geEPvA/Wi/aoEGpL0YGKqjr0xG2mn09nPGlDfv/orl
-         gzvlhpHyzVDEsz+6t15vb9TRoEB+e9DqXsX6y4S00EnQJEk070K1h2bVIy8tD3k3l/Ty
-         h7SU/PuXqF+vdi3+1DbBo8k89zx/FjdS5KKD8WXOO6c/Ja29Pq+GALEMyVtEM/GwWOp9
-         iDRpW5Aba1x+bFwXSDnXfQn/oUziieClE/lcTKniuXZlGjLe/lPXshrif65GsUQL0qaL
-         tdbw==
-X-Gm-Message-State: AC+VfDxPcXVycTImtR+p8NNQKdJM9iV1sTilgCL4csKTGqqkZMzsEUx7
-        24kEl0PIUNX7hc1xCDn63SNbEw==
-X-Google-Smtp-Source: ACHHUZ5YUulZzqwNfYTpRRDDYzgUjLAdgZeSBYf9eA5aKTpF9KWdikk8pq/Ts0lAJ7VXnuCh4iWv0Q==
-X-Received: by 2002:a17:907:3e1e:b0:96f:b58e:7e21 with SMTP id hp30-20020a1709073e1e00b0096fb58e7e21mr7507816ejc.52.1686162401374;
-        Wed, 07 Jun 2023 11:26:41 -0700 (PDT)
+        bh=6Z+U5ETKwaoIHltE2aiAd209awkqtpo2q3BiVL0nXYU=;
+        b=R4gQMAhjQmFT6VxYIHfBBFvg365mXfSJqWlTzJIVxWnEuaBwkTJi0QbAuNEAcvrMoJ
+         i6OtG8FL2b974sYsMULBbILgW2AtPntxIkZ1atQfJzEjWBpAHoxkI1w7RyGiYJ0VKfaf
+         0xuc2SqpDT03/B6fgg4KvetCXRg+1o5QXsT5MrRn3589OWeP1bH7G9N9Jc2iDkOo36D7
+         nz+lbx+xy2dflr3eORMQAYN/9Ah/oI4ef12tem6l+h1N3HlWP9Hb8O5fV7VvX9sYYGeX
+         HIvgpGvOkgAu/+T2bxEuUVovbksPPXSAVynSKwC1BrptZBSawf8m0nheZUWBlYEz5hbs
+         DIRQ==
+X-Gm-Message-State: AC+VfDxaI8enr2H+2aNh4GDGNo4bwqDjGkkizu05Q9uO6Q3FVdBaR6Mc
+        xRaMxecOKC0/F3t4CYOF7L2gCw==
+X-Google-Smtp-Source: ACHHUZ4zm6GVGkQczlCX9ubgue5IBbrzh8OwnXMHvbBaxgCxK5FXWNJMU50WbLRcua8aEYAUxOJlKQ==
+X-Received: by 2002:aa7:c7d5:0:b0:514:9df0:e3ec with SMTP id o21-20020aa7c7d5000000b005149df0e3ecmr5148935eds.0.1686162714757;
+        Wed, 07 Jun 2023 11:31:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id bv2-20020a170906b1c200b009659ad1072fsm7215357ejb.113.2023.06.07.11.26.39
+        by smtp.gmail.com with ESMTPSA id h26-20020aa7de1a000000b005148f0e8568sm6450019edv.39.2023.06.07.11.31.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 11:26:40 -0700 (PDT)
-Message-ID: <fdb342c0-393b-dc34-bbc4-f23f1d59492a@linaro.org>
-Date:   Wed, 7 Jun 2023 20:26:38 +0200
+        Wed, 07 Jun 2023 11:31:54 -0700 (PDT)
+Message-ID: <98960024-7dbc-91a3-75de-90b529637916@linaro.org>
+Date:   Wed, 7 Jun 2023 20:31:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [v5 3/5] dt-bindings: mfd: Add aspeed pwm-tach binding
+Subject: Re: [PATCH 2/9] dt-bindings: phy: qcom,m31: Document qcom,m31 USB phy
 Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        Patrick Williams <patrick@stwcx.xyz>
-Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <20230606094535.5388-1-billy_tsai@aspeedtech.com>
- <20230606094535.5388-4-billy_tsai@aspeedtech.com>
- <35bf0a69-bcf6-ae35-eb3c-e74cfcf9c571@linaro.org>
- <ZH89fXknZlhGmM_H@heinlein.vulture-banana.ts.net>
- <c28f963e-d13c-6b5c-c389-996e986f81d5@linaro.org>
- <SG2PR06MB33652E18980E9CF8E4F0894D8B53A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, arnd@arndb.de, geert+renesas@glider.be,
+        neil.armstrong@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, rafal@milecki.pl, quic_srichara@quicinc.com,
+        quic_varada@quicinc.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org
+References: <cover.1686126439.git.quic_varada@quicinc.com>
+ <14f60578e2935c0844537eab162af3afa52ffe39.1686126439.git.quic_varada@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SG2PR06MB33652E18980E9CF8E4F0894D8B53A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+In-Reply-To: <14f60578e2935c0844537eab162af3afa52ffe39.1686126439.git.quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 08:26, Billy Tsai wrote:
->> Missing description. But more important - why do you have such child
->> nodes? Your example does not have them. What's the point? Do you expect
->> different number of fans per one device (one compatible)?
+On 07/06/2023 12:56, Varadarajan Narayanan wrote:
+> Document the M31 USB2 phy present in IPQ5332
+
+Full stop.
+
 > 
-> In this patch series, I have included examples and descriptions to provide additional information.
-> The child node is used to enable the channel of this tach controller.
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  .../devicetree/bindings/phy/qcom,m31.yaml          | 69 ++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,m31.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,m31.yaml b/Documentation/devicetree/bindings/phy/qcom,m31.yaml
+> new file mode 100644
+> index 0000000..8ad4ba4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/qcom,m31.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+
+Drop stray blank lines.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/qcom,m31.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm M31 USB PHY
+
+What is M31?
+
+> +
+> +maintainers:
+> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> +  - Varadarajan Narayanan <quic_varada@quicinc.org>
+> +
+> +description:
+> +  This file contains documentation for the USB M31 PHY found in Qualcomm
+
+Drop redundant parts ("This file contains documentation for the").
+
+> +  IPQ5018, IPQ5332 SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+
+That's not oneOf.
+
+> +      - items:
+
+No items.
+
+> +          - enum:
+> +              - qcom,m31-usb-hsphy
+
+I am confused what's this. If m31 is coming from some IP block provider,
+then you are using wrong vendor prefix.
+https://www.m31tech.com/download_file/M31_USB.pdf
 
 
-Children are not for this. Look for cells examples (e.g. gpio-cells,
-pwm-cells). It seems this is the same as Nuvoton NCT7362Y, so no. Don't
-use reg for that purpose.
+> +              - qcom,ipq5332-m31-usb-hsphy
+
+This confuses me even more. IPQ m31?
+
+> +
+> +  reg:
+> +    description:
+> +      Offset and length of the M31 PHY register set
+
+Drop description, obvious.
+
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: m31usb_phy_base
+> +      - const: qscratch_base
+
+Drop "_base" from both.
+
+> +
+> +  phy_type:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - utmi
+> +              - ulpi
+
+This does not belong to phy, but to USB node.
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description:
+> +      List of phandles and reset pairs, one for each entry in reset-names.
+
+Drop useless description.
+
+> +
+> +  reset-names:
+> +    items:
+> +      - const:
+> +          usb2_phy_reset
+
+Drop entire reset-names.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
+> +    hs_m31phy_0: hs_m31phy@5b00 {
+
+Node names should be generic. See also explanation and list of examples
+in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Also, no underscores in node names.
+
+> +        compatible = "qcom,m31-usb-hsphy";
+> +        reg = <0x5b000 0x3000>,
+
+This is not what your unit address is saying.
+
+> +            <0x08af8800 0x400>;
+
+Align it.
+
+> +        reg-names = "m31usb_phy_base",
+> +                "qscratch_base";
+
+Align it.
+
+> +        phy_type = "utmi";
+> +        resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> +        reset-names = "usb2_phy_reset";
+> +
+> +        status = "ok";
+
+Drop.
+
+> +    };
 
 Best regards,
 Krzysztof
