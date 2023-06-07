@@ -2,149 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B670726162
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F7B72616F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240877AbjFGNfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 09:35:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54530 "EHLO
+        id S235696AbjFGNie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 09:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240881AbjFGNfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:35:32 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC1771FD8
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:35:26 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b0314f057cso38222645ad.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:35:26 -0700 (PDT)
+        with ESMTP id S235180AbjFGNid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:38:33 -0400
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C53819BC;
+        Wed,  7 Jun 2023 06:38:32 -0700 (PDT)
+Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-55b171c1e16so1011294eaf.1;
+        Wed, 07 Jun 2023 06:38:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1686144926; x=1688736926;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fKwUqHo5Vcp6qEMOdr+qgbBliBp4lX8cCeTzjjNJbpw=;
-        b=vDexOXu2iIzDnbzJeHisiv80zH3JeZTpzRW3zRFkaQhe/QD9qIDmnUrEREOvWE2T3s
-         TLVOMm1jlZK0nVBbYQ7wZVGj/pUa2TgmCYFpCboteWPAPQxpjrycjRxm3vQaQ/Y8dkcB
-         mTO6G111vPXh+lNvDB7z7ZhGtwzUC/e8Q06nIhiW8Sqg0D5EsZg9s9xQNlxcg1CO+wck
-         OU3hr92/PINnL1N/kcM9wGd0KwJ7m8TeYfOA6rYlCRH7ey8R/FwUzoJlFDMb8vK02g0I
-         09VIvog7Cw1ZiXT2T0Pvekq25iSaSiktEz0D22am7pfPyAFHSUGDluChWauQd2glW+WX
-         CbPA==
+        d=gmail.com; s=20221208; t=1686145112; x=1688737112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u3OWCbf5H61Lfol0csF8z8CFfOPa3TQ/ObPqUdE2SX4=;
+        b=KAmyP/ini8v90wI/GFZqjfjS31ontpl+4VtaLOvLQs94la+/W4d9Fgv5fr8QackOCJ
+         dCNzrA2qR/pEvumBrxz0oqTIZVZ+PuMVH4dK6hjoAeYbEhFyYdMWhPdxCJuTCO4Pt61N
+         KeVlg5IRdU2msZJAvv8Gb4dOmYR7j4xw1unq1tULmlpfzSQ5F1Q1EoJcUN5GeYxGO+gu
+         wcTfCKT13c8g+KWWiPZBO4TyhPOX5qZu5hdKXbCCKmlbCSomMQskSw5aBw0A15aYCfUI
+         gQHacmh4BgpzFGIDk6OEzpSN2aM5g9LZ1bUzti2nqUhrJfOyONPnA6EAN1ZuPVNJHhmq
+         38Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686144926; x=1688736926;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fKwUqHo5Vcp6qEMOdr+qgbBliBp4lX8cCeTzjjNJbpw=;
-        b=cuKmgEyeSAyiZnUuKT4/XRKnf0LFAz+uK19b4hxeu802z9CjYHqkSqwpQZDy/wEu1W
-         2euOrhNQyEYe/NMA0XzT7a2eTDZtC5om06KkpynvtGHMWkQW8sjPqMdNg1HQBpW0vcjb
-         wlHH5rlGOzdYoFTnWcTid1vbupjdta+oz6UHk9TSKMkkM9lFPyrc37EEnemLSZtqPAtD
-         j5PHA7JGtTVZoTp3AovQydTKi7V6Lm9sBQvsSxStl9TMR2aFUeawAZ0mDMxxk7lQkU0v
-         q/Qg873al2qFLKUu9wa5HasD/tIVGvErHrLZ27XXhUar5lJvg63LDicm4aFJG0WkmWf8
-         bHdQ==
-X-Gm-Message-State: AC+VfDwZoL+IdM3k1hI31VEH0nrYSP3f2RJi8K5s1IVuMy6kDF2PpQIE
-        G0oblQuVbKdtfs1GB9RNFMzlRA==
-X-Google-Smtp-Source: ACHHUZ4cx6vLE/wpixupF2+hfTcl4jtltVB8iMsN060sd7EriDE/221A7qPMluKKOsGTqKO0I8kKyw==
-X-Received: by 2002:a17:902:9888:b0:1af:ffda:855a with SMTP id s8-20020a170902988800b001afffda855amr2195158plp.9.1686144926260;
-        Wed, 07 Jun 2023 06:35:26 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.214])
-        by smtp.gmail.com with ESMTPSA id y20-20020a170902ed5400b001b034faf49csm10405680plb.285.2023.06.07.06.35.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 06:35:25 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH v3 2/2] HID: i2c-hid: elan: Add ili9882t timing
-Date:   Wed,  7 Jun 2023 21:34:58 +0800
-Message-Id: <20230607133458.4075667-3-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230607133458.4075667-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20230607133458.4075667-1-yangcong5@huaqin.corp-partner.google.com>
+        d=1e100.net; s=20221208; t=1686145112; x=1688737112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u3OWCbf5H61Lfol0csF8z8CFfOPa3TQ/ObPqUdE2SX4=;
+        b=NML8rErI+9kqrorzuNr9D417TM373yByiRyL0/k4HmUzwOjxlqeB710XSglA7DMOMN
+         +/KhaWRQ0vwajeu+o0sP7OizEpHibrDzfiIrcitYlAwgI6QsEP6Mgj7oenSCShgb+Ygz
+         0hQ9FImb6oJudxbquhFeD1y6Z8eo7fwRuP/huxyp6noQ6CRN+81fDTjEYYLwAlH0PfPh
+         pQk/XhFdZhzAOxKKzDrQ/C+KLnCJrzaJ2wMnQQNiePJSUht45Vc5S8z+K/7GxdN6h8V2
+         EAgQ4nBpqO/8pBYSNNlcM2t5zrdDN+MzjzcCyDNYZu02EJjGy1itf/VmeL45TB5qN77f
+         8Yxw==
+X-Gm-Message-State: AC+VfDyGJC9BqLxS5apuM9kswcpO0EcGWevauHQeqNxIysCgeBvSVrgJ
+        kyZ/waDXV2rJhyEM+olmkuyUixvv6/NBGPHfnqw=
+X-Google-Smtp-Source: ACHHUZ7ykAOu9yzsGVGgnF/U30QPe7I5TCv2TcaCoYPjApr8wINN1s7hJpFNRgkwQTTnByd7Lu0vdiqoVuvkrNRp8LE=
+X-Received: by 2002:a05:6808:b0d:b0:39a:bc60:adf2 with SMTP id
+ s13-20020a0568080b0d00b0039abc60adf2mr5640664oij.24.1686145111699; Wed, 07
+ Jun 2023 06:38:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230606140757.818705-1-pavacic.p@gmail.com> <20230606140757.818705-4-pavacic.p@gmail.com>
+ <dfe2c108-0268-c4d0-226e-b3d2bc8c3369@linaro.org>
+In-Reply-To: <dfe2c108-0268-c4d0-226e-b3d2bc8c3369@linaro.org>
+From:   Paulo Pavacic <pavacic.p@gmail.com>
+Date:   Wed, 7 Jun 2023 15:38:20 +0200
+Message-ID: <CAO9szn3PyQQRKsxdsOrmVNMP2xuvN4_dHwb1_TWEqmhnr3TLPA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ili9882t is a TDDI IC (Touch with Display Driver). The
-datasheet specifies there should be 60ms between touch SDA
-sleep and panel RESX. Doug's series[1] allows panels and
-touchscreens to power on/off together, so we can add the 65 ms
-delay in i2c_hid_core_suspend before panel_unprepare.
+Hello,
 
-[1]: https: //lore.kernel.org/all/20230523193017.4109557-1-dianders@chromium.org/
+uto, 6. lip 2023. u 16:45 Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> napisao je:
+>
+> On 06/06/2023 16:07, Paulo Pavacic wrote:
+> > Fannal C3004 is a 480x800 display made by fannal that requires
+> > DCS initialization sequences.
+> >
+> > Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+> > ---
+> > v4 changelog:
+> >  - formatting and style changes
+>
+> Are you sure? I see other changes - removal of some code, handling
+> errors and GPIO.
+>
+> >  - change community room
+>
+> What does it mean? Where is this change in this patch?
+>
+> ...
+>
+> > +
+> > +static const struct drm_panel_funcs fannal_panel_funcs = {
+> > +     .prepare = fannal_panel_prepare,
+> > +     .unprepare = fannal_panel_unprepare,
+> > +     .enable = fannal_panel_enable,
+> > +     .disable = fannal_panel_disable,
+> > +     .get_modes = fannal_panel_get_modes,
+> > +};
+> > +
+> > +static int fannal_panel_probe(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct device *dev = &dsi->dev;
+> > +     struct fannal_panel_data *panel_data;
+> > +     int ret;
+> > +
+> > +     panel_data = devm_kzalloc(&dsi->dev, sizeof(*panel_data), GFP_KERNEL);
+> > +
+>
+> Drop blank line.
+>
+> > +     if (!panel_data)
+> > +             return -ENOMEM;
+> > +
+> > +     panel_data->reset =
+>
+> You have wrong wrapping here. devm_gpiod_get_optional() goes after =.
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
- drivers/hid/i2c-hid/i2c-hid-of-elan.c | 20 ++++++++++++++++----
- 1 file changed, 16 insertions(+), 4 deletions(-)
+I'm not sure why, but clang-format makes it that way. I'm using this
+style: https://raw.githubusercontent.com/torvalds/linux/master/.clang-format
+Do you have some other style?
 
-diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-index 76ddc8be1cbb..411d7ea2725d 100644
---- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-+++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-@@ -18,7 +18,8 @@
- #include "i2c-hid.h"
- 
- struct elan_i2c_hid_chip_data {
--	unsigned int post_gpio_reset_delay_ms;
-+	unsigned int post_gpio_reset_on_delay_ms;
-+	unsigned int post_gpio_reset_off_delay_ms;
- 	unsigned int post_power_delay_ms;
- 	u16 hid_descriptor_address;
- };
-@@ -52,8 +53,8 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
- 		msleep(ihid_elan->chip_data->post_power_delay_ms);
- 
- 	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
--	if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
--		msleep(ihid_elan->chip_data->post_gpio_reset_delay_ms);
-+	if (ihid_elan->chip_data->post_gpio_reset_on_delay_ms)
-+		msleep(ihid_elan->chip_data->post_gpio_reset_on_delay_ms);
- 
- 	return 0;
- }
-@@ -64,6 +65,9 @@ static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
- 		container_of(ops, struct i2c_hid_of_elan, ops);
- 
- 	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
-+	if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
-+		msleep(ihid_elan->chip_data->post_gpio_reset_off_delay_ms);
-+
- 	regulator_disable(ihid_elan->vccio);
- 	regulator_disable(ihid_elan->vcc33);
- }
-@@ -101,12 +105,20 @@ static int i2c_hid_of_elan_probe(struct i2c_client *client)
- 
- static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_data = {
- 	.post_power_delay_ms = 1,
--	.post_gpio_reset_delay_ms = 300,
-+	.post_gpio_reset_on_delay_ms = 300,
-+	.hid_descriptor_address = 0x0001,
-+};
-+
-+static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_data = {
-+	.post_power_delay_ms = 1,
-+	.post_gpio_reset_on_delay_ms = 200,
-+	.post_gpio_reset_off_delay_ms = 65,
- 	.hid_descriptor_address = 0x0001,
- };
- 
- static const struct of_device_id elan_i2c_hid_of_match[] = {
- 	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
-+	{ .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
--- 
-2.25.1
+>
+> > +             devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+> > +
+>
+> Drop blank line.
+>
+> > +     if (IS_ERR(panel_data->reset)) {
+> > +             return dev_err_probe(
+> > +                     dev, PTR_ERR(panel_data->reset),
+> > +                     "error: probe: get reset GPIO: (%d) Check the fdt\n",
+> > +                     ret);
+> > +     }
+> > +
+> > +     mipi_dsi_set_drvdata(dsi, panel_data);
+> > +
+> > +     dsi->format = MIPI_DSI_FMT_RGB888;
+> > +     dsi->mode_flags = MIPI_DSI_CLOCK_NON_CONTINUOUS |
+> > +                       MIPI_DSI_MODE_VSYNC_FLUSH | MIPI_DSI_MODE_VIDEO_HSE |
+> > +                       MIPI_DSI_MODE_NO_EOT_PACKET |
+> > +                       MIPI_DSI_MODE_VIDEO_SYNC_PULSE | MIPI_DSI_MODE_VIDEO;
+> > +     dsi->lanes = 2;
+> > +
+> > +     gpiod_set_value_cansleep(panel_data->reset, 1);
+> > +
+> > +     drm_panel_init(&panel_data->panel, dev, &fannal_panel_funcs,
+> > +                    DRM_MODE_CONNECTOR_DSI);
+> > +     dev_set_drvdata(dev, panel_data);
+> > +
+> > +     drm_panel_add(&panel_data->panel);
+> > +
+>
+>
+> Best regards,
+> Krzysztof
+>
 
+Thanks,
+Paulo
