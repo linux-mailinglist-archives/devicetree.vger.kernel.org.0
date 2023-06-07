@@ -2,122 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16CFB7264ED
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 17:43:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0BEA7264C3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 17:36:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241204AbjFGPns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 11:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50672 "EHLO
+        id S241078AbjFGPgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 11:36:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240794AbjFGPnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 11:43:47 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F6471BD9;
-        Wed,  7 Jun 2023 08:43:44 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 24EB75FD6F;
-        Wed,  7 Jun 2023 18:26:45 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1686151605;
-        bh=0H1VfG+WwRagxPnCOr1EoEXeHg70Bxoo+8m46PTHcVw=;
-        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-        b=m1ahG5VJKRuSw14B2T7kAr90dKEzHZAC65e2ev+klnDs11HUqGRlHm9tiyumQuqQl
-         YLeyb/ydLYnsaeItX34wx19yyF8q9jfkhUC9tzYSO3/HoFdzleiu6fvRVsKkxhxcpq
-         HDO/ItS7em96e+horSHjnPzKEQJZ0jmQBF7AfUKxSFgDk/Z/pDrvAdVy/HlnGqwDXY
-         Tv/pjwKZBSZlqcMvrYi9k/qkhHv1yjbjjrlrT317WEtPRp4KMsoBaM6IoOy5XiW51w
-         eujmSpxH2HY83DvI6cMrXxLSoro0ZDSfz33gt9A0AkUat9+gEl5PMca0Zz12gfE3sO
-         SXfUkSnGrlyCw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Wed,  7 Jun 2023 18:26:44 +0300 (MSK)
-Message-ID: <a6d96280-e222-1aaa-4e07-5fc4f0cde866@sberdevices.ru>
-Date:   Wed, 7 Jun 2023 18:21:50 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-CC:     Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235224AbjFGPg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 11:36:29 -0400
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96DF2EA;
+        Wed,  7 Jun 2023 08:36:27 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1q6vCf-0069Wg-14; Wed, 07 Jun 2023 15:36:05 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
- <20230607095802.3adcd4f9@xps-13>
- <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
- <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
- <835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
- <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
- <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
- <20230607113605.50a992bb@xps-13>
- <6c1973d1-38c0-6048-90ad-da2f60df8238@sberdevices.ru>
- <9105207b-0dfb-346f-422f-984cf3454f90@linaro.org>
- <57ccf7ac-7d94-8a66-7a0e-abfe14f7df2c@sberdevices.ru>
- <88740a95-d7b0-e5d0-62db-65b41c66c5bc@linaro.org>
-From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <88740a95-d7b0-e5d0-62db-65b41c66c5bc@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 13:30:00 #21453197
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mp-venice-gw702x: fix GSC vdd_bat data size
+Date:   Wed,  7 Jun 2023 08:36:02 -0700
+Message-Id: <20230607153602.1988638-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On this board, vdd_bat is 16bit, not 24bit. Set the mode to
+mode_voltage_16bit (3) instead of mode_voltage_24bit (1).
 
+Fixes: 0d5b288c2110 ("arm64: dts: freescale: Add imx8mp-venice-gw7905-2x")
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 07.06.2023 18:07, Krzysztof Kozlowski wrote:
-> On 07/06/2023 16:55, Arseniy Krasnov wrote:
->>>>> The bindings and your driver internal representation are two different
->>>>> things. Anyway, as mentioned above, wiring the RB line to one die and
->>>>> not the other would be valid hardware design and would require the rb
->>>>> property to be in the chip node. Please perform a per-chip property read
->>>>> in the driver as well.
->>>>
->>>> Done, I resend both patches (bindings + driver update) as a single patchset. Your review comments
->>>> for driver code were also fixed.
->>>
->>> No, please send new version, not the same. New version means with fixed
->>> comments and with patch changelog.
->>
->> Sorry, Yes, I mean new version, here it is:
->> https://lore.kernel.org/linux-mtd/20230607145026.2899547-1-AVKrasnov@sberdevices.ru/
->>
->> There I fixed bindings and tested it.
-> 
-> I still see v1 and there is no changelog. So it's the same?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+index 74b0fda235ed..560c68e4da6d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+@@ -138,7 +138,7 @@ channel@6 {
+ 			};
+ 
+ 			channel@8 {
+-				gw,mode = <1>;
++				gw,mode = <3>;
+ 				reg = <0x08>;
+ 				label = "vdd_bat";
+ 			};
+-- 
+2.25.1
 
-No, v1 is for new patchset from the link above. Both patches (bindings and driver) are updated there.
-I attached changelog here as reply for cover letter of the patchset:
-https://lore.kernel.org/linux-mtd/a1e048aa-ec64-bd0b-aa17-e3e9bdf18090@sberdevices.ru/
-
-Thanks, Arseniy
-
-> 
-> Best regards,
-> Krzysztof
-> 
