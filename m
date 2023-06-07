@@ -2,124 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EFB17258D4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 10:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE0B72594D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 11:04:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239638AbjFGI4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 04:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
+        id S238831AbjFGJD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 05:03:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239632AbjFGI4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 04:56:12 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B377B1BFD
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 01:55:13 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5169f920a9dso465081a12.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 01:55:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686128112; x=1688720112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RTpA5qOAPRS8MQZfyN8Ss9cXLKE3reuQWNe17eVOs98=;
-        b=D2ESwCvV3EMJ4Ca9Xo0YrNr2h8zDu3w8UAFRDTvjKd+CzOHysYAMrUv95WmgXW6pef
-         PsKk6OT+GE3LhG59KbziqQ8SX2zQaEPT9u8GVDR84WIwdNAJaeEZI0k91AdVnjG4fkba
-         7QfIE+0YEtfGCqwMJjmHD0uUn7sG3yGccZKVA9w7gvuWa2pSa7UzCkUG/q57UumGb1EA
-         4OKi4guQJOqGhlKfXqujVgAzpzyCQ7hJotGxoUFQ9FHVd4N13KRLYrRg+JJE1C5Pxxon
-         yqRiF+kOeMILJ7ArRRRzkzEFaxvUjTteQsnxlZPRwwLMcnLuFClt6rOtK1yjIsDrIlmd
-         ftfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686128112; x=1688720112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RTpA5qOAPRS8MQZfyN8Ss9cXLKE3reuQWNe17eVOs98=;
-        b=G3YU6UHsraSK/G57Ng22gczVZda1mfTZOIiuvL1Svz3hMJRH9m7tu2NtiipeAQ9xvt
-         itGnLcODn57Rqgk3V9qP4vHn1640aJ53K2BOvzNS/aTr82nsJ0QmPJGufl909fESnFoH
-         1teESpzZZjs2+KDoLnmrNrBU55KMQYHhqKdPKyVKHDYz7quB+9yhQLPowtlTEBALzo8/
-         8TfXXfMHTj8If3Yo+AbCw4TSc8jSynIXUmZyYhpd0ULvHP8UmRkSJI4YYda7Z2WPsVI5
-         PToFVvmVngX/GL68xeU8UvoVNKhvvsuYnEhtM5FMXHkn1m4J2q6uhScFhCgYmrAGbzsc
-         b+gQ==
-X-Gm-Message-State: AC+VfDz+ru0JyWTpRSm/kBC5iKzyIBZZewQTxaODKgAMN0O/2ykB2jwK
-        vb2gIqiBlyCUdtaYsGBb8yY5zw==
-X-Google-Smtp-Source: ACHHUZ68EljsPgkNMfLt/pjzYCbcf3rch3Eqf0hQ739bCBHvP3l1XP1YD46PoScoXp1Rg3YgbqRIWg==
-X-Received: by 2002:aa7:c59a:0:b0:514:9e47:4319 with SMTP id g26-20020aa7c59a000000b005149e474319mr4990483edq.5.1686128111991;
-        Wed, 07 Jun 2023 01:55:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u6-20020aa7d0c6000000b0050488d1d376sm5951735edo.0.2023.06.07.01.55.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 01:55:11 -0700 (PDT)
-Message-ID: <c8fe71a4-f8bb-d0a5-a227-14040fa024a9@linaro.org>
-Date:   Wed, 7 Jun 2023 10:55:08 +0200
+        with ESMTP id S235490AbjFGJDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 05:03:30 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB7F1712;
+        Wed,  7 Jun 2023 02:02:06 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 57D3F5FD5E;
+        Wed,  7 Jun 2023 12:02:04 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1686128524;
+        bh=5YHjnHdc4w0WqSXG6LRBPLxgV5qAF+3W1vdiuEJtNBA=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=LK/04025vKNQ3l5ynD9Hd5Zx0HMzS1Yfa0dcKtYd7RZMr3uZeGYlO/bBzXPQnSONE
+         IvagyofovFEKpH3iopSSeTu2NthwaNXwk9IrS2asdLx9ThfAH1C2nsyyOrkljhG+2Z
+         LlSyLWoOEnldajPWQ7fR/X6Pv+EzEEMTScg1uF8NlHpYoFHNOVqAbNz7we0q4cBERh
+         eH6C3QYHOBcTjhkY3rsNFbaBY78NwN5y6bHcHIrDYFieex4O3gtDhGAcs/FsevOzep
+         XJnnkgHx0l3FA07k2sc8uL+qD6E2WxGUyAWExxOSQkYedOulmADHo0S0XuwjFwY5KL
+         1yX072XfzHnRQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Wed,  7 Jun 2023 12:02:03 +0300 (MSK)
+Message-ID: <835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
+Date:   Wed, 7 Jun 2023 11:57:09 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [v5 3/5] dt-bindings: mfd: Add aspeed pwm-tach binding
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
 Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        Patrick Williams <patrick@stwcx.xyz>
-Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <20230606094535.5388-1-billy_tsai@aspeedtech.com>
- <20230606094535.5388-4-billy_tsai@aspeedtech.com>
- <35bf0a69-bcf6-ae35-eb3c-e74cfcf9c571@linaro.org>
- <ZH89fXknZlhGmM_H@heinlein.vulture-banana.ts.net>
- <c28f963e-d13c-6b5c-c389-996e986f81d5@linaro.org>
- <SG2PR06MB33652E18980E9CF8E4F0894D8B53A@SG2PR06MB3365.apcprd06.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SG2PR06MB33652E18980E9CF8E4F0894D8B53A@SG2PR06MB3365.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
+ <20230607095802.3adcd4f9@xps-13>
+ <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
+ <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 04:52:00 #21449589
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 08:26, Billy Tsai wrote:
->         >>
->         >> He felt what he was trying to accomplish met the documented
->         >> expectations.  Are there some changes that need to be done in mfd.txt to
->         >> further clarify when to use it and when not to?
+
+
+On 07.06.2023 11:53, Krzysztof Kozlowski wrote:
+> On 07/06/2023 10:40, Arseniy Krasnov wrote:
+>> Hello Miquel, 
+>>
+>> On 07.06.2023 10:58, Miquel Raynal wrote:
+>>
+>>> Hi Arseniy,
+>>>
+>>> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
+>>>
+>>>> Add description of 'nand-rb' property. Use "Fixes" because this property
+>>>> must be supported since the beginning. For this controller 'nand-rb' is
+>>>> stored in the controller node (not in chip), because it has only single
+>>>> r/b wire for all chips.
+>>>
+>>> Sorry if I mislead you in the first place, but you could definitely
+>>> have two chips and only one with RB wired. It needs to be defined in
+>>> the chips.
+>>
+>> Ok, so to clarify: is it ok, that in bindings this property will be placed in the
+>> chip, but in driver, i'm trying to read it from the controller node (thus  in
+>> dts file it will be also in controller node)?
 > 
->         > I think mfd.txt clearly states:
->         > "For more complex devices, when the nexus driver has to
->         > probe registers to figure out what child devices exist etc, this should
->         > not be used. In the latter case the child devices will be determined by
->         > the operating system."
+> No, because how would your DTS pass validation? I understand you did not
+> test the bindings, but this will improve, right?
+
+Ok, i'll follow DTS layout in the driver, "test the bindings" You mean "make dt_binding_check"?
+
 > 
-> About the mfd:
-> For our pwm and tach devices, there is no need to check/apply any hardware register from parent to determine child’s existence or functional.
-> They don’t have any dependency on the parent node. In fact, it doesn’t require a specific driver to bind with the "aspeed,ast2600-pwm-tach" label. Their purpose is solely to share the same clock, reset phandle and base address. The main reason for using simple-mfd in this case is because these two independent devices share the same base address.
+>> Because in driver there is no sense
+>> to store this value in chip structure. 
+> 
+> Driver does not shape the DTS. Hardware does.
 
-Actually one more thoughts. I have doubt that you have two independent
-devices. If you share the clock, reset line and register address space,
-this means *you do not have two independent devices*.
+Ok, Thanks
 
-You have most likely only one device.
+Thanks, Arseniy
 
-Best regards,
-Krzysztof
-
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
