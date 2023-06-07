@@ -2,78 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 687D6726509
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 17:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC6C72651D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 17:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236330AbjFGPvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 11:51:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54474 "EHLO
+        id S241220AbjFGPzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 11:55:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235607AbjFGPvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 11:51:05 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE4819AE;
-        Wed,  7 Jun 2023 08:51:00 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686153059;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ceOgCQ31QyWsBXEBpHv9+8lwd97CH1lStjdw0os77mI=;
-        b=YnBsX5foq52xWCw3qmYtTUKLgKkgHD3V0FnV5+06dndJ241FsU4Wno0sokUl4+PS7ypWur
-        J2lBh2Kcp/QwR82O0QbItclceDlJ+Jw7qWGEZCsy4Ty3rwcgzSBLOEbTdcmgOp0r/esXyQ
-        7fliUv9ayOl+Nh1APqZF18ZHqfxZ4u8Clj/KizYYlB3lq5EicM9fFQOLtESCwuQamQBaQJ
-        nG1CBsGxJbG77F1O+XEzufer9pZt6wtiEtel2VC3emBVFmKgzIvjaYiiaaQpPnREzHl8Sc
-        xgaI5N/5GjQnzjq/wjTWI6EafEZNmkYvkdORqo9BunZnDb4PQ4QVjpciHYxbKw==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7FDA21C000C;
-        Wed,  7 Jun 2023 15:50:57 +0000 (UTC)
-Date:   Wed, 7 Jun 2023 17:50:56 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Cc:     Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S231890AbjFGPzR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 11:55:17 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEEE91FD7;
+        Wed,  7 Jun 2023 08:55:09 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 357Er4Aa014381;
+        Wed, 7 Jun 2023 15:54:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ePWbcl7sywkQf8jrOeRxLl0Iv09edeqAWEtCrEHQvm4=;
+ b=am+dVGvHAFCW336lvjl+v7OSlSpSvJ6Iurojv33m7F1MiNLe9IX2K0uW8fhPSQuEnP4W
+ j/aIDbl8UP/oAt+F1gKddCOvL1qo8hQqBk873NEu9rs+ssycUi4JKJliqlp1Ff4sPIEJ
+ V5SreFZrjPIxTZ4/kcFA+ThIOZfBiQwFhoQknPhRkfBMa7Ktfq6DYDg3xPqNc1mQ2O2R
+ VFKoB/zq8mM5hrH0u77GKtpkUqyVaAT/dw9z4Qwl5PSzl/LIRUBnmMh5OVtuhJonUtFT
+ pUZ6tzHNY8Wj3tE7nRhFra1JMVDJjWdTlqvZVkl9cTyLpG3lJJ5jEJSXQvNglmqvR4ZC +w== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r2a7g29pr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 07 Jun 2023 15:54:50 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 357FsnCv032002
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 7 Jun 2023 15:54:49 GMT
+Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 7 Jun 2023
+ 08:54:48 -0700
+Message-ID: <3bd86221-ee2e-d157-009b-11f6ada98537@quicinc.com>
+Date:   Wed, 7 Jun 2023 08:54:49 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v13 10/24] gunyah: vm_mgr: Add/remove user memory regions
+To:     Will Deacon <will@kernel.org>
+CC:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Arnd Bergmann" <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/2] mtd: rawnand: meson: waiting w/o wired
- ready/busy pin
-Message-ID: <20230607175056.6f1ec38e@xps-13>
-In-Reply-To: <20230607145026.2899547-3-AVKrasnov@sberdevices.ru>
-References: <20230607145026.2899547-1-AVKrasnov@sberdevices.ru>
-        <20230607145026.2899547-3-AVKrasnov@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Bagas Sanjaya" <bagasdotme@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <qperret@google.com>
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+ <20230509204801.2824351-11-quic_eberman@quicinc.com>
+ <20230519115948.GB2637@willie-the-truck>
+ <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
+ <20230605141839.GD21212@willie-the-truck>
+Content-Language: en-US
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <20230605141839.GD21212@willie-the-truck>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: y0pKxrQR9trwJj6KGThieFSTWS6Zk-oa
+X-Proofpoint-ORIG-GUID: y0pKxrQR9trwJj6KGThieFSTWS6Zk-oa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-07_07,2023-06-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=704
+ spamscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1011
+ impostorscore=0 mlxscore=0 adultscore=0 priorityscore=1501 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306070135
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,199 +102,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arseniy,
-
-AVKrasnov@sberdevices.ru wrote on Wed, 7 Jun 2023 17:50:25 +0300:
-
-> If there is no wired ready/busy pin, classic way to wait for command
-> completion is to use function 'nand_soft_waitrdy()'. Meson NAND has
-> special command which allows to wait for NAND_STATUS_READY bit without
-> reading status in a software loop (as 'nand_soft_waitrdy()' does). To
-> use it send this command along with NAND_CMD_STATUS, then wait for an
-> interrupt, and after interrupt send NAND_CMD_READ0. So this feature
-> allows to use interrupt driven waiting without wired ready/busy pin.
->=20
-> Suggested-by: Liang Yang <liang.yang@amlogic.com>
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> ---
->  drivers/mtd/nand/raw/meson_nand.c | 82 +++++++++++++++++++++++++++++--
->  1 file changed, 78 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/mes=
-on_nand.c
-> index 074e14225c06..935de8e4934d 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -38,6 +38,7 @@
->  #define NFC_CMD_SCRAMBLER_DISABLE	0
->  #define NFC_CMD_SHORTMODE_DISABLE	0
->  #define NFC_CMD_RB_INT		BIT(14)
-> +#define NFC_CMD_RB_INT_NO_PIN	((0xb << 10) | BIT(18) | BIT(16))
-> =20
->  #define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
-> =20
-> @@ -179,6 +180,7 @@ struct meson_nfc {
->  	u32 info_bytes;
-> =20
->  	unsigned long assigned_cs;
-> +	bool no_rb_pin;
->  };
-> =20
->  enum {
-> @@ -392,7 +394,42 @@ static void meson_nfc_set_data_oob(struct nand_chip =
-*nand,
->  	}
->  }
-> =20
-> -static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
-> +static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int timeout_m=
-s,
-> +				    bool need_cmd_read0)
-> +{
-> +	u32 cmd, cfg;
-> +
-> +	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
-> +	meson_nfc_drain_cmd(nfc);
-> +	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-> +
-> +	cfg =3D readl(nfc->reg_base + NFC_REG_CFG);
-> +	cfg |=3D NFC_RB_IRQ_EN;
-> +	writel(cfg, nfc->reg_base + NFC_REG_CFG);
-> +
-> +	reinit_completion(&nfc->completion);
-> +	cmd =3D nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
-> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> +
-> +	/* use the max erase time as the maximum clock for waiting R/B */
-> +	cmd =3D NFC_CMD_RB | NFC_CMD_RB_INT_NO_PIN | nfc->timing.tbers_max;
-> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> +
-> +	if (!wait_for_completion_timeout(&nfc->completion,
-> +					 msecs_to_jiffies(timeout_ms)))
-> +		return -ETIMEDOUT;
-> +
-> +	if (need_cmd_read0) {
-> +		cmd =3D nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
-> +		writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> +		meson_nfc_drain_cmd(nfc);
-> +		meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_nfc_wait_rb_pin(struct meson_nfc *nfc, int timeout_ms)
->  {
->  	u32 cmd, cfg;
->  	int ret =3D 0;
-> @@ -420,6 +457,27 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc,=
- int timeout_ms)
->  	return ret;
->  }
-> =20
-> +static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms,
-> +			      bool need_cmd_read0)
-> +{
-> +	if (nfc->no_rb_pin) {
-> +		/* This mode is used when there is no wired R/B pin.
-> +		 * It works like 'nand_soft_waitrdy()', but instead of
-> +		 * polling NAND_CMD_STATUS bit in the software loop,
-> +		 * it will wait for interrupt - controllers checks IO
-> +		 * bus and when it detects NAND_CMD_STATUS on it, it
-> +		 * raises interrupt. After interrupt, NAND_CMD_READ0 is
-> +		 * sent as terminator of the ready waiting procedure if
-> +		 * needed (for all cases except page programming - this
-> +		 * is reason of 'need_cmd_read0' flag).
-> +		 */
-> +		return meson_nfc_wait_no_rb_pin(nfc, timeout_ms,
-> +						need_cmd_read0);
-> +	} else {
-> +		return meson_nfc_wait_rb_pin(nfc, timeout_ms);
-> +	}
-> +}
-> +
->  static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
->  {
->  	struct meson_nfc_nand_chip *meson_chip =3D to_meson_nand(nand);
-> @@ -623,7 +681,7 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struc=
-t nand_chip *nand,
->  	if (in) {
->  		nfc->cmdfifo.rw.cmd1 =3D cs | NFC_CMD_CLE | NAND_CMD_READSTART;
->  		writel(nfc->cmdfifo.rw.cmd1, nfc->reg_base + NFC_REG_CMD);
-> -		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max));
-> +		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max), true);
->  	} else {
->  		meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
->  	}
-> @@ -669,7 +727,7 @@ static int meson_nfc_write_page_sub(struct nand_chip =
-*nand,
-> =20
->  	cmd =3D nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
->  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> -	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max));
-> +	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max), false);
-> =20
->  	meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_TO_DEVICE);
-> =20
-> @@ -952,7 +1010,8 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
->  			break;
-> =20
->  		case NAND_OP_WAITRDY_INSTR:
-> -			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms);
-> +			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms,
-> +					   true);
->  			if (instr->delay_ns)
->  				meson_nfc_cmd_idle(nfc, delay_idle);
->  			break;
-> @@ -1248,6 +1307,7 @@ meson_nfc_nand_chip_init(struct device *dev,
->  	struct mtd_info *mtd;
->  	int ret, i;
->  	u32 tmp, nsels;
-> +	u32 nand_rb_val;
-> =20
->  	nsels =3D of_property_count_elems_of_size(np, "reg", sizeof(u32));
->  	if (!nsels || nsels > MAX_CE_NUM) {
-> @@ -1287,6 +1347,20 @@ meson_nfc_nand_chip_init(struct device *dev,
->  	mtd->owner =3D THIS_MODULE;
->  	mtd->dev.parent =3D dev;
-> =20
-> +	ret =3D of_property_read_u32(np, "nand-rb", &nand_rb_val);
-> +	if (ret) {
-> +		/* If property was not found, don't use rb pin. */
-> +		if (ret =3D=3D -EINVAL)
-> +			nfc->no_rb_pin =3D true;
-> +		else
-> +			return -EINVAL;
-
-You must propagate the real error code, so return ret here.
-
-> +	} else {
-> +		if (nand_rb_val)
-> +			return -EINVAL;
-> +
-> +		nfc->no_rb_pin =3D false;
-
-I expect nfc structure to be allocated with kzalloc, if that's the
-case, then you don't need this line. Actually if you reset nand_rb_val
-at creation time you could have something more readable, like:
-
-	ret =3D of_prop(...)
-	if (ret =3D=3D -EINVAL)
-		no_rb_pin =3D true;
-	else if (ret)
-		return ret;
-
-	if (nand_rb_val)
-		return -EINVAL;
-
-Otherwise both patches look good to me.
-
-> +	}
-> +
->  	ret =3D nand_scan(nand, nsels);
->  	if (ret)
->  		return ret;
 
 
-Thanks,
-Miqu=C3=A8l
+On 6/5/2023 7:18 AM, Will Deacon wrote:
+> Hi Elliot,
+> 
+> [+Quentin since he's looked at the MMU notifiers]
+> 
+> Sorry for the slow response, I got buried in email during a week away.
+> 
+> On Fri, May 19, 2023 at 10:02:29AM -0700, Elliot Berman wrote:
+>> On 5/19/2023 4:59 AM, Will Deacon wrote:
+>>> On Tue, May 09, 2023 at 01:47:47PM -0700, Elliot Berman wrote:
+>>>> +	ret = account_locked_vm(ghvm->mm, mapping->npages, true);
+>>>> +	if (ret)
+>>>> +		goto free_mapping;
+>>>> +
+>>>> +	mapping->pages = kcalloc(mapping->npages, sizeof(*mapping->pages), GFP_KERNEL_ACCOUNT);
+>>>> +	if (!mapping->pages) {
+>>>> +		ret = -ENOMEM;
+>>>> +		mapping->npages = 0; /* update npages for reclaim */
+>>>> +		goto unlock_pages;
+>>>> +	}
+>>>> +
+>>>> +	gup_flags = FOLL_LONGTERM;
+>>>> +	if (region->flags & GH_MEM_ALLOW_WRITE)
+>>>> +		gup_flags |= FOLL_WRITE;
+>>>> +
+>>>> +	pinned = pin_user_pages_fast(region->userspace_addr, mapping->npages,
+>>>> +					gup_flags, mapping->pages);
+>>>> +	if (pinned < 0) {
+>>>> +		ret = pinned;
+>>>> +		goto free_pages;
+>>>> +	} else if (pinned != mapping->npages) {
+>>>> +		ret = -EFAULT;
+>>>> +		mapping->npages = pinned; /* update npages for reclaim */
+>>>> +		goto unpin_pages;
+>>>> +	}
+>>>
+>>> Sorry if I missed it, but I still don't see where you reject file mappings
+>>> here.
+>>>
+>>
+>> Sure, I can reject file mappings. I didn't catch that was the ask previously
+>> and thought it was only a comment about behavior of file mappings.
+> 
+> I thought the mention of filesystem corruption was clear enough! It's
+> definitely something we shouldn't allow.
+> 
+>>> This is also the wrong interface for upstream. Please get involved with
+>>> the fd-based guest memory discussions [1] and port your series to that.
+>>>
+>>
+>> The user interface design for *shared* memory aligns with
+>> KVM_SET_USER_MEMORY_REGION.
+> 
+> I don't think it does. For example, file mappings don't work (as above),
+> you're placing additional rlimit requirements on the caller, read-only
+> memslots are not functional, the memory cannot be swapped or migrated,
+> dirty logging doesn't work etc. pKVM is in the same boat, but that's why
+> we're not upstreaming this part in its current form.
+>
+
+I thought pKVM was only holding off on upstreaming changes related to 
+guest-private memory?
+
+>> I understood we want to use restricted memfd for giving guest-private memory
+>> (Gunyah calls this "lending memory"). When I went through the changes, I
+>> gathered KVM is using restricted memfd only for guest-private memory and not
+>> for shared memory. Thus, I dropped support for lending memory to the guest
+>> VM and only retained the shared memory support in this series. I'd like to
+>> merge what we can today and introduce the guest-private memory support in
+>> tandem with the restricted memfd; I don't see much reason to delay the
+>> series.
+> 
+> Right, protected guests will use the new restricted memfd ("guest mem"
+> now, I think?), but non-protected guests should implement the existing
+> interface *without* the need for the GUP pin on guest memory pages. Yes,
+> that means full support for MMU notifiers so that these pages can be
+> managed properly by the host kernel. We're working on that for pKVM, but
+> it requires a more flexible form of memory sharing over what we currently
+> have so that e.g. the zero page can be shared between multiple entities.
+
+Gunyah doesn't support swapping pages out while the guest is running and 
+the design of Gunyah isn't made to give host kernel full control over 
+the S2 page table for its guests. As best I can tell from reading the 
+respective drivers, ACRN and Nitro Enclaves both GUP pin guest memory 
+pages prior to giving them to the guest, so I don't think this 
+requirement from Gunyah is particularly unusual.
+
