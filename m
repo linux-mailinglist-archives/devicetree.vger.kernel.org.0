@@ -2,95 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B44F725279
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 05:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 849FB725284
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 05:45:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234518AbjFGDmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 23:42:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59778 "EHLO
+        id S240736AbjFGDp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 23:45:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235137AbjFGDmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 23:42:38 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0953D19BA
-        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 20:42:37 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-64d18d772bdso7597594b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jun 2023 20:42:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686109356; x=1688701356;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5amr3SUDsqzdSzy/47lg6a8IdfkrVtyksktE2N9uX2s=;
-        b=pG9v16DF0kJRXNnHQrtaQv1di9rgPuLK9JyDO3nX1wsvYUfkmBuWSVDD/4etvL6rG0
-         khItlfqQ7lZIknwFLwzRVPHK3llkPaK3WF7/xIxfy2hiW+hAgMjO1lhXeF54pnVVSoFM
-         A4RbZaCKs4AlHPD5LCDp+wUfA1PeQOsuz3wMIqgdqJOADCpZ3eaVI5jqrCP6kTU7kCWD
-         fOQr7/2PYxeLJhs7T//i14GQlS0k/E5+oG+u+vZnpC3mSk03RHlyUWgMMrEuVHsO7z7e
-         qNwhaX1Nj1RARTxkfp6taoYulUx/qw8WE3VPV4QxjdyAhPGTjR2XlJc+RB5HJbkWe7a5
-         Awnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686109356; x=1688701356;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5amr3SUDsqzdSzy/47lg6a8IdfkrVtyksktE2N9uX2s=;
-        b=VP1AhlveCyOWE5VAiY2mCfUqlnFpsDdMmzMWT317LMFLL0QVJkIND7YQdpgKPH8o6i
-         9rOt5sMFFU2cnAlDFulDVRhcYO5fHH85Ovag0SOYVnzfQjJdXGPbFpoCWONF8+E2C6R4
-         JOxGGcaR6mOVqDWnLkhPYucNQcVGrOvJ8LB+jLgQP9aBrz+yJdOmha51F2yW13eVVArT
-         l5gZrSex8VcPjv7iGqxxzYKvdSclkKIRih1URFcklsNACjWCR671O//wSNOvb7u4pU9I
-         qoWRdwHXzVXuwp4oCUxBxSxQa+PfLo6Z55x2TGCanRMaVT+t++2KZyzNeUct8UIQoEoh
-         cIGQ==
-X-Gm-Message-State: AC+VfDybco8T8214WlkiMEJ64YyPgByIAKCpAMgj9lGZyTPwiJNplDTZ
-        zhHLUKw/P4kNDWmom2CLvgZPRw==
-X-Google-Smtp-Source: ACHHUZ5jCaF84UNonxB7KCxf8AOMiF/ye9ip8+WqDMTb1jALjhGRnv+csTkREcknVbiC31dS9AgSNQ==
-X-Received: by 2002:a05:6a00:1794:b0:64d:632a:d0ac with SMTP id s20-20020a056a00179400b0064d632ad0acmr5534707pfg.25.1686109356519;
-        Tue, 06 Jun 2023 20:42:36 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id i8-20020a635408000000b00520b677c645sm8092718pgb.41.2023.06.06.20.42.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 20:42:36 -0700 (PDT)
-Date:   Wed, 7 Jun 2023 09:12:34 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Mason Huo <mason.huo@starfivetech.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Shengyu Qu <wiagn233@outlook.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v4 2/3] cpufreq: dt-platdev: Add JH7110 SOC to the
- allowlist
-Message-ID: <20230607034234.rgjb43gchkdtpuxw@vireshk-i7>
-References: <20230606105656.124355-1-mason.huo@starfivetech.com>
- <20230606105656.124355-3-mason.huo@starfivetech.com>
- <20230606110804.qns4rolrrj2gku6w@vireshk-i7>
- <20230606-unsmooth-slip-c80fab59c9b4@wendy>
- <f29a14dad3d744bba54e561a050bdfaa@EXMBX067.cuchost.com>
+        with ESMTP id S240831AbjFGDpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 23:45:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 622B61BC2;
+        Tue,  6 Jun 2023 20:45:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C0D8B63A20;
+        Wed,  7 Jun 2023 03:45:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40975C4339B;
+        Wed,  7 Jun 2023 03:45:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686109502;
+        bh=23b85ddF74DRpHqNGxTgfBMNcy0hEkGn39jASt7LXGY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=KozwMzbBcxqF3yspohCRX5N5zMV5Za8U22w+oHAcz4yDr/yx1eMfv3Zq40lwSaijF
+         x0eJyRdVwKLJ5NPv9mpvUfstSDXmaXlFVfo34sWCVZGru8tfdtocvayA4TeNF9Idp9
+         UyUJaAe2AgbYmC4GdN/M3yHcRS3KEZ79wX8Oe5mQV0F5bXNFUWoWC8zS5WELlJj4Dj
+         obSKgYeqc9TnlFJn/AMk5GftaUWN2PwejIPzl3Z2Tyd2ZANoYWY7TGLx4enOa1SO9U
+         GoyaGShdEoxet7hftBuqRs9b9NwWeZs0dDCSJDgrh48NEQnUJO8oyI1tmKgKo6XNim
+         D7EnPd94tiBww==
+Date:   Tue, 6 Jun 2023 20:45:00 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Justin Chen <justin.chen@broadcom.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        florian.fainelli@broadcom.com, davem@davemloft.net,
+        edumazet@google.com, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        opendmb@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, richardcochran@gmail.com,
+        sumit.semwal@linaro.org, christian.koenig@amd.com,
+        simon.horman@corigine.com
+Subject: Re: [PATCH net-next v6 3/6] net: bcmasp: Add support for ASP2.0
+ Ethernet controller
+Message-ID: <20230606204500.04083bd8@kernel.org>
+In-Reply-To: <024a6733-f552-c538-2b59-26058c750d66@broadcom.com>
+References: <1685657551-38291-1-git-send-email-justin.chen@broadcom.com>
+        <1685657551-38291-4-git-send-email-justin.chen@broadcom.com>
+        <20230602235859.79042ff0@kernel.org>
+        <956dc20f-386c-f4fe-b827-1a749ee8af02@broadcom.com>
+        <20230606171605.3c20ae79@kernel.org>
+        <8601be87-4bcb-8e6b-5124-1c63150c7c40@broadcom.com>
+        <20230606185453.582d3831@kernel.org>
+        <024a6733-f552-c538-2b59-26058c750d66@broadcom.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f29a14dad3d744bba54e561a050bdfaa@EXMBX067.cuchost.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-06-23, 02:04, Mason Huo wrote:
-> Or you can just ignore it?
+On Tue, 6 Jun 2023 19:33:13 -0700 Justin Chen wrote:
+> >> Not netdevs per se, but packets can be redirected to an offload
+> >> co-processor.  
+> > 
+> > How is the redirecting configured?
+> 
+> Through filters that can be programmed by the Host cpu or co-processor.
 
-I can do that :)
-
--- 
-viresh
+How are the filter programmed by the host (in terms of user API)?
