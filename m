@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 938E27261CC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40BCD7261DC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240029AbjFGN5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 09:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36766 "EHLO
+        id S235696AbjFGN7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 09:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240102AbjFGN5Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:57:16 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C821FCC
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:57:11 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51496f57e59so1339136a12.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:57:10 -0700 (PDT)
+        with ESMTP id S240240AbjFGN7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:59:39 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E74C1FF0
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:59:22 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9788554a8c9so104398566b.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:59:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686146229; x=1688738229;
+        d=linaro.org; s=google; t=1686146360; x=1688738360;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kKpvPu5Rm/nURTMMsBy+tWBtqwgLaFCv5S24g6y4mow=;
-        b=lMeYAGAQIoc851Xz0eJb0PtiX9acHzzCcIRcU/RyTCtJylY8kOce+BtmAAlbchfgaM
-         ux+d4RvKhJql1f2hncN91Yae4vn9KVyIXDZvMApIjJJqotSYy9KErr8ln1HSA9AqQyLj
-         QIxdWloAaOUglN1CJzxmEbLFF6S9bmUUeF5KZLKtDC8W5pY5ZG07/IBa480wngvl+pgw
-         21f3vyl4N40oShuNEk1gxWHWooKKFb6NMW8ElfrfxNAKnFR4Nt+Hn3BGGE354AXtFJmQ
-         UlwcouKzzYJNk++/7CYeYPcBZFy1JC6M3V2I5fXnuIaT5kb6gF26yMald57+QMWk4rjA
-         DHqA==
+        bh=RFkWycW6XB7DoQU4+95hgOLZaJ9MmCqICTZvyaEpZIQ=;
+        b=SSFsJiZ2QNhdfivj8wIBcOvp2mvz3U7ksiMOIbUuDJHz1Njd+i0eUjquASK61xr5Y4
+         RxpypbPzfSe7ZtbnZ4M13nvUEzzOet4ihVRFfIv1QR8PqHgD9AZsjT35qOsw/nOh2Dj2
+         Vkz19SgOYGj6YlEWv30zIKHtjU7dDHP+xU2LiJug88NNvnbLidJc50S8bAOVvEZ2MJuX
+         h/dT2Ykm48wpYlKDQUWjZHa4tBwYa2+MEsfX1y7w9ud2aBV/j1uIQjnax71kV6kAI44J
+         mhpzflmNQXy/woniEXj3XLlQ76toGSh+mW0xuClNxAsS9kyS9traJZcjC9lw3P02LCNQ
+         9VwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686146229; x=1688738229;
+        d=1e100.net; s=20221208; t=1686146360; x=1688738360;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kKpvPu5Rm/nURTMMsBy+tWBtqwgLaFCv5S24g6y4mow=;
-        b=FGVFcvG92yUco7tskYKpH8tHumZUBIJ+g/57ZkGNd8vJDre6V4VvGOvD75Aol6FMgG
-         xCJCQrlbo87kNeCWQcU0ezCZlUO1WidIsByPvVYSRx8EO2lceERSAmCsqa+jB6xiJoAA
-         u8xTbNR0qvxICNArvm7uBuO7l1C/y07sJyLw0xiq87Ugoq5zKy4OXDsSq3fppRHgR5W2
-         PTZGhb3FcrzxHlYxcS3hPKW20d1yrUWo6M9aNR6Q7OgyRVIdqYMmPA+klCgq4gzrMddO
-         rXuQFcewlrwOuaSQf4EJbx6e+BlHnu7uWP1HWaSTl97mO5GMZiNHo5fdqUqF5k68huFL
-         pGAQ==
-X-Gm-Message-State: AC+VfDzw6YMrzg6JA2NtSDAkAWFYHqyJadG4uglZ84dLOVVjr2UNWwAH
-        v7T5qWMx/aC/cfGJafcmUrWP2w==
-X-Google-Smtp-Source: ACHHUZ7EcYvo+spZ1Zu2vN1Sav3wheuQzpa99azcDZ/IzhZp4uRXdRVAhEfFaElWL4x4m1MwMFpu5Q==
-X-Received: by 2002:a05:6402:2142:b0:514:9edb:185a with SMTP id bq2-20020a056402214200b005149edb185amr4634692edb.9.1686146229452;
-        Wed, 07 Jun 2023 06:57:09 -0700 (PDT)
+        bh=RFkWycW6XB7DoQU4+95hgOLZaJ9MmCqICTZvyaEpZIQ=;
+        b=jx3+16lDqqnUmZWp6p8QDpr4JNtUA2TUwLQyGsE2YcJxUIZmWmC1JlG9cm7TFG0SsP
+         a1lQWmSPrhoQaxnY1xxrresTMEr04AktO1uRlmVphWlNNtYI8iWqIYYX8oD+ZIFbwROO
+         YVJ7WITiFkTOVn+cMq7nwkhRqLiPjvZDalN9NS6RCMViu6L9onebGCi3r0f0yZ7HJqbd
+         2fuYX2RnLLFC80FrCt+T3m7rDTDl5j7J2COlb1pY0AUGUw8dCkHtThQuJvc6EinxrUQv
+         L/zRCDinQf0Gu5KqcuctAFiD4CQCHJjGfSrK4EOFunf9RqDvts2WDfYKqd4coGRuXC2M
+         NGxQ==
+X-Gm-Message-State: AC+VfDzHm4qnJ6KFMHYeuWQ/7xIza71jvWCQ1J+jl31xyGwmNIoQux8b
+        5xtwbGo5rszRy7jKq/4Mam8/rg==
+X-Google-Smtp-Source: ACHHUZ7cl+L2KXdFp2rG5iVWinOrwOQOqHXvKEINORKaqwRPBu4nKgHpT831KsNV51xiwHZybriR6g==
+X-Received: by 2002:a17:907:a426:b0:94f:2852:1d2b with SMTP id sg38-20020a170907a42600b0094f28521d2bmr5966494ejc.72.1686146360623;
+        Wed, 07 Jun 2023 06:59:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id p19-20020aa7cc93000000b005166779bfd2sm2893476edt.6.2023.06.07.06.57.07
+        by smtp.gmail.com with ESMTPSA id h26-20020aa7de1a000000b005148f0e8568sm6202646edv.39.2023.06.07.06.59.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 06:57:08 -0700 (PDT)
-Message-ID: <14fab6aa-2f9a-c3bc-5ed4-0d4fb20b20d6@linaro.org>
-Date:   Wed, 7 Jun 2023 15:57:06 +0200
+        Wed, 07 Jun 2023 06:59:20 -0700 (PDT)
+Message-ID: <f591d7d3-a728-af1f-d74d-24aec140fd46@linaro.org>
+Date:   Wed, 7 Jun 2023 15:59:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v3 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
+Subject: Re: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: ilitek: Introduce
+ bindings for Ilitek ili9882t
 Content-Language: en-US
-To:     Paulo Pavacic <pavacic.p@gmail.com>
-Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230606140757.818705-1-pavacic.p@gmail.com>
- <20230606140757.818705-4-pavacic.p@gmail.com>
- <dfe2c108-0268-c4d0-226e-b3d2bc8c3369@linaro.org>
- <CAO9szn3PyQQRKsxdsOrmVNMP2xuvN4_dHwb1_TWEqmhnr3TLPA@mail.gmail.com>
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, dianders@chromium.org,
+        hsinyi@google.com
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230607133458.4075667-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230607133458.4075667-2-yangcong5@huaqin.corp-partner.google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAO9szn3PyQQRKsxdsOrmVNMP2xuvN4_dHwb1_TWEqmhnr3TLPA@mail.gmail.com>
+In-Reply-To: <20230607133458.4075667-2-yangcong5@huaqin.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,66 +80,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 15:38, Paulo Pavacic wrote:
-> Hello,
+On 07/06/2023 15:34, Cong Yang wrote:
+> The ili9882t touch screen chip same as Elan eKTH6915 controller
+> has a reset gpio. The difference is that ili9882t needs to use
+> vccio-supply instead of vcc33-supply. Doug's series[1] allows panels
+> and touchscreens to power on/off together, let's add a phandle for this.
 > 
-> uto, 6. lip 2023. u 16:45 Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> napisao je:
->>
->> On 06/06/2023 16:07, Paulo Pavacic wrote:
->>> Fannal C3004 is a 480x800 display made by fannal that requires
->>> DCS initialization sequences.
->>>
->>> Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
->>> ---
->>> v4 changelog:
->>>  - formatting and style changes
->>
->> Are you sure? I see other changes - removal of some code, handling
->> errors and GPIO.
->>
->>>  - change community room
->>
->> What does it mean? Where is this change in this patch?
->>
->> ...
->>
->>> +
->>> +static const struct drm_panel_funcs fannal_panel_funcs = {
->>> +     .prepare = fannal_panel_prepare,
->>> +     .unprepare = fannal_panel_unprepare,
->>> +     .enable = fannal_panel_enable,
->>> +     .disable = fannal_panel_disable,
->>> +     .get_modes = fannal_panel_get_modes,
->>> +};
->>> +
->>> +static int fannal_panel_probe(struct mipi_dsi_device *dsi)
->>> +{
->>> +     struct device *dev = &dsi->dev;
->>> +     struct fannal_panel_data *panel_data;
->>> +     int ret;
->>> +
->>> +     panel_data = devm_kzalloc(&dsi->dev, sizeof(*panel_data), GFP_KERNEL);
->>> +
->>
->> Drop blank line.
->>
->>> +     if (!panel_data)
->>> +             return -ENOMEM;
->>> +
->>> +     panel_data->reset =
->>
->> You have wrong wrapping here. devm_gpiod_get_optional() goes after =.
+> [1]: https: //lore.kernel.org/all/20230523193017.4109557-1-dianders@chromium.org/
 > 
-> I'm not sure why, but clang-format makes it that way. I'm using this
-> style: https://raw.githubusercontent.com/torvalds/linux/master/.clang-format
-> Do you have some other style?
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+>  .../bindings/input/ilitek,ili9882t.yaml       | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml b/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
+> new file mode 100644
+> index 000000000000..f69fa3aaf4c5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/ilitek,ili9882t.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Ilitek ili9882t touchscreen controller
+> +
+> +maintainers:
+> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> +
+> +description:
+> +  Supports the Ilitek ili9882t touchscreen controller.
+> +  This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-Linux kernel coding style.
+Drop items, just const.
 
-https://elixir.bootlin.com/linux/v6.4-rc5/source/Documentation/process/coding-style.rst
+> +      - const: ilitek,ili9882t
+> +
+> +  reg:
+> +    const: 0x41
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  panel:
+> +    description: If this is a touchscreen, the panel it's connected to. This
+> +      indicates that the panel and touchscreen are expected to be power
+> +      sequenced together.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-Don't use clang or other non-kernel formatters.
+"If this is a touchscreen"? Doesn't you description say this is
+touchscreen controller? Then how this could be also not a touchscreen?
+
+> +
+> +  reset-gpios:
+> +    description: Reset GPIO.
+
+missing maxItems
 
 
 Best regards,
