@@ -2,139 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 943AB726A32
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:55:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E08C726A3A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 21:58:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231259AbjFGTzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 15:55:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59388 "EHLO
+        id S230447AbjFGT6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 15:58:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229980AbjFGTzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:55:53 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B0111A;
-        Wed,  7 Jun 2023 12:55:51 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 357Jcn0f027806;
-        Wed, 7 Jun 2023 19:55:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zYnkk6rfdEFQh2yitNyYzT1Hcvi6eRKpKuWIs9uYX4c=;
- b=JLQIwLTlcMUDa/7ai3tpCX+U2S2LklqIqR3vH0/g0pOfJubaUFFq+O/fxESgKLGr17CP
- LXyPMisMIa4jH3icL8DhPUTPmJudHiCrD74Ji0PV6SKaIcKGCcW7Dw8woNjZ4KCvZf+/
- LVJO+Ij2ybgEVpTqiDt7/vqEyngGWkFRiCX4JS3wZGUErO42TmF4R0lNTKhkarObCJSZ
- 157DtTw9WA44WkG3cDxluMRmUjyGxeAwuMxE6nqut99Bk6xPcpUDFZEf3yO0G3xc3bL/
- VU0NCTW0e6u/QEXQ9HMtyVOzpfn26pcBjDrLJRPGwyjYaUYCVt7l3/r8KBTYlUL/BYW5 0A== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r2rbth6n5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 07 Jun 2023 19:55:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 357JteFt003724
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 7 Jun 2023 19:55:40 GMT
-Received: from [10.216.57.240] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 7 Jun 2023
- 12:55:32 -0700
-Message-ID: <3010d855-86b0-f87a-5eb7-85204be9b4b0@quicinc.com>
-Date:   Thu, 8 Jun 2023 01:25:25 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
- for qcom wrapper
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229980AbjFGT6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 15:58:50 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441DA19AC;
+        Wed,  7 Jun 2023 12:58:43 -0700 (PDT)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 73E3E6600014;
+        Wed,  7 Jun 2023 20:58:39 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686167921;
+        bh=V4aYOfdlmGNGL6oFKj3asBG3FW4Opmc6t8Sp4HBQiyI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JZrn2ezwA9qngagBGLJ1UosmKAQnL+vYAWdNsH5eOHqq0/FEOuo67Rf1Tzu7zZnrs
+         w0O7sCdDl7KZwkpgVHHvv1PJKb4GU12GLvdKNPzG9eKJHE9wj3hX+W5E8yYpEFQBuf
+         TZHhPeFnM1ITGi+R7TaGfzcLmCEYvMLB0ETB3u8+ewtPz3QvAs6sNcuJvRY1Jc+GnG
+         fbtkDDtxSugUvFqyG19BAcByG+Q/KANA0Zlo0ea8fknVDRmnOq4qBXs9MUErpanxdX
+         ZsvO7/wxa2Qi00y2onNitgvQypYqZ6lt3HSEF6ZqHlbpe2nnzKMkPwGLo94bqOIY9n
+         kOjdX61pWjjig==
+Date:   Wed, 7 Jun 2023 15:58:34 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>,
-        <ahalaney@redhat.com>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-7-quic_kriskura@quicinc.com>
- <20230515222730.7snn2i33gkg6ctd2@ripper>
- <20230526025554.ni527gsr2bqxadl3@ripper>
- <37fd026e-ecb1-3584-19f3-f8c1e5a9d20a@quicinc.com>
- <ZIBtnPp0oV6_GFFk@hovoldconsulting.com>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZIBtnPp0oV6_GFFk@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9smbBK24iUOq0l7o4f8vb29_VzCFTRnr
-X-Proofpoint-ORIG-GUID: 9smbBK24iUOq0l7o4f8vb29_VzCFTRnr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-07_11,2023-06-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- adultscore=0 mlxlogscore=799 spamscore=0 priorityscore=1501 phishscore=0
- impostorscore=0 mlxscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306070172
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 3/6] media: dt-bindings: mediatek,vcodec: Remove VDEC_SYS
+ for mt8183
+Message-ID: <d768f124-dcee-40c7-a5e8-f1c41439119e@notapiano>
+References: <20230605162030.274395-1-nfraprado@collabora.com>
+ <20230605162030.274395-4-nfraprado@collabora.com>
+ <6d476d6d-7100-7674-2e08-661516b75f43@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6d476d6d-7100-7674-2e08-661516b75f43@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 06, 2023 at 11:16:12AM +0200, Krzysztof Kozlowski wrote:
+> On 05/06/2023 18:20, Nícolas F. R. A. Prado wrote:
+> > The binding expects the first register space to be VDEC_SYS. But on
+> > mt8183, which uses the stateless decoders, this space is used only for
+> > controlling clocks and resets, which are better described as separate
+> > clock-controller and reset-controller nodes.
+> > 
+> > In fact, in mt8173's devicetree there are already such separate
+> > clock-controller nodes, which cause duplicate addresses between the
+> > vdecsys node and the vcodec node. But for this SoC, since the stateful
+> > decoder code makes other uses of the VDEC_SYS register space, it's not
+> > straightforward to remove it.
+> > 
+> > In order to avoid the same address conflict to happen on mt8183,
+> > since the only current use of the VDEC_SYS register space in
+> > the driver is to read the status of a clock that indicates the hardware
+> > is active, remove the VDEC_SYS register space from the binding and
+> > describe an extra clock that will be used to directly check the hardware
+> > status.
+> > 
+> > Also add reg-names to be able to tell that this new register schema is
+> > used, so the driver can keep backward compatibility.
+> > 
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > ---
+> > 
+> >  .../media/mediatek,vcodec-decoder.yaml        | 29 +++++++++++++++++--
+> >  1 file changed, 27 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> > index 6447e6c86f29..36a53b2484d6 100644
+> > --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> > @@ -21,17 +21,21 @@ properties:
+> >        - mediatek,mt8183-vcodec-dec
+> >  
+> >    reg:
+> > +    minItems: 11
+> >      maxItems: 12
+> >  
+> > +  reg-names:
+> > +    minItems: 11
+> 
+> maxItems
+> 
+> > +
+> >    interrupts:
+> >      maxItems: 1
+> >  
+> >    clocks:
+> > -    minItems: 1
+> > +    minItems: 2
+> 
+> It does not make any sense. Just two patches ago you made it 1! Don't
+> add incorrect values which are immediately changed in the same patchset.
 
+It's not an incorrect value. At the point that commit was added, the first reg
+was still VDEC_SYS, so an active clock wasn't required. This commit removes the
+VDEC_SYS reg, and so the active clock becomes necessary. Splitting it like this
+made the most sense to me, and I thought it would also simplify review. But
+since it seems to be a problem I'll merge commit 1 with this one in v2 to avoid
+changing the number of clocks twice.
 
-On 6/7/2023 5:14 PM, Johan Hovold wrote:
-> On Fri, May 26, 2023 at 08:55:22PM +0530, Krishna Kurapati PSSNV wrote:
->> On 5/26/2023 8:25 AM, Bjorn Andersson wrote:
 > 
->>> We need to fix the dwc3 glue design, so that the glue and the core can
->>> cooperate - and we have a few other use cases where this is needed (e.g.
->>> usb_role_switch propagation to the glue code).
+> >      maxItems: 8
+> >  
+> >    clock-names:
+> > -    minItems: 1
+> > +    minItems: 2
+> >      maxItems: 8
+> >  
+> >    assigned-clocks: true
+> > @@ -84,6 +88,24 @@ allOf:
+> >          clock-names:
+> >            items:
+> >              - const: vdec
+> > +            - const: active
+> > +
+> > +        reg:
+> > +          maxItems: 11
+> > +
+> > +        reg-names:
+> > +          items:
+> > +            - const: misc
+> > +            - const: ld
+> > +            - const: top
+> > +            - const: cm
+> > +            - const: ad
+> > +            - const: av
+> > +            - const: pp
+> > +            - const: hwd
+> > +            - const: hwq
+> > +            - const: hwb
+> > +            - const: hwg
+> >  
+> >    - if:
+> >        properties:
+> > @@ -108,6 +130,9 @@ allOf:
+> >              - const: venc_lt_sel
+> >              - const: vdec_bus_clk_src
+> >  
+> > +        reg:
+> > +          minItems: 12
 > 
->>     Thanks for the comments on this patch. I had some suggestions come in
->> from the team internally:
->>
->> 1. To use the notifier call available in drivers/usb/core/notify.c and
->> make sure that host mode is enabled. That way we can access dwc or xhci
->> without any issue.
-> 
-> I don't think this is a good idea and instead the callbacks should be
-> dedicated for the xhci and dwc3 drivers. A struct with callbacks can be
-> passed down to the child devices, which call back into the drivers of
-> their parents for notifications and when they need services from them
-> (e.g. during suspend or on role changes).
-> 
-Hi Johan,
+> so max can be 1000?
 
-   While I agree with you that these notifications are to be used during 
-role switch or suspend/resume, there is no restriction on using them for 
-checking whether we are in host mode or not. IMO, it would be cleaner as 
-we won't be dereferencing dwc driver data at all to check if we are in 
-host mode or not.
+No, there's 'maxItems: 12' up above in the general case.
 
-Regards,
-Krishna,
-
->> 2. For this particular case where we are trying to get info on number of
->> ports present (dwc->num_usb2_ports), we can add compatible data for
->> sc8280-mp and provide input to driver telling num ports is 4.
-> 
-> That may also work as a way to avoid parsing the xhci registers, but I'm
-> still not sure why simply counting the PHYs in DT would not work.
-> 
-> Johan
+Thanks,
+Nícolas
