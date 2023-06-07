@@ -2,62 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EEE0726C3F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:31:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02873726C7F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 22:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233071AbjFGUbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 16:31:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58062 "EHLO
+        id S233889AbjFGUdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 16:33:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233619AbjFGUbv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:31:51 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BC21706
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 13:31:50 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-33b1e83e204so7277095ab.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 13:31:50 -0700 (PDT)
+        with ESMTP id S233896AbjFGUdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 16:33:51 -0400
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34239211B;
+        Wed,  7 Jun 2023 13:33:46 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-33c37f62e24so7586695ab.3;
+        Wed, 07 Jun 2023 13:33:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686169909; x=1688761909;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMlxNkZ7sW47vfJqPYjeha4gss+EUNf/j50tcRhw9QI=;
-        b=Okku5aVfMZPP89TUa0PmuQRPAOuD6RLE7TiURirxSDd0YCHnkuTXbyIqX0THn+xrn8
-         KxzKZdw7fdMwEUEm+79vMymjZ6JuyBx75xhWdoPBSmZQIbYw/dqUtQpvrbarRSrn2aA5
-         kwLvxDahA0/B1lWHx4jYgTu5XY1gZq5PILTKEhOMBWKZNrMM4LeCZPRdpMmSRSacKTSz
-         COrKJqhFgF8gqyfX3cxyYD2auAGiY7t8VZZBsa9FowD/eUaoYZsRvQANFmBVphQ/KTRt
-         7aGI4U7Z5bzTO8BXpW94jzQeZNUUZA26qOKvTpaxofsShyQgXy9NLY4GqgsRIBoApJF2
-         C3jw==
-X-Gm-Message-State: AC+VfDzn0mazfBQMmGJWriRsve5Vdp3o5u9FzQicyPw5MOTb+RjmJkhD
-        DTzdj8xrzkjsfNVIpOzWVg==
-X-Google-Smtp-Source: ACHHUZ6wCK0CpjKv0HEdePUwtaIromX3U5HHzpiOFDFM7g9LZpEd0WkL0f9W1r+EcekcoAZnKCF1tQ==
-X-Received: by 2002:a92:90b:0:b0:33b:16e9:bba5 with SMTP id y11-20020a92090b000000b0033b16e9bba5mr6656626ilg.28.1686169909529;
-        Wed, 07 Jun 2023 13:31:49 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686170025; x=1688762025;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0iVva9TijxeCG+oO2fuJtRH4NJqlWxMczFOc2yePB7g=;
+        b=XsWtRmlUOGtnyr2RQNWcqHipVIsPvzOht0mtn2yaEk01jxgIb5FofVtWWfh6V6NOU9
+         hyFHUHdoYD/NPTj3TY/x5xAexHX/6MEaVL9MGrK2xZfKWoZ5n5RHd/hfWN8qhaHkdLFt
+         VOfF+X60fDor3rsekeGCXMPygQ2p2yaTlLJbSsimEpe0KuwnvVgSD1+UrmCntO6ag7z+
+         dkEZxNRd9NeC4rngdPYTHeXtjcFqUBj+GyapLE26+p/AY61fK/jr3biZynYFi4JiHdtB
+         3DYUVj/GykjUIZ++KgmFzcsDSpcDimm+7nLq7R1bKJNKfTsUhOGwzt0RNF5Rz4pe3qgM
+         Qb5A==
+X-Gm-Message-State: AC+VfDznPBUTv7vD4m06FyWMXd9QnwV0w1wiBA/SFlJqGn6Hi1lEgZ14
+        LKlJeNzf6TtvaPAQpTxCpg==
+X-Google-Smtp-Source: ACHHUZ4VBsK/pRdxbIVwIR7PM8P6q0QhZxOoxBwVSOfqQqZV3ZYtLKMGskrPaGb6pYE7Badlv2n2ag==
+X-Received: by 2002:a92:c00f:0:b0:33b:ca8:fdaa with SMTP id q15-20020a92c00f000000b0033b0ca8fdaamr6422297ild.6.1686170025373;
+        Wed, 07 Jun 2023 13:33:45 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h15-20020a02c4cf000000b0040bbcee6b57sm3553148jaj.133.2023.06.07.13.31.47
+        by smtp.gmail.com with ESMTPSA id t2-20020a05663801e200b00418af04e405sm3586065jaq.116.2023.06.07.13.33.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 13:31:48 -0700 (PDT)
-Received: (nullmailer pid 3970424 invoked by uid 1000);
-        Wed, 07 Jun 2023 20:31:46 -0000
-Date:   Wed, 7 Jun 2023 14:31:46 -0600
+        Wed, 07 Jun 2023 13:33:44 -0700 (PDT)
+Received: (nullmailer pid 3973482 invoked by uid 1000);
+        Wed, 07 Jun 2023 20:33:42 -0000
+Date:   Wed, 7 Jun 2023 14:33:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, bhelgaas@google.com, marex@denx.de,
-        shawnguo@kernel.org, Fabio Estevam <festevam@denx.de>,
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, maz@kernel.org,
+        tglx@linutronix.de, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 3/5] dt-bindings: soc: Add i.MX6SX General Purpose
- Register
-Message-ID: <20230607203146.GA3970300-robh@kernel.org>
-References: <20230522201404.660242-1-festevam@gmail.com>
- <20230522201404.660242-3-festevam@gmail.com>
- <168479113748.3061858.13208114678317716697.robh@kernel.org>
- <CAOMZO5BAoT=Mi_Ac_qD-eu37nJkBMpF5HJ54MbrAtPakw-BZCQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller:
+ microchip,sama7g5-eic: use proper naming syntax
+Message-ID: <168617000060.3972795.10055026929860783252.robh@kernel.org>
+References: <20230523070637.224476-1-claudiu.beznea@microchip.com>
+ <20230523070637.224476-2-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOMZO5BAoT=Mi_Ac_qD-eu37nJkBMpF5HJ54MbrAtPakw-BZCQ@mail.gmail.com>
+In-Reply-To: <20230523070637.224476-2-claudiu.beznea@microchip.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -69,25 +66,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 06:53:10PM -0300, Fabio Estevam wrote:
-> On Mon, May 22, 2023 at 6:32 PM Rob Herring <robh@kernel.org> wrote:
-> 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: syscon@20e4000: bridge@18:compatible:0: 'fsl,imx6sx-ldb' is not one of ['fsl,imx8mp-ldb', 'fsl,imx93-ldb']
-> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-> 
-> Same comment as in 2/5 applies here too:
-> 
-> Dependency: This depends on bd60d98a11da ("dt-bindings: display:
-> bridge: ldb: Adjust imx6sx entries"),
-> which is available on linux-next.
 
-No such commit hash nor is 
-Documentation/bindings/display/bridge/fsl,ldb.yaml a file in next.
+On Tue, 23 May 2023 10:06:36 +0300, Claudiu Beznea wrote:
+> Use the following syntax for Microchip EIC YAML file: vendor,device.yaml.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  .../{microchip,eic.yaml => microchip,sama7g5-eic.yaml}          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>  rename Documentation/devicetree/bindings/interrupt-controller/{microchip,eic.yaml => microchip,sama7g5-eic.yaml} (98%)
+> 
 
-Rob
+Applied both, thanks!
+
