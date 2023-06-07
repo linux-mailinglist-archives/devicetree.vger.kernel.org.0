@@ -2,235 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13830726114
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:20:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D82726111
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 15:20:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234716AbjFGNUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 09:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46860 "EHLO
+        id S240610AbjFGNUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 09:20:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240562AbjFGNUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:20:33 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2269919BF;
-        Wed,  7 Jun 2023 06:20:15 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5147e40bbbbso1289590a12.3;
-        Wed, 07 Jun 2023 06:20:15 -0700 (PDT)
+        with ESMTP id S240623AbjFGNTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 09:19:49 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F841AC
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 06:19:47 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-30b023b0068so498804f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 06:19:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686144014; x=1688736014;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7Ih3+4bsXANDBgDK6G+g4s7QhjYyFihjN9IGktwpehA=;
-        b=hdLlP7TUkCIrewirbCnomdPJIDFcJK/LqMlRtV/hfA1H0GcmBtLGzX0qhU5ZP1Df2C
-         P2N2VTq/v+QNgJBhkExGNbEX1vAgOIVjTOi4lSNChvxYslWg3GgahexTbiRb/CmIWrCr
-         /SeumPOD2KETRCybXqFOLBvmwRplgN5G5qIudilb6rsiCQ0XYTlhqXSaVoMQqa7fa3Za
-         AOFnvoLdcRq4O6V077W3zsDIRD+HkQKbwrzOsMP9tyoX9JlBoo1ryvjl33yxxdCpVnvC
-         HjEaNZCclmxmbVSlsiQHTVrz2Pm5NQLEs0GCh4Oz6L8vvnvOJFRQZcO7qm0uM+ITM0SX
-         O1ig==
+        d=linaro.org; s=google; t=1686143986; x=1688735986;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mnNtcdYl7FWB9vVI15co5MeYmaXJVC+s1x+N4tvXfWY=;
+        b=W5rWw52uP2J5P8VZi5+rmvcoUJ5m9ynK8S0KkE5V84ZaqoSK2Crc9krqvZby91MWEr
+         ZSA0moTfIV9aUT84Q0uNcuQGp1sXhG6a/TqQsqZMIoI3NHx8VA7PRXhKOwuwj1S6UHJS
+         lbkHivgTqNR4Nw99i/i5xfXB3essZLeGI66BDmEYEeLcgp+SHNXE3JskESna/3alaMtg
+         tlEnbg2UE5abmA93Gc3HB/T4lHsaX/sTUguiZacyEBMY+tjzo0nkZNulBfOs+HSOiKxg
+         ZqRcxaUyax79NGs3ytKIvKNyR45yzQ8BNjnhJ+XRcJe584z8EV7VnTqK398OY2o6+mSC
+         w02w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686144014; x=1688736014;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7Ih3+4bsXANDBgDK6G+g4s7QhjYyFihjN9IGktwpehA=;
-        b=KL7hDUI+XW3F2eyFTZjkJ96sDsLIZqq/FsV8MNqVElCwj6uuZFzs4XJ7xwPNQeJrMH
-         FSFCjKjvzIN6kG1oxOmR2mLaFwO+aXXskv574NBWBKPojB1sLR4ZqEtTRLU7+Wie/VRS
-         witxI8w0Ylket+P/hjSJSBrGlrMLWLDhmuUM8ZXFKYdifY0uEuoMS9wemAStrbBckpqt
-         Sbyfzf0k+igk1mGn0sCX2hBtsKRHdQx/JSh7WZkbsvIk3Q79zhn2SbyGiVMml/HQeFdt
-         xU59cOhW+JOkfAkxuLqo9bVCbPCwgkZZZiun6n5PYcnpcgwZPpeqBHOIJERbAhj53gFr
-         A38Q==
-X-Gm-Message-State: AC+VfDwe+2I7AX+U9wWarWw3LsdtuTQekpZkFRlAIobJV1dJ5JMRriFn
-        Ac3LyR51LExJn54l0qgy7zw=
-X-Google-Smtp-Source: ACHHUZ4/PK8fjzUlm01MZV/UXjLan199IAmXNka0O///rVX/Z0PUO+uWdtRu1QCTZFCspsiY0dPnzw==
-X-Received: by 2002:a05:6402:147:b0:514:9c05:819e with SMTP id s7-20020a056402014700b005149c05819emr4431861edu.0.1686144013901;
-        Wed, 07 Jun 2023 06:20:13 -0700 (PDT)
-Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
-        by smtp.gmail.com with ESMTPSA id k12-20020aa7d8cc000000b005169ffc81absm493353eds.51.2023.06.07.06.20.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 06:20:13 -0700 (PDT)
-From:   Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-        martin.hecht@avnet.eu, michael.roeder@avnet.eu,
-        linuxfancy@googlegroups.com,
-        Tommaso Merciai <tomm.merciai@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
-        Shawn Tu <shawnx.tu@intel.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/3] media: dt-bindings: alvium: add document YAML binding
-Date:   Wed,  7 Jun 2023 15:19:24 +0200
-Message-Id: <20230607131936.382406-3-tomm.merciai@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230607131936.382406-1-tomm.merciai@gmail.com>
-References: <20230607131936.382406-1-tomm.merciai@gmail.com>
+        d=1e100.net; s=20221208; t=1686143986; x=1688735986;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mnNtcdYl7FWB9vVI15co5MeYmaXJVC+s1x+N4tvXfWY=;
+        b=I9AcXwBrPscxUigAHG7T1Lo/CiGorG5Pdf0WLIM91f2m7AyzyLU3HxDDibPJ0ZpHZI
+         ntiWGKKe3KIlgJpJNjqQNjOmAiiaIo/zHn7HsTcyAC4mCQ0CF+HwnGeOUEMBQD72Y6bR
+         h9hSQh5Nv/mTn87r2t34ychzhntjVKbzf5VT2vMDU32t2z1MQCmnkc7uvaMTyKmawMei
+         vG6/r3VysVw7JRthi2IAORg1gg1349x+1Wl4+St3ImYHQBveDgGA0K897i8ZXJsopmSS
+         qGgcwAehdmxqWKLkTKzQzb24bklfuAnUa+KpsajbQWK32tuJAoVUZHtKm8eQoC2QG83D
+         k6BA==
+X-Gm-Message-State: AC+VfDyYQfYPSdUXV4A3TG8a30ZjltKyxo105HQ2TV5STjHDnR+gDalo
+        SdxbxwRD9ttQc8+IcdfSkBfCMA==
+X-Google-Smtp-Source: ACHHUZ7ILsrllirxXgRGCNpr+8QXW/gchSLvNycTUayot7lajmlutG7p1RjL23aGnaOssGNvxAWa7w==
+X-Received: by 2002:adf:fec3:0:b0:30a:e8ac:90c1 with SMTP id q3-20020adffec3000000b0030ae8ac90c1mr10941158wrs.19.1686143986059;
+        Wed, 07 Jun 2023 06:19:46 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id b3-20020a5d4d83000000b0030c4d8930b1sm15457081wru.91.2023.06.07.06.19.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 06:19:45 -0700 (PDT)
+Message-ID: <b01ca147-c2bd-1044-22c5-5b54a0f108c0@linaro.org>
+Date:   Wed, 7 Jun 2023 14:19:44 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 3/6] clk: qcom: Add lpass clock controller driver for
+ SC8280XP
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     johan+linaro@kernel.org, agross@kernel.org,
+        konrad.dybcio@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230525122930.17141-1-srinivas.kandagatla@linaro.org>
+ <20230525122930.17141-4-srinivas.kandagatla@linaro.org>
+ <098883dd-f517-d541-de00-1a7fc0ada017@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <098883dd-f517-d541-de00-1a7fc0ada017@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation of device tree in YAML schema for the ALVIUM
-Camera from Allied Vision Inc.
 
-References:
- - https://www.alliedvision.com/en/products/embedded-vision-solutions
 
-Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-Changes since v1:
- - Fixed build error as suggested by RHerring bot
+On 31/05/2023 21:01, Krzysztof Kozlowski wrote:
+> On 25/05/2023 14:29, Srinivas Kandagatla wrote:
+>> Add support for the lpass clock controller found on SC8280XP based devices.
+>> This would allow lpass peripheral loader drivers to control the clocks and
+>> bring the subsystems out of reset.
+>>
+>> Currently this patch only supports resets as the Q6DSP is in control of
+>> LPASS IP which manages most of the clocks via Q6PRM service on GPR rpmsg
+>> channel.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   drivers/clk/qcom/Kconfig            |  8 ++++
+>>   drivers/clk/qcom/Makefile           |  1 +
+>>   drivers/clk/qcom/lpasscc-sc8280xp.c | 63 +++++++++++++++++++++++++++++
+>>   3 files changed, 72 insertions(+)
+>>   create mode 100644 drivers/clk/qcom/lpasscc-sc8280xp.c
+>>
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index 85869e7a9f16..e25993abb519 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -523,6 +523,14 @@ config SC_LPASSCC_7280
+>>   	  Say Y if you want to use the LPASS branch clocks of the LPASS clock
+>>   	  controller to reset the LPASS subsystem.
+>>   
+>> +config SC_LPASSCC_8280XP
+>> +	tristate "SC8280 Low Power Audio Subsystem (LPASS) Clock Controller"
+> 
+> depends on ARM64 || COMPILE_TEST
 
-Changes since v2:
- - Fixed License as suggested by KKozlowski/CDooley
- - Removed rotation property as suggested by CDooley/LPinchart
- - Fixed example node name as suggested by CDooley
- - Fixed title as suggested by LPinchart
- - Fixed compatible name as suggested by LPinchart
- - Removed clock as suggested by LPinchart
- - Removed gpios not as suggested by LPinchart
- - Renamed property name streamon-delay into alliedvision,lp2hs-delay-us
- - Fixed vendor prefix, unit append as suggested by KKozlowski
- - Fixed data-lanes
- - Fixed blank space + example indentation (from 6 -> 4 space) as suggested by KKozlowski
- - Dropped status into example  as suggested by KKozlowski
- - Added vcc-ext-in supply as suggested by LPinchart
- - Dropped pinctrl into example as suggested by LPinchart
+Thanks, Will do that in v3.
 
-Changes since v3:
- - Fixed vcc-ext-in-supply description as suggested by LPinchart
- - Fixed alliedvision,lp2hs-delay-us description as suggested by LPinchart
- - Added maximum to alliedvision,lp2hs-delay-us as suggested by LPinchart
- - Collected Reviewed-by tag from LPinchart
-
- .../media/i2c/alliedvision,alvium-csi2.yaml   | 96 +++++++++++++++++++
- 1 file changed, 96 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
-new file mode 100644
-index 000000000000..4726d0068229
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Allied Vision Alvium Camera
-+
-+maintainers:
-+  - Tommaso Merciai <tomm.merciai@gmail.com>
-+  - Martin Hecht <martin.hecht@avnet.eu>
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+properties:
-+  compatible:
-+    const: alliedvision,alvium-csi2
-+
-+  reg:
-+    maxItems: 1
-+
-+  vcc-ext-in-supply:
-+    description: |
-+      The regulator that supplies power to the VCC_EXT_IN pins.
-+
-+  alliedvision,lp2hs-delay-us:
-+    maximum: 150000
-+    description: |
-+      Low power to high speed delay time.
-+
-+      If the value is larger than 0, the camera forces a reset of all
-+      D-PHY lanes for the duration specified by this property. All lanes
-+      will transition to the low-power state and back to the high-speed
-+      state after the delay. Otherwise the lanes will transition to and
-+      remain in the high-speed state immediately after power on.
-+
-+      This is meant to help CSI-2 receivers synchronizing their D-PHY
-+      RX.
-+
-+  port:
-+    description: Digital Output Port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          link-frequencies: true
-+
-+          data-lanes:
-+            minItems: 1
-+            items:
-+              - const: 1
-+              - const: 2
-+              - const: 3
-+              - const: 4
-+
-+        required:
-+          - data-lanes
-+          - link-frequencies
-+
-+required:
-+  - compatible
-+  - reg
-+  - vcc-ext-in-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        alvium: camera@3c {
-+            compatible = "alliedvision,alvium-csi2";
-+            reg = <0x3c>;
-+            vcc-ext-in-supply = <&reg_vcc_ext_in>;
-+            alliedvision,lp2hs-delay-us = <20>;
-+
-+            port {
-+                alvium_out: endpoint {
-+                    remote-endpoint = <&mipi_csi_0_in>;
-+                    data-lanes = <1 2 3 4>;
-+                    link-frequencies = /bits/ 64 <681250000>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.34.1
-
+--srini
+> 
+> Best regards,
+> Krzysztof
+> 
