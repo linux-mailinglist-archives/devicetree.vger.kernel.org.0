@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C817268D0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 713837268E0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 20:35:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231494AbjFGSdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 14:33:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48738 "EHLO
+        id S231144AbjFGSfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 14:35:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230324AbjFGSdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:33:43 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B75B01FDE
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:33:31 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5169f920a9dso1616300a12.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:33:31 -0700 (PDT)
+        with ESMTP id S232672AbjFGSfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 14:35:20 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5501BD5
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 11:35:15 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-97460240863so1041296766b.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 11:35:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686162810; x=1688754810;
+        d=linaro.org; s=google; t=1686162914; x=1688754914;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3/jEtJl4NZ6AFVWENqpwdvujWaidPCP3Ivs0uh/tsyc=;
-        b=yyIsvyaz+YC6j/5Dzy/+MNvUGSoqQNTFQzpkiVol4liPe22EGvhC9TO/27GhWPbBwp
-         6d/U7GKG1gKpGtTAhwDpMMTjjnOJn2K0IMkJjXx9OKUuIjnWXul5jdf1beGBPRUiSWrQ
-         61CotoHz24j2RiaSunM2l0L/wXkl5oJrikWRcqors/KsHkNV3dFcb1raqWQGurILjbZR
-         NBKXoJgJXmn5SMlzEf+I52CAxYH9w/OthqDQ6d93oWasrKe1PTlqhqykZlmC5N8yaUyk
-         tpU5MNh8ajbWEIjuqo0xRKGWK8EtVJQpm4jLR8EbUIUuigBQ6UUEmVxEw/mjrgN1K80r
-         EwTA==
+        bh=5oRVbakJKhxqzwhoXotbCqDyKWlJ4PhQpqo/n0s7L7k=;
+        b=SaHwxSTHyCK6ZLqMnQ2tRMbD/FXv8Q0MPpXiMqqMCSpcpygJNIx7kzZV5OPWY07Vjy
+         FNfE+d7sfzmTr7HFJ2d17pqik93wj5/uGHjMSMjx3IqY4yEYAEplaeUL6lxdldBJsmGV
+         3lOPMHbN3vb2qbIqkWHxuQku2kAOioy9Oxm6gmP/Jn5i+aquF5WnSS1P/pWvX5E247mM
+         UmFHLaAxaF7MoNbucuTv6if4W5N8Omu72Ktp9e9nqxwQfzic+T25VD0lr153Zc1J5rI+
+         FF/pLCcrHwXUIP4J4NszE6j9SV6nRjo4dPmh7PmGqz2uW2n4ZieJ8ejyaQl76gD5FgT/
+         xA8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686162810; x=1688754810;
+        d=1e100.net; s=20221208; t=1686162914; x=1688754914;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3/jEtJl4NZ6AFVWENqpwdvujWaidPCP3Ivs0uh/tsyc=;
-        b=CWJdggZ5GLMYyVE2sVHTlCo/wXRb/7U3s7SmLHeQ1Ldiv3aKZEbfgMuxZLrzOKbzVA
-         SkXOZ3L/mo/kVO/R4AVgCOL8puWZKCCaNW+w+fIVMqAUF357nJ/ZM+aFMSwS8mdyXHPJ
-         DBmFvAE7jtOWVuLyOez/vkra7vNfYVRK8RRBsRavIqsIp0Xe+/5rsCli+LekIIazq5AL
-         wNBsgi9dIKSyuf2Q/2f0gssrm4YdnZwtR0nDmj8hoG4S0hfh+76+noi0XqYpygapUNIl
-         uPj6+D79FsCJbEslATYGt2PrcLeRzqjT4ot2ibMdGYlt0h212KWxh/eEj3wWlpLUcSBl
-         aI2Q==
-X-Gm-Message-State: AC+VfDykvLLQL/6dBTRUqZLMFqFmP14A+mj/Nf5eoMmjM/sg8c5qTtPS
-        ykZuxUnPDAOApso8XyctbV0eWQ==
-X-Google-Smtp-Source: ACHHUZ44tSnQcNjSduQ/Kmu2KqHCyGS/zvLF7ZqpuqAWBIXrj7HWJDdybMg3GIK5gBATFvAVVoRLaw==
-X-Received: by 2002:aa7:c256:0:b0:514:a302:c334 with SMTP id y22-20020aa7c256000000b00514a302c334mr5962899edo.14.1686162810142;
-        Wed, 07 Jun 2023 11:33:30 -0700 (PDT)
+        bh=5oRVbakJKhxqzwhoXotbCqDyKWlJ4PhQpqo/n0s7L7k=;
+        b=NHyy79SCCZ7UjtgqefL84jkaPDJXA4GpGvJPVwumjJ2A0Hvrlq6IDNc6S1ZgQaGjlc
+         DKB2C+4I/KrGOFQDhlz26rbDLSez0bqALfCUYiyE1hv5YOzh+FCtmY+xhLgGBVB1PFgL
+         AEIk98FRlL6BDU8AVyMN8/jklNvf+erHMrFeLo8mzMKOQq029jt+hXL5DTYGDXW9ypoL
+         Gln+2hJw2xYHywG+g31M/r69h8rQTaAYctgx1kaKGJVPJ756U/qMM0aCjZ6wNWiyeugm
+         Nax0yKhI5qJbzH5gNbEp6xi8YlbAWXAxs+tVFCNyOZX2H92ynzFbeU/1nHiUMLMYqAD1
+         4xkg==
+X-Gm-Message-State: AC+VfDzll8RuKNF1mEQCYaqtT/IXjjG1dWEo/bepj9K5AWWKvMFlOtcd
+        KFAqk1JQS59CjqYt2G3YL67xSQ==
+X-Google-Smtp-Source: ACHHUZ6kwcM0h6fzmYkLv2AwJVUv2wzM4110yS6KAONK+nyu/412lkMcwBU4G+no1drK2aF7E/JuPw==
+X-Received: by 2002:a17:907:9444:b0:973:d48a:bc20 with SMTP id dl4-20020a170907944400b00973d48abc20mr6138655ejc.19.1686162914007;
+        Wed, 07 Jun 2023 11:35:14 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id bo28-20020a0564020b3c00b00514b1d2759bsm6452502edb.42.2023.06.07.11.33.27
+        by smtp.gmail.com with ESMTPSA id bq4-20020a170906d0c400b0096f7105b3a6sm7155657ejb.189.2023.06.07.11.35.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 11:33:29 -0700 (PDT)
-Message-ID: <8fdd584e-988f-8542-f635-c0f6b5e63580@linaro.org>
-Date:   Wed, 7 Jun 2023 20:33:26 +0200
+        Wed, 07 Jun 2023 11:35:13 -0700 (PDT)
+Message-ID: <49258bcf-da13-78a9-8ea6-4fc7bd9a4b1d@linaro.org>
+Date:   Wed, 7 Jun 2023 20:35:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 1/9] dt-bindings: usb: dwc3: Add IPQ5332 compatible
+Subject: Re: [PATCH 7/9] arm64: dts: qcom: ipq5332: Add USB related nodes
 Content-Language: en-US
 To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
@@ -71,9 +71,9 @@ To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
         linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-clk@vger.kernel.org
 References: <cover.1686126439.git.quic_varada@quicinc.com>
- <d07f804802f0678746aeba55910a83209ecbe054.1686126439.git.quic_varada@quicinc.com>
+ <1b48e737aa14f5b5539cbf04d473182121d5b1ad.1686126439.git.quic_varada@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d07f804802f0678746aeba55910a83209ecbe054.1686126439.git.quic_varada@quicinc.com>
+In-Reply-To: <1b48e737aa14f5b5539cbf04d473182121d5b1ad.1686126439.git.quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,37 +87,88 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/06/2023 12:56, Varadarajan Narayanan wrote:
-> Document the IPQ5332 dwc3 compatible
-
-Full stop.
-
+> Add USB phy and controller nodes
 > 
 > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 55 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index ae24dac..9c3d6f4 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -14,6 +14,7 @@ properties:
->      items:
->        - enum:
->            - qcom,ipq4019-dwc3
-> +          - qcom,ipq5332-dwc3
->            - qcom,ipq6018-dwc3
->            - qcom,ipq8064-dwc3
->            - qcom,ipq8074-dwc3
-> @@ -246,6 +247,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,ipq5332-dwc3
->                - qcom,msm8994-dwc3
->                - qcom,qcs404-dwc3
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> index c2d6cc65..3183357 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> @@ -383,6 +383,61 @@
+>  				status = "disabled";
+>  			};
+>  		};
+> +
+> +		usb_0_m31phy: hs_m31phy@7b000 {
 
-What about interrupts?
+Node names should be generic. See also explanation and list of examples
+in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +			compatible = "qcom,ipq5332-m31-usb-hsphy";
+> +			reg = <0x0007b000 0x12C>,
+> +			      <0x08af8800 0x400>;
+
+Lowercase hex only.
+
+> +			reg-names = "m31usb_phy_base",
+> +				    "qscratch_base";
+> +			phy_type= "utmi";
+> +
+> +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> +			reset-names = "usb2_phy_reset";
+> +
+> +			status = "okay";
+
+It's by default. Drop.
+
+> +		};
+> +
+> +		usb2: usb2@8a00000 {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+Node names should be generic. See also explanation and list of examples
+in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +			compatible = "qcom,ipq5332-dwc3", "qcom,dwc3";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			reg = <0x08af8800 0x100>;
+
+reg is always after compatible. Ranges is third. Then you will spot that
+address is wrong.
+
+> +
+> +			clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> +				<&gcc GCC_SNOC_USB_CLK>,
+> +				<&gcc GCC_USB0_SLEEP_CLK>,
+> +				<&gcc GCC_USB0_MOCK_UTMI_CLK>;
+
+Fix alignment.
+
+> +
+> +			clock-names = "core",
+> +				"iface",
+> +				"sleep",
+> +				"mock_utmi";
+
+Fix alignment.
+
+> +
+> +			interrupts-extended = <&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "pwr_event";
+> +
+
 
 Best regards,
 Krzysztof
