@@ -2,751 +2,1750 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA676725245
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 04:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1565872526A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jun 2023 05:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234253AbjFGC72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jun 2023 22:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54524 "EHLO
+        id S234853AbjFGDeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jun 2023 23:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234665AbjFGC71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 22:59:27 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2110.outbound.protection.outlook.com [40.107.113.110])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A573E193;
-        Tue,  6 Jun 2023 19:59:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RFqgzBkg/QtfyjHhEq7APU1phMUXS2WmhidjaEiFBIFrdkkgQio/1kc7A+F0xUgNszI5Bu7MLC6NvLSu+eZK03f31ENXXc2IrqdX794PB55SPmshmFMPZiXN80HKjHA7ZgqHIoGhl9W3meqQ6JQnPQRoG4aPR0eTV1YKDYsJwFqC3rEXAG51y5TxLzlyny49USfltdx6OJY6rmkcIDMRbfdwNBbqHAJZll1++Ur0eEwnFDYBppStOBLGl5QARBVNqsCoD00otM59gElLtWDnvcRIlpXdQurrxT+/p6WSCc2ket4ljMG3hX2b+kLjrJUe0EQZV2TV0dMIebVVMany9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aJzq7YSxjEe1dXoky13zxF4f9c7P3mwZwlytWAuFBwU=;
- b=gru+iha8egpWGkQ4Bmcbwb9xwUhLFBTXA2epLcC3Uguh3G0C8G4pH5fuEatRBgkW9Q9kVxHL/Q36G6sysbtCKbgnUBriiOT+koSUx2sYPmx44TIRWfLQjGddBId073aR1X6ZUAZQtNOeuiDMUP3WOum2X0E9A8ytGdg0GSD7L1TgbMBNB29fiynOjNjV+GAOQaOl60IFeLUvAxQ0JZbioxMO9ubxudzRUB66ryaG0vQvzsWH58BTBudjkr4WCuC+7ab08k2nYDTOuiInsQczTcAqLbaFM+8VvCwx5uOl+JYGDdAg2WlwcrfF9Ydy82D28cmZx7njbXWpxYdqZFRaPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aJzq7YSxjEe1dXoky13zxF4f9c7P3mwZwlytWAuFBwU=;
- b=mljnpN/8y33z5ZY+exkRUUV/J/qESZIjvFjXUkN0cMCUuwB1rXf7yy9EHs6TxP08NOX3wCVrjVkmTqYsGZo/4jM/O8gJO9zsRiIFGPUj38qeJUV83Zil/ke0sznrhbPThAjEod5Dj+x6zrq9uuPwGUcvDVqLEwExt6Q+6Lgmry8=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OS7PR01MB11901.jpnprd01.prod.outlook.com
- (2603:1096:604:236::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.19; Wed, 7 Jun
- 2023 02:59:21 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::711d:f870:2e08:b6e1]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::711d:f870:2e08:b6e1%3]) with mapi id 15.20.6455.030; Wed, 7 Jun 2023
- 02:59:21 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Serge Semin <fancer.lancer@gmail.com>
-CC:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v16 19/22] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Thread-Topic: [PATCH v16 19/22] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Thread-Index: AQHZgwfSD1pv8+kZFEalYK7OljPo8698cOgAgAEOU0A=
-Date:   Wed, 7 Jun 2023 02:59:20 +0000
-Message-ID: <TYBPR01MB5341A67CF6DFFCB396F13195D853A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
- <20230510062234.201499-20-yoshihiro.shimoda.uh@renesas.com>
- <20230605143908.fcgqzedp7oiarbyu@mobilestation>
-In-Reply-To: <20230605143908.fcgqzedp7oiarbyu@mobilestation>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS7PR01MB11901:EE_
-x-ms-office365-filtering-correlation-id: 9a62be5e-62a1-426d-334a-08db67033132
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: hdIEc7cgnNyUWe0NbfDX1z56kAUAPCj9iJc/xL6JWvgyJm5caGdifdTURYAnqbyADdomHw8qKx4EECG9Ah81uBxpLEkpJ7AaD1PaMCP3l0RSEo+UB5J2rMLuXqg2FLai4Dh+Mg0wvHP7/zBrnrLGWnJYnRZXnQ4oLsJP4LlefnW5LTk0dtP0zq20HjiRCyP5MMFSTmZ7rY4IYqQjxmtZBTDGAvlFW45qLq9WGjf5QzGV5JBz+NOiMeISqmb1NTbqNdvoUwvqId1ACiJbQhL+/vj21XfuxGnpZ8aK95ZTr40wA6UH6J7DnAuUXTWjSs3uagbKiiK/1eVaWT9nm6soMvPr4ONHjFiOcNB4DjryaRF1CRkzae8MXbly7z1JlxxynRK5qKr0U/kQe4L6/pECjbt+vMS/byptR3MNqJryXIRLG2w6D4pYHXWDAsoiRS1RkGCcGhwzwih+hrDkGmOttshjaU6IInkCHkZNyOii+KhtXq3a9sEFkzIj1UlyTKa7uZeJNQkTeS85p0/1gtDnCcVFpzU8Ale880PYO8O+NNuP9q4tInSSsd3B0Q7mJZ6HnFmD1VfalzJja2vV43ql40hgsrCiLSg4CiuYZ4x0ZqlRJVbfega02ldM2W7SmbGI
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(396003)(39860400002)(376002)(366004)(451199021)(316002)(7696005)(41300700001)(83380400001)(86362001)(38070700005)(9686003)(6506007)(7416002)(186003)(2906002)(30864003)(33656002)(122000001)(38100700002)(55016003)(5660300002)(52536014)(8676002)(8936002)(66946007)(66556008)(66476007)(66446008)(64756008)(76116006)(54906003)(478600001)(71200400001)(4326008)(6916009)(579004);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?witFZngHjEcu2+1CSgxIGejuyASQnJ/OZY5c4zOMobeGjOl9ehqSWdIOrEw3?=
- =?us-ascii?Q?RdnoGc6sZReDoFe6e/nXsUjhwmEOi7Zkdwh98Hnqn5QkoEvJ6iXq/6STPFZx?=
- =?us-ascii?Q?QrX6xzPXtRszjqP8nPO652vLqibRHbOJryUWNQRvCmAjYMuqtaQaRMGS9DSk?=
- =?us-ascii?Q?JlirZHDbLD+IDg5SbAQQC5POlSC9N2b/3Gc3YfEeIqYRX04BiRX5Oi5WzI6x?=
- =?us-ascii?Q?ewLXD/rgBcUSsEcqMsH2oG++tdxKuDu8YwXZMq+5zuKMma6z9DRIApqjVI4p?=
- =?us-ascii?Q?vz+3CerBBC9PbrweMy6zyWjPn3xkTzJprSh+2r1tlDHJjifPBpy1Uf3tdQMt?=
- =?us-ascii?Q?Q5irF1Trkra9oDdkEAibNBFezSkYFOiafryfEceifyeJpYAzzNqp2pZXz+iQ?=
- =?us-ascii?Q?JkI1qB2zOyWnYQoVRI+nui5f/Ts6J/olA7EOB61u0vCFyE92XneWRge2cQvP?=
- =?us-ascii?Q?g+CtRK7p04C581BpFumZ980q/qokHJP0epkrsZ5m4yQxnAio5ertuUCV7dXz?=
- =?us-ascii?Q?fCQj65FYCDCBzRUk2xeNYenh1ZVLq/PZLFqzSOF5zM/sIKJ+hCyOof5pvuCC?=
- =?us-ascii?Q?RkZeTenuigWvAcwnAYTtwtam5I7RZa+MyWLMfjAdU8jxK+pJp6rrmhtubOtF?=
- =?us-ascii?Q?v6T3XR8qtgaWthaHufOQZB2aYdO0WLnC3ltP1H0TV0f6uJHiL2Wv0ubx6L72?=
- =?us-ascii?Q?gj2KXoNh9y6xU+xJ2gFFyKbJxImQJusrXWpSeyXVsW2I5E65yfCFa4My9aCP?=
- =?us-ascii?Q?OhZWho/+5X+sAef7I4r1cuiuanw4U/80dBjaHDJpvCgtATEEF64iRjBhxOYJ?=
- =?us-ascii?Q?JgUhktK95LJ9hju91WqZGZccZLo0tkhVyuBYnD7ko/0ea4PfAa53ar+Vzosv?=
- =?us-ascii?Q?DjW1mKWjisyEwnd6/B8RUUZ8X0Ak9q1JdyvYA+pNdZA040vgvQFJZyLFb2B4?=
- =?us-ascii?Q?8PkMOdsRTUMh3szXZsZQemqKUXgzvDos3p3xm0C/3w1sEuXN1pm6xp99J1zG?=
- =?us-ascii?Q?7hsanFvategJ68tpz6UhuF9XaO/iI4SGtGV8ZmHFDlb8SbBX2rTAvKe0QE4l?=
- =?us-ascii?Q?92jOuwzpd8XBnfTx83fTRAl4ZgjfPoGEi/1ljJ9v/R4ZLDXz1Rq5+4TI5T1v?=
- =?us-ascii?Q?2e3+uGf0mKTf/DAa+atFxN26bdwnmDxVszIO88jY9ISo7vBe/V+mL4qaY59N?=
- =?us-ascii?Q?NT90GFGeCSKr5GlSnVZpoizELHUWrCBVAPS7CgH2vZs/qLCSBIO6ZNwNzV9X?=
- =?us-ascii?Q?nbk30U5Ga2qL/WA2569y/CEgiVsG3kW88c3pnBEzNeo0NX9FjV+fG4FNacTJ?=
- =?us-ascii?Q?TWrh3O+EqJLUDxOVGcx4pNWcVWQyGMelWVTmsDardxg5s+e1BrikYMbcx7vB?=
- =?us-ascii?Q?kK6YNapZAQv0Coj40nMRErOI4Bn9ydZgVdWr04N88rllqalNOo/morxpbFc0?=
- =?us-ascii?Q?MRVtL3aX5ZsdDZRtn8Wi80zqtfwfVyW9cRaY6VvEGvT6uhQ5co8MrT7NIkqE?=
- =?us-ascii?Q?GFnHfsKEDF7h8qg/4M+0RV6ENm5OCIeS/U4BRu6vYGqMDVee/d4ReG8wBsZf?=
- =?us-ascii?Q?Wk7i3LsZdy2nm8AkaJNtFWlraaxN04xrcIUViBL/ia9jvhVDgf1byUB7vxlV?=
- =?us-ascii?Q?CHTjtBI3cXzKxii5qPJWuYjNGIsJNzSuBhx5ypwfd1+LqU7snDciZwHTO6Us?=
- =?us-ascii?Q?DwlS/g=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S234777AbjFGDeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jun 2023 23:34:09 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 315E01712
+        for <devicetree@vger.kernel.org>; Tue,  6 Jun 2023 20:34:03 -0700 (PDT)
+Received: from kwepemi500011.china.huawei.com (unknown [172.30.72.53])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4QbXtV3mdPzLqVP;
+        Wed,  7 Jun 2023 11:30:58 +0800 (CST)
+Received: from [10.67.103.39] (10.67.103.39) by kwepemi500011.china.huawei.com
+ (7.221.188.124) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Wed, 7 Jun
+ 2023 11:34:00 +0800
+Message-ID: <647FFAA7.8000409@hisilicon.com>
+Date:   Wed, 7 Jun 2023 11:33:59 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a62be5e-62a1-426d-334a-08db67033132
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2023 02:59:21.0605
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: u3pi5GB7GiqMNiLmBSksz6SPlcIjHnU9/OAePqLRJpOaENevZpKmNL3T07LaHkz0lmiYraZyMvT93hn533e0xfPMRpnocJL1z7BlF4vtPL67L3+MZ9yNG2jRKXMbpa0y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB11901
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: Unify pinctrl-single pin group nodes for
+ hisilicon
+References: <20230523065522.14895-1-tony@atomide.com>
+In-Reply-To: <20230523065522.14895-1-tony@atomide.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.103.39]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ kwepemi500011.china.huawei.com (7.221.188.124)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Serge,
+Hi Tony,
 
-> From: Serge Semin, Sent: Monday, June 5, 2023 11:39 PM
->=20
-> On Wed, May 10, 2023 at 03:22:31PM +0900, Yoshihiro Shimoda wrote:
-> > Add R-Car Gen4 PCIe Host support. This controller is based on
-> > Synopsys DesignWare PCIe, but this controller has vendor-specific
-> > registers so that requires initialization code like mode setting
-> > and retraining and so on.
-> >
-> > To reduce code delta, adds some helper functions which are used by
-> > both the host driver and the endpoint driver (which is added
-> > immediately afterwards) into a separate file.
-> >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > ---
-> >  drivers/pci/controller/dwc/Kconfig            |   9 +
-> >  drivers/pci/controller/dwc/Makefile           |   2 +
-> >  .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 141 +++++++++++++
-> >  drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 190 ++++++++++++++++++
-> >  drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  46 +++++
-> >  5 files changed, 388 insertions(+)
-> >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
-> >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
-> >
-> > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controlle=
-r/dwc/Kconfig
-> > index ab96da43e0c2..64d4d37bc891 100644
-> > --- a/drivers/pci/controller/dwc/Kconfig
-> > +++ b/drivers/pci/controller/dwc/Kconfig
-> > @@ -415,4 +415,13 @@ config PCIE_VISCONTI_HOST
-> >  	  Say Y here if you want PCIe controller support on Toshiba Visconti =
-SoC.
-> >  	  This driver supports TMPV7708 SoC.
-> >
-> > +config PCIE_RCAR_GEN4
-> > +	tristate "Renesas R-Car Gen4 PCIe Host controller"
-> > +	depends on ARCH_RENESAS || COMPILE_TEST
-> > +	depends on PCI_MSI
-> > +	select PCIE_DW_HOST
-> > +	help
-> > +	  Say Y here if you want PCIe host controller support on R-Car Gen4 S=
-oCs.
-> > +	  This uses the DesignWare core.
-> > +
-> >  endmenu
-> > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controll=
-er/dwc/Makefile
-> > index bf5c311875a1..486cf706b53d 100644
-> > --- a/drivers/pci/controller/dwc/Makefile
-> > +++ b/drivers/pci/controller/dwc/Makefile
-> > @@ -26,6 +26,8 @@ obj-$(CONFIG_PCIE_TEGRA194) +=3D pcie-tegra194.o
-> >  obj-$(CONFIG_PCIE_UNIPHIER) +=3D pcie-uniphier.o
-> >  obj-$(CONFIG_PCIE_UNIPHIER_EP) +=3D pcie-uniphier-ep.o
-> >  obj-$(CONFIG_PCIE_VISCONTI_HOST) +=3D pcie-visconti.o
-> > +pcie-rcar-gen4-host-drv-objs :=3D pcie-rcar-gen4.o pcie-rcar-gen4-host=
-.o
-> > +obj-$(CONFIG_PCIE_RCAR_GEN4) +=3D pcie-rcar-gen4-host-drv.o
-> >
-> >  # The following drivers are for devices that use the generic ACPI
-> >  # pci_root.c driver but don't support standard ECAM config access.
-> > diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4-host.c b/drivers=
-/pci/controller/dwc/pcie-rcar-gen4-host.c
-> > new file mode 100644
-> > index 000000000000..df7d80f1874f
-> > --- /dev/null
-> > +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
-> > @@ -0,0 +1,141 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * PCIe host controller driver for Renesas R-Car Gen4 Series SoCs
-> > + * Copyright (C) 2022-2023 Renesas Electronics Corporation
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/pci.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include "pcie-rcar-gen4.h"
-> > +#include "pcie-designware.h"
-> > +
-> > +static int rcar_gen4_pcie_host_init(struct dw_pcie_rp *pp)
-> > +{
-> > +	struct dw_pcie *dw =3D to_dw_pcie_from_pp(pp);
-> > +	struct rcar_gen4_pcie *rcar =3D to_rcar_gen4_pcie(dw);
-> > +	int ret;
-> > +	u32 val;
-> > +
-> > +	gpiod_set_value_cansleep(dw->pe_rst, 1);
-> > +
-> > +	ret =3D rcar_gen4_pcie_set_device_type(rcar, true, dw->num_lanes);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
->=20
-> > +	dw_pcie_dbi_ro_wr_en(dw);
->=20
-> Are you sure dw_pcie_dbi_ro_wr_en() and dw_pcie_dbi_ro_wr_dis() are
-> needed? In accordance with the DW PCIe Dual-mode HW manual the BARx
-> registers are W-only over the DBI2 map with no need in setting the
-> DBI_RO_WR_EN flag.
->=20
-> Please check that on your hardware.
+On 2023/5/23 14:55, Tony Lindgren wrote:
+> We want to unify the pinctrl-single pin group nodes to use naming "pins".
+> Otherwise non-standad pin group names will add make dtbs checks errors
+> when the pinctrl-single yaml binding gets merged.
+> 
+> Let's also correct the pinctrl controller #size-cells to 0 while at it.
+> 
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 
-You're correct. They are not needed. So, I'll drop this on v17.
+Updated the subject and applied to the HiSilicon arm64 dt tree.
+Thanks!
 
-> > +
-> > +	/*
-> > +	 * According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> > +	 * Rev.5.20a, we should disable two BARs to avoid unnecessary memory
-> > +	 * assignment during device enumeration.
-> > +	 */
-> > +	dw_pcie_writel_dbi2(dw, PCI_BASE_ADDRESS_0, 0x0);
-> > +	dw_pcie_writel_dbi2(dw, PCI_BASE_ADDRESS_1, 0x0);
-> > +
->=20
-> > +	dw_pcie_dbi_ro_wr_dis(dw);
->=20
-> ditto
+Best Regards,
+Wei
 
-I'll drop this too.
-
-> > +
-> > +	if (IS_ENABLED(CONFIG_PCI_MSI)) {
-> > +		/* Enable MSI interrupt signal */
-> > +		val =3D readl(rcar->base + PCIEINTSTS0EN);
-> > +		val |=3D MSI_CTRL_INT;
-> > +		writel(val, rcar->base + PCIEINTSTS0EN);
-> > +	}
-> > +
-> > +	msleep(100);	/* pe_rst requires 100msec delay */
-> > +
-> > +	gpiod_set_value_cansleep(dw->pe_rst, 0);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct dw_pcie_host_ops rcar_gen4_pcie_host_ops =3D {
-> > +	.host_init =3D rcar_gen4_pcie_host_init,
-> > +};
-> > +
-> > +static int rcar_gen4_add_dw_pcie_rp(struct rcar_gen4_pcie *rcar,
-> > +				   struct platform_device *pdev)
-> > +{
-> > +	struct dw_pcie *dw =3D &rcar->dw;
-> > +	struct dw_pcie_rp *pp =3D &dw->pp;
-> > +
-> > +	pp->num_vectors =3D MAX_MSI_IRQS;
-> > +	pp->ops =3D &rcar_gen4_pcie_host_ops;
-> > +	dw_pcie_cap_set(dw, REQ_RES);
-> > +
-> > +	return dw_pcie_host_init(pp);
-> > +}
-> > +
-> > +static void rcar_gen4_remove_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
-> > +{
-> > +	dw_pcie_host_deinit(&rcar->dw.pp);
-> > +	gpiod_set_value_cansleep(rcar->dw.pe_rst, 1);
-> > +}
-> > +
-> > +static int rcar_gen4_pcie_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct rcar_gen4_pcie *rcar;
-> > +	int err;
-> > +
-> > +	rcar =3D rcar_gen4_pcie_devm_alloc(dev);
-> > +	if (!rcar)
-> > +		return -ENOMEM;
-> > +
-> > +	err =3D rcar_gen4_pcie_get_resources(rcar, pdev);
-> > +	if (err < 0) {
-> > +		dev_err(dev, "Failed to request resource: %d\n", err);
-> > +		return err;
-> > +	}
-> > +
-> > +	platform_set_drvdata(pdev, rcar);
-> > +
-> > +	err =3D rcar_gen4_pcie_prepare(rcar);
-> > +	if (err < 0)
-> > +		return err;
-> > +
-> > +	rcar->needs_retrain =3D true;
-> > +	err =3D rcar_gen4_add_dw_pcie_rp(rcar, pdev);
-> > +	if (err < 0)
-> > +		goto err_add;
-> > +
-> > +	return 0;
-> > +
-> > +err_add:
-> > +	rcar_gen4_pcie_unprepare(rcar);
-> > +
-> > +	return err;
-> > +}
-> > +
-> > +static int rcar_gen4_pcie_remove(struct platform_device *pdev)
-> > +{
-> > +	struct rcar_gen4_pcie *rcar =3D platform_get_drvdata(pdev);
-> > +
-> > +	rcar_gen4_remove_dw_pcie_rp(rcar);
-> > +	rcar_gen4_pcie_unprepare(rcar);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct of_device_id rcar_gen4_pcie_of_match[] =3D {
-> > +	{ .compatible =3D "renesas,rcar-gen4-pcie", },
-> > +	{},
-> > +};
-> > +
-> > +static struct platform_driver rcar_gen4_pcie_driver =3D {
-> > +	.driver =3D {
-> > +		.name =3D "pcie-rcar-gen4",
-> > +		.of_match_table =3D rcar_gen4_pcie_of_match,
-> > +		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
-> > +	},
-> > +	.probe =3D rcar_gen4_pcie_probe,
-> > +	.remove =3D rcar_gen4_pcie_remove,
-> > +};
-> > +module_platform_driver(rcar_gen4_pcie_driver);
-> > +
-> > +MODULE_DESCRIPTION("Renesas R-Car Gen4 PCIe host controller driver");
-> > +MODULE_LICENSE("GPL");
-> > diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/=
-controller/dwc/pcie-rcar-gen4.c
-> > new file mode 100644
-> > index 000000000000..35923fda8ed5
-> > --- /dev/null
-> > +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> > @@ -0,0 +1,190 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * PCIe host/endpoint controller driver for Renesas R-Car Gen4 Series =
-SoCs
-> > + * Copyright (C) 2022-2023 Renesas Electronics Corporation
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/pci.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/reset.h>
-> > +
-> > +#include "pcie-rcar-gen4.h"
-> > +#include "pcie-designware.h"
-> > +
-> > +/* Renesas-specific */
-> > +#define PCIERSTCTRL1		0x0014
-> > +#define  APP_HOLD_PHY_RST	BIT(16)
-> > +#define  APP_LTSSM_ENABLE	BIT(0)
-> > +
-> > +#define RETRAIN_MAX_CHECK	10
-> > +#define RETRAIN_MAX_RETRIES	10
-> > +
-> > +static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
-> > +					bool enable)
-> > +{
-> > +	u32 val;
-> > +
-> > +	val =3D readl(rcar->base + PCIERSTCTRL1);
-> > +	if (enable) {
-> > +		val |=3D APP_LTSSM_ENABLE;
->=20
-> > +		val &=3D ~APP_HOLD_PHY_RST;
->=20
-> What about moving the APP_HOLD_PHY_RST de-assertion to the
-> rcar_gen4_pcie_set_device_type() method? In accordance with the
-> "3.1 Initialization" chapter it's supposed to be done before
-> performing the DBI programming and activating the link training.
-
-IIUC, the "3.1 Initialization" said app_hold_phy_rst =3D 1 before
-performing the DBI programming. So, it is assertion. Also, the SoC
-documentation described the initializing procedure as the follows:
- app_ltssm_enable =3D 1
- app_hold_phy_rst =3D 0
-So, I would like to keep them in the function.
-
-> > +	} else {
-> > +		val &=3D ~APP_LTSSM_ENABLE;
-> > +		val |=3D APP_HOLD_PHY_RST;
-> > +	}
-> > +	writel(val, rcar->base + PCIERSTCTRL1);
-> > +}
-> > +
-> > +static bool rcar_gen4_pcie_check_retrain_link(struct dw_pcie *dw)
-> > +{
-> > +	u8 offset =3D dw_pcie_find_capability(dw, PCI_CAP_ID_EXP);
-> > +	u32 lnkcap =3D dw_pcie_readl_dbi(dw, offset + PCI_EXP_LNKCAP);
-> > +	u32 lnkctl =3D dw_pcie_readl_dbi(dw, offset + PCI_EXP_LNKCTL);
-> > +	u16 lnksta =3D dw_pcie_readw_dbi(dw, offset + PCI_EXP_LNKSTA);
-> > +	int i;
-> > +
->=20
-> > +	if ((lnksta & PCI_EXP_LNKSTA_CLS) =3D=3D (lnkcap & PCI_EXP_LNKCAP_SLS=
-))
-> > +		return true;
-> > +
-> > +	lnkctl |=3D PCI_EXP_LNKCTL_RL;
-> > +	dw_pcie_writel_dbi(dw, offset + PCI_EXP_LNKCTL, lnkctl);
-> > +
-> > +	for (i =3D 0; i < RETRAIN_MAX_CHECK; i++) {
-> > +		lnksta =3D dw_pcie_readw_dbi(dw, offset + PCI_EXP_LNKSTA);
-> > +		if (lnksta & PCI_EXP_LNKSTA_LT)
-> > +			return true;
-> > +		usleep_range(1000, 1100);
-> > +	}
->=20
-> I'll ask one more time because you didn't respond to my previous note
-> about this.
-
-I'm sorry. I completely overlooked the previous note.
-
-> Are you sure that this is needed? Did you try
-> the approach described in "3.13 Gen2/3/4/5 Speed Modes" with
-> de-asserting/asserting the GEN2_CTRL_OFF.DIRECT_SPEED_CHANGE flag?
-
-I tried this setting, but it doesn't work. I'll investigate this setting mo=
-re.
-
-> I keep asking because the same problem we used to have on our hardware
-> until we found out that the DIRECT_SPEED_CHANGE flag helped to train
-> the link right to the speed specified in the capabilities.
->=20
-> So here is what presumably you'll need to do (based on the
-> "3.1 Initialization" and "3.13 Gen2/3/4/5 Speed Modes" chapters of
-> the DW PCIe DM hw-manual):
-> 1. Make sure the controller is in the power-down/reset state.
-> 2. Select device_type (EP or RP).
-> 3. De-assert the controller reset.
-> 4. Clear PHY-reset flag in the app registers.
-> 5. Perform some controller initializations.
-> 6. Enable LTSSM to start link training.
-> 7. Set GEN2_CTRL_OFF.DIRECT_SPEED_CHANGE flag one more time.
->=20
-> 1-4 are supposed to be done in rcar_gen4_pcie_host_init().
-> 5 is performed in the framework of the DW PCIe core driver.
-> 6-7 should be done in rcar_gen4_pcie_start_link().
->=20
-> Note 1. GEN2_CTRL_OFF.DIRECT_SPEED_CHANGE flag is already set on stage
-> 5 in the framework of the dw_pcie_setup_rc() method. But in our case
-> it only caused having the Gen.2 link speed. Adding stage 7 helped to
-> get stable Gen.3 link. So please try the denoted approach. If it works
-> what about adding stage 7 twice in order to get Gen.4 speed?
-> (waiting for the DIRECT_SPEED_CHANGE flag being auto-cleared and then
-> set it up again?)
->=20
-> Note 2. GEN2_CTRL_OFF.DIRECT_SPEED_CHANGE flag is defined as
-> PCIE_LINK_WIDTH_SPEED_CONTROL.PORT_LOGIC_SPEED_CHANGE macros in the DW
-> PCIe core driver.
->=20
-> Note 3. If what is suggested above works well then you won't need to
-> have the heavy rcar_gen4_pcie_check_retrain_link() method in the way
-> you have it defined.
-
-Thank you very much for your comments!
-
-> > +
-> > +	return false;
-> > +}
-> > +
-> > +static int rcar_gen4_pcie_link_up(struct dw_pcie *dw)
-> > +{
-> > +	struct rcar_gen4_pcie *rcar =3D to_rcar_gen4_pcie(dw);
-> > +	u32 val, mask;
-> > +
-> > +	val =3D readl(rcar->base + PCIEINTSTS0);
-> > +	mask =3D RDLH_LINK_UP | SMLH_LINK_UP;
-> > +
-> > +	return (val & mask) =3D=3D mask;
-> > +}
-> > +
-> > +static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
-> > +{
-> > +	struct rcar_gen4_pcie *rcar =3D to_rcar_gen4_pcie(dw);
-> > +	int i;
-> > +
-> > +	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> > +
-> > +	/*
-> > +	 * Require retraining here. Otherwise RDLH_LINK_UP of PCIEINTSTS0 whi=
-ch
-> > +	 * is this controller specific register may not be set.
-> > +	 */
-> > +	if (rcar->needs_retrain) {
-> > +		for (i =3D 0; i < RETRAIN_MAX_RETRIES; i++) {
-> > +			if (rcar_gen4_pcie_check_retrain_link(dw))
-> > +				return 0;
-> > +			msleep(100);
-> > +		}
-> > +
-> > +		return -ETIMEDOUT;	/* Failed */
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void rcar_gen4_pcie_stop_link(struct dw_pcie *dw)
-> > +{
-> > +	struct rcar_gen4_pcie *rcar =3D to_rcar_gen4_pcie(dw);
-> > +
-> > +	rcar_gen4_pcie_ltssm_enable(rcar, false);
-> > +}
-> > +
->=20
-> > +int rcar_gen4_pcie_set_device_type(struct rcar_gen4_pcie *rcar, bool r=
-c,
-> > +				   int num_lanes)
->=20
-> 1. Number of lanes is already defined in the rcar_gen4_pcie.dw.num_lanes =
-field.
-> What about using it from there instead of passing it as an argument?
-> 2. DW PCIe core driver has a very handy enum defined:
-> dw_pcie_device_mode. It describes the controller modes (End-point,
-> Root port, etc). What about adding the mode field right to the
-> rcar_gen4_pcie structure and initializing it in someplace in probe() ?
-> 3. Based on the function semantic it's better to be named as something
-> like rcar_gen4_pcie_init_device() or even rcar_gen4_pcie_basic_init().
-
-Thank you for your comments! I'll modify the function.
-
->=20
-> > +{
-> > +	u32 val;
-> > +
->=20
-> > +	/* Note: Assume the rcar->rst which is Cold-reset is asserted here */
->=20
-> What about directly asserting it here then? In accordance with the DW
-> PCIe DM manual the "device_type" input must be set before the DM
-> controller is powered up (basically un-reset). What if the controller
-> reset is already de-asserted, but you are going to changes its mode?
-> In that case the mode won't be changed and you'll end up with
-> unpredictable results.
-
-Thank you for your comment. We should add asserting it here as you mentione=
-d.
-
-> > +	val =3D readl(rcar->base + PCIEMSR0);
-> > +	if (rc)
-> > +		val |=3D DEVICE_TYPE_RC;
-> > +	else
-> > +		val |=3D DEVICE_TYPE_EP;
-> > +
-> > +	if (num_lanes < 4)
-> > +		val |=3D BIFUR_MOD_SET_ON;
-> > +
-> > +	writel(val, rcar->base + PCIEMSR0);
-> > +
-> > +	return reset_control_deassert(rcar->rst);
-> > +}
-> > +
-> > +int rcar_gen4_pcie_prepare(struct rcar_gen4_pcie *rcar)
-> > +{
-> > +	struct device *dev =3D rcar->dw.dev;
-> > +	int err;
-> > +
-> > +	pm_runtime_enable(dev);
-> > +	err =3D pm_runtime_resume_and_get(dev);
-> > +	if (err < 0) {
-> > +		dev_err(dev, "Failed to resume/get Runtime PM\n");
-> > +		pm_runtime_disable(dev);
-> > +	}
-> > +
-> > +	return err;
-> > +}
-> > +
-> > +void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
-> > +{
-> > +	struct device *dev =3D rcar->dw.dev;
-> > +
-> > +	if (!reset_control_status(rcar->rst))
-> > +		reset_control_assert(rcar->rst);
-> > +	pm_runtime_put(dev);
-> > +	pm_runtime_disable(dev);
-> > +}
-> > +
-> > +int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar,
-> > +				 struct platform_device *pdev)
-> > +{
-> > +	struct device *dev =3D rcar->dw.dev;
-> > +
-> > +	/* Renesas-specific registers */
-> > +	rcar->base =3D devm_platform_ioremap_resource_byname(pdev, "app");
-> > +	if (IS_ERR(rcar->base))
-> > +		return PTR_ERR(rcar->base);
-> > +
->=20
-> > +	rcar->rst =3D devm_reset_control_get(dev, NULL);
-> > +	if (IS_ERR(rcar->rst)) {
-> > +		dev_err(dev, "Failed to get Cold-reset\n");
->=20
-> So AFAICS your platform is equipped with the DWC_pcie_clkrst.v module.
-> Thus all the resets are appropriately cleared by a single flag:
-> power_up_rst_n. What about using the named reset in this case with the
-> "pwr" name? Thus you'll be able to drop the manual
-> devm_reset_control_get() invocation and instead use the reset-resources
-> requested in the framework of the generic dw_pcie_get_resources()
-> method? Note you'll need to move the dw_pcie_cap_set(dw, REQ_RES);
-> statement to rcar_gen4_pcie_devm_alloc() then and drop the
-> rcar_gen4_pcie.rst field afterwords.
-
-Thank you for your suggestion! Using "pwr" can work on my environment.
-
-> By the way I don't see you requesting and enabling the reference
-> clock in your driver but the bindings imply the clock source. How
-> come?
-
-For now, I used gpio-hog to enable the reference clock. But, it seem
-I should use "ref" clock for it. So, I'll fix it too.
-
-> > +		return PTR_ERR(rcar->rst);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct dw_pcie_ops dw_pcie_ops =3D {
-> > +	.start_link =3D rcar_gen4_pcie_start_link,
-> > +	.stop_link =3D rcar_gen4_pcie_stop_link,
-> > +	.link_up =3D rcar_gen4_pcie_link_up,
-> > +};
-> > +
-> > +struct rcar_gen4_pcie *rcar_gen4_pcie_devm_alloc(struct device *dev)
-> > +{
-> > +	struct rcar_gen4_pcie *rcar;
-> > +
-> > +	rcar =3D devm_kzalloc(dev, sizeof(*rcar), GFP_KERNEL);
-> > +	if (!rcar)
-> > +		return NULL;
-> > +
-> > +	rcar->dw.dev =3D dev;
-> > +	rcar->dw.ops =3D &dw_pcie_ops;
-> > +	dw_pcie_cap_set(&rcar->dw, EDMA_UNROLL);
-> > +
-> > +	return rcar;
-> > +}
-> > diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.h b/drivers/pci/=
-controller/dwc/pcie-rcar-gen4.h
-> > new file mode 100644
-> > index 000000000000..fec3f18609f4
-> > --- /dev/null
-> > +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.h
-> > @@ -0,0 +1,46 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * PCIe host/endpoint controller driver for Renesas R-Car Gen4 Series =
-SoCs
-> > + * Copyright (C) 2022-2023 Renesas Electronics Corporation
-> > + */
-> > +
-> > +#ifndef _PCIE_RCAR_GEN4_H_
-> > +#define _PCIE_RCAR_GEN4_H_
-> > +
-> > +#include <linux/io.h>
-> > +#include <linux/pci.h>
-> > +#include <linux/reset.h>
-> > +
-> > +#include "pcie-designware.h"
-> > +
-> > +/* Renesas-specific */
-> > +#define PCIEMSR0		0x0000
-> > +#define  BIFUR_MOD_SET_ON	BIT(0)
-> > +#define  DEVICE_TYPE_EP		0
-> > +#define  DEVICE_TYPE_RC		BIT(4)
-> > +
-> > +#define PCIEINTSTS0		0x0084
-> > +#define PCIEINTSTS0EN		0x0310
-> > +#define  MSI_CTRL_INT		BIT(26)
-> > +#define  SMLH_LINK_UP		BIT(7)
-> > +#define  RDLH_LINK_UP		BIT(6)
-> > +#define PCIEDMAINTSTSEN		0x0314
-> > +#define  PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
-> > +
->=20
-> > +struct rcar_gen4_pcie {
->=20
-> As I mentioned above this structure can be extended with the enum
-> dw_pcie_device_mode field thus dropping the boolean argument from the
-> rcar_gen4_pcie_set_device_type() method.
-
-I got it. I'll fix this.
-
-> > +	struct dw_pcie		dw;
->=20
-> As I already mentioned above the dw.num_lanes could be used instead of
-> passing it as the rcar_gen4_pcie_set_device_type() argument.
-
-I'll fix this too.
-
-Best regards,
-Yoshihiro Shimoda
-
-> -Serge(y)
->=20
-> > +	void __iomem		*base;
-> > +	struct reset_control	*rst;
-> > +	bool			needs_retrain;
-> > +};
-> > +#define to_rcar_gen4_pcie(x)	dev_get_drvdata((x)->dev)
-> > +
-> > +int rcar_gen4_pcie_set_device_type(struct rcar_gen4_pcie *rcar, bool r=
-c,
-> > +				   int num_lanes);
-> > +int rcar_gen4_pcie_prepare(struct rcar_gen4_pcie *pcie);
-> > +void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *pcie);
-> > +int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar,
-> > +				 struct platform_device *pdev);
-> > +struct rcar_gen4_pcie *rcar_gen4_pcie_devm_alloc(struct device *dev);
-> > +
-> > +#endif /* _PCIE_RCAR_GEN4_H_ */
-> > --
-> > 2.25.1
-> >
+> ---
+>  arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |   6 +-
+>  .../boot/dts/hisilicon/hikey-pinctrl.dtsi     | 134 +++++++++---------
+>  .../boot/dts/hisilicon/hikey960-pinctrl.dtsi  | 124 ++++++++--------
+>  .../boot/dts/hisilicon/hikey970-pinctrl.dtsi  | 118 +++++++--------
+>  4 files changed, 191 insertions(+), 191 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> --- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> @@ -407,7 +407,7 @@ pmx0: pinmux@f7010000 {
+>  			compatible = "pinctrl-single";
+>  			reg = <0x0 0xf7010000  0x0 0x27c>;
+>  			#address-cells = <1>;
+> -			#size-cells = <1>;
+> +			#size-cells = <0>;
+>  			#pinctrl-cells = <1>;
+>  			#gpio-range-cells = <3>;
+>  			pinctrl-single,register-width = <32>;
+> @@ -446,7 +446,7 @@ pmx1: pinmux@f7010800 {
+>  			compatible = "pinconf-single";
+>  			reg = <0x0 0xf7010800 0x0 0x28c>;
+>  			#address-cells = <1>;
+> -			#size-cells = <1>;
+> +			#size-cells = <0>;
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <32>;
+>  		};
+> @@ -455,7 +455,7 @@ pmx2: pinmux@f8001800 {
+>  			compatible = "pinconf-single";
+>  			reg = <0x0 0xf8001800 0x0 0x78>;
+>  			#address-cells = <1>;
+> -			#size-cells = <1>;
+> +			#size-cells = <0>;
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <32>;
+>  		};
+> diff --git a/arch/arm64/boot/dts/hisilicon/hikey-pinctrl.dtsi b/arch/arm64/boot/dts/hisilicon/hikey-pinctrl.dtsi
+> --- a/arch/arm64/boot/dts/hisilicon/hikey-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hikey-pinctrl.dtsi
+> @@ -17,13 +17,13 @@ &pwm_in_pmx_func
+>  				&bl_pwm_pmx_func
+>  				>;
+>  
+> -			boot_sel_pmx_func: boot_sel_pmx_func {
+> +			boot_sel_pmx_func: boot-sel-pins {
+>  				pinctrl-single,pins = <
+>  					0x0    MUX_M0	/* BOOT_SEL     (IOMG000) */
+>  				>;
+>  			};
+>  
+> -			emmc_pmx_func: emmc_pmx_func {
+> +			emmc_pmx_func: emmc-pins {
+>  				pinctrl-single,pins = <
+>  					0x100  MUX_M0	/* EMMC_CLK     (IOMG064) */
+>  					0x104  MUX_M0	/* EMMC_CMD     (IOMG065) */
+> @@ -38,7 +38,7 @@ emmc_pmx_func: emmc_pmx_func {
+>  				>;
+>  			};
+>  
+> -			sd_pmx_func: sd_pmx_func {
+> +			sd_pmx_func: sd-pins {
+>  				pinctrl-single,pins = <
+>  					0xc    MUX_M0	/* SD_CLK       (IOMG003) */
+>  					0x10   MUX_M0	/* SD_CMD       (IOMG004) */
+> @@ -48,7 +48,7 @@ sd_pmx_func: sd_pmx_func {
+>  					0x20   MUX_M0	/* SD_DATA3     (IOMG008) */
+>  				>;
+>  			};
+> -			sd_pmx_idle: sd_pmx_idle {
+> +			sd_pmx_idle: sd-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0xc    MUX_M1	/* SD_CLK       (IOMG003) */
+>  					0x10   MUX_M1	/* SD_CMD       (IOMG004) */
+> @@ -59,7 +59,7 @@ sd_pmx_idle: sd_pmx_idle {
+>  				>;
+>  			};
+>  
+> -			sdio_pmx_func: sdio_pmx_func {
+> +			sdio_pmx_func: sdio-pins {
+>  				pinctrl-single,pins = <
+>  					0x128  MUX_M0	/* SDIO_CLK     (IOMG074) */
+>  					0x12c  MUX_M0	/* SDIO_CMD     (IOMG075) */
+> @@ -69,7 +69,7 @@ sdio_pmx_func: sdio_pmx_func {
+>  					0x13c  MUX_M0	/* SDIO_DATA3   (IOMG079) */
+>  				>;
+>  			};
+> -			sdio_pmx_idle: sdio_pmx_idle {
+> +			sdio_pmx_idle: sdio-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0x128  MUX_M1	/* SDIO_CLK     (IOMG074) */
+>  					0x12c  MUX_M1	/* SDIO_CMD     (IOMG075) */
+> @@ -80,7 +80,7 @@ sdio_pmx_idle: sdio_pmx_idle {
+>  				>;
+>  			};
+>  
+> -			isp_pmx_func: isp_pmx_func {
+> +			isp_pmx_func: isp-pins {
+>  				pinctrl-single,pins = <
+>  					0x24   MUX_M0	/* ISP_PWDN0    (IOMG009) */
+>  					0x28   MUX_M0	/* ISP_PWDN1    (IOMG010) */
+> @@ -101,19 +101,19 @@ isp_pmx_func: isp_pmx_func {
+>  				>;
+>  			};
+>  
+> -			hkadc_ssi_pmx_func: hkadc_ssi_pmx_func {
+> +			hkadc_ssi_pmx_func: hkadc-ssi-pins {
+>  				pinctrl-single,pins = <
+>  					0x68   MUX_M0	/* HKADC_SSI    (IOMG026) */
+>  				>;
+>  			};
+>  
+> -			codec_clk_pmx_func: codec_clk_pmx_func {
+> +			codec_clk_pmx_func: codec-clk-pins {
+>  				pinctrl-single,pins = <
+>  					0x6c   MUX_M0	/* CODEC_CLK    (IOMG027) */
+>  				>;
+>  			};
+>  
+> -			codec_pmx_func: codec_pmx_func {
+> +			codec_pmx_func: codec-pins {
+>  				pinctrl-single,pins = <
+>  					0x70   MUX_M1	/* DMIC_CLK     (IOMG028) */
+>  					0x74   MUX_M0	/* CODEC_SYNC   (IOMG029) */
+> @@ -122,7 +122,7 @@ codec_pmx_func: codec_pmx_func {
+>  				>;
+>  			};
+>  
+> -			fm_pmx_func: fm_pmx_func {
+> +			fm_pmx_func: fm-pins {
+>  				pinctrl-single,pins = <
+>  					0x80   MUX_M1	/* FM_XCLK      (IOMG032) */
+>  					0x84   MUX_M1	/* FM_XFS       (IOMG033) */
+> @@ -131,7 +131,7 @@ fm_pmx_func: fm_pmx_func {
+>  				>;
+>  			};
+>  
+> -			bt_pmx_func: bt_pmx_func {
+> +			bt_pmx_func: bt-pins {
+>  				pinctrl-single,pins = <
+>  					0x90   MUX_M0	/* BT_XCLK      (IOMG036) */
+>  					0x94   MUX_M0	/* BT_XFS       (IOMG037) */
+> @@ -140,26 +140,26 @@ bt_pmx_func: bt_pmx_func {
+>  				>;
+>  			};
+>  
+> -			pwm_in_pmx_func: pwm_in_pmx_func {
+> +			pwm_in_pmx_func: pwm-in-pins {
+>  				pinctrl-single,pins = <
+>  					0xb8   MUX_M1	/* PWM_IN       (IOMG046) */
+>  				>;
+>  			};
+>  
+> -			bl_pwm_pmx_func: bl_pwm_pmx_func {
+> +			bl_pwm_pmx_func: bl-pwm-pins {
+>  				pinctrl-single,pins = <
+>  					0xbc   MUX_M1	/* BL_PWM       (IOMG047) */
+>  				>;
+>  			};
+>  
+> -			uart0_pmx_func: uart0_pmx_func {
+> +			uart0_pmx_func: uart0-pins {
+>  				pinctrl-single,pins = <
+>  					0xc0   MUX_M0	/* UART0_RXD    (IOMG048) */
+>  					0xc4   MUX_M0	/* UART0_TXD    (IOMG049) */
+>  				>;
+>  			};
+>  
+> -			uart1_pmx_func: uart1_pmx_func {
+> +			uart1_pmx_func: uart1-pins {
+>  				pinctrl-single,pins = <
+>  					0xc8   MUX_M0	/* UART1_CTS_N  (IOMG050) */
+>  					0xcc   MUX_M0	/* UART1_RTS_N  (IOMG051) */
+> @@ -168,7 +168,7 @@ uart1_pmx_func: uart1_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart2_pmx_func: uart2_pmx_func {
+> +			uart2_pmx_func: uart2-pins {
+>  				pinctrl-single,pins = <
+>  					0xd8   MUX_M0	/* UART2_CTS_N  (IOMG054) */
+>  					0xdc   MUX_M0	/* UART2_RTS_N  (IOMG055) */
+> @@ -177,7 +177,7 @@ uart2_pmx_func: uart2_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart3_pmx_func: uart3_pmx_func {
+> +			uart3_pmx_func: uart3-pins {
+>  				pinctrl-single,pins = <
+>  					0x180  MUX_M1	/* UART3_CTS_N  (IOMG096) */
+>  					0x184  MUX_M1	/* UART3_RTS_N  (IOMG097) */
+> @@ -186,7 +186,7 @@ uart3_pmx_func: uart3_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart4_pmx_func: uart4_pmx_func {
+> +			uart4_pmx_func: uart4-pins {
+>  				pinctrl-single,pins = <
+>  					0x1d0  MUX_M1	/* UART4_CTS_N  (IOMG116) */
+>  					0x1d4  MUX_M1	/* UART4_RTS_N  (IOMG117) */
+> @@ -195,35 +195,35 @@ uart4_pmx_func: uart4_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart5_pmx_func: uart5_pmx_func {
+> +			uart5_pmx_func: uart5-pins {
+>  				pinctrl-single,pins = <
+>  					0x1c8  MUX_M1	/* UART5_RXD    (IOMG114) */
+>  					0x1cc  MUX_M1	/* UART5_TXD    (IOMG115) */
+>  				>;
+>  			};
+>  
+> -			i2c0_pmx_func: i2c0_pmx_func {
+> +			i2c0_pmx_func: i2c0-pins {
+>  				pinctrl-single,pins = <
+>  					0xe8   MUX_M0	/* I2C0_SCL     (IOMG058) */
+>  					0xec   MUX_M0	/* I2C0_SDA     (IOMG059) */
+>  				>;
+>  			};
+>  
+> -			i2c1_pmx_func: i2c1_pmx_func {
+> +			i2c1_pmx_func: i2c1-pins {
+>  				pinctrl-single,pins = <
+>  					0xf0   MUX_M0	/* I2C1_SCL     (IOMG060) */
+>  					0xf4   MUX_M0	/* I2C1_SDA     (IOMG061) */
+>  				>;
+>  			};
+>  
+> -			i2c2_pmx_func: i2c2_pmx_func {
+> +			i2c2_pmx_func: i2c2-pins {
+>  				pinctrl-single,pins = <
+>  					0xf8   MUX_M0	/* I2C2_SCL     (IOMG062) */
+>  					0xfc   MUX_M0	/* I2C2_SDA     (IOMG063) */
+>  				>;
+>  			};
+>  
+> -			spi0_pmx_func: spi0_pmx_func {
+> +			spi0_pmx_func: spi0-pins {
+>  				pinctrl-single,pins = <
+>  					0x1a0  MUX_M1   /* SPI0_DI      (IOMG104) */
+>  					0x1a4  MUX_M1	/* SPI0_DO	(IOMG105) */
+> @@ -244,7 +244,7 @@ &pwm_in_cfg_func
+>  				&bl_pwm_cfg_func
+>  				>;
+>  
+> -			boot_sel_cfg_func: boot_sel_cfg_func {
+> +			boot_sel_cfg_func: boot-sel-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0    0x0	/* BOOT_SEL     (IOCFG000) */
+>  				>;
+> @@ -253,7 +253,7 @@ boot_sel_cfg_func: boot_sel_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			hkadc_ssi_cfg_func: hkadc_ssi_cfg_func {
+> +			hkadc_ssi_cfg_func: hkadc-ssi-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x6c   0x0	/* HKADC_SSI    (IOCFG027) */
+>  				>;
+> @@ -262,7 +262,7 @@ hkadc_ssi_cfg_func: hkadc_ssi_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			emmc_clk_cfg_func: emmc_clk_cfg_func {
+> +			emmc_clk_cfg_func: emmc-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x104  0x0	/* EMMC_CLK     (IOCFG065) */
+>  				>;
+> @@ -271,7 +271,7 @@ emmc_clk_cfg_func: emmc_clk_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_08MA DRIVE_MASK>;
+>  			};
+>  
+> -			emmc_cfg_func: emmc_cfg_func {
+> +			emmc_cfg_func: emmc-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x108  0x0	/* EMMC_CMD     (IOCFG066) */
+>  					0x10c  0x0	/* EMMC_DATA0   (IOCFG067) */
+> @@ -288,7 +288,7 @@ emmc_cfg_func: emmc_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_04MA DRIVE_MASK>;
+>  			};
+>  
+> -			emmc_rst_cfg_func: emmc_rst_cfg_func {
+> +			emmc_rst_cfg_func: emmc-rst-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x12c  0x0	/* EMMC_RST_N   (IOCFG075) */
+>  				>;
+> @@ -297,7 +297,7 @@ emmc_rst_cfg_func: emmc_rst_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_04MA DRIVE_MASK>;
+>  			};
+>  
+> -			sd_clk_cfg_func: sd_clk_cfg_func {
+> +			sd_clk_cfg_func: sd-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xc    0x0	/* SD_CLK       (IOCFG003) */
+>  				>;
+> @@ -305,7 +305,7 @@ sd_clk_cfg_func: sd_clk_cfg_func {
+>  				pinctrl-single,bias-pullup    = <PULL_DIS  PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_10MA DRIVE_MASK>;
+>  			};
+> -			sd_clk_cfg_idle: sd_clk_cfg_idle {
+> +			sd_clk_cfg_idle: sd-clk-cfg-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0xc    0x0	/* SD_CLK       (IOCFG003) */
+>  				>;
+> @@ -314,7 +314,7 @@ sd_clk_cfg_idle: sd_clk_cfg_idle {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			sd_cfg_func: sd_cfg_func {
+> +			sd_cfg_func: sd-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x10   0x0	/* SD_CMD       (IOCFG004) */
+>  					0x14   0x0	/* SD_DATA0     (IOCFG005) */
+> @@ -326,7 +326,7 @@ sd_cfg_func: sd_cfg_func {
+>  				pinctrl-single,bias-pullup    = <PULL_DIS  PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_08MA DRIVE_MASK>;
+>  			};
+> -			sd_cfg_idle: sd_cfg_idle {
+> +			sd_cfg_idle: sd-cfg-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0x10   0x0	/* SD_CMD       (IOCFG004) */
+>  					0x14   0x0	/* SD_DATA0     (IOCFG005) */
+> @@ -339,7 +339,7 @@ sd_cfg_idle: sd_cfg_idle {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			sdio_clk_cfg_func: sdio_clk_cfg_func {
+> +			sdio_clk_cfg_func: sdio-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x134  0x0	/* SDIO_CLK     (IOCFG077) */
+>  				>;
+> @@ -347,7 +347,7 @@ sdio_clk_cfg_func: sdio_clk_cfg_func {
+>  				pinctrl-single,bias-pullup    = <PULL_DIS  PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_08MA DRIVE_MASK>;
+>  			};
+> -			sdio_clk_cfg_idle: sdio_clk_cfg_idle {
+> +			sdio_clk_cfg_idle: sdio-clk-cfg-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0x134  0x0	/* SDIO_CLK     (IOCFG077) */
+>  				>;
+> @@ -356,7 +356,7 @@ sdio_clk_cfg_idle: sdio_clk_cfg_idle {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			sdio_cfg_func: sdio_cfg_func {
+> +			sdio_cfg_func: sdio-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x138  0x0	/* SDIO_CMD     (IOCFG078) */
+>  					0x13c  0x0	/* SDIO_DATA0   (IOCFG079) */
+> @@ -368,7 +368,7 @@ sdio_cfg_func: sdio_cfg_func {
+>  				pinctrl-single,bias-pullup    = <PULL_UP   PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_04MA DRIVE_MASK>;
+>  			};
+> -			sdio_cfg_idle: sdio_cfg_idle {
+> +			sdio_cfg_idle: sdio-cfg-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0x138  0x0	/* SDIO_CMD     (IOCFG078) */
+>  					0x13c  0x0	/* SDIO_DATA0   (IOCFG079) */
+> @@ -381,7 +381,7 @@ sdio_cfg_idle: sdio_cfg_idle {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			isp_cfg_func1: isp_cfg_func1 {
+> +			isp_cfg_func1: isp-cfg-func1-pins {
+>  				pinctrl-single,pins = <
+>  					0x28   0x0	/* ISP_PWDN0    (IOCFG010) */
+>  					0x2c   0x0	/* ISP_PWDN1    (IOCFG011) */
+> @@ -403,7 +403,7 @@ isp_cfg_func1: isp_cfg_func1 {
+>  				pinctrl-single,bias-pullup    = <PULL_DIS  PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+> -			isp_cfg_idle1: isp_cfg_idle1 {
+> +			isp_cfg_idle1: isp-cfg-idle1-pins {
+>  				pinctrl-single,pins = <
+>  					0x34   0x0	/* ISP_SHUTTER0 (IOCFG013) */
+>  					0x38   0x0	/* ISP_SHUTTER1 (IOCFG014) */
+> @@ -413,7 +413,7 @@ isp_cfg_idle1: isp_cfg_idle1 {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			isp_cfg_func2: isp_cfg_func2 {
+> +			isp_cfg_func2: isp-cfg-func2-pins {
+>  				pinctrl-single,pins = <
+>  					0x54   0x0	/* ISP_STROBE1  (IOCFG021) */
+>  				>;
+> @@ -422,7 +422,7 @@ isp_cfg_func2: isp_cfg_func2 {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			codec_clk_cfg_func: codec_clk_cfg_func {
+> +			codec_clk_cfg_func: codec-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x70   0x0	/* CODEC_CLK    (IOCFG028) */
+>  				>;
+> @@ -430,7 +430,7 @@ codec_clk_cfg_func: codec_clk_cfg_func {
+>  				pinctrl-single,bias-pullup    = <PULL_DIS  PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_04MA DRIVE_MASK>;
+>  			};
+> -			codec_clk_cfg_idle: codec_clk_cfg_idle {
+> +			codec_clk_cfg_idle: codec-clk-cfg-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0x70   0x0	/* CODEC_CLK    (IOCFG028) */
+>  				>;
+> @@ -439,7 +439,7 @@ codec_clk_cfg_idle: codec_clk_cfg_idle {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			codec_cfg_func1: codec_cfg_func1 {
+> +			codec_cfg_func1: codec-cfg-func1-pins {
+>  				pinctrl-single,pins = <
+>  					0x74   0x0	/* DMIC_CLK     (IOCFG029) */
+>  				>;
+> @@ -448,7 +448,7 @@ codec_cfg_func1: codec_cfg_func1 {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			codec_cfg_func2: codec_cfg_func2 {
+> +			codec_cfg_func2: codec-cfg-func2-pins {
+>  				pinctrl-single,pins = <
+>  					0x78   0x0	/* CODEC_SYNC   (IOCFG030) */
+>  					0x7c   0x0	/* CODEC_DI     (IOCFG031) */
+> @@ -458,7 +458,7 @@ codec_cfg_func2: codec_cfg_func2 {
+>  				pinctrl-single,bias-pullup    = <PULL_DIS  PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_04MA DRIVE_MASK>;
+>  			};
+> -			codec_cfg_idle2: codec_cfg_idle2 {
+> +			codec_cfg_idle2: codec-cfg-idle2-pins {
+>  				pinctrl-single,pins = <
+>  					0x78   0x0	/* CODEC_SYNC   (IOCFG030) */
+>  					0x7c   0x0	/* CODEC_DI     (IOCFG031) */
+> @@ -469,7 +469,7 @@ codec_cfg_idle2: codec_cfg_idle2 {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			fm_cfg_func: fm_cfg_func {
+> +			fm_cfg_func: fm-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x84   0x0	/* FM_XCLK      (IOCFG033) */
+>  					0x88   0x0	/* FM_XFS       (IOCFG034) */
+> @@ -481,7 +481,7 @@ fm_cfg_func: fm_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			bt_cfg_func: bt_cfg_func {
+> +			bt_cfg_func: bt-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x94   0x0	/* BT_XCLK      (IOCFG037) */
+>  					0x98   0x0	/* BT_XFS       (IOCFG038) */
+> @@ -492,7 +492,7 @@ bt_cfg_func: bt_cfg_func {
+>  				pinctrl-single,bias-pullup    = <PULL_DIS  PULL_UP   PULL_DIS  PULL_UP>;
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+> -			bt_cfg_idle: bt_cfg_idle {
+> +			bt_cfg_idle: bt-cfg-idle-pins {
+>  				pinctrl-single,pins = <
+>  					0x94   0x0	/* BT_XCLK      (IOCFG037) */
+>  					0x98   0x0	/* BT_XFS       (IOCFG038) */
+> @@ -504,7 +504,7 @@ bt_cfg_idle: bt_cfg_idle {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			pwm_in_cfg_func: pwm_in_cfg_func {
+> +			pwm_in_cfg_func: pwm-in-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xbc   0x0	/* PWM_IN       (IOCFG047) */
+>  				>;
+> @@ -513,7 +513,7 @@ pwm_in_cfg_func: pwm_in_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			bl_pwm_cfg_func: bl_pwm_cfg_func {
+> +			bl_pwm_cfg_func: bl-pwm-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xc0   0x0	/* BL_PWM       (IOCFG048) */
+>  				>;
+> @@ -522,7 +522,7 @@ bl_pwm_cfg_func: bl_pwm_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart0_cfg_func1: uart0_cfg_func1 {
+> +			uart0_cfg_func1: uart0-cfg-func1-pins {
+>  				pinctrl-single,pins = <
+>  					0xc4   0x0	/* UART0_RXD    (IOCFG049) */
+>  				>;
+> @@ -531,7 +531,7 @@ uart0_cfg_func1: uart0_cfg_func1 {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart0_cfg_func2: uart0_cfg_func2 {
+> +			uart0_cfg_func2: uart0-cfg-func2-pins {
+>  				pinctrl-single,pins = <
+>  					0xc8   0x0	/* UART0_TXD    (IOCFG050) */
+>  				>;
+> @@ -540,7 +540,7 @@ uart0_cfg_func2: uart0_cfg_func2 {
+>  				pinctrl-single,drive-strength = <DRIVE1_04MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart1_cfg_func1: uart1_cfg_func1 {
+> +			uart1_cfg_func1: uart1-cfg-func1-pins {
+>  				pinctrl-single,pins = <
+>  					0xcc   0x0	/* UART1_CTS_N  (IOCFG051) */
+>  					0xd4   0x0	/* UART1_RXD    (IOCFG053) */
+> @@ -550,7 +550,7 @@ uart1_cfg_func1: uart1_cfg_func1 {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart1_cfg_func2: uart1_cfg_func2 {
+> +			uart1_cfg_func2: uart1-cfg-func2-pins {
+>  				pinctrl-single,pins = <
+>  					0xd0   0x0	/* UART1_RTS_N  (IOCFG052) */
+>  					0xd8   0x0	/* UART1_TXD    (IOCFG054) */
+> @@ -560,7 +560,7 @@ uart1_cfg_func2: uart1_cfg_func2 {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart2_cfg_func: uart2_cfg_func {
+> +			uart2_cfg_func: uart2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xdc   0x0	/* UART2_CTS_N  (IOCFG055) */
+>  					0xe0   0x0	/* UART2_RTS_N  (IOCFG056) */
+> @@ -572,7 +572,7 @@ uart2_cfg_func: uart2_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart3_cfg_func: uart3_cfg_func {
+> +			uart3_cfg_func: uart3-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x190  0x0	/* UART3_CTS_N  (IOCFG100) */
+>  					0x194  0x0	/* UART3_RTS_N  (IOCFG101) */
+> @@ -584,7 +584,7 @@ uart3_cfg_func: uart3_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart4_cfg_func: uart4_cfg_func {
+> +			uart4_cfg_func: uart4-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x1e0  0x0	/* UART4_CTS_N  (IOCFG120) */
+>  					0x1e4  0x0	/* UART4_RTS_N  (IOCFG121) */
+> @@ -596,7 +596,7 @@ uart4_cfg_func: uart4_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			uart5_cfg_func: uart5_cfg_func {
+> +			uart5_cfg_func: uart5-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x1d8  0x0	/* UART4_RXD    (IOCFG118) */
+>  					0x1dc  0x0	/* UART4_TXD    (IOCFG119) */
+> @@ -606,7 +606,7 @@ uart5_cfg_func: uart5_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			i2c0_cfg_func: i2c0_cfg_func {
+> +			i2c0_cfg_func: i2c0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xec   0x0	/* I2C0_SCL     (IOCFG059) */
+>  					0xf0   0x0	/* I2C0_SDA     (IOCFG060) */
+> @@ -616,7 +616,7 @@ i2c0_cfg_func: i2c0_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			i2c1_cfg_func: i2c1_cfg_func {
+> +			i2c1_cfg_func: i2c1-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xf4   0x0	/* I2C1_SCL     (IOCFG061) */
+>  					0xf8   0x0	/* I2C1_SDA     (IOCFG062) */
+> @@ -626,7 +626,7 @@ i2c1_cfg_func: i2c1_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			i2c2_cfg_func: i2c2_cfg_func {
+> +			i2c2_cfg_func: i2c2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xfc   0x0	/* I2C2_SCL     (IOCFG063) */
+>  					0x100  0x0	/* I2C2_SDA     (IOCFG064) */
+> @@ -636,7 +636,7 @@ i2c2_cfg_func: i2c2_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			spi0_cfg_func: spi0_cfg_func {
+> +			spi0_cfg_func: spi0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x1b0  0x0	/* SPI0_DI	(IOCFG108) */
+>  					0x1b4  0x0	/* SPI0_DO	(IOCFG109) */
+> @@ -656,7 +656,7 @@ pmx2: pinmux@f8001800 {
+>  				&rstout_n_cfg_func
+>  				>;
+>  
+> -			rstout_n_cfg_func: rstout_n_cfg_func {
+> +			rstout_n_cfg_func: rstout-n-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0    0x0	/* RSTOUT_N     (IOCFG000) */
+>  				>;
+> @@ -665,7 +665,7 @@ rstout_n_cfg_func: rstout_n_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			pmu_peri_en_cfg_func: pmu_peri_en_cfg_func {
+> +			pmu_peri_en_cfg_func: pmu-peri-en-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x4    0x0	/* PMU_PERI_EN  (IOCFG001) */
+>  				>;
+> @@ -674,7 +674,7 @@ pmu_peri_en_cfg_func: pmu_peri_en_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			sysclk0_en_cfg_func: sysclk0_en_cfg_func {
+> +			sysclk0_en_cfg_func: sysclk0-en-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x8    0x0	/* SYSCLK0_EN   (IOCFG002) */
+>  				>;
+> @@ -683,7 +683,7 @@ sysclk0_en_cfg_func: sysclk0_en_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_02MA DRIVE_MASK>;
+>  			};
+>  
+> -			jtag_tdo_cfg_func: jtag_tdo_cfg_func {
+> +			jtag_tdo_cfg_func: jtag-tdo-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0xc    0x0	/* JTAG_TDO     (IOCFG003) */
+>  				>;
+> @@ -692,7 +692,7 @@ jtag_tdo_cfg_func: jtag_tdo_cfg_func {
+>  				pinctrl-single,drive-strength = <DRIVE1_08MA DRIVE_MASK>;
+>  			};
+>  
+> -			rf_reset_cfg_func: rf_reset_cfg_func {
+> +			rf_reset_cfg_func: rf-reset-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x70   0x0	/* RF_RESET0    (IOCFG028) */
+>  					0x74   0x0	/* RF_RESET1    (IOCFG029) */
+> diff --git a/arch/arm64/boot/dts/hisilicon/hikey960-pinctrl.dtsi b/arch/arm64/boot/dts/hisilicon/hikey960-pinctrl.dtsi
+> --- a/arch/arm64/boot/dts/hisilicon/hikey960-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hikey960-pinctrl.dtsi
+> @@ -25,7 +25,7 @@ pmx0: pinmux@e896c000 {
+>  				&range 0 7 0
+>  				&range 8 116 0>;
+>  
+> -			pmu_pmx_func: pmu_pmx_func {
+> +			pmu_pmx_func: pmu-pins {
+>  				pinctrl-single,pins = <
+>  					0x008 MUX_M1 /* PMU1_SSI */
+>  					0x00c MUX_M1 /* PMU2_SSI */
+> @@ -34,19 +34,19 @@ pmu_pmx_func: pmu_pmx_func {
+>  				>;
+>  			};
+>  
+> -			csi0_pwd_n_pmx_func: csi0_pwd_n_pmx_func {
+> +			csi0_pwd_n_pmx_func: csi0-pwd-n-pins {
+>  				pinctrl-single,pins = <
+>  					0x044 MUX_M0 /* CSI0_PWD_N */
+>  				>;
+>  			};
+>  
+> -			csi1_pwd_n_pmx_func: csi1_pwd_n_pmx_func {
+> +			csi1_pwd_n_pmx_func: csi1-pwd-n-pins {
+>  				pinctrl-single,pins = <
+>  					0x04c MUX_M0 /* CSI1_PWD_N */
+>  				>;
+>  			};
+>  
+> -			isp0_pmx_func: isp0_pmx_func {
+> +			isp0_pmx_func: isp0-pins {
+>  				pinctrl-single,pins = <
+>  					0x058 MUX_M1 /* ISP_CLK0 */
+>  					0x064 MUX_M1 /* ISP_SCL0 */
+> @@ -54,7 +54,7 @@ isp0_pmx_func: isp0_pmx_func {
+>  				>;
+>  			};
+>  
+> -			isp1_pmx_func: isp1_pmx_func {
+> +			isp1_pmx_func: isp1-pins {
+>  				pinctrl-single,pins = <
+>  					0x05c MUX_M1 /* ISP_CLK1 */
+>  					0x06c MUX_M1 /* ISP_SCL1 */
+> @@ -62,47 +62,47 @@ isp1_pmx_func: isp1_pmx_func {
+>  				>;
+>  			};
+>  
+> -			pwr_key_pmx_func: pwr_key_pmx_func {
+> +			pwr_key_pmx_func: pwr-key-pins {
+>  				pinctrl-single,pins = <
+>  					0x080 MUX_M0 /* GPIO_034 */
+>  				>;
+>  			};
+>  
+> -			i2c3_pmx_func: i2c3_pmx_func {
+> +			i2c3_pmx_func: i2c3-pins {
+>  				pinctrl-single,pins = <
+>  					0x02c MUX_M1 /* I2C3_SCL */
+>  					0x030 MUX_M1 /* I2C3_SDA */
+>  				>;
+>  			};
+>  
+> -			i2c4_pmx_func: i2c4_pmx_func {
+> +			i2c4_pmx_func: i2c4-pins {
+>  				pinctrl-single,pins = <
+>  					0x090 MUX_M1 /* I2C4_SCL */
+>  					0x094 MUX_M1 /* I2C4_SDA */
+>  				>;
+>  			};
+>  
+> -			pcie_perstn_pmx_func: pcie_perstn_pmx_func {
+> +			pcie_perstn_pmx_func: pcie-perstn-pins {
+>  				pinctrl-single,pins = <
+>  					0x15c MUX_M1 /* PCIE_PERST_N */
+>  				>;
+>  			};
+>  
+> -			usbhub5734_pmx_func: usbhub5734_pmx_func {
+> +			usbhub5734_pmx_func: usbhub5734-pins {
+>  				pinctrl-single,pins = <
+>  					0x11c MUX_M0 /* GPIO_073 */
+>  					0x120 MUX_M0 /* GPIO_074 */
+>  				>;
+>  			};
+>  
+> -			uart0_pmx_func: uart0_pmx_func {
+> +			uart0_pmx_func: uart0-pins {
+>  				pinctrl-single,pins = <
+>  					0x0cc MUX_M2 /* UART0_RXD */
+>  					0x0d0 MUX_M2 /* UART0_TXD */
+>  				>;
+>  			};
+>  
+> -			uart1_pmx_func: uart1_pmx_func {
+> +			uart1_pmx_func: uart1-pins {
+>  				pinctrl-single,pins = <
+>  					0x0b0 MUX_M2 /* UART1_CTS_N */
+>  					0x0b4 MUX_M2 /* UART1_RTS_N */
+> @@ -111,7 +111,7 @@ uart1_pmx_func: uart1_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart2_pmx_func: uart2_pmx_func {
+> +			uart2_pmx_func: uart2-pins {
+>  				pinctrl-single,pins = <
+>  					0x0bc MUX_M2 /* UART2_CTS_N */
+>  					0x0c0 MUX_M2 /* UART2_RTS_N */
+> @@ -120,7 +120,7 @@ uart2_pmx_func: uart2_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart3_pmx_func: uart3_pmx_func {
+> +			uart3_pmx_func: uart3-pins {
+>  				pinctrl-single,pins = <
+>  					0x0dc MUX_M1 /* UART3_CTS_N */
+>  					0x0e0 MUX_M1 /* UART3_RTS_N */
+> @@ -129,7 +129,7 @@ uart3_pmx_func: uart3_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart4_pmx_func: uart4_pmx_func {
+> +			uart4_pmx_func: uart4-pins {
+>  				pinctrl-single,pins = <
+>  					0x0ec MUX_M1 /* UART4_CTS_N */
+>  					0x0f0 MUX_M1 /* UART4_RTS_N */
+> @@ -138,7 +138,7 @@ uart4_pmx_func: uart4_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart5_pmx_func: uart5_pmx_func {
+> +			uart5_pmx_func: uart5-pins {
+>  				pinctrl-single,pins = <
+>  					0x0c4 MUX_M3 /* UART5_CTS_N */
+>  					0x0c8 MUX_M3 /* UART5_RTS_N */
+> @@ -147,7 +147,7 @@ uart5_pmx_func: uart5_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart6_pmx_func: uart6_pmx_func {
+> +			uart6_pmx_func: uart6-pins {
+>  				pinctrl-single,pins = <
+>  					0x0cc MUX_M1 /* UART6_CTS_N */
+>  					0x0d0 MUX_M1 /* UART6_RTS_N */
+> @@ -156,13 +156,13 @@ uart6_pmx_func: uart6_pmx_func {
+>  				>;
+>  			};
+>  
+> -			cam0_rst_pmx_func: cam0_rst_pmx_func {
+> +			cam0_rst_pmx_func: cam0-rst-pins {
+>  				pinctrl-single,pins = <
+>  					0x0c8 MUX_M0 /* CAM0_RST */
+>  				>;
+>  			};
+>  
+> -			cam1_rst_pmx_func: cam1_rst_pmx_func {
+> +			cam1_rst_pmx_func: cam1-rst-pins {
+>  				pinctrl-single,pins = <
+>  					0x124 MUX_M0 /* CAM1_RST */
+>  				>;
+> @@ -180,7 +180,7 @@ pmx1: pinmux@ff37e000 {
+>  			/* pin base, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 6 0>;
+>  
+> -			sd_pmx_func: sd_pmx_func {
+> +			sd_pmx_func: sd-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 MUX_M1 /* SD_CLK */
+>  					0x004 MUX_M1 /* SD_CMD */
+> @@ -203,14 +203,14 @@ pmx2: pinmux@ff3b6000 {
+>  			/* pin base, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 12 0>;
+>  
+> -			ufs_pmx_func: ufs_pmx_func {
+> +			ufs_pmx_func: ufs-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 MUX_M1 /* UFS_REF_CLK */
+>  					0x004 MUX_M1 /* UFS_RST_N */
+>  				>;
+>  			};
+>  
+> -			spi3_pmx_func: spi3_pmx_func {
+> +			spi3_pmx_func: spi3-pins {
+>  				pinctrl-single,pins = <
+>  					0x008 MUX_M1 /* SPI3_CLK */
+>  					0x00c MUX_M1 /* SPI3_DI */
+> @@ -231,7 +231,7 @@ pmx3: pinmux@ff3fd000 {
+>  			/* pin base, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 6 0>;
+>  
+> -			sdio_pmx_func: sdio_pmx_func {
+> +			sdio_pmx_func: sdio-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 MUX_M1 /* SDIO_CLK */
+>  					0x004 MUX_M1 /* SDIO_CMD */
+> @@ -254,7 +254,7 @@ pmx4: pinmux@fff11000 {
+>  			/* pin base in node, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 42 0>;
+>  
+> -			i2s2_pmx_func: i2s2_pmx_func {
+> +			i2s2_pmx_func: i2s2-pins {
+>  				pinctrl-single,pins = <
+>  					0x044 MUX_M1 /* I2S2_DI */
+>  					0x048 MUX_M1 /* I2S2_DO */
+> @@ -263,42 +263,42 @@ i2s2_pmx_func: i2s2_pmx_func {
+>  				>;
+>  			};
+>  
+> -			slimbus_pmx_func: slimbus_pmx_func {
+> +			slimbus_pmx_func: slimbus-pins {
+>  				pinctrl-single,pins = <
+>  					0x02c MUX_M1 /* SLIMBUS_CLK */
+>  					0x030 MUX_M1 /* SLIMBUS_DATA */
+>  				>;
+>  			};
+>  
+> -			i2c0_pmx_func: i2c0_pmx_func {
+> +			i2c0_pmx_func: i2c0-pins {
+>  				pinctrl-single,pins = <
+>  					0x014 MUX_M1 /* I2C0_SCL */
+>  					0x018 MUX_M1 /* I2C0_SDA */
+>  				>;
+>  			};
+>  
+> -			i2c1_pmx_func: i2c1_pmx_func {
+> +			i2c1_pmx_func: i2c1-pins {
+>  				pinctrl-single,pins = <
+>  					0x01c MUX_M1 /* I2C1_SCL */
+>  					0x020 MUX_M1 /* I2C1_SDA */
+>  				>;
+>  			};
+>  
+> -			i2c7_pmx_func: i2c7_pmx_func {
+> +			i2c7_pmx_func: i2c7-pins {
+>  				pinctrl-single,pins = <
+>  					0x024 MUX_M3 /* I2C7_SCL */
+>  					0x028 MUX_M3 /* I2C7_SDA */
+>  				>;
+>  			};
+>  
+> -			pcie_pmx_func: pcie_pmx_func {
+> +			pcie_pmx_func: pcie-pins {
+>  				pinctrl-single,pins = <
+>  					0x084 MUX_M1 /* PCIE_CLKREQ_N */
+>  					0x088 MUX_M1 /* PCIE_WAKE_N */
+>  				>;
+>  			};
+>  
+> -			spi2_pmx_func: spi2_pmx_func {
+> +			spi2_pmx_func: spi2-pins {
+>  				pinctrl-single,pins = <
+>  					0x08c MUX_M1 /* SPI2_CLK */
+>  					0x090 MUX_M1 /* SPI2_DI */
+> @@ -307,7 +307,7 @@ spi2_pmx_func: spi2_pmx_func {
+>  				>;
+>  			};
+>  
+> -			i2s0_pmx_func: i2s0_pmx_func {
+> +			i2s0_pmx_func: i2s0-pins {
+>  				pinctrl-single,pins = <
+>  					0x034 MUX_M1 /* I2S0_DI */
+>  					0x038 MUX_M1 /* I2S0_DO */
+> @@ -323,7 +323,7 @@ pmx5: pinmux@e896c800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			pmu_cfg_func: pmu_cfg_func {
+> +			pmu_cfg_func: pmu-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x010 0x0 /* PMU1_SSI */
+>  					0x014 0x0 /* PMU2_SSI */
+> @@ -347,7 +347,7 @@ DRIVE7_06MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c3_cfg_func: i2c3_cfg_func {
+> +			i2c3_cfg_func: i2c3-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x038 0x0 /* I2C3_SCL */
+>  					0x03c 0x0 /* I2C3_SDA */
+> @@ -369,7 +369,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			csi0_pwd_n_cfg_func: csi0_pwd_n_cfg_func {
+> +			csi0_pwd_n_cfg_func: csi0-pwd-n-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x050 0x0 /* CSI0_PWD_N */
+>  				>;
+> @@ -390,7 +390,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			csi1_pwd_n_cfg_func: csi1_pwd_n_cfg_func {
+> +			csi1_pwd_n_cfg_func: csi1-pwd-n-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x058 0x0 /* CSI1_PWD_N */
+>  				>;
+> @@ -411,7 +411,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			isp0_cfg_func: isp0_cfg_func {
+> +			isp0_cfg_func: isp0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x064 0x0 /* ISP_CLK0 */
+>  					0x070 0x0 /* ISP_SCL0 */
+> @@ -433,7 +433,7 @@ PULL_UP
+>  					DRIVE7_04MA DRIVE6_MASK>;
+>  			};
+>  
+> -			isp1_cfg_func: isp1_cfg_func {
+> +			isp1_cfg_func: isp1-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x068 0x0 /* ISP_CLK1 */
+>  					0x078 0x0 /* ISP_SCL1 */
+> @@ -456,7 +456,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			pwr_key_cfg_func: pwr_key_cfg_func {
+> +			pwr_key_cfg_func: pwr-key-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x08c 0x0 /* GPIO_034 */
+>  				>;
+> @@ -477,7 +477,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart1_cfg_func: uart1_cfg_func {
+> +			uart1_cfg_func: uart1-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0b4 0x0 /* UART1_RXD */
+>  					0x0b8 0x0 /* UART1_TXD */
+> @@ -501,7 +501,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart2_cfg_func: uart2_cfg_func {
+> +			uart2_cfg_func: uart2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0c8 0x0 /* UART2_CTS_N */
+>  					0x0cc 0x0 /* UART2_RTS_N */
+> @@ -525,7 +525,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart5_cfg_func: uart5_cfg_func {
+> +			uart5_cfg_func: uart5-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0c8 0x0 /* UART5_RXD */
+>  					0x0cc 0x0 /* UART5_TXD */
+> @@ -549,7 +549,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			cam0_rst_cfg_func: cam0_rst_cfg_func {
+> +			cam0_rst_cfg_func: cam0-rst-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0d4 0x0 /* CAM0_RST */
+>  				>;
+> @@ -570,7 +570,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart0_cfg_func: uart0_cfg_func {
+> +			uart0_cfg_func: uart0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0d8 0x0 /* UART0_RXD */
+>  					0x0dc 0x0 /* UART0_TXD */
+> @@ -592,7 +592,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart6_cfg_func: uart6_cfg_func {
+> +			uart6_cfg_func: uart6-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0d8 0x0 /* UART6_CTS_N */
+>  					0x0dc 0x0 /* UART6_RTS_N */
+> @@ -616,7 +616,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart3_cfg_func: uart3_cfg_func {
+> +			uart3_cfg_func: uart3-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0e8 0x0 /* UART3_CTS_N */
+>  					0x0ec 0x0 /* UART3_RTS_N */
+> @@ -640,7 +640,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart4_cfg_func: uart4_cfg_func {
+> +			uart4_cfg_func: uart4-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0f8 0x0 /* UART4_CTS_N */
+>  					0x0fc 0x0 /* UART4_RTS_N */
+> @@ -664,7 +664,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			cam1_rst_cfg_func: cam1_rst_cfg_func {
+> +			cam1_rst_cfg_func: cam1-rst-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x130 0x0 /* CAM1_RST */
+>  				>;
+> @@ -692,7 +692,7 @@ pmx6: pinmux@ff3b6800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			ufs_cfg_func: ufs_cfg_func {
+> +			ufs_cfg_func: ufs-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 0x0 /* UFS_REF_CLK */
+>  					0x004 0x0 /* UFS_RST_N */
+> @@ -714,7 +714,7 @@ DRIVE7_08MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi3_cfg_func: spi3_cfg_func {
+> +			spi3_cfg_func: spi3-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x008 0x0 /* SPI3_CLK */
+>  					0x00c 0x0 /* SPI3_DI */
+> @@ -745,7 +745,7 @@ pmx7: pinmux@ff3fd800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			sdio_clk_cfg_func: sdio_clk_cfg_func {
+> +			sdio_clk_cfg_func: sdio-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 0x0 /* SDIO_CLK */
+>  				>;
+> @@ -766,7 +766,7 @@ DRIVE6_32MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			sdio_cfg_func: sdio_cfg_func {
+> +			sdio_cfg_func: sdio-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x004 0x0 /* SDIO_CMD */
+>  					0x008 0x0 /* SDIO_DATA0 */
+> @@ -798,7 +798,7 @@ pmx8: pinmux@ff37e800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			sd_clk_cfg_func: sd_clk_cfg_func {
+> +			sd_clk_cfg_func: sd-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 0x0 /* SD_CLK */
+>  				>;
+> @@ -820,7 +820,7 @@ DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			sd_cfg_func: sd_cfg_func {
+> +			sd_cfg_func: sd-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x004 0x0 /* SD_CMD */
+>  					0x008 0x0 /* SD_DATA0 */
+> @@ -853,7 +853,7 @@ pmx9: pinmux@fff11800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			i2c0_cfg_func: i2c0_cfg_func {
+> +			i2c0_cfg_func: i2c0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x01c 0x0 /* I2C0_SCL */
+>  					0x020 0x0 /* I2C0_SDA */
+> @@ -875,7 +875,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c1_cfg_func: i2c1_cfg_func {
+> +			i2c1_cfg_func: i2c1-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x024 0x0 /* I2C1_SCL */
+>  					0x028 0x0 /* I2C1_SDA */
+> @@ -897,7 +897,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c7_cfg_func: i2c7_cfg_func {
+> +			i2c7_cfg_func: i2c7-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x02c 0x0 /* I2C7_SCL */
+>  					0x030 0x0 /* I2C7_SDA */
+> @@ -919,7 +919,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			slimbus_cfg_func: slimbus_cfg_func {
+> +			slimbus_cfg_func: slimbus-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x034 0x0 /* SLIMBUS_CLK */
+>  					0x038 0x0 /* SLIMBUS_DATA */
+> @@ -941,7 +941,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2s0_cfg_func: i2s0_cfg_func {
+> +			i2s0_cfg_func: i2s0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x040 0x0 /* I2S0_DI */
+>  					0x044 0x0 /* I2S0_DO */
+> @@ -965,7 +965,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2s2_cfg_func: i2s2_cfg_func {
+> +			i2s2_cfg_func: i2s2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x050 0x0 /* I2S2_DI */
+>  					0x054 0x0 /* I2S2_DO */
+> @@ -989,7 +989,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			pcie_cfg_func: pcie_cfg_func {
+> +			pcie_cfg_func: pcie-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x094 0x0 /* PCIE_CLKREQ_N */
+>  					0x098 0x0 /* PCIE_WAKE_N */
+> @@ -1011,7 +1011,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi2_cfg_func: spi2_cfg_func {
+> +			spi2_cfg_func: spi2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x09c 0x0 /* SPI2_CLK */
+>  					0x0a0 0x0 /* SPI2_DI */
+> @@ -1035,7 +1035,7 @@ DRIVE7_06MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			usb_cfg_func: usb_cfg_func {
+> +			usb_cfg_func: usb-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0ac 0x0 /* GPIO_219 */
+>  				>;
+> diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pinctrl.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pinctrl.dtsi
+> --- a/arch/arm64/boot/dts/hisilicon/hikey970-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hikey970-pinctrl.dtsi
+> @@ -21,14 +21,14 @@ pmx0: pinmux@e896c000 {
+>  			/* pin base, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 82 0>;
+>  
+> -			uart0_pmx_func: uart0_pmx_func {
+> +			uart0_pmx_func: uart0-pins {
+>  				pinctrl-single,pins = <
+>  					0x054 MUX_M2 /* UART0_RXD */
+>  					0x058 MUX_M2 /* UART0_TXD */
+>  				>;
+>  			};
+>  
+> -			uart2_pmx_func: uart2_pmx_func {
+> +			uart2_pmx_func: uart2-pins {
+>  				pinctrl-single,pins = <
+>  					0x700 MUX_M2 /* UART2_CTS_N */
+>  					0x704 MUX_M2 /* UART2_RTS_N */
+> @@ -37,7 +37,7 @@ uart2_pmx_func: uart2_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart3_pmx_func: uart3_pmx_func {
+> +			uart3_pmx_func: uart3-pins {
+>  				pinctrl-single,pins = <
+>  					0x064 MUX_M1 /* UART3_CTS_N */
+>  					0x068 MUX_M1 /* UART3_RTS_N */
+> @@ -46,7 +46,7 @@ uart3_pmx_func: uart3_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart4_pmx_func: uart4_pmx_func {
+> +			uart4_pmx_func: uart4-pins {
+>  				pinctrl-single,pins = <
+>  					0x074 MUX_M1 /* UART4_CTS_N */
+>  					0x078 MUX_M1 /* UART4_RTS_N */
+> @@ -55,52 +55,52 @@ uart4_pmx_func: uart4_pmx_func {
+>  				>;
+>  			};
+>  
+> -			uart6_pmx_func: uart6_pmx_func {
+> +			uart6_pmx_func: uart6-pins {
+>  				pinctrl-single,pins = <
+>  					0x05c MUX_M1 /* UART6_RXD */
+>  					0x060 MUX_M1 /* UART6_TXD */
+>  				>;
+>  			};
+>  
+> -			i2c3_pmx_func: i2c3_pmx_func {
+> +			i2c3_pmx_func: i2c3-pins {
+>  				pinctrl-single,pins = <
+>  					0x010 MUX_M1 /* I2C3_SCL */
+>  					0x014 MUX_M1 /* I2C3_SDA */
+>  				>;
+>  			};
+>  
+> -			i2c4_pmx_func: i2c4_pmx_func {
+> +			i2c4_pmx_func: i2c4-pins {
+>  				pinctrl-single,pins = <
+>  					0x03c MUX_M1 /* I2C4_SCL */
+>  					0x040 MUX_M1 /* I2C4_SDA */
+>  				>;
+>  			};
+>  
+> -			cam0_rst_pmx_func: cam0_rst_pmx_func {
+> +			cam0_rst_pmx_func: cam0-rst-pins {
+>  				pinctrl-single,pins = <
+>  					0x714 MUX_M0 /* CAM0_RST */
+>  				>;
+>  			};
+>  
+> -			cam1_rst_pmx_func: cam1_rst_pmx_func {
+> +			cam1_rst_pmx_func: cam1-rst-pins {
+>  				pinctrl-single,pins = <
+>  					0x048 MUX_M0 /* CAM1_RST */
+>  				>;
+>  			};
+>  
+> -			cam0_pwd_n_pmx_func: cam0_pwd_n_pmx_func {
+> +			cam0_pwd_n_pmx_func: cam0-pwd-n-pins {
+>  				pinctrl-single,pins = <
+>  					0x098 MUX_M0 /* CAM0_PWD_N */
+>  				>;
+>  			};
+>  
+> -			cam1_pwd_n_pmx_func: cam1_pwd_n_pmx_func {
+> +			cam1_pwd_n_pmx_func: cam1-pwd-n-pins {
+>  				pinctrl-single,pins = <
+>  					0x044 MUX_M0 /* CAM1_PWD_N */
+>  				>;
+>  			};
+>  
+> -			isp0_pmx_func: isp0_pmx_func {
+> +			isp0_pmx_func: isp0-pins {
+>  				pinctrl-single,pins = <
+>  					0x018 MUX_M1 /* ISP_CLK0 */
+>  					0x024 MUX_M1 /* ISP_SCL0 */
+> @@ -108,7 +108,7 @@ isp0_pmx_func: isp0_pmx_func {
+>  				>;
+>  			};
+>  
+> -			isp1_pmx_func: isp1_pmx_func {
+> +			isp1_pmx_func: isp1-pins {
+>  				pinctrl-single,pins = <
+>  					0x01c MUX_M1 /* ISP_CLK1 */
+>  					0x02c MUX_M1 /* ISP_SCL1 */
+> @@ -127,19 +127,19 @@ pmx1: pinmux@fff11000 {
+>  			/* pin base, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 46 0>;
+>  
+> -			pwr_key_pmx_func: pwr_key_pmx_func {
+> +			pwr_key_pmx_func: pwr-key-pins {
+>  				pinctrl-single,pins = <
+>  					0x064 MUX_M0 /* GPIO_203 */
+>  				>;
+>  			};
+>  
+> -			pd_pmx_func: pd_pmx_func{
+> +			pd_pmx_func: pd-pins {
+>  				pinctrl-single,pins = <
+>  					0x080 MUX_M0 /* GPIO_221 */
+>  				>;
+>  			};
+>  
+> -			i2s2_pmx_func: i2s2_pmx_func {
+> +			i2s2_pmx_func: i2s2-pins {
+>  			    pinctrl-single,pins = <
+>  					0x050 MUX_M1 /* I2S2_DI */
+>  					0x054 MUX_M1 /* I2S2_DO */
+> @@ -148,7 +148,7 @@ i2s2_pmx_func: i2s2_pmx_func {
+>  			    >;
+>  			};
+>  
+> -			spi0_pmx_func: spi0_pmx_func {
+> +			spi0_pmx_func: spi0-pins {
+>  				pinctrl-single,pins = <
+>  					0x094 MUX_M1 /* SPI0_CLK */
+>  					0x098 MUX_M1 /* SPI0_DI */
+> @@ -157,7 +157,7 @@ spi0_pmx_func: spi0_pmx_func {
+>  				>;
+>  			};
+>  
+> -			spi2_pmx_func: spi2_pmx_func {
+> +			spi2_pmx_func: spi2-pins {
+>  				pinctrl-single,pins = <
+>  					0x710 MUX_M1 /* SPI2_CLK */
+>  					0x714 MUX_M1 /* SPI2_DI */
+> @@ -166,7 +166,7 @@ spi2_pmx_func: spi2_pmx_func {
+>  				>;
+>  			};
+>  
+> -			spi3_pmx_func: spi3_pmx_func {
+> +			spi3_pmx_func: spi3-pins {
+>  				pinctrl-single,pins = <
+>  					0x72c MUX_M1 /* SPI3_CLK */
+>  					0x730 MUX_M1 /* SPI3_DI */
+> @@ -175,37 +175,37 @@ spi3_pmx_func: spi3_pmx_func {
+>  				>;
+>  			};
+>  
+> -			i2c0_pmx_func: i2c0_pmx_func {
+> +			i2c0_pmx_func: i2c0-pins {
+>  				pinctrl-single,pins = <
+>  					0x020 MUX_M1 /* I2C0_SCL */
+>  					0x024 MUX_M1 /* I2C0_SDA */
+>  				>;
+>  			};
+>  
+> -			i2c1_pmx_func: i2c1_pmx_func {
+> +			i2c1_pmx_func: i2c1-pins {
+>  				pinctrl-single,pins = <
+>  					0x028 MUX_M1 /* I2C1_SCL */
+>  					0x02c MUX_M1 /* I2C1_SDA */
+>  				>;
+>  			};
+> -			i2c2_pmx_func: i2c2_pmx_func {
+> +			i2c2_pmx_func: i2c2-pins {
+>  				pinctrl-single,pins = <
+>  					0x030 MUX_M1 /* I2C2_SCL */
+>  					0x034 MUX_M1 /* I2C2_SDA */
+>  				>;
+>  			};
+>  
+> -			pcie_clkreq_pmx_func: pcie_clkreq_pmx_func {
+> +			pcie_clkreq_pmx_func: pcie-clkreq-pins {
+>  				pinctrl-single,pins = <
+>  					0x084 MUX_M1 /* PCIE0_CLKREQ_N */
+>  				>;
+>  			};
+>  
+> -			gpio185_pmx_func: gpio185_pmx_func {
+> +			gpio185_pmx_func: gpio185-pins {
+>  				pinctrl-single,pins = <0x01C    0x1>;
+>  			};
+>  
+> -			gpio185_pmx_idle: gpio185_pmx_idle {
+> +			gpio185_pmx_idle: gpio185-idle-pins {
+>  				pinctrl-single,pins = <0x01C    0x0>;
+>  			};
+>  		};
+> @@ -216,7 +216,7 @@ pmx2: pinmux@e896c800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			uart0_cfg_func: uart0_cfg_func {
+> +			uart0_cfg_func: uart0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x058 0x0 /* UART0_RXD */
+>  					0x05c 0x0 /* UART0_TXD */
+> @@ -238,7 +238,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart2_cfg_func: uart2_cfg_func {
+> +			uart2_cfg_func: uart2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x700 0x0 /* UART2_CTS_N */
+>  					0x704 0x0 /* UART2_RTS_N */
+> @@ -262,7 +262,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart3_cfg_func: uart3_cfg_func {
+> +			uart3_cfg_func: uart3-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x068 0x0 /* UART3_CTS_N */
+>  					0x06c 0x0 /* UART3_RTS_N */
+> @@ -286,7 +286,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart4_cfg_func: uart4_cfg_func {
+> +			uart4_cfg_func: uart4-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x078 0x0 /* UART4_CTS_N */
+>  					0x07c 0x0 /* UART4_RTS_N */
+> @@ -310,7 +310,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			uart6_cfg_func: uart6_cfg_func {
+> +			uart6_cfg_func: uart6-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x060 0x0 /* UART6_RXD */
+>  					0x064 0x0 /* UART6_TXD */
+> @@ -332,7 +332,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c3_cfg_func: i2c3_cfg_func {
+> +			i2c3_cfg_func: i2c3-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x014 0x0 /* I2C3_SCL */
+>  					0x018 0x0 /* I2C3_SDA */
+> @@ -354,7 +354,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c4_cfg_func: i2c4_cfg_func {
+> +			i2c4_cfg_func: i2c4-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x040 0x0 /* I2C4_SCL */
+>  					0x044 0x0 /* I2C4_SDA */
+> @@ -376,7 +376,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			cam0_rst_cfg_func: cam0_rst_cfg_func {
+> +			cam0_rst_cfg_func: cam0-rst-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x714 0x0 /* CAM0_RST */
+>  				>;
+> @@ -397,7 +397,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			cam1_rst_cfg_func: cam1_rst_cfg_func {
+> +			cam1_rst_cfg_func: cam1-rst-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x04C 0x0 /* CAM1_RST */
+>  				>;
+> @@ -418,7 +418,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			cam0_pwd_n_cfg_func: cam0_pwd_n_cfg_func {
+> +			cam0_pwd_n_cfg_func: cam0-pwd-n-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x09C 0x0 /* CAM0_PWD_N */
+>  				>;
+> @@ -439,7 +439,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			cam1_pwd_n_cfg_func: cam1_pwd_n_cfg_func {
+> +			cam1_pwd_n_cfg_func: cam1-pwd-n-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x048 0x0 /* CAM1_PWD_N */
+>  				>;
+> @@ -460,7 +460,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			isp0_cfg_func: isp0_cfg_func {
+> +			isp0_cfg_func: isp0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x01C 0x0 /* ISP_CLK0 */
+>  					0x028 0x0 /* ISP_SCL0 */
+> @@ -483,7 +483,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			isp1_cfg_func: isp1_cfg_func {
+> +			isp1_cfg_func: isp1-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x020 0x0 /* ISP_CLK1 */
+>  					0x030 0x0 /* ISP_SCL1 */
+> @@ -517,7 +517,7 @@ pmx5: pinmux@fc182000 {
+>  			/* pin base, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 10 0>;
+>  
+> -			sdio_pmx_func: sdio_pmx_func {
+> +			sdio_pmx_func: sdio-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 MUX_M1 /* SDIO_CLK */
+>  					0x004 MUX_M1 /* SDIO_CMD */
+> @@ -535,7 +535,7 @@ pmx6: pinmux@fc182800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			sdio_clk_cfg_func: sdio_clk_cfg_func {
+> +			sdio_clk_cfg_func: sdio-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 0x0 /* SDIO_CLK */
+>  				>;
+> @@ -556,7 +556,7 @@ DRIVE6_32MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			sdio_cfg_func: sdio_cfg_func {
+> +			sdio_cfg_func: sdio-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x004 0x0 /* SDIO_CMD */
+>  					0x008 0x0 /* SDIO_DATA0 */
+> @@ -592,7 +592,7 @@ pmx7: pinmux@ff37e000 {
+>  			/* pin base, nr pins & gpio function */
+>  			pinctrl-single,gpio-range = <&range 0 12 0>;
+>  
+> -			sd_pmx_func: sd_pmx_func {
+> +			sd_pmx_func: sd-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 MUX_M1 /* SD_CLK */
+>  					0x004 MUX_M1 /* SD_CMD */
+> @@ -610,7 +610,7 @@ pmx8: pinmux@ff37e800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			sd_clk_cfg_func: sd_clk_cfg_func {
+> +			sd_clk_cfg_func: sd-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x000 0x0 /* SD_CLK */
+>  				>;
+> @@ -632,7 +632,7 @@ DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			sd_cfg_func: sd_cfg_func {
+> +			sd_cfg_func: sd-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x004 0x0 /* SD_CMD */
+>  					0x008 0x0 /* SD_DATA0 */
+> @@ -665,7 +665,7 @@ pmx16: pinmux@fff11800 {
+>  			#pinctrl-cells = <1>;
+>  			pinctrl-single,register-width = <0x20>;
+>  
+> -			pwr_key_cfg_func: pwr_key_cfg_func {
+> +			pwr_key_cfg_func: pwr-key-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x090 0x0 /* GPIO_203 */
+>  				>;
+> @@ -686,7 +686,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			usb_cfg_func: usb_cfg_func {
+> +			usb_cfg_func: usb-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0AC 0x0 /* GPIO_221 */
+>  				>;
+> @@ -707,7 +707,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi0_cfg_func: spi0_cfg_func {
+> +			spi0_cfg_func: spi0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0c8 0x0 /* SPI0_DI */
+>  					0x0cc 0x0 /* SPI0_DO */
+> @@ -730,7 +730,7 @@ DRIVE7_06MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi2_cfg_func: spi2_cfg_func {
+> +			spi2_cfg_func: spi2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x714 0x0 /* SPI2_DI */
+>  					0x718 0x0 /* SPI2_DO */
+> @@ -753,7 +753,7 @@ DRIVE7_06MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi3_cfg_func: spi3_cfg_func {
+> +			spi3_cfg_func: spi3-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x730 0x0 /* SPI3_DI */
+>  					0x734 0x0 /* SPI3_DO */
+> @@ -776,7 +776,7 @@ DRIVE7_06MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi0_clk_cfg_func: spi0_clk_cfg_func {
+> +			spi0_clk_cfg_func: spi0-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0c4 0x0 /* SPI0_CLK */
+>  				>;
+> @@ -797,7 +797,7 @@ DRIVE7_10MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi2_clk_cfg_func: spi2_clk_cfg_func {
+> +			spi2_clk_cfg_func: spi2-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x710 0x0 /* SPI2_CLK */
+>  				>;
+> @@ -818,7 +818,7 @@ DRIVE7_10MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			spi3_clk_cfg_func: spi3_clk_cfg_func {
+> +			spi3_clk_cfg_func: spi3-clk-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x72c 0x0 /* SPI3_CLK */
+>  				>;
+> @@ -839,7 +839,7 @@ DRIVE7_10MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c0_cfg_func: i2c0_cfg_func {
+> +			i2c0_cfg_func: i2c0-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x04c 0x0 /* I2C0_SCL */
+>  					0x050 0x0 /* I2C0_SDA */
+> @@ -861,7 +861,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c1_cfg_func: i2c1_cfg_func {
+> +			i2c1_cfg_func: i2c1-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x054 0x0 /* I2C1_SCL */
+>  					0x058 0x0 /* I2C1_SDA */
+> @@ -883,7 +883,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			i2c2_cfg_func: i2c2_cfg_func {
+> +			i2c2_cfg_func: i2c2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x05c 0x0 /* I2C2_SCL */
+>  					0x060 0x0 /* I2C2_SDA */
+> @@ -905,7 +905,7 @@ DRIVE7_04MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			pcie_clkreq_cfg_func: pcie_clkreq_cfg_func {
+> +			pcie_clkreq_cfg_func: pcie-clkreq-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x0b0 0x0
+>  				>;
+> @@ -925,7 +925,7 @@ PULL_UP
+>  					DRIVE7_06MA DRIVE6_MASK
+>  				>;
+>  			};
+> -			i2s2_cfg_func: i2s2_cfg_func {
+> +			i2s2_cfg_func: i2s2-cfg-pins {
+>  				pinctrl-single,pins = <
+>  					0x07c 0x0 /* I2S2_DI */
+>  					0x080 0x0 /* I2S2_DO */
+> @@ -949,7 +949,7 @@ DRIVE7_02MA DRIVE6_MASK
+>  				>;
+>  			};
+>  
+> -			gpio185_cfg_func: gpio185_cfg_func {
+> +			gpio185_cfg_func: gpio185-cfg-pins {
+>  				pinctrl-single,pins = <0x048  0>;
+>  				pinctrl-single,bias-pulldown = <0 2 0 2>;
+>  				pinctrl-single,bias-pullup = <0 1 0 1>;
+> @@ -957,7 +957,7 @@ gpio185_cfg_func: gpio185_cfg_func {
+>  				pinctrl-single,slew-rate = <0x0 0x80>;
+>  			};
+>  
+> -			gpio185_cfg_idle: gpio185_cfg_idle {
+> +			gpio185_cfg_idle: gpio185-cfg-idle-pins {
+>  				pinctrl-single,pins = <0x048  0>;
+>  				pinctrl-single,bias-pulldown = <2 2 0 2>;
+>  				pinctrl-single,bias-pullup = <0 1 0 1>;
+> 
