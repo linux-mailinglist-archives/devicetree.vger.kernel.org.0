@@ -2,148 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 656C0727791
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 08:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B21D37277CF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 08:50:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234955AbjFHGqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 02:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
+        id S234314AbjFHGuo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 8 Jun 2023 02:50:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234634AbjFHGqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 02:46:37 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CFCC2688
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 23:46:36 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-973bf581759so54176466b.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 23:46:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686206795; x=1688798795;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IZgN/pq4zJXDMGVU52SbNy/IfFWaN7LSvJZjeMzXd3A=;
-        b=iGdtH8Yqn6jyihGPQrVSC70sM4ACObapuBk2v11OGmQBItBAukIcUpZpLTmfOoBuMH
-         MHMA687Xp4MEV2oWdJP/Wn/K3E5glM6aPgQL+wxe5WGRKiOHlCEefmESBl0dNa7Y1BSI
-         J3bKeUuKfB2HIqfxCO/S/dQUt2PdVGLQmRA+DX2hVHY43g0SQfyYlk26IAh8GMiPJAAK
-         k8oZ27dbhxkySftlDFX9G7fu82nMV96SdFjcG1j/pvBA6anzLU9pO1YuQUUebDzPcmol
-         +y4mxiKfkVli1IYAh7BCSbrk1hcSw5wlO0WwSjUWivy5UYahTuamqSnpcWSrg+dTFkQ5
-         eG7Q==
+        with ESMTP id S234295AbjFHGuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 02:50:44 -0400
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B97D173B;
+        Wed,  7 Jun 2023 23:50:43 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-b9a6eec8611so2097630276.0;
+        Wed, 07 Jun 2023 23:50:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686206795; x=1688798795;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IZgN/pq4zJXDMGVU52SbNy/IfFWaN7LSvJZjeMzXd3A=;
-        b=WfF+3ECum6a92z7oKWlws5tz0IxA3nNhCjDTe0drzPuycLcblEsGPPSrvhy/vmogM8
-         MiJz+DuXQcdjTJOyZtQ22ecaLiyleHJj7MszS0wfNdOw+D5BQcYNcmENQTB5gEVhMExl
-         lG+G7Mp40Fqq4W2JtiKjBY4LTw6ufv0gazp09o8Zsbg9sXaViZWM0HgbkMSHsVnadNfi
-         Kftqix2rXjhH7lBTwS0D6Al5uc2E05oTPWC5AZ3BrEnNulgsFWhY8Se3suGmis5+o9nk
-         6erVwwOQpD+aPNG0wmwf19P6ZUlU1/FLpVaiR51CdCLfViRbbFIMQfd80TqAe1cNm8D4
-         EtsA==
-X-Gm-Message-State: AC+VfDyqfVjQ1dXOIK8s7FUmOSK+tl4j6hFURgFL/UVUA7CAMGSIYc9f
-        vsqScHEtE3Gy80PpGJ1HZ78W6g==
-X-Google-Smtp-Source: ACHHUZ5p6fnCJHV5uldMrLu0wmGEQEGXksmv6Ojnv/qWf/9hyk16AeQy+XeNgmX+HuGIJCAn8kxjXg==
-X-Received: by 2002:a17:907:72d0:b0:974:5ece:19a6 with SMTP id du16-20020a17090772d000b009745ece19a6mr9808402ejc.54.1686206794751;
-        Wed, 07 Jun 2023 23:46:34 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id z18-20020a170906945200b00978874d1083sm273646ejx.135.2023.06.07.23.46.32
+        d=1e100.net; s=20221208; t=1686207042; x=1688799042;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kvp25ZdE/8+uBHY0ewvhRVaOH9wZTPFBAI6+vNsi2yo=;
+        b=ZjS24P7qkA1bH7d6QW5p/buIIZzs85769UgFyB5zU1JNS89qLPE5b3Z0UG9j92+ZMM
+         Fx8ih14TihWIgfy36rzh6couGnYQRQUv1Lesomit10/1BvGjZJJNIiLsf1OXqdYqOve+
+         jELoyXKMB6xQLG+wEEt/bj3CFjXptcMq4hEP59AimpxB29aQcF2KZc3tOMxmQL992y9z
+         qW7jW7eVXYhDXv9cZkCunPyCpkugYwiNAmOYZfwqtsDSv7qf47PknvufuEEveug7L/xW
+         QH+Z+xL4JCeUh4yZaxjgLUCoUyTGO0PuyiyVoi+pYyFuyW16WBXwKz0/HJhV3KfC4g0R
+         Ep1Q==
+X-Gm-Message-State: AC+VfDwkHno8r+6M+qi8wsOy4wCx5FHoh8e4FyYDLT3I3uh22aEE/ADA
+        x1LXB/6MtGhsdmZK+LS25JU0mEYslIptTA==
+X-Google-Smtp-Source: ACHHUZ7FIdgj19xunvj7zPiQvx0ET5bNTKOgH/hdY6U4uNtJ/EEBHgKMIrCjCm4G1i4ZTWt2GYRf5w==
+X-Received: by 2002:a0d:cc17:0:b0:565:232a:36a3 with SMTP id o23-20020a0dcc17000000b00565232a36a3mr1465297ywd.17.1686207042164;
+        Wed, 07 Jun 2023 23:50:42 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id i2-20020a81d502000000b00545a08184bbsm204865ywj.75.2023.06.07.23.50.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 23:46:34 -0700 (PDT)
-Message-ID: <4dffd320-8e30-fb30-6ded-79519afddc21@linaro.org>
-Date:   Thu, 8 Jun 2023 08:46:31 +0200
+        Wed, 07 Jun 2023 23:50:40 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-561b7729a12so21121237b3.1;
+        Wed, 07 Jun 2023 23:50:40 -0700 (PDT)
+X-Received: by 2002:a0d:d404:0:b0:564:eb9a:689d with SMTP id
+ w4-20020a0dd404000000b00564eb9a689dmr1564417ywd.13.1686207039844; Wed, 07 Jun
+ 2023 23:50:39 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [v6 1/4] dt-bindings: pwm: Add ASPEED PWM Control documentation
-Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        corbet@lwn.net, p.zabel@pengutronix.de,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org,
-        patrick@stwcx.xyz
-References: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
- <20230608021839.12769-2-billy_tsai@aspeedtech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230608021839.12769-2-billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230530151946.2317748-1-u.kleine-koenig@pengutronix.de>
+ <20230530151946.2317748-2-u.kleine-koenig@pengutronix.de> <4491320.LvFx2qVVIh@steina-w>
+In-Reply-To: <4491320.LvFx2qVVIh@steina-w>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 8 Jun 2023 08:50:27 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWu4KZbBkvEofUV2wuA1g2S=XHHM3RUN1cNrcZBkhsPZA@mail.gmail.com>
+Message-ID: <CAMuHMdWu4KZbBkvEofUV2wuA1g2S=XHHM3RUN1cNrcZBkhsPZA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: introduce hog properties with
+ less ambiguity
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Kent Gibson <warthog618@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 04:18, Billy Tsai wrote:
-> Document the compatible for aspeed,ast2600-pwm device.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> new file mode 100644
-> index 000000000000..a9e040263578
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/aspeed,ast2600-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed Ast2600 PWM controller
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |
-> +  The Aspeed PWM controller supports up to 1 PWM outputs.
+Hi Alexander,
 
-This does not look right.
+On Wed, May 31, 2023 at 8:19 AM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+> Am Dienstag, 30. Mai 2023, 17:19:45 CEST schrieb Uwe Kleine-König:
+> > For active low lines the semantic of output-low and output-high is hard
+> > to grasp because there is a double negation involved and so output-low
+> > is actually a request to drive the line high (aka inactive).
+> >
+> > So introduce output-inactive and output-active with the same semantic as
+> > output-low and output-high respectively have today, but with a more
+> > sensible name.
+> >
+> > Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/gpio/gpio.txt | 16 +++++++++++-----
+> >  1 file changed, 11 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt
+> > b/Documentation/devicetree/bindings/gpio/gpio.txt index
+> > d82c32217fff..2f037bbd3ffa 100644
+> > --- a/Documentation/devicetree/bindings/gpio/gpio.txt
+> > +++ b/Documentation/devicetree/bindings/gpio/gpio.txt
+> > @@ -209,15 +209,21 @@ Required properties:
+> >  - gpios:      Store the GPIO information (id, flags, ...) for each GPIO to
+> >             affect. Shall contain an integer multiple of the number of
+> cells
+> >             specified in its parent node (GPIO controller node).
+> > +
+> >  Only one of the following properties scanned in the order shown below.
+> >  This means that when multiple properties are present they will be searched
+> >  in the order presented below and the first match is taken as the intended
+> >  configuration.
+> > -- input:      A property specifying to set the GPIO direction as input.
+> > -- output-low  A property specifying to set the GPIO direction as output
+> > with -              the value low.
+> > -- output-high A property specifying to set the GPIO direction as output
+> > with -              the value high.
+> > +- input:             A property specifying to set the GPIO direction as
+> > input. +- output-inactive:   A property specifying to set the GPIO
+> > direction as output +              with the inactive value
+> (depending on the
+> > line's polarity, +                 which is active-high by default)
+> > +- output-active:     A property specifying to set the GPIO direction as
+> > output +                   with the active value.
+>
+> I know this is essentially just renaming currently existing properties.
+> But these mutual exclusive (boolean) properties make it impossible to change
+> them in DT overlay. Any ideas how to support changing the output level onGPIO
+> hogs in DT overlay?
 
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-pwm
-> +
-> +  "#pwm-cells":
-> +    const: 3
+That's a good point. And despite it not working, people do try to
+stick e.g. /delete-node/ in .dtso files...
 
-3 cells? For one PWM? What are they?
+I assume you can sort of remove the existing hog subnode by adding
+status = "disabled" in the DT overlay, and adding a new subnode to
+configure the new output level?
 
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - resets
-> +
-> +additionalProperties: false
+Gr{oetje,eeting}s,
 
-Missing examples. All bindings need examples.
+                        Geert
 
-Best regards,
-Krzysztof
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
