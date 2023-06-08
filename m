@@ -2,91 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B15F67282E5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 16:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E685728323
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 16:57:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236793AbjFHOjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 10:39:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38344 "EHLO
+        id S236114AbjFHO5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 10:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236835AbjFHOjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 10:39:39 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0283F2D68
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 07:39:33 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id ca18e2360f4ac-77acb944bdfso24931939f.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 07:39:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686235172; x=1688827172;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bH4ZjQM6aPxK+ZRdt1mqrjgyacqVVtEwfwRuNc+V6F4=;
-        b=kPj4sI6Wd47le4xzrZt2h3dI/qqVljHRd6jUIaCD+VBIdjh8v/7iXpsj/JlcW4s4Qp
-         hi1/xeghpijEULgwI/Mb+t3ZDQwx1W8eo42uQcHQMS8Hn5AS4mN/o6BuYi4BMVeDObz7
-         UDgynBHLQbbqFK+fZt29BM3kPoMULl1qOao6Y=
+        with ESMTP id S235799AbjFHO5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 10:57:46 -0400
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A81181FFE
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 07:57:45 -0700 (PDT)
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-33d37cc9d12so2257355ab.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 07:57:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686235172; x=1688827172;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bH4ZjQM6aPxK+ZRdt1mqrjgyacqVVtEwfwRuNc+V6F4=;
-        b=NdK1h6pBGyNclmOXXi41wLEt8EX4gq9gN8b/HedBiwQeF31iMW/EE/X9f1eY0zppUd
-         s74d0zYISdLjIiUBtFj+T3DGvSTlA+lA+WL8q8w1oqJRd0grQNZ2GLQFZrjqJ9m0kGVr
-         sm2HiAfsQII4U0gXJ9YwvGQ9oufior0IyPtW6b2+P+gSa/YNh8wGnzcMdJSvjKyUf0nF
-         cDsnWZZ9xJhRDxaOCFILNDCksQFwvHxw9ktz95EkAGWqGYTHcj8LEFzp92r/hKSoQU+M
-         +eCHth778xQXnqv7TSNotruccLav1XaChUgAJJDypOQ6Ns/nWaQVYLdPUkyi640kgI/w
-         qgOQ==
-X-Gm-Message-State: AC+VfDwSJur1gZOxANyxfi50TCBLS/9l7G5v37jFUQSeFcHZPfhZgeK9
-        rZsX8wko4DfLNbOjkR0Em/EnX61addrIEQ/JgEM=
-X-Google-Smtp-Source: ACHHUZ7Wj9Y6FkQZxuK1QpLQX1SIANxbiF/V28gIYLRVKdNw/pfHRgo44tVTeZrvDhZ7SlitHKRofA==
-X-Received: by 2002:a05:6602:2097:b0:77a:c494:b4c9 with SMTP id a23-20020a056602209700b0077ac494b4c9mr4259074ioa.20.1686235171770;
-        Thu, 08 Jun 2023 07:39:31 -0700 (PDT)
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com. [209.85.166.169])
-        by smtp.gmail.com with ESMTPSA id d7-20020a5e8a07000000b00760e7a343c1sm401752iok.30.2023.06.08.07.39.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 07:39:31 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-33dea7d5424so113485ab.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 07:39:31 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1b8b:b0:33d:67c9:a486 with SMTP id
- h11-20020a056e021b8b00b0033d67c9a486mr250532ili.26.1686235150817; Thu, 08 Jun
- 2023 07:39:10 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686236265; x=1688828265;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hf6SJl34siTdawLC0RjC1CBtOAo6GZOHG51dtQP3QW0=;
+        b=brHF3Wavsli8hW46kwybIFgn3/Xi/YQ/68MVUQkEwxiJ868r+7ybJpAc03CnYqiPBA
+         SvVB62ivSEYfsiuDy7o6xmneo+SdTaYt4yjN6Ow9wLQDDehX4l6R9XSqL6fX+q9jFDNw
+         E7gXjC74IE1N49nKutwlp/rLdVZabokL53OSawcde/6WAc0HvoVFNAdwFRHKgw7HB1SS
+         w0pbPgv1qKPxtYh1SeA8bAX9DwKXnlRqGLIdT5lSXjz5Ygw0dVxZ0w0U3MjHdhr0W2hS
+         cpSUqmafBEQKbRKjPW8SrizVDmSpGM/FmX1KxM95yb2BkwlWQsFvzUMUWsmxuXgn7LSt
+         alQw==
+X-Gm-Message-State: AC+VfDzoN7HlUdZekW9BaIAVsD2Z9ZrnL5BbzZ3vKjA9X6zP+RDLUIKp
+        zOdCVHjwVT6C37+lpANZTMHCHwiRzA==
+X-Google-Smtp-Source: ACHHUZ4JJA2/Br3g1G3dJQSc6yKVFh/khk7lkclFOtTk+QCdeXByAbp2Z90Sd/G25X9eyUdBHznxIQ==
+X-Received: by 2002:a92:d292:0:b0:335:9028:d6d1 with SMTP id p18-20020a92d292000000b003359028d6d1mr7925695ilp.32.1686236264814;
+        Thu, 08 Jun 2023 07:57:44 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id f5-20020a056638118500b0041eb1fb695csm318647jas.105.2023.06.08.07.57.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 07:57:44 -0700 (PDT)
+Received: (nullmailer pid 2620990 invoked by uid 1000);
+        Thu, 08 Jun 2023 14:57:42 -0000
+Date:   Thu, 8 Jun 2023 08:57:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        f.fainelli@gmail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: dt_binding_check report false alarm?
+Message-ID: <20230608145742.GA2609597-robh@kernel.org>
+References: <20230525050241.3700-1-william.zhang@broadcom.com>
 MIME-Version: 1.0
-References: <20230607215224.2067679-1-dianders@chromium.org> <jehxiy3z4aieop5qgzmlon4u76n7gvt3kc6knxhb5yqkiz3rsp@mx27m75sx43r>
-In-Reply-To: <jehxiy3z4aieop5qgzmlon4u76n7gvt3kc6knxhb5yqkiz3rsp@mx27m75sx43r>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 8 Jun 2023 07:38:58 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Wr7Xatw1LsofiZ5Xx7WBvAuMMdq4D5Po1yJUC1VdtZdg@mail.gmail.com>
-Message-ID: <CAD=FV=Wr7Xatw1LsofiZ5Xx7WBvAuMMdq4D5Po1yJUC1VdtZdg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] drm/panel and i2c-hid: Allow panels and
- touchscreens to power sequence together
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        linux-kernel@vger.kernel.org, hsinyi@google.com,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        yangcong5@huaqin.corp-partner.google.com,
-        linux-arm-msm@vger.kernel.org,
-        Chris Morgan <macroalpha82@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230525050241.3700-1-william.zhang@broadcom.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,120 +63,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, May 24, 2023 at 10:02:41PM -0700, William Zhang wrote:
+> Hi,
+> 
+> It seems dt_binding_check reports a false error when run on this
+> modified yaml. I picked this simple file just to demostrate this issue.
+> Basically I made the interrupts and interrupt-names as optional
+> properties. But when there are two interrupts present, then
+> interrupt-names are required.  However in the example, I don't define
+> interrupts and interrupt-name at all, the dt binding check reports error
+> that interrupt-names are required:
+> 
+> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+>   LINT    Documentation/devicetree/bindings
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTEX    Documentation/devicetree/bindings/crypto/fsl-imx-scc.example.dts
+>   DTC_CHK Documentation/devicetree/bindings/crypto/fsl-imx-scc.example.dtb
+> Documentation/devicetree/bindings/crypto/fsl-imx-scc.example.dtb: crypto@53fac000: 'interrupt-names' is a required property
+> 	From schema: /home/william/projects/linux/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> 
+> This does not make sense to me as name is required only when there are
+> two interrupts. Can someone familar with this please help to check if I
+> miss anything in the yaml file or it is indeed a bug in binding check?
+> 
+> Thanks,
+> William
+> 
+> ---
+>  .../devicetree/bindings/crypto/fsl-imx-scc.yaml     | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml b/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> index 563a31605d2b..c37a3a64a78c 100644
+> --- a/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> @@ -32,11 +32,18 @@ properties:
+>    clock-names:
+>      const: ipg
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        interrupts:
+> +          minItems: 2
 
-On Thu, Jun 8, 2023 at 12:17=E2=80=AFAM Maxime Ripard <mripard@kernel.org> =
-wrote:
->
-> Hi Douglas,
->
-> On Wed, Jun 07, 2023 at 02:49:22PM -0700, Douglas Anderson wrote:
-> >
-> > The big motivation for this patch series is mostly described in the pat=
-ch
-> > ("drm/panel: Add a way for other devices to follow panel state"), but t=
-o
-> > quickly summarize here: for touchscreens that are connected to a panel =
-we
-> > need the ability to power sequence the two device together. This is not=
- a
-> > new need, but so far we've managed to get by through a combination of
-> > inefficiency, added costs, or perhaps just a little bit of brokenness.
-> > It's time to do better. This patch series allows us to do better.
-> >
-> > Assuming that people think this patch series looks OK, we'll have to
-> > figure out the right way to land it. The panel patches and i2c-hid
-> > patches will go through very different trees and so either we'll need
-> > an Ack from one side or the other or someone to create a tag for the
-> > other tree to pull in. This will _probably_ require the true drm-misc
-> > maintainers to get involved, not a lowly committer. ;-)
-> >
-> > Version 2 of this patch series doesn't change too much. At a high level=
-:
-> > * I added all the forgotten "static" to functions.
-> > * I've hopefully made the bindings better.
-> > * I've integrated into fw_devlink.
-> > * I cleaned up a few descriptions / comments.
-> >
-> > This still needs someone to say that the idea looks OK or to suggest
-> > an alternative that solves the problems. ;-)
->
-> Thanks for working on this.
->
-> I haven't seen in any of your commit messages how the panels were
-> actually "packaged" together?
->
-> Do a panel model typically come together with the i2c-hid support, or is
-> it added at manufacture time?
->
-> If it's the latter, it's indeed a fairly loose connection and we need
-> your work.
->
-> If it's the former though and we don't expect a given panel reference to
-> always (or never) come with a touchscreen attached,
+This is a quirk of json-schema in that the 'if' will be true if the 
+property is not present. Adding this to the 'if' should fix the problem:
 
-Thanks for your reply. Let me see what I can do to bring clarity.
+required:
+  - interrupts
 
-In at least some of the cases, I believe that the panel and the
-touchscreen _are_ logically distinct components, even if they've been
-glued together at some stage in manufacturing. Even on one of the
-"poster child" boards that I talk about in patch #3, the early
-versions of "homestar", I believe this to be the case. However, even
-if the panel and touchscreen are separate components then they still
-could be connected to the main board in a way that they share power
-and/or reset signals. In my experience, in every case where they do
-the EEs expect that the panel is power sequenced first and then the
-touchscreen is power sequenced second. The EEs look at the power
-sequencing requirements of the panel and touchscreen, see that there
-is a valid power sequence protocol where they can share rails, and
-design the board that way. Even if the touchscreen and panel are
-logically separate, the moment the board designers hook them up to the
-same power rails and/or reset signals they become tied. This is well
-supported by my patch series.
-
-The case that really motivated my patch series, though, is the case
-that Cong Yang recently has been working on. I think most of the
-discussion is in his original patch series [1]. Cong Yang's patch
-series is largely focused on supporting the "ILI9882T" chip and some
-panels that it's used with. I found a datasheet for that, and the
-title from the first page is illustrative: "In-cell IC Integrates TFT
-LCD Driver and Capacitive Touch Controller into a Two Chip Cascade".
-This is an integrated solution that's designed to handle both the LCD
-and the touchscreen.
+> +    then:
+> +      required:
+> +        - interrupt-names
+> +
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupts
+> -  - interrupt-names
+>    - clocks
+>    - clock-names
+>  
+> @@ -49,6 +56,4 @@ examples:
+>          reg = <0x53fac000 0x4000>;
+>          clocks = <&clks 111>;
+>          clock-names = "ipg";
+> -        interrupts = <49>, <50>;
+> -        interrupt-names = "scm", "smn";
+>      };
+> -- 
+> 2.34.1
+> 
 
 
-[1] https://lore.kernel.org/lkml/20230519032316.3464732-1-yangcong5@huaqin.=
-corp-partner.google.com/
-
-
-> I guess we can have
-> something much simpler with a bunch of helpers that would register a
-> i2c-hid device and would be called by the panel driver itself.
->
-> And then, since everything is self-contained managing the power state
-> becomes easier as well.
-
-Can you give me more details about how you think this would work?
-
-When you say that the panel would register an i2c-hid device itself,
-do you mean that we'd do something like give a phandle to the i2c bus
-to the panel and then the panel would manually instantiate the i2c-hid
-device on it? ...and I guess it would need to be a "subclass" of
-i2c-hid that knew about the connection to the panel code? This
-subclass and the panel code would communicate with each other about
-power sequencing needs through some private API (like MFD devices
-usually do?). Assuming I'm understanding correctly, I think that could
-work. Is it cleaner than my current approach, though?
-
-I guess, alternatively, we could put the "panel" directly under the
-i2c bus in this case. That would probably work for Cong Yang's current
-needs, but we'd end up in trouble if we ever had a similar situation
-with an eDP panel since eDP panels need to be under the DP-AUX bus.
-
-I guess overall, though, while I think this approach could solve Cong
-Yang's needs, I still feel like it's worth solving the case where
-board designers have made panel and touchscreens "coupled" by having
-them rely on the same power rails and/or reset signals.
-
-
--Doug
