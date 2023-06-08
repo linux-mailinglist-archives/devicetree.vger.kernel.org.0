@@ -2,137 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E183A727696
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 07:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF257276D0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 07:43:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234126AbjFHFSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 01:18:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35388 "EHLO
+        id S234055AbjFHFn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 01:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233573AbjFHFSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 01:18:38 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D9C526B8;
-        Wed,  7 Jun 2023 22:18:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686201514; x=1717737514;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cHXrEY01bYvheOLH7fG7jjiblWcaaSIEo6dV4ZMjUe0=;
-  b=LocKE1V9IsHhQOMmoyx+6Xu8aCJCT/IkxHeS2XhU57zhfTKCKzMh0F6K
-   ABCuJQnaPti6QoMosND/6tIMxAfGI4Yn13SbcAGAGOOxlWODFSHP26bjr
-   klQJuQjwkkMnCJDcy6A/uIkYD8QxlEHcYyIcbLMCXKsD92JbJ/Dzp3coc
-   Y5qifYizJtpJb3hHlV+GJQ8ATxksDpXpk6cH6ha4CwP7IEzt4LDQFlt7j
-   drpdnplxb2dTLH/N/gb7RgQV3jeq0/g+j6xG8BtBE/R7ILouEqzD9sAqZ
-   ZNb9xUqE6UG00LLAY6L5kysA27BIGgBss9NfhhtzsLn7A8x5oFBTqlEaA
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="357213723"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; 
-   d="scan'208";a="357213723"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2023 22:18:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="703942649"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; 
-   d="scan'208";a="703942649"
-Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
-  by orsmga007.jf.intel.com with ESMTP; 07 Jun 2023 22:18:27 -0700
-Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q782U-0007Ih-2L;
-        Thu, 08 Jun 2023 05:18:26 +0000
-Date:   Thu, 8 Jun 2023 13:18:07 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Douglas Anderson <dianders@chromium.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
-        linux-arm-msm@vger.kernel.org,
-        yangcong5@huaqin.corp-partner.google.com,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Chris Morgan <macroalpha82@gmail.com>,
-        linux-input@vger.kernel.org, hsinyi@google.com
-Subject: Re: [PATCH v2 08/10] HID: i2c-hid: Support being a panel follower
-Message-ID: <202306081344.M0jNn0Ce-lkp@intel.com>
-References: <20230607144931.v2.8.Ib1a98309c455cd7e26b931c69993d4fba33bbe15@changeid>
+        with ESMTP id S230300AbjFHFn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 01:43:28 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F752690;
+        Wed,  7 Jun 2023 22:43:27 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id ca18e2360f4ac-777ac4344f9so6293439f.0;
+        Wed, 07 Jun 2023 22:43:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686203006; x=1688795006;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XtolSZaJdXUNvdM4Rjo5o9rL0OX1LHOcqWzmGyfnXNs=;
+        b=P3Nk1tOCSxsMZ44I2T6MohGzDc4RG3rvbvMb972fw/dJOnk/VR6+0q5BolxNoYwDP5
+         y6PoAzcgjbWC1fPMy+yyx3GtPqFVawlkTap4+2zH71s90sfLrI5a5bbHzq6LG96W0jCe
+         laqTn8pVRk7AJnC6AvtZSAteNbRLuaZGLQJQt8mekLc86xCPrtQJYSkJqwcWioxsHJ0p
+         tKMxymLw5rrrJCehfxqWZtw8uIrIcnqtbGpRx7xgTqlvzXJCy73FF6h6OvhQqHfNeKGg
+         IHDDiYcE11j15RaDfeuonTiUVyXi1voTxODhUh0w+n4YmXNUugjqxQrzflo3O3vrLR1w
+         wv2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686203006; x=1688795006;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XtolSZaJdXUNvdM4Rjo5o9rL0OX1LHOcqWzmGyfnXNs=;
+        b=G0fX1DEwj4Vp8e3j+1wq3bDArAb+Eh81InapbR/InrCzrYgr8XlL1QcMnTsseinWGN
+         qCrOBl4fv7ErzBS3H85npixNzHW4SGQP1klAEAwrtgtVWQ/mWpj4GDMiKnEaPZZL69lq
+         dN0JzwOOi6UZEqSx8wVD+ZmH+c4kH+fFK9SEiyugXKfH0DwZn+u/Hw+iKLdV0OwngiJe
+         Z0PYyaZo8HDpGDIf7EQK9b99EhP732qxx36Jsv7qzokx9UeQGVbq03p/wHWwrZjdLDur
+         grirk2TipTGA8IEu6Mg3gNTIuNjUIuxwssryaSSkgznozAjYhGA2ojJiCbtekv9YAEAN
+         4Z6Q==
+X-Gm-Message-State: AC+VfDyVJAdwqaUYjbnlGOGlHXjWq3H/+vNbwHogO/RYOgZJ9FmJFJS9
+        tvmQPGST6ECIumrwsCw6dRQ=
+X-Google-Smtp-Source: ACHHUZ7+bfFyU+fEd9s1V1vdPHDfQF1iA8u1ua3PGiwhj/TUrkLp6wgyS4cycp/OFscGL5El97acMA==
+X-Received: by 2002:a92:da0d:0:b0:335:5bb2:6262 with SMTP id z13-20020a92da0d000000b003355bb26262mr7730875ilm.27.1686203006244;
+        Wed, 07 Jun 2023 22:43:26 -0700 (PDT)
+Received: from ryan-ThinkPad-T470.. (c-24-6-63-212.hsd1.ca.comcast.net. [24.6.63.212])
+        by smtp.gmail.com with ESMTPSA id v24-20020a62a518000000b0064d2ad04cbesm249641pfm.209.2023.06.07.22.43.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 22:43:25 -0700 (PDT)
+From:   =?UTF-8?q?=E2=80=9CRyan?= <ryan.lee.analog@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        rf@opensource.cirrus.com, ryans.lee@analog.com,
+        wangweidong.a@awinic.com, shumingf@realtek.com,
+        herve.codina@bootlin.com, ckeepax@opensource.cirrus.com,
+        doug@schmorgal.com, ajye_huang@compal.corp-partner.google.com,
+        kiseok.jo@irondevice.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     venkataprasad.potturu@amd.com
+Subject: [PATCH 1/2] ASoC: dt-bindings: max98388: add amplifier driver
+Date:   Wed,  7 Jun 2023 22:42:29 -0700
+Message-Id: <20230608054230.344014-1-ryan.lee.analog@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230607144931.v2.8.Ib1a98309c455cd7e26b931c69993d4fba33bbe15@changeid>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Douglas,
+From: Ryan Lee <ryans.lee@analog.com>
 
-kernel test robot noticed the following build errors:
+Add dt-bindings information for Analog Devices MAX98388 I2S Amplifier
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on hid/for-next dtor-input/next dtor-input/for-linus]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+---
+ .../bindings/sound/adi,max98388.yaml          | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/adi,max98388.yaml
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Douglas-Anderson/dt-bindings-HID-i2c-hid-Add-panel-property-to-i2c-hid-backed-touchscreens/20230608-055515
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230607144931.v2.8.Ib1a98309c455cd7e26b931c69993d4fba33bbe15%40changeid
-patch subject: [PATCH v2 08/10] HID: i2c-hid: Support being a panel follower
-config: arc-randconfig-r021-20230607 (https://download.01.org/0day-ci/archive/20230608/202306081344.M0jNn0Ce-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 12.3.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git remote add robh https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-        git fetch robh for-next
-        git checkout robh/for-next
-        b4 shazam https://lore.kernel.org/r/20230607144931.v2.8.Ib1a98309c455cd7e26b931c69993d4fba33bbe15@changeid
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306081344.M0jNn0Ce-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   `.exit.text' referenced in section `__jump_table' of lib/test_dynamic_debug.o: defined in discarded section `.exit.text' of lib/test_dynamic_debug.o
-   `.exit.text' referenced in section `__jump_table' of lib/test_dynamic_debug.o: defined in discarded section `.exit.text' of lib/test_dynamic_debug.o
-   `.exit.text' referenced in section `__jump_table' of drivers/misc/phantom.o: defined in discarded section `.exit.text' of drivers/misc/phantom.o
-   `.exit.text' referenced in section `__jump_table' of drivers/misc/phantom.o: defined in discarded section `.exit.text' of drivers/misc/phantom.o
-   `.exit.text' referenced in section `__jump_table' of drivers/target/target_core_configfs.o: defined in discarded section `.exit.text' of drivers/target/target_core_configfs.o
-   `.exit.text' referenced in section `__jump_table' of drivers/target/target_core_configfs.o: defined in discarded section `.exit.text' of drivers/target/target_core_configfs.o
-   arceb-elf-ld: drivers/hid/i2c-hid/i2c-hid-core.o: in function `i2c_hid_core_remove':
-   drivers/hid/i2c-hid/i2c-hid-core.c:1218: undefined reference to `drm_panel_remove_follower'
->> arceb-elf-ld: drivers/hid/i2c-hid/i2c-hid-core.c:1218: undefined reference to `drm_panel_remove_follower'
-   arceb-elf-ld: drivers/hid/i2c-hid/i2c-hid-core.o: in function `i2c_hid_core_probe':
-   drivers/hid/i2c-hid/i2c-hid-core.c:1159: undefined reference to `drm_panel_add_follower'
->> arceb-elf-ld: drivers/hid/i2c-hid/i2c-hid-core.c:1159: undefined reference to `drm_panel_add_follower'
-
+diff --git a/Documentation/devicetree/bindings/sound/adi,max98388.yaml b/Documentation/devicetree/bindings/sound/adi,max98388.yaml
+new file mode 100644
+index 000000000000..fc0ac8d8c3ae
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/adi,max98388.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/adi,max98388.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX98388 Speaker Amplifier
++
++maintainers:
++  - Ryan Lee <ryans.lee@analog.com>
++
++description:
++  The MAX98388 is a mono Class-D speaker amplifier with I/V feedback.
++  The device provides a PCM interface for audio data and a standard
++  I2C interface for control data communication.
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - adi,max98388
++  reg:
++    maxItems: 1
++    description: I2C address of the device.
++
++  '#sound-dai-cells':
++    const: 0
++
++  adi,vmon-slot-no:
++    description: slot number of the voltage feedback monitor
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    minimum: 0
++    maximum: 15
++    default: 0
++
++  adi,imon-slot-no:
++    description: slot number of the current feedback monitor
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    minimum: 0
++    maximum: 15
++    default: 1
++
++  adi,interleave-mode:
++    description:
++      For cases where a single combined channel for the I/V feedback data
++      is not sufficient, the device can also be configured to share
++      a single data output channel on alternating frames.
++      In this configuration, the current and voltage data will be frame
++      interleaved on a single output channel.
++    type: boolean
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        max98388: amplifier@39 {
++            compatible = "adi,max98388";
++            reg = <0x39>;
++            #sound-dai-cells = <0>;
++            adi,vmon-slot-no = <0>;
++            adi,imon-slot-no = <1>;
++            adi,interleave-mode;
++            reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
++        };
++    };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
