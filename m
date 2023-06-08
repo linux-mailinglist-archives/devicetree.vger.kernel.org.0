@@ -2,178 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A254972801B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:33:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF88728022
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234825AbjFHMdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 08:33:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52702 "EHLO
+        id S235100AbjFHMfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 08:35:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233440AbjFHMdh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:33:37 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132B3E43;
-        Thu,  8 Jun 2023 05:33:36 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 358BnPG2006117;
-        Thu, 8 Jun 2023 12:33:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=H1FK3RhZTcUhqJjR63H2zmKhnRjDVzFQ1gagnb5dBis=;
- b=pjrNJsJOSzBRtzvcD8CLd87jOj+MFTeaCM/E2/bTPkvRlcB46pkzsHbXJyJiIBRTxFvc
- 45oycvaNKk6sXF+YNZHcmgterr4cvI2HGDYqhEKR3HN1ZXL5NtMXmtW9d7wfNLCPN4bO
- kxHhNrRQpU6GQ6m4HDZcqx7qCRh8pzdaR0P6JEw8uzMlcKW/SC9JU6w3ys1048SB3vE6
- 3nNuZ/9bSik0K8tzIVD5oIzzfcPJFhFdZGTlf9FmlndHxuc/5YWx3tti3YVknWF/5eOV
- jX00/hLjIeH6/FJjdet9xRo17FlB32xKK4JTSyp1nnJhw7HB/Mi7K3vf1YOOtNokyNqw Og== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r31rghdum-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Jun 2023 12:33:28 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 358CXRox020622
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 8 Jun 2023 12:33:27 GMT
-Received: from [10.216.21.154] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 8 Jun 2023
- 05:33:19 -0700
-Message-ID: <05abb4e0-80c8-eb53-2d07-973ac7618aa8@quicinc.com>
-Date:   Thu, 8 Jun 2023 18:03:15 +0530
+        with ESMTP id S229753AbjFHMfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:35:38 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on20608.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe5a::608])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43717E62;
+        Thu,  8 Jun 2023 05:35:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hyXBD5iEwC+tqx9OC5FrYB/E6/CUADhdI/wRV/wxlfsnZKiJcvRdc2hQIYrmnl3ku0tDMwfiaZHOp/xCfZGpdbRPyPqEDWZZnD6uViGaIcmYv7UnlwCd4312aWrRAomGE+CvXjVfDYUm51l2jG3wEc6DHr14OcVE4ICsLbrRt917SJILMji2V5QPLS8VMyDljb4hott2/vNYLPOlfoFbbnshDnGpY6PbGo2uUW1H8dGN2Be/fKf6mawiwb3Ji5c1ADpvF79XGk+Xb0RNL9CKsCGJ01qkSSkeDWTmSXunN8XInVhSdq1BDQCJuov1CQH51F9GQXovNLxtf7RB8BXm2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gW7/fqg4eJ76LlScDHMAEatXgtLbXWdMcHszn8agHRE=;
+ b=lutwd5JmOA9DuXMQQvhRYEN2LuI2jPHNj3kk/HBaXD/xezPwxgm7Rs57zQHPR+CeO/fniu5Ww1gGFNW548iOYIukEQ+3zJVxYUMjBZqB9RziOHxYbVx7lhA1tWoPU8S8HalYa9z18JVDZvs78+YTtYG9u7yNMAjAOmm2y6mXMGgJaGZ6ET6981Q2xQFNccDQ4Y3LTphjnYabMvhBKZgLukBWg+/U3hbKOxNcbcjv2RSmpPFnH7qNekI1yCVbyfKSzPZtKGB1aAAFmuTtAi5lXP9QAXTYlvtnlQSQM4vUUCWs3X4tG++mEIVVQq5Pk7c4YloCljqsyrogqwV5YFkyqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gW7/fqg4eJ76LlScDHMAEatXgtLbXWdMcHszn8agHRE=;
+ b=YNvdJTUdrYCSEJQ+iBLnBBiPIZougfqqXoVjpInOM4o8q7fqzgI1HqbavG1CxXR+9LnGwHAyJz5ip8zJw4fDMf0hx/g6/s73vvFxBBG5y4gnYpR/juT4k+wzKOwJzqsDr4IjMDgdek9OPtYuV6jHDrEXI0L2f9qXLS3uPYXBqAo=
+Received: from DM6PR06CA0064.namprd06.prod.outlook.com (2603:10b6:5:54::41) by
+ MW4PR12MB7264.namprd12.prod.outlook.com (2603:10b6:303:22e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.36; Thu, 8 Jun
+ 2023 12:35:31 +0000
+Received: from CO1PEPF000044F1.namprd05.prod.outlook.com
+ (2603:10b6:5:54:cafe::40) by DM6PR06CA0064.outlook.office365.com
+ (2603:10b6:5:54::41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.25 via Frontend
+ Transport; Thu, 8 Jun 2023 12:35:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044F1.mail.protection.outlook.com (10.167.241.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6477.13 via Frontend Transport; Thu, 8 Jun 2023 12:35:30 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 8 Jun
+ 2023 07:35:27 -0500
+From:   Michal Simek <michal.simek@amd.com>
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Andrew Davis <afd@ti.com>,
+        "Ashok Reddy Soma" <ashok.reddy.soma@xilinx.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: zynqmp: Fix open drain warning on ZynqMP
+Date:   Thu, 8 Jun 2023 14:35:24 +0200
+Message-ID: <a0faf488dde310e1c1c1a676c371e223db6bdca6.1686227712.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH V2 12/13] arm64: dts: qcom: ipq5018: Add RDP432-c1 board
- support
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <jassisinghbrar@gmail.com>, <mathieu.poirier@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_eberman@quicinc.com>, <quic_mojha@quicinc.com>,
-        <kvalo@kernel.org>, <loic.poulain@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_devipriy@quicinc.com>
-References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
- <20230521222852.5740-13-quic_mmanikan@quicinc.com>
- <ea6d31cc-68b2-3b73-ae12-dad122a85857@linaro.org>
-From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <ea6d31cc-68b2-3b73-ae12-dad122a85857@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: FJqy9Y5iVWq4B_KZ9V-Cn-GvLXMCdSoD
-X-Proofpoint-GUID: FJqy9Y5iVWq4B_KZ9V-Cn-GvLXMCdSoD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-08_08,2023-06-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 adultscore=0
- clxscore=1015 phishscore=0 mlxlogscore=999 mlxscore=0 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306080108
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11292; i=michal.simek@amd.com; h=from:subject:message-id; bh=hF0MYFQMyH+3kyjx4XsMmZAuAOBaYk2m8DVi/AM4kcc=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpTG05yle75+9w4TYzzQXSdtVioe5bXeTlds57a3Ngtc0 1n7itw6YlkYBJkYZMUUWaRtrpzZWzljivDFw3Iwc1iZQIYwcHEKwESU6xjme+TPj1izyjKp+GTM 9U2aS1m/bND1ZZjDp14n5CFf/Fzl3OObVRUzfnzWkHgKAA==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F1:EE_|MW4PR12MB7264:EE_
+X-MS-Office365-Filtering-Correlation-Id: 977bc186-7e08-4959-5468-08db681cd895
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: i+8GFH3jNbFY5uI3GWddVdczXcbfYDQqF2f8L9UsMFBw1qzrcL3ttpCgUJJRIJdSyXs7kMCHZQoz1kM37UDMr+hfbMzKYb3+WA8v8viGje1aSD8/+/zps6y6b8hbWvakuZBFF0BQZRRDGft2tJF7Q8tj/5Xl+L34auEeIC0xAZnkC5cvWMVekYwj24rsilj5v30pcgvXYy7a+UfGkRpuyab3FTp6zDZrFslHDXjXhKAqQhL3//md0NXa6U3Fsj+vB/mtwjLclNw4xKf2bOBhml2a29HcbBTWvAfYg90NMmUdaOlpFc4PlFwptHdpvxJVRkXGxR57JbaFhEDQgTnraQDRwjfk9a/AHwx+7oTXopWadFV35czBt5G73eWhGTU+/VxZ/BKPGdJIayupxU+LYc3oYzW4+eqDdcnvbFGfDRmVsoRsJc4y3BW2apv41QfPQzEI8WHiP7c4uAA5eESA63yw1q5gQYzUiD8u5eJWgbhjNrt/PXyurZi1Kmw94hD5HaJ+KLqVPadjNn9NsrArgv8aJLDH5WiQWSushMNNkDJfLReeVwUqdCVCl+H9WW4o8WmGuodDOnnfPVcMBNKnn2iCiBtZo7KrRrQJfMLRgJsshb4lgvWhoZrzwsdNcPvBGdpkeJZT2j9xz4C3AHV/UqlZ8VldukshoSi6Qit9ymM3iGLp+vozFHboOnSJeokUQ7Qzimk4YPLoQ7R61WW8JzipZSc2+OGejFJIZT4glw5HXzaAq1pVm2tmmlk+FUyAbLxwj3sQG+guGT3eoFKNaxcNaGLKUkO75MtS9JjeZR4=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(376002)(39860400002)(136003)(451199021)(40470700004)(36840700001)(46966006)(70206006)(70586007)(8676002)(8936002)(36756003)(5660300002)(4326008)(6666004)(54906003)(110136005)(478600001)(40460700003)(41300700001)(316002)(40480700001)(81166007)(82740400003)(356005)(186003)(44832011)(26005)(47076005)(7416002)(16526019)(83380400001)(2616005)(426003)(336012)(36860700001)(86362001)(82310400005)(30864003)(2906002)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2023 12:35:30.3689
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 977bc186-7e08-4959-5468-08db681cd895
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7264
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
 
+Mark both GPIO lines as GPIO_OPEN_DRAIN which is required by i2c-gpio DT
+binding. Similar change was done by commit 8df80c1801c9 ("ARM: dts: exynos:
+Convert to new i2c-gpio bindings").
 
-On 5/30/2023 4:36 PM, Krzysztof Kozlowski wrote:
-> On 22/05/2023 00:28, Manikanta Mylavarapu wrote:
->> Add initial device tree support for the RDP432-C1 board.
->>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
->> Changes in V2:
->> 	- Renamed mp03.5-c1 to RDP432-c1
->> 	- Removed boot-args
->> 	- Resolved dt-binding error's
->>
->>   arch/arm64/boot/dts/qcom/Makefile             |  1 +
->>   .../arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts | 49 +++++++++++++++++++
->>   2 files changed, 50 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 259bd57c6064..bb9164de75b0 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c1.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts
->> new file mode 100644
->> index 000000000000..7fe28d9859b0
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts
->> @@ -0,0 +1,49 @@
->> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
->> +/*
->> + * IPQ5018 RDP432-C1 board device tree source
->> + *
->> + * Copyright (c) 2023, The Linux Foundation. All rights reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "ipq5018.dtsi"
->> +
->> +/ {
->> +	model = "Qualcomm Technologies, Inc. IPQ5018/AP-RDP432.1-C1";
->> +	compatible = "qcom,ipq5018-rdp432-c1", "qcom,ipq5018";
->> +
->> +	aliases {
->> +		serial0 = &blsp1_uart1;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +};
->> +
->> +&blsp1_uart1 {
->> +	pinctrl-0 = <&uart1_pins>;
->> +	pinctrl-names = "default";
->> +	status = "okay";
->> +};
->> +
->> +&q6v5_wcss {
->> +	pd-2 {
->> +		firmware-name = "IPQ5018/q6_fw.mdt";
-> 
-> Does not look like correct paths. Please open firmware and look there.
-> Or open other DTS files and check example. Missing qcom, lowercase,
-> that's minimum of fixes needed.
-> 
-> Best regards,
-> Krzysztof
-> 
+Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-IPQ5018 firmware files are available here
-https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/ath11k/IPQ5018/hw1.0
-I will use 'ath11k/IPQ5018/hw1.0' path.
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso   | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso   | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts      | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts | 8 ++++----
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts      | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts      | 8 ++++----
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts      | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts      | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts      | 8 ++++----
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts      | 8 ++++----
+ 12 files changed, 32 insertions(+), 32 deletions(-)
 
-Thanks & Regards,
-Manikanta.
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+index 603839c82599..e06c6824dea4 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+@@ -27,8 +27,8 @@ &i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	/* u14 - 0x40 - ina260 */
+ 	/* u27 - 0xe0 - STDP4320 DP/HDMI splitter */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+index a91d09e7da4b..030e2c93f0e6 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+@@ -22,8 +22,8 @@ &i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	/* u14 - 0x40 - ina260 */
+ 	/* u43 - 0x2d - usb5744 */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+index dfd1a18f5a10..c1f21b0e1760 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+@@ -245,8 +245,8 @@ &i2c1 {
+ 	status = "okay";
+ 	bootph-all;
+ 	clock-frequency = <400000>;
+-	scl-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	eeprom: eeprom@50 { /* u46 - also at address 0x58 */
+ 		bootph-all;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+index d9d1de5f313c..e821d55d8d5a 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+@@ -119,8 +119,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 36 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 37 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 36 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 37 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	eeprom: eeprom@55 {
+ 		compatible = "atmel,24c64"; /* 24AA64 */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+index 6503f4985f8d..b59e11316b4b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+@@ -110,8 +110,8 @@ &i2c0 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c0_default>;
+ 	pinctrl-1 = <&pinctrl_i2c0_gpio>;
+-	scl-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	tca6416_u26: gpio@20 {
+ 		compatible = "ti,tca6416";
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+index b1e933b8a2cd..0d2ea9c09a0a 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+@@ -91,8 +91,8 @@ &i2c0 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c0_default>;
+ 	pinctrl-1 = <&pinctrl_i2c0_gpio>;
+-	scl-gpios = <&gpio 74 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 75 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 74 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 75 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ };
+ 
+ &i2c1 {
+@@ -100,8 +100,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 76 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 77 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 76 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 77 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ };
+ 
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+index 44d1f351bb75..d0091d3cb764 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+@@ -180,8 +180,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 4 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	clock-frequency = <100000>;
+ 	i2c-mux@75 { /* u11 */
+ 		compatible = "nxp,pca9548";
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index 8767f147cbe3..84952c14f021 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -233,8 +233,8 @@ &i2c0 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c0_default>;
+ 	pinctrl-1 = <&pinctrl_i2c0_gpio>;
+-	scl-gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	tca6416_u97: gpio@20 {
+ 		compatible = "ti,tca6416";
+@@ -497,8 +497,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	/* PL i2c via PCA9306 - u45 */
+ 	i2c-mux@74 { /* u34 */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index e185709c0d84..5084ddcee00f 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -140,8 +140,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	/* Another connection to this bus via PL i2c via PCA9306 - u45 */
+ 	i2c-mux@74 { /* u34 */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+index 7fceebd1815c..b273bd1d920a 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+@@ -145,8 +145,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	tca6416_u97: gpio@20 {
+ 		compatible = "ti,tca6416";
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 27b2416cb6d8..50c384aa253e 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -245,8 +245,8 @@ &i2c0 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c0_default>;
+ 	pinctrl-1 = <&pinctrl_i2c0_gpio>;
+-	scl-gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	tca6416_u97: gpio@20 {
+ 		compatible = "ti,tca6416";
+@@ -508,8 +508,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	/* PL i2c via PCA9306 - u45 */
+ 	i2c-mux@74 { /* u34 */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index 6224365826d8..617cb0405a7d 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -205,8 +205,8 @@ &i2c0 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c0_default>;
+ 	pinctrl-1 = <&pinctrl_i2c0_gpio>;
+-	scl-gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	tca6416_u22: gpio@20 {
+ 		compatible = "ti,tca6416";
+@@ -385,8 +385,8 @@ &i2c1 {
+ 	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
+ 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
+-	sda-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	i2c-mux@74 { /* u26 */
+ 		compatible = "nxp,pca9548";
+-- 
+2.36.1
+
