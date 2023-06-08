@@ -2,86 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC82728BA8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 01:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F45B728BB3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 01:25:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbjFHXUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 19:20:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42658 "EHLO
+        id S229839AbjFHXY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 19:24:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236744AbjFHXUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 19:20:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA97B30D0;
-        Thu,  8 Jun 2023 16:20:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229817AbjFHXY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 19:24:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE2D30D6;
+        Thu,  8 Jun 2023 16:24:30 -0700 (PDT)
+Received: from mercury (unknown [185.209.196.239])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 63A5C60B9C;
-        Thu,  8 Jun 2023 23:20:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9452C433EF;
-        Thu,  8 Jun 2023 23:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686266399;
-        bh=gNWzo0d9k285yqJ8343FYMMw+n7NS2BmOugvX2V0Ji4=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=CA4pzCm+6mlNQVfNfEDag0XzljC6cfKu+PqT5l6t8GKJ6NGlZeiHGUJr+CnONQDlA
-         Cxj2Zobn+zQbQQO27nvBbTBMNKzC8ytYlap3oYrEOTmLQi7KWIj8Tw97hZW8jSseLB
-         u+Y2Ze8goJdUkgMec9T+K3L8O+hZ6/9KzJupowAaBHXhRuHNYxp7+HkQJ0+RsS0SeK
-         0AiPMeQK1FAFe1GZXfFMhW+tx9L+nM4htHuYSuEMQcP/b+tBzecABFuAHR2LzR+Mxi
-         Q2onTKpdzdjG3vJa2OFjL9C2FKAr4shGeW45NcYgFUg1MOTDCmJHOtsNZrHoRBKldq
-         A2dG2IxKIrfpw==
-Message-ID: <0447c70d63e13d239bdda839e966bd89.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <96004048-0ba5-4cd6-406f-e1235c819c97@topic.nl>
-References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.1d0217a8-661f-4359-b77b-02222c761b01@emailsignatures365.codetwo.com> <20230605133410.15076-1-mike.looijmans@topic.nl> <5d1f08f1-792b-255b-89f0-dd5fa2f0baa4@linaro.org> <96004048-0ba5-4cd6-406f-e1235c819c97@topic.nl>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: fixed-clock: Add nvmem support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 753836606F1D;
+        Fri,  9 Jun 2023 00:24:24 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686266664;
+        bh=mCFzt9Y8896kdcxmhKQPvHOnPkcXSRatB/HlXjIKGQc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HcSfKi7LayIU/v34zNkIEAO6QPFs20sykANJIiRceDpKRd4hBFyrlKfBYal9/3iIr
+         5rvtCnsvrR8Ta18JeX7S0pkSdvFl/iJwv+QYkGizxbrD+0dnQQ1vPOTcb7h9uMaZKP
+         N0KFG+JJc0i6PRfIffG8SDw+EROmPehrb56fXbhnxQBFJuSZuCL7S/Xkj6n4edo1Yo
+         +G0ew41QMVPpyrzOs91GRBeMrMKaMa3kB19Q5dnfFJsZ/1ukC7e2ydRG51aqBPeZcd
+         6+VXsmfU4oyTvEQnzvqo5BKme0Nzlcb0o1ZeX7nsg+tfoW/+arro/nm7rJHew23KZp
+         ofFBskKzAUpgA==
+Received: by mercury (Postfix, from userid 1000)
+        id 29AFB1060A24; Fri,  9 Jun 2023 01:24:22 +0200 (CEST)
+Date:   Fri, 9 Jun 2023 01:24:22 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Date:   Thu, 08 Jun 2023 16:19:57 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Tom Rix <trix@redhat.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org,
+        Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Subject: Re: [PATCH v9 0/2] power: supply: introduce support for the Qualcomm
+ smb2 charger
+Message-ID: <20230608232422.ikckij5m4adwnrap@mercury.elektranox.org>
+References: <20230524-pmi8998-charger-v9-0-cd7f6d03c0ab@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cv4aioka2xke3d7y"
+Content-Disposition: inline
+In-Reply-To: <20230524-pmi8998-charger-v9-0-cd7f6d03c0ab@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Mike Looijmans (2023-06-05 07:00:16)
-> On 05-06-2023 15:38, Krzysztof Kozlowski wrote:
-> > On 05/06/2023 15:34, Mike Looijmans wrote:
-> >> diff --git a/Documentation/devicetree/bindings/clock/fixed-clock.yaml =
-b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-> >> index b0a4fb8256e2..23e4df96d3b0 100644
-> >> --- a/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-> >> +++ b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-> >> @@ -12,7 +12,9 @@ maintainers:
-> >>  =20
-> >>   properties:
-> >>     compatible:
-> >> -    const: fixed-clock
-> >> +    enum:
-> >> +      - fixed-clock
-> >> +      - fixed-clock-nvmem
-> > Do you even need new compatible? Isn't this the same clock from the
-> > hardware point of view?
+
+--cv4aioka2xke3d7y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Fri, May 26, 2023 at 10:44:13PM +0100, Caleb Connolly wrote:
+> Add a driver for the Qualcomm PMI8998/PM660 Switch-Mode Battery Charger.
+> This is the second generation SMB charger, and replaces the previous
+> SMBB hardware found in older PMICs.
 >=20
-> I need a new compatible because a "fixed-clock" only loads at init time. =
+> Changes since v8:
+>  * Add charger bindings reference to qcom,spmi-pmic.yaml
+> V8: https://lore.kernel.org/all/20230524-pmi8998-charger-v8-0-b87ffcd9864=
+d@linaro.org/
+>=20
+> Changes since v7:
+>  * Implement fixes suggested by Sebastian
+>  * Fix format warning
+> V7: https://lore.kernel.org/linux-arm-msm/20230127230506.3140297-1-caleb.=
+connolly@linaro.org/
+>=20
+> To: Sebastian Reichel <sre@kernel.org>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Caleb Connolly <caleb.connolly@linaro.org>
+> To: Andy Gross <agross@kernel.org>
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> To: Nathan Chancellor <nathan@kernel.org>
+> To: Nick Desaulniers <ndesaulniers@google.com>
+> To: Tom Rix <trix@redhat.com>
+> ---
+> Caleb Connolly (2):
+>       dt-bindings: power: supply: qcom,pmi8998-charger: add bindings for =
+smb2 driver
+>       power: supply: add Qualcomm PMI8998 SMB2 Charger driver
+>=20
+>  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |    1 +
+>  .../power/supply/qcom,pmi8998-charger.yaml         |   82 ++
+>  drivers/power/supply/Kconfig                       |    9 +
+>  drivers/power/supply/Makefile                      |    1 +
+>  drivers/power/supply/qcom_pmi8998_charger.c        | 1059 ++++++++++++++=
+++++++
+>  5 files changed, 1152 insertions(+)
+> ---
 
-> It registers using CLK_OF_DECLARE, which requires the clock to register=20
-> early. NVMEM providers are typical devices like I2C EEPROMs that won't=20
-> be available at that point, hence I needed to create a clock that=20
-> registers as a regular clock driver and can handle deferral and similar.
+Thanks, queued.
 
-What is builtin_platform_driver(of_fixed_clk_driver)?
+-- Sebastian
+
+--cv4aioka2xke3d7y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSCYyEACgkQ2O7X88g7
++ppw6w//Zzu/r/8Xz5uRQd7GSe12Dh9LxYrMQSBlUvnx7kDxgozjcNN+g34yd0aQ
+sRewvvYQy3jh5ssfNhTWI3uNp0TIeEtk+t1kJE2iTSry5wH7QikVOdydzd6+9CT1
+8TEEzUQBywONL3GxSMUeN05Wb72hTKWUeQgoLiSbeogp9G5oBcWKvimG8mEM0jIB
+yEazx6NM1SOdCMkA8LH89KoLo2xgXILpL6f2wFpCO3xYeKAa7n4+ifqweyOyvtjH
+JMK21eCrP1Zp3LHLYOQNrf+I535Geqh8QpSl4joqm3xfBWE3WqMUFVRhRucyQXPa
+k7PNzSwmmuf08w1unEXFImu5zSL1IvYwFRX+9dVPdxle2RmJnPjW3DJpCSyd+Zwk
+6NqL6q+4jU7VwrZHwSGEqXS1EDJXcEfIFdEKyZHTIJ8HaUfREmzeVIihUwOsGu00
+ifTffm90ySSeaZTIcQ0jZmNDryfF+hRTiNx5FgffjEqds/ppGmhackacJ86iefsu
+o6c6fhBbMJPSzc3oHfBrMz8sfQlu6AJw0wDq1PJp8SNpqLoFSOVc3rL6ksJAaXJj
+kmjYzOsfXiI+j5qN0aq+fac6uF875psA0DQFpjJSv4Qq01WhQAyxg4aLLKug2vyO
+blz63/fj3Qmq9fZA8axOy+JJpylYjkqX3WaQsZSvRGYh2Se/vr0=
+=F7Hh
+-----END PGP SIGNATURE-----
+
+--cv4aioka2xke3d7y--
