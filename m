@@ -2,125 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7338727B43
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 11:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABF93727B3E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 11:27:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233959AbjFHJ2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 05:28:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35442 "EHLO
+        id S235811AbjFHJ1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 05:27:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233840AbjFHJ2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 05:28:43 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF89213C;
-        Thu,  8 Jun 2023 02:28:25 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3589R9aZ4011935, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3589R9aZ4011935
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Thu, 8 Jun 2023 17:27:09 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Thu, 8 Jun 2023 17:27:25 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Thu, 8 Jun 2023 17:27:25 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Thu, 8 Jun 2023 17:27:25 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ray Chi <raychi@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v3 4/5] dt-bindings: phy: realtek: Add the doc about the Realtek SoC USB 2.0 PHY
-Thread-Topic: [PATCH v3 4/5] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0 PHY
-Thread-Index: AQHZmQjdazkCXQ0o50uX71FuvNBNuK9+uDoAgAGs3VD//54bgIAAiZyw//+BfQCAAI4H4A==
-Date:   Thu, 8 Jun 2023 09:27:25 +0000
-Message-ID: <d515bfed030d4499b16050d492e1ec23@realtek.com>
-References: <20230607062500.24669-1-stanley_chang@realtek.com>
- <20230607062500.24669-4-stanley_chang@realtek.com>
- <7cce1d72-6b4d-9fff-32bc-942193388134@linaro.org>
- <8a88cbee5c6245f2941c700b2bb30697@realtek.com>
- <7df8ffb6-a544-d10e-5273-fd6c4b368b20@linaro.org>
- <7d503e3028a7487a9a087cfa061fff9d@realtek.com>
- <b941c06f-7f7d-1364-a7f5-be5905112cac@linaro.org>
-In-Reply-To: <b941c06f-7f7d-1364-a7f5-be5905112cac@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS04.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S235809AbjFHJ1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 05:27:53 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B480226AB
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 02:27:50 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5169f614977so656671a12.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 02:27:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686216469; x=1688808469;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4M4AXwuus3QNcxn5wLRmX6dWFPy9Bx8ysuH50InMwSo=;
+        b=Iv/XXxWBX0f2XCCR6QA12a+irtrS/oHxhfmmy7hqMHSK7RAzwb9HV+XNm5fKtRB0QF
+         k6beldcZQW2GRHQE+1UonNwxq60CY/l6n4IJeMZpujS1xMr50FRH9qLdxDCIgRCsuTDu
+         Z2vqQqsbZ/BvujbnKRRIIbZ0mc4/U5+4GEzJw9aI4wOEMpeidmed3Dc21wgupOgRVec1
+         7mMA04e5O3EeoB9JJ7pSX2P2ftncDThKdmmxKh7fVi5MXEf7vSwk78e+JVIqwLaXYnTn
+         rFTUV59anSVgY9cSY/QoPl6O4eGFQOOwkRaTAyJAZpNqAFZq6sl+KqPvyaB0W9RozFm/
+         t5rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686216469; x=1688808469;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4M4AXwuus3QNcxn5wLRmX6dWFPy9Bx8ysuH50InMwSo=;
+        b=Yztyjs6eytOsSC9qGUtMynq542J4ZXV1OF1uibmnLasPXTdkX/EmlSsiAbe1BOeA46
+         AjWhFfa8DW/SQqv3hZVButaJ0dbe5ybtmmBS+p+pE/M001qVwPzobMT9WnPD/Z33etbG
+         J27P0lA0Y3TDciNzcZS5yvUjz3LtNZmMOG45uiqZE0wmgCiNBX2mTnO5uArOPWUDidE2
+         Zv+8T9xf6IQ/5FXhySij5PIjzxj6ylgfI3lUf8QBnnXLOYBBXcChNuQHRMnZ0pNX79Fk
+         aylGBe5pwpbmcqFOZliTajspABRJoUFxe/9oN0Nz0IP+NMN3F3GN/ocylk0wutWNKTxB
+         2WYw==
+X-Gm-Message-State: AC+VfDx512OYEBP4f48Qf5xsbV8OHHCYocHqxkAVaBBg7BmVgZ4QxS6T
+        SMCxYKLaYmGJCAG+yN2wNawpsg==
+X-Google-Smtp-Source: ACHHUZ61lgRdfNH+4iXxEctmcKpZlKsW/Cb7gNYirHVgh00nzDxu+CtNqzKNbg5xj0GFO96YbeoOVQ==
+X-Received: by 2002:a05:6402:613:b0:516:7928:ed70 with SMTP id n19-20020a056402061300b005167928ed70mr6344488edv.3.1686216469187;
+        Thu, 08 Jun 2023 02:27:49 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id n17-20020aa7c691000000b005105f002fd1sm316888edq.66.2023.06.08.02.27.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jun 2023 02:27:48 -0700 (PDT)
+Message-ID: <5b5ccfb9-d6ea-9f22-bc8f-c048da726cc9@linaro.org>
+Date:   Thu, 8 Jun 2023 11:27:46 +0200
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [v6 1/4] dt-bindings: pwm: Add ASPEED PWM Control documentation
+Content-Language: en-US
+To:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>
+References: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
+ <20230608021839.12769-2-billy_tsai@aspeedtech.com>
+ <4dffd320-8e30-fb30-6ded-79519afddc21@linaro.org>
+ <SG2PR06MB3365DD80EA2FD026D400C4A78B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+ <61278e12-ba39-4503-ca74-a7118b0f6e99@linaro.org>
+ <SG2PR06MB336528007D2685F8D95DF4078B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+ <fb3cb26b-61d7-5f57-41de-f419aa50ac0b@linaro.org>
+ <SG2PR06MB3365558F9A3127744CEF1C068B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <SG2PR06MB3365558F9A3127744CEF1C068B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+IEkgb25seSBjb250cm9sIGEgcmVnaXN0ZXIsIGl0IGlzIG5vdCBuZWVkZWQgYSBkcml2ZXIg
-b2YgcG93ZXIgZG9tYWluLg0KPiANCj4gQXJlbid0IG1hbnkgcG93ZXIgZG9tYWlucyBqdXN0IGEg
-cmVnaXN0ZXJzPyBXaGF0IGFib3V0IG90aGVyIGRyaXZlcnM/DQo+IERvbid0IHlvdSB3YW50IGlu
-IG90aGVyIGRyaXZlciBjb250cm9sIExETyBvZiBzb21ldGhpbmcgZWxzZT8gQW5kIGluIG90aGVy
-DQo+IHNvbWV0aGluZyBlbHNlPw0KDQpJIHdpbGwgdXNlIHBvd2VyIGRvbWFpbiB0byBpbnN0ZWFk
-IHRoaXMuDQoNCj4gPiBXb3VsZCAicG9ydCIgYmUgbW9yZSBhcHByb3ByaWF0ZT8NCj4gPg0KPiA+
-IEZvciBleGFtcGxlLA0KPiA+IFVzaW5nIHBoeUAwIGFuZCBwaHlAMToNCj4gPiAgICAgdXNiX3Bv
-cnQxX3VzYjJwaHk6IHVzYi1waHlAMTNjMTQgew0KPiA+ICAgICAgICAgY29tcGF0aWJsZSA9ICJy
-ZWFsdGVrLHJ0ZDEzOTUtdXNiMnBoeSIsICJyZWFsdGVrLHVzYjJwaHkiOw0KPiA+ICAgICAgICAg
-cmVnID0gPDB4MTMyYzQgMHg0PiwgPDB4MzEyODAgMHg4PjsNCj4gPiAgICAgICAgICNhZGRyZXNz
-LWNlbGxzID0gPDE+Ow0KPiA+ICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gICAgICAg
-ICAjcGh5LWNlbGxzID0gPDA+Ow0KPiA+ICAgICAgICAgcmVhbHRlayx1c2ItY3RybCA9IDwmdXNi
-X2N0cmw+Ow0KPiA+DQo+ID4gICAgICAgICBwaHlAMCB7DQo+ID4gICAgICAgICAgICAgcmVnID0g
-PDA+Ow0KPiANCj4gU28gc3VjaCBjaGlsZCBpcyBhIE5BSy4uLiB5b3UgaGF2ZSBub3RoaW5nIGhl
-cmUuIEJ1dCBpdCdzIHVucmVsYXRlZCB0b3BpYy4NCkhlcmUgaXMgZm9yIHNpbXBsZSwgc28gc29t
-ZSBpdGVtcyBpZ25vcmUuDQoNCj4gPiAgICAgICAgIH07DQo+ID4gICAgICAgICBwaHlAMSB7DQo+
-ID4gICAgICAgICAgICAgcmVnID0gPDE+Ow0KPiA+ICAgICAgICAgfTsNCj4gPiAgICAgfTsNCj4g
-Pg0KPiA+IENoYW5nZTogcG9ydEAwIGFuZCBwb3J0QDENCj4gPiAgICAgdXNiX3BvcnQxX3VzYjJw
-aHk6IHVzYi1waHlAMTNjMTQgew0KPiA+ICAgICAgICAgY29tcGF0aWJsZSA9ICJyZWFsdGVrLHJ0
-ZDEzOTUtdXNiMnBoeSIsICJyZWFsdGVrLHVzYjJwaHkiOw0KPiA+ICAgICAgICAgcmVnID0gPDB4
-MTMyYzQgMHg0PiwgPDB4MzEyODAgMHg4PjsNCj4gPiAgICAgICAgICNhZGRyZXNzLWNlbGxzID0g
-PDE+Ow0KPiA+ICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gICAgICAgICAjcGh5LWNl
-bGxzID0gPDA+Ow0KPiA+ICAgICAgICAgcmVhbHRlayx1c2ItY3RybCA9IDwmdXNiX2N0cmw+Ow0K
-PiA+DQo+ID4gICAgICAgICBwcm90QDAgew0KPiA+ICAgICAgICAgICAgIHJlZyA9IDwwPjsNCj4g
-PiAgICAgICAgIH07DQo+ID4gICAgICAgICBwb3J0QDEgew0KPiA+ICAgICAgICAgICAgIHJlZyA9
-IDwxPjsNCj4gPiAgICAgICAgIH07DQo+ID4gICAgIH07DQo+IA0KPiBUaGlzIGlzIG5vdCB0aGUg
-YW5zd2VyLiBUaGlzIGlzIHRoZSBwcm92aWRlci4gSG93IGRvIHlvdSByZWZlcmVuY2UgaXQgZnJv
-bSB0aGUNCj4gY29uc3VtZXIuDQoNCg0KPiBVcHN0cmVhbSB5b3VyIGVudGlyZSBEVFMuIEl0J3Mg
-ZnJ1c3RyYXRpbmcgdG8gdHJ5IHRvIHVuZGVyc3RhbmQgeW91ciBEVFMgZnJvbQ0KPiBwaWVjZXMg
-b2YgaW5mb3JtYXRpb24geW91IGFyZSBzaGFyaW5nLiBBbHNvIHZlcnkgdGltZSBjb25zdW1pbmcg
-YW5kIHlvdSBhcmUNCj4gbm90IHRoZSBvbmx5IG9uZSBzZW5kaW5nIHBhdGNoZXMgZm9yIHJldmll
-dy4uLg0KDQpTb3JyeSB0byB0YWtlIHVwIGEgbG90IG9mIHlvdXIgdGltZS4NCkFwcGFyZW50bHkg
-SSBkb24ndCBrbm93IGVub3VnaCBhYm91dCBkdHMuDQpJIHdpbGwgcmVmZXJlbmNlIG1vcmUgZGV2
-aWNlIHRyZWUgZG9jdW1lbnQgdG8gdW5kZXJzdGFuZCB0aGUgcmVsYXRpbmcgYmV0d2VlbiBEVFMg
-YW5kIGhhcmR3YXJlLg0KDQpUaGFua3MsDQpTdGFubGV5DQo=
+On 08/06/2023 11:15, Billy Tsai wrote:
+> On 08/06/2023 10:21, Billy Tsai wrote:
+>         >>         On 08/06/2023 09:47, Billy Tsai wrote:
+>         >>         >>
+>         >>         >>   >> +
+>         >>         >>   >> +allOf:
+>         >>         >>   >> +  - $ref: pwm.yaml#
+>         >>         >>   >> +
+>         >>         >>   >> +properties:
+>         >>         >>   >> +  compatible:
+>         >>         >>   >> +    enum:
+>         >>         >>   >> +      - aspeed,ast2600-pwm
+>         >>         >>   >> +
+>         >>         >>   >> +  "#pwm-cells":
+>         >>         >>   >> +    const: 3
+>         >>         >>
+>         >>         >>   > 3 cells? For one PWM? What are they?
+>         >>         >>
+>         >>         >> channel, period and polarity.
+>         >>
+>         >>         > Don't cut my responses. You wrote you have one PWM output, so only one
+>         >>         > channel. What do you put then in the channel?
+>         >>
+>         >> You need to put 0 in the cell of the channel, the example of the dts usage will like following:
+>         >>
+>         >> pwm0: pwm0@1e610000 {
+>         >>         compatible = "aspeed,ast2600-pwm";
+>         >>         reg = <0x1e610000 0x8>;
+>         >>         #pwm-cells = <3>;
+>         >>         #address-cells = <1>;
+>         >>         #size-cells = <0>;
+>         >>         pinctrl-names = "default";
+>         >>         pinctrl-0 = <&pinctrl_pwm0_default>;
+>         >>         clocks = <&syscon ASPEED_CLK_AHB>;
+>         >>         resets = <&syscon ASPEED_RESET_PWM>;
+>         >>         status = "okay";
+>         >> };
+>         >>
+>         >> pwm1: pwm1@1e610010 {
+>         >>         compatible = "aspeed,ast2600-pwm";
+>         >>         reg = <0x1e610010 0x8>;
+>         >>         #pwm-cells = <3>;
+>         >>         #address-cells = <1>;
+>         >>         #size-cells = <0>;
+>         >>         pinctrl-names = "default";
+>         >>         pinctrl-0 = <&pinctrl_pwm1_default>;
+>         >>         clocks = <&syscon ASPEED_CLK_AHB>;
+>         >>         resets = <&syscon ASPEED_RESET_PWM>;
+>         >>         status = "okay";
+> 
+>         > BTW, these are not two PWM devices but one. I don't understand why you
+>         > changed previous design into something like this, but this is not
+>         > representing your hardware.
+> 
+> The previous design of my patch treated our PWM controller as having 16 PWM channels.
+> However, from a hardware perspective, it consists of 16 individual PWM chips, each
+> with its own set of two 4-byte control registers. These chips operate independently
+> and are not affected by each other.
+
+They are affected by each other - you use the same clock and reset line.
+I really doubt you have 16 PWM controllers. Anyway, I cannot judge.
+Either your previous submissions were totally bogus or this one is.
+
+Best regards,
+Krzysztof
+
