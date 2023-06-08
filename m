@@ -2,146 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 696C2727A81
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6534C727A84
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233894AbjFHIxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 04:53:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47200 "EHLO
+        id S234906AbjFHIx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 04:53:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjFHIxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:53:44 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8FAE61
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 01:53:43 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-514ab6cb529so3013904a12.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 01:53:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686214422; x=1688806422;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AxDnfIeGDEgjasab2xKCt2UI0vyBkLC9/9iWa3HZ5tY=;
-        b=R4G6uV1oPJlGhXrHkHDxx5b6w78932R2vqY4HcD9F6age09jph14lshZeGu7tcC23b
-         3hCfI/UwGcxwAaDmrAnlI3nK2SsqAv9+3WDRI7/AzhxMlm1uBNsseKl4zwfmBqXlLS2t
-         1Pe+T0jaFHR/1kHXwyGIy6xyRmHw5vFLmdM3fHI+Zgg2zfKFUS2QO5ZdqhguucjdLz7B
-         VYi2GUBeHprA8enq8KtoGj0N5h4onepaxo4bIXTchaG8R55FPgDbo1KxRt1vffkcJRoY
-         d3s8O4riIj/XjqSmvRTi+9mKH++AEORXbDwyNEogbr3ZL1y/U53kYVo5DIEuW/hleFUf
-         8J6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686214422; x=1688806422;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AxDnfIeGDEgjasab2xKCt2UI0vyBkLC9/9iWa3HZ5tY=;
-        b=I8ubDc3BpiC1I6OSs1n2ncACSg7bHeeHv3kMTm6V5Zn4hYnrey1Rb53tLEDeGlJ3G2
-         XkPy9kU+0G4DON2WuXsZvafRrKF80D90jpcl3bzGLg8I5PrHeizVJd72PHxOAyXx5M5u
-         wrQ1W+e1BYxn9XuaalvQTO+KGHPwvsBxD6ujFA2YqEX7j+l8esFh3Ty/m1sKMQIw9kgA
-         CxP2PQ73hHNTmCDgtAKJcmWnETTKRoJGzkuE9dQ+JeRtZvrj9DD1QgrlO+dYoNx5kQRZ
-         nizEpZXzrmTWqbbpIcdo152udtYYyy5aQ43VRRXvSxmR6e+RAo7MKaVfyHNUvczNHpx5
-         pB7A==
-X-Gm-Message-State: AC+VfDzaKXFhOGEixYIGDP2SULo3WiDZUIzDHDKV1H2UB6ahNf3LESs+
-        NcWpeYYKjR2tCBiktlf1HyoWOv9/KlLpclbOLQc=
-X-Google-Smtp-Source: ACHHUZ6i1hcbV1Jj4VkqrWiOWrWz7QhzUl+9EviEgTci4V/Qbd9pvKDui7qf7SKn2NPoZaK5mkX1LA==
-X-Received: by 2002:a17:907:6d85:b0:978:9235:d450 with SMTP id sb5-20020a1709076d8500b009789235d450mr1601734ejc.9.1686214421801;
-        Thu, 08 Jun 2023 01:53:41 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id cf20-20020a170906b2d400b00977d14d89fesm411822ejb.34.2023.06.08.01.53.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 01:53:41 -0700 (PDT)
-Message-ID: <6bfc2a22-6901-0858-7b90-bc4c52c66810@linaro.org>
-Date:   Thu, 8 Jun 2023 10:53:39 +0200
+        with ESMTP id S234447AbjFHIxy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:53:54 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D71EF2729;
+        Thu,  8 Jun 2023 01:53:52 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9C8D66606F17;
+        Thu,  8 Jun 2023 09:53:50 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686214431;
+        bh=96X6k5oqBvIX1dBppWoB2S5z/C5qU+MMBXm3vBPWtl0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=U3ly+JKpH51mwz8/4HmOI/6l6O91KLGeLtbNFx5lDpKMqv7TQ1mITadLrC40Su0BQ
+         QeRZtJIOhqTf/qwTJm/cqhT5+Cs1sp0y/uUMpZqu0LsaPGIDH0oVMkYtrTQ0THqqWS
+         8/31HkQESvhMEK2XMNloIwjBBUbQzCgQa1fvDLhbn32ipbD0dqkUJM6HsEuAteAkib
+         WYfcG5cleEOcK2/o+RH6gjQqsF0Qjo4AfOZPwUgeWGsX/7LccV0RiClCGDyabE/rd2
+         VzzDqxDow1OjcBisJ9WaIL7Pvhpi33MgY5E+SdEhBPyilu9EIz8kimWqBEhVTMnaIg
+         kYcYMRlXm2qDw==
+Message-ID: <38e5ffa2-93bd-ce70-ec00-6d61bad969c7@collabora.com>
+Date:   Thu, 8 Jun 2023 10:53:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v12 1/2] spi: add loongson spi bindings
+Subject: Re: [PATCH v2 4/5] clk: mediatek: mt8183: Add CLK_VDEC_ACTIVE to vdec
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>, kernel@collabora.com,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
- <20230608072819.25930-2-zhuyinbo@loongson.cn>
- <6ebed84c-2b42-c981-7b3f-e71cc88e4c2c@linaro.org>
- <4bf747c4-b767-b20c-e00f-724b50f44edb@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4bf747c4-b767-b20c-e00f-724b50f44edb@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Michael Turquette <mturquette@baylibre.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230607205714.510012-1-nfraprado@collabora.com>
+ <20230607205714.510012-5-nfraprado@collabora.com>
+ <CAGXv+5EgP+0fTDhdpnYDCVQAWtWqwKp=Xxh-pHc1137wHoywRQ@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5EgP+0fTDhdpnYDCVQAWtWqwKp=Xxh-pHc1137wHoywRQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 10:39, zhuyinbo wrote:
->>>
->>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>   .../bindings/spi/loongson,ls2k-spi.yaml       | 41 +++++++++++++++++++
->>>   MAINTAINERS                                   |  6 +++
->>>   2 files changed, 47 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>> new file mode 100644
->>> index 000000000000..423ee851edd5
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
+Il 08/06/23 09:43, Chen-Yu Tsai ha scritto:
+> On Thu, Jun 8, 2023 at 4:57 AM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
 >>
->> Filename based on compatible.
-> 
-> 
-> There will be more ls2k series SoC spi device in the future thus I still
-> use "loongson,ls2k-spi.yaml" for cover it.
-
-Add them now.
-
-> 
+>> Add the CLK_VDEC_ACTIVE clock to the vdec clock driver. This clock is
+>> enabled by the VPU once it starts decoding.
 >>
->>> @@ -0,0 +1,41 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/spi/loongson,ls2k-spi.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Loongson SPI controller
->>> +
->>> +maintainers:
->>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/spi/spi-controller.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - loongson,ls2k1000-spi
+>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 >>
->> No compatibles for other devices? Didn't we have big discussion about this?
+>> ---
 >>
->> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+>> Changes in v2:
+>> - Added CLK_IGNORE_UNUSED flag
+>>
+>>   drivers/clk/mediatek/clk-mt8183-vdec.c | 5 +++++
+>>   include/dt-bindings/clock/mt8183-clk.h | 3 ++-
+>>   2 files changed, 7 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/mediatek/clk-mt8183-vdec.c b/drivers/clk/mediatek/clk-mt8183-vdec.c
+>> index 513b7956cbea..03c4f1acfdb8 100644
+>> --- a/drivers/clk/mediatek/clk-mt8183-vdec.c
+>> +++ b/drivers/clk/mediatek/clk-mt8183-vdec.c
+>> @@ -27,6 +27,10 @@ static const struct mtk_gate_regs vdec1_cg_regs = {
+>>          GATE_MTK(_id, _name, _parent, &vdec0_cg_regs, _shift,   \
+>>                  &mtk_clk_gate_ops_setclr_inv)
+>>
+>> +#define GATE_VDEC0(_id, _name, _parent, _shift)                \
+>> +       GATE_MTK_FLAGS(_id, _name, _parent, &vdec0_cg_regs, _shift,     \
+>> +               &mtk_clk_gate_ops_setclr, CLK_IGNORE_UNUSED)
 > 
-> 
-> There are other ls2k SPI devices compatible, such as,
-> "loongson,ls2k0500-spi", "loongson,ls2k2000-spi" but currently I plan to
-> add ls2k1000 spi device first, Other ls2k SoC spi device adaptation may
-> require some additional work and I will add it later.
+> I think what you want is a read-only gate clock only used for reading back
+> the status. The ops would only have .is_enabled.
 
-Previously you claimed this serves entire family, so I don't understand
-why you need to fix something. Why previously it was working for entire
-family but now it does not?
+Technically, you're right... but I would delay the introduction of a RO GATE_MTK
+clock for later, as it's not worth adding that for just one clock driver usage.
 
-Best regards,
-Krzysztof
+We're checking if the same can be applied to other SoCs as well - if it can,
+then it would make sense to do that (small, yes), work... the point here is to
+enable MT8183 decoders ASAP to enable decoder tests in KernelCI, along with
+all of the other MediaTek Chromebooks.
 
+Though, if you think that it is a good idea to add a RO gate right now, I don't
+have any strong opinions against that.
+
+Cheers,
+Angelo
