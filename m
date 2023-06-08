@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09EDE72775F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 08:38:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4363E72776A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 08:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234755AbjFHGiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 02:38:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
+        id S234818AbjFHGj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 02:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234292AbjFHGiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 02:38:04 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E666E26AA
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 23:38:02 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5147f7d045bso309534a12.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 23:38:02 -0700 (PDT)
+        with ESMTP id S234798AbjFHGjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 02:39:25 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2B01BE8
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 23:39:24 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5149429c944so406785a12.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 23:39:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686206281; x=1688798281;
+        d=linaro.org; s=google; t=1686206363; x=1688798363;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lqo0A7BM5THz83RAtHMEkVHjNz7WCnOgKYrgDzsaaU4=;
-        b=CUbo1fahuMwU8hQpPyLHBQTQNthgS0+azjXEB5AuMpivBaAN7sKBcqOMHCbudzENfS
-         E2sZnGqcbYx2nNJ0yBKlteFKjUuDqif5VYX9YDV94/AGcAdw+KtmKakYxEmVd724gm4D
-         cgg6z7n3Hn31+jor2LbZSAW6BjWkrJIirz5GlLUhGi1HX7d8qocpZ6PC2QHc5U8lL5Sm
-         Mixy66cV0bGiUy/Q5e5jVgtKz1exAoXZFKX4pvxrlUOrC+w+rqPSUHlRk3q2Y9UaSL6/
-         /KuNUsRD5M0DtbjpW3yM9eCYmIcUSlviUeNpmY1YHxxcAc+4XrL/W+Y6dMQhcCAeYlde
-         5I2A==
+        bh=20VwnX/WoaRKV9arNTXMhn8ioZI7RTq9D1ov94KZAt0=;
+        b=GBvMPK/cs2To8yEXE9SsipYC/K1njPu288BNro/g9k2fonTbbPNHjR6x/v6lQUDK1X
+         BAS3uVWDIcWav1fDn/+ErtHtI7UEwBChae4r6rHEQMuY/PtUZrRTn4FVSI5aosRItmCw
+         K/FePCj+GiqS7lxluja8iwNLBGIHNfZTg528SQ89huvg5dJ5iHnnbrCZEmf23JyU8lUe
+         /SpaTtwUyRK8fgCmvhCmnzoZX3t2SRvOH6XyQ4bNSXGBXwKtRn31zQ/i8BijKOmZOV6C
+         e8nS4f7O07aT7ZkG40L16LctrvwEkwkmMoKd31xIw3hk9r+D3QelJVr/FHc6AlSw5vb8
+         LDWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686206281; x=1688798281;
+        d=1e100.net; s=20221208; t=1686206363; x=1688798363;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lqo0A7BM5THz83RAtHMEkVHjNz7WCnOgKYrgDzsaaU4=;
-        b=eL0yvFqEbchvFMAHk6/f7JV0n97qv2mO8MJJmTn0//vK3IdtQK/jufGTInVrg/8+I0
-         h/Yttc8bE/FDu9FCkF3hfQLZDK3q+j9CVGXF22q8y4LG0FzI7evwsCpV9CDYWHUesT+4
-         aI2tKXkfE/Gngp+z0RnBz+PkK27SEaYyAL+85fIAW9B6X2iqbrEYZ6yQhHMnwsxlZ2BI
-         0yraxFaNT3PdhQjEVHJKIX1xv5S8OaX4UFwM0psTtY9pgjAOUph5nnnI3KXevIvEiRCg
-         fnKSBSeLQ1sJ8goDDBLM9kkmmX2znRiDiP2Y26hYFYfwoiCB1vnbWbTRLdjZomdW1g14
-         9B/A==
-X-Gm-Message-State: AC+VfDxO58idzwgypm/iWcpzhYysZWUW2ATbMAm5K2mpUfNJfFAWItQB
-        7T2Oxdl1LxShRT+jBu1m/bhSCQ==
-X-Google-Smtp-Source: ACHHUZ4KhhXuTCYSDPgoRLBB4u32f/WMlazF4shqwwkZ3icYzTu7KI3MJObyFYaJY0xBRdj6ON+xew==
-X-Received: by 2002:aa7:cc98:0:b0:50d:88f3:2e30 with SMTP id p24-20020aa7cc98000000b0050d88f32e30mr7084851edt.13.1686206281341;
-        Wed, 07 Jun 2023 23:38:01 -0700 (PDT)
+        bh=20VwnX/WoaRKV9arNTXMhn8ioZI7RTq9D1ov94KZAt0=;
+        b=ah2nF7bBQqpjdN6MI95Ldu0yH2ioZmUpN7U3ncBsvPL17h/+XySps4IrjLeubl0cdX
+         bhBleZxkBmIE/VvqjDwCCzg8T8SfyElxHbJjQ6fdr/PR4By7+LtAz6sq+Lu8HMnxRdvw
+         IltrhkU3IXBH5fKDaTdHZ/ZfTV3CZKAG1CtkCBTnpytNHiFXiwT7/ncPGMt45O4RyrXJ
+         0C1FMWh5YDapDw/ScVzLEy8m0iVvsP5Cm83MnRXuD/DGJwn89z9+cXjSQKcMvgrCU7b7
+         t3JWVdNmTBvt9xgefOK6T84iibncxmaAl8d+Xn1k8n6LGk4C1IJbBozLnBvgFwUNrOf1
+         H9Pg==
+X-Gm-Message-State: AC+VfDx5H+TvEXVkLLKRzVjTJ2CjteKMKOT/L5Dv23qL6U1ErsvITFN1
+        elD7Ydpe/1CoPBv/aJfkMsbdxg==
+X-Google-Smtp-Source: ACHHUZ4hT0e0tzGvbuWncVx7177VvT2kgg6YTLUjvuP4pV7zePZzqsLUl/diPhvVAIOjdTJZ3WZG2A==
+X-Received: by 2002:a17:907:1c0c:b0:973:d857:9a33 with SMTP id nc12-20020a1709071c0c00b00973d8579a33mr9347535ejc.11.1686206362925;
+        Wed, 07 Jun 2023 23:39:22 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id n27-20020a056402515b00b00502689a06b2sm168728edd.91.2023.06.07.23.37.59
+        by smtp.gmail.com with ESMTPSA id t4-20020a17090616c400b00977d7ccd9fdsm272257ejd.95.2023.06.07.23.39.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 23:38:00 -0700 (PDT)
-Message-ID: <797c61d2-b8f1-e80e-24b9-4c7a7d266080@linaro.org>
-Date:   Thu, 8 Jun 2023 08:37:57 +0200
+        Wed, 07 Jun 2023 23:39:22 -0700 (PDT)
+Message-ID: <b0f5f061-60ce-815f-4228-2033335e562d@linaro.org>
+Date:   Thu, 8 Jun 2023 08:39:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [v6 0/4] Support pwm/tach driver for aspeed ast26xx
+Subject: Re: [v6 1/4] dt-bindings: pwm: Add ASPEED PWM Control documentation
 Content-Language: en-US
 To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
         linux@roeck-us.net, robh+dt@kernel.org,
@@ -67,8 +67,9 @@ To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
         linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org,
         patrick@stwcx.xyz
 References: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
+ <20230608021839.12769-2-billy_tsai@aspeedtech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
+In-Reply-To: <20230608021839.12769-2-billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,19 +83,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/06/2023 04:18, Billy Tsai wrote:
-> Unlike the old design that the register setting of the TACH should based
-> on the configure of the PWM. In ast26xx, the dependency between pwm and
-> tach controller is eliminated and becomes a separate hardware block. One
-> is used to provide pwm output and another is used to monitor the frequency
-> of the input. Therefore, this patch serials implements them by writing the
-> two driver "pwm-aspeed-ast2600.c" and "tach-aspeed-ast2600.c". The former
-> is following the pwm subsystem which can apply the existed driver to
-> controller the fan(pwm-fan.c), beeper(pwm-beeper.c) and so on. The latter
-> is following the sysfs interface of hwmon to creat the node for fan
-> monitor.
+> Document the compatible for aspeed,ast2600-pwm device.
 
-You like to ignore my comments... How did you implement them? Go one by
-one - answer to v4 emails.
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+I don't understand why you make the same mistakes, even though I pointed
+them out two times already.
+
+I am not going to point third time. Sorry, it's a waste of my time.
+
+NAK.
+
 
 Best regards,
 Krzysztof
