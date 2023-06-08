@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36A94728AF6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 00:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1CC8728AF9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 00:12:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237006AbjFHWMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 18:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51024 "EHLO
+        id S229644AbjFHWM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 18:12:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbjFHWMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 18:12:05 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FA72129
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 15:11:57 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b039168ba0so1900185ad.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 15:11:57 -0700 (PDT)
+        with ESMTP id S235243AbjFHWMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 18:12:25 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82982113
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 15:12:20 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1b01bd7093aso1632455ad.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 15:12:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1686262317; x=1688854317;
+        d=broadcom.com; s=google; t=1686262340; x=1688854340;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AaftEMQksknZ+n1p8YfvP5wZdc/OZHWY0c13hVrN/+4=;
-        b=Y3OQyMuEa2hzCGLOJdfMWLATPG8I5HwZXIQn/yB1NJTt3MXmvwhnHOVQ8YFRIwCuRA
-         gOxVbg0QPJg81zjnjx8rDGHrcdwUU7xJtQxoGnuT9btvhFXXs8NZ/X+8xTtWwB5xEoWT
-         NaR+a+pisDdfwtwJvTTe19uJm99ZMjXaIDX6o=
+        bh=nbdCeo7K6VC3hTEiMbxwASHXVm9UwGGMXPDJmviDcdg=;
+        b=ekqfNlZtNzUtQMRa+EgRQjlU4ZZ71pSO2nvvhldzO56yA/sa4b6PNMxPeSK9N/oJdg
+         rfjiQibPdWiJxjIcxDZk5Tzd1apKRUmQascREWDvO5womL1dOelDa5c8fbP/aqBpeACz
+         YdZoG03mt1JzrtfmwIXpITJchdZ2MvASp3IaM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686262317; x=1688854317;
+        d=1e100.net; s=20221208; t=1686262340; x=1688854340;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AaftEMQksknZ+n1p8YfvP5wZdc/OZHWY0c13hVrN/+4=;
-        b=IEQKMi9PzG7h8pGu/8fnBrlnHAEjwq9diK6RwqiOjb6nrGZjdaPMk16dK19MaXt3hD
-         kmnj9RoUC0WAspR6La/aFvGJjbMA6lJs7E5vw5eQ6tmE7j/ddrXIjAIyN1AQO4Tg9urM
-         noIlR11ZENt30MYvm+S3v1ObgWKlSpCbAUVGSzzL2f7ReTRlr5j7FOzQ1KljpcYTQmD6
-         +97rIKHUHp1qsl+EgCYZ1XisK1/4Fh0emTwWQuGnPEJeLUiiKfaZ0HMz4yf12oWNSHxL
-         4glP1wVLraBEMOZFwWiZ2b8kIXTI41AxKxQawe3L6IqZmgOlTpPULJ+xRE5b1JH49FFM
-         iRGA==
-X-Gm-Message-State: AC+VfDxrYCmspWXkvyxRKl94Ijoo4ZSMGbO2f63DEpvwpjMqu28J2mSk
-        Y5o1Arc55DI7090XgrcRS7CtkQ==
-X-Google-Smtp-Source: ACHHUZ4Lw6wdJ3COwxi6sEIfjmuiojdVyLqpq9oVGTv5wDOB8UYlHHin2Nh+Hqo7B0wbqskIM5rd9A==
-X-Received: by 2002:a17:902:8bc7:b0:1b0:2658:db20 with SMTP id r7-20020a1709028bc700b001b02658db20mr8723448plo.53.1686262317354;
-        Thu, 08 Jun 2023 15:11:57 -0700 (PDT)
+        bh=nbdCeo7K6VC3hTEiMbxwASHXVm9UwGGMXPDJmviDcdg=;
+        b=D3EdDEvnL+/AHw+d/h7MJ7PtzO/tKuFaTMc9aPyqlfPbs0PtepJwT/qqUVF+09W8aP
+         IcNURqiBPYmRd6Sk0MYnltPvrxI/wrwYw4HVVl0jfw3vYzBX3C14gJqntrDMyO8uEQ8d
+         3haS9EcHertU1+jmhPCccl8ZSQKEbrCSdMaa3O0O7UNt/pewWvYHm/X+nkVlpvP/KfVB
+         WwnxGAw6CkQx1qurV1JmdXNHkz8Ze/IpvuW/iKAqcWaIaIdu56nKcRRBFw9Go7Vng+zV
+         RwrU0UfDxZsJFxe6exLjAKGccFXOerX8JVJ4fljJPJT5i6a3t60KZgax7IluU97dKt3B
+         CbYg==
+X-Gm-Message-State: AC+VfDw3Wx9nelwqVgOhdGd8Z0N8fLu+D0O8zYefKX4we2849SRqax+E
+        Cm6CGGjzaZr/ubf/nwDUTqS6UQ==
+X-Google-Smtp-Source: ACHHUZ5ew5GfMTPWb2ODnZnaQ/7iWp0pgVXqO24TYF6lAIKLvZ6sL8G6p/eCXBzhSHcId7CmG9XpKw==
+X-Received: by 2002:a17:903:249:b0:1ae:8b4b:327d with SMTP id j9-20020a170903024900b001ae8b4b327dmr7228963plh.42.1686262340314;
+        Thu, 08 Jun 2023 15:12:20 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id w17-20020a170902e89100b001affb590696sm1849831plg.216.2023.06.08.15.11.56
+        by smtp.gmail.com with ESMTPSA id bi2-20020a170902bf0200b001ac7f583f72sm1866191plb.209.2023.06.08.15.12.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 15:11:56 -0700 (PDT)
+        Thu, 08 Jun 2023 15:12:19 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
+        Christian Lamparter <chunkeey@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: reset: bcm21664-resetmgr: convert to YAML
-Date:   Thu,  8 Jun 2023 15:11:55 -0700
-Message-Id: <20230608221155.2982689-1-florian.fainelli@broadcom.com>
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 1/3] ARM: dts: BCM5301X: MR26: MR32: remove bogus nand-ecc-algo property
+Date:   Thu,  8 Jun 2023 15:12:18 -0700
+Message-Id: <20230608221218.2982783-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230527141222.GA5048@standask-GA-A55M-S2HP>
-References: <20230527141222.GA5048@standask-GA-A55M-S2HP>
+In-Reply-To: <2c4d00dd40124c2ddc0b139cbce7531b108f9052.1686238550.git.chunkeey@gmail.com>
+References: <2c4d00dd40124c2ddc0b139cbce7531b108f9052.1686238550.git.chunkeey@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000072003d05fda58a4b"
+        boundary="000000000000d0876305fda58b71"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -74,22 +73,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000072003d05fda58a4b
+--000000000000d0876305fda58b71
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Sat, 27 May 2023 16:12:22 +0200, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
-> Convert Broadcom Kona family reset manager bindings to DT schema.
+On Thu,  8 Jun 2023 17:36:27 +0200, Christian Lamparter <chunkeey@gmail.com> wrote:
+> | bcm53015-meraki-mr26.dtb: nand-controller@18028000:
+> |   nand@0:nand-ecc-algo:0: 'hw' is not one of ['hamming', 'bch', 'rs']
+> | From schema: Documentation/[...]/nand-controller.yaml
+> | bcm53016-meraki-mr32.dtb: nand-controller@18028000:
+> |   nand@0:nand-ecc-algo:0: 'hw' is not one of ['hamming', 'bch', 'rs']
+> | From schema: Documentation/[...]/nand-controller.yaml
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> original ECC values for these old Merakis are sadly not
+> provided by the vendor. It looks like Meraki just stuck
+> with what Broadcom's SDK was doing... which left this
+> up to the proprietary nand driver.
+> 
+> Note: The invalid setting was and is handled by brcmnand. It
+> falls back to "bch" in brcmnand_setup_dev() when ecc.algo is
+> set to NAND_ECC_ALGO_UNKNOWN (since "hw" is not in the list
+> above).
+> 
+> A correct nand-ecc-algo = "bch"; is already specified in the
+> included  "bcm5301x-nand-cs0-bch8.dtsi". So this line can be
+> dropped.
+> 
+> Reported-by: Rafał Miłecki <zajec5@gmail.com> (per Mail)
+> Fixes: 935327a73553 ("ARM: dts: BCM5301X: Add DT for Meraki MR26")
+> Fixes: ec88a9c344d9 ("ARM: BCM5301X: Add DT for Meraki MR32")
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
 > ---
 
 Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---00000000000072003d05fda58a4b
+--000000000000d0876305fda58b71
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -160,14 +182,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBpOHNaBuaBKOAso
-BwENfVrkw5pJv0rn39Djd5/+DRJrMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDYwODIyMTE1N1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGDdM5irpO94boeC
+obYPVZlnESOYcJhER1EHkyndT/G+MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDYwODIyMTIyMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAlAp/GJf8bTywMZhXAjcDSr6Zj6CiSMnIB
-U+GPPHucEXgAvEL1aCaJirYsmVa+ISNccuZ8aK4LGs5qnLZyGgN9whcYoPu7ecistJg3EGsvUjhw
-eIUQ2EF8Eiey8+E2Bz6QfDq3+LvpTiH7N7Rw5R1ybiScoA0hnJSmqO+K4visdY4kASqjaGz4bERx
-idG2n8CdpnAw2TMNMqttoeaS7mOYu/f9TMWuLYdQkRSZFDs9df5Fks8weu4PfTSz9XjJ5ml0VOBp
-3tclKTE9ZgxMNCT2oUpfQHpzbLxRNRCajU1pNf6N7zlRckWks97Gw4mpqgfIjmQum9Hc6eGupk9S
-ZGGu
---00000000000072003d05fda58a4b--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDf2mjanBhhv8/f0B2VWgf2/1vW/fBBziNO
+MPAOakIj68bWKPeGOl1vBxX84M6dg+ans+5AYiTRck0G5KhdvQAVKM0iR+r6Z7dMLp+mcGjrJVB4
+HlBs4L5jeKnyATsAkoV+/3xpzWb00l8nVZ+b54ibUBEdeWoeEe8CPcP5athGaCtkcfInFH7sC4yC
+zU5dZu82gN861ocUH7jC+Zrzq60hC4H7ecztBPFEvAyE50twJ14zDPXmEDpWQscblmmJ09zh5AnS
+C/3lur64Cz9hO3I8K9XW2tTqt9k3SjUSILBJwsbGzj1SVYa7p6siJIqoMuunQtt/qA8tHA0PM3jT
+jg2Z
+--000000000000d0876305fda58b71--
