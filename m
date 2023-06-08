@@ -2,83 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 447BC727B81
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 11:34:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A486727B9B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 11:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236076AbjFHJeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 05:34:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39418 "EHLO
+        id S234037AbjFHJje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 05:39:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236005AbjFHJdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 05:33:53 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FA462729
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 02:33:52 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5147f7d045bso546150a12.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 02:33:52 -0700 (PDT)
+        with ESMTP id S236007AbjFHJjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 05:39:32 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D702129
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 02:39:30 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f7fcdc7f7fso1661195e9.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 02:39:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686216831; x=1688808831;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1686217169; x=1688809169;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XHrWR78MCn7GOVO6jP+VpXAA4JR1qkGlYZ5kPs6LqkE=;
-        b=mc9adXQtN6XersVDRhnlail8T5GQnruABpjREJFga4locj60fiGQc3DEbqU5rE+wM+
-         IVIRmVKEaZcE4Qy9s6zN5jyiM9QHKBST+8n1uIFdlmXdHCsph6CS4JwZa2QvxkCwPDYl
-         bgtCgFQr+DKjuEqmvhtdkzII9qvgdRM6Wlrxs4j4/Td7UTrfzQBbkrAghZH2zKTVKqPL
-         e7UBB+XDwWHcqsGVNv+uuTGhzlK09irLgNNfQG3gdsSs+cPGMH9MIhio02yScsNjZVWw
-         2eKHG9bnllb38SZ8PzHa8aMw5MKsP9G69/UdaO3HxfnpoWHAxItZy1qIiFx2AU71TI3f
-         Xwqg==
+        bh=kis83jMD1oWs6024Wvt+G1gr/3Bk88oMA3d6rNJj5g4=;
+        b=dh2IGeZP1UXlw/rxc8tHwYftXW4vIKDKiSgUwwpYDTnQLnUUZ2eKQNpLe1ae+OOkaq
+         ZUOfth6aGXN7TreMG667Tdd0b9nHJipOIZXaw1UP6PJgGrkbGVKv9GmuLrgVrxUYmEtL
+         Jn5nUBOvSxF1p5Yll4gh3dz0l4pJpALQwXgKrtbWLz6N817Sd0MTH8Sbh8LY9iGf6iAv
+         CA9Rl9Ase8AAeu4Y4vACb40mBoVt52+cKQzMjzXTUPPT7gr2SzKoi+ST2qflIt5sBVSX
+         V4/djTioCzHuu7SKvoD/QBgRw4Sn1CPnceGIBVTQmGx0HHJWzWQOb8PCENz9gqNAuTcO
+         o5lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686216831; x=1688808831;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1686217169; x=1688809169;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XHrWR78MCn7GOVO6jP+VpXAA4JR1qkGlYZ5kPs6LqkE=;
-        b=Qb1nsNBaD/n4kWyoqLkDHQqxndPrjfzShper9MQLmT3yuyATH0HxbOC0OTB/cFPe+U
-         uWJN+l3nnJX8Z7pIzJ8gQKpgwUE1gJF3oqDpCO0ODB4AsBu4WPuV1vL+eFEOzIIreJTG
-         ljBuxy0DeRvJ640iwe8WSxn5LmGGIcmN5GhSxWWX4Jl3dTwC9YUZGGICy17IKTf9H55j
-         BGsRbZo6WVSRtlA3lD4udLY06miGWIN5iwLySgGuX9wCFzn70FQAmQL6NKk7mMk6Bm4C
-         yxDrLET2nVHttI46gQiIFRz1fTfsnzxqhjIQzV4kZNqJNmSivCwurjqDOxdSIOShej+m
-         iSbw==
-X-Gm-Message-State: AC+VfDzbR3PJgQn25BkLbZC06nRdG+VS7kEcBRYoAROxYi6NvZm0ZrGO
-        HyxSr43HHG8lkVkrFpQ5NQkm5A==
-X-Google-Smtp-Source: ACHHUZ5P3vA07L3KTs1RTP07AuvxF1iv5HiPlvFkqBvOQIBmIKUDz+s/jbEEE098Oeua68HrGDx7TQ==
-X-Received: by 2002:a17:907:6d05:b0:966:54ac:17d7 with SMTP id sa5-20020a1709076d0500b0096654ac17d7mr9357802ejc.76.1686216830865;
-        Thu, 08 Jun 2023 02:33:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id oz14-20020a170906cd0e00b0094e7d196aa4sm443537ejb.160.2023.06.08.02.33.48
+        bh=kis83jMD1oWs6024Wvt+G1gr/3Bk88oMA3d6rNJj5g4=;
+        b=HJVDRne4iU4a0xoedX2KA60LVAVevNUrNGCD8BhNh3yjBb+8GIjj+uQ0sm32b4lsBd
+         WypKylYYrc4GzhYSdLM/CwHkpdhf3iVNtwIgB35mka3reuhLfz7giv5+6hRpUiQoGCwy
+         jsN/a6uONkX8jIdDs0KsztahI0rH8m7ML3oaG7kCdsQcqgOLSgOGvNxuLTIRB7m6ZpOy
+         DQ+ZJWDT+Bnd3EwCRsP+7ZfI/19TpyEITPP8LvyTh4ncf1dQwkzNmyAFK/7kTFULRmrq
+         wLEamS+YXAo2rSGyu85YFbXspKYTnGkzHEEWwKfMZmBOMH1ImF9+RNn17+OO0dQ8Xomt
+         5Tsw==
+X-Gm-Message-State: AC+VfDxJhUw2g3oUUI/9tGiSJdBjCTMiIgcSUFBgI6JXKrcJgi1MwNuc
+        KXa4/43E/W6uc8Gm9mgahHty/g==
+X-Google-Smtp-Source: ACHHUZ7Ms6WXtKfgT/Z+U3P+H7HunJuUiCLEYOMq2NRw8YGy939Doi5kEfI1/uibHdDRb84aF9r7Mg==
+X-Received: by 2002:a05:6000:108a:b0:30e:56b3:60fe with SMTP id y10-20020a056000108a00b0030e56b360femr1337520wrw.4.1686217168916;
+        Thu, 08 Jun 2023 02:39:28 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:3a59:921c:4758:7db5? ([2a05:6e02:1041:c10:3a59:921c:4758:7db5])
+        by smtp.googlemail.com with ESMTPSA id u13-20020adfeb4d000000b00301a351a8d6sm1046418wrn.84.2023.06.08.02.39.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 02:33:50 -0700 (PDT)
-Message-ID: <e4cc5966-0af9-80cc-c01f-b33620717a1e@linaro.org>
-Date:   Thu, 8 Jun 2023 11:33:48 +0200
+        Thu, 08 Jun 2023 02:39:28 -0700 (PDT)
+Message-ID: <59c7c90c-50f2-5a77-af12-b266c6e6e0b1@linaro.org>
+Date:   Thu, 8 Jun 2023 11:39:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,wsa8840: Add WSA884x family
- of speakers
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 0/5] Add LVTS support for mt8192
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230608085023.141745-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230608085023.141745-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>
+Cc:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
+        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
+References: <20230530195132.2286163-1-bero@baylibre.com>
+ <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
+ <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,48 +85,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 10:50, Krzysztof Kozlowski wrote:
-> Add binding for WSA8840/WSA8845/WSA8845H smart speaker amplifiers used
-> in Qualcomm QRD8550 board with SM8550 SoC.
+On 01/06/2023 19:09, Nícolas F. R. A. Prado wrote:
+> On Wed, May 31, 2023 at 12:49:43PM +0800, Chen-Yu Tsai wrote:
+>> On Wed, May 31, 2023 at 3:51 AM Bernhard Rosenkränzer <bero@baylibre.com> wrote:
+>>>
+>>> From: Balsam CHIHI <bchihi@baylibre.com>
+>>>
+>>> Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
+>>> Also, add Suspend and Resume support to LVTS Driver (all SoCs),
+>>> and update the documentation that describes the Calibration Data Offsets.
+>>>
+>>> Changelog:
+>>>      v4 :
+>>>          - Shrink the lvts_ap thermal sensor I/O range to 0xc00 to make
+>>>            room for SVS support, pointed out by
+>>>            AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>
+>>>      v3 :
+>>>          - Rebased :
+>>>              base-commit: 6a3d37b4d885129561e1cef361216f00472f7d2e
+>>>          - Fix issues in v2 pointed out by Nícolas F. R. A. Prado <nfraprado@collabora.com>:
+>>>            Use filtered mode to make sure threshold interrupts are triggered,
+>>
+>> I'm seeing sensor readout (either through sysfs/thermal/<x>/temp or hwmon)
+>> fail frequently on MT8192. If I run `sensors` (lm-sensors), at least a couple
+>> of the LVTS sensors would be N/A. Not sure if this is related to this change.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/sound/qcom,wsa8840.yaml          | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
+> Yes, it is. Filtered mode has some delay associated with reading, meaning most
+> of the time the value isn't ready, while immediate mode is, well, pretty much
+> immediate and the read always succeeds.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
-> new file mode 100644
-> index 000000000000..a999f787aa4d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/qcom,wsa8840.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm WSA8840/WSA8845/WSA8845H smart speaker amplifier
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description:
-> +  WSA884X is a family of Qualcomm Aqstic smart speaker amplifiers using
-> +  SoundWire digital audio interface.
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sdw10217020400
+> For temperature monitoring, filtered mode should be used. It supports triggering
+> interrupts when crossing the thresholds. Immediate mode is meant for one-off
+> readings of the temperature. This is why I suggested using filtered mode.
+> 
+> As far as the thermal framework goes, it's ok that filtered mode doesn't always
+> return a value, as it will keep the old one. But of course, having the
+> temperature readout always work would be a desired improvement.
+> 
+> As for ways to achieve that, I think the intended way would be to enable the
+> interrupts that signal data ready on filtered mode (bits 19, 20, 21, 28), read
+> the temperature and cache it so it is always available when the get_temp()
+> callback is called. The issue with this is that it would cause *a lot* of
+> interrupts, which doesn't seem worth it.
+> 
+> Another option that comes to mind would be to enable immediate mode only during
+> the get_temp() callback, to immediately read a value, and return to filtered
+> mode at the end. That might work, but I haven't tried yet.
 
-There is a mistake here - should be version 2, so "sdw20217020400". I
-will send a v2 a bit later.
+Why not understand why the filtered mode is unable to return temperature 
+values most of the time?
 
-Best regards,
-Krzysztof
+I tried with the filtered mode and I can see 90% of the time it is not 
+possible to read the temperature.
+
+IIUC there are timings which can be setup, may be understand how to set 
+them up in order to read the temperature correctly?
+
+Caching values, switching the mode or whatever is hackish :/
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
