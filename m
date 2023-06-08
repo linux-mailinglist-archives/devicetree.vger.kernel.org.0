@@ -2,134 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E877275B9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 05:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B12507275C3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 05:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233626AbjFHD2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 23:28:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
+        id S232250AbjFHDeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 23:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232805AbjFHD2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 23:28:00 -0400
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2113.outbound.protection.outlook.com [40.107.255.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DA12703;
-        Wed,  7 Jun 2023 20:26:56 -0700 (PDT)
+        with ESMTP id S229827AbjFHDeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 23:34:08 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2083.outbound.protection.outlook.com [40.107.6.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7C6126A1;
+        Wed,  7 Jun 2023 20:34:06 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IuGv6I66V4TdjH6sQb2IkX+twfIz2y+SBFaMghD14vIDUfG/ftbcYNfiV4hqPeV10+GqDjOMRy3nnSHXz5/VL6xaxOP2O0XXRn4yeHqlER3O5E5b5kQWpaYha8EAH5bnGue9m8alP1zrioLrBg1cscqMJYWcddh0m4iFPUVKsMG2gBu9us7aPrRTvwealUCnd0I+szTJXEzPDGNuF0REE1y3lFANtbTpABdyfjj0iLS1AwaQznHUL7L279JVPnt0yyzYb2z3T2zosAMJEScdxCnU2o1DuZqbuM76JCg58b0HXwmo4b73N+Lh8PaOChL/0FVJgsZ4cfMBvYLTE7K7hQ==
+ b=BYj3hqfsK80CtfzTaCAmhOsPSxVSdA01y/qF+H3yOf0g3F153u5SVrhL5ayY/ZYVfjTDuItnquYCLHw0pU8wm0P0psUHzakhbiHkSwwx43VKNde0HIWes9qL67kf8dAb9WS26dGwjZjEWgAe0mreziJcfDU2CDayPS+/lzOYT1wvFDTn48teoTRgNyO7a+MUa0Io0pIhT/5GbeRh1Uu3bf8Qiu/QXeX5tSjhBqbx5DgU6BAEiOJhaNXSDAj687VxIai9AF4UqXA6lDAAemvumvySulYV4oGfrV4LD2eXTCpZxPH4qwOl+PH5hlYGhgQuBLr5oxAbJy/rIcTdV8xqyw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y8VkoZhWUt8O5VP+uIrW+RmABYnoFDf/zpuBIP9wI0A=;
- b=dRKy12Zb6ao0DScrh3WjEv40Yekwsiau5rMG3oQZMmHOHx0fer68QLVfVN/nHxT8oGbE8G5Ozs5HYO0j+aXmcUmGcljSRYDyN3s/dw3oulEc2V6KKU8TAS6fv2pP/kTaDmo9JkMa+hgHRwAPTNp+aaGVIjjSbVaTGLjZ0VoK920L1Xbv7LjerXMUuW3Wt3uKrKPkKapdXJvcIRQRcF82xODc9AENV4g1HsJW88xz0DKz2nHVLw29YtJ75b9WxuPzBjxwbye2r8Qc7+NMNHTeG/9M/w7rA+40bT7JGZNOo+AHC5kByoTgeYkrA+YeY2lBbJj/C1Eb+buA/ehC1QvbRA==
+ bh=l7jd4XY8G6tbEiAKV05D99ZTYURynHgcOItwKO6OlLo=;
+ b=VAwk1YjsZzsrIKvBsZPrIHNPzmneFfFuKFdKFB8pwl0W9d3/Itx0EXMXBLW6FIsyCJiVdUqz43Ihu8wUzLFx6WMzzqyKNIKpZp5Zl+ddHVSmF3mwURO1Q4wwf+VgpmQYoH8hcZf1AgSfh8Mx0EDbSCRjAt+oOdE4X4gX5+z7D9h3anYhkpw+RtZ9pTRscV6pm989C74H2NmfO1NSl9/5Yju8paMw8q7NlHNwnX+aNFd/VQwEJjrcEiuW6c41WBUoPhaUNg9T5ykLuTP2oOQoHDpVt8kWEp+sJN9Tcek0WrkeXzDNMW7kCL+S9/MssmLjhiwRiXyNi2elW15JwsPsKg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y8VkoZhWUt8O5VP+uIrW+RmABYnoFDf/zpuBIP9wI0A=;
- b=LlzhiYeSrObDGiqynUyr1V846rUFa4MN6cA598vo1rEzLONK+YewM5etID/KRfKuD2KZstLj3sfR5IaKzDf6IUdS1qNoTjmhvVOLobjND2QIF3NrGxFXmJikNWdHScZJkcNv4GJeRenV39k9EVPdMlNukJLxWjkE46ngWq3m9DZbxHVXXiYOrVuc86WS6QhWou6yugeWfddiG4O+9DWNB3IoVssnkYxICs30w7QjmCiFLFi4wqnNXW3waWvCwQwcsPOPbIZvaCaDXFuHMceDmbKa5hnwXOspnlQXPyW0cDYdDMBi8Juqw4rlYeh9ZNUf1g86Ne/5UakY2JuWGES1Og==
+ bh=l7jd4XY8G6tbEiAKV05D99ZTYURynHgcOItwKO6OlLo=;
+ b=H8JTu2rjzz6YMa48erzuChOy6t1GexEkJXDW+q0QJ0B0nLuRQkXZuU4ox9EfCB8z6uz86CUETuxqy9b5nYtzT/p/7HsScFZ26rXH50yPATn9Pxvs/kz2oZJFZ+BI0DcMtM2l1RDzqm6rqAKBcsOZz7nENEXL5hDODVaMhmyTwdk=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from SG2PR03MB6730.apcprd03.prod.outlook.com (2603:1096:4:1d5::9) by
- TYZPR03MB7576.apcprd03.prod.outlook.com (2603:1096:400:427::14) with
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
+ AS8PR04MB8344.eurprd04.prod.outlook.com (2603:10a6:20b:3b3::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.28; Thu, 8 Jun
- 2023 03:26:52 +0000
-Received: from SG2PR03MB6730.apcprd03.prod.outlook.com
- ([fe80::e116:7d2a:af78:fcf1]) by SG2PR03MB6730.apcprd03.prod.outlook.com
- ([fe80::e116:7d2a:af78:fcf1%5]) with mapi id 15.20.6455.030; Thu, 8 Jun 2023
- 03:26:51 +0000
-Message-ID: <02ce6080-2dd2-047b-bd77-e8288d32dd46@amlogic.com>
-Date:   Thu, 8 Jun 2023 11:26:24 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V9 4/4] clk: meson: s4: add support for Amlogic S4 SoC
- peripheral clock controller
-Content-Language: en-US
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230517070215.28463-1-yu.tu@amlogic.com>
- <20230517070215.28463-5-yu.tu@amlogic.com>
- <1jwn0g39t2.fsf@starbuckisacylon.baylibre.com>
- <20230606153841.plf5uh6eyzpzsm2e@CAB-WSD-L081021>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <20230606153841.plf5uh6eyzpzsm2e@CAB-WSD-L081021>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYAPR01CA0068.jpnprd01.prod.outlook.com
- (2603:1096:404:2b::32) To SG2PR03MB6730.apcprd03.prod.outlook.com
- (2603:1096:4:1d5::9)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.19; Thu, 8 Jun
+ 2023 03:34:04 +0000
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::f9b0:8c34:e57:92a4]) by DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::f9b0:8c34:e57:92a4%7]) with mapi id 15.20.6455.030; Thu, 8 Jun 2023
+ 03:34:03 +0000
+From:   Xu Yang <xu.yang_2@nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        jun.li@nxp.com, xu.yang_2@nxp.com
+Subject: [PATCH v2 1/2] dt-bindings: phy: mxs-usb-phy: convert to DT schema format
+Date:   Thu,  8 Jun 2023 11:36:41 +0800
+Message-Id: <20230608033642.4097956-1-xu.yang_2@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0018.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::7) To DB7PR04MB4505.eurprd04.prod.outlook.com
+ (2603:10a6:5:39::26)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PR03MB6730:EE_|TYZPR03MB7576:EE_
-X-MS-Office365-Filtering-Correlation-Id: ace3b27e-fc14-417f-ff23-08db67d0337f
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4505:EE_|AS8PR04MB8344:EE_
+X-MS-Office365-Filtering-Correlation-Id: 21708621-fe7d-4b4a-999e-08db67d13490
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QWwL37h+SUvDtF05klF8ZNPUSvgoKR6EwnhdIhz5vxxCVIbgi+IX4tjnMD4XPq3qWPcRlhT9tquDJ5MupS9WagjZPYTwH0dQO5LTjPgvQofa+2ZcAA8QUX/eO/iN8+wCA/ALVD4DcBZgsXawQ1KJj0Lw3qHUC2iudJzBIEGtUQtLlQpJHc4iaTj7BeVM1JmnpqKbLGMXjENVVLCyOhPbuLVxfQDUgSoLpLWGjhI6nQIABlUA5HyHtrqceK9pghqXJy4GimLvs2rip53RbUApkybTR1ZZXblWvMIB0Wyh0wmr1rOj1V5oZaPkvOob7d7BOec2F1Xd28Vh6OX65VkRvCXWlFbwjQyMQXLk6c/bX4a/mNjtFFDmGkrW2sSaFFqIP0zhrYNVUGvPXN6+beJWgPe7BPbWPMjvz9etTt6VULxzBU8tx3LyQNzcu4aZFo72Llc6g/GxgpP/8LzOEqihgd+rbIEs4UaZvDR3QS3vyLLyhJHK+rrSbJdzgdkcXJvyB/RENCVIdM5Sm78UlED9W5KGbGwevcZo9QKIXRld5p3LejsY7oQ+crWuw/Sk8bh9pvfofaZjBOGnfWFiutOyvRbu+1RVVt4os+wDLS9xFHnb+bnPwPlvreVjwyhdh1d82O32ROYYY/goY5aj7OCefdXP8cZM9BUeIvqbi1yVgMJ4rAqCABqKqlZdHALicRdU
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6730.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(366004)(376002)(396003)(39850400004)(346002)(451199021)(2906002)(53546011)(26005)(6512007)(6666004)(2616005)(6506007)(38100700002)(31686004)(41300700001)(83380400001)(6486002)(966005)(186003)(107886003)(478600001)(54906003)(86362001)(66476007)(66556008)(6916009)(316002)(4326008)(7416002)(8936002)(5660300002)(66946007)(8676002)(44832011)(31696002)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info: cntI8L5b2L2JBbLKIc/BaenCEsTouRb4ua4k/DpYh0m6npXJkWnHom8iPlv0XheLtDwuxrVh0ltV1tOAGf5Az2p07sFcKzmt0+DeK/hvohwPnNBOtWjTT3Rs3LPDMbtEg3N1xAgvEXsFhiUQBbioe/LFfV3ys2260pBJfjqCHsh1mTe2kiHmGrK215lxvbYOPF+YWarUGh0JrbZjEeNEwcpSMK8KE/Z8a10Tv0TMLda4640rwznchvrzSec1np9o5NN4MPxAHczBy7aKr1ytc6KWVL5wfyVdkXiYiwlcVn6S3AU5EMDkAorALx/zuQg58FTrNLGOZbDHFfBxgFzF9DDMsU1xsaxBOxan12Au+9sTjorZQWTJwK4p43A1QYlVF9XsCsU2FcoV6ecWZYQpohq78d5Q3b1GjQM7XhlP5rR5Gc87Col2/4OTNygMwqpcibIlcoHGzUBJ4ZJ2+lpR6oRUPpjP0+tjvY4xYuRdsR0sjlH8+rWujRE5ZrQFjc0sp3iKrC19Jjh7wE1qtGFvVIoXCZO8FkkQ2RsCpVkXLwWfbPG0yG6/+72Th7NkdEJx0pUWwoEX6IInq+wFZS4L2zsD/8Du+zij0Y1AOt+F18Mik/TGyuBV1pgDCDYS9HFQQe0BsLLmMgPFqd+F9A7O1w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(396003)(376002)(366004)(346002)(39860400002)(451199021)(36756003)(1076003)(26005)(41300700001)(186003)(6512007)(5660300002)(6506007)(2616005)(83380400001)(8676002)(8936002)(478600001)(966005)(66556008)(4326008)(66946007)(6666004)(66476007)(6486002)(316002)(52116002)(38350700002)(38100700002)(2906002)(86362001)(7416002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N245TU1WZWNBU014VmV2TUlJN1poVEpROU9JMjdSa2RNTGdEVlJPNmluTmYw?=
- =?utf-8?B?elY4MUNvbFFQZ2NsT2ZDY1Q2eWZIUTJuYk40ZzdKOGlBWUZmTzBzRzZrQTRs?=
- =?utf-8?B?VlUvRmR3VnI4N1NaZWJ4Qi9YN0NyWmpoUnBLbW92SEYwWVJUb0J6VkJqNXJv?=
- =?utf-8?B?Y2FRL1hhS3NEdU52NFZPeEM3eTVYRkJUcFVlM3UrdUdBOVFxTEhYSHFPNUgy?=
- =?utf-8?B?ZG1HUkUvQmlieEpWdWdDMFgzMnNTc3lTZ0V5V0NLNU5ZQVFLZkZJeDdQU0Y5?=
- =?utf-8?B?d0hWd05aeGJBV05sRkYxVmU0V2VzRWRGdityYTJHZlRvMGQwR2ovdEIrV00y?=
- =?utf-8?B?dHo5S2ozS0F3SklTc2RhN2FURVlxMGsrQTR0ODdIbUp1clBSb29jWmVzZjVa?=
- =?utf-8?B?eFVMQTZDSzBURXBGTFBGRCtMSU0rTExYdHpteWdwb1NwYjUvTWFoTEZKT0Jl?=
- =?utf-8?B?VDRvdUNqSGlqeFJDcHlCb1gzWlZRVGFSM2xGWDlYd1QrOFZwRXVISE5kd3Bn?=
- =?utf-8?B?djNyZWZocmtySXlwTTZNcDNjOWtZSWtjUFU0a3UrckZOYUZJbDhMQUl0K2s1?=
- =?utf-8?B?OFlIRG8xbVE5MHROUTh6SWJBUlN2K2NLSm50dG5KYnVrZFJoLzRrNnhGTjZ2?=
- =?utf-8?B?MmIwdHBWZlRmdzFZUGNSRy9VYUZUdWFBV0xYRU9RRXlqT2tkM25XTUxxc1lF?=
- =?utf-8?B?Y2RGK2cralBXZEJmVXlIZlZzQjRnQStvZkY3ZlhqZ0VZQWl0cEgzVlRFbDdG?=
- =?utf-8?B?cGluUDlEUXoyN0ZRVVRLeEdmOG95dFdlZSttR09rVlpXWEh0QUxEcHBTWXIx?=
- =?utf-8?B?TDFiOWg0cGU2aFZ0Q05aWlB1QWNRZXFwL3ZVRjFCb3ZNVDNjK2ZpNWZqSUFE?=
- =?utf-8?B?M0IzWUViaDNqOUJ2OEFralB2UUE0S3FTVUQ4MnZpRWkrcnBmM2ZEU3BIcUZ1?=
- =?utf-8?B?M3ZnTlREaXFLZUNTOFk4R0prRjQ0M252aW9RU0Zub2dUMzZ4Q00ybDMvNUFm?=
- =?utf-8?B?WWt6T1llbTFNQzdJY2tDQnNqaUtBQUV2L2FnTGluU0pVa3VpNTk1cWpoKzhD?=
- =?utf-8?B?SjdxNlhVbVZqK1pJek1NTmxuQlh5UUh3RGFnT3BaTkMyWkNRYmVST21HK1U1?=
- =?utf-8?B?QWlkZWRDRDBpTE1pRXlaZ29Hakh1dkRYT0ZQMDhlblhsR09Fb010NzVxSldw?=
- =?utf-8?B?SmNtd05GQ2ZhcjJTYUlaeHVzbTI1TkFnL21nbU1UdWVxenhTNUlVbXdobVhr?=
- =?utf-8?B?U3NlMkNmU1NxZTJMdjhYQkh3U0U5UzJjM2tsOFhuV09MVEs3ajBaYVBOa00r?=
- =?utf-8?B?UVRjbDVRV3ZadDMxMzJmZHh2VEhTMENMT3lJZU1pMXFabHhSTlA4MkYvTWZP?=
- =?utf-8?B?enJxWHpTRE43VkFVUWFkaHNkRkRpWDNhVms4N3lwbmZBZFBHSlI5U2dWcUlZ?=
- =?utf-8?B?SE5HSUJiclllV1ZoZ0RZaE9ORWtUQy94SEdQaHRDc0dWRVpickN3U2d6cWVq?=
- =?utf-8?B?aXMxTXIzMnZGRFBPN2Q1OFVTNSt2SUtjdDcva3k2em5zOGV5R0lqV0ErSGdv?=
- =?utf-8?B?WW1ZS1VuY0lTQ2czS0hxYUYvTXdQdnUvcVRwck5lckJoYW1OWHlRaXltWUdR?=
- =?utf-8?B?b01ublpCSEE0bGdreFAwQ0ZSN24vV1ZvSytXcHM2VUFhYWdDTHpZVHpnc0xQ?=
- =?utf-8?B?cXU4a1hBa0lmMmlZODhHZ2NGbTRJOGRUZlQyOWxJVWtzeXJldURwdjFydEVX?=
- =?utf-8?B?dDA5RzdUN0x6UDREM1J5VWJ3b2JzY21WTHppNG9hcldpRTRTNlVLS3ZGZ1Js?=
- =?utf-8?B?RWFZNm9RUXpxSnVTMHJYcFZYRUhoQ2FjSXlCblFrTFY3a3NRaU41WGlOZ01Q?=
- =?utf-8?B?U1lGb1V2RVJzMG1OUDZYSjBFdlZaOTZtSEdZT3p0NWRNRmFDcTMrUnhKZ3Ru?=
- =?utf-8?B?UXh0RVpralRobVBpWXBwd1NYTU16LzVEVmwxRG5yaHM5V2FGbjJHOHMyem9L?=
- =?utf-8?B?NFFzRjVMemVCZFBHellhbXdwNk9HdUxRbWErYnNlVnVvRUVZa1dVMHZQc00y?=
- =?utf-8?B?MzlFMzRnRkdZek1ZcWlWL1lBc0FackZyK2JiRzFxMDA5cFM1dDV5VjBkTDlI?=
- =?utf-8?Q?AaM1oPzNI2+emwsIQYFqSULhQ?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ace3b27e-fc14-417f-ff23-08db67d0337f
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6730.apcprd03.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Gaoclo0KjtFISUCAsu9dHvc9imFEQqsSh7I8NySD6JGjXeHgiti2Nvmt1Hmq?=
+ =?us-ascii?Q?9TYANJDKTPduego1iG0q4FhuNXTRCAN41+nwOKDw7JZj9laKdcpLhgRkNcWU?=
+ =?us-ascii?Q?4N5WSgzOJFPQoMC6ozsP41WdyniYbVQCXPEb19l7Md2NjCBoMcMqpEz84Uqc?=
+ =?us-ascii?Q?iJ6tGzC2g/n3sTSIsTeNzD/hfGKPS1Effso8GketTmIAwFqTrqf+691cM7+O?=
+ =?us-ascii?Q?CUHX4363lLGOYrEi9swBNCUoyvKmqEvOojpIGdZPtLULJ+2MI1lpmz/qThqM?=
+ =?us-ascii?Q?LPugTmK2jo8eOAsab+QDRlh9pwn1RTHiwTCeoyHCfZT4sCe917S1ztV9EniJ?=
+ =?us-ascii?Q?2sKg5HCWQOrPMHQlXHa6tDuOPR0U6OtVpMAfPT6H3a6ODYXmhlx9WIZIQgen?=
+ =?us-ascii?Q?r2QQZo04QZvAu79+qw6GuZ2QgqvFNCCwB45FzMfScFo57+d7ke8HT3AFsmZk?=
+ =?us-ascii?Q?JnS+8VWo5Mc+tI85vCEXLbC9Ex9BdYURBqgMNgz3wimXdWojQUxFJ0oChfRN?=
+ =?us-ascii?Q?jgQPBHMmrXZd0KqYFioATAflEC5SCp6cbhqLV0PUuEqhjc0XWR1Ckhgdcwu1?=
+ =?us-ascii?Q?882TMSWeKSMTs+lzm6Y75nghHpO4H85T1eAk7bYALNuDSYY4jH+9PTBIcgKj?=
+ =?us-ascii?Q?3k3ftNrwS2XIByWkoyddnVSaubwMGvmacNYwiGB5RQTU8ysSKp92q0z0a2g5?=
+ =?us-ascii?Q?StiezUQn9M3g/H81uQFAt+nLjU7JCb48Z6RUFoYawdxCSgjSB6vlyM00ZyfN?=
+ =?us-ascii?Q?uRTh9qn3rOFu8utA79Rw6qEOYutJPmHARJm63MpuYUKdsg/AURznO7fmU57N?=
+ =?us-ascii?Q?uid/hYApXPpiV3KjeTj5CotLyMJX/Taem92XAgIrOZbztI8UB5s9koamzzRH?=
+ =?us-ascii?Q?eU93c1n4LStD6R897x6+0l9NNJYGi9zM0AnNkTZtilrAB8JLutwfGJhcB9r/?=
+ =?us-ascii?Q?DiT8T7YElTVhZnhBbIZ+8HYiBd1WHH7i8F1rGHzK4JZk9k9IFdMhPjRcPlh5?=
+ =?us-ascii?Q?ENAp1AbjtnYI86AkQVqynSCkwBWfqfCzSaJaPUGqg3xAnljsRqYkvB/aXLqj?=
+ =?us-ascii?Q?4ITYIG3Hd9oKKnsfoy7Q9j2KcYLZGCN6ZQVE1//Kb+28prsd47QYXkKo795Y?=
+ =?us-ascii?Q?dJLsti2WiVmEeF2N5WNsQ8B8hYLdgtK/j/l3TldMGum4d2t04IoRhyF3TRlp?=
+ =?us-ascii?Q?ojS5FhmMTySTCiSMC7yJ2FUo0bSMsY+2SSkOh85Y++oojFX/aXTIdKJ8HF05?=
+ =?us-ascii?Q?avxeDIZRM566fVbc1Hp5AUsRIep8lukP/3JZ93L8391fKRWH8cKy/pGejsAI?=
+ =?us-ascii?Q?uIo1SuhRSSWSrj1D3g4J3QeTIaN9B8+5xZNcWEO2acp3KddyETtqhvC9OYeo?=
+ =?us-ascii?Q?AZOGWfXZ1E4ET1agEuaadGlObWGCTRZOBykkDHSgkE6xJCOd3bXshXt9Ocqu?=
+ =?us-ascii?Q?XvwZUdT0ehLyerzC+DTREQfnt2OmYP6uEktiDBm8PychPJCDT1sFRRdR/w2F?=
+ =?us-ascii?Q?tXcrHvShKJB79pIOZFvZ7dAJ4LfD8tN24k3Me4R0wjE+HXdiDKMP3/3rd2Jl?=
+ =?us-ascii?Q?2SpRCreOBnqmJy+s6Ku/L5pQiKMrkYyAPb0dqAJ4?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21708621-fe7d-4b4a-999e-08db67d13490
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2023 03:26:51.9231
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2023 03:34:03.3096
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eL4hjh2IsUINPzQDGaDazyWw1rLsfm4Amq0YBJ3RHQMeIsl7nvbJcJTIT5D57RBpURcVKEuy6a/7zi5I7frBwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7576
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-MS-Exchange-CrossTenant-UserPrincipalName: DwmzJqHs2s4OwecSIdHpAGSvyNl6V6WpbVqmONdgXXCLlfkuFY/zWmOQMHoI9jSVppjsN5t9/Aw2LCl2A2TTqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8344
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -138,118 +114,197 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+Convert the binding to DT schema format. Besides, this also add other
+optional properties not contained in txt file.
 
-On 2023/6/6 23:38, Dmitry Rokosov wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> Hello Yu,
-> 
-> On Tue, Jun 06, 2023 at 04:38:15PM +0200, Jerome Brunet wrote:
->>
->> On Wed 17 May 2023 at 15:02, Yu Tu <yu.tu@amlogic.com> wrote:
->>
->>> Add the peripherals clock controller driver in the s4 SoC family.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>> ---
->>>   drivers/clk/meson/Kconfig          |   12 +
->>>   drivers/clk/meson/Makefile         |    1 +
->>>   drivers/clk/meson/s4-peripherals.c | 3830 ++++++++++++++++++++++++++++
->>>   drivers/clk/meson/s4-peripherals.h |  217 ++
->>>   4 files changed, 4060 insertions(+)
->>>   create mode 100644 drivers/clk/meson/s4-peripherals.c
->>>   create mode 100644 drivers/clk/meson/s4-peripherals.h
->>>
->>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->>> index a663c90a3f3b..a6eb9fa15c74 100644
->>> --- a/drivers/clk/meson/Kconfig
->>> +++ b/drivers/clk/meson/Kconfig
->>> @@ -128,4 +128,16 @@ config COMMON_CLK_S4_PLL
->>>        aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
->>>        Say Y if you want the board to work, because plls are the parent of most
->>>        peripherals.
->>> +
->>> +config COMMON_CLK_S4
->>> +   tristate "S4 SoC Peripherals clock controllers support"
->>> +   depends on ARM64
->>> +   default y
->>> +   select COMMON_CLK_MESON_REGMAP
->>> +   select COMMON_CLK_MESON_DUALDIV
->>> +   select COMMON_CLK_MESON_VID_PLL_DIV
->>> +   help
->>> +     Support for the Peripherals clock controller on Amlogic S805X2 and S905Y4
->>> +     devices, aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
->>> +     Say Y if you want peripherals to work.
->>>   endmenu
-> 
-> [...]
-> 
->>> +static struct clk_regmap s4_rtc_32k_by_oscin = {
->>> +   .data = &(struct clk_regmap_gate_data){
->>> +           .offset = CLKCTRL_RTC_BY_OSCIN_CTRL0,
->>> +           .bit_idx = 30,
->>> +   },
->>> +   .hw.init = &(struct clk_init_data) {
->>> +           .name = "rtc_32k_by_oscin",
->>> +           .ops = &clk_regmap_gate_ops,
->>> +           .parent_hws = (const struct clk_hw *[]) {
->>> +                   &s4_rtc_32k_by_oscin_sel.hw
->>> +           },
->>> +           .num_parents = 1,
->>> +           .flags = CLK_SET_RATE_PARENT,
->>> +   },
->>> +};
->>> +
->>> +/*
->>> + * This RTC clock can be supplied by an external 32KHz crystal oscillator.
->>> + * If it is used, it should be documented in using fw_name and documented in the
->>> + * Bindings. Not currently in use on this board.
->>> + */
->>
->> This is confusing and not really helpful
->> What you describe here is simply the purpose of fw_name ... so it does
->> not warrant a specific comment
->>
->>> +static const struct clk_parent_data rtc_clk_sel_parent_data[] = {
->>> +   { .hw = &s4_rtc_32k_by_oscin.hw },
->>> +   { .hw = &s4_rtc_32k_by_oscin_div.hw },
->>> +   { .fw_name = "ext_32k",  }
->>> +};
->>> +
->>> +/*
->>> + * All clocks that can be inherited from a more accurate RTC clock are marked
->>> + * with the CLK_SET_RATE_NO_REPARENT flag. This is because in certain
->>> + * situations, we may need to freeze their parent. The parent setup of these
->>> + * clocks should be located on the device tree side.
->>> + */
->>
->> It looks like the consensus is that CLK_SET_RATE_NO_REPARENT is not
->> required. Please have at look at the discussion between Dmitry and
->> Martin for the a1 controller
->>
-> 
-> I hope below links will be helpful for you:
-> 
-> CLK_SET_RATE_NO_REPARENT IRC discussion:
-> https://libera.irclog.whitequark.org/linux-amlogic/2023-05-18
-> 
-> Clock driver LKML discussion about CLK_SET_RATE_NO_REPARENT:
-> https://lore.kernel.org/all/20230530120640.irugyrio3qa7czjy@CAB-WSD-L081021/
-> https://lore.kernel.org/all/20230524092750.ldm362chnpkwkcj4@CAB-WSD-L081021/
-> 
-> PWM discussion about special RTC case:
-> https://lore.kernel.org/all/20230522133739.7tc35zr2npsysopd@CAB-WSD-L081021/
-> 
-> And I apologize for any confusion I may have caused in our previous
-> discussion. I want to clarify that I have updated the implementation
-> of CLK_SET_RATE_NO_REPARENT after discussing it with Martin...
-> 
-> [...]
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
-Thank you so much for your comments.
+---
+Changes in v2:
+ - change filename to fsl,mxs-usbphy.yaml
+ - add other optional properties
+ - narrow fsl,anatop to imx6
+ - use additionalProperties
+---
+ .../bindings/phy/fsl,mxs-usbphy.yaml          | 128 ++++++++++++++++++
+ .../devicetree/bindings/phy/mxs-usb-phy.txt   |  33 -----
+ 2 files changed, 128 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
 
-> 
-> --
-> Thank you,
-> Dmitry
+diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+new file mode 100644
+index 000000000000..1b6b19fdf491
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/fsl,mxs-usbphy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MXS USB Phy Device
++
++maintainers:
++  - Xu Yang <xu.yang_2@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,imx23-usbphy
++          - fsl,vf610-usbphy
++          - fsl,imx7ulp-usbphy
++      - items:
++          - enum:
++              - fsl,imx28-usbphy
++              - fsl,imx6ul-usbphy
++              - fsl,imx6sl-usbphy
++              - fsl,imx6sx-usbphy
++              - fsl,imx6q-usbphy
++          - const: fsl,imx23-usbphy
++      - items:
++          - const: fsl,imx6sll-usbphy
++          - const: fsl,imx6ul-usbphy
++          - const: fsl,imx23-usbphy
++      - items:
++          - const: fsl,imx7ulp-usbphy
++          - const: fsl,imx6ul-usbphy
++      - items:
++          - const: fsl,imx8dxl-usbphy
++          - const: fsl,imx7ulp-usbphy
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    maxItems: 1
++
++  '#phy-cells':
++    const: 0
++
++  power-domains:
++    maxItems: 1
++
++  fsl,anatop:
++    description:
++      phandle for anatop register, it is only for imx6 SoC series.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  phy-3p0-supply:
++    description:
++      One of USB PHY's power supply. Can be used to keep a good signal
++      quality.
++
++  fsl,tx-cal-45-dn-ohms:
++    description:
++      Resistance (in ohms) of switchable high-speed trimming resistor
++      connected in parallel with the 45 ohm resistor that terminates
++      the DN output signal.
++    minimum: 35
++    maximum: 54
++    default: 45
++
++  fsl,tx-cal-45-dp-ohms:
++    description:
++      Resistance (in ohms) of switchable high-speed trimming resistor
++      connected in parallel with the 45 ohm resistor that terminates
++      the DP output signal.
++    minimum: 35
++    maximum: 54
++    default: 45
++
++  fsl,tx-d-cal:
++    description:
++      Current trimming value (as a percentage) of the 17.78 mA TX
++      reference current.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 79
++    maximum: 119
++    default: 100
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          oneOf:
++            - enum:
++              - fsl,imx6sl-usbphy
++              - fsl,imx6sx-usbphy
++              - fsl,imx6sll-usbphy
++              - fsl,imx6q-usbphy
++              - fsl,vf610-usbphy
++            - items:
++              - const: fsl,imx6ul-usbphy
++              - const: fsl,imx23-usbphy
++    then:
++      required:
++        - fsl,anatop
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    usbphy1: usb-phy@20c9000 {
++        compatible = "fsl,imx6q-usbphy", "fsl,imx23-usbphy";
++        reg = <0x020c9000 0x1000>;
++        interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
++        fsl,anatop = <&anatop>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt b/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+deleted file mode 100644
+index 70c813b0755f..000000000000
+--- a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-* Freescale MXS USB Phy Device
+-
+-Required properties:
+-- compatible: should contain:
+-	* "fsl,imx23-usbphy" for imx23 and imx28
+-	* "fsl,imx6q-usbphy" for imx6dq and imx6dl
+-	* "fsl,imx6sl-usbphy" for imx6sl
+-	* "fsl,vf610-usbphy" for Vybrid vf610
+-	* "fsl,imx6sx-usbphy" for imx6sx
+-	* "fsl,imx7ulp-usbphy" for imx7ulp
+-	* "fsl,imx8dxl-usbphy" for imx8dxl
+-  "fsl,imx23-usbphy" is still a fallback for other strings
+-- reg: Should contain registers location and length
+-- interrupts: Should contain phy interrupt
+-- fsl,anatop: phandle for anatop register, it is only for imx6 SoC series
+-
+-Optional properties:
+-- fsl,tx-cal-45-dn-ohms: Integer [35-54]. Resistance (in ohms) of switchable
+-  high-speed trimming resistor connected in parallel with the 45 ohm resistor
+-  that terminates the DN output signal. Default: 45
+-- fsl,tx-cal-45-dp-ohms: Integer [35-54]. Resistance (in ohms) of switchable
+-  high-speed trimming resistor connected in parallel with the 45 ohm resistor
+-  that terminates the DP output signal. Default: 45
+-- fsl,tx-d-cal: Integer [79-119]. Current trimming value (as a percentage) of
+-  the 17.78mA TX reference current. Default: 100
+-
+-Example:
+-usbphy1: usb-phy@20c9000 {
+-	compatible = "fsl,imx6q-usbphy", "fsl,imx23-usbphy";
+-	reg = <0x020c9000 0x1000>;
+-	interrupts = <0 44 0x04>;
+-	fsl,anatop = <&anatop>;
+-};
+-- 
+2.34.1
+
