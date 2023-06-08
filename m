@@ -2,98 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFCA727979
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 922ED727989
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:05:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234995AbjFHICh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 04:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49472 "EHLO
+        id S234678AbjFHIFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 04:05:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235075AbjFHICA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:02:00 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 521BD213C;
-        Thu,  8 Jun 2023 01:01:52 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 35880vbB6001727, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 35880vbB6001727
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Thu, 8 Jun 2023 16:00:57 +0800
-Received: from RTEXDAG02.realtek.com.tw (172.21.6.101) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Thu, 8 Jun 2023 16:01:13 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXDAG02.realtek.com.tw (172.21.6.101) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Thu, 8 Jun 2023 16:01:13 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Thu, 8 Jun 2023 16:01:13 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S234908AbjFHIFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:05:09 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E083E1FFE;
+        Thu,  8 Jun 2023 01:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686211507; x=1717747507;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BsF2PIZTl/X54NX478X5GNlrDe30L7rgjFo/J/dUhzE=;
+  b=Wby+t0NijiIsDCBMSQYoljnDPM63355v0q561xvPZxhUDKEG3wk1qKQx
+   3nrPW8k68pTkHX8OZKx6U9OUZ5vB9+vZD3kUHDrM88wmNXO6eocl0rZzr
+   q7eI8U8JIIw6ERZ4AkJbjZtGdUr2TBeq96s05/6gfaS9F3/SSTx9tulGP
+   NdFjFDx6p813Lob+WDATQT7FvnD5PzipJJYyI37eWoIWO3dVftkK5fzI0
+   OvapOzno3eyynBX9xS6lOK54AxhSUon8ZaaOYLVzGa3GMWNmVakQosx68
+   8f4elSe7RVWb8GjMOGUW4MVrMoMbnTz5aK/CiACt6dEP+I3SjQyDygsKb
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="385583369"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; 
+   d="scan'208";a="385583369"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2023 01:03:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="854248810"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; 
+   d="scan'208";a="854248810"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 08 Jun 2023 01:03:16 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 08 Jun 2023 11:03:15 +0300
+Date:   Thu, 8 Jun 2023 11:03:15 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     neil.armstrong@linaro.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ray Chi <raychi@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v3 4/5] dt-bindings: phy: realtek: Add the doc about the Realtek SoC USB 2.0 PHY
-Thread-Topic: [PATCH v3 4/5] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0 PHY
-Thread-Index: AQHZmQjdazkCXQ0o50uX71FuvNBNuK9+uDoAgAHOxvD//3z9gIAAiH4Q
-Date:   Thu, 8 Jun 2023 08:01:13 +0000
-Message-ID: <289f65f0554344f69f3b0439a9e706ff@realtek.com>
-References: <20230607062500.24669-1-stanley_chang@realtek.com>
- <20230607062500.24669-4-stanley_chang@realtek.com>
- <7cce1d72-6b4d-9fff-32bc-942193388134@linaro.org>
- <0c405afedbcf4e468add480399775ebd@realtek.com>
- <7390105c-dad9-2785-1768-7f50b067633a@linaro.org>
-In-Reply-To: <7390105c-dad9-2785-1768-7f50b067633a@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXDAG02.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Bjorn Andersson <andersson@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] usb: typec: add support for the nb7vpq904m Type-C
+ Linear Redriver
+Message-ID: <ZIGLQ31CXN1VuVDI@kuha.fi.intel.com>
+References: <20230601-topic-sm8x50-upstream-redriver-v2-0-dda89b22b1c0@linaro.org>
+ <20230601-topic-sm8x50-upstream-redriver-v2-2-dda89b22b1c0@linaro.org>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230601-topic-sm8x50-upstream-redriver-v2-2-dda89b22b1c0@linaro.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+Pg0KPiA+PiBUaGlzIG5lZWRzIHRvIGJlIHNwZWNpZmljLiBXaGF0IHRoZSBoZWNrIGlzICJQ
-SFkgcGFyYW1ldGVyIj8NCj4gPj4NCj4gPiBJdCBjb250YWlucyBtb3JlIHBhcmFtZXRlcnMNCj4g
-PiBwYWdlMCBoYXMgMTYgcGFyYW1ldGVycw0KPiA+IHBhZ2UxIGhhcyA4IHBhcmFtZXRlcnMNCj4g
-PiBwYWdlMiBoYXMgOCBwYXJhbWV0ZXJzDQo+ID4gSXQncyB0ZWRpb3VzIGlmIHdlIGxpc3QgdGhl
-bSBhbGwuDQo+IA0KPiBTdXJlLCBpZiB5b3UgcHJlZmVyIG5vdCB0byBsaXN0IHRoZW0sIHRoZW4g
-dGhleSBzaG91bGQgYmUgcmVtb3ZlZCBmcm9tIERULg0KPiANCj4gPiBBbmQgd2Ugb25seSBzZXQg
-dGhlIHBhcnQgdGhhdCBkaWZmZXJzIGZyb20gdGhlIGRlZmF1bHQuDQo+ID4gSXQncyBoYXJkIHRv
-IGV4cGxhaW4gd2hpY2ggcGFyYW1ldGVycyB3ZXJlIGNoYW5nZWQgYmVjYXVzZSBlYWNoIHBsYXRm
-b3JtIGlzDQo+IGRpZmZlcmVudC4NCj4gDQo+IElmIHRoaXMgaXMgcGh5IHR1bmluZyBwZXIgYm9h
-cmQsIHlvdSBuZWVkIHRvIGV4cGxhaW4gYW5kIGp1c3RpZnkgdGhlbS4NCj4gSWYgdGhpcyBpcyBw
-ZXIgcGxhdGZvcm0sIHRoZW4gZHJvcCBpdCAtIG5vdCBldmVuIG5lZWRlZCwgYmVjYXVzZSB5b3Ug
-aGF2ZQ0KPiBjb21wYXRpYmxlIGZvciB0aGlzLg0KPiANCk9rYXksIEkgdHJ5IHRvIHNwZWNpZnkg
-YnkgdGhlIGNvbXBhdGlibGUuDQoNClRoYW5rcywNClN0YW5sZXkNCg==
+Hi,
+
+On Wed, Jun 07, 2023 at 09:51:09AM +0200, neil.armstrong@linaro.org wrote:
+> +static int nb7vpq904m_set(struct nb7vpq904m *nb7)
+> +{
+> +	bool reverse = (nb7->orientation == TYPEC_ORIENTATION_REVERSE);
+> +
+> +	switch (nb7->mode) {
+> +	case TYPEC_STATE_SAFE:
+> +		regmap_write(nb7->regmap, GEN_DEV_SET_REG,
+> +			     GEN_DEV_SET_CHIP_EN |
+> +			     GEN_DEV_SET_CHNA_EN |
+> +			     GEN_DEV_SET_CHNB_EN |
+> +			     GEN_DEV_SET_CHNC_EN |
+> +			     GEN_DEV_SET_CHND_EN |
+> +			     FIELD_PREP(GEN_DEV_SET_OP_MODE_MASK,
+> +					GEN_DEV_SET_OP_MODE_USB));
+> +		nb7vpq904m_set_channel(nb7, NB7_CHNA, false);
+> +		nb7vpq904m_set_channel(nb7, NB7_CHNB, false);
+> +		nb7vpq904m_set_channel(nb7, NB7_CHNC, false);
+> +		nb7vpq904m_set_channel(nb7, NB7_CHND, false);
+> +		regmap_write(nb7->regmap, AUX_CC_REG, 0x2);
+> +
+> +		return 0;
+> +
+> +	case TYPEC_STATE_USB:
+> +		/*
+> +		 * Normal Orientation (CC1)
+> +		 * A -> USB RX
+> +		 * B -> USB TX
+> +		 * C -> X
+> +		 * D -> X
+> +		 * Flipped Orientation (CC2)
+> +		 * A -> X
+> +		 * B -> X
+> +		 * C -> USB TX
+> +		 * D -> USB RX
+> +		 *
+> +		 * Reversed if data lanes are swapped
+> +		 */
+> +		if (reverse ^ nb7->swap_data_lanes) {
+> +			regmap_write(nb7->regmap, GEN_DEV_SET_REG,
+> +				     GEN_DEV_SET_CHIP_EN |
+> +				     GEN_DEV_SET_CHNA_EN |
+> +				     GEN_DEV_SET_CHNB_EN |
+> +				     FIELD_PREP(GEN_DEV_SET_OP_MODE_MASK,
+> +						GEN_DEV_SET_OP_MODE_USB));
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNA, false);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNB, false);
+> +		} else {
+> +			regmap_write(nb7->regmap, GEN_DEV_SET_REG,
+> +				     GEN_DEV_SET_CHIP_EN |
+> +				     GEN_DEV_SET_CHNC_EN |
+> +				     GEN_DEV_SET_CHND_EN |
+> +				     FIELD_PREP(GEN_DEV_SET_OP_MODE_MASK,
+> +						GEN_DEV_SET_OP_MODE_USB));
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNC, false);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHND, false);
+> +		}
+> +		regmap_write(nb7->regmap, AUX_CC_REG, 0x2);
+> +
+> +		return 0;
+> +
+> +	default:
+> +		if (nb7->svid != USB_TYPEC_DP_SID)
+> +			return -EINVAL;
+> +
+> +		break;
+> +	}
+> +
+> +	/* DP Altmode Setup */
+> +
+> +	regmap_write(nb7->regmap, AUX_CC_REG, reverse ? 0x1 : 0x0);
+> +
+> +	switch (nb7->mode) {
+> +	case TYPEC_DP_STATE_C:
+> +	case TYPEC_DP_STATE_E:
+> +		/*
+> +		 * Normal Orientation (CC1)
+> +		 * A -> DP3
+> +		 * B -> DP2
+> +		 * C -> DP1
+> +		 * D -> DP0
+> +		 * Flipped Orientation (CC2)
+> +		 * A -> DP0
+> +		 * B -> DP1
+> +		 * C -> DP2
+> +		 * D -> DP3
+> +		 */
+> +		regmap_write(nb7->regmap, GEN_DEV_SET_REG,
+> +			     GEN_DEV_SET_CHIP_EN |
+> +			     GEN_DEV_SET_CHNA_EN |
+> +			     GEN_DEV_SET_CHNB_EN |
+> +			     GEN_DEV_SET_CHNC_EN |
+> +			     GEN_DEV_SET_CHND_EN |
+> +			     FIELD_PREP(GEN_DEV_SET_OP_MODE_MASK,
+> +					GEN_DEV_SET_OP_MODE_DP_4LANE));
+> +		nb7vpq904m_set_channel(nb7, NB7_CHNA, true);
+> +		nb7vpq904m_set_channel(nb7, NB7_CHNB, true);
+> +		nb7vpq904m_set_channel(nb7, NB7_CHNC, true);
+> +		nb7vpq904m_set_channel(nb7, NB7_CHND, true);
+> +		break;
+> +
+> +	case TYPEC_DP_STATE_D:
+> +	case TYPEC_DP_STATE_F:
+> +		regmap_write(nb7->regmap, GEN_DEV_SET_REG,
+> +			     GEN_DEV_SET_CHIP_EN |
+> +			     GEN_DEV_SET_CHNA_EN |
+> +			     GEN_DEV_SET_CHNB_EN |
+> +			     GEN_DEV_SET_CHNC_EN |
+> +			     GEN_DEV_SET_CHND_EN |
+> +			     FIELD_PREP(GEN_DEV_SET_OP_MODE_MASK,
+> +					reverse ^ nb7->swap_data_lanes ?
+> +						GEN_DEV_SET_OP_MODE_DP_CC2
+> +						: GEN_DEV_SET_OP_MODE_DP_CC1));
+> +
+> +		/*
+> +		 * Normal Orientation (CC1)
+> +		 * A -> USB RX
+> +		 * B -> USB TX
+> +		 * C -> DP1
+> +		 * D -> DP0
+> +		 * Flipped Orientation (CC2)
+> +		 * A -> DP0
+> +		 * B -> DP1
+> +		 * C -> USB TX
+> +		 * D -> USB RX
+> +		 *
+> +		 * Reversed if data lanes are swapped
+> +		 */
+> +		if (nb7->swap_data_lanes) {
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNA, !reverse);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNB, !reverse);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNC, reverse);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHND, reverse);
+> +		} else {
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNA, reverse);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNB, reverse);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHNC, !reverse);
+> +			nb7vpq904m_set_channel(nb7, NB7_CHND, !reverse);
+> +		}
+> +		break;
+> +
+> +	default:
+> +		return -ENOTSUPP;
+
+That should be -EOPNOTSUPP.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int nb7vpq904m_sw_set(struct typec_switch_dev *sw,
+> +			      enum typec_orientation orientation)
+
+While at it, one line should be enough for this one.
+
+thanks,
+
+-- 
+heikki
