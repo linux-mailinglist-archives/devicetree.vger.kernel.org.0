@@ -2,174 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 514FE727C1F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 12:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88EE8727C26
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 12:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235189AbjFHKDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 06:03:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56932 "EHLO
+        id S235698AbjFHKEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 06:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234262AbjFHKDF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 06:03:05 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CAF2700
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 03:03:01 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-977cf86aae5so70529866b.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 03:03:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686218580; x=1688810580;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bmfylh5K7Rt8fwaEveI7BoiN+8WWrTg97yj2ME0kBOA=;
-        b=HuHCeQujCHnipvUAT2lRl1oyB8ETir3dsAst+qalpan3hTm3dbcJYUw1fYJZPR7fhr
-         JnTVtuP8MTgCoBW9pu2CuE5u2ACRp7A3/2SauSTBowDgUvUc1zyA7cECUHCBwzvdHWup
-         Hbza4RhjuvENcGLmsfzui9Dx9g5vTTCpUqRXMToLCGqXO4Gziaa15VQIRbYsY0jHSENb
-         jblfoDk1rGwGmnJsOy56b9N1WlyiFNP62Qxmqm4+o5dSY4kTazbK/xS3osT/pr6a4PSu
-         l4EXdhywI1kBT2Hwq05MMTbj7QsC86Zz4McxozUGB3r08FA7bFCyyUnUmT5kRTkwhT7p
-         AFqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686218580; x=1688810580;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bmfylh5K7Rt8fwaEveI7BoiN+8WWrTg97yj2ME0kBOA=;
-        b=JkvjkOtcfD4XYg3bkMuSPCWOClVQDi/PK33TcgVRRHOFb4ekSxZ69JcpSn8onq3W61
-         xazO20xfgnqpHBEg8IswJ8l4UFNCD3xx4KNRC4zN4k0A0kNICV1EF2N9q/kZ8AymeF9p
-         hVmlyGuWKzr8rx6Sjdn6tqggMCcKbump2p4nFO8GZEl2tk+/BTlu1hEQ0aWecO/Z95KN
-         ZPdLZbl0gfaSDPguYkRNW8fvpJY/9AnqBVsNTsAShAUJc1wT9Fu/5QYUU09M1omNMoFN
-         NHFuGI/LbYGOc03CsLWm+KVOpk/EjcrpV4CdD0RQnflodlPruRKkIlwfPobBrgCrrj/r
-         iz5g==
-X-Gm-Message-State: AC+VfDz3kydTb3BRHHGpYrftniwmuxS8knqt/pSYWxUcTnd7weChf+9s
-        pui6skjGW2XxTR7ZY7mb9xnRNw==
-X-Google-Smtp-Source: ACHHUZ6pBOMzByvbtvZPrdTxWmoF4m+8oSlWRMC84p9V8IFo1xhkQWFoGjxpwZnnyAcuoUy+PwJBLQ==
-X-Received: by 2002:a17:907:94d6:b0:974:1c90:4c02 with SMTP id dn22-20020a17090794d600b009741c904c02mr9192948ejc.5.1686218580135;
-        Thu, 08 Jun 2023 03:03:00 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id t11-20020a17090616cb00b009745b0cb326sm475258ejd.109.2023.06.08.03.02.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 03:02:59 -0700 (PDT)
-Message-ID: <11ca2b90-544d-18c2-fb15-7909ca60507f@linaro.org>
-Date:   Thu, 8 Jun 2023 12:02:57 +0200
+        with ESMTP id S235920AbjFHKEN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 06:04:13 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD7C272A;
+        Thu,  8 Jun 2023 03:04:03 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3586sk6W007089;
+        Thu, 8 Jun 2023 10:03:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=hYi4QRt7+8AfMgtwISTJd2vlcpzdC4I45n3HgdloPg4=;
+ b=FltJSGukdOIVPMPzIhGtk+SQaHjKB8/pGMpeHXQi4u4Spl6N3I5hSG7CBrXMXfvEllme
+ DCk5uzasXKjrVLdD4V/DsqVTiCF5fvbwzNfCKDI4HRa/fijOWoTT2OmkKm5Yrl7c5ivu
+ 0jC5/auklg/68+KxUhaymaSJ4W9tYA21Dgu4jQIzEbR3YpfPR4HR/xnZX9bODhLthy/o
+ uQ8zezTkjucjVtvraUj09ey/XBYWfqFPWzMqCfB8dvLcj6oX8ojHiKv+88x3VGdcBhop
+ 9Gvr6eC64EcNF2c1aaMoejnwmR7ErQxeV+9JRbbiB3CZ5Vx5eMYlEDUp5bO6m3KUqWIY FQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r341c0wqm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 08 Jun 2023 10:03:58 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 358A3vIx002027
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 8 Jun 2023 10:03:57 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 8 Jun 2023 03:03:52 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <gregkh@linuxfoundation.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v14 0/5] Enable IPQ9754 USB
+Date:   Thu, 8 Jun 2023 15:33:26 +0530
+Message-ID: <cover.1686217906.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v12 1/2] spi: add loongson spi bindings
-Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
- <20230608072819.25930-2-zhuyinbo@loongson.cn>
- <6ebed84c-2b42-c981-7b3f-e71cc88e4c2c@linaro.org>
- <4bf747c4-b767-b20c-e00f-724b50f44edb@loongson.cn>
- <6bfc2a22-6901-0858-7b90-bc4c52c66810@linaro.org>
- <bd2d7830-3ab6-0906-b06a-83d3e0a96749@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bd2d7830-3ab6-0906-b06a-83d3e0a96749@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: H6FzfB8P5uOttRgBITKXOxMwDqX9ynkD
+X-Proofpoint-GUID: H6FzfB8P5uOttRgBITKXOxMwDqX9ynkD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-08_06,2023-06-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ malwarescore=0 mlxlogscore=756 mlxscore=0 bulkscore=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306080085
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 12:00, zhuyinbo wrote:
-> 
-> 
-> 在 2023/6/8 下午4:53, Krzysztof Kozlowski 写道:
->> On 08/06/2023 10:39, zhuyinbo wrote:
->>>>>
->>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>>>    .../bindings/spi/loongson,ls2k-spi.yaml       | 41 +++++++++++++++++++
->>>>>    MAINTAINERS                                   |  6 +++
->>>>>    2 files changed, 47 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..423ee851edd5
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>
->>>> Filename based on compatible.
->>>
->>>
->>> There will be more ls2k series SoC spi device in the future thus I still
->>> use "loongson,ls2k-spi.yaml" for cover it.
->>
->> Add them now.
-> 
-> 
-> The 2k0500 doesn't support CCF and not use CCF to gain clock and We
-> internally tend to prioritize supporting 2k1000.
+This patch series adds the relevant phy and controller
+configurations for enabling USB on IPQ9754
 
-Don't you refer now to drivers? Because how hardware can not support
-clocks if it has them? How CCF is anyhow related to hardware?
+Portions of the patchset have been merged. Please see
+	https://lore.kernel.org/lkml/ZGN9gchu7dRb6QwC@matsya/
 
-> 
->>
->>>
->>>>
->>>>> @@ -0,0 +1,41 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/spi/loongson,ls2k-spi.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Loongson SPI controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/spi/spi-controller.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - loongson,ls2k1000-spi
->>>>
->>>> No compatibles for other devices? Didn't we have big discussion about this?
->>>>
->>>> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
->>>
->>>
->>> There are other ls2k SPI devices compatible, such as,
->>> "loongson,ls2k0500-spi", "loongson,ls2k2000-spi" but currently I plan to
->>> add ls2k1000 spi device first, Other ls2k SoC spi device adaptation may
->>> require some additional work and I will add it later.
->>
->> Previously you claimed this serves entire family, so I don't understand
->> why you need to fix something. Why previously it was working for entire
->> family but now it does not?
-> 
-> 
-> It can work was for ls2k1000 and ls2k0500 and it specifically refers to
-> spi driver. but 2k0500 doesn't implementing a clock driver and doesn't
+[v14]:
+	- Missed Konrad's comment. Switch order of regulator-boot-on &
+          regulator-always-on in mp5496_l2 node
 
-We do not discuss here drivers, but bindings. Whatever your drivers are
-not supporting, matters less.
+[v13]:
+	- Move fixed regulator definitions from SoC dtsi to board dts
+	- Remove 'dr_mode' from SoC dtsi
+	- Move 'status' property to the end
 
-> use CCF to gain clock but can use "clock-frequency".  Is it necessary to
-> obtain a clock based on CCF? If it's necessary, then it seems that it
-> can only added 2k1000 spi first.
+[v12]:
+	- In dtsi usb@8a00000 -> usb@8af8800
 
-Not related to bindings...
+[v11]:
+	- Rename dwc_0 -> usb_0_dwc3
+	- Minor change in qcom,sc8280xp-qmp-usb3-uni-phy.yaml to factor in
+	  latest updates to the file
 
-Best regards,
-Krzysztof
+[v10]:
+	- Fix regulator definitions
+	- Address couple of other comments
+
+[v9]:
+	- Update bindings to make power-domains as optional since
+	  IPQ9574 doesn't have GDSCs
+
+[v8]:
+	- Update bindings for the clock name change
+[v7]:
+	- com_aux -> cfg_ahb in patch 7
+
+[v6]:
+        - Incorporated review comments
+	- Resolve make dtbs_check messages
+	- Fixed pcs_usb offset
+	- Board dts file name changed
+
+[v5]:
+        - Incorporated review comments
+	- 'make dtbs_check' giving the following messages since
+	  ipq9574 doesn't have power domains. Hope this is ok
+
+		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
+        	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
+        	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+
+	- Move qmp phy DT node to newer specification
+
+[v4]:
+        - Incorporated review comments
+	- Address all 'make dtbs_check' errors
+
+[v3]:
+        - Incorporated review comments regarding coding style
+
+[v2]:
+        - Incorporated review comments regarding coding style,
+          maintaining sorted order of entries and unused phy register
+          offsets
+        - Removed NOC clock entries from DT node (will be implemented
+          later with interconnect support)
+        - Fixed 'make dtbs_check' errors/warnings
+
+[v1]:
+        https://lore.kernel.org/linux-arm-msm/5dac3aa4-8dc7-f9eb-5cf3-b361efdc9494@linaro.org/T/
+
+Varadarajan Narayanan (5):
+  dt-bindings: usb: dwc3: Add IPQ9574 compatible
+  clk: qcom: gcc-ipq9574: Add USB related clocks
+  arm64: dts: qcom: ipq9574: Add USB related nodes
+  arm64: dts: qcom: ipq9574: Add LDO regulator node
+  arm64: dts: qcom: ipq9574: Enable USB
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |  3 +-
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts        | 48 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              | 85 ++++++++++++++++++++++
+ drivers/clk/qcom/gcc-ipq9574.c                     | 37 ++++++++++
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h       |  2 +
+ 5 files changed, 174 insertions(+), 1 deletion(-)
+
+-- 
+2.7.4
 
