@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9F3728ADF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 00:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61335728AE4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 00:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236293AbjFHWFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 18:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46490 "EHLO
+        id S233746AbjFHWHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 18:07:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234046AbjFHWFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 18:05:50 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF16A30CD
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 15:05:48 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-75da00a1eddso109466785a.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 15:05:48 -0700 (PDT)
+        with ESMTP id S229632AbjFHWHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 18:07:43 -0400
+Received: from mail-vk1-xa2b.google.com (mail-vk1-xa2b.google.com [IPv6:2607:f8b0:4864:20::a2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BE71BE4
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 15:07:42 -0700 (PDT)
+Received: by mail-vk1-xa2b.google.com with SMTP id 71dfb90a1353d-463992996d2so387969e0c.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 15:07:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1686261948; x=1688853948;
+        d=broadcom.com; s=google; t=1686262061; x=1688854061;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HE5xJ29LzLCyf0dnqCeLngM3UAcPdF+ZuVhlAU9Kpuo=;
-        b=WvfWk5+sLiZgBUBKXxDAJaCrLx6Y/q4BGuiIeM1UlNNVoWTYLaiMHhaUsDTCh0XauL
-         ha6hBOw93IroWt8lazKmyH1tbAK23TIQJDJ76VltffHsaoziBX/3ghrjhHRgeFdSCBwN
-         GUeXRzGAYMilM1zAWkyoGqHCGv92aMGXTE0IA=
+        bh=YXW6zkCvZZjyfDkdtX4r3Ex7Z4UDOQFgOepI+b8D5Vo=;
+        b=VU2372nKbPSNbsCTKWEnu0mr8sUgOcCgufglJ1Gpif/VbTOQOOLCC9bAJwZS4pl+bY
+         4Ga7Q+1i7bC+qG+ptR2/PhkXhUfaZwnOBgEhhq+2iij/cK8tQKQVByv/dnxBXB9x56X+
+         izj9cW2haOYskvJ1ACeQXNSbGd8CgCOR/RiHc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686261948; x=1688853948;
+        d=1e100.net; s=20221208; t=1686262061; x=1688854061;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HE5xJ29LzLCyf0dnqCeLngM3UAcPdF+ZuVhlAU9Kpuo=;
-        b=IGVPpie10pEF3wtYbtt5D9Gvi6hn5pUdTyrJD5BCfG4rPqEgICA21ZXI1bEjVbJxnd
-         eEBewMfKCiw1aqY1cxPvefEYIDsE1kJ01d/7OB/npWG/Zu+meY8khuv1NBzAasvelBtA
-         aVb0TweLehpiG/2ZMpvvbVCOoj6SvNKticJFowqmPDsU1S9TEldvXP3d7vi36uZtHBaV
-         2ge0WKk0a9N2KJHOSJmBmU0BrZTwYlBLXFEXBsKkXSSAgIqLvaobuPdG+ESEOwHyahzy
-         4dEaIuJUuUstWpbaEqvV0LqFdp3jkcLBSffwDq23TbXbnG14GzjMK3HE4cj2ce2Ps0Ql
-         6PaQ==
-X-Gm-Message-State: AC+VfDzMdXCJHg0IpzTpTNGkb1V/Exq2+5kIblZ5+n02vG9jkMVyJYfT
-        gXnakaM3YqOAFZXYpmVHsR/V7A==
-X-Google-Smtp-Source: ACHHUZ5q27lG/To/kV54tQXqsRybW2vudBWOGHW9H6Lzn5LuII01Xb88fM7V0mGG1tuHSFv0FFNl/A==
-X-Received: by 2002:a05:6214:c6d:b0:626:15bb:f57b with SMTP id t13-20020a0562140c6d00b0062615bbf57bmr2729876qvj.26.1686261947835;
-        Thu, 08 Jun 2023 15:05:47 -0700 (PDT)
+        bh=YXW6zkCvZZjyfDkdtX4r3Ex7Z4UDOQFgOepI+b8D5Vo=;
+        b=E/8Pj7VEQCJwulw1uLq1lynDIH4HtlWD9BNHh3NTGwXqbKzmE8EcTzkYo3z5NIgR1l
+         lllDbjCJlqRtMTjja8+/sdLAsJjrJx78wQ2Mpxw9BawRv317/iKQlBZBiEgWr7CWuIgy
+         IMmZXyHmv+l/Nov1I1Xs6iaQjGtE1RmpjLD+tYAekgzsjP0vfYQ62kITk/eR+6v17wz3
+         XDiuyWjbQdeR/K1/80nSVVU2oinQ7StRU7KOZosPMwQefRRFXN4GtrvvtwBPIR2lrqfO
+         NdugMyRYG3+LhzuWtXOs5+hELPbOmuzVyJ2B7wpmhx0re5ljpmXnmifRjQuX9lmBlEFO
+         Gkfw==
+X-Gm-Message-State: AC+VfDzCv3mpv5IIRSjxgwxIPTIW3AcY+lFVfS+3eoeuXk7eMiOXmKIu
+        Q6vc+BwV6rpNiW6RDeX8oxExvQ==
+X-Google-Smtp-Source: ACHHUZ6ySgk05/QpxoK/8pJw17pOcARHoa1OWyU11nXD0e7yw7crC5qWPDdLbfJLjdPZrVIJoMZZfg==
+X-Received: by 2002:a67:fb96:0:b0:43b:37bb:654f with SMTP id n22-20020a67fb96000000b0043b37bb654fmr2873233vsr.14.1686262061388;
+        Thu, 08 Jun 2023 15:07:41 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id s3-20020a0cb303000000b0062629fa5c4esm712755qve.30.2023.06.08.15.05.46
+        by smtp.gmail.com with ESMTPSA id b14-20020a0ccd0e000000b006235e8fe94esm707093qvm.58.2023.06.08.15.07.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 15:05:47 -0700 (PDT)
+        Thu, 08 Jun 2023 15:07:40 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Christian Lamparter <chunkeey@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Describe switch ports in the main DTS
-Date:   Thu,  8 Jun 2023 15:05:44 -0700
-Message-Id: <20230608220544.2981763-1-florian.fainelli@broadcom.com>
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] ARM: dts: bcm-mobile: change "" includes to <> where applicable
+Date:   Thu,  8 Jun 2023 15:07:38 -0700
+Message-Id: <20230608220738.2982007-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230605132109.7933-1-zajec5@gmail.com>
-References: <20230605132109.7933-1-zajec5@gmail.com>
+In-Reply-To: <04aa10d644eb183f6c0c5b944e527e36d56e2110.1685127525.git.stano.jakubek@gmail.com>
+References: <cover.1685127525.git.stano.jakubek@gmail.com> <04aa10d644eb183f6c0c5b944e527e36d56e2110.1685127525.git.stano.jakubek@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000006aa6b105fda5741f"
+        boundary="0000000000002f9f0105fda57b8a"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -74,36 +74,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000006aa6b105fda5741f
-Content-Type: text/plain; charset=UTF-8
+--0000000000002f9f0105fda57b8a
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Mon,  5 Jun 2023 15:21:09 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Fri, 26 May 2023 21:28:45 +0200, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
+> While at it, also sort the includes alphabetically.
 > 
-> All Northstar SoCs have BCM5301x switches (BCM53011, BCM53012) with 8
-> ports (0-8 without 6). By design 3 switch ports (5, 7 and 8) are
-> hardwired to 3 on-SoC Ethernet interfaces. Switch port 8 requires
-> forcing link state.
-> 
-> It seems that global Northstar .dtsi file is the best place to describe
-> those hw details. Only device specific bits (like labels) should go to
-> device .dts files.
-> 
-> This seems to fit well with a tiny exception of Asus RT-AC88U which
-> somehow was designed to have switch 5 connected to an extra switch. This
-> case was simply handled with a /delete-property/.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
 
 Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---0000000000006aa6b105fda5741f
+--0000000000002f9f0105fda57b8a
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -174,14 +160,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEINrpHUu1RUA1HOtG
-mZXDmIHn6pGZO1MEa/l7/XR+Lo1gMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDYwODIyMDU0OFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIESXDWhPTByGnIJX
+hEAG1ThD/pk1qL1uWB+Q1N8bf6TBMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDYwODIyMDc0MVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCSsBaN8Dwd+DuW1IuKXT3n7TjfipsSbDPL
-CI1L++NnxvxpeGXQ1vwIqlLaQADPoP0tJyD8HMi+pWd94CdwPU7RVLggEG213jhC7lSzqBpa+ykE
-ZPSsK1LknMt3Jc2DP2AsZFJSr511rQyDNtmsOj5benI8HO/Swce/GV/dw2ZCe0f6jgKbnZNFEqBr
-IsjIFw0eudSOY17eIT3FEnvrFTt5a+uGT3I5GajvT0rrs09EKZ9tLQf688uFtMvzXa+8GWFusOQx
-rf2UUYKa2TJgh1sEVVxuoo4ZCJgYyKaLEri0nWCfS0pRRCnjCYqh/irVKGrVM+MiITpbTJjnP8nH
-trZ/
---0000000000006aa6b105fda5741f--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQB0E74sjeI0kUsTd5FdRTIAtbUQ7VchRgY+
+PSmQvl4w0xMGBSr9ahzwAv54pbmka3FdjuJe8Xwly9mkDmMb3osc3U86KCdyaNubY0fMq3d+DUN+
+qHGFgndWnsWmXRyuL4imnzRlK9VTOTi8r1M2XbjEHlpj/S2jPMDuiyVSP6ldR4x178Jnt+iqRyGo
+DmF7gdBNoaP7mydRtliisT2jPivB1TnWbigRpXeaUYLTDxulQILf3QshAslhXOHyMGK7lrul0NIW
+7vAxpX9qBBHSHNPeAFA3SjIRKjdoOJqAtkocIs1akPYR/Wj6UuAo/lQ1poIK63Z57N04vw/J74DG
+YvNl
+--0000000000002f9f0105fda57b8a--
