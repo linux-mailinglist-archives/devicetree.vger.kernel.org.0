@@ -2,61 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76D847278EB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B25F7278FB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233781AbjFHHfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 03:35:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37418 "EHLO
+        id S230183AbjFHHnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 03:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235650AbjFHHfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:35:14 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6CC1BC6;
-        Thu,  8 Jun 2023 00:35:13 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 974AE6606F10;
-        Thu,  8 Jun 2023 08:35:11 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686209712;
-        bh=IyZaWaR9qhc4mrNBEFt94Tw+lZAMtm2D8C4nhenBrVE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Qcr8LLU9FInLXhPCQsP6sKwvEnNtz71kQHPSgTUMxHNZtCCEDSTEHATm94pqY+P18
-         f1656ztRP8SoGzahCiGdcnSNCaeGS/lWO7PIVlx+dOUZWfKhgclKUmAjF8rt9428DJ
-         47uzdjxlnteSD9q+GSSTSrHzuh5gKOAxPvow+3x24wRg7KNtH+JYdZ28YynsgoyePB
-         YbfVDiMYru+brBs5Ab/s217evhAokViQFbFSacFLDnGiK7D/0X6jjDvQrvJL/5ht54
-         ygT4qf6nv0TDunChDSFQv6f6CooWot5YWP7VJEBL1YYI0JxshcXv4Glfip0wrYm+rj
-         C5b0odcUH8JOQ==
-Message-ID: <11640ca2-a49f-49c9-ec94-d85e64c9ee87@collabora.com>
-Date:   Thu, 8 Jun 2023 09:35:08 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 5/5] arm64: dts: mediatek: mt8183: Add decoder
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     kernel@collabora.com, Yunfei Dong <yunfei.dong@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S229727AbjFHHnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:43:13 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFDB1BF7;
+        Thu,  8 Jun 2023 00:43:11 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3587e8uA5026139, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3587e8uA5026139
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Thu, 8 Jun 2023 15:40:08 +0800
+Received: from RTEXDAG02.realtek.com.tw (172.21.6.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Thu, 8 Jun 2023 15:40:25 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXDAG02.realtek.com.tw (172.21.6.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 8 Jun 2023 15:40:23 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Thu, 8 Jun 2023 15:40:23 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20230607205714.510012-1-nfraprado@collabora.com>
- <20230607205714.510012-6-nfraprado@collabora.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230607205714.510012-6-nfraprado@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ray Chi <raychi@google.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH v3 3/5] phy: realtek: usb: Add driver for the Realtek SoC USB 3.0 PHY
+Thread-Topic: [PATCH v3 3/5] phy: realtek: usb: Add driver for the Realtek SoC
+ USB 3.0 PHY
+Thread-Index: AQHZmQjXaabXymTUEkebktrVQM6RHa9+tOwAgAF5CeD//82RgIAAicGw
+Date:   Thu, 8 Jun 2023 07:40:23 +0000
+Message-ID: <96152ac15f5a4dd8901d6b126da8e7e2@realtek.com>
+References: <20230607062500.24669-1-stanley_chang@realtek.com>
+ <20230607062500.24669-3-stanley_chang@realtek.com>
+ <a9a2f3d0-9580-f027-8ec3-ac6e6bed5ed6@linaro.org>
+ <0ac12a13a91d41f0ab3a58b435ccb17a@realtek.com>
+ <b343df1a-dbd8-919d-5bea-36d532ec4103@linaro.org>
+In-Reply-To: <b343df1a-dbd8-919d-5bea-36d532ec4103@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXDAG02.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,17 +87,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/06/23 22:53, Nícolas F. R. A. Prado ha scritto:
-> From: Yunfei Dong <yunfei.dong@mediatek.com>
-> 
-> Add node for the hardware decoder present on the MT8183 SoC.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Signed-off-by: Qianqian Yan <qianqian.yan@mediatek.com>
-> Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-> Signed-off-by: Alexandre Courbot <acourbot@chromium.org>
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-
+PiA+PiBQbGVhc2UgZHJvcCBhbGwgc2ltcGxlIGRlYnVnIHN1Y2Nlc3MgbWVzc2FnZXMuIExpbnV4
+IGhhcyBhbHJlYWR5DQo+ID4+IGluZnJhc3RydWN0dXJlIGZvciB0aGlzLg0KPiA+Pg0KPiA+IE9r
+YXkuIEkgd2lsbCBjaGFuZ2UgdGhlIHByaW50IGRldl9pbmZvIHRvIGRldl9kYmcgYWJvdXQgZGVi
+dWcgbWVzc2FnZS4NCj4gDQo+IE5vLCBkcm9wIHRoZW0uIFRoaXMgcGllY2Ugb2YgY29kZSBoYWQg
+YWxyZWFkeSAyIHByaW50a3MgZm9yIHJlZ2lzdGVyIGNvbnRlbnRzIQ0KPiBZb3VyIGRyaXZlciBp
+cyBvdmVybG9hZGVkIHdpdGggcHJpbnRrcyBhbmQgdGhleSBhcmUgbW9zdGx5IHVzZWxlc3MgZm9y
+IHRoZSB1c2VyLg0KDQpJIHdpbGwgZHJvcCB0aGVtIHRvIHNpbXBsaWZ5IHRoZSBjb2RlLg0KDQo+
+ID4+IFBsZWFzZSBkcm9wIGFsbCBzaW1wbGUgZGVidWcgc3VjY2VzcyBtZXNzYWdlcy4gTGludXgg
+aGFzIGFscmVhZHkNCj4gPj4gaW5mcmFzdHJ1Y3R1cmUgZm9yIHRoaXMuDQo+ID4NCj4gPiBDYW4g
+SSBrZWVwIGxvZyBmb3IgZGV2X2RiZz8NCj4gDQo+IE9mIGNvdXJzZSBub3QuIFRoaXMgd2FzIGRl
+dl9kYmcgYW5kIEkgY29tbWVudGVkIG9uIHRoaXMuIFRoaXMgaXMgbm90IGEgZ29vZA0KPiBkZWJ1
+Zywgd2UgZG8gbm90IHByaW50IGFueXRoaW5nIG9uIGZ1bmN0aW9uIGVudHJhbmNlIGFuZCBleGl0
+Lg0KPiBmdHJhY2UoKSBpcyBmb3IgdGhpcy4NCg0KV2VsbCwgZm9yIGRlYnVnZ2luZyBwdXJwb3Nl
+cywgSSdtIGdvaW5nIHRvIGhhdmUgdG8gZGlnIGludG8gZnRyYWNlLg0KVGhpcyBpcyBhIGdyZWF0
+IHRpcC4NCj4gPj4NCj4gPj4gQXJlIHlvdSBzdXJlIHlvdSBydW4gY2hlY2twYXRjaCBvbiB0aGlz
+PyBFcnJvciBtZXNzYWdlcyBvbiBkZWJ1Z2ZzDQo+ID4+IGFyZSBhbG1vc3QgYWx3YXlzIGluY29y
+cmVjdC4NCj4gPg0KPiA+IFllcywgSSBoYXZlIHJ1biBjaGVja3BhdGNoIGZvciBwYXRjaGVzLg0K
+PiA+IFdoeSB0aGUgbWVzc2FnZSBpcyBpbmNvcnJlY3Q/DQo+IA0KPiBCZWNhdXNlIGRlYnVnZnMg
+ZmFpbHVyZXMgc2hvdWxkIG5vdCBjYXVzZSBhbnkgZXJyb3IgcHJpbnRzLiBJdCdzIGRlYnVnLCBu
+b3QNCj4gaW1wb3J0YW50Lg0KPiANCj4gRG8geW91IHNlZSBhbnl3aGVyZSBlcnJvciBtZXNzYWdl
+cz8NCj4gDQo+IEVudGlyZSBkZWJ1Z2ZzIGhhbmRsaW5nIGNvZGUgc2hvdWxkIGJlIHNpbGVudCBh
+bmQgZXZlbiBza2lwIGFsbCBlcnJvciBjaGVja2luZywNCj4gYXMgbW9zdCBBUEkgaXMgcmVhZHkg
+Zm9yIGhhbmRsaW5nIHByZXZpb3VzIGVycm9ycywgSSB0aGluay4NCg0KVGhhbmtzLCBJIHVuZGVy
+c3RhbmQgbm93Lg0KDQpUaGFua3MsDQpTdGFubGV5DQo=
