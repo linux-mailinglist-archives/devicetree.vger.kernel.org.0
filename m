@@ -2,88 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4255B727934
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0C8872793C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233553AbjFHHv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 03:51:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44864 "EHLO
+        id S233670AbjFHHyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 03:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233490AbjFHHv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:51:57 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 050FC13D
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 00:51:56 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977e0fbd742so46502566b.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 00:51:55 -0700 (PDT)
+        with ESMTP id S233645AbjFHHyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:54:10 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599C41FCC
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 00:54:08 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5149c76f4dbso514449a12.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 00:54:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686210714; x=1688802714;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1686210847; x=1688802847;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zct6XBCH1Tv2PsNs+IsnqKieyR9/tL3UgrCB0gy4jXs=;
-        b=zNT6gX1jbLVwYb5r2yPvDYs7tM00gF/Z/k5vSxU9R26fslPMRem9O0S6Q55m+nZUkS
-         HBqyvRrKNGJ+J4V+Cfqiy7uW378Lx3GR4YW4EmNL77thxyF8HXG2QpequMwDfeJ36qQN
-         tuzZIbjT6GZwbCZYQG/xOIqjn7Ads3u2nA42BPQBo+wT6a6cRVncw49bwuCDpCCv68nm
-         a/GXn7o/58lksvK9wT1DPTy/ImFhtIUwB8/eTE2cejFYbo1ISH8FPwIkV+0L9/aiNv5P
-         yrJbsFHHmX4n9EuFQlaSI4cMhXNJsNkoiihvGs1Ywi1Nh6nd6N1V27YtZLF4EGPwD/Rv
-         esAg==
+        bh=E2Twlaiedobdlie44+yvfCt28qgI5GSJ8RzJigOLjck=;
+        b=ZRSQm2SbKPvteuLLgPLe7nCK0DjGUrekqwVBx0rP+syuDvylnzfmb9qt24XNGZ6ulz
+         na0MmTT2NJye+PzluJ6LcW3DhyGErcL2K9VGlFTfTw4FUZYh5x82Dg4HdlD8f8c9eAdK
+         20FmAs+cjr+D0BAnTZeCULB9MfbUQI0aWqS9fK/2XrJ6CdTDXppj4kl8ief1NvuE9kvM
+         YTX6BLXI/s9weYeS30cj8tfGn8Ib6uTXNqvKs7eSNgBq87jQ9lhpPelGD/cXeUU9G5kS
+         mPtnmnk2vwG7uuLODA3vMWi+tzqEhTzBevkTldS6+gIxMEci+LsUfozVz4OAG1C1Hcee
+         7peQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686210714; x=1688802714;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1686210847; x=1688802847;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zct6XBCH1Tv2PsNs+IsnqKieyR9/tL3UgrCB0gy4jXs=;
-        b=c5dJUVOM//LMNenSQxDv8fsST9zRa3oIpXpg1Ac7ErUjbsEmX0Zh3vgHeRzK5GHcQI
-         40Uhp5DAWFvCtogxvHr6p3hzBEv6fK4pSTsUTJ0nYM7G3TswIOUFE30/6b3s/ofHCTBO
-         dHdE4u8gT/EATO2N9rQIakQRgjpRXSFUrkeJhiARrAaI3/Q9hVoiX5Di+cl7Vx9WFu9E
-         qBAKz2jirlhvULosXDJQKw3Sy7JbsUeVUwp/SlzTaIrOIvxXLdpMwjMgFSQAkMyT6ZF9
-         sL8ltGjQQWLIirS7UjrqQSNeiyef4Ja1lstvx2E3RZOlCNqvWPXHtzEOpVJWzF3pmJ7C
-         q8Rg==
-X-Gm-Message-State: AC+VfDwm9kwbJatBkCvvymPAvUzcXtVNFmULt3dLY7b+EUR/UMev5IOP
-        QW6lbBkmRAM8rsuRTqvmbwKNyw==
-X-Google-Smtp-Source: ACHHUZ50i+lzbZ8IfY8FXaq7GRfB2bVlYYuBbsPZqFrBSWvs6gxQ13zoI4jJba8mPl+4LFxqGTYqIQ==
-X-Received: by 2002:a17:907:97c1:b0:973:d076:67ab with SMTP id js1-20020a17090797c100b00973d07667abmr10116923ejc.42.1686210714476;
-        Thu, 08 Jun 2023 00:51:54 -0700 (PDT)
+        bh=E2Twlaiedobdlie44+yvfCt28qgI5GSJ8RzJigOLjck=;
+        b=TQArd6W1LwH+nuOqZsvyAzU/ZkC89aZYfko0kum2ancGEljLnpfTXjSF64vsLWhuwx
+         dvQSrI86EpYAygcyrlVFJc6e6VUDcfhNy4Sawqv3Tb6YwwxxDYfbPghxMRQPOxpfQvzY
+         WbUwE9h67xaZ1eF0B03tplc1wEShkOW8EbYoWRCf6IDbhJtuzaL31zsgrKEjtILkflpY
+         uD9DrUroHZJhZGZI9hzF+sTJWHl0WUrPZiUZMA3muKo8+ZKnY0vOAhXVBB7N3m2LRtCo
+         UwID9nBWRTO2d0jO2zELCKeYDhx274dpXhSgwIQ75L/Px00T/FCo9cEOcJQghVhTxLZ0
+         fn8g==
+X-Gm-Message-State: AC+VfDzT2+Pzka0dbQdxfax6QD8ZlyT2JHMwaQRP3BVg5gFo6F/wDzKp
+        LYct9sWNEmOJP39NNgWsGKcV1Q==
+X-Google-Smtp-Source: ACHHUZ4fomm2ljY9Wjm1oqS8KoBZmj6ojHu+GGsGRunrLXkGdjHgEpVBmbct0AHYw4BdzlGEQgP2SQ==
+X-Received: by 2002:a17:907:86ac:b0:977:d48f:97ad with SMTP id qa44-20020a17090786ac00b00977d48f97admr7723485ejc.75.1686210846735;
+        Thu, 08 Jun 2023 00:54:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id lr26-20020a170906fb9a00b009663115c8f8sm341825ejb.152.2023.06.08.00.51.52
+        by smtp.gmail.com with ESMTPSA id n27-20020a056402515b00b00502689a06b2sm235647edd.91.2023.06.08.00.54.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 00:51:54 -0700 (PDT)
-Message-ID: <7390105c-dad9-2785-1768-7f50b067633a@linaro.org>
-Date:   Thu, 8 Jun 2023 09:51:51 +0200
+        Thu, 08 Jun 2023 00:54:06 -0700 (PDT)
+Message-ID: <61278e12-ba39-4503-ca74-a7118b0f6e99@linaro.org>
+Date:   Thu, 8 Jun 2023 09:54:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v3 4/5] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0 PHY
+Subject: Re: [v6 1/4] dt-bindings: pwm: Add ASPEED PWM Control documentation
 Content-Language: en-US
-To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ray Chi <raychi@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+To:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-References: <20230607062500.24669-1-stanley_chang@realtek.com>
- <20230607062500.24669-4-stanley_chang@realtek.com>
- <7cce1d72-6b4d-9fff-32bc-942193388134@linaro.org>
- <0c405afedbcf4e468add480399775ebd@realtek.com>
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>
+References: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
+ <20230608021839.12769-2-billy_tsai@aspeedtech.com>
+ <4dffd320-8e30-fb30-6ded-79519afddc21@linaro.org>
+ <SG2PR06MB3365DD80EA2FD026D400C4A78B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0c405afedbcf4e468add480399775ebd@realtek.com>
+In-Reply-To: <SG2PR06MB3365DD80EA2FD026D400C4A78B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -94,37 +95,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 09:47, Stanley Chang[昌育德] wrote:
-> Hi Krzysztof,
+On 08/06/2023 09:47, Billy Tsai wrote:
 > 
+>   >> +
+>   >> +allOf:
+>   >> +  - $ref: pwm.yaml#
+>   >> +
+>   >> +properties:
+>   >> +  compatible:
+>   >> +    enum:
+>   >> +      - aspeed,ast2600-pwm
+>   >> +
+>   >> +  "#pwm-cells":
+>   >> +    const: 3
 > 
->>> +      For most Relatek SoCs, one XHCI controller only support one the USB
->> 2.0
->>> +      phy. For RTD1395 SoC, the one XHCI controller has two USB 2.0
->> PHYs.
->>> +    properties:
->>> +      realtek,page0-param:
->>> +        description: PHY parameter at page 0. The data are the pair of
->> the
->>> +          offset and value.
->>
->> This needs to be specific. What the heck is "PHY parameter"?
->>
-> It contains more parameters
-> page0 has 16 parameters
-> page1 has 8 parameters
-> page2 has 8 parameters
-> It's tedious if we list them all.
+>   > 3 cells? For one PWM? What are they?
+> 
+> channel, period and polarity.
 
-Sure, if you prefer not to list them, then they should be removed from DT.
+Don't cut my responses. You wrote you have one PWM output, so only one
+channel. What do you put then in the channel?
 
-> And we only set the part that differs from the default.
-> It's hard to explain which parameters were changed because each platform is different.
-
-If this is phy tuning per board, you need to explain and justify them.
-If this is per platform, then drop it - not even needed, because you
-have compatible for this.
-
+I will start NAKing such patches without DTS user. It's like reviewing
+fake code for some unknown solution and trying to get from you piece of
+answers one by one, because you do not want to share entire part.
 
 Best regards,
 Krzysztof
