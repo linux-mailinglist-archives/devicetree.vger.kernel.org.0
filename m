@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1CC8728AF9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 00:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E5B7728B1A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 00:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjFHWM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 18:12:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
+        id S237141AbjFHWbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 18:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235243AbjFHWMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 18:12:25 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82982113
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 15:12:20 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1b01bd7093aso1632455ad.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 15:12:20 -0700 (PDT)
+        with ESMTP id S229784AbjFHWbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 18:31:09 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B09270F
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 15:31:05 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id d75a77b69052e-3f9baa69682so10226471cf.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 15:31:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1686262340; x=1688854340;
+        d=broadcom.com; s=google; t=1686263464; x=1688855464;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nbdCeo7K6VC3hTEiMbxwASHXVm9UwGGMXPDJmviDcdg=;
-        b=ekqfNlZtNzUtQMRa+EgRQjlU4ZZ71pSO2nvvhldzO56yA/sa4b6PNMxPeSK9N/oJdg
-         rfjiQibPdWiJxjIcxDZk5Tzd1apKRUmQascREWDvO5womL1dOelDa5c8fbP/aqBpeACz
-         YdZoG03mt1JzrtfmwIXpITJchdZ2MvASp3IaM=
+        bh=6ePIi+Xy7JN5ByDH2zfDDB4gQK66T6RRKFgRmVOcBL4=;
+        b=ATo4SnC5ZKXKXIq3IxdFnN+OxFq/WL7H1Z3S/n/+NnArEokSMXPAFmfOvrFf6t25hV
+         dyB7VFJtcpJQAG9iIvi3ASy92tubgohXnEx3TbNv2pWhQGVti7xIUECgC+HlUeeNLsRq
+         VcvyPOkhh7jYUt+xAvwvgKE6ij5JWuk72ecuM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686262340; x=1688854340;
+        d=1e100.net; s=20221208; t=1686263464; x=1688855464;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nbdCeo7K6VC3hTEiMbxwASHXVm9UwGGMXPDJmviDcdg=;
-        b=D3EdDEvnL+/AHw+d/h7MJ7PtzO/tKuFaTMc9aPyqlfPbs0PtepJwT/qqUVF+09W8aP
-         IcNURqiBPYmRd6Sk0MYnltPvrxI/wrwYw4HVVl0jfw3vYzBX3C14gJqntrDMyO8uEQ8d
-         3haS9EcHertU1+jmhPCccl8ZSQKEbrCSdMaa3O0O7UNt/pewWvYHm/X+nkVlpvP/KfVB
-         WwnxGAw6CkQx1qurV1JmdXNHkz8Ze/IpvuW/iKAqcWaIaIdu56nKcRRBFw9Go7Vng+zV
-         RwrU0UfDxZsJFxe6exLjAKGccFXOerX8JVJ4fljJPJT5i6a3t60KZgax7IluU97dKt3B
-         CbYg==
-X-Gm-Message-State: AC+VfDw3Wx9nelwqVgOhdGd8Z0N8fLu+D0O8zYefKX4we2849SRqax+E
-        Cm6CGGjzaZr/ubf/nwDUTqS6UQ==
-X-Google-Smtp-Source: ACHHUZ5ew5GfMTPWb2ODnZnaQ/7iWp0pgVXqO24TYF6lAIKLvZ6sL8G6p/eCXBzhSHcId7CmG9XpKw==
-X-Received: by 2002:a17:903:249:b0:1ae:8b4b:327d with SMTP id j9-20020a170903024900b001ae8b4b327dmr7228963plh.42.1686262340314;
-        Thu, 08 Jun 2023 15:12:20 -0700 (PDT)
+        bh=6ePIi+Xy7JN5ByDH2zfDDB4gQK66T6RRKFgRmVOcBL4=;
+        b=FHr9hBK2llLgraucyeNTQG9v28W1cV0O8m2MqvOxSM4Uv2UxP36wNaYm+My5GdJbVs
+         Vmtv+Pglncaf/sDsF1SPPRb7XFswQezkMO78qenCd04JWiH//BtbqvFmdTVhrLJcDPz7
+         beRiabmhfphBdoz7c+5X9La/muAuMz+07tXCIXu+C4rEHlaUNCy7CtM3x21TczqNFuok
+         rC1ZJ6rGElEsSTaGL0Hbj+FMGNEuSydgFxevd0krXM3vJv9Dtk/JPXrHztLFR++YOOIQ
+         wFjaANi+8wlcULVcttFTtBz+0cgPJCyobFgs6zy79QRkEWhMimfIeqC9XEperOKah7Wh
+         kvug==
+X-Gm-Message-State: AC+VfDxvtJRRiWpdgNEOQ03Bq0hxZDbgwiU7JWOLxYnU/dSCgovpA4Rb
+        uAvaGAZJn8doyCt2n2fbKn0ZUQ==
+X-Google-Smtp-Source: ACHHUZ7ygziQQo1Hrb3FU6N/iXChuLuNzaplRRRN1+XpL+I3WjivQmMLc6qsppW4USUuqu9yI4F5sA==
+X-Received: by 2002:a05:622a:1186:b0:3f6:f839:15ec with SMTP id m6-20020a05622a118600b003f6f83915ecmr10303399qtk.56.1686263464674;
+        Thu, 08 Jun 2023 15:31:04 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id bi2-20020a170902bf0200b001ac7f583f72sm1866191plb.209.2023.06.08.15.12.19
+        by smtp.gmail.com with ESMTPSA id m13-20020ac85b0d000000b003f3c9754e1dsm694001qtw.17.2023.06.08.15.31.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 15:12:19 -0700 (PDT)
+        Thu, 08 Jun 2023 15:31:04 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         Christian Lamparter <chunkeey@gmail.com>,
@@ -54,15 +54,15 @@ Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] ARM: dts: BCM5301X: MR26: MR32: remove bogus nand-ecc-algo property
-Date:   Thu,  8 Jun 2023 15:12:18 -0700
-Message-Id: <20230608221218.2982783-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH v2 2/3] ARM: dts: BCM5301X: MR32: remove partition index numbers
+Date:   Thu,  8 Jun 2023 15:31:01 -0700
+Message-Id: <20230608223101.2983697-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <2c4d00dd40124c2ddc0b139cbce7531b108f9052.1686238550.git.chunkeey@gmail.com>
-References: <2c4d00dd40124c2ddc0b139cbce7531b108f9052.1686238550.git.chunkeey@gmail.com>
+In-Reply-To: <627f57d568030a56499361790524b4d4f3381619.1686238550.git.chunkeey@gmail.com>
+References: <2c4d00dd40124c2ddc0b139cbce7531b108f9052.1686238550.git.chunkeey@gmail.com> <627f57d568030a56499361790524b4d4f3381619.1686238550.git.chunkeey@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000d0876305fda58b71"
+        boundary="000000000000d3d86805fda5cedc"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -73,37 +73,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000d0876305fda58b71
-Content-Type: text/plain; charset=UTF-8
+--000000000000d3d86805fda5cedc
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Thu,  8 Jun 2023 17:36:27 +0200, Christian Lamparter <chunkeey@gmail.com> wrote:
-> | bcm53015-meraki-mr26.dtb: nand-controller@18028000:
-> |   nand@0:nand-ecc-algo:0: 'hw' is not one of ['hamming', 'bch', 'rs']
-> | From schema: Documentation/[...]/nand-controller.yaml
-> | bcm53016-meraki-mr32.dtb: nand-controller@18028000:
-> |   nand@0:nand-ecc-algo:0: 'hw' is not one of ['hamming', 'bch', 'rs']
-> | From schema: Documentation/[...]/nand-controller.yaml
+On Thu,  8 Jun 2023 17:36:28 +0200, Christian Lamparter <chunkeey@gmail.com> wrote:
+> removes the partition indexes in the node names under.
+> This brings the device tree source in line with others.
 > 
-> original ECC values for these old Merakis are sadly not
-> provided by the vendor. It looks like Meraki just stuck
-> with what Broadcom's SDK was doing... which left this
-> up to the proprietary nand driver.
-> 
-> Note: The invalid setting was and is handled by brcmnand. It
-> falls back to "bch" in brcmnand_setup_dev() when ecc.algo is
-> set to NAND_ECC_ALGO_UNKNOWN (since "hw" is not in the list
-> above).
-> 
-> A correct nand-ecc-algo = "bch"; is already specified in the
-> included  "bcm5301x-nand-cs0-bch8.dtsi". So this line can be
-> dropped.
-> 
-> Reported-by: Rafał Miłecki <zajec5@gmail.com> (per Mail)
-> Fixes: 935327a73553 ("ARM: dts: BCM5301X: Add DT for Meraki MR26")
-> Fixes: ec88a9c344d9 ("ARM: BCM5301X: Add DT for Meraki MR32")
 > Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
 > ---
 
@@ -111,7 +89,7 @@ Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---000000000000d0876305fda58b71
+--000000000000d3d86805fda5cedc
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -182,14 +160,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGDdM5irpO94boeC
-obYPVZlnESOYcJhER1EHkyndT/G+MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDYwODIyMTIyMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOZtKrh9jz0duyQM
+PN0+9/peyQD+2tZN1N1RzQOG6bzmMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDYwODIyMzEwNFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDf2mjanBhhv8/f0B2VWgf2/1vW/fBBziNO
-MPAOakIj68bWKPeGOl1vBxX84M6dg+ans+5AYiTRck0G5KhdvQAVKM0iR+r6Z7dMLp+mcGjrJVB4
-HlBs4L5jeKnyATsAkoV+/3xpzWb00l8nVZ+b54ibUBEdeWoeEe8CPcP5athGaCtkcfInFH7sC4yC
-zU5dZu82gN861ocUH7jC+Zrzq60hC4H7ecztBPFEvAyE50twJ14zDPXmEDpWQscblmmJ09zh5AnS
-C/3lur64Cz9hO3I8K9XW2tTqt9k3SjUSILBJwsbGzj1SVYa7p6siJIqoMuunQtt/qA8tHA0PM3jT
-jg2Z
---000000000000d0876305fda58b71--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCZJ5luU2h4VHxr6BdjMrIOdoImNJRkBp/b
+Sf++04FVzUV0HYOFDMipUyR2NyEbGCK14dD3GPkJf9/dqJgCipqIIahCA8oaJPJqu6jfFjFQcbEU
+hoOeZwJDR1Wi8jvi9gPmKFneCzVarLWEi2O4psAdyahBRB6pmFausiCww0rTRQN+j2pBsxCz9jDm
+zhE7RH3tzT4/ruOU33hotTvBUE2vvBra97Em0faowtrSJdOStZdHvQTfXCEKxHRPeOO2dEFOZB7W
+7y4ZMc9+l1FuprLbJnuJigXRucTPaE58PqxLWCiCxmSRl5bmdIS3XbqJ6VPwiEu0DAuTpT2kpSzp
+X+Iq
+--000000000000d3d86805fda5cedc--
