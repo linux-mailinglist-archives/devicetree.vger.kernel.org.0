@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 019B07281C0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 15:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46EE2728214
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 16:03:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234352AbjFHNuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 09:50:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
+        id S235124AbjFHODE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 10:03:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235844AbjFHNuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 09:50:11 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40552D40
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 06:50:05 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-bad05c6b389so730358276.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 06:50:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686232205; x=1688824205;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J8QpnJSVLjkLfqhjKetMXB1z/ynBlgTXzzXr8NIKQBg=;
-        b=eoeJediBHOzQ4sCzvkREN7NkrM+aOyYC9wrM0BBnD9QxoBLoy5vPtbG+E2gPKOhIwu
-         EyNOe2N8inNUgS6tjtZnWsksbeCvcU8AoFBZ6DobK57j0QMubICD10enZz9lOfMoiZto
-         dnEvHA8rWj9ZLoqv3YvVr4raYrYLM79xqk8YTt2cbBiEZAPfbmHKLO3XZuEbr0szb/95
-         SsCYDLUHDN/89usT82gCPbSachy3FrjGTVQM2qjW2EJ9uSXC3cX2taX/RguroKB4gpOF
-         aOvxH6ic6qAbhoKc4/toPBBjaozoEySEUg2T2tBycGzEMbSPSZvDTUa9JAlMnTpiNlUU
-         uJtw==
+        with ESMTP id S234429AbjFHODD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 10:03:03 -0400
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E87198C;
+        Thu,  8 Jun 2023 07:03:01 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-33d5df1a862so2012875ab.0;
+        Thu, 08 Jun 2023 07:03:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686232205; x=1688824205;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J8QpnJSVLjkLfqhjKetMXB1z/ynBlgTXzzXr8NIKQBg=;
-        b=B/AJ0BwLiOaL9vHgFJDd0Gu60OCWxJzvhY55FEEHxBUYIRQDXR2GrQzrlj20ACvTi2
-         s71/avdugECfJPS7OhrlkrCQq/ehENEiAZAMfR6mx2r1PQT6A0haPnsDaRpUdtthRcl2
-         zIWRVFxB3ivBqMMIyisYSqZk7mF4ObJkFi1N/mVrT6p44ZuUkygsS/gRk4FOGjSB0b2h
-         buBRdh6YNxlRoQ0ryLVHdFYlAe6I8wvlVYJ6tTT3UiGF73H6/8g2P/iTVnL94RyV5JjI
-         RgrKJlHL7xzvC0+FJc1v9UHGWwJ8EIUo1swwYEnptuFBIoP0bUr3hoZX7shHznvEPVLU
-         XurQ==
-X-Gm-Message-State: AC+VfDyAzaJczSP6J0oJUnygQKIwbk5bbsjXIq4kZ7OAdEis8ZJBThLf
-        A51uajBvBbeX4JKaVNDYN650ySQzxoLW6K5AHFh16w==
-X-Google-Smtp-Source: ACHHUZ7B7bXPRaT8K13It0iwZz1KqJEF7lXGqjS4rO8Dx3uKOw8HQryytQq7nhVtQCV6nX83IX6Uwme+LOGCLFP0Fx4=
-X-Received: by 2002:a81:6a87:0:b0:568:fe3a:46b3 with SMTP id
- f129-20020a816a87000000b00568fe3a46b3mr10251209ywc.28.1686232205112; Thu, 08
- Jun 2023 06:50:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230602132859.16442-1-alexandre.torgue@foss.st.com> <20230602132859.16442-3-alexandre.torgue@foss.st.com>
-In-Reply-To: <20230602132859.16442-3-alexandre.torgue@foss.st.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 8 Jun 2023 15:49:54 +0200
-Message-ID: <CACRpkdahyWFFscLYTDBGGSp-67_+4Qj1dsDif-jDFWoEK0mXzw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/10] pinctrl: stm32: add stm32mp257 pinctrl support
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        d=1e100.net; s=20221208; t=1686232980; x=1688824980;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WrR2lggXfgMeE3/kO5jG+9MtO/Rr7jUHSG2ALLBrFF8=;
+        b=CAt/m5wR8OfzvDJUXeO19bB7pMphp7x1Zjzi/pfBYYU7+lHSEHFl1NoXEV5eO4nKl0
+         JDdP+aHPn1UU4US1+UAGcFGHG5HO9NLX85U8t9omdRuTNR8vidFJ1d6aFEIb2KoUOKhR
+         R84ymThtGJ7/RC1hYzCHUvmw6lZ4+LKiJNcnC0n5qMmLOVi9EwKom3HHZpNNz6JVRBsB
+         kSpRsS0j3aH3C1dkCWxhlU8t8apHAKUDlqoHAKTyjjzWPA7Eeyr0zUrD9hno9ej3OYwm
+         2d3wmgGoE5TndwNwTK+gUlpP06bG3BL6PRBc+09zRaMBSoA1kOvFu4CyozEb6sMGaO8h
+         EWDw==
+X-Gm-Message-State: AC+VfDxXhrDrpRG3mLj6ftKUGBj2EGMRTZ4dJHryJqdEH3d5ZAa201Gw
+        MoIL0yp5Gnim9NLM125JhU37dnWzmg==
+X-Google-Smtp-Source: ACHHUZ5Ogm2JbVDqQTBk7S2jK9f5U9ZvjR7/zzBLBYW1CWlCGRwKf8REBVpl31BrQnK//Nisphzp7Q==
+X-Received: by 2002:a92:c752:0:b0:33c:b395:a89d with SMTP id y18-20020a92c752000000b0033cb395a89dmr9317596ilp.14.1686232980545;
+        Thu, 08 Jun 2023 07:03:00 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id x24-20020a02ac98000000b00420c5d10c38sm295571jan.74.2023.06.08.07.02.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 07:02:58 -0700 (PDT)
+Received: (nullmailer pid 2499157 invoked by uid 1000);
+        Thu, 08 Jun 2023 14:02:56 -0000
+Date:   Thu, 8 Jun 2023 08:02:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Frank Rowand <frowand.list@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: reserved-memory: Add
+ alloc-{bottom-up,top-down}
+Message-ID: <20230608140256.GA2478894-robh@kernel.org>
+References: <20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net>
+ <20230510-dt-resv-bottom-up-v1-1-3bf68873dbed@gerhold.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230510-dt-resv-bottom-up-v1-1-3bf68873dbed@gerhold.net>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,16 +70,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 2, 2023 at 3:29=E2=80=AFPM Alexandre Torgue
-<alexandre.torgue@foss.st.com> wrote:
+On Mon, May 15, 2023 at 12:12:16PM +0200, Stephan Gerhold wrote:
+> Right now the allocation behavior for dynamic reserved memory is
+> implementation-defined. On Linux it is dependent on the architecture.
+> This is usually fine if the address is completely arbitrary.
+> 
+> However, when using "alloc-ranges" it is helpful to allow controlling
+> this. That way you can make sure that the reservations are placed next
+> to other (static) allocations to keep the free memory contiguous if
+> possible.
 
-> Add stm32mp257 pinctrl support.
->
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+That should already be possible with all the information you 
+already have. IOW, you are looking at all the region and "alloc-ranges" 
+addresses to decide top-down or bottom-up. Why can't the kernel do that.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Alternatively, if you really care about the allocation locations, don't 
+use dynamic regions.
 
-Please merge the whole series through ARM SoC with my ACK.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  .../bindings/reserved-memory/reserved-memory.yaml  | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> index c680e397cfd2..56f4bc6137e7 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> @@ -52,6 +52,18 @@ properties:
+>        Address and Length pairs. Specifies regions of memory that are
+>        acceptable to allocate from.
+>  
+> +  alloc-bottom-up:
+> +    type: boolean
+> +    description: >
+> +      Specifies that the memory region should be preferably allocated
+> +      at the lowest available address within the "alloc-ranges" region.
+> +
+> +  alloc-top-down:
+> +    type: boolean
+> +    description: >
+> +      Specifies that the memory region should be preferably allocated
+> +      at the highest available address within the "alloc-ranges" region.
 
-Yours,
-Linus Walleij
+What happens when both are set?
+
+> +
+>    iommu-addresses:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description: >
+> @@ -93,6 +105,10 @@ properties:
+>        system can use that region to store volatile or cached data that
+>        can be otherwise regenerated or migrated elsewhere.
+>  
+> +dependencies:
+> +  alloc-bottom-up: [alloc-ranges]
+> +  alloc-top-down: [alloc-ranges]
+> +
+>  allOf:
+>    - if:
+>        required:
+> @@ -178,4 +194,27 @@ examples:
+>          };
+>        };
+>      };
+> +
+> +  - |
+> +    / {
+> +      compatible = "foo";
+> +      model = "foo";
+> +
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      reserved-memory {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        ranges;
+> +
+> +        adsp_mem: adsp {
+> +          size = <0x0 0x600000>;
+> +          alignment = <0x0 0x100000>;
+> +          alloc-ranges = <0x0 0x86800000 0x0 0x10000000>;
+> +          alloc-bottom-up;
+> +          no-map;
+> +        };
+> +      };
+> +    };
+>  ...
+> 
+> -- 
+> 2.40.1
+> 
