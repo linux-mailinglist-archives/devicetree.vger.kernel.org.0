@@ -2,163 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46EE2728214
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 16:03:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49644728229
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 16:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235124AbjFHODE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 10:03:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41324 "EHLO
+        id S233743AbjFHOE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 10:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234429AbjFHODD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 10:03:03 -0400
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E87198C;
-        Thu,  8 Jun 2023 07:03:01 -0700 (PDT)
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-33d5df1a862so2012875ab.0;
-        Thu, 08 Jun 2023 07:03:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686232980; x=1688824980;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WrR2lggXfgMeE3/kO5jG+9MtO/Rr7jUHSG2ALLBrFF8=;
-        b=CAt/m5wR8OfzvDJUXeO19bB7pMphp7x1Zjzi/pfBYYU7+lHSEHFl1NoXEV5eO4nKl0
-         JDdP+aHPn1UU4US1+UAGcFGHG5HO9NLX85U8t9omdRuTNR8vidFJ1d6aFEIb2KoUOKhR
-         R84ymThtGJ7/RC1hYzCHUvmw6lZ4+LKiJNcnC0n5qMmLOVi9EwKom3HHZpNNz6JVRBsB
-         kSpRsS0j3aH3C1dkCWxhlU8t8apHAKUDlqoHAKTyjjzWPA7Eeyr0zUrD9hno9ej3OYwm
-         2d3wmgGoE5TndwNwTK+gUlpP06bG3BL6PRBc+09zRaMBSoA1kOvFu4CyozEb6sMGaO8h
-         EWDw==
-X-Gm-Message-State: AC+VfDxXhrDrpRG3mLj6ftKUGBj2EGMRTZ4dJHryJqdEH3d5ZAa201Gw
-        MoIL0yp5Gnim9NLM125JhU37dnWzmg==
-X-Google-Smtp-Source: ACHHUZ5Ogm2JbVDqQTBk7S2jK9f5U9ZvjR7/zzBLBYW1CWlCGRwKf8REBVpl31BrQnK//Nisphzp7Q==
-X-Received: by 2002:a92:c752:0:b0:33c:b395:a89d with SMTP id y18-20020a92c752000000b0033cb395a89dmr9317596ilp.14.1686232980545;
-        Thu, 08 Jun 2023 07:03:00 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id x24-20020a02ac98000000b00420c5d10c38sm295571jan.74.2023.06.08.07.02.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 07:02:58 -0700 (PDT)
-Received: (nullmailer pid 2499157 invoked by uid 1000);
-        Thu, 08 Jun 2023 14:02:56 -0000
-Date:   Thu, 8 Jun 2023 08:02:56 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S236814AbjFHOEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 10:04:45 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEE8A26AD;
+        Thu,  8 Jun 2023 07:04:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RiiKFQK9YSr3pSeEZBQsHnVBPFhJdjLwl2P+FbFpVIu1XGDtcPch67zoQKAD+zi4sScggbsDEq6YJ1ETX73PcBBMyr0xnJOWZBp74D+BTyCAiAbXlfDiZf2FhuUDKMlgz9dMYW4ejZKI/0Zck7D3Pze9UfpkYD1PPCrraGiBG72H+i+N0I6Sno6Psz1+zizNFDVoqanywfi+1AkRkQPxfjthZqeIMA53CQx4zIcU0i0HkvYCKz2QGACcUzCRUMSQb0oaVK0DXxftha8bTLCA5E5CdFcIpZADlWUpc18ov1128yWr19Un480BJfYWf6CNuJUbIfch1R3x4z0y8nRWww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fNpCk+dbJNxNFV6UGlMSXJ/kvKEA5QGb3zKA01v36mE=;
+ b=TurjQFaILe7xNmNbBWdCHbUFhMVaFCgfVSoS3ikXid39ulSEJimKI70i+Rajl2kE8DOSaiNIJXRBwAIWQvJNBxpioSRurgpJVmtUagX2HAzZgRnBeHn0KTwwiXsiO/KK8d2G181bieMPfCy4yaUizYVHg7iNwD9f47YUV5uamvB/wZMdVAx+oCIwJMTTOuTQ5d1RfoSA5+paJakfYZsVFJIornqj6XjNH9lhNCFOebpy/AenxAGCy1gIslcUWFuV8OK5UQb2yrlkDSkgH173amMVNcgPYcQQKnZ6wOEWw8VUm2WMZqWFUurhKepuotefVNDJns+3LORNwO9xEhvFHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fNpCk+dbJNxNFV6UGlMSXJ/kvKEA5QGb3zKA01v36mE=;
+ b=f/lMDK/d7hoZCZWRD32ftA2i6n2O8zGnZ3C+aczvvoIlMi0Hn6dJW68BzxbLUJePc5KOyPwf+OsRhkmdI9q7xyqVtjV8XgNKK5v/nqYHmAEw5ALxKsC9l08P5rZAHIxz/YoUQNNlcqBq1/yZHN2IYSPWPd4vDGuB+PTNyrYkzuY=
+Received: from CYZPR12CA0018.namprd12.prod.outlook.com (2603:10b6:930:8b::10)
+ by DM4PR12MB5723.namprd12.prod.outlook.com (2603:10b6:8:5e::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6455.39; Thu, 8 Jun 2023 14:04:17 +0000
+Received: from CY4PEPF0000E9CE.namprd03.prod.outlook.com
+ (2603:10b6:930:8b:cafe::be) by CYZPR12CA0018.outlook.office365.com
+ (2603:10b6:930:8b::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.26 via Frontend
+ Transport; Thu, 8 Jun 2023 14:04:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000E9CE.mail.protection.outlook.com (10.167.241.141) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6477.13 via Frontend Transport; Thu, 8 Jun 2023 14:04:17 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 8 Jun
+ 2023 09:04:15 -0500
+From:   Michal Simek <michal.simek@amd.com>
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Alexander Steffen <Alexander.Steffen@infineon.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: reserved-memory: Add
- alloc-{bottom-up,top-down}
-Message-ID: <20230608140256.GA2478894-robh@kernel.org>
-References: <20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net>
- <20230510-dt-resv-bottom-up-v1-1-3bf68873dbed@gerhold.net>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
+        Mark Brown <broonie@kernel.org>,
+        Naresh Solanki <naresh.solanki@9elements.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Tremblay <vincent@vtremblay.dev>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH] dt-bindings: trivial-devices: Add infineon,irps5401
+Date:   Thu, 8 Jun 2023 16:04:12 +0200
+Message-ID: <9673fc919c6785879975fb1830d5026d3cfa658a.1686233049.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510-dt-resv-bottom-up-v1-1-3bf68873dbed@gerhold.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1045; i=michal.simek@amd.com; h=from:subject:message-id; bh=wMMdfURyRBjvTyMMtlEylJxnVFkvHQvLFIR8p5JOUqM=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpTG+7fcr7sxN8yIzH35wc/jpMtZj8PfHKoO8f/3E4xae XR/YA13RywLgyATg6yYIou0zZUzeytnTBG+eFgOZg4rE8gQBi5OAZjIyUcM81M96tKZT/w/Y/BC 2kLbs9gzM+V8DVD0bctGpU+P+Ssr0t9++nzVLOXiQgYA
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CE:EE_|DM4PR12MB5723:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5632e4ce-f56b-446d-f08b-08db68293fc8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lsWw+beaP1MD5nkjiYMM0D/kQI73j30dVu6WcIREWALYKhCOYNh5rAkm2wB0hTEp0TpS6IGOr9kC7gkbmE/yVQwVlC5e2TBocT1xLsEZ3qDoYTWQ8X7yBYmaFL1ztFfawPIf1GM5Xih1tWcPhtBgvDcyc7SUhXetvYOrNnndWdP4Y13Me38t/2sM0poKQn0tCwgt96Yg6qu/LCKfH+QzvDGXosE/5SSVahmQeA/JtssVmK1CH92qFqgqifqLA5yCwW96DyOdc2/qMTVGYHC8X8+8M9685PfnH7GWhM02UA2M9CHC/BHAbgDyIgpjbD23m8L8vqx2JRvfAwyvQN1n7e82DV3xXIDcVT2NVpZqah1B9wRY0itOewuo0y9WPBjnJd+l3RFWdlYezoScdHE5AIqn+ZZoj96gB2Q+z4nHGDNg1AEDD45bFjw9cwu5qJYBRGSCn6boHWMFJ7BkRXn7TdnDUBAIOVIPu+vQMcPSBv8VIc/BdNMSbEo7qbW5XirlcU79N8UUkWZCDdCZnEmHjlrPLCbpct2XQnmIPNXxt3SBLIAisft8yy7SrH3yLxSVYJPMVxnKzIzsUmzJHYJdVkn/pH/HC3E1phtTN1eRbH2p7gIqF6yiGE3JJpfyjNjftzwBypcLExKnswtL1t8YS3Ak/iakc5jos9emNATNgZBFavNsV7NeohyjTvnU1EpcV3n2ENT3FOhua1zDHIU3vqlBoTTtE3fAGL0N0rLGUA9NQ3rbLzCVxQ/4d67BhNGt7sJN44pwlXIhv+BNUeko4PmgbvEi4qC8iNBlqvHRVEM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(396003)(346002)(39860400002)(451199021)(46966006)(36840700001)(40470700004)(16526019)(26005)(186003)(2616005)(336012)(426003)(7416002)(47076005)(36756003)(6666004)(82310400005)(36860700001)(2906002)(4744005)(8676002)(8936002)(54906003)(82740400003)(44832011)(110136005)(40480700001)(478600001)(5660300002)(4326008)(86362001)(40460700003)(316002)(41300700001)(356005)(81166007)(70586007)(70206006)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2023 14:04:17.5044
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5632e4ce-f56b-446d-f08b-08db68293fc8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9CE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5723
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 15, 2023 at 12:12:16PM +0200, Stephan Gerhold wrote:
-> Right now the allocation behavior for dynamic reserved memory is
-> implementation-defined. On Linux it is dependent on the architecture.
-> This is usually fine if the address is completely arbitrary.
-> 
-> However, when using "alloc-ranges" it is helpful to allow controlling
-> this. That way you can make sure that the reservations are placed next
-> to other (static) allocations to keep the free memory contiguous if
-> possible.
+Add Infineon IRPS5401 power supply to trivial devices. Driver has been
+added long time ago by commit 9158411b96b1 ("hwmon: (pmbus) Add Infineon
+IRPS5401 driver").
 
-That should already be possible with all the information you 
-already have. IOW, you are looking at all the region and "alloc-ranges" 
-addresses to decide top-down or bottom-up. Why can't the kernel do that.
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-Alternatively, if you really care about the allocation locations, don't 
-use dynamic regions.
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  .../bindings/reserved-memory/reserved-memory.yaml  | 39 ++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> index c680e397cfd2..56f4bc6137e7 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> @@ -52,6 +52,18 @@ properties:
->        Address and Length pairs. Specifies regions of memory that are
->        acceptable to allocate from.
->  
-> +  alloc-bottom-up:
-> +    type: boolean
-> +    description: >
-> +      Specifies that the memory region should be preferably allocated
-> +      at the lowest available address within the "alloc-ranges" region.
-> +
-> +  alloc-top-down:
-> +    type: boolean
-> +    description: >
-> +      Specifies that the memory region should be preferably allocated
-> +      at the highest available address within the "alloc-ranges" region.
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 246863a9bc7e..ba2bfb547909 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -139,6 +139,8 @@ properties:
+           - infineon,ir38164
+             # Infineon IR38263 Voltage Regulator
+           - infineon,ir38263
++            # Infineon IRPS5401 Voltage Regulator (PMIC)
++          - infineon,irps5401
+             # Infineon SLB9635 (Soft-) I2C TPM (old protocol, max 100khz)
+           - infineon,slb9635tt
+             # Infineon SLB9645 I2C TPM (new protocol, max 400khz)
+-- 
+2.36.1
 
-What happens when both are set?
-
-> +
->    iommu-addresses:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      description: >
-> @@ -93,6 +105,10 @@ properties:
->        system can use that region to store volatile or cached data that
->        can be otherwise regenerated or migrated elsewhere.
->  
-> +dependencies:
-> +  alloc-bottom-up: [alloc-ranges]
-> +  alloc-top-down: [alloc-ranges]
-> +
->  allOf:
->    - if:
->        required:
-> @@ -178,4 +194,27 @@ examples:
->          };
->        };
->      };
-> +
-> +  - |
-> +    / {
-> +      compatible = "foo";
-> +      model = "foo";
-> +
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      reserved-memory {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        ranges;
-> +
-> +        adsp_mem: adsp {
-> +          size = <0x0 0x600000>;
-> +          alignment = <0x0 0x100000>;
-> +          alloc-ranges = <0x0 0x86800000 0x0 0x10000000>;
-> +          alloc-bottom-up;
-> +          no-map;
-> +        };
-> +      };
-> +    };
->  ...
-> 
-> -- 
-> 2.40.1
-> 
