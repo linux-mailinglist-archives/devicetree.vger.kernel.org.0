@@ -2,593 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 680CC7278CA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:28:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 468367278DB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:32:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234051AbjFHH2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 03:28:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33328 "EHLO
+        id S234843AbjFHHcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 03:32:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235375AbjFHH2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:28:39 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0F7DC2694;
-        Thu,  8 Jun 2023 00:28:29 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8DxDescg4Fk7XMAAA--.1756S3;
-        Thu, 08 Jun 2023 15:28:28 +0800 (CST)
-Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxC8oVg4Fka+EGAA--.13745S4;
-        Thu, 08 Jun 2023 15:28:28 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234391AbjFHHcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:32:02 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CB41AE
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 00:31:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686209520; x=1717745520;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=WZqPqMZn3ipI5H7SNd0QAYxuQSytRbg89zQtF1DAKws=;
+  b=kJCNXM+z4nGDdlIEREsyqSD857PCf1h3qGWlo/97XqNjtVr9us+CfEYi
+   s5fSjXShSPEiRK7r36FwzExEKBtEF2VyVMQnDxJbj5iIjQbTuSgfbdzpF
+   In1zYGijdkvZl9188+TCk8JdXNiFShRddBE+u3fuLAI92pzF6JSzU9oZ4
+   Y8iNNQUvVFIlxMUU5VxnARwpZdc2xGULh5VluBvJwoMnVqj+qoE18Lqv6
+   lQQRGutDU0MODtaeFcQ4rX+jAZ6NsqZX1/wT+ZUI8Nr27b0fWQp51c05f
+   3A3iMFzE96F5mT8EpWO8cUHv+1LgwfVT7ikoG8ugaSxsxHN6VMKeoxeMe
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,226,1681164000"; 
+   d="scan'208";a="31342720"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Jun 2023 09:31:58 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 08 Jun 2023 09:31:58 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 08 Jun 2023 09:31:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686209518; x=1717745518;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=WZqPqMZn3ipI5H7SNd0QAYxuQSytRbg89zQtF1DAKws=;
+  b=ndMZGDU9ccJIvIapNqmw47pXOyCdb7P1dWyxwgyFW0+cnT/3VoaqbOUb
+   YNAXdDBiOM9qb+K/WDMLZ6qYNUkgI08uNJ55dBqjNKCZ0RncyEk7TAtbB
+   aPT8EcWujWKw+ybIw7L6Qc400JiuW7luBImSGuvEN9e/5EDvcVhkTndHx
+   5+Rf+hUa6hAxP2PSjS3U7Oc+8kp7F8oHhyAX+9JZVt2IZuC3sZbqyntfR
+   jRO5XuYenAg6QQJQUe7BCrTZnBKbe+N1ToSwHywJMOaDI8PbnnwtQ1Hz7
+   dbX7BVLNdFHWEgMMnVVznCm/2Ol8n7vcnMn/eKWAU3IFsoloQl8ES2Vcj
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,226,1681164000"; 
+   d="scan'208";a="31342719"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Jun 2023 09:31:58 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id EEC32280087;
+        Thu,  8 Jun 2023 09:31:57 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v12 2/2] spi: loongson: add bus driver for the loongson spi controller
-Date:   Thu,  8 Jun 2023 15:28:19 +0800
-Message-Id: <20230608072819.25930-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230608072819.25930-1-zhuyinbo@loongson.cn>
-References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        Liu Ying <victor.liu@nxp.com>, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: phy: mixel, mipi-dsi-phy: Remove assigned-clock* properties
+Date:   Thu, 08 Jun 2023 09:31:57 +0200
+Message-ID: <1855461.tdWV9SEqCh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230606-implement-canning-0353ca9afddb@spud>
+References: <20230606144447.775942-1-alexander.stein@ew.tq-group.com> <20230606-implement-canning-0353ca9afddb@spud>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxC8oVg4Fka+EGAA--.13745S4
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This bus driver supports the Loongson SPI hardware controller in the
-Loongson platforms and supports to use DTS and PCI framework to
-register SPI device resources.
+Hi Conor,
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
----
- MAINTAINERS                     |   4 +
- drivers/spi/Kconfig             |  26 +++
- drivers/spi/Makefile            |   3 +
- drivers/spi/spi-loongson-core.c | 275 ++++++++++++++++++++++++++++++++
- drivers/spi/spi-loongson-pci.c  |  55 +++++++
- drivers/spi/spi-loongson-plat.c |  47 ++++++
- drivers/spi/spi-loongson.h      |  49 ++++++
- 7 files changed, 459 insertions(+)
- create mode 100644 drivers/spi/spi-loongson-core.c
- create mode 100644 drivers/spi/spi-loongson-pci.c
- create mode 100644 drivers/spi/spi-loongson-plat.c
- create mode 100644 drivers/spi/spi-loongson.h
+Am Dienstag, 6. Juni 2023, 20:21:02 CEST schrieb Conor Dooley:
+> * PGP Signed by an unknown key
+>=20
+> On Tue, Jun 06, 2023 at 04:44:46PM +0200, Alexander Stein wrote:
+> > These properties are allowed anyway and some SoC (e.g. imx8mq) configure
+> > more than just one clock using these properties.
+>=20
+> What does "allowed anyway" mean?
+> And following from that, why not modify the min/maxItems to suit
+> reality, rather than remove them. Is there enforcement from elsewhere?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5e604dddd87b..69cb8fb2a0e1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12191,6 +12191,10 @@ M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-spi@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
-+F:	drivers/spi/spi-loongson-core.c
-+F:	drivers/spi/spi-loongson-pci.c
-+F:	drivers/spi/spi-loongson-plat.c
-+F:	drivers/spi/spi-loongson.h
- 
- LOONGSON-2 SOC SERIES GUTS DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 3de2ebe8294a..6b953904792e 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -516,6 +516,32 @@ config SPI_LM70_LLP
- 	  which interfaces to an LM70 temperature sensor using
- 	  a parallel port.
- 
-+config SPI_LOONGSON_CORE
-+	tristate
-+	depends on LOONGARCH || COMPILE_TEST
-+
-+config SPI_LOONGSON_PCI
-+	tristate "Loongson SPI Controller PCI Driver Support"
-+	select SPI_LOONGSON_CORE
-+	depends on PCI && (LOONGARCH || COMPILE_TEST)
-+	help
-+	  This bus driver supports the Loongson SPI hardware controller in
-+	  the Loongson platforms and supports to use PCI framework to
-+	  register SPI device resources.
-+	  Say Y or M here if you want to use the SPI controller on
-+	  Loongson platform.
-+
-+config SPI_LOONGSON_PLATFORM
-+	tristate "Loongson SPI Controller Platform Driver Support"
-+	select SPI_LOONGSON_CORE
-+	depends on OF && (LOONGARCH || COMPILE_TEST)
-+	help
-+	  This bus driver supports the Loongson SPI hardware controller in
-+	  the Loongson platforms and supports to use DTS framework to
-+	  register SPI device resources.
-+	  Say Y or M here if you want to use the SPI controller on
-+	  Loongson platform.
-+
- config SPI_LP8841_RTC
- 	tristate "ICP DAS LP-8841 SPI Controller for RTC"
- 	depends on MACH_PXA27X_DT || COMPILE_TEST
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index 28c4817a8a74..3e933064d237 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -71,6 +71,9 @@ obj-$(CONFIG_SPI_INTEL_PLATFORM)	+= spi-intel-platform.o
- obj-$(CONFIG_SPI_LANTIQ_SSC)		+= spi-lantiq-ssc.o
- obj-$(CONFIG_SPI_JCORE)			+= spi-jcore.o
- obj-$(CONFIG_SPI_LM70_LLP)		+= spi-lm70llp.o
-+obj-$(CONFIG_SPI_LOONGSON_CORE)		+= spi-loongson-core.o
-+obj-$(CONFIG_SPI_LOONGSON_PCI)		+= spi-loongson-pci.o
-+obj-$(CONFIG_SPI_LOONGSON_PLATFORM)	+= spi-loongson-plat.o
- obj-$(CONFIG_SPI_LP8841_RTC)		+= spi-lp8841-rtc.o
- obj-$(CONFIG_SPI_MESON_SPICC)		+= spi-meson-spicc.o
- obj-$(CONFIG_SPI_MESON_SPIFC)		+= spi-meson-spifc.o
-diff --git a/drivers/spi/spi-loongson-core.c b/drivers/spi/spi-loongson-core.c
-new file mode 100644
-index 000000000000..403b735bd0cf
---- /dev/null
-+++ b/drivers/spi/spi-loongson-core.c
-@@ -0,0 +1,275 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Loongson SPI Support
-+// Copyright (C) 2023 Loongson Technology Corporation Limited
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/spi/spi.h>
-+
-+#include "spi-loongson.h"
-+
-+static inline void loongson_spi_write_reg(struct loongson_spi *spi, unsigned char reg,
-+					  unsigned char data)
-+{
-+	writeb(data, spi->base + reg);
-+}
-+
-+static inline char loongson_spi_read_reg(struct loongson_spi *spi, unsigned char reg)
-+{
-+	return readb(spi->base + reg);
-+}
-+
-+static void loongson_spi_set_cs(struct spi_device *spi, bool val)
-+{
-+	int cs;
-+	struct loongson_spi *loongson_spi = spi_controller_get_devdata(spi->controller);
-+
-+	cs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG)
-+					   & ~(0x11 << spi_get_chipselect(spi, 0));
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SFCS_REG,
-+				       (val ? (0x11 << spi_get_chipselect(spi, 0)) :
-+				       (0x1 << spi_get_chipselect(spi, 0))) | cs);
-+}
-+
-+static void loongson_spi_set_clk(struct loongson_spi *loongson_spi, unsigned int hz)
-+{
-+	unsigned char val;
-+	unsigned int div, div_tmp;
-+	static const char rdiv[12] = {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
-+
-+	div = clamp_val(DIV_ROUND_UP_ULL(loongson_spi->clk_rate, hz), 2, 4096);
-+	div_tmp = rdiv[fls(div - 1)];
-+	loongson_spi->spcr = (div_tmp & GENMASK(1, 0)) >> 0;
-+	loongson_spi->sper = (div_tmp & GENMASK(3, 2)) >> 2;
-+	val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, (val & ~3) |
-+			       loongson_spi->spcr);
-+	val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, (val & ~3) |
-+			       loongson_spi->sper);
-+	loongson_spi->hz = hz;
-+}
-+
-+static void loongson_spi_set_mode(struct loongson_spi *loongson_spi,
-+				  struct spi_device *spi)
-+{
-+	unsigned char val;
-+
-+	val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
-+	val &= ~(LOONGSON_SPI_SPCR_CPOL | LOONGSON_SPI_SPCR_CPHA);
-+	if (spi->mode & SPI_CPOL)
-+		val |= LOONGSON_SPI_SPCR_CPOL;
-+	if (spi->mode & SPI_CPHA)
-+		val |= LOONGSON_SPI_SPCR_CPHA;
-+
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, val);
-+	loongson_spi->mode |= spi->mode;
-+}
-+
-+static int loongson_spi_update_state(struct loongson_spi *loongson_spi,
-+				struct spi_device *spi, struct spi_transfer *t)
-+{
-+	if (t && loongson_spi->hz != t->speed_hz)
-+		loongson_spi_set_clk(loongson_spi, t->speed_hz);
-+
-+	if ((spi->mode ^ loongson_spi->mode) & SPI_MODE_X_MASK)
-+		loongson_spi_set_mode(loongson_spi, spi);
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_setup(struct spi_device *spi)
-+{
-+	struct loongson_spi *loongson_spi;
-+
-+	loongson_spi = spi_controller_get_devdata(spi->controller);
-+	if (spi->bits_per_word % 8)
-+		return -EINVAL;
-+
-+	if (spi_get_chipselect(spi, 0) >= spi->controller->num_chipselect)
-+		return -EINVAL;
-+
-+	loongson_spi->hz = 0;
-+	loongson_spi_set_cs(spi, 1);
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_write_read_8bit(struct spi_device *spi, const u8 **tx_buf,
-+					u8 **rx_buf, unsigned int num)
-+{
-+	int ret;
-+	struct loongson_spi *loongson_spi = spi_controller_get_devdata(spi->controller);
-+
-+	if (tx_buf && *tx_buf)
-+		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_FIFO_REG, *((*tx_buf)++));
-+	else
-+		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_FIFO_REG, 0);
-+	ret = readb_poll_timeout(loongson_spi->base + LOONGSON_SPI_SPSR_REG, loongson_spi->spsr,
-+			(loongson_spi->spsr & 0x1) != LOONGSON_SPI_SPSR_RFEMPTY, 1, MSEC_PER_SEC);
-+
-+	if (rx_buf && *rx_buf)
-+		*(*rx_buf)++ = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_FIFO_REG);
-+	else
-+		loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_FIFO_REG);
-+
-+	return ret;
-+}
-+
-+static int loongson_spi_write_read(struct spi_device *spi, struct spi_transfer *xfer)
-+{
-+	int ret;
-+	unsigned int count;
-+	const u8 *tx = xfer->tx_buf;
-+	u8 *rx = xfer->rx_buf;
-+
-+	count = xfer->len;
-+
-+	do {
-+		ret = loongson_spi_write_read_8bit(spi, &tx, &rx, count);
-+		if (ret)
-+			break;
-+	} while (--count);
-+
-+	return ret;
-+}
-+
-+static int loongson_spi_prepare_message(struct spi_controller *ctlr, struct spi_message *m)
-+{
-+	struct loongson_spi *loongson_spi = spi_controller_get_devdata(ctlr);
-+
-+	loongson_spi->para = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_PARA_REG);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_PARA_REG, loongson_spi->para & ~1);
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_transfer_one(struct spi_controller *ctrl, struct spi_device *spi,
-+				     struct spi_transfer *xfer)
-+{
-+	struct loongson_spi *loongson_spi = spi_controller_get_devdata(spi->controller);
-+
-+	loongson_spi_update_state(loongson_spi, spi, xfer);
-+	if (xfer->len)
-+		return loongson_spi_write_read(spi, xfer);
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_unprepare_message(struct spi_controller *ctrl, struct spi_message *m)
-+{
-+	struct loongson_spi *loongson_spi = spi_controller_get_devdata(ctrl);
-+
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_PARA_REG, loongson_spi->para);
-+
-+	return 0;
-+}
-+
-+static void loongson_spi_reginit(struct loongson_spi *loongson_spi_dev)
-+{
-+	unsigned char val;
-+
-+	val = loongson_spi_read_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG);
-+	val &= ~LOONGSON_SPI_SPCR_SPE;
-+	loongson_spi_write_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG, val);
-+
-+	loongson_spi_write_reg(loongson_spi_dev, LOONGSON_SPI_SPSR_REG,
-+			       (LOONGSON_SPI_SPSR_SPIF | LOONGSON_SPI_SPSR_WCOL));
-+
-+	val = loongson_spi_read_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG);
-+	val |= LOONGSON_SPI_SPCR_SPE;
-+	loongson_spi_write_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG, val);
-+}
-+
-+int loongson_spi_init_controller(struct device *dev, void __iomem *regs)
-+{
-+	struct spi_controller *controller;
-+	struct loongson_spi *spi;
-+	struct clk *clk;
-+
-+	controller = devm_spi_alloc_host(dev, sizeof(struct loongson_spi));
-+	if (controller == NULL)
-+		return -ENOMEM;
-+
-+	controller->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-+	controller->setup = loongson_spi_setup;
-+	controller->prepare_message = loongson_spi_prepare_message;
-+	controller->transfer_one = loongson_spi_transfer_one;
-+	controller->unprepare_message = loongson_spi_unprepare_message;
-+	controller->set_cs = loongson_spi_set_cs;
-+	controller->num_chipselect = 4;
-+	device_set_node(&controller->dev, dev_fwnode(dev));
-+	dev_set_drvdata(dev, controller);
-+
-+	spi = spi_controller_get_devdata(controller);
-+	spi->base = regs;
-+	spi->controller = controller;
-+
-+	clk = devm_clk_get_optional(dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "unable to get clock\n");
-+
-+	spi->clk_rate = clk_get_rate(clk);
-+	loongson_spi_reginit(spi);
-+
-+	spi->mode = 0;
-+
-+	return devm_spi_register_controller(dev, controller);
-+}
-+EXPORT_SYMBOL_NS_GPL(loongson_spi_init_controller, SPI_LOONGSON_CORE);
-+
-+static int __maybe_unused loongson_spi_suspend(struct device *dev)
-+{
-+	struct loongson_spi *loongson_spi;
-+	struct spi_controller *controller;
-+
-+	controller = dev_get_drvdata(dev);
-+	spi_controller_suspend(controller);
-+
-+	loongson_spi = spi_controller_get_devdata(controller);
-+
-+	loongson_spi->spcr = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
-+	loongson_spi->sper = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
-+	loongson_spi->spsr = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPSR_REG);
-+	loongson_spi->para = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_PARA_REG);
-+	loongson_spi->sfcs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG);
-+	loongson_spi->timi = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_TIMI_REG);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused loongson_spi_resume(struct device *dev)
-+{
-+	struct loongson_spi *loongson_spi;
-+	struct spi_controller *controller;
-+
-+	controller = dev_get_drvdata(dev);
-+	loongson_spi = spi_controller_get_devdata(controller);
-+
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, loongson_spi->spcr);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, loongson_spi->sper);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPSR_REG, loongson_spi->spsr);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_PARA_REG, loongson_spi->para);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SFCS_REG, loongson_spi->sfcs);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_TIMI_REG, loongson_spi->timi);
-+
-+	spi_controller_resume(controller);
-+
-+	return 0;
-+}
-+
-+const struct dev_pm_ops loongson_spi_dev_pm_ops = {
-+	.suspend = loongson_spi_suspend,
-+	.resume = loongson_spi_resume,
-+};
-+EXPORT_SYMBOL_NS_GPL(loongson_spi_dev_pm_ops, SPI_LOONGSON_CORE);
-+
-+MODULE_DESCRIPTION("Loongson SPI core driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/spi/spi-loongson-pci.c b/drivers/spi/spi-loongson-pci.c
-new file mode 100644
-index 000000000000..134cda0c13a5
---- /dev/null
-+++ b/drivers/spi/spi-loongson-pci.c
-@@ -0,0 +1,55 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// PCI interface driver for Loongson SPI Support
-+// Copyright (C) 2023 Loongson Technology Corporation Limited
-+
-+#include <linux/mod_devicetable.h>
-+#include <linux/pci.h>
-+
-+#include "spi-loongson.h"
-+
-+static int loongson_spi_pci_register(struct pci_dev *pdev,
-+			const struct pci_device_id *ent)
-+{
-+	int ret;
-+	void __iomem *reg_base;
-+	struct device *dev = &pdev->dev;
-+	int pci_bar = 0;
-+
-+	ret = pcim_enable_device(pdev);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "cannot enable pci device\n");
-+
-+	ret = pcim_iomap_regions(pdev, BIT(pci_bar), pci_name(pdev));
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to request and remap memory\n");
-+
-+	reg_base = pcim_iomap_table(pdev)[pci_bar];
-+
-+	ret = loongson_spi_init_controller(dev, reg_base);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to initialize controller\n");
-+
-+	return 0;
-+}
-+
-+static struct pci_device_id loongson_spi_devices[] = {
-+	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a0b) },
-+	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a1b) },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(pci, loongson_spi_devices);
-+
-+static struct pci_driver loongson_spi_pci_driver = {
-+	.name       = "loongson-spi-pci",
-+	.id_table   = loongson_spi_devices,
-+	.probe      = loongson_spi_pci_register,
-+	.driver	= {
-+		.bus = &pci_bus_type,
-+		.pm = &loongson_spi_dev_pm_ops,
-+	},
-+};
-+module_pci_driver(loongson_spi_pci_driver);
-+
-+MODULE_DESCRIPTION("Loongson spi pci driver");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(SPI_LOONGSON_CORE);
-diff --git a/drivers/spi/spi-loongson-plat.c b/drivers/spi/spi-loongson-plat.c
-new file mode 100644
-index 000000000000..c066e5f5891e
---- /dev/null
-+++ b/drivers/spi/spi-loongson-plat.c
-@@ -0,0 +1,47 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Platform driver for Loongson SPI Support
-+// Copyright (C) 2023 Loongson Technology Corporation Limited
-+
-+#include <linux/err.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+
-+#include "spi-loongson.h"
-+
-+static int loongson_spi_platform_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	void __iomem *reg_base;
-+	struct device *dev = &pdev->dev;
-+
-+	reg_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(reg_base))
-+		return PTR_ERR(reg_base);
-+
-+	ret = loongson_spi_init_controller(dev, reg_base);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to initialize controller\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id loongson_spi_id_table[] = {
-+	{ .compatible = "loongson,ls2k1000-spi" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, loongson_spi_id_table);
-+
-+static struct platform_driver loongson_spi_plat_driver = {
-+	.probe = loongson_spi_platform_probe,
-+	.driver	= {
-+		.name	= "loongson-spi",
-+		.bus = &platform_bus_type,
-+		.pm = &loongson_spi_dev_pm_ops,
-+		.of_match_table = loongson_spi_id_table,
-+	},
-+};
-+module_platform_driver(loongson_spi_plat_driver);
-+
-+MODULE_DESCRIPTION("Loongson spi platform driver");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(SPI_LOONGSON_CORE);
-diff --git a/drivers/spi/spi-loongson.h b/drivers/spi/spi-loongson.h
-new file mode 100644
-index 000000000000..35f95b161842
---- /dev/null
-+++ b/drivers/spi/spi-loongson.h
-@@ -0,0 +1,49 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/* Header File for Loongson SPI Driver. */
-+/* Copyright (C) 2023 Loongson Technology Corporation Limited */
-+
-+#ifndef __LINUX_SPI_LOONGSON_H
-+#define __LINUX_SPI_LOONGSON_H
-+
-+#include <linux/bits.h>
-+#include <linux/pm.h>
-+#include <linux/types.h>
-+
-+#define	LOONGSON_SPI_SPCR_REG	0x00
-+#define	LOONGSON_SPI_SPSR_REG	0x01
-+#define	LOONGSON_SPI_FIFO_REG	0x02
-+#define	LOONGSON_SPI_SPER_REG	0x03
-+#define	LOONGSON_SPI_PARA_REG	0x04
-+#define	LOONGSON_SPI_SFCS_REG	0x05
-+#define	LOONGSON_SPI_TIMI_REG	0x06
-+
-+/* Bits definition for Loongson SPI register */
-+#define	LOONGSON_SPI_PARA_MEM_EN	BIT(0)
-+#define	LOONGSON_SPI_SPCR_CPHA	BIT(2)
-+#define	LOONGSON_SPI_SPCR_CPOL	BIT(3)
-+#define	LOONGSON_SPI_SPCR_SPE	BIT(6)
-+#define	LOONGSON_SPI_SPSR_RFEMPTY	BIT(0)
-+#define	LOONGSON_SPI_SPSR_WCOL	BIT(6)
-+#define	LOONGSON_SPI_SPSR_SPIF	BIT(7)
-+
-+struct device;
-+struct spi_controller;
-+
-+struct loongson_spi {
-+	struct	spi_controller	*controller;
-+	void __iomem		*base;
-+	int			cs_active;
-+	unsigned int		hz;
-+	unsigned char		spcr;
-+	unsigned char		sper;
-+	unsigned char		spsr;
-+	unsigned char		para;
-+	unsigned char		sfcs;
-+	unsigned char		timi;
-+	unsigned int		mode;
-+	u64			clk_rate;
-+};
-+
-+int loongson_spi_init_controller(struct device *dev, void __iomem *reg);
-+extern const struct dev_pm_ops loongson_spi_dev_pm_ops;
-+#endif /* __LINUX_SPI_LOONGSON_H */
--- 
-2.20.1
+As Liu pointed out, assigned-clock* were considered a generic property adde=
+d=20
+by default at that time. With that support added there is no need to specif=
+y=20
+these properties in this bindings again.
+Despite that you never know in advance how many items you will have to add =
+to=20
+assigned-clock* properties, that's totally different to 'clocks', it may ev=
+en=20
+depend on board specific clock setups.
+
+> > Fixes: f9b0593dd4fc6 ("dt-bindings: phy: Convert mixel,mipi-dsi-phy to
+> > json-schema") Signed-off-by: Alexander Stein
+> > <alexander.stein@ew.tq-group.com>
+> > ---
+> > I can't reproduce the mentioned mis-matches in commit f9b0593dd4fc6
+> > ("dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema").
+>=20
+> I suspect that meant that the property was in the dt but not in the
+> binding at the time of the conversion.
+
+You are right, given the commit [1]. Which, from today's perspective, is al=
+so=20
+a rationale for this patch.
+
+Best regards,
+Alexander
+
+[1] https://github.com/devicetree-org/dt-schema/commit/
+c3424745f900e8cf0a0e3acebffeeda83a82f6d4
+
+> Cheers,
+> Conor.
+>=20
+> > Since commit 62270eeb2b639 ("arm64: dts: imx8mq: Add clock parents for
+> > mipi dphy") imx8mq.dtsi configures several clocks using assigned-clocks*
+> > properties.
+> >=20
+> >  .../devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml      | 9 ---------
+> >  1 file changed, 9 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.y=
+aml
+> > b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml index
+> > 786cfd71cb7eb..3c28ec50f0979 100644
+> > --- a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+> >=20
+> > @@ -32,15 +32,6 @@ properties:
+> >    clock-names:
+> >      const: phy_ref
+> >=20
+> > -  assigned-clocks:
+> > -    maxItems: 1
+> > -
+> > -  assigned-clock-parents:
+> > -    maxItems: 1
+> > -
+> > -  assigned-clock-rates:
+> > -    maxItems: 1
+> > -
+> >=20
+> >    "#phy-cells":
+> >      const: 0
+>=20
+> * Unknown Key
+> * 0xA08262D2
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
