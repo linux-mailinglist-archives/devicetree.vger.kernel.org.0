@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FACE727C41
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 12:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3DC727C3F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 12:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233544AbjFHKFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 06:05:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58210 "EHLO
+        id S234190AbjFHKEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 06:04:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236095AbjFHKEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 06:04:41 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43ACD30C1;
-        Thu,  8 Jun 2023 03:04:29 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3588Juh3014011;
-        Thu, 8 Jun 2023 10:04:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=gGcxZvgA1XpXd/QMvwihachA1YvYAHMc3ntdl8NT2gM=;
- b=eIY9oaiTs3FDVK7rHx3Kz1oOw8UE4OJQ5Y5WzR4rZPcUE5RTC6U0iHwTJ7yOKAmgM/WX
- ox0soq/s1vVjxjOgLNjEnc7Opoq1L6vis2OAYWA0EvIbVW97qGwRGwRIaK6RzZoqw/BN
- DXubdVoZ4lFoOqi9gMGzVoGkY87K5Eh9CkXBUdcgib8ZR8UxNoMXPoWAiAyOs7PQijyF
- 4wINccCmAjOAAgGQQtQEVRht9fd1RGIboTrkhOR3OhSYQKqkhxn8zGA1fshLlG3PFpql
- wE9D4v1DfbVhZ2ePkarD6UX2cIEjmmtxjVijvKigFFUVvdFh9HdH/jkUTf5uFkChDvsX /w== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r33bvrxyb-1
+        with ESMTP id S234950AbjFHKEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 06:04:33 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C5C2D4A;
+        Thu,  8 Jun 2023 03:04:23 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3589VfeW024371;
+        Thu, 8 Jun 2023 12:04:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=25By25eZ9+apvHmnFy05WmGq+kLPlKCKhTFuzTbhMlE=;
+ b=Dkn/PNi/gKK44IZDaGBN3hpDzEWHfZ94uzySzRbBmb+ujKClntnMR+XIv+7W/7AMym8a
+ oLaoxBk55GhhM+YaviEqGv41bm4Botlee12XI6xwzH5ia0ik3rvaqy3XHovK5ipoP44i
+ B9qzcH1ghAC6QTu8TahdH+Y4xos4AdeF5os7a0HFlBBkUb2uSUB9nUtmMZhM/t+8DM/i
+ DvMxrxzrEwHuUVAK4M7CtdZrt6Pni9wHXsvVKo6uRFKR9ANZialtiVKjrihd1H3ns2sx
+ MUO1h8LAzkLgP8QmfSwTYKlJRLcm903aFfmr7nEeri3GT6mvyIv5Qe/CkB0ycn5yUGei Hw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r34893emy-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Jun 2023 10:04:24 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 358A4NFq003084
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 8 Jun 2023 10:04:23 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 8 Jun 2023 03:04:18 -0700
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <gregkh@linuxfoundation.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v14 5/5] arm64: dts: qcom: ipq9574: Enable USB
-Date:   Thu, 8 Jun 2023 15:33:31 +0530
-Message-ID: <d78b00b6f5f316f16a9ae49dd743d01fca64d3ff.1686217906.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1686217906.git.quic_varada@quicinc.com>
-References: <cover.1686217906.git.quic_varada@quicinc.com>
+        Thu, 08 Jun 2023 12:04:02 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9B081100046;
+        Thu,  8 Jun 2023 12:04:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8A2B1222C9B;
+        Thu,  8 Jun 2023 12:04:01 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 8 Jun
+ 2023 12:04:01 +0200
+Message-ID: <65e46951-6b8d-6f18-d6be-16bacd247cd6@foss.st.com>
+Date:   Thu, 8 Jun 2023 12:04:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wf6suDPnk8eBbBuDezl9HvnU2QWEDr_n
-X-Proofpoint-ORIG-GUID: wf6suDPnk8eBbBuDezl9HvnU2QWEDr_n
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [RFC PATCH 5/5] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
+Content-Language: en-US
+To:     Sean Nyekjaer <sean@geanix.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <dantuguf14105@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230606145555.2155664-1-sean@geanix.com>
+ <20230606145555.2155664-5-sean@geanix.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230606145555.2155664-5-sean@geanix.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
  definitions=2023-06-08_06,2023-06-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- mlxscore=0 clxscore=1015 spamscore=0 phishscore=0 mlxlogscore=692
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306080085
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,68 +77,232 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Turn on USB related nodes
-Provide vdd info
+On 6/6/23 16:55, Sean Nyekjaer wrote:
+> Add support for the Octavo OSD32MP1-RED development board.
+> 
+> General features:
+>   - STM32MP157C
+>   - 512MB DDR3
+>   - CAN-FD
+>   - HDMI
+>   - USB-C OTG
+>   - UART
+> 
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> ---
+> 
+> This is made with great inspiration from Neeraj Dantu's work:
+> https://raw.githubusercontent.com/octavosystems/OSD32MP1-RED-Device-tree/main/linux-v5.10-r0/stm32mp157c-osd32mp1-red.dts
+> 
+> So what copyright is needed here?
+> And author?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
- Changes in v13:
-	- s/fixed_/regulator_fixed_/
+hum maybe Rob, or Krzystof will have a better answer than me but I would 
+say that only your name is enough. It's boards descriptions based on 
+common binding so at the end if 2 boards are quite similar their DT will 
+be similar. Not sure, but adding Neeraj as author could impose to him a 
+kind of responsibility to this file, and you have to check this point 
+with him if plan to add him.
 
- Changes in v11:
-	- Rename dwc_0 -> usb_0_dwc3
-	- Maintain sorted order for the usb nodes
+Alex
 
- Changes in v10:
-	- Provide vdd info
-
- Changes in v5:
-	- Move "host" mode specification to board dts
-	- Due to dependency with earlier patches board dts
-	  filename changed ipq9574-al02-c7.dts -> ipq9574-rdp433.dts
-
- Changes in v2:
-	- Fix node placement and coding style
-	- "ok" -> "okay"
----
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-index 50ba1d2..877026c 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-@@ -123,6 +123,29 @@
- 	};
- };
- 
-+&usb_0_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_0_qmpphy {
-+	vdda-pll-supply = <&mp5496_l2>;
-+	vdda-phy-supply = <&regulator_fixed_0p925>;
-+
-+	status = "okay";
-+};
-+
-+&usb_0_qusbphy {
-+	vdd-supply = <&regulator_fixed_0p925>;
-+	vdda-pll-supply = <&mp5496_l2>;
-+	vdda-phy-dpdm-supply = <&regulator_fixed_3p3>;
-+
-+	status = "okay";
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <24000000>;
- };
--- 
-2.7.4
+> 
+> Still need to test ethernet and HDMI, thats why I have done this a RFC.
+> 
+>   .../arm/boot/dts/stm32mp157c-osd32mp1-red.dts | 186 ++++++++++++++++++
+>   1 file changed, 186 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> new file mode 100644
+> index 000000000000..dd4e2668878c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> @@ -0,0 +1,186 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (C) ?? - All Rights Reserved
+> + * Author: ???
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "stm32mp157.dtsi"
+> +#include "stm32mp15xc.dtsi"
+> +#include "stm32mp15xx-osd32mp1.dtsi"
+> +
+> +/ {
+> +	model = "Octavo OSD32MP1 RED board";
+> +	compatible = "octavo,stm32mp157c-osd32mp1-red", "st,stm32mp157";
+> +
+> +	aliases {
+> +		serial0 = &uart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@c0000000 {
+> +		device_type = "memory";
+> +		reg = <0xc0000000 0x20000000>;
+> +	};
+> +
+> +	led {
+> +		compatible = "gpio-leds";
+> +
+> +		blue {
+> +			label = "heartbeat";
+> +			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +			default-state = "off";
+> +		};
+> +	};
+> +};
+> +
+> +&ethernet0 {
+> +	status = "okay";
+> +	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
+> +	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
+> +	pinctrl-names = "default", "sleep";
+> +	phy-mode = "rgmii-id";
+> +	max-speed = <1000>;
+> +	phy-handle = <&phy0>;
+> +	st,eth-clk-sel;
+> +
+> +	mdio0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "snps,dwmac-mdio";
+> +		phy0: ethernet-phy@0 {
+> +			reg = <3>;
+> +		};
+> +	};
+> +};
+> +
+> +
+> +&i2s2{
+> +	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
+> +	clock-names = "pclk", "i2sclk", "x8k", "x11k";
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2s2_pins_b>;
+> +	pinctrl-1 = <&i2s2_sleep_pins_b>;
+> +	status = "okay";
+> +
+> +	i2s2_port: port {
+> +		i2s2_endpoint: endpoint {
+> +			remote-endpoint = <&sii9022_tx_endpoint>;
+> +			format = "i2s";
+> +			mclk-fs = <256>;
+> +		};
+> +	};
+> +};
+> +
+> +&iwdg2 {
+> +	timeout-sec = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&ltdc{
+> +	status = "okay";
+> +
+> +	port {
+> +		ltdc_ep0_out: endpoint@0 {
+> +			reg = <0>;
+> +			remote-endpoint = <&sii9022_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1{
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2c1_pins_a>;
+> +	pinctrl-1 = <&i2c1_sleep_pins_a>;
+> +	status = "okay";
+> +	i2c-scl-rising-time-ns = <100>;
+> +	i2c-scl-falling-time-ns = <7>;
+> +	/delete-property/dmas;
+> +	/delete-property/dma-names;
+> +
+> +	hdmi-transmitter@39 {
+> +		compatible = "sil,sii9022";
+> +		reg = <0x39>;
+> +		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
+> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-parent = <&gpiog>;
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&ltdc_pins_e>;
+> +		pinctrl-1 = <&ltdc_sleep_pins_e>;
+> +		status = "okay";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				sii9022_in: endpoint {
+> +					remote-endpoint = <&ltdc_ep0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				sii9022_tx_endpoint: endpoint {
+> +					remote-endpoint = <&i2s2_endpoint>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&tamp {
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc1 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+> +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+> +	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +	disable-wp;
+> +	st,neg-edge;
+> +	bus-width = <4>;
+> +	vmmc-supply = <&v3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc2 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
+> +	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
+> +	st,neg-edge;
+> +	bus-width = <8>;
+> +	vmmc-supply = <&v3v3>;
+> +	vqmmc-supply = <&vdd>;
+> +	mmc-ddr-3_3v;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default", "sleep", "idle";
+> +	pinctrl-0 = <&uart4_pins_a>;
+> +	pinctrl-1 = <&uart4_sleep_pins_a>;
+> +	pinctrl-2 = <&uart4_idle_pins_a>;
+> +	/delete-property/dmas;
+> +	/delete-property/dma-names;
+> +	status = "okay";
+> +};
+> +
+> +&m_can1 {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&m_can1_pins_d>;
+> +	pinctrl-1 = <&m_can1_sleep_pins_d>;
+> +	status = "okay";
+> +};
 
