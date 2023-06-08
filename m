@@ -2,58 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F4147284DC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 18:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F643728525
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 18:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234854AbjFHQYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 12:24:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33590 "EHLO
+        id S231580AbjFHQg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 12:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235304AbjFHQYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 12:24:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C670E30C0;
-        Thu,  8 Jun 2023 09:24:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4BC2864EEC;
-        Thu,  8 Jun 2023 16:24:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6500C433D2;
-        Thu,  8 Jun 2023 16:24:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686241456;
-        bh=emDKGIQg2V1uHsyxtEynP85YQXxJbVOJVysU9JlSER0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gJUnoS5++nDbgKkDeQ9AGm6pPqxgSxSZidZhGnW0YZbFREIIhCADii8SngEzdBzA4
-         6YPp6mt3E68OHmSQ+cNZM1w7X7Rs+O3dUcTDfZFVNyOh5y92Ui1mQNivLzJj7PrDny
-         xOen3Or+JaupPEgFg7HXPwlMUfE2eBvz7gjcqgcdS8UH4jnT1MtnM3zj5li3A708r4
-         tzhiMo8H/foF33fiYq1J5blFeroxWMaT/jTFjTiJu3kOao9GOaSUTJJxXp2GSjA6S5
-         Z4lQg/ZbcKIW5FgLbtbc1bibLBR8XKhMCpV8aXWfnEWznQqZ0kN6GVpgnNHOpj1q5B
-         jfUcPN1b82KHA==
-Date:   Thu, 8 Jun 2023 17:24:10 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Vignesh Viswanathan <quic_viswanat@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_srichara@quicinc.com,
-        quic_varada@quicinc.com
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: qcom,tcsr: add the compatible for
- IPQ8074
-Message-ID: <20230608162410.GB3572061@google.com>
-References: <20230526110653.27777-1-quic_viswanat@quicinc.com>
- <20230526110653.27777-2-quic_viswanat@quicinc.com>
+        with ESMTP id S231459AbjFHQg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 12:36:26 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2103830CB
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 09:35:52 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f736e0c9b1so8166075e9.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 09:35:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686242133; x=1688834133;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RRPhFFSQuvm0hM7+hxNh39CKSjT+bV2/IKmhED0OOXA=;
+        b=s3er2lwklZNt0qbGLX4hw9VG+G4raFB1jsFaxcZRQ31eZWezIbfrj7skV87KVv72eN
+         GIIPIHRNOg8Dt7eepTWRotrddiMqIkWAPUQ6f/+HSCyPcubrkAKR/9QrqdLOm0wvt943
+         bCNLtMMc3YeCJsIn9jkPiP8f5lwB+T9XSPebT5xoO4KJ0hnrNwVn3eZjRKqHHN2pk//j
+         IYMZOGoPTgsBHaRcTbx3DQdI8Qc0cCzIWvs3Q8sK4eoaz/xH+1IbXm0WYFte1w4m262r
+         SLCuVOPlUfyko0TBNY5W5OtMfeU7kcuCLykmt0p20/mkc83Iz0sKoNpvs8AlabFLAg7d
+         WVvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686242133; x=1688834133;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RRPhFFSQuvm0hM7+hxNh39CKSjT+bV2/IKmhED0OOXA=;
+        b=IrWSLOJByWzto+EBx2V090S+lwZoa1KLCAf/6wcmh61wKYTqCDkjpfS6ES3RNQIneQ
+         zWYQ55kBFUai5WTEOXLbnvz9eddFq3iVetrSErhPn3AHvgeWSeD9UBPX7oA78Bb7niVw
+         7aREHqfF7HIufpfh6yE7iR8OwjQBkbiOfR713W8AYsrcR6lX230iqyoKvzmfIChve8bm
+         SwDaP7sKXM97onrh4qbfBxTI/x2ncRsHPW6TS2Fibsn+BjmgQ1TRBhKRJoF9oqcAEmsA
+         vpKCXuCjo0rLFeqQvxTNVZfewfCNjAUdLyji8/hkMYANNmV7B45WjsHrWA3VyxEd0knW
+         WdAw==
+X-Gm-Message-State: AC+VfDyRCj3PRG5HTOpXVZsfTdudxCXMT4T9GKjYhirV2KEeFSUhJuHy
+        u38vTb+V2C34pTedEnkygj/16Q==
+X-Google-Smtp-Source: ACHHUZ7SchFjU7VSbelGnfMmdSv2UKgPadMZaI+e0faGbW35bB/dpmxbMWCtfucYZymdawQfVJc85g==
+X-Received: by 2002:a1c:f30d:0:b0:3f7:30c3:efa1 with SMTP id q13-20020a1cf30d000000b003f730c3efa1mr1973899wmq.30.1686242132943;
+        Thu, 08 Jun 2023 09:35:32 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1b90:b83e:29ce:beb6? ([2a01:e0a:982:cbb0:1b90:b83e:29ce:beb6])
+        by smtp.gmail.com with ESMTPSA id f16-20020a1c6a10000000b003f60fb2addbsm58541wmc.44.2023.06.08.09.35.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jun 2023 09:35:32 -0700 (PDT)
+Message-ID: <64a23128-12cf-9f35-c938-14b6b03af475@linaro.org>
+Date:   Thu, 8 Jun 2023 18:35:31 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230526110653.27777-2-quic_viswanat@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230601-topic-sm8550-upstream-type-c-v2-0-3bbdf37575c3@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v2-1-3bbdf37575c3@linaro.org>
+ <20230608154751.GA2750742-robh@kernel.org>
+Organization: Linaro Developer Services
+Subject: Re: [PATCH v2 1/8] dt-bindings: connector: usb-connector: add a gpio
+ used to determine the Type-C port plug orientation
+In-Reply-To: <20230608154751.GA2750742-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,16 +89,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 May 2023, Vignesh Viswanathan wrote:
+Hi Rob,
 
-> Document the qcom,tcsr-ipq8074 compatible.
+On 08/06/2023 17:47, Rob Herring wrote:
+> On Wed, Jun 07, 2023 at 10:05:00AM +0200, Neil Armstrong wrote:
+>> On some platforms, the Type-C plug orientation is given on a GPIO line.
+>>
+>> Document this optional Type-C connector property, and take the
+>> assumption an active level represents an inverted/flipped orientation.
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   Documentation/devicetree/bindings/connector/usb-connector.yaml | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> index ae515651fc6b..c3884eed6ba4 100644
+>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> @@ -114,6 +114,11 @@ properties:
+>>       description: Set this property if the Type-C connector has no power delivery support.
+>>       type: boolean
+>>   
+>> +  orientation-gpios:
+>> +    description: An input gpio for Type-C connector orientation, used to detect orientation
+>> +      of the Type-C connector. GPIO active level means "CC2" or Reversed/Flipped orientation.
+>> +    maxItems: 1
 > 
-> Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> There's no such GPIO on a USB-C connector. Please explain this h/w
+> better (in the commit message and/or description). Perhaps it is simple
+> enough logic to leave the GPIO here. Perhaps there's more to the h/w you
+> are not (yet) describing.
 
-Applied, thanks
+The h/w has an I/O line representing the usb-c orientation at any time
+which is driven by the PMIC in charge of the USB-C connector(s).
 
--- 
-Lee Jones [李琼斯]
+On this platform, the usb-c connector orientation is only unconditionally
+given by this I/O connected to a GPIO line, howerver we get an altmode
+event with the orientation, but only when an altmode state has been
+negociated. AFAIK there's no other way or events returning this
+orientation change unconditionally unlike previous HW generations.
+
+This is why representing it as a gpio is simple but useful since there's
+a lot of passive usb-c controllers also reflecting this orientation info
+in a same way to be consumed by superspeed switches for example.
+
+As an alternative I didn't find a way that fits the current bindings
+to get this simple binary information.
+
+Neil
+
+> 
+> Rob
+
