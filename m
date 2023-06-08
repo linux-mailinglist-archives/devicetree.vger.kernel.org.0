@@ -2,130 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD53F7283CD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 17:36:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF10C7283D5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 17:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236697AbjFHPgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 11:36:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
+        id S237000AbjFHPiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 11:38:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236231AbjFHPge (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 11:36:34 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63BC2D56
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 08:36:32 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-516af4a6d65so1432082a12.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 08:36:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686238591; x=1688830591;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tb5Z9KVl4YlspRilNgXoPuCCEY/EEHN4fo0pAmO52oc=;
-        b=obmNGxoMYRMiywLCEh1yae7o7hUuddh3+ccL9k+B4pkeTwEb60UKzuYkmvAnukQAGe
-         veVmizzOAVQiI5A2DSO5pto+gU7FRYlGI/l1ttJtJDvuQNu8aLnEcK7R+zZ8iG91oyC2
-         bQCrB+d5JJ351BIgvvxXdmyrsE0ijD2qF5eQmkIKBAD3Mt2RQGTQlx+csTuOuFyc91t6
-         gddbTTJBIoiUeKJs7piVCkzca826I3Z95XiXTjK/uVK2YMRJHxWiHq1M51N6BuaujQ5L
-         lHqG6yTHcCETf/jGT19XIyXe3zsddGou1foYJkxq40RXhtZNgDOy0BPkF+cl7V6a8r7v
-         FXOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686238591; x=1688830591;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tb5Z9KVl4YlspRilNgXoPuCCEY/EEHN4fo0pAmO52oc=;
-        b=ewZeOiS90ch5AhWnyHLYsZbq+ZZkx6DH6aTDS0103B05DYO46fPxZv3nRiLdW1aN5U
-         Tuc4aQoEaSeNETGkiOAow/u3fy2E2Ee7Go3cQ+SIQWFIAzhvzRj1aTNRNfwgI0ynAtqN
-         Wr21hDlmmXVC3c/Ijtx+EGXDzpsH9h7z/fiCfOTWC2Kpp4Z0urV1dgrCWLrP+nmYQPi8
-         IpKmq4f8Ts9/sXm2dLLDsB4QFgpMNBDIIs/wAfZbgKyP0O0Xrq1cpno3AhfP4oZElGBg
-         +Ez1ke+C2uigHXXXvsGKU/lxzwpoGIIjscZwNIVd4reI7AmwhbrMQGEImv0+baKJNcCS
-         RpAQ==
-X-Gm-Message-State: AC+VfDyPQZTcX80Qm/7kQQLhfymYro92CSllTwlEC0HQU3H2EBWt7Wmm
-        Uv5A0Mm9idSRAL3iDgr2WaU=
-X-Google-Smtp-Source: ACHHUZ6Up2+ocYkPIdmZG50LrTDTUVKRcFrCaUVjnvIVswOzjGnlN6j0J7LTbP7SdAXb9IjHY2c8NA==
-X-Received: by 2002:a17:907:7e9f:b0:978:73fb:1771 with SMTP id qb31-20020a1709077e9f00b0097873fb1771mr84844ejc.32.1686238590846;
-        Thu, 08 Jun 2023 08:36:30 -0700 (PDT)
-Received: from shift.daheim (pd9e29cc7.dip0.t-ipconnect.de. [217.226.156.199])
-        by smtp.gmail.com with ESMTPSA id v12-20020a170906338c00b009571293d6acsm837893eja.59.2023.06.08.08.36.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 08:36:30 -0700 (PDT)
-Received: from chuck by shift.daheim with local (Exim 4.96)
-        (envelope-from <chuck@shift.daheim>)
-        id 1q7Hgb-004atp-2C;
-        Thu, 08 Jun 2023 17:36:29 +0200
-From:   Christian Lamparter <chunkeey@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        with ESMTP id S237007AbjFHPhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 11:37:55 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B236A2D47
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 08:37:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686238628;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=dnOFROsF7B7sQwXM8eGHqjnV3KCLoennVYcraYtkdpA=;
+        b=gRag2Tb8PeB5WznEwLz9bP2Mq7A2LUlupTzbS1Z76FNTm37Y+DxfS63aXiPvCtxhX2sVPV
+        fSj686L1h+dg8qs7GreOO/mfgz279O+WQuRMB3b1kfi3H8hx2nWWpWR5UgssMOKevkmRSI
+        newr9hYIztgg86KuWyvS4fmYp+SrKvA=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-361-dWYUHhdGMQGx6oW_hdGnxQ-1; Thu, 08 Jun 2023 11:37:05 -0400
+X-MC-Unique: dWYUHhdGMQGx6oW_hdGnxQ-1
+Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com [10.11.54.10])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 09B34282CCAA;
+        Thu,  8 Jun 2023 15:37:04 +0000 (UTC)
+Received: from mail.corp.redhat.com (unknown [10.45.224.77])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 6216B492B0A;
+        Thu,  8 Jun 2023 15:36:59 +0000 (UTC)
+Date:   Thu, 8 Jun 2023 17:36:56 +0200
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 3/3] ARM: dts: BCM5301X: fix duplex-full => full-duplex
-Date:   Thu,  8 Jun 2023 17:36:29 +0200
-Message-Id: <50522f45566951a9eabd22820647924cc6b4a264.1686238550.git.chunkeey@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <627f57d568030a56499361790524b4d4f3381619.1686238550.git.chunkeey@gmail.com>
-References: <2c4d00dd40124c2ddc0b139cbce7531b108f9052.1686238550.git.chunkeey@gmail.com> <627f57d568030a56499361790524b4d4f3381619.1686238550.git.chunkeey@gmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        linux-kernel@vger.kernel.org, hsinyi@google.com,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        linux-arm-msm@vger.kernel.org,
+        Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 08/10] HID: i2c-hid: Support being a panel follower
+Message-ID: <y3l4x3kv7jgog3miexati5wbveaynnryzqvj6sc4ul6625f2if@w7nqgojfavfw>
+References: <20230607215224.2067679-1-dianders@chromium.org>
+ <20230607144931.v2.8.Ib1a98309c455cd7e26b931c69993d4fba33bbe15@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230607144931.v2.8.Ib1a98309c455cd7e26b931c69993d4fba33bbe15@changeid>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.10
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-this typo was found by the dtbs_check
-| ports:port@5:fixed-link: 'oneOf' conditional failed,
-|  {'speed': [[1000]], 'duplex-full': True} is not of type 'array'
-| 'duplex-full' does not match any of the regexes: 'pinctrl-[0-]..."
 
-this should have been full-duplex;
+On Jun 07 2023, Douglas Anderson wrote:
+> 
+> As talked about in the patch ("drm/panel: Add a way for other devices
+> to follow panel state"), we really want to keep the power states of a
+> touchscreen and the panel it's attached to in sync with each other. In
+> that spirit, add support to i2c-hid to be a panel follower. This will
+> let the i2c-hid driver get informed when the panel is powered on and
+> off. From there we can match the i2c-hid device's power state to that
+> of the panel.
+> 
+> NOTE: this patch specifically _doesn't_ use pm_runtime to keep track
+> of / manage the power state of the i2c-hid device, even though my
+> first instinct said that would be the way to go. Specific problems
+> with using pm_runtime():
+> * The initial power up couldn't happen in a runtime resume function
+>   since it create sub-devices and, apparently, that's not good to do
+>   in your resume function.
+> * Managing our power state with pm_runtime meant fighting to make the
+>   right thing happen at system suspend to prevent the system from
+>   trying to resume us only to suspend us again. While this might be
+>   able to be solved, it added complexity.
+> Overall the code without pm_runtime() ended up being smaller and
+> easier to understand.
 
-Fixes: 935327a73553 ("ARM: dts: BCM5301X: Add DT for Meraki MR26")
-Fixes: ec88a9c344d9 ("ARM: BCM5301X: Add DT for Meraki MR32")
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
----
-v1 -> v2:
-	- added tags
-	- removed hunks that are fixed by previous patches
-	- rebased on top of stblinux devicetree/next
----
- arch/arm/boot/dts/bcm53015-meraki-mr26.dts | 2 +-
- arch/arm/boot/dts/bcm53016-meraki-mr32.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Generally speaking, I'm not that happy when we need to coordinate with
+other subsystems for bringing up resources...
 
-diff --git a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-index 83d1b6e0b0d5..f79378bea7cd 100644
---- a/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-+++ b/arch/arm/boot/dts/bcm53015-meraki-mr26.dts
-@@ -124,7 +124,7 @@ port@5 {
- 
- 			fixed-link {
- 				speed = <1000>;
--				duplex-full;
-+				full-duplex;
- 			};
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
-index e61f77a10e49..eacaba398cc6 100644
---- a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
-+++ b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
-@@ -185,7 +185,7 @@ port@5 {
- 
- 			fixed-link {
- 				speed = <1000>;
--				duplex-full;
-+				full-duplex;
- 			};
- 		};
- 	};
--- 
-2.40.1
+Anyway, a remark inlined (at least):
+
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+> 
+> Changes in v2:
+> - i2c_hid_core_panel_prepared() and ..._unpreparing() are now static.
+> 
+>  drivers/hid/i2c-hid/i2c-hid-core.c | 82 +++++++++++++++++++++++++++++-
+>  1 file changed, 81 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hid/i2c-hid/i2c-hid-core.c b/drivers/hid/i2c-hid/i2c-hid-core.c
+> index fa8a1ca43d7f..368db3ae612f 100644
+> --- a/drivers/hid/i2c-hid/i2c-hid-core.c
+> +++ b/drivers/hid/i2c-hid/i2c-hid-core.c
+> @@ -38,6 +38,8 @@
+>  #include <linux/mutex.h>
+>  #include <asm/unaligned.h>
+>  
+> +#include <drm/drm_panel.h>
+> +
+>  #include "../hid-ids.h"
+>  #include "i2c-hid.h"
+>  
+> @@ -107,6 +109,8 @@ struct i2c_hid {
+>  	struct mutex		reset_lock;
+>  
+>  	struct i2chid_ops	*ops;
+> +	struct drm_panel_follower panel_follower;
+> +	bool			is_panel_follower;
+>  };
+>  
+>  static const struct i2c_hid_quirks {
+> @@ -1058,6 +1062,34 @@ static int i2c_hid_core_initial_power_up(struct i2c_hid *ihid)
+>  	return ret;
+>  }
+>  
+> +static int i2c_hid_core_panel_prepared(struct drm_panel_follower *follower)
+> +{
+> +	struct i2c_hid *ihid = container_of(follower, struct i2c_hid, panel_follower);
+> +	struct hid_device *hid = ihid->hid;
+> +
+> +	/*
+> +	 * hid->version is set on the first power up. If it's still zero then
+> +	 * this is the first power on so we should perform initial power up
+> +	 * steps.
+> +	 */
+> +	if (!hid->version)
+> +		return i2c_hid_core_initial_power_up(ihid);
+> +
+> +	return i2c_hid_core_resume(ihid);
+> +}
+> +
+> +static int i2c_hid_core_panel_unpreparing(struct drm_panel_follower *follower)
+> +{
+> +	struct i2c_hid *ihid = container_of(follower, struct i2c_hid, panel_follower);
+> +
+> +	return i2c_hid_core_suspend(ihid);
+> +}
+> +
+> +static const struct drm_panel_follower_funcs i2c_hid_core_panel_follower_funcs = {
+> +	.panel_prepared = i2c_hid_core_panel_prepared,
+> +	.panel_unpreparing = i2c_hid_core_panel_unpreparing,
+> +};
+
+Can we make that above block at least behind a Kconfig?
+
+i2c-hid is often used for touchpads, and the notion of drm panel has
+nothing to do with them. So I'd be more confident if we could disable
+that code if not required.
+
+Actually, I'd be even more happier if it were in a different compilation
+unit. Not necessary a different module, but at least a different file.
+
+Cheers,
+Benjamin
+
+> +
+>  int i2c_hid_core_probe(struct i2c_client *client, struct i2chid_ops *ops,
+>  		       u16 hid_descriptor_address, u32 quirks)
+>  {
+> @@ -1119,6 +1151,41 @@ int i2c_hid_core_probe(struct i2c_client *client, struct i2chid_ops *ops,
+>  	hid->bus = BUS_I2C;
+>  	hid->initial_quirks = quirks;
+>  
+> +	/*
+> +	 * See if we're following a panel. If drm_panel_add_follower()
+> +	 * returns no error then we are.
+> +	 */
+> +	ihid->panel_follower.funcs = &i2c_hid_core_panel_follower_funcs;
+> +	ret = drm_panel_add_follower(&client->dev, &ihid->panel_follower);
+> +	if (!ret) {
+> +		/* We're a follower. That means we'll power things up later. */
+> +		ihid->is_panel_follower = true;
+> +
+> +		/*
+> +		 * If we're not in control of our own power up/power down then
+> +		 * we can't do the logic to manage wakeups. Give a warning if
+> +		 * a user thought that was possible then force the capability
+> +		 * off.
+> +		 */
+> +		if (device_can_wakeup(&client->dev)) {
+> +			dev_warn(&client->dev, "Can't wakeup if following panel\n");
+> +			device_set_wakeup_capable(&client->dev, false);
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * -ENODEV means that we're not following a panel, so any other error
+> +	 * is a real problem (like -EPROBE_DEFER, -ENOMEM, ...).
+> +	 */
+> +	if (ret != -ENODEV)
+> +		goto err_mem_free;
+> +
+> +	/*
+> +	 * We're not following a panel. That's fine and means that we
+> +	 * can power up right away.
+> +	 */
+>  	ret = i2c_hid_core_initial_power_up(ihid);
+>  	if (ret)
+>  		goto err_mem_free;
+> @@ -1143,7 +1210,14 @@ void i2c_hid_core_remove(struct i2c_client *client)
+>  	struct i2c_hid *ihid = i2c_get_clientdata(client);
+>  	struct hid_device *hid;
+>  
+> -	i2c_hid_core_power_down(ihid);
+> +	/*
+> +	 * If we're a follower, the act of unfollowing will cause us to be
+> +	 * powered down. Otherwise we need to manually do it.
+> +	 */
+> +	if (ihid->is_panel_follower)
+> +		drm_panel_remove_follower(&ihid->panel_follower);
+> +	else
+> +		i2c_hid_core_power_down(ihid);
+>  
+>  	hid = ihid->hid;
+>  	hid_destroy_device(hid);
+> @@ -1171,6 +1245,9 @@ static int i2c_hid_core_pm_suspend(struct device *dev)
+>  	struct i2c_client *client = to_i2c_client(dev);
+>  	struct i2c_hid *ihid = i2c_get_clientdata(client);
+>  
+> +	if (ihid->is_panel_follower)
+> +		return 0;
+> +
+>  	return i2c_hid_core_suspend(ihid);
+>  }
+>  
+> @@ -1179,6 +1256,9 @@ static int i2c_hid_core_pm_resume(struct device *dev)
+>  	struct i2c_client *client = to_i2c_client(dev);
+>  	struct i2c_hid *ihid = i2c_get_clientdata(client);
+>  
+> +	if (ihid->is_panel_follower)
+> +		return 0;
+> +
+>  	return i2c_hid_core_resume(ihid);
+>  }
+>  
+> -- 
+> 2.41.0.162.gfafddb0af9-goog
+> 
 
