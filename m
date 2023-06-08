@@ -2,82 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A486727B9B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 11:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35E6E727BA2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 11:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234037AbjFHJje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 05:39:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43562 "EHLO
+        id S235913AbjFHJmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 05:42:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236007AbjFHJjc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 05:39:32 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D702129
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 02:39:30 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f7fcdc7f7fso1661195e9.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 02:39:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686217169; x=1688809169;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kis83jMD1oWs6024Wvt+G1gr/3Bk88oMA3d6rNJj5g4=;
-        b=dh2IGeZP1UXlw/rxc8tHwYftXW4vIKDKiSgUwwpYDTnQLnUUZ2eKQNpLe1ae+OOkaq
-         ZUOfth6aGXN7TreMG667Tdd0b9nHJipOIZXaw1UP6PJgGrkbGVKv9GmuLrgVrxUYmEtL
-         Jn5nUBOvSxF1p5Yll4gh3dz0l4pJpALQwXgKrtbWLz6N817Sd0MTH8Sbh8LY9iGf6iAv
-         CA9Rl9Ase8AAeu4Y4vACb40mBoVt52+cKQzMjzXTUPPT7gr2SzKoi+ST2qflIt5sBVSX
-         V4/djTioCzHuu7SKvoD/QBgRw4Sn1CPnceGIBVTQmGx0HHJWzWQOb8PCENz9gqNAuTcO
-         o5lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686217169; x=1688809169;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kis83jMD1oWs6024Wvt+G1gr/3Bk88oMA3d6rNJj5g4=;
-        b=HJVDRne4iU4a0xoedX2KA60LVAVevNUrNGCD8BhNh3yjBb+8GIjj+uQ0sm32b4lsBd
-         WypKylYYrc4GzhYSdLM/CwHkpdhf3iVNtwIgB35mka3reuhLfz7giv5+6hRpUiQoGCwy
-         jsN/a6uONkX8jIdDs0KsztahI0rH8m7ML3oaG7kCdsQcqgOLSgOGvNxuLTIRB7m6ZpOy
-         DQ+ZJWDT+Bnd3EwCRsP+7ZfI/19TpyEITPP8LvyTh4ncf1dQwkzNmyAFK/7kTFULRmrq
-         wLEamS+YXAo2rSGyu85YFbXspKYTnGkzHEEWwKfMZmBOMH1ImF9+RNn17+OO0dQ8Xomt
-         5Tsw==
-X-Gm-Message-State: AC+VfDxJhUw2g3oUUI/9tGiSJdBjCTMiIgcSUFBgI6JXKrcJgi1MwNuc
-        KXa4/43E/W6uc8Gm9mgahHty/g==
-X-Google-Smtp-Source: ACHHUZ7Ms6WXtKfgT/Z+U3P+H7HunJuUiCLEYOMq2NRw8YGy939Doi5kEfI1/uibHdDRb84aF9r7Mg==
-X-Received: by 2002:a05:6000:108a:b0:30e:56b3:60fe with SMTP id y10-20020a056000108a00b0030e56b360femr1337520wrw.4.1686217168916;
-        Thu, 08 Jun 2023 02:39:28 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:3a59:921c:4758:7db5? ([2a05:6e02:1041:c10:3a59:921c:4758:7db5])
-        by smtp.googlemail.com with ESMTPSA id u13-20020adfeb4d000000b00301a351a8d6sm1046418wrn.84.2023.06.08.02.39.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 02:39:28 -0700 (PDT)
-Message-ID: <59c7c90c-50f2-5a77-af12-b266c6e6e0b1@linaro.org>
-Date:   Thu, 8 Jun 2023 11:39:27 +0200
+        with ESMTP id S234020AbjFHJmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 05:42:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3ECC213C;
+        Thu,  8 Jun 2023 02:42:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 68D6964B73;
+        Thu,  8 Jun 2023 09:42:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8720C433EF;
+        Thu,  8 Jun 2023 09:42:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686217324;
+        bh=m8N40M4lIXVobIW+tOavlfsHEn5dzitNcBam5qP1h2k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U7yrqaFrL/wQWiYIteDiSB6N77X98ODTHEx2BFKkgYBsHSw3EZixZCnQnxSqJQUMG
+         gRZ/oC/XTcdFTDrvEVoAefB51KMidW+pUdLgC6MmO9CbpH1NvMMFhN6SZaNSsFERvI
+         Ytzu24a4mkPa05AyaDzgkjbzklIMAT6TYDO12TBrLNTN8cPUr2Vu9CD9h+cIxsM9dl
+         PJtvBkIy9BRpnDpa68EQbJ/EW36hXDxhluEi7XeG+nZ/koLCHBXbtUA/vJbgkkH6pF
+         dGzxdsTxqhon4S7wMYU9E8i8uRiJWY0gE7yJ3+eEUc2Dks/kxYSxFC9ET7jooTk4RJ
+         0wLe044d+cMJA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1q7CA1-00049R-5m; Thu, 08 Jun 2023 11:42:29 +0200
+Date:   Thu, 8 Jun 2023 11:42:29 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com
+Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
+ for qcom wrapper
+Message-ID: <ZIGihYS5EacISEFm@hovoldconsulting.com>
+References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
+ <20230514054917.21318-7-quic_kriskura@quicinc.com>
+ <20230515222730.7snn2i33gkg6ctd2@ripper>
+ <bc347624-4539-4a3a-9399-9b4e272cdb32@quicinc.com>
+ <ZGUCykpDFt9zgeTU@hovoldconsulting.com>
+ <82553597-ce0e-48f4-44d4-9eeaaf4cb1c4@quicinc.com>
+ <ZIBsDQJtgDZRe7MG@hovoldconsulting.com>
+ <99cded6f-6a71-ffce-8479-c7c0726bfb8e@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 0/5] Add LVTS support for mt8192
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>
-Cc:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
-        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
-References: <20230530195132.2286163-1-bero@baylibre.com>
- <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
- <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <99cded6f-6a71-ffce-8479-c7c0726bfb8e@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,69 +76,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2023 19:09, Nícolas F. R. A. Prado wrote:
-> On Wed, May 31, 2023 at 12:49:43PM +0800, Chen-Yu Tsai wrote:
->> On Wed, May 31, 2023 at 3:51 AM Bernhard Rosenkränzer <bero@baylibre.com> wrote:
->>>
->>> From: Balsam CHIHI <bchihi@baylibre.com>
->>>
->>> Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
->>> Also, add Suspend and Resume support to LVTS Driver (all SoCs),
->>> and update the documentation that describes the Calibration Data Offsets.
->>>
->>> Changelog:
->>>      v4 :
->>>          - Shrink the lvts_ap thermal sensor I/O range to 0xc00 to make
->>>            room for SVS support, pointed out by
->>>            AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>
->>>      v3 :
->>>          - Rebased :
->>>              base-commit: 6a3d37b4d885129561e1cef361216f00472f7d2e
->>>          - Fix issues in v2 pointed out by Nícolas F. R. A. Prado <nfraprado@collabora.com>:
->>>            Use filtered mode to make sure threshold interrupts are triggered,
->>
->> I'm seeing sensor readout (either through sysfs/thermal/<x>/temp or hwmon)
->> fail frequently on MT8192. If I run `sensors` (lm-sensors), at least a couple
->> of the LVTS sensors would be N/A. Not sure if this is related to this change.
+On Thu, Jun 08, 2023 at 01:21:02AM +0530, Krishna Kurapati PSSNV wrote:
+> On 6/7/2023 5:07 PM, Johan Hovold wrote:
+
+> > So there at least two issues with this series:
+> > 
+> > 	1. accessing xhci registers from the dwc3 core
+> > 	2. accessing driver data of a child device
+> > 
+> > 1. The first part about accessing xhci registers goes against the clear
+> > separation between glue, core and xhci that Felipe tried to maintain.
+> > 
+> > I'm not entirely against doing this from the core driver before
+> > registering the xhci platform device as the registers are unmapped
+> > afterwards. But if this is to be allowed, then the implementation should
+> > be shared with xhci rather than copied verbatim.
+> > 
+> > The alternative that avoids this issue entirely could indeed be to
+> > simply count the number of PHYs described in DT as Rob initially
+> > suggested. Why would that not work?
+> > 
+> The reason why I didn't want to read the Phy's from DT is explained in 
+> [1]. I felt it makes the code unreadable and its very tricky to read the 
+> phy's properly, so we decided we would initialize phy's for all ports 
+> and if a phy is missing in DT, the corresponding member in 
+> dwc->usbX_generic_phy[] would be NULL and any phy op on it would be a NOP.
+
+That doesn't sound too convincing. Can't you just iterate over the PHYs
+described in DT and determine the maximum port number used for HS and
+SS?
+ 
+> Also as per Krzysztof suggestion on [2], we can add a compatible to read 
+> number of phy's / ports present. This avoids accessing xhci members 
+> atleast in driver core. But the layering violations would still be present.
+
+Yes, but if the information is already available in DT it's better to use
+it rather than re-encode it in the driver.
+ 
+> > 2. The driver is already accessing driver data of the child device so
+> > arguably your series is not really making things much worse than they
+> > already are.
+> > 
+> > I've just sent a couple of fixes to address some of the symptoms of
+> > this layering violation here:
+> > 
+> > 	https://lore.kernel.org/lkml/20230607100540.31045-1-johan+linaro@kernel.org/
+> >
 > 
-> Yes, it is. Filtered mode has some delay associated with reading, meaning most
-> of the time the value isn't ready, while immediate mode is, well, pretty much
-> immediate and the read always succeeds.
-> 
-> For temperature monitoring, filtered mode should be used. It supports triggering
-> interrupts when crossing the thresholds. Immediate mode is meant for one-off
-> readings of the temperature. This is why I suggested using filtered mode.
-> 
-> As far as the thermal framework goes, it's ok that filtered mode doesn't always
-> return a value, as it will keep the old one. But of course, having the
-> temperature readout always work would be a desired improvement.
-> 
-> As for ways to achieve that, I think the intended way would be to enable the
-> interrupts that signal data ready on filtered mode (bits 19, 20, 21, 28), read
-> the temperature and cache it so it is always available when the get_temp()
-> callback is called. The issue with this is that it would cause *a lot* of
-> interrupts, which doesn't seem worth it.
-> 
-> Another option that comes to mind would be to enable immediate mode only during
-> the get_temp() callback, to immediately read a value, and return to filtered
-> mode at the end. That might work, but I haven't tried yet.
+>   As you pointed out offline to me that using xhci event notifiers I 
+> mentioned on [3], if it is not acceptable to use them as notifications 
+> to check whether we are in host mode, I believe the only way would be to 
+> use the patches you pushed in.
 
-Why not understand why the filtered mode is unable to return temperature 
-values most of the time?
+I still think we'll end up using callbacks from the xhci/core into the
+glue driver, but dedicated ones rather than using usb_register_notify().
 
-I tried with the filtered mode and I can see 90% of the time it is not 
-possible to read the temperature.
+The fixes I posted can work as a stop-gap solution until then.
 
-IIUC there are timings which can be setup, may be understand how to set 
-them up in order to read the temperature correctly?
+> > Getting this fixed properly is going to take a bit of work, and
+> > depending on how your multiport wake up implementation is going to look
+> > like, adding support for multiport controllers may not make this much
+> > harder to address.
+> > 
+> > So perhaps we can indeed merge support for multiport and then get back
+> > to cleaning this up.
+> So, you are referring to use the patches you pushed today as a partial 
+> way to cleanup layering violations and merge multiport on top of it ? If 
+> so, I am fine with it. I can rebase my changes on top of them.
 
-Caching values, switching the mode or whatever is hackish :/
+Right. A bit depending on how your wakeup implementation looks like, it
+seems we can merge multiport support and then address the layering
+issues which are already present in the driver.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> [1]: 
+> https://lore.kernel.org/all/4eb26a54-148b-942f-01c6-64e66541de8b@quicinc.com/
+> [2]: 
+> https://lore.kernel.org/all/ca729f62-672e-d3de-4069-e2205c97e7d8@linaro.org/
+> [3]: 
+> https://lore.kernel.org/all/37fd026e-ecb1-3584-19f3-f8c1e5a9d20a@quicinc.com/
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Johan
