@@ -2,251 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1F3F72837E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 17:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91DF172839D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 17:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236177AbjFHPRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 11:17:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49584 "EHLO
+        id S236619AbjFHPUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 11:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236223AbjFHPRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 11:17:23 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFBCE2;
-        Thu,  8 Jun 2023 08:17:19 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:11:5f2f::7a9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nicolas)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 56C736606F1E;
-        Thu,  8 Jun 2023 16:17:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686237437;
-        bh=BsKr6pTB4WtQzThWbg3iTFCfYASAdKgF1gPPCt/Ibe4=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=CrYsILkq0irO3iD7CPmezhqtl+j8biD9yk1zh5nw6zApzaFKi42h2bOgvn4oNJbp3
-         8IZzGYwZ3rw9DrydP1Ij+JU09n9HXoR+Auyule9uEnV3WdcGQK368RkN55w4MxfbJi
-         2cglp48KizX866etgackMMXGttMdBmJP0Jiogw7pxRLOxlccywHPbrj4sGnMmMpapw
-         CXsYK+6CuLYIZoq1qp6Y8y1Sa2vSHRPYX7pUIHVP6VRlSdQbNIaG28dYz91rbD1eFa
-         xfyL04zye7Lhlz2XA2gZRgc4FhUtzg6QHWDaBZlq7cVnlh9B0bm8/0YlJnn7mxAsVj
-         9cf70VSHMCKUQ==
-Message-ID: <e1e00e3207784f48b6adc9c3b6ec48f57795228d.camel@collabora.com>
-Subject: Re: [PATCH v2,04/10] media: mediatek: vcodec: remove the dependency
- of debug log
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yunfei Dong =?UTF-8?Q?=28=E8=91=A3=E4=BA=91=E9=A3=9E=29?= 
-        <Yunfei.Dong@mediatek.com>,
-        "nhebert@chromium.org" <nhebert@chromium.org>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "nfraprado@collabora.com" <nfraprado@collabora.com>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "frkoenig@chromium.org" <frkoenig@chromium.org>,
-        "stevecho@chromium.org" <stevecho@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "hsinyi@chromium.org" <hsinyi@chromium.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 08 Jun 2023 11:17:07 -0400
-In-Reply-To: <925956db-9001-7a4f-700e-c84220103201@collabora.com>
-References: <20230607084901.28021-1-yunfei.dong@mediatek.com>
-         <20230607084901.28021-5-yunfei.dong@mediatek.com>
-         <ad28c125d9efca1f7e422fffe42dd56cef66b349.camel@collabora.com>
-         <6bb7e4b283332f1b76c1550347cb245a57eee90b.camel@mediatek.com>
-         <ac3f4becf89d909503caeb8a05883fc38afccd41.camel@collabora.com>
-         <925956db-9001-7a4f-700e-c84220103201@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1 (3.48.1-1.fc38) 
+        with ESMTP id S236449AbjFHPUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 11:20:46 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC38E2
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 08:20:45 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-777a2ef8d45so24191039f.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 08:20:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686237644; x=1688829644;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7mKqTh6HvqAYJJix6iV1nUOxGnIFbJFjfMpRh030KYY=;
+        b=PvG+u4h5WY0Ckt5kg0HTcNDt/BxU9MkjNUXIcoBlv6/+3/faKis0pX45CNPc6J3I6w
+         z/hsMOQKl37UYtoaV/lhOYFjsa/4kcSSGGGF1wwesN96dlyjkzEyADKyIYIg3xHvJHh0
+         UFBuNLkKLNXhknZ9ZqmFG4fsSRmpbPuSfldA4qWrnIUB0Vjdl4Rn/RvcdtFycF5FFY9w
+         Lqk/tueBFmpS1SZEGWFalDI3IW4k91UQmTBx2DxGn8thRk4HFjSqFXscC/nLVbd1sKVU
+         OYJaVyv33XEE0Gt3KcbMhsfd0RfZdnFLemX6Z+3QSjcF5ltpHp3OA9LzgOR9/CnxA2Er
+         OToA==
+X-Gm-Message-State: AC+VfDwdp0DCNyUD6eEuoSQyd5zwHnvFO01syosZtRKAj58KQjM7BRHt
+        n/9/mHv3v1jmRzLET8Bsdw==
+X-Google-Smtp-Source: ACHHUZ7WZaxna4a3f+VJndPvJCsn8D0xI6SqGkSmJ/43JZbw3aDwZd52wbP8oQNr1It2Oy9/CK/RmA==
+X-Received: by 2002:a6b:6f15:0:b0:776:feaf:8cec with SMTP id k21-20020a6b6f15000000b00776feaf8cecmr9620406ioc.3.1686237644514;
+        Thu, 08 Jun 2023 08:20:44 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h16-20020a056638063000b0041f4e8862ebsm331982jar.73.2023.06.08.08.20.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 08:20:43 -0700 (PDT)
+Received: (nullmailer pid 2715861 invoked by uid 1000);
+        Thu, 08 Jun 2023 15:20:41 -0000
+Date:   Thu, 8 Jun 2023 09:20:41 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Walle <michael@walle.cc>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Richard Weinberger <richard@nod.at>
+Subject: Re: [PATCH v2 07/17] dt-bindings: mtd: ingenic: Prevent NAND chip
+ unevaluated properties
+Message-ID: <20230608152041.GA2702460-robh@kernel.org>
+References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
+ <20230606175246.190465-8-miquel.raynal@bootlin.com>
+ <168607750937.1468225.8457774415279003681.robh@kernel.org>
+ <20230607113314.5da62276@xps-13>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230607113314.5da62276@xps-13>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeudi 08 juin 2023 =C3=A0 16:06 +0200, AngeloGioacchino Del Regno a =C3=
-=A9crit=C2=A0:
-> Il 08/06/23 15:11, Nicolas Dufresne ha scritto:
-> > Le jeudi 08 juin 2023 =C3=A0 07:27 +0000, Yunfei Dong (=E8=91=A3=E4=BA=
-=91=E9=A3=9E) a =C3=A9crit=C2=A0:
-> > > Hi Nicolas,
-> > >=20
-> > > Thanks for your review.
-> > > On Wed, 2023-06-07 at 21:41 -0400, Nicolas Dufresne wrote:
-> > > >   =09
-> > > > External email : Please do not click links or open attachments unti=
-l
-> > > > you have verified the sender or the content.
-> > > >   Hi Yunfei,
-> > > >=20
-> > > > Le mercredi 07 juin 2023 =C3=A0 16:48 +0800, Yunfei Dong a =C3=A9cr=
-it :
-> > > > > 'mtk_vcodec_debug' and 'mtk_vcodec_err' depends on 'mtk_vcodec_ct=
-x'
-> > > > > to get the index of each instance, using the index directly inste=
-ad
-> > > > > of with 'mtk_vcodec_ctx'.
-> > > > >=20
-> > > > > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> > > > > ---
-> > > > >   .../mediatek/vcodec/mtk_vcodec_util.h         |  26 ++-
-> > > > >   .../vcodec/vdec/vdec_av1_req_lat_if.c         | 105 +++++++----=
--
-> > > > >   .../mediatek/vcodec/vdec/vdec_h264_if.c       |  62 ++++---
-> > > > >   .../mediatek/vcodec/vdec/vdec_h264_req_if.c   |  39 +++--
-> > > > >   .../vcodec/vdec/vdec_h264_req_multi_if.c      |  80 +++++----
-> > > > >   .../vcodec/vdec/vdec_hevc_req_multi_if.c      |  67 ++++----
-> > > > >   .../mediatek/vcodec/vdec/vdec_vp8_if.c        |  54 ++++---
-> > > > >   .../mediatek/vcodec/vdec/vdec_vp8_req_if.c    |  46 +++---
-> > > > >   .../mediatek/vcodec/vdec/vdec_vp9_if.c        | 152 ++++++++++-=
--
-> > > > ------
-> > > > >   .../vcodec/vdec/vdec_vp9_req_lat_if.c         |  84 ++++++----
-> > > > >   .../platform/mediatek/vcodec/vdec_vpu_if.c    |  59 ++++---
-> > > > >   .../mediatek/vcodec/venc/venc_h264_if.c       |  86 +++++-----
-> > > > >   .../mediatek/vcodec/venc/venc_vp8_if.c        |  48 +++---
-> > > > >   .../platform/mediatek/vcodec/venc_vpu_if.c    |  64 ++++----
-> > > > >   14 files changed, 565 insertions(+), 407 deletions(-)
-> > > > >=20
-> > > > > diff --git
-> > > > a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
-> > > > b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
-> > > > > index ecb0bdf3a4f4..ddc12c3e2983 100644
-> > > > > --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
-> > > > > +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
-> > > > > @@ -31,9 +31,8 @@ struct mtk_vcodec_dev;
-> > > > >   #define mtk_v4l2_err(fmt, args...)                \
-> > > > >   pr_err("[MTK_V4L2][ERROR] " fmt "\n", ##args)
-> > > > >  =20
-> > > > > -#define mtk_vcodec_err(h, fmt, args...)\
-> > > > > -pr_err("[MTK_VCODEC][ERROR][%d]: " fmt "\n",\
-> > > > > -       ((struct mtk_vcodec_ctx *)(h)->ctx)->id, ##args)
-> > > > > +#define mtk_vcodec_err(plat_dev, inst_id, fmt,
-> > > > args...)                                 \
-> > > > > +dev_err(&(plat_dev)->dev, "[MTK_VCODEC][ERROR][%d]: " fmt "\n",
-> > > > inst_id, ##args)
-> > > > >  =20
-> > > > >   #if defined(CONFIG_DEBUG_FS)
-> > > > >   extern int mtk_v4l2_dbg_level;
-> > > > > @@ -46,27 +45,24 @@ extern int mtk_vcodec_dbg;
-> > > > >    __func__, __LINE__, ##args);        \
-> > > > >   } while (0)
-> > > > >  =20
-> > > > > -#define mtk_vcodec_debug(h, fmt, args...)                      \
-> > > > > -do {                      \
-> > > > > -if (mtk_vcodec_dbg)                      \
-> > > > > -dev_dbg(&(((struct mtk_vcodec_ctx *)(h)->ctx)->dev->plat_dev-
-> > > > > dev),   \
-> > > > > -"[MTK_VCODEC][%d]: %s, %d " fmt "\n",                         \
-> > > > > -((struct mtk_vcodec_ctx *)(h)->ctx)->id,                      \
-> > > > > -__func__, __LINE__, ##args);                                  \
-> > > > > +#define mtk_vcodec_debug(plat_dev, inst_id, fmt,
-> > > > args...)                               \
-> > > > > +do
-> > > > {
-> > > >          \
-> > > > > +if
-> > > > (mtk_vcodec_dbg)
-> > > > \
-> > > > > +dev_dbg(&(plat_dev)->dev, "[MTK_VCODEC][%d]: %s, %d " fmt "\n", =
-\
-> > > >=20
-> > > > At least in this patch, you systematically pass plat_dev as
-> > > > <something>->ctx->dev->plat_dev, which is quite long and verbose, a=
-ny
-> > > > reason we
-> > > > can't just pass that <something> here ? We can follow the same
-> > > > structure path
-> > > > for both encoder/decoder ?
-> > > >=20
-> > >=20
-> > > In order to separate encode and decoder, need to define two different
-> > > struct mtk_vcodec_dec_ctx and struct mtk_vcodec_enc_ctx.
-> > >=20
-> > > struct mtk_vcodec_ctx won't be used again, need to use platform devic=
-e
-> > > to print dev_dbg and dev_err.
-> > >=20
-> > > encoder and decoder using the same interface to print log message.
-> >=20
-> > Just a reminder, I'm just making suggestions, there is no strict action=
- required
-> > here other then a discussion to try and make the logging a bit more lig=
-ht.
-> >=20
-> > My points was that C macros don't care about types, so if you keep the =
-path to
-> > the platform device the same (ctx->dev->plat_dev), you could just pass =
-the ctx
-> > as argument. What I don't know though myself, is if this is actually fe=
-asible in
-> > all code path, but considering you had access to the instance previousl=
-y, I
-> > thought it should.
-> >=20
->=20
-> One macro used to access two different structures?
->=20
-> Please, no.
+On Wed, Jun 07, 2023 at 11:33:14AM +0200, Miquel Raynal wrote:
+> Hi Rob,
+> 
+> robh@kernel.org wrote on Tue, 06 Jun 2023 12:52:00 -0600:
+> 
+> > On Tue, 06 Jun 2023 19:52:36 +0200, Miquel Raynal wrote:
+> > > List all the possible properties in the NAND chip as per the example and
+> > > set unevaluatedProperties to false in the NAND chip section.
+> > > 
+> > > Cc: Paul Cercueil <paul@crapouillou.net>
+> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/mtd/ingenic,nand.yaml | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >   
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > ./Documentation/devicetree/bindings/mtd/ingenic,nand.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/mtd/raw-nand-chip.yaml
+> 
+> It seems like your automated tooling failed to apply the second patch
+> in this series (creating raw-nand-chip.yaml). It says "sha1 information
+> is lacking or useless". This work is based on a recent -rc so I'm not
+> sure what is "lacking or useless" in this case.
 
-Its up to you. I do think this is an empty statement. Still believe we avoi=
-d
-this code "deterioration". One can always be creative to workaround your
-concerns.
+The base used is rc1.
 
-	struct base_ctx {
-		struct dev dev;
-	}
+> Anyway, do you plan to give this series a look anyway? Or should I
+> rebase against a specific branch?
 
-	struct enc_ctx=C2=A0{
-		struct base_ctx;
-		...
-	}
+Yes, I'll leave it in the queue. I'm just getting back after being out a 
+month.
 
-	struct src_ctx {
-		...
-	}
-
-But this is in no way more safe then a naming convention, this is macro cal=
-ls,
-its not typed.
-
-Nicolas
-
->=20
-> Regards,
-> Angelo
->=20
-> > regards,
-> > Nicolas
-> >=20
-> > >=20
-> > > Best Regards,
-> > > Yunfei Dong
-> > > > > +inst_id, __func__, __LINE__, ##args);                   \
-> > > > >   } while (0)
-> > > > >   #else
-> > > > >   #define mtk_v4l2_debug(level, fmt, args...) pr_debug(fmt, ##arg=
-s)
-> > > > >  =20
-> > > > > -#define mtk_vcodec_debug(h, fmt, args...)\
-> > > > > -pr_debug("[MTK_VCODEC][%d]: " fmt "\n",\
-> > > >=20
-> > > ...snip...
-> >=20
->=20
-
+Rob
