@@ -2,166 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC31172868E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 19:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A1C728685
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 19:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233785AbjFHRqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 13:46:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57930 "EHLO
+        id S235412AbjFHRoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 13:44:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233471AbjFHRqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 13:46:22 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B662D41;
-        Thu,  8 Jun 2023 10:46:20 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 358HIa35032685;
-        Thu, 8 Jun 2023 13:46:09 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3r2abwfb07-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Jun 2023 13:46:08 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 358Hk71Q041756
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 8 Jun 2023 13:46:07 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 8 Jun 2023 13:46:06 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 8 Jun 2023 13:46:06 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 8 Jun 2023 13:46:06 -0400
-Received: from kimedia-VirtualBox.ad.analog.com (KPALLER2-L02.ad.analog.com [10.116.242.24])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 358HjaKj003381;
-        Thu, 8 Jun 2023 13:45:57 -0400
-From:   Kim Seer Paller <kimseer.paller@analog.com>
-CC:     Kim Seer Paller <kimseer.paller@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings:iio:adc: add max14001
-Date:   Fri, 9 Jun 2023 01:44:12 +0800
-Message-ID: <20230608174413.39959-2-kimseer.paller@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230608174413.39959-1-kimseer.paller@analog.com>
-References: <20230608174413.39959-1-kimseer.paller@analog.com>
+        with ESMTP id S234623AbjFHRoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 13:44:38 -0400
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C562D56;
+        Thu,  8 Jun 2023 10:44:35 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-33dae9244a1so9588975ab.0;
+        Thu, 08 Jun 2023 10:44:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686246275; x=1688838275;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ovjq9ac+9Nx5rYGUxnFyT5CxYnERjUk28SaOLV692qI=;
+        b=C0yIuq5bUoNga+E/bHgAE4jTFMY6CsDMVzayU9VsL88C378lFei+BltSOckss45J79
+         6cpa/U8V7UnHRwuVLJScrg/GzJ2ZUBcBPXVDLGSkO+Hno1ha5yYc6quK2tzWHOwKWvqI
+         FRp7y58Cr2MK+MABRRjRgu3Ij5i3E5vK6RQDBUvU5d/J8KBMM6nE21FxwZsEqm3tgoNF
+         OxG4c52QV8FtMwBmcen6sYQXY3q+fPLiLZr4DUv9Hwm6Onef24XIaS+JmnRMpXkGX47/
+         0Wor3k1bhgCCBiATLymrxGDRRcvIKu8LA2utGGzlhq2enYKAhwnCbak0YPLPGQ6czSAx
+         U08g==
+X-Gm-Message-State: AC+VfDwagy0zPsTQmeYXb5hYPSG2C8Dq8vSMJW74W6j0FwDUXLiPP1TI
+        GIdsLDLQV+qID/emA6x1qg==
+X-Google-Smtp-Source: ACHHUZ42fitQIzTfE7o2gQtXBs6JDleBPfB35sMO7jYvJt2sNMhYEga796RuBgdUqcd1XRBOWIFqGA==
+X-Received: by 2002:a92:d445:0:b0:33d:cf66:7a0b with SMTP id r5-20020a92d445000000b0033dcf667a0bmr1794865ilm.13.1686246274891;
+        Thu, 08 Jun 2023 10:44:34 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id q18-20020a920512000000b0033b2c178254sm546343ile.22.2023.06.08.10.44.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 10:44:34 -0700 (PDT)
+Received: (nullmailer pid 3080900 invoked by uid 1000);
+        Thu, 08 Jun 2023 17:44:32 -0000
+Date:   Thu, 8 Jun 2023 11:44:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Peng Fan <peng.fan@oss.nxp.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        haibo.chen@nxp.com, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, cniedermaier@dh-electronics.com,
+        devicetree@vger.kernel.org, kernel@dh-electronics.com
+Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
+ "fsl,wp-controller"
+Message-ID: <20230608174432.GA3079839-robh@kernel.org>
+References: <20230506074037.522961-1-haibo.chen@nxp.com>
+ <20230506074037.522961-4-haibo.chen@nxp.com>
+ <d0329227-b579-5557-b449-7961ec0a1463@linaro.org>
+ <9ef80685-3ef7-ac59-05a6-0c46e0ecf57e@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: XDUJ8fliQ56XKZCOiYhGUB8QSr-8jRNN
-X-Proofpoint-GUID: XDUJ8fliQ56XKZCOiYhGUB8QSr-8jRNN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-08_12,2023-06-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 impostorscore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 bulkscore=0 clxscore=1011 mlxlogscore=999
- spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306080156
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9ef80685-3ef7-ac59-05a6-0c46e0ecf57e@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MAX14001 is configurable, isolated 10-bit ADCs for multi-range
-binary inputs.
+On Tue, May 23, 2023 at 10:03:08AM +0800, Peng Fan wrote:
+> 
+> 
+> On 5/6/2023 6:59 PM, Krzysztof Kozlowski wrote:
+> > Caution: This is an external email. Please take care when clicking links or opening attachments. When in doubt, report the message using the 'Report this email' button
+> > 
+> > 
+> > On 06/05/2023 09:40, haibo.chen@nxp.com wrote:
+> > > From: Haibo Chen <haibo.chen@nxp.com>
+> > > 
+> > > Driver do not use this property, so remove it here.
+> > 
+> > You still need to expand the commit msg and justify why this property is
+> > being removed. "Driver" is vague, as it can be BSD driver which also
+> > might use this binding. Instead describe why this property should be
+> > removed, so we can understand also ABI implications.
+> 
+> The better approach would be mark it as deprecated.
 
-Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
----
- .../bindings/iio/adc/adi,max14001.yaml        | 54 +++++++++++++++++++
- MAINTAINERS                                   |  7 +++
- 2 files changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+Sure, but still need to say why.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
-new file mode 100644
-index 000000000000..9d03c611fca3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2023 Analog Devices Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX14001 ADC
-+
-+maintainers:
-+  - Kim Seer Paller <kimseer.paller@analog.com>
-+
-+description: |
-+    Single channel 10 bit ADC with SPI interface. Datasheet
-+    can be found here:
-+      https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14001-MAX14002.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,max14001
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 5000000
-+
-+  vref-supply:
-+    description: Voltage reference to establish input scaling.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+            compatible = "adi,max14001";
-+            reg = <0>;
-+            spi-max-frequency = <5000000>;
-+            vref-supply = <&vref_reg>;
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0dab9737ec16..b8ad615d011f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12660,6 +12660,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/sound/max9860.txt
- F:	sound/soc/codecs/max9860.*
- 
-+MAX14001 IIO ADC DRIVER
-+M:	Kim Seer Paller <kimseer.paller@analog.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/iio/dac/adi,max14001.yaml
-+
- MAXBOTIX ULTRASONIC RANGER IIO DRIVER
- M:	Andreas Klinger <ak@it-klinger.de>
- L:	linux-iio@vger.kernel.org
--- 
-2.34.1
-
+Rob
