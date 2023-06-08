@@ -2,82 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66A75728833
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 21:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D80727E80
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 13:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233018AbjFHTVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 15:21:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38674 "EHLO
+        id S234460AbjFHLJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 07:09:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbjFHTVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 15:21:49 -0400
-Received: from mail.gos.mx (mail.gos.mx [45.56.127.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C718330FE;
-        Thu,  8 Jun 2023 12:21:14 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.gos.mx (Postfix) with ESMTP id 07DC11C8D4A;
-        Thu,  8 Jun 2023 04:58:39 -0600 (CST)
-Received: from mail.gos.mx ([127.0.0.1])
-        by localhost (mail.gos.mx [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 5Bq09fs0wIeV; Thu,  8 Jun 2023 04:58:38 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.gos.mx (Postfix) with ESMTP id C9E5C1C8DDE;
-        Thu,  8 Jun 2023 04:58:38 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.gos.mx C9E5C1C8DDE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gos.mx;
-        s=BFAB2738-0D35-11EC-BC1F-C44525C8698F; t=1686221918;
-        bh=foaU3IcG3skw4pDtzPknHrej3U4q+GVck5wL2tLNM/U=;
-        h=MIME-Version:To:From:Date:Message-Id;
-        b=SaF57mMWq6vwGfNPq/U0xXzTN8CvMwlimmvDNBx8mm3P/v04eqy0vDN2H3+cPI7km
-         ow/JQufOUpkNvaZO9czBeD8iI6MDBz6DvoID2j4Mg7v8fpBOKKRvSn/nUQRcIo2sTS
-         ZNUnV1VDhrgNr3DPGCg6RfIEifK5Q9LNdro+UNYjZafYCK6xGk/rVU3lYKCNoqO2wH
-         HuRKMpkC2RO2IjmDSgmzNGXVcXmVIPSv7cwIJfHon5RDGxXmIo1uOMiJz1ywAfKtjb
-         5CBsKHFSPJ1cHIj+6ZKTPZDLsKiI6NWQxv84UUqnF4uocAO//K6suY8NgLFajKLKAY
-         ztJMFuhx65vAg==
-X-Virus-Scanned: amavisd-new at gos.mx
-Received: from mail.gos.mx ([127.0.0.1])
-        by localhost (mail.gos.mx [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id HjzdEPfnvVmt; Thu,  8 Jun 2023 04:58:38 -0600 (CST)
-Received: from [192.168.8.100] (unknown [41.113.118.123])
-        by mail.gos.mx (Postfix) with ESMTPSA id 6A4051C8DB9;
-        Thu,  8 Jun 2023 04:58:31 -0600 (CST)
-Content-Type: text/plain; charset="iso-8859-1"
+        with ESMTP id S232793AbjFHLJE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 07:09:04 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B872A3AA6
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 04:07:04 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f61b45ee0dso601779e87.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 04:07:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686222411; x=1688814411;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+caIrEw0n7E+RHuWHb1TL2Rrvag6tUOBdTOavrLMBK4=;
+        b=iiCqm8fIcYbtR6/eI7I4VNh8+6lwh2wQwbwMCsfbb0NJ172k9z6wLXuzXPgpuSvqlH
+         glJJoaspnDbcsVoph9BTtPMZKXFBEbAeCKhpH8DOjAXgyd7v7sHgeAcdQbsJTLHK4dLX
+         LCjloHXOhH4kY0YmAjjweedqNS3F+JSJ7XUMMqU82wcggkbb9OtXjZjr/D/D9nAjj9GZ
+         39kV30KZ7LS0SaruyzA8VGLYRsj/BXye7OA4ur2UEeVXT7k/jcRsxJ73N4BADiH+MRYA
+         pLOZAXdByHgpISQ86sjAl/CKJ49WWU4e1U+N8huqTZ26C1eqB3z/ZZINDEc+bp24Mjfp
+         Bk3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686222411; x=1688814411;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+caIrEw0n7E+RHuWHb1TL2Rrvag6tUOBdTOavrLMBK4=;
+        b=MbiP1YUqWLOt/T4nzuP5feSVqxKEwtUDsXS4y+L85NZwUSlYVkzfn2DGW+bwaFyLEN
+         4j+otdra4BrIU1JiTqVFagqe0nkTZBWy6+AH3e2BkR0A5/oBeqAvke5IIEi52fmeHisA
+         IHTBI3tYCMRuEi0Xta3+jsrFE3k6ZyWNx3M4o4YqkPSDTGLPcRFr3aH5teKwt61tE2gs
+         b5uUBYnOBkrtVYbSAVigl14D8wkxTsVVXtJ/qKt7+Huuq3W1D4zJ/h6mAKBIgkKR8Wgj
+         13VqEcmMaUHWnUMI11qFKGedSmLbcZ6+xbcSN77jHECWcP9McAHrY7T9fCDDt9AuoA2W
+         STSw==
+X-Gm-Message-State: AC+VfDxfAIE8iGRcwuXIJ2QOyqHS9QMk+TyMBVWiqPqJU8f+aL8/YfqT
+        QKCGrAC4pxjOQ3WnqJ1+3hTvwg==
+X-Google-Smtp-Source: ACHHUZ5ILhAtEGWd5FVAaCuMWXlusQ2n+jwbCu1VRWLWyrrXjaIkcb+Br9SQPg5UBNC1aNWJ8hf5dA==
+X-Received: by 2002:ac2:44ae:0:b0:4f2:5c4b:e699 with SMTP id c14-20020ac244ae000000b004f25c4be699mr3077490lfm.24.1686222410690;
+        Thu, 08 Jun 2023 04:06:50 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id p16-20020a19f010000000b004f4d5844b48sm145753lfc.279.2023.06.08.04.06.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jun 2023 04:06:50 -0700 (PDT)
+Message-ID: <71960b11-5686-9af5-423b-bfdaec56f3f9@linaro.org>
+Date:   Thu, 8 Jun 2023 14:06:49 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: RFQ
-To:     Recipients <victor_perezo@gos.mx>
-From:   "PFIZER BELGIUM" <victor_perezo@gos.mx>
-Date:   Thu, 08 Jun 2023 12:58:23 +0200
-Reply-To: pfizersupplychain@ftml.net
-Message-Id: <20230608105831.6A4051C8DB9@mail.gos.mx>
-X-Spam-Status: No, score=2.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_REPLYTO,
-        RCVD_IN_MSPIKE_BL,RCVD_IN_MSPIKE_L3,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: **
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v14 3/5] arm64: dts: qcom: ipq9574: Add USB related nodes
+Content-Language: en-GB
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <cover.1686217906.git.quic_varada@quicinc.com>
+ <2f91eb879daaf9955dc56135d60a4be5e191a44d.1686217906.git.quic_varada@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <2f91eb879daaf9955dc56135d60a4be5e191a44d.1686217906.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good Day Sir/Madam,
+On 08/06/2023 13:03, Varadarajan Narayanan wrote:
+> Add USB phy and controller related nodes
+> 
+> SS PHY need two supplies and HS PHY needs three supplies. 0.925V
+> and 3.3V are from fixed regulators and 1.8V is generated from
+> PMIC's LDO
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>   Changes in v13:
+> 	- Move fixed regulator definitions from SoC dtsi to board dts
+> 	- Remove 'dr_mode' from SoC dtsi
+> 	- Move 'status' property to the end
+>   Changes in v12:
+> 	- Rebase
+>   Changes in v11:
+> 	- Rename dwc_0 -> usb_0_dwc3
+>   Changes in v10:
+> 	- Fix regulator definitions
+>   Changes in v8:
+> 	- Change clocks order to match the bindings
+>   Changes in v7:
+> 	- Change com_aux -> cfg_ahb
+>   Changes in v6:
+> 	- Introduce fixed regulators for the phy
+> 	- Resolved all 'make dtbs_check' messages
+> 
+>   Changes in v5:
+> 	- Fix additional comments
+> 	- Edit nodes to match with qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> 	- 'make dtbs_check' giving the following messages since
+> 	  ipq9574 doesn't have power domains. Hope this is ok
+> 
+> 		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
+>          	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> 		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
+>          	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> 
+>   Changes in v4:
+> 	- Use newer bindings without subnodes
+> 	- Fix coding style issues
+> 
+>   Changes in v3:
+> 	- Insert the nodes at proper location
+> 
+>   Changes in v2:
+> 	- Fixed issues flagged by Krzysztof
+> 	- Fix issues reported by make dtbs_check
+> 	- Remove NOC related clocks (to be added with proper
+> 	  interconnect support)
+> ---
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 18 ++++++
+>   arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 85 +++++++++++++++++++++++++++++
+>   2 files changed, 103 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> index 2b3ed8d..8261a2b 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> @@ -21,6 +21,24 @@
+>   	chosen {
+>   		stdout-path = "serial0:115200n8";
+>   	};
+> +
+> +	regulator_fixed_3p3: s3300 {
+> +		compatible = "regulator-fixed";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		regulator-name = "fixed_3p3";
+> +	};
+> +
+> +	regulator_fixed_0p925: s0925 {
+> +		compatible = "regulator-fixed";
+> +		regulator-min-microvolt = <925000>;
+> +		regulator-max-microvolt = <925000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		regulator-name = "fixed_0p925";
+> +	};
+>   };
 
-We are pleased to invite you or your company to quote the following item
-listed
-below:
-Product/Model No: MNV FORGED 20K GLOBE VALVE MNV26092
-Model Number: MNV26092
-Qty. 53
-Compulsory, Kindly send your quotation to: quotation@pfizersuplychains.com
-for immediate approval.
+Let me repeat from v13, so that it is not lost (please excuse me for the 
+spam):
 
-Kind Regards,
-David Fielding
-Chief Procurement Officer
-PFIZER MANUFACTURING BELGIUM (NV)
-Address: Rijksweg 12, 2870 Puurs-Sint-Amands, Belgium
-B.T.W : BE 0400.778.165
-Tel: +32 78 48 03 31
-Fax: +32 20 12 94 06
+Nit: these two regulators are not references from SoC dtsi. So they 
+don't have to be a part of this commit and can be moved to one of the 
+next commits (I'd prefer the last one).
+
+>   
+>   &blsp1_uart2 {
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 0baeb10..feabc19 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -465,6 +465,91 @@
+>   			status = "disabled";
+>   		};
+>   
+> +		usb_0_qusbphy: phy@7b000 {
+> +			compatible = "qcom,ipq9574-qusb2-phy";
+> +			reg = <0x0007b000 0x180>;
+> +			#phy-cells = <0>;
+> +
+> +			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> +				 <&xo_board_clk>;
+> +			clock-names = "cfg_ahb",
+> +				      "ref";
+> +
+> +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> +			status = "disabled";
+> +		};
+> +
+> +		usb_0_qmpphy: phy@7d000 {
+> +			compatible = "qcom,ipq9574-qmp-usb3-phy";
+> +			reg = <0x0007d000 0xa00>;
+> +			#phy-cells = <0>;
+> +
+> +			clocks = <&gcc GCC_USB0_AUX_CLK>,
+> +				 <&xo_board_clk>,
+> +				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> +				 <&gcc GCC_USB0_PIPE_CLK>;
+> +			clock-names = "aux",
+> +				      "ref",
+> +				      "cfg_ahb",
+> +				      "pipe";
+> +
+> +			resets = <&gcc GCC_USB0_PHY_BCR>,
+> +				 <&gcc GCC_USB3PHY_0_PHY_BCR>;
+> +			reset-names = "phy",
+> +				      "phy_phy";
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "usb0_pipe_clk";
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		usb3: usb@8af8800 {
+> +			compatible = "qcom,ipq9574-dwc3", "qcom,dwc3";
+> +			reg = <0x08af8800 0x400>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			clocks = <&gcc GCC_SNOC_USB_CLK>,
+> +				 <&gcc GCC_USB0_MASTER_CLK>,
+> +				 <&gcc GCC_ANOC_USB_AXI_CLK>,
+> +				 <&gcc GCC_USB0_SLEEP_CLK>,
+> +				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +
+> +			clock-names = "cfg_noc",
+> +				      "core",
+> +				      "iface",
+> +				      "sleep",
+> +				      "mock_utmi";
+> +
+> +			assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> +					  <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +			assigned-clock-rates = <200000000>,
+> +					       <24000000>;
+> +
+> +			interrupts-extended = <&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "pwr_event";
+> +
+> +			resets = <&gcc GCC_USB_BCR>;
+> +			status = "disabled";
+> +
+> +			usb_0_dwc3: usb@8a00000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x8a00000 0xcd00>;
+> +				clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +				clock-names = "ref";
+> +				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> +				phys = <&usb_0_qusbphy>, <&usb_0_qmpphy>;
+> +				phy-names = "usb2-phy", "usb3-phy";
+> +				tx-fifo-resize;
+> +				snps,is-utmi-l1-suspend;
+> +				snps,hird-threshold = /bits/ 8 <0x0>;
+> +				snps,dis_u2_susphy_quirk;
+> +				snps,dis_u3_susphy_quirk;
+> +			};
+> +		};
+> +
+>   		intc: interrupt-controller@b000000 {
+>   			compatible = "qcom,msm-qgic2";
+>   			reg = <0x0b000000 0x1000>,  /* GICD */
+
+-- 
+With best wishes
+Dmitry
+
