@@ -2,109 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7224F72748A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 03:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDB6D7274E6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 04:19:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233593AbjFHBnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 21:43:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54384 "EHLO
+        id S231906AbjFHCTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 22:19:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233089AbjFHBnJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 21:43:09 -0400
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B542728;
-        Wed,  7 Jun 2023 18:42:50 -0700 (PDT)
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3580D9jR007991;
-        Thu, 8 Jun 2023 01:42:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=corp-2023-03-30;
- bh=Q6kM48ESgawSfdxkndrYuouwRVzlr2X8k1kys8tskRE=;
- b=Lh78/h6/RPTZ4eFQKFy7laYD7jYnKljH9M6x4cMSeRZaA4iHJiPJffbTth929RgtJoqV
- VTQiKzH6SkDr1961SX5KET/PrsrWOlcfkMkQngQPw8BzMhLxuJkdpBr3BXlPmys4TTMa
- 42+Js0GztdADPE8Z1OQyLb+cAP4J+gSCeouvQqQBXPWClOm2RZZ+6HfhQknT4R3CEuBo
- hTIhVsg2ZnUwe6i+Gk+mvoBmA+cp1feuA3W356jlsZG683Mh6ntdtqm5o1x3NqPrEu2q
- +6gqpHtQ2WoQUWK17WnWA1m8z/h3I2bAsL30fa7v6OSI0A6FfqeBkhGnsoupluMECigb Fw== 
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
-        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3r2a6rk4un-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 08 Jun 2023 01:42:36 +0000
-Received: from pps.filterd (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-        by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.19/8.17.1.19) with ESMTP id 35803Rij036504;
-        Thu, 8 Jun 2023 01:42:35 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 3r2a6hyt77-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 08 Jun 2023 01:42:35 +0000
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3581gQUn031871;
-        Thu, 8 Jun 2023 01:42:34 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-        by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 3r2a6hyt3a-6;
-        Thu, 08 Jun 2023 01:42:34 +0000
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S233153AbjFHCTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 22:19:51 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28CD8E;
+        Wed,  7 Jun 2023 19:19:48 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3582IB4p8029392, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3582IB4p8029392
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Thu, 8 Jun 2023 10:18:11 +0800
+Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Thu, 8 Jun 2023 10:18:27 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 8 Jun 2023 10:18:26 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Thu, 8 Jun 2023 10:18:26 +0800
+From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
+To:     kernel test robot <lkp@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     "oe-kbuild-all@lists.linux.dev" <oe-kbuild-all@lists.linux.dev>,
+        "Vinod Koul" <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v3 0/5] arm64: qcom: sa8775p: add support for UFS
-Date:   Wed,  7 Jun 2023 21:42:10 -0400
-Message-Id: <168618844267.2636448.1192247129284766486.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230411130446.401440-1-brgl@bgdev.pl>
-References: <20230411130446.401440-1-brgl@bgdev.pl>
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Ray Chi <raychi@google.com>,
+        "Flavio Suligoi" <f.suligoi@asem.it>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH v3 2/5] phy: realtek: usb: Add driver for the Realtek SoC USB 2.0 PHY
+Thread-Topic: [PATCH v3 2/5] phy: realtek: usb: Add driver for the Realtek SoC
+ USB 2.0 PHY
+Thread-Index: AQHZmQjR4Z6nmQOlk0qvgFcnmBMR/a9/E4qAgAEY5bA=
+Date:   Thu, 8 Jun 2023 02:18:26 +0000
+Message-ID: <2444f4875f484cc4bf2ff9c52815fa0c@realtek.com>
+References: <20230607062500.24669-2-stanley_chang@realtek.com>
+ <202306080128.Gh3c2H1O-lkp@intel.com>
+In-Reply-To: <202306080128.Gh3c2H1O-lkp@intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-07_13,2023-06-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 suspectscore=0 mlxscore=0
- malwarescore=0 adultscore=0 mlxlogscore=905 bulkscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306080011
-X-Proofpoint-ORIG-GUID: dSmpP4gMeJMW194IYgO-0S7W6wARbY-I
-X-Proofpoint-GUID: dSmpP4gMeJMW194IYgO-0S7W6wARbY-I
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Apr 2023 15:04:41 +0200, Bartosz Golaszewski wrote:
-
-> Update relevant DT bindings, add new config to the driver and add UFS
-> and PHY nodes to the .dtsi and enable them in the board .dts for
-> sa8775p-ride.
-> 
-> v2 -> v3:
-> - fix DT bindings: move allOf: below required:
-> - collect review tags
-> 
-> [...]
-
-Applied to 6.5/scsi-queue, thanks!
-
-[1/5] dt-bindings: ufs: qcom: add compatible for sa8775p
-      https://git.kernel.org/mkp/scsi/c/8f0c17bf6bf3
-
--- 
-Martin K. Petersen	Oracle Linux Engineering
+PiBFUlJPUjogbW9kcG9zdDogImRldm1fdXNiX2dldF9waHlfYnlfcGhhbmRsZSINCj4gW2RyaXZl
+cnMvcG93ZXIvc3VwcGx5L3dtODMxeF9wb3dlci5rb10gdW5kZWZpbmVkIQ0KPiA+PiBFUlJPUjog
+bW9kcG9zdDogImRldm1fdXNiX2dldF9waHkiDQo+IFtkcml2ZXJzL3Bvd2VyL3N1cHBseS9kYTkx
+NTAtY2hhcmdlci5rb10gdW5kZWZpbmVkIQ0KPiANCj4gS2NvbmZpZyB3YXJuaW5nczogKGZvciBy
+ZWZlcmVuY2Ugb25seSkNCj4gICAgV0FSTklORzogdW5tZXQgZGlyZWN0IGRlcGVuZGVuY2llcyBk
+ZXRlY3RlZCBmb3IgVVNCX1BIWQ0KPiAgICBEZXBlbmRzIG9uIFtuXTogVVNCX1NVUFBPUlQgWz1u
+XQ0KPiAgICBTZWxlY3RlZCBieSBbeV06DQo+ICAgIC0gUEhZX1JUS19SVERfVVNCMlBIWSBbPXld
+DQo+IA0KDQpJIHdpbGwgYWRkIFVTQl9TVVVQUlQgZGVwZW5kZW5jeSB0byBLY29uZmlnLg0KDQpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9waHkvcmVhbHRlay9LY29uZmlnIGIvZHJpdmVycy9waHkvcmVh
+bHRlay9LY29uZmlnDQppbmRleCAyOGVlM2Q5YmU1NjguLmE1YTVhNzFlZGM5YyAxMDA2NDQNCi0t
+LSBhL2RyaXZlcnMvcGh5L3JlYWx0ZWsvS2NvbmZpZw0KKysrIGIvZHJpdmVycy9waHkvcmVhbHRl
+ay9LY29uZmlnDQpAQCAtNCw2ICs0LDcgQEANCiAjDQogY29uZmlnIFBIWV9SVEtfUlREX1VTQjJQ
+SFkNCiAgICAgICAgdHJpc3RhdGUgIlJlYWx0ZWsgUlREIFVTQjIgUEhZIFRyYW5zY2VpdmVyIERy
+aXZlciINCisgICAgICAgZGVwZW5kcyBvbiBVU0JfU1VQUE9SVA0KICAgICAgICBzZWxlY3QgR0VO
+RVJJQ19QSFkNCiAgICAgICAgc2VsZWN0IFVTQl9QSFkNCiAgICAgICAgaGVscA0KQEAgLTE0LDYg
+KzE1LDcgQEAgY29uZmlnIFBIWV9SVEtfUlREX1VTQjJQSFkNCg0KIGNvbmZpZyBQSFlfUlRLX1JU
+RF9VU0IzUEhZDQogICAgICAgIHRyaXN0YXRlICJSZWFsdGVrIFJURCBVU0IzIFBIWSBUcmFuc2Nl
+aXZlciBEcml2ZXIiDQorICAgICAgIGRlcGVuZHMgb24gVVNCX1NVUFBPUlQNCiAgICAgICAgc2Vs
+ZWN0IEdFTkVSSUNfUEhZDQogICAgICAgIHNlbGVjdCBVU0JfUEhZDQogICAgICAgIGhlbHANCg==
