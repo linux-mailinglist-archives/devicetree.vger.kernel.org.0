@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 288D172809A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41CA47280A3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:54:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236699AbjFHMxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 08:53:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
+        id S236396AbjFHMy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 08:54:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236638AbjFHMxj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:53:39 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94DB62D75
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 05:53:28 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f7f4819256so3669665e9.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 05:53:28 -0700 (PDT)
+        with ESMTP id S236608AbjFHMyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:54:18 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87D63593
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 05:54:02 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-30c4775d05bso403311f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 05:54:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686228807; x=1688820807;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1JdqNqW1EiHhGOLPPEwu6Algy+7F6uqVRE0M773aCbc=;
-        b=PYb6RhBwm5Hcg01jKpzKI1eXvG8/av099rumjF3JEJ1VUzNcoBvA41IqGt73mdYj8j
-         vwTz3FrqDSm+ZYXlmX8q+jKsagJNEChm3O52/pil7tC1kCukj8Eo9i4+ml208I2FqYes
-         brZjgB2IaAmmHtcu6I/mfSAy+rgmGKsz0qTUmJ8oyZSx3A9CKPLtBjjtOyyyocIcICPB
-         vHJsPuxO32Iso6tpwVHAO/X3p1HoakKPoc0kIjnURZxzeX8JfrgEeDtKv77K3SwWZZMc
-         E79L6UClmdhL4ach6mHf4b53WlWPna5IdeCnuahaa6MG5eAMfxwHFNMojMY7iNRBPpo6
-         cLaw==
+        d=linaro.org; s=google; t=1686228831; x=1688820831;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=InHp6AifXEpwXcgGbkL/ZV2RrHkvo9FL6i2UTJDIYB0=;
+        b=ZDjW0Q9l7x0hBg8+IHtZmugU5k8Uhxr0Z9a1ve4J80evELnmIGFQaDnNTpcJ5LE646
+         6pbpXJBkG3cBIAArHd3A/B6DMypdAlO2PN7LS2gj4wFM8sHjKiMEnlUUcjRCqdOQSnhJ
+         4zGEOroi5yZoza7oi/5wQ/5aZQGMl4SYWTMMwDy3HW5tsCXKLAeVuf3tYURFOu5NGEkQ
+         aA401kfru6nO4tuPIQg8GWuuMPlgd2SAO5ncTbb+fxRXUPNpWhHnIJyuZvlQf+cqR3Mt
+         2yjuXzd4mWaNOTbs7uC8WbK63VkzZHyNnuTZBouRXe6WQPeuCAE0Qe0SXqVlWzuLxiy3
+         9abQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686228807; x=1688820807;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1JdqNqW1EiHhGOLPPEwu6Algy+7F6uqVRE0M773aCbc=;
-        b=j6XFxFEGUbkhFVq4AvSKVMPhDKXoMKWSyLiDf2n/K7R+g0307G+fxXMDYlAPm+CPWR
-         GDl3U6b7gf1zOK4H/hAxhr6UL6yK4p3AWZnvlMUX2ca7dW7A0iRi6vyTyRQIucj1zsEl
-         zR1y3TjVAgH3Y9HIZmVIw+Bm3HeOCb77yEgjnD7IVAPNh9ISXRTTALbBxD3MGYGD+Ukd
-         vS71Jz/5+GHYRzlMbJja7/01HVbJQmIg4yUj8dfqoirTBC65iKc+8o6Bs9vI2ZNPo6+K
-         k83Ynb2dYIBLirU7vngNh27dbV8qPfrPRy/JvSmBUrRCyi+Zk18i97ivpJy20+xM1Uwg
-         uA2w==
-X-Gm-Message-State: AC+VfDyvLUpoFNor2jyeucs4T+6edbSZKCffpS2OQWWbV5IOAPIpuL9Z
-        /Euq5KyosCRPrZWnc6Hz0VS+gA==
-X-Google-Smtp-Source: ACHHUZ46jgIaoydJlPxm3zWkCHo5nMwYG+fHC3iO8XYOJcL0aRa6bUai6RZ8Nm9ye79/cy7F5Uy99Q==
-X-Received: by 2002:a7b:cc08:0:b0:3f7:fa21:f66 with SMTP id f8-20020a7bcc08000000b003f7fa210f66mr1279754wmh.26.1686228807105;
-        Thu, 08 Jun 2023 05:53:27 -0700 (PDT)
-Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id m22-20020a7bce16000000b003f7e4d143cfsm1894032wmc.15.2023.06.08.05.53.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 05:53:26 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     johan+linaro@kernel.org, agross@kernel.org,
-        konrad.dybcio@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 6/6] arm64: defconfig: Enable sc828x0xp lpasscc clock controller
-Date:   Thu,  8 Jun 2023 13:53:15 +0100
-Message-Id: <20230608125315.11454-7-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230608125315.11454-1-srinivas.kandagatla@linaro.org>
-References: <20230608125315.11454-1-srinivas.kandagatla@linaro.org>
+        d=1e100.net; s=20221208; t=1686228831; x=1688820831;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=InHp6AifXEpwXcgGbkL/ZV2RrHkvo9FL6i2UTJDIYB0=;
+        b=YS7c/RHOGeyWbgu7hxiulJ716AJOXCylG09IeVZz7PaI23BF/fpiGK7p87oMC5jF0M
+         PCzRROscACIatiSbSv5GoyikPJ8rs/LJ9RDxeD7lgvewqBk59+RNqwzH8XD5Au8P7B2S
+         grs0k14MQHSvhcES5C8XftADiCEbFiAyWBFVyy2lJKpKPsQ8Q8xDSyk2pDVj8NPckBzn
+         Y9uCNWd3SX9ZvrAf5oo6RVFryJTzufXS1kaa4ONSLGbN9SDdL3Jd+K/cdQUtZvquFeek
+         bX65bHaz7UOJgjpFkGK5GJ+oYBNpFZKneBqw5O3QhXQcT7N/0gvCJ/utJhTpBd3iv/Tg
+         zPgA==
+X-Gm-Message-State: AC+VfDymyv65zJId0XwlA6psI8YIgNi5zKAFSouNuoYGlw5p9I+8Z9kS
+        kE39wy4UB+uXlSIDSnkOfnjJEg==
+X-Google-Smtp-Source: ACHHUZ4oTgD6qat4+DrFYAq8xQnBw9gvkPPJOGVWwaYbnjBxuMA8auBmgKC3Rag8MC3HsFQv4HIigw==
+X-Received: by 2002:a5d:590e:0:b0:30a:e81f:ef32 with SMTP id v14-20020a5d590e000000b0030ae81fef32mr7200688wrd.13.1686228831681;
+        Thu, 08 Jun 2023 05:53:51 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1b90:b83e:29ce:beb6? ([2a01:e0a:982:cbb0:1b90:b83e:29ce:beb6])
+        by smtp.gmail.com with ESMTPSA id p19-20020a05600c205300b003f7cb42fa20sm1906181wmg.42.2023.06.08.05.53.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jun 2023 05:53:51 -0700 (PDT)
+Message-ID: <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+Date:   Thu, 8 Jun 2023 14:53:50 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
+ hw_onecell_data to drop NR_CLKS
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
+ <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
+Organization: Linaro Developer Services
+In-Reply-To: <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,27 +88,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enabled sc828x0xp lpasscc clock controller driver required for X13s laptop.
+On 08/06/2023 14:45, Jerome Brunet wrote:
+>>   
+>> +struct meson_a1_pll_clks {
+>> +	struct clk_hw **hw_clks;
+>> +	unsigned int hw_clk_num;
+>> +};
+>> +
+>> +static struct meson_a1_pll_clks a1_pll_clks = {
+>> +	.hw_clks = a1_pll_hw_clks,
+>> +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
+>> +};
+>> +
+>> +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
+>> +{
+>> +	const struct meson_a1_pll_clks *data = clk_data;
+>> +	unsigned int idx = clkspec->args[0];
+>> +
+>> +	if (idx >= data->hw_clk_num) {
+>> +		pr_err("%s: invalid index %u\n", __func__, idx);
+>> +		return ERR_PTR(-EINVAL);
+>> +	}
+>> +
+>> +	return data->hw_clks[idx];
+>> +}
+> 
+> I'd prefer to have a single struct type and and single custom
+> callback for the different SoC please.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Sure, I've written a common code for that, but I have a hard time finding
+a proper naming for it... so I choosed meson-clkc since it could have
+more common helper code for duplicated code over the clk driver:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e05706d3893d..bc5d75cf71de 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1185,6 +1185,7 @@ CONFIG_SC_GCC_7180=y
- CONFIG_SC_GCC_7280=y
- CONFIG_SC_GCC_8180X=y
- CONFIG_SC_GCC_8280XP=y
-+CONFIG_SC_LPASSCC_8280XP=m
- CONFIG_SDM_CAMCC_845=m
- CONFIG_SDM_GPUCC_845=y
- CONFIG_SDM_VIDEOCC_845=y
--- 
-2.25.1
+===================================><============================================================================
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index 8ce846fdbe43..9070dcfd9e71 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+  	tristate
+  	select COMMON_CLK_MESON_REGMAP
 
++config COMMON_CLK_MESON_CLKC
++	tristate
++
+  config COMMON_CLK_MESON_AO_CLKC
+  	tristate
+  	select COMMON_CLK_MESON_REGMAP
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index d5288662881d..13c6db466986 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -1,6 +1,7 @@
+  # SPDX-License-Identifier: GPL-2.0-only
+  # Amlogic clock drivers
+
++obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
+  obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+  obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
+  obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
+new file mode 100644
+index 000000000000..fa98b9d09011
+--- /dev/null
++++ b/drivers/clk/meson/meson-clkc.c
+@@ -0,0 +1,25 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
++ */
++
++#include <linux/of_device.h>
++#include <linux/clk-provider.h>
++#include <linux/module.h>
++#include "meson-clkc.h"
++
++struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
++{
++	const struct meson_clk_hw_data *data = clk_hw_data;
++	unsigned int idx = clkspec->args[0];
++
++	if (idx >= data->num) {
++		pr_err("%s: invalid index %u\n", __func__, idx);
++		return ERR_PTR(-EINVAL);
++	}
++
++	return data->hws[idx];
++}
++EXPORT_SYMBOL_GPL(meson_clk_hw_get);
++
++MODULE_LICENSE("GPL v2");
+diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
+new file mode 100644
+index 000000000000..e3bad2aa17eb
+--- /dev/null
++++ b/drivers/clk/meson/meson-clkc.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
++/*
++ * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
++ */
++
++#ifndef __MESON_HW_CLKC_H__
++#define __MESON_HW_CLKC_H__
++
++#include <linux/of_device.h>
++#include <linux/clk-provider.h>
++
++struct meson_clk_hw_data {
++	struct clk_hw	**hws;
++	unsigned int	num;
++};
++
++struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
++
++#endif
+===================================><============================================================================
+
+If it's ok I'll send a v2 using this.
+
+Thanks,
+Neil
