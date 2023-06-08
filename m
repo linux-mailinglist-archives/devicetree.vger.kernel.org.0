@@ -2,176 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D07D7280CF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 15:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 736497280D7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 15:03:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236579AbjFHNCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 09:02:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41776 "EHLO
+        id S236665AbjFHNC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 09:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236585AbjFHNCO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 09:02:14 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845F726B2
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 06:02:10 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-654f8b56807so489858b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 06:02:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1686229330; x=1688821330;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rr7qFKla7ah6JbnEELuOA7uWn8ojmtA0e2WLzBHM1Do=;
-        b=SyBSCPHikj8dMbiuAtY5QTeMPExmSxmHARZuvnR3p3D9EP+kTpT5fGCB0WrXgYrSr1
-         iwGCJsfBkp/X4JCYrA5YBl38hoigm2BTjdcl4Dj7pjhAlJJ/UrT+sqXz9CxXreY5oyvv
-         priIRTGQ739eTZAwzxa1kd/t1ouWI9fBCem75lJd85hmQluOFevbWa+U+H/68wcse0wC
-         y5Bj+rxP8QCn3aNUw55v/9wmLLiBbKdq32Tf0jnQyEU/l+XgFMxm2tVzMWNIAqYpH4U+
-         zegFgq77c7qGukiMxQQcwNKLLHm9aVNTE3pIEc+nlV7WC6X2JbR4PBJK539gKxQ9DUO5
-         lPQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686229330; x=1688821330;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rr7qFKla7ah6JbnEELuOA7uWn8ojmtA0e2WLzBHM1Do=;
-        b=K0EFpkssD0ZlcmwRYIl7zM404nEeCP5u4oTTfUa3L94MxbkZ9iTZhQ2m10aP3dfNvp
-         0fs3PYY2Fo2Sa58GPYwhN1yKWMJBz/hYR9+LhqCthOMFC3xkhQ175+sDVaPkuRSA0IDM
-         G1SUrRoQKbA0GqrhmOP31z2CSJ9nq4W/6ey34GCM1UqrSbj3sUsY38NIoxk6ZbIe07HV
-         O15TCqdvSjXuA3D4BT2zyBoiYctwbljgR+wLmNQXOe7wJiahapO99h+WpLJuszHtI0/D
-         qOZpdsG359NkKer6YcvgqGg7t8zbFm49k4iDugoxS6H6a/WT9hKeue8i7aM/LEY4lzPI
-         uvwg==
-X-Gm-Message-State: AC+VfDysRs1vJd374rsqZ1H1lkq0Oa03z4XxbJh0S+vnJ0Mz0kkO8poB
-        /e0FxMDVp30PNmoQIUApe7DKRw==
-X-Google-Smtp-Source: ACHHUZ69hMnJYjVL4lhiAv1kB3A2hivI5Bf8vWLWCsJPoBF0ymRcowxCGaxUHg3tJs/AR7UX8baE8A==
-X-Received: by 2002:a05:6a00:2d09:b0:658:8eae:a8de with SMTP id fa9-20020a056a002d0900b006588eaea8demr10426297pfb.4.1686229329266;
-        Thu, 08 Jun 2023 06:02:09 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.214])
-        by smtp.gmail.com with ESMTPSA id g12-20020a62e30c000000b0065438394fa4sm1111371pfh.90.2023.06.08.06.02.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 06:02:08 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH v4 2/2] HID: i2c-hid: elan: Add ili9882t timing
-Date:   Thu,  8 Jun 2023 21:01:47 +0800
-Message-Id: <20230608130147.2835818-3-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230608130147.2835818-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20230608130147.2835818-1-yangcong5@huaqin.corp-partner.google.com>
+        with ESMTP id S236611AbjFHNC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 09:02:56 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3645A1707;
+        Thu,  8 Jun 2023 06:02:54 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3589O9ll007584;
+        Thu, 8 Jun 2023 15:02:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=ejaaba8UeVacQJUONM9cP7HN8p5aNxGX9BhxAgM9wSo=;
+ b=1CFxNfxJ1wZVeNhvewqeLwZoTmY1mz386EXF4XegWKT9SSqGXbctAuUaYP0nT72tHT45
+ UFhPe6UE17w3GVPHPye2EakQ0nRUIXl+qTgivJKM+c1z/+j5bdZvjLr2sj28TdJ3/lD7
+ iU7/kdXR1jmToXjfBH38irl8qAMshc6SKeEVItyL+wbCJ1uxo0v/HRxdstQcto70f4jD
+ d5+s/IdFO0RW83EbFIFQjgKakI50Myq6t8bqxUjSj0bIXGh7RsibV5/WKbDMFS6xqAAA
+ MbiYUuWRPrOea9Ux0Vo63QrEzqlYMDUCYkpheewAA8fH0NyN47TUVQp74oi+wOkFkCs2 9w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r3cax1e8x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 08 Jun 2023 15:02:36 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AD57C10003B;
+        Thu,  8 Jun 2023 15:02:35 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A57C122F7AE;
+        Thu,  8 Jun 2023 15:02:35 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 8 Jun
+ 2023 15:02:35 +0200
+Message-ID: <b693811d-ac17-193e-377e-8859f8dedd89@foss.st.com>
+Date:   Thu, 8 Jun 2023 15:02:34 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 6/8] ARM: dts: stm32: Add pinmux groups for Linux
+ Automation GmbH TAC
+Content-Language: en-US
+To:     =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <kernel@pengutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230607115508.2964574-1-l.goehrs@pengutronix.de>
+ <20230607115508.2964574-6-l.goehrs@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230607115508.2964574-6-l.goehrs@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-08_09,2023-06-08_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ili9882t is a TDDI IC (Touch with Display Driver). The
-datasheet specifies there should be 60ms between touch SDA
-sleep and panel RESX. Doug's series[1] allows panels and
-touchscreens to power on/off together, so we can add the 65 ms
-delay in i2c_hid_core_suspend before panel_unprepare.
+Hi
 
-Beacuse ilitek9882 touchscrgeen is a panel follower, and
-needs to use vccio-supply instead of vcc33-supply, so set
-it "null" to ili9882t_chip_data, then using dummy regulator.
+On 6/7/23 13:55, Leonard Göhrs wrote:
+> Add pinmux groups required for the Linux Automation GmbH TAC.
+> 
+> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+> ---
+>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 129 +++++++++++++++++++++++
+>   1 file changed, 129 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> index e86d989dd351d..0c864461ca449 100644
+> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> @@ -6,6 +6,17 @@
+>   #include <dt-bindings/pinctrl/stm32-pinfunc.h>
+>   
+>   &pinctrl {
+> +	adc1_ain_pins_a: adc1-ain-0 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('F', 11, ANALOG)>, /* ADC1_INP2 */
+> +				 <STM32_PINMUX('B', 1, ANALOG)>, /* ADC1_INP5 */
+> +				 <STM32_PINMUX('B', 0, ANALOG)>, /* ADC1_INP9 */
+> +				 <STM32_PINMUX('C', 0, ANALOG)>, /* ADC1_INP10 */
+> +				 <STM32_PINMUX('C', 3, ANALOG)>, /* ADC1_INP13 */
+> +				 <STM32_PINMUX('A', 3, ANALOG)>; /* ADC1_INP15 */
+> +		};
+> +	};
+> +
+>   	adc1_in6_pins_a: adc1-in6-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 12, ANALOG)>;
+> @@ -341,6 +352,46 @@ pins1 {
+>   		};
+>   	};
+>   
+> +	ethernet0_rgmii_pins_d: rgmii-1 {
 
-[1]: https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromium.org
+xxx_pins_d is already defined for rgmii-3, it should be xxx_pins_e
+And rgmii-1 is already defined, it should be rgmii-4. Don't forget to 
+update boards files with new pinctrl names in eth node.
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
- drivers/hid/i2c-hid/i2c-hid-of-elan.c | 33 +++++++++++++++++++++------
- 1 file changed, 26 insertions(+), 7 deletions(-)
+please rebase on top of stm32-next branch.
 
-diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-index 76ddc8be1cbb..40e6b8ebe8d1 100644
---- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-+++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-@@ -18,9 +18,11 @@
- #include "i2c-hid.h"
- 
- struct elan_i2c_hid_chip_data {
--	unsigned int post_gpio_reset_delay_ms;
-+	unsigned int post_gpio_reset_on_delay_ms;
-+	unsigned int post_gpio_reset_off_delay_ms;
- 	unsigned int post_power_delay_ms;
- 	u16 hid_descriptor_address;
-+	const char *main_supply_name;
- };
- 
- struct i2c_hid_of_elan {
-@@ -52,8 +54,8 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
- 		msleep(ihid_elan->chip_data->post_power_delay_ms);
- 
- 	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
--	if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
--		msleep(ihid_elan->chip_data->post_gpio_reset_delay_ms);
-+	if (ihid_elan->chip_data->post_gpio_reset_on_delay_ms)
-+		msleep(ihid_elan->chip_data->post_gpio_reset_on_delay_ms);
- 
- 	return 0;
- }
-@@ -64,6 +66,9 @@ static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
- 		container_of(ops, struct i2c_hid_of_elan, ops);
- 
- 	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
-+	if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
-+		msleep(ihid_elan->chip_data->post_gpio_reset_off_delay_ms);
-+
- 	regulator_disable(ihid_elan->vccio);
- 	regulator_disable(ihid_elan->vcc33);
- }
-@@ -89,24 +94,38 @@ static int i2c_hid_of_elan_probe(struct i2c_client *client)
- 	if (IS_ERR(ihid_elan->vccio))
- 		return PTR_ERR(ihid_elan->vccio);
- 
--	ihid_elan->vcc33 = devm_regulator_get(&client->dev, "vcc33");
-+	ihid_elan->chip_data = device_get_match_data(&client->dev);
-+
-+	ihid_elan->vcc33 = devm_regulator_get(&client->dev, ihid_elan->chip_data->main_supply_name);
- 	if (IS_ERR(ihid_elan->vcc33))
- 		return PTR_ERR(ihid_elan->vcc33);
- 
--	ihid_elan->chip_data = device_get_match_data(&client->dev);
--
- 	return i2c_hid_core_probe(client, &ihid_elan->ops,
- 				  ihid_elan->chip_data->hid_descriptor_address, 0);
- }
- 
- static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_data = {
- 	.post_power_delay_ms = 1,
--	.post_gpio_reset_delay_ms = 300,
-+	.post_gpio_reset_on_delay_ms = 300,
-+	.hid_descriptor_address = 0x0001,
-+	.main_supply_name = "vcc33",
-+};
-+
-+static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_data = {
-+	.post_power_delay_ms = 1,
-+	.post_gpio_reset_on_delay_ms = 200,
-+	.post_gpio_reset_off_delay_ms = 65,
- 	.hid_descriptor_address = 0x0001,
-+	/* this touchscreen is tightly integrated with the panel and assumes
-+	 * that the relevant power rails (other than the IO rail) have already
-+	 * been turned on by the panel driver because we're a panel follower.
-+	 */
-+	.main_supply_name = "null",
- };
- 
- static const struct of_device_id elan_i2c_hid_of_match[] = {
- 	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
-+	{ .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
--- 
-2.25.1
+> +		pins1 {
+> +			pinmux = <STM32_PINMUX('G', 4, AF11)>, /* ETH_RGMII_GTX_CLK */
+> +				 <STM32_PINMUX('G', 13, AF11)>, /* ETH_RGMII_TXD0 */
+> +				 <STM32_PINMUX('G', 14, AF11)>, /* ETH_RGMII_TXD1 */
+> +				 <STM32_PINMUX('C', 2, AF11)>, /* ETH_RGMII_TXD2 */
+> +				 <STM32_PINMUX('E', 2, AF11)>, /* ETH_RGMII_TXD3 */
+> +				 <STM32_PINMUX('B', 11, AF11)>; /* ETH_RGMII_TX_CTL */
+> +			bias-disable;
+> +			drive-push-pull;
+> +			slew-rate = <2>;
+> +		};
+> +		pins2 {
+> +			pinmux = <STM32_PINMUX('C', 4, AF11)>, /* ETH_RGMII_RXD0 */
+> +				 <STM32_PINMUX('C', 5, AF11)>, /* ETH_RGMII_RXD1 */
+> +				 <STM32_PINMUX('H', 6, AF11)>, /* ETH_RGMII_RXD2 */
+> +				 <STM32_PINMUX('H', 7, AF11)>, /* ETH_RGMII_RXD3 */
+> +				 <STM32_PINMUX('A', 1, AF11)>, /* ETH_RGMII_RX_CLK */
+> +				 <STM32_PINMUX('A', 7, AF11)>; /* ETH_RGMII_RX_CTL */
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	ethernet0_rgmii_sleep_pins_d: rgmii-sleep-1 {
+
+xxx_pins_d is already defined for rgmii-3, it should be xxx_pins_e
+rgmii-sleep-1 is already defined, it should be rgmii-sleep-4
+
+
+
+> +		pins1 {
+> +			pinmux = <STM32_PINMUX('G', 4, ANALOG)>, /* ETH_RGMII_GTX_CLK */
+> +				 <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RGMII_TXD0 */
+> +				 <STM32_PINMUX('G', 14, ANALOG)>, /* ETH_RGMII_TXD1 */
+> +				 <STM32_PINMUX('C', 2, ANALOG)>, /* ETH_RGMII_TXD2 */
+> +				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RGMII_TXD3 */
+> +				 <STM32_PINMUX('B', 11, ANALOG)>, /* ETH_RGMII_TX_CTL */
+> +				 <STM32_PINMUX('C', 4, ANALOG)>, /* ETH_RGMII_RXD0 */
+> +				 <STM32_PINMUX('C', 5, ANALOG)>, /* ETH_RGMII_RXD1 */
+> +				 <STM32_PINMUX('H', 6, ANALOG)>, /* ETH_RGMII_RXD2 */
+> +				 <STM32_PINMUX('H', 7, ANALOG)>, /* ETH_RGMII_RXD3 */
+> +				 <STM32_PINMUX('A', 1, ANALOG)>, /* ETH_RGMII_RX_CLK */
+> +				 <STM32_PINMUX('A', 7, ANALOG)>; /* ETH_RGMII_RX_CTL */
+> +		 };
+> +	};
+> +
+>   	ethernet0_rmii_pins_a: rmii-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH1_RMII_TXD0 */
+> @@ -1104,6 +1155,20 @@ pins {
+>   		};
+>   	};
+>   
+> +	pwm1_pins_c: pwm1-2 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('E', 11, AF1)>; /* TIM1_CH2 */
+> +			drive-push-pull;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +
+> +	pwm1_sleep_pins_c: pwm1-sleep-2 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('E', 11, ANALOG)>; /* TIM1_CH2 */
+> +		};
+> +	};
+> +
+>   	pwm2_pins_a: pwm2-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 3, AF1)>; /* TIM2_CH4 */
+> @@ -1230,6 +1295,26 @@ pins {
+>   		};
+>   	};
+>   
+> +	pwm8_pins_b: pwm8-1 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('I', 5, AF3)>, /* TIM8_CH1 */
+> +				 <STM32_PINMUX('I', 6, AF3)>, /* TIM8_CH2 */
+> +				 <STM32_PINMUX('I', 7, AF3)>, /* TIM8_CH3 */
+> +				 <STM32_PINMUX('C', 9, AF3)>; /* TIM8_CH4 */
+> +			drive-push-pull;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +
+> +	pwm8_sleep_pins_b: pwm8-sleep-1 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('I', 5, ANALOG)>, /* TIM8_CH1 */
+> +				 <STM32_PINMUX('I', 6, ANALOG)>, /* TIM8_CH2 */
+> +				 <STM32_PINMUX('I', 7, ANALOG)>, /* TIM8_CH3 */
+> +				 <STM32_PINMUX('C', 9, ANALOG)>; /* TIM8_CH4 */
+> +		};
+> +	};
+> +
+>   	pwm12_pins_a: pwm12-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('H', 6, AF2)>; /* TIM12_CH1 */
+> @@ -1925,6 +2010,20 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	spi2_pins_c: spi2-2 {
+> +		pins1 {
+> +			pinmux = <STM32_PINMUX('I', 1, AF5)>, /* SPI2_SCK */
+> +				 <STM32_PINMUX('I', 3, AF5)>; /* SPI2_MOSI */
+> +			bias-disable;
+> +			drive-push-pull;
+> +		};
+> +
+> +		pins2 {
+> +			pinmux = <STM32_PINMUX('I', 2, AF5)>; /* SPI2_MISO */
+> +			bias-pull-down;
+> +		};
+> +	};
+> +
+>   	spi4_pins_a: spi4-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('E', 12, AF5)>, /* SPI4_SCK */
+> @@ -1939,6 +2038,21 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	spi5_pins_a: spi5-0 {
+> +		pins1 {
+> +			pinmux = <STM32_PINMUX('F', 7, AF5)>, /* SPI5_SCK */
+> +				 <STM32_PINMUX('F', 9, AF5)>; /* SPI5_MOSI */
+> +			bias-disable;
+> +			drive-push-pull;
+> +			slew-rate = <1>;
+> +		};
+> +
+> +		pins2 {
+> +			pinmux = <STM32_PINMUX('F', 8, AF5)>; /* SPI5_MISO */
+> +			bias-disable;
+> +		};
+> +	};
+> +
+>   	stusb1600_pins_a: stusb1600-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('I', 11, GPIO)>;
+> @@ -2385,6 +2499,21 @@ pins {
+>   		};
+>   	};
+>   
+> +	usart3_pins_f: usart3-5 {
+> +		pins1 {
+> +			pinmux = <STM32_PINMUX('B', 10, AF7)>, /* USART3_TX */
+> +				 <STM32_PINMUX('D', 12, AF7)>; /* USART3_RTS */
+> +			bias-disable;
+> +			drive-push-pull;
+> +			slew-rate = <0>;
+> +		};
+> +		pins2 {
+> +			pinmux = <STM32_PINMUX('B', 12, AF8)>, /* USART3_RX */
+> +				 <STM32_PINMUX('D', 11, AF7)>; /* USART3_CTS_NSS */
+> +			bias-disable;
+> +		};
+> +	};
+> +
+>   	usbotg_hs_pins_a: usbotg-hs-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 10, ANALOG)>; /* OTG_ID */
 
