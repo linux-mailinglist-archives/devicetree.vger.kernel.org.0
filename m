@@ -2,111 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 581E3728163
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 15:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D01728179
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 15:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236034AbjFHNb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 09:31:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55656 "EHLO
+        id S235784AbjFHNh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 09:37:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234860AbjFHNb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 09:31:27 -0400
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD9E2132;
-        Thu,  8 Jun 2023 06:31:27 -0700 (PDT)
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-53f8da65701so274990a12.1;
-        Thu, 08 Jun 2023 06:31:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686231086; x=1688823086;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S233553AbjFHNhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 09:37:24 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E991BE4
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 06:37:23 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-77493b3d18cso23438339f.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 06:37:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686231443; x=1688823443;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XRqj58C8pYpu1XDpc+2hHsnEGG/QxXyNU9pVD74tezk=;
-        b=T8c6z+/meJJfExc1XZ6IqoB6w5/Ds9X+eEzZJFPggvHZVZsC45gaPPP2Ek29EftnVW
-         HqBw6FS+Y0ayd/BnERL5F+NXkZrEeIXrq19wSxV7SQ53NYYvf2pKNAc9LoTS2R+lBws/
-         cWIXVAv3GhCS4JvoEN6wT8z3u+X/2trxuGNWDD+BazBVvyLm08NpSWbgjl4qxAyErukv
-         DHGgw732HNDeS6AfTJg1IfrHQpPGK+E8Wd6dcaQchwSzPs/fOl3cvbNN17BBCBS0H5pb
-         aEQbDm4QChdM6s05wsHIFn0wdqOyOFZJ5YcGqmaP7Xj5ZUYcjkKOHxuE8Vu4r1Ob31sB
-         rVBg==
-X-Gm-Message-State: AC+VfDyaIGPHDT/A9v7H9pRxieEQ5m1UVeo+BidtaOv6PC+/IIJyCGiu
-        mA6N2Sjmy+1M5oX/C1a+xd3Lx4QUlA==
-X-Google-Smtp-Source: ACHHUZ7zfEDBaz7TitVH801t5XSqvDe56RLQsqFwWxTkOgQ8TaBd5ZsgN50RZIkbgPcTYx/PUVg/JA==
-X-Received: by 2002:a6b:e218:0:b0:77a:c808:3c89 with SMTP id z24-20020a6be218000000b0077ac8083c89mr3795158ioc.20.1686231065546;
-        Thu, 08 Jun 2023 06:31:05 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id k19-20020a02cb53000000b0040fad79ac08sm277037jap.89.2023.06.08.06.31.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 06:31:04 -0700 (PDT)
-Received: (nullmailer pid 2431996 invoked by uid 1000);
-        Thu, 08 Jun 2023 13:31:02 -0000
-Date:   Thu, 8 Jun 2023 07:31:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alex Shi <alexs@kernel.org>,
-        Yanteng Si <siyanteng@loongson.cn>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] docs: dt: fix documented Primecell compatible
- string
-Message-ID: <20230608133102.GA2357591-robh@kernel.org>
-References: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
- <878regbbr7.fsf@tarshish>
- <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
- <878re8741n.fsf@tarshish>
- <03806421-73ac-0d82-f1cb-e54c2e8f27e9@linaro.org>
- <87o7mt6grr.fsf@tarshish>
+        bh=6BDWspg0bM2Mt6zZ21elLYpHVPdFq4+1NTztyTSOtN8=;
+        b=Yx5hADhQ1JwJflzJ5flaNLeAK2dNgMiX+Fa5F9dRXR7vcajfD1kutlUiR1OJPEglwY
+         iihX5igd+nldOjtHf1p7FNuass43dFLY0aLqgLOQu+YoKh61dVe1F/cxu1k3wYKZJYpI
+         eEGGGM69AYvLYR0H927zGkB+7mKOQrLIJlPKE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686231443; x=1688823443;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6BDWspg0bM2Mt6zZ21elLYpHVPdFq4+1NTztyTSOtN8=;
+        b=LsY41oKtkvkKVyR5zGbaRbBZUps4nHLJBbaYVIZwmXzz/hUqApWHFwdLlyJetdbr7l
+         RJoFzmd68bmRom0zbhHO0iCHKHZcctPSAZickTTYoqJR9BOr4zbCIE7T02I0aFr32T5U
+         9IrRD/hzaVrbge3CZCLyyINhH+uNIRayFXhxExm6ReWfDN5NFCTKV8fM9+23R5GcGzIu
+         OXtPVcJVKUKlWbC2vbmAtRKyiU4Twxne6koPGlgO/3SmnSpIN9/Wrflhu7nzNCDFofjj
+         h/e5q+HYS/lBkmmctFL+fRYYuJR2Cst0JnHauo/HKH3cVYY7OoxXcVIOfwPyWLSV5AvE
+         QCxw==
+X-Gm-Message-State: AC+VfDw4tsc2+L25y9jO/xLGfVHKs6wcdQNW1jHZGGJqLAbwFVRD7PR6
+        nM0DEB6PcMy0U23g2E84j5aKGHteEgU+4hV6Y8s=
+X-Google-Smtp-Source: ACHHUZ6irclSBKcBd5FbKJRgHSJAqECL496SF8FyeH1OeLG6QBsf2MnllUywXZb2jFLtBAlpC3fcjQ==
+X-Received: by 2002:a6b:d818:0:b0:777:b175:d11e with SMTP id y24-20020a6bd818000000b00777b175d11emr12747955iob.2.1686231442779;
+        Thu, 08 Jun 2023 06:37:22 -0700 (PDT)
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com. [209.85.166.177])
+        by smtp.gmail.com with ESMTPSA id t12-20020a02ccac000000b0041d7ee2e8ccsm274661jap.99.2023.06.08.06.37.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jun 2023 06:37:19 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-33b7f217dd0so136465ab.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 06:37:19 -0700 (PDT)
+X-Received: by 2002:a05:6e02:1d90:b0:335:6626:9f38 with SMTP id
+ h16-20020a056e021d9000b0033566269f38mr239729ila.0.1686231439005; Thu, 08 Jun
+ 2023 06:37:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87o7mt6grr.fsf@tarshish>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230608130147.2835818-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230608130147.2835818-2-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20230608130147.2835818-2-yangcong5@huaqin.corp-partner.google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 8 Jun 2023 06:37:06 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VTvZZA=AenE5vFMtrUVqLAp+RZMoZFU5t7R6tNpvnvjQ@mail.gmail.com>
+Message-ID: <CAD=FV=VTvZZA=AenE5vFMtrUVqLAp+RZMoZFU5t7R6tNpvnvjQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: HID: i2c-hid: ilitek: Introduce
+ bindings for Ilitek ili9882t
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, hsinyi@google.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 09, 2023 at 11:36:18AM +0300, Baruch Siach wrote:
-> Hi Krzysztof,
-> 
-> On Mon, May 01 2023, Krzysztof Kozlowski wrote:
-> > On 01/05/2023 12:01, Baruch Siach wrote:
-> >> On Mon, May 01 2023, Krzysztof Kozlowski wrote:
-> >>> On 25/04/2023 10:31, Baruch Siach wrote:
-> >>>> On Mon, Apr 24 2023, Baruch Siach wrote:
-> >>>>> Only arm,primecell is documented as compatible string for Primecell
-> >>>>> peripherals. Current code agrees with that.
-> >>>>
-> >>>> Once again my patches do not show up in patchwork. But they do show in
-> >>>> lore:
-> >>>>
-> >>>>   https://lore.kernel.org/linux-devicetree/9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il/
-> >>>
-> >>> You used subject prefix which targets Doc subsystem, but did not Cc Doc
-> >>> maintainers (get_maintainers do not print them). If you target Rob's
-> >>> Patchwork, probably you need to fix subject prefix. There is no "dt" prefix.
-> >> 
-> >> Thanks for the tip.
-> >> 
-> >> All previous commits touching Documentation/devicetree/usage-model.rst
-> >> use 'docs' for subject prefix, including one from Rob. I followed this
-> >> example.
-> >
-> > Hm, I see Rob and others indeed used "dt:". I guess Rob's filters might
-> > need some updates?
-> 
-> With the merge window behind us, is there anything more I need to do to
-> get these trivial patches applied?
+Hi,
 
-Sorry about this. There's a few things that PW doesn't capture and this 
-is one of them. And then I've been out the last month.
+On Thu, Jun 8, 2023 at 6:02=E2=80=AFAM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/ilitek,ili9882t.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Ilitek ili9882t touchscreen controller
+> +
+> +maintainers:
+> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-Both applied now.
+Has Dmitry agreed to be the maintainer here? Traditionally when adding
+a new file one lists themselves.
 
-Rob
+
+> +description:
+> +  Supports the Ilitek ili9882t touchscreen controller.
+> +  This touchscreen controller uses the i2c-hid protocol with a reset GPI=
+O.
+> +
+> +allOf:
+> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ilitek,ili9882t
+> +
+> +  reg:
+> +    const: 0x41
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  panel: true
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: Reset GPIO.
+> +
+> +
+> +  vccio-supply:
+> +    description: The 1.8V supply to the touchscreen.
+
+Why two blank lines between reset-gpios and vccio-supply?
+
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - vccio-supply
+
+I think you want "panel" as a required property too, right?
+
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      touchscreen: touchscreen@41 {
+> +        compatible =3D "ilitek,ili9882t";
+> +        reg =3D <0x41>;
+> +
+> +        interrupt-parent =3D <&pio>;
+> +        interrupts =3D <12 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +        reset-gpios =3D <&pio 60 GPIO_ACTIVE_LOW>;
+> +        vccio-supply =3D <&mt6366_vio18_reg>;
+
+...and "panel" would also need to go in the above example.
