@@ -2,68 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F307279E8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB467279EE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:28:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233679AbjFHI1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 04:27:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33600 "EHLO
+        id S234046AbjFHI2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 04:28:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230499AbjFHI1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:27:30 -0400
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0906269E;
-        Thu,  8 Jun 2023 01:27:29 -0700 (PDT)
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-33b00ce51caso779175ab.2;
-        Thu, 08 Jun 2023 01:27:29 -0700 (PDT)
+        with ESMTP id S232262AbjFHI2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:28:51 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B5D2700
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 01:28:49 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51480d3e161so455072a12.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 01:28:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686212928; x=1688804928;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mecQ34dk2V9y6dj5rR+/RnPx6Aef7iQYAh5UFotv1xo=;
+        b=YOuXdQwTL0HiqsuDJ2OMmCSusM9E5OEW/ovbK+fy8/Ndz8cb5RyF1n1QlhilBzqeuW
+         3gh1zTvG7WUB5wCr1NkVXEkhHxJz0Trn77gbdHJJognIYkXNmesScC2h0fmtNIqjfXbx
+         x49RK2FCpm0zpnOYjCZCX+484Cl6Pci7GslevrHsQaDcqjg1AlluAsffRhUhYsAlPvKx
+         bDSg5N7ErAgUIy61k/pu9d1PUZmuyRcsvKmYRiTlCcht9U3ykifmVK67IUhQx8dMq/uC
+         fhw8bo73cYfBu2SDg/LVekXM9dRtn6e+a2whScQPYNpfoMrma0HY+C21DJONkNdMlhb1
+         iy1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686212849; x=1688804849;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4vk0QrxAJZUCwNeUbkMMvVo1zLXlArkwoqu5OxCPG/U=;
-        b=ejJoQe/iLQ/TWRHmnpQJdmSB1IYftpH3uRDXgkbe4C6LBumHFkX7mM9mfPptyn3tLL
-         JjzkNxG/tDGQgQ/5Bw5fuFElQUYX6MQ5enktxNn4j74qpm0cp9TyobhV80XplBaFbIAl
-         GIFiW02z79tzUBKr72fi8NpupTBPv2B7eJhfkbKgNgVFZVCB1sWXq8zjlFYzpFo7qwB3
-         osm1FYmFZgr3HUQzYTXzahvGjbbDq3P/Nri0YphHo+/9FaMx5Hx0wJ/EqRBipJgN7YSC
-         c6BxinlFcyyzWVf4t0ZKiyfzAkh1GEqHivrXmeVArl1LXIUiH+bvgpmKSpjW9TqG1AOn
-         goLg==
-X-Gm-Message-State: AC+VfDz2JmcxsS8CnqWhpCLibqVYhOH3JAjQMebr3PiPkhGOE/g7m3Z/
-        10V7WdxFXtxI8mKmU+vDzA==
-X-Google-Smtp-Source: ACHHUZ619U2Ip5Lt8XRETTrvzYz6uAXH+LDeKR/g/LcFeC1bXxSA/7mpU+wN8RWZK1WLeyWpRxtq+Q==
-X-Received: by 2002:a92:cc0b:0:b0:33a:9a68:35ff with SMTP id s11-20020a92cc0b000000b0033a9a6835ffmr8400244ilp.26.1686212848800;
-        Thu, 08 Jun 2023 01:27:28 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id j3-20020a02cc63000000b0040f91a65669sm152296jaq.21.2023.06.08.01.27.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 01:27:28 -0700 (PDT)
-Received: (nullmailer pid 1409955 invoked by uid 1000);
-        Thu, 08 Jun 2023 08:27:25 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1686212928; x=1688804928;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mecQ34dk2V9y6dj5rR+/RnPx6Aef7iQYAh5UFotv1xo=;
+        b=GaS0D73r6EfYUduR9Gcw3CWOg5VMGAMJb2LmS+lD8mkFeP2s9ReRTzXdfGx35Y3juB
+         piTqH8hhbysBf5oNcLcb4Df9cyNWwIxD7ZriiDIhIAxwMCpQh8DvbaZvw2M8A1l/dfAi
+         AZkpewyfVXs/g+Y9Lrq/0GlMTftR/Qg3emR/srpyc/MjO2bbOY9LZ/D2NLyjnkQa45rF
+         4LiuHTdfrb+UAwVHblO7Q0dguqpRmNO0rB8IN8OtNRYDUraTn6YhmPciGzvn6IYa4FdV
+         0f10EusDpSIOmyL0Hyd8Tii7Nk8LLkXwzPgaasCzRAHrl3bTGvVgVzQcMQ8RZzW0Nn7j
+         bGYA==
+X-Gm-Message-State: AC+VfDzBZ9pUEayPtVunymEEu46PvfiP9lyU8wV4AllWPezJ7aStENXt
+        PWspVTkBFvG0uDsZ41WGWEFc+dB3LDu357Rw7eQ=
+X-Google-Smtp-Source: ACHHUZ5QenQx/QeD/48u6FI2zqKtnWEaRxUQn7l0QY2Xhr1/LIy4nn8DwP/ooeoVFbjEmpIbtoTK5Q==
+X-Received: by 2002:a17:907:3f9a:b0:96f:8666:5fc4 with SMTP id hr26-20020a1709073f9a00b0096f86665fc4mr10730952ejc.50.1686212928223;
+        Thu, 08 Jun 2023 01:28:48 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id h20-20020a170906855400b009787062d21csm386574ejy.77.2023.06.08.01.28.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jun 2023 01:28:47 -0700 (PDT)
+Message-ID: <b941c06f-7f7d-1364-a7f5-be5905112cac@linaro.org>
+Date:   Thu, 8 Jun 2023 10:28:44 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 4/5] dt-bindings: phy: realtek: Add the doc about the
+ Realtek SoC USB 2.0 PHY
+To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20230531-rpm-rproc-v2-5-56a4a00c8260@gerhold.net>
-References: <20230531-rpm-rproc-v2-0-56a4a00c8260@gerhold.net>
- <20230531-rpm-rproc-v2-5-56a4a00c8260@gerhold.net>
-Message-Id: <168621284569.1409937.7016655911882350618.robh@kernel.org>
-Subject: Re: [PATCH v2 05/12] dt-bindings: remoteproc: Add Qualcomm RPM
- processor/subsystem
-Date:   Thu, 08 Jun 2023 02:27:25 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ray Chi <raychi@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+References: <20230607062500.24669-1-stanley_chang@realtek.com>
+ <20230607062500.24669-4-stanley_chang@realtek.com>
+ <7cce1d72-6b4d-9fff-32bc-942193388134@linaro.org>
+ <8a88cbee5c6245f2941c700b2bb30697@realtek.com>
+ <7df8ffb6-a544-d10e-5273-fd6c4b368b20@linaro.org>
+ <7d503e3028a7487a9a087cfa061fff9d@realtek.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <7d503e3028a7487a9a087cfa061fff9d@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,68 +95,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 08 Jun 2023 09:10:25 +0200, Stephan Gerhold wrote:
-> On Qualcomm platforms, most subsystems (e.g. audio/modem DSP) are
-> described as remote processors in the device tree, with a dedicated
-> node where properties and services related to them can be described.
+On 08/06/2023 10:21, Stanley Chang[昌育德] wrote:
 > 
-> The Resource Power Manager (RPM) is also such a subsystem, with a
-> remote processor that is running a special firmware. Unfortunately,
-> the RPM never got a dedicated node representing it properly in the
-> device tree. Most of the RPM services are described below a top-level
-> /smd or /rpm-glink node.
+>>> Maybe I use the word "control power domain" is not well, I just want to
+>> control the ldo of usb phy.
+>>> Revised:
+>>> The phandle of syscon used to control the ldo of USB PHY.
+>>
+>> Isn't this still a power domain?
 > 
-> However, SMD/GLINK is just one of the communication channels to the RPM
-> firmware. For example, the MPM interrupt functionality provided by the
-> RPM does not use SMD/GLINK but writes directly to a special memory
-> region allocated by the RPM firmware in combination with a mailbox.
-> Currently there is no good place in the device tree to describe this
-> functionality. It doesn't belong below SMD/GLINK but it's not an
-> independent top-level device either.
+> I only control a register, it is not needed a driver of power domain.
+
+Aren't many power domains just a registers? What about other drivers?
+Don't you want in other driver control LDO of something else? And in
+other something else?
+
 > 
-> Introduce a new "qcom,rpm-proc" compatible that allows describing the
-> RPM as a remote processor/subsystem like all others. The SMD/GLINK node
-> is moved to a "smd-edge"/"glink-edge" subnode consistent with other
-> existing bindings. Additional subnodes (e.g. interrupt-controller for
-> MPM, rpm-master-stats) can be also added there.
 > 
-> Deprecate using the old top-level /smd node since all SMD edges
-> are now specified as subnodes of the remote processor.
+>>>
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  "^phy@[0-3]+$":
+>>>>> +    type: object
+>>>>> +    description:
+>>>>> +      Each sub-node is a PHY device for one XHCI controller.
+>>>>
+>>>> I don't think it is true. You claim above that you have 0 as
+>>>> phy-cells, means you have one phy. Here you say you can have up to 4 phys.
+>>>
+>>> I mean the driver can support up to 4 phys.
+>>
+>> What driver can or cannot do, does not matter. This is about hardware.
+>>
+>>> For RTD1295 has only one phy.
+>>> For RTD1395 has two phys.
+>>
+>> Two phys? So how do you reference them when cells=0?
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> This patch is based on qcom/for-next, since it needs the new
-> qcom,rpm-master-stats.yaml schema that is only applied there.
-> ---
->  .../bindings/remoteproc/qcom,rpm-proc.yaml         | 171 +++++++++++++++++++++
->  .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml |   6 +-
->  .../devicetree/bindings/soc/qcom/qcom,smd.yaml     |   7 +
->  3 files changed, 181 insertions(+), 3 deletions(-)
 > 
+> About RTD1395 SoCs USB
+>   XHCI controller#1 -- usb2phy -- phy#0
+>                           |- phy#1
+> One xhci controller map to one phy driver.
+> And one phy driver have two phys (phy@0 and phy@1).
+> 
+> Maybe the "phy" name is confusing.
+> This "phy" not mean a phy driver.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+We do not talk about drivers, but DTS and hardware.
 
-yamllint warnings/errors:
+> Would "port" be more appropriate? 
+> 
+> For example,
+> Using phy@0 and phy@1:
+>     usb_port1_usb2phy: usb-phy@13c14 {
+>         compatible = "realtek,rtd1395-usb2phy", "realtek,usb2phy";
+>         reg = <0x132c4 0x4>, <0x31280 0x8>;
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+>         #phy-cells = <0>;
+>         realtek,usb-ctrl = <&usb_ctrl>;
+> 
+>         phy@0 {
+>             reg = <0>;
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/remoteproc/qcom,rpm-proc.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/soc/qcom/qcom,rpm-master-stats.yaml
+So such child is a NAK... you have nothing here. But it's unrelated topic.
 
-doc reference errors (make refcheckdocs):
+>         };
+>         phy@1 {
+>             reg = <1>;
+>         };
+>     };
+> 
+> Change: port@0 and port@1
+>     usb_port1_usb2phy: usb-phy@13c14 {
+>         compatible = "realtek,rtd1395-usb2phy", "realtek,usb2phy";
+>         reg = <0x132c4 0x4>, <0x31280 0x8>;
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+>         #phy-cells = <0>;
+>         realtek,usb-ctrl = <&usb_ctrl>;
+> 
+>         prot@0 {
+>             reg = <0>;
+>         };
+>         port@1 {
+>             reg = <1>;
+>         };
+>     };
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230531-rpm-rproc-v2-5-56a4a00c8260@gerhold.net
+This is not the answer. This is the provider. How do you reference it
+from the consumer.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Upstream your entire DTS. It's frustrating to try to understand your DTS
+from pieces of information you are sharing. Also very time consuming and
+you are not the only one sending patches for review...
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
