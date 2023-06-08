@@ -2,62 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08615728779
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 20:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB94A728801
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 21:17:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234046AbjFHStI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 14:49:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51022 "EHLO
+        id S236509AbjFHTRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 15:17:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233710AbjFHStI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 14:49:08 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0121FDF;
-        Thu,  8 Jun 2023 11:49:06 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-777a4926555so37979639f.0;
-        Thu, 08 Jun 2023 11:49:06 -0700 (PDT)
+        with ESMTP id S236575AbjFHTRo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 15:17:44 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102F630F5;
+        Thu,  8 Jun 2023 12:17:10 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-33b36a9fdf8so4457425ab.2;
+        Thu, 08 Jun 2023 12:17:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686250146; x=1688842146;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jIKmCroANEKPOHzkl2knynvAkLLXALNRwLAU/LLLoFY=;
-        b=HN4WVSgpUIux3s1+jg7G9Th0hEPUMa3fYDXz1HFHbzIPG7yyyuoneMc3qF4mLbwg/Q
-         iwL81yBa5Z0U2yDZ0U/fP5m2rjO11vSbADtrCXkaX5nYjtIo5k8dgDnYRxMUogUspDpI
-         hBV4rcIAPVMHMwj4EkDBn0flk5YGb9grETgwwYmVPFiuHFLvE1GgzBMCln7km1x81Xve
-         ksnx3fHrSi9D9dtLdjYH1kM5sN/oC9S3NjoHGCqDpr7mZWE7223gr19g5JJUj4llZP+8
-         pGyAyTpAXijeZOS6qXGjDoeb08qRis+xMeJH9vmr0d1f6jCE35WoUnCvBTcSfkYV1qky
-         mxyg==
-X-Gm-Message-State: AC+VfDwcycTB51NuUx00EA5lzGItmKBHdNnBn8lANPanVSdKmWNLG9Ac
-        5X/6VSp0VmigWQWFLGHUFTjNrqW4XA==
-X-Google-Smtp-Source: ACHHUZ40+TuJlTCIi/OKeN/bZ+QJqRylgyQjhG2PfjnerEU6twqk6MXkiUDgygcnfLixbmWfBb9FXQ==
-X-Received: by 2002:a5e:8907:0:b0:777:a6a7:e83d with SMTP id k7-20020a5e8907000000b00777a6a7e83dmr1785128ioj.4.1686250146061;
-        Thu, 08 Jun 2023 11:49:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686251740; x=1688843740;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pnuCWlLeGXkXzjrAZSc98CK+vugpSfbrMYt9DNWRMOE=;
+        b=KWWwofw7I7hN6vxsSJNE5BV7JsqiVfW7yp5yNb/aS95YcVDWRZVLN2FH6KYnd1Ug0Y
+         0f7jRVhhHY6C80/+7sOm4Fwz+bYb+Urzq2maRWcWB2hydlQ3CahYZeSpAqeRdQht+hSC
+         HYZ1WBLmiHHl9/bIQknUVjGu4+QaAmCviqnGRINYPijtI4/lxLplBZEKDLqXY5glIsi8
+         10lktI5ROPoo7ihu7WA7ZNAKdAJdWwMcrDZH/d3olNRKXE61BCuCMEO+cpSytRQ0diB3
+         XcZF3Mhf6mduSCrsOx46wQPaaRz0sOR0Jxe7W9pz/JN0qZEx6Fksx98CAcw9tYIiRI3T
+         LtmA==
+X-Gm-Message-State: AC+VfDyFf3DwuKIpVSCRVG7eVw3lx7fONoQA4TqHC5qdKuDLstP7iQWI
+        hSm5k9YUhctRTZQShi8CEQ==
+X-Google-Smtp-Source: ACHHUZ6vUrRrwwLFM+Hb3/loXcNPujVf20GEn/2hSQYhDLxez4ApnNr9gWsyMTIlALZzM/ichJLIqA==
+X-Received: by 2002:a92:90c:0:b0:33b:ea2:fe6c with SMTP id y12-20020a92090c000000b0033b0ea2fe6cmr10362873ilg.24.1686251740495;
+        Thu, 08 Jun 2023 12:15:40 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id u13-20020a6be90d000000b0076c750dc780sm519421iof.29.2023.06.08.11.49.04
+        by smtp.gmail.com with ESMTPSA id e5-20020a02caa5000000b0040908cbbc5asm464387jap.68.2023.06.08.12.15.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 11:49:05 -0700 (PDT)
-Received: (nullmailer pid 3220171 invoked by uid 1000);
-        Thu, 08 Jun 2023 18:49:03 -0000
-Date:   Thu, 8 Jun 2023 12:49:03 -0600
+        Thu, 08 Jun 2023 12:15:39 -0700 (PDT)
+Received: (nullmailer pid 3254644 invoked by uid 1000);
+        Thu, 08 Jun 2023 19:15:37 -0000
+Date:   Thu, 8 Jun 2023 13:15:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Subject: Re: [PATCH 0/5] of: More 'device' vs. 'module' cleanups
-Message-ID: <20230608184903.GA3200973-robh@kernel.org>
-References: <20230510154803.189096-1-miquel.raynal@bootlin.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>, palmer@dabbelt.com,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230608191537.GA3233857-robh@kernel.org>
+References: <20230518-thermos-sanitary-cf3fbc777ea1@wendy>
+ <20230518-4050231ca8dbe93c08cf9c9a@orel>
+ <CAAhSdy07Mg_JBF+4ucGFiWdBKh-Ass5G_aUWqBqTnDSFp7S=0A@mail.gmail.com>
+ <20230518-hammock-doornail-478e8ea8e6a7@wendy>
+ <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+ <20230518-monkhood-dispersal-6749b1228b0d@spud>
+ <20230530-duller-reset-a34ae111f207@wendy>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230510154803.189096-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20230530-duller-reset-a34ae111f207@wendy>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -69,50 +80,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 05:47:58PM +0200, Miquel Raynal wrote:
-> Hello,
+On Tue, May 30, 2023 at 03:12:12PM +0100, Conor Dooley wrote:
+> On Thu, May 18, 2023 at 10:42:34PM +0100, Conor Dooley wrote:
+> > On Thu, May 18, 2023 at 02:30:53PM -0400, Sean Anderson wrote:
 > 
-> As part of a previous series, Rob suggested that keeping too much logic
-> in of/device.c was backward and would benefit from a gradual cleanup
-> with the hope some day to move the remaining helpers into inline
-> functions wrapping the proper of_*() methods.
+> > > 
+> > > Why not just have something like
+> > > 
+> > > mycpu {
+> > > 	...
+> > > 	riscv,isa {
+> > > 		i;
+> > > 		m;
+> > > 		a;
+> > > 		zicsr;
+> > > 		...
 
-Where I'm at on device.c is it should be functions that bus 
-implementations need. I have a ton of tree wide changes to disentangle 
-of_device.h and of_platform.h. Some of that landed in 6.4.
+I prefer property names be globally unique. The tools are geared towards 
+that too. That's largely a symptom of having 0 type information in the 
+DT.
 
-uevents are pretty much tied to struct device and the bus, so I don't 
-think moving these parts to module.c makes sense unless there is a need 
-for the functionality without a struct device. 
+For example if you had an extension called 'reg', it would be a problem.
 
-Also, perhaps we want to make module.c configurable?:
-
-obj-$(CONFIG_MODULE) += module.o
-
-The uevent stuff is certainly independent of module support.
-
-> Link: https://lore.kernel.org/lkml/CAL_JsqJE43qfYzHUuCJsbaPPBTbYX05Q7FFmPTjPFZ3Dmz_mXg@mail.gmail.com/
+> > > 	};
+> > > };
+> >
+> > Naming of the node aside (perhaps that could be riscv,isa-extensions)
+> > there's not something hitting me immediately as to why that is a no-no.
+> > If the size is a concern, this would certainly be more efficient & not
+> > like the probing would be anything other than trivial more difficult
+> > what I have in my proposal.
 > 
-> A few of these "conversions" happened in the series I was originally
-> working on. At this time I actually wrote a few other changes,
-> completely unrelated to my original series, but still following Rob's
-> cleanup idea: here they are.
-> 
-> Link: https://lore.kernel.org/lkml/20230307165359.225361-1-miquel.raynal@bootlin.com/
-> 
-> The last step of this series is to actually remove a copy of one of
-> these helpers which I think is not needed. This drivers/gpu/ patch
-> depends on the previous changes.
-> 
-> Thanks, Miquèl
-> 
-> Miquel Raynal (5):
->   of: module: Mutate of_device_modalias() into two helpers
->   of: module: Mutate of_device_uevent() into two helpers
->   of: module: Mutate of_device_uevent_modalias() into two helpers
->   of: module: Export of_uevent()
->   gpu: host1x: Stop open-coding of_device_uevent()
+> Having started messing around with this, one of the main advantages, to
+> me, of this approach is proper validation.
+> cpus.yaml has additionalProperties: true in it, which would have had to
+> be sorted out, or worked around, but creating a child-node with the
+> properties in it allows setting additionalProperties: false.
 
-This last patch is certainly worthwhile doing.
+That's an issue on my radar to fix. I started that for the Arm cpus.yaml 
+a while back. Sadly it involves adding all the misc properties vendors 
+added. It's not a lot, but still better to get in front of that for 
+Risc-V.
+
+> > Rob's AFK at the moment, and I was hoping that he would take a look at
+> > the idea, so I won't respin til he is back, but I'll give this a go in
+> > the interim.
+> 
+> Mechanically, the conversion of the patch isn't difficult, but I'll still
+> wait for Rob to come back before sending a v2. But that v2 will more
+> than likely implement your suggestion.
+
+I haven't read the whole thread, but the initial proposal looks okay to 
+me.
+
+Another way you could do this is a list of strings:
+
+riscv,isa-ext = "i", "m", "zicsr";
+
+I think we have a helper to test is a string in the list.
 
 Rob
