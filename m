@@ -2,124 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0C8872793C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03990727977
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233670AbjFHHyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 03:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45684 "EHLO
+        id S234268AbjFHICZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 04:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233645AbjFHHyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:54:10 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599C41FCC
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 00:54:08 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5149c76f4dbso514449a12.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 00:54:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686210847; x=1688802847;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E2Twlaiedobdlie44+yvfCt28qgI5GSJ8RzJigOLjck=;
-        b=ZRSQm2SbKPvteuLLgPLe7nCK0DjGUrekqwVBx0rP+syuDvylnzfmb9qt24XNGZ6ulz
-         na0MmTT2NJye+PzluJ6LcW3DhyGErcL2K9VGlFTfTw4FUZYh5x82Dg4HdlD8f8c9eAdK
-         20FmAs+cjr+D0BAnTZeCULB9MfbUQI0aWqS9fK/2XrJ6CdTDXppj4kl8ief1NvuE9kvM
-         YTX6BLXI/s9weYeS30cj8tfGn8Ib6uTXNqvKs7eSNgBq87jQ9lhpPelGD/cXeUU9G5kS
-         mPtnmnk2vwG7uuLODA3vMWi+tzqEhTzBevkTldS6+gIxMEci+LsUfozVz4OAG1C1Hcee
-         7peQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686210847; x=1688802847;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E2Twlaiedobdlie44+yvfCt28qgI5GSJ8RzJigOLjck=;
-        b=TQArd6W1LwH+nuOqZsvyAzU/ZkC89aZYfko0kum2ancGEljLnpfTXjSF64vsLWhuwx
-         dvQSrI86EpYAygcyrlVFJc6e6VUDcfhNy4Sawqv3Tb6YwwxxDYfbPghxMRQPOxpfQvzY
-         WbUwE9h67xaZ1eF0B03tplc1wEShkOW8EbYoWRCf6IDbhJtuzaL31zsgrKEjtILkflpY
-         uD9DrUroHZJhZGZI9hzF+sTJWHl0WUrPZiUZMA3muKo8+ZKnY0vOAhXVBB7N3m2LRtCo
-         UwID9nBWRTO2d0jO2zELCKeYDhx274dpXhSgwIQ75L/Px00T/FCo9cEOcJQghVhTxLZ0
-         fn8g==
-X-Gm-Message-State: AC+VfDzT2+Pzka0dbQdxfax6QD8ZlyT2JHMwaQRP3BVg5gFo6F/wDzKp
-        LYct9sWNEmOJP39NNgWsGKcV1Q==
-X-Google-Smtp-Source: ACHHUZ4fomm2ljY9Wjm1oqS8KoBZmj6ojHu+GGsGRunrLXkGdjHgEpVBmbct0AHYw4BdzlGEQgP2SQ==
-X-Received: by 2002:a17:907:86ac:b0:977:d48f:97ad with SMTP id qa44-20020a17090786ac00b00977d48f97admr7723485ejc.75.1686210846735;
-        Thu, 08 Jun 2023 00:54:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id n27-20020a056402515b00b00502689a06b2sm235647edd.91.2023.06.08.00.54.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 00:54:06 -0700 (PDT)
-Message-ID: <61278e12-ba39-4503-ca74-a7118b0f6e99@linaro.org>
-Date:   Thu, 8 Jun 2023 09:54:01 +0200
+        with ESMTP id S234380AbjFHIBw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:01:52 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3482D73;
+        Thu,  8 Jun 2023 01:01:41 -0700 (PDT)
+Received: from [192.168.1.141] ([37.4.248.58]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1N0nvJ-1pukHf42j7-00wmk4; Thu, 08 Jun 2023 09:56:11 +0200
+Message-ID: <0530fbbb-e345-8f8a-5332-526ddcd55eb2@i2se.com>
+Date:   Thu, 8 Jun 2023 09:56:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [v6 1/4] dt-bindings: pwm: Add ASPEED PWM Control documentation
+ Thunderbird/102.11.0
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mxs-usb-phy: convert to DT
+ schema format
+To:     Xu Yang <xu.yang_2@nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        jun.li@nxp.com
+References: <20230608033642.4097956-1-xu.yang_2@nxp.com>
 Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>
-References: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
- <20230608021839.12769-2-billy_tsai@aspeedtech.com>
- <4dffd320-8e30-fb30-6ded-79519afddc21@linaro.org>
- <SG2PR06MB3365DD80EA2FD026D400C4A78B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SG2PR06MB3365DD80EA2FD026D400C4A78B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20230608033642.4097956-1-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:Nq+0TWCdrgpDH2um6CRSNcS2fr4wTbEqMBQn/QIxtYmaXTavW1F
+ jxNefkBZfJ+LYif31trnodbC6ttq0oIq+S9gQiaQm+T2HAicbzWxM7BMzaX8ED8UGRH3jsp
+ kESD/G+Xl42PqR2gKzc/scl96vuazJETyrSBPZZOvKQgi8ilaZQBU1X3c2EFRZwT9eyrz6h
+ q3dETnR0LFNtCJjqo73uA==
+UI-OutboundReport: notjunk:1;M01:P0:9d4ZceqcnmQ=;yUTpceyBDozynEpfkmRNPNOnq3v
+ VybfyqG+QOY+dnKE3hMhRF6hwbbykxpgZGPai+UP6fYxRdZD49iwXTEeTuIGqj7nzDaiL4P90
+ uXDLnzx2/Rlu88vfXWUIg1YHBq5ZDWBgx5hUJG0TITMHSwQ0S1Tr6SO9Fi+w7xAVnkfWkvvDQ
+ o+RkF0dvOFbaWcfocSgy5+GH7QjKHUzX0I8cmF4BcZvCIS1gHzaVTtKggGFLIF9xXzBVIbehI
+ xmRLQOhYFhLEr3/b+s9LR6XpgXkIgQ9/LvJD5GMzt1EBGvFUG5pZipn/K3OoyEFaBsSdtbXOK
+ 1XxN6hQljTaWVLIFZ2IhmkH/zLxJRjhkjrYbtPJLbNwAfWXlJcft72QJf1OXL29W6PcAuQd8C
+ sdkPM+PvlJKNmBaCBtUqtqrU+ZhAQW8HKVVXCsmMsxpzDqe77ffeGon6sN1U+jfBtsIxAX7Ns
+ 67sOP5TtgTzciKg1U082pKg/F1jzIQImTl9GS5PFU24Jv5jYT+BQ/rtilih1DNHOne8QWYZC/
+ +TuRbzv8mpucg4/0YL4ZkwdKmseO/nlzUTp4SI9X6HTna57K2+t2AnH/9+BpjL9dFWuCziNLR
+ 9EI3s8eZOZxBx9z4D+jpkZFcnep/GWnchV86wndag2TlgYIGjMEHCcCjvUSXvO/IguNjVoA57
+ +oxoeZQN08bVBs5Xdd9C+exnhGsAcNiZoHtuRbblkg==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 09:47, Billy Tsai wrote:
+Hi Xu,
+
+Am 08.06.23 um 05:36 schrieb Xu Yang:
+> Convert the binding to DT schema format. Besides, this also add other
+> optional properties not contained in txt file.
 > 
->   >> +
->   >> +allOf:
->   >> +  - $ref: pwm.yaml#
->   >> +
->   >> +properties:
->   >> +  compatible:
->   >> +    enum:
->   >> +      - aspeed,ast2600-pwm
->   >> +
->   >> +  "#pwm-cells":
->   >> +    const: 3
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
->   > 3 cells? For one PWM? What are they?
+> ---
+> Changes in v2:
+>   - change filename to fsl,mxs-usbphy.yaml
+>   - add other optional properties
+>   - narrow fsl,anatop to imx6
+>   - use additionalProperties
+> ---
+>   .../bindings/phy/fsl,mxs-usbphy.yaml          | 128 ++++++++++++++++++
+>   .../devicetree/bindings/phy/mxs-usb-phy.txt   |  33 -----
+>   2 files changed, 128 insertions(+), 33 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
 > 
-> channel, period and polarity.
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> new file mode 100644
+> index 000000000000..1b6b19fdf491
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> @@ -0,0 +1,128 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,mxs-usbphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale MXS USB Phy Device
+> +
+> +maintainers:
+> +  - Xu Yang <xu.yang_2@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx23-usbphy
+> +          - fsl,vf610-usbphy
+> +          - fsl,imx7ulp-usbphy
 
-Don't cut my responses. You wrote you have one PWM output, so only one
-channel. What do you put then in the channel?
+on the one side the fsl,imx7ulp-usbphy has an individual compatible
 
-I will start NAKing such patches without DTS user. It's like reviewing
-fake code for some unknown solution and trying to get from you piece of
-answers one by one, because you do not want to share entire part.
+> +      - items:
+> +          - enum:
+> +              - fsl,imx28-usbphy
+> +              - fsl,imx6ul-usbphy
+> +              - fsl,imx6sl-usbphy
+> +              - fsl,imx6sx-usbphy
+> +              - fsl,imx6q-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - const: fsl,imx6sll-usbphy
+> +          - const: fsl,imx6ul-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - const: fsl,imx7ulp-usbphy
+> +          - const: fsl,imx6ul-usbphy
 
-Best regards,
-Krzysztof
+on the other side this should be compatible to imx6ul. So at least one 
+definition seems to be unnecessary.
 
+Looking at usb/phy/phy-mxs-usb.c suggests me that fsl,imx7ulp-usbphy is 
+not directly compatible to fsl,imx6ul-usbphy, because the platform data 
+is different. So maybe the using dts* files should be fixed instead?
+
+> +      - items:
+> +          - const: fsl,imx8dxl-usbphy
+> +          - const: fsl,imx7ulp-usbphy
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#phy-cells':
+> +    const: 0
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  fsl,anatop:
+> +    description:
+> +      phandle for anatop register, it is only for imx6 SoC series.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  phy-3p0-supply:
+> +    description:
+> +      One of USB PHY's power supply. Can be used to keep a good signal
+> +      quality.
+> +
+> +  fsl,tx-cal-45-dn-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DN output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-cal-45-dp-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DP output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-d-cal:
+> +    description:
+> +      Current trimming value (as a percentage) of the 17.78 mA TX
+> +      reference current.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 79
+> +    maximum: 119
+> +    default: 100
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          oneOf:
+> +            - enum:
+> +              - fsl,imx6sl-usbphy
+> +              - fsl,imx6sx-usbphy
+> +              - fsl,imx6sll-usbphy
+> +              - fsl,imx6q-usbphy
+> +              - fsl,vf610-usbphy
+> +            - items:
+> +              - const: fsl,imx6ul-usbphy
+> +              - const: fsl,imx23-usbphy
+> +    then:
+> +      required:
+> +        - fsl,anatop
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    usbphy1: usb-phy@20c9000 {
+> +        compatible = "fsl,imx6q-usbphy", "fsl,imx23-usbphy";
+> +        reg = <0x020c9000 0x1000>;
+> +        interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +        fsl,anatop = <&anatop>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt b/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> deleted file mode 100644
+> index 70c813b0755f..000000000000
+> --- a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> +++ /dev/null
+> @@ -1,33 +0,0 @@
+> -* Freescale MXS USB Phy Device
+> -
+> -Required properties:
+> -- compatible: should contain:
+> -	* "fsl,imx23-usbphy" for imx23 and imx28
+> -	* "fsl,imx6q-usbphy" for imx6dq and imx6dl
+> -	* "fsl,imx6sl-usbphy" for imx6sl
+> -	* "fsl,vf610-usbphy" for Vybrid vf610
+> -	* "fsl,imx6sx-usbphy" for imx6sx
+> -	* "fsl,imx7ulp-usbphy" for imx7ulp
+> -	* "fsl,imx8dxl-usbphy" for imx8dxl
+> -  "fsl,imx23-usbphy" is still a fallback for other strings
+> -- reg: Should contain registers location and length
+> -- interrupts: Should contain phy interrupt
+> -- fsl,anatop: phandle for anatop register, it is only for imx6 SoC series
+> -
+> -Optional properties:
+> -- fsl,tx-cal-45-dn-ohms: Integer [35-54]. Resistance (in ohms) of switchable
+> -  high-speed trimming resistor connected in parallel with the 45 ohm resistor
+> -  that terminates the DN output signal. Default: 45
+> -- fsl,tx-cal-45-dp-ohms: Integer [35-54]. Resistance (in ohms) of switchable
+> -  high-speed trimming resistor connected in parallel with the 45 ohm resistor
+> -  that terminates the DP output signal. Default: 45
+> -- fsl,tx-d-cal: Integer [79-119]. Current trimming value (as a percentage) of
+> -  the 17.78mA TX reference current. Default: 100
+> -
+> -Example:
+> -usbphy1: usb-phy@20c9000 {
+> -	compatible = "fsl,imx6q-usbphy", "fsl,imx23-usbphy";
+> -	reg = <0x020c9000 0x1000>;
+> -	interrupts = <0 44 0x04>;
+> -	fsl,anatop = <&anatop>;
+> -};
