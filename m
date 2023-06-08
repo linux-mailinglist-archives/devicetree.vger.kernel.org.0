@@ -2,175 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99B227284CD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 18:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4147284DC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 18:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234260AbjFHQW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 12:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33034 "EHLO
+        id S234854AbjFHQYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 12:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjFHQWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 12:22:47 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF4D1FDC;
-        Thu,  8 Jun 2023 09:22:46 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-189-092.ewe-ip-backbone.de [91.248.189.92])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S235304AbjFHQYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 12:24:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C670E30C0;
+        Thu,  8 Jun 2023 09:24:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8EE466606F26;
-        Thu,  8 Jun 2023 17:22:44 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686241364;
-        bh=uHNhWU1jmIOWUBoodh01ywxlZr0fhauLWpShle6WDA0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Pm3Hj2LidW5ynLDBvQj0RxL97jnhj5ZAAnLxEFG4m3Duy00ph0zuP3bWlknv/2jZD
-         8sfzQxQdl27tKGO7AO3pLprPRDFrZR/vDUeWB5KdgH2BbqnEwo7rwEEFAvXYDdKmjU
-         q7IZWjN0T+YZgJBTUk3TCdOYXiWwzE+d2St7NJsZCRf4uREoCuUQfss/6huPep5W6S
-         5DAz/R++5uQloHTiKfgmgcZb9tk3pBdYbcNt+ijK9aIKLDRkijhl2V/Xk5v1DSD3kQ
-         D+Qz23f5wPTApcYfl532rp1vRGy218pg+ScEyQkjntYlhN7EKBIh20R/IXyJCM2c+f
-         Ym/JBoqw8gopw==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id D16C64807F0; Thu,  8 Jun 2023 18:22:39 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: rk3588: add SATA support
-Date:   Thu,  8 Jun 2023 18:22:38 +0200
-Message-Id: <20230608162238.50078-6-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230608162238.50078-1-sebastian.reichel@collabora.com>
-References: <20230608162238.50078-1-sebastian.reichel@collabora.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4BC2864EEC;
+        Thu,  8 Jun 2023 16:24:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6500C433D2;
+        Thu,  8 Jun 2023 16:24:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686241456;
+        bh=emDKGIQg2V1uHsyxtEynP85YQXxJbVOJVysU9JlSER0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gJUnoS5++nDbgKkDeQ9AGm6pPqxgSxSZidZhGnW0YZbFREIIhCADii8SngEzdBzA4
+         6YPp6mt3E68OHmSQ+cNZM1w7X7Rs+O3dUcTDfZFVNyOh5y92Ui1mQNivLzJj7PrDny
+         xOen3Or+JaupPEgFg7HXPwlMUfE2eBvz7gjcqgcdS8UH4jnT1MtnM3zj5li3A708r4
+         tzhiMo8H/foF33fiYq1J5blFeroxWMaT/jTFjTiJu3kOao9GOaSUTJJxXp2GSjA6S5
+         Z4lQg/ZbcKIW5FgLbtbc1bibLBR8XKhMCpV8aXWfnEWznQqZ0kN6GVpgnNHOpj1q5B
+         jfUcPN1b82KHA==
+Date:   Thu, 8 Jun 2023 17:24:10 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Vignesh Viswanathan <quic_viswanat@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_srichara@quicinc.com,
+        quic_varada@quicinc.com
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: qcom,tcsr: add the compatible for
+ IPQ8074
+Message-ID: <20230608162410.GB3572061@google.com>
+References: <20230526110653.27777-1-quic_viswanat@quicinc.com>
+ <20230526110653.27777-2-quic_viswanat@quicinc.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230526110653.27777-2-quic_viswanat@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all three SATA IP blocks to the RK3588 DT.
+On Fri, 26 May 2023, Vignesh Viswanathan wrote:
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588.dtsi  | 23 +++++++++++
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 48 +++++++++++++++++++++++
- 2 files changed, 71 insertions(+)
+> Document the qcom,tcsr-ipq8074 compatible.
+> 
+> Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-index 9d8539b5309b..b9508cea34f1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-@@ -129,6 +129,29 @@ gmac0_mtl_tx_setup: tx-queues-config {
- 		};
- 	};
- 
-+	sata1: sata@fe220000 {
-+		compatible = "rockchip,rk3588-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfe220000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA1>, <&cru CLK_PMALIVE1>,
-+			 <&cru CLK_RXOOB1>, <&cru CLK_PIPEPHY1_REF>,
-+			 <&cru CLK_PIPEPHY1_PIPE_ASIC_G>;
-+		clock-names = "sata", "pmalive", "rxoob", "ref", "asic";
-+		interrupts = <GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH 0>;
-+		ports-implemented = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		sata-port@0 {
-+			reg = <0>;
-+			hba-port-cap = <HBA_PORT_FBSCP>;
-+			phys = <&combphy1_ps PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			snps,rx-ts-max = <32>;
-+			snps,tx-ts-max = <32>;
-+		};
-+	};
-+
- 	combphy1_ps: phy@fee10000 {
- 		compatible = "rockchip,rk3588-naneng-combphy";
- 		reg = <0x0 0xfee10000 0x0 0x100>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 45ae457a22a4..00a91b08e3bb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -9,6 +9,8 @@
- #include <dt-bindings/power/rk3588-power.h>
- #include <dt-bindings/reset/rockchip,rk3588-cru.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/ata/ahci.h>
- 
- / {
- 	compatible = "rockchip,rk3588";
-@@ -1717,6 +1719,52 @@ gmac1_mtl_tx_setup: tx-queues-config {
- 		};
- 	};
- 
-+	sata0: sata@fe210000 {
-+		compatible = "rockchip,rk3588-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfe210000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA0>, <&cru CLK_PMALIVE0>,
-+			 <&cru CLK_RXOOB0>, <&cru CLK_PIPEPHY0_REF>,
-+			 <&cru CLK_PIPEPHY0_PIPE_ASIC_G>;
-+		clock-names = "sata", "pmalive", "rxoob", "ref", "asic";
-+		interrupts = <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH 0>;
-+		ports-implemented = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		sata-port@0 {
-+			reg = <0>;
-+			hba-port-cap = <HBA_PORT_FBSCP>;
-+			phys = <&combphy0_ps PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			snps,rx-ts-max = <32>;
-+			snps,tx-ts-max = <32>;
-+		};
-+	};
-+
-+	sata2: sata@fe230000 {
-+		compatible = "rockchip,rk3588-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfe230000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA2>, <&cru CLK_PMALIVE2>,
-+			 <&cru CLK_RXOOB2>, <&cru CLK_PIPEPHY2_REF>,
-+			 <&cru CLK_PIPEPHY2_PIPE_ASIC_G>;
-+		clock-names = "sata", "pmalive", "rxoob", "ref", "asic";
-+		interrupts = <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH 0>;
-+		ports-implemented = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		sata-port@0 {
-+			reg = <0>;
-+			hba-port-cap = <HBA_PORT_FBSCP>;
-+			phys = <&combphy2_psu PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			snps,rx-ts-max = <32>;
-+			snps,tx-ts-max = <32>;
-+		};
-+	};
-+
- 	sdmmc: mmc@fe2c0000 {
- 		compatible = "rockchip,rk3588-dw-mshc", "rockchip,rk3288-dw-mshc";
- 		reg = <0x0 0xfe2c0000 0x0 0x4000>;
+Applied, thanks
+
 -- 
-2.39.2
-
+Lee Jones [李琼斯]
