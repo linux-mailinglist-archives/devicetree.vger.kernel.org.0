@@ -2,98 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6787A7285FB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 19:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E259728615
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 19:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236366AbjFHRJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 13:09:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38606 "EHLO
+        id S232788AbjFHRPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 13:15:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232178AbjFHRJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 13:09:28 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B016F2697
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 10:09:27 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f6e1394060so6308485e9.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 10:09:27 -0700 (PDT)
+        with ESMTP id S231192AbjFHRPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 13:15:46 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE88269A;
+        Thu,  8 Jun 2023 10:15:45 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id 5614622812f47-39a4eb67c5fso642657b6e.0;
+        Thu, 08 Jun 2023 10:15:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686244166; x=1688836166;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1686244545; x=1688836545;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mTPmOQp+qFA828Yk2a/Gg/HuOyPG12vS163GsUtONY8=;
-        b=SwC3MqxK5lbgVQHewPe0fy+769Qpx2swm+D2sDUT50gbalQRtHHVeHmsdnd3fmXwBH
-         RBobvnn+WZbFDfF09K9E9jr9Z4cDAzGttYNlCPeY20AIe69c7Fl06sQHgs6haqfnyThH
-         1VW2OxqB3fowI4hCAKvcwmAiP5djjEHRmslYui+NMxRR6uiI6VvzMl6oZuwpOMXWQy2u
-         PWA3RH18mI0kWWZ+odsJ9D4IjIzxJhmePHh1++Sgweb5ReQdqat/eduRx77y6HHSuA/B
-         kBpHcmFjsc8xVQPuwmY+6j4zz51VpEF2lIkxsC1Welfsdu0tSvhMT+e4z4O1hXHTB68L
-         0J8Q==
+        bh=lPT/tVmJaBHo3MhgPjztTD4skeAHAwVYuwE0Ewq+Bgo=;
+        b=IHToE8+OMiQxRi0mkbx/gxmyAs5R1O7sF4BKdLeeQuLnbTKZQHyM548UPM8ZveZczc
+         QjrhCzWFHU/Y9mS/lopiS9jKN270hhXXCaSyWJWZxyh6id7O/o/BTiLf1TfYhScjNkG0
+         UNQC1MDfUNWN9p4NcJ0I9pe+XK6myRvqeQXVyV25F7D1aSbOnM7uSRqh48IVV02jkCoJ
+         2vPHZ2lVWN/I8zLFXgj7PUw3zL1B93JKkhnWPHv5HNpxcJw5uRcx3cFH+FZ0sLWZ2Ufr
+         BwQEAxhS6DnqLRzZ+HDPzReSrN+17WMQoDkqSpHC87NxE27uw+YGCZRU6tN7hyogYYE1
+         siGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686244166; x=1688836166;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1686244545; x=1688836545;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mTPmOQp+qFA828Yk2a/Gg/HuOyPG12vS163GsUtONY8=;
-        b=da4lzGT4bV0y3gClFGBShuB6AIYGFnBTNvxE367v/PpMMeEPD4LZN+2W7MWnLMmF1y
-         sB3NWGWzpv+s6eEluf7hubHo5HJgFc1f6lTci8LxjUmB1WPyOd04gfLNjGSYBALvfR1X
-         sGI8C25IgBh+bSrnEDr1FaS6v+TR+tkxHfMCX9nP5HEhlaAxDMxE90wv+vyUulad7ezp
-         L4qzko69BJ01Cm+niGmSryiQsREVrtsezXLNJKpYqPkdpiqZVcU7URv9IPjvGLAmvO/Z
-         2dr+3K25QeCS4Rpw3OZgUyGihBzGP3rGVkFNhT14Ryx/w9Uy1V7DlvOnzG8c0MHi/EqD
-         3Ogg==
-X-Gm-Message-State: AC+VfDwfWtGMr9Iuhk8nzfPqbvOM6aXvPr9KmjnC6RCyrZuooV1ynz5K
-        +PHDpSBX4oPjNNY5QofG4rLXSA==
-X-Google-Smtp-Source: ACHHUZ66Z2HtOrV/blaotwHoVVTQMW2zz/mtlvyuY7NxfVvT3A+tVsXMfZX3OSiBsqdNHm69vhRorQ==
-X-Received: by 2002:a7b:c455:0:b0:3f6:5cbf:a3a1 with SMTP id l21-20020a7bc455000000b003f65cbfa3a1mr2069259wmi.14.1686244166163;
-        Thu, 08 Jun 2023 10:09:26 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 10-20020a05600c22ca00b003f427687ba7sm148251wmg.41.2023.06.08.10.09.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 10:09:25 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peng Fan <peng.fan@nxp.com>
-In-Reply-To: <20230506064128.34005-1-krzysztof.kozlowski@linaro.org>
-References: <20230506064128.34005-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: nvmem: imx-ocotp: drop unneeded
- address/size-cells and children
-Message-Id: <168624416510.17727.4833007391825860716.b4-ty@linaro.org>
-Date:   Thu, 08 Jun 2023 18:09:25 +0100
+        bh=lPT/tVmJaBHo3MhgPjztTD4skeAHAwVYuwE0Ewq+Bgo=;
+        b=gpALh1nLVenWPTkNSqdUvVYE8mUMXaK92S3lIFfQ3uqsIG+BKHZBOJ7zW1fHx/+fTm
+         wLOTUkE9uRiG0RPecp2TsDi1dywvBSXiCn9lqKQztBfekDzHVC5jfg6l9slZTtaJ0KDR
+         4zVL4OBTTwjFA+jMLGQmRl/RXdoiGsRg9lehuEGbsX/p7iqqWv2pjr4LErniD9V3WDwp
+         5Mk1t91PiCRzqw1lPU7SFdgbTD+Sv4zhJHC1VEllr1Vsmgo4f6g9UUl/VkW3EgRaITPX
+         qbexmK5wgHBT01guq3ZnnkIf7vBlU9gQ0OIX7xxXp6dEYI/u2qC+nndayJJjM0YA8Oxn
+         esSQ==
+X-Gm-Message-State: AC+VfDxLBZcDkeyiL/5sTFZfK6BwuLje4AoSM1fs7WMjU/ute6Sd6RW4
+        NX+sUTG7rt1cv6eOGkjMd6xAu30scGjVBUrzwGs=
+X-Google-Smtp-Source: ACHHUZ7xoEKV3/9BiBlIK6qqxj7uchpqf7tGIpgZxgdO4dZx1bmBXAVsN6Q6Wddj/65U+q1n/0iPtcgTw5xn9gTlAx8=
+X-Received: by 2002:a05:6808:303:b0:39a:bbd4:bab with SMTP id
+ i3-20020a056808030300b0039abbd40babmr5733436oie.31.1686244545170; Thu, 08 Jun
+ 2023 10:15:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
+References: <20230606014234.29491-1-nick.hawkins@hpe.com> <20230606014234.29491-3-nick.hawkins@hpe.com>
+ <ZH76x6E9cbfrJHeu@surfacebook> <DM4PR84MB19278E9DD0BF34C570F714708852A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+ <CAHp75Vcc9hh6MYPSCJa1vniU=rC4Y+j9pCS4Np-b-Pyh5eUwNg@mail.gmail.com>
+ <81CFCEE8-5276-475A-A2AB-A814DEDA04B2@hpe.com> <CAHp75VeZkLSTw8OFmDMYb+im0qK0NQRHpndzBM7fMHm=HZCzeA@mail.gmail.com>
+ <7FEECBB4-482E-4719-94CA-6D10E4C08078@hpe.com> <CAHp75VfQguYENE0EtZ-ou=CXo0mAmeDT9byTu6hffT6w_cgM=Q@mail.gmail.com>
+ <B5D811E0-714D-45E5-818A-8AD18905AC29@hpe.com>
+In-Reply-To: <B5D811E0-714D-45E5-818A-8AD18905AC29@hpe.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 8 Jun 2023 20:15:09 +0300
+Message-ID: <CAHp75VcCJoTSPFOcQ5FKTi=EuUTvwzxus1n+nuowPxa0WagQeQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] gpio: gxp: Add HPE GXP GPIO
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 8, 2023 at 5:58=E2=80=AFPM Hawkins, Nick <nick.hawkins@hpe.com>=
+ wrote:
+> > > Is there any documents available describing how regmap_gpio
+> > > populates the GPIO lines? Does it automatically go through and add li=
+nes
+> > > for each successful regmap_read and bits per byte?
+>
+> > Nope, it assumes one bit per register or something different if xlate
+> > callback is defined. This is my understanding. That said, it might be
+> > that this is a limitation which does not allow you to switch to that
+> > library.
+>
+> Thank you for this feedback. After exploring the gpio_regmap it seems
+> it does not fit my needs. Some of the GPIOs are a combination of
+> several bits in a byte. For instance the Health LED or Identify LED have
+> more than 2 states. If acceptable I believe the gxp-gpio-pl.c file should
+> not use the gpio_regmap.
 
-On Sat, 06 May 2023 08:41:28 +0200, Krzysztof Kozlowski wrote:
-> Referenced nvmem.yaml schema already defines address/size-cells and its
-> children, so remove redundant entries.
-> 
-> 
+Yes, just mention this reasoning in the cover letter.
 
-Applied, thanks!
-
-[1/1] dt-bindings: nvmem: imx-ocotp: drop unneeded address/size-cells and children
-      commit: 4a43546dbd0b15fc21994a95ab565721f24c59d0
-
-Best regards,
--- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
+--=20
+With Best Regards,
+Andy Shevchenko
