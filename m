@@ -2,81 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01437727FE9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D22728006
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:31:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236602AbjFHMYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 08:24:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46820 "EHLO
+        id S235600AbjFHMbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 08:31:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236609AbjFHMY3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:24:29 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0774730E8;
-        Thu,  8 Jun 2023 05:24:05 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 358BpD9v031953;
-        Thu, 8 Jun 2023 12:23:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=5DPn/9UPZMGComgsrXfbd3Mft1SsYrh0RcOlCuwA2sk=;
- b=I+ABsmnu6MCMHoVmmrxyptxl6QL6QNUd2pm+aNGAUfcvCfae/3u70CS83rSoA8kPoKMQ
- OHOoB6G2hpa884wgL1c4Bna59dHkjfkDn19E8O8gZSo/78Jybv3KcVlCWtFA9FQMEx4F
- TyzVxt+bfMMtqk1EsgbY5MOfeymjXFsOB0Xbi24Qn1/iSXhQgQrCdJLMNAK8kFeDwqNU
- q8B9/TofT6PReqSEnpaw5lwCeMcHMnrJXevrH0FNX4i09eyAT8azNsV6+dfkNdsjUlBs
- xOoEa34LzN0D2jijCWWPjGS/Xe/EWe9okg3wRc3cgIN6CUaM7Fhpi7qjgUwM4k1nFQoM 4w== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r38rbrrsv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Jun 2023 12:23:50 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 358CNnik010046
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 8 Jun 2023 12:23:49 GMT
-Received: from win-platform-upstream01.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 8 Jun 2023 05:23:42 -0700
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>,
-        <krzysztof.kozlowski@linaro.org>, <andy.shevchenko@gmail.com>,
-        <quic_srichara@quicinc.com>
-Subject: [v9 8/8] arm64: defconfig: Enable IPQ5018 SoC base configs
-Date:   Thu, 8 Jun 2023 17:51:52 +0530
-Message-ID: <20230608122152.3930377-9-quic_srichara@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230608122152.3930377-1-quic_srichara@quicinc.com>
-References: <20230608122152.3930377-1-quic_srichara@quicinc.com>
+        with ESMTP id S233910AbjFHMbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:31:09 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF9C10FB;
+        Thu,  8 Jun 2023 05:31:08 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-52cb8e5e9f5so431316a12.0;
+        Thu, 08 Jun 2023 05:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686227468; x=1688819468;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KYaex83iYldjr4WaT4p4MVHnHxPq49V7RC/LIPfCpiw=;
+        b=WH4zfkGRn+TYAKddwln2Mf7XTBKgcp+jgv0ocs4ewFionyv1Tk/7NwprmBJ1hZTxHy
+         z7p1q7q42YfMw/Jq34Z25MilS8Qidt4AmA5wkMvtAff9DTWcd1FvOnZWB65Ja2cMGzLs
+         Wmbu9vNgrYQD7qsIXgLp9tttql3zA9ZhTAgUAwLSZdAycaxlmuAw5tPzqqIJwxyXIonJ
+         O2SA+FptbA8Twr3ZMQFqGDvPRW3VtIiKwjqMxircHAbt5hBj5aMP+IYSZYe6KNyczTo0
+         J2o9vhDYVQ2DmBnoXlH1MWHYfw4MrQpq36f2o+OGfcgDqatOSW0Gp5BxoShsJL6UEbJR
+         wn+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686227468; x=1688819468;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KYaex83iYldjr4WaT4p4MVHnHxPq49V7RC/LIPfCpiw=;
+        b=X3Gql+Ok0rci/ool0XpAZ0gWZkRy4jbUDXe1wL9EBTkyd87e43yGRQC6/oZ4+gCcr3
+         vfzr/Jg4ElloHK548TeH4t4dZEEDQMPeu3hRokPTl22mmesdBpADj5l7XCCzvFNS4AyT
+         IFLxuP+E4ZrvXLmMMyJFj4ZDVDn2sRGG2gh+PDuX9v8xycJECVblo+PfbetUJztUZ5/6
+         YzCoyjfpcq36RvAIcDaE40R2P/ode1yK7BLGju4tIOnMdBRppnExLrMA81IxjLCHyALt
+         RmACyPmDcg66SrQm0XFj294p2hAjAqjNLKTYu3uB5mpOd8MPFG2cvUSjxMtXu2qJHqyB
+         NhMA==
+X-Gm-Message-State: AC+VfDz8yoIBuPbJfNlgBocU6VWmt0Qk8kr305w2ka6TtCSb9xN6wKDO
+        eYA95LckyXJXZ3mrCB+vn1Uu2F4HfyCYaMFkDns=
+X-Google-Smtp-Source: ACHHUZ79SdbFXhWhPj+g4SPuGOYKNr6zjt8F3knEUXT3Yh7jB37ic8zcDORhrjLl68XbloQ/h75GKu3N8U40xoN+sRg=
+X-Received: by 2002:a17:90a:19d7:b0:258:de1b:9dcc with SMTP id
+ 23-20020a17090a19d700b00258de1b9dccmr2497551pjj.9.1686227467375; Thu, 08 Jun
+ 2023 05:31:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1gAPPiGE_5AVHn-rgsPHgo7vBLXjf4Yl
-X-Proofpoint-ORIG-GUID: 1gAPPiGE_5AVHn-rgsPHgo7vBLXjf4Yl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-08_08,2023-06-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- clxscore=1015 mlxlogscore=753 priorityscore=1501 lowpriorityscore=0
- spamscore=0 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306080107
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+References: <20230526030559.326566-1-aford173@gmail.com> <e1379d94-66a5-8538-abdf-de7770befb7d@prevas.dk>
+ <CAHCN7xK9RaLRSK_jSbbuGBUf14-FOHsrawi2J8G29iHSOj2Nyw@mail.gmail.com> <bfd050f2-b39e-c091-614e-0c77fe324435@prevas.dk>
+In-Reply-To: <bfd050f2-b39e-c091-614e-0c77fe324435@prevas.dk>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 8 Jun 2023 07:30:56 -0500
+Message-ID: <CAHCN7xKdKGA02=ZDNQkVVVDV0AZTqd7QpHA2Nq9LNnbmK=hKxA@mail.gmail.com>
+Subject: Re: [PATCH V8 0/7] drm: bridge: samsung-dsim: Support variable clocking
+To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Cc:     dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,35 +85,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables clk & pinctrl related configs
+On Thu, Jun 8, 2023 at 6:40=E2=80=AFAM Rasmus Villemoes
+<rasmus.villemoes@prevas.dk> wrote:
+>
+> On 07/06/2023 15.27, Adam Ford wrote:
+> > On Wed, Jun 7, 2023 at 8:15=E2=80=AFAM Rasmus Villemoes
+> > <rasmus.villemoes@prevas.dk> wrote:
+> >>
+> >> On 26/05/2023 05.05, Adam Ford wrote:
+> >>> This series fixes the blanking pack size and the PMS calculation.  It=
+ then
+> >>> adds support to allows the DSIM to dynamically DPHY clocks, and suppo=
+rt
+> >>> non-burst mode while allowing the removal of the hard-coded clock val=
+ues
+> >>> for the PLL for imx8m mini/nano/plus, and it allows the removal of th=
+e
+> >>> burst-clock device tree entry when burst-mode isn't supported by conn=
+ected
+> >>> devices like an HDMI brige.  In that event, the HS clock is set to th=
+e
+> >>> value requested by the bridge chip.
+> >>>
+> >>> This has been tested on both an i.MX8M Nano and i.MX8M Plus, and shou=
+ld
+> >>> work on i.MX8M Mini as well. Marek Szyprowski has tested it on variou=
+s
+> >>> Exynos boards.
+> >>
+> >> Hi all
+> >>
+> >> We're testing this on top of v6.4-rc4 on our imx8mp board, which has a
+> >> ti-sn65dsi86 DSI -> DisplayPort bridge. We do get an image at
+> >> 1920x1200, but the monitor says it's only at 58Hz, and measuring on th=
+e
+> >> DSI signals does seem to confirm that the update frequency is about 57=
+.7
+> >> or 57.8Hz (it's pretty hard to get a good measurement). It looks like
+> >> it's the lines that are too long, by a time that corresponds to about =
+80
+> >> pixels. But all the frontporch/backporch/hsync values look sane and
+> >> completely standard for that resolution.
+> >>
+> >> Setting samsung,burst-clock-frequency explicitly to something large
+> >> enough or letting it be derived from the 154MHz pixel clock makes no
+> >> difference.
+> >>
+> >> Any ideas?
+> >
+> > What refresh rate are you trying to achieve?  It seems like 57.7 or
+> > 57.8 is really close to the 58 the Monitor states.
+>
+> Oh, sorry, I thought that was clear, but it should be/we're aiming
+> for/expecting 60Hz, or (154MHz / (2080 * 1235)) which is about 59.95Hz.
+> We've tried with a variety of monitors that all have 1920x1200@60Hz as
+> max resolution, and parse-edid always gives the same hfp/hbp/...
+> numbers, namely
+>
+>        Modeline        "Mode 0" 154.00 1920 1968 2000 2080 1200 1203
+> 1209 1235 +hsync -vsync
+>
+> > I would expect the
+> > refresh to be driven by whatever the monitor states it can handle.
+>
+> Well, it states that it can handle 60Hz, and the pixel clock is also
+> computed to be the 154MHz, but still, the actual signals on the wire,
+> and hence also what the monitor ends up reporting, do not end up with 60
+> full frames per second.
+>
+> > Have you tried using modetest to see what refresh rates are available?
+>
+> Hm. My userspace may be a little weird. When I run modetest I just get
+>
+> trying to open device 'i915'...failed
+> trying to open device 'amdgpu'...failed
+> ...
+> trying to open device 'imx-dcss'...failed
+> trying to open device 'mxsfb-drm'...failed
+> no device found
+>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+One the 8MP, I think you need to append "-M imx-lcdif" to the modetest
+command  to specify the driver being used.
+I don't have my 8MP with me right now, but I think that's the right name.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e05706d3893d..d6b2667f1baa 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -557,6 +557,7 @@ CONFIG_PINCTRL_IMX8ULP=y
- CONFIG_PINCTRL_IMX93=y
- CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
-+CONFIG_PINCTRL_IPQ5018=y
- CONFIG_PINCTRL_IPQ5332=y
- CONFIG_PINCTRL_IPQ6018=y
- CONFIG_PINCTRL_IPQ9574=y
-@@ -1168,6 +1169,8 @@ CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
- CONFIG_IPQ_APSS_6018=y
- CONFIG_IPQ_GCC_5332=y
-+CONFIG_IPQ_APSS_5018=y
-+CONFIG_IPQ_GCC_5018=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
--- 
-2.34.1
+> > The 8MP shares the video-pll clock with both disp1 and disp2 clocks,
+> > and the imx-lcdif driver, which sends the display signals to the DSI,
+> > uses the disp clock, so the video-pll needs to be an exact multiple of
+> > the pixel clock or the output won't sink.
+>
+> Bingo! I enabled the
+>
+>   DRM_DEV_DEBUG_DRIVER(drm->dev, "Pixel clock: %dkHz (actual: %dkHz)\n",
+>
+> in drivers/gpu/drm/mxsfb/lcdif_kms.c, and indeed it got me
+>
+>   Pixel clock: 154000kHz (actual: 148500kHz)
+>
+> Modifying the 1039500000 in imx8mp.dtsi to 1078000000 (i.e. 7 times the
+> desired pixel clock) gave me "actual" matching the desired pixel clock,
+> and the monitor now reports 60Hz.
 
+I am glad that worked!
+
+>
+> This product also has an LVDS display on lcdif2, so I'll have to
+> investigate how changing the video_pll1 rate affects that. And also what
+> to do about the case where somebody plugs in, say, a 1080p monitor that
+> would indeed require 148.5MHz pixel clock.
+
+That's the down-side to the 8MP with the shared clock.  According to
+the processor reference manual, It looks like the MEDIA_LDB_CLK can be
+a child of Audio_PLL2.  i don't know if you need both AUDIO_PLL1 and
+Audio_PLL2, but the Audio_PLL2 clock is fairly flexible, so if you can
+use Audio_pll1 for all your audio needs, and configure the audio_pll2
+for your LVDS, you might be able to get both LDB and DSI to sync at
+the nominal values.
+
+adam
+>
+> Thanks,
+> Rasmus
+>
