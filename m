@@ -2,539 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B8A272806F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25ABE728078
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:51:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236461AbjFHMtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 08:49:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32984 "EHLO
+        id S236010AbjFHMvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 08:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235470AbjFHMtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:49:32 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536802D70
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 05:49:25 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-30b023b0068so465342f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 05:49:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686228563; x=1688820563;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vfWLVHSaynosqDzEpjpn0x+xQ1lv5rwjFflJ53vQG5U=;
-        b=Ld/I7TsVqq8lNET1145ywbdAk32fc/mKg+dQMRUBDbrcV+6L3uwbCBKQy5tEEV9O5B
-         GvhkFZ1PviaaZO3axmNDTmG9Uvak+oraF/JeZ8z0f6eOfArSAMbI7W7TAzTHJwubfA5p
-         LeZ7a5OTYzGQ4q2LBMfsAE/kLwBK8DvYRLIATcULGcCmf2/iAbePsjNtYofPDOcCtj0U
-         lKOcbFO8gEyOG/HMDGxpeAYl3vf2CW8nE5EeFmtdRFY2drnJL6YL1glODb23bzQY0yoV
-         IC8MVS4wmQ7VgNNjnu/Xvm8wtgq1XYF3rcJu+3IJ/2vY/J7+KYRVr9VNVK+2Tj2q5sgf
-         nAyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686228563; x=1688820563;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vfWLVHSaynosqDzEpjpn0x+xQ1lv5rwjFflJ53vQG5U=;
-        b=OYQTb1Rx+Cvv/b8zZymn+JzYjkR+aIBXs2eUqhnkusWha7Xn4hJKAOSWgDWYHLxz5W
-         xsvMzZDcG9FQlIgakNXksTqbD7P3myTyCJ4YlPnngLYPbie+YLQ9SHdW5CCOVCG8w4QR
-         4BSgLVt3uQjtERKmeNkg5ljGBvgyXvOAgMqW/H3EYmieRLt/MpsZwJ1xCuN0xVTf6v1y
-         L7JFyZXpcuT+RWBEIeLGK8gppxj03nZcWb73rwD2aOH8GWh5YfVdlmz0PuTwALrepPGH
-         lFZxZdvneGfKqX9hmIkSi30TTXK1S9Y+tekNCNmp4hDxCbaW2Fc52Z6qe9GnSpd0uCeb
-         Mzcg==
-X-Gm-Message-State: AC+VfDwMpWI4oA8ahsy1E+wktjIDWlg2XC1sgAOaUHqd+QFrxXPfwAQb
-        RkiUHcjpb8z6npj/uV+fbIVJRg==
-X-Google-Smtp-Source: ACHHUZ7ZSLakGms4uctT0aG0W9tRLGeB8tYPAvCcspi0o/V0pzajuizm1ie1V4k9LZ1CK1D0lzasZw==
-X-Received: by 2002:a5d:6941:0:b0:307:9081:d355 with SMTP id r1-20020a5d6941000000b003079081d355mr1757375wrw.26.1686228563580;
-        Thu, 08 Jun 2023 05:49:23 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1b90:b83e:29ce:beb6? ([2a01:e0a:982:cbb0:1b90:b83e:29ce:beb6])
-        by smtp.gmail.com with ESMTPSA id d8-20020a5d6dc8000000b0030aec5e020fsm1495423wrz.86.2023.06.08.05.49.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 05:49:23 -0700 (PDT)
-Message-ID: <86b8960b-7483-cacd-3f29-715a31c4f7b6@linaro.org>
-Date:   Thu, 8 Jun 2023 14:49:22 +0200
+        with ESMTP id S235304AbjFHMvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:51:37 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2059.outbound.protection.outlook.com [40.107.243.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5792426B0;
+        Thu,  8 Jun 2023 05:51:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F8DYqzADNP7HB3Bo6Sfg3zFCFs9yfmXpZ7xLMp/9cGd7NOuvNg3f3bBDBKEnSG1iHhh6oV5N1sTc4Ih3i0fJxzkp+sCEDs4lsVkPexREOW+3Dd808YUahlu1om8mzzPhnfyYgYxtlMH2bperKWmCR2PZ2OADADoejYyVUfiGHWOdKq5/C2z9Y96N63dZQRyx7/XkxemKrxfqexjdykBiJKf3tPusCd/dckBVD3leLc3HGvM7fVZ0Clar69w2MHLqLCPfNNU06OE3B1f2v687jsPRWeu+yzt3UjhEzMylgS0R5PPWjZQrX6w6vmO2bR9rlELHDYAQ+5XhrPm/R3xg5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AJTdZNykrtUn+8jVdGbzEZ+5xGigPr90BRHToUVS0Tc=;
+ b=ezkgO0EzVuq8xeWVVG0Iy151k3jYmFI7Bt2yQtVBEkKN06/WqMzc4V6fRMROORX7VuQF766U3zA0g+518s+2TydZ7QzXHthYMZOvKCz728OLoxFlyr2Y5Q9mL4qpxMCoRoGWTiqlA1b2rhSJ8klmP/fALIS2D9iWxTWzYHBTU3jt3+FoXbO+qWA4eNJK5SXRCx+98mkPvOUzU3F2J5UXYMjntpHsoL5p3nPLW7wKEpDkkXaS66zWRDhDdwXHC5Khn9w9btAqtc7KvUlIq/Hpy37H2UEV8tltREoPwMXbrDKMs7/XEPbAK+4fsanOv3ikzZ/kFp+8jX0pF+1/mv3qqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AJTdZNykrtUn+8jVdGbzEZ+5xGigPr90BRHToUVS0Tc=;
+ b=GdL3s2wlADy0zopQ+CTuOpeUe7CsSUqtvGHcwaUubU+cjJDOeL6q+KFE8kUqJd3XtN4VOCGGfVOXrW1fktsXCDPGb0qINUu6aTOBVVAIDmnewlqLKkXaw4koYNgDlsost+aAJvLYKrv549SuXx5N2RKmTQYW6uMl1vKysd1IGp0=
+Received: from BN9PR03CA0089.namprd03.prod.outlook.com (2603:10b6:408:fc::34)
+ by SJ1PR12MB6244.namprd12.prod.outlook.com (2603:10b6:a03:455::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.38; Thu, 8 Jun
+ 2023 12:51:29 +0000
+Received: from BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:fc:cafe::a1) by BN9PR03CA0089.outlook.office365.com
+ (2603:10b6:408:fc::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.26 via Frontend
+ Transport; Thu, 8 Jun 2023 12:51:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT031.mail.protection.outlook.com (10.13.177.25) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6477.24 via Frontend Transport; Thu, 8 Jun 2023 12:51:28 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 8 Jun
+ 2023 07:51:26 -0500
+From:   Michal Simek <michal.simek@amd.com>
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Harini Katakam <harini.katakam@amd.com>, Andrew Davis <afd@ti.com>,
+        "Ashok Reddy Soma" <ashok.reddy.soma@xilinx.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: zynqmp: Assign TSU clock frequency for GEMs
+Date:   Thu, 8 Jun 2023 14:51:23 +0200
+Message-ID: <3b9285b50a2a4abb136ecb0873343a4e84626581.1686228675.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/2] drm/panel: Add driver for Visionox r66451 panel
-Content-Language: en-US
-To:     Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, freedreno@lists.freedesktop.org
-References: <20230516-b4-r66451-panel-driver-v2-0-9c8d5eeef579@quicinc.com>
- <20230516-b4-r66451-panel-driver-v2-2-9c8d5eeef579@quicinc.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230516-b4-r66451-panel-driver-v2-2-9c8d5eeef579@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2652; i=michal.simek@amd.com; h=from:subject:message-id; bh=VPoZYQy4Mc9DSpYKGN+9N/3RsiVEL4l3h5ZkhFXjlzk=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpTGc8f0bxZMaOyKX7stcElN+nn7o0eTLfYcF+++X7LuS lPswm9aHbEsDIJMDLJiiizSNlfO7K2cMUX44mE5mDmsTCBDGLg4BWAiDHMY5vA8Oj2/IjiO10Lk xgNz9cX9Lo/E3BjmO0X/n+CwftbZqfxKV9ufzwj/vtbQCQA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT031:EE_|SJ1PR12MB6244:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3fde63f4-c543-4b72-f4d1-08db681f1391
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /+aYwGhTqi54ZXj66OdVrOJck6lg8Cm8TyqAKcOgpEOYH4wjlOCXIriQb7JI81uyNc7TqPeuyGi9ZY/csBC0afhTm+HK9SlPj8hRm9R3N97xSvH6Nr6QtBe8nW6qYm9xS90j6XeZFElG5PjLzoxZVMRa55fJAGVCF+jIp5rKnpF+ozhh5HyBmyqnPrHngYOWDO4ja7jv7cQn+jWoSRzPtX0FEIaOpdZ/hUEGEoHpuGJVfnIqvSIsEHu8R7wTm77vOih/yHvJqr4bcJ3P97CoBUUyd7AqHaTEoyMgQX9vD/kzVlO60bgo5lNQu6pZ/pfOp8reuZjKEiKD4uITS3l4wIk4h7dQlULYMxNjpupS7cPaSkWeZsSZlcfePoL3Ku8Bd6vlOhfPq2t4OlyvAXqh7wlKZYiYjej7tXY3oFWOmO7njThKqLxAoPZ8c9vPBf/mdXQXdYTlfeNhNmdWYm9ybEdsjZTjLMuqtP8aSKuuHe4Q4VhqXj2Evdh6Uh38hG1v9t8rB46IQ0HB0fQ3xx4fOW6aUTciO4DVfz31AYupPH03AiOB7dJXCi2u9av2Ram5PZz7cibbljFZtFlSQbIJiKvqaQigVCa2oo46ZR9ypYj2XcceuVPIZ1z0kLErN10ngI3/vYhy1G8meGaDl1CRYGmq00aVx2qOXN2OvmA1PNoXtM33MVXkrw9oacKqn3ZpBrHwOM1Flm3ab3ToY3ne5u02E+JkADkaEG7gvV47IZ/177TXHxZ1mB+CONVzhPfK+UQCh97KE59J2j9EIz8HDO5YaZe1HeW5wicwz5sRQnM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199021)(46966006)(40470700004)(36840700001)(41300700001)(6666004)(36756003)(40480700001)(8936002)(8676002)(5660300002)(44832011)(54906003)(7416002)(70586007)(4326008)(70206006)(316002)(110136005)(478600001)(40460700003)(2906002)(26005)(426003)(186003)(83380400001)(336012)(47076005)(36860700001)(2616005)(81166007)(356005)(16526019)(86362001)(82310400005)(82740400003)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2023 12:51:28.4195
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3fde63f4-c543-4b72-f4d1-08db681f1391
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6244
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jessica,
+From: Harini Katakam <harini.katakam@amd.com>
 
-On 31/05/2023 20:12, Jessica Zhang wrote:
-> Add support for the 1080x2340 Visionox R66451 AMOLED DSI panel that
-> comes with the Qualcomm HDK8350 display expansion pack.
-> 
-> The panel enables display compression (DSC v1.2) by default.
-> 
-> Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-> ---
->   drivers/gpu/drm/panel/Kconfig                 |   9 +
->   drivers/gpu/drm/panel/Makefile                |   1 +
->   drivers/gpu/drm/panel/panel-visionox-r66451.c | 390 ++++++++++++++++++++++++++
->   3 files changed, 400 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 29cf5fa39ff2..1f9d57854ea8 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -766,6 +766,15 @@ config DRM_PANEL_VISIONOX_VTDR6130
->   	  Say Y here if you want to enable support for Visionox
->   	  VTDR6130 1080x2400 AMOLED DSI panel.
->   
-> +config DRM_PANEL_VISIONOX_R66451
-> +	tristate "Visionox R66451"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y here if you want to enable support for Visionox
-> +	  R66451 1080x2340 AMOLED DSI panel.
-> +
->   config DRM_PANEL_WIDECHIPS_WS2401
->   	tristate "Widechips WS2401 DPI panel driver"
->   	depends on SPI && GPIOLIB
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index b3e8ba29edd3..e043a92ee676 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -78,5 +78,6 @@ obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += panel-tpo-tpg110.o
->   obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
->   obj-$(CONFIG_DRM_PANEL_VISIONOX_RM69299) += panel-visionox-rm69299.o
->   obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += panel-visionox-vtdr6130.o
-> +obj-$(CONFIG_DRM_PANEL_VISIONOX_R66451) += panel-visionox-r66451.o
->   obj-$(CONFIG_DRM_PANEL_WIDECHIPS_WS2401) += panel-widechips-ws2401.o
->   obj-$(CONFIG_DRM_PANEL_XINPENG_XPP055C272) += panel-xinpeng-xpp055c272.o
-> diff --git a/drivers/gpu/drm/panel/panel-visionox-r66451.c b/drivers/gpu/drm/panel/panel-visionox-r66451.c
-> new file mode 100644
-> index 000000000000..00fc28ad3d07
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-visionox-r66451.c
-> @@ -0,0 +1,390 @@
-> +//SPDX-License-Identifier: GPL-2.0-only
-> +//Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_probe_helper.h>
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_panel.h>
-> +#include <drm/display/drm_dsc.h>
-> +#include <drm/display/drm_dsc_helper.h>
-> +
-> +#include <video/mipi_display.h>
-> +
-> +struct visionox_r66451 {
-> +	struct drm_panel panel;
-> +	struct mipi_dsi_device *dsi;
-> +	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data supplies[2];
-> +	bool prepared, enabled;
-> +};
-> +
-> +static inline struct visionox_r66451 *to_visionox_r66451(struct drm_panel *panel)
-> +{
-> +	return container_of(panel, struct visionox_r66451, panel);
-> +}
-> +
-> +static void visionox_r66451_reset(struct visionox_r66451 *ctx)
-> +{
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +	usleep_range(10000, 10100);
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +	usleep_range(10000, 10100);
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +	usleep_range(10000, 10100);
-> +}
-> +
-> +static int visionox_r66451_on(struct visionox_r66451 *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +
-> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> +
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xc2,
-> +			       0x09, 0x24, 0x0c, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x00,
-> +			       0x09, 0x3c);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xd7,
-> +			       0x00, 0xb9, 0x3c, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a,
-> +			       0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
-> +			       0x3c, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xde,
-> +			       0x40, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18,
-> +			       0x10, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18, 0x02, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xe8, 0x00, 0x02);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xe4, 0x00, 0x08);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xc4,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x32);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xcf,
-> +			       0x64, 0x0b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08,
-> +			       0x00, 0x0b, 0x77, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-> +			       0x02, 0x02, 0x02, 0x02, 0x02, 0x03);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xd3,
-> +			       0x45, 0x00, 0x00, 0x01, 0x13, 0x15, 0x00, 0x15, 0x07,
-> +			       0x0f, 0x77, 0x77, 0x77, 0x37, 0xb2, 0x11, 0x00, 0xa0,
-> +			       0x3c, 0x9c);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xd7,
-> +			       0x00, 0xb9, 0x34, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a,
-> +			       0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
-> +			       0x34, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xd8,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x3a, 0x00, 0x3a, 0x00, 0x3a, 0x00, 0x3a, 0x00, 0x3a,
-> +			       0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x0a, 0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0a,
-> +			       0x00, 0x32, 0x00, 0x0a, 0x00, 0x22);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xdf,
-> +			       0x50, 0x42, 0x58, 0x81, 0x2d, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x6b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x01, 0x0f, 0xff, 0xd4, 0x0e, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x0f, 0x53, 0xf1, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf7, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xe4, 0x34, 0xb4, 0x00, 0x00, 0x00, 0x39, 0x04, 0x09, 0x34);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xe6, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x50, 0x40);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf3, 0x50, 0x00, 0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x11);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf3, 0x01, 0x00, 0x00, 0x00, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf4, 0x00, 0x02);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x19);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x50, 0x42);
-> +	mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-> +	mipi_dsi_dcs_set_column_address(dsi, 0, 1080 - 1);
-> +	mipi_dsi_dcs_set_page_address(dsi, 0, 2340 - 1);
-> +
-> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-> +
-> +	return 0;
-> +}
-> +
-> +static int visionox_r66451_off(struct visionox_r66451 *ctx)
-> +{
-> +	ctx->dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-> +	return 0;
-> +}
-> +
-> +static int visionox_r66451_prepare(struct drm_panel *panel)
-> +{
-> +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	struct device *dev = &dsi->dev;
-> +	int ret;
-> +
-> +	if (ctx->prepared)
-> +		return 0;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies),
-> +				    ctx->supplies);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	visionox_r66451_reset(ctx);
-> +
-> +	ret = visionox_r66451_on(ctx);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +		regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +		return ret;
-> +	}
-> +
-> +	mipi_dsi_compression_mode(ctx->dsi, true);
-> +
-> +	ctx->prepared = true;
-> +	return 0;
-> +}
-> +
-> +static int visionox_r66451_unprepare(struct drm_panel *panel)
-> +{
-> +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
-> +	struct device *dev = &ctx->dsi->dev;
-> +	int ret;
-> +
-> +	if (!ctx->prepared)
-> +		return 0;
-> +
-> +	ret = visionox_r66451_off(ctx);
-> +	if (ret < 0)
-> +		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-> +
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +
-> +	ctx->prepared = false;
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode visionox_r66451_mode = {
-> +	.clock = 345830,
-> +	.hdisplay = 1080,
-> +	.hsync_start = 1175,
-> +	.hsync_end = 1176,
-> +	.htotal = 1216,
-> +	.vdisplay = 2340,
-> +	.vsync_start = 2365,
-> +	.vsync_end = 2366,
-> +	.vtotal = 2370,
-> +	.width_mm = 0,
-> +	.height_mm = 0,
-> +	.type = DRM_MODE_TYPE_DRIVER,
-> +};
-> +
-> +static int visionox_r66451_enable(struct drm_panel *panel)
-> +{
-> +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	struct drm_dsc_picture_parameter_set pps;
-> +	int ret;
-> +
-> +	if (ctx->enabled)
-> +		return 0;
-> +
-> +	if (!dsi->dsc) {
-> +		dev_err(&dsi->dev, "DSC not attached to DSI\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	drm_dsc_pps_payload_pack(&pps, dsi->dsc);
-> +	ret = mipi_dsi_picture_parameter_set(dsi, &pps);
-> +	if (ret) {
-> +		dev_err(&dsi->dev, "Failed to set PPS\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "Failed to exit sleep mode: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(120);
-> +
-> +	ret = mipi_dsi_dcs_set_display_on(dsi);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "Failed on set display on: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(20);
-> +
-> +	ctx->enabled = true;
-> +
-> +	return 0;
-> +}
-> +
-> +static int visionox_r66451_disable(struct drm_panel *panel)
-> +{
-> +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	struct device *dev = &dsi->dev;
-> +	int ret;
-> +
-> +	ctx->enabled = false;
-> +
-> +	ret = mipi_dsi_dcs_set_display_off(dsi);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to set display off: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(20);
-> +
-> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(120);
-> +
-> +	return 0;
-> +}
-> +
-> +static int visionox_r66451_get_modes(struct drm_panel *panel,
-> +				    struct drm_connector *connector)
-> +{
-> +	drm_connector_helper_get_modes_fixed(connector, &visionox_r66451_mode);
-> +	return 1;
-> +}
-> +
-> +static const struct drm_panel_funcs visionox_r66451_funcs = {
-> +	.prepare = visionox_r66451_prepare,
-> +	.unprepare = visionox_r66451_unprepare,
-> +	.get_modes = visionox_r66451_get_modes,
-> +	.enable = visionox_r66451_enable,
-> +	.disable = visionox_r66451_disable,
-> +};
-> +
-> +static int visionox_r66451_bl_update_status(struct backlight_device *bl)
-> +{
-> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
-> +	u16 brightness = backlight_get_brightness(bl);
-> +
-> +	return mipi_dsi_dcs_set_display_brightness(dsi, brightness);
-> +}
-> +
-> +static const struct backlight_ops visionox_r66451_bl_ops = {
-> +	.update_status = visionox_r66451_bl_update_status,
-> +};
-> +
-> +static struct backlight_device *
-> +visionox_r66451_create_backlight(struct mipi_dsi_device *dsi)
-> +{
-> +	struct device *dev = &dsi->dev;
-> +	const struct backlight_properties props = {
-> +		.type = BACKLIGHT_RAW,
-> +		.brightness = 255,
-> +		.max_brightness = 4095,
-> +	};
-> +
-> +	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
-> +					      &visionox_r66451_bl_ops, &props);
-> +}
-> +
-> +static int visionox_r66451_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct device *dev = &dsi->dev;
-> +	struct visionox_r66451 *ctx;
-> +	struct drm_dsc_config *dsc;
-> +	int ret = 0;
-> +
-> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> +	if (!ctx)
-> +		return -ENOMEM;
-> +
-> +	dsc = devm_kzalloc(dev, sizeof(*dsc), GFP_KERNEL);
-> +	if (!dsc)
-> +		return -ENOMEM;
-> +
-> +	/* Set DSC params */
-> +	dsc->dsc_version_major = 0x1;
-> +	dsc->dsc_version_minor = 0x2;
-> +
-> +	dsc->slice_height = 20;
-> +	dsc->slice_width = 540;
-> +	dsc->slice_count = 2;
-> +	dsc->bits_per_component = 8;
-> +	dsc->bits_per_pixel = 8 << 4;
-> +	dsc->block_pred_enable = true;
-> +
-> +	dsi->dsc = dsc;
+Allow changing TSU clock for all GEMs. Kria SOM is using this
+functionality that's why set TSU clock frequency as 250MHz (minimum when
+running at 1G) to allow PTP functionality.
 
-At some point we must check if the host controller supports
-DSC, but it would be for later so it's not a blocker.
+Signed-off-by: Harini Katakam <harini.katakam@amd.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-> +
-> +	ctx->supplies[0].supply = "vddio";
-> +	ctx->supplies[1].supply = "vdd";
-> +
-> +	ret = devm_regulator_bulk_get(&dsi->dev, ARRAY_SIZE(ctx->supplies),
-> +			ctx->supplies);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(ctx->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "Failed to get reset-gpios\n");
-> +
-> +	ctx->dsi = dsi;
-> +	mipi_dsi_set_drvdata(dsi, ctx);
-> +
-> +	dsi->lanes = 4;
-> +	dsi->format = MIPI_DSI_FMT_RGB888;
-> +	dsi->mode_flags = MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUOUS;
-> +
-> +	drm_panel_init(&ctx->panel, dev, &visionox_r66451_funcs, DRM_MODE_CONNECTOR_DSI);
-> +	ctx->panel.backlight = visionox_r66451_create_backlight(dsi);
-> +	if (IS_ERR(ctx->panel.backlight))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-> +				"Failed to create backlight\n");
-> +
-> +	drm_panel_add(&ctx->panel);
-> +
-> +	ret = mipi_dsi_attach(dsi);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-> +		drm_panel_remove(&ctx->panel);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static void visionox_r66451_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct visionox_r66451 *ctx = mipi_dsi_get_drvdata(dsi);
-> +	int ret;
-> +
-> +	ret = mipi_dsi_detach(dsi);
-> +	if (ret < 0)
-> +		dev_err(&dsi->dev, "Failed to detach DSI host: %d\n", ret);
-> +
-> +	drm_panel_remove(&ctx->panel);
-> +}
-> +
-> +static const struct of_device_id visionox_r66451_of_match[] = {
-> +	{.compatible = "visionox,r66451"},
-> +	{ /*sentinel*/ }
-> +};
-> +MODULE_DEVICE_TABLE(of, visionox_r66451_of_match);
-> +
-> +static struct mipi_dsi_driver visionox_r66451_driver = {
-> +	.probe = visionox_r66451_probe,
-> +	.remove = visionox_r66451_remove,
-> +	.driver = {
-> +		.name = "panel-visionox-r66451",
-> +		.of_match_table = visionox_r66451_of_match,
-> +	},
-> +};
-> +
-> +module_mipi_dsi_driver(visionox_r66451_driver);
-> +
-> +MODULE_AUTHOR("Jessica Zhang <quic_jesszhan@quicinc.com>");
-> +MODULE_DESCRIPTION("Panel driver for the Visionox R66451 AMOLED DSI panel");
-> +MODULE_LICENSE("GPL");
-> 
+ arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi       | 4 ++++
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 1 +
+ 3 files changed, 6 insertions(+)
 
-It looks fine for me, if there's no other comments I'll apply it later today.
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+index f04716841a0c..ccaca29200bb 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+@@ -146,24 +146,28 @@ &gem0 {
+ 	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM0_REF>,
+ 		 <&zynqmp_clk GEM0_TX>, <&zynqmp_clk GEM0_RX>,
+ 		 <&zynqmp_clk GEM_TSU>;
++	assigned-clocks = <&zynqmp_clk GEM_TSU>;
+ };
+ 
+ &gem1 {
+ 	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM1_REF>,
+ 		 <&zynqmp_clk GEM1_TX>, <&zynqmp_clk GEM1_RX>,
+ 		 <&zynqmp_clk GEM_TSU>;
++	assigned-clocks = <&zynqmp_clk GEM_TSU>;
+ };
+ 
+ &gem2 {
+ 	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM2_REF>,
+ 		 <&zynqmp_clk GEM2_TX>, <&zynqmp_clk GEM2_RX>,
+ 		 <&zynqmp_clk GEM_TSU>;
++	assigned-clocks = <&zynqmp_clk GEM_TSU>;
+ };
+ 
+ &gem3 {
+ 	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM3_REF>,
+ 		 <&zynqmp_clk GEM3_TX>, <&zynqmp_clk GEM3_RX>,
+ 		 <&zynqmp_clk GEM_TSU>;
++	assigned-clocks = <&zynqmp_clk GEM_TSU>;
+ };
+ 
+ &gpio {
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+index e06c6824dea4..ae1b9b2bdbee 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+@@ -145,6 +145,7 @@ &gem3 { /* required by spec */
+ 	pinctrl-0 = <&pinctrl_gem3_default>;
+ 	phy-handle = <&phy0>;
+ 	phy-mode = "rgmii-id";
++	assigned-clock-rates = <250000000>;
+ 
+ 	mdio: mdio {
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+index 030e2c93f0e6..b59e48be6465 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+@@ -128,6 +128,7 @@ &gem3 { /* required by spec */
+ 	pinctrl-0 = <&pinctrl_gem3_default>;
+ 	phy-handle = <&phy0>;
+ 	phy-mode = "rgmii-id";
++	assigned-clock-rates = <250000000>;
+ 
+ 	mdio: mdio {
+ 		#address-cells = <1>;
+-- 
+2.36.1
 
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Neil
