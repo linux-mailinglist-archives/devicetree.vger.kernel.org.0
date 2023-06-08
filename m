@@ -2,130 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8EB727350
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 01:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B796E72745D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 03:36:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbjFGXuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jun 2023 19:50:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51684 "EHLO
+        id S229995AbjFHBgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jun 2023 21:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232690AbjFGXuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 19:50:13 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236EA212E
-        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 16:50:12 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id e9e14a558f8ab-33e5054ba6fso8183905ab.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 16:50:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686181808; x=1688773808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zh1qTh2owhTw6iheqxXCV3Jh42E0lrVswaTb+2hzc4w=;
-        b=gIfyyVs9Ca9SVZqTAi6/yw1HErHG28yWRd7i6AwxZSuQO+fqjj6rtwUQ10tcKurCje
-         G1kp79WcXgvE1Hk0uQ9CKAJ9OoCw5bzXOuKd5wWBBSd2XCluBU869A2ahAdfGotrg8cl
-         mjzpMRLmXyf6TGvU62RoU8dNYtyf2RetwIOwc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686181808; x=1688773808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zh1qTh2owhTw6iheqxXCV3Jh42E0lrVswaTb+2hzc4w=;
-        b=G+2Ck9ValsmxxrBpTTIsabL+HWwBXJIhHsk7XpOS1eBoVyOJ9IkZ+hzrLFQ2WeJu+O
-         vcsr4mwrNS3QyZbJdR5FoIS1L9N4RgboAQGZPNzPEzzZ5kXnjC7eAdiYXcdj0tGS8N2a
-         YNAz3pXpybnSGQuDbVRf7IMXQoeimo33fcdRK2uWmUKRcGLml9q+u2MuEaW1CFS2XPdG
-         oamO+WpOoPhXFwsHXXHj6EBrsC4pwjnndbUN/asiH9uGqBOYxXJHBTV+FAHco06lIo3E
-         VLj4CNoKGPyCJYsFd9A0xMp4ix5GgfPt11NyEXdihqgFJmdkOUzYMSKRNZuFJ1WxxsUL
-         AaaA==
-X-Gm-Message-State: AC+VfDzFK1m0Qjv2wBCINg/alnvBlYUu03YeOhgz0bKV5FBuhk0dcbX4
-        zVAtPo2eR9HdDsRAhZVR4VSo4vtQyGnjMQLueIw=
-X-Google-Smtp-Source: ACHHUZ6fu02SHHHBoVXkoARnDzsVx2OqbwYxLiV1laujaEFtueHE2S7i1+4zir7H/+g79zlla2CMiA==
-X-Received: by 2002:a92:cf4e:0:b0:331:105c:81f9 with SMTP id c14-20020a92cf4e000000b00331105c81f9mr10669611ilr.29.1686181808399;
-        Wed, 07 Jun 2023 16:50:08 -0700 (PDT)
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com. [209.85.166.50])
-        by smtp.gmail.com with ESMTPSA id b18-20020a920b12000000b003244d7f2292sm50274ilf.32.2023.06.07.16.50.02
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 16:50:05 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-77acb04309dso27494439f.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 16:50:02 -0700 (PDT)
-X-Received: by 2002:a5e:8c15:0:b0:763:5a8f:fe6 with SMTP id
- n21-20020a5e8c15000000b007635a8f0fe6mr9992800ioj.21.1686181802445; Wed, 07
- Jun 2023 16:50:02 -0700 (PDT)
+        with ESMTP id S229454AbjFHBgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jun 2023 21:36:23 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7868726AF;
+        Wed,  7 Jun 2023 18:36:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686188176; x=1717724176;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=B0VSdm1hETZ89zwsJ2li+Uinhg7LbDBnxsYq254PuxU=;
+  b=chsKfG7mG5c8jrJhQsjY7kysK9LSGkZnYaLnM4cIZPbuIurhm21O+fLv
+   yvoVMjguuHLtM0r/gnYJFpSG8gkyikocx20tDhJ4gknzR5IuJW9JrjUA/
+   wQDEzgA6bYIaLU0dUs2e63Xbnlkx7F00W0Ht6PAcVneJxsYr8HHpWauX/
+   uD2fs6SxJ9YUFTqgOih7J6BGiL4lKEgzxGspphDAsMpRT/nHIut4845Hh
+   yRBiLslOs7wp2fT+3vaHAQXvxx08Bi6IY4qW6te6pBTx9rXzTMjJevwUv
+   mE38Ywh1D7SkjZyYWmIPv6lscqA+3p4SM/QcsTWpE3jeaz+NJa1TS8c3j
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="341822939"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; 
+   d="scan'208";a="341822939"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2023 18:36:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="687205165"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; 
+   d="scan'208";a="687205165"
+Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 07 Jun 2023 18:36:10 -0700
+Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q74ZO-00076D-0Q;
+        Thu, 08 Jun 2023 01:36:10 +0000
+Date:   Thu, 8 Jun 2023 09:35:31 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Stanley Chang <stanley_chang@realtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Stanley Chang <stanley_chang@realtek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ray Chi <raychi@google.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] phy: realtek: usb: Add driver for the Realtek SoC
+ USB 3.0 PHY
+Message-ID: <202306080940.5Lcjwfck-lkp@intel.com>
+References: <20230607062500.24669-3-stanley_chang@realtek.com>
 MIME-Version: 1.0
-References: <20230607133458.4075667-1-yangcong5@huaqin.corp-partner.google.com>
- <20230607133458.4075667-3-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20230607133458.4075667-3-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 7 Jun 2023 16:49:50 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Uy=UNKDEhqeguhVGn_aTPk5+MppsXChpNOinVc4HJjYg@mail.gmail.com>
-Message-ID: <CAD=FV=Uy=UNKDEhqeguhVGn_aTPk5+MppsXChpNOinVc4HJjYg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] HID: i2c-hid: elan: Add ili9882t timing
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, hsinyi@google.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230607062500.24669-3-stanley_chang@realtek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Stanley,
 
-On Wed, Jun 7, 2023 at 6:35=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The ili9882t is a TDDI IC (Touch with Display Driver). The
-> datasheet specifies there should be 60ms between touch SDA
-> sleep and panel RESX. Doug's series[1] allows panels and
-> touchscreens to power on/off together, so we can add the 65 ms
-> delay in i2c_hid_core_suspend before panel_unprepare.
->
-> [1]: https: //lore.kernel.org/all/20230523193017.4109557-1-dianders@chrom=
-ium.org/
+kernel test robot noticed the following build errors:
 
-FWIW: I posted v2 today:
+[auto build test ERROR on usb/usb-testing]
+[also build test ERROR on usb/usb-next usb/usb-linus robh/for-next linus/master v6.4-rc5 next-20230607]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromium.org
+url:    https://github.com/intel-lab-lkp/linux/commits/Stanley-Chang/phy-realtek-usb-Add-driver-for-the-Realtek-SoC-USB-2-0-PHY/20230607-142704
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/20230607062500.24669-3-stanley_chang%40realtek.com
+patch subject: [PATCH v3 3/5] phy: realtek: usb: Add driver for the Realtek SoC USB 3.0 PHY
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20230608/202306080940.5Lcjwfck-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        git remote add usb https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
+        git fetch usb usb-testing
+        git checkout usb/usb-testing
+        b4 shazam https://lore.kernel.org/r/20230607062500.24669-3-stanley_chang@realtek.com
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=s390 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306080940.5Lcjwfck-lkp@intel.com/
 
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 20 ++++++++++++++++----
->  1 file changed, 16 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/=
-i2c-hid-of-elan.c
-> index 76ddc8be1cbb..411d7ea2725d 100644
-> --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> @@ -18,7 +18,8 @@
->  #include "i2c-hid.h"
->
->  struct elan_i2c_hid_chip_data {
-> -       unsigned int post_gpio_reset_delay_ms;
-> +       unsigned int post_gpio_reset_on_delay_ms;
-> +       unsigned int post_gpio_reset_off_delay_ms;
->         unsigned int post_power_delay_ms;
->         u16 hid_descriptor_address;
->  };
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-I would prefer it if you would add something to the
-"elan_i2c_hid_chip_data" indicating the name of the main supply. Set
-it to "vcc33" for the elan touchscreen and the NULL for your new one.
+ERROR: modpost: "usb_remove_phy" [drivers/phy/realtek/phy-rtk-usb2.ko] undefined!
+ERROR: modpost: "usb_debug_root" [drivers/phy/realtek/phy-rtk-usb2.ko] undefined!
+ERROR: modpost: "of_iomap" [drivers/phy/realtek/phy-rtk-usb2.ko] undefined!
+ERROR: modpost: "usb_add_phy_dev" [drivers/phy/realtek/phy-rtk-usb2.ko] undefined!
+>> ERROR: modpost: "usb_remove_phy" [drivers/phy/realtek/phy-rtk-usb3.ko] undefined!
+>> ERROR: modpost: "usb_debug_root" [drivers/phy/realtek/phy-rtk-usb3.ko] undefined!
+>> ERROR: modpost: "of_iomap" [drivers/phy/realtek/phy-rtk-usb3.ko] undefined!
+>> ERROR: modpost: "usb_add_phy_dev" [drivers/phy/realtek/phy-rtk-usb3.ko] undefined!
+ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
+WARNING: modpost: suppressed 26 unresolved symbol warnings because there were too many)
 
-It's probably worth adding a comment next to where you set it to NULL
-that this touchscreen is tightly integrated with the panel and assumes
-that the relevant power rails (other than the IO rail) have already
-been turned on by the panel driver because we're a panel follower.
-Otherwise someone is going to be super confused about how this could
-work.
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for USB_PHY
+   Depends on [n]: USB_SUPPORT [=n]
+   Selected by [m]:
+   - PHY_RTK_RTD_USB2PHY [=m]
+   - PHY_RTK_RTD_USB3PHY [=m]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
