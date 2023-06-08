@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C78117286DD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 20:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5797286ED
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 20:14:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235116AbjFHSGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 14:06:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38830 "EHLO
+        id S234280AbjFHSN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 14:13:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232256AbjFHSGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 14:06:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE31E19B;
-        Thu,  8 Jun 2023 11:05:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 449B665038;
-        Thu,  8 Jun 2023 18:05:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3D11C433D2;
-        Thu,  8 Jun 2023 18:05:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686247558;
-        bh=V7u42f2naBOqDowPjpRoAY5sWdX646Mwb4Elfsu16zs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bN4mvX+pIWEBE0jiHvTzGzCqSYj0xamnFlHcCq26lbRNO0jlsXx4ozmK2CCbIZ3Tq
-         t9YD0j21cFPvUWQ4nAln0igiH0Q69gaW3pVo6ISPbv6aKnX3L/IKcS6r0ldqlVSy1P
-         P2v0wi5URP+bEKZoXxbezTw7/AZTH7uWADINlLivU306OcNjmJ8Q9LTRVQHeTszTTq
-         F/wJ9qf67h0yDWXk3rw300lUinTEOzQ+y/L18eDQNXz4IuK4czNYH6srgum7JeUwvY
-         A6SdOGKD7svJzIKfZ5llVHKsaaaRo+vA5TMNjRvgw/quMriQgFvZty1RTuNgu4Ut72
-         Lo3XFhDmBwtxQ==
-Date:   Thu, 8 Jun 2023 19:05:52 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh@kernel.org>
+        with ESMTP id S232256AbjFHSN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 14:13:59 -0400
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D631FDC;
+        Thu,  8 Jun 2023 11:13:58 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-33dae9244a1so9686755ab.0;
+        Thu, 08 Jun 2023 11:13:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686248037; x=1688840037;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VIoynuv6udOW5LekCqRmnqhuS9COOvOVP6mK1YqrbbY=;
+        b=VYV6QBCjhAtjuwJW4rlVIab6s1g7BWTZkqVRHzF9tz8uYryliiX8o6A3/6iszkB3O3
+         +CuIbTsjBi+wv0NuQc9GesCowcecfd9ahy0nQhvSvKuNl8N1DvN3jqfJ5OQdfCjXLS4P
+         OFMI378FUP5blUc8SA1YTsZ7R3OS+7tA3qGfKYhccNemUDi6EVAZ1BDtpUMda29VQKZh
+         ICAzpqqwzzfIkTsukHLQywrUCuHP8y2jhXiPs4JAxbK+Pmgn2liuObJz+W+G2ejp5dYn
+         l2FwEaGSdQE/CmbViuvzmpuKRd6ZAEYSQeBAiCZd3iwMqnvUowSbsqlgSVouYM9jFdCO
+         uqww==
+X-Gm-Message-State: AC+VfDy2eCst5sk3V8OKLHP65OvXxphAIQiR9gDt6jwesnGYZ9m5L66F
+        j5o66swfeLRh/aQdIldSMw==
+X-Google-Smtp-Source: ACHHUZ4iP6csJ/GF+iB3FVST/z6ROywVESM1Yurn9hyif1K/ae0O1HCJlEceK2ccWaCvdUqsREVDDw==
+X-Received: by 2002:a92:c008:0:b0:33e:c0b:9ff2 with SMTP id q8-20020a92c008000000b0033e0c0b9ff2mr1730555ild.1.1686248037353;
+        Thu, 08 Jun 2023 11:13:57 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id z3-20020a056638000300b004163438fd4esm413711jao.92.2023.06.08.11.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 11:13:56 -0700 (PDT)
+Received: (nullmailer pid 3182680 invoked by uid 1000);
+        Thu, 08 Jun 2023 18:13:55 -0000
+Date:   Thu, 8 Jun 2023 12:13:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Oleksii <oleksii.kurochko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Anup Patel <apatel@ventanamicro.com>, qemu-riscv@nongnu.org,
-        u-boot@lists.denx.de, Andrew Jones <ajones@ventanamicro.com>,
-        palmer@dabbelt.com, Atish Patra <atishp@atishpatra.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rick Chen <rick@andestech.com>, linux-kernel@vger.kernel.org,
-        Leo <ycliang@andestech.com>
-Subject: Re: [PATCH v2] dt-bindings: riscv: deprecate riscv,isa
-Message-ID: <20230608-unlucky-carpenter-b3a95f269712@spud>
-References: <20230608-sitting-bath-31eddc03c5a5@spud>
- <168624654839.3085745.9088493205796442132.robh@kernel.org>
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [dt-schema PATCH] schemas: iio: add label
+Message-ID: <168624795645.3178290.5235314768802159315.robh@kernel.org>
+References: <20230507171219.232216-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="+RuwJ2DDVfOcEYrF"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <168624654839.3085745.9088493205796442132.robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230507171219.232216-1-krzk@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,52 +64,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 07 May 2023 19:12:19 +0200, Krzysztof Kozlowski wrote:
+> Linux IIO core code parses label property which is already used in
+> several IIO devices.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  dtschema/schemas/iio/iio.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
---+RuwJ2DDVfOcEYrF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied, thanks!
 
-On Thu, Jun 08, 2023 at 11:49:08AM -0600, Rob Herring wrote:
-> On Thu, 08 Jun 2023 17:54:05 +0100, Conor Dooley wrote:
-
-> > As a result of implementing Sean's suggestion, I believe I need to add
-> > riscv,isa-extensions as an exception to the rules preventing vendor
-> > properties being of object type, otherwise dt_binding_check is less than
-> > happy with me.
-
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/extensions.yaml: properties:riscv,isa-extensions: 'oneOf' conditional failed, one must be fixed:
-> 	Additional properties are not allowed ('additionalProperties', 'properties' were unexpected)
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/extensions.yaml: properties:riscv,isa-extensions: 'oneOf' conditional failed, one must be fixed:
-> 		'enum' is a required property
-> 		'const' is a required property
-> 		hint: A vendor string property with exact values has an implicit type
-> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 	Additional properties are not allowed ('additionalProperties', 'properties', 'type' were unexpected)
-> 		hint: A vendor string property with exact values has an implicit type
-> 	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/extensions.yaml: properties:riscv,isa-extensions: 'oneOf' conditional failed, one must be fixed:
-> 		'$ref' is a required property
-> 		'allOf' is a required property
-> 		hint: A vendor property needs a $ref to types.yaml
-> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 	'boolean' was expected
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-> 	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-
-Yeah, expected. I think I need an exception in vendor-props for this to
-pass the checks.
-
---+RuwJ2DDVfOcEYrF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIIYgAAKCRB4tDGHoIJi
-0l8IAQCHNhFWGWR69Rcpmeno9mCNvE7EiV05GSVbbHObbpVtJQEAmK/PJZ+JTtyj
-f1qtwj+vdUYA/q/Am73pR9cOA/e51w4=
-=3iEw
------END PGP SIGNATURE-----
-
---+RuwJ2DDVfOcEYrF--
