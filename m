@@ -2,85 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48D26727622
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 06:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9945272765A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 06:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232805AbjFHEgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 00:36:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50872 "EHLO
+        id S234209AbjFHEwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 00:52:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232528AbjFHEgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 00:36:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 166B91988;
-        Wed,  7 Jun 2023 21:36:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 951326478D;
-        Thu,  8 Jun 2023 04:36:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A0E3C433D2;
-        Thu,  8 Jun 2023 04:36:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686198981;
-        bh=L/74qyYmuC5m/lS+AJK+0bRD2NenVahTw3pHvJavynU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=CjZ2FR/NVSEAmxfxC6it73ZkPHCC0KNq7ODRXgfwkeQnYARfnvcFfnZDHEz4j7iKQ
-         N43RK9KGXoYn1ZYCQL4T3jAQS1hUZKZ1+cJEjI1BO2QjXGtR5L2nQQAa3faFE7WHyp
-         q6Z+wKRF0odV0nvZzqvl+OkJyHMLTmPblr6uZzBL3+XCEtfn7ara+V3ld95F2Ftyjy
-         3nzVsFs72rddqA5Rsn4YQkyUzgSH69OcWbv+Z5mHBaZaildab4JBAZKr4C1JzTJK6F
-         G5pPo+j7me2d+h7ODJEwq5pR6eY7hUb9ZI51KZYTyVL7EhXUsb3fZFE4GpJtWVALGJ
-         8CzPRrjsZTeTw==
-Date:   Wed, 7 Jun 2023 21:36:20 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Raymond Hackley <raymondhackley@protonmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230434AbjFHEwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 00:52:40 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED00E4A;
+        Wed,  7 Jun 2023 21:52:38 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 53A345FD72;
+        Thu,  8 Jun 2023 07:52:36 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1686199956;
+        bh=W+pJcKNPyHeJx9yigTrLfyd5QNmlHZFEYc5/9qUZfOI=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=OTfyvL5QuDbycRwAQXq0zp98Rg+v0Z9G8gghcP6uPGkpNwJxm/m356XZAVj9SL+UT
+         9RmZhzMjDsXzYiTjgQ5zPScl/CHzwm07pl9BCp2XB/+2R70jg8h29x35Xb7nAMMr5n
+         QcE+b9+rSlRixHLSH0zLqgia9rH2dBpCWkIni2s+WAL6FiWjqHS7OMyCdbjKIXpKD5
+         jPoISB4FEe46xUe76nzLvdUbpG0+OsY3V+7Tr0k274QxX37WFfOBJx+fupa02KBUkS
+         zXpG6lvqw6xQMXcKLCD7WTVlRntSFCW4Z0sDI6pWzinxSaN85cInj//EDbZ4WsMjgF
+         oM1LU3oTVI6hQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Thu,  8 Jun 2023 07:52:35 +0300 (MSK)
+From:   Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To:     Liang Yang <liang.yang@amlogic.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Jeremy Kerr <jk@codeconstruct.com.au>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] NFC: nxp-nci: Add pad supply voltage pvdd-supply
-Message-ID: <20230607213620.4087b0e2@kernel.org>
-In-Reply-To: <20230606072454.145106-1-raymondhackley@protonmail.com>
-References: <20230606071824.144990-1-raymondhackley@protonmail.com>
-        <20230606072454.145106-1-raymondhackley@protonmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] Meson NAND: waiting w/o wired ready/busy pin
+Date:   Thu, 8 Jun 2023 07:47:26 +0300
+Message-ID: <20230608044728.1328506-1-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/08 00:23:00 #21457426
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Jun 2023 07:25:55 +0000 Raymond Hackley wrote:
-> +			if (r != -EPROBE_DEFER)
-> +				dev_err(dev,
-> +					"Failed to get regulator pvdd: %d\n",
-> +					r);
-> +			return r;
+Main thing that this patchset adds is support for waiting for command
+completion when there is no wired ready/busy pin. This is implemented
+by using Meson specific command which operates without wired pin, but
+supports interrupt driven waiting (default way for waiting without
+hardware pin is 'nand_soft_waitrdy()' which uses software loop instead
+of interrupt). To select which mode to use during driver initialization,
+common NAND controller property is used - 'nand-rb'. It is described in
+'nand-controller.yaml'. But for Meson, its description was missed in
+'amlogic,meson-nand.yaml', so this patchset also adds support for it.
 
-dev_err_probe() ?
+Patch for bindings was tested with dt_binding_check and dtbs_check.
 
-> +	r = devm_add_action_or_reset(dev, nxp_nci_i2c_poweroff, phy);
-> +	if (r < 0) {
-> +		nfc_err(dev, "Failed to install poweroff handler: %d\n",
-> +			r);
-> +		nxp_nci_i2c_poweroff(phy);
+Links:
+ v1 (as two separate patches):
+  https://lore.kernel.org/linux-mtd/20230606193507.35024-1-AVKrasnov@sberdevices.ru/
+  https://lore.kernel.org/linux-mtd/20230607073015.1280085-1-AVKrasnov@sberdevices.ru/
 
-The _or_reset() stands for "we'll call the action for you if we can't
-add it". Don't call poweroff again.
+ v2 (tagged as v1, but consider it as v2):
+  https://lore.kernel.org/linux-mtd/20230607145026.2899547-1-AVKrasnov@sberdevices.ru/
+
+Changelog:
+ v1 -> v2:
+  * Two separate patches:
+    For bindings: https://lore.kernel.org/linux-mtd/20230606193507.35024-1-AVKrasnov@sberdevices.ru/
+    For driver: https://lore.kernel.org/linux-mtd/20230607073015.1280085-1-AVKrasnov@sberdevices.ru/
+    Now fixed/updated and combined to this patchset with v1 version.
+  
+  * In binding patch:
+    * Invalid type of 'nand-rb' is fixed, it was 'bool', now it is 'uint32 array' as required. Also
+      new declaration of 'nand-rb' contains several restrictions like number of elements and min/max
+      value of elements.
+    * Location of 'nand-rb' is moved from the controller object to the chip object as required.
+  
+  * In driver patch:
+    * Update comment which describes when it is needed to send NAND_CMD_READ0 to
+      leave command waiting loop.
+    * Change type of 'no_rb_pin' to 'bool' as in v1. Now it is just a flag which selects
+      mode to wait for command completion.
+
+ v2 -> v3:
+  * In binding patch:
+    * 'minimum' property is dropped, because 'nand-rb' is unsigned.
+
+  * In driver patch:
+    * Logic of 'no_rb_pin' parsing is reworked a little bit. For example to return error
+      code from 'of_property_read_u32()'.
+
+Arseniy Krasnov (2):
+  dt-bindings: nand: meson: Fix 'nand-rb' property
+  mtd: rawnand: meson: waiting w/o wired ready/busy pin
+
+ .../bindings/mtd/amlogic,meson-nand.yaml      |  6 ++
+ drivers/mtd/nand/raw/meson_nand.c             | 77 ++++++++++++++++++-
+ 2 files changed, 79 insertions(+), 4 deletions(-)
+
 -- 
-pw-bot: cr
+2.35.0
+
