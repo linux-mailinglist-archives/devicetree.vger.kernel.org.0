@@ -2,78 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8AD272788D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F5272789D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 09:20:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232721AbjFHHSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 03:18:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54766 "EHLO
+        id S235352AbjFHHU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 03:20:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234612AbjFHHSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:18:34 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745B81B9
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 00:18:32 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5147dce372eso379131a12.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 00:18:32 -0700 (PDT)
+        with ESMTP id S234957AbjFHHUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 03:20:14 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9DD1B9
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 00:20:12 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-970028cfb6cso58766666b.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 00:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686208711; x=1688800711;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1686208811; x=1688800811;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LXEBC8JZMICwE4VG2uXVfSnwe1adhgVGBUr3vurvFKA=;
-        b=xcDa5UVUhBlXQH80j2JcXOoWmuVBnEfRyqotJ80tYTSl3B4CCJX/kGZTayYM5G+e8q
-         Iy2DmVneWnLuvV6I8ygi7liOcJD4UBAPKcanlgyQrWQI/0RLzzoCVxob6zv3dknWykrs
-         BXOyHyzo3IkG4bf2sUs/6zu88oRfs4L4c56DkIXpOamxeVvOwgrYrtfmmQBZTQjApxC6
-         j5HyHni+vtgru9wBUamm5UNPInaeiVu7DOTLCWFiX3vUykYPW7D/MAg3yPZde/d1vSAG
-         7GO2A/9YNe3UEDCUmC60vZM7P2ompCcJsstm8FSTQdug1B6oBHKK53o2H4muBkhBrZAl
-         aArA==
+        bh=sCl6rtqI/lnsAp34i7m13i8YaVFA5i7mUTO1m89CYUc=;
+        b=l725wZUxx6r1Ycdzj7cFBsrukTjy35bP8IPHmCSPAz2hwoQ7qy8PxBKnau50bylSgD
+         HR75/QKRHMZqVnep07+5VoUwjXIK1GOar8CmX+kSwjwZWQBzxsrJ3vI/jvm6cGzwUz0G
+         h4BXewrylaAkKZWViWZzgE2aRhGAcI6xcMtveDLMcSp9Cl6zrvAKlUt0b7xoRBdosabR
+         MOoX7D2/feSpNpjMkhKJM30W0R1//Ojj8UTP/OZW+U47/wyyxY6cduOrMp4VijBrz+7a
+         NveV1pzoP2fV+SB8xaAMgkXATbpJ4PAH5tckzUVAwOU8ilr5RuWYZXWQ/NtkyW/CFKc1
+         6VEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686208711; x=1688800711;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1686208811; x=1688800811;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LXEBC8JZMICwE4VG2uXVfSnwe1adhgVGBUr3vurvFKA=;
-        b=cStHEEW7NtdJ5420ycpEroLwwwnxzwZZYOzYtXizlxEf6djtOShYXJx93ziPnTBbXy
-         K070NMHhAw9YnwHDB17OyURJJ/NizADEeur4uIA1RGtU1CDJsVii2n7aadk+uT3rpRTx
-         hUf73zq/p8J5hwJaswAbdckuW5Q28oxtC8CIWDxEbg6L/Dxw77IHRw3orVZxal9caWbT
-         os5/gBVm43+qEj4Oz6w6ElWBGdDE72HNUmVQvUcFjUa87fRq8MzNNY+WNr3o+FTtxtIO
-         x0V81TOxcfgZasqTvvrePnxSAjM8yD0kU02YegqGKfw05kCUmwhWU4kTmIHrZcjMZRiN
-         9wqQ==
-X-Gm-Message-State: AC+VfDyryy6c6dNlfVoPMMTVkQjDfK3bPNiKgcxd0D4/Q9nl/1rhOrzi
-        RfmYFtkkR0GgKJtyC7176Q6TSg==
-X-Google-Smtp-Source: ACHHUZ72SvwbpUytBAKFCe10PfP9CXgTzMFZzoPmBNYuWG1B6C8gUGZQKrwYE0kngcCRTA7RNZatqg==
-X-Received: by 2002:a05:6402:1adc:b0:514:95d5:3994 with SMTP id ba28-20020a0564021adc00b0051495d53994mr6872541edb.32.1686208710949;
-        Thu, 08 Jun 2023 00:18:30 -0700 (PDT)
+        bh=sCl6rtqI/lnsAp34i7m13i8YaVFA5i7mUTO1m89CYUc=;
+        b=b03Z5ec4x6mRRFw4623Ouaf0J1+ZwL5GR/tfXxbiyG3urUTf0cxfMI6Ali2/bdADpg
+         y5uSf8jjHNdcn9mb8M0DpNqYIBbaylnnkkQTmnOXvlpZCHFTw0UE7W9ryKixHph9iO1O
+         862dtm3OhxdV2j/yDRuyXWFOkVQX6hazaB7xobC/kXy2dKeaPWbYz9Z26stw82hLWBek
+         mzJf5Jx/uVS8TBGd3/5Ju6qz+e3HGuv82H/MBk7JaD43zptK9QyFk5wUpYVBGXa181cs
+         pk6Tt/Bnaog+6WgLneaHdKY742DR+d2oBa8p/1zeNO6AohQvHshTS5Iv5vbpt//54JBa
+         sZ4A==
+X-Gm-Message-State: AC+VfDy8IrcFf4eFWOVkBRmlWpbPcRGBFKKgsZINiKo9KPDcu5oRfU+h
+        K62k9eW1SGHXks4JDnfGBKebDg==
+X-Google-Smtp-Source: ACHHUZ5dyxvogNuartC9WpRJfkks70+K3BJ8tJOfNobMtwn0tLJXermHSdQpCm9l7vzWKuJsNrZRpA==
+X-Received: by 2002:a17:907:1628:b0:974:5e8b:fc35 with SMTP id hb40-20020a170907162800b009745e8bfc35mr8746192ejc.26.1686208811151;
+        Thu, 08 Jun 2023 00:20:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id g16-20020aa7c590000000b0051056dc47e0sm215250edq.8.2023.06.08.00.18.29
+        by smtp.gmail.com with ESMTPSA id j24-20020a170906051800b00965e1be3002sm309402eja.166.2023.06.08.00.20.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 00:18:30 -0700 (PDT)
-Message-ID: <87b9c96a-09bf-ec5d-85a0-65f59e5c593d@linaro.org>
-Date:   Thu, 8 Jun 2023 09:18:28 +0200
+        Thu, 08 Jun 2023 00:20:10 -0700 (PDT)
+Message-ID: <5000d481-2125-95e0-4033-d9c71a49cbd7@linaro.org>
+Date:   Thu, 8 Jun 2023 09:20:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: max98388: add amplifier driver
+Subject: Re: [v4 1/5] dt-bindings: mfd: Add aspeed pwm-tach binding
 Content-Language: en-US
-To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        rf@opensource.cirrus.com, ryans.lee@analog.com,
-        wangweidong.a@awinic.com, shumingf@realtek.com,
-        herve.codina@bootlin.com, ckeepax@opensource.cirrus.com,
-        doug@schmorgal.com, ajye_huang@compal.corp-partner.google.com,
-        kiseok.jo@irondevice.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     venkataprasad.potturu@amd.com
-References: <20230608054230.344014-1-ryan.lee.analog@gmail.com>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee@kernel.org" <lee@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
+ <20221123061635.32025-2-billy_tsai@aspeedtech.com>
+ <c4b188b1-06a4-3cb0-a758-e12942e1f67b@linaro.org>
+ <ce99a709-ba4a-eb53-39ac-88a194879000@linaro.org>
+ <SG2PR06MB3365AE9D075601CB62C6E7F78B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230608054230.344014-1-ryan.lee.analog@gmail.com>
+In-Reply-To: <SG2PR06MB3365AE9D075601CB62C6E7F78B50A@SG2PR06MB3365.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,77 +96,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 07:42, “Ryan wrote:
-> From: Ryan Lee <ryans.lee@analog.com>
+On 08/06/2023 09:15, Billy Tsai wrote:
+>         On 23/11/2022 09:24, Krzysztof Kozlowski wrote:
+>         >> On 23/11/2022 07:16, Billy Tsai wrote:
+>         >>> Add device binding for aspeed pwm-tach device which is a multi-function
+>         >>> device include pwm and tach function.
+>         >>
+>         >> Subject: drop second, redundant "bindings".
 > 
-> Add dt-bindings information for Analog Devices MAX98388 I2S Amplifier
+>         > Where did you implement this comment in your v6?
 > 
-> Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+> Sorry, I guess by "Subject: drop second, redundant "bindings"" you meant to remove the second "bindings" string from my subject. So I change the subject from "dt-bindings: hwmon: Add bindings for aspeed tach controller" and "dt-bindings: pwm: Add bindings for aspeed pwm controller" in v4 to "dt-bindings: hwmon: Add ASPEED TACH Control documentation" and "dt-bindings: pwm: Add ASPEED PWM Control documentation" in v6.
 
-Thank you for your patch. There is something to discuss/improve.
+A nit, subject: drop second/last, redundant "documentation". The
+"dt-bindings" prefix is already stating that these are bindings and
+documentation.
 
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,max98388
+> If I have misunderstood your comment, please let me know.
 
-Blank line
-
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C address of the device.
-
-Drop description, it's obvious.
-
-> +
-> +  '#sound-dai-cells':
-> +    const: 0
-> +
-> +  adi,vmon-slot-no:
-> +    description: slot number of the voltage feedback monitor
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-
-Drop quotes.
-
-> +    minimum: 0
-> +    maximum: 15
-> +    default: 0
-> +
-> +  adi,imon-slot-no:
-> +    description: slot number of the current feedback monitor
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-
-Drop quotes.
-
-> +    minimum: 0
-> +    maximum: 15
-> +    default: 1
-> +
-> +  adi,interleave-mode:
-> +    description:
-> +      For cases where a single combined channel for the I/V feedback data
-> +      is not sufficient, the device can also be configured to share
-> +      a single data output channel on alternating frames.
-> +      In this configuration, the current and voltage data will be frame
-> +      interleaved on a single output channel.
-> +    type: boolean
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#sound-dai-cells"
-
-Keep consistent quotes - either ' or "
-
-> +
-> +unevaluatedProperties: false
+You replaced one redundant with other redundant. I only asked to drop
+it, not replace it.
 
 
 Best regards,
