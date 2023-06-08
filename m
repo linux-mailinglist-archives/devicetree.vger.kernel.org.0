@@ -2,202 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAFAC727EF9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 13:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 642A3727F02
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 13:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234950AbjFHLkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 07:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53792 "EHLO
+        id S236262AbjFHLlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 07:41:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236258AbjFHLji (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 07:39:38 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B2F2736
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 04:39:33 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51494659d49so842598a12.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 04:39:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686224372; x=1688816372;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xqR4Cl4Oo+rFOH+Sj3ml0n4meYZgvylOhYiYI8g6ow8=;
-        b=fNh6Fmwm2YHAPIHwAdlcjDwjrjjCabjXApKTw4f1jhc/TcUV5nXOqWN8HjWJwlcOJf
-         vTTbIKlNpb5meuz04hanIifHDPLQAeyxuQQHCLhBrfhnFKslc0m+Dfu6l/7CDaLBenGV
-         zjiwKAmFc5zAyr5KJlTXWgnM+vmZ/WmH+PMlZ4Tzus6X5Sy6HrJXYUVjUk/pP4q2zUh8
-         As06JTdEVZ2Fr2RLIwDoxnMeycQhPt9HLj/bhZMRuq58sdYfixTFIkDJdSL/xHjC1/NX
-         9AxRxI2zvgxLRb9huFms2x335RT69oTKOO8vbGd2ArYwWpsWqqMnJiuOhiGn7b3o3jH7
-         dMhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686224372; x=1688816372;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xqR4Cl4Oo+rFOH+Sj3ml0n4meYZgvylOhYiYI8g6ow8=;
-        b=LnMMgtfeiD3222WwXabWRiiQRzrMnnuk/H6ovjvIPf7EwmvFK3t4g0IjtRiTtBENpa
-         +9caQd6STQIFEAOdAuGpmeYpyOZeKAmNob43hYkpTsEYw++pZhZ+3LNN8nVIBdz+Ti1q
-         /DWW9YlVnoFYZEC0B4wH9hmeL+wvEg6zSss1xTqrUExkAqGeS7hawkZC2FSAoTdNJVPJ
-         Lvjm0unGVb9E206YAv2EulR2JmcT5FXylrx+dLeqegJeWY/j5QZCJaXo9yU04J0riQgS
-         g1n7r8zq6OisQm07KZ8TbZGgOaFfaxmof5KSg9gvhnWTuR9zCihWQCG2UYt2w1cMexIW
-         iGlw==
-X-Gm-Message-State: AC+VfDzo8uMfS56ddXjXZoedalic9xxZfkr6YiaUiaA9eOKn3TH4r6M0
-        5+gAL9+AAx0cMIL07WKH/tV4ew==
-X-Google-Smtp-Source: ACHHUZ7Th7ms72bKEB7ZtHp2Yh/u7BnpHPOwK6btJqOe7BpFZDp6faRJ02BvsNxVIHPLbCYoCQTLjQ==
-X-Received: by 2002:a17:907:94d6:b0:96f:905e:6117 with SMTP id dn22-20020a17090794d600b0096f905e6117mr9214973ejc.56.1686224372459;
-        Thu, 08 Jun 2023 04:39:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id bv15-20020a170906b1cf00b009596e7e0dbasm577799ejb.162.2023.06.08.04.39.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 04:39:32 -0700 (PDT)
-Message-ID: <9435791f-98cb-19f0-f959-8624990959ba@linaro.org>
-Date:   Thu, 8 Jun 2023 13:39:30 +0200
-MIME-Version: 1.0
+        with ESMTP id S234419AbjFHLlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 07:41:10 -0400
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2107.outbound.protection.outlook.com [40.107.13.107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8FD2727;
+        Thu,  8 Jun 2023 04:40:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GCCpBNInR5rrwgSrslr5FeAxfi7yhM0OMVgvXQFSRIs7IcWrT+/QdT4L0u9Da+x//vlxc9XypH71CRpfyBMBo/rxn8bn/2ZbEIs4+RojP516a3WpWUAVlLJ+rqp208dOtaFJig2AKRLLzxix5m8vb834hks7AHl5q7jjDyS0nwOVKxPiW6TTbzfCFJDZNgBPeOZ8MdhU7ZTUVFum5sFtVEQyaP3wUQN1+JTvUZPz3svRxPpdzaUVLcE6N9zJNbOGeJ4NMGnQTxNSHI5EHcblmdpcNqsZ+u4sGLaBkAU7OF5yLeSoz3NvO1JdL3yXC8S5/oyCiDCJ2eZ4j+OEvTvZGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GGPZFO/nr8cel6dTbAtHcsLUDfXdgIVPQFzq5GJ8uyg=;
+ b=RbG/COeUCAaroreKw7Ki3X58ZSiMtvm7h0MzQ/UMvIdg5rJ6d0vWsz+3ccbiiFDrQslqdipvrqAhgaaia6nQipA3lodI7SaqyEXEkx3Rd8OSH1fCQjST1iXxLIgaPwMCPRpfCQoVJC1nMhRPcV5hen0TUKUZN9MRji9Lq518taPUgjJJGODulBGVWV/hXbVmsvmo5vY4FCC9AYQ4TwZPUen+LDHDZRGaFFXQkMRckvdPHmjXriep3m57gsv6ynKXjsRslmkX2gcW35EZZAtCpMjgi5/qgL5W/YWtZaUvq/HIIYHpQ3UBW0YxLBqvC4N64FQcIurECW2zqpPmUrhikg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
+ dkim=pass header.d=prevas.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GGPZFO/nr8cel6dTbAtHcsLUDfXdgIVPQFzq5GJ8uyg=;
+ b=jLMchT0g9QOOJ7IIPC/aMvr2dP9/LlxFwLlkJnyEb+BDjy6Ax0WnbK6tC2g73qZ+Vzs+s50VrN0LEBn6hhy/fBBKMan58VO7u4E5UCPMoCgJpULNL+AnawTWSAOuuxJ1TapVVW/+hOeVsI9gRM2YbvGsjAvueyH0CKEWxKV7WIw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=prevas.dk;
+Received: from DB9PR10MB7100.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:45a::14)
+ by DU0PR10MB7532.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:427::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Thu, 8 Jun
+ 2023 11:40:37 +0000
+Received: from DB9PR10MB7100.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::d66c:ec:aa54:f318]) by DB9PR10MB7100.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::d66c:ec:aa54:f318%5]) with mapi id 15.20.6455.030; Thu, 8 Jun 2023
+ 11:40:37 +0000
+Message-ID: <bfd050f2-b39e-c091-614e-0c77fe324435@prevas.dk>
+Date:   Thu, 8 Jun 2023 13:40:34 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] dt-bindings: reset: convert the xlnx,zynqmp-reset.txt
- to yaml
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>,
-        "Mehta, Piyush" <piyush.mehta@amd.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "nava.manne@xilinx.com" <nava.manne@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>
-References: <20230607065121.2265076-1-piyush.mehta@amd.com>
- <20230607065121.2265076-2-piyush.mehta@amd.com>
- <168612336438.2153757.6000360498539992409.robh@kernel.org>
- <MN2PR12MB4333E0628E2E67652E80067A8850A@MN2PR12MB4333.namprd12.prod.outlook.com>
- <55b59833-d070-f576-9d85-047175d9722c@linaro.org>
- <b1c80077-7509-883d-cfd1-fb3c0b0449d6@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b1c80077-7509-883d-cfd1-fb3c0b0449d6@amd.com>
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V8 0/7] drm: bridge: samsung-dsim: Support variable
+ clocking
+Content-Language: en-US, da
+To:     Adam Ford <aford173@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230526030559.326566-1-aford173@gmail.com>
+ <e1379d94-66a5-8538-abdf-de7770befb7d@prevas.dk>
+ <CAHCN7xK9RaLRSK_jSbbuGBUf14-FOHsrawi2J8G29iHSOj2Nyw@mail.gmail.com>
+From:   Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+In-Reply-To: <CAHCN7xK9RaLRSK_jSbbuGBUf14-FOHsrawi2J8G29iHSOj2Nyw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AS4P250CA0005.EURP250.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5df::16) To DB9PR10MB7100.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:10:45a::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR10MB7100:EE_|DU0PR10MB7532:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4e33f2cd-02f6-4a26-90dc-08db68152d6e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rNpJCzGsP8fIlIRxJwVg2qo30Vy5KfjnhkHFxzyiFnWTfmIY7jk7QEFSOp+8TGtXbm/NfhwrHnOmP/BwIiRcz0oqcWFqrhQhT8uLLR37y+9LuXAnaRBRxuT9iBe0j/65AMaZE6ZMvl6GchVUyNH37Z2gCI0wOFKz+uaq+sJK+AJTf7/dxJOLo9czSr6FZc7Clizt9AO69+prFkY7U60vKDjg8Nchpc0/90kqPqiqcc5j+T2yyLeojhv4ihBrloOdW5Gnyriu2gp9ewzpXwIJP2I4hzSRw3MXoJnYytHpbhnUYskXpgqmBDKgg6x4+JvOlux2M9SXawyb3udeFN8gGvHXoAitii1L4pJYWQVXks/w1hBKhXnejrnKeY3lZiG5j7AOtBdxVKOOMJF+s6Cori7gUZtjMbOdedZ9v62Mqg1WsnRZcKlUaxsih4qKV3CkP8FwZDg0gL26Cs1yfm1mX8JzkXnuW+C4tYZA9hiZpibU5bjyKE4k0V8aQSCtIzvGD1ZUfeKZPrRYJzCY2JefKzcu5bpo6e3VOHY9RFWhPABaUrNtt5um05yqU/+sE9T572T+G6Cb/ffAbUZDugoeL/2bjTMZa8ZlmsSHaOjRtqpviSvFJLWMniURnRF3WFcnAgrCjQHvQxsBT6zQZ5M9SpaCdcfxUP9QYsk8JO5RCGVfN69eM5R3L2G/Ecbj72JP
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR10MB7100.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(376002)(39850400004)(396003)(366004)(451199021)(186003)(6506007)(26005)(6512007)(53546011)(2616005)(31686004)(83380400001)(52116002)(7416002)(36756003)(6666004)(2906002)(8676002)(8976002)(8936002)(6486002)(54906003)(478600001)(44832011)(6916009)(31696002)(86362001)(5660300002)(41300700001)(38100700002)(38350700002)(66476007)(4326008)(66556008)(316002)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bEpWdHo0NjNlSHk3Ukh5cG1jdTJJcERpeGxCQytwd1djRDFMQ0pRSjd2djJI?=
+ =?utf-8?B?YWRtVER4MTZtZEhXa0pFbm4vaFJQK1B2SWtMcVUvR3UxQVlIRTJKOTJKV0wz?=
+ =?utf-8?B?YXU0MWJIMkllV3ZzMGxxNWVPZHZ6alFQTlloVGVoellzTlZyU0pPWjlDeHZ5?=
+ =?utf-8?B?Z3hpRHZPQlU1RXUvZzNPZXJRdXdXV2JSRXprTTR5TDNXdmZoYXJMY0tnOXha?=
+ =?utf-8?B?ajRuRU5uSHJOTHJpaHN5VFpnWTIrazMxQlVJYzlvMmlrbGtWRVhtQVdqcEFy?=
+ =?utf-8?B?UWJrbVNYWktuMkdOdnRuenllQ002YlZMNjVjVmxqRS9rMFY1VGN1emY1NDZx?=
+ =?utf-8?B?NGtJL01pcWhGK1RvT3Q1RitLS1ZoYTg3OGF2VHA4bmNzcmZJaC9WTlhzcE9h?=
+ =?utf-8?B?dlF4ZU9OQThJMzdzVEtmSTk1Z2hIVjQ0Tm5pUUtBTWFQMmZGa2tGTEMxZGh0?=
+ =?utf-8?B?TXV1MFdLWkR2Z2lhaHVlU3FoaDJUZ1hqWCtpUDFsMVFwTkZzRnY3NmlKZTBO?=
+ =?utf-8?B?b3dtd1hwbVRvVGFxdVdtYlZRMm83V2xNNDd4MDdXVk96OHZORXJ4NkROV2Jy?=
+ =?utf-8?B?b2plQ2JXNnFQVzdXbXpFUTJJWXdtQU12RzFsWExSOWhqYnJTbkJBNmhpaGpW?=
+ =?utf-8?B?bmo1L0VYWUk4WWVHYVFjR2lCemlWM2FSclZhR3gyNmVLWno0RTRVcTBCM1cy?=
+ =?utf-8?B?c05Feng0YW5IcXB0NzdVblVlZ2hjL1dibGNYVlBqc3pNSWJKT2ZGcjRiNDRn?=
+ =?utf-8?B?bFh0eW1DL3VLWFdEdFdoZHpUWE45N3ZWWlhXdTRNekZ6bHpwd3BnTkYvSUdG?=
+ =?utf-8?B?aElidTFpUURiOXVqNWRIMWdwb1RmQXBqaUszNmgxRDhmc09rclBGMUxxWCs2?=
+ =?utf-8?B?dUJvaThTVTdPcTdLc1B4dktXSFppaWQrUTBjZ0Q2NG5HRlZmWXlLQ2tsU1Jk?=
+ =?utf-8?B?UEhsTXpsakZ2YlN1Q0N3WE52SEIwR0hKMW9HU3BEcDJ4dGxnd1dSbHh3YXdV?=
+ =?utf-8?B?anJyVW1YVlJkSzhBdVlESWZNM0s3dnFaYXZzTUVMYjNCeGF3NlJLd0tpdGFx?=
+ =?utf-8?B?emlVaEoyOFFLdTBONGgwazVRK1krNzBjbllFR2oxMVFDM3ltcGxQejFvQzJv?=
+ =?utf-8?B?SzZFZDY1M3hLR055bHEzeno3dXFEL25RYXRvZlQ5Q09jbE9JOCtXdWc1czUw?=
+ =?utf-8?B?K09NOUxYY29UcnMwaGZHazIwdFdZWkVnN2JaUzhwWWdTMmFhdnUwR280akpq?=
+ =?utf-8?B?Z3U1VitFS2ZldnZpTk50NjRObm5WMml5ZUk3VlNNc0xDU1hyc3EzbDdrM2Rm?=
+ =?utf-8?B?K3R2aU1PakJ4eGh2RUxTUnFmYWdLbEZmTHBRbnZCZGhuUFk5cXYweUMzWUtw?=
+ =?utf-8?B?d1J6M0hyS2hmK1RPZnc1QlBNQm1FaWV6cGxnOTZ6TElVLzdudlVvZUdTam40?=
+ =?utf-8?B?cDgzN1FQS0QwVDFadFdZYittUUVTeUprV0M5UlNmZ1djcURqRmFuZkpOU3hx?=
+ =?utf-8?B?SFdCRXptVEIveU53N2dLdllOcThuQVIrazZEZEs5WnNmaHlFR0o1d3BBUStY?=
+ =?utf-8?B?VUlWc3lVL3FqSkF1cm1YOFM2NEpnYzJqMkV5cW9ScER0SUZDbFhxbjdmTXph?=
+ =?utf-8?B?Vno2dlJNamhYeTFBYU1meVA0UkFkTnU2ei9md0FIS2dpN1QwVHplc3dZT1k0?=
+ =?utf-8?B?dncwRHBiMTN5VTc1TmoxVk9veSsrRDN4UkpURjlBZ2FucXZZMWl4RTNFUWdi?=
+ =?utf-8?B?MTU2OVQyRWJYMUliZVVWaTlhbktNeS9QZXl0Rm56bVZrYWlBL3NpUXRwL1Rx?=
+ =?utf-8?B?dkZxdnJSMkRtVkJhRUpVN2lQcDJkOStKQkVwRjVocURuaHpiTjJNSDZaK0pB?=
+ =?utf-8?B?Y1IxeUpiL3A3dHRQdmx1aXh2VjlGckpIRGJmc3BuQTN6a3hWR3R3MDAyMzF0?=
+ =?utf-8?B?czVNUG1WVU5vN1FHWWl3Q1l0YldmcVlxNEZCY2tMVTgzclE0NUdTS1pPc2ph?=
+ =?utf-8?B?NDZIY1ppQjRXWEIvOVMxS1VXMDNzSnBhN2VycDFpTUx6Q2RKVDYrYjBSSWRB?=
+ =?utf-8?B?c0pqZUFoM2NVUStKSjU3SEZRZmRwc3dkMTUwWmFPK3QvNHFvNDh2eDJDZCts?=
+ =?utf-8?B?aC9UMDB4MUlJaFA2R0hsNzZtSFc2ZVIrNEU5Q012TTlhZ3lBcmx4dXBKSm8w?=
+ =?utf-8?B?MUE9PQ==?=
+X-OriginatorOrg: prevas.dk
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e33f2cd-02f6-4a26-90dc-08db68152d6e
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR10MB7100.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2023 11:40:37.0385
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HWvuri4ObRj9Hyc0dfdjFMihb7lLdQlKr4I/ZZVhwdkZDSzx36jKrcumL6U2Epoos2UYtS8vXVDsHZfJn2PITh3ZoHJCL+FhPrlVOHzTYN0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7532
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 13:34, Michal Simek wrote:
-> 
-> 
-> On 6/8/23 13:29, Krzysztof Kozlowski wrote:
->> On 08/06/2023 12:55, Mehta, Piyush wrote:
->>> Hello,
->>>
->>>> -----Original Message-----
->>>> From: Rob Herring <robh@kernel.org>
->>>> Sent: Wednesday, June 7, 2023 1:06 PM
->>>> To: Mehta, Piyush <piyush.mehta@amd.com>
->>>> Cc: p.zabel@pengutronix.de; Paladugu, Siva Durga Prasad
->>>> <siva.durga.prasad.paladugu@amd.com>; michal.simek@xilinx.com;
->>>> nava.manne@xilinx.com; devicetree@vger.kernel.org; linux-
->>>> kernel@vger.kernel.org; linux-usb@vger.kernel.org; conor+dt@kernel.org;
->>>> krzysztof.kozlowski+dt@linaro.org; robh+dt@kernel.org; Simek, Michal
->>>> <michal.simek@amd.com>; git (AMD-Xilinx) <git@amd.com>
->>>> Subject: Re: [PATCH 1/2] dt-bindings: reset: convert the xlnx,zynqmp-reset.txt
->>>> to yaml
->>>>
->>>>
->>>> On Wed, 07 Jun 2023 12:21:20 +0530, Piyush Mehta wrote:
->>>>> Convert the binding to DT schema format. It also updates the
->>>>> reset-controller description.
->>>>>
->>>>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
->>>>> ---
->>>>> Note:
->>>>> The 1/2 patch introduced a warning related to the dt binding check,
->>>>> which was subsequently fixed in the 2/2 patch. This warning is a
->>>>> conversion warning due to a dependency on firmware dt binding.
->>>>>
->>>>> Warning:
->>>>>    DTC_CHK
->>>>> Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.example.dtb
->>>>>
->>>> /scratch/piyushm/torvalds/linux/Documentation/devicetree/bindings/reset/xln
->>>> x,zynqmp-reset.example.dtb: zynqmp-firmware: 'reset-controller' does not
->>>> match any of the regexes: 'pinctrl-[0-9]+'
->>>>> 	From schema:
->>>>> /scratch/piyushm/torvalds/linux/Documentation/devicetree/bindings/firm
->>>>> ware/xilinx/xlnx,zynqmp-firmware.yaml
->>>>>
->>>>> Please suggest to me, if it's fine to make a single patch instead of
->>>>> the separate patch 1/2 and 2/2.
->>>>> ---
->>>>>   .../bindings/reset/xlnx,zynqmp-reset.txt      | 55 ---------------
->>>>>   .../bindings/reset/xlnx,zynqmp-reset.yaml     | 67 +++++++++++++++++++
->>>>>   2 files changed, 67 insertions(+), 55 deletions(-)  delete mode
->>>>> 100644 Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.txt
->>>>>   create mode 100644
->>>>> Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
->>>>>
->>>>
->>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>>
->>>> yamllint warnings/errors:
->>>>
->>>> dtschema/dtc warnings/errors:
->>>> /builds/robherring/dt-review-
->>>> ci/linux/Documentation/devicetree/bindings/reset/xlnx,zynqmp-
->>>> reset.example.dtb: zynqmp-firmware: 'reset-controller' does not match any of
->>>> the regexes: 'pinctrl-[0-9]+'
->>>> 	From schema: /builds/robherring/dt-review-
->>>> ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
->>>> firmware.yaml
->>>>
->>>> doc reference errors (make refcheckdocs):
->>>>
->>>> See https://patchwork.ozlabs.org/project/devicetree-
->>>> bindings/patch/20230607065121.2265076-2-piyush.mehta@amd.com
->>>>
->>>> The base for the series is generally the latest rc1. A different dependency
->>>> should be noted in *this* patch.
->>>>
->>>> If you already ran 'make dt_binding_check' and didn't see the above error(s),
->>>> then make sure 'yamllint' is installed and dt-schema is up to
->>>> date:
->>>>
->>>> pip3 install dtschema --upgrade
->>>>
->>>> Please check and re-submit after running the above command yourself. Note
->>>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->>>> your schema. However, it must be unset to test all examples with your schema.
->>>
->>> This dt_binding warning is known to us and is captured in commit description notes and to resolve it, we need to apply 2/2.
+On 07/06/2023 15.27, Adam Ford wrote:
+> On Wed, Jun 7, 2023 at 8:15 AM Rasmus Villemoes
+> <rasmus.villemoes@prevas.dk> wrote:
 >>
->> So your patchset has broken bisectability. You need to fix it. If the
->> warning was known, then I am surprised that you sent broken patchset.
+>> On 26/05/2023 05.05, Adam Ford wrote:
+>>> This series fixes the blanking pack size and the PMS calculation.  It then
+>>> adds support to allows the DSIM to dynamically DPHY clocks, and support
+>>> non-burst mode while allowing the removal of the hard-coded clock values
+>>> for the PLL for imx8m mini/nano/plus, and it allows the removal of the
+>>> burst-clock device tree entry when burst-mode isn't supported by connected
+>>> devices like an HDMI brige.  In that event, the HS clock is set to the
+>>> value requested by the bridge chip.
+>>>
+>>> This has been tested on both an i.MX8M Nano and i.MX8M Plus, and should
+>>> work on i.MX8M Mini as well. Marek Szyprowski has tested it on various
+>>> Exynos boards.
+>>
+>> Hi all
+>>
+>> We're testing this on top of v6.4-rc4 on our imx8mp board, which has a
+>> ti-sn65dsi86 DSI -> DisplayPort bridge. We do get an image at
+>> 1920x1200, but the monitor says it's only at 58Hz, and measuring on the
+>> DSI signals does seem to confirm that the update frequency is about 57.7
+>> or 57.8Hz (it's pretty hard to get a good measurement). It looks like
+>> it's the lines that are too long, by a time that corresponds to about 80
+>> pixels. But all the frontporch/backporch/hsync values look sane and
+>> completely standard for that resolution.
+>>
+>> Setting samsung,burst-clock-frequency explicitly to something large
+>> enough or letting it be derived from the 154MHz pixel clock makes no
+>> difference.
+>>
+>> Any ideas?
 > 
-> The first patch is conversion from txt yaml without any additional changes 
-> because in past we heart that we shouldn't really do other things in it. That's 
-> why 2 patches where made. No really issue to squashed them together.
+> What refresh rate are you trying to achieve?  It seems like 57.7 or
+> 57.8 is really close to the 58 the Monitor states. 
 
-We always shared feedback that conversion should do only conversion, but
-a correct one. Conversion cannot introduce errors or warnings in the
-bindings. It can introduce warnings in DTS, but not in the bindings.
-This was also communicated several times.
+Oh, sorry, I thought that was clear, but it should be/we're aiming
+for/expecting 60Hz, or (154MHz / (2080 * 1235)) which is about 59.95Hz.
+We've tried with a variety of monitors that all have 1920x1200@60Hz as
+max resolution, and parse-edid always gives the same hfp/hbp/...
+numbers, namely
 
-If pure-conversion results in non-bisectable patchset then:
-1. either conversion should come with changes,
-2. or conversion is done a bit wrong or could be done differently like
-here. You really do not need unrelated pieces of DTS in reset controller
-code. Drop them.
+       Modeline        "Mode 0" 154.00 1920 1968 2000 2080 1200 1203
+1209 1235 +hsync -vsync
 
-Best regards,
-Krzysztof
+> I would expect the
+> refresh to be driven by whatever the monitor states it can handle.
+
+Well, it states that it can handle 60Hz, and the pixel clock is also
+computed to be the 154MHz, but still, the actual signals on the wire,
+and hence also what the monitor ends up reporting, do not end up with 60
+full frames per second.
+
+> Have you tried using modetest to see what refresh rates are available?
+
+Hm. My userspace may be a little weird. When I run modetest I just get
+
+trying to open device 'i915'...failed
+trying to open device 'amdgpu'...failed
+...
+trying to open device 'imx-dcss'...failed
+trying to open device 'mxsfb-drm'...failed
+no device found
+
+> The 8MP shares the video-pll clock with both disp1 and disp2 clocks,
+> and the imx-lcdif driver, which sends the display signals to the DSI,
+> uses the disp clock, so the video-pll needs to be an exact multiple of
+> the pixel clock or the output won't sink.
+
+Bingo! I enabled the
+
+  DRM_DEV_DEBUG_DRIVER(drm->dev, "Pixel clock: %dkHz (actual: %dkHz)\n",
+
+in drivers/gpu/drm/mxsfb/lcdif_kms.c, and indeed it got me
+
+  Pixel clock: 154000kHz (actual: 148500kHz)
+
+Modifying the 1039500000 in imx8mp.dtsi to 1078000000 (i.e. 7 times the
+desired pixel clock) gave me "actual" matching the desired pixel clock,
+and the monitor now reports 60Hz.
+
+This product also has an LVDS display on lcdif2, so I'll have to
+investigate how changing the video_pll1 rate affects that. And also what
+to do about the case where somebody plugs in, say, a 1080p monitor that
+would indeed require 148.5MHz pixel clock.
+
+Thanks,
+Rasmus
 
