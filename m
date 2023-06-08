@@ -2,195 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB467279EE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7787279FC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:31:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234046AbjFHI2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 04:28:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34412 "EHLO
+        id S234018AbjFHIbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 04:31:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232262AbjFHI2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:28:51 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B5D2700
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 01:28:49 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51480d3e161so455072a12.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 01:28:49 -0700 (PDT)
+        with ESMTP id S235277AbjFHIbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:31:50 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED1526B2;
+        Thu,  8 Jun 2023 01:31:47 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-97454836448so53960366b.2;
+        Thu, 08 Jun 2023 01:31:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686212928; x=1688804928;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mecQ34dk2V9y6dj5rR+/RnPx6Aef7iQYAh5UFotv1xo=;
-        b=YOuXdQwTL0HiqsuDJ2OMmCSusM9E5OEW/ovbK+fy8/Ndz8cb5RyF1n1QlhilBzqeuW
-         3gh1zTvG7WUB5wCr1NkVXEkhHxJz0Trn77gbdHJJognIYkXNmesScC2h0fmtNIqjfXbx
-         x49RK2FCpm0zpnOYjCZCX+484Cl6Pci7GslevrHsQaDcqjg1AlluAsffRhUhYsAlPvKx
-         bDSg5N7ErAgUIy61k/pu9d1PUZmuyRcsvKmYRiTlCcht9U3ykifmVK67IUhQx8dMq/uC
-         fhw8bo73cYfBu2SDg/LVekXM9dRtn6e+a2whScQPYNpfoMrma0HY+C21DJONkNdMlhb1
-         iy1Q==
+        d=gmail.com; s=20221208; t=1686213106; x=1688805106;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8a3s6dNMGohL6lzSETKOy1sEkT5zPauvgRWFqwA9Lic=;
+        b=QIsqMCHh+4cnkvqMawn1joP4jCx0aqzS4YZ8qgcrJe7lWOmauhJcp0a4akR8ycLUlZ
+         VgHpfPjNnCamaRQOPPwW8BVtsExyTLHhzUttsYaUm6Jpe7ne36p83LBQHWOoIVGQ4iF+
+         OF/J6tCZMNQXqJi8iKhLmqtfRxWuyDqqA/b7W8vmevwplcIR/X1lFo4MllUrtngOKuA0
+         SR0h9KQU9lckvlJPawWhAi5MpVZkDBWB5+s20lk+neB4YeQpU6/JQ3j+uKLVQsDsX7Vz
+         wFIHsLWecRsQcfyWJN2FOw5ngnF8/XppHSlAXzVwGkzd6QD06rkZCM9vnYvOOj7lGS5/
+         TUzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686212928; x=1688804928;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mecQ34dk2V9y6dj5rR+/RnPx6Aef7iQYAh5UFotv1xo=;
-        b=GaS0D73r6EfYUduR9Gcw3CWOg5VMGAMJb2LmS+lD8mkFeP2s9ReRTzXdfGx35Y3juB
-         piTqH8hhbysBf5oNcLcb4Df9cyNWwIxD7ZriiDIhIAxwMCpQh8DvbaZvw2M8A1l/dfAi
-         AZkpewyfVXs/g+Y9Lrq/0GlMTftR/Qg3emR/srpyc/MjO2bbOY9LZ/D2NLyjnkQa45rF
-         4LiuHTdfrb+UAwVHblO7Q0dguqpRmNO0rB8IN8OtNRYDUraTn6YhmPciGzvn6IYa4FdV
-         0f10EusDpSIOmyL0Hyd8Tii7Nk8LLkXwzPgaasCzRAHrl3bTGvVgVzQcMQ8RZzW0Nn7j
-         bGYA==
-X-Gm-Message-State: AC+VfDzBZ9pUEayPtVunymEEu46PvfiP9lyU8wV4AllWPezJ7aStENXt
-        PWspVTkBFvG0uDsZ41WGWEFc+dB3LDu357Rw7eQ=
-X-Google-Smtp-Source: ACHHUZ5QenQx/QeD/48u6FI2zqKtnWEaRxUQn7l0QY2Xhr1/LIy4nn8DwP/ooeoVFbjEmpIbtoTK5Q==
-X-Received: by 2002:a17:907:3f9a:b0:96f:8666:5fc4 with SMTP id hr26-20020a1709073f9a00b0096f86665fc4mr10730952ejc.50.1686212928223;
-        Thu, 08 Jun 2023 01:28:48 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h20-20020a170906855400b009787062d21csm386574ejy.77.2023.06.08.01.28.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 01:28:47 -0700 (PDT)
-Message-ID: <b941c06f-7f7d-1364-a7f5-be5905112cac@linaro.org>
-Date:   Thu, 8 Jun 2023 10:28:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 4/5] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0 PHY
-To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        d=1e100.net; s=20221208; t=1686213106; x=1688805106;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8a3s6dNMGohL6lzSETKOy1sEkT5zPauvgRWFqwA9Lic=;
+        b=OB/sz16npjltB8z8/ngbhjOHvqn4KXlnZHgLObF2iJt7wJ1DtzsOYi5SZ3dHsuqxdo
+         CFqYR3gKhbjyme5ecPACgzY/NpEbL/7hkLUL20T0bjGDEDI5j8pNSt4Smwu+XsJogMQ6
+         d4QOWNLVSexCxxzDrMolzsOINfMb/cyRpmWDRf/3uYRGqTa4Msd7lYiY66KxynlA2FUx
+         VL4JFK9Af/QtmVibHIuPGc7TS7sOBLAoCK4Y2/v6CVkBZsq9VhHys0Efu26Osyi5WUWS
+         H5gB/qD6cI1R1iQnJ0cXJw0lfpAKFFzLnw/q8F8BOYrClOCamHmpKxoRXvsAKp6D94UF
+         OBFw==
+X-Gm-Message-State: AC+VfDwb8um0ruHpAR3fY+vvnnyKbxQBm1zyMqcIs3wQm5BDuzkaVJPr
+        gDLW7/uHfmPtCMZSLXh0TLE=
+X-Google-Smtp-Source: ACHHUZ5u9yorLSnlw4ho90LcHOtj6uag/6Y/tnsOk71m6s9NvweNwK8OEstNOwJUXQGPJ7HyqfR/hg==
+X-Received: by 2002:a17:907:5c3:b0:92b:3c78:91fa with SMTP id wg3-20020a17090705c300b0092b3c7891famr8150076ejb.28.1686213106065;
+        Thu, 08 Jun 2023 01:31:46 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id y8-20020a170906558800b00974c32c9a75sm373690ejp.216.2023.06.08.01.31.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 01:31:45 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, michael.roeder@avnet.eu,
+        linuxfancy@googlegroups.com,
+        Tommaso Merciai <tomm.merciai@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ray Chi <raychi@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-References: <20230607062500.24669-1-stanley_chang@realtek.com>
- <20230607062500.24669-4-stanley_chang@realtek.com>
- <7cce1d72-6b4d-9fff-32bc-942193388134@linaro.org>
- <8a88cbee5c6245f2941c700b2bb30697@realtek.com>
- <7df8ffb6-a544-d10e-5273-fd6c4b368b20@linaro.org>
- <7d503e3028a7487a9a087cfa061fff9d@realtek.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7d503e3028a7487a9a087cfa061fff9d@realtek.com>
-Content-Type: text/plain; charset=UTF-8
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: [PATCH v5 1/3] dt-bindings: vendor-prefixes: Add prefix alliedvision
+Date:   Thu,  8 Jun 2023 10:31:14 +0200
+Message-Id: <20230608083127.545750-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230608083127.545750-1-tomm.merciai@gmail.com>
+References: <20230608083127.545750-1-tomm.merciai@gmail.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 10:21, Stanley Chang[昌育德] wrote:
-> 
->>> Maybe I use the word "control power domain" is not well, I just want to
->> control the ldo of usb phy.
->>> Revised:
->>> The phandle of syscon used to control the ldo of USB PHY.
->>
->> Isn't this still a power domain?
-> 
-> I only control a register, it is not needed a driver of power domain.
+Add a vendor prefix entry for Allied Vision Inc.
+(https://www.alliedvision.com)
 
-Aren't many power domains just a registers? What about other drivers?
-Don't you want in other driver control LDO of something else? And in
-other something else?
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v3:
+ - Collected tags from LPinchart, CDooley, KKozlowski
 
-> 
-> 
->>>
->>>>> +
->>>>> +patternProperties:
->>>>> +  "^phy@[0-3]+$":
->>>>> +    type: object
->>>>> +    description:
->>>>> +      Each sub-node is a PHY device for one XHCI controller.
->>>>
->>>> I don't think it is true. You claim above that you have 0 as
->>>> phy-cells, means you have one phy. Here you say you can have up to 4 phys.
->>>
->>> I mean the driver can support up to 4 phys.
->>
->> What driver can or cannot do, does not matter. This is about hardware.
->>
->>> For RTD1295 has only one phy.
->>> For RTD1395 has two phys.
->>
->> Two phys? So how do you reference them when cells=0?
-> 
-> 
-> About RTD1395 SoCs USB
->   XHCI controller#1 -- usb2phy -- phy#0
->                           |- phy#1
-> One xhci controller map to one phy driver.
-> And one phy driver have two phys (phy@0 and phy@1).
-> 
-> Maybe the "phy" name is confusing.
-> This "phy" not mean a phy driver.
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-We do not talk about drivers, but DTS and hardware.
-
-> Would "port" be more appropriate? 
-> 
-> For example,
-> Using phy@0 and phy@1:
->     usb_port1_usb2phy: usb-phy@13c14 {
->         compatible = "realtek,rtd1395-usb2phy", "realtek,usb2phy";
->         reg = <0x132c4 0x4>, <0x31280 0x8>;
->         #address-cells = <1>;
->         #size-cells = <0>;
->         #phy-cells = <0>;
->         realtek,usb-ctrl = <&usb_ctrl>;
-> 
->         phy@0 {
->             reg = <0>;
-
-So such child is a NAK... you have nothing here. But it's unrelated topic.
-
->         };
->         phy@1 {
->             reg = <1>;
->         };
->     };
-> 
-> Change: port@0 and port@1
->     usb_port1_usb2phy: usb-phy@13c14 {
->         compatible = "realtek,rtd1395-usb2phy", "realtek,usb2phy";
->         reg = <0x132c4 0x4>, <0x31280 0x8>;
->         #address-cells = <1>;
->         #size-cells = <0>;
->         #phy-cells = <0>;
->         realtek,usb-ctrl = <&usb_ctrl>;
-> 
->         prot@0 {
->             reg = <0>;
->         };
->         port@1 {
->             reg = <1>;
->         };
->     };
-
-This is not the answer. This is the provider. How do you reference it
-from the consumer.
-
-Upstream your entire DTS. It's frustrating to try to understand your DTS
-from pieces of information you are sharing. Also very time consuming and
-you are not the only one sending patches for review...
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 82d39ab0231b..7bd678956b3d 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -77,6 +77,8 @@ patternProperties:
+     description: ALFA Network Inc.
+   "^allegro,.*":
+     description: Allegro DVT
++  "^alliedvision,.*":
++    description: Allied Vision Inc.
+   "^allo,.*":
+     description: Allo.com
+   "^allwinner,.*":
+-- 
+2.34.1
 
