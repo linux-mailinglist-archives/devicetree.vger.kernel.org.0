@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD0557279B6
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 271457279C7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234748AbjFHIMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 04:12:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56454 "EHLO
+        id S233756AbjFHIPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 04:15:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233756AbjFHIMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:12:05 -0400
+        with ESMTP id S231674AbjFHIPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:15:55 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5F72685;
-        Thu,  8 Jun 2023 01:12:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41CAF213C
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 01:15:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686211922; x=1717747922;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Uf2qtNPbr3RHHbYshLJooWCuyGop+uoIgQeLs4H7Vdw=;
-  b=ClAvkzsE68XLrGYDGoL4FVEV+bCkKC/3qhUlcHGIWsjR0RL+2bIXt3pH
-   EnYUuDQkmdllBTXwFdDOpuyyv+S7YnyGcOC+TvIag3GxH6FOq3kGZLODa
-   Ds5ES0JqQIUZRL8NtOJnZdH5fy8kHHauws4o9MiPXs1RnAdoRYdKX5cp3
-   3O5jZjILNwC9NtkbLAGrceP1SFFfzk0M0aJXmVscl62eoT3drOACeJifJ
-   3QY4u79qZEFbaDOcmeRg719nP2b4CkxsDThQ/N1HIx3iFqHGdnkWsTTdD
-   L8REJJKCJOlmeF+/PB02gUxTsNSh/NADjOFy2ERGQVdwrC0TmKyY0koBs
+  t=1686212153; x=1717748153;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=47TWQkV5kWTX8iyB2NH/f3PVGU4VqhK3gIY7B4/vtaQ=;
+  b=Ih4f8EIHEUW/0o18UX/yNpMcyjd218AvwtcfjNRUO2U2XXBB6PgO9mnn
+   YdFxePuxxUKB/F4nBr3pRqjncXQ4+IfEOicJk1CM79BG/NYUxuz5k/kN0
+   2fMYThmAH6zXBCp5Ee02S5BiNIDAk5Vhjd2DZ+s0Gb0YIvO8HJC7MTgXD
+   GpIhjpgBHnhS/Xx/QwXoFWGra+Ce7+urjcGaCRh6YcFY8jYnelS0tbjZz
+   pKvwhPYZ93/pWNbZNHjUxTHT1ztyG270gLFnxsQFF+6Xa/rITkfXBKjR9
+   rerwQF8DUYW8WV59oT83QpGrK2kf6P55pWD/nWhmRXhNNkeENVa4Utpu3
    A==;
 X-IronPort-AV: E=Sophos;i="6.00,226,1681164000"; 
-   d="scan'208";a="31343608"
+   d="scan'208";a="31343660"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Jun 2023 10:11:58 +0200
+  by mx1-pgp.tq-group.com with ESMTP; 08 Jun 2023 10:15:51 +0200
 Received: from mx1.tq-group.com ([192.168.6.7])
   by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 08 Jun 2023 10:11:58 +0200
+  Thu, 08 Jun 2023 10:15:51 +0200
 X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 08 Jun 2023 10:11:58 +0200
+        by tq-pgp-pr1.tq-net.de on Thu, 08 Jun 2023 10:15:51 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686211918; x=1717747918;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Uf2qtNPbr3RHHbYshLJooWCuyGop+uoIgQeLs4H7Vdw=;
-  b=ofHk+BTlNcSaDGTpPbjBS7YPzCfOKnKJFaolAYwdYaYhwL2KEix1h8gW
-   zQmUal49Vq6ksHMJirmLDCAEOq+GmAxJRQ10prl8g1LnEwHF5mkoE7Wgu
-   6/Fa2PsiHnmzut2+InBRThyL1CgAE747rgjSRrvxvzTkJny8Rn+ptPJb3
-   r9eaOqzlGoY5I63IKprnqGqCoVWM+Em8N+iyTklAzrmyqVptYTLHe5sa2
-   9T+Gust4Re3gYAbjd4+eFWbX26wFOivd7Xnu4MroPCgXcvgq/9YiEY/7e
-   qx6FS8wvNm3n1HAC2UKmHRbwVVuGuGY5yFMor+RY6/yj55EfjMAyfI044
-   A==;
+  t=1686212151; x=1717748151;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=47TWQkV5kWTX8iyB2NH/f3PVGU4VqhK3gIY7B4/vtaQ=;
+  b=FRdLuFo2eolIUKw25xwA5KFMI1xKAQk3KFiFnKBWBDeIcJ5DoV8QT8b+
+   xsIiHeg5XPU6/OHnA0wjkL9Sw4v3teyXDE3UZcJGUNgngxNK8KYzhBDgI
+   fhY+IytdG7d2jFufzZtIgSfq16lPYbKNW2p5G2SrglS6WFYP6IwR/M1xt
+   ty3lyC0nerM3jT4e+Gf07Ly/sQvADQmBRCzVGFSHBq1HyQvRo3kQL8noI
+   XWYoZxYZhfV2GtVJXg3DBkpPOXjdXBEqpvO06cRP6pnDybSYKeHPvOcp9
+   zRoDIRPa4QQkrINiFglFJW/l6hGuNkiGn5ZhqVNE0vJqvUi9fxBRGAMOh
+   Q==;
 X-IronPort-AV: E=Sophos;i="6.00,226,1681164000"; 
-   d="scan'208";a="31343607"
+   d="scan'208";a="31343659"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Jun 2023 10:11:58 +0200
+  by mx1.tq-group.com with ESMTP; 08 Jun 2023 10:15:51 +0200
 Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A81BA280087;
-        Thu,  8 Jun 2023 10:11:57 +0200 (CEST)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 4627C280087;
+        Thu,  8 Jun 2023 10:15:51 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
+        Conor Dooley <conor+dt@kernel.org>
 Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH 3/3] arm64: dts: Replace deprecated extcon-usb-gpio id-gpio/vbus-gpio properties
-Date:   Thu,  8 Jun 2023 10:11:53 +0200
-Message-Id: <20230608081153.441455-3-alexander.stein@ew.tq-group.com>
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/1] ASoC: dt-bindings: tlv320aic32x4: convert to DT schema format
+Date:   Thu,  8 Jun 2023 10:15:47 +0200
+Message-Id: <20230608081547.442763-1-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230608081153.441455-1-alexander.stein@ew.tq-group.com>
-References: <20230608081153.441455-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -101,348 +82,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use id-gpios and vbus-gpios instead.
+Convert the binding to DT schema format.
+Since commit 514b044cba667 ("ASoC: tlv320aic32x4: Model PLL in CCF")
+clocks & clock-names = "mclk" is mandatory, it has been added to required
+properties as well. '#sound-dai-cells' is added for reference from
+simple-audio-card.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi            | 2 +-
- arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts       | 2 +-
- arch/arm64/boot/dts/mediatek/mt2712-evb.dts                   | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8173-evb.dts                   | 2 +-
- arch/arm64/boot/dts/qcom/apq8016-sbc.dts                      | 2 +-
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts                   | 4 ++--
- arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts              | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts          | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts            | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts                | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts          | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts         | 2 +-
- arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts | 2 +-
- arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dts    | 2 +-
- arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi        | 2 +-
- arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts               | 2 +-
- arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi     | 4 ++--
- arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts           | 2 +-
- arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi         | 2 +-
- arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts           | 2 +-
- arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts      | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi                 | 2 +-
- 23 files changed, 26 insertions(+), 26 deletions(-)
+There is no in-tree user for aic32x4-gpio-func, so I just converted the
+bindings to YAML and skipped introducing a dt-binding header for
+defining the constants.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
-index 5dbec71747c3b..61c2a63efc6db 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
-@@ -109,7 +109,7 @@ extcon_usb0: extcon-usb0 {
- 		compatible = "linux,extcon-usb-gpio";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_usb0_extcon>;
--		id-gpio = <&gpio1 3 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-index d4ae7a3efff87..9e53b214abc85 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-@@ -24,7 +24,7 @@ extcon_usbotg: extcon-usbotg0 {
- 		compatible = "linux,extcon-usb-gpio";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_usbcon0>;
--		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	pcie0_refclk: pcie0-refclk {
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-index fffdb7bbf889e..0c38f7b517637 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-@@ -43,12 +43,12 @@ cpus_fixed_vproc1: regulator-vproc-buck1 {
- 
- 	extcon_usb: extcon_iddig {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pio 12 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	extcon_usb1: extcon_iddig1 {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pio 14 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pio 14 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	usb_p0_vbus: regulator-usb-p0-vbus {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-index 5122963d8743a..607d65ddba9ec 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-@@ -41,7 +41,7 @@ hdmi_connector_in: endpoint {
- 
- 	extcon_usb: extcon_iddig {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pio 16 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pio 16 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	usb_p1_vbus: regulator@0 {
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-index 56dfca61253e6..8b8cb392e851d 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-@@ -77,7 +77,7 @@ usb2513 {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 121 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_id_default>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index b599909c44639..be657df89e734 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -99,14 +99,14 @@ button {
- 
- 	usb2_id: usb2-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pmi8994_gpios 6 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pmi8994_gpios 6 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb2_vbus_det_gpio>;
- 	};
- 
- 	usb3_id: usb3-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pm8994_gpios 22 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pm8994_gpios 22 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb3_vbus_det_gpio>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-index 5025c08e48173..9b4270ba0652f 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-@@ -48,7 +48,7 @@ button-volume-up {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_id_default>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-index 7b629243ef0d7..5e69c32c297eb 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-@@ -52,7 +52,7 @@ led-0 {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 69 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 69 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_id_default>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-index 56c42b0c97336..ada2eda5dacdb 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-@@ -75,7 +75,7 @@ led-green {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&usb_id_default>;
- 		pinctrl-names = "default";
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-index 175ca011998c6..f3eb7367db3e0 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-@@ -80,7 +80,7 @@ led-2 {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 117 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 117 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_id_default>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-index f23cfb2bf7934..4c19738af23ea 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-@@ -68,7 +68,7 @@ led-0 {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_id_default>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-index 733917531218c..27e02021b577a 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-@@ -56,7 +56,7 @@ button-volume-up {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_id_default>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-index 85a8d8fe212ff..ae522f4c0aaec 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-@@ -32,7 +32,7 @@ chosen {
- 
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&usb_id_default>;
- 		pinctrl-names = "default";
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dts b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dts
-index 4a0645db0ae14..6374c5f53d9a1 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dts
-@@ -24,5 +24,5 @@ &usb_detect {
- };
- 
- &usb3_id {
--	id-gpio = <&tlmm 24 GPIO_ACTIVE_LOW>;
-+	id-gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-index b4b770a9277dc..d55e4075040ff 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-@@ -71,7 +71,7 @@ panel_tvdd: tvdd-regulator {
- 
- 	usb3_id: usb3-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 25 GPIO_ACTIVE_LOW>;
-+		id-gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_detect>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-index b35e2d9f428c1..b6a214bea70f5 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-@@ -31,7 +31,7 @@ aliases {
- 	 */
- 	extcon_usb: extcon-usb {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 38 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 38 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	gpio-hall-sensors {
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index 687e96068cb2b..876c6921ddf07 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -89,8 +89,8 @@ vph_pwr: vph-pwr-regulator {
- 
- 	extcon_usb: extcon-usb {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 38 GPIO_ACTIVE_HIGH>;
--		vbus-gpio = <&tlmm 128 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 38 GPIO_ACTIVE_HIGH>;
-+		vbus-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cc_dir_default &usb_detect_en>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-index 7459525d99828..0c1352b8f2645 100644
---- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-+++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-@@ -43,7 +43,7 @@ key-volup {
- 	 */
- 	extcon_usb: extcon-usb {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 58 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 58 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	hdmi-out {
-diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-index 3033723fc6ff3..87d0293c728d8 100644
---- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-@@ -150,7 +150,7 @@ cont_splash_mem: splash@9d400000 {
- 	 */
- 	extcon_usb: extcon-usb {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 58 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 58 GPIO_ACTIVE_HIGH>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-index 8fb2d17887424..3c47410ba94c0 100644
---- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-@@ -85,7 +85,7 @@ framebuffer_mem: memory@9d400000 {
- 	 */
- 	extcon_usb: extcon-usb {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 58 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 58 GPIO_ACTIVE_HIGH>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-index 9f8a9ef398a26..9353b9b622f6e 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-@@ -42,7 +42,7 @@ framebuffer0: framebuffer@5c000000 {
- 
- 	extcon_usb: extcon-usb {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 102 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	gpio-keys {
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-index a7f4aeae9c1a5..1b06617ba34a9 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-@@ -63,7 +63,7 @@ cmdline_mem: memory@ffd00000 {
- 
- 	extcon_usb: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&tlmm 102 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	gpio-keys {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-index aa3e21bd6c8f4..20e3f41efe97f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-@@ -27,7 +27,7 @@ module_led: led-0 {
- 
- 	extcon_usb3: extcon-usb3 {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb3_id>;
- 	};
+ .../bindings/sound/tlv320aic32x4.txt          |  42 -------
+ .../bindings/sound/tlv320aic32x4.yaml         | 103 ++++++++++++++++++
+ 2 files changed, 103 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/tlv320aic32x4.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
+deleted file mode 100644
+index 0b4e21bde5bc1..0000000000000
+--- a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Texas Instruments - tlv320aic32x4 Codec module
+-
+-The tlv320aic32x4 serial control bus communicates through I2C protocols
+-
+-Required properties:
+- - compatible - "string" - One of:
+-	"ti,tlv320aic32x4" TLV320AIC3204
+-	"ti,tlv320aic32x6" TLV320AIC3206, TLV320AIC3256
+-	"ti,tas2505" TAS2505, TAS2521
+- - reg: I2C slave address
+- - *-supply: Required supply regulators are:
+-    "iov" - digital IO power supply
+-    "ldoin" - LDO power supply
+-    "dv" - Digital core power supply
+-    "av" - Analog core power supply
+-    If you supply ldoin, dv and av are optional. Otherwise they are required
+-   See regulator/regulator.txt for more information about the detailed binding
+-   format.
+-
+-Optional properties:
+- - reset-gpios: Reset-GPIO phandle with args as described in gpio/gpio.txt
+- - clocks/clock-names: Clock named 'mclk' for the master clock of the codec.
+-   See clock/clock-bindings.txt for information about the detailed format.
+- - aic32x4-gpio-func - <array of 5 int>
+-	- Types are defined in include/sound/tlv320aic32x4.h
+-
+-
+-Example:
+-
+-codec: tlv320aic32x4@18 {
+-	compatible = "ti,tlv320aic32x4";
+-	reg = <0x18>;
+-	clocks = <&clks 201>;
+-	clock-names = "mclk";
+-	aic32x4-gpio-func= <
+-			0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
+-			0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
+-			0x04 /* MFP3 AIC32X4_MFP3_GPIO_ENABLED */
+-			0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
+-			0x08 /* MFP5 AIC32X4_MFP5_GPIO_INPUT */
+-		>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/tlv320aic32x4.yaml b/Documentation/devicetree/bindings/sound/tlv320aic32x4.yaml
+new file mode 100644
+index 0000000000000..ebf84cdcb68d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/tlv320aic32x4.yaml
+@@ -0,0 +1,103 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2019 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/tlv320aic32x4.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TLV320AIC32x4 Stereo Audio codec
++
++maintainers:
++  - Alexander Stein <alexander.stein@ew.tq-group.com>
++
++description: |
++  The TLV320AIC32x4 audio codec can be accessed using I2C or SPI
++
++properties:
++  compatible:
++    enum:
++      - ti,tas2505
++      - ti,tlv320aic32x4
++      - ti,tlv320aic32x6
++
++  reg:
++    description: |
++      I2C address or SPI chip select of the device
++
++  clocks:
++    items:
++      - description: Master clock
++
++  clock-names:
++    items:
++      - const: mclk
++
++  av-supply:
++    description: Analog core power supply
++
++  dv-supply:
++    description: Digital core power supply
++
++  iov-supply:
++    description: Digital IO power supply
++
++  ldoin-supply:
++    description: LDO power supply
++
++  reset-gpios:
++    maxItems: 1
++    description: |
++      GPIO used for hardware reset
++
++  '#sound-dai-cells':
++    const: 0
++
++  aic32x4-gpio-func:
++    description: |
++       GPIO function configuration for pins MFP1-MFP5.
++       Types are defined in include/sound/tlv320aic32x4.h
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 5
++    maxItems: 5
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - iov-supply
++
++additionalProperties: false
++
++allOf:
++  - if:
++      not:
++        required:
++          - ldoin-supply
++    then:
++      required:
++        - av-supply
++        - dv-supply
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      codec: tlv320aic32x4@18 {
++        compatible = "ti,tlv320aic32x4";
++        reg = <0x18>;
++        iov-supply = <&reg_3v3>;
++        ldoin-supply = <&reg_3v3>;
++        clocks = <&clks 201>;
++        clock-names = "mclk";
++        aic32x4-gpio-func= <
++          0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
++          0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
++          0x04 /* MFP3 AIC32X4_MFP3_GPIO_ENABLED */
++          0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
++          0x08 /* MFP5 AIC32X4_MFP5_GPIO_INPUT */
++        >;
++      };
++    };
 -- 
 2.34.1
 
