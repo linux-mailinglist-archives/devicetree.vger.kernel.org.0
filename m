@@ -2,143 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BF81727998
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0699D7279A7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 10:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233887AbjFHIHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 04:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54106 "EHLO
+        id S234628AbjFHILS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 04:11:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234282AbjFHIHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:07:50 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5669C2102
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 01:07:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686211668; x=1717747668;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=GwENpWc1XuQIcQCaUxQ5mjQl7QzpfAXooXHxtrwI7dY=;
-  b=NAkhJ7Cy72JmOCVqwtfeAP1CVfRdp/31HzB+0Uz3/DVs7Gq+zoSNv6Jq
-   bv9xfnDoVIVMQlcWwJEft7mgfOZxq2QAGiGPIOCf5qTlLzw7YzQuj4Kym
-   1FjMLCHEYveA0xm/mjC/lRLDSJ/5hir6CNqfwopYVww5ObbAKlvF48a+P
-   plc1nIM4YPcPh5zvZY0ahxxe1dmBpB2AO/jTtV7gM6tnFyjJNH2EsmPu8
-   VHqV3ZmlgdXjYxCru+3gSP/oNX4zC/osD/nA/u8pj4xfoXnIE6u8nM5JS
-   JYF1PaaSBygsRB2POJT2Kvaz8pQ3bHa8ormHq6y67nE82+O6wBZIDEpSN
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,226,1681164000"; 
-   d="scan'208";a="31343530"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Jun 2023 10:07:46 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 08 Jun 2023 10:07:46 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 08 Jun 2023 10:07:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686211666; x=1717747666;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=GwENpWc1XuQIcQCaUxQ5mjQl7QzpfAXooXHxtrwI7dY=;
-  b=kAaW01tvCovn7lsKoKTI2PvuuHjV7G1OBQhgXwX9MosvhOea5RJ9kyT3
-   1doAQfSqSblcYc5IBXkKFOMk3UEj2e+HRpp3bd4ppdMS07lsljhpFxILa
-   Vg1fFAR8wdw1rw4CfTTU2s4bi/shc70GZtJpcTGNDq3t4G+b5lkycPaE3
-   mlPBnm+uwsfzjoij8dj31JHAwusgIdZa4IaAiA0S/IFRRcabHjFMmruLJ
-   NICBCbD8XglHlAYOYKy5YB5Ap5IBBgbvttlMF0XvisKc7QxJSWFTskPIV
-   0nv3Ndg/vV0xY88fNqzK8z0uxCU/wJELe2BcxwFhCdBwu2qv8JhD8cwxF
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,226,1681164000"; 
-   d="scan'208";a="31343529"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Jun 2023 10:07:46 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 51E47280087;
-        Thu,  8 Jun 2023 10:07:46 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liu Ying <victor.liu@nxp.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: phy: mixel, mipi-dsi-phy: Remove assigned-clock* properties
-Date:   Thu, 08 Jun 2023 10:07:46 +0200
-Message-ID: <13281775.uLZWGnKmhe@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230608-oven-coerce-e0c3f16d58a9@wendy>
-References: <20230606144447.775942-1-alexander.stein@ew.tq-group.com> <1855461.tdWV9SEqCh@steina-w> <20230608-oven-coerce-e0c3f16d58a9@wendy>
+        with ESMTP id S234595AbjFHILQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 04:11:16 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E062685;
+        Thu,  8 Jun 2023 01:11:14 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3587DKsp014183;
+        Thu, 8 Jun 2023 08:11:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=EvVCq+fSL3hZund+bI6Av8FrnqRN9Kpvc7+n0PKiSP8=;
+ b=PSt4baUZIDXZJB1mQHy7dNq2IhWM91uRRMM6EyhG1zLoZ1R8PLDla8krls+P78KvfGVG
+ zpt/comuSE7J+7wuGgb2XyrBjNMDq3q4c2y2BvUpEA/kEEBycNkWJEZ+3MBPmTQLAKu9
+ tvLa2q4zkw8naLZLeCqwldvAmgM7RFx02gnjuEn4XKkS97j50kfS3JgYhQiC4B7S1rxS
+ JR0pcvGMxRj1fqxOeJzXb/S0z/nEZwMwkXMYKQm7xsePiwURQx9Ly4L0zn3W7T5xhJuJ
+ rm9x9M8AcmfUQLpvDOlH5Jks34Iu0RgFgztGvOITTeGYs4jq+tNA1Lo3Y1vB59NZJrir hg== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r33uygqbt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 08 Jun 2023 08:11:03 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3588B3I8032505
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 8 Jun 2023 08:11:03 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 8 Jun 2023 01:10:58 -0700
+Date:   Thu, 8 Jun 2023 13:40:54 +0530
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <gregkh@linuxfoundation.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v12 3/5] arm64: dts: qcom: ipq9574: Add USB related nodes
+Message-ID: <20230608081053.GB16505@varda-linux.qualcomm.com>
+References: <cover.1686045347.git.quic_varada@quicinc.com>
+ <5a14d113e90c85777d1c01af38a85f40d35519e0.1686045347.git.quic_varada@quicinc.com>
+ <307409f2-a516-4aea-45bb-137ffc2bc725@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <307409f2-a516-4aea-45bb-137ffc2bc725@linaro.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _LnJt_vxgUAwEwTT-zPMGNq0bYGUolGG
+X-Proofpoint-ORIG-GUID: _LnJt_vxgUAwEwTT-zPMGNq0bYGUolGG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-08_04,2023-06-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ priorityscore=1501 impostorscore=0 mlxscore=0 bulkscore=0 malwarescore=0
+ suspectscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306080069
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+On Wed, Jun 07, 2023 at 08:50:41PM +0200, Krzysztof Kozlowski wrote:
+> On 07/06/2023 12:48, Varadarajan Narayanan wrote:
+> > Add USB phy and controller related nodes
+> >
+> > SS PHY need two supplies and HS PHY needs three supplies. 0.925V
+> > and 3.3V are from fixed regulators and 1.8V is generated from
+> > PMIC's LDO
+> >
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > ---
+> >  Changes in v12:
+> > 	- Rebase
+> >  Changes in v11:
+> > 	- Rename dwc_0 -> usb_0_dwc3
+> >  Changes in v10:
+> > 	- Fix regulator definitions
+> >  Changes in v8:
+> > 	- Change clocks order to match the bindings
+> >  Changes in v7:
+> > 	- Change com_aux -> cfg_ahb
+> >  Changes in v6:
+> > 	- Introduce fixed regulators for the phy
+> > 	- Resolved all 'make dtbs_check' messages
+> >
+> >  Changes in v5:
+> > 	- Fix additional comments
+> > 	- Edit nodes to match with qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> > 	- 'make dtbs_check' giving the following messages since
+> > 	  ipq9574 doesn't have power domains. Hope this is ok
+> >
+> > 		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
+> >         	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> > 		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
+> >         	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> >
+> >  Changes in v4:
+> > 	- Use newer bindings without subnodes
+> > 	- Fix coding style issues
+> >
+> >  Changes in v3:
+> > 	- Insert the nodes at proper location
+> >
+> >  Changes in v2:
+> > 	- Fixed issues flagged by Krzysztof
+> > 	- Fix issues reported by make dtbs_check
+> > 	- Remove NOC related clocks (to be added with proper
+> > 	  interconnect support)
+> > ---
+> >  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 104 ++++++++++++++++++++++++++++++++++
+> >  1 file changed, 104 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> > index 0baeb10..8f7c59e 100644
+> > --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> > @@ -94,6 +94,24 @@
+> >  		};
+> >  	};
+> >
+> > +	fixed_3p3: s3300 {
+>
+> Use regulator- prefix for node name.
 
-Am Donnerstag, 8. Juni 2023, 09:59:10 CEST schrieb Conor Dooley:
-> * PGP Signed by an unknown key
->=20
-> On Thu, Jun 08, 2023 at 09:31:57AM +0200, Alexander Stein wrote:
-> > Hi Conor,
-> >=20
-> > Am Dienstag, 6. Juni 2023, 20:21:02 CEST schrieb Conor Dooley:
-> > > > Old Signed by an unknown key
-> > >=20
-> > > On Tue, Jun 06, 2023 at 04:44:46PM +0200, Alexander Stein wrote:
-> > > > These properties are allowed anyway and some SoC (e.g. imx8mq)
-> > > > configure
-> > > > more than just one clock using these properties.
-> > >=20
-> > > What does "allowed anyway" mean?
-> > > And following from that, why not modify the min/maxItems to suit
-> > > reality, rather than remove them. Is there enforcement from elsewhere?
-> >=20
-> > As Liu pointed out, assigned-clock* were considered a generic property
-> > added by default at that time. With that support added there is no need
-> > to specify these properties in this bindings again.
-> > Despite that you never know in advance how many items you will have to =
-add
-> > to assigned-clock* properties, that's totally different to 'clocks', it
-> > may even depend on board specific clock setups.
->=20
-> Sounds grand to me. I think it'd be good in the future to explain
-> *where* the enforcement comes from, rather than saying something like
-> "allowed anyway".=20
+ok
 
-True, I'll send an updated patch with commit message improved referring to=
-=20
-updated dt-schema.
+> > +		compatible = "regulator-fixed";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		regulator-boot-on;
+> > +		regulator-always-on;
+> > +		regulator-name = "fixed_3p3";
+> > +	};
+> > +
+> > +	fixed_0p925: s0925 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-min-microvolt = <925000>;
+> > +		regulator-max-microvolt = <925000>;
+> > +		regulator-boot-on;
+> > +		regulator-always-on;
+> > +		regulator-name = "fixed_0p925";
+> > +	};
+> > +
+> >  	memory@40000000 {
+> >  		device_type = "memory";
+> >  		/* We expect the bootloader to fill in the size */
+> > @@ -465,6 +483,92 @@
+> >  			status = "disabled";
+> >  		};
+> >
+> > +		usb_0_qusbphy: phy@7b000 {
+> > +			compatible = "qcom,ipq9574-qusb2-phy";
+> > +			reg = <0x0007b000 0x180>;
+> > +			#phy-cells = <0>;
+> > +
+> > +			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> > +				 <&xo_board_clk>;
+> > +			clock-names = "cfg_ahb",
+> > +				      "ref";
+> > +
+> > +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		usb_0_qmpphy: phy@7d000 {
+> > +			compatible = "qcom,ipq9574-qmp-usb3-phy";
+> > +			reg = <0x0007d000 0xa00>;
+> > +			#phy-cells = <0>;
+> > +
+> > +			clocks = <&gcc GCC_USB0_AUX_CLK>,
+> > +				 <&xo_board_clk>,
+> > +				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> > +				 <&gcc GCC_USB0_PIPE_CLK>;
+> > +			clock-names = "aux",
+> > +				      "ref",
+> > +				      "cfg_ahb",
+> > +				      "pipe";
+> > +
+> > +			resets = <&gcc GCC_USB0_PHY_BCR>,
+> > +				 <&gcc GCC_USB3PHY_0_PHY_BCR>;
+> > +			reset-names = "phy",
+> > +				      "phy_phy";
+> > +
+> > +			status = "disabled";
+>
+> status is always the last property.
 
-> Otherwise,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+ok
 
-Thanks,
-Alexander
+> > +
+> > +			#clock-cells = <0>;
+> > +			clock-output-names = "usb0_pipe_clk";
+> > +		};
+> > +
+> > +		usb3: usb@8af8800 {
+> > +			compatible = "qcom,ipq9574-dwc3", "qcom,dwc3";
+> > +			reg = <0x08af8800 0x400>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <1>;
+> > +			ranges;
+> > +
+> > +			clocks = <&gcc GCC_SNOC_USB_CLK>,
+> > +				 <&gcc GCC_USB0_MASTER_CLK>,
+> > +				 <&gcc GCC_ANOC_USB_AXI_CLK>,
+> > +				 <&gcc GCC_USB0_SLEEP_CLK>,
+> > +				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> > +
+> > +			clock-names = "cfg_noc",
+> > +				      "core",
+> > +				      "iface",
+> > +				      "sleep",
+> > +				      "mock_utmi";
+> > +
+> > +			assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> > +					  <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> > +			assigned-clock-rates = <200000000>,
+> > +					       <24000000>;
+> > +
+> > +			interrupts-extended = <&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+> > +			interrupt-names = "pwr_event";
+> > +
+> > +			resets = <&gcc GCC_USB_BCR>;
+> > +			status = "disabled";
+> > +
+> > +			usb_0_dwc3: usb@8a00000 {
+> > +				compatible = "snps,dwc3";
+> > +				reg = <0x8a00000 0xcd00>;
+> > +				clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> > +				clock-names = "ref";
+> > +				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> > +				phys = <&usb_0_qusbphy>, <&usb_0_qmpphy>;
+> > +				phy-names = "usb2-phy", "usb3-phy";
+> > +				tx-fifo-resize;
+> > +				snps,is-utmi-l1-suspend;
+> > +				snps,hird-threshold = /bits/ 8 <0x0>;
+> > +				snps,dis_u2_susphy_quirk;
+> > +				snps,dis_u3_susphy_quirk;
+> > +				dr_mode = "host";
+>
+> Why is this property of the SoC?
 
-> Cheers,
-> Conor.
->=20
-> * Unknown Key
-> * 0xA08262D2
+Will remove it from here. It is present in ipq9574-rdp433.dts
 
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Thanks
+Varada
