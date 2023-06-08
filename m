@@ -2,77 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D80727E80
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 13:09:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75B0F727EB5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 13:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234460AbjFHLJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 07:09:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36806 "EHLO
+        id S235500AbjFHL3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 07:29:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232793AbjFHLJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 07:09:04 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B872A3AA6
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 04:07:04 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f61b45ee0dso601779e87.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 04:07:04 -0700 (PDT)
+        with ESMTP id S234375AbjFHL3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 07:29:31 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 474AC2700
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 04:29:30 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-977c8423dccso333766766b.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 04:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686222411; x=1688814411;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1686223769; x=1688815769;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+caIrEw0n7E+RHuWHb1TL2Rrvag6tUOBdTOavrLMBK4=;
-        b=iiCqm8fIcYbtR6/eI7I4VNh8+6lwh2wQwbwMCsfbb0NJ172k9z6wLXuzXPgpuSvqlH
-         glJJoaspnDbcsVoph9BTtPMZKXFBEbAeCKhpH8DOjAXgyd7v7sHgeAcdQbsJTLHK4dLX
-         LCjloHXOhH4kY0YmAjjweedqNS3F+JSJ7XUMMqU82wcggkbb9OtXjZjr/D/D9nAjj9GZ
-         39kV30KZ7LS0SaruyzA8VGLYRsj/BXye7OA4ur2UEeVXT7k/jcRsxJ73N4BADiH+MRYA
-         pLOZAXdByHgpISQ86sjAl/CKJ49WWU4e1U+N8huqTZ26C1eqB3z/ZZINDEc+bp24Mjfp
-         Bk3g==
+        bh=onxhXy/B3JaBIheRaBcu5GB2qIrwCPqePPD/9cziBFo=;
+        b=s3HV8OuEuup+OUIbJ5k4zyOUACR6Ln/qHhqYIRPuj9saN1HZYYTvGPIf7KeD92Y32w
+         tArH2SG9wsGi8fJUHZyi+A8MymlkWOi+7ut9qlsEGFkzpnPXfAtmtz2RB5mhkmV6lIeZ
+         cuw93ltGyLAdJZAIIVu0O9oVtvT5zJIuqqcyll4DH9wI8GYZCfonSn6FjAUeXl8MinpQ
+         qgtuoFEqxAwnwovqPCp75vNqwXJmf39EpVe6wWGQsXQ6nPn0U4kK7h3JkhotRNPoTXOu
+         c5PPBkvrHFtGu34YiMkqlvMeRhDC0/pDaPY+L6hpWgLYa0P++rUhWHAdarhwXBOhCAaF
+         ypYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686222411; x=1688814411;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1686223769; x=1688815769;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+caIrEw0n7E+RHuWHb1TL2Rrvag6tUOBdTOavrLMBK4=;
-        b=MbiP1YUqWLOt/T4nzuP5feSVqxKEwtUDsXS4y+L85NZwUSlYVkzfn2DGW+bwaFyLEN
-         4j+otdra4BrIU1JiTqVFagqe0nkTZBWy6+AH3e2BkR0A5/oBeqAvke5IIEi52fmeHisA
-         IHTBI3tYCMRuEi0Xta3+jsrFE3k6ZyWNx3M4o4YqkPSDTGLPcRFr3aH5teKwt61tE2gs
-         b5uUBYnOBkrtVYbSAVigl14D8wkxTsVVXtJ/qKt7+Huuq3W1D4zJ/h6mAKBIgkKR8Wgj
-         13VqEcmMaUHWnUMI11qFKGedSmLbcZ6+xbcSN77jHECWcP9McAHrY7T9fCDDt9AuoA2W
-         STSw==
-X-Gm-Message-State: AC+VfDxfAIE8iGRcwuXIJ2QOyqHS9QMk+TyMBVWiqPqJU8f+aL8/YfqT
-        QKCGrAC4pxjOQ3WnqJ1+3hTvwg==
-X-Google-Smtp-Source: ACHHUZ5ILhAtEGWd5FVAaCuMWXlusQ2n+jwbCu1VRWLWyrrXjaIkcb+Br9SQPg5UBNC1aNWJ8hf5dA==
-X-Received: by 2002:ac2:44ae:0:b0:4f2:5c4b:e699 with SMTP id c14-20020ac244ae000000b004f25c4be699mr3077490lfm.24.1686222410690;
-        Thu, 08 Jun 2023 04:06:50 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id p16-20020a19f010000000b004f4d5844b48sm145753lfc.279.2023.06.08.04.06.49
+        bh=onxhXy/B3JaBIheRaBcu5GB2qIrwCPqePPD/9cziBFo=;
+        b=fUgZo3y4/6rjvwG7znVlpcBeIQDaplL6hMHea80ZzqGBg5z4UOT36fgzGe03C0B7Dy
+         IO577yHUp6Q+PO5Dzs7VFXiI1kmwWnoW9s0U4ToDsLqYCFh0a7GUTHBxfB4UNHGf+IUQ
+         RdC0Y0qJ5+n5D5E6jhV0g9K1fgn6Gscm6sj44hINZI1LLW/FWZfx8wsS92urzEk0SfYq
+         upG9LI9Ao6C76xr32G7zfxooE2w5KG08E5vSReVGOxFQft9RxBLNbERDmCM9XnVm9m0z
+         XgrlE/59dIcaebHSPtXfKVpZkSVWdCyMwy9JBh2QdLTllaRxYtOoSWTOzP5KYdR5HtFB
+         AVAg==
+X-Gm-Message-State: AC+VfDzN3ndD+h1Yqt07k0B4vyY8D7QKD2K7pXsWIUx7hbYUi5eLKmPv
+        Tqc2Ti/5nQxxG1v4Wevl0cLtsQ==
+X-Google-Smtp-Source: ACHHUZ4lxiQ8JILFOmcDga5RplGQDFOtntTdA4bXHBvYEPRfybd9BQhQ9QGU/yYHSxR6das7Cb86Dg==
+X-Received: by 2002:a17:907:160b:b0:977:d660:c5aa with SMTP id hb11-20020a170907160b00b00977d660c5aamr1742048ejc.31.1686223768778;
+        Thu, 08 Jun 2023 04:29:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id h12-20020a1709066d8c00b009745482c5b7sm574674ejt.94.2023.06.08.04.29.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jun 2023 04:06:50 -0700 (PDT)
-Message-ID: <71960b11-5686-9af5-423b-bfdaec56f3f9@linaro.org>
-Date:   Thu, 8 Jun 2023 14:06:49 +0300
+        Thu, 08 Jun 2023 04:29:28 -0700 (PDT)
+Message-ID: <55b59833-d070-f576-9d85-047175d9722c@linaro.org>
+Date:   Thu, 8 Jun 2023 13:29:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v14 3/5] arm64: dts: qcom: ipq9574: Add USB related nodes
-Content-Language: en-GB
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <cover.1686217906.git.quic_varada@quicinc.com>
- <2f91eb879daaf9955dc56135d60a4be5e191a44d.1686217906.git.quic_varada@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <2f91eb879daaf9955dc56135d60a4be5e191a44d.1686217906.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 1/2] dt-bindings: reset: convert the xlnx,zynqmp-reset.txt
+ to yaml
+Content-Language: en-US
+To:     "Mehta, Piyush" <piyush.mehta@amd.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "nava.manne@xilinx.com" <nava.manne@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+References: <20230607065121.2265076-1-piyush.mehta@amd.com>
+ <20230607065121.2265076-2-piyush.mehta@amd.com>
+ <168612336438.2153757.6000360498539992409.robh@kernel.org>
+ <MN2PR12MB4333E0628E2E67652E80067A8850A@MN2PR12MB4333.namprd12.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <MN2PR12MB4333E0628E2E67652E80067A8850A@MN2PR12MB4333.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,197 +90,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 13:03, Varadarajan Narayanan wrote:
-> Add USB phy and controller related nodes
+On 08/06/2023 12:55, Mehta, Piyush wrote:
+> Hello,
 > 
-> SS PHY need two supplies and HS PHY needs three supplies. 0.925V
-> and 3.3V are from fixed regulators and 1.8V is generated from
-> PMIC's LDO
+>> -----Original Message-----
+>> From: Rob Herring <robh@kernel.org>
+>> Sent: Wednesday, June 7, 2023 1:06 PM
+>> To: Mehta, Piyush <piyush.mehta@amd.com>
+>> Cc: p.zabel@pengutronix.de; Paladugu, Siva Durga Prasad
+>> <siva.durga.prasad.paladugu@amd.com>; michal.simek@xilinx.com;
+>> nava.manne@xilinx.com; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-usb@vger.kernel.org; conor+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; robh+dt@kernel.org; Simek, Michal
+>> <michal.simek@amd.com>; git (AMD-Xilinx) <git@amd.com>
+>> Subject: Re: [PATCH 1/2] dt-bindings: reset: convert the xlnx,zynqmp-reset.txt
+>> to yaml
+>>
+>>
+>> On Wed, 07 Jun 2023 12:21:20 +0530, Piyush Mehta wrote:
+>>> Convert the binding to DT schema format. It also updates the
+>>> reset-controller description.
+>>>
+>>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+>>> ---
+>>> Note:
+>>> The 1/2 patch introduced a warning related to the dt binding check,
+>>> which was subsequently fixed in the 2/2 patch. This warning is a
+>>> conversion warning due to a dependency on firmware dt binding.
+>>>
+>>> Warning:
+>>>   DTC_CHK
+>>> Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.example.dtb
+>>>
+>> /scratch/piyushm/torvalds/linux/Documentation/devicetree/bindings/reset/xln
+>> x,zynqmp-reset.example.dtb: zynqmp-firmware: 'reset-controller' does not
+>> match any of the regexes: 'pinctrl-[0-9]+'
+>>> 	From schema:
+>>> /scratch/piyushm/torvalds/linux/Documentation/devicetree/bindings/firm
+>>> ware/xilinx/xlnx,zynqmp-firmware.yaml
+>>>
+>>> Please suggest to me, if it's fine to make a single patch instead of
+>>> the separate patch 1/2 and 2/2.
+>>> ---
+>>>  .../bindings/reset/xlnx,zynqmp-reset.txt      | 55 ---------------
+>>>  .../bindings/reset/xlnx,zynqmp-reset.yaml     | 67 +++++++++++++++++++
+>>>  2 files changed, 67 insertions(+), 55 deletions(-)  delete mode
+>>> 100644 Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.txt
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-
+>> ci/linux/Documentation/devicetree/bindings/reset/xlnx,zynqmp-
+>> reset.example.dtb: zynqmp-firmware: 'reset-controller' does not match any of
+>> the regexes: 'pinctrl-[0-9]+'
+>> 	From schema: /builds/robherring/dt-review-
+>> ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+>> firmware.yaml
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-
+>> bindings/patch/20230607065121.2265076-2-piyush.mehta@amd.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above error(s),
+>> then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->   Changes in v13:
-> 	- Move fixed regulator definitions from SoC dtsi to board dts
-> 	- Remove 'dr_mode' from SoC dtsi
-> 	- Move 'status' property to the end
->   Changes in v12:
-> 	- Rebase
->   Changes in v11:
-> 	- Rename dwc_0 -> usb_0_dwc3
->   Changes in v10:
-> 	- Fix regulator definitions
->   Changes in v8:
-> 	- Change clocks order to match the bindings
->   Changes in v7:
-> 	- Change com_aux -> cfg_ahb
->   Changes in v6:
-> 	- Introduce fixed regulators for the phy
-> 	- Resolved all 'make dtbs_check' messages
-> 
->   Changes in v5:
-> 	- Fix additional comments
-> 	- Edit nodes to match with qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> 	- 'make dtbs_check' giving the following messages since
-> 	  ipq9574 doesn't have power domains. Hope this is ok
-> 
-> 		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
->          	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> 		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
->          	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> 
->   Changes in v4:
-> 	- Use newer bindings without subnodes
-> 	- Fix coding style issues
-> 
->   Changes in v3:
-> 	- Insert the nodes at proper location
-> 
->   Changes in v2:
-> 	- Fixed issues flagged by Krzysztof
-> 	- Fix issues reported by make dtbs_check
-> 	- Remove NOC related clocks (to be added with proper
-> 	  interconnect support)
-> ---
->   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 18 ++++++
->   arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 85 +++++++++++++++++++++++++++++
->   2 files changed, 103 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> index 2b3ed8d..8261a2b 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> @@ -21,6 +21,24 @@
->   	chosen {
->   		stdout-path = "serial0:115200n8";
->   	};
-> +
-> +	regulator_fixed_3p3: s3300 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		regulator-name = "fixed_3p3";
-> +	};
-> +
-> +	regulator_fixed_0p925: s0925 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <925000>;
-> +		regulator-max-microvolt = <925000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		regulator-name = "fixed_0p925";
-> +	};
->   };
+> This dt_binding warning is known to us and is captured in commit description notes and to resolve it, we need to apply 2/2.
 
-Let me repeat from v13, so that it is not lost (please excuse me for the 
-spam):
+So your patchset has broken bisectability. You need to fix it. If the
+warning was known, then I am surprised that you sent broken patchset.
 
-Nit: these two regulators are not references from SoC dtsi. So they 
-don't have to be a part of this commit and can be moved to one of the 
-next commits (I'd prefer the last one).
+> I want to take DT maintainer opinion if we should keep the fix in 2/2 or merge it in 1/2.
 
->   
->   &blsp1_uart2 {
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 0baeb10..feabc19 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -465,6 +465,91 @@
->   			status = "disabled";
->   		};
->   
-> +		usb_0_qusbphy: phy@7b000 {
-> +			compatible = "qcom,ipq9574-qusb2-phy";
-> +			reg = <0x0007b000 0x180>;
-> +			#phy-cells = <0>;
-> +
-> +			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> +				 <&xo_board_clk>;
-> +			clock-names = "cfg_ahb",
-> +				      "ref";
-> +
-> +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> +			status = "disabled";
-> +		};
-> +
-> +		usb_0_qmpphy: phy@7d000 {
-> +			compatible = "qcom,ipq9574-qmp-usb3-phy";
-> +			reg = <0x0007d000 0xa00>;
-> +			#phy-cells = <0>;
-> +
-> +			clocks = <&gcc GCC_USB0_AUX_CLK>,
-> +				 <&xo_board_clk>,
-> +				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> +				 <&gcc GCC_USB0_PIPE_CLK>;
-> +			clock-names = "aux",
-> +				      "ref",
-> +				      "cfg_ahb",
-> +				      "pipe";
-> +
-> +			resets = <&gcc GCC_USB0_PHY_BCR>,
-> +				 <&gcc GCC_USB3PHY_0_PHY_BCR>;
-> +			reset-names = "phy",
-> +				      "phy_phy";
-> +
-> +			#clock-cells = <0>;
-> +			clock-output-names = "usb0_pipe_clk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		usb3: usb@8af8800 {
-> +			compatible = "qcom,ipq9574-dwc3", "qcom,dwc3";
-> +			reg = <0x08af8800 0x400>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			clocks = <&gcc GCC_SNOC_USB_CLK>,
-> +				 <&gcc GCC_USB0_MASTER_CLK>,
-> +				 <&gcc GCC_ANOC_USB_AXI_CLK>,
-> +				 <&gcc GCC_USB0_SLEEP_CLK>,
-> +				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +
-> +			clock-names = "cfg_noc",
-> +				      "core",
-> +				      "iface",
-> +				      "sleep",
-> +				      "mock_utmi";
-> +
-> +			assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
-> +					  <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +			assigned-clock-rates = <200000000>,
-> +					       <24000000>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "pwr_event";
-> +
-> +			resets = <&gcc GCC_USB_BCR>;
-> +			status = "disabled";
-> +
-> +			usb_0_dwc3: usb@8a00000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x8a00000 0xcd00>;
-> +				clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +				clock-names = "ref";
-> +				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> +				phys = <&usb_0_qusbphy>, <&usb_0_qmpphy>;
-> +				phy-names = "usb2-phy", "usb3-phy";
-> +				tx-fifo-resize;
-> +				snps,is-utmi-l1-suspend;
-> +				snps,hird-threshold = /bits/ 8 <0x0>;
-> +				snps,dis_u2_susphy_quirk;
-> +				snps,dis_u3_susphy_quirk;
-> +			};
-> +		};
-> +
->   		intc: interrupt-controller@b000000 {
->   			compatible = "qcom,msm-qgic2";
->   			reg = <0x0b000000 0x1000>,  /* GICD */
+Just avoid the warning. Anyway you need only one complete example, right?
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
