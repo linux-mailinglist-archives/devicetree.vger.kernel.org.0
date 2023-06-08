@@ -2,59 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E12A7288AE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 21:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBEA77288DF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 21:43:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229956AbjFHTew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 15:34:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48380 "EHLO
+        id S233018AbjFHTnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 15:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236744AbjFHTes (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 15:34:48 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 320FA1FEB;
-        Thu,  8 Jun 2023 12:34:47 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-77abe33790dso48775439f.2;
-        Thu, 08 Jun 2023 12:34:47 -0700 (PDT)
+        with ESMTP id S230100AbjFHTno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 15:43:44 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0782121;
+        Thu,  8 Jun 2023 12:43:39 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-77ac14ff51bso45974039f.3;
+        Thu, 08 Jun 2023 12:43:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686252886; x=1688844886;
+        d=1e100.net; s=20221208; t=1686253419; x=1688845419;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y/Dn/9w//ldnFJmGHUjdUeSElg5i3vFl3qGg/nc2Jxo=;
-        b=ADDcqn0tQa2izY5l+VRDppHXV+ePze/6fD2iSqy9YIv1ewBo98vA+ieqpZvuHh99MI
-         fueqUeZScSJz1VeZc8oGccPRwmdGQnMNlIEBvTu7h0Q5fyb717ArXL2iHvopz+JrUnrD
-         hc5zhq4A/7psgNzJ0vc/f6xzXucPWQBiQ1OsNUGmSH1goKFrnmHnvXvIVa7cNINm0/Nt
-         QEX5vkS1n8LkXhyMKq0zXLAV+deX1/bQGFuDDJhkIZTrGh2m93mP0nN0EYsDOGmlOoNx
-         R1rzCQZ79j7m8GPXFmR+nVqTiBAHDdwiyWfJlpv1JhDXXcDel3TpS+Y+MMHGcZiMo0wE
-         8fHA==
-X-Gm-Message-State: AC+VfDwE2TKx1Niph92ajRjvkMwCBCnwv9rhJnnYGnF55c26vbZ4r87H
-        EhWNKkN2H7DrzBL+1rkB0r/mi4X87Q==
-X-Google-Smtp-Source: ACHHUZ6iNVMDWj26J2ozDnsxCBhdo+w3DbXacc5k85jb6cr0VrqHuO3JXb6s15YRW3o4BzD24cU+ig==
-X-Received: by 2002:a5e:8d0d:0:b0:76c:595a:6b5f with SMTP id m13-20020a5e8d0d000000b0076c595a6b5fmr7700426ioj.20.1686252886418;
-        Thu, 08 Jun 2023 12:34:46 -0700 (PDT)
+        bh=7U0zTc24ytGGzlyel1Af7i7P3XOznRaJPq/P7jBwwD4=;
+        b=SHGojOHzjVOaOTXzgZivCOlbwr2CgBKOA1DSDffZqoIDwTkpKiChPJWVAEcVHU6wCs
+         bI4EwXJoLHe24Sf2eI/qr4yl2DDlc6PaX7w6TwmFJ4W+pLw1csp3Kn6+EHsPMrlJpOTJ
+         nU2WsgOlPRmXfWx24mwabRKDUZKZqYVf+GwPEVuTKKnwZhaahe6CTHJuNtlQOy/UZHdF
+         luO8bLkeTCFoLw60J3hQpO3aQmdwYRWm0oc2Tc4I6TeQx34ohaSnwavM6JJg8Fifh4/i
+         519wULDO0AU+KmJFhU2gPPvOrgo5na1CDfJRaeJu+rQ6mkzSewWvQXnc/cGyFoqsFYWB
+         T2mA==
+X-Gm-Message-State: AC+VfDwLJ+1UhAdiVgPcEFfRUk3wPGEe3nMEXi/GykDwCiJ6m+Xq6rBo
+        G539wKlsFydvBQgfz96dCg==
+X-Google-Smtp-Source: ACHHUZ54Jwao0CPoPCS4+xl//513zcQj8+ClMRRpaFOyEBKjv879tBuFbVNST9e1frlYL5+vlHfg5Q==
+X-Received: by 2002:a6b:7614:0:b0:779:c221:eb6c with SMTP id g20-20020a6b7614000000b00779c221eb6cmr6984169iom.19.1686253419023;
+        Thu, 08 Jun 2023 12:43:39 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id t25-20020a6b0919000000b0077a1d1029fcsm549664ioi.28.2023.06.08.12.34.44
+        by smtp.gmail.com with ESMTPSA id d19-20020a02a493000000b0041a9e657035sm471429jam.48.2023.06.08.12.43.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 12:34:45 -0700 (PDT)
-Received: (nullmailer pid 3274931 invoked by uid 1000);
-        Thu, 08 Jun 2023 19:34:43 -0000
-Date:   Thu, 8 Jun 2023 13:34:43 -0600
+        Thu, 08 Jun 2023 12:43:38 -0700 (PDT)
+Received: (nullmailer pid 3284394 invoked by uid 1000);
+        Thu, 08 Jun 2023 19:43:35 -0000
+Date:   Thu, 8 Jun 2023 13:43:35 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Conor Dooley <conor@kernel.org>, marius.cristea@microchip.com,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: adding MCP3564 ADC
-Message-ID: <20230608193443.GA3261675-robh@kernel.org>
-References: <20230519160145.44208-1-marius.cristea@microchip.com>
- <20230519160145.44208-2-marius.cristea@microchip.com>
- <20230519-variably-direction-cfa9a034e844@spud>
- <20230520161753.28a8c128@jic23-huawei>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
+        David Airlie <airlied@gmail.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>
+Subject: Re: [PATCH RFC 07/10] dt-bindings: display: panel: Describe Samsung
+ SOFEF03-M Display-IC
+Message-ID: <168625341521.3284336.6842644080474323088.robh@kernel.org>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-7-541c341d6bee@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230520161753.28a8c128@jic23-huawei>
+In-Reply-To: <20230521-drm-panels-sony-v1-7-541c341d6bee@somainline.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,79 +84,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 20, 2023 at 04:17:53PM +0100, Jonathan Cameron wrote:
-> On Fri, 19 May 2023 19:29:15 +0100
-> Conor Dooley <conor@kernel.org> wrote:
+
+On Sun, 21 May 2023 23:23:09 +0200, Marijn Suijten wrote:
+> Document the SOFEF06-M Display-IC and 1080x2520 panel found in the Sony
+> Xperia 5 II (6.1").
 > 
-> > Hey Marius,
-> > 
-> > On Fri, May 19, 2023 at 07:01:44PM +0300, marius.cristea@microchip.com wrote:
-> > > From: Marius Cristea <marius.cristea@microchip.com>
-> > > 
-> > > This is the device tree schema for iio driver for
-> > > Microchip family of 153.6 ksps, Low-Noise 16/24-Bit
-> > > Delta-Sigma ADCs with an SPI interface.  
-> > 
-> > Just one quick process bit, please try to CC all of the maintainers
-> > listed by get_maintainer.pl - you unfortunately managed to miss 2 of the
-> > 3 dt-binding maintainers :/ Perhaps you ran get_maintainer.pl using our
-> > vendor tree?
-> > 
-> > > Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> > > ---  
-> > 
-> > > +  vref-supply:
-> > > +    description:
-> > > +      Some devices have a specific reference voltage supplied on a different
-> > > +      pin to the other supplies. Needed to be able to establish channel scaling
-> > > +      unless there is also an internal reference available (e.g. mcp3564r)  
-> > 
-> > Should this be marked as a required property for the non-r devices that
-> > do not have an internal reference?
-> > 
-> > > +  microchip,hw-device-address:  
-> > 
-> > Hopefully Rob or Jonathan etc can chime in as to whether a common
-> > property exists for this type of thing...
-> > 
-> Nope. This is a new one for me - there are devices that work on a daisy chain
-> principle but I think this one works by encoding stuff in the actual message
-> which is unusual for SPI.
-
-Not something I've seen either.
-
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>  .../bindings/display/panel/samsung,sofef03-m.yaml  | 73 ++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
 > 
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    minimum: 0
-> > > +    maximum: 3
-> > > +    description:
-> > > +      The address is set on a per-device basis by fuses in the factory,
-> > > +      configured on request. If not requested, the fuses are set for 0x1.
-> > > +      The device address is part of the device markings to avoid
-> > > +      potential confusion. This address is coded on two bits, so four possible
-> > > +      addresses are available when multiple devices are present on the same
-> > > +      SPI bus with only one Chip Select line for all devices.  
 
-What's this going to look like with more than one device? It would need 
-to be incorporated into 'reg' and the unit-address to work. Something 
-like this is 
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-spi {
-  device0@0 {
-    reg = <0>;
-    microchip,hw-device-address = <0>;
-  };
-
-  device1@0 {
-    reg = <0>;
-    microchip,hw-device-address = <1>;
-  };
-};
-
-That should throw warnings because you have 2 nodes at the same address 
-which is not good practice.
-
-I think you need a spi mux in here with the mux addresses being the 
-microchip,hw-device-address values.
-
-Rob
