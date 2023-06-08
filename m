@@ -2,72 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C58D727754
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 08:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09EDE72775F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 08:38:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234332AbjFHGgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 02:36:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
+        id S234755AbjFHGiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 02:38:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234369AbjFHGgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 02:36:43 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 745DC270D;
-        Wed,  7 Jun 2023 23:36:42 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id D586E80E0;
-        Thu,  8 Jun 2023 06:36:40 +0000 (UTC)
-Date:   Thu, 8 Jun 2023 09:36:39 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v6 1/1] dt-bindings: pinctrl: Update pinctrl-single to
- use yaml
-Message-ID: <20230608063639.GD14287@atomide.com>
-References: <20230605095216.18864-1-tony@atomide.com>
- <a4134777-e43c-4b74-58d8-bff0c0d1a6f6@linaro.org>
+        with ESMTP id S234292AbjFHGiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 02:38:04 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E666E26AA
+        for <devicetree@vger.kernel.org>; Wed,  7 Jun 2023 23:38:02 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5147f7d045bso309534a12.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jun 2023 23:38:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686206281; x=1688798281;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lqo0A7BM5THz83RAtHMEkVHjNz7WCnOgKYrgDzsaaU4=;
+        b=CUbo1fahuMwU8hQpPyLHBQTQNthgS0+azjXEB5AuMpivBaAN7sKBcqOMHCbudzENfS
+         E2sZnGqcbYx2nNJ0yBKlteFKjUuDqif5VYX9YDV94/AGcAdw+KtmKakYxEmVd724gm4D
+         cgg6z7n3Hn31+jor2LbZSAW6BjWkrJIirz5GlLUhGi1HX7d8qocpZ6PC2QHc5U8lL5Sm
+         Mixy66cV0bGiUy/Q5e5jVgtKz1exAoXZFKX4pvxrlUOrC+w+rqPSUHlRk3q2Y9UaSL6/
+         /KuNUsRD5M0DtbjpW3yM9eCYmIcUSlviUeNpmY1YHxxcAc+4XrL/W+Y6dMQhcCAeYlde
+         5I2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686206281; x=1688798281;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lqo0A7BM5THz83RAtHMEkVHjNz7WCnOgKYrgDzsaaU4=;
+        b=eL0yvFqEbchvFMAHk6/f7JV0n97qv2mO8MJJmTn0//vK3IdtQK/jufGTInVrg/8+I0
+         h/Yttc8bE/FDu9FCkF3hfQLZDK3q+j9CVGXF22q8y4LG0FzI7evwsCpV9CDYWHUesT+4
+         aI2tKXkfE/Gngp+z0RnBz+PkK27SEaYyAL+85fIAW9B6X2iqbrEYZ6yQhHMnwsxlZ2BI
+         0yraxFaNT3PdhQjEVHJKIX1xv5S8OaX4UFwM0psTtY9pgjAOUph5nnnI3KXevIvEiRCg
+         fnKSBSeLQ1sJ8goDDBLM9kkmmX2znRiDiP2Y26hYFYfwoiCB1vnbWbTRLdjZomdW1g14
+         9B/A==
+X-Gm-Message-State: AC+VfDxO58idzwgypm/iWcpzhYysZWUW2ATbMAm5K2mpUfNJfFAWItQB
+        7T2Oxdl1LxShRT+jBu1m/bhSCQ==
+X-Google-Smtp-Source: ACHHUZ4KhhXuTCYSDPgoRLBB4u32f/WMlazF4shqwwkZ3icYzTu7KI3MJObyFYaJY0xBRdj6ON+xew==
+X-Received: by 2002:aa7:cc98:0:b0:50d:88f3:2e30 with SMTP id p24-20020aa7cc98000000b0050d88f32e30mr7084851edt.13.1686206281341;
+        Wed, 07 Jun 2023 23:38:01 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id n27-20020a056402515b00b00502689a06b2sm168728edd.91.2023.06.07.23.37.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 23:38:00 -0700 (PDT)
+Message-ID: <797c61d2-b8f1-e80e-24b9-4c7a7d266080@linaro.org>
+Date:   Thu, 8 Jun 2023 08:37:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a4134777-e43c-4b74-58d8-bff0c0d1a6f6@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [v6 0/4] Support pwm/tach driver for aspeed ast26xx
+Content-Language: en-US
+To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        corbet@lwn.net, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org,
+        patrick@stwcx.xyz
+References: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230608021839.12769-1-billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [230607 18:17]:
-> On 05/06/2023 11:52, Tony Lindgren wrote:
-> > +title: Pinctrl driver for hardware with a single register for one or more pins
-> 
-> I asked to drop the driver references but it is still here. Bindings are
-> not describing drivers.
-> 
-> "Generic Pin Controller with a Single Register for One or More Pins"
+On 08/06/2023 04:18, Billy Tsai wrote:
+> Unlike the old design that the register setting of the TACH should based
+> on the configure of the PWM. In ast26xx, the dependency between pwm and
+> tach controller is eliminated and becomes a separate hardware block. One
+> is used to provide pwm output and another is used to monitor the frequency
+> of the input. Therefore, this patch serials implements them by writing the
+> two driver "pwm-aspeed-ast2600.c" and "tach-aspeed-ast2600.c". The former
+> is following the pwm subsystem which can apply the existed driver to
+> controller the fan(pwm-fan.c), beeper(pwm-beeper.c) and so on. The latter
+> is following the sysfs interface of hwmon to creat the node for fan
+> monitor.
 
-Oh right it's supposed to describe hardware, will update thanks.
+You like to ignore my comments... How did you implement them? Go one by
+one - answer to v4 emails.
 
-> > +patternProperties:
-> > +  '-pins$|-pin':
-> 
-> you did not implement my comments fully, probably we misunderstood each
-> other. Why do you allow anything after '-pin'? Let's make it pure suffix
-> for both cases: '-pins?$'
+Best regards,
+Krzysztof
 
-I'll check what kind of node renaming that would cause. At least TI
-arm64 SoCs use naming like -pins-default and -pins-wakeup. Is your
-preference to rename all those nodes to -default-pins and -wakeup-pins?
-
-Regards,
-
-Tony
