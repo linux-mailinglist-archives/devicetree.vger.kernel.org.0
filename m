@@ -2,115 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 598EE727FB0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5542727FBC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 14:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235589AbjFHMOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 08:14:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43814 "EHLO
+        id S233626AbjFHMWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 08:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234582AbjFHMOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:14:05 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56A3184;
-        Thu,  8 Jun 2023 05:14:04 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 63A0E6606EF9;
-        Thu,  8 Jun 2023 13:14:00 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686226443;
-        bh=ngSvI4aezt9aOvaiq1z7uwbLyB+T//8r6HBFM3EABh4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jlqNziZ+Uk43sIsUE1CUWBbr3v3utLbiMF3K3RbR7RmyJ8nyiOqEBq04/GHeHunSE
-         2W26TlABa+BsTAbVdqgrh/xcNwCt8h736g3QW66HehbzgRsXiJNz40up/ydF/KY9be
-         gFtxJfwN4NjDiNF6s+C32j/DN1BQp+V6lmFeNhUvNg8KMo9QfAL+r/unueg+OzEgXq
-         u3Pm33hxCmn3ZHinMoPeNraM4j7c62kGUDrTyBnMMwKQNgO/ViHTZtcEUaosi7D7p4
-         X5FSxOUAJ+TibDRnyyF8K4QFbMDS7ADwQF8l6xiTNeBaLVsa4iBIEDJwTl+0P3Z0vo
-         gBkwts/PPdgcw==
-Message-ID: <b61c7d8c-85e7-2248-d386-ffec8c275aa4@collabora.com>
-Date:   Thu, 8 Jun 2023 14:13:56 +0200
+        with ESMTP id S229753AbjFHMWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 08:22:14 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CF21E43;
+        Thu,  8 Jun 2023 05:22:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686226931; x=1717762931;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=XCENFFGMz+AlPXP+TAjP/jMokRT6oH/Ogdvfh1yAGao=;
+  b=WtyBqmEQeGYTNClnVxgnnD4jMvnjOyYwHjFT0hFjr5UdtFrqFv6jNCER
+   GHmdcbxUKQRU3Ooi2Ko3JgMfPTY54GeaMale3r6XsRQ99e1Oe+tSYxgLs
+   l48TR12VnoAI2U7ffWa3RrkRqLNLAQqBA3tFZcZkKI3B/KvyZ7Goo0kUz
+   tHFqovSKE2qG8fnZM7UpiF1GEr1A4eAK3xoVIByJ0pz2sCZWrlCkmTG3O
+   y4MY0ulptsFttvD/n6g95Yvd0WVf0VNWb4Fk3AmeDs1RVrWTQQwrwbClz
+   x3h0iyyj1/F/xgqN/eQlMfDs6kgK4bL+SmL/PvqD4H7IIqpyyG4uod6Gc
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="354777362"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; 
+   d="scan'208";a="354777362"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2023 05:22:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="822601301"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; 
+   d="scan'208";a="822601301"
+Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 08 Jun 2023 05:22:05 -0700
+Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q7EeS-0007kh-2m;
+        Thu, 08 Jun 2023 12:22:04 +0000
+Date:   Thu, 8 Jun 2023 20:21:12 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        rf@opensource.cirrus.com, ryans.lee@analog.com,
+        wangweidong.a@awinic.com, shumingf@realtek.com,
+        herve.codina@bootlin.com, ckeepax@opensource.cirrus.com,
+        doug@schmorgal.com, ajye_huang@compal.corp-partner.google.com,
+        kiseok.jo@irondevice.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, venkataprasad.potturu@amd.com
+Subject: Re: [PATCH 2/2] ASoC: max98388: add amplifier driver
+Message-ID: <202306082054.jIU9oENf-lkp@intel.com>
+References: <20230608054230.344014-2-ryan.lee.analog@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 4/4] arm64: dts: mediatek: mt8186: Wire up GPU
- voltage/frequency scaling
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230607090653.2468317-1-wenst@chromium.org>
- <20230607090653.2468317-5-wenst@chromium.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230607090653.2468317-5-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230608054230.344014-2-ryan.lee.analog@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/06/23 11:06, Chen-Yu Tsai ha scritto:
-> Add the GPU's OPP table. This is from the downstream ChromeOS kernel,
-> adapted to the new upstream opp-supported-hw binning format. Also add
-> dynamic-power-coefficient for the GPU.
-> 
-> Also add label for mfg1 power domain. This is to be used at the board
-> level to add a regulator supply for the power domain.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 140 ++++++++++++++++++++++-
->   1 file changed, 139 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index c58d7eb87b1d..a34489e27cd4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -695,6 +695,142 @@ clk32k: oscillator-32k {
->   		clock-output-names = "clk32k";
->   	};
->   
-> +	gpu_opp_table: opp-table-gpu {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-299000000 {
-> +			opp-hz = /bits/ 64 <299000000>;
-> +			opp-microvolt = <612500>;
-> +			opp-supported-hw = <0x38>;
+Hi “Ryan,
 
-For all of the OPPs that are supposed to be supported by all speed-bins, you don't
-need to restrict them to all "known" bins.
+kernel test robot noticed the following build warnings:
 
-Please change opp-supported-hw from <0x38> to <0xff>, which literally means
-just "applies to all revisions".
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on linus/master v6.4-rc5 next-20230608]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +		};
+url:    https://github.com/intel-lab-lkp/linux/commits/Ryan/ASoC-max98388-add-amplifier-driver/20230608-134526
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20230608054230.344014-2-ryan.lee.analog%40gmail.com
+patch subject: [PATCH 2/2] ASoC: max98388: add amplifier driver
+config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20230608/202306082054.jIU9oENf-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        git remote add broonie-sound https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git
+        git fetch broonie-sound for-next
+        git checkout broonie-sound/for-next
+        b4 shazam https://lore.kernel.org/r/20230608054230.344014-2-ryan.lee.analog@gmail.com
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=mips olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash sound/soc/codecs/
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306082054.jIU9oENf-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> sound/soc/codecs/max98388.c:390:6: warning: no previous prototype for 'max98388_reset' [-Wmissing-prototypes]
+     390 | void max98388_reset(struct max98388_priv *max98388, struct device *dev)
+         |      ^~~~~~~~~~~~~~
+>> sound/soc/codecs/max98388.c:904:6: warning: no previous prototype for 'max98388_read_deveice_property' [-Wmissing-prototypes]
+     904 | void max98388_read_deveice_property(struct device *dev,
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-..snip...
+vim +/max98388_reset +390 sound/soc/codecs/max98388.c
 
-> +
-> +		opp-900000000-3 {
+   389	
+ > 390	void max98388_reset(struct max98388_priv *max98388, struct device *dev)
+   391	{
+   392		int ret, reg, count;
+   393	
+   394		/* Software Reset */
+   395		ret = regmap_update_bits(max98388->regmap,
+   396					 MAX98388_R2000_SW_RESET,
+   397					 MAX98388_SOFT_RESET,
+   398					 MAX98388_SOFT_RESET);
+   399		if (ret)
+   400			dev_err(dev, "Reset command failed. (ret:%d)\n", ret);
+   401	
+   402		count = 0;
+   403		while (count < 3) {
+   404			usleep_range(10000, 11000);
+   405			/* Software Reset Verification */
+   406			ret = regmap_read(max98388->regmap,
+   407					  MAX98388_R22FF_REV_ID, &reg);
+   408			if (!ret) {
+   409				dev_info(dev, "Reset completed (retry:%d)\n", count);
+   410				return;
+   411			}
+   412			count++;
+   413		}
+   414		dev_err(dev, "Reset failed. (ret:%d)\n", ret);
+   415	}
+   416	
 
-What about calling those like "opp-900000000-bin3"?
-Makes it clear that it's tied to what MediaTek calls a speedbin "3" (as we're
-interpreting the values in the nvmem driver to make them compatible with the
-opp-supported-hw's expectations).
-
-Cheers,
-Angelo
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
