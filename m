@@ -2,59 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9398C728284
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 16:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 080977282DD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jun 2023 16:38:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234306AbjFHOUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 10:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53410 "EHLO
+        id S234784AbjFHOi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 10:38:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbjFHOU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 10:20:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D22561730;
-        Thu,  8 Jun 2023 07:20:26 -0700 (PDT)
+        with ESMTP id S229791AbjFHOi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 10:38:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD60E57;
+        Thu,  8 Jun 2023 07:38:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E19864AE0;
-        Thu,  8 Jun 2023 14:20:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA543C433EF;
-        Thu,  8 Jun 2023 14:20:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 63ED363C34;
+        Thu,  8 Jun 2023 14:38:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B864BC4339C;
+        Thu,  8 Jun 2023 14:38:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686234025;
-        bh=Th1LxrT8KdmLSh3YIuh2Q25jf9THPmdHaJyxevJaMSo=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=rTUDLf9qOVFeZzKzI8cahDWYq5vldNr97JiP2rUutibt8l76hmUuot/905aAv91iM
-         Tsdvp8LqZ5x/4fYbVPOaPJujmOtLx3YTv1dxppAPQTc2RVZTc4Aoy3pP/PZEiLdgj1
-         ydRlumN2v4zSUsYf43NHnMCpq0x0wA2CmcZckRgCtnqknj/zgsvATxXZM8WjTa5doz
-         F/IlysnPgKhT+4bYt2Dz1XT513JS+ix6GGG5xvr7EuzmUzzog9kwOasRqK7LbVkfUR
-         Yb7ljPaJ5ruM+5Tk0NSaUkM01wxdllsI/yNAUdBmwFokTJpi1uDmABIpHSCLSPu7U4
-         OVmiEUrlmIkdw==
-Date:   Thu, 8 Jun 2023 16:20:11 +0200 (CEST)
-From:   Jiri Kosina <jikos@kernel.org>
-To:     Fei Shao <fshao@chromium.org>
-cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Kitt <steve@sk2.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v4 0/2] Fix Goodix touchscreen power leakage for
- MT8186 boards
-In-Reply-To: <20230524114233.RESEND.v4.2.I424e840ae6de3cdbd67394cf4efd24534f6434ba@changeid>
-Message-ID: <nycvar.YFH.7.76.2306081619470.5716@cbobk.fhfr.pm>
-References: <20230524114233.RESEND.v4.2.I424e840ae6de3cdbd67394cf4efd24534f6434ba@changeid>
-User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
+        s=k20201202; t=1686235104;
+        bh=bYW8+a4qfwwbY1/H2JoE/y92zplQa0Eh0wz2Ccj7zIQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JLG/iSEA4CCuLKMxN/tIklS3Ub0LSHxsZn6wRrU5rxnT/fl+TyMyHKoCu/4LdNg9T
+         0ZiBi+ozmJ3SzIvg8TDdUAd6crNS83rj9tOFV3ZGtvMcJiJNm9jHftE51kglcPobRF
+         AxLKGTH3SX60sdYSzVbZbX5bY5yPEDZDRXJxcKXWAL+Uuqs0N2MCmT+0GABNB/VzY8
+         9fJKJWsBeQJKhdLkkJU/SeiVycEPDwtdBamvxj4Gnxwq/Tu02yV9bQoIsd4f5gule0
+         Ip9peR591kVwDhVswlCf8SzTpij1CETIfp9hwK2gGp5fl9L110f1mTscfA4Z+4+bBM
+         mWayAZb5nZk4w==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2b1a66e71f9so6405881fa.2;
+        Thu, 08 Jun 2023 07:38:24 -0700 (PDT)
+X-Gm-Message-State: AC+VfDwu9A4ucgaiic3lNN6MvjP5n13Lz+fQ8mofjV/muTM/aJ+b7EHS
+        r9q7PdiOoOJYQOwci4Xu05lemDXPc3xppilvww==
+X-Google-Smtp-Source: ACHHUZ6TUGPT1kCJwdONdnncE71M3LkuV6NX6cgOSVzB/ikqMi+etrkWSDJh02yA7sBT+8YpCG+fF6r+RRP66cLQqAQ=
+X-Received: by 2002:a2e:b0c6:0:b0:2ad:f8d:dea with SMTP id g6-20020a2eb0c6000000b002ad0f8d0deamr3551818ljl.11.1686235102806;
+ Thu, 08 Jun 2023 07:38:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20230524123528.439082-1-claudiu.beznea@microchip.com>
+ <20230524123528.439082-4-claudiu.beznea@microchip.com> <20230524-blizzard-hunting-4da815e634e2@spud>
+ <20230607204351.GA3984668-robh@kernel.org> <20230607-refute-acrobat-3b3f645da71b@spud>
+In-Reply-To: <20230607-refute-acrobat-3b3f645da71b@spud>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 8 Jun 2023 08:38:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLyLs3Vfsd8LRd5_dUbzjE9LgMNnWa+8uP88Ab+E1oLfw@mail.gmail.com>
+Message-ID: <CAL_JsqLyLs3Vfsd8LRd5_dUbzjE9LgMNnWa+8uP88Ab+E1oLfw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: power: reset: atmel,sama5d2-shdwc:
+ convert to yaml
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        sre@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,28 +68,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 May 2023, Fei Shao wrote:
+On Wed, Jun 7, 2023 at 2:48=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
+e:
+>
+> On Wed, Jun 07, 2023 at 02:43:51PM -0600, Rob Herring wrote:
+> > On Wed, May 24, 2023 at 08:19:08PM +0100, Conor Dooley wrote:
+> > > On Wed, May 24, 2023 at 03:35:27PM +0300, Claudiu Beznea wrote:
+> > > > Convert Atmel SAMA5D2 shutdown controller to YAML. SAMA7G5 SHDWC DT=
+ node
+> > > > (available in arch/arm/boot/dts/sama7g5.dtsi) has syscon along with=
+ its
+> > > > compatible. There is no usage of this syscon in the current code bu=
+t it
+> > > > may be necessary in future as some registers of SHDWC are accessed =
+in
+> > > > different drivers (at91-sama5d2_shdwc.c and arch/arm/mach-at91/pm.c=
+).
+> > > > Thus update the YAML with it to make DT checkers happy.
+> > > >
+> > > > Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> > >
+> > > Modulo the license thing that I mentioned on v1,
+> >
+> > Should be fine given it's an Microchip employee changing a Microchip
+> > binding.
+>
+> Aye, that part I figured was fine - it was the when I looked at the
+> blame for the files & they were filled with your name that I wondered
+> about the licensing.
 
-> These changes are based on the series in [1], which modified the
-> i2c-hid-of-goodix driver and removed the workaround for a power leakage
-> issue, so the issue revisits on Mediatek MT8186 boards (Steelix).
-> 
-> The root cause is that the touchscreen can be powered in different ways
-> depending on the hardware designs, and it's not as easy to come up with
-> a solution that is both simple and elegant for all the known designs.
-> 
-> To address the issue, I ended up adding a new boolean property for the
-> driver so that we can control the power up/down sequence depending on
-> that.
-> 
-> Adding a new property might not be the cleanest approach for this, but
-> at least the intention would be easy enough to understand, and it
-> introduces relatively small change to the code and fully preserves the
-> original control flow.
+For reference, anything done by Arm, Linaro or NVIDIA employees is
+okay to relicense to dual license.
 
-Please apologize the delay. Now applied.
-
--- 
-Jiri Kosina
-SUSE Labs
-
+Rob
