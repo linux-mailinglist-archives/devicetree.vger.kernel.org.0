@@ -2,204 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA70772A35A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 21:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC52472A365
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 21:50:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230141AbjFITsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 15:48:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47006 "EHLO
+        id S229965AbjFITuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 15:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjFITsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 15:48:42 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669BF1FEC
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 12:48:41 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-568928af8f5so31454007b3.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 12:48:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1686340120; x=1688932120;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w7eC2UbdSpv6D7XYzv5m8P1xj9eUlOU6FuqagpqnPV0=;
-        b=5Ma3NOEKgVdMbuUbUZDPNpcKauvik3RebwIXG0erT7DyZZM8kPPFDjfB9HhNtvC2wp
-         skvMxy3FMaZjyVK0NUXx25+mBR+r/U1YYWesHeFJK1By7baOckAfDGCfe35JQnJg6cDv
-         yBzz5M+Ur+p9T8zKlvBcx4y0GJ5h6SM9fbK1a0k7DIni9Ey0Zhbvup8R2iEMkqQEmwza
-         EVpZMie0ihQk+2Vidxl4lCjNK6zuh5KCecx2htUseJvooNqkuWBcM7ZL8yl8qtnOmAmr
-         RT/9aMUvLki6fXYWdTR+e58XAEASY9JW7a5SU1XO6h+M2vtVJLmrP+AHrfLs3gT08P8l
-         BIGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686340120; x=1688932120;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w7eC2UbdSpv6D7XYzv5m8P1xj9eUlOU6FuqagpqnPV0=;
-        b=N+RAD+rJZJuUBr+WrzwAhBXVTovO8+JlZ83wzmU6NtgZEa5INDuAfa/ZWEs0AIWftn
-         5M75H2IebFijbDBlQw7F+g9nY0bKjA5hoOMHUoWOgLx837to0sA+rJfw3oBNUaFGZPhL
-         lM70an0mVHIHZgxdhrOkxQJq55YnKeDakN0OVITz6+MAi7iRGpxFJQptp3ZZCA8IPOj9
-         gCRA1cJ2deLebqTR37Zttl26n6cBpsNxfOYCcH97TxIQaWAa3JdyM9Z7egPAJg0890xn
-         XlJ7gFNKTGDnZoswe/rEyt1tkoeY3Sz6AG43dQuZmGJcHh9HNLc0xry/RDihamJGuCzq
-         SO2Q==
-X-Gm-Message-State: AC+VfDzoob1nUjozxc3YUOcV3ztbIb928m3uSFQlmHr1hDwUSrBRdLS1
-        YSw089oQaV5REDs0nis3YcpMpwK/BE7wJ0CxfDO95A==
-X-Google-Smtp-Source: ACHHUZ5GnAX1IZtcu2cCAQwJH2Hq5Jpab8hykjHKKVTuWdukncw3t/QVKYim2sGgA6/Ob9IJsnnAoB1PD4idQYUGQKE=
-X-Received: by 2002:a0d:d5c9:0:b0:568:f050:7c47 with SMTP id
- x192-20020a0dd5c9000000b00568f0507c47mr4681126ywd.0.1686340120617; Fri, 09
- Jun 2023 12:48:40 -0700 (PDT)
+        with ESMTP id S231896AbjFITuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 15:50:19 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4BD1FEC;
+        Fri,  9 Jun 2023 12:50:15 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359JmZSR027255;
+        Fri, 9 Jun 2023 19:50:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=wJ9YsL7W5/uRql9g9hLhUuvRfqvi5U2DpIzDMRyuY24=;
+ b=bpdhHglfmOl+rUc3Bh1rHXvvRS0RYoiWlPagMs3tJO36HKRwwDYlGjzchA0IRqEL6Ytu
+ mAKREe1enrdhVx41bV7+wy2MNYzB4BBY8kS9HthglrAVE+bfH5XJ44SbtD5ROCFY8DOs
+ v5t+uuGccUk1cewM8zSCXonUUFd/aI/W/M8KoLVHbWR0lb/LYHdnWxcf4AMhQfSwEdNT
+ D8p9O3BnpwoaIhU9PaTB/GpgyHoGY5xTEgYikgXDCq/E8wRIA7AYkDSCanV3RP0z1D09
+ 2aJ7xEruOv6z2vWaGspvSXhkNro6Yd4cY5h7l8UsXjXVn5vje0ZzHstlAjSvv0+RmLAi tQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3vu4hsbc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Jun 2023 19:49:59 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 359JnwPC005250
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 9 Jun 2023 19:49:58 GMT
+Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 9 Jun 2023
+ 12:49:57 -0700
+Message-ID: <c625a138-d27e-bbcb-8056-25abefb75152@quicinc.com>
+Date:   Fri, 9 Jun 2023 12:49:57 -0700
 MIME-Version: 1.0
-References: <20230606152652.1447659-1-tharvey@gateworks.com> <20230609143803.GC4199@dragon>
-In-Reply-To: <20230609143803.GC4199@dragon>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 9 Jun 2023 12:48:29 -0700
-Message-ID: <CAJ+vNU2thdOMSA8jD2zNq--G79D9mVvmASCG4S8cCC-kRT50LA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v13 17/24] gunyah: vm_mgr: Add framework for VM Functions
+Content-Language: en-US
+To:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+ <20230509204801.2824351-18-quic_eberman@quicinc.com>
+ <3dd82ec0-2a9a-3401-5385-965c624f9f32@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <3dd82ec0-2a9a-3401-5385-965c624f9f32@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: n9i9EZLoAwf-p1UluZlSCL4RXYHZG_Ok
+X-Proofpoint-ORIG-GUID: n9i9EZLoAwf-p1UluZlSCL4RXYHZG_Ok
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-09_14,2023-06-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
+ lowpriorityscore=0 phishscore=0 priorityscore=1501 clxscore=1015
+ suspectscore=0 spamscore=0 mlxscore=0 adultscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306090165
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 7:38=E2=80=AFAM Shawn Guo <shawnguo@kernel.org> wrot=
-e:
->
-> On Tue, Jun 06, 2023 at 08:26:52AM -0700, Tim Harvey wrote:
-> > Update the imx8mp-venice-gw74xx for revB:
-> >  - add CAN1
-> >  - add TIS-TPM on SPI2
-> >  - add FAN controller
-> >  - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
-> >    backward compatible option)
-> >  - M2 socket GPIO's moved
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
->
-> ../arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts:402.4-17: Warni=
-ng (reg_format): /soc@0/bus@30800000/i2c@30a20000/gsc@20/fan-controller@a:r=
-eg: property has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-c=
-ells =3D=3D 1)
-> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (pci_devi=
-ce_reg): Failed prerequisite 'reg_format'
-> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (pci_devi=
-ce_bus_num): Failed prerequisite 'reg_format'
-> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (i2c_bus_=
-reg): Failed prerequisite 'reg_format'
-> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (spi_bus_=
-reg): Failed prerequisite 'reg_format'
-> ../arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts:400.20-403.5: W=
-arning (avoid_default_addr_size): /soc@0/bus@30800000/i2c@30a20000/gsc@20/f=
-an-controller@a: Relying on default #address-cells value
-> ../arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts:400.20-403.5: W=
-arning (avoid_default_addr_size): /soc@0/bus@30800000/i2c@30a20000/gsc@20/f=
-an-controller@a: Relying on default #size-cells value
->
 
-Shawn,
 
-Looks like I'm missing an '#address-cells' and '#size-cells' in the
-gsc node. I will send a v3.
+On 6/5/2023 12:49 PM, Alex Elder wrote:
+> On 5/9/23 3:47 PM, Elliot Berman wrote:
+>> Introduce a framework for Gunyah userspace to install VM functions. VM
+>> functions are optional interfaces to the virtual machine. vCPUs,
+>> ioeventfs, and irqfds are examples of such VM functions and are
+> 
+> s/ioventfs/ioventfds/
+> 
+> Also, these aren't just examples of VM functions, they *are* the
+> VM functions implemented.
+> 
+>> implemented in subsequent patches.
+>>
+>> A generic framework is implemented instead of individual ioctls to
+>> create vCPUs, irqfds, etc., in order to simplify the VM manager core
+>> implementation and allow dynamic loading of VM function modules.
+> 
+> This also allows the set of VM functions to be extended without
+> updating the API (like it or not).
+> 
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> 
+> I have a few more comments, but this looks pretty good.
+> 
+> Reviewed-by: Alex Elder <elder@linaro.org>
+> 
+>> ---
+>>   Documentation/virt/gunyah/vm-manager.rst |  18 ++
+>>   drivers/virt/gunyah/vm_mgr.c             | 216 ++++++++++++++++++++++-
+>>   drivers/virt/gunyah/vm_mgr.h             |   4 +
+>>   include/linux/gunyah_vm_mgr.h            |  87 +++++++++
+>>   include/uapi/linux/gunyah.h              |  18 ++
+>>   5 files changed, 340 insertions(+), 3 deletions(-)
+>>   create mode 100644 include/linux/gunyah_vm_mgr.h
+>>
+>> diff --git a/Documentation/virt/gunyah/vm-manager.rst 
+>> b/Documentation/virt/gunyah/vm-manager.rst
+>> index 50d8ae7fabcd..3b51bab9d793 100644
+>> --- a/Documentation/virt/gunyah/vm-manager.rst
+>> +++ b/Documentation/virt/gunyah/vm-manager.rst
+>> @@ -17,6 +17,24 @@ sharing userspace memory with a VM is done via the 
+>> `GH_VM_SET_USER_MEM_REGION`_
+>>   ioctl. The VM itself is configured to use the memory region via the
+>>   devicetree.
+>> +Gunyah Functions
+>> +================
+>> +
+>> +Components of a Gunyah VM's configuration that need kernel 
+>> configuration are
+>> +called "functions" and are built on top of a framework. Functions are 
+>> identified
+>> +by a string and have some argument(s) to configure them. They are 
+>> typically
+>> +created by the `GH_VM_ADD_FUNCTION`_ ioctl.
+> 
+> Is a function *type* (e.g., VCPU or ioeventfd) identified by a string?
+> Or a function *instance* (e.g. four VCPUs)?  Or both?
+> 
 
-How do you filter through all the known (and ignored?) warnings that
-are failing dtbs_check because various dt-binding yamls which are
-either missing or need updates such as the following:
+Ah, this should be:
 
-/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
-74xx.dtb:
-timer@302d0000: compatible: 'oneOf' conditional failed, one must be
-fixed:
-['fsl,imx8mp-gpt', 'fsl,imx6dl-gpt'] is too long
-'fsl,imx1-gpt' was expected
-'fsl,imx21-gpt' was expected
-'fsl,imx27-gpt' was expected
-'fsl,imx31-gpt' was expected
-'fsl,imx8mp-gpt' is not one of ['fsl,imx25-gpt', 'fsl,imx50-gpt',
-'fsl,imx51-gpt', 'fsl,imx53-gpt', 'fsl,imx6q-gpt']
-'fsl,imx6dl-gpt' was expected
-'fsl,imx8mp-gpt' is not one of ['fsl,imx6sl-gpt', 'fsl,imx6sx-gpt',
-'fsl,imxrt1050-gpt', 'fsl,imxrt1170-gpt']
-From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
-/timer/fsl,imxgpt.yaml
-^^^ get this for all the imx gpt timers
+Function types are identified by an enum and have some argument(s)...
 
-arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb:
-/soc@0/bus@30800000/spba-bus@30800000/spi@30820000/tpm@0: failed to
-match any schema with compatible: ['tcg,tpm_tis-spi']
-/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
-74xx.dtb:
-accelerometer@19: 'interrupt-names' does not match any of the regexes:
-'pinctrl-[0-9]+'
-From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
-/iio/st,st-sensors.yaml
-^^^ is 'interrupt-names =3D "INT1"' really invalid here?
+>> +
+>> +Functions typically will always do at least one of these operations:
+> 
+> Typically, or always?
+> 
 
-/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
-74xx.dtb:
-switch@5f: Unevaluated properties are not allowed ('interrupt-parent',
-'interrupts' were unexpected)
-From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
-/net/dsa/microchip,ksz.yaml
-^^^ microchip,ksz.yaml doesn't describe interrupts yet the driver uses them
+Hmm, I didn't want to use a more absolute term like "always" since it 
+implies to me that the framework forces this somehow. A VM function 
+wouldn't do much interesting if it weren't interacting with the VM and 
+resource tickets/IO handlers are the ways for functions to interact with 
+VMs.
 
-/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
-74xx.dtb:
-wifi@0: compatible: 'oneOf' conditional failed, one must be fixed:
-['cypress,cyw4373-fmac'] is too short
-'cypress,cyw4373-fmac' is not one of ['brcm,bcm4329-fmac',
-'pci14e4,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425',
-'pci14e4,4433']
-From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
-/net/wireless/brcm,bcm4329-fmac.yaml
-^^^ This one I don't understand at all - brcm,bcm4329-fmac.yaml
-defines 'cypress,cyw4373-fmac under oneOf/items/enum but not
-oneOf/enum???
+I'll tweak the wording here.
 
-/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
-74xx.dtb:
-pcie@33800000: Unevaluated properties are not allowed
-('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks'
-were unexpected)
-From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
-/pci/fsl,imx6q-pcie.yaml
-^^^ we get this on all imx with pcie
+>> +
+>> +1. Create resource ticket(s). Resource tickets allow a function to 
+>> register
+>> +   itself as the client for a Gunyah resource (e.g. doorbell or vCPU) 
+>> and
+>> +   the function is given the pointer to the &struct gh_resource when the
+>> +   VM is starting.
+>> +
+> 
+> What I think this means is that tickets are used to allow functions
+> to be defined *before* the VM is actually started.  So once it starts,
+> the functions get added.  (I might have this slightly wrong, but in
+> any case I'm not sure the above sentence is very clear.)
+> 
 
-/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
-74xx.dtb:
-usb@32f10100: usb@38100000: Unevaluated properties are not allowed
-('connector' was unexpected)
-From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
-/usb/fsl,imx8mp-dwc3.yaml
-/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
-74xx.dtb:
-usb@38100000: Unevaluated properties are not allowed ('connector' was
-unexpected)
-From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
-/usb/snps,dwc3.yaml
-^^^ fsl,imx8mp-dwc3.yaml doesn't document connector nodes
+I'm going to remove the "and the function is given the pointer to..." 
+since I agree it is a bit confusing. I think it'll be clearer for me to 
+put it in the resource ticket kerneldoc where there's context of the 
+populate() callback in the resource ticket. I'll mention there that the 
+populate() callback may not be made until the VM is started which could 
+be a while.
 
-arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: /pps: failed
-to match any schema with compatible: ['pps-gpio']
-^^^ need a pps-gpio.yaml
+>> +2. Register IO handler(s). IO handlers allow a function to handle 
+>> stage-2 faults
+>> +   from the virtual machine.
+>> +
+>>   Sample Userspace VMM
+>>   ====================
+>> diff --git a/drivers/virt/gunyah/vm_mgr.c b/drivers/virt/gunyah/vm_mgr.c
+>> index a800061f56bf..56464451b262 100644
+>> --- a/drivers/virt/gunyah/vm_mgr.c
+>> +++ b/drivers/virt/gunyah/vm_mgr.c
+>> @@ -6,10 +6,13 @@
+>>   #define pr_fmt(fmt) "gh_vm_mgr: " fmt
+>>   #include <linux/anon_inodes.h>
+>> +#include <linux/compat.h>
+>>   #include <linux/file.h>
+>>   #include <linux/gunyah_rsc_mgr.h>
+>> +#include <linux/gunyah_vm_mgr.h>
+>>   #include <linux/miscdevice.h>
+>>   #include <linux/module.h>
+>> +#include <linux/xarray.h>
+>>   #include <uapi/linux/gunyah.h>
+>> @@ -17,6 +20,172 @@
+>>   static void gh_vm_free(struct work_struct *work);
+>> +static DEFINE_XARRAY(gh_vm_functions);
+>> +
+>> +static void gh_vm_put_function(struct gh_vm_function *fn)
+>> +{
+>> +    module_put(fn->mod);
+>> +}
+>> +
+>> +static struct gh_vm_function *gh_vm_get_function(u32 type)
+>> +{
+>> +    struct gh_vm_function *fn;
+>> +    int r;
+>> +
+>> +    fn = xa_load(&gh_vm_functions, type);
+>> +    if (!fn) {
+>> +        r = request_module("ghfunc:%d", type);
+>> +        if (r)
+>> +            return ERR_PTR(r > 0 ? -r : r);
+> 
+> Almost all callers of request_module() simply ignore the
+> return value.  What positive values are you expecting to
+> see here (and are you sure they're positive errno values)?
+> 
 
-Is there a way to skip certain schemas or some multi-line grep -v
-pattern you are using?
+I can ignore the return value here, too, to follow the convention.
 
-I've noticed a lot of contributors putting time into dt-bindings to
-pass schema checks and things are getting cleaned up fairly quickly.
+I had observed request_module can return modprobe's exit code.
 
-Best Regards,
-
-Tim
+>> +
+>> +        fn = xa_load(&gh_vm_functions, type);
+>> +    }
+>> +
+>> +    if (!fn || !try_module_get(fn->mod))
+>> +        fn = ERR_PTR(-ENOENT);
+>> +
+>> +    return fn;
+>> +}
+> 
+> . . .
