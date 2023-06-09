@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C756472A0A0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A8772A0A4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbjFIQvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 12:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53296 "EHLO
+        id S229790AbjFIQw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 12:52:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbjFIQvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:51:11 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7378E2D7E;
-        Fri,  9 Jun 2023 09:51:07 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-77807e43b7cso89126339f.1;
-        Fri, 09 Jun 2023 09:51:07 -0700 (PDT)
+        with ESMTP id S229518AbjFIQw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:52:56 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E0981993;
+        Fri,  9 Jun 2023 09:52:54 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-777a6ebb542so82946039f.0;
+        Fri, 09 Jun 2023 09:52:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686329466; x=1688921466;
+        d=1e100.net; s=20221208; t=1686329573; x=1688921573;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MSSJEKpJS9ep8WBVYc80IqXbeNN7GGka4ikEwnoQKkY=;
-        b=F9CfWL8DkCdcOgLQ6vQ6+ZTfr6P5b6V2qQNUVOb8mBpHq3C+JUdld5UHM/w4sGiMf6
-         cHvSsO3QnRNo3TPCQT7S1doTyKi1zAFSJWcYnIJvdyxb4iR+kEyvKbjs+ZRhVqg7KDTD
-         Awi9Pij1GrA3K6piwkq+M5mvYHlrIm7N1Dor15g0fny1vwS8PmIR/jQn7ii7uWze7M3v
-         3gJ/Cn3KujfrvGNLK+7PVK4ykQdP8qOfzWR8UFJcsn5WMi+sOq9SmEGVC1VRumLMTseu
-         xiayxUUQK00BiVuVzNt6H88rENiBn4B/0C6qHiNGPaAq7onh3S43MXe33y/jDfxnQ6t0
-         JIUQ==
-X-Gm-Message-State: AC+VfDwzPc96ibpYAZA9ORWV9r4Ewpzw+Ae+AEYD6JGJi9zK7pkr3Eym
-        fe3eB1CfEqT/b/fWNWfmiA==
-X-Google-Smtp-Source: ACHHUZ5ZEtQEXRaoNcL0DnxR5zhTN2IfUfFuYLnnfKE0ET+R0URsKnN0RwzwLGQ61w7QMCZNNrFA1Q==
-X-Received: by 2002:a6b:4401:0:b0:774:94e1:3aee with SMTP id r1-20020a6b4401000000b0077494e13aeemr2107034ioa.6.1686329466676;
-        Fri, 09 Jun 2023 09:51:06 -0700 (PDT)
+        bh=Eujn8JUGHI0bBmgrTXDm/BLkyXowc0kt/C2sds+BNXQ=;
+        b=iPU0N01EfzqpjtP1WyrIQIHASkBXtdSJ59OUQUEX+qG1j67PPukrfAatgVB+oENiLD
+         4OOjY1H4FZHB31cqipRL9FzBJsiSGP8NDOSLWMdUrx48Cs6rryETb1sO7UuVPg3in4UY
+         +NMN0onbpo3kyD6gxqpBW4ny8tuvd5Xtg7qD00LQ6i7KZPrPjoUl/SxBK+hT+MHC66cn
+         wPi0Tmed4Qjup5AhZBOS+iEq/u2QXfyrZkv0rTWJcbHruqjY4I6OUGUGGCi+44/rh/+U
+         OegMtXxI8PbPvh4LQLRGpYHdvG2xWrXEQLuITL9pRNenTR1bww8PJvmdNYXtl9A8qim+
+         y2Xg==
+X-Gm-Message-State: AC+VfDzW5j77LqumHtS1+Jro+X6dmJ4Whz5aTLFt0d3x2QqtqRTM+4Iq
+        m0d+e7qiGeX7gW69GAU8sPUS5AIvhA==
+X-Google-Smtp-Source: ACHHUZ5W5KHyotltYhmI+LU0LABrhutXkkEdJQOh4ifI18m6JBhrPVQsDgMYEamdr04ba47axOw5+A==
+X-Received: by 2002:a5e:8612:0:b0:77a:c54c:1e51 with SMTP id z18-20020a5e8612000000b0077ac54c1e51mr2120674ioj.9.1686329573613;
+        Fri, 09 Jun 2023 09:52:53 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id j12-20020a02cb0c000000b0041d859c5721sm1054666jap.64.2023.06.09.09.51.05
+        by smtp.gmail.com with ESMTPSA id y10-20020a5ec80a000000b0076c70f8c4d1sm1174734iol.45.2023.06.09.09.52.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 09:51:05 -0700 (PDT)
-Received: (nullmailer pid 1259925 invoked by uid 1000);
-        Fri, 09 Jun 2023 16:51:04 -0000
-Date:   Fri, 9 Jun 2023 10:51:04 -0600
+        Fri, 09 Jun 2023 09:52:52 -0700 (PDT)
+Received: (nullmailer pid 1263494 invoked by uid 1000);
+        Fri, 09 Jun 2023 16:52:50 -0000
+Date:   Fri, 9 Jun 2023 10:52:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, kvalo@kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: net: ath11k: add
- ieee80211-freq-limit property
-Message-ID: <20230609165104.GA1257474-robh@kernel.org>
-References: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: power: reset: qcom-pon: define
+ pm8941-pon
+Message-ID: <168632956664.1263392.15400080254479022707.robh@kernel.org>
+References: <20230609022553.1775844-1-dmitry.baryshkov@linaro.org>
+ <20230609022553.1775844-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+In-Reply-To: <20230609022553.1775844-2-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,32 +71,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 09, 2023 at 10:44:54AM +0200, Christian Lamparter wrote:
-> This is an existing optional property that ieee80211.yaml/cfg80211
-> provides. It's useful to further restrict supported frequencies
-> for a specified device through device-tree.
+
+On Fri, 09 Jun 2023 05:25:50 +0300, Dmitry Baryshkov wrote:
+> On PM8941 pon doesn't store the reset reason. However we still need the
+> wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
+> device.
 > 
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/power/reset/qcom,pon.yaml           | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> index 7d5f982a3d09..91bf69c2df01 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> @@ -58,6 +58,8 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  ieee80211-freq-limit: true
-> +
 
-You need a ref to ieee80211.yaml as well.
+Acked-by: Rob Herring <robh@kernel.org>
 
->    wifi-firmware:
->      type: object
->      description: |
-> -- 
-> 2.40.1
-> 
