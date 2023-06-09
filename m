@@ -2,212 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7D77293F6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FA117293FC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240931AbjFII5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55134 "EHLO
+        id S238707AbjFIJAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 05:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240954AbjFII51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:57:27 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F99358B
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 01:56:48 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f6255ad8aeso1896017e87.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 01:56:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686301006; x=1688893006;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lZ8EAz3IAPCoKMsP5lnMwjtfBcG41hslbw2SnA8v2JU=;
-        b=OEgiS5DyaF7scVtBk5M9rgCwhMdxFpuBvKLSqlsiHVWTj9cp+bIJC26wSBWnV6gz+1
-         WE5gEcFYX8Xjh6kv1T09hWPuVSokmOjSFidxHLiCwyrIDZZhH+5FvJfuGzJ89p/o0bwJ
-         z+cEAB8C285u83zioQ1UtX2r/mmaotF+p63qqeVHxry3bxUc3fEiPeG3FKKoRJuS9mBb
-         MZB0Gt97Ymw2GObNbFzgISves2C7Iy26di8m80pxjNVcE2ONWJHR1evGWC5h6M8Q7a5U
-         vpwLbVGG7y7Lclb2/xlF+XNC0stJElXJCDj08rlipNcUTQxDqu1/Nlr+0nYWtfdPGsF7
-         mtdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686301006; x=1688893006;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lZ8EAz3IAPCoKMsP5lnMwjtfBcG41hslbw2SnA8v2JU=;
-        b=X37lD8dsZsg4Y+UXAy2G6Nk+K4Zgn3C0P8ygs7//QB6Oj7XozybBXHBylCKlFKYU19
-         Voox89puHqTwHF1TgeO+qkvExBXKLMrVl6WUyQTDIACFV2CEmXEPPYMoUU110gRUpYcF
-         JOCnA4o5W9TLy/jUoVyt/SQ4/BZBvHB022kS87hwqMgxqauohxphb5jw78ahVfLQBawi
-         i0lOoaRtWlFF0tRGs7gLUzMPTVFt6JFzhvquq6aNIzCGA2eI1lNUhZtpoKoLrz2ahysD
-         ged1zbMo1YDHZl7fE75ySubSzspDpwnKnY4tmiO3YFWpfMT1Fifho9gMLonxhsqJKSJE
-         hsOw==
-X-Gm-Message-State: AC+VfDxB6oHfQNO/14BkoFgmyIQj8znnLd3jPmlmmQ18VMDRGjwzpnSO
-        SwAOryHOD0ANqlMfCUNUhLYacA==
-X-Google-Smtp-Source: ACHHUZ6OoNZDgxplcOy7E7sTPdgQYPjV4rTE9rHqpSz8TyCUq+cpdz1rYVONoiOn4MzIMRiNoYKYoQ==
-X-Received: by 2002:a19:661a:0:b0:4dd:9a38:fcc with SMTP id a26-20020a19661a000000b004dd9a380fccmr417827lfc.63.1686301006059;
-        Fri, 09 Jun 2023 01:56:46 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id p5-20020ac246c5000000b004f62fdf61fdsm473548lfo.204.2023.06.09.01.56.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 01:56:45 -0700 (PDT)
-Content-Type: multipart/mixed; boundary="------------GYmyCXdemZ1VyOZMsdA20KP3"
-Message-ID: <e8700c76-17db-f0b1-c60b-20bf292f0a85@linaro.org>
-Date:   Fri, 9 Jun 2023 10:56:43 +0200
+        with ESMTP id S239878AbjFII7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:59:20 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2302E4211;
+        Fri,  9 Jun 2023 01:58:41 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 34FB66606F1D;
+        Fri,  9 Jun 2023 09:58:39 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686301119;
+        bh=v/JdB+WJ+9dqXMcQEztInK7JcbHhmK32bd12IwZ2XZ8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ISgHSdGDTZht+Ps3nFiTgRpH+EaXVLVnGhe24ABfj2hoAOaSXBkGzXnlQHg7qdDoh
+         kPzn2oDAQiy8haBmBpnF/to1QyKJ0GmNIf70PEtL5/4xnYlZ0bnIxCFXNZDQUkXPWC
+         I595ilSykteItF+2cG4lWJD8WWXEar1wtbR1z8iTKj/XDkjxz8YNri3ZHuKUB9xyyj
+         ZSO3W2TEOSXK4B/spCZsLQIG/ffnubKLnZXOd9XmC4683+lHWxEAOujRtsAHRzLtfB
+         2YUKltfgutIkGl7l+jZQvtYipOyz4DPeyFC7dvVUU64fPuPymhx5G3JVJ/GfQYebFM
+         Q3MVP8q6uvHoQ==
+Message-ID: <07816a63-0d54-aced-a109-209c446f6bfa@collabora.com>
+Date:   Fri, 9 Jun 2023 10:58:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 3/3] iommu/arm-smmu-qcom: Add support for the interconnect
+Subject: Re: [PATCH 3/9] regulator: mt6358: Merge VCN33_* regulators
 Content-Language: en-US
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+To:     Chen-Yu Tsai <wenst@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org,
-        "linux-kernel @ vger . kernel . org Prasanna Kumar" 
-        <quic_kprasan@quicinc.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>
-References: <20230609054141.18938-1-quic_ppareek@quicinc.com>
- <20230609055225.20717-1-quic_ppareek@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230609055225.20717-1-quic_ppareek@quicinc.com>
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-4-wenst@chromium.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230609083009.2822259-4-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a multi-part message in MIME format.
---------------GYmyCXdemZ1VyOZMsdA20KP3
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-
-
-On 9.06.2023 07:52, Parikshit Pareek wrote:
-> Introduce support to detect the interconnect, and set its bandwidth.
-> For certain targets, we need to set the bandwidth of interconnect,
-> connecting smmu to memory. This is accessed during memory mapped IO
-> access to smmu registers, and during page tables walks.
+Il 09/06/23 10:30, Chen-Yu Tsai ha scritto:
+> The VCN33_BT and VCN33_WIFI regulators are actually the same regulator,
+> having the same voltage setting and output pin. There are simply two
+> enable bits that are ORed together to enable the regulator.
 > 
-> Reported-by: Eric Chanudet <echanude@redhat.com>
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> Having two regulators representing the same output pin is misleading
+> from a design matching standpoint, and also error-prone in driver
+> implementations. If consumers try to set different voltages on either
+> regulator, the one set later would override the one set before. There
+> are ways around this, such as chaining them together and having the
+> downstream one act as a switch. But given there's only one output pin,
+> such a workaround doesn't match reality.
+> 
+> Remove the VCN33_WIFI regulator. During the probe phase, have the driver
+> sync the enable status of VCN33_WIFI to VCN33_BT. Also drop the suffix
+> so that the regulator name matches the pin name in the datasheet.
+> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
-Quite recently, I've been toying with this too.. I coded it in
-a way that allows it to be reused by other impls and uses OPP APIs.
-Please take a look at the attached patch.
-
-Konrad
->  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>   drivers/regulator/mt6358-regulator.c       | 65 +++++++++++++++++-----
+>   include/linux/regulator/mt6358-regulator.h |  6 +-
+>   2 files changed, 52 insertions(+), 19 deletions(-)
 > 
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> index c71afda79d64..6961d564869b 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> @@ -8,6 +8,7 @@
->  #include <linux/delay.h>
->  #include <linux/of_device.h>
->  #include <linux/firmware/qcom/qcom_scm.h>
-> +#include <linux/interconnect.h>
->  
->  #include "arm-smmu.h"
->  #include "arm-smmu-qcom.h"
-> @@ -549,6 +550,8 @@ struct arm_smmu_device *qcom_smmu_impl_init(struct arm_smmu_device *smmu)
->  {
->  	const struct device_node *np = smmu->dev->of_node;
->  	const struct of_device_id *match;
-> +	struct icc_path *icc_path;
-> +	int ret, icc_bw;
->  
->  #ifdef CONFIG_ACPI
->  	if (np == NULL) {
-> @@ -558,6 +561,19 @@ struct arm_smmu_device *qcom_smmu_impl_init(struct arm_smmu_device *smmu)
->  	}
->  #endif
->  
-> +	icc_path = devm_of_icc_get(smmu->dev, "tbu_mc");
-> +	if (IS_ERR(icc_path))
-> +		return (struct arm_smmu_device *)icc_path;
+> diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
+> index c9e16bd092f6..faf6b0757019 100644
+> --- a/drivers/regulator/mt6358-regulator.c
+> +++ b/drivers/regulator/mt6358-regulator.c
+> @@ -277,7 +277,7 @@ static const unsigned int vcama_voltages[] = {
+>   	2800000, 2900000, 3000000,
+>   };
+>   
+> -static const unsigned int vcn33_bt_wifi_voltages[] = {
+> +static const unsigned int vcn33_voltages[] = {
+>   	3300000, 3400000, 3500000,
+>   };
+>   
+> @@ -321,7 +321,7 @@ static const u32 vcama_idx[] = {
+>   	0, 7, 9, 10, 11, 12,
+>   };
+>   
+> -static const u32 vcn33_bt_wifi_idx[] = {
+> +static const u32 vcn33_idx[] = {
+>   	1, 2, 3,
+>   };
+>   
+> @@ -566,12 +566,8 @@ static struct mt6358_regulator_info mt6358_regulators[] = {
+>   		   MT6358_LDO_VCAMA1_CON0, 0, MT6358_VCAMA1_ANA_CON0, 0xf00),
+>   	MT6358_LDO("ldo_vemc", VEMC, vmch_vemc_voltages, vmch_vemc_idx,
+>   		   MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
+> -	MT6358_LDO("ldo_vcn33_bt", VCN33_BT, vcn33_bt_wifi_voltages,
+> -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_0,
+> -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> -	MT6358_LDO("ldo_vcn33_wifi", VCN33_WIFI, vcn33_bt_wifi_voltages,
+> -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_1,
+> -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> +	MT6358_LDO("ldo_vcn33", VCN33, vcn33_voltages, vcn33_idx,
+> +		   MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x300),
+>   	MT6358_LDO("ldo_vcama2", VCAMA2, vcama_voltages, vcama_idx,
+>   		   MT6358_LDO_VCAMA2_CON0, 0, MT6358_VCAMA2_ANA_CON0, 0xf00),
+>   	MT6358_LDO("ldo_vmc", VMC, vmc_voltages, vmc_idx,
+> @@ -662,12 +658,8 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
+>   		   MT6358_LDO_VMCH_CON0, 0, MT6358_VMCH_ANA_CON0, 0x700),
+>   	MT6366_LDO("ldo_vemc", VEMC, vmch_vemc_voltages, vmch_vemc_idx,
+>   		   MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
+> -	MT6366_LDO("ldo_vcn33_bt", VCN33_BT, vcn33_bt_wifi_voltages,
+> -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_0,
+> -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> -	MT6366_LDO("ldo_vcn33_wifi", VCN33_WIFI, vcn33_bt_wifi_voltages,
+> -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_1,
+> -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> +	MT6366_LDO("ldo_vcn33", VCN33, vcn33_voltages, vcn33_idx,
+> +		   MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x300),
+>   	MT6366_LDO("ldo_vmc", VMC, vmc_voltages, vmc_idx,
+>   		   MT6358_LDO_VMC_CON0, 0, MT6358_VMC_ANA_CON0, 0xf00),
+>   	MT6366_LDO("ldo_vsim2", VSIM2, vsim_voltages, vsim_idx,
+> @@ -690,13 +682,56 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
+>   		    MT6358_LDO_VSRAM_CON1, 0x7f),
+>   };
+>   
+> +static int mt6358_sync_vcn33_setting(struct device *dev)
+> +{
+> +	struct mt6397_chip *mt6397 = dev_get_drvdata(dev->parent);
+> +	unsigned int val;
+> +	int ret;
 > +
-> +	ret = of_property_read_u32(np, "icc_bw", &icc_bw);
-> +
-> +	/*if interconnect exists, check for the  bandwidth value*/
-> +	if (icc_path && !ret) {
-> +		ret = icc_set_bw(icc_path, 0, MBps_to_icc(icc_bw));
-> +		if (ret)
-> +			return ERR_PTR(ret);
+> +	/*
+> +	 * VCN33_WIFI and VCN33_BT are two separate enable bits for the same
+> +	 * regulator. They share the same voltage setting and output pin.
+> +	 * Instead of having two potentially conflicting regulators, just have
+> +	 * one VCN33 regulator. Sync the two enable bits and only use one in
+> +	 * the regulator device.
+> +	 */
+> +	ret = regmap_read(mt6397->regmap, MT6358_LDO_VCN33_CON0_1, &val);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to read VCN33_WIFI setting\n");
+> +		return ret;
 > +	}
 > +
->  	match = of_match_node(qcom_smmu_impl_of_match, np);
->  	if (match)
->  		return qcom_smmu_create(smmu, match->data);
---------------GYmyCXdemZ1VyOZMsdA20KP3
-Content-Type: text/x-patch; charset=UTF-8; name="0001-smmu-opp-wip.patch"
-Content-Disposition: attachment; filename="0001-smmu-opp-wip.patch"
-Content-Transfer-Encoding: base64
+> +	if (!(val & BIT(0)))
+> +		return 0;
+> +
+> +	/* Sync VCN33_WIFI enable status to VCN33_BT */
+> +	ret = regmap_update_bits(mt6397->regmap, MT6358_LDO_VCN33_CON0_0, BIT(0), BIT(0));
+> +	if (ret) {
+> +		dev_err(dev, "Failed to sync VCN33_WIFI setting to VCN33_BT\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Disable VCN33_WIFI */
+> +	ret = regmap_update_bits(mt6397->regmap, MT6358_LDO_VCN33_CON0_1, BIT(0), 0);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to disable VCN33_BT\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static int mt6358_regulator_probe(struct platform_device *pdev)
+>   {
+>   	struct mt6397_chip *mt6397 = dev_get_drvdata(pdev->dev.parent);
+>   	struct regulator_config config = {};
+>   	struct regulator_dev *rdev;
+>   	struct mt6358_regulator_info *mt6358_info;
+> -	int i, max_regulator;
+> +	int i, max_regulator, ret;
+> +
+> +	ret = mt6358_sync_vcn33_setting(&pdev->dev);
+> +	if (ret)
+> +		return ret;
 
-RnJvbSA4MTEyZDhmOGI5YTQzMTc4YWYzYjIwM2UzZmNmOTRjYmQyNDUxMGE0IE1vbiBTZXAg
-MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBLb25yYWQgRHliY2lvIDxrb25yYWQuZHliY2lvQGxp
-bmFyby5vcmc+CkRhdGU6IFR1ZSwgMzAgTWF5IDIwMjMgMjM6Mzk6NTYgKzAyMDAKU3ViamVj
-dDogW1BBVENIXSBzbW11IG9wcCB3aXAKCi0tLQogZHJpdmVycy9pb21tdS9hcm0vYXJtLXNt
-bXUvYXJtLXNtbXUuYyB8IDQxICsrKysrKysrKysrKysrKysrKysrKysrKysrLQogMSBmaWxl
-IGNoYW5nZWQsIDQwIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2lvbW11L2FybS9hcm0tc21tdS9hcm0tc21tdS5jIGIvZHJpdmVycy9pb21t
-dS9hcm0vYXJtLXNtbXUvYXJtLXNtbXUuYwppbmRleCBhODZhY2Q3NmMxZGYuLjAzNDQ4YmY4
-YWU3ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9pb21tdS9hcm0vYXJtLXNtbXUvYXJtLXNtbXUu
-YworKysgYi9kcml2ZXJzL2lvbW11L2FybS9hcm0tc21tdS9hcm0tc21tdS5jCkBAIC0zMiw2
-ICszMiw3IEBACiAjaW5jbHVkZSA8bGludXgvb2ZfZGV2aWNlLmg+CiAjaW5jbHVkZSA8bGlu
-dXgvcGNpLmg+CiAjaW5jbHVkZSA8bGludXgvcGxhdGZvcm1fZGV2aWNlLmg+CisjaW5jbHVk
-ZSA8bGludXgvcG1fb3BwLmg+CiAjaW5jbHVkZSA8bGludXgvcG1fcnVudGltZS5oPgogI2lu
-Y2x1ZGUgPGxpbnV4L3JhdGVsaW1pdC5oPgogI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4KQEAg
-LTE5NzAsNyArMTk3MSwxMCBAQCBzdGF0aWMgaW50IGFybV9zbW11X2RldmljZV9kdF9wcm9i
-ZShzdHJ1Y3QgYXJtX3NtbXVfZGV2aWNlICpzbW11LAogewogCWNvbnN0IHN0cnVjdCBhcm1f
-c21tdV9tYXRjaF9kYXRhICpkYXRhOwogCXN0cnVjdCBkZXZpY2UgKmRldiA9IHNtbXUtPmRl
-djsKKwlzdHJ1Y3QgZGV2X3BtX29wcCAqb3BwOwogCWJvb2wgbGVnYWN5X2JpbmRpbmc7CisJ
-dW5zaWduZWQgaW50IGJ3ID0gMDsKKwlpbnQgcmV0OwogCiAJaWYgKG9mX3Byb3BlcnR5X3Jl
-YWRfdTMyKGRldi0+b2Zfbm9kZSwgIiNnbG9iYWwtaW50ZXJydXB0cyIsIGdsb2JhbF9pcnFz
-KSkKIAkJcmV0dXJuIGRldl9lcnJfcHJvYmUoZGV2LCAtRU5PREVWLApAQCAtMTk5OCw3ICsy
-MDAyLDI1IEBAIHN0YXRpYyBpbnQgYXJtX3NtbXVfZGV2aWNlX2R0X3Byb2JlKHN0cnVjdCBh
-cm1fc21tdV9kZXZpY2UgKnNtbXUsCiAJaWYgKG9mX2RtYV9pc19jb2hlcmVudChkZXYtPm9m
-X25vZGUpKQogCQlzbW11LT5mZWF0dXJlcyB8PSBBUk1fU01NVV9GRUFUX0NPSEVSRU5UX1dB
-TEs7CiAKLQlyZXR1cm4gMDsKKwkvKiBJdCdzIGZpbmUgdG8gb21pdCB0aGUgT1BQIHRhYmxl
-ICovCisJaWYgKCFkZXZfcG1fb3BwX29mX2dldF9vcHBfZGVzY19ub2RlKGRldikpCisJCXJl
-dHVybiAwOworCisJcmV0ID0gZGV2bV9wbV9vcHBfb2ZfYWRkX3RhYmxlKGRldik7CisJaWYg
-KHJldCkKKwkJcmV0dXJuIHJldDsKKworCXJldCA9IGRldl9wbV9vcHBfb2ZfZmluZF9pY2Nf
-cGF0aHMoZGV2LCBOVUxMKTsKKwlpZiAocmV0KQorCQlyZXR1cm4gcmV0OworCisJb3BwID0g
-ZGV2X3BtX29wcF9maW5kX2J3X2NlaWwoZGV2LCAmYncsIDApOworCWlmIChJU19FUlIob3Bw
-KSkKKwkJcmV0dXJuIFBUUl9FUlIob3BwKTsKKworCWRldl9wbV9vcHBfc2V0X29wcChkZXYs
-IG9wcCk7CisKKwlyZXR1cm4gcmV0OwogfQogCiBzdGF0aWMgdm9pZCBhcm1fc21tdV9ybXJf
-aW5zdGFsbF9ieXBhc3Nfc21yKHN0cnVjdCBhcm1fc21tdV9kZXZpY2UgKnNtbXUpCkBAIC0y
-MjI0LDggKzIyNDYsMjAgQEAgc3RhdGljIHZvaWQgYXJtX3NtbXVfZGV2aWNlX3JlbW92ZShz
-dHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogc3RhdGljIGludCBfX21heWJlX3VudXNl
-ZCBhcm1fc21tdV9ydW50aW1lX3Jlc3VtZShzdHJ1Y3QgZGV2aWNlICpkZXYpCiB7CiAJc3Ry
-dWN0IGFybV9zbW11X2RldmljZSAqc21tdSA9IGRldl9nZXRfZHJ2ZGF0YShkZXYpOworCXN0
-cnVjdCBkZXZfcG1fb3BwICpvcHA7CisJdW5zaWduZWQgaW50IGJ3ID0gMDsKIAlpbnQgcmV0
-OwogCisJaWYgKFBUUl9FUlIoZGV2X3BtX29wcF9nZXRfb3BwX3RhYmxlKGRldikpIDwgMCkK
-KwkJZ290byBza2lwX29wcDsKKworCW9wcCA9IGRldl9wbV9vcHBfZmluZF9id19jZWlsKGRl
-diwgJmJ3LCAwKTsKKwlpZiAoSVNfRVJSKG9wcCkpCisJCXJldHVybiBQVFJfRVJSKG9wcCk7
-CisKKwlkZXZfcG1fb3BwX3NldF9vcHAoZGV2LCBvcHApOworCitza2lwX29wcDoKIAlyZXQg
-PSBjbGtfYnVsa19lbmFibGUoc21tdS0+bnVtX2Nsa3MsIHNtbXUtPmNsa3MpOwogCWlmIChy
-ZXQpCiAJCXJldHVybiByZXQ7CkBAIC0yMjQxLDYgKzIyNzUsMTEgQEAgc3RhdGljIGludCBf
-X21heWJlX3VudXNlZCBhcm1fc21tdV9ydW50aW1lX3N1c3BlbmQoc3RydWN0IGRldmljZSAq
-ZGV2KQogCiAJY2xrX2J1bGtfZGlzYWJsZShzbW11LT5udW1fY2xrcywgc21tdS0+Y2xrcyk7
-CiAKKwlpZiAoUFRSX0VSUihkZXZfcG1fb3BwX2dldF9vcHBfdGFibGUoZGV2KSkgPCAwKQor
-CQlyZXR1cm4gMDsKKworCWRldl9wbV9vcHBfc2V0X29wcChkZXYsIE5VTEwpOworCiAJcmV0
-dXJuIDA7CiB9CiAKLS0gCjIuNDEuMAoK
+I'd put this after the chip_id check, and I would also add a safety check for
+that...
 
---------------GYmyCXdemZ1VyOZMsdA20KP3--
+	switch (mt6397->chip_id) {
+	case MT6366_CHIP_ID:
+		max_regulator = MT6366_MAX_REGULATOR;
+		mt6358_info = mt6366_regulators;
+		break;
+	case MT6358_CHIP_ID:
+		max_regulator = MT6358_MAX_REGULATOR;
+		mt6358_info = mt6358_regulators;
+		break;
+	default:
+		return -EINVAL;
+	}
+
+	ret = mt6358_sync_vcn33_setting(....)
+
+...but I agree with your point here about this being a strange design and
+also with your way of fixing the driver.
+
+Regards,
+Angelo
