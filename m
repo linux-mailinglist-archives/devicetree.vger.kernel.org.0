@@ -2,120 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89001729A03
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 14:30:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75502729A2A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 14:41:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231135AbjFIMae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 08:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40334 "EHLO
+        id S238767AbjFIMlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 08:41:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241119AbjFIMaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 08:30:06 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D6135BC;
-        Fri,  9 Jun 2023 05:29:34 -0700 (PDT)
+        with ESMTP id S231396AbjFIMlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 08:41:15 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF661BD3
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 05:41:14 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b203891b2cso18861571fa.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 05:41:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686313774; x=1717849774;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Z7IuJjHuXl/egkbs2006NrUCwnMlCwxmo9qpJeLK8I8=;
-  b=iIO62FFIc2qMBAhwEHTeAw2GrfPQ5rqM4ZYoHDjCZ838Eo0CpE16PKMp
-   4utQtG2O9EG6DqjsIfqd3Yw3hkvDjhzVvHRUvpgS5UbfDfXdWPaxXK+H9
-   EwXkeAcGehyvZ5AFDZ1lQZG5mz8Cs7FfWBeYt43tXoJE6a4sLjg47Kkpp
-   k+zcGKJX0GorvrkowlR3oYpYW5VVcgKzj1Al/XPXP8hSraygOvQKAj+5Z
-   Z2irO3GLmEWO1xR+uxw5/eY92rmhpJV3h52eBYWcKrw/P4A0QfBR3cyI5
-   OdMfCh6RaNhHD/L0Vng69cSh88ee5AQAOVb+pO1mnGYbvsU+r3BOwoJkW
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,229,1681164000"; 
-   d="scan'208";a="31365317"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Jun 2023 14:27:38 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 09 Jun 2023 14:27:38 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 09 Jun 2023 14:27:38 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686313658; x=1717849658;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Z7IuJjHuXl/egkbs2006NrUCwnMlCwxmo9qpJeLK8I8=;
-  b=b0fnd2JVjoDX8bJdsZagN4/ybHFSwOOxfWoEqh/zYpmTIdcWvtp1mLYc
-   zoxdSx7G///3kvmHjwPbrTANLdsvODZTA3s3V/V7U4VzvE8PSAl5GxAA5
-   VBEU/4QqQp+llvf5x56GPoroCQhqF9iVvLkz85sSTZIy309PG9TmhFyJZ
-   WaWY9I8g+CD+2Fq4UbVCcBZaa/gBgFOpXe9rFLia7rPH+FPeLaahCXmql
-   kcurDyQsN1PC3FxEq0mszuB38nomkSMZur/UtsPtbdtI3vWEWzxvDkerL
-   yQoatZlwoHnMrlKE0STTORROCAva50zZQuJQ/7d2O5ps6RiSB32cYGP/9
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,229,1681164000"; 
-   d="scan'208";a="31365316"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Jun 2023 14:27:38 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 906FB280087;
-        Fri,  9 Jun 2023 14:27:38 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=linaro.org; s=google; t=1686314473; x=1688906473;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yAbk5K5T7EimIImnFE4kZxayLfuVA86dV2h+g48YHm8=;
+        b=wYw/zG/6yf5TloEjQGKFZj4Xmm78ziBJ1uCXesppIT9VereP2CeQ+Jl5ahKzJiuJ7e
+         wBCZJ6w3DndVFgC2/MOBy5vHDR5/1twEMEIJbE9lKTna8lfU1amPfGDyMuxaLkbEpitk
+         v9Xe+zJ5RMHzg+PjcopKrgDb0d7yTPKp+aMLus50vu3awc+DV7+03xfg3tWGIMgBfqwt
+         5CyiymjCZPixxbPNSMx1gMPz2c9Sgc9yrspj/q/Qz1ZRZzpeH20Gp2M3gWkhKjXs4hhP
+         Gx5FCWvroU7gyXvEAv4t1CmAl8LovyGl0lUJGi2KCaLlONNHUjTuXVfpKqWaUS0nBVmY
+         f32w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686314473; x=1688906473;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yAbk5K5T7EimIImnFE4kZxayLfuVA86dV2h+g48YHm8=;
+        b=cpsj3Xn5hqU8Pd/pPQ4OoxzyAyhJnhB22HYwTeLBGF8ST1Q244RFhWqtwPHZ58XAFb
+         7BlZLH/ITMeH01MJzBzsyoz/ypZcV0fRQtQvY07zZ1x04HfkEgXkMlZV6RS33yxRATrI
+         RO2IaHc8WhMojbU5G4iZNmmQfVzkslpGot4u8rUVcGIef7F6SVHmAs1iP8RsTr4gOSat
+         JbMi4LzQiNgsqtc7YDlQG/dneRl+OpRP5dBzxdRfTex81bkwk0yLTNUX1SuJIA6AAsv5
+         +By3IQN/S5f9OCiAwkEQlQvuOl8xwDXIUY8H9bvSgFlmm52h9zeqcOEAjwHGI7ExCzrS
+         UheA==
+X-Gm-Message-State: AC+VfDyFV+RhukKvdFBC5WGtmHqx3w61wG2pCxCq3Km7VikERnJV4j9H
+        OI/i9Se5qWsS/38dtaSXp4Lf1A==
+X-Google-Smtp-Source: ACHHUZ5okdIhfZ1lUdCz754l/opk34vtezEoVF1Q6tWPVmnYuJJTAEO+2ROflh8eu+31rfndM/6GOg==
+X-Received: by 2002:a2e:b0e7:0:b0:2af:1844:6fdb with SMTP id h7-20020a2eb0e7000000b002af18446fdbmr907329ljl.5.1686314472624;
+        Fri, 09 Jun 2023 05:41:12 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id d7-20020a2e96c7000000b002b1ad0e7357sm379857ljj.51.2023.06.09.05.41.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 05:41:12 -0700 (PDT)
+Message-ID: <dbb847c4-1043-081b-f28b-ea57fe5cad2d@linaro.org>
+Date:   Fri, 9 Jun 2023 14:41:10 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: qcom: ep: Add interconnects path
+Content-Language: en-US
+To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        manivannan.sadhasivam@linaro.org
+Cc:     quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: gpio: gpio-vf610: Add parsing of hogs
-Date:   Fri, 09 Jun 2023 14:27:38 +0200
-Message-ID: <2442502.irdbgypaU6@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <daeeebcf-d1cc-4dda-3450-8fa137c090bb@linaro.org>
-References: <20230609121044.586214-1-alexander.stein@ew.tq-group.com> <daeeebcf-d1cc-4dda-3450-8fa137c090bb@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        "open list:PCIE ENDPOINT DRIVER FOR QUALCOMM" 
+        <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <1686311249-6857-1-git-send-email-quic_krichai@quicinc.com>
+ <1686311249-6857-2-git-send-email-quic_krichai@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <1686311249-6857-2-git-send-email-quic_krichai@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 9. Juni 2023, 14:15:53 CEST schrieb Krzysztof Kozlowski:
-> On 09/06/2023 14:10, Alexander Stein wrote:
-> > Allow parsing GPIO controller children nodes with GPIO hogs.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > This implements the same as commit dfb49cc231a48 ("dt-bindings: gpio:
-> > fsl-imx-gpio: Add parsing of hogs") and reuses the commit message as
-> > well.
->=20
-> But it was suboptimal. Do it like in commit 6c19974d1e83 ("dt-bindings:
-> gpio: Convert STMPE GPIO to YAML schema"), including also narrower patter=
-n.
-
-Ah, thanks. I wasn't aware it is part of generic dt-schema.
-Regarding the narrower pattern: dt-schema still uses the wider one. Is this=
-=20
-still correct or something which needs to be fixed?
-
-Best regards,
-Alexander
-
-> Best regards,
-> Krzysztof
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+On 9.06.2023 13:47, Krishna chaitanya chundru wrote:
+> Some platforms may not boot if a device driver doesn't initialize
+> the interconnect path. Mostly it is handled by the bootloader but
+> we have starting to see cases where bootloader simply ignores them.
+> 
+> Add the "pcie-mem" interconnect path as a required property to the
+> bindings.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+Hi, only patches 1 and 2 made it to both me and linux-arm-msm.
 
+Consider using b4 (https://b4.docs.kernel.org/en/latest/index.html) to
+avoid this.
 
+>  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> index b3c22eb..656e362 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -70,6 +70,13 @@ properties:
+>      description: GPIO used as WAKE# output signal
+>      maxItems: 1
+>  
+> +  interconnects:
+> +    maxItems: 1
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: pcie-mem
+> +
+>    resets:
+>      maxItems: 1
+>  
+> @@ -97,6 +104,8 @@ required:
+>    - interrupts
+>    - interrupt-names
+>    - reset-gpios
+> +  - interconnects
+> +  - interconnect-names
+>    - resets
+>    - reset-names
+>    - power-domains
+> @@ -194,6 +203,8 @@ examples:
+>          interrupt-names = "global", "doorbell";
+>          reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
+>          wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+> +	interconnects = <&system_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
+> +	interconnect-names = "pci-mem";
+The indentation is off and my brain compiler says that it will not compile
+without including some headers.
+
+Konrad
+>          resets = <&gcc GCC_PCIE_BCR>;
+>          reset-names = "core";
+>          power-domains = <&gcc PCIE_GDSC>;
