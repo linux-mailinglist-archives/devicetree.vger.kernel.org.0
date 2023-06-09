@@ -2,78 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C85A2729F4E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8EB729F53
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241281AbjFIPzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:55:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
+        id S241674AbjFIP4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:56:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240769AbjFIPzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:55:39 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 591873588;
-        Fri,  9 Jun 2023 08:55:38 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f7353993cbso15244685e9.0;
-        Fri, 09 Jun 2023 08:55:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686326137; x=1688918137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FfZGvzdRD/l5yLMgvsdVKahWGO6FHg0piniB+Xd+cGM=;
-        b=GydYsxqTMsV1AnT6xtJpF5qrUpoKk7/eRh724iVGlZmGVJWopxDM2dWOdj4wc/WtJ8
-         304FpEqsNHr8J65elj3fq1UQltQ0/DEKxaHgqEJcfaeCJnG78/XhwbbyCmUhB2Kw8OYH
-         TPtYI/xfrUVI+4V335YfNlqjt7cZWYAaIDs+HwikVKR81Y1mXfMHKJXl1kCJ8Kj7bIwj
-         kFuRp4WHQ2EY4+if+pP4Sl8Oep1VN+FRtEBa2THN+7nNkbBJCVjTOHjglvxsN1CzPwK3
-         qoedjZASMwYW5n8tEQgHgoEDJGxIAhzesofwJgYriC4d5txS9BU5OqC2Pyfi+XdZ8guF
-         kHCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686326137; x=1688918137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FfZGvzdRD/l5yLMgvsdVKahWGO6FHg0piniB+Xd+cGM=;
-        b=l9UGX+oFYyczISV30d0KutXls+SyjqjazC+zvHRufwiq/3nMSO8ea8ZzCHGfHZH5Jl
-         72XyZ2NrYN6c8YzaTK1PdizK/Vs3VJtHMRqZWWFp1wEJQie/oW54SUCNV3is6mV7eYXt
-         Jek8t2q+jXKRnjdLZwhazJPfJMxIjZk3IJkoGSCpPLueHtDqyObrBO3iIORNjC/GAebo
-         Wyve8s7UwFJdNK9eKyJSfs7yefT2UnD7WG5n11P75IW8g21XWyfoB/R/hCWr3Gy9/O57
-         /dBJ3EQ1m2P04Rw2bpwwzOg7vtSnzqDK6u0GVCu5jeK3/CEw6Nc/UTcUfQYRAyfwnVyD
-         55hA==
-X-Gm-Message-State: AC+VfDxEJ40nZBOyM0ZVCFFiMj8QrIPWwo0tBpcmWuKaWUu30FMVrdkH
-        8KFdrGBn5vTJd5nRa0hec4U=
-X-Google-Smtp-Source: ACHHUZ53aa0PijCs3pVOvPjlOEclE5q6nHIdPiJjc7Yj8BpWt+E3VJUnUT0pprag+USViTAYQiiE9g==
-X-Received: by 2002:a05:600c:880f:b0:3f7:148b:c310 with SMTP id gy15-20020a05600c880f00b003f7148bc310mr3999831wmb.13.1686326136568;
-        Fri, 09 Jun 2023 08:55:36 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id p17-20020a1c7411000000b003f61177faffsm3224902wmc.0.2023.06.09.08.55.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 08:55:35 -0700 (PDT)
-Message-ID: <73937e6b-8b2a-8bd5-11d3-be56d02d23a0@gmail.com>
-Date:   Fri, 9 Jun 2023 17:55:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 0/4] arm64: dts: mediatek: mt8186: More DVFS nodes
-Content-Language: en-US, ca-ES, es-ES
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238095AbjFIP4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:56:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1B903589;
+        Fri,  9 Jun 2023 08:56:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8912465983;
+        Fri,  9 Jun 2023 15:56:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71B6BC4339B;
+        Fri,  9 Jun 2023 15:56:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686326169;
+        bh=lmii+YJHW/Bw7Ht4zJ7k+kVHnXkIAIs1YZPvgbtm5Vg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M4be1us2J7XeI1Rc8ukeNLGkR9Gg0eOph7dL53plXqRfgFWKS1TquNmnP8Fn5j7pb
+         Y7spCK6IzRyBnBySUIIBU1MBAyMq7BQqapLeKfY3XPPxXKADQUKv2YtyCsgd90ere1
+         HG0MeQN+l9nYBSwxjSuRouQd+oUhIy34z4cRvkjleCOO0Qiml2d0YEWBB09WNiJKyx
+         aJda8E9GG++9v9XJXw1ZRqm7uoL8Su3sFDjSbKxKHOg8pReNMb6nng1QUoL7EFCxDd
+         kRoctvtBY3Ftf4vFVb1yatYlzPgoC0LTBFoEUFhtjnTZBeMzAM5feolCqVHFW5FS8a
+         /qE7JEQpY2Mlw==
+Date:   Fri, 9 Jun 2023 16:56:05 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230609072906.2784594-1-wenst@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230609072906.2784594-1-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/9] regulator: mt6358: Merge VCN33_* regulators
+Message-ID: <20230609-unpaved-propeller-b361fba89913@spud>
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-4-wenst@chromium.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="T+MxQ7SbKoVjteRl"
+Content-Disposition: inline
+In-Reply-To: <20230609083009.2822259-4-wenst@chromium.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,35 +64,86 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--T+MxQ7SbKoVjteRl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 09/06/2023 09:29, Chen-Yu Tsai wrote:
-> Hi,
-> 
-> This adds more of the DVFS stuff at the SoC .dtsi level. This includes
-> the CCI and GPU.
-> 
-> Changes since v1:
-> - Dropped opp-level property from CPU and CCI OPP tables
-> - Used "opp-supported-hw = <0xff>" for GPU base OPPs to denote "all
->    variations"
-> 
-> Please have a look and merge for this cycle if possible.
-> 
-> On another note, I'm still cleaning up the MT6366 regulator's binding.
-> We shouldn't upstream the boards until the PMIC is ready.
-> 
-> ChenYu
-> 
-> Chen-Yu Tsai (4):
->    arm64: dts: mediatek: mt8186: Add CCI node and CCI OPP table
->    arm64: dts: mediatek: mt8186: Wire up CPU frequency/voltage scaling
->    arm64: dts: mediatek: mt8186: Add GPU speed bin NVMEM cells
->    arm64: dts: mediatek: mt8186: Wire up GPU voltage/frequency scaling
-> 
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 490 ++++++++++++++++++++++-
->   1 file changed, 489 insertions(+), 1 deletion(-)
-> 
+On Fri, Jun 09, 2023 at 04:30:00PM +0800, Chen-Yu Tsai wrote:
+> The VCN33_BT and VCN33_WIFI regulators are actually the same regulator,
+> having the same voltage setting and output pin. There are simply two
+> enable bits that are ORed together to enable the regulator.
+>=20
+> Having two regulators representing the same output pin is misleading
+> from a design matching standpoint, and also error-prone in driver
+> implementations. If consumers try to set different voltages on either
+> regulator, the one set later would override the one set before. There
+> are ways around this, such as chaining them together and having the
+> downstream one act as a switch. But given there's only one output pin,
+> such a workaround doesn't match reality.
+>=20
+> Remove the VCN33_WIFI regulator. During the probe phase, have the driver
+> sync the enable status of VCN33_WIFI to VCN33_BT. Also drop the suffix
+> so that the regulator name matches the pin name in the datasheet.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  drivers/regulator/mt6358-regulator.c       | 65 +++++++++++++++++-----
+>  include/linux/regulator/mt6358-regulator.h |  6 +-
+>  2 files changed, 52 insertions(+), 19 deletions(-)
+>=20
+> diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6=
+358-regulator.c
+> index c9e16bd092f6..faf6b0757019 100644
+> --- a/drivers/regulator/mt6358-regulator.c
+> +++ b/drivers/regulator/mt6358-regulator.c
+> @@ -277,7 +277,7 @@ static const unsigned int vcama_voltages[] =3D {
+>  	2800000, 2900000, 3000000,
+>  };
+> =20
+> -static const unsigned int vcn33_bt_wifi_voltages[] =3D {
+> +static const unsigned int vcn33_voltages[] =3D {
+>  	3300000, 3400000, 3500000,
+>  };
+> =20
+> @@ -321,7 +321,7 @@ static const u32 vcama_idx[] =3D {
+>  	0, 7, 9, 10, 11, 12,
+>  };
+> =20
+> -static const u32 vcn33_bt_wifi_idx[] =3D {
+> +static const u32 vcn33_idx[] =3D {
+>  	1, 2, 3,
+>  };
+> =20
+> @@ -566,12 +566,8 @@ static struct mt6358_regulator_info mt6358_regulator=
+s[] =3D {
+>  		   MT6358_LDO_VCAMA1_CON0, 0, MT6358_VCAMA1_ANA_CON0, 0xf00),
+>  	MT6358_LDO("ldo_vemc", VEMC, vmch_vemc_voltages, vmch_vemc_idx,
+>  		   MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
+> -	MT6358_LDO("ldo_vcn33_bt", VCN33_BT, vcn33_bt_wifi_voltages,
+> -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_0,
+> -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> -	MT6358_LDO("ldo_vcn33_wifi", VCN33_WIFI, vcn33_bt_wifi_voltages,
+> -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_1,
+> -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> +	MT6358_LDO("ldo_vcn33", VCN33, vcn33_voltages, vcn33_idx,
+> +		   MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x300),
 
-Series applied,
-thanks!
+Excuse me if I am being daft here, but could you explain how this change
+is compatible with existing devicetrees?
 
+Thanks,
+Conor.
+
+--T+MxQ7SbKoVjteRl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZINLlAAKCRB4tDGHoIJi
+0hc0APoD4n3DH6dCcYO0STxD8ItqnpeAbuJrfOHQaaItXKlm7gD9HgNapaxBYCau
+9GrvWUDp8b42402vX7pth4xpW08aIgw=
+=TL4I
+-----END PGP SIGNATURE-----
+
+--T+MxQ7SbKoVjteRl--
