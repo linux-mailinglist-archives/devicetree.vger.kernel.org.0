@@ -2,50 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFE9B728DCE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 04:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85EBB728DCC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 04:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236602AbjFIC0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 22:26:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42686 "EHLO
+        id S235563AbjFIC0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 22:26:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238516AbjFIC0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 22:26:00 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7359B30E1
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 19:25:56 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b15a327c20so12924411fa.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 19:25:56 -0700 (PDT)
+        with ESMTP id S238520AbjFIC0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 22:26:01 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC242722
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 19:25:57 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b1bdfe51f8so30009241fa.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 19:25:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1686277555; x=1688869555;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=N1i8s5d5YkSHs6Ggw62o5jRROVt2oF8voOd8NTFgAH4=;
-        b=AnHHOPfgTDCJ6xYNjH2MRl7VtMqTUsCfez5IzujeOZJX3qs3F3lx4G4jIYxg2R+Hnz
-         zpET7aqhEmxwfvQuBpGEEZDKNCzlivq2m8VJa2fwYD95kPcAyv7jRTpbelhe3P5MK5pz
-         e4p3E/9VBcXnJn46tOHTuZHcnzFhTgkv8hhioJ0wkmVKI2xf64+ucQ63lTtCsj3gnIZy
-         BAgmslYb7/p3qJZrhcqqplBqUKJmMnD7xtzsjBwnZLNVKiPWP2R8DqGWWJe5jCSG0PqP
-         7HtTHx1HqF19WQrn35WNmTKn2B+XAU+qEWsl7fEDnMDw65WasDsxBVhx7liGBXflL6bz
-         6Djw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8Mt31W0jI1fuVf091MA0W1WwuRBTHflHVK1TxVNzvWs=;
+        b=opSjeVIuJExti4vaP6E7Qp+ENucVYRriMH5sayaSwFNxgDvOt7mI5kpb38B5HjDcRd
+         ftGBOyKZPJpAgV2lrrWN1W/LB9dEXC5HnlmGLjOdNbJB70Itlt9XR4dJrsDfWtCmnP2K
+         +q9LGemZ2/EXlEYt5rj53jFT/PmnTAFme2iiErjObKhdUi2w2mbyGiq3kaxZM1qKs12T
+         Eexxlx18kIQkPUoFAF4KNYWTMME8Ocdffdp1Q063N1uB33EycLGs7cZ76fUMpi9vcTzU
+         +8HdQ6thZDz62V2GFVp8IX23LQBODQNKee649en6tvwmOLj5Iw6kR/FsrAYUbPGsPq01
+         sJiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20221208; t=1686277555; x=1688869555;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N1i8s5d5YkSHs6Ggw62o5jRROVt2oF8voOd8NTFgAH4=;
-        b=kkHSEBAQBFA47JKeD/Z9gvKqDJURTVwGKp5Ar+qWAeXldWikTajf3KGglwBkOPGczw
-         taTX+kG1eK8QyZB/pZQ/sTsJG6gQOWXvG9UtnCPlvBVTST1VtlJKpuZlE/TJWqme5hN6
-         BB7xsXMmv/kwB27KKWyq41tTqFi3kmYr6nCGNargAH/d+GIHIC6EHtBOzokgalNv9O4d
-         Gx+k3dgoWoWzU5Za5M7wh4r+hOXDNhSsizdg8/0haizqLwncU1d2weJl681Yb7qqLuZZ
-         DoeW5v4PZ58bFJuxUZVcFTi8OB/AYzPcbOoqbVUalt7ChFnIN5/rMbkjcVTfKifdF3bf
-         wwRA==
-X-Gm-Message-State: AC+VfDyRr593tUhI9iVGtC3u5fA4ZDC/3RevcmYrLeQIcIvvCAfb+Q38
-        MMw5MOXf1Wi9MXwL98LDdFERvA==
-X-Google-Smtp-Source: ACHHUZ4L27Klo5Ib4GxvHr2AFNLUGfjwCgnBSg4Pf6G/5FjC8CAZG3vdJ+satx13PpWeecKJYzx9KQ==
-X-Received: by 2002:a2e:87d9:0:b0:2ac:8283:b67d with SMTP id v25-20020a2e87d9000000b002ac8283b67dmr140100ljj.25.1686277554671;
-        Thu, 08 Jun 2023 19:25:54 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8Mt31W0jI1fuVf091MA0W1WwuRBTHflHVK1TxVNzvWs=;
+        b=Hgq7cqwI3Dk6Pu0cvXjQbmhu7VRYzdpLh4vL0X+NnBL8wyRL1VXglEIeeL2xsy5KqI
+         0sQMO0LLkSN83jH3rd7qat3fKdnxfZt5JedebAE2zOOk1LOJekLr309MnMLijQ5SJ/YI
+         92Cb63mi/sA1FnCHv6KMBZPpzmh7inxsimWn5dvW9VHZciKjtyZC3eTlL3wOoCqZqZA8
+         m8JTnuvQB2xzx+XW/uKVDyjKzFBDR/nLiXgpj83o+38oE/wIM4gOzjxvi2leCO+eSFJM
+         ObZsVyibs2TW4j1yxsIFxW9s+SsqWXyww7TSPbliQkuebTaF0AV5GMadDDlbsNSFzizj
+         9KFg==
+X-Gm-Message-State: AC+VfDwdgcfkh52oSgPn0bhiFJwRZA0yJTUg3JkmOUBOFBpcj1mwc76s
+        2TygoPWF4FgtvJ/R39BairYo4Q==
+X-Google-Smtp-Source: ACHHUZ6LkESUcNJ+wXQNZjYvIm0Jk2PXzLAfJ47h8zWMYPGSf0m4XTwMmy1a11UjUNoTHOCQKFeBMg==
+X-Received: by 2002:a2e:a366:0:b0:2a8:ea26:5c72 with SMTP id i6-20020a2ea366000000b002a8ea265c72mr1473656ljn.8.1686277555442;
+        Thu, 08 Jun 2023 19:25:55 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id x20-20020a2e9dd4000000b002b21089f747sm167429ljj.89.2023.06.08.19.25.53
+        by smtp.gmail.com with ESMTPSA id x20-20020a2e9dd4000000b002b21089f747sm167429ljj.89.2023.06.08.19.25.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 08 Jun 2023 19:25:54 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -59,10 +60,12 @@ To:     Sebastian Reichel <sre@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v4 0/4] ARM: dts: qcom: apq8074-dragonboard: enable resin device
-Date:   Fri,  9 Jun 2023 05:25:49 +0300
-Message-Id: <20230609022553.1775844-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 1/4] dt-bindings: power: reset: qcom-pon: define pm8941-pon
+Date:   Fri,  9 Jun 2023 05:25:50 +0300
+Message-Id: <20230609022553.1775844-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230609022553.1775844-1-dmitry.baryshkov@linaro.org>
+References: <20230609022553.1775844-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,39 +78,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for reset / volume-down button found on the APQ8074
-dragonboard device.
+On PM8941 pon doesn't store the reset reason. However we still need the
+wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
+device.
 
-For PM8941 we don't have a defined field to store the reset reason.
-Support wrapping pwrkey and resin, but without writing the reset
-reason.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/power/reset/qcom,pon.yaml           | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-Changes since v3:
- - Rebased on linux-next to solve the conflict
-
-Changes since v2:
- - Split non-pon patches to separate patchset
- - Changed schema to disallow reboot modes for pm8941-pon (Konrad)
-
-Changes since v1 (noted by Konrad):
- - Changed to use freshly defined qcom,pm8941-pon compat
- - Fixed indentiation for LEDs definition
- - Reverted the order of pinctrl fields
- - Moved status field to the last position
- - Removed unnecessary pinconf indirection
-
-Dmitry Baryshkov (4):
-  dt-bindings: power: reset: qcom-pon: define pm8941-pon
-  power: reset: qcom-pon: add support for pm8941-pon
-  ARM: dts: qcom-pm8941: add resin support
-  ARM: dts: qcom: apq8074-dragonboard: add resin
-
- .../bindings/power/reset/qcom,pon.yaml        | 12 ++++++++++
- .../arm/boot/dts/qcom-apq8074-dragonboard.dts |  5 +++++
- arch/arm/boot/dts/qcom-pm8941.dtsi            | 22 ++++++++++++++-----
- drivers/power/reset/qcom-pon.c                | 22 +++++++++++++------
- 4 files changed, 49 insertions(+), 12 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+index 0b1eca734d3b..5e460128b0d1 100644
+--- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
++++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+@@ -19,6 +19,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,pm8916-pon
++      - qcom,pm8941-pon
+       - qcom,pms405-pon
+       - qcom,pm8998-pon
+       - qcom,pmk8350-pon
+@@ -74,6 +75,21 @@ allOf:
+         reg-names:
+           items:
+             - const: pon
++
++    # Special case for pm8941, which doesn't store reset mode
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: qcom,pm8941-pon
++    then:
++      properties:
++        reg:
++          maxItems: 1
++        reg-names:
++          items:
++            - const: pon
++
+   - if:
+       properties:
+         compatible:
 -- 
 2.39.2
 
