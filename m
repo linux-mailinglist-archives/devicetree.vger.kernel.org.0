@@ -2,120 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB4C72905A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 08:48:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABE5729067
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 08:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238421AbjFIGsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 02:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55112 "EHLO
+        id S237371AbjFIGwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 02:52:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbjFIGsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 02:48:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB911FDF;
-        Thu,  8 Jun 2023 23:48:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DEF865418;
-        Fri,  9 Jun 2023 06:48:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A1E5C4339B;
-        Fri,  9 Jun 2023 06:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686293280;
-        bh=qHylMj+O05wPU2VW1GAa6GYS/uQ6kFv5HBrVK/YKR0o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AxvpGWngHVM0reEcrMhJ4OZJ30v4PAc+Z5PEHVsC14WimGkcAZJLXyiqiNTSbCi2+
-         0KM3Xm36YYR4YnABIZsWqjBXYQb1IQWkOacgpZxVAl4xqOF8jeWGxbOxManjlUzfug
-         ck9lims1kEwL0PRwf28WkaPG50YXGmLYr00j8I2cz8mlkfCoLTedC+PsaAfrsiH0u/
-         0q6quWtaAu3+cqJ9QaI2OcaRyXW7UkLlwOpBNqS3W0c9JcRndP+M7JVLLtbccZ713f
-         o7iVFkOHwKJELhH+3Yrs3vMJgyqbSnC1ag5tIL5w9Xqxg55BA01J6LzeEoGOLwlxRL
-         J+1CAvpaRiUmw==
-Date:   Fri, 9 Jun 2023 07:47:53 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229482AbjFIGwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 02:52:12 -0400
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D791213C
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 23:52:11 -0700 (PDT)
+Received: by mail-vs1-xe36.google.com with SMTP id ada2fe7eead31-43c1e5978e4so432608137.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 23:52:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686293530; x=1688885530;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9oPjVT2mzKDJ4waTXYPCRAi/fQfEeCZ1ToGp8WVCS1k=;
+        b=AMrDv5qSazUL2j9KAPL4GXg47Jkk/zOqzKIynvCYX5v5HadY75+w9uGzjD8to31JYc
+         ahJNr3XMFzLPfZHnCcFbVCcAp9G6NToocd3vN96uhW1uc92U4f6OxUEguwIYqf1yOVSb
+         f9FbF6bCQ0gss7cJZ2iBSWFsExGEahkcIyk8M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686293530; x=1688885530;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9oPjVT2mzKDJ4waTXYPCRAi/fQfEeCZ1ToGp8WVCS1k=;
+        b=iEmD++hkD9jfjQCM+xx7/2C8wLYlbQFY+WY1uzD10okofPKESxUWJjiu060x6Op285
+         GcP5AJjy5Hdnf/QaMRRWmoD1y5liyqWKJEvHQdm539Glc7pwpkpMiM5nNqdqnVILzNDa
+         YAuGuTV9DNmx6Sv4uxNGfs38IQndFbAS2vmyadYjZvawLvF0YOUYpUjvX5+DOHTYww1z
+         6sxchqe3geKU2OIrzc+7uD00fLiYYRq80/CQElQ1J0lDWe6KnbZaAgIo4iG25OzmJzQb
+         nKHbVFsNkXjC8chFGWd0VOZ4bmFLEr/x10OtxC9j7PA98QXIA507Ew0utBdR19Uc3VGr
+         EfiA==
+X-Gm-Message-State: AC+VfDwVmH8kO/xcrjGlKCs8cyRZIUFjw/JldchigyWPtD5cpyTMe/3g
+        Q03nUQhlrO+pBr5jc7sBcSQsCeVRQKlTT9BG4gD/6Q==
+X-Google-Smtp-Source: ACHHUZ5H0G+uDcpI9jSsgYQKUgPLvaqMo4qiM23ihIc/d00wCvHFaicn6AUMr4I7DJdUtBq/dv6BaaDq9XQepbS62H8=
+X-Received: by 2002:a67:f457:0:b0:434:70b4:b356 with SMTP id
+ r23-20020a67f457000000b0043470b4b356mr340620vsn.28.1686293530393; Thu, 08 Jun
+ 2023 23:52:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230607090653.2468317-1-wenst@chromium.org> <20230607090653.2468317-3-wenst@chromium.org>
+ <6d5bd11c-6f57-adc9-b35c-78cb80882d52@collabora.com>
+In-Reply-To: <6d5bd11c-6f57-adc9-b35c-78cb80882d52@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 9 Jun 2023 14:51:59 +0800
+Message-ID: <CAGXv+5HnrYtMimwddNwf0723N_ihiQ_+WA=yCNWnxEneXwCo1Q@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: mediatek: mt8186: Wire up CPU
+ frequency/voltage scaling
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>,
-        Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [GIT PULL] Immutable branch between MFD and Power due for the v6.5
- merge window
-Message-ID: <20230609064753.GL3635807@google.com>
-References: <cover.1684182964.git.jahau.ref@rocketmail.com>
- <cover.1684182964.git.jahau@rocketmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1684182964.git.jahau@rocketmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enjoy!
+On Thu, Jun 8, 2023 at 10:19=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 07/06/23 11:06, Chen-Yu Tsai ha scritto:
+> > This adds clocks, dynamic power coefficients, and OPP tables for the CP=
+U
+> > cores, so that everything required at the SoC level for CPU freqency an=
+d
+> > voltage scaling is available.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 274 ++++++++++++++++++++++=
++
+> >   1 file changed, 274 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt8186.dtsi
+> > index 1b754f7a0725..6735c1feb26d 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> > @@ -136,6 +136,240 @@ cci_opp_15: opp-1400000000 {
+> >               };
+> >       };
+> >
+> > +     cluster0_opp: opp-table-cluster0 {
+> > +             compatible =3D "operating-points-v2";
+> > +             opp-shared;
+> > +
+> > +             opp-500000000 {
+> > +                     opp-hz =3D /bits/ 64 <500000000>;
+> > +                     opp-microvolt =3D <600000>;
+> > +                     opp-level =3D <15>;
+>
+> As far as I remember we don't need opp-level, can you please recheck that
+> and in case remove the levels from all OPPs?
 
-The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
+Looks like we don't need it for any of the DVFS stuff. I'll remove it from
+all the OPP tables in all the patches.
 
-  Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-power-v6.5
-
-for you to fetch changes up to b54185c1e3b02c91e4a190ac5c346ea7bfb0de93:
-
-  dt-bindings: Add rt5033 MFD, Regulator and Charger (2023-06-08 18:18:13 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD and Power due for the v6.5 merge window
-
-----------------------------------------------------------------
-Jakob Hauser (8):
-      mfd: rt5033: Fix chip revision readout
-      mfd: rt5033: Fix STAT_MASK, HZ_MASK and AICR defines
-      mfd: rt5033: Apply preparatory changes before adding rt5033-charger driver
-      power: supply: rt5033_charger: Add RT5033 charger device driver
-      power: supply: rt5033_battery: Move struct rt5033_battery to battery driver
-      power: supply: rt5033_battery: Adopt status property from charger
-      dt-bindings: power: supply: rt5033-battery: Apply unevaluatedProperties
-      dt-bindings: Add rt5033 MFD, Regulator and Charger
-
-Stephan Gerhold (1):
-      mfd: rt5033: Drop rt5033-battery sub-device
-
- .../devicetree/bindings/mfd/richtek,rt5033.yaml    | 138 ++++++
- .../power/supply/richtek,rt5033-battery.yaml       |   2 +-
- .../power/supply/richtek,rt5033-charger.yaml       |  65 +++
- drivers/mfd/rt5033.c                               |   8 +-
- drivers/power/supply/Kconfig                       |   8 +
- drivers/power/supply/Makefile                      |   1 +
- drivers/power/supply/rt5033_battery.c              |  38 +-
- drivers/power/supply/rt5033_charger.c              | 472 +++++++++++++++++++++
- include/linux/mfd/rt5033-private.h                 |  64 ++-
- include/linux/mfd/rt5033.h                         |  24 --
- 10 files changed, 762 insertions(+), 58 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
- create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
- create mode 100644 drivers/power/supply/rt5033_charger.c
-
--- 
-Lee Jones [李琼斯]
+ChenYu
