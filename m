@@ -2,103 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA46729390
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16DBD7293A0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239053AbjFIIpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:45:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48692 "EHLO
+        id S237792AbjFIItE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 04:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241143AbjFIIpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:45:02 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814491B9;
-        Fri,  9 Jun 2023 01:44:58 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-977d4a1cf0eso233377766b.1;
-        Fri, 09 Jun 2023 01:44:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686300297; x=1688892297;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
-        b=ev/gO9W54hYaCq9ean5DupK1uYMYJe2cw12AnKy5KCgHrVvXscqgta6p77dUi9PpD0
-         SQ/8RR5w1cKmN9AKkuezoVkYeu8oxjL1GovQ4Th659JBhce999+AcsmOkaqYQRkfCm1B
-         XRWej+p7auDkDaBPPqeKDPymHRTSJ/6iIV6W0Dy2kd0/SlXCXuwYrgaWzMSURucXRWye
-         DtfnyXC6hIDfEHOf0t09TwpMGqxWhV9Mf2oBVG2Q8AiLCiT+jxjU4rGtWrajThtnCXqq
-         2PEDII6gwra9FL/ixUsC2wZaUb+0bKHxfjioOC4g5KRZd2t7PvGuy9u83kxaIzbUAFma
-         oMKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686300297; x=1688892297;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
-        b=EMc0SkIwX3CsWxHP+aC/Wm7Evj4NeaiQz/YR606uPmwMgfaM9QWcYWtnuYWa2e409L
-         uYeIVdoH7Y6HAGbfKwVpXZZsdBRdo5+GbNc33ZE6hJqxabsLizZgUSjKYCCwFnzrbiF2
-         MQ1XMg37jOyDxJ0SXWDrExTMZb6RdAYJYktbvijXTWYrpY3ZYrUn9TQELAx3Bi0I2Uy+
-         3rvmaTfwPAjUK1AXi4/0kja/HwnwsUJpHavH7HRGSdhUF0Y+mLRiK6CbtAQlfJwzfm6u
-         2pJCdzJHbvKQZFR1Oh/0OWPZhq8WhgM6ldVtw21UAhiEtklQzJie5v1jzXJFFnftp22R
-         QwnA==
-X-Gm-Message-State: AC+VfDx81B2TxGYYR2TTXzBikuQxZmOF7w3sW6OBB8mx3RZsdxc/PBuH
-        QJiA12BjEVmuYQTvVRC36pufcLFfXuM=
-X-Google-Smtp-Source: ACHHUZ6BRxs/pXjmvDXY/Ix/M6PsYGHPtG5nSO4nq825Yv/jpYmkLikZjzLYUPDhzmiNY3syp+zKHg==
-X-Received: by 2002:a17:907:9349:b0:973:e4c2:2bcd with SMTP id bv9-20020a170907934900b00973e4c22bcdmr1042732ejc.18.1686300296517;
-        Fri, 09 Jun 2023 01:44:56 -0700 (PDT)
-Received: from shift.daheim (pd9e2959c.dip0.t-ipconnect.de. [217.226.149.156])
-        by smtp.gmail.com with ESMTPSA id jw19-20020a17090776b300b00973fac6065esm974199ejc.223.2023.06.09.01.44.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 01:44:56 -0700 (PDT)
-Received: from chuck by shift.daheim with local (Exim 4.96)
-        (envelope-from <chuck@shift.daheim>)
-        id 1q7Xjr-0004fR-1N;
-        Fri, 09 Jun 2023 10:44:55 +0200
-From:   Christian Lamparter <chunkeey@gmail.com>
-To:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Cc:     kvalo@kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: [PATCH v1 2/2] wifi: ath11k: add support DT ieee80211-freq-limit
-Date:   Fri,  9 Jun 2023 10:44:55 +0200
-Message-Id: <a57a3e1e23b5ac4a18d772e3b82527498ac85bb5.1686300243.git.chunkeey@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
-References: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+        with ESMTP id S239070AbjFIIss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:48:48 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E018D95;
+        Fri,  9 Jun 2023 01:48:46 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3597Yl8X001707;
+        Fri, 9 Jun 2023 10:48:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=WGDsEtUbQjsFvu7ULw3SCAN8yQ9+asPwuUzhHmCHuYc=;
+ b=Dgq4AotzIwyeLTgkdSSO3dIVUrJ6wBZpQWY+JET8WQjE6qMNvbnz7G1hfin3AEOFxHx8
+ TU/sCueaQESuo3KblLYJRXHYhXshOFsoeJ2PPIMH8DmuDKZ1cOpag5GkXaHwHOnv3wG2
+ mnwVHsRkYmfl0yDDAcwM3/y3jUINPPL9bMARX24yMXLPFxOVQvTpNKZzgp2DRfk7bVgo
+ lGncF0yF8RNbs0x3deMn8HHhDbXaeP5NpK6673XeBjTNEwv6QilFv7Fngms7piJ9VJOB
+ zhkOlNXKA5j2Mi2oZSPyxBqnGoYu0gxQWyp8FwuoCEMnD/dd+v33Sc59CYc7HQii9QNx UA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r3tkttgh3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Jun 2023 10:48:18 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4379810002A;
+        Fri,  9 Jun 2023 10:48:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 35F7B21A204;
+        Fri,  9 Jun 2023 10:48:17 +0200 (CEST)
+Received: from [10.252.21.206] (10.252.21.206) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 9 Jun
+ 2023 10:48:16 +0200
+Message-ID: <1b8e744f-96e7-4f36-68da-9e82d3f8d0c5@foss.st.com>
+Date:   Fri, 9 Jun 2023 10:48:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [Linux-stm32] [RFC PATCH 1/5] ARM: dts: stm32: Add alternate
+ pinmux for i2s pins
+To:     Sean Nyekjaer <sean@geanix.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dantuguf14105@gmail.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230606145555.2155664-1-sean@geanix.com>
+Content-Language: en-US
+From:   Olivier MOYSAN <olivier.moysan@foss.st.com>
+In-Reply-To: <20230606145555.2155664-1-sean@geanix.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.252.21.206]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-09_06,2023-06-08_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The common DT property can be used to limit the available
-channels/frequencies. But ath11k has to manually call
-wiphy_read_of_freq_limits().
+Hi Sean,
 
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
----
-compile-tested only.
----
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- 1 file changed, 1 insertion(+)
+You can add my:
+Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c947d1c8d8c1..7e43f2770f27 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9414,6 +9414,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	if (ret)
- 		goto err;
- 
-+	wiphy_read_of_freq_limits(ar->hw->wiphy);
- 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
- 	ath11k_mac_setup_he_cap(ar, cap);
- 
--- 
-2.40.1
+Thanks
+Olivier
 
+On 6/6/23 16:55, Sean Nyekjaer wrote:
+> Add another mux option for i2s pins, this is used on Octavo OSD32MP1-RED board.
+> 
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> ---
+>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 19 +++++++++++++++++++
+>   1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> index e86d989dd351..d79f89f37bc7 100644
+> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> @@ -686,6 +686,25 @@ pins {
+>   		};
+>   	};
+>   
+> +	i2s2_pins_b: i2s2-1 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('C',  3, AF5)>, /* I2S2_SDO */
+> +				 <STM32_PINMUX('B', 12, AF5)>, /* I2S2_WS */
+> +				 <STM32_PINMUX('B', 13, AF5)>; /* I2S2_CK */
+> +			bias-disable;
+> +			drive-push-pull;
+> +			slew-rate = <1>;
+> +		};
+> +	};
+> +
+> +	i2s2_sleep_pins_b: i2s2-sleep-1 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('C', 3, ANALOG)>, /* I2S2_SDO */
+> +				 <STM32_PINMUX('B', 12, ANALOG)>, /* I2S2_WS */
+> +				 <STM32_PINMUX('B', 13, ANALOG)>; /* I2S2_CK */
+> +		};
+> +	};
+> +
+>   	ltdc_pins_a: ltdc-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('G',  7, AF14)>, /* LCD_CLK */
