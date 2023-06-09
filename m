@@ -2,254 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A52372A01D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58FE272A069
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:43:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232335AbjFIQW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 12:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38156 "EHLO
+        id S229661AbjFIQnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 12:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242134AbjFIQW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:22:57 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1F83C1B
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 09:22:41 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-569fc874498so19222077b3.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 09:22:41 -0700 (PDT)
+        with ESMTP id S229622AbjFIQns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:43:48 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64A7E3A8D
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 09:43:46 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9788554a8c9so335987366b.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 09:43:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686327761; x=1688919761;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mwQzu1mHmg5s3RKGFVLiYioIdNZ9wrhFOjBtuF+UR3o=;
-        b=OeqWZw34Y6D3kTo5yYID2yBZzJAAQtqpAjCwfyz2PBcyKOWEGB/dLXjUD+499rrI0n
-         1J3XHsBf/izlVlQK1sRykEQSKROn6Hl4Xq7+rh5QHQpNSLNnEIsG37BPydK+BpsRhPsR
-         tf6k2z1MQkyTXtU2A8vHyifUVpFv1ssnBx1+CS6lXoi5wSvMUbhhodAWfTqjQGmecKGQ
-         b05Wq1s6maRCr1AuqWMKXOQY23dOW3wv21iL9cWzvhnFhnYqLYK9wkLtOThpaXsKHXad
-         7LG0W3fFsODO6cW+MHJ1MMF3KQ1xuEn7ouIW7S8Pz8Zdx/4rcUAuqb85jmwP8gdGcu3E
-         WBtg==
+        d=linaro.org; s=google; t=1686329025; x=1688921025;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CDvwJ9aeIkOA3iXyv0MPp32gXWxaPsXZJPItdpmp4w0=;
+        b=xmogwDKhpfrIvfAo3aZ+ZANC+mmK04qhGYoKJuRWdwU1uR0hGSwc2J2In+93mOMrtd
+         zZ+Nbc/v+/sPh7QcxiqXiyHYHNG98GlRdbbeZM3Tu+gtmnJ0mj/F6+zx4BZ9fjWikiBg
+         WZOQbJL2nHrhLcAP+SPpyyC2LAWhhKokpqe6PIbn0wQHGKnrT+Y4f+nTZKiqTzQ/BAbM
+         Vrv+4aQxAWSnQp4VFFtYaVkQ4F6gNFsmr8dYpgRXP+Spexn1EtUvG0ja2KOqV7h/+9/c
+         AdscdOwVWDbAawYTuob/OUZ4D2H2BUVYmOKL4amljHDB2O+hIsQv3cn1qB2wTxe5wTx/
+         WkMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686327761; x=1688919761;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mwQzu1mHmg5s3RKGFVLiYioIdNZ9wrhFOjBtuF+UR3o=;
-        b=A5kvv6vP1jikwTKeJwHHkumkoGim2XWSm0c75zfuQ+Xat4CmLDVXs6MUAP8rKpzr0b
-         u9kzoGq/OgFOlyIo/Pw0GadKgpwGt7aboC+9D2p+Hs7XQOCbl3hZLAA9OeDT6Lp5/xjX
-         JYbGISOsD/IIuZfXyY5OS08UmHfBLOdzthl02U3Nl3dIxZ2jOr6Ok2TD3aAlJSor/ZRM
-         Q+2O6PzyfTqdOkhNqVdZ5owjppYsGvCC1tBmRqdWUuCbBdqYeCs2TKXBbQ4+wssB/bWR
-         d1umewGeSWvIuKfXNf3yHLhQd0wztpQnTnKpEA/eC8r/mEFELq6fvV2ZjM1TeKoq4kbs
-         5bBQ==
-X-Gm-Message-State: AC+VfDzhd9FFhorRAPJiWMwQsfsm++hpiRNlhZVlvT80DVDMFIAzIghc
-        ltXmqS+u08YSPvkaxLKngYYkRO2lMdJoiZw9AGFSjQ==
-X-Google-Smtp-Source: ACHHUZ7DcgGfw00xFeO5tg+xstcf0mM87ob4gA9UhI4JskArhrXvT7uOKL98JgUrv1OrQJ5y7tNmkHSsuMQI+Z6RFrg=
-X-Received: by 2002:a81:4744:0:b0:565:e48d:32cf with SMTP id
- u65-20020a814744000000b00565e48d32cfmr1431353ywa.7.1686327760864; Fri, 09 Jun
- 2023 09:22:40 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686329025; x=1688921025;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CDvwJ9aeIkOA3iXyv0MPp32gXWxaPsXZJPItdpmp4w0=;
+        b=ivIG+qX/abBeT5VzMlpCBFaZoP2StV1CxzNR/RUfzCXLA7jZ87ugcWzISl54rG446C
+         jxMshTnAP4m6Gm8v/fM+reA3vJGA6b4uhKutz5yB0YYWbUP00FDx6wt3aca0OQbOF+Aq
+         etg9JjuAo9qBJaAub+yBie9qQIxzYTjjQr0v6o+sBUyG89sG+SxkYBU1ARoAIIQGm59o
+         yviIAXsoqmiSMS8cD0w9lkFp2ATOcrpbuZlpJeq+O3bAgSFO+OPRaSZQ43qFyt6rfF8b
+         AgOImKZSJiE+p5zgmyghT2wQrv+djrf7HQFeqWOBstdrkWjf3yNllk5U444u5BBXnNff
+         36Bg==
+X-Gm-Message-State: AC+VfDygtymUbd0dwsnkP//JA2MANbxg+bIxFiAj1q3dfGujBdSk7Cuo
+        rmCVRfOSZLRv92qWfRMfGr/Vgg==
+X-Google-Smtp-Source: ACHHUZ7gTP+FH0+rX1aclSuynljP+FikYYhxF2C0Ydmc0OQ2iOdaBhUrUhXrrGI3di08c96cueJ7Hw==
+X-Received: by 2002:a17:907:9620:b0:978:8790:9103 with SMTP id gb32-20020a170907962000b0097887909103mr2808905ejc.70.1686329024821;
+        Fri, 09 Jun 2023 09:43:44 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id dk17-20020a170906f0d100b0097886843f75sm1502034ejb.177.2023.06.09.09.43.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 09:43:44 -0700 (PDT)
+Message-ID: <b8f35a9a-7553-92fa-6fdd-2522dc9bd36d@linaro.org>
+Date:   Fri, 9 Jun 2023 18:43:42 +0200
 MIME-Version: 1.0
-References: <20230609115058.9059-1-quic_jkona@quicinc.com> <20230609115058.9059-3-quic_jkona@quicinc.com>
-In-Reply-To: <20230609115058.9059-3-quic_jkona@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 9 Jun 2023 19:22:29 +0300
-Message-ID: <CAA8EJpr-iKMzYP7HVQV8pzXbxzLvBaq38aovJ5Ffny18yXvJZg@mail.gmail.com>
-Subject: Re: [PATCH V4 2/4] clk: qcom: camcc-sm8550: Add camera clock
- controller driver for SM8550
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mxs-usb-phy: convert to DT
+ schema format
+Content-Language: en-US
+To:     Xu Yang <xu.yang_2@nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        jun.li@nxp.com
+References: <20230608033642.4097956-1-xu.yang_2@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230608033642.4097956-1-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Jun 2023 at 14:52, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
->
-> Add support for the camera clock controller for camera clients to be
-> able to request for camcc clocks on SM8550 platform.
->
-> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+On 08/06/2023 05:36, Xu Yang wrote:
+> Convert the binding to DT schema format. Besides, this also add other
+> optional properties not contained in txt file.
+
+Why ones do you add?
+
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
 > ---
-> Changes since V3:
->  - No changes
-> Changes since V2:
->  - No changes
-> Changes since V1:
->  - Sorted the PLL names in proper order
->  - Updated all PLL configurations to lower case hex
->  - Reused evo ops instead of adding new ops for ole pll
->  - Moved few clocks to separate patch to fix patch too long error
->
->  drivers/clk/qcom/Kconfig        |    7 +
->  drivers/clk/qcom/Makefile       |    1 +
->  drivers/clk/qcom/camcc-sm8550.c | 3405 +++++++++++++++++++++++++++++++
->  3 files changed, 3413 insertions(+)
->  create mode 100644 drivers/clk/qcom/camcc-sm8550.c
->
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 9cd1f05d436b..85efed78dc9a 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -756,6 +756,13 @@ config SM_CAMCC_8450
->           Support for the camera clock controller on SM8450 devices.
->           Say Y if you want to support camera devices and camera functionality.
->
-> +config SM_CAMCC_8550
-> +       tristate "SM8550 Camera Clock Controller"
-> +       select SM_GCC_8550
-> +       help
-> +         Support for the camera clock controller on SM8550 devices.
-> +         Say Y if you want to support camera devices and camera functionality.
-> +
->  config SM_DISPCC_6115
->         tristate "SM6115 Display Clock Controller"
->         depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index 75d035150118..97c8cefc2fd0 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -101,6 +101,7 @@ obj-$(CONFIG_SDX_GCC_75) += gcc-sdx75.o
->  obj-$(CONFIG_SM_CAMCC_6350) += camcc-sm6350.o
->  obj-$(CONFIG_SM_CAMCC_8250) += camcc-sm8250.o
->  obj-$(CONFIG_SM_CAMCC_8450) += camcc-sm8450.o
-> +obj-$(CONFIG_SM_CAMCC_8550) += camcc-sm8550.o
->  obj-$(CONFIG_SM_DISPCC_6115) += dispcc-sm6115.o
->  obj-$(CONFIG_SM_DISPCC_6125) += dispcc-sm6125.o
->  obj-$(CONFIG_SM_DISPCC_6350) += dispcc-sm6350.o
-> diff --git a/drivers/clk/qcom/camcc-sm8550.c b/drivers/clk/qcom/camcc-sm8550.c
+> Changes in v2:
+>  - change filename to fsl,mxs-usbphy.yaml
+>  - add other optional properties
+>  - narrow fsl,anatop to imx6
+>  - use additionalProperties
+> ---
+>  .../bindings/phy/fsl,mxs-usbphy.yaml          | 128 ++++++++++++++++++
+>  .../devicetree/bindings/phy/mxs-usb-phy.txt   |  33 -----
+>  2 files changed, 128 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
 > new file mode 100644
-> index 000000000000..85f0c1e09b2b
+> index 000000000000..1b6b19fdf491
 > --- /dev/null
-> +++ b/drivers/clk/qcom/camcc-sm8550.c
-> @@ -0,0 +1,3405 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
+> +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> @@ -0,0 +1,128 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,mxs-usbphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
+> +title: Freescale MXS USB Phy Device
 > +
-> +#include <dt-bindings/clock/qcom,sm8550-camcc.h>
+> +maintainers:
+> +  - Xu Yang <xu.yang_2@nxp.com>
 > +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-> +enum {
-> +       DT_IFACE,
-> +       DT_BI_TCXO,
-> +};
-> +
-> +enum {
-> +       P_BI_TCXO,
-> +       P_CAM_CC_PLL0_OUT_EVEN,
-> +       P_CAM_CC_PLL0_OUT_MAIN,
-> +       P_CAM_CC_PLL0_OUT_ODD,
-> +       P_CAM_CC_PLL1_OUT_EVEN,
-> +       P_CAM_CC_PLL2_OUT_EVEN,
-> +       P_CAM_CC_PLL2_OUT_MAIN,
-> +       P_CAM_CC_PLL3_OUT_EVEN,
-> +       P_CAM_CC_PLL4_OUT_EVEN,
-> +       P_CAM_CC_PLL5_OUT_EVEN,
-> +       P_CAM_CC_PLL6_OUT_EVEN,
-> +       P_CAM_CC_PLL7_OUT_EVEN,
-> +       P_CAM_CC_PLL8_OUT_EVEN,
-> +       P_CAM_CC_PLL9_OUT_EVEN,
-> +       P_CAM_CC_PLL9_OUT_ODD,
-> +       P_CAM_CC_PLL10_OUT_EVEN,
-> +       P_CAM_CC_PLL11_OUT_EVEN,
-> +       P_CAM_CC_PLL12_OUT_EVEN,
-> +};
-> +
-> +static const struct pll_vco lucid_ole_vco[] = {
-> +       { 249600000, 2300000000, 0 },
-> +};
-> +
-> +static const struct pll_vco rivian_ole_vco[] = {
-> +       { 777000000, 1285000000, 0 },
-> +};
-> +
-> +static const struct alpha_pll_config cam_cc_pll0_config = {
-> +       /* .l includes RINGOSC_CAL_L_VAL, CAL_L_VAL, L_VAL fields */
-> +       .l = 0x4444003e,
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx23-usbphy
+> +          - fsl,vf610-usbphy
+> +          - fsl,imx7ulp-usbphy
 
-I'd still insist on not touching the config.l field semantics.
+Keep the list sorted.
 
-> +       .alpha = 0x8000,
-> +       .config_ctl_val = 0x20485699,
-> +       .config_ctl_hi_val = 0x00182261,
-> +       .config_ctl_hi1_val = 0x82aa299c,
-> +       .test_ctl_val = 0x00000000,
-> +       .test_ctl_hi_val = 0x00000003,
-> +       .test_ctl_hi1_val = 0x00009000,
-> +       .test_ctl_hi2_val = 0x00000034,
-> +       .user_ctl_val = 0x00008400,
-> +       .user_ctl_hi_val = 0x00000005,
-> +};
+> +      - items:
+> +          - enum:
+> +              - fsl,imx28-usbphy
+> +              - fsl,imx6ul-usbphy
+> +              - fsl,imx6sl-usbphy
+> +              - fsl,imx6sx-usbphy
+> +              - fsl,imx6q-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - const: fsl,imx6sll-usbphy
+> +          - const: fsl,imx6ul-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - const: fsl,imx7ulp-usbphy
+> +          - const: fsl,imx6ul-usbphy
+> +      - items:
+> +          - const: fsl,imx8dxl-usbphy
+> +          - const: fsl,imx7ulp-usbphy
 > +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
 
-[skipped the rest, LGTM]
+You should list the items.
 
 > +
-> +static struct platform_driver cam_cc_sm8550_driver = {
-> +       .probe = cam_cc_sm8550_probe,
-> +       .driver = {
-> +               .name = "cam_cc-sm8550",
-> +               .of_match_table = cam_cc_sm8550_match_table,
-> +       },
-> +};
-> +
-> +static int __init cam_cc_sm8550_init(void)
-> +{
-> +       return platform_driver_register(&cam_cc_sm8550_driver);
-> +}
-> +subsys_initcall(cam_cc_sm8550_init);
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
 
-As it was pointed out, this driver is built as a module by default.
-Please perform the tesing and cleanup before sending the driver and
-use module_platform_driver.
+You should list the items.
 
 > +
-> +static void __exit cam_cc_sm8550_exit(void)
-> +{
-> +       platform_driver_unregister(&cam_cc_sm8550_driver);
-> +}
-> +module_exit(cam_cc_sm8550_exit);
+> +  clocks:
+> +    maxItems: 1
 > +
-> +MODULE_DESCRIPTION("QTI CAMCC SM8550 Driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.40.1
->
+> +  '#phy-cells':
+> +    const: 0
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  fsl,anatop:
+> +    description:
+> +      phandle for anatop register, it is only for imx6 SoC series.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  phy-3p0-supply:
+> +    description:
+> +      One of USB PHY's power supply. Can be used to keep a good signal
+> +      quality.
+> +
+> +  fsl,tx-cal-45-dn-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DN output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-cal-45-dp-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DP output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-d-cal:
+> +    description:
+> +      Current trimming value (as a percentage) of the 17.78 mA TX
+> +      reference current.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 79
+> +    maximum: 119
+> +    default: 100
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          oneOf:
+> +            - enum:
+> +              - fsl,imx6sl-usbphy
+
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
+
+> +              - fsl,imx6sx-usbphy
+> +              - fsl,imx6sll-usbphy
+> +              - fsl,imx6q-usbphy
+> +              - fsl,vf610-usbphy
+> +            - items:
+> +              - const: fsl,imx6ul-usbphy
+> +              - const: fsl,imx23-usbphy
+> +    then:
+> +      required:
+> +        - fsl,anatop
+> +
+> +additionalProperties: false
+> +
 
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
+
