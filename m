@@ -2,120 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29D68729CF8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53A01729CFE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241609AbjFIOfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:35:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54862 "EHLO
+        id S239386AbjFIOg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241482AbjFIOer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:34:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BC530F8;
-        Fri,  9 Jun 2023 07:34:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 05B48658A0;
-        Fri,  9 Jun 2023 14:34:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F054C4339E;
-        Fri,  9 Jun 2023 14:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686321285;
-        bh=6hi3QOrXBuWBmFSLc1LCcSZkPYNC/LjyWkqKBdgQtYI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=t2zwqZY++aHOeqkffOIRqTQwaFGYg/NlJ7x1vCYz/K+ZilOefocnMcGfiq6zqcf9a
-         0uz5FX80e1MTsFaeAsiOt9n82ThnzSWWQFwBB5SQ2JR4xa/BwlmgzkwZGU0gS6cVSS
-         wWM4IE8G+4mL1pkGa/mLU1KZYCVDHG+rqQnHMIXHbGT0DbiLEUOnHvDzyUYlLX7soc
-         ZWTGdcvnDa1wt8I+HMTFxSC3fmK6rqAcc1xeiJ/xrVlikzbrJKwa1lHZPJIhZ/WdC2
-         wzg2HJ8JZaBP4IJqDfoSCd6etqsXNZvushR2eLeRQ0wXuyjMhyOvTn+5hZzXjvaWg9
-         JNTb8A2CbbPuQ==
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2b1b30445cfso20947721fa.1;
-        Fri, 09 Jun 2023 07:34:45 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxJfhAr9f50jYHr1Xlhd1XeukQemBA7nLYFDDnYgi91yb/swS9q
-        RiL5xtrHEInMwMVk5Vs3gaVLGXQu0pJOtGYGgQ==
-X-Google-Smtp-Source: ACHHUZ5RlhCvj6SZ4qT0ESmlowGIP4EXqIRZ5+cA0hTrUzwiZ/YarhwSg72TilmhiLhF0QJ+br0GiIgWs2wltkkoIHo=
-X-Received: by 2002:a2e:9c90:0:b0:2af:2466:1c18 with SMTP id
- x16-20020a2e9c90000000b002af24661c18mr1326079lji.18.1686321283406; Fri, 09
- Jun 2023 07:34:43 -0700 (PDT)
+        with ESMTP id S241383AbjFIOg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:36:26 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CCC930CB
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:36:25 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f7368126a6so14349435e9.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:36:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686321384; x=1688913384;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=43lTEtC/Bem8EYdjWbDkZc2zL5sUKt+AnLwz2BmdcmA=;
+        b=0VtrKRdmhXWitBnXXF9xDeRNJ3dweVRkZQaaW10r1f0KP4Hpi3sYGLH6KEEVr5K5t6
+         A22S3HrjE9KSXK9a0Pv/x6Zxv2VE6FUh2ws7S/3bd/6mceOURlef2UKBgd/I/2c8mVVt
+         JgchTX64J+kjV5VvsefMOR77eTSF1dyr/+AaV61VWx2GuwJN+FaXL7PgtRYgJ/M94SUN
+         HzZXrF3GNhDmG1Wq8PLGAnzUq8X14hSQNjVgBQNmyJSpVtQKQKRm+GrOLX5p7d83I6SZ
+         jQ+a4f0AcCJAKbK+Xfo/ou6603k1Dq102Q8cIpsG7GtdkUGUDVzAgOVH02l8z+0ldbOQ
+         bdeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686321384; x=1688913384;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=43lTEtC/Bem8EYdjWbDkZc2zL5sUKt+AnLwz2BmdcmA=;
+        b=kQXlEpFebcuYWD+n5ee8EY5HfPLmSn5IkswShUPAbETo6PsQByUY82jTCE1DUICgO9
+         Vrc9QZ1PVk/1dKkbJl9jEVXjcft8WziqGGrl3sqxv2Vid1+b16O4JYDFO8GTSh9tLFis
+         HNRn1IJbMjyC4WW8t1UmTTmTm8y0RqDTHqD/tDFhXI2DoWDqq5Dm06Y4+zQUkQILFFnn
+         JaqCy1t4FsYy7tEbZ7GBXSCT0jcaJtQXN4hZK5+mwmY0qssRggGhD4mrkdGUZdK1NrqB
+         VYKHML+C3u7cpkUZ0T8SQfPwaiKAkgAOwSHZwXEfeNX5s4PDKzWIwjfsA4VqFJnjzizt
+         6cZw==
+X-Gm-Message-State: AC+VfDwfXemTqy0jbxZKxn3qlJgvz1kF74ayMxkdlF/YkIiJaXsbafcd
+        udyrYkuKNPO/hd5FKe84B22GFw==
+X-Google-Smtp-Source: ACHHUZ7PPK8je+1Y843D8izrp8IMhUWniL8Kr9ObTugoAauPwa+/VxLbPXj+/eteriBXrheYSONA5g==
+X-Received: by 2002:a7b:c40b:0:b0:3f4:27ff:7d48 with SMTP id k11-20020a7bc40b000000b003f427ff7d48mr1105081wmi.19.1686321383949;
+        Fri, 09 Jun 2023 07:36:23 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:5cfb:aa74:b923:261b])
+        by smtp.gmail.com with ESMTPSA id m19-20020a7bcb93000000b003f7f4b7f286sm2911846wmi.12.2023.06.09.07.36.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 07:36:23 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH] of: unittest: drop assertions for GPIO hog messages
+Date:   Fri,  9 Jun 2023 16:36:09 +0200
+Message-Id: <20230609143609.209373-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 9 Jun 2023 08:34:31 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+5oZdHi6B-R1YUEwSOc8x8Vd9sHt1bgp5ydM_hAQJE3w@mail.gmail.com>
-Message-ID: <CAL_Jsq+5oZdHi6B-R1YUEwSOc8x8Vd9sHt1bgp5ydM_hAQJE3w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: drop unneeded quotes
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 8:07=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Note that I already have the whole tree done. Just not all split up.
+These have now been demoted to debug and are normally hidden. Drop the
+assertions entirely.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ drivers/of/unittest.c | 28 ----------------------------
+ 1 file changed, 28 deletions(-)
 
->
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
-ation/devicetree/bindings/riscv/cpus.yaml
-> index db5253a2a74a..8a56473cdd5a 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -61,7 +61,7 @@ properties:
->        hart.  These values originate from the RISC-V Privileged
->        Specification document, available from
->        https://riscv.org/specifications/
-> -    $ref: "/schemas/types.yaml#/definitions/string"
-> +    $ref: /schemas/types.yaml#/definitions/string
->      enum:
->        - riscv,sv32
->        - riscv,sv39
-> @@ -95,7 +95,7 @@ properties:
->        While the isa strings in ISA specification are case
->        insensitive, letters in the riscv,isa string must be all
->        lowercase.
-> -    $ref: "/schemas/types.yaml#/definitions/string"
-> +    $ref: /schemas/types.yaml#/definitions/string
->      pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:=
-_[hsxz](?:[a-z])+)*$
->
->    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
-> @@ -120,7 +120,7 @@ properties:
->        - interrupt-controller
->
->    cpu-idle-states:
-> -    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->      items:
->        maxItems: 1
->      description: |
-> --
-> 2.34.1
->
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 0060334a98a7..5386efeaf710 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1844,26 +1844,10 @@ static void __init of_unittest_overlay_gpio(void)
+ 	unittest(overlay_data_apply("overlay_gpio_02b", NULL),
+ 		 "Adding overlay 'overlay_gpio_02b' failed\n");
+ 
+-	/*
+-	 * messages are the result of the probes, after the
+-	 * driver is registered
+-	 */
+-
+-	EXPECT_BEGIN(KERN_DEBUG,
+-		     "gpio-<<int>> (line-B-input): hogged as input\n");
+-
+-	EXPECT_BEGIN(KERN_DEBUG,
+-		     "gpio-<<int>> (line-A-input): hogged as input\n");
+-
+ 	ret = platform_driver_register(&unittest_gpio_driver);
+ 	if (unittest(ret == 0, "could not register unittest gpio driver\n"))
+ 		return;
+ 
+-	EXPECT_END(KERN_DEBUG,
+-		   "gpio-<<int>> (line-A-input): hogged as input\n");
+-	EXPECT_END(KERN_DEBUG,
+-		   "gpio-<<int>> (line-B-input): hogged as input\n");
+-
+ 	unittest(probe_pass_count + 2 == unittest_gpio_probe_pass_count,
+ 		 "unittest_gpio_probe() failed or not called\n");
+ 
+@@ -1888,17 +1872,11 @@ static void __init of_unittest_overlay_gpio(void)
+ 	probe_pass_count = unittest_gpio_probe_pass_count;
+ 	chip_request_count = unittest_gpio_chip_request_count;
+ 
+-	EXPECT_BEGIN(KERN_DEBUG,
+-		     "gpio-<<int>> (line-D-input): hogged as input\n");
+-
+ 	/* overlay_gpio_03 contains gpio node and child gpio hog node */
+ 
+ 	unittest(overlay_data_apply("overlay_gpio_03", NULL),
+ 		 "Adding overlay 'overlay_gpio_03' failed\n");
+ 
+-	EXPECT_END(KERN_DEBUG,
+-		   "gpio-<<int>> (line-D-input): hogged as input\n");
+-
+ 	unittest(probe_pass_count + 1 == unittest_gpio_probe_pass_count,
+ 		 "unittest_gpio_probe() failed or not called\n");
+ 
+@@ -1935,17 +1913,11 @@ static void __init of_unittest_overlay_gpio(void)
+ 	 *   - processing gpio for overlay_gpio_04b
+ 	 */
+ 
+-	EXPECT_BEGIN(KERN_DEBUG,
+-		     "gpio-<<int>> (line-C-input): hogged as input\n");
+-
+ 	/* overlay_gpio_04b contains child gpio hog node */
+ 
+ 	unittest(overlay_data_apply("overlay_gpio_04b", NULL),
+ 		 "Adding overlay 'overlay_gpio_04b' failed\n");
+ 
+-	EXPECT_END(KERN_DEBUG,
+-		   "gpio-<<int>> (line-C-input): hogged as input\n");
+-
+ 	unittest(chip_request_count + 1 == unittest_gpio_chip_request_count,
+ 		 "unittest_gpio_chip_request() called %d times (expected 1 time)\n",
+ 		 unittest_gpio_chip_request_count - chip_request_count);
+-- 
+2.39.2
+
