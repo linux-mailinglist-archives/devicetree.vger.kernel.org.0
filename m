@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D25172A612
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 00:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852E172A619
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 00:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231560AbjFIWAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 18:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38924 "EHLO
+        id S229561AbjFIWDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 18:03:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjFIWAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 18:00:44 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABBF32D44;
-        Fri,  9 Jun 2023 15:00:43 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-33b5dba8c6cso9204675ab.2;
-        Fri, 09 Jun 2023 15:00:43 -0700 (PDT)
+        with ESMTP id S232498AbjFIWDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 18:03:38 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232DB3A85;
+        Fri,  9 Jun 2023 15:03:37 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-33b00ce51caso9566775ab.2;
+        Fri, 09 Jun 2023 15:03:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686348043; x=1688940043;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FIih7yq7zItAjcdW9h/PAWrVlJSne2a8QKAirSRbadc=;
-        b=JDZXQrtlxmBvRR5olb6sbbGBizUQ9L6mlCEOTtw/ypVitVLk8xXn9rhRrI/zK06TJg
-         FVGQztY+1pLhQxz6QB/oH1d1exIPv8wiIJcMZP1suChyr4MwsYVhvymosR4dSfcCOF2o
-         Rk301QWEKTy85jLf6eUS8L4EQimP349FPVC/BvjUeYDfezLcxIvpOJRY4Xibyn2QAw9z
-         sUxRubA/EpxVd7CPB/xj54lzJE01ee5V0yDTH/FdF+XwvTE5FsCk9EkvbmoFY890c6Nx
-         2tYC+YrIp39tb+kJGcNw6e6p5CltwUH7SuKQP3zveRdQ+PEtIU5lFCQEc1T+Uj0vcPB2
-         4VsQ==
-X-Gm-Message-State: AC+VfDwgamMdpxUkYJafnVgKGpLQaqfZ7fWjwyBZOOQn0ztrDce4mKuD
-        iVLl42+/Co1dczKuTqxYdw==
-X-Google-Smtp-Source: ACHHUZ6EIvz7xkXcCIMVLaEMaFls8RRHQT6zRXOjUpuAp+4pwiacrjCaBEGCDgGRimwZHpHRLmeeaQ==
-X-Received: by 2002:a92:d901:0:b0:33e:7552:3fd5 with SMTP id s1-20020a92d901000000b0033e75523fd5mr2391225iln.4.1686348042854;
-        Fri, 09 Jun 2023 15:00:42 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686348216; x=1688940216;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lbWnd1453WWYSB5tZKL9wA4jRIrmIbrZJ2ihOV5eBj0=;
+        b=TBHh6znyAU/BT3zhMBrlohsoeyzuaClSrcP/AF6GXv9EAcBNW5EA7CyMvAmfMi9Vsu
+         zV1gJ1eCucA6gt43nYxhDbYgZIRzMvQXUashjVt7rK776lq5w59K4JUfJz+0J5G3+f5e
+         1xlyznfLszm0GKz3I6AEsjTtJW/eXRc5F9CXf/R64szlHVADbm4mrzP+0rxy4PLagSyK
+         I8BhiMBX38lL5eeqeMISF8Yq6XkeuZd05rSGJFK5HijqbMftgNKuDKMVdO3BGas/Xfeu
+         bAxU+PZLYd4jjEUAJF8l9yNUKoAuYLviVy4oDJVWzWAi9OE97qKlc+qKRYI3pK8qdSQD
+         jHiw==
+X-Gm-Message-State: AC+VfDw3jnL0BMFtXgj02zfIskupu63ZzJSDoSE1MDWN4LQvejJnyWRP
+        7HKEMXqzVZrOFQnWsvPsyw==
+X-Google-Smtp-Source: ACHHUZ5g/3hAO2umBs2VXYQ0I2em+F4t0rg+2lA6/YO5SiWMldXnF+mwfMfvbJytyDA5GLeINIOA/g==
+X-Received: by 2002:a92:dc08:0:b0:33d:1c2b:b558 with SMTP id t8-20020a92dc08000000b0033d1c2bb558mr2366041iln.22.1686348216369;
+        Fri, 09 Jun 2023 15:03:36 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id w8-20020a92d2c8000000b0033b2f5fe9bdsm1336911ilg.36.2023.06.09.15.00.40
+        by smtp.gmail.com with ESMTPSA id g9-20020a926b09000000b0033e4937640esm1310594ilc.80.2023.06.09.15.03.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 15:00:42 -0700 (PDT)
-Received: (nullmailer pid 2535655 invoked by uid 1000);
-        Fri, 09 Jun 2023 22:00:39 -0000
-Date:   Fri, 9 Jun 2023 16:00:39 -0600
+        Fri, 09 Jun 2023 15:03:35 -0700 (PDT)
+Received: (nullmailer pid 2542654 invoked by uid 1000);
+        Fri, 09 Jun 2023 22:03:33 -0000
+Date:   Fri, 9 Jun 2023 16:03:33 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-pm@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: Re: [PATCH 10/10] dt-bindings: timer: convert bcm2835-system-timer
- bindings to YAML
-Message-ID: <20230609220039.GA2534871-robh@kernel.org>
-References: <20230604121223.9625-1-stefan.wahren@i2se.com>
- <20230604121223.9625-11-stefan.wahren@i2se.com>
+To:     cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     Conor Dooley <conor@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, dianders@chromium.org,
+        hsinyi@google.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add ilitek 9882T
+ touchscreen chip
+Message-ID: <20230609220333.GA2535896-robh@kernel.org>
+References: <20230605060524.1178164-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230605060524.1178164-2-yangcong5@huaqin.corp-partner.google.com>
+ <20230605-anyway-grab-f7a35aa199fb@spud>
+ <CAHwB_NK_j1SJ1BBkVqafFM_+fWSyvwjCpMmHQxjLjnz_KHR=KA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230604121223.9625-11-stefan.wahren@i2se.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHwB_NK_j1SJ1BBkVqafFM_+fWSyvwjCpMmHQxjLjnz_KHR=KA@mail.gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,99 +70,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 04, 2023 at 02:12:23PM +0200, Stefan Wahren wrote:
-> Convert the DT binding document for bcm2835-system-timer from .txt
-> to YAML.
+On Tue, Jun 06, 2023 at 10:06:05AM +0800, cong yang wrote:
+> Hi,Conor,
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->  .../timer/brcm,bcm2835-system-timer.txt       | 22 ----------
->  .../timer/brcm,bcm2835-system-timer.yaml      | 44 +++++++++++++++++++
->  2 files changed, 44 insertions(+), 22 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.txt
->  create mode 100644 Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.yaml
+> On Mon, Jun 5, 2023 at 6:20 PM Conor Dooley <conor@kernel.org> wrote:
+> >
+> > Hey Cong Yang,
+> >
+> > On Mon, Jun 05, 2023 at 02:05:23PM +0800, Cong Yang wrote:
+> > > Add an ilitek touch screen chip ili9882t.
+> >
+> > Could you add a comment here mentioning the relationship between these
+> > chips?
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.txt b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.txt
-> deleted file mode 100644
-> index 844bd5fbd04c..000000000000
-> --- a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.txt
-> +++ /dev/null
-> @@ -1,22 +0,0 @@
-> -BCM2835 System Timer
-> -
-> -The System Timer peripheral provides four 32-bit timer channels and a
-> -single 64-bit free running counter. Each channel has an output compare
-> -register, which is compared against the 32 least significant bits of the
-> -free running counter values, and generates an interrupt.
-> -
-> -Required properties:
-> -
-> -- compatible : should be "brcm,bcm2835-system-timer"
-> -- reg : Specifies base physical address and size of the registers.
-> -- interrupts : A list of 4 interrupt sinks; one per timer channel.
-> -- clock-frequency : The frequency of the clock that drives the counter, in Hz.
-> -
-> -Example:
-> -
-> -timer {
-> -	compatible = "brcm,bcm2835-system-timer";
-> -	reg = <0x7e003000 0x1000>;
-> -	interrupts = <1 0>, <1 1>, <1 2>, <1 3>;
-> -	clock-frequency = <1000000>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.yaml b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.yaml
-> new file mode 100644
-> index 000000000000..555fca4897e7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/brcm,bcm2835-system-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: BCM2835 System Timer
-> +
-> +maintainers:
-> +  - Stefan Wahren <stefan.wahren@i2se.com>
-> +
-> +description:
-> +  The System Timer peripheral provides four 32-bit timer channels and a
-> +  single 64-bit free running counter. Each channel has an output compare
-> +  register, which is compared against the 32 least significant bits of the
-> +  free running counter values, and generates an interrupt.
-> +
-> +properties:
-> +  compatible:
-> +    const: brcm,bcm2835-system-timer
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 4
+> Okay, I will add in V3 version.
+> 
+> > On Mon, Jun 05, 2023 at 02:05:23PM +0800, Cong Yang wrote:
+> >
+> > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> > > ---
+> > >  .../bindings/input/elan,ekth6915.yaml         | 23 ++++++++++++++++---
+> > >  1 file changed, 20 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> > > index 05e6f2df604c..f0e7ffdce605 100644
+> > > --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> > > +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> > > @@ -15,11 +15,14 @@ description:
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    items:
+> > > -      - const: elan,ekth6915
+> > > +    enum:
+> > > +      - elan,ekth6915
+> > > +      - ilitek,ili9882t
+> > >
+> > >    reg:
+> > > -    const: 0x10
+> > > +    enum:
+> > > +      - 0x10
+> > > +      - 0x41
+> >
+> > Is 0x10 only valid for the elan,ekth6915 & 0x41 for the ilitek one?
+> > If so, please add some enforcement of the values based on the
+> > compatible.
+> 
+> I don't think 0x10 is the only address for ekth6915,(nor is 0x41 the
+> only address for ili9882t). It depends on the hardware design.
 
-Should list what each entry is.
+I'd just drop the values as we don't typically enforce 'reg' values.
 
-> +
-> +  clock-frequency: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    timer@7e003000 {
-> +      compatible = "brcm,bcm2835-system-timer";
-> +      reg = <0x7e003000 0x1000>;
-> +      interrupts = <1 0>, <1 1>, <1 2>, <1 3>;
-> +      clock-frequency = <1000000>;
-> +    };
-> -- 
-> 2.34.1
-> 
+Rob
