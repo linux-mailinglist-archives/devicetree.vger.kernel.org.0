@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E3BB729FD4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A52372A01D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:23:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbjFIQPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 12:15:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59824 "EHLO
+        id S232335AbjFIQW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 12:22:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242153AbjFIQO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:14:57 -0400
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327D52D44
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 09:14:55 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id e9e14a558f8ab-33aa60f4094so6164725ab.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 09:14:55 -0700 (PDT)
+        with ESMTP id S242134AbjFIQW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:22:57 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1F83C1B
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 09:22:41 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-569fc874498so19222077b3.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 09:22:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686327291; x=1688919291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rk3RV3sQ8umXpReTsBFbhMYf09xiUdeQTMhyG8kXHGw=;
-        b=GNGEnYh5u8vV+/z99Oxr5YbDRdAtkOxvvZbXWxGE8Qn+kN27gqFPvA+ssksR3EOaPX
-         qeyLlpFw8AxcTrWSL2U2DByIbB9psSRfOwqezA6IwP6tHECQobDRZl5BUCAliDB4m9SM
-         BJgEagqCt8/yyy65msZvTpw4bx3jdvdpMv+8Y=
+        d=linaro.org; s=google; t=1686327761; x=1688919761;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mwQzu1mHmg5s3RKGFVLiYioIdNZ9wrhFOjBtuF+UR3o=;
+        b=OeqWZw34Y6D3kTo5yYID2yBZzJAAQtqpAjCwfyz2PBcyKOWEGB/dLXjUD+499rrI0n
+         1J3XHsBf/izlVlQK1sRykEQSKROn6Hl4Xq7+rh5QHQpNSLNnEIsG37BPydK+BpsRhPsR
+         tf6k2z1MQkyTXtU2A8vHyifUVpFv1ssnBx1+CS6lXoi5wSvMUbhhodAWfTqjQGmecKGQ
+         b05Wq1s6maRCr1AuqWMKXOQY23dOW3wv21iL9cWzvhnFhnYqLYK9wkLtOThpaXsKHXad
+         7LG0W3fFsODO6cW+MHJ1MMF3KQ1xuEn7ouIW7S8Pz8Zdx/4rcUAuqb85jmwP8gdGcu3E
+         WBtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686327291; x=1688919291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rk3RV3sQ8umXpReTsBFbhMYf09xiUdeQTMhyG8kXHGw=;
-        b=Vsqd1XvUyVlQV3ZF0SRDAmIepWvvqf39fX7zyR0nXUWyyqA4wbRYxZ3EvJQipS/Ys/
-         2dVqYGE1Wg6GAiJMHYKwKqa3fi5QI8ZcPQtH6VwZIVJGrr4ROQBhCAePUiOWUgXfpWrs
-         VcK4aWvSJK5qPUD7Nl878peHKKjnlocT5t011JpvOZWJ2LHaHjr2twHjYxTSIVprdMWz
-         PrmOTr74SA1L/nDNdcmhZyW9mX10Juwv5uTUEMxCU2i7G0PBXGx+F70+EafT2si9JF2s
-         gcGZUD99ghIwfBnzMPX6C4x/ebho7uO/PYzGKq9wC5TGJNK9sIF+DQ9LCBbIO/YrxCpd
-         8puQ==
-X-Gm-Message-State: AC+VfDzgSVgoUJPELa5N+x4+lFooi/hGx+irb9mdO3zvpQc7JC2iX0rM
-        Q8Aaq50iYIIEkHNr86MstLhoqwp40JqFn9Xrji4=
-X-Google-Smtp-Source: ACHHUZ6lZ9Rn8VhCIdpYzAplhj7eAAMv/paCl6JsCoCmQ2sEnrrfgxwa+L2immrpa6n/YS0h7QGj5Q==
-X-Received: by 2002:a92:c103:0:b0:33a:fcd5:a124 with SMTP id p3-20020a92c103000000b0033afcd5a124mr1483562ile.4.1686327291567;
-        Fri, 09 Jun 2023 09:14:51 -0700 (PDT)
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com. [209.85.166.177])
-        by smtp.gmail.com with ESMTPSA id o14-20020a92d38e000000b00331a5fcd648sm1185681ilo.68.2023.06.09.09.14.50
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 09:14:50 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-33d928a268eso288055ab.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 09:14:50 -0700 (PDT)
-X-Received: by 2002:a05:6e02:b44:b0:33d:5d63:57b6 with SMTP id
- f4-20020a056e020b4400b0033d5d6357b6mr402827ilu.13.1686327290072; Fri, 09 Jun
- 2023 09:14:50 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686327761; x=1688919761;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mwQzu1mHmg5s3RKGFVLiYioIdNZ9wrhFOjBtuF+UR3o=;
+        b=A5kvv6vP1jikwTKeJwHHkumkoGim2XWSm0c75zfuQ+Xat4CmLDVXs6MUAP8rKpzr0b
+         u9kzoGq/OgFOlyIo/Pw0GadKgpwGt7aboC+9D2p+Hs7XQOCbl3hZLAA9OeDT6Lp5/xjX
+         JYbGISOsD/IIuZfXyY5OS08UmHfBLOdzthl02U3Nl3dIxZ2jOr6Ok2TD3aAlJSor/ZRM
+         Q+2O6PzyfTqdOkhNqVdZ5owjppYsGvCC1tBmRqdWUuCbBdqYeCs2TKXBbQ4+wssB/bWR
+         d1umewGeSWvIuKfXNf3yHLhQd0wztpQnTnKpEA/eC8r/mEFELq6fvV2ZjM1TeKoq4kbs
+         5bBQ==
+X-Gm-Message-State: AC+VfDzhd9FFhorRAPJiWMwQsfsm++hpiRNlhZVlvT80DVDMFIAzIghc
+        ltXmqS+u08YSPvkaxLKngYYkRO2lMdJoiZw9AGFSjQ==
+X-Google-Smtp-Source: ACHHUZ7DcgGfw00xFeO5tg+xstcf0mM87ob4gA9UhI4JskArhrXvT7uOKL98JgUrv1OrQJ5y7tNmkHSsuMQI+Z6RFrg=
+X-Received: by 2002:a81:4744:0:b0:565:e48d:32cf with SMTP id
+ u65-20020a814744000000b00565e48d32cfmr1431353ywa.7.1686327760864; Fri, 09 Jun
+ 2023 09:22:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230609063615.758676-1-yangcong5@huaqin.corp-partner.google.com>
- <20230609063615.758676-3-yangcong5@huaqin.corp-partner.google.com> <CAD=FV=UPSwWpkGN3UyFm1c84gj7iDC7dYrT9CCqWnqkTun-4cg@mail.gmail.com>
-In-Reply-To: <CAD=FV=UPSwWpkGN3UyFm1c84gj7iDC7dYrT9CCqWnqkTun-4cg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 9 Jun 2023 09:14:38 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Upq2t_+HtrX91etVhTQAK83khEX7MB-DzZuBpE5J3gJQ@mail.gmail.com>
-Message-ID: <CAD=FV=Upq2t_+HtrX91etVhTQAK83khEX7MB-DzZuBpE5J3gJQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] HID: i2c-hid: elan: Add ili9882t timing
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, hsinyi@google.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+References: <20230609115058.9059-1-quic_jkona@quicinc.com> <20230609115058.9059-3-quic_jkona@quicinc.com>
+In-Reply-To: <20230609115058.9059-3-quic_jkona@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 9 Jun 2023 19:22:29 +0300
+Message-ID: <CAA8EJpr-iKMzYP7HVQV8pzXbxzLvBaq38aovJ5Ffny18yXvJZg@mail.gmail.com>
+Subject: Re: [PATCH V4 2/4] clk: qcom: camcc-sm8550: Add camera clock
+ controller driver for SM8550
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,41 +80,176 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 9 Jun 2023 at 14:52, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+>
+> Add support for the camera clock controller for camera clients to be
+> able to request for camcc clocks on SM8550 platform.
+>
+> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> ---
+> Changes since V3:
+>  - No changes
+> Changes since V2:
+>  - No changes
+> Changes since V1:
+>  - Sorted the PLL names in proper order
+>  - Updated all PLL configurations to lower case hex
+>  - Reused evo ops instead of adding new ops for ole pll
+>  - Moved few clocks to separate patch to fix patch too long error
+>
+>  drivers/clk/qcom/Kconfig        |    7 +
+>  drivers/clk/qcom/Makefile       |    1 +
+>  drivers/clk/qcom/camcc-sm8550.c | 3405 +++++++++++++++++++++++++++++++
+>  3 files changed, 3413 insertions(+)
+>  create mode 100644 drivers/clk/qcom/camcc-sm8550.c
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 9cd1f05d436b..85efed78dc9a 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -756,6 +756,13 @@ config SM_CAMCC_8450
+>           Support for the camera clock controller on SM8450 devices.
+>           Say Y if you want to support camera devices and camera functionality.
+>
+> +config SM_CAMCC_8550
+> +       tristate "SM8550 Camera Clock Controller"
+> +       select SM_GCC_8550
+> +       help
+> +         Support for the camera clock controller on SM8550 devices.
+> +         Say Y if you want to support camera devices and camera functionality.
+> +
+>  config SM_DISPCC_6115
+>         tristate "SM6115 Display Clock Controller"
+>         depends on ARM64 || COMPILE_TEST
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index 75d035150118..97c8cefc2fd0 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -101,6 +101,7 @@ obj-$(CONFIG_SDX_GCC_75) += gcc-sdx75.o
+>  obj-$(CONFIG_SM_CAMCC_6350) += camcc-sm6350.o
+>  obj-$(CONFIG_SM_CAMCC_8250) += camcc-sm8250.o
+>  obj-$(CONFIG_SM_CAMCC_8450) += camcc-sm8450.o
+> +obj-$(CONFIG_SM_CAMCC_8550) += camcc-sm8550.o
+>  obj-$(CONFIG_SM_DISPCC_6115) += dispcc-sm6115.o
+>  obj-$(CONFIG_SM_DISPCC_6125) += dispcc-sm6125.o
+>  obj-$(CONFIG_SM_DISPCC_6350) += dispcc-sm6350.o
+> diff --git a/drivers/clk/qcom/camcc-sm8550.c b/drivers/clk/qcom/camcc-sm8550.c
+> new file mode 100644
+> index 000000000000..85f0c1e09b2b
+> --- /dev/null
+> +++ b/drivers/clk/qcom/camcc-sm8550.c
+> @@ -0,0 +1,3405 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,sm8550-camcc.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "common.h"
+> +#include "gdsc.h"
+> +#include "reset.h"
+> +
+> +enum {
+> +       DT_IFACE,
+> +       DT_BI_TCXO,
+> +};
+> +
+> +enum {
+> +       P_BI_TCXO,
+> +       P_CAM_CC_PLL0_OUT_EVEN,
+> +       P_CAM_CC_PLL0_OUT_MAIN,
+> +       P_CAM_CC_PLL0_OUT_ODD,
+> +       P_CAM_CC_PLL1_OUT_EVEN,
+> +       P_CAM_CC_PLL2_OUT_EVEN,
+> +       P_CAM_CC_PLL2_OUT_MAIN,
+> +       P_CAM_CC_PLL3_OUT_EVEN,
+> +       P_CAM_CC_PLL4_OUT_EVEN,
+> +       P_CAM_CC_PLL5_OUT_EVEN,
+> +       P_CAM_CC_PLL6_OUT_EVEN,
+> +       P_CAM_CC_PLL7_OUT_EVEN,
+> +       P_CAM_CC_PLL8_OUT_EVEN,
+> +       P_CAM_CC_PLL9_OUT_EVEN,
+> +       P_CAM_CC_PLL9_OUT_ODD,
+> +       P_CAM_CC_PLL10_OUT_EVEN,
+> +       P_CAM_CC_PLL11_OUT_EVEN,
+> +       P_CAM_CC_PLL12_OUT_EVEN,
+> +};
+> +
+> +static const struct pll_vco lucid_ole_vco[] = {
+> +       { 249600000, 2300000000, 0 },
+> +};
+> +
+> +static const struct pll_vco rivian_ole_vco[] = {
+> +       { 777000000, 1285000000, 0 },
+> +};
+> +
+> +static const struct alpha_pll_config cam_cc_pll0_config = {
+> +       /* .l includes RINGOSC_CAL_L_VAL, CAL_L_VAL, L_VAL fields */
+> +       .l = 0x4444003e,
 
-On Fri, Jun 9, 2023 at 9:14=E2=80=AFAM Doug Anderson <dianders@chromium.org=
-> wrote:
->
-> Hi,
->
-> On Thu, Jun 8, 2023 at 11:36=E2=80=AFPM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > The ili9882t is a TDDI IC (Touch with Display Driver). The
-> > datasheet specifies there should be 60ms between touch SDA
-> > sleep and panel RESX. Doug's series[1] allows panels and
-> > touchscreens to power on/off together, so we can add the 65 ms
-> > delay in i2c_hid_core_suspend before panel_unprepare.
-> >
-> > Because ili9882t touchscrgeen is a panel follower, and
-> > needs to use vccio-supply instead of vcc33-supply, so set
-> > it NULL to ili9882t_chip_data, then not use vcc33 regulator.
-> >
-> > [1]: https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromi=
-um.org
-> >
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > ---
-> >  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 50 ++++++++++++++++++++-------
-> >  1 file changed, 38 insertions(+), 12 deletions(-)
->
-> This seems reasonable to me now, but only makes sense to land if the
-> panel follower patch series [1] lands. That series is currently at v2
-> and will at least need a v3.
->
-> [1] https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromium.=
-org
+I'd still insist on not touching the config.l field semantics.
 
-Oh, but I should have added:
+> +       .alpha = 0x8000,
+> +       .config_ctl_val = 0x20485699,
+> +       .config_ctl_hi_val = 0x00182261,
+> +       .config_ctl_hi1_val = 0x82aa299c,
+> +       .test_ctl_val = 0x00000000,
+> +       .test_ctl_hi_val = 0x00000003,
+> +       .test_ctl_hi1_val = 0x00009000,
+> +       .test_ctl_hi2_val = 0x00000034,
+> +       .user_ctl_val = 0x00008400,
+> +       .user_ctl_hi_val = 0x00000005,
+> +};
+> +
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+[skipped the rest, LGTM]
+
+> +
+> +static struct platform_driver cam_cc_sm8550_driver = {
+> +       .probe = cam_cc_sm8550_probe,
+> +       .driver = {
+> +               .name = "cam_cc-sm8550",
+> +               .of_match_table = cam_cc_sm8550_match_table,
+> +       },
+> +};
+> +
+> +static int __init cam_cc_sm8550_init(void)
+> +{
+> +       return platform_driver_register(&cam_cc_sm8550_driver);
+> +}
+> +subsys_initcall(cam_cc_sm8550_init);
+
+As it was pointed out, this driver is built as a module by default.
+Please perform the tesing and cleanup before sending the driver and
+use module_platform_driver.
+
+> +
+> +static void __exit cam_cc_sm8550_exit(void)
+> +{
+> +       platform_driver_unregister(&cam_cc_sm8550_driver);
+> +}
+> +module_exit(cam_cc_sm8550_exit);
+> +
+> +MODULE_DESCRIPTION("QTI CAMCC SM8550 Driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.40.1
+>
+
+
+-- 
+With best wishes
+Dmitry
