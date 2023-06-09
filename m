@@ -2,138 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D86B72926C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62555729285
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240040AbjFIIPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49846 "EHLO
+        id S240157AbjFIIRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 04:17:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238963AbjFIIPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:15:42 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F1681FDE;
-        Fri,  9 Jun 2023 01:15:39 -0700 (PDT)
+        with ESMTP id S240165AbjFIIRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:17:30 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4955626B1
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 01:16:56 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b219ed9915so15660751fa.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 01:16:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686298539; x=1717834539;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Mb1slm/8ZxVzVyUF3XdtLt7ptCWTNk/wjWJvkjEJas8=;
-  b=LjoiXRrnaFPlyLY3sTSW1ycLJksoiJM8kAZ6whxDIYrOJ3GjZnisflb9
-   7p+ud1ujGM3IajGr16/+1CxyZ0mKItjyFxtWhzqf3MGfVZ9ARZMYPit5r
-   7ARdaqYnz7U7U3isucGsWTU46V/ShZ/aCtYFfzsf7oB/GZoY24abSFKXQ
-   Eva5z3yJ4CAv/I8qwAADssqyCiaehrZMu5GvRXhq7U/gVu0/U6MEjtZfQ
-   /A4S+0um3xB85j4RXGpupYs5B2XjyVUplEzjixeRJ7CHnShvvfAMxTzz5
-   HKyQlyJi/r9XfmyAvBdw9opMoTbIfTkqgzwGInXa4gecCt1Joil87N60T
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,228,1681164000"; 
-   d="scan'208";a="31359501"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Jun 2023 10:15:37 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 09 Jun 2023 10:15:37 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 09 Jun 2023 10:15:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686298537; x=1717834537;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Mb1slm/8ZxVzVyUF3XdtLt7ptCWTNk/wjWJvkjEJas8=;
-  b=onh31Dumrcp7hd3ZCvtI/QxzmzVrYVi5X75LN/evvJSPHyAMFsR9QAFS
-   2n/AvSCXYkWc88Sm4Nh4PST1Go/VT9StacaCDw6OnXiJlWd8u7k6l7L4C
-   T0jNMIJ77QK0P1smIi5+qMrMBgMB6ydf8HtKEdcwS5XtViuBEy9QaJnmg
-   dIpDMmhDsnEoxNDi9ZdlPIPwNdPKaPBF9m5LodOWpsiuLN9Weg6CWXL/p
-   K7sH4jH+HMu4qK3yjaXEydlss4MSUB44sf3bVNKEVqPKkrMLDIXoe7y3r
-   VJlbp6Q5ngC9vgFIcA+iriOGfImLUHwWsdOARrAWzzsXOQV35u8fxcKe0
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,228,1681164000"; 
-   d="scan'208";a="31359500"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Jun 2023 10:15:37 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 5E7DC280087;
-        Fri,  9 Jun 2023 10:15:37 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 1/2] spi: dt-bindings: introduce linux,use-rt-queue flag
-Date:   Fri, 09 Jun 2023 10:15:37 +0200
-Message-ID: <3241150.44csPzL39Z@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <CACRpkdb=2fogk3bEa4fkPVYQivnvLh1F1TnBj7og43ak+F8gPw@mail.gmail.com>
-References: <20230602115201.415718-1-matthias.schiffer@ew.tq-group.com> <6a0abd6bba2f8f940e695dfa9fd0c5f8ee19064f.camel@ew.tq-group.com> <CACRpkdb=2fogk3bEa4fkPVYQivnvLh1F1TnBj7og43ak+F8gPw@mail.gmail.com>
+        d=linaro.org; s=google; t=1686298610; x=1688890610;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sbn/vidH7Q/LymlGmJYhGt3pz85OqWNGAZA4SRnTzBo=;
+        b=fK9Ln5svpVf7phjZS+mbqw7W8KLEUddvL82nQQBDjWef1EMHZyKJu5uSv0ylG497DS
+         77MDbGVz1ZJvyDJZ9TjECpi9s94vl0lFXkz6ecpCvDqgEUjDl/Upf0uiqbB0dWBChzOu
+         2ermRRb2EaSeuuAPz/RLtXhUUHu/O2eSGWzGcv6WqHiMuopaSxz2F5WTcJwHAEb+DXn/
+         xxURipHrESsmhHsJzbs8DTZxRnWA3ZeVb5Qx+rYMdnWqgWiCg8xCvdhSe1neH97i0MBQ
+         RTQRbC4I5/z9CibtNsSEzrWYEodFJ6Bb14j8xKSNI/Bo4vQX9JayOrs9SIFG4f8LVI20
+         qQJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686298610; x=1688890610;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sbn/vidH7Q/LymlGmJYhGt3pz85OqWNGAZA4SRnTzBo=;
+        b=XLoFJBoqDaTpFKl1UmfPWaM/dLStCrWioiAeheviXMgDdKc44D6Bl11kfYGqkozDLv
+         s4axUPr+SNfGCCcBVhoXZBKeWjZ0LHA4awvc2o0bbTK0L1lXsERF3fwKem8sEslKfeZf
+         V5zYtk/C9L1FJrGPGO0K5ZerdzB0DLOs32b50zvDkfLMhgJqOsgVcGguTOOESls3CAD7
+         UGEByYjEA34V56hCiSuF5gADqjG1nj+6BT55j5oinfkq09NYJ/2R6BK6VTpY1CWJFse4
+         iil2MqHtPIDy6mF/BdtutY3lOkgwadwy/0tw9mfstIZiLZRvawz2+TVf1XoCF6dBw24J
+         cL2Q==
+X-Gm-Message-State: AC+VfDwmj/wYeJWMltyHhOKxWMrF8Z04pmOGt7tqUlYJAVesQp6oS/rZ
+        vAT7AacHum8iTWs9F8TbSAf1IN+oklGFwuiISC4ClA==
+X-Google-Smtp-Source: ACHHUZ72gjhpE6xfNIyCw1g194Gn1jxiJKWv4N13KPXnSFqysK5VlWgjRHhNj6J11ET014zr7Acx1Q==
+X-Received: by 2002:a19:4f52:0:b0:4f4:eeb4:ba70 with SMTP id a18-20020a194f52000000b004f4eeb4ba70mr424776lfk.32.1686298610392;
+        Fri, 09 Jun 2023 01:16:50 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m6-20020adfdc46000000b0030e5bd253aasm3768435wrj.39.2023.06.09.01.16.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 01:16:49 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
+References: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH V4] arm64: dts: add support for C3 based Amlogic AW409
+Message-Id: <168629860953.1192110.7115363386706217680.b4-ty@linaro.org>
+Date:   Fri, 09 Jun 2023 10:16:49 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Hi,
 
-Am Freitag, 9. Juni 2023, 09:41:14 CEST schrieb Linus Walleij:
-> On Wed, Jun 7, 2023 at 2:55=E2=80=AFPM Matthias Schiffer
->=20
-> <matthias.schiffer@ew.tq-group.com> wrote:
-> > It is not clear to me what alternative options we currently have if we
-> > want a setting to be effective from the very beginning, before
-> > userspace is running. Of course adding a cmdline option would work, but
-> > that seems worse than having it in the DT in every possible way.
->=20
-> A agree with Mark that a command line option isn't that bad. It's somethi=
-ng
-> that pertains to just the Linux kernel after all? And you can put that
-> command line option in the default device tree, in chosen, if you want.
+On Wed, 10 May 2023 17:11:29 +0800, Xianwei Zhao wrote:
+> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
+> applications.
+> 
+> Add basic support for the C3 based Amlogic AW409 board, which describes
+> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
+> booting up into the serial console.
+> 
+> [...]
 
-I don't like the idea of a command line enabling realtime scheduling for al=
-l=20
-instances of the SPI controller driver or even all SPI controllers. Actuall=
-y=20
-this might be worse if a non-rt SPI bus is considered for RT scheduling.
-IMHO this should be configurable per SPI controller, e.g. a sysfs attribute.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.5/arm64-dt)
 
-> No-one is going to
-> complain about that.
+[1/1] arm64: dts: add support for C3 based Amlogic AW409
+      https://git.kernel.org/amlogic/c/02310be6f080071e1b9e2021fd6dd655bd842aad
 
-IIRC someone (maybe Greg K-H) opposed pretty hard against (module) paramete=
-rs=20
-for (driver) configuration, but I can't find the post to back my statement.
+These changes has been applied on the intermediate git tree [1].
 
-Best regards,
-Alexander
+The v6.5/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-> Yours,
-> Linus Walleij
->=20
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
