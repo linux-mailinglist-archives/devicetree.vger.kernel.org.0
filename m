@@ -2,112 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4B8729863
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 13:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 576F772986F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 13:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238723AbjFILrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 07:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40172 "EHLO
+        id S231332AbjFILsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 07:48:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231377AbjFILrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 07:47:48 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC188358B;
-        Fri,  9 Jun 2023 04:47:47 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359BlfNJ014975;
-        Fri, 9 Jun 2023 11:47:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=Y06W5WNngjeaxdoeQNezzLbdGHA3R0xfALFtsH4ppog=;
- b=dDxmedaYWe4/bYSspA9QJhAM0YjAOV/bLQ31U3zNKw1+pqi8kdSBbnUfpX7MyDCWrhoC
- 2sv3Ik5UJi2V050yO+mdw65A6tGLug+lXTs/L6qdLEFWjIGZ/HQW7ygRKVHg6RFmEshH
- kXA/7Zh5Ms3Nh3LLgdWhWKnzA66SsW8t2l0yxdRD0WsIkhp/WLwYXtmYY021f8yMMQUr
- KqKe3V9/O42Di095VOh3mMSPIY49KJb7NB+9pjSZUXd7zwS5BZE/w6VhA/Ipdkb0i/C7
- W9nH2YMqJCNhn9NK+N96gO7uEyCkRET2Wnal4nyzg/o19XWRG3f6Ee6ZYoroT+eYNcMp Lw== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3yfngf71-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 11:47:41 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 359Blctm004158;
-        Fri, 9 Jun 2023 11:47:38 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3qyxkmeq38-1;
-        Fri, 09 Jun 2023 11:47:38 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 359BlZ9X004097;
-        Fri, 9 Jun 2023 11:47:38 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 359Blb4b004113;
-        Fri, 09 Jun 2023 11:47:38 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id 3427C3395; Fri,  9 Jun 2023 17:17:37 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     manivannan.sadhasivam@linaro.org
-Cc:     quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
-        linux-arm-msm@vger.kernel.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231172AbjFILsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 07:48:53 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37D06358B;
+        Fri,  9 Jun 2023 04:48:50 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 981665FD8E;
+        Fri,  9 Jun 2023 14:48:48 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1686311328;
+        bh=i8mNs2rF54Ol0kXxFcSbg3Rj4NqvtmjvBxJgpQRfSPo=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=Q1l9oXPeAJIm6jGSa7PBxKhYShkKytHT8QEWYzUuWbL0hPQZe+Yb2+gd+DWbuRzCi
+         ukswtpwIlfYtlogBMoLh0dN5S6QooTbhfVnq+Pzwx9tB4zaPUWAVrOywWB/7ttvRj3
+         MqhqWtFav0ojgOn7ukSYBc9n82vclzjSgeLEFponi1wdJvw6+Snxi8iqm56F7qQaIq
+         wLyu3Aok17REBop1qvsHizZf5+aFOW4+yRTvLGDQZCrYwk/VI1gvw7/1FNokj15gXq
+         1ZeXEaahADg9F4vRxXpljKbt1QTF4qTG1jVcTWdsMSF3rR0dqpF9WJ8q3Jur6ifVv3
+         2KDO+bqdWIWiA==
+Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri,  9 Jun 2023 14:48:48 +0300 (MSK)
+Date:   Fri, 9 Jun 2023 14:48:47 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+CC:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 2/3] arm: dts: qcom: sdx55: Add interconnect path
-Date:   Fri,  9 Jun 2023 17:17:27 +0530
-Message-Id: <1686311249-6857-3-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1686311249-6857-1-git-send-email-quic_krichai@quicinc.com>
-References: <1686311249-6857-1-git-send-email-quic_krichai@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: liZtX-UV09yn0QKmqduuVmu9buD1YR9d
-X-Proofpoint-GUID: liZtX-UV09yn0QKmqduuVmu9buD1YR9d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_08,2023-06-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- priorityscore=1501 mlxscore=0 adultscore=0 impostorscore=0
- lowpriorityscore=0 malwarescore=0 phishscore=0 suspectscore=0
- clxscore=1015 mlxlogscore=833 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2306090099
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
+ hw_onecell_data to drop NR_CLKS
+Message-ID: <20230609114847.x24by2foebojbchq@CAB-WSD-L081021>
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
+ <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
+ <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/09 07:08:00 #21465535
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pcie-mem interconnect path to sdx55 target.
+Hello Neil,
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- arch/arm/boot/dts/qcom-sdx55.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+On Thu, Jun 08, 2023 at 02:53:50PM +0200, Neil Armstrong wrote:
+> On 08/06/2023 14:45, Jerome Brunet wrote:
+> > > +struct meson_a1_pll_clks {
+> > > +	struct clk_hw **hw_clks;
+> > > +	unsigned int hw_clk_num;
+> > > +};
+> > > +
+> > > +static struct meson_a1_pll_clks a1_pll_clks = {
+> > > +	.hw_clks = a1_pll_hw_clks,
+> > > +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
+> > > +};
+> > > +
+> > > +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
+> > > +{
+> > > +	const struct meson_a1_pll_clks *data = clk_data;
+> > > +	unsigned int idx = clkspec->args[0];
+> > > +
+> > > +	if (idx >= data->hw_clk_num) {
+> > > +		pr_err("%s: invalid index %u\n", __func__, idx);
+> > > +		return ERR_PTR(-EINVAL);
+> > > +	}
+> > > +
+> > > +	return data->hw_clks[idx];
+> > > +}
+> > 
+> > I'd prefer to have a single struct type and and single custom
+> > callback for the different SoC please.
+> 
+> Sure, I've written a common code for that, but I have a hard time finding
+> a proper naming for it... so I choosed meson-clkc since it could have
+> more common helper code for duplicated code over the clk driver:
+> 
+> ===================================><============================================================================
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 8ce846fdbe43..9070dcfd9e71 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>  	tristate
+>  	select COMMON_CLK_MESON_REGMAP
+> 
+> +config COMMON_CLK_MESON_CLKC
+> +	tristate
+> +
+>  config COMMON_CLK_MESON_AO_CLKC
+>  	tristate
+>  	select COMMON_CLK_MESON_REGMAP
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index d5288662881d..13c6db466986 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  # Amlogic clock drivers
+> 
+> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+> diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
+> new file mode 100644
+> index 000000000000..fa98b9d09011
+> --- /dev/null
+> +++ b/drivers/clk/meson/meson-clkc.c
+> @@ -0,0 +1,25 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+> + */
+> +
+> +#include <linux/of_device.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include "meson-clkc.h"
+> +
+> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
+> +{
+> +	const struct meson_clk_hw_data *data = clk_hw_data;
+> +	unsigned int idx = clkspec->args[0];
+> +
+> +	if (idx >= data->num) {
+> +		pr_err("%s: invalid index %u\n", __func__, idx);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	return data->hws[idx];
+> +}
+> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
+> +
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
+> new file mode 100644
+> index 000000000000..e3bad2aa17eb
+> --- /dev/null
+> +++ b/drivers/clk/meson/meson-clkc.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+> + */
+> +
+> +#ifndef __MESON_HW_CLKC_H__
+> +#define __MESON_HW_CLKC_H__
+> +
+> +#include <linux/of_device.h>
+> +#include <linux/clk-provider.h>
+> +
+> +struct meson_clk_hw_data {
+> +	struct clk_hw	**hws;
+> +	unsigned int	num;
+> +};
+> +
+> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
+> +
+> +#endif
+> ===================================><============================================================================
+> 
+> If it's ok I'll send a v2 using this.
+> 
+> Thanks,
+> Neil
 
-diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-index 342c3d1..38943d4 100644
---- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -421,6 +421,10 @@
- 				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "global",
- 					  "doorbell";
-+
-+			interconnects = <&system_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
-+			interconnect-names = "pci-mem";
-+
- 			resets = <&gcc GCC_PCIE_BCR>;
- 			reset-names = "core";
- 			power-domains = <&gcc PCIE_GDSC>;
+In addition, I propose consolidating the probe() routine of the a1
+clocks into a common part, which can be utilized for s4 and other
+similar clocks. This solution was presented in the early a1 review
+stages of this patch set.
+
+https://lore.kernel.org/linux-amlogic/20221201225703.6507-7-ddrokosov@sberdevices.ru/
+
+Maybe, it can be generalized for the all meson clock controller drivers.
+
 -- 
-2.7.4
-
+Thank you,
+Dmitry
