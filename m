@@ -2,113 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C12729EC6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8133F729ECE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231981AbjFIPj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36846 "EHLO
+        id S241795AbjFIPkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:40:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241835AbjFIPjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:39:36 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5D5A835AC;
-        Fri,  9 Jun 2023 08:39:33 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 88FB6AB6;
-        Fri,  9 Jun 2023 08:40:18 -0700 (PDT)
-Received: from [10.57.85.120] (unknown [10.57.85.120])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 45C7D3F663;
-        Fri,  9 Jun 2023 08:39:30 -0700 (PDT)
-Message-ID: <78995241-826f-bf42-9d4b-9ab7c9c9bf7d@arm.com>
-Date:   Fri, 9 Jun 2023 16:39:29 +0100
+        with ESMTP id S241820AbjFIPk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:40:29 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB37330FA
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:40:24 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b1a3fa2cd2so21419241fa.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 08:40:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686325223; x=1688917223;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AQRG02G+Dbe1B0+6KJo9SLXQ+0hXudANBMUpTqfI594=;
+        b=I/MnDNi6hc7i16YsigbS2TngJdyE6/1hQ9/2Kwd477U/yZweXOzxXY481vZ/DbVURy
+         I0faW+RY9qo5oPK6dzHE5uYjqgp+TLN1vqsGR7C5YYqsVUq+PnGAz9Y+z97NZtS9U0Bh
+         lU56mGvfG04d1zMvMRLVL4lE65AGddoyPmbx9qu2HJNu87SyrAslfMB/t2q+NlDj3k2C
+         wW3XmAK/ivP2qj0+uVNEoNwrNiboNZiHfMxOPxxeoktyrLRBZKQdShF/PfVD16N3fuI0
+         CIMkwnfQ3DSH0QKnj7MR/H9qFzDoVJu2Go5TTnX3B6DX47C1shIZcDFjh1Q+fLVYwVf6
+         gvpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686325223; x=1688917223;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AQRG02G+Dbe1B0+6KJo9SLXQ+0hXudANBMUpTqfI594=;
+        b=fLfm1HL9tkZgx0oNda45qPoR3WhMfrfO72FrpwOLdcpTkdvO0gkxlzuh/RyxPc5VLw
+         FLwdFp1+ww9hwlz2DUHL6X8zqY7/nbV5ksoU+FWAYR3YvpqHMNTCeF048dOdeJ6yZTvI
+         hwQEVexPcLT/T7ZlDrIVjcx86MiXqPbkfM4+AyV/006EHj0abKCTbnQ8lEqmCnayQyUH
+         DHtRHm207HDxd82aramSJVye3rM/4ZRtqhETBKu6aQdaNzReYSkYU7mC9SExSzMmCJ/T
+         gQkXqlTlQgPLM01l6bvvOk2sJT6c2AwqH2TPB/+6HZfUy1ATWGmTPOGpDUFohJr2ASl/
+         PRUQ==
+X-Gm-Message-State: AC+VfDwhG8msMVPTuujgGjnEefKuAY+l7ECWUt9JjRa9aDkus0VQACTb
+        t2iDqXbiMgQtuzZvNFFGOLdKUQ==
+X-Google-Smtp-Source: ACHHUZ6UuT10SINr+AclWPtzmR8uSUSk8xgIMXeY2yatS06wlFryDLE9BlVdvfnBdFjUr2wBphKw4Q==
+X-Received: by 2002:a2e:964b:0:b0:2b1:edfe:8171 with SMTP id z11-20020a2e964b000000b002b1edfe8171mr1125092ljh.36.1686325223004;
+        Fri, 09 Jun 2023 08:40:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id s13-20020aa7cb0d000000b005163a6c9f18sm1868430edt.53.2023.06.09.08.40.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 08:40:22 -0700 (PDT)
+Message-ID: <37f17a76-4568-f780-1397-ebc767cd2973@linaro.org>
+Date:   Fri, 9 Jun 2023 17:40:20 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: sa8775p: Add interconnect to SMMU
-Content-Language: en-GB
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org,
-        "linux-kernel @ vger . kernel . org Prasanna Kumar" 
-        <quic_kprasan@quicinc.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>
-References: <20230609054141.18938-1-quic_ppareek@quicinc.com>
- <79206b05-674b-1f6c-6eb1-ed45e6bd5637@linaro.org>
- <20230609125631.GA29252@hu-ppareek-blr.qualcomm.com>
- <2881f374-70e2-0057-f43e-7be12d32ae22@arm.com>
- <c3c12574-fc38-84ae-2a94-3c80fb9fb363@linaro.org>
- <CAA8EJprqfq0ey2hgBXxf9Zg1Y_MwHP_73EQkwg-W-sRYS7VE8w@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAA8EJprqfq0ey2hgBXxf9Zg1Y_MwHP_73EQkwg-W-sRYS7VE8w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH V2] dt-bindings: reset: convert the xlnx,zynqmp-reset.txt
+ to yaml
+Content-Language: en-US
+To:     Piyush Mehta <piyush.mehta@amd.com>, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, michal.simek@amd.com, michal.simek@xilinx.com,
+        nava.manne@xilinx.com
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, siva.durga.prasad.paladugu@amd.com,
+        git@amd.com
+References: <20230609110447.151235-1-piyush.mehta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230609110447.151235-1-piyush.mehta@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-06-09 15:56, Dmitry Baryshkov wrote:
-> On Fri, 9 Jun 2023 at 17:52, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->>
->>
->> On 9.06.2023 16:45, Robin Murphy wrote:
->>> On 2023-06-09 13:56, Parikshit Pareek wrote:
->>>> On Fri, Jun 09, 2023 at 10:52:26AM +0200, Konrad Dybcio wrote:
->>>>>
->>>>>
->>>>> On 9.06.2023 07:41, Parikshit Pareek wrote:
->>>>>> Some qcom SoCs have SMMUs, which need the interconnect bandwidth to be
->>>>>> This series introduce the due support for associated interconnect, and
->>>>>> setting of the due interconnect-bandwidth. Setting due interconnect
->>>>>> bandwidth is needed to avoid the issues like [1], caused by not having
->>>>>> due clock votes(indirectly dependent upon interconnect bandwidth).
->>>>>
->>>>> [1] ???
->>>>
->>>> My bad. Intended to mention following:
->>>> https://lore.kernel.org/linux-arm-msm/20230418165224.vmok75fwcjqdxspe@echanude/
->>>
->>> This sounds super-dodgy - do you really have to rely on configuration of the interconnect path from the SMMU's pagetable walker to RAM to keep a completely different interconnect path clocked for the CPU to access SMMU registers? You can't just request the programming interface clock directly like on other SoCs?
->> On Qualcomm platforms, particularly so with the more recent ones, some
->> clocks are managed by various remote cores. Half of what the interconnect
->> infra does on these SoCs is telling one such core to change the internally
->> managed clock's rate based on the requested bw.
+On 09/06/2023 13:04, Piyush Mehta wrote:
+> Convert the binding to DT schema format. It also updates the
+> reset-controller description.
 > 
-> But enabling PCIe interconnect to keep SMMU working sounds strange to
-> me too. Does the fault come from some outstanding PCIe transaction?
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> ---
+> - Addressed the Krzysztof review comment:
+>  - Update DT binding to fix the dt_binding_check warning.
+> 
+> Link: https://lore.kernel.org/lkml/168612336438.2153757.6000360498539992409.robh@kernel.org/T/#m4abfe6287177d5fd09f781d298dd19d56aae5e27 
+> ---
+>  .../bindings/reset/xlnx,zynqmp-reset.txt      | 55 ----------------
+>  .../bindings/reset/xlnx,zynqmp-reset.yaml     | 64 +++++++++++++++++++
 
-The "Injecting instruction/data abort to VM 3" message from the 
-hypervisor implies that it is the access to SMMU_CR0 from 
-arm_smmu_shutdown() that's blown up. I can even believe that the SMMU 
-shares some clocks with the PCIe interconnect, given that its TBU must 
-be *in* that path from PCIe to memory, at least. However I would 
-instinctively expect the abstraction layers above to have some notion of 
-distinct votes for "CPU wants to access SMMU" vs. "SMMU/PCIe wants to 
-access RAM", given that the latter is liable to need to enable more than 
-the former if the clock/power gating is as fine-grained as previous SoCs 
-seem to have been. But maybe my hunch is wrong and this time 
-everything's just in one big clock domain. I don't know. I'm just here 
-to ask questions to establish whether this really is the most correct 
-abstraction or just a lazy bodge to avoid doing the proper thing in some 
-other driver.
+You forgot to update xlnx,zynqmp-firmware.yaml. It was wrong from the
+beginning, but now you can fix it in this commit.
 
-Thanks,
-Robin.
+Best regards,
+Krzysztof
+
