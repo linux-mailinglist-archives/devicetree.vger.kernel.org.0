@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E87D72A09A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C756472A0A0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbjFIQtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 12:49:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52462 "EHLO
+        id S229791AbjFIQvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 12:51:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjFIQtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:49:02 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F46A3A88
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 09:49:01 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977c8423dccso659359766b.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 09:49:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686329340; x=1688921340;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aSvYel0oSeG4uzRcYI5j4gpx20764e2Nwh+/Z/Nnl1A=;
-        b=GqaA6BXrI4NSSBQiawEV3px6ukzbXAokvUgPsE170MIYdj5lW9YzBNK3Iud1KmB+3j
-         YcZ5ydWfizNk4R2X/+4Q/VDf5hidvFJullxNHwG95VYPHSCNDOxXEJPPg/JDF7ReICGe
-         Aha1LH9bxO1FXE9PcpqAWCkxy3D+7eqTRe3HXJaki1cwz0lhHw3imgeln+EGCEx02B7Z
-         VAUSPuqmk3cwHTa3LFfKywNX2hRq/ORwgaEtnJXOWp77y1vfcFx+kScZw1/7jb+iwp0l
-         8H7irS+fJbyEWhl3B0ZAAwiqcWkImoUBLlOBAns4YCilxJMkTiPl1hk0GnrFYtl1C4sv
-         0svA==
+        with ESMTP id S229790AbjFIQvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:51:11 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7378E2D7E;
+        Fri,  9 Jun 2023 09:51:07 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-77807e43b7cso89126339f.1;
+        Fri, 09 Jun 2023 09:51:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686329340; x=1688921340;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aSvYel0oSeG4uzRcYI5j4gpx20764e2Nwh+/Z/Nnl1A=;
-        b=U5Azb8RhOHoEjw95lbUlLPYuyBNg6DGNoOxFb3+U6WsIKXClZ0eWs4BVGdBsUIJ+Vh
-         sECPjQ9g/xOWbfzCoXOQyE1CNGYMxVWQyVfc3UU6nVcBqxgsZAydEKg4lEB8k+lATMEt
-         NwneGpQPpiIRlwS0Jxo1xo5mgIeCpJhV0nj6khr4BfpKKBM6upjEsV0LFwYZNBOQ1dOa
-         RXoh8J5teqZIbVr+0ghAwRkK1Jn0GtMNV6e5i/j0avvrc/LAI27umwFnabCDqUrqoj0V
-         U+hEHFVm621ZGdX5RmWkEszFZr3GWWgDcmWpiPnm6DOWGCyyXEpCEzXw78EN3P/jHjyR
-         3oPw==
-X-Gm-Message-State: AC+VfDxiAcZuMRLL0EwnG5Dz+roodo5HzJBIYQoV46IdBVaK684I0odX
-        jhPTN/JBqD6hRk4N9B/+9jC9QtwXerqRZlL/uno=
-X-Google-Smtp-Source: ACHHUZ6fNIBlf5NkJCpoQyReFyo7EbA99Bdav938siA0HlK0sEn9NZuqD/s/Grj6odVySPMsl3BE6g==
-X-Received: by 2002:a17:907:7291:b0:973:7096:60c2 with SMTP id dt17-20020a170907729100b00973709660c2mr2663964ejc.20.1686329339740;
-        Fri, 09 Jun 2023 09:48:59 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id sd2-20020a170906ce2200b009749b769c95sm1480759ejb.158.2023.06.09.09.48.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 09:48:59 -0700 (PDT)
-Message-ID: <68bb3816-d707-3a21-59a2-8785dce7210a@linaro.org>
-Date:   Fri, 9 Jun 2023 18:48:57 +0200
+        d=1e100.net; s=20221208; t=1686329466; x=1688921466;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MSSJEKpJS9ep8WBVYc80IqXbeNN7GGka4ikEwnoQKkY=;
+        b=F9CfWL8DkCdcOgLQ6vQ6+ZTfr6P5b6V2qQNUVOb8mBpHq3C+JUdld5UHM/w4sGiMf6
+         cHvSsO3QnRNo3TPCQT7S1doTyKi1zAFSJWcYnIJvdyxb4iR+kEyvKbjs+ZRhVqg7KDTD
+         Awi9Pij1GrA3K6piwkq+M5mvYHlrIm7N1Dor15g0fny1vwS8PmIR/jQn7ii7uWze7M3v
+         3gJ/Cn3KujfrvGNLK+7PVK4ykQdP8qOfzWR8UFJcsn5WMi+sOq9SmEGVC1VRumLMTseu
+         xiayxUUQK00BiVuVzNt6H88rENiBn4B/0C6qHiNGPaAq7onh3S43MXe33y/jDfxnQ6t0
+         JIUQ==
+X-Gm-Message-State: AC+VfDwzPc96ibpYAZA9ORWV9r4Ewpzw+Ae+AEYD6JGJi9zK7pkr3Eym
+        fe3eB1CfEqT/b/fWNWfmiA==
+X-Google-Smtp-Source: ACHHUZ5ZEtQEXRaoNcL0DnxR5zhTN2IfUfFuYLnnfKE0ET+R0URsKnN0RwzwLGQ61w7QMCZNNrFA1Q==
+X-Received: by 2002:a6b:4401:0:b0:774:94e1:3aee with SMTP id r1-20020a6b4401000000b0077494e13aeemr2107034ioa.6.1686329466676;
+        Fri, 09 Jun 2023 09:51:06 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id j12-20020a02cb0c000000b0041d859c5721sm1054666jap.64.2023.06.09.09.51.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 09:51:05 -0700 (PDT)
+Received: (nullmailer pid 1259925 invoked by uid 1000);
+        Fri, 09 Jun 2023 16:51:04 -0000
+Date:   Fri, 9 Jun 2023 10:51:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Lamparter <chunkeey@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, kvalo@kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: net: ath11k: add
+ ieee80211-freq-limit property
+Message-ID: <20230609165104.GA1257474-robh@kernel.org>
+References: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: dmaengine: Add Loongson LS2X
- APB DMA controller
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>,
-        Conor Dooley <conor.dooley@microchip.com>
-References: <cover.1686192243.git.zhoubinbin@loongson.cn>
- <bb2d5985a3d9fd8e7ccbe2794842d93a8978d8a6.1686192243.git.zhoubinbin@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bb2d5985a3d9fd8e7ccbe2794842d93a8978d8a6.1686192243.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 04:55, Binbin Zhou wrote:
-> Add Loongson LS2X APB DMA controller binding with DT schema
-> format using json-schema.
+On Fri, Jun 09, 2023 at 10:44:54AM +0200, Christian Lamparter wrote:
+> This is an existing optional property that ieee80211.yaml/cfg80211
+> provides. It's useful to further restrict supported frequencies
+> for a specified device through device-tree.
 > 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: loongson,ls2k1000-apbdma
-> +      - items:
-> +          - const: loongson,ls2k0500-apbdma
-> +          - const: loongson,ls2k1000-apbdma
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> index 7d5f982a3d09..91bf69c2df01 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> @@ -58,6 +58,8 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  ieee80211-freq-limit: true
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#dma-cells":
-> +    const: 1
-> +
-> +  dma-channels:
-> +    const: 1
 
-If it is const, why do you need it?
+You need a ref to ieee80211.yaml as well.
 
-Best regards,
-Krzysztof
-
+>    wifi-firmware:
+>      type: object
+>      description: |
+> -- 
+> 2.40.1
+> 
