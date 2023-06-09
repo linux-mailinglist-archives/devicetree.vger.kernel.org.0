@@ -2,33 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FA4F729D31
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE1F729D5B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:52:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241554AbjFIOp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32884 "EHLO
+        id S239837AbjFIOww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:52:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241573AbjFIOpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:45:23 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A5FF43A82;
-        Fri,  9 Jun 2023 07:45:20 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 704FFAB6;
-        Fri,  9 Jun 2023 07:46:05 -0700 (PDT)
-Received: from [10.57.85.120] (unknown [10.57.85.120])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 30E6D3F663;
-        Fri,  9 Jun 2023 07:45:17 -0700 (PDT)
-Message-ID: <2881f374-70e2-0057-f43e-7be12d32ae22@arm.com>
-Date:   Fri, 9 Jun 2023 15:45:13 +0100
+        with ESMTP id S231841AbjFIOwv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:52:51 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9B92D48
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:52:48 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b1b3836392so20944471fa.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:52:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686322367; x=1688914367;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ytR9MFcgJFjU0KeCb0QynViZURhhNB2rI5a4kf4EOfE=;
+        b=If656WD9AuMcDX43YT9UOK3YuG8PxW7XUjN/uvyXFyX/HIky9sEapTbFF4V5i70pYQ
+         jXVNFnW5KirPO6h5F4wDml/Xu1YIG2yUP+vXNiY0Mrhfi4VbPSdPK1ZHQlyZrkpJXFsb
+         xG6kextoAxDcFQRSrfXYLtbdrTLiaGotnz/8qj0e/Dn9G5pwHLT9AMqroKZzG5XEzCci
+         x4u34AnstyxYHnx/umvWRsbaKXQWBYT0uE4wGUYRvtUK5T2danVjYl550rpuE2ZVTjnL
+         KcDXYLyi+/lWZhQCpSyqmTgkTiDDPUAZ5qQ8tuBA3a0RIsp/16BBInUOcDuy8ZcfXaWC
+         Ks2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686322367; x=1688914367;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ytR9MFcgJFjU0KeCb0QynViZURhhNB2rI5a4kf4EOfE=;
+        b=IMDj9Mt0yZ1P889R5aPJZ3a2PDgkdgXMD+HEk5eOsbaXxaMZgfH+rv+yJcyDlSMz73
+         KjJ41gb6d4mQ+7RV1Bx/zGgFu3GyNQqgL8ixUkBVMLmGMJxsh1zq43vc/occStQ1f9XW
+         YPavJcQ6/2AtPRnY5uCuM6XOb1I8eXgG0ogiL0Xx6Dbz4tdtM9vbeP/lTKSfYFn6cfpH
+         lkOntFSZgpYbIvvvcCggpwoNiulkmMZAMARwfXYrP1bdzpGPg+LmiUi2AUN8YOR/Bdgs
+         BjN3ozN/af0fwZS/WpdZKbU1e4GJyuyf8IrNOfraLenRj+Ggus6x9BWjnFvz4TgDpcb3
+         6wUQ==
+X-Gm-Message-State: AC+VfDz/moYa29cOmELZzHaiEATbYyZAO8GgMd+GRAU55oOcsZllRLJh
+        aOtXb9PQVp/yayFBorC2N8Egxg==
+X-Google-Smtp-Source: ACHHUZ6p8J+gs0jIQ4AOzs+OWU43jonUXrSgri5LlgXTp2LKnK6h1xF8IXFP3nkwV/aH1pek+nY+Og==
+X-Received: by 2002:a2e:8217:0:b0:2b1:bc73:6fa with SMTP id w23-20020a2e8217000000b002b1bc7306famr1306330ljg.21.1686322366828;
+        Fri, 09 Jun 2023 07:52:46 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id p26-20020a2ea41a000000b002adbedc9962sm420713ljn.46.2023.06.09.07.52.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 07:52:46 -0700 (PDT)
+Message-ID: <c3c12574-fc38-84ae-2a94-3c80fb9fb363@linaro.org>
+Date:   Fri, 9 Jun 2023 16:52:44 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
 Subject: Re: [PATCH 0/3] arm64: dts: qcom: sa8775p: Add interconnect to SMMU
-Content-Language: en-GB
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
+Content-Language: en-US
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Parikshit Pareek <quic_ppareek@quicinc.com>
 Cc:     Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -48,12 +77,14 @@ Cc:     Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
 References: <20230609054141.18938-1-quic_ppareek@quicinc.com>
  <79206b05-674b-1f6c-6eb1-ed45e6bd5637@linaro.org>
  <20230609125631.GA29252@hu-ppareek-blr.qualcomm.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230609125631.GA29252@hu-ppareek-blr.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <2881f374-70e2-0057-f43e-7be12d32ae22@arm.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <2881f374-70e2-0057-f43e-7be12d32ae22@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,27 +92,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-06-09 13:56, Parikshit Pareek wrote:
-> On Fri, Jun 09, 2023 at 10:52:26AM +0200, Konrad Dybcio wrote:
+
+
+On 9.06.2023 16:45, Robin Murphy wrote:
+> On 2023-06-09 13:56, Parikshit Pareek wrote:
+>> On Fri, Jun 09, 2023 at 10:52:26AM +0200, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 9.06.2023 07:41, Parikshit Pareek wrote:
+>>>> Some qcom SoCs have SMMUs, which need the interconnect bandwidth to be
+>>>> This series introduce the due support for associated interconnect, and
+>>>> setting of the due interconnect-bandwidth. Setting due interconnect
+>>>> bandwidth is needed to avoid the issues like [1], caused by not having
+>>>> due clock votes(indirectly dependent upon interconnect bandwidth).
+>>>
+>>> [1] ???
 >>
->>
->> On 9.06.2023 07:41, Parikshit Pareek wrote:
->>> Some qcom SoCs have SMMUs, which need the interconnect bandwidth to be
->>> This series introduce the due support for associated interconnect, and
->>> setting of the due interconnect-bandwidth. Setting due interconnect
->>> bandwidth is needed to avoid the issues like [1], caused by not having
->>> due clock votes(indirectly dependent upon interconnect bandwidth).
->>
->> [1] ???
+>> My bad. Intended to mention following:
+>> https://lore.kernel.org/linux-arm-msm/20230418165224.vmok75fwcjqdxspe@echanude/
 > 
-> My bad. Intended to mention following:
-> https://lore.kernel.org/linux-arm-msm/20230418165224.vmok75fwcjqdxspe@echanude/
+> This sounds super-dodgy - do you really have to rely on configuration of the interconnect path from the SMMU's pagetable walker to RAM to keep a completely different interconnect path clocked for the CPU to access SMMU registers? You can't just request the programming interface clock directly like on other SoCs?
+On Qualcomm platforms, particularly so with the more recent ones, some
+clocks are managed by various remote cores. Half of what the interconnect
+infra does on these SoCs is telling one such core to change the internally
+managed clock's rate based on the requested bw.
 
-This sounds super-dodgy - do you really have to rely on configuration of 
-the interconnect path from the SMMU's pagetable walker to RAM to keep a 
-completely different interconnect path clocked for the CPU to access 
-SMMU registers? You can't just request the programming interface clock 
-directly like on other SoCs?
-
-Thanks,
-Robin.
+Konrad
+> 
+> Thanks,
+> Robin.
