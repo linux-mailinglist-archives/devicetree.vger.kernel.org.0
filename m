@@ -2,99 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCA4729F08
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:47:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93068729F21
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:50:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241795AbjFIPrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:47:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42540 "EHLO
+        id S241923AbjFIPuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:50:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241703AbjFIPro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:47:44 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F9E35A3
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:47:40 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f619c2ba18so2398517e87.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 08:47:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686325659; x=1688917659;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jzQBDIIZDrg/bwrGe939IqgF7MEUiwgzplodxJt/mqk=;
-        b=adenxAUV6Uxx2n6DmQx9ic03Z9zOZdFUcsILqt0a3nv9QfaSkg39xACAmo0ZwYkepH
-         qXcbqkOB3NrUgmgGiVBXi4eAPyjqY8Jefhf4GEb7RZaXzh2tAcEn5JzEtqhZcEYvY3b1
-         OfukAe+8w1RIYWf4ND+NXee+fDmPU9KwePg3AgguqeC1CG6mzhRhtOsLp94xWrFNqi8h
-         GfIphCUy5m73Zlr5NK6TrRrriESTLfCIYtOPeAGXyS9Il8FXzh+7vusYF/zUtD9sHldQ
-         6n+ruFaGGtr3EeZiy9pt9+G7+VVSd/49yDRuwFGhYWLo23M8jb16hK3Qzu2zpKdH0aXo
-         G5YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686325659; x=1688917659;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jzQBDIIZDrg/bwrGe939IqgF7MEUiwgzplodxJt/mqk=;
-        b=dOp4ZxmtdjWIYXzyWjoYE9VxlA+Er+/hbo8pq19Kq+FbLVlCCWYbp+aKFHrS9oGPyX
-         utN4vehwbW3IFTYvFWr8E8DJ4GPMIVTOD+xlSP3fqFFEINOSMIGrmBvqzJnNs2dCwm+0
-         P5ddRT5+xi6E85StwK8+Vg0yo0BhRdqyR+Ah/ZZeAQiUFjISN6KTZ5pYM58/1ug/kcE9
-         d9/hhek2PE8ScUzIXSSgKQZtU0WCC6kzcf0bLoZWCyF3O8VnV+QvcQgODwYbDdmpmycn
-         40Zvcea+QbuUZ8WnsF+Cy8eUc9L6Id0AOHBM5KGtlR6sV6gDCwJ2c4OY9pEZmc5fTdWD
-         OLyw==
-X-Gm-Message-State: AC+VfDzmOFooZSJXFAAb5gLAmtr6hFXbRsqdDHsYhLvg+s9F+lBVlpmJ
-        NtS/WEiIWKemCVMCevuTdnX0TLYAmkJS2nhOi50=
-X-Google-Smtp-Source: ACHHUZ6rGvq+0qd9mBsLv2Jw1YAesA5rIjWjWnNLqb/ZezROn1ctvDQIK28pQqx+oDP7N7hlxlJZAg==
-X-Received: by 2002:a19:4312:0:b0:4f4:b28f:6b9c with SMTP id q18-20020a194312000000b004f4b28f6b9cmr1132934lfa.29.1686325659275;
-        Fri, 09 Jun 2023 08:47:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id c7-20020aa7df07000000b00514b854c399sm1905546edy.84.2023.06.09.08.47.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 08:47:38 -0700 (PDT)
-Message-ID: <e48aaec7-b46e-714a-1636-376a67b57669@linaro.org>
-Date:   Fri, 9 Jun 2023 17:47:36 +0200
+        with ESMTP id S241911AbjFIPuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:50:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC60635BC;
+        Fri,  9 Jun 2023 08:49:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4DC0661C5A;
+        Fri,  9 Jun 2023 15:49:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 053D2C433D2;
+        Fri,  9 Jun 2023 15:49:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686325788;
+        bh=VujHTb3Jst7P7AKBSUf6SEnI2gqNIkp0cYDL1jRQ5Uw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VWXiQoWUZrbEzGfv1didX1XWnGpeFeM3Z0E5xFzq1wZBaoT+OTdszCqjUwy0vmHzA
+         X/7EPPA2WhjAo3F3jVs4bVDMkDHGijdyvrla3eg+6VFKx6NOtifHDjTLZ+ygZaxcpp
+         Ca8sGBOFBEoK2g5OG66BiWNwPKQM/z0CikQQvwqFbgL2nGGf/sGRdSjTy+bqT3iLOD
+         7WMHt+XsklMQxtJCVebXjk07aKWzN3RADgbrC/gOV0KkoVn3jrhAcnnmolSu2uRnI9
+         HrMbHmE6SyFeoiplswxjwGxg70IF2hXNATe6aE4Mbr9UEsrIzUWBwXu/HLL04U2oXh
+         W/z4gj442vyrg==
+Date:   Fri, 9 Jun 2023 16:49:44 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Christian Lamparter <chunkeey@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, kvalo@kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: net: ath11k: add
+ ieee80211-freq-limit property
+Message-ID: <20230609-carded-stipulate-439950812469@spud>
+References: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH] dt-bindings: trivial-devices: Add infineon,irps5401
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc:     Alexander Steffen <Alexander.Steffen@infineon.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Naresh Solanki <naresh.solanki@9elements.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Tremblay <vincent@vtremblay.dev>,
-        devicetree@vger.kernel.org
-References: <9673fc919c6785879975fb1830d5026d3cfa658a.1686233049.git.michal.simek@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9673fc919c6785879975fb1830d5026d3cfa658a.1686233049.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Hr0x/gMYpYr/cxtg"
+Content-Disposition: inline
+In-Reply-To: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 16:04, Michal Simek wrote:
-> Add Infineon IRPS5401 power supply to trivial devices. Driver has been
-> added long time ago by commit 9158411b96b1 ("hwmon: (pmbus) Add Infineon
-> IRPS5401 driver").
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--Hr0x/gMYpYr/cxtg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Fri, Jun 09, 2023 at 10:44:54AM +0200, Christian Lamparter wrote:
+> This is an existing optional property that ieee80211.yaml/cfg80211
+> provides. It's useful to further restrict supported frequencies
+> for a specified device through device-tree.
+>=20
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--Hr0x/gMYpYr/cxtg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZINKGAAKCRB4tDGHoIJi
+0g+3AQCFQ8p2CNxwxmughCknWM1xVeucR0xBQ1yAXg8iamMwtAD/RLoywsac7z6f
+gp1X+1swDTOiyPsYQXc2tf41bBIHxw0=
+=CDm6
+-----END PGP SIGNATURE-----
+
+--Hr0x/gMYpYr/cxtg--
