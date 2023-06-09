@@ -2,75 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA4B1729D08
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:38:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6697729D1A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241517AbjFIOiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:38:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56962 "EHLO
+        id S232204AbjFIOjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240516AbjFIOiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:38:16 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4969199D
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:38:14 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b1ba018d94so20629221fa.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:38:14 -0700 (PDT)
+        with ESMTP id S240056AbjFIOjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:39:42 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B50B8359D;
+        Fri,  9 Jun 2023 07:39:34 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f6d38a140bso14485905e9.1;
+        Fri, 09 Jun 2023 07:39:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686321493; x=1688913493;
+        d=gmail.com; s=20221208; t=1686321573; x=1688913573;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oHDHmxkGz/lI3u3ur4hiLPnCzium3o5kvrOi4S/iPfk=;
-        b=Y0cjCsZMoWMWGg+SMHVOza0excOs0NGIGevbqqqkDkfl7wvnvOhxNXeFqxgw1C1EdV
-         dZD9rjz5whlGUDfRk1epIhSNtcxidIr7wwlKjMOYuVLlnZByToKFZbvDkYLVNa7/pPpZ
-         0UCxxTJqvJm80yWohS1HzpFKOEnranUDgi+eUMuQ476bBUv5OXVq0qsPwkKJ5PQHJSO8
-         O6SR86YOuVk07sKGTxcFutjileg7gx3AtqE8LHXijmIeGmtvgoks/yN1B83qT43yBfGu
-         BRoVm0CbFxD8kqvha/Sg9c7r+z7Sua/X3goazlMyRZk6//Uy+7bXN7lAW38yvqgDYqDo
-         V5Rg==
+        bh=CkTk/I2vJ7u5Kgxyjnr/M7EFdjdjE5R1J++r5jqjZYk=;
+        b=dkNyG7XkCxcLXXvDrfl0Nk2GcQt1r6wldGM8N+9rl6hd7psFwlVLlMVe9sT2ypfetd
+         hjTn3HBDLw9T5+WcgPAbAo7FV0W6DOxa8RDNuqCzcjdnBdwGejh7tgUdHDvcNV/4oQhS
+         gK1WOQlWDEZgTKLhSRzVjn7gUubIJ2RmzYrQ8egF+8qPjt0hRXTgvYP/JST15ANuRMVB
+         Ntz0K8eiaSAJA7GmL1nI5M1ANmLRa39qkIb+05oWHywriz5uG/2oWhPA00QCYSTk+Jox
+         E7+yzCRKMRb0htjbG+jPtu8u5r3SXTyJhnMkc+bXevXsDw0V8Xniq88Ivmwt3wOzIdS1
+         zsVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686321493; x=1688913493;
+        d=1e100.net; s=20221208; t=1686321573; x=1688913573;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oHDHmxkGz/lI3u3ur4hiLPnCzium3o5kvrOi4S/iPfk=;
-        b=k/GUSeoaqSuCZCVk4gBvld11TBKvzddJQH3U1FxvSGQmgjDRGqT+Mq9H0mRiY5/ldp
-         yY6VM3ty+zdUQQfb/OrG7+bnKJtmuDEAX1ddtU8S1HZe3Bbv9mNQF82zSyv6ltkK99n5
-         IKc2VtsmjQ4boJD3TK7ODH9d55HDaGLor2GL8eUxiv5J5VwYeHefwR1XvMA1T1bcxm76
-         tQymgwTXHA99FkfyXEE1WIjCqRNxv2OdAS7vcDDiziQYKr18Eq9uw1OGEr50+Hsp8D1K
-         mkTcWbizOAFHlreGk9gNLcCAk33glKygtAK46v3e8okq1Grp4aJ30sLlBBdf583u9+6G
-         yBAQ==
-X-Gm-Message-State: AC+VfDzvL9OklHXBZuq4DP8QsSzVkJ3IDYVsgN+xsAyPtfY61inrM3hZ
-        xYOeGRiFmQ6K2hA2BHuF5ONYOw==
-X-Google-Smtp-Source: ACHHUZ6rHOHjZwsR/NQbYQvCWcp01awhykTlGNHQgtFG0m+Bn7RXS9iwMN5OaI5vfYbefU7keMTF+g==
-X-Received: by 2002:a2e:b1c9:0:b0:2b1:b0d2:5f03 with SMTP id e9-20020a2eb1c9000000b002b1b0d25f03mr1256932lja.15.1686321492843;
-        Fri, 09 Jun 2023 07:38:12 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id h18-20020a2ea212000000b002a7853b9339sm408315ljm.119.2023.06.09.07.38.11
+        bh=CkTk/I2vJ7u5Kgxyjnr/M7EFdjdjE5R1J++r5jqjZYk=;
+        b=eWNcMCkEYP2CDq7xkmeVgF10UrMO9FsA0tAUOpW+4h09AVUAWMapvzMJyY/AerLbwf
+         LE522/lDIDvcV5xRJFH5Qg2wDUGaoSPHxlMWuSEQJvpdewH1H5Rhp5KzGWgjSWRH0dCI
+         3pY8iuie7yCOf542c6l7YeIqVPg1ZjRV82d2mjIuA3vdjVJOfBd0GjCPzK4vHj+hEPaZ
+         +tM2dn6GDox81nIFrocWiUHMd1jYL8EtiwFqRAXQmYHtLbMQJpKmQbYO0WDIgMDWuvr2
+         27E7pxtJjC4+/UcsIFhTavpBSp9IH+bM7+ZvZUx0uZdylYoj0I330MQWAszgK6KNpRmP
+         bhpQ==
+X-Gm-Message-State: AC+VfDwKEuhg8+KVH94iGKfbaHVzpNJTAdAsX0DOLEA4kA5ksgkdpZZa
+        beSGUDwllPC86gJfzawYOKc=
+X-Google-Smtp-Source: ACHHUZ4XeIuOaMJ3DqlHaX6FKCIBcclWXNEcRhBX/xprbU/C314K41du+V9pZsffr/MVyBXzjOYZ/w==
+X-Received: by 2002:a05:600c:3793:b0:3f7:2b61:4c98 with SMTP id o19-20020a05600c379300b003f72b614c98mr1625635wmr.13.1686321572880;
+        Fri, 09 Jun 2023 07:39:32 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id u3-20020a05600c210300b003f6028a4c85sm2901015wml.16.2023.06.09.07.39.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 07:38:12 -0700 (PDT)
-Message-ID: <56d170e9-bcde-094c-615f-636e2a8ccb13@linaro.org>
-Date:   Fri, 9 Jun 2023 16:38:11 +0200
+        Fri, 09 Jun 2023 07:39:31 -0700 (PDT)
+Message-ID: <ad9bc224-7e3a-49cb-40c7-c1fc0876599d@gmail.com>
+Date:   Fri, 9 Jun 2023 16:39:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH] arm64: dts: qcom: sa8540p-ride: Specify ethernet phy OUI
-Content-Language: en-US
-To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        richardcochran@gmail.com, bmasney@redhat.com, echanude@redhat.com
-References: <20230608201513.882950-1-ahalaney@redhat.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230608201513.882950-1-ahalaney@redhat.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v3 0/4] Add mt7986 thermal
+Content-Language: en-US, ca-ES, es-ES
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "Hui.Liu" <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Lala Lin <lala.lin@mediatek.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Golle <daniel@makrotopia.org>
+References: <20230530201235.22330-1-linux@fw-web.de>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230530201235.22330-1-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,87 +90,35 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 8.06.2023 22:15, Andrew Halaney wrote:
-> With wider usage on more boards, there have been reports of the
-> following:
+On 30/05/2023 22:12, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
->     [  315.016174] qcom-ethqos 20000.ethernet eth0: no phy at addr -1
->     [  315.016179] qcom-ethqos 20000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
+> This series add thermal related devicetree-nodes and necessary
+> dt-bindings.
 > 
-> which has been fairly random and isolated to specific boards.
-> Early reports were written off as a hardware issue, but it has been
-> prevalent enough on boards that theory seems unlikely.
+> I left pwm-fan for r3 for now as i cannot test this completely due to
+> missing 2 pin-jack and 3v3 pwm-level which my fan cannot handle (starts
+> spinning at ~3V). Only checked voltage of pwm there.
 > 
-> In bring up of a newer piece of hardware, similar was seen, but this
-> time _consistently_. Moving the reset to the mdio bus level (which isn't
-> exactly a lie, it is the only device on the bus so one could model it as
-> such) fixed things on that platform. Analysis on sa8540p-ride shows that
-> the phy's reset is not being handled during the OUI scan if the reset
-> lives in the phy node:
+> changes in v3:
+> - efuse compatibles into one line
 > 
->     # gpio 752 is the reset, and is active low, first mdio reads are the OUI
->     modprobe-420     [006] .....   154.738544: mdio_access: stmmac-0 read  phy:0x08 reg:0x02 val:0x0141
->     modprobe-420     [007] .....   154.738665: mdio_access: stmmac-0 read  phy:0x08 reg:0x03 val:0x0dd4
->     modprobe-420     [004] .....   154.741357: gpio_value: 752 set 1
->     modprobe-420     [004] .....   154.741358: gpio_direction: 752 out (0)
->     modprobe-420     [004] .....   154.741360: gpio_value: 752 set 0
->     modprobe-420     [006] .....   154.762751: gpio_value: 752 set 1
->     modprobe-420     [007] .....   154.846857: gpio_value: 752 set 1
->     modprobe-420     [004] .....   154.937824: mdio_access: stmmac-0 write phy:0x08 reg:0x0d val:0x0003
->     modprobe-420     [004] .....   154.937932: mdio_access: stmmac-0 write phy:0x08 reg:0x0e val:0x0014
+> changes in v2:
+> - drop highest 2 trip points as they are not yet used
+> - leave already applied patches
 > 
-> Moving it to the bus level, or specifying the OUI in the phy's
-> compatible ensures the reset is handled before any mdio access
-> Here is tracing with the OUI approach (which skips scanning the OUI):
+> Daniel Golle (3):
+>    arm64: dts: mt7986: add thermal and efuse
+>    arm64: dts: mt7986: add thermal-zones
+>    arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts
 > 
->     modprobe-549     [007] .....    63.860295: gpio_value: 752 set 1
->     modprobe-549     [007] .....    63.860297: gpio_direction: 752 out (0)
->     modprobe-549     [007] .....    63.860299: gpio_value: 752 set 0
->     modprobe-549     [004] .....    63.882599: gpio_value: 752 set 1
->     modprobe-549     [005] .....    63.962132: gpio_value: 752 set 1
->     modprobe-549     [006] .....    64.049379: mdio_access: stmmac-0 write phy:0x08 reg:0x0d val:0x0003
->     modprobe-549     [006] .....    64.049490: mdio_access: stmmac-0 write phy:0x08 reg:0x0e val:0x0014
+> Frank Wunderlich (1):
+>    dt-bindings: nvmem: mediatek: efuse: add support for mt7986
 > 
-> The OUI approach is taken given the description matches the situation
-> perfectly (taken from ethernet-phy.yaml):
+>   .../bindings/nvmem/mediatek,efuse.yaml        |  1 +
+>   .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts  | 31 ++++++++++
+>   arch/arm64/boot/dts/mediatek/mt7986a.dtsi     | 62 +++++++++++++++++++
+>   3 files changed, 94 insertions(+)
 > 
->     - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
->       description:
->         If the PHY reports an incorrect ID (or none at all) then the
->         compatible list may contain an entry with the correct PHY ID
->         in the above form.
->         The first group of digits is the 16 bit Phy Identifier 1
->         register, this is the chip vendor OUI bits 3:18. The
->         second group of digits is the Phy Identifier 2 register,
->         this is the chip vendor OUI bits 19:24, followed by 10
->         bits of a vendor specific ID.
-> 
-> With this in place the sa8540p-ride's phy is probing consistently, so
-> it seems the floating reset during mdio access was the issue. In either
-> case, it shouldn't be floating so this improves the situation. The below
-> link discusses some of the relationship of mdio, its phys, and points to
-> this OUI compatible as a way to opt out of the OUI scan pre-reset
-> handling which influenced this decision.
-> 
-> Link: https://lore.kernel.org/all/dca54c57-a3bd-1147-63b2-4631194963f0@gmail.com/
-> Fixes: 57827e87be54 ("arm64: dts: qcom: sa8540p-ride: Add ethernet nodes")
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> index 21e9eaf914dd..5a26974dcf8f 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> @@ -171,6 +171,7 @@ mdio {
->  
->  		/* Marvell 88EA1512 */
->  		rgmii_phy: phy@8 {
-> +			compatible = "ethernet-phy-id0141.0dd4";
->  			reg = <0x8>;
->  
->  			interrupts-extended = <&tlmm 127 IRQ_TYPE_EDGE_FALLING>;
+Applied 2-4, thanks!
