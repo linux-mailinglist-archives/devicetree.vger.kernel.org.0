@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85EBB728DCC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 04:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B41728DD0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 04:26:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235563AbjFIC0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 22:26:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42708 "EHLO
+        id S237619AbjFIC0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 22:26:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238520AbjFIC0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 22:26:01 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC242722
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 19:25:57 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b1bdfe51f8so30009241fa.0
+        with ESMTP id S238532AbjFIC0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 22:26:02 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1678E30FA
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 19:25:58 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b1b8593263so12976881fa.2
         for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 19:25:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686277555; x=1688869555;
+        d=linaro.org; s=google; t=1686277556; x=1688869556;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8Mt31W0jI1fuVf091MA0W1WwuRBTHflHVK1TxVNzvWs=;
-        b=opSjeVIuJExti4vaP6E7Qp+ENucVYRriMH5sayaSwFNxgDvOt7mI5kpb38B5HjDcRd
-         ftGBOyKZPJpAgV2lrrWN1W/LB9dEXC5HnlmGLjOdNbJB70Itlt9XR4dJrsDfWtCmnP2K
-         +q9LGemZ2/EXlEYt5rj53jFT/PmnTAFme2iiErjObKhdUi2w2mbyGiq3kaxZM1qKs12T
-         Eexxlx18kIQkPUoFAF4KNYWTMME8Ocdffdp1Q063N1uB33EycLGs7cZ76fUMpi9vcTzU
-         +8HdQ6thZDz62V2GFVp8IX23LQBODQNKee649en6tvwmOLj5Iw6kR/FsrAYUbPGsPq01
-         sJiA==
+        bh=XVVVClRGQ3W+a4D62JgYgRZeO7k7GdsG/nIGFO07NhE=;
+        b=xhBPcRUkznKGI8r3ED9YzjcP+y04kjYXrbivO5gwy4sIY24nWyPFank2HZbZBdWb8s
+         84/QAL3QxZgECeHEoUQ1KEoldTHwWeeBRYJO9spoIaKPySpiLaWq+uI9tVIWDyf0fZsI
+         hbIruYiDlCiI4YvvBpFxS4abBk4jNJ5xDOLKS9JUoDGUxDo6WO+WaOlI9bF+9cOYZiFz
+         wgAHuOtKNSImbXyBuILjuXuu8Lx+p60HE9fhw0FXDCc3sTxIbmmyaXh8rQuGv0o+sCRK
+         78sEAgxZVgkfSbqYl73DmHu4yMZ3JW9lIc0uqayT2EllvBXl9iaC/bjzkU2k/YBZPPQp
+         MkJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686277555; x=1688869555;
+        d=1e100.net; s=20221208; t=1686277556; x=1688869556;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8Mt31W0jI1fuVf091MA0W1WwuRBTHflHVK1TxVNzvWs=;
-        b=Hgq7cqwI3Dk6Pu0cvXjQbmhu7VRYzdpLh4vL0X+NnBL8wyRL1VXglEIeeL2xsy5KqI
-         0sQMO0LLkSN83jH3rd7qat3fKdnxfZt5JedebAE2zOOk1LOJekLr309MnMLijQ5SJ/YI
-         92Cb63mi/sA1FnCHv6KMBZPpzmh7inxsimWn5dvW9VHZciKjtyZC3eTlL3wOoCqZqZA8
-         m8JTnuvQB2xzx+XW/uKVDyjKzFBDR/nLiXgpj83o+38oE/wIM4gOzjxvi2leCO+eSFJM
-         ObZsVyibs2TW4j1yxsIFxW9s+SsqWXyww7TSPbliQkuebTaF0AV5GMadDDlbsNSFzizj
-         9KFg==
-X-Gm-Message-State: AC+VfDwdgcfkh52oSgPn0bhiFJwRZA0yJTUg3JkmOUBOFBpcj1mwc76s
-        2TygoPWF4FgtvJ/R39BairYo4Q==
-X-Google-Smtp-Source: ACHHUZ6LkESUcNJ+wXQNZjYvIm0Jk2PXzLAfJ47h8zWMYPGSf0m4XTwMmy1a11UjUNoTHOCQKFeBMg==
-X-Received: by 2002:a2e:a366:0:b0:2a8:ea26:5c72 with SMTP id i6-20020a2ea366000000b002a8ea265c72mr1473656ljn.8.1686277555442;
-        Thu, 08 Jun 2023 19:25:55 -0700 (PDT)
+        bh=XVVVClRGQ3W+a4D62JgYgRZeO7k7GdsG/nIGFO07NhE=;
+        b=mFGWrM9z4E/njEKYkswa7F3oYYrXJ8yji+s//UsPS+U/sqsQNC4y4B5hHsLhnMGHOl
+         h7ZGjI7w/J+VjeJ0vXiwi0D79V3avFyH64sToEqKNDVjI63ckFZJ876OHmVx68wq+pUz
+         x3DdJkpJ0mqM+JlSqlSJ0Whr6k2TWM074bxSRXwyBrKpl3g/f6hHmET96CsLNgJfmFpA
+         ckInWJOKbep4OsAP1+UHHPtzhE8AMMga7x6rF1haBLM5Z7iTqqa9nud3NqUcOkRqCi2+
+         B+5KMJASQzDDWYaLbeLblY0bWkohFnYB1xFDPyttHC+adH9+9m15KreG+C76WCQNZd4o
+         T1iA==
+X-Gm-Message-State: AC+VfDyTZZXGl8noZPhxC/pZeDn0Ppi+l3z3VQmiLU0WRWn925KGZ3qr
+        LCZ3jkzo5QwzAkbtgr2TSljLMw==
+X-Google-Smtp-Source: ACHHUZ4dYPSYnbv1DroYWYIlkuvy4q/dGxMKVISUXy9G1lUnZR352dzZvsXgcDt+PHKSZxk0YiFqLQ==
+X-Received: by 2002:a2e:3515:0:b0:2ad:ad0b:d0fb with SMTP id z21-20020a2e3515000000b002adad0bd0fbmr161896ljz.30.1686277556311;
+        Thu, 08 Jun 2023 19:25:56 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id x20-20020a2e9dd4000000b002b21089f747sm167429ljj.89.2023.06.08.19.25.54
+        by smtp.gmail.com with ESMTPSA id x20-20020a2e9dd4000000b002b21089f747sm167429ljj.89.2023.06.08.19.25.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 19:25:54 -0700 (PDT)
+        Thu, 08 Jun 2023 19:25:55 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,9 +60,9 @@ To:     Sebastian Reichel <sre@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v4 1/4] dt-bindings: power: reset: qcom-pon: define pm8941-pon
-Date:   Fri,  9 Jun 2023 05:25:50 +0300
-Message-Id: <20230609022553.1775844-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 2/4] power: reset: qcom-pon: add support for pm8941-pon
+Date:   Fri,  9 Jun 2023 05:25:51 +0300
+Message-Id: <20230609022553.1775844-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230609022553.1775844-1-dmitry.baryshkov@linaro.org>
 References: <20230609022553.1775844-1-dmitry.baryshkov@linaro.org>
@@ -71,56 +71,77 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On PM8941 pon doesn't store the reset reason. However we still need the
-wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
-device.
+For PM8941 we don't have a defined field to store the reset reason.
+Support wrapping pwrkey and resin, but without writing the reset
+reason.
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../bindings/power/reset/qcom,pon.yaml           | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/power/reset/qcom-pon.c | 22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-index 0b1eca734d3b..5e460128b0d1 100644
---- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-@@ -19,6 +19,7 @@ properties:
-   compatible:
-     enum:
-       - qcom,pm8916-pon
-+      - qcom,pm8941-pon
-       - qcom,pms405-pon
-       - qcom,pm8998-pon
-       - qcom,pmk8350-pon
-@@ -74,6 +75,21 @@ allOf:
-         reg-names:
-           items:
-             - const: pon
+diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
+index ebdcfb28c4a0..1344b361a475 100644
+--- a/drivers/power/reset/qcom-pon.c
++++ b/drivers/power/reset/qcom-pon.c
+@@ -17,6 +17,8 @@
+ #define GEN1_REASON_SHIFT		2
+ #define GEN2_REASON_SHIFT		1
+ 
++#define NO_REASON_SHIFT			0
 +
-+    # Special case for pm8941, which doesn't store reset mode
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,pm8941-pon
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 1
-+        reg-names:
-+          items:
-+            - const: pon
+ struct pm8916_pon {
+ 	struct device *dev;
+ 	struct regmap *regmap;
+@@ -45,6 +47,7 @@ static int pm8916_reboot_mode_write(struct reboot_mode_driver *reboot,
+ static int pm8916_pon_probe(struct platform_device *pdev)
+ {
+ 	struct pm8916_pon *pon;
++	long reason_shift;
+ 	int error;
+ 
+ 	pon = devm_kzalloc(&pdev->dev, sizeof(*pon), GFP_KERNEL);
+@@ -64,13 +67,17 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+ 	if (error)
+ 		return error;
+ 
+-	pon->reboot_mode.dev = &pdev->dev;
+-	pon->reason_shift = (long)of_device_get_match_data(&pdev->dev);
+-	pon->reboot_mode.write = pm8916_reboot_mode_write;
+-	error = devm_reboot_mode_register(&pdev->dev, &pon->reboot_mode);
+-	if (error) {
+-		dev_err(&pdev->dev, "can't register reboot mode\n");
+-		return error;
++	reason_shift = (long)of_device_get_match_data(&pdev->dev);
 +
-   - if:
-       properties:
-         compatible:
++	if (reason_shift != NO_REASON_SHIFT) {
++		pon->reboot_mode.dev = &pdev->dev;
++		pon->reason_shift = reason_shift;
++		pon->reboot_mode.write = pm8916_reboot_mode_write;
++		error = devm_reboot_mode_register(&pdev->dev, &pon->reboot_mode);
++		if (error) {
++			dev_err(&pdev->dev, "can't register reboot mode\n");
++			return error;
++		}
+ 	}
+ 
+ 	platform_set_drvdata(pdev, pon);
+@@ -80,6 +87,7 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+ 
+ static const struct of_device_id pm8916_pon_id_table[] = {
+ 	{ .compatible = "qcom,pm8916-pon", .data = (void *)GEN1_REASON_SHIFT },
++	{ .compatible = "qcom,pm8941-pon", .data = (void *)NO_REASON_SHIFT },
+ 	{ .compatible = "qcom,pms405-pon", .data = (void *)GEN1_REASON_SHIFT },
+ 	{ .compatible = "qcom,pm8998-pon", .data = (void *)GEN2_REASON_SHIFT },
+ 	{ .compatible = "qcom,pmk8350-pon", .data = (void *)GEN2_REASON_SHIFT },
 -- 
 2.39.2
 
