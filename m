@@ -2,181 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34FC7728C20
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 02:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD70728CD2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 03:06:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229622AbjFIABc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 20:01:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36560 "EHLO
+        id S233252AbjFIBGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 21:06:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbjFIABb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 20:01:31 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2089A2D52
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 17:01:30 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id af79cd13be357-75d536afa43so66493585a.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 17:01:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1686268889; x=1688860889;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qqJdow/J5K4wd51XeTmXAVC3QDcoCV/zAZAWJ+OlPKk=;
-        b=WFW1WPDK7pF0HBMOpIefOTid/xRGuPKB/O08j6lrrIL5aCgYH9+4PT48GlIHjhhGpp
-         VAgOm/xHlXFG6Lkvd1yUNR5VjbnieqAu9fgF22JD3N96WpWBDwRzDYo2TfCYXgu5/ydy
-         ZOcA6MXdMNwV7AyFoCcMUtTYHQOTHfx//4VFo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686268889; x=1688860889;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qqJdow/J5K4wd51XeTmXAVC3QDcoCV/zAZAWJ+OlPKk=;
-        b=bc0vMW2vSH3pr2egxrOsoW7laHkoJ8sBpcPkpGyniMl/+MvACojVTWB40TDp6iIZIu
-         NIPx0af2YiOsoyJfPdnqcW9kM1dCtpOriwC4pyXVXNjZYlUJndpJxblHJCdPRvBf/vIq
-         BlQI1Jh3vgdruDag49fxZDLRsTDUNhoZiKPUuURwa22lgTVVpCdXDNR/nSDTzhLzHDFN
-         UI9aYZWoNRvhoKspvns3FY7rirtDgFLvFPKNd392DQNmofOkK8wmIAsbHLMYNv3lzYzU
-         JvBtR2nl555y1Lo6iQX3OELeEucQl4Dy7lt6ElJ2i7bMgPMWon+u3Dpe4EKa8rhmP3mM
-         oFYg==
-X-Gm-Message-State: AC+VfDzxGLLIXRjYeh8IVakaDSYO//aitKsp+oFwJvRqgZBLA5jD0e1L
-        UkE/ssZb/NIPPpIBMrF+YhJhkQ==
-X-Google-Smtp-Source: ACHHUZ7uPIQwzlgi1Qf8uWg4kO1Ncyak9AH/v0UuYK1EDEHVgsQgrL2fSd0zfDtnKhdMHi+AYb31PA==
-X-Received: by 2002:a05:620a:3989:b0:75e:c7cb:d75d with SMTP id ro9-20020a05620a398900b0075ec7cbd75dmr3711423qkn.17.1686268889172;
-        Thu, 08 Jun 2023 17:01:29 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id s1-20020a05620a16a100b0075b35e72a21sm674025qkj.86.2023.06.08.17.01.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jun 2023 17:01:28 -0700 (PDT)
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        Kalle Valo <kvalo@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229535AbjFIBGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 21:06:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2347F270F;
+        Thu,  8 Jun 2023 18:06:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 74D1C6528A;
+        Fri,  9 Jun 2023 01:06:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC84AC4339C;
+        Fri,  9 Jun 2023 01:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686272760;
+        bh=fnrj8HODEZPuaXfIuvje1guJksw1G513Xiodc8YprVU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CnanVOefCZe19tiPP03sOSqtFNcHuMeIG4TL5s/ZhGmQbf/TobM+ilWdjIqTSZGtC
+         dYt/2dQIlDJn17FVHvjxBlJSABu0kSVX68bgHK6QdODndv2cMfPvDttGNrGW640Lta
+         TQ41obJdEZyoq5AaNHnrvwzDSXRMuxELpdStTIL5iFZXIXnRqI4UNoJf6AN0yKv5QG
+         afZfn/GBHtVKwtdOcVgXnI8SYi1dwrvRB4XwH9pe3xEja0m0SE1ZiL/M28ddYx6Gv6
+         fNrgf1C+88kxXWz2Ou8UQvWX3PwRcTq17l+rvMgbuHqEfMWHTeEFG//m9+3Mzoyuyp
+         aejAq2s2GPelw==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-4f62b512fe2so1590704e87.1;
+        Thu, 08 Jun 2023 18:06:00 -0700 (PDT)
+X-Gm-Message-State: AC+VfDw79SWG1BpHicS9rCTe5h9AoxwXB/6ta14yOjl14IDs57Um9XGR
+        RulDa3cL/QaX+EiIGIiwp2pALC+dER4nrMxFrg==
+X-Google-Smtp-Source: ACHHUZ6OqexUjRIDLhjygD1zyaTSRKOXCn926L5zqqZ+dXrrEh0r0ELzATK2GNJVppdKRs/fpEhLSyPSr7XcKiwZwQA=
+X-Received: by 2002:a19:6753:0:b0:4f6:47a2:7bb4 with SMTP id
+ e19-20020a196753000000b004f647a27bb4mr322218lfj.60.1686272758863; Thu, 08 Jun
+ 2023 18:05:58 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230607061121.6732-1-shawn.sung@mediatek.com> <20230607061121.6732-2-shawn.sung@mediatek.com>
+In-Reply-To: <20230607061121.6732-2-shawn.sung@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Fri, 9 Jun 2023 09:05:46 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__LvESsCU74vWwdTKDT6C-xasO7d5sXdzihyssmEaQbYQ@mail.gmail.com>
+Message-ID: <CAAOTY__LvESsCU74vWwdTKDT6C-xasO7d5sXdzihyssmEaQbYQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/6] dt-bindings: display/mediatek: mt8188: Add
+ documentations for VDOSYS1
+To:     Hsiao Chien Sung <shawn.sung@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Arend Van Spriel <arend@broadcom.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH 3/3] ARM: dts: BCM5301X: Add Netgear R8000 WiFi regulator mappings
-Date:   Thu,  8 Jun 2023 17:01:25 -0700
-Message-Id: <20230609000125.2986600-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230602135925.14143-3-zajec5@gmail.com>
-References: <20230602135925.14143-1-zajec5@gmail.com> <20230602135925.14143-3-zajec5@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000002764ab05fda71278"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Singo Chang <singo.chang@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        Jason-JH Lin <jason-jh.lin@mediatek.com>,
+        Fei Shao <fshao@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000002764ab05fda71278
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Hi, Hsiao-chien:
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+Separate mmsys part to another patch because it would go through
+different maintainer's tree.
 
-On Fri,  2 Jun 2023 15:59:25 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This allows setting FullMAC firmware regulatory domain.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Separate padding part to another patch because it's a new device.
+
+Regards,
+Chun-Kuang.
+
+Hsiao Chien Sung <shawn.sung@mediatek.com> =E6=96=BC 2023=E5=B9=B46=E6=9C=
+=887=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=882:11=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> Add device tree documentations for MT8188 VDOSYS1.
+>
+> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
 > ---
-
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
-
---0000000000002764ab05fda71278
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGQhvSL5MC6QYY2C
-9kZr3t6AWjpqm4oly7nr1sdNYDHLMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDYwOTAwMDEyOVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCS72yl9Tpu5osQAleo4OvLn+/dyFRJdrqa
-bPCidTD2z0+OmZXPSdDc4WUwrg7wcK0fA7NcurPCSAsxhmHve7WaUjpNKtGbKtL+19J3ey0exsB0
-L3e/ZUd/ZHgLj3kmD+4tehboHH2Z7yOsU2F1LY6O34m1+e5buoe8ipy02vRLsFn05wq+Lh11mjQD
-rTbGKWyHiowCF4KBxRBwLdipGAhtPABC30agiEV/2ELKNUCy+XhNbU5hysllO96BMrWBPwoDdMXO
-6U9iNYwa5OuXSBix8j4XmQk2BG4w84VPmOjqHpJDoV2VFB84uCALBVQvXVVJMGhfvstGwA2F0Xs5
-G91s
---0000000000002764ab05fda71278--
+>  .../bindings/arm/mediatek/mediatek,mmsys.yaml |  1 +
+>  .../display/mediatek/mediatek,ethdr.yaml      |  5 +-
+>  .../display/mediatek/mediatek,mdp-rdma.yaml   |  5 +-
+>  .../display/mediatek/mediatek,merge.yaml      |  1 +
+>  .../display/mediatek/mediatek,padding.yaml    | 80 +++++++++++++++++++
+>  5 files changed, 90 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
+diatek,padding.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsy=
+s.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index 536f5a5ebd24..642fa2e4736e 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -32,6 +32,7 @@ properties:
+>                - mediatek,mt8183-mmsys
+>                - mediatek,mt8186-mmsys
+>                - mediatek,mt8188-vdosys0
+> +              - mediatek,mt8188-vdosys1
+>                - mediatek,mt8192-mmsys
+>                - mediatek,mt8195-vdosys1
+>                - mediatek,mt8195-vppsys0
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+ethdr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,et=
+hdr.yaml
+> index 801fa66ae615..e3f740ab0564 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.y=
+aml
+> @@ -23,7 +23,10 @@ description:
+>
+>  properties:
+>    compatible:
+> -    const: mediatek,mt8195-disp-ethdr
+> +    oneOf:
+> +      - enum:
+> +        - mediatek,mt8188-disp-ethdr
+> +        - mediatek,mt8195-disp-ethdr
+>
+>    reg:
+>      maxItems: 7
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+mdp-rdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek=
+,mdp-rdma.yaml
+> index dd12e2ff685c..07c345fa9178 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdm=
+a.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdm=
+a.yaml
+> @@ -21,7 +21,10 @@ description:
+>
+>  properties:
+>    compatible:
+> -    const: mediatek,mt8195-vdo1-rdma
+> +    oneOf:
+> +      - enum:
+> +        - mediatek,mt8188-vdo1-rdma
+> +        - mediatek,mt8195-vdo1-rdma
+>
+>    reg:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
+rge.yaml
+> index 2f8e2f4dc3b8..600f1b4608f8 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> @@ -23,6 +23,7 @@ properties:
+>      oneOf:
+>        - enum:
+>            - mediatek,mt8173-disp-merge
+> +          - mediatek,mt8188-disp-merge
+>            - mediatek,mt8195-disp-merge
+>
+>    reg:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+padding.yaml
+> new file mode 100644
+> index 000000000000..8a9e74cbf6dc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding=
+.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,padding.yam=
+l#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek PADDING
+> +
+> +maintainers:
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +description:
+> +  MediaTek PADDING provides ability to VDOSYS1 to fill pixels to
+> +  width and height of a layer with a specified color.
+> +  Since MIXER in VDOSYS1 requires the width of a layer to be 2-pixel-ali=
+gn, or
+> +  4-pixel-align when ETHDR is enabled, we need PADDING to deal with odd =
+width.
+> +  Please notice that even if the PADDING is in bypass mode,
+> +  settings in the registers must be cleared to 0, otherwise
+> +  undeinfed behaviors could happen.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8188-vdo1-padding
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: RDMA Clock
+> +
+> +  mediatek,gce-client-reg:
+> +    description:
+> +      The register of display function block to be set by gce. There are=
+ 4 arguments,
+> +      such as gce node, subsys id, offset and register size. The subsys =
+id that is
+> +      mapping to the register of display function blocks is defined in t=
+he gce header
+> +      include/dt-bindings/gce/<chip>-gce.h of each chips.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle of GCE
+> +        - description: GCE subsys id
+> +        - description: register offset
+> +        - description: register size
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +  - clocks
+> +  - mediatek,gce-client-reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/mt8188-clk.h>
+> +    #include <dt-bindings/power/mt8188-power.h>
+> +    #include <dt-bindings/gce/mt8188-gce.h>
+> +    #include <dt-bindings/memory/mt8188-memory-port.h>
+> +
+> +    soc {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        vdo1_padding0: vdo1_padding0@1c11d000 {
+> +            compatible =3D "mediatek,mt8188-vdo1-padding";
+> +            reg =3D <0 0x1c11d000 0 0x1000>;
+> +            clocks =3D <&vdosys1 CLK_VDO1_PADDING0>;
+> +            power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSYS1>;
+> +            mediatek,gce-client-reg =3D
+> +                <&gce0 SUBSYS_1c11XXXX 0xd000 0x1000>;
+> +        };
+> +    };
+> --
+> 2.18.0
+>
