@@ -2,162 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 458A3729D1E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:41:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09545729D2B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:43:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239428AbjFIOlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59158 "EHLO
+        id S241346AbjFIOnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:43:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbjFIOlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:41:15 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80865136;
-        Fri,  9 Jun 2023 07:41:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686321674; x=1717857674;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EoyR4lFdIWQ19KidrDL5ycKJHXLkSv6McCPFpDTTr7c=;
-  b=Gt5SSpvApMculddvk5rBX+d/71WAov08ZXQBuYDkCWL+MHPnNUHsKAZK
-   Bujn3HdLAEjRmQMrIgkYpwEZ6OYh7kcQnlutrxbq+dRbpSfsi1+bAHJXG
-   2EuOVJeoBt6PAqi8c/Fu6f20mfeCDP8UXGWOkY7mPRtF+k6dM0Admig/j
-   RfWK08k2lL52EVFEQPNt9vp75dStUssAOZ98Yw/vMnt0h52PqotkxDRrZ
-   Itv33isywNz2y3N2cMR23syndFsMnh1tExoEVqkAvxv8/+O2i21eJUqj+
-   iFBAz/kHF80mzJsD7SU+onAk7LM1vp4cPvI50F0PYxKbPwMQMJ08V7cJN
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="347257423"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
-   d="scan'208";a="347257423"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2023 07:41:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="854762977"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
-   d="scan'208";a="854762977"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 09 Jun 2023 07:41:11 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1q7dIb-002QCi-33;
-        Fri, 09 Jun 2023 17:41:09 +0300
-Date:   Fri, 9 Jun 2023 17:41:09 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
+        with ESMTP id S241306AbjFIOnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:43:32 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C12B326B2
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:43:30 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686321808;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=DUIz3aLVLXA7yYm5NV5lusG5/sWM+yqqjnapeENpyF0=;
+        b=HmO5VCWuCarFn5s7LixcHF4e9f24+YpPsFGKajM95Xr85+Cbi+qLw4zPu2mhZ476g5IBze
+        2g1MUvYUKREUMrbcYIVCg5b106RhD5M4WCeGIOGrmR6L0OktgK+Mg3HL5YYU/vpsr49hMU
+        MRrE/tvrU7C7dMvraBVJN/59Xj81a4WsOCMrXdkQRiH28Ba8l5EfY2F6NDBCxOXJIvd1e7
+        B4C2Hj+rN4XqlGmycu7BAe+B9+9ZnRVKtx38R+BI3BFJx6gMMgTmConHGTtMVVTf71bwEa
+        DvjxbxMK3RvVC1ELc89KQ/YLoj5f5tRi3mLOfQC55S5iU2I1DpPNrCKdWSzgUQ==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 09617FF808;
+        Fri,  9 Jun 2023 14:43:25 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] of: unittest: drop assertions for GPIO hog messages
-Message-ID: <ZIM6BQnjxGVenI1S@smile.fi.intel.com>
-References: <20230609143609.209373-1-brgl@bgdev.pl>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH 0/2] mtd: spi-nor: Support for another sst flash
+Date:   Fri,  9 Jun 2023 16:43:22 +0200
+Message-Id: <20230609144324.850617-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230609143609.209373-1-brgl@bgdev.pl>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 09, 2023 at 04:36:09PM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> These have now been demoted to debug and are normally hidden. Drop the
-> assertions entirely.
+Hello Tudor,
 
-Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Here are a couple of patches adding support for the sst26vf032b spi-nor,
+nothing specific here. I hope I ran all the required tests correctly,
+otherwise let me know.
 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  drivers/of/unittest.c | 28 ----------------------------
->  1 file changed, 28 deletions(-)
-> 
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 0060334a98a7..5386efeaf710 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -1844,26 +1844,10 @@ static void __init of_unittest_overlay_gpio(void)
->  	unittest(overlay_data_apply("overlay_gpio_02b", NULL),
->  		 "Adding overlay 'overlay_gpio_02b' failed\n");
->  
-> -	/*
-> -	 * messages are the result of the probes, after the
-> -	 * driver is registered
-> -	 */
-> -
-> -	EXPECT_BEGIN(KERN_DEBUG,
-> -		     "gpio-<<int>> (line-B-input): hogged as input\n");
-> -
-> -	EXPECT_BEGIN(KERN_DEBUG,
-> -		     "gpio-<<int>> (line-A-input): hogged as input\n");
-> -
->  	ret = platform_driver_register(&unittest_gpio_driver);
->  	if (unittest(ret == 0, "could not register unittest gpio driver\n"))
->  		return;
->  
-> -	EXPECT_END(KERN_DEBUG,
-> -		   "gpio-<<int>> (line-A-input): hogged as input\n");
-> -	EXPECT_END(KERN_DEBUG,
-> -		   "gpio-<<int>> (line-B-input): hogged as input\n");
-> -
->  	unittest(probe_pass_count + 2 == unittest_gpio_probe_pass_count,
->  		 "unittest_gpio_probe() failed or not called\n");
->  
-> @@ -1888,17 +1872,11 @@ static void __init of_unittest_overlay_gpio(void)
->  	probe_pass_count = unittest_gpio_probe_pass_count;
->  	chip_request_count = unittest_gpio_chip_request_count;
->  
-> -	EXPECT_BEGIN(KERN_DEBUG,
-> -		     "gpio-<<int>> (line-D-input): hogged as input\n");
-> -
->  	/* overlay_gpio_03 contains gpio node and child gpio hog node */
->  
->  	unittest(overlay_data_apply("overlay_gpio_03", NULL),
->  		 "Adding overlay 'overlay_gpio_03' failed\n");
->  
-> -	EXPECT_END(KERN_DEBUG,
-> -		   "gpio-<<int>> (line-D-input): hogged as input\n");
-> -
->  	unittest(probe_pass_count + 1 == unittest_gpio_probe_pass_count,
->  		 "unittest_gpio_probe() failed or not called\n");
->  
-> @@ -1935,17 +1913,11 @@ static void __init of_unittest_overlay_gpio(void)
->  	 *   - processing gpio for overlay_gpio_04b
->  	 */
->  
-> -	EXPECT_BEGIN(KERN_DEBUG,
-> -		     "gpio-<<int>> (line-C-input): hogged as input\n");
-> -
->  	/* overlay_gpio_04b contains child gpio hog node */
->  
->  	unittest(overlay_data_apply("overlay_gpio_04b", NULL),
->  		 "Adding overlay 'overlay_gpio_04b' failed\n");
->  
-> -	EXPECT_END(KERN_DEBUG,
-> -		   "gpio-<<int>> (line-C-input): hogged as input\n");
-> -
->  	unittest(chip_request_count + 1 == unittest_gpio_chip_request_count,
->  		 "unittest_gpio_chip_request() called %d times (expected 1 time)\n",
->  		 unittest_gpio_chip_request_count - chip_request_count);
-> -- 
-> 2.39.2
-> 
+Cheers,
+Miquèl
+
+Miquel Raynal (2):
+  dt-bindings: mtd: spi-nor: Document sst26vf0xxb flash series
+  mtd: spi-nor: Add support for sst26vf032b flash
+
+ Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
+ drivers/mtd/spi-nor/sst.c                                | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
