@@ -2,93 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C19729086
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 09:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DFBF729096
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 09:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235563AbjFIHBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 03:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60938 "EHLO
+        id S237624AbjFIHKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 03:10:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237837AbjFIHBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 03:01:31 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A392D71
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 00:01:26 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-56ca07b34b1so13274367b3.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 00:01:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686294085; x=1688886085;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=elu6bJKcJHNxiVwiE626QNNoqTsS0jjzoZTRm9E1Psw=;
-        b=FDGqKf8HvvgYs4qwcwy0tK/fGpaKJsSb0KyUJPa1yB2yPkyoRRWzeaYYGbEzmE7Q9b
-         7eIeNvMenEsLwG6QvM0hQHeqY1h5tE8pGxs2NLAYzRh5GJbiNX0z2b/6AfsrU9oxu03U
-         HWuJ+WN6+dRJ5rx/V3FjJ3FX4osakNajOVEY9YuZLe/NtvfLaZZBwqFWd8SZAcSQeCUx
-         d7Mi5aXfx3x1qjZXFDu05RUUYQG7fyb4v6Nl1EJxKlTRZNThKMtBH0DV0O1jw3AlCFp3
-         3oazKu029mHUU/b5JKQaCjNNSliWUWtakkclw0EkVS30TR+eI3xhFzTwJIr2eFpO1Bj+
-         Q0rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686294085; x=1688886085;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=elu6bJKcJHNxiVwiE626QNNoqTsS0jjzoZTRm9E1Psw=;
-        b=CZGcP/4oY8cVwPx27SMomGBm4FYGUjQiikI1vilRmaDPQG+tMhjiurHHCLijImBTul
-         n86iVLYXNvmvw1Wy+38eNk5/3HdfHlOXTgbgAOgsZLm6o8aQzW0EzQgWNO6Rz86BIuoa
-         fH4FG1IZjAXtPqkn2YzirI6dB1l4Kga0ONJnkwxhzuEfYxbpNyvmIwlquqeyNviMoEfT
-         fP/Ldn3fjoqzyupkVXWn4E0i8YXpK/iiUSPGRUI+eRJiJS3O3/HL+gSBkG+jmDMiBSkZ
-         rvktJPL9Uy69v1xdr5NfYc8u8FFuK5o9DU1JGNRRm+TaT0kn612TQrHjNqAOk+m9KWxG
-         w/mg==
-X-Gm-Message-State: AC+VfDwJHtyAOcrdLVtb/5jJShfuZ4vb/kVl1aQaZgCjrYLl6Xzs9A6X
-        Gn+katf8jNzqjRjnqFea2QtE8KgNuIpmKfi7b7+RHQ==
-X-Google-Smtp-Source: ACHHUZ5Jjnhl+b0jxcL7O9IVlDv0/+vbbJgsljEc1FFMBJXHJjgxmzOvbTiIbnBsXLYFE26tNkplg1JcwLHcfI9hO+A=
-X-Received: by 2002:a5b:512:0:b0:bac:f684:89f0 with SMTP id
- o18-20020a5b0512000000b00bacf68489f0mr308763ybp.51.1686294085532; Fri, 09 Jun
- 2023 00:01:25 -0700 (PDT)
+        with ESMTP id S236923AbjFIHKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 03:10:16 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A46D930D1;
+        Fri,  9 Jun 2023 00:10:08 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8CxNulP0IJkCPIAAA--.1048S3;
+        Fri, 09 Jun 2023 15:10:07 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxK8pO0IJkWxQKAA--.22402S3;
+        Fri, 09 Jun 2023 15:10:06 +0800 (CST)
+Subject: Re: [PATCH v12 2/2] spi: loongson: add bus driver for the loongson
+ spi controller
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
+ <20230608072819.25930-3-zhuyinbo@loongson.cn>
+ <CAHp75VfrPX=VsXMry0Dg_Y4zgt59S=uY=rxCZzv8fBvr_w+i-g@mail.gmail.com>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <44239068-e0ac-1dc8-337e-fb44f5266097@loongson.cn>
+Date:   Fri, 9 Jun 2023 15:10:05 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-References: <20230608122152.3930377-1-quic_srichara@quicinc.com> <20230608122152.3930377-5-quic_srichara@quicinc.com>
-In-Reply-To: <20230608122152.3930377-5-quic_srichara@quicinc.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 9 Jun 2023 09:01:14 +0200
-Message-ID: <CACRpkdbaNPyLr9322FKA506oBXwc2zPk8yvYCrw9J6VR1hmi=g@mail.gmail.com>
-Subject: Re: [v9 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robimarko@gmail.com, krzysztof.kozlowski@linaro.org,
-        andy.shevchenko@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <CAHp75VfrPX=VsXMry0Dg_Y4zgt59S=uY=rxCZzv8fBvr_w+i-g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxK8pO0IJkWxQKAA--.22402S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 8, 2023 at 2:23=E2=80=AFPM Sricharan Ramabadhran
-<quic_srichara@quicinc.com> wrote:
 
-> Add pinctrl definitions for the TLMM of IPQ5018.
->
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Co-developed-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 
-Patch applied to the pinctrl tree for v6.5.
+在 2023/6/8 下午6:15, Andy Shevchenko 写道:
+> On Thu, Jun 8, 2023 at 10:28 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+>>
+>> This bus driver supports the Loongson SPI hardware controller in the
+>> Loongson platforms and supports to use DTS and PCI framework to
+> 
+> the use
 
-Yours,
-Linus Walleij
+
+okay, I got it.
+
+> 
+>> register SPI device resources.
+> 
+> Thank you for an update. I have a few nit-picks below, but in general
+> this version is good (esp. if you address them)
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> 
+
+
+You're welcome, I will add the reviewed-by in v13.
+
+...
+
+>> +static void loongson_spi_set_cs(struct spi_device *spi, bool val)
+>> +{
+>> +       int cs;
+>> +       struct loongson_spi *loongson_spi = spi_controller_get_devdata(spi->controller);
+>> +
+>> +       cs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG)
+>> +                                          & ~(0x11 << spi_get_chipselect(spi, 0));
+>> +       loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SFCS_REG,
+>> +                                      (val ? (0x11 << spi_get_chipselect(spi, 0)) :
+>> +                                      (0x1 << spi_get_chipselect(spi, 0))) | cs);
+> 
+> Can be done as
+> 
+> static void loongson_spi_set_cs(struct spi_device *spi, bool en)
+> 
+>      unsigned char mask = (BIT(4) | BIT(0)) << spi_get_chipselect(spi, 0);
+>      unsigned char val = en ? mask :  (BIT(0) << spi_get_chipselect(spi, 0));
+> 
+>      cs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG) & ~mask;
+>      loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SFCS_REG, val | cs);
+
+
+okay, I will do it.
+
+> 
+> (Renamed variables to be consistent with the other uses in the driver below)
+
+
+sorry, I don't got it. Are you referring to the following changes ?
+loongson_spi_set_cs(spi, 1) => loongson_spi_set_cs(spi, true)
+
+> 
+>> +}
+>> +
+>> +static void loongson_spi_set_clk(struct loongson_spi *loongson_spi, unsigned int hz)
+>> +{
+>> +       unsigned char val;
+>> +       unsigned int div, div_tmp;
+>> +       static const char rdiv[12] = {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
+>> +
+>> +       div = clamp_val(DIV_ROUND_UP_ULL(loongson_spi->clk_rate, hz), 2, 4096);
+>> +       div_tmp = rdiv[fls(div - 1)];
+>> +       loongson_spi->spcr = (div_tmp & GENMASK(1, 0)) >> 0;
+>> +       loongson_spi->sper = (div_tmp & GENMASK(3, 2)) >> 2;
+>> +       val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
+> 
+>      val &= GENMASK(1, 0);
+
+
+This seems to be "val &= ~GENMASK(1, 0);"
+
+> 
+>> +       loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, (val & ~3) |
+>> +                              loongson_spi->spcr);
+> 
+>         loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, val
+> | loongson_spi->spcr);
+
+
+okay, I got it.
+
+> 
+>> +       val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
+> 
+>      val &= GENMASK(1, 0);
+
+
+This seems to be "val &= ~GENMASK(1, 0);"
+
+> 
+>> +       loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, (val & ~3) |
+>> +                              loongson_spi->sper);
+> 
+>         loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, val
+> | loongson_spi->sper);
+> 
+
+
+okay,  I got it.
+
+>> +       loongson_spi->hz = hz;
+>> +}
+>> +
+>> +static void loongson_spi_set_mode(struct loongson_spi *loongson_spi,
+>> +                                 struct spi_device *spi)
+>> +{
+>> +       unsigned char val;
+>> +
+>> +       val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
+>> +       val &= ~(LOONGSON_SPI_SPCR_CPOL | LOONGSON_SPI_SPCR_CPHA);
+>> +       if (spi->mode & SPI_CPOL)
+>> +               val |= LOONGSON_SPI_SPCR_CPOL;
+>> +       if (spi->mode & SPI_CPHA)
+>> +               val |= LOONGSON_SPI_SPCR_CPHA;
+>> +
+>> +       loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, val);
+>> +       loongson_spi->mode |= spi->mode;
+>> +}
+>> +
+>> +static int loongson_spi_update_state(struct loongson_spi *loongson_spi,
+>> +                               struct spi_device *spi, struct spi_transfer *t)
+>> +{
+>> +       if (t && loongson_spi->hz != t->speed_hz)
+>> +               loongson_spi_set_clk(loongson_spi, t->speed_hz);
+>> +
+>> +       if ((spi->mode ^ loongson_spi->mode) & SPI_MODE_X_MASK)
+>> +               loongson_spi_set_mode(loongson_spi, spi);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int loongson_spi_setup(struct spi_device *spi)
+>> +{
+>> +       struct loongson_spi *loongson_spi;
+>> +
+>> +       loongson_spi = spi_controller_get_devdata(spi->controller);
+>> +       if (spi->bits_per_word % 8)
+>> +               return -EINVAL;
+>> +
+>> +       if (spi_get_chipselect(spi, 0) >= spi->controller->num_chipselect)
+>> +               return -EINVAL;
+>> +
+>> +       loongson_spi->hz = 0;
+>> +       loongson_spi_set_cs(spi, 1);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int loongson_spi_write_read_8bit(struct spi_device *spi, const u8 **tx_buf,
+>> +                                       u8 **rx_buf, unsigned int num)
+>> +{
+>> +       int ret;
+>> +       struct loongson_spi *loongson_spi = spi_controller_get_devdata(spi->controller);
+>> +
+>> +       if (tx_buf && *tx_buf)
+>> +               loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_FIFO_REG, *((*tx_buf)++));
+>> +       else
+>> +               loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_FIFO_REG, 0);
+> 
+> + Blank line
+
+
+okay, I will add the blank line.
+
+> 
+>> +       ret = readb_poll_timeout(loongson_spi->base + LOONGSON_SPI_SPSR_REG, loongson_spi->spsr,
+>> +                       (loongson_spi->spsr & 0x1) != LOONGSON_SPI_SPSR_RFEMPTY, 1, MSEC_PER_SEC);
+> 
+>                         (loongson_spi->spsr &
+> LOONGSON_SPI_SPSR_RFEMPTY) != LOONGSON_SPI_SPSR_RFEMPTY,
+>                         1, MSEC_PER_SEC);
+
+
+okay, I got it.
+
+> 
+>> +       if (rx_buf && *rx_buf)
+>> +               *(*rx_buf)++ = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_FIFO_REG);
+>> +       else
+>> +               loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_FIFO_REG);
+>> +
+>> +       return ret;
+>> +}
+>> +
+>> +static int loongson_spi_write_read(struct spi_device *spi, struct spi_transfer *xfer)
+>> +{
+>> +       int ret;
+>> +       unsigned int count;
+>> +       const u8 *tx = xfer->tx_buf;
+>> +       u8 *rx = xfer->rx_buf;
+>> +
+>> +       count = xfer->len;
+> 
+>> +
+> 
+> Unneeded blank line.
+
+
+okay, I will remove the blank line.
+
+> 
+>> +       do {
+>> +               ret = loongson_spi_write_read_8bit(spi, &tx, &rx, count);
+>> +               if (ret)
+>> +                       break;
+>> +       } while (--count);
+>> +
+>> +       return ret;
+>> +}
+>> +
+>> +static int loongson_spi_prepare_message(struct spi_controller *ctlr, struct spi_message *m)
+>> +{
+>> +       struct loongson_spi *loongson_spi = spi_controller_get_devdata(ctlr);
+> 
+>> +       loongson_spi->para = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_PARA_REG);
+> 
+>> +       loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_PARA_REG, loongson_spi->para & ~1);
+> 
+> BIT(0) ?
+> LOONGSON_SPI_PARA_MEM_EN ?
+
+
+I will use LOONGSON_SPI_PARA_MEM_EN.
+
+> 
+>> +       return 0;
+>> +}
+>> +
+
+...
+
+>> +int loongson_spi_init_controller(struct device *dev, void __iomem *regs)
+>> +{
+>> +       struct spi_controller *controller;
+>> +       struct loongson_spi *spi;
+>> +       struct clk *clk;
+>> +
+>> +       controller = devm_spi_alloc_host(dev, sizeof(struct loongson_spi));
+>> +       if (controller == NULL)
+>> +               return -ENOMEM;
+>> +
+>> +       controller->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
+> 
+>     ... = SPI_MODE_X_MASK | SPI_CS_HIGH;
+
+
+okay, I got it.
+
+
+Thanks,
+Yinbo
+
