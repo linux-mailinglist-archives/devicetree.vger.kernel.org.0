@@ -2,87 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9154F728E73
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 05:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4083A728F03
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 06:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237872AbjFIDRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 23:17:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57150 "EHLO
+        id S238392AbjFIEjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 00:39:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237905AbjFIDR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 23:17:29 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A236B3589;
-        Thu,  8 Jun 2023 20:17:26 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8CxOurFmYJk8N0AAA--.2763S3;
-        Fri, 09 Jun 2023 11:17:25 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxZuTEmYJkHZ4JAA--.29606S3;
-        Fri, 09 Jun 2023 11:17:24 +0800 (CST)
-Subject: Re: [PATCH v12 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
- <20230608072819.25930-3-zhuyinbo@loongson.cn>
- <CAHp75VfrPX=VsXMry0Dg_Y4zgt59S=uY=rxCZzv8fBvr_w+i-g@mail.gmail.com>
- <88f19398-385e-440c-83e9-ce51ea60cc97@sirena.org.uk>
- <fa6d546f-ce92-1fe9-5400-0cb8bccf8ee5@loongson.cn>
- <23420735-0221-4eab-9a4e-07a6225c761a@sirena.org.uk>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <04638a1f-7e93-983c-a014-4a026309c7fa@loongson.cn>
-Date:   Fri, 9 Jun 2023 11:17:24 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S238051AbjFIEjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 00:39:36 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C1230F1;
+        Thu,  8 Jun 2023 21:39:35 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3594JVM3025898;
+        Fri, 9 Jun 2023 04:39:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=AdSf+nxOWU8wHe///6FcmZs/IpVxpxCPCP6es/Dvi1s=;
+ b=CeYakn1JYqqFu+ge2bylCXj2PWPF4MPUqCsahlBLVzB12mgBE8bhO7h57mqJ0WaPaxV9
+ eYl/Ubc+gInqNl186Z3FuNnOn84ztZkYeHoTHT7EEuqmP6tiVqlUkUTbwRfKqRsuV8bd
+ 98pmgUHbvTNM0abCJJTccRBis8AkkOe261IgnyEuYLWXNkWubjWuzfhznYokv0jhqUsI
+ XeurOtecTpE+pICuLCxhkcF46Hr0NLhSjjOMgP0xidgXa5jefJyqE7+512Qb0mtd/2eZ
+ jh4UTWKMkRuXDDM0+JVV81ITeMSx4OofDQYLghvwMbtYKQ+DFzx5AnOPl1R5H4jF/nZ6 Lw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r39kuae4n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Jun 2023 04:39:31 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3594dUL9032544
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 9 Jun 2023 04:39:30 GMT
+Received: from [10.216.3.169] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 8 Jun 2023
+ 21:39:27 -0700
+Message-ID: <b95652b2-c93d-34b3-1d52-340f7590b857@quicinc.com>
+Date:   Fri, 9 Jun 2023 10:09:24 +0530
 MIME-Version: 1.0
-In-Reply-To: <23420735-0221-4eab-9a4e-07a6225c761a@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/2] dt-bindings: arm: idle-states: Add
+ idle-state-disabled property
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxZuTEmYJkHZ4JAA--.29606S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Conor Dooley <conor.dooley@microchip.com>
+CC:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_lsrao@quicinc.com>,
+        <quic_mkshah@quicinc.com>, <devicetree@vger.kernel.org>
+References: <20230608085544.16211-1-quic_tnimkar@quicinc.com>
+ <20230608085544.16211-2-quic_tnimkar@quicinc.com>
+ <20230608-steadying-idealism-1f8a97db1491@wendy>
+From:   Tushar Nimkar <quic_tnimkar@quicinc.com>
+In-Reply-To: <20230608-steadying-idealism-1f8a97db1491@wendy>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1pNJGaNN2yWtidvUjT0AUrC2_kIVTxfR
+X-Proofpoint-ORIG-GUID: 1pNJGaNN2yWtidvUjT0AUrC2_kIVTxfR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-09_02,2023-06-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ mlxscore=0 mlxlogscore=517 lowpriorityscore=0 phishscore=0 bulkscore=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 adultscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306090040
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks Conor for reviewing.
 
-
-在 2023/6/8 下午7:53, Mark Brown 写道:
-> On Thu, Jun 08, 2023 at 07:45:49PM +0800, zhuyinbo wrote:
->> 在 2023/6/8 下午6:29, Mark Brown 写道:
->>> On Thu, Jun 08, 2023 at 01:15:39PM +0300, Andy Shevchenko wrote:
->>>> On Thu, Jun 8, 2023 at 10:28 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+On 6/8/2023 2:49 PM, Conor Dooley wrote:
+> Hey Tushar,
 > 
->>>>> This bus driver supports the Loongson SPI hardware controller in the
->>>>> Loongson platforms and supports to use DTS and PCI framework to
-> 
->>> Please delete unneeded context from mails when replying.  Doing this
->>> makes it much easier to find your reply in the message, helping ensure
->>> it won't be missed by people scrolling through the irrelevant quoted
->>> material.
-> 
->> okay, I got it.
-> 
-> That was more directed at Andy than you!
+> On Thu, Jun 08, 2023 at 02:25:42PM +0530, Tushar Nimkar wrote:
 
+> 
+> Firstly, you should CC the dt-bindings maintainers like
+> get_maintainer.pl would tell you.
+> Secondly, there are two 1/2 patches in this series.
+> 
+1. Sure, I will include dt maintainer in next version.
+2. Yes, one of the Patch 1/2 sent by mistake.
+I will remove in next version.
 
-Okay, I will learn from Andy.
+> 
+> Thirdly, this is operating system specific behaviour, tied to Linux, and
+> has no place in a binding.
+> 
+3. I will remove [echo N > 
+/sys/devices/system/cpu/cpuX/cpuidle/stateX/disable] command from 
+bindings document.
 
-Thanks
+> Cheers,
+> Conor.
 > 
 
+Thanks,
+Tushar
