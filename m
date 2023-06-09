@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0934729C5A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA2E7729C69
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:09:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241364AbjFIOJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:09:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
+        id S241082AbjFIOJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:09:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240067AbjFIOIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:08:43 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9538E3A84
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:08:21 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977cc662f62so272001866b.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:08:21 -0700 (PDT)
+        with ESMTP id S241107AbjFIOIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:08:44 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 639203A94
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:08:23 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-514924ca903so2767784a12.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:08:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686319674; x=1688911674;
+        d=linaro.org; s=google; t=1686319676; x=1688911676;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6vuuH12IFYzE8hSEom6ACjhga+vJ8Y/H3cnZUjmxwo0=;
-        b=JtP8ZGwKiKVR9ztC07TLerrR2Uxqkt5Ox3XUhN0+sESN99DQUWXct7i1n4UUWpjCjW
-         /PbkfRUGBAQ+bmuqF5p3hOmnG9mO43gbKoSKbh77vKQ2l+cvecsCYETjHxG1AUhlnjHB
-         oplUWEUtsY3z+rLu58KPl0HQdEY47WZic5K0JTkmPHBMcL6dl2d5KwF0narTk9/Ux4kb
-         /vQS1Qmjy6G6BXHiPk3U4pk2pepOfGfRvi0sOK6luWZz4pvabw5jC2qtln4SzI21HgqC
-         dOOY6z+757Ds0KILE1JmuyoOJH9K0o94pjOUz+0TKqCv/u27YU3/Qjc29pIoiS3c29qZ
-         kdWQ==
+        bh=Mq7aAwDqysJigrIwiPTPGrjCxNlaNxkTWBW8tf7ilDM=;
+        b=EtANPXp4onPWBknX5WJBLtooHfbRoWWViCbQKANAWyFWyPSdn0u8M2XTRGGfBfGhjs
+         HNvim90blRGkfBJ9qzeZJHpMSDggmFPdih9nlsSI5f8d+bWTWWfyrPptDP+vf2XpvJat
+         8GMjRGdvxs8GoB9S1N/iZBe1o4qxgcz0w+ZYrnGPruxNgr+vob2CgnrYo2HchlBmDmHt
+         gq3oTenmYs7oe6PuUMPXucY9m0tHL6uX28XfhIGrJ+oiQgSgS27x39/RrOEsTVaf4kbW
+         ab4t5Tk9q/Wq2MWdh0tavLRjFHYjLYWQXq8kjd4mjX8dDzlrq++fcn7xjBCT9xIHOM+L
+         Y0ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686319674; x=1688911674;
+        d=1e100.net; s=20221208; t=1686319676; x=1688911676;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6vuuH12IFYzE8hSEom6ACjhga+vJ8Y/H3cnZUjmxwo0=;
-        b=E8W8xC2v9JeqOvER2JJ5PKv8ZJxa2wwxp5XCKmfYhqzJ6fXd1sPG+UO3EOiV2zIQ48
-         l8tmPL1jog8W0MxmQA9SMf5G54fZ+qWdeABSTxyZB2aakFv8B+NYYspA0+q61VQx1FW8
-         NPxwoVwdbIMD1IPNMaH9dEBtCTkN8rv8ODU4JwezJxcduWjMYD3VgLtYLfLaDOSF1p/5
-         Ni3Fl7/wRpzYhhs4fXOkj0Z5R5fXV9R2R0AJbTCL57kph24qsBs7IUiyDoY0kPMDLlO2
-         CBzTT5FEtegfdbiMRpY1T+LHM9cIz0WVZhwUebnaK0MhKjkkbUJS7KDuaOgA8aDKA/N9
-         5ujg==
-X-Gm-Message-State: AC+VfDxpo5Ih/qmUq4a3jqI20XoTW+VhTbRr4VWvxveiVZJAJesjLDGf
-        mFUGeVkes/3TwqRhoJoJp9flgg==
-X-Google-Smtp-Source: ACHHUZ5MsU3kZrlq0EHll8zAjRlT4wiVMedsx6Lb2KqQmJZoJPwkDb+hz8M5k8j3xnrrBkI/nyEgtA==
-X-Received: by 2002:a17:906:ee82:b0:96a:ca96:3e49 with SMTP id wt2-20020a170906ee8200b0096aca963e49mr2011879ejb.13.1686319674156;
-        Fri, 09 Jun 2023 07:07:54 -0700 (PDT)
+        bh=Mq7aAwDqysJigrIwiPTPGrjCxNlaNxkTWBW8tf7ilDM=;
+        b=DhUlDuZ4Zj8WIfj2KDdTTOBZyn3rdC9D+aErkRYfRJk2IoYtAiCUG8WAgtsVbE+OgF
+         QuyhN7OeKHrJLafe3eCoVuOgSGsPcmaLJj1qwNLdzlpKfw9MkR7sDWAYmp9i2VSH0IL1
+         dlbD8Ba83WLtgfXtJ7keJiVFrH/y/hFv2FJjtZV/UaoM42uKDz42C4CrjhDB1+h4jIiw
+         9Bpkp1He9f8Absy7Sz3nTQZLnhwjF53pez6uzkbn2JpLqn2kpBbSZSLgX9mOy3K/fj6A
+         NRWP2T2i1HL4rug6CdTiY1Ytg9MpMMZq40dHJ3NU6hVhSEdZWh5G4hQvmSj3143Z4M1r
+         rkbA==
+X-Gm-Message-State: AC+VfDySxb76ny0T7I2PJeOcNS1C6iI86QGbHtu70FgqC4H0TLGVgXx6
+        YERfYEzZ4rNLJhgH8LSd1/Gzgg==
+X-Google-Smtp-Source: ACHHUZ6pY04whzkXSsILutSBFFXAvABTLYt6ob8jR/zTu+34kkmTKfsoZaSGBGmQui82Fa1SLCC16A==
+X-Received: by 2002:aa7:da8a:0:b0:510:f44c:4b71 with SMTP id q10-20020aa7da8a000000b00510f44c4b71mr1207523eds.27.1686319676550;
+        Fri, 09 Jun 2023 07:07:56 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id o17-20020a1709062e9100b00974c32c9a75sm1317644eji.216.2023.06.09.07.07.52
+        by smtp.gmail.com with ESMTPSA id k10-20020aa7c38a000000b005027d31615dsm1793994edq.62.2023.06.09.07.07.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 07:07:53 -0700 (PDT)
+        Fri, 09 Jun 2023 07:07:56 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: clock: drop unneeded quotes and use absolute /schemas path
-Date:   Fri,  9 Jun 2023 16:07:51 +0200
-Message-Id: <20230609140751.65129-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: arm: drop unneeded quotes and use absolute /schemas path
+Date:   Fri,  9 Jun 2023 16:07:54 +0200
+Message-Id: <20230609140754.65158-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,39 +80,148 @@ starting with /schemas is preferred.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/clock/ingenic,cgu.yaml      | 4 ++--
- .../devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml  | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ .../bindings/arm/arm,vexpress-juno.yaml        | 10 +++++-----
+ .../devicetree/bindings/arm/cpus.yaml          | 18 +++++++++---------
+ .../devicetree/bindings/arm/psci.yaml          |  2 +-
+ 3 files changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml b/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
-index 9e733b10c392..509df06b9c9d 100644
---- a/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
-+++ b/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
-@@ -98,9 +98,9 @@ required:
+diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+index 09c319f803ba..cdd65881fcdd 100644
+--- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+@@ -122,14 +122,14 @@ properties:
+   arm,vexpress,position:
+     description: When daughterboards are stacked on one site, their position
+       in the stack be be described this attribute.
+-    $ref: '/schemas/types.yaml#/definitions/uint32'
++    $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 0
+     maximum: 3
+ 
+   arm,vexpress,dcc:
+     description: When describing tiles consisting of more than one DCC, its
+       number can be specified with this attribute.
+-    $ref: '/schemas/types.yaml#/definitions/uint32'
++    $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 0
+     maximum: 3
+ 
+@@ -180,13 +180,13 @@ patternProperties:
+               - const: simple-bus
+           arm,v2m-memory-map:
+             description: This describes the memory map type.
+-            $ref: '/schemas/types.yaml#/definitions/string'
++            $ref: /schemas/types.yaml#/definitions/string
+             enum:
+               - rs1
+               - rs2
+ 
+           arm,hbi:
+-            $ref: '/schemas/types.yaml#/definitions/uint32'
++            $ref: /schemas/types.yaml#/definitions/uint32
+             description: This indicates the ARM HBI (Hardware Board ID), this is
+               ARM's unique board model ID, visible on the PCB's silkscreen.
+ 
+@@ -197,7 +197,7 @@ patternProperties:
+               property, describing the physical location of the children nodes.
+               0 means motherboard site, while 1 and 2 are daughterboard sites, and
+               0xf means "sisterboard" which is the site containing the main CPU tile.
+-            $ref: '/schemas/types.yaml#/definitions/uint32'
++            $ref: /schemas/types.yaml#/definitions/uint32
+             minimum: 0
+             maximum: 15
+ 
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index 64b58238e3a1..9e6a45eea4e5 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -197,7 +197,7 @@ properties:
+       - qcom,scorpion
+ 
+   enable-method:
+-    $ref: '/schemas/types.yaml#/definitions/string'
++    $ref: /schemas/types.yaml#/definitions/string
+     oneOf:
+       # On ARM v8 64-bit this property is required
+       - enum:
+@@ -246,8 +246,8 @@ properties:
+ 
+   cpu-release-addr:
+     oneOf:
+-      - $ref: '/schemas/types.yaml#/definitions/uint32'
+-      - $ref: '/schemas/types.yaml#/definitions/uint64'
++      - $ref: /schemas/types.yaml#/definitions/uint32
++      - $ref: /schemas/types.yaml#/definitions/uint64
+     description:
+       The DT specification defines this as 64-bit always, but some 32-bit Arm
+       systems have used a 32-bit value which must be supported.
+@@ -255,7 +255,7 @@ properties:
+         property value of "spin-table".
+ 
+   cpu-idle-states:
+-    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    $ref: /schemas/types.yaml#/definitions/phandle-array
+     items:
+       maxItems: 1
+     description: |
+@@ -271,7 +271,7 @@ properties:
+   cci-control-port: true
+ 
+   dynamic-power-coefficient:
+-    $ref: '/schemas/types.yaml#/definitions/uint32'
++    $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+       A u32 value that represents the running time dynamic
+       power coefficient in units of uW/MHz/V^2. The
+@@ -308,7 +308,7 @@ properties:
+       PM domain provider, must be "psci".
+ 
+   qcom,saw:
+-    $ref: '/schemas/types.yaml#/definitions/phandle'
++    $ref: /schemas/types.yaml#/definitions/phandle
+     description: |
+       Specifies the SAW* node associated with this CPU.
+ 
+@@ -318,7 +318,7 @@ properties:
+       * arm/msm/qcom,saw2.txt
+ 
+   qcom,acc:
+-    $ref: '/schemas/types.yaml#/definitions/phandle'
++    $ref: /schemas/types.yaml#/definitions/phandle
+     description: |
+       Specifies the ACC* node associated with this CPU.
+ 
+@@ -329,7 +329,7 @@ properties:
+       * arm/msm/qcom,kpss-acc.txt
+ 
+   rockchip,pmu:
+-    $ref: '/schemas/types.yaml#/definitions/phandle'
++    $ref: /schemas/types.yaml#/definitions/phandle
+     description: |
+       Specifies the syscon node controlling the cpu core power domains.
+ 
+@@ -339,7 +339,7 @@ properties:
+       the cpu-core power-domains.
+ 
+   secondary-boot-reg:
+-    $ref: '/schemas/types.yaml#/definitions/uint32'
++    $ref: /schemas/types.yaml#/definitions/uint32
+     description: |
+       Required for systems that have an "enable-method" property value of
+       "brcm,bcm11351-cpu-method", "brcm,bcm23550" or "brcm,bcm-nsp-smp".
+diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
+index 3a2c908ff282..0c5381e081bd 100644
+--- a/Documentation/devicetree/bindings/arm/psci.yaml
++++ b/Documentation/devicetree/bindings/arm/psci.yaml
+@@ -100,7 +100,7 @@ properties:
  
  patternProperties:
-   "^usb-phy@[a-f0-9]+$":
--    allOf: [ $ref: "../phy/ingenic,phy-usb.yaml#" ]
-+    $ref: /schemas/phy/ingenic,phy-usb.yaml#
-   "^mac-phy-ctrl@[a-f0-9]+$":
--    allOf: [ $ref: "../net/ingenic,mac.yaml#" ]
-+    $ref: /schemas/net/ingenic,mac.yaml#
+   "^power-domain-":
+-    $ref: "../power/power-domain.yaml#"
++    $ref: /schemas/power/power-domain.yaml#
  
- additionalProperties: false
- 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
-index 99686085f751..26d94cedc871 100644
---- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
-+++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
-@@ -48,7 +48,7 @@ properties:
- patternProperties:
-   "^dma-router@[a-f0-9]+$":
      type: object
--    $ref: "../dma/renesas,rzn1-dmamux.yaml#"
-+    $ref: /schemas/dma/renesas,rzn1-dmamux.yaml#
- 
- required:
-   - compatible
+     description: |
 -- 
 2.34.1
 
