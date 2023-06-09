@@ -2,126 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B06872992D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 14:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B24372994B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 14:13:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240094AbjFIMLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 08:11:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56672 "EHLO
+        id S240196AbjFIMN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 08:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239673AbjFIMLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 08:11:11 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC7D4359A;
-        Fri,  9 Jun 2023 05:10:50 -0700 (PDT)
+        with ESMTP id S238011AbjFIMNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 08:13:25 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C4B185
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 05:13:23 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9745c5fed21so257846766b.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 05:13:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686312651; x=1717848651;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EqPA2k/fZFgvjfVAkEiqA2avtyIUigdprMjWSFRFNO8=;
-  b=YUOmgiGONs8rMe4zvfrArrHAbuBw5zQKkC68sVgFzaxalbCEhAGweU5I
-   xNuoTmvR6l4LFimTitYzKUIGDVzR4kdi8gSKpSv6vboqb9mGSilZ/jm9E
-   HccS8doyUO7ZW0FeNlRQhqZxKRoWigQf6aR8pSWQySLCSfgCD3cB7cch/
-   BB5qOi/KevmkWkuCTU6diCK4EUXQQ+twYycPSX1S/l4BIWkifvaSKg+o1
-   717/S8d7fQaWjRZf9juf0TZMxbvC03LBadYwx+xvSrsbnUDCgx2bggU59
-   853/7kQDgYm6mhR1vufaT11rYb4S23jEGBmGyQk16M0GHaR6wrYa17yEn
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,229,1681164000"; 
-   d="scan'208";a="31365070"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Jun 2023 14:10:48 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 09 Jun 2023 14:10:48 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 09 Jun 2023 14:10:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686312648; x=1717848648;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EqPA2k/fZFgvjfVAkEiqA2avtyIUigdprMjWSFRFNO8=;
-  b=lZwa7Z1n59OOM02ehTx7hgscaQv2Vd/XJnBv6PSalWT94EauMbA7wHmQ
-   SjtgpuS9x6r5am8iIyaLmpoYyIl5hdjAMRitRgcmFZYFhIKlrK3CTKA54
-   PjNDLHzEoAuHeBKbv3ctiT7yFcTIMwdz6xuH9TItTCEw6oXF7ScamzA16
-   XvrAgXN5z2/EQ3qawGg22nGoMW6VEZPxT9tWvwmAx33ehOXYzIDXol54b
-   RKZvBMTElO85vA3CmwSplQT0ccyS/olbBgmo6zxcf7bO5PZZH75pkFWFI
-   +Icf1hzNa5T4+e7+doHGCZwD4CXTts+nJ/LeN8QNw9957udxDYV7ha9gR
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,229,1681164000"; 
-   d="scan'208";a="31365069"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Jun 2023 14:10:48 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6F962280087;
-        Fri,  9 Jun 2023 14:10:48 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
+        d=linaro.org; s=google; t=1686312802; x=1688904802;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/d+dHBgEekjDSHClTJsQ6wFO80YgJRYqTq5jLwHrLwA=;
+        b=ypCdboJHyF8Pl/ysbJkoYgLbs2KgBOkv6jkgGU15xvwv23HstfZfrsJpg3tC1MEEuz
+         vXmsyfIHbJSOHw3ZFkrvJooHvlXZN2EMJ8xsL2krSz5bWH5IZwiqmMvvw9Qc0sSy30vD
+         NmqHwwxnfIoReQ4ETAfHr5AdQJ2M5iARlfood5WIeTn8qAk9NBXlbuPplX6UMwgJGrL5
+         kASZo4ZlpTQE5zwrRUKwOgB1ygNTimN3wYxxF54lXaeqr/qaccSB26ev+k4Voe5O6/CE
+         fP7zDagujvUUHxFk7N8/5CMjkBKJ8IbqJMASia8SWduXSrKaejVH9jyhSMqygHKbz3VE
+         kK6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686312802; x=1688904802;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/d+dHBgEekjDSHClTJsQ6wFO80YgJRYqTq5jLwHrLwA=;
+        b=hJXwqrRxN0ZcTRagw691dj8f8QSHM2J72VOEDMT4bD6owr9yHWglTb/5OnfB5St5MG
+         EDz369I/pzQQ36LifjJGMbCR4vdok7snJCzSpZ05Vas6+tQEGlVgCoUUUsmnf/MgLcAW
+         6+VIZ8IYpFZ+gHra8X1PqsdLW5UfOHXS3yTCGLASBTAWgEa+0+2Nv7VXZo+WvqEFaz9N
+         O3cJe/AcPiavaPWGnXD0q0isIwT9L85uYv8fCvQu4EF8FwJ+Vhx5znjCSBDjv26AJO/9
+         OBmdiY64sp8mKJx1eV8o92CZXqTOSu+fHPVfJlbl6h/hul8KNG3UkwCkSefHbpMVydFh
+         bpWQ==
+X-Gm-Message-State: AC+VfDzmGN+LG2wF3IwfA/g7pJ7nhH+C8S/VzslBrH8oHa0H7JqadGHA
+        EwsWFZvMpcfSZmt7WXgxMT0MUA==
+X-Google-Smtp-Source: ACHHUZ448AEQ91mBl1jmqqcGkRQTF/d2BTQKH4v4bK07JoAJsj99mIAC7VHg/3tDLGCNWOO1iKpbXA==
+X-Received: by 2002:a17:907:d9e:b0:974:630a:fbac with SMTP id go30-20020a1709070d9e00b00974630afbacmr1485064ejc.18.1686312802221;
+        Fri, 09 Jun 2023 05:13:22 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e26-20020a1709062c1a00b00974556e50a6sm1223271ejh.114.2023.06.09.05.13.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 05:13:21 -0700 (PDT)
+Message-ID: <3106c4a1-ce5b-a9c4-5cf4-6adead7fce80@linaro.org>
+Date:   Fri, 9 Jun 2023 14:13:19 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: add Inventec
+ starscream-bmc
+Content-Language: en-US
+To:     =?UTF-8?B?Q2hlbi5QSiDpmbPmn4/ku7sgVEFP?= <Chen.PJ@inventec.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/1] dt-bindings: gpio: gpio-vf610: Add parsing of hogs
-Date:   Fri,  9 Jun 2023 14:10:44 +0200
-Message-Id: <20230609121044.586214-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+Cc:     =?UTF-8?B?WWUuVmljIOiRieWuh+a4hSBUQU8=?= <ye.vic@inventec.com>,
+        =?UTF-8?B?SHVhbmcuQWxhbmcg6buD6Iux6YOOIFRBTw==?= 
+        <Huang.Alang@inventec.com>
+References: <b039b1b2673644af84db8f803bc7d156@inventec.com>
+ <c5f1fbb0e6754394af41eb5083f64d89@inventec.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c5f1fbb0e6754394af41eb5083f64d89@inventec.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow parsing GPIO controller children nodes with GPIO hogs.
+On 09/06/2023 13:52, Chen.PJ 陳柏任 TAO wrote:
+> Document the new compatibles used on Inventec starscream-bmc
+> 
+> Signed-off-by: Chen PJ <Chen.pj@inventec.com>
+> ---
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This implements the same as commit dfb49cc231a48 ("dt-bindings: gpio:
-fsl-imx-gpio: Add parsing of hogs") and reuses the commit message as
-well.
+Any reason to ignore what I wrote?
 
- .../devicetree/bindings/gpio/gpio-vf610.yaml    | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+https://lore.kernel.org/all/2e06e7db-64f9-51f8-adf1-b240f30a2608@linaro.org/
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-index d2c39dba56add..41b4bb1bca11d 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-@@ -61,6 +61,23 @@ properties:
-   gpio-ranges:
-     maxItems: 1
- 
-+patternProperties:
-+  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-+    type: object
-+    properties:
-+      gpio-hog: true
-+      gpios: true
-+      input: true
-+      output-high: true
-+      output-low: true
-+      line-name: true
-+
-+    required:
-+      - gpio-hog
-+      - gpios
-+
-+    additionalProperties: false
-+
- required:
-   - compatible
-   - reg
--- 
-2.34.1
+You got there clear instruction, didn't you?
+
+Best regards,
+Krzysztof
 
