@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB687729FAA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CAF729FC0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242059AbjFIQKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 12:10:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56326 "EHLO
+        id S240954AbjFIQMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 12:12:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241511AbjFIQKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:10:18 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F8E30D6;
-        Fri,  9 Jun 2023 09:10:17 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-77ac59135ebso84629639f.3;
-        Fri, 09 Jun 2023 09:10:17 -0700 (PDT)
+        with ESMTP id S230047AbjFIQMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:12:18 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 383661BD3;
+        Fri,  9 Jun 2023 09:12:18 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-33b1e83e204so8220175ab.1;
+        Fri, 09 Jun 2023 09:12:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686327017; x=1688919017;
+        d=1e100.net; s=20221208; t=1686327137; x=1688919137;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zd94wwjNm5lzAbgn1yoGEBqb6vodjF1zy+V+iYm+O84=;
-        b=GfQbMBb5NH5u1dgYPWOSrmvX3Q65JXBAc0UsxTp0WYn0PuvuZeFfOvNHILkcVHhcfZ
-         t681VXGCXWX/6Gd02PmdLl1yp1HRA5aL1zsrjsyQJUft0NIxKNdTtu0h+Km4uFVtv05b
-         paRO8oEpqFbFeGMxTC6kGCFzc1Bsip2XWeyVRx67nLeSLgyNiGDMU79sPZcCJR+NF9x9
-         MmKYlOpb0RkA2VsXdR/+pl68WjcuCkDD17oleQjHKQcfo7KrFhecjR67w3lLiSM6qH4I
-         zEKoAb8bq6EHZlvHHWfy1KWIhH9PT2ECEXwwGmZBaqIANLLAw7NwL5+eMIwGFrRpW2TS
-         nUZQ==
-X-Gm-Message-State: AC+VfDyiBXb54LQ3wpIJWioJDy+Ef1fGbqyY+4GyBKXAMRCy+azGxVjr
-        SiQttTLJpr0BFiavO4RzAg==
-X-Google-Smtp-Source: ACHHUZ5aby7i6WNeqG7cRySeJ0rvFhKrIopPGxiceV4GEP9w3UVUAGbb26dgZS2yB99aNdU6PZToBQ==
-X-Received: by 2002:a5e:8301:0:b0:762:f8d4:6f4 with SMTP id x1-20020a5e8301000000b00762f8d406f4mr2026408iom.8.1686327016950;
-        Fri, 09 Jun 2023 09:10:16 -0700 (PDT)
+        bh=Xa4vB2U1flKhhbprb1amfEpwTs4HseZtMrwx/2SL6kQ=;
+        b=gc5aBtNPlB/rV5SsvMpQDQU6OwD+q7NtHkRTWsmia/a1+oH3gG5by5p3O88/gPBrd9
+         Y7VvD8W6YsCEFyO/uZ8rnsBkY4ZOxNnnFrp4qEJlQ014zwW3mGFyoHDOfxLFUYw7obBK
+         phhWCTPof6zsUqGl4VJWRLv2eFtKkSwAdh9+E6hUh+AyQ8nbQO71cXBg82pWffFIugfU
+         nFeY+BTy2m5fmi29rItxq6cul5dcBTWUI3cZE+cnvFkQ0StSxcqWUbuaJ9N0HWKT45Wo
+         zoPJKOk1KM49U7NdY3oFvOjLSjU8D+4BpOcp6x5/sgV3KM5IZDPymnux6eJQoBQmWdYg
+         owWA==
+X-Gm-Message-State: AC+VfDxVmfZsgKRNj8gUss+yaNVgDG0dnKerV1cBbM66ahRILktkmnOq
+        Cf83nYtD/6pUXDwBrz9iRg==
+X-Google-Smtp-Source: ACHHUZ6Lmwer/Pv2HgUYkSqmxwSS2AKnK0XIdjSFYROINnw9bMDw1r1RDEgF6FOMzh/q+aKy9o6xHA==
+X-Received: by 2002:a05:6e02:6cd:b0:33e:8195:5a4 with SMTP id p13-20020a056e0206cd00b0033e819505a4mr2008663ils.20.1686327137433;
+        Fri, 09 Jun 2023 09:12:17 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id y2-20020a02a382000000b00411b8c1813asm1022248jak.159.2023.06.09.09.10.13
+        by smtp.gmail.com with ESMTPSA id t17-20020a92cc51000000b00325e4c39de8sm1137304ilq.66.2023.06.09.09.12.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 09:10:16 -0700 (PDT)
-Received: (nullmailer pid 1163931 invoked by uid 1000);
-        Fri, 09 Jun 2023 16:10:13 -0000
-Date:   Fri, 9 Jun 2023 10:10:13 -0600
+        Fri, 09 Jun 2023 09:12:16 -0700 (PDT)
+Received: (nullmailer pid 1185251 invoked by uid 1000);
+        Fri, 09 Jun 2023 16:12:14 -0000
+Date:   Fri, 9 Jun 2023 10:12:14 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     monstr@monstr.eu, Geert Uytterhoeven <geert+renesas@glider.be>,
+        Guenter Roeck <linux@roeck-us.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        michal.simek@xilinx.com, linux-kernel@vger.kernel.org,
+        git@xilinx.com, Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        linux-kernel@vger.kernel.org, hsinyi@google.com,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        yangcong5@huaqin.corp-partner.google.com,
-        linux-arm-msm@vger.kernel.org,
-        Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH v2 04/10] of: property: fw_devlink: Add a devlink for
- panel followers
-Message-ID: <20230609161013.GA1149945-robh@kernel.org>
-References: <20230607215224.2067679-1-dianders@chromium.org>
- <20230607144931.v2.4.Ibf8e1342b5b7906279db2365aca45e6253857bb3@changeid>
+        Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
+        Naresh Solanki <naresh.solanki@9elements.com>,
+        Mark Brown <broonie@kernel.org>,
+        Vincent Tremblay <vincent@vtremblay.dev>,
+        devicetree@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
+        Alexander Steffen <Alexander.Steffen@infineon.com>
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Add infineon,irps5401
+Message-ID: <168632713297.1184845.3122767939046227328.robh@kernel.org>
+References: <9673fc919c6785879975fb1830d5026d3cfa658a.1686233049.git.michal.simek@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230607144931.v2.4.Ibf8e1342b5b7906279db2365aca45e6253857bb3@changeid>
+In-Reply-To: <9673fc919c6785879975fb1830d5026d3cfa658a.1686233049.git.michal.simek@amd.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -82,25 +72,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 07, 2023 at 02:49:26PM -0700, Douglas Anderson wrote:
-> Inform fw_devlink of the fact that a panel follower (like a
-> touchscreen) is effectively a consumer of the panel from the purposes
-> of fw_devlink.
-> 
-> NOTE: this patch isn't required for correctness but instead optimizes
-> probe order / helps avoid deferrals.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
-> Since this is so small, I'd presume it's OK for it to go through a DRM
-> tree with the proper Ack. That being said, this patch is just an
-> optimization and thus it could land completely separately from the
-> rest and they could all meet up in mainline.
-> 
-> Changes in v2:
-> - ("Add a devlink for panel followers") new for v2.
-> 
->  drivers/of/property.c | 2 ++
->  1 file changed, 2 insertions(+)
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Thu, 08 Jun 2023 16:04:12 +0200, Michal Simek wrote:
+> Add Infineon IRPS5401 power supply to trivial devices. Driver has been
+> added long time ago by commit 9158411b96b1 ("hwmon: (pmbus) Add Infineon
+> IRPS5401 driver").
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+
+Applied, thanks!
+
