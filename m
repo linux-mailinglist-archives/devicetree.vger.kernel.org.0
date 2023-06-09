@@ -2,162 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 047D272A540
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 23:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B43972A568
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 23:34:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230418AbjFIVSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 17:18:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53634 "EHLO
+        id S232452AbjFIVec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 17:34:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230070AbjFIVSA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 17:18:00 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD9635A7
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 14:17:58 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id d75a77b69052e-3f9a81da5d7so55111cf.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 14:17:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1686345477; x=1688937477;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kRAQr078BUUokwlWeruPfu3tXC8xw/eiJppeWzlI2XY=;
-        b=3FYxoqPq77YWBq1uXh5PHe0KR04muNees/64GTBJ3WLOoddlZZJOWQ9cCs1QmEc6jA
-         KTKvl5SIxzSAQ84C49Wp9W/PmWEKisRx/aTZ8dxyaVuWokCmQ1f0SXhS3205hWmUBWf0
-         JqyvxXyej0s+pxNiPsGjks7W83JbtWcDdw3IH4SEaz52jhKy0GI580f8KAV1JxxACOkT
-         YzsthLYJuDlIBxazBhBfwLMYaGXjqEUv2bnrkr4zq2If1RvB7US/VJsAngtbSL9Eh1BB
-         RvyfAuEl1sgzdM/YBgIcySSzylAIWRbgfYkwfzdMvPTtxjdqAGFdMvbF7QRJ68pPGD7q
-         PjIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686345477; x=1688937477;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kRAQr078BUUokwlWeruPfu3tXC8xw/eiJppeWzlI2XY=;
-        b=ZBdPmLg3Rl7C+s/w5+2qvL+6iLPQZFNIr0IckdL1mxvH4L5zbEcb+9NGchKRg2CO7S
-         Nw63bGa8aQu5hhq3l3aH8u5pp+/lqzd45bZf1aZm2txatTicGE4tpGKo8VLO4N/EZ0Dk
-         YcJXL+U7qgNmrxmNPvQMqPqs/mxynApxCYZXJRFQ7TIrGpKSNnqieQu6y30ilukinYnL
-         JPmdCRjPMolvQvvi8GIMUuMEsOyYr6rAzKYa6+zM93yFacWapxF7krUcWvpQ3e8wsiz5
-         l6LjQP0WgsNRSTKqdgBmUZEfbTLnt0h8GUMXC9MiwN5iFdKPgR3VCPQhziilVNHfXArp
-         I9rQ==
-X-Gm-Message-State: AC+VfDyU8fcAXqgWTjcSX71RKfwOHRQNIVaNCOHd5h/hXZRmmo3S50bb
-        Cf2utrs4w08Kx/r+5gsZ3sjf3YsAcRIuOCX6E6zETg==
-X-Google-Smtp-Source: ACHHUZ7Mn1+bgpCnLIc/VkQ8WULvWZFq0p8HGTm7OUv0T7eX+3mfTWyw5RHUXrEDbgxLlANAQhZYqvg2Jlya4CHYamc=
-X-Received: by 2002:a05:622a:2c6:b0:3ef:2f55:2204 with SMTP id
- a6-20020a05622a02c600b003ef2f552204mr26088qtx.6.1686345477542; Fri, 09 Jun
- 2023 14:17:57 -0700 (PDT)
+        with ESMTP id S232488AbjFIVeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 17:34:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACA03A82;
+        Fri,  9 Jun 2023 14:34:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3DDF661152;
+        Fri,  9 Jun 2023 21:34:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AB97C433EF;
+        Fri,  9 Jun 2023 21:34:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686346465;
+        bh=wvXsR8YYzupk8QUsKM9+U5BzFl/Mjd2yhSrjz7bgQiY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZtEGLpd0MdzhXbqB+JPymo/6uJHdLjNcnqgs8Iznb2MQtONrGx3vo+N9ubCPrCuql
+         tPrnFetQfSVGdIkOuAo+4FIxcfpA00VqzyFCKCRz1SzvmZP5wVca8ZZvJqaJlNAyDu
+         xma4qYH4ZPY5gbNvY1v0PgAejAu3+b1ijOsHGdeh3GXH6kE1zkYK3LnRdM9KzYG+P3
+         W2xbKDNIWdtOtjq3AfzOX2uW/6WHqf4cvtTUGd9gafhnLB/ZTYVOYwAo7hgT/UhuZX
+         nfETW8N6N+HHB8ivgVFYWnuhfddV9ij1Vlwxc0MKMvUyBGW97fsXbITJPZNGSAiMA+
+         eKuPQKh2qqXqA==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2b219ed9915so24917361fa.3;
+        Fri, 09 Jun 2023 14:34:25 -0700 (PDT)
+X-Gm-Message-State: AC+VfDzrwPa+3J8Tt7wxSX+qCQfJwW1Kv42xwKekWfuBDzvvc/i+7a6H
+        SGtUon9/SXKxA4syE3NJIeVIGrxcB2oW76q4dQ==
+X-Google-Smtp-Source: ACHHUZ7/YFvr2vQobTtmfQT0oSRk3YiQczXyx7x0ELd+xNr3yIUtzF53BXzTULyGxFje82VegTxIYmK9TO41ea233kE=
+X-Received: by 2002:a2e:b0cc:0:b0:2ac:8262:322a with SMTP id
+ g12-20020a2eb0cc000000b002ac8262322amr20945ljl.13.1686346463631; Fri, 09 Jun
+ 2023 14:34:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230508142842.854564-1-apatel@ventanamicro.com>
- <20230508142842.854564-3-apatel@ventanamicro.com> <20230608182828.GA3183987-robh@kernel.org>
- <CAGETcx_4OH=EmSUL2-rwKa=1uoOj+AH_xn4PoPsc0kt_aU0WOg@mail.gmail.com> <CAK9=C2V1LH0739Nq5Ji7gGbgbyFtNAtBYR43fU7vr9omD5tKSA@mail.gmail.com>
-In-Reply-To: <CAK9=C2V1LH0739Nq5Ji7gGbgbyFtNAtBYR43fU7vr9omD5tKSA@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 9 Jun 2023 14:17:21 -0700
-Message-ID: <CAGETcx--aEEB6ag1qGcEeygPyZM9Q-T1NOY+wK911LGJGisN8Q@mail.gmail.com>
-Subject: Re: [PATCH v3 02/11] of/irq: Set FWNODE_FLAG_BEST_EFFORT for the
- interrupt controller DT nodes
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Rob Herring <robh@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
+References: <20230418150606.1528107-1-robh@kernel.org> <9543f619-88fa-8e54-6e9a-4334750e51b4@linaro.org>
+ <CAL_Jsq+ZVAZc1nYJVLPQt=KM1qOZrZCrRC4q_o8XQjDdo_NuKA@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+ZVAZc1nYJVLPQt=KM1qOZrZCrRC4q_o8XQjDdo_NuKA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 9 Jun 2023 15:34:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJMpjW6a4Q6xUX6TEZ+vyLJJn5bDtwEdf_-E=BeA-Z_tA@mail.gmail.com>
+Message-ID: <CAL_JsqJMpjW6a4Q6xUX6TEZ+vyLJJn5bDtwEdf_-E=BeA-Z_tA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,pmic-mpp: Fix schema for "qcom,paired"
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 4:40=E2=80=AFAM Anup Patel <apatel@ventanamicro.com>=
- wrote:
+On Fri, Apr 21, 2023 at 1:48=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> On Fri, Jun 9, 2023 at 1:35=E2=80=AFAM Saravana Kannan <saravanak@google.=
-com> wrote:
+> On Wed, Apr 19, 2023 at 2:56=E2=80=AFPM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 > >
-> > On Thu, Jun 8, 2023 at 11:28=E2=80=AFAM Rob Herring <robh@kernel.org> w=
-rote:
+> > On 18/04/2023 17:06, Rob Herring wrote:
+> > > The "qcom,paired" schema is all wrong. First, it's a list rather than=
+ an
+> > > object(dictionary). Second, it is missing a required type. The meta-s=
+chema
+> > > normally catches this, but schemas under "$defs" was not getting chec=
+ked.
+> > > A fix for that is pending.
 > > >
-> > > +Saravana
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml | 5 +++=
+--
+> > >  1 file changed, 3 insertions(+), 2 deletions(-)
 > > >
-> > > On Mon, May 08, 2023 at 07:58:33PM +0530, Anup Patel wrote:
-> > > > The RISC-V APLIC interrupt controller driver is a regular platform
-> > > > driver so we need to ensure that it is probed as soon as possible.
-> > > > To achieve this, we mark the interrupt controller device nodes with
-> > > > FWNODE_FLAG_BEST_EFFORT (just like console DT node).
-> > > >
-> > > > Fixes: 8f486cab263c ("driver core: fw_devlink: Allow firmware to ma=
-rk devices as best effort")
+> > > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.=
+yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> > > index 9412b9362328..4c3e9ff82105 100644
+> > > --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> > > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> > > @@ -144,8 +144,9 @@ $defs:
+> > >          enum: [0, 1, 2, 3, 4, 5, 6, 7]
 > > >
-> > > It is good practice to Cc the commit author of what you are fixing.
-> > >
-> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > > ---
-> > > >  drivers/of/irq.c | 10 ++++++++++
-> > > >  1 file changed, 10 insertions(+)
-> > > >
-> > > > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> > > > index 174900072c18..94e1d9245cff 100644
-> > > > --- a/drivers/of/irq.c
-> > > > +++ b/drivers/of/irq.c
-> > > > @@ -535,6 +535,16 @@ void __init of_irq_init(const struct of_device=
-_id *matches)
-> > > >       INIT_LIST_HEAD(&intc_desc_list);
-> > > >       INIT_LIST_HEAD(&intc_parent_list);
-> > > >
-> > > > +     /*
-> > > > +      * We need interrupt controller platform drivers to work as s=
-oon
-> > >
-> > > If it's platform drivers/devices you care about, then perhaps this
-> > > should be done when platform devices are created.
-> > >
-> > > > +      * as possible so mark the interrupt controller device nodes =
-with
-> > > > +      * FWNODE_FLAG_BEST_EFFORT so that fw_delink knows not to del=
-ay
-> > > > +      * the probe of the interrupt controller device for suppliers
-> > > > +      * without drivers.
-> > > > +      */
-> > > > +     for_each_node_with_property(np, "interrupt-controller")
-> > >
-> > > This function only operates on nodes matching 'matches', but this
-> > > operates on everything.
-> > >
-> > > It does make sense that if we init an interrupt controller here, then=
- we
-> > > will surely want to probe its driver later on. So maybe just move
-> > > setting FWNODE_FLAG_BEST_EFFORT within
-> > > for_each_matching_node_and_match() below.
-> > >
-> > > > +             np->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
-> > > > +
+> > >        qcom,paired:
+> > > -        - description:
+> > > -            Indicates that the pin should be operating in paired mod=
+e.
+> > > +        type: boolean
+> > > +        description:
+> > > +          Indicates that the pin should be operating in paired mode.
 > >
-> > Definite Nack. You are pretty much disabling fw_devlink for all
-> > interrupt controllers. There are plenty of examples of the IRQ drivers
-> > being needed very early on and still probing properly without the need
-> > for this flag. Please fix your driver/DT.
+> > Current Linux implementation uses it as a generic pinconf param
+> > pinconf_generic_params which is parsed by:
+> >
+> > pinconf_generic_parse_dt_config() -> parse_dt_cfg() ->
+> > of_property_read_u32()
+> >
+> >
+> > The pinctrl-spmi-mpp.c driver, using this schema, treat it as a bool,
+> > but I still wonder how the code will parse bool with
+> > of_property_read_u32(). Maybe it should be uint32 with value of 0 and 1=
+?
 >
-> Okay, I will try to set FWNODE_FLAG_BEST_EFFORT only for
-> APLIC device_node via IRQCHIP_DECLARE().
+> That should be an error because the length is too short so it should
+> go with some default from the code.
+>
+> Looks like there is no user, though no property could mean keep the
+> default/bootloader setting. Can you sort out which type is really
+> desired here and hopefully we can get rid of the other type. It's not
+> the first case of pinctrl properties with multiple types, but we don't
+> really need more.
 
-No, my point is that you very likely don't need to use that flag.
+Still an issue here. Please sort out what functionality QCom wants here.
 
-What exactly is the problem you are facing? Point to an example RISC-V
-dts (not dtsi) in upstream and give specifics please.
+dtschema (main br) will now throw a warning on it.
 
--Saravana
+Rob
