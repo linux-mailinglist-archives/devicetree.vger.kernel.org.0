@@ -2,119 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 104E3729287
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36B687292D5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240131AbjFIIRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
+        id S240000AbjFIIUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 04:20:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240164AbjFIIRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:17:30 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E59C26B2
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 01:16:56 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f7fcdc7f7fso9445205e9.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 01:16:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686298611; x=1688890611;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lYuIhDGuCC9opvLWfytZKMbJoZ2C+T9RI7zl7IlZO1c=;
-        b=L9Xw798jWqySjeSyCuN5WLGzZGM9mHf+L552ShJwvBJ3gecpRLasnxziivFuYJplRt
-         bzRi4gxZy7IPyiByAoLuPMBmo7moZjTwli8i8gqz51Dpw+zI/2H0lMDsPm/oX8G4F41U
-         nGuQsHbcGP+bRfEwv+m94GcXPA8dmCt+dM+rVbyzINgUFk/T9woZNh2xw9h7qj/rjSTx
-         eA/IEMOhycMhR/czG5F1IpVAMCWeprDeM9aD0UMTRlRxqNqm1CokZAnff/cu6m0zsxIJ
-         mVImESXWghJChwP1VeDjoQ8piIOqyy0IvFSKDCLv8D5nqERgn5oDkrUSnE78bAjKFuFh
-         MunA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686298611; x=1688890611;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lYuIhDGuCC9opvLWfytZKMbJoZ2C+T9RI7zl7IlZO1c=;
-        b=Z/i1C89z272oBpA1tTz0SdYxtjMpCWNnsV4Mv/5SrVbVNWBZJpx0KlsBf29vyPyyDS
-         zR1XuJl2guLpu/KdYLwLcxCXrrgswOPof64Y9KFRkfATtWTtjZN3a4ohXJmgEUveGXYV
-         XcTEQRKCSAzOKeqlruCxzci9JHaC6G18SHKdEoNrNxnwzt65QVOQd84psxKh8w9wu61n
-         DDNb8REGf7PySpmv1x5wIy/jfaQds2Imh+CxZI4FSS9WdQJtK8wh5Pqb5BIwiFuJj6Qr
-         4cHU3RDc5/ZkdGPYkykPanyqg0QOyEWhik+Pdr3lLUkdKsQOkRZx9lY2UQ5rFf6rIZk6
-         TDGQ==
-X-Gm-Message-State: AC+VfDxG+VtMIyiU7Vn3vdIqRHOw8Oc32w8J7yZiHhKI4OjZsVKZeIGL
-        BX8Iaawh9Q8cBT3rjjtSGAcqnOZw0fxVmOW28J9u/A==
-X-Google-Smtp-Source: ACHHUZ5MaRYmFgAgHsM4aSp6otcol5L86L1080ihDuGUjqwqVtjgtl5fPm6KgfpUfbk92208u9+K2A==
-X-Received: by 2002:a1c:4b16:0:b0:3f4:2158:28a0 with SMTP id y22-20020a1c4b16000000b003f4215828a0mr916471wma.12.1686298611256;
-        Fri, 09 Jun 2023 01:16:51 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m6-20020adfdc46000000b0030e5bd253aasm3768435wrj.39.2023.06.09.01.16.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 01:16:50 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S240609AbjFIITy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:19:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 633DB4234;
+        Fri,  9 Jun 2023 01:18:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 921AE6549C;
+        Fri,  9 Jun 2023 08:18:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAE57C433A8;
+        Fri,  9 Jun 2023 08:18:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686298689;
+        bh=NrjQIUnAcAa6zkkpseMDzbBJiWLYR3nYu0kw41iy4WM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EEshqVAXBpDk3PMv85TN6NgbaE7YJLZWSwSq4Pm17YI5V2i80/0TKP5X9a0ZzhCG3
+         MUajmy4yhtEl0vEX+ExVzF1Y+wd5o5CLbO8b/ZNdcPtobfUozJsHVQ0CWzTHW6q5SA
+         v+6hEEHDh8koM/5JAecqXPVl1/6BWHWnLmacaH8ix7t9nvO6CVHjhQo/rJePduNThC
+         DgHYzQvoRtrpbGXd4n1rkFNcyON7UOVR0/P+KhtBOscM7cPnUUtdVDhjg4DPT2mXR1
+         gK7ZlVcDuI4+ljLyvK0ObuM7m6GkPXR/VSEgFlUX13RJED9vEodrueZ0ou59ZDcNrz
+         qJqAFldBc4UQQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1q7XKN-0005Sc-LP; Fri, 09 Jun 2023 10:18:36 +0200
+Date:   Fri, 9 Jun 2023 10:18:35 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20230515093237.2203171-1-xianwei.zhao@amlogic.com>
-References: <20230515093237.2203171-1-xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH V5] arm64: dts: add support for C3 based Amlogic AW409
-Message-Id: <168629861051.1192110.13312431547309473090.b4-ty@linaro.org>
-Date:   Fri, 09 Jun 2023 10:16:50 +0200
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "quic_pkondeti@quicinc.com" <quic_pkondeti@quicinc.com>,
+        "quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
+        "quic_wcheng@quicinc.com" <quic_wcheng@quicinc.com>,
+        "quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
+        "quic_harshq@quicinc.com" <quic_harshq@quicinc.com>,
+        "ahalaney@redhat.com" <ahalaney@redhat.com>
+Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
+ for qcom wrapper
+Message-ID: <ZILgW5CwfSlBxzNB@hovoldconsulting.com>
+References: <20230514054917.21318-7-quic_kriskura@quicinc.com>
+ <20230515222730.7snn2i33gkg6ctd2@ripper>
+ <bc347624-4539-4a3a-9399-9b4e272cdb32@quicinc.com>
+ <ZGUCykpDFt9zgeTU@hovoldconsulting.com>
+ <82553597-ce0e-48f4-44d4-9eeaaf4cb1c4@quicinc.com>
+ <ZIBsDQJtgDZRe7MG@hovoldconsulting.com>
+ <99cded6f-6a71-ffce-8479-c7c0726bfb8e@quicinc.com>
+ <ZIGihYS5EacISEFm@hovoldconsulting.com>
+ <279fff8b-57e2-cfc8-cd6d-c69d00e71799@quicinc.com>
+ <20230608175705.2ajrteztdeqdrkzg@synopsys.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230608175705.2ajrteztdeqdrkzg@synopsys.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 15 May 2023 17:32:37 +0800, Xianwei Zhao wrote:
-> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
-> applications.
+On Thu, Jun 08, 2023 at 05:57:23PM +0000, Thinh Nguyen wrote:
+> On Thu, Jun 08, 2023, Krishna Kurapati PSSNV wrote:
+> > On 6/8/2023 3:12 PM, Johan Hovold wrote:
+> > > On Thu, Jun 08, 2023 at 01:21:02AM +0530, Krishna Kurapati PSSNV wrote:
+> > > > On 6/7/2023 5:07 PM, Johan Hovold wrote:
+> > > 
+> > > > > So there at least two issues with this series:
+> > > > > 
+> > > > > 	1. accessing xhci registers from the dwc3 core
+> > > > > 	2. accessing driver data of a child device
+> > > > > 
+> > > > > 1. The first part about accessing xhci registers goes against the clear
+> > > > > separation between glue, core and xhci that Felipe tried to maintain.
+> > > > > 
+> > > > > I'm not entirely against doing this from the core driver before
+> > > > > registering the xhci platform device as the registers are unmapped
+> > > > > afterwards. But if this is to be allowed, then the implementation should
+> > > > > be shared with xhci rather than copied verbatim.
 > 
-> Add basic support for the C3 based Amlogic AW409 board, which describes
-> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-> booting up into the serial console.
+> The core will just be looking at the HW capability registers and
+> accessing the ports capability. Our programming guide also listed the
+> host capability registers in its documentation. We're not driving the
+> xhci controller here. We're initializing some of the core configs base
+> on its capability.
 > 
-> [...]
+> We're duplicating the logic here and not exactly doing it verbatim.
+> Let's try not to share the whole xhci header where we should not have
+> visibility over. Perhaps it makes sense in some other driver, but let's
+> not do it here.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.5/arm64-dt)
+The patch series even copied the kernel doc verbatim. This is just not
+the way things are supposed to be done upstream. We share defines and
+implementations all the time, but we should not be making copies of
+them.
 
-[1/1] arm64: dts: add support for C3 based Amlogic AW409
-      https://git.kernel.org/amlogic/c/02310be6f080071e1b9e2021fd6dd655bd842aad
+> > > > > 
+> > > > > The alternative that avoids this issue entirely could indeed be to
+> > > > > simply count the number of PHYs described in DT as Rob initially
+> > > > > suggested. Why would that not work?
+> 
+> See below.
+> 
+> > > > > 
+> > > > The reason why I didn't want to read the Phy's from DT is explained in
+> > > > [1]. I felt it makes the code unreadable and its very tricky to read the
+> > > > phy's properly, so we decided we would initialize phy's for all ports
+> > > > and if a phy is missing in DT, the corresponding member in
+> > > > dwc->usbX_generic_phy[] would be NULL and any phy op on it would be a NOP.
+> > > 
+> > > That doesn't sound too convincing. Can't you just iterate over the PHYs
+> > > described in DT and determine the maximum port number used for HS and
+> > > SS?
+> > > > Also as per Krzysztof suggestion on [2], we can add a compatible to read
+> > > > number of phy's / ports present. This avoids accessing xhci members
+> > > > atleast in driver core. But the layering violations would still be present.
+> > > 
+> > > Yes, but if the information is already available in DT it's better to use
+> > > it rather than re-encode it in the driver.
 
-These changes has been applied on the intermediate git tree [1].
+> >   Are you suggesting that we just do something like
+> > num_ports = max( highest usb2 portnum, highest usb3 port num)
+> 
+> Why do we want to do this? This makes num_ports ambiguous. Let's not
+> sacrifice clarity for some lines of code.
 
-The v6.5/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+This is not about lines of code, but avoiding the bad practice of
+copying code around and, to some degree, maintaining the separation
+between the glue, core, and xhci which Felipe (perhaps mistakingly) has
+fought for.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+If you just need to know how many PHYs you have in DT so that you can
+iterate over that internal array, you can just look at the max index in
+DT where the indexes are specified in the first place.
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+Don't get hung up on the current variable names, those can be renamed to
+match the implementation. Call it max_ports or whatever.
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+> > If so, incase the usb2 phy of quad port controller is missing in DT, we
+> > would still read num_usb2_ports as 4 but the usb2_generic_phy[1] would be
+> > NULL and any phy ops would still be NOP. But we would be getting rid of
+> > reading the xhci registers compeltely in core driver.
+> > 
+> > Thinh, Bjorn, can you also let us know your views on this.
+> > 
+> > 1. Read:
+> >   num_usb3_ports = highest usb3 port index in DT
+> >   num_usb2_ports = max( highest usb2 port index, num_usb3_ports)
+> > 
+> > 2. Read the same by parsing xhci registers as done in recent versions of
+> > this series.
+> 
+> DT is not reliable to get this info. As noted, the DT may skip some
+> ports and still be fine. However, the driver doesn't know which port
+> reflects which port config index without the exact port count.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+That's not correct. DT provides the port indexes already, for example:
 
--- 
-Neil
+	phy-names = "usb2-port0", "usb3-port0",
+		    "usb2-port1", "usb3-port1",
+		    "usb2-port2",
+		    "usb2-port3";
 
+So if you just need this to iterate over the PHYs all the information
+needed is here.
+
+If you need to access ports which do not have a PHY described in DT,
+then this is not going to suffice, but I have not seen anyone claim that
+that is needed yet.
+ 
+> More importantly, the host controller that lives on the PCI bus will not
+> use DT. This can be useful for some re-configurations if the controller
+> is a PCI device and that goes through the dwc3 code path.
+
+Ok, this is a bit hand wavy, but if this ever turns out to be needed it
+can also be implemented then.
+
+Or just generalise the xhci implementation for parsing these registers
+and reuse that from the start. (As a bonus you'd shrink the kernel text
+size by getting rid of that iffy inline implementation.)
+
+Johan
