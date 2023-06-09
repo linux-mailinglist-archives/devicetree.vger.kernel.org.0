@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95709729C51
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:08:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74E33729C52
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240065AbjFIOIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:08:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36750 "EHLO
+        id S239945AbjFIOIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:08:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238922AbjFIOI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:08:28 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC0503C22
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:07:59 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b1ba018d94so20178181fa.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:07:59 -0700 (PDT)
+        with ESMTP id S239211AbjFIOIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:08:31 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5E035B3
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:08:02 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5147f7d045bso2750300a12.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:08:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686319655; x=1688911655;
+        d=linaro.org; s=google; t=1686319658; x=1688911658;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2/WZ9XTOzPX5a0+7wZ6YBA8xUco86oZHAnUM6PsZjHk=;
-        b=Q3qtIbZ7+NeCPE82f8AYHJU6fFUiNAqMOgeeacCve6RxPeHokozbt8ovmqN4kv10UU
-         Mfm7BURb2x3iA2f6/drdRAUtaQp1uxw8BKP0jbVgpLMFcIxbxBXctxlpgFxp1rIHgX1I
-         ofevWxKgUYxXdJ6zTv4JwS2scqF7IeMZ/eZcun2QAezpkB6jq/H4upWjUJOe3nwz5xOs
-         YNUrIGiAC6LkBIu+bhaX4tjjd0sVK2HqgYtckgxBlL9DKEz+eHnUNLCbRn/7fSMKSbPx
-         tyxCp9oTlR57riUWxh1g1TGa4dzL3u12pp5HSMT4/4SEgkcu61Qkyt6Ccafy9PIwuR60
-         W+yQ==
+        bh=ZHO7vpOhYQx0clo/eQSsMDoAoRh8NI3AXk3LkWYJrvA=;
+        b=UomGHu9e9xSud+fvhCguBVbINIy+Nt32q4XAikJT97lMKTKm3HPgMhhLX6IuwsxG6C
+         IlFTtrHbH8A6Gqo5b8j1SOGNZm+CiQKQoje5e/5lrGhO51A7Z/EIVsCFQ8e2aScvc9mS
+         ruZcnB2jUMqBwOWGFEwR/6Wrvj/l6N0vZhMRhAA8VrVy1EW+b+EWXVouAGB5bFsps0Da
+         ZhH/uJvziOSJjcxvUXXjW5Z2L2CMAaOL4DLxAYFe7zUBHWBBc985NtsZikxTeAJW0aJT
+         rb5525L/p6vTpbe0hvIQPxQ7CeZsRyPsdNZCyjzNinVutoS0Bh9kLtNpe/99FDtHjP4L
+         Aczg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686319655; x=1688911655;
+        d=1e100.net; s=20221208; t=1686319658; x=1688911658;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2/WZ9XTOzPX5a0+7wZ6YBA8xUco86oZHAnUM6PsZjHk=;
-        b=iJs4zZOaQki4v24erO2ZWDMZ/Us3xaqqVNaO8j3KI0oGPyMYir+BPSPHuNyG4A1hiM
-         GtvKyvPUQEWO8ffZePQHOf4zEutxavy45+R9n1nX97joMuroqBMP25Bn6Ms8zw+Pgm2I
-         D4Unlqz2S85dEcSBTHvYJYbtao8gVb/68EqUobljAIIi3iW7bPEOCag4Jj9z+FYVgng3
-         ayIfjiM9gezGNji97b3Z6GB2e8u9GeNYZ08srYUBYSivosXPsySPBcvgAoG18grLI2sf
-         Pm6hScWGc+OIzG/mpD59MLvGfyPKcd9N/8MwFWHlY5BbtTJRT1yoNNkERzOr8xEec2AR
-         C2Ww==
-X-Gm-Message-State: AC+VfDxaj1Gt816wAJbdPfbHNzbEpNsnbJoDv7Fcfep5J8AXXwvGT5JO
-        sQ0fK4/bbOdbl5BBMmW0bgmqzA==
-X-Google-Smtp-Source: ACHHUZ6JwuYTFNz2MQ0ZGxyMpoO7QgBUmQUVIXSFcMxEUmRYbmUboPNfpQXm7f4t5gP1xDIJES/45Q==
-X-Received: by 2002:a2e:9b0c:0:b0:2b1:af36:93d9 with SMTP id u12-20020a2e9b0c000000b002b1af3693d9mr1201261lji.26.1686319654998;
-        Fri, 09 Jun 2023 07:07:34 -0700 (PDT)
+        bh=ZHO7vpOhYQx0clo/eQSsMDoAoRh8NI3AXk3LkWYJrvA=;
+        b=NFuCPeK3FfYhw8eQvsz/2lXAV0h2pXACIGwh0uqTVS7kuxjhZzFikmqAvvEDfUFJlm
+         K3s7zJ4Ztdki4z26AN5lwCzNzgaaLqnzyDGbTS+vWuzDKWYR5Aa5R/JFYmLHkUJArs2h
+         vfYSr4IcAe2tKGb1q4bd8py3dGfA4oFeIvmFDwpqn5OstE40bQgB9oCyRFk7e2ix8hxQ
+         IC3mDFHj1f7JP2/eKI46ixc8gak8WNcv75SfZ1u4Nnw/kKAw2Mo7TW+3qSbrrNSaosV5
+         nq45xsRrqMTcrR3MQENFWq9tTAv2JTI64vTUUISxdXlSkmX8LeBXQx3nCVehSEsZLCSu
+         1u9Q==
+X-Gm-Message-State: AC+VfDyAo2Moc/cBhTtioDXd29ytclUyXqSAv6Sl6w9f+80DngcVGoGj
+        jGSljIn0TGQCYZolRhf4RyHJFQ==
+X-Google-Smtp-Source: ACHHUZ4Ppp4dcuJtxj7Mzp5FZ/ew+7eEGU8lcR9YSExvb8u+Zk2l/gqQKALPR58wRCRl08O97AFDNw==
+X-Received: by 2002:aa7:d986:0:b0:50d:9e7c:264d with SMTP id u6-20020aa7d986000000b0050d9e7c264dmr1345447eds.8.1686319657821;
+        Fri, 09 Jun 2023 07:07:37 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id f11-20020aa7d84b000000b00514ad0e3167sm1824011eds.71.2023.06.09.07.07.33
+        by smtp.gmail.com with ESMTPSA id g16-20020aa7d1d0000000b0050bc4600d38sm1819861edp.79.2023.06.09.07.07.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 07:07:34 -0700 (PDT)
+        Fri, 09 Jun 2023 07:07:37 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Georgi Djakov <djakov@kernel.org>,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Conor Culhane <conor.culhane@silvaco.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: interconnect: fsl,imx8m-noc: drop unneeded quotes
-Date:   Fri,  9 Jun 2023 16:07:32 +0200
-Message-Id: <20230609140732.64828-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: i3c: silvaco,i3c-master: drop unneeded quotes
+Date:   Fri,  9 Jun 2023 16:07:35 +0200
+Message-Id: <20230609140735.64855-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -83,22 +79,22 @@ checking for this can be enabled in yamllint.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/interconnect/fsl,imx8m-noc.yaml         | 2 +-
+ Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-index f7a5e31c506e..fc21fe3e7b37 100644
---- a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-@@ -51,7 +51,7 @@ properties:
-     type: object
+diff --git a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+index 62f3ca66274f..543b177f8610 100644
+--- a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
++++ b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Conor Culhane <conor.culhane@silvaco.com>
  
-   fsl,ddrc:
--    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-       Phandle to DDR Controller.
+ allOf:
+-  - $ref: "i3c.yaml#"
++  - $ref: i3c.yaml#
  
+ properties:
+   compatible:
 -- 
 2.34.1
 
