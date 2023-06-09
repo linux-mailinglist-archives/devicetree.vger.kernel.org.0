@@ -2,132 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57360729268
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D86B72926C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:15:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239352AbjFIIPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49830 "EHLO
+        id S240040AbjFIIPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 04:15:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238963AbjFIIPg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:15:36 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99DF51FDE;
-        Fri,  9 Jun 2023 01:15:35 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3596vqhC023527;
-        Fri, 9 Jun 2023 08:15:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=fsjFleXTO0LDjkzA20ljrFC2aI53RmcgYIwwxN+YpKc=;
- b=kb+nFf3fyPFWR0THQxEF/9K0Ll8ZKELQqpnkfG9KfAht9WaUpvTj3OcFYrusfz3BxUkA
- Z3IQK/s/zbgAEZU7yYH/MlkonRdyBcIb9oeeGjTZzR/bVNkNe2MuAJvfPs5qoegALPi/
- VuR7GVTG8OrU35vlckMxscC5j3N0XBZB6NaCItZ0vECQSD3s8w8btixWzYJjtR9gJqXg
- RSwqb4uaXGgQ6m9KMYYF1W43uxgZu0a5SMu4P5UdD73FghwA5Aj9yq769oV6GRX31dIK
- vjNEEMcFB4k0bx2jmfqC1l4p9+mbkCq746VSaBFrl9q4SgfJpaxnggfqzDALESN3wFRi zA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3wykg8sm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 08:15:25 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3598FPlw011176
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 9 Jun 2023 08:15:25 GMT
-Received: from anusha-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 9 Jun 2023 01:15:21 -0700
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238963AbjFIIPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:15:42 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F1681FDE;
+        Fri,  9 Jun 2023 01:15:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686298539; x=1717834539;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Mb1slm/8ZxVzVyUF3XdtLt7ptCWTNk/wjWJvkjEJas8=;
+  b=LjoiXRrnaFPlyLY3sTSW1ycLJksoiJM8kAZ6whxDIYrOJ3GjZnisflb9
+   7p+ud1ujGM3IajGr16/+1CxyZ0mKItjyFxtWhzqf3MGfVZ9ARZMYPit5r
+   7ARdaqYnz7U7U3isucGsWTU46V/ShZ/aCtYFfzsf7oB/GZoY24abSFKXQ
+   Eva5z3yJ4CAv/I8qwAADssqyCiaehrZMu5GvRXhq7U/gVu0/U6MEjtZfQ
+   /A4S+0um3xB85j4RXGpupYs5B2XjyVUplEzjixeRJ7CHnShvvfAMxTzz5
+   HKyQlyJi/r9XfmyAvBdw9opMoTbIfTkqgzwGInXa4gecCt1Joil87N60T
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,228,1681164000"; 
+   d="scan'208";a="31359501"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Jun 2023 10:15:37 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 09 Jun 2023 10:15:37 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 09 Jun 2023 10:15:37 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686298537; x=1717834537;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Mb1slm/8ZxVzVyUF3XdtLt7ptCWTNk/wjWJvkjEJas8=;
+  b=onh31Dumrcp7hd3ZCvtI/QxzmzVrYVi5X75LN/evvJSPHyAMFsR9QAFS
+   2n/AvSCXYkWc88Sm4Nh4PST1Go/VT9StacaCDw6OnXiJlWd8u7k6l7L4C
+   T0jNMIJ77QK0P1smIi5+qMrMBgMB6ydf8HtKEdcwS5XtViuBEy9QaJnmg
+   dIpDMmhDsnEoxNDi9ZdlPIPwNdPKaPBF9m5LodOWpsiuLN9Weg6CWXL/p
+   K7sH4jH+HMu4qK3yjaXEydlss4MSUB44sf3bVNKEVqPKkrMLDIXoe7y3r
+   VJlbp6Q5ngC9vgFIcA+iriOGfImLUHwWsdOARrAWzzsXOQV35u8fxcKe0
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,228,1681164000"; 
+   d="scan'208";a="31359500"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Jun 2023 10:15:37 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 5E7DC280087;
+        Fri,  9 Jun 2023 10:15:37 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: ipq9574: enable the SPI NOR support in RDP433
-Date:   Fri, 9 Jun 2023 13:45:08 +0530
-Message-ID: <20230609081508.30982-1-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+        Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/2] spi: dt-bindings: introduce linux,use-rt-queue flag
+Date:   Fri, 09 Jun 2023 10:15:37 +0200
+Message-ID: <3241150.44csPzL39Z@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CACRpkdb=2fogk3bEa4fkPVYQivnvLh1F1TnBj7og43ak+F8gPw@mail.gmail.com>
+References: <20230602115201.415718-1-matthias.schiffer@ew.tq-group.com> <6a0abd6bba2f8f940e695dfa9fd0c5f8ee19064f.camel@ew.tq-group.com> <CACRpkdb=2fogk3bEa4fkPVYQivnvLh1F1TnBj7og43ak+F8gPw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: f7IfGFyC-5iGbNruVaHPWkTLy39GcDo3
-X-Proofpoint-GUID: f7IfGFyC-5iGbNruVaHPWkTLy39GcDo3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_05,2023-06-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- mlxscore=0 adultscore=0 mlxlogscore=750 lowpriorityscore=0 impostorscore=0
- spamscore=0 phishscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306090072
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RDP433 has the support for SPI NOR, add the support for it.
+Hi all,
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
----
-Note: This patch was part of initial submission
-https://lore.kernel.org/linux-arm-msm/20230329053726.14860-1-quic_kathirav@quicinc.com/
-however this got missed in between, so sending it across again.
+Am Freitag, 9. Juni 2023, 09:41:14 CEST schrieb Linus Walleij:
+> On Wed, Jun 7, 2023 at 2:55=E2=80=AFPM Matthias Schiffer
+>=20
+> <matthias.schiffer@ew.tq-group.com> wrote:
+> > It is not clear to me what alternative options we currently have if we
+> > want a setting to be effective from the very beginning, before
+> > userspace is running. Of course adding a cmdline option would work, but
+> > that seems worse than having it in the DT in every possible way.
+>=20
+> A agree with Mark that a command line option isn't that bad. It's somethi=
+ng
+> that pertains to just the Linux kernel after all? And you can put that
+> command line option in the default device tree, in chosen, if you want.
 
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+I don't like the idea of a command line enabling realtime scheduling for al=
+l=20
+instances of the SPI controller driver or even all SPI controllers. Actuall=
+y=20
+this might be worse if a non-rt SPI bus is considered for RT scheduling.
+IMHO this should be configurable per SPI controller, e.g. a sysfs attribute.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-index 2b3ed8d351f7..31ee19112157 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-@@ -48,6 +48,20 @@
- 	};
- };
- 
-+&blsp1_spi0 {
-+	pinctrl-0 = <&spi_0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "micron,n25q128a11", "jedec,spi-nor";
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
- &sdhc_1 {
- 	pinctrl-0 = <&sdc_default_state>;
- 	pinctrl-names = "default";
-@@ -96,6 +110,13 @@
- 			bias-pull-down;
- 		};
- 	};
-+
-+	spi_0_pins: spi-0-state {
-+		pins = "gpio11", "gpio12", "gpio13", "gpio14";
-+		function = "blsp0_spi";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
- };
- 
- &xo_board_clk {
--- 
-2.17.1
+> No-one is going to
+> complain about that.
+
+IIRC someone (maybe Greg K-H) opposed pretty hard against (module) paramete=
+rs=20
+for (driver) configuration, but I can't find the post to back my statement.
+
+Best regards,
+Alexander
+
+> Yours,
+> Linus Walleij
+>=20
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
+
 
