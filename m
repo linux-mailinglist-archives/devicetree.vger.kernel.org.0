@@ -2,113 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CAB2729378
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 817FA72938E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240982AbjFIImk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:42:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46706 "EHLO
+        id S230214AbjFIIpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 04:45:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240981AbjFIIm2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:42:28 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 315512D48
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 01:42:17 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-ba8374001abso1500596276.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 01:42:17 -0700 (PDT)
+        with ESMTP id S241140AbjFIIpB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:45:01 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77FE518D;
+        Fri,  9 Jun 2023 01:44:58 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977e0fbd742so231135466b.2;
+        Fri, 09 Jun 2023 01:44:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686300136; x=1688892136;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dnKn0rN/J8ew2J1uOQmCV4crX90hgrQd2S/Jl0BhSqo=;
-        b=iyc9b5Tsz3m4uzu5QPHIyp9hWWD36AzNCXx/5UBBpfg9DadL9negG9HHy3NlycPesZ
-         /Wo21X2LwaewBG800sNtMpDsWnd9RHE5CTJAr9tnxxK2IgMYOOry2gN08C8pVlC1dXSY
-         Ia+oZP1ViwNwfae+MGsYl5z9xr/XmYtG27acryqkgj1ypRLK1zFuEc+s35/lwKW/UHrh
-         ZVWaSV49EvcE5G10LtzPkVVkzC06he9AgJIKP6KGj7WsAHAKD0UZssbyjC9/C+lXN6QU
-         adnQzlvVRUTShMPZF0KBF0C7h1hkXTgY7VPL3vBcesa551r2trBx/3m9l7VrP2Pt5o7m
-         rjpA==
+        d=gmail.com; s=20221208; t=1686300297; x=1688892297;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=u2m01kvhOF2I2EUXo3IlN8hGgswTk7oH4FeWuyBRNa8=;
+        b=am9QIvx7QekKST0NXLKJo5aSPv82fLUuKqa4LffbKR48CuwJBWxBzGpe3d72WgFXyO
+         wLvIaV3AiujQI4AyhiMVHQjZac6NkdtmYHJnRO5lwco/SuOrYPNIOlzLi5K6HnoNhcE9
+         ogccymsmzzXA97+/WKcGgtHpvYm/D5mVl6vmAKSlaZD2EvXIX1WkBJ/+hVL03NnarFDB
+         QSg8YkUfC4ofUXhXwDkAOrAJS/PQqjQuuLH+28T+iIlz5GKOCaaSQQiC7q5uPfesc1aa
+         n8GqhK+DreyECmxXXr9bajCNf5XALY+nc3eGTKg1BHrbFsKgNm5oSJzztJbH5qNDmFX7
+         KH6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686300136; x=1688892136;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dnKn0rN/J8ew2J1uOQmCV4crX90hgrQd2S/Jl0BhSqo=;
-        b=Oynof/9hzL3VY1i+bYgFXfGivODu+qwsX3XTsZrFS0GY/T5Hx+FY6Sr6e0lEAviRS4
-         +ph8YZsybd36e7HWK3Hx3ZnCbQoDn8XzwitUnzC5nZD7jGR2ZwO18e1OdNgYSSGG2eWV
-         0BmIf+X8QwdG2mg75cC664ov5C53lpvwcducrlJcTIWFR3B3HaOzAqVDVRnNmVgXjSFr
-         IAFKIWzRPxOpeZIcWKj+x/WGMUpZIdsG3hAg6T7JxrW5gu8DmUUee8bDo7ixDekM3Eir
-         xud1d6ZhSr3BbKAApu0T8cDjuVlaSGJKeXJ3+OZdPiTPplqzd1JzqT7fcZA5M5l9LSyL
-         CPcA==
-X-Gm-Message-State: AC+VfDzI7Sxh4AvDVTt9xp2ySFbUop/eA8SH0q3sIZwTc20meGGUSxyg
-        VFcqBjxV0oN+ZqJCHlbWPMMqVyCUnoBQor53CMOOVw==
-X-Google-Smtp-Source: ACHHUZ7Byu9UvPDCLN2XVF0VzUGFdLxJdMr8387K+TFb0Gnun++r2ecCEyUuinII/bbTCI+ARRnQMTs2ueYhdZ6exSo=
-X-Received: by 2002:a25:cb46:0:b0:ba7:ddd2:9909 with SMTP id
- b67-20020a25cb46000000b00ba7ddd29909mr573747ybg.33.1686300136439; Fri, 09 Jun
- 2023 01:42:16 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686300297; x=1688892297;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u2m01kvhOF2I2EUXo3IlN8hGgswTk7oH4FeWuyBRNa8=;
+        b=fxWs8Je8DnJVC1VkMg0UZV7qYpKiJ4uBqjiLyApfG6ruEoHpPFuA66KtCHVuNdVHXz
+         E1neZtjT4vwL9t+nmxIX2L7dYbmWcv4pO0+810GQXJy9Klrqkn6vyNkP+Sl/4FAaYxUm
+         qbUEgQGykC1sXhWZNwsxKILWcB2+UGKJ/YTyRt99uSSX65IBMJ42mwerDdonwpI0zUt3
+         1aLuWfAgtOKx2eNYqKrl6b1itXlZcvrBOLE/4iFDINddnKADdKfxLMqbMCjz77WN9VD5
+         JBqFBD06P4Gde194NWKfGAEqMg7WqMzODsPH4ZPdscUzKv5fuxptHcvCscZJso0btmnc
+         J3Dw==
+X-Gm-Message-State: AC+VfDwCDpDyCzgElFLpqQxKilkv1wc4TAvFTo5Y7/NguyjyMQPJtYdP
+        vyBH7Y1ggPY5yV3VghKriuq9K+4fqEQ=
+X-Google-Smtp-Source: ACHHUZ5QzLadAPdG9cB+kjCl1DS/fPiN26MxAdgN7lxN1c8+aeWylkl3/EDmP9O7dYv1z3xoH7RHsw==
+X-Received: by 2002:a17:907:1626:b0:977:95f4:5cca with SMTP id hb38-20020a170907162600b0097795f45ccamr1037363ejc.54.1686300296651;
+        Fri, 09 Jun 2023 01:44:56 -0700 (PDT)
+Received: from shift.daheim (pd9e2959c.dip0.t-ipconnect.de. [217.226.149.156])
+        by smtp.gmail.com with ESMTPSA id lc20-20020a170906dff400b00970f0e2dab2sm1000421ejc.112.2023.06.09.01.44.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 01:44:56 -0700 (PDT)
+Received: from chuck by shift.daheim with local (Exim 4.96)
+        (envelope-from <chuck@shift.daheim>)
+        id 1q7Xjr-0004fO-1J;
+        Fri, 09 Jun 2023 10:44:55 +0200
+From:   Christian Lamparter <chunkeey@gmail.com>
+To:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org
+Cc:     kvalo@kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: [PATCH v1 1/2] dt-bindings: net: ath11k: add ieee80211-freq-limit property
+Date:   Fri,  9 Jun 2023 10:44:54 +0200
+Message-Id: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <20230602115201.415718-1-matthias.schiffer@ew.tq-group.com>
- <6a0abd6bba2f8f940e695dfa9fd0c5f8ee19064f.camel@ew.tq-group.com>
- <CACRpkdb=2fogk3bEa4fkPVYQivnvLh1F1TnBj7og43ak+F8gPw@mail.gmail.com> <3241150.44csPzL39Z@steina-w>
-In-Reply-To: <3241150.44csPzL39Z@steina-w>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 9 Jun 2023 10:42:04 +0200
-Message-ID: <CACRpkda2yQefuUMn6Ot8Ns6nNgfC25i9nwmzwxOy5fUg=A44hQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] spi: dt-bindings: introduce linux,use-rt-queue flag
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux@ew.tq-group.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 10:15=E2=80=AFAM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
+This is an existing optional property that ieee80211.yaml/cfg80211
+provides. It's useful to further restrict supported frequencies
+for a specified device through device-tree.
 
-> > A agree with Mark that a command line option isn't that bad. It's somet=
-hing
-> > that pertains to just the Linux kernel after all? And you can put that
-> > command line option in the default device tree, in chosen, if you want.
->
-> I don't like the idea of a command line enabling realtime scheduling for =
-all
-> instances of the SPI controller driver or even all SPI controllers. Actua=
-lly
-> this might be worse if a non-rt SPI bus is considered for RT scheduling.
-> IMHO this should be configurable per SPI controller,
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+---
+ Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-OK that's a fair point.
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index 7d5f982a3d09..91bf69c2df01 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -58,6 +58,8 @@ properties:
+     minItems: 1
+     maxItems: 2
+ 
++  ieee80211-freq-limit: true
++
+   wifi-firmware:
+     type: object
+     description: |
+-- 
+2.40.1
 
-I don't think command line arguments are necessarily global by
-nature, AFAIK it's fine to invent something like pl022.4.rt_sched=3D1
-where 4 is the instance number. Parsing it is just code.
-
-> e.g. a sysfs attribute.
-
-But it needs to be set before userspace is up :/
-
-I fully sympathize with this problem, because I have faced
-similar problems myself.
-
-My fallback solution for this driver would be to keep using the
-old DT property (which was merged when reviewing was
-not as strict) if that works, or use undocumented DT properties,
-it's not the end of the world but does leave the bad taste of
-a work not finished.
-
-Yours,
-Linus Walleij
