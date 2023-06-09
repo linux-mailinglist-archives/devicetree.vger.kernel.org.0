@@ -2,98 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8AF272A3EE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 22:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 749AC72A42B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 22:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbjFIUAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 16:00:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52270 "EHLO
+        id S229692AbjFIUOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 16:14:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbjFIUAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 16:00:33 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEA44210D;
-        Fri,  9 Jun 2023 13:00:31 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359JXQDX023055;
-        Fri, 9 Jun 2023 20:00:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=hNSFKWryMT4l8OSN2viRKRuPpy4F59qui6oi84nwnZc=;
- b=hocPd0owKosziZRgIVGQxfUiVGYcXC6of1dJfsZlC2pQ6apE8NpgSbQs7qCkp83+DC1U
- 0aKFDpCNrP2bdplAOCy87PAmtLaV/mw89V7a1LrzDRtD2O4i/TCxFx3CTZoR4ikGR/r2
- IIx2teYx1jNEYGfPWcV3KUiGp2H8oGYKq2UIYupOqwjs9XKq0bsP/E1YByO21atZW1qu
- rrgJcAxTdVr+RCNSM4i+E48ffL3EDqLABzutGIKBXSJn0aFEPEE9o2kqFgOZfMDDN6/+
- pEeohxxG8DlH38JDoxK8QvgGlPInFJUukWQdVEi2WS5QMRfwwze75cjxly1XnC4TNb7g Bg== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3vu4hstr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 20:00:18 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 359K0Hql030988
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 9 Jun 2023 20:00:17 GMT
-Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 9 Jun 2023
- 13:00:16 -0700
-Message-ID: <5a026df6-05d2-42ef-21dd-e0f70071fc90@quicinc.com>
-Date:   Fri, 9 Jun 2023 13:00:16 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v13 16/24] virt: gunyah: Translate gh_rm_hyp_resource into
- gunyah_resource
-Content-Language: en-US
-To:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
- <20230509204801.2824351-17-quic_eberman@quicinc.com>
- <91d52a40-98c5-3d79-79af-7a21b41acfc4@linaro.org>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <91d52a40-98c5-3d79-79af-7a21b41acfc4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        with ESMTP id S229586AbjFIUOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 16:14:22 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FB9B9;
+        Fri,  9 Jun 2023 13:14:21 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-33b04c8f3eeso8724765ab.0;
+        Fri, 09 Jun 2023 13:14:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686341660; x=1688933660;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dm3YQcYKNWwZSM4iR7CtEb9BHyaQ/m2Q8HtJl86RiRU=;
+        b=T9GSe8ftSsJ0da+//C8PGdR6Luu791ezmPHJ2RfhMCWyv/SeTvmuwl/NHP9TR7HkvJ
+         WGzwC9HJ/QY50hysPfnkPK+q7MZ4UNGsnkWIc3QQhHBH1hT8c8bUMDaGy/J/DVp2e+8X
+         miytYSeVv6dmlHCI9Rg0ughOFV7TX11cRB2Xt1WqZipUck82KD+Yz6DoIbNmPiFvbhrq
+         hAtxdZPdfLz5gfMDazu6+7/aPjXKUPZuP7qoQvMMxEbkSLdixF4TpWT8XP8VAvpIKn02
+         HtxE1VhlUDnQqR+Z8IYhQDnrQjLb/LnJGsONwmFSlkzAjQcdZ1o8rlBLET2+QrpoVNEN
+         xegw==
+X-Gm-Message-State: AC+VfDyVkO/rXRZdECROA/AR0bIbzcr3DXHx1lc1Pw7HtohWwKSEPMvd
+        MTt3FkwemfvfdmzRb3jfIa5D+5N72g==
+X-Google-Smtp-Source: ACHHUZ5HLQ62qVYYmTaI/TXCWHChzO0EtCriKFYSmrqmniVxwa3NdMPVMwSdaJU0phW928qsX1qZPw==
+X-Received: by 2002:a92:cd4a:0:b0:33e:8adf:17a with SMTP id v10-20020a92cd4a000000b0033e8adf017amr2321162ilq.16.1686341660462;
+        Fri, 09 Jun 2023 13:14:20 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id g9-20020a926b09000000b0033e4937640esm1257957ilc.80.2023.06.09.13.14.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 13:14:19 -0700 (PDT)
+Received: (nullmailer pid 2082637 invoked by uid 1000);
+        Fri, 09 Jun 2023 20:14:18 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -Fe6BvKa1-udwQSoo5shOSKtZwc-7S-E
-X-Proofpoint-ORIG-GUID: -Fe6BvKa1-udwQSoo5shOSKtZwc-7S-E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_14,2023-06-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=978
- lowpriorityscore=0 phishscore=0 priorityscore=1501 clxscore=1015
- suspectscore=0 spamscore=0 mlxscore=0 adultscore=0 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306090167
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Lamparter <chunkeey@gmail.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, ath10k@lists.infradead.org,
+        kvalo@kernel.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, robh+dt@kernel.org,
+        conor+dt@kernel.org
+In-Reply-To: <f30552d1bfdb4c56f99ca79d8fbf52d3fcf71686.1686331623.git.chunkeey@gmail.com>
+References: <f30552d1bfdb4c56f99ca79d8fbf52d3fcf71686.1686331623.git.chunkeey@gmail.com>
+Message-Id: <168634165805.2082604.10984266765372350762.robh@kernel.org>
+Subject: Re: [PATCH v1] dt-bindings: net: wireless: ath10k: add
+ ieee80211-freq-limit property
+Date:   Fri, 09 Jun 2023 14:14:18 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -102,75 +66,62 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 6/5/2023 12:49 PM, Alex Elder wrote:
-> On 5/9/23 3:47 PM, Elliot Berman wrote:
->> When booting a Gunyah virtual machine, the host VM may gain capabilities
->> to interact with resources for the guest virtual machine. Examples of
->> such resources are vCPUs or message queues. To use those resources, we
->> need to translate the RM response into a gunyah_resource structure which
->> are useful to Linux drivers. Presently, Linux drivers need only to know
->> the type of resource, the capability ID, and an interrupt.
->>
->> On ARM64 systems, the interrupt reported by Gunyah is the GIC interrupt
->> ID number and always a SPI.
->>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+On Fri, 09 Jun 2023 19:27:23 +0200, Christian Lamparter wrote:
+> This is an existing optional property that ieee80211.yaml/cfg80211
+> provides. It's useful to further restrict supported frequencies
+> for a specified device through device-tree.
 > 
-> Please zero the automatic variable in the place I suggest it.
-> I have two other comments/questions.  Otherwise, this looks good.
+> The driver supported this since ~2018 by
+> commit 34d5629d2ca8 ("ath10k: limit available channels via DT ieee80211-freq-limit")
 > 
-> Reviewed-by: Alex Elder <elder@linaro.org>
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> ---
 > 
->> ---
-
-...
-
->> +struct gh_resource *gh_rm_alloc_resource(struct gh_rm *rm, struct 
->> gh_rm_hyp_resource *hyp_resource)
->> +{
->> +    struct gh_resource *ghrsc;
->> +    int ret;
->> +
->> +    ghrsc = kzalloc(sizeof(*ghrsc), GFP_KERNEL);
->> +    if (!ghrsc)
->> +        return NULL;
->> +
->> +    ghrsc->type = hyp_resource->type;
->> +    ghrsc->capid = le64_to_cpu(hyp_resource->cap_id);
->> +    ghrsc->irq = IRQ_NOTCONNECTED;
->> +    ghrsc->rm_label = le32_to_cpu(hyp_resource->resource_label);
->> +    if (hyp_resource->virq) {
->> +        struct gh_irq_chip_data irq_data = {
->> +            .gh_virq = le32_to_cpu(hyp_resource->virq),
->> +        };
->> +
->> +        ret = irq_domain_alloc_irqs(rm->irq_domain, 1, NUMA_NO_NODE, 
->> &irq_data);
->> +        if (ret < 0) {
->> +            dev_err(rm->dev,
->> +                "Failed to allocate interrupt for resource %d label: 
->> %d: %d\n",
->> +                ghrsc->type, ghrsc->rm_label, ghrsc->irq);
-> 
-> Is it reasonable to return in this case without indicating to the
-> caller that something is wrong?
+> Note: this is for ath10k. The other patch is for a different driver (ath11k).
+> ---
+>  .../devicetree/bindings/net/wireless/qcom,ath10k.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
-I wasn't sure what to do here since this is unexpected edge case. Not 
-returning would cause a client's "request_irq" to fail down the line if 
-the client was interested in the irq. I had picked not to return since 
-this error doesn't put us in an unrecoverable state. No one currently 
-wants to try to recover from that error, so I'm really just deferring 
-the real error handling until later.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I can return ret here.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml:171:1: [error] duplication of key "allOf" in mapping (key-duplicates)
 
->> +        } else {
->> +            ghrsc->irq = ret;
->> +        }
->> +    }
->> +
->> +    return ghrsc;
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/net/wireless/qcom,ath10k.example.dts'
+Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml:171:1: found duplicate key "allOf" with value "[]" (original value: "[]")
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/wireless/qcom,ath10k.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml:171:1: found duplicate key "allOf" with value "[]" (original value: "[]")
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 62, in <module>
+    ret |= check_doc(f)
+  File "/usr/local/bin/dt-doc-validate", line 31, in check_doc
+    for error in sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda e: e.linecol):
+  File "/usr/local/lib/python3.10/dist-packages/dtschema/lib.py", line 736, in iter_schema_errors
+    cls.annotate_error(error, meta_schema, error.schema_path)
+  File "/usr/local/lib/python3.10/dist-packages/dtschema/lib.py", line 712, in annotate_error
+    schema = schema[p]
+KeyError: 'type'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml: ignoring, error parsing file
+make: *** [Makefile:1512: dt_binding_check] Error 2
 
-...
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/f30552d1bfdb4c56f99ca79d8fbf52d3fcf71686.1686331623.git.chunkeey@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
