@@ -2,137 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFD9E72906E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 08:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B784729075
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 08:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237687AbjFIGy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 02:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56752 "EHLO
+        id S238609AbjFIG5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 02:57:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238473AbjFIGyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 02:54:25 -0400
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E27635B3
-        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 23:54:20 -0700 (PDT)
-Received: by mail-ua1-x92a.google.com with SMTP id a1e0cc1a2514c-78a57844f42so433502241.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 23:54:20 -0700 (PDT)
+        with ESMTP id S237522AbjFIG5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 02:57:05 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC1F3A94
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 23:56:59 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-561b7729a12so37764507b3.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 23:56:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686293659; x=1688885659;
+        d=linaro.org; s=google; t=1686293818; x=1688885818;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MWjk+u2aodMppO3MarY+I/93to0vWHLLHWpZ0LdR2fs=;
-        b=YWycUxPopqZ6PCDKeAukOx8zNYQ6quMy0n4axU3QYAGyueU2uzcuLzkbKjRO/o+YBK
-         6xDXfifgQX8Ko7oJ57gRzPinP+ciAL8BAGCKv4PDfiqgaWyeVPHSiosaObVJ8fc/guHa
-         yyAPEam7EX3fHC12iaAFVeqD0G+O7ie8OJYRU=
+        bh=EPnqXMOZVL6sTkCADxUPTqWs/TKz+PEnmIF/0BFjH8Q=;
+        b=mzFSM/gnMPcPABMe+P7vONS3ZNBzFZ9yP/J/Kr8qWjXAfWXj9lFRm4Yq5/znbHMaWX
+         xa4OS/lQHkFrz2nfYSXYiYy3orqqgjwZKo5yrQXNxWb73VSA5KzWr+QN1yf4Kq1ghL/J
+         9Ccjx9032BjHefkUrpu6AZrB5c3oKZX04WJs+3IDQYMldxlmefymp3XWso0HIvfnRkvA
+         JM2W9KMPJzbH9r7LPO0+vj+3i4N1F5IXtIDzl0LJ2fI3VES6vCs964litPxtkO4+S5aB
+         KMxYJRmNiIiUJipGFNW3tfV+VYH93p2PzrqIvxzh0OO9Wo6GlXn3Oi+pJ1JLC9zZQBIK
+         CIvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686293659; x=1688885659;
+        d=1e100.net; s=20221208; t=1686293818; x=1688885818;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MWjk+u2aodMppO3MarY+I/93to0vWHLLHWpZ0LdR2fs=;
-        b=c2w0h0Jk24lnjN+X6hQDDCq2EDykDmWxIRTWbJLRyMgZQ8nT1kmd4uL+KYiYGGC3Fp
-         RH4GJsjBAQ3N2l3vvsJovWu/aEEc7i4nEQ1zpkWhHuiFFxkGk1kUizQ6z/ML1SMZjhdA
-         MDkj5XkgUBzzo0yxYSrD4wRlTJvlQ0rGGLoLSqJqaS27fR38UxHweDh3W2CnRAHr5U3y
-         ucMRSvLrjEa9Z+4cwggAtwsP2T954swFSwUv417GQpZtJBOR/iPmGOze/DCGOlE3s+uQ
-         ygcpGTop/wdj3CMqwcx38WMgwTQvOMxPvP3R/x1Yhf7WxT6+F35fzeETbQE3OPDSrEDP
-         50TQ==
-X-Gm-Message-State: AC+VfDztlEplDSFzXr2odZK4KFIvhdhEiF8U/zxOF4sU0NuAcs1NX6Ym
-        hjWBY1VYSMMjFr2qqKkBAakxhaRIS/y99dJV5JWVww==
-X-Google-Smtp-Source: ACHHUZ5zdxMYMog4VI/k9il6dhuxPxVXO7AMtOqZyoNO4FOu3+hnOspZilQnfqUZ5b2emBjPA1nJxIc+bJhug/f3sMo=
-X-Received: by 2002:a67:fc1a:0:b0:439:3f3e:dab5 with SMTP id
- o26-20020a67fc1a000000b004393f3edab5mr117499vsq.24.1686293659188; Thu, 08 Jun
- 2023 23:54:19 -0700 (PDT)
+        bh=EPnqXMOZVL6sTkCADxUPTqWs/TKz+PEnmIF/0BFjH8Q=;
+        b=CoykFbfSm+aFEYmUhIrUVnc5Xx+O4HuOeRxM7/csmRuOA9ozy/a+fB52DNXeKF2O5y
+         06/4dKvHgLSjPYmIoLPCPcrAj6uLdRCL6jKA7GrTt4Rw535R27ObXB0eB42iidMI3rMW
+         QpETs6ITpnRVsvBHk0f9QsNxhtRGpRyONGY9RNuZ+meiOXA8JdrcGuPK4grs5vgZ8vzV
+         3vyY/F/PD8yTq2dpR8vxnyoImuGgbgODkx02TcVJAgp+6zDKrJADS5dCq/W+AP/z597h
+         u8RpXRlsARvi5vzoPsYV53DW9Zt3Qehi0r0mBuJsOlkdTXA7MVluYuve9Nxx/qowc0vA
+         WYUQ==
+X-Gm-Message-State: AC+VfDw3EeWJHMJuhgIMz9J2yxyfyBW8nV/8DycRi5Hg2/gopjRGx2Gq
+        YZvTVhxTdoaw06HrSl3Qm61BxLy7V3gxfii0VuxRLQ==
+X-Google-Smtp-Source: ACHHUZ5X127VTzj4zOV1xeRhWkNtYt3iBIPKSBWOTbrgngPPTDrQ5epKwgsmZoP+K3u1v9n+9tto9vaqGSEX4/wb7mQ=
+X-Received: by 2002:a25:54f:0:b0:bac:46f2:8d0f with SMTP id
+ 76-20020a25054f000000b00bac46f28d0fmr2700548ybf.3.1686293818393; Thu, 08 Jun
+ 2023 23:56:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230607090653.2468317-1-wenst@chromium.org> <20230607090653.2468317-5-wenst@chromium.org>
- <b61c7d8c-85e7-2248-d386-ffec8c275aa4@collabora.com>
-In-Reply-To: <b61c7d8c-85e7-2248-d386-ffec8c275aa4@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 9 Jun 2023 14:54:08 +0800
-Message-ID: <CAGXv+5Gi1B0FzVtA4ZoQ7Ra+JOZWh68mQTi+G4Y2NBe+t9ehiA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: mediatek: mt8186: Wire up GPU
- voltage/frequency scaling
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230601173831.982429-1-nm@ti.com>
+In-Reply-To: <20230601173831.982429-1-nm@ti.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 9 Jun 2023 08:56:47 +0200
+Message-ID: <CACRpkdawgFtSt3wEGz5MC9apFiLgUbta4TRc6YhOrEGbT6Okvg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: Drop k3
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 8, 2023 at 8:14=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 07/06/23 11:06, Chen-Yu Tsai ha scritto:
-> > Add the GPU's OPP table. This is from the downstream ChromeOS kernel,
-> > adapted to the new upstream opp-supported-hw binning format. Also add
-> > dynamic-power-coefficient for the GPU.
-> >
-> > Also add label for mfg1 power domain. This is to be used at the board
-> > level to add a regulator supply for the power domain.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 140 ++++++++++++++++++++++=
--
-> >   1 file changed, 139 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot=
-/dts/mediatek/mt8186.dtsi
-> > index c58d7eb87b1d..a34489e27cd4 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> > @@ -695,6 +695,142 @@ clk32k: oscillator-32k {
-> >               clock-output-names =3D "clk32k";
-> >       };
-> >
-> > +     gpu_opp_table: opp-table-gpu {
-> > +             compatible =3D "operating-points-v2";
-> > +
-> > +             opp-299000000 {
-> > +                     opp-hz =3D /bits/ 64 <299000000>;
-> > +                     opp-microvolt =3D <612500>;
-> > +                     opp-supported-hw =3D <0x38>;
->
-> For all of the OPPs that are supposed to be supported by all speed-bins, =
-you don't
-> need to restrict them to all "known" bins.
->
-> Please change opp-supported-hw from <0x38> to <0xff>, which literally mea=
-ns
-> just "applies to all revisions".
+On Thu, Jun 1, 2023 at 7:38=E2=80=AFPM Nishanth Menon <nm@ti.com> wrote:
 
-OK.
+> If you could pick this up for the next 6.5 kernel window now that we have=
+ kept the
+> old header around for one cycle.
 
-> > +             };
->
->
-> ..snip...
->
-> > +
-> > +             opp-900000000-3 {
->
-> What about calling those like "opp-900000000-bin3"?
-> Makes it clear that it's tied to what MediaTek calls a speedbin "3" (as w=
-e're
-> interpreting the values in the nvmem driver to make them compatible with =
-the
-> opp-supported-hw's expectations).
+Patch applied!
 
-I thought that at first as well, but the bindings require the OPP node to
-be named following '^opp(-?[0-9]+)*$':, so numbers only.
-
-ChenYu
+Yours,
+Linus Walleij
