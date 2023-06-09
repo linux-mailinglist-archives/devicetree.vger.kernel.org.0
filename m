@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA84F729C64
+	by mail.lfdr.de (Postfix) with ESMTP id 54ADC729C62
 	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:09:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240941AbjFIOJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:09:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
+        id S241336AbjFIOJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:09:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240890AbjFIOIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:08:38 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 726884203
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:08:14 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5169f614977so3184992a12.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:08:14 -0700 (PDT)
+        with ESMTP id S240976AbjFIOIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:08:39 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC7C3A81
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:08:16 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f61d79b0f2so2370349e87.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:08:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686319669; x=1688911669;
+        d=linaro.org; s=google; t=1686319671; x=1688911671;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qb0ZFzAhhK+erW7LJP2wxkzkSRjZwcO8zreCGJicNFw=;
-        b=g0IAe/XKTBIdzkRWIKTXMHHY4xvxoph0Yho8VHmmcTHZv9MXFFyKoIfbpBKD9YHxIf
-         MsBrgujXVELr8R+pC8ewFG3Yi9CFhEMmKpMz67eKFTa3AZFnvP0vVIncACRTPJ6C138n
-         7f9/iQyGAq0L1B3iWek2pZqgaRzpjR3cnDSWANH2rnKDkXBURv5IRQ/Bm6L7EDzVzwDX
-         f07thJF5H7vXcZ66rRE2WLus1NONw5Pu2f1EsKs5cXTtk4eDAUeQ3RBQ/Rw4rv2W2WVh
-         hWU5cLTgqX4Ant73FnFEL6YsM40rnLZV51WOqVqq07nN3/bdParGhT3YXPaSIvDz6Is6
-         mkOQ==
+        bh=PhmYSawgzNKNuzax3sHGLO9z0mLewXtxDLqfsn2NEbU=;
+        b=yVYQDbwdGODQAV9l/6RLa8KOyLe/vy44PIuB0JRMlCHt4fnOSKH90tpE2Ipe2qOJiQ
+         ROXxOFDQnAfUALLsN2nEGXwgKxnN0CNhjLKAhOrG8rK332AYFoR65uOENP/3ut+mw1iR
+         7CvDmLsHHZhOHWpGH7gHnq7AuRelBbgz1R6G+6wWDf6wAoL6nyvc8v/LmhA6IGGl/3nq
+         rBiuE2P4/HOUKs/ir4NxxsXkgol1UwQ1z7/pW1lqeinxHKZbwQ7JHEsCUE1+3eMuJETO
+         r98cayRSIeSvzq8qU1hc/opJ7PYPedmpSA/gjqAwNIWNXPk2kO3QB/+vQtJQwvoz4vF3
+         OJtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686319669; x=1688911669;
+        d=1e100.net; s=20221208; t=1686319671; x=1688911671;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Qb0ZFzAhhK+erW7LJP2wxkzkSRjZwcO8zreCGJicNFw=;
-        b=XBNorLl50/dDlmz61gZ3Hjgznx2+0LamfRJiQ6OGN3PfFNJwFfPl9ll5wId3clBL68
-         UIwQz3oQnvB5P+423vLBIEzHR3N90uE1tQtLs6Ul0xegaOfkMEJWzZgupFdn3jHy/QAY
-         yQ8FMhXTUYodwHDWnOgpbx7HYcjEFLA1n0iE0igYTzC+XrdeLHFZIAXOvea433VxTSk5
-         nndnt7mXkkksVkpl50OFooJu/vWDoki8lGWsTw5jS6dWIG0gEnkeY4kKeNHvsOr5jZIt
-         CbInmesD6gci6jF3zaQOKCAaMQ3uGR7cFtq3QEOpt4mqigcbqveiH94KjCQvAV1rQaik
-         scxA==
-X-Gm-Message-State: AC+VfDyKW9atxhEupLSArx9nGz9hvgloT0tg+On2VfxW6yktg5tOYq5C
-        1GrZ9+2+X4Sa6Ej23+ObcDWOnA==
-X-Google-Smtp-Source: ACHHUZ7+AMaHS+1ugJrL7maVJt9zzkeyqMobj7k+MK3bgJsaH56MLQu9BqRWzq+p0fAn87cIDLfCTg==
-X-Received: by 2002:aa7:c48a:0:b0:514:9acd:7bc1 with SMTP id m10-20020aa7c48a000000b005149acd7bc1mr1414817edq.9.1686319669388;
-        Fri, 09 Jun 2023 07:07:49 -0700 (PDT)
+        bh=PhmYSawgzNKNuzax3sHGLO9z0mLewXtxDLqfsn2NEbU=;
+        b=gZKalG59DAmYGgEiFnNmhEwsrBQoST84WY97kpvBcw0Yttt1Y/WSMoPtC6LaCXBzyi
+         N0MDKWCoOhKzESlOwdMseSDAuMUlkYkQYQp9jO0X8PaRPyp4dVCyYsSL6zNVFddWVnoK
+         RNvOG4kM+8zoomIxRsrrOkqxi+9tCD5FLDHb93ISgMbRn4/vd3ELgtCZf3fmaboQELqx
+         e2vNSj3u8Bg5O0562WXG1peFXSRR3hmDhgAolBa1wLhvUqCdcb0r1DKDvJXyiu3jJ1ef
+         PmtOOxJdfcuWJc3aVFIPg5j6UJkYcB0O2hoUFryrZGo6QbLPJ5MeY60uisdew3vb2AWd
+         5Yow==
+X-Gm-Message-State: AC+VfDwAWdApdlOVpfYNynHds2y4s8PORXPcb/WRAty6TuvpCvBdE7XB
+        rM+ER2kfHhQWQ7xwc7tFbT7f9jumGTQ+PcFBQqg=
+X-Google-Smtp-Source: ACHHUZ4PvtEyG18pr/mFyuRrrJIhvCWT2a8D1K+v89rtkxVCZhj+RkR1AZX8GfuaCJNDru40yZWA7A==
+X-Received: by 2002:a19:5f16:0:b0:4f6:25a3:95ab with SMTP id t22-20020a195f16000000b004f625a395abmr962129lfb.25.1686319671453;
+        Fri, 09 Jun 2023 07:07:51 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id t1-20020aa7d701000000b005166779bfd2sm1833258edq.6.2023.06.09.07.07.48
+        by smtp.gmail.com with ESMTPSA id z10-20020aa7c64a000000b00514bcbfd9e0sm1826855edr.46.2023.06.09.07.07.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 07:07:49 -0700 (PDT)
+        Fri, 09 Jun 2023 07:07:51 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        =?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: mfd: brcm: drop unneeded quotes and use absolute /schemas path
-Date:   Fri,  9 Jun 2023 16:07:47 +0200
-Message-Id: <20230609140747.65074-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: firmware: arm,scmi: drop unneeded quotes and use absolute /schemas path
+Date:   Fri,  9 Jun 2023 16:07:49 +0200
+Message-Id: <20230609140749.65102-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -78,146 +79,22 @@ starting with /schemas is preferred.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml     | 4 ++--
- .../devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml    | 4 ++--
- .../devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml     | 4 ++--
- .../devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml     | 4 ++--
- .../devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml     | 4 ++--
- .../devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml     | 4 ++--
- 6 files changed, 12 insertions(+), 12 deletions(-)
+ Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml
-index 9f9a14af875e..cb480162f967 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml
-@@ -35,7 +35,7 @@ patternProperties:
-   "^gpio@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../gpio/brcm,bcm63xx-gpio.yaml"
-+    $ref: /schemas/gpio/brcm,bcm63xx-gpio.yaml
-     description:
-       GPIO controller for the SoC GPIOs. This child node definition
-       should follow the bindings specified in
-@@ -44,7 +44,7 @@ patternProperties:
-   "^pinctrl@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../pinctrl/brcm,bcm6318-pinctrl.yaml"
-+    $ref: /schemas/pinctrl/brcm,bcm6318-pinctrl.yaml
-     description:
-       Pin controller for the SoC pins. This child node definition
-       should follow the bindings specified in
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml
-index 803277dd2725..c14def1b2ad2 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml
-@@ -35,7 +35,7 @@ patternProperties:
-   "^gpio@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../gpio/brcm,bcm63xx-gpio.yaml"
-+    $ref: /schemas/gpio/brcm,bcm63xx-gpio.yaml
-     description:
-       GPIO controller for the SoC GPIOs. This child node definition
-       should follow the bindings specified in
-@@ -44,7 +44,7 @@ patternProperties:
-   "^pinctrl@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../pinctrl/brcm,bcm63268-pinctrl.yaml"
-+    $ref: /schemas/pinctrl/brcm,bcm63268-pinctrl.yaml
-     description:
-       Pin controller for the SoC pins. This child node definition
-       should follow the bindings specified in
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml
-index b9a6856ce970..5f48209ed40f 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml
-@@ -35,7 +35,7 @@ patternProperties:
-   "^gpio@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../gpio/brcm,bcm63xx-gpio.yaml"
-+    $ref: /schemas/gpio/brcm,bcm63xx-gpio.yaml
-     description:
-       GPIO controller for the SoC GPIOs. This child node definition
-       should follow the bindings specified in
-@@ -44,7 +44,7 @@ patternProperties:
-   "^pinctrl@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../pinctrl/brcm,bcm6328-pinctrl.yaml"
-+    $ref: /schemas/pinctrl/brcm,bcm6328-pinctrl.yaml
-     description:
-       Pin controller for the SoC pins. This child node definition
-       should follow the bindings specified in
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml
-index 4651fe4dde07..f1f4629565d9 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml
-@@ -35,7 +35,7 @@ patternProperties:
-   "^gpio@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../gpio/brcm,bcm63xx-gpio.yaml"
-+    $ref: /schemas/gpio/brcm,bcm63xx-gpio.yaml
-     description:
-       GPIO controller for the SoC GPIOs. This child node definition
-       should follow the bindings specified in
-@@ -44,7 +44,7 @@ patternProperties:
-   "^pinctrl@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../pinctrl/brcm,bcm6358-pinctrl.yaml"
-+    $ref: /schemas/pinctrl/brcm,bcm6358-pinctrl.yaml
-     description:
-       Pin controller for the SoC pins. This child node definition
-       should follow the bindings specified in
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml
-index 0330b621fd38..4d594739b382 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml
-@@ -35,7 +35,7 @@ patternProperties:
-   "^gpio@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../gpio/brcm,bcm63xx-gpio.yaml"
-+    $ref: /schemas/gpio/brcm,bcm63xx-gpio.yaml
-     description:
-       GPIO controller for the SoC GPIOs. This child node definition
-       should follow the bindings specified in
-@@ -44,7 +44,7 @@ patternProperties:
-   "^pinctrl@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../pinctrl/brcm,bcm6362-pinctrl.yaml"
-+    $ref: /schemas/pinctrl/brcm,bcm6362-pinctrl.yaml
-     description:
-       Pin controller for the SoC pins. This child node definition
-       should follow the bindings specified in
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml
-index 82d3e4415bda..aae83d432880 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml
-@@ -35,7 +35,7 @@ patternProperties:
-   "^gpio@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../gpio/brcm,bcm63xx-gpio.yaml"
-+    $ref: /schemas/gpio/brcm,bcm63xx-gpio.yaml
-     description:
-       GPIO controller for the SoC GPIOs. This child node definition
-       should follow the bindings specified in
-@@ -44,7 +44,7 @@ patternProperties:
-   "^pinctrl@[0-9a-f]+$":
-     # Child node
-     type: object
--    $ref: "../pinctrl/brcm,bcm6368-pinctrl.yaml"
-+    $ref: /schemas/pinctrl/brcm,bcm6368-pinctrl.yaml
-     description:
-       Pin controller for the SoC pins. This child node definition
-       should follow the bindings specified in
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index ad776911f990..b138f3d23df8 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -218,7 +218,7 @@ properties:
+         patternProperties:
+           '^regulator@[0-9a-f]+$':
+             type: object
+-            $ref: "../regulator/regulator.yaml#"
++            $ref: /schemas/regulator/regulator.yaml#
+             unevaluatedProperties: false
+ 
+             properties:
 -- 
 2.34.1
 
