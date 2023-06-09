@@ -2,124 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8E9C729B8B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 15:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86360729B97
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 15:29:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241122AbjFINYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 09:24:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46734 "EHLO
+        id S239353AbjFIN31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 09:29:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240318AbjFINYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 09:24:04 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 936B530FA
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 06:24:02 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b1a3fa2cd2so19408531fa.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 06:24:02 -0700 (PDT)
+        with ESMTP id S232287AbjFIN30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 09:29:26 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97369A3;
+        Fri,  9 Jun 2023 06:29:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686317041; x=1688909041;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oxKvNxSUUmtV5IlqPy/tts+L3dFs3BAIjBbwSPjXSi4=;
-        b=E0LaWqx3J5Qd4fYNy558AUnnmEoceF1QWBxBOwEEQsO+jXlp3TLlEI2ULIcz1JEnnz
-         +i/TSzWjktOc+D36gpd7c8MGcK0rAzs45vzzDVxqhsyFMHW38B/Mnaa4BZnknGL3jOrW
-         sa6rPoK1BcwGszIkGhL5zwialsIYCdyvSRU7B7UBkGJvxDkHyves5V81mk/RFhDMwT+P
-         KqQ6d4o9cE9yxEm0Th1zOZYmoSTBiXTEYASqdPmieOP2iqXUGMFIuFTe2FqjWlIOUVS3
-         1E/wT+MF+XLZ/5jiWUuxfWrLALlQtZDYQ3xs46jH4I1+By4OahDfkJaoC7o+6ebqejgg
-         K9Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686317041; x=1688909041;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oxKvNxSUUmtV5IlqPy/tts+L3dFs3BAIjBbwSPjXSi4=;
-        b=R2Ya0nWWxAEFMZtbXffSRRBlv8Jmbza8479xmtRy4fUiq+/W93zMYt76GgZa25En8a
-         gvANb2KMDIOTjqMZmekjOl2bkgv/hoKYEFyh/F3j50nLtcHq4NkXF5tiLoreW61UH0Za
-         Tjadh/bHBT6wPYryiTqbswm9l7LgTcrZ5S9mMCtrIoULnVUlJkMQCmxPiUwE2tARc8/y
-         PHW4unsLx/r1JaxngrYFKmHEHsxChFZUUhKX3LN5Wk19i8rg2owNW1y4ySQmifggF3o0
-         mPY8OjutE+59FGzhoT+emjUTXZ1WTGFG1I8VNDDtX5bMqdd7a254OVsXvr0QTodwfJZa
-         h5OA==
-X-Gm-Message-State: AC+VfDzC6uywXBYrh8oj0U8fDeSk63oJkNQ0DNSpZlXWv+EWhYRt6SEN
-        xVyYSytRlA8zsoqkvpu4CgrUEg==
-X-Google-Smtp-Source: ACHHUZ7Fp9jSHspFeJrUnKFN9+oHtUhodm16Rqr4dpqTnu0/V29JiV+8ZpWRMVvekkQ1+KcEDfqONQ==
-X-Received: by 2002:a2e:b162:0:b0:2af:30d8:527f with SMTP id a2-20020a2eb162000000b002af30d8527fmr1099809ljm.19.1686317040664;
-        Fri, 09 Jun 2023 06:24:00 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id z6-20020a1709060ac600b009745ecf5438sm1280197ejf.193.2023.06.09.06.23.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 06:24:00 -0700 (PDT)
-Message-ID: <8a128520-ef46-78c8-f25e-53c4d76a7d45@linaro.org>
-Date:   Fri, 9 Jun 2023 15:23:57 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8775p: Add interconnect to PCIe
- SMMU
-Content-Language: en-US
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686317364; x=1717853364;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JAIRug1n6Vg8kLavFuz85RwEkI8s8IGW/QfdDqdEKuk=;
+  b=cCYWzRYH0zxenAIaljMO5uvAOzlUkEaunpmZbNpfROBrQ6R2nzLhY49O
+   u55gFR2epFXuNlEyu+L8YIgVoG/Fno+QoQM31Hi9wqXqI0p7fdv9StCdF
+   D2qhI/M36uqKOc/gicypBdFrvB4+up7Q+csLymO8pW/Tgwq3o8C8EjBQT
+   /TeS0MpLRiMmh7mXGbdgGIbdjO0rImPvMKMYJihL3F4Na0m8k4bO68yNz
+   oqlSV3KB+Z29wxO2ZZYRC+K2b5TZbOJQyQQ0tJ6HkXmPP4OlkNC/2px1S
+   iqXRN/CAjsf4Wp8GSwbA1v+2Ryo/CTUY94Nvj0subB4i7WVA/nfciMKdh
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,229,1681164000"; 
+   d="scan'208";a="31366198"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Jun 2023 15:29:22 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 09 Jun 2023 15:29:22 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 09 Jun 2023 15:29:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686317362; x=1717853362;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JAIRug1n6Vg8kLavFuz85RwEkI8s8IGW/QfdDqdEKuk=;
+  b=fgRyrcmCNO0A6Qryke9uewuR9hn7l7fhj1SRNuDna+je0OBjP58afA8u
+   aGLsKqP4x6moXWEacPeMl+l0u0+Rg6UxX9dHFCrFeeF9eNvXiG5CMwmmU
+   LWA6q3xVjCeEf+1gaSSn219x1WCG0erHA4zhGIgOm9LXZGhh1OkXfuf0/
+   XG/OrDFqfIl4USPEL+shJQMXY6byJ17wksXPGPWIvBSbZvNxndCTGnuHr
+   +Z1ZU0vU/jhDaemlMgwmauF/CYq10n3uyb2edEuByvb/T4JRirdZkAWd7
+   OKZqHYq/aCKMk1gG3ch9SkKKmMMP/b49E9mozcvGaMHMBbBHlbHPiEzZb
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,229,1681164000"; 
+   d="scan'208";a="31366197"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Jun 2023 15:29:22 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DE9BB280087;
+        Fri,  9 Jun 2023 15:29:21 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org,
-        "linux-kernel @ vger . kernel . org Prasanna Kumar" 
-        <quic_kprasan@quicinc.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>
-References: <20230609054141.18938-1-quic_ppareek@quicinc.com>
- <20230609054141.18938-3-quic_ppareek@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230609054141.18938-3-quic_ppareek@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+Subject: [PATCH 0/3] TQMa93xxLA support
+Date:   Fri,  9 Jun 2023 15:29:12 +0200
+Message-Id: <20230609132915.634338-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2023 07:41, Parikshit Pareek wrote:
-> Introduce the interconnect, connecting PCIe SMMU to the memory. This
-> is accessed during memory mapped IO access of smmu registers, and
-> during page table walks.
-> 
-> Reported-by: Eric Chanudet <echanude@redhat.com>
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index b130136acffe..ea3c37019c46 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -2137,6 +2137,10 @@
->  				     <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>;
-> +			interconnects = <&pcie_anoc MASTER_PCIE_0 QCOM_ICC_TAG_ALWAYS
-> +					&mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-> +			interconnect-names = "tbu_mc";
-> +			icc_bw = <250>;
+Hi,
 
-Why 250? Why it cannot change during system run depending on the needs?
-
+this series adds initial support for TQMa93xxLA soldered on MBa93xxLA.
+As the name indicates this is an i.MX93 based SBC board. The initial support
+includes typical interfaces like UART, eMMC, I2C, Ethernet.
+Support for USB, LVDS and PMIC is still pending, which require additional
+patches.
+Patch 1 adds the compatible to dt bindings
+Patch 2 adds .dts[i] files for module and sbc board support
+Patch 3 adds more i.MX93 drivers to arm64 defconfig
 
 Best regards,
-Krzysztof
+Alexander
+
+Alexander Stein (2):
+  arm64: dts: freescale: add initial device tree for MBa93xxLA SBC board
+  arm64: defconfig: Enable i.MX93 devices
+
+Markus Niebel (1):
+  dt: bindings: add bindings for TQMa93xxLA SOM
+
+ .../devicetree/bindings/arm/fsl.yaml          |  19 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx93-tqma9352-mba93xxla.dts    | 629 ++++++++++++++++++
+ .../boot/dts/freescale/imx93-tqma9352.dtsi    | 213 ++++++
+ arch/arm64/configs/defconfig                  |   4 +
+ 5 files changed, 866 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
+
+-- 
+2.34.1
 
