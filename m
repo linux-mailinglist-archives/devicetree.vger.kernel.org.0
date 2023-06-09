@@ -2,162 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 007D472940C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:03:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2B1A729467
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239895AbjFIJDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 05:03:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
+        id S241327AbjFIJM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 05:12:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241099AbjFIJDJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 05:03:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D414210C;
-        Fri,  9 Jun 2023 02:03:08 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C71A66606F1D;
-        Fri,  9 Jun 2023 10:03:05 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686301386;
-        bh=yn37R8118HR0BWMGyAsYVW73MuZTJZ0eQLcGqFaWCxI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=DnG7fJ2FZJyNXpevDVjEleH74QQB5w6SZroDRC3AX08rO8yM34reQu8gthn7AN5P6
-         F4Be5HRWL7qwGHccPs3v1Q0f/BXPJglvq0M3WIeeLeWITPk9eSvrZF9bEv6A2kRcLc
-         POfgKeSNKdjD4nAbABFk2Nb16ONCsSIvtMM6u8tSVKo0L3EVi7/3PyXQd/0V6SXZ+G
-         F/vo4OjEj1tVJirEsOTN+WVNPmJFZHsqXc89ypgc6dEFhya+Xm1lccm6/v6PJ/nFuS
-         Q4hiHUQ/EHwbnqFvc+vKfisw8nhu01+sGKDLNjhwi0GkNXL6lW+mmJP8ppn2uEtOY7
-         tduwyPrZCDN5g==
-Message-ID: <a7b7476d-3bbd-5503-db3d-5d57356764f8@collabora.com>
-Date:   Fri, 9 Jun 2023 11:03:03 +0200
+        with ESMTP id S241459AbjFIJM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 05:12:26 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D354549FA
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 02:08:06 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f640e48bc3so1841021e87.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 02:08:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686301639; x=1688893639;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ut+UdOGUYV6ZPCloMfk71xOra+IPou8Ks2zziRmRFEc=;
+        b=TzEJ+kHaf++h2o/IQ0+vrufd/PJNz+Qa7g86IoNKbGoAC4CuJs23659mYro50iqqCT
+         av3IHNGUR24d984wVv5JQElrSFFB31VgA1LMS21Ku/YKbb55LcDunKrq4Vwf9IN/OX8c
+         OqCFXj39eEv9+os5V4M9oLCfkhHZ7WZd++HphIEB5pY8kWGXNdqqGtskrqSAReK1Lw3F
+         Et1jOeEHy2OxQaLnhGOKz47gm3BYmnhQkV4LSi5g4Ymu2CQjsWqJCAbj6YAiezPZF9sy
+         qa32e3EyTt/8xKCRoUd8DoHGo6dZRz1iybIgja1w1DsLtInXjpQRqUXGxnDsUUjsrdRE
+         SXQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686301639; x=1688893639;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ut+UdOGUYV6ZPCloMfk71xOra+IPou8Ks2zziRmRFEc=;
+        b=Ej/KLWF2vR3nfpQ/NrS5vergOAvj5fMun6FWf/+g6S3Bcb89mjBK/qzjuG0iZ5Ozkb
+         7zgp2Rtd91WDlcpYKuP+6F/0AfIf2RL00Eyp+d+auWFJ1xcAO9Q8kDo6ScvUfgbkviO+
+         FnY2pma5gyunWNCgtbmkD0t9HX0mA/Lj9X5GXuUevyA/wZ2Os6xiZn7CBmYSVd6kc7RF
+         wsuft/VvuTrVACWfpaPcrmwxe73twigWQidrq3aHs7x3ORXx4Ppk4JEDe4QMg0LWGWRV
+         cMJdK88PyZ9s3vrbTnsgnWv3Qgk1NVRju3vU0EmuODACYu3328exqIEGRqs3UO3sFaqV
+         qV9w==
+X-Gm-Message-State: AC+VfDwryAOMRhVh6sq2k5L53fnfCwMZy9cQ3Pey5P5fGB/Y2L56iKOz
+        0ic1aC4g1+LqrMIKrwyn4v6mxw==
+X-Google-Smtp-Source: ACHHUZ42fawBuo7RkPecPZhXac5mt8Wx5dZ8Dk95VjNMEK9sH0vBXfC7A1FMt30eCPmgY8SYu9IA5g==
+X-Received: by 2002:a19:2d58:0:b0:4f6:2a63:d3fc with SMTP id t24-20020a192d58000000b004f62a63d3fcmr420007lft.32.1686301639605;
+        Fri, 09 Jun 2023 02:07:19 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id t12-20020ac2548c000000b004efae490c51sm471679lfk.240.2023.06.09.02.07.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 02:07:19 -0700 (PDT)
+Message-ID: <c1c34aa4-ac7d-2c07-bf92-05d887aed3d2@linaro.org>
+Date:   Fri, 9 Jun 2023 11:07:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 4/9] regulator: mt6358: Drop *_SSHUB regulators
+Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: enable the SPI NOR support in
+ RDP433
 Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>,
+To:     Kathiravan T <quic_kathirav@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Gene Chen <gene_chen@richtek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230609083009.2822259-1-wenst@chromium.org>
- <20230609083009.2822259-5-wenst@chromium.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230609083009.2822259-5-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230609081508.30982-1-quic_kathirav@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230609081508.30982-1-quic_kathirav@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/06/23 10:30, Chen-Yu Tsai ha scritto:
-> The *_SSHUB regulators are actually alternate configuration interfaces
-> for their non *_SSHUB counterparts. They are not separate regulator
-> outputs. These registers are intended for the companion processor to
-> use to configure the power rails while the main processor is sleeping.
-> They are not intended for the main operating system to use.
+
+
+On 9.06.2023 10:15, Kathiravan T wrote:
+> RDP433 has the support for SPI NOR, add the support for it.
 > 
-> Since they are not real outputs they shouldn't be modeled separately.
-> Remove them. Luckily no device tree actually uses them.
-> 
-
-I'm not sure that MT6358/6366 are used only on Chromebook SoCs, and that this SSHUB
-mechanism (companion processor) is the same across all firmwares.
-
-I'd like someone from MediaTek to confirm that this is valid for both Chromebook
-and Smartphone firmwares.
-
-Regards,
-Angelo
-
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 > ---
->   drivers/regulator/mt6358-regulator.c       | 14 --------------
->   include/linux/regulator/mt6358-regulator.h |  4 ----
->   2 files changed, 18 deletions(-)
+> Note: This patch was part of initial submission
+> https://lore.kernel.org/linux-arm-msm/20230329053726.14860-1-quic_kathirav@quicinc.com/
+> however this got missed in between, so sending it across again.
 > 
-> diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
-> index faf6b0757019..946a251a8b3a 100644
-> --- a/drivers/regulator/mt6358-regulator.c
-> +++ b/drivers/regulator/mt6358-regulator.c
-> @@ -505,9 +505,6 @@ static struct mt6358_regulator_info mt6358_regulators[] = {
->   	MT6358_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
->   		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
->   		    MT6358_VCORE_VGPU_ANA_CON0, 1),
-> -	MT6358_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 6250,
-> -		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0, 0x7f,
-> -		    MT6358_VCORE_VGPU_ANA_CON0, 1),
->   	MT6358_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
->   		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
->   		    MT6358_VPA_ANA_CON0, 3),
-> @@ -583,10 +580,6 @@ static struct mt6358_regulator_info mt6358_regulators[] = {
->   	MT6358_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
->   		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
->   		    MT6358_LDO_VSRAM_CON2, 0x7f),
-> -	MT6358_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
-> -		    1293750, 6250, buck_volt_range1,
-> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
-> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
->   	MT6358_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
->   		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
->   		    MT6358_LDO_VSRAM_CON3, 0x7f),
-> @@ -603,9 +596,6 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
->   	MT6366_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
->   		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
->   		    MT6358_VCORE_VGPU_ANA_CON0, 1),
-> -	MT6366_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 6250,
-> -		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0, 0x7f,
-> -		    MT6358_VCORE_VGPU_ANA_CON0, 1),
->   	MT6366_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
->   		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
->   		    MT6358_VPA_ANA_CON0, 3),
-> @@ -670,10 +660,6 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
->   	MT6366_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
->   		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
->   		    MT6358_LDO_VSRAM_CON2, 0x7f),
-> -	MT6366_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
-> -		    1293750, 6250, buck_volt_range1,
-> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
-> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
->   	MT6366_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
->   		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
->   		    MT6358_LDO_VSRAM_CON3, 0x7f),
-> diff --git a/include/linux/regulator/mt6358-regulator.h b/include/linux/regulator/mt6358-regulator.h
-> index a4307cd9edd6..c71a6a9fce7a 100644
-> --- a/include/linux/regulator/mt6358-regulator.h
-> +++ b/include/linux/regulator/mt6358-regulator.h
-> @@ -47,8 +47,6 @@ enum {
->   	MT6358_ID_VLDO28,
->   	MT6358_ID_VAUD28,
->   	MT6358_ID_VSIM2,
-> -	MT6358_ID_VCORE_SSHUB,
-> -	MT6358_ID_VSRAM_OTHERS_SSHUB,
->   	MT6358_ID_RG_MAX,
->   };
->   
-> @@ -88,8 +86,6 @@ enum {
->   	MT6366_ID_VMC,
->   	MT6366_ID_VAUD28,
->   	MT6366_ID_VSIM2,
-> -	MT6366_ID_VCORE_SSHUB,
-> -	MT6366_ID_VSRAM_OTHERS_SSHUB,
->   	MT6366_ID_RG_MAX,
->   };
->   
+>  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> index 2b3ed8d351f7..31ee19112157 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> @@ -48,6 +48,20 @@
+>  	};
+>  };
+>  
+> +&blsp1_spi0 {
+> +	pinctrl-0 = <&spi_0_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "micron,n25q128a11", "jedec,spi-nor";
+> +		reg = <0>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+If you're not adding a partition table, you can drop the address-
+and size-cells properties, as they determine what the reg value of
+the child looks like.
 
+Konrad
+> +		spi-max-frequency = <50000000>;
+> +	};
+> +};
+> +
+>  &sdhc_1 {
+>  	pinctrl-0 = <&sdc_default_state>;
+>  	pinctrl-names = "default";
+> @@ -96,6 +110,13 @@
+>  			bias-pull-down;
+>  		};
+>  	};
+> +
+> +	spi_0_pins: spi-0-state {
+> +		pins = "gpio11", "gpio12", "gpio13", "gpio14";
+> +		function = "blsp0_spi";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+>  };
+>  
+>  &xo_board_clk {
