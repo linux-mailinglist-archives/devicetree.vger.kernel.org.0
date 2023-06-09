@@ -2,30 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 636DF729ED1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC1D9729EDF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241072AbjFIPle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:41:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37832 "EHLO
+        id S232118AbjFIPmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:42:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241854AbjFIPlV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:41:21 -0400
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6F73583
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:41:20 -0700 (PDT)
-Date:   Fri, 09 Jun 2023 15:41:02 +0000
+        with ESMTP id S241859AbjFIPmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:42:13 -0400
+Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch [185.70.40.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A9430F7
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:42:12 -0700 (PDT)
+Date:   Fri, 09 Jun 2023 15:42:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1686325275; x=1686584475;
-        bh=MtQCFhQTmoGLEq+XUTxl6fTfKwin0Ngq2howogrI7cE=;
-        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-        b=HrYGRFg8A5pYNrkpxitLJs4kuowlxq7RSm/uAp8FcxhBoNvHrVAxJassm7zMwN2uT
-         NW1ZBv0jcAgOw30rXPB8ND3a3B5EUi8i95hWzpbyBLyc6QJunl5g36NgeuAGIRlwAx
-         ezMfwf1h0XDq+ev+TKMbvlinMUrMd26skq5QoE5o8W8fRbgoOVVxN0ZgmI1gfTee1I
-         g1iE2Vl1vKVzjZWuZUl4wxFbyxpyuH/e8cGWqFKmwA2n5DOIA4ys714Pr8d7VtASD3
-         mA3PqJTVQ+lADiwQpmRZu+yyUUbuuiJyjKaHo5TYqGcHa/Y4k/fkdtSuolStvdVrP9
-         MNGpaHX1D56Pg==
+        s=protonmail3; t=1686325330; x=1686584530;
+        bh=0ZCYTq1OJ9ne6rrLmF3n5ebjjUoiWyyt/yw2i6ZwXrY=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=Nd4w57QnR41eHmiT2b0ea9VYXdx4NEBAIhXQ2hEAK929KC4yoByAbx3V1+lgVghkr
+         UQyuS1ErwU7pXLBvAaI4JJ97HzQC3VK6ayzRC5o7/ltIcCd6LiQn52oSAxZx8qRPfR
+         Yx7NF5xYmYTfcwan7W7rLGW8fAbILEBB0qK2a8Hbl61OYcz7IKRfKGpYZo6bot6Lhl
+         7mZ2xwMdvo5T6nhbXQLNWJCrMsqypStot1tvSQMV1KEi3Hu6p9fwGV0bQ7lmxeEeHW
+         7kLF56mONnpkcXqr6RjYRqRZ8h7G18hkJ3GOHAnFxXxkSsBQ7v8DRI8PZjzKj6tq1E
+         d87F1EkSLOM9g==
 To:     linux-kernel@vger.kernel.org
 From:   Raymond Hackley <raymondhackley@protonmail.com>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -41,27 +42,54 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Jeremy Kerr <jk@codeconstruct.com.au>,
         Raymond Hackley <raymondhackley@protonmail.com>,
         netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 0/2] NFC: nxp-nci: Add pad supply voltage pvdd-supply
-Message-ID: <20230609154033.3511-1-raymondhackley@protonmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: nfc: nxp-nci: document pvdd-supply
+Message-ID: <20230609154139.3566-1-raymondhackley@protonmail.com>
+In-Reply-To: <20230609154033.3511-1-raymondhackley@protonmail.com>
+References: <20230609154033.3511-1-raymondhackley@protonmail.com>
 Feedback-ID: 49437091:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2: Use dev_err_probe() and drop unnecessary nxp_nci_i2c_poweroff()
-
 PN547/553, QN310/330 chips on some devices require a pad supply voltage
 (PVDD). Otherwise, the NFC won't power up.
 
-Implement support for pad supply voltage pvdd-supply that is enabled by
+Document support for pad supply voltage pvdd-supply that is enabled by
 the nxp-nci driver so that the regulator gets enabled when needed.
+
+Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml b/Docum=
+entation/devicetree/bindings/net/nfc/nxp,nci.yaml
+index 6924aff0b2c5..d5a4f935c2ce 100644
+--- a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
++++ b/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
+@@ -25,6 +25,11 @@ properties:
+   firmware-gpios:
+     description: Output GPIO pin used to enter firmware download mode
+=20
++  pvdd-supply:
++    description: |
++      Optional regulator that provides pad supply voltage for some
++      controllers
++
+   interrupts:
+     maxItems: 1
+=20
+--=20
+2.30.2
+
 
