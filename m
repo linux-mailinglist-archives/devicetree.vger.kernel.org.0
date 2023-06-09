@@ -2,82 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C57A7293F8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 007D472940C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbjFIJAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 05:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54954 "EHLO
+        id S239895AbjFIJDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 05:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241090AbjFII7b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:59:31 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BDC30D7;
-        Fri,  9 Jun 2023 01:59:04 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686301143;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3i5foLMcrgXrXot/tAraE/LNnZMOjWeP4zv/fyq3n1U=;
-        b=mbPIlV9myoX7WUARu4xrxGYecZWM9PixCsMofEoqAGfmTUNeis5zuNw8cJY5/R1KvjubNv
-        tEnrWfnw+Z+7yFOr2WXjSR2ZChGaX+VUr1Ifyi/Ft4HdkazkykuSgBnffouD0JGddB+TG4
-        Tfbs5XAZXjQrzrlEMs1DnXV1eSqVQKtHcicdzsF18gchIaO43XpOw34+xa4QDFXLl6+Lbv
-        J86cPCzZawtQijOQCLezspkUc5MD3vj0XzbZJQw9E09yluaZJcKOeQWllLkwhVqrF9y+ce
-        NdLpxPWa7y3W/I+ry6Tya654qtPwBTfYYmRn/PRLTUqlsjonBXNht/Ba5HC5QA==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 665A9E0002;
-        Fri,  9 Jun 2023 08:58:58 +0000 (UTC)
-Date:   Fri, 9 Jun 2023 10:58:57 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     William Zhang <william.zhang@broadcom.com>
-Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        Linux MTD List <linux-mtd@lists.infradead.org>,
-        f.fainelli@gmail.com, rafal@milecki.pl, kursad.oney@broadcom.com,
-        joel.peshkin@broadcom.com, computersforpeace@gmail.com,
-        anand.gore@broadcom.com, dregan@mail.com, kamal.dasu@broadcom.com,
-        tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 05/12] dt-bindings: mtd: brcmnand: Updates for bcmbca
- SoCs
-Message-ID: <20230609105857.7256c02f@xps-13>
-In-Reply-To: <84e97108-29d4-5103-14f4-03e3c0eba165@broadcom.com>
-References: <20230606231252.94838-1-william.zhang@broadcom.com>
-        <20230606231252.94838-6-william.zhang@broadcom.com>
-        <20230607101452.4c265d7e@xps-13>
-        <84e97108-29d4-5103-14f4-03e3c0eba165@broadcom.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S241099AbjFIJDJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 05:03:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D414210C;
+        Fri,  9 Jun 2023 02:03:08 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C71A66606F1D;
+        Fri,  9 Jun 2023 10:03:05 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686301386;
+        bh=yn37R8118HR0BWMGyAsYVW73MuZTJZ0eQLcGqFaWCxI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DnG7fJ2FZJyNXpevDVjEleH74QQB5w6SZroDRC3AX08rO8yM34reQu8gthn7AN5P6
+         F4Be5HRWL7qwGHccPs3v1Q0f/BXPJglvq0M3WIeeLeWITPk9eSvrZF9bEv6A2kRcLc
+         POfgKeSNKdjD4nAbABFk2Nb16ONCsSIvtMM6u8tSVKo0L3EVi7/3PyXQd/0V6SXZ+G
+         F/vo4OjEj1tVJirEsOTN+WVNPmJFZHsqXc89ypgc6dEFhya+Xm1lccm6/v6PJ/nFuS
+         Q4hiHUQ/EHwbnqFvc+vKfisw8nhu01+sGKDLNjhwi0GkNXL6lW+mmJP8ppn2uEtOY7
+         tduwyPrZCDN5g==
+Message-ID: <a7b7476d-3bbd-5503-db3d-5d57356764f8@collabora.com>
+Date:   Fri, 9 Jun 2023 11:03:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 4/9] regulator: mt6358: Drop *_SSHUB regulators
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Gene Chen <gene_chen@richtek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-5-wenst@chromium.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230609083009.2822259-5-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,234 +66,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi William,
+Il 09/06/23 10:30, Chen-Yu Tsai ha scritto:
+> The *_SSHUB regulators are actually alternate configuration interfaces
+> for their non *_SSHUB counterparts. They are not separate regulator
+> outputs. These registers are intended for the companion processor to
+> use to configure the power rails while the main processor is sleeping.
+> They are not intended for the main operating system to use.
+> 
+> Since they are not real outputs they shouldn't be modeled separately.
+> Remove them. Luckily no device tree actually uses them.
+> 
 
-william.zhang@broadcom.com wrote on Wed, 7 Jun 2023 13:01:56 -0700:
+I'm not sure that MT6358/6366 are used only on Chromebook SoCs, and that this SSHUB
+mechanism (companion processor) is the same across all firmwares.
 
-> Hi Miquel,
->=20
-> On 06/07/2023 01:14 AM, Miquel Raynal wrote:
-> > Hi William,
-> >=20
-> > william.zhang@broadcom.com wrote on Tue,  6 Jun 2023 16:12:45 -0700:
-> >  =20
-> >> Use new compatiable brcm,nand-bcmbca to support BCMBCA broadband
-> >> product. The old compatible string is still kept in the driver so old
-> >> dtb can still work.
-> >>
-> >> Add brcm,nand-use-wp property to have an option for disabling this
-> >> feature on broadband board design that does not use write protection.
-> >> Add brcm,nand-ecc-use-strap to get ecc setting from board strap for
-> >> broadband board designs because they do not specify ecc setting in dts
-> >> but rather using the strap setting.
-> >>
-> >> Remove the requirement of interrupts and interrupt-names properties to
-> >> reflect the driver code.
-> >>
-> >> This patch also includes a few minor fixes to the BCM63xx compatibles
-> >> and add myself to the list of maintainers.
-> >>
-> >> Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> >> ---
-> >>
-> >>   .../bindings/mtd/brcm,brcmnand.yaml           | 64 +++++++++++++----=
---
-> >>   1 file changed, 43 insertions(+), 21 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml =
-b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> >> index 1571024aa119..1fe1c166a9db 100644
-> >> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> >> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> >> @@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
-> >>   maintainers:
-> >>     - Brian Norris <computersforpeace@gmail.com>
-> >>     - Kamal Dasu <kdasu.kdev@gmail.com>
-> >> +  - William Zhang <william.zhang@broadcom.com> =20
-> >>   >>   description: | =20
-> >>     The Broadcom Set-Top Box NAND controller supports low-level access=
- to raw NAND
-> >> @@ -18,9 +19,10 @@ description: |
-> >>     supports basic PROGRAM and READ functions, among other features. =
-=20
-> >>   >>     This controller was originally designed for STB SoCs (BCM7xxx=
-) but is now =20
-> >> -  available on a variety of Broadcom SoCs, including some BCM3xxx, BC=
-M63xx, and
-> >> -  iProc/Cygnus. Its history includes several similar (but not fully r=
-egister
-> >> -  compatible) versions.
-> >> +  available on a variety of Broadcom SoCs, including some BCM3xxx, MI=
-PS based
-> >> +  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc=
-/Cygnus.
-> >> +  Its history includes several similar (but not fully register compat=
-ible)
-> >> +  versions. =20
-> >>   >>     -- Additional SoC-specific NAND controller properties --
-> >>   >> @@ -53,9 +55,9 @@ properties: =20
-> >>                 - brcm,brcmnand-v7.2
-> >>                 - brcm,brcmnand-v7.3
-> >>             - const: brcm,brcmnand
-> >> -      - description: BCM63138 SoC-specific NAND controller
-> >> +      - description: BCMBCA SoC-specific NAND controller
-> >>           items:
-> >> -          - const: brcm,nand-bcm63138
-> >> +          - const: brcm,nand-bcmbca
-> >>             - enum:
-> >>                 - brcm,brcmnand-v7.0
-> >>                 - brcm,brcmnand-v7.1
-> >> @@ -65,11 +67,15 @@ properties:
-> >>             - const: brcm,nand-iproc
-> >>             - const: brcm,brcmnand-v6.1
-> >>             - const: brcm,brcmnand
-> >> -      - description: BCM63168 SoC-specific NAND controller
-> >> +      - description: BCM63xx SoC-specific NAND controller
-> >>           items:
-> >> -          - const: brcm,nand-bcm63168
-> >> -          - const: brcm,nand-bcm6368
-> >> -          - const: brcm,brcmnand-v4.0
-> >> +          - enum:
-> >> +              - brcm,nand-bcm63168
-> >> +              - brcm,nand-bcm6368
-> >> +          - enum:
-> >> +              - brcm,brcmnand-v2.1
-> >> +              - brcm,brcmnand-v2.2
-> >> +              - brcm,brcmnand-v4.0
-> >>             - const: brcm,brcmnand =20
-> >>   >>     reg: =20
-> >> @@ -111,6 +117,19 @@ properties:
-> >>         earlier versions of this core that include WP
-> >>       type: boolean =20
-> >>   >> +  brcm,nand-use-wp: =20
-> >> +    description:
-> >> +      Use this integer to indicate if board design uses
-> >> +      controller's write protection feature and connects its
-> >> +      NAND_WPb pin to nand chip's WP_L pin. Driver defaults to
-> >> +      use this feature when this property does not exist.
-> >> +      Set to 0 if WP pins are not connected and feature is not
-> >> +      used. Set to 1 if WP pins are connected and feature is used.
-> >> +      Set to 2 if WP pins are connected but disable this feature
-> >> +      through driver that sets controller to output high on NAND_WPb.
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    enum: [0, 1, 2] =20
-> >=20
-> > Perhaps strings would be welcome. I'll let binding maintainers say what
-> > they think of it.
-> >  =20
-> Practically there is really just use cases of 0 and 1. I could use a bool=
- flag but to keep consistent with the driver code and in case there is any =
-existing usage of 2.
->=20
-> >> +
-> >>   patternProperties:
-> >>     "^nand@[a-f0-9]$":
-> >>       type: object
-> >> @@ -136,13 +155,23 @@ patternProperties:
-> >>             layout.
-> >>           $ref: /schemas/types.yaml#/definitions/uint32 =20
-> >>   >> +      brcm,nand-ecc-use-strap: =20
-> >> +        description:
-> >> +          This flag is used by the driver to get the ecc strength and
-> >> +          spare area size from the SoC NAND boot strap setting. This
-> >> +          is commonly used by the BCMBCA SoC board design. If ecc
-> >> +          strength and spare area size are set by nand-ecc-strength
-> >> +          and brcm,nand-oob-sector-size in the dts, these settings
-> >> +          have precedence and override this flag.
-> >> +        $ref: /schemas/types.yaml#/definitions/flag =20
-> >=20
-> > How in practice do you access the strap value? Don't you need a phandle
-> > over a specific area in the SoC?
-> >  =20
-> The strap value is latched and stored in the NAND controller register so =
-there is no extra phandle needed.
+I'd like someone from MediaTek to confirm that this is valid for both Chromebook
+and Smartphone firmwares.
 
-Ok.
+Regards,
+Angelo
 
->=20
-> >> +
-> >>   allOf:
-> >>     - $ref: nand-controller.yaml#
-> >>     - if:
-> >>         properties:
-> >>           compatible:
-> >>             contains:
-> >> -            const: brcm,nand-bcm63138
-> >> +            const: brcm,nand-bcmbca
-> >>       then:
-> >>         properties:
-> >>           reg-names:
-> >> @@ -153,7 +182,9 @@ allOf:
-> >>         properties:
-> >>           compatible:
-> >>             contains:
-> >> -            const: brcm,nand-bcm6368
-> >> +            enum:
-> >> +              - brcm,nand-bcm63168
-> >> +              - brcm,nand-bcm6368
-> >>       then:
-> >>         properties:
-> >>           reg-names:
-> >> @@ -173,20 +204,12 @@ allOf:
-> >>               - const: nand
-> >>               - const: iproc-idm
-> >>               - const: iproc-ext
-> >> -  - if:
-> >> -      properties:
-> >> -        interrupts:
-> >> -          minItems: 2
-> >> -    then:
-> >> -      required:
-> >> -        - interrupt-names =20
-> >=20
-> > Why do you remove this? Removing "interrupts" from the required
-> > properties is fine, but constraining the interrupts property when it is
-> > relevant is still expected.
-> >  =20
-> There is no requirement for interrupt name even if it have two interrupts=
-. Driver code does not use interrupt name but the interrupt index instead.
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>   drivers/regulator/mt6358-regulator.c       | 14 --------------
+>   include/linux/regulator/mt6358-regulator.h |  4 ----
+>   2 files changed, 18 deletions(-)
+> 
+> diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
+> index faf6b0757019..946a251a8b3a 100644
+> --- a/drivers/regulator/mt6358-regulator.c
+> +++ b/drivers/regulator/mt6358-regulator.c
+> @@ -505,9 +505,6 @@ static struct mt6358_regulator_info mt6358_regulators[] = {
+>   	MT6358_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
+>   		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
+>   		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+> -	MT6358_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 6250,
+> -		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0, 0x7f,
+> -		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+>   	MT6358_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
+>   		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
+>   		    MT6358_VPA_ANA_CON0, 3),
+> @@ -583,10 +580,6 @@ static struct mt6358_regulator_info mt6358_regulators[] = {
+>   	MT6358_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON2, 0x7f),
+> -	MT6358_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
+> -		    1293750, 6250, buck_volt_range1,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
+>   	MT6358_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON3, 0x7f),
+> @@ -603,9 +596,6 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
+>   	MT6366_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
+>   		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
+>   		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+> -	MT6366_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 6250,
+> -		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0, 0x7f,
+> -		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+>   	MT6366_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
+>   		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
+>   		    MT6358_VPA_ANA_CON0, 3),
+> @@ -670,10 +660,6 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
+>   	MT6366_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON2, 0x7f),
+> -	MT6366_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
+> -		    1293750, 6250, buck_volt_range1,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
+>   	MT6366_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON3, 0x7f),
+> diff --git a/include/linux/regulator/mt6358-regulator.h b/include/linux/regulator/mt6358-regulator.h
+> index a4307cd9edd6..c71a6a9fce7a 100644
+> --- a/include/linux/regulator/mt6358-regulator.h
+> +++ b/include/linux/regulator/mt6358-regulator.h
+> @@ -47,8 +47,6 @@ enum {
+>   	MT6358_ID_VLDO28,
+>   	MT6358_ID_VAUD28,
+>   	MT6358_ID_VSIM2,
+> -	MT6358_ID_VCORE_SSHUB,
+> -	MT6358_ID_VSRAM_OTHERS_SSHUB,
+>   	MT6358_ID_RG_MAX,
+>   };
+>   
+> @@ -88,8 +86,6 @@ enum {
+>   	MT6366_ID_VMC,
+>   	MT6366_ID_VAUD28,
+>   	MT6366_ID_VSIM2,
+> -	MT6366_ID_VCORE_SSHUB,
+> -	MT6366_ID_VSRAM_OTHERS_SSHUB,
+>   	MT6366_ID_RG_MAX,
+>   };
+>   
 
-It does not matter in this case how the driver uses the interrupts. If
-names have been provided once in the bindings, you could expect another
-project using the same bindings to use the interrupt names instead of
-the order. So you must keep the names. Just don't mark them required it
-they are.
-
->=20
-> >>   >>   unevaluatedProperties: false
-> >>   >>   required: =20
-> >>     - reg
-> >>     - reg-names
-> >> -  - interrupts =20
-> >=20
-> > This should be done in a separate patch.
-> >  =20
-> I thought this is also related to my update for bcmbca chips because they=
- don't need to interrupt and interrupt name.
-
-The fact that the driver does not use the interrupts does not mean they
-should not be described.=20
-
->=20
-> >>   >>   examples: =20
-> >>     - |
-> >> @@ -215,8 +238,7 @@ examples:
-> >>       };
-> >>     - |
-> >>       nand-controller@10000200 {
-> >> -        compatible =3D "brcm,nand-bcm63168", "brcm,nand-bcm6368",
-> >> -                     "brcm,brcmnand-v4.0", "brcm,brcmnand";
-> >> +        compatible =3D "brcm,nand-bcm6368", "brcm,brcmnand-v2.1", "br=
-cm,brcmnand";
-> >>           reg =3D <0x10000200 0x180>,
-> >>                 <0x100000b0 0x10>,
-> >>                 <0x10000600 0x200>; =20
-> >=20
-> >=20
-> > Thanks,
-> > Miqu=C3=A8l
-> >  =20
-
-
-Thanks,
-Miqu=C3=A8l
