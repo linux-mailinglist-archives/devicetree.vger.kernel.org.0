@@ -2,161 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5394C729F2E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C11729F35
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241990AbjFIPu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:50:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44526 "EHLO
+        id S241675AbjFIPwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:52:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241887AbjFIPuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:50:23 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 479E63596
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:50:10 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b1a6a8e851so21739111fa.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 08:50:10 -0700 (PDT)
+        with ESMTP id S232265AbjFIPwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:52:39 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E63C3588;
+        Fri,  9 Jun 2023 08:52:38 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-30fa23e106bso495906f8f.3;
+        Fri, 09 Jun 2023 08:52:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686325808; x=1688917808;
+        d=gmail.com; s=20221208; t=1686325957; x=1688917957;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BijuZvJUEsuf/Cg4yfk0GyP/R5pIudpCPz7skO5PerE=;
-        b=UM8cFweDKaMe3MuTcUkIOqGtI3Ge5dzxKJ49IAfxddOelilsaLCMEAczouIyLi6md8
-         WoQlN4C8Nuu2MYIX2Cfp3Q8ePqdDWjiDWxbFBb3OISI3W8W31nMyNMTHlZEfiV9ks/sK
-         MTj1Gr1kp8rsQsjZkp31G+bIUPiNUrMfwyJ6ZmyT9q2eqdDSP/fcSCsc4FQEEOV1sSFn
-         jDzgFXN7Vjxk3o9vwpgONKseq5rKUcGe6skoSQF+LgoeT0syTQI3Kiqs6Wrr0iA2zkpz
-         4ycKYR12pExd0vcn/Bz8YN49+SoIBh0PxOfrUJqiYST5qOzXCjQo0KynH2QMvV0o+oIZ
-         VjZw==
+        bh=kjQv+AKpm2A2yuAsyilt/YShNfzL1O/WlL6C0kaj11c=;
+        b=Mz9/q2Bz2kxvWcu9mpwFN19bHSabAwti/2J9jRHSp9h6oRXzqvMjEP4Iru7KuP9zzn
+         8n43Fgh30mtQPCkybBtMULCToeqJlrbMlrCEi8pPvCbsrdVVzOF+knPUWPFy7hx8XEfz
+         94Myx5a9g91HpSCQeSRBDlqdrrbKxd0fCkyOfP3YotYuLmX8443EpVyjeQnj2MrXmjZr
+         52pa5HWsF08pyH4SdU4jaNsgNYDqmWbHPOkjC2oqArQWqjBm3RRznNdEIW6nJM/TxloP
+         9LAv0EnSsD7UvjMW6Oilm1lqjxP5ln1FzgkzeuOyRE465zke3SM7S+H2OaIQCcmJUBPZ
+         CniQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686325808; x=1688917808;
+        d=1e100.net; s=20221208; t=1686325957; x=1688917957;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BijuZvJUEsuf/Cg4yfk0GyP/R5pIudpCPz7skO5PerE=;
-        b=AF+54seBLNzUSRTh7qBEeWqKQg9/pVNACwVkxbzNA1rndiAAjbwZYnH6D0vQmwGm2A
-         hvgs7UkJEIQZ/27e/5m4HsRZHjf1Kzq1i9Xr4taCu/RMd4GX3af3suKqJwy0s6xoay0S
-         SL9ypSg3Qc0KvlJYzki5ybx1KJpRp00d12t3LcPxoU9c3LCh00WM+s9kyLBAyO1gaJbK
-         P9En0l8tSRhhpcB/yfqT0yc+twFgstLuluWd4n/4cVgZFcvUb8SL1u4rr4m3y2J+lj3Y
-         HKnLuzvZ2EsxHEsjvzs/+Zec/ysfsXTOgU0pmzFdx08BTvfVryANVRknES57b4qtdtre
-         9g5g==
-X-Gm-Message-State: AC+VfDyjO84PL5VYoZFEa1Jul8qIAW+mGjoUrgKeWzFnzGJXtyMPRLG3
-        WgxYqmFAmjNTqnvFs5QwWGI4l0JbqvLzUuhiqM0=
-X-Google-Smtp-Source: ACHHUZ4e9XMm/GKycxJwMywcYJfZLJMjMgJDpM8cPra6TjyORXKKqQObU/yEQzv8jcmjpVA4ysA3ZA==
-X-Received: by 2002:a2e:780a:0:b0:2b1:bb66:7b69 with SMTP id t10-20020a2e780a000000b002b1bb667b69mr1345138ljc.32.1686325808325;
-        Fri, 09 Jun 2023 08:50:08 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b0096a6bf89259sm1432416ejc.167.2023.06.09.08.50.06
+        bh=kjQv+AKpm2A2yuAsyilt/YShNfzL1O/WlL6C0kaj11c=;
+        b=a5WUCO/eAzJ6yX5EJPdA3IChyAoE7C0o/6+S8VOb5KUxAnL4o3k+01vZreJ2/A3wGm
+         K3vgu+SWJe7Jh9W9v3D1/je1eOCIvfJIKNw58S+BmqbHV792h4C5Z5Ogcgafa/2Un1k5
+         U/HYWKcXWFP2gKZSycq/JY5wvZ8dstZiC3EhcPaewOfGVHTCNIr0AQedd0hLkHrJkxDQ
+         4pcoYqpQlx24KTfNrJZDQ6XF7VI8SvqB/MiEvL81wPSorDjf3lA7bcEU8qaxULGw8m17
+         I2drwIMBC9UdiQDg/zUCdA/Gc3Nxz5jnCJm0s2/BIjgAgTAQgVtJRJH8vUL2GaFjICus
+         L39w==
+X-Gm-Message-State: AC+VfDy8IfBKkW79DM21dkdKrzpcVAhvJkEBvPM3sfUIT9p9r9WUa7UN
+        azLyHc24wYOnjYlkuyAGRzM=
+X-Google-Smtp-Source: ACHHUZ7zQlGBFYBKSby2rJSQtQXAyjtblUs/9IBWEtZL94NL7HTR5NhRWsb/bktjEUiWik5gZEW9lg==
+X-Received: by 2002:adf:e0cb:0:b0:30a:d8df:6800 with SMTP id m11-20020adfe0cb000000b0030ad8df6800mr1179872wri.33.1686325956846;
+        Fri, 09 Jun 2023 08:52:36 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id o7-20020adfeac7000000b002fed865c55esm4826686wrn.56.2023.06.09.08.52.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 08:50:07 -0700 (PDT)
-Message-ID: <77dce4ec-89aa-8802-b169-744f6c11b177@linaro.org>
-Date:   Fri, 9 Jun 2023 17:50:05 +0200
+        Fri, 09 Jun 2023 08:52:35 -0700 (PDT)
+Message-ID: <5fb4d78b-05a2-1a31-c1db-878c0a6d0380@gmail.com>
+Date:   Fri, 9 Jun 2023 17:52:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH v4 1/2] dt-bindings: HID: i2c-hid: ilitek: Introduce
- bindings for Ilitek ili9882t
-Content-Language: en-US
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230608130147.2835818-1-yangcong5@huaqin.corp-partner.google.com>
- <20230608130147.2835818-2-yangcong5@huaqin.corp-partner.google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230608130147.2835818-2-yangcong5@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 4/9] regulator: mt6358: Drop *_SSHUB regulators
+Content-Language: en-US, ca-ES, es-ES
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-5-wenst@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230609083009.2822259-5-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 15:01, Cong Yang wrote:
-> The ili9882t touch screen chip same as Elan eKTH6915 controller
-> has a reset gpio. The difference is that ili9882t needs to use
-> vccio-supply instead of vcc33-supply. Doug's series[1] allows panels
-> and touchscreens to power on/off together, let's add a phandle for this.
+
+
+On 09/06/2023 10:30, Chen-Yu Tsai wrote:
+> The *_SSHUB regulators are actually alternate configuration interfaces
+> for their non *_SSHUB counterparts. They are not separate regulator
+> outputs. These registers are intended for the companion processor to
+> use to configure the power rails while the main processor is sleeping.
+> They are not intended for the main operating system to use.
 > 
-> [1]: https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromium.org
+> Since they are not real outputs they shouldn't be modeled separately.
+> Remove them. Luckily no device tree actually uses them.
 > 
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
 > ---
->  .../bindings/input/ilitek,ili9882t.yaml       | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
+>   drivers/regulator/mt6358-regulator.c       | 14 --------------
+>   include/linux/regulator/mt6358-regulator.h |  4 ----
+>   2 files changed, 18 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml b/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
-> new file mode 100644
-> index 000000000000..89584264d6a2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/ilitek,ili9882t.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ilitek ili9882t touchscreen controller
-> +
-> +maintainers:
-> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
-
-This usually should not be subsystem maintainer.
-
-> +
-> +description:
-> +  Supports the Ilitek ili9882t touchscreen controller.
-> +  This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
-> +
-> +allOf:
-> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ilitek,ili9882t
-> +
-> +  reg:
-> +    const: 0x41
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  panel: true
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reset GPIO.
-> +
-> +
-
-Just one blank line.
-
-> +  vccio-supply:
-> +    description: The 1.8V supply to the touchscreen.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - vccio-supply
-> +
-> +additionalProperties: false
-
-Why do you disallow all properties from toouchscreen.yaml? Aren't they
-applicable?
-
-
-
-Best regards,
-Krzysztof
-
+> diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
+> index faf6b0757019..946a251a8b3a 100644
+> --- a/drivers/regulator/mt6358-regulator.c
+> +++ b/drivers/regulator/mt6358-regulator.c
+> @@ -505,9 +505,6 @@ static struct mt6358_regulator_info mt6358_regulators[] = {
+>   	MT6358_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
+>   		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
+>   		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+> -	MT6358_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 6250,
+> -		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0, 0x7f,
+> -		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+>   	MT6358_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
+>   		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
+>   		    MT6358_VPA_ANA_CON0, 3),
+> @@ -583,10 +580,6 @@ static struct mt6358_regulator_info mt6358_regulators[] = {
+>   	MT6358_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON2, 0x7f),
+> -	MT6358_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
+> -		    1293750, 6250, buck_volt_range1,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
+>   	MT6358_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON3, 0x7f),
+> @@ -603,9 +596,6 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
+>   	MT6366_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
+>   		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
+>   		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+> -	MT6366_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 6250,
+> -		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0, 0x7f,
+> -		    MT6358_VCORE_VGPU_ANA_CON0, 1),
+>   	MT6366_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
+>   		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
+>   		    MT6358_VPA_ANA_CON0, 3),
+> @@ -670,10 +660,6 @@ static struct mt6358_regulator_info mt6366_regulators[] = {
+>   	MT6366_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON2, 0x7f),
+> -	MT6366_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
+> -		    1293750, 6250, buck_volt_range1,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
+> -		    MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
+>   	MT6366_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
+>   		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
+>   		    MT6358_LDO_VSRAM_CON3, 0x7f),
+> diff --git a/include/linux/regulator/mt6358-regulator.h b/include/linux/regulator/mt6358-regulator.h
+> index a4307cd9edd6..c71a6a9fce7a 100644
+> --- a/include/linux/regulator/mt6358-regulator.h
+> +++ b/include/linux/regulator/mt6358-regulator.h
+> @@ -47,8 +47,6 @@ enum {
+>   	MT6358_ID_VLDO28,
+>   	MT6358_ID_VAUD28,
+>   	MT6358_ID_VSIM2,
+> -	MT6358_ID_VCORE_SSHUB,
+> -	MT6358_ID_VSRAM_OTHERS_SSHUB,
+>   	MT6358_ID_RG_MAX,
+>   };
+>   
+> @@ -88,8 +86,6 @@ enum {
+>   	MT6366_ID_VMC,
+>   	MT6366_ID_VAUD28,
+>   	MT6366_ID_VSIM2,
+> -	MT6366_ID_VCORE_SSHUB,
+> -	MT6366_ID_VSRAM_OTHERS_SSHUB,
+>   	MT6366_ID_RG_MAX,
+>   };
+>   
