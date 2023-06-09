@@ -2,103 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BD7972A328
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 21:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA70772A35A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 21:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbjFITeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 15:34:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43132 "EHLO
+        id S230141AbjFITsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 15:48:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjFITeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 15:34:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66E330D0;
-        Fri,  9 Jun 2023 12:34:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 63DE465B5A;
-        Fri,  9 Jun 2023 19:34:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D79B9C433D2;
-        Fri,  9 Jun 2023 19:34:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686339247;
-        bh=UOspDcDfDFm6QPopNaAEG0ZWyNsc8e+X/dvLCTYWW0M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tQhS0eRyklovhz/AoC7U2GE5HgQOiLjzRFTt+o3ZaiC9tr6qYM1CkWJP4Qlm+9q3T
-         RU7NiJBJajGB8cdlIO6VDE/oX6e9S0Psnue96fn9fVTt/qm9oYckEGCvjh7fupaWJb
-         z5B6WvqusQ2SyRSWlfR/INpEVwIo9Ih/tAm7bAMMapz7rWhm4weStrlmQBdfYBR0b+
-         A6VdWdYb/CqXYW+7MhULJgXactJgbkDgDdeGCGzcJC15rZOgeFhyKlcCqSMS6Zz6OU
-         DHBLH7R2RphkCQgxo65P81CvZPnd18r6ml2ajIJ50/vxrLThnaYzMLgIyTwYakVJ6k
-         3grAPwoG3v1wg==
-Date:   Fri, 9 Jun 2023 20:34:01 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Raymond Hackley <raymondhackley@protonmail.com>,
-        davem@davemloft.net, devicetree@vger.kernel.org,
-        edumazet@google.com, jk@codeconstruct.com.au, kuba@kernel.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        michael@walle.cc, netdev@vger.kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de
-Subject: Re: [PATCH v2 2/2] NFC: nxp-nci: Add pad supply voltage pvdd-supply
-Message-ID: <a3d2dd4f-38ce-40ca-9085-893f808f817b@sirena.org.uk>
-References: <20230609154033.3511-1-raymondhackley@protonmail.com>
- <20230609154200.3620-1-raymondhackley@protonmail.com>
- <e2bb439c-9b72-991b-00f6-0b5e7602efd9@linaro.org>
- <20230609173935.84424-1-raymondhackley@protonmail.com>
- <7ad5d027-9b15-f59e-aa76-17e498cb7aba@linaro.org>
+        with ESMTP id S229523AbjFITsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 15:48:42 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669BF1FEC
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 12:48:41 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-568928af8f5so31454007b3.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 12:48:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1686340120; x=1688932120;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w7eC2UbdSpv6D7XYzv5m8P1xj9eUlOU6FuqagpqnPV0=;
+        b=5Ma3NOEKgVdMbuUbUZDPNpcKauvik3RebwIXG0erT7DyZZM8kPPFDjfB9HhNtvC2wp
+         skvMxy3FMaZjyVK0NUXx25+mBR+r/U1YYWesHeFJK1By7baOckAfDGCfe35JQnJg6cDv
+         yBzz5M+Ur+p9T8zKlvBcx4y0GJ5h6SM9fbK1a0k7DIni9Ey0Zhbvup8R2iEMkqQEmwza
+         EVpZMie0ihQk+2Vidxl4lCjNK6zuh5KCecx2htUseJvooNqkuWBcM7ZL8yl8qtnOmAmr
+         RT/9aMUvLki6fXYWdTR+e58XAEASY9JW7a5SU1XO6h+M2vtVJLmrP+AHrfLs3gT08P8l
+         BIGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686340120; x=1688932120;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w7eC2UbdSpv6D7XYzv5m8P1xj9eUlOU6FuqagpqnPV0=;
+        b=N+RAD+rJZJuUBr+WrzwAhBXVTovO8+JlZ83wzmU6NtgZEa5INDuAfa/ZWEs0AIWftn
+         5M75H2IebFijbDBlQw7F+g9nY0bKjA5hoOMHUoWOgLx837to0sA+rJfw3oBNUaFGZPhL
+         lM70an0mVHIHZgxdhrOkxQJq55YnKeDakN0OVITz6+MAi7iRGpxFJQptp3ZZCA8IPOj9
+         gCRA1cJ2deLebqTR37Zttl26n6cBpsNxfOYCcH97TxIQaWAa3JdyM9Z7egPAJg0890xn
+         XlJ7gFNKTGDnZoswe/rEyt1tkoeY3Sz6AG43dQuZmGJcHh9HNLc0xry/RDihamJGuCzq
+         SO2Q==
+X-Gm-Message-State: AC+VfDzoob1nUjozxc3YUOcV3ztbIb928m3uSFQlmHr1hDwUSrBRdLS1
+        YSw089oQaV5REDs0nis3YcpMpwK/BE7wJ0CxfDO95A==
+X-Google-Smtp-Source: ACHHUZ5GnAX1IZtcu2cCAQwJH2Hq5Jpab8hykjHKKVTuWdukncw3t/QVKYim2sGgA6/Ob9IJsnnAoB1PD4idQYUGQKE=
+X-Received: by 2002:a0d:d5c9:0:b0:568:f050:7c47 with SMTP id
+ x192-20020a0dd5c9000000b00568f0507c47mr4681126ywd.0.1686340120617; Fri, 09
+ Jun 2023 12:48:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fhm/1UM3KQHYSisd"
-Content-Disposition: inline
-In-Reply-To: <7ad5d027-9b15-f59e-aa76-17e498cb7aba@linaro.org>
-X-Cookie: Tom's hungry, time to eat lunch.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230606152652.1447659-1-tharvey@gateworks.com> <20230609143803.GC4199@dragon>
+In-Reply-To: <20230609143803.GC4199@dragon>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 9 Jun 2023 12:48:29 -0700
+Message-ID: <CAJ+vNU2thdOMSA8jD2zNq--G79D9mVvmASCG4S8cCC-kRT50LA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 9, 2023 at 7:38=E2=80=AFAM Shawn Guo <shawnguo@kernel.org> wrot=
+e:
+>
+> On Tue, Jun 06, 2023 at 08:26:52AM -0700, Tim Harvey wrote:
+> > Update the imx8mp-venice-gw74xx for revB:
+> >  - add CAN1
+> >  - add TIS-TPM on SPI2
+> >  - add FAN controller
+> >  - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
+> >    backward compatible option)
+> >  - M2 socket GPIO's moved
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+>
+> ../arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts:402.4-17: Warni=
+ng (reg_format): /soc@0/bus@30800000/i2c@30a20000/gsc@20/fan-controller@a:r=
+eg: property has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-c=
+ells =3D=3D 1)
+> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (pci_devi=
+ce_reg): Failed prerequisite 'reg_format'
+> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (pci_devi=
+ce_bus_num): Failed prerequisite 'reg_format'
+> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (i2c_bus_=
+reg): Failed prerequisite 'reg_format'
+> arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: Warning (spi_bus_=
+reg): Failed prerequisite 'reg_format'
+> ../arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts:400.20-403.5: W=
+arning (avoid_default_addr_size): /soc@0/bus@30800000/i2c@30a20000/gsc@20/f=
+an-controller@a: Relying on default #address-cells value
+> ../arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts:400.20-403.5: W=
+arning (avoid_default_addr_size): /soc@0/bus@30800000/i2c@30a20000/gsc@20/f=
+an-controller@a: Relying on default #size-cells value
+>
 
---fhm/1UM3KQHYSisd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Shawn,
 
-On Fri, Jun 09, 2023 at 09:29:51PM +0200, Krzysztof Kozlowski wrote:
-> On 09/06/2023 19:40, Raymond Hackley wrote:
-> > On Friday, June 9th, 2023 at 3:46 PM, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Looks like I'm missing an '#address-cells' and '#size-cells' in the
+gsc node. I will send a v3.
 
-> > Second condition regulator_is_enabled(pvdd) is to make sure that pvdd is
-> > disabled with balance.
+How do you filter through all the known (and ignored?) warnings that
+are failing dtbs_check because various dt-binding yamls which are
+either missing or need updates such as the following:
 
-> So you have buggy code and to hide the bug you add checks? No, make the
-> code correct so the check is not needed.
+/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
+74xx.dtb:
+timer@302d0000: compatible: 'oneOf' conditional failed, one must be
+fixed:
+['fsl,imx8mp-gpt', 'fsl,imx6dl-gpt'] is too long
+'fsl,imx1-gpt' was expected
+'fsl,imx21-gpt' was expected
+'fsl,imx27-gpt' was expected
+'fsl,imx31-gpt' was expected
+'fsl,imx8mp-gpt' is not one of ['fsl,imx25-gpt', 'fsl,imx50-gpt',
+'fsl,imx51-gpt', 'fsl,imx53-gpt', 'fsl,imx6q-gpt']
+'fsl,imx6dl-gpt' was expected
+'fsl,imx8mp-gpt' is not one of ['fsl,imx6sl-gpt', 'fsl,imx6sx-gpt',
+'fsl,imxrt1050-gpt', 'fsl,imxrt1170-gpt']
+From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
+/timer/fsl,imxgpt.yaml
+^^^ get this for all the imx gpt timers
 
-Specifically your driver should only ever call regulator_disable() to
-balance out regulator_enable() calls it made itself and it should know
-how many of those it has done.  regulator_is_enabled() should only ever
-be used during probe if for some reason it is important to figure out if
-the device is already powered for startup, this should be very unusual.
-If something else enabled the regualtor then whatever did that needs to
-undo those enables, not another driver.
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb:
+/soc@0/bus@30800000/spba-bus@30800000/spi@30820000/tpm@0: failed to
+match any schema with compatible: ['tcg,tpm_tis-spi']
+/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
+74xx.dtb:
+accelerometer@19: 'interrupt-names' does not match any of the regexes:
+'pinctrl-[0-9]+'
+From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
+/iio/st,st-sensors.yaml
+^^^ is 'interrupt-names =3D "INT1"' really invalid here?
 
---fhm/1UM3KQHYSisd
-Content-Type: application/pgp-signature; name="signature.asc"
+/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
+74xx.dtb:
+switch@5f: Unevaluated properties are not allowed ('interrupt-parent',
+'interrupts' were unexpected)
+From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
+/net/dsa/microchip,ksz.yaml
+^^^ microchip,ksz.yaml doesn't describe interrupts yet the driver uses them
 
------BEGIN PGP SIGNATURE-----
+/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
+74xx.dtb:
+wifi@0: compatible: 'oneOf' conditional failed, one must be fixed:
+['cypress,cyw4373-fmac'] is too short
+'cypress,cyw4373-fmac' is not one of ['brcm,bcm4329-fmac',
+'pci14e4,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425',
+'pci14e4,4433']
+From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
+/net/wireless/brcm,bcm4329-fmac.yaml
+^^^ This one I don't understand at all - brcm,bcm4329-fmac.yaml
+defines 'cypress,cyw4373-fmac under oneOf/items/enum but not
+oneOf/enum???
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSDfqgACgkQJNaLcl1U
-h9ABiwf9Hutr2zJvx9D17c4xS1JOiT2t+PozkRvq6t8oWu82/GhSKzCEl4qiJ48j
-KG9Dyy6j44XBO2sjM4X0ge6gjX7+3TPcFRd4WC5VtqmqNgyKQviRk8KBPT7g+9Le
-tA5btQ5ytvDJRNhvlAqi8FxkwAt3P+6DPVZGosDcJcaDwHa936TM1SAZnx6TP7y4
-vc0etFHfMt/+xL9hMRqxlCyL+dPo45wdsNOibWJu9mF15yDfDdJLfWW+d8qbRu9r
-V2o7YSG0k0Ukxpj5fgBiBgWfAsYKmYVzg15gTazoop0PHUGtonXk14vZt5bQQGkV
-s3SCRrQAOCNB7v0yl5nhK87ypCx31Q==
-=365c
------END PGP SIGNATURE-----
+/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
+74xx.dtb:
+pcie@33800000: Unevaluated properties are not allowed
+('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks'
+were unexpected)
+From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
+/pci/fsl,imx6q-pcie.yaml
+^^^ we get this on all imx with pcie
 
---fhm/1UM3KQHYSisd--
+/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
+74xx.dtb:
+usb@32f10100: usb@38100000: Unevaluated properties are not allowed
+('connector' was unexpected)
+From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
+/usb/fsl,imx8mp-dwc3.yaml
+/usr/src/venice/linux-master/arch/arm64/boot/dts/freescale/imx8mp-venice-gw=
+74xx.dtb:
+usb@38100000: Unevaluated properties are not allowed ('connector' was
+unexpected)
+From schema: /usr/src/venice/linux-master/Documentation/devicetree/bindings=
+/usb/snps,dwc3.yaml
+^^^ fsl,imx8mp-dwc3.yaml doesn't document connector nodes
+
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb: /pps: failed
+to match any schema with compatible: ['pps-gpio']
+^^^ need a pps-gpio.yaml
+
+Is there a way to skip certain schemas or some multi-line grep -v
+pattern you are using?
+
+I've noticed a lot of contributors putting time into dt-bindings to
+pass schema checks and things are getting cleaned up fairly quickly.
+
+Best Regards,
+
+Tim
