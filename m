@@ -2,79 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B785E72970D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 12:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5EB172975E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 12:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239131AbjFIKhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 06:37:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
+        id S236039AbjFIKs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 06:48:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231130AbjFIKgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 06:36:25 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C11942738;
-        Fri,  9 Jun 2023 03:34:46 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3598ZdTD021128;
-        Fri, 9 Jun 2023 10:34:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=XkLF+TfoAL7j5uqmjlX1JwwkmmWunUXnDAJGkXxXDIw=;
- b=IPXN+Eh3aVuK6LZN8HDrpblTjgh+MRVxW5WsdX9NYzzOOo6aJ5MjP/WkdmfBBeSUYe25
- z9NQt7ehqeIBqIie7RYfv2xBPSN252GhTcW7PEFwhgmXB4PZX89xGdLTmYwLfracvT89
- R32O1dGdSvg9lCKWCbXQ3udrjSWVBxFHuqRhhKKzfFEsNApA2HBPMqen+HiOHb6Hv+/U
- ISGXxH7CNQ3OONnAomK7BEYNIMym4TqcilXx8TvLboSuOsHT5QDLMXLLNK7LX9v6XNCK
- ZSH/2cAFieW2VlOXw0SRt6PG1nmTcfQC1wgiu5GzbIK78quA+W0AT7kMA821G1A8dhiQ pg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3t70gved-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 10:34:43 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 359AYgBO021944
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 9 Jun 2023 10:34:42 GMT
-Received: from [10.201.206.212] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 9 Jun 2023
- 03:34:39 -0700
-Message-ID: <0d374348-4127-2c98-dc43-a1a474a2cafd@quicinc.com>
-Date:   Fri, 9 Jun 2023 16:04:36 +0530
+        with ESMTP id S231233AbjFIKs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 06:48:56 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EF7EB
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 03:48:54 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f624daccd1so1961294e87.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 03:48:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686307733; x=1688899733;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IJw54Q4fVjs8P5l9B0Tjils38orMhfU15KqusaeW5hA=;
+        b=vSTghP27g5F/WqVfqOP4V7ruKh49rrqlyulafGPLSQ9r1tzLiUJEqis8BDW7S8Gaw3
+         VvBhoMrNwPZ+gqRszig8uB1XLpE/kxUpwNq3JS0y10xnuzUKGYSeDjHqA44UTeJUb42K
+         AKIoGqgyo2yuhjeYFPuEi7KCULKJF2B2SNsOyYjGyFnhyCDh8iNOglwVKrdh2oE59dRv
+         YjFVZNWVUgVp2LgWBi/LQRPvJ3dcyfmFCRRJ4jaA79rmKYIgrhwOECkDODaOWF8VHOeq
+         0n2EEGguLrO+HEoafh9k1TeD8aVcroUZb3++Rf2OjHVUEBP/Jl+2snZH65gEBeWNv6f8
+         stzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686307733; x=1688899733;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IJw54Q4fVjs8P5l9B0Tjils38orMhfU15KqusaeW5hA=;
+        b=K9n24ErzhW9UqeFzAO7oV/Ew7pCBZYFkdZb57G6YLI/CoPbC54+KZ6TrNDBuM/ROcn
+         cGj/pRzuxCQK+v5KpWK4pUiO4ufvXoRNqWzrihF+kmJ0iVAcyYwQ3rSHblWDQ9SR2OLx
+         Oc7t7uK/4z8O9kbOoeb9qSKw1takEqMVG0dQLkZKF8C1pIsKwFXSGSCKTHOee8kse779
+         w5r4AqvD1LbbTItUQAZE8FuS0bF7FPmAFVsidH/9ePBDkJExAz+lRznRzBilYDDlxxF7
+         4F/vurgba/GscwWS/MNncKzN7IX+5GDm7ihhrKsgN8rmwa6izOeDVz6ut/8JX8AHaZPL
+         v/AQ==
+X-Gm-Message-State: AC+VfDzlnM9RCIVEKMqfxRhW5LW1wzx7ioUxSvw/NtVA5waMsyPCdG5W
+        Mv0zrUjdrvOlKmVAy2oLM0Mksg==
+X-Google-Smtp-Source: ACHHUZ7vb9ttZnmbgAmzyayjpYnO1ROhtDc9BPMXhg9NoPAv2nBO3etq94NJTjTiDUp9xyyiFW/lPw==
+X-Received: by 2002:a19:4347:0:b0:4f3:b2a7:68ef with SMTP id m7-20020a194347000000b004f3b2a768efmr555798lfj.10.1686307732870;
+        Fri, 09 Jun 2023 03:48:52 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id w25-20020a056402129900b0051659c6d50csm1620799edv.22.2023.06.09.03.48.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 03:48:52 -0700 (PDT)
+Message-ID: <9e4a0756-8b42-81a7-5b5c-60c0ebea0d7f@linaro.org>
+Date:   Fri, 9 Jun 2023 12:48:50 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH V2 1/2] arm64: dts: qcom: ipq5332: enable GPIO based LEDs
- and Buttons
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230605052907.18837-1-quic_sridsn@quicinc.com>
- <20230605052907.18837-2-quic_sridsn@quicinc.com>
- <669d2745-c7fc-dff5-a6e6-c2c55b4428ee@linaro.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: timer: atmel,at91sam9260-pit: convert
+ to yaml
 Content-Language: en-US
-From:   Sridharan S N <quic_sridsn@quicinc.com>
-In-Reply-To: <669d2745-c7fc-dff5-a6e6-c2c55b4428ee@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Claudiu.Beznea@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        wim@linux-watchdog.org, linux@roeck-us.net
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20230530090758.1652329-1-claudiu.beznea@microchip.com>
+ <20230530090758.1652329-2-claudiu.beznea@microchip.com>
+ <46eced08-5bf6-3e4b-7a91-ff4d16c7dab9@linaro.org>
+ <e816a8c2-e4fb-a608-f8e0-232135243c8a@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e816a8c2-e4fb-a608-f8e0-232135243c8a@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9H053G8DcHMQ-MB3eYPqAR20TGGoegAp
-X-Proofpoint-ORIG-GUID: 9H053G8DcHMQ-MB3eYPqAR20TGGoegAp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_06,2023-06-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 mlxscore=0 spamscore=0 clxscore=1011 suspectscore=0
- bulkscore=0 malwarescore=0 priorityscore=1501 mlxlogscore=821 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306090089
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,227 +82,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/06/2023 12:22, Claudiu.Beznea@microchip.com wrote:
+> On 31.05.2023 11:55, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 30/05/2023 11:07, Claudiu Beznea wrote:
+>>> Convert Microchip AT91 PIT bindings to YAML. Along with it clocks and
+>>> clock-names bindings were added as the drivers needs it to ensure proper
+>>> hardware functionality.
+>>>
+>>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+>>> ---
+>>>  .../devicetree/bindings/arm/atmel-sysregs.txt | 12 ---
+>>>  .../bindings/timer/atmel,at91sam9260-pit.yaml | 99 +++++++++++++++++++
+>>>  2 files changed, 99 insertions(+), 12 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/timer/atmel,at91sam9260-pit.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+>>> index 67a66bf74895..54d3f586403e 100644
+>>> --- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+>>> +++ b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+>>> @@ -4,18 +4,6 @@ Chipid required properties:
+>>>  - compatible: Should be "atmel,sama5d2-chipid" or "microchip,sama7g5-chipid"
+>>>  - reg : Should contain registers location and length
+>>>
+>>> -PIT Timer required properties:
+>>> -- compatible: Should be "atmel,at91sam9260-pit"
+>>> -- reg: Should contain registers location and length
+>>> -- interrupts: Should contain interrupt for the PIT which is the IRQ line
+>>> -  shared across all System Controller members.
+>>> -
+>>> -PIT64B Timer required properties:
+>>> -- compatible: Should be "microchip,sam9x60-pit64b"
+>>> -- reg: Should contain registers location and length
+>>> -- interrupts: Should contain interrupt for PIT64B timer
+>>> -- clocks: Should contain the available clock sources for PIT64B timer.
+>>> -
+>>>  System Timer (ST) required properties:
+>>>  - compatible: Should be "atmel,at91rm9200-st", "syscon", "simple-mfd"
+>>>  - reg: Should contain registers location and length
+>>> diff --git a/Documentation/devicetree/bindings/timer/atmel,at91sam9260-pit.yaml b/Documentation/devicetree/bindings/timer/atmel,at91sam9260-pit.yaml
+>>> new file mode 100644
+>>> index 000000000000..d0f3f80db4cb
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/timer/atmel,at91sam9260-pit.yaml
+>>> @@ -0,0 +1,99 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/timer/atmel,at91sam9260-pit.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Microchip AT91 Periodic Interval Timer (PIT)
+>>> +
+>>> +maintainers:
+>>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+>>> +
+>>> +description:
+>>> +  Microchip AT91 periodic interval timer provides the operating system scheduler
+>>> +  interrupt. It is designed to offer maximum accuracy and efficient management,
+>>> +  even for systems with long response time.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - const: microchip,sama7g5-pit64b
+>>
+>> >From where do you have this compatible? Wasn't in old binding and commit
+>> msg does not explain it.
+> 
+> ok, I'll update it in the commit message. It is from the available device
+> trees.
 
-On 6/6/2023 6:27 PM, Konrad Dybcio wrote:
->
-> On 5.06.2023 07:29, Sridharan S N wrote:
->> Add support for wlan-2g LED on GPIO 36 and wps buttons on GPIO 35.
+Add them in next patch, so the conversion is only conversion.
+
+> 
 >>
->> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
->> ---
->> Changes in V2:
->> 	- Used the hypen in node name instead of underscore
->> 	- Dropped the status property
->>   
->>   arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts | 42 +++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts | 42 +++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 42 +++++++++++++++++++++
->>   3 files changed, 126 insertions(+)
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts b/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
->> index 3af1d5556950..5bd4ff3ad86b 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
->> @@ -7,6 +7,8 @@
->>   
->>   /dts-v1/;
->>   
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->>   #include "ipq5332.dtsi"
->>   
->>   / {
->> @@ -20,6 +22,32 @@
->>   	chosen {
->>   		stdout-path = "serial0";
->>   	};
->> +
->> +	gpio-keys {
->> +		compatible = "gpio-keys";
->> +		pinctrl-0 = <&gpio_keys_default>;
->> +		pinctrl-names = "default";
->> +
->> +		button-wps {
->> +			label = "wps";
->> +			linux,code = <KEY_WPS_BUTTON>;
->> +			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
->> +			linux,input-type = <1>;
->> +			debounce-interval = <60>;
->> +		};
->> +	};
-> All of these changes seem very repetetive.. Are these devboards based
-> on a common design? Maybe ipq5332-rdp-common.dtsi would be beneficial
-> here?
-Will move all the common nodes to common dtsi in the next patch
-> Thanks,
-Sridharan
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-0 = <&gpio_leds_default>;
-> +		pinctrl-names = "default";
-> +
-> +		led-0 {
-> +			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "phy0tx";
-> +			default-state = "off";
-> +		};
-> +	};
->   };
->   
->   &blsp1_uart0 {
-> @@ -57,6 +85,20 @@
->   /* PINCTRL */
->   
->   &tlmm {
-> +	gpio_keys_default: gpio-keys-default-state {
-> +		pins = "gpio35";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	gpio_leds_default: gpio-leds-default-state {
-> +		pins = "gpio36";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-down;
-> +	};
-> +
->   	i2c_1_pins: i2c-1-state {
->   		pins = "gpio29", "gpio30";
->   		function = "blsp1_i2c0";
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-> index bcf3b31c20e3..36cbebb75c48 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-> @@ -7,6 +7,8 @@
->   
->   /dts-v1/;
->   
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
->   #include "ipq5332.dtsi"
->   
->   / {
-> @@ -20,6 +22,32 @@
->   	chosen {
->   		stdout-path = "serial0";
->   	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-0 = <&gpio_keys_default>;
-> +		pinctrl-names = "default";
-> +
-> +		button-wps {
-> +			label = "wps";
-> +			linux,code = <KEY_WPS_BUTTON>;
-> +			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <1>;
-> +			debounce-interval = <60>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-0 = <&gpio_leds_default>;
-> +		pinctrl-names = "default";
-> +
-> +		led-0 {
-> +			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "phy0tx";
-> +			default-state = "off";
-> +		};
-> +	};
->   };
->   
->   &blsp1_uart0 {
-> @@ -71,6 +99,20 @@
->   /* PINCTRL */
->   
->   &tlmm {
-> +	gpio_keys_default: gpio-keys-default-state {
-> +		pins = "gpio35";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	gpio_leds_default: gpio-leds-default-state {
-> +		pins = "gpio36";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-down;
-> +	};
-> +
->   	i2c_1_pins: i2c-1-state {
->   		pins = "gpio29", "gpio30";
->   		function = "blsp1_i2c0";
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> index 3b6a5cb8bf07..2d27f48f00c0 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> @@ -7,6 +7,8 @@
->   
->   /dts-v1/;
->   
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
->   #include "ipq5332.dtsi"
->   
->   / {
-> @@ -20,6 +22,32 @@
->   	chosen {
->   		stdout-path = "serial0";
->   	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-0 = <&gpio_keys_default>;
-> +		pinctrl-names = "default";
-> +
-> +		button-wps {
-> +			label = "wps";
-> +			linux,code = <KEY_WPS_BUTTON>;
-> +			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <1>;
-> +			debounce-interval = <60>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-0 = <&gpio_leds_default>;
-> +		pinctrl-names = "default";
-> +
-> +		led-0 {
-> +			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "phy0tx";
-> +			default-state = "off";
-> +		};
-> +	};
->   };
->   
->   &blsp1_uart0 {
-> @@ -64,6 +92,20 @@
->   /* PINCTRL */
->   
->   &tlmm {
-> +	gpio_keys_default: gpio-keys-default-state {
-> +		pins = "gpio35";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	gpio_leds_default: gpio-leds-default-state {
-> +		pins = "gpio36";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-down;
-> +	};
-> +
->   	sdc_default_state: sdc-default-state {
->   		clk-pins {
->   			pins = "gpio13";
+>>> +          - const: microchip,sam9x60-pit64b
+>>> +      - items:
+>>> +          enum:
+>>
+>> These are not items. Just enum.. Does it even work?
+> 
+> Yes, it compiles w/o issues. I'll update it anyway.
+
+Yeah, but does it work as intended? This should allow any order of below
+compatibles - from 1 to 2, so totally not what you wanted.
+
+> 
+>>
+>>> +            - atmel,at91sam9260-pit
+>>> +            - microchip,sam9x60-pit64b
+
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 2
+>>> +        clock-names:
+>>> +          items:
+>>> +            - const: pclk
+>>> +            - const: gclk
+>>
+>> interrupts? They are still required, so why no description here?
+> 
+> It was here in the previous versions but Conor suggested to remove it as it
+> was nothing specific about this description. For the if-then branch I kept
+> it to specify that the interrupt is share with other devices. In this
+> branch the interrupt is only for the timer itself. With this, would you
+> still prefer to add it back?
+
+I just don't understand why interrupts are in one arm of the if: and not
+in the other.
+
+> 
+>>
+>>> +      required:
+>>> +        - clock-names
+>>> +
+>>> +unevaluatedProperties: false
+>>
+>> additionalProperties:false instead
+> 
+> Having additionalProperties:false instead of unevaluatedProperties: false
+> thows the following error on make dt_binding_check and make dtbs_check:
+> 
+> Documentation/devicetree/bindings/timer/atmel,at91sam9260-pit.example.dtb:
+> timer@f0028000: 'clock-names' does not match any of the regexes:
+> 'pinctrl-[0-9]+'
+
+So it nicely points to something you need to fix in the binding.
+
+
+
+Best regards,
+Krzysztof
+
