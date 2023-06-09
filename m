@@ -2,140 +2,397 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C032972A28E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 20:50:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6555E72A2C4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 21:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbjFISuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 14:50:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57088 "EHLO
+        id S230178AbjFITF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 15:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjFISuI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 14:50:08 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D1E13A81;
-        Fri,  9 Jun 2023 11:50:07 -0700 (PDT)
-Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359IlA3R001149;
-        Fri, 9 Jun 2023 18:49:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=myGzGs2NawOBCwWz7+upUz/JwK6dQ3oOlKG8artjLsg=;
- b=Tlg2h+4k+8omqvp18PZBG69LYolCdOgFacEckvNHPvQX1jTTKCFC+TNkGivoe/AclTpa
- 22LLDWt8RrmwRfrpfwF8V0VnLFPr+eVUkU8F1F59DUjplMwvEVXnzq/ap+K0CmOJp2Xp
- FyuhXtuv4AEyjwxzUZLl3c8BQ9KZeaibZzT/riHzE21lSwv6N/VBCt/gL7HgGqvF4t1U
- pR3PRa4e46xwNcF/ixiLU1uJBzjYd5R61bXT/qg22tfnhJK+U8ppPCoL8v30d41gEbaj
- tcVPvYq0XYUrS1POto4RFDj6TLjLB5t/MBNEf5H9YOD/C7iLhafsqddfBiz8advqlaqu jg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3r49nkr3av-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 18:49:45 +0000
-Received: from m0353726.ppops.net (m0353726.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 359IniJb009506;
-        Fri, 9 Jun 2023 18:49:45 GMT
-Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3r49nkr3ah-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 18:49:44 +0000
-Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
-        by ppma03wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 359IAhWv022632;
-        Fri, 9 Jun 2023 18:49:43 GMT
-Received: from smtprelay05.dal12v.mail.ibm.com ([9.208.130.101])
-        by ppma03wdc.us.ibm.com (PPS) with ESMTPS id 3r2a77q2c2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 18:49:43 +0000
-Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com [10.39.53.230])
-        by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 359Ingwv6292016
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 9 Jun 2023 18:49:42 GMT
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 29E905805D;
-        Fri,  9 Jun 2023 18:49:42 +0000 (GMT)
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7A91358054;
-        Fri,  9 Jun 2023 18:49:40 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-        by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-        Fri,  9 Jun 2023 18:49:40 +0000 (GMT)
-Message-ID: <4afde78d-e138-9eee-50e0-dbd32f4dcfe0@linux.ibm.com>
-Date:   Fri, 9 Jun 2023 14:49:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v9 2/4] tpm: of: Make of-tree specific function commonly
- available
-Content-Language: en-US
-To:     Jarkko Sakkinen <jarkko@kernel.org>,
-        Jerry Snitselaar <jsnitsel@redhat.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Nageswara R Sastry <rnsastry@linux.ibm.com>,
-        Coiby Xu <coxu@redhat.com>
-References: <20230418134409.177485-1-stefanb@linux.ibm.com>
- <20230418134409.177485-3-stefanb@linux.ibm.com>
- <e4dcxwp63uisirxwanjwrhzrnve45wqnxhijfp4oq274r4neco@v2btoy43ue5h>
- <CT8BRJZS8RQU.9ICEA2UAFC7G@suppilovahvero>
-From:   Stefan Berger <stefanb@linux.ibm.com>
-In-Reply-To: <CT8BRJZS8RQU.9ICEA2UAFC7G@suppilovahvero>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: vnMB3zCx4Hhs6QhKY0JaE9KiteMDLAjg
-X-Proofpoint-ORIG-GUID: ekM5eMhdXay5_PWqimPauZQ9QWzNxbDb
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        with ESMTP id S230134AbjFITF1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 15:05:27 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDDC35BE
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 12:05:24 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-75ebb3d57d0so196505685a.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 12:05:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1686337524; x=1688929524;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=jVnfTyaTDD8DhbOc9iimn10KGjbGeGy8uNaOYhafL9o=;
+        b=cLBFWRHSfwCv5R2eKJzL2FiBmSl+e/Y8Tx1Y25GEemWT5ur6+NU/WfOmgWeb1dnIhu
+         XkPbrh5m/iX3vOycxOTxAjGVLZ1BY9CsRhkys7n2pj3H4sGoLdo5PgOKq2m+jSyhu76O
+         O1il0VUm8JgDfUs8ao0kGg2Fvoun4ZDAF0McE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686337524; x=1688929524;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jVnfTyaTDD8DhbOc9iimn10KGjbGeGy8uNaOYhafL9o=;
+        b=Kvq1Dvi8c6cRMZTdPCp60Ju7zP3eMNVZ8kfsus2SciqHH2sc4/uuAl+yEaD6FdHWR+
+         SnQ/vvCMnoe4wpzaiHi5ODFqZ1cF0Z2e3sDKmHab9ElGkhBjGotk10cBUsllt2L0GgGl
+         T/YsvuT9XLl9UItd919bP/dCpfh+w8xW+23tyg38vg6JrX4+dFeP2oMc13NHZtlajc6T
+         PR2Fnl0optg79h96OAXvofjGSkMWh2rzR6sR1uzJVsqjoW6apZqAhyOMmc8NW+dVo/I8
+         gUXXyG67LKwuP0XPx0IsR5xN22bB04B2Od4pXwo24PuDI9bpyh3GxYQYN7Vbyq9vX6Ia
+         kS+g==
+X-Gm-Message-State: AC+VfDwqdcZ3lA9EgQeq2ZT7yE9KbeubGTNDU5d3dEMscBaMVkIbnYfq
+        sZG2nwnfykqm5Crb7z8OvCDXcw==
+X-Google-Smtp-Source: ACHHUZ4XFDa04smZ5M+x/BoUTxmht5Q0i/VneH5YMEXXWRSsgi16oCmXW6ZQAqIzRU2fJPka19ndxQ==
+X-Received: by 2002:a05:620a:a05:b0:75b:23a0:d9cc with SMTP id i5-20020a05620a0a0500b0075b23a0d9ccmr2210505qka.34.1686337523848;
+        Fri, 09 Jun 2023 12:05:23 -0700 (PDT)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id x16-20020a05620a01f000b0075783f6c2b4sm1210667qkn.128.2023.06.09.12.05.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Jun 2023 12:05:22 -0700 (PDT)
+Subject: Re: [PATCH 05/12] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        Linux MTD List <linux-mtd@lists.infradead.org>,
+        f.fainelli@gmail.com, rafal@milecki.pl, kursad.oney@broadcom.com,
+        joel.peshkin@broadcom.com, computersforpeace@gmail.com,
+        anand.gore@broadcom.com, dregan@mail.com, kamal.dasu@broadcom.com,
+        tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20230606231252.94838-1-william.zhang@broadcom.com>
+ <20230606231252.94838-6-william.zhang@broadcom.com>
+ <20230607101452.4c265d7e@xps-13>
+ <84e97108-29d4-5103-14f4-03e3c0eba165@broadcom.com>
+ <20230609105857.7256c02f@xps-13>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <d49a915b-bea5-12a4-a72a-38f925ffb025@broadcom.com>
+Date:   Fri, 9 Jun 2023 12:05:19 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_14,2023-06-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=881 impostorscore=0 malwarescore=0 bulkscore=0 mlxscore=0
- phishscore=0 adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1011
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306090155
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230609105857.7256c02f@xps-13>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000001a0b8c05fdb70d2e"
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--0000000000001a0b8c05fdb70d2e
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
+Hi Miquel,
 
-On 6/9/23 14:18, Jarkko Sakkinen wrote:
-> On Thu May 25, 2023 at 1:56 AM EEST, Jerry Snitselaar wrote:
->> On Tue, Apr 18, 2023 at 09:44:07AM -0400, Stefan Berger wrote:
->>> Simplify tpm_read_log_of() by moving reusable parts of the code into
->>> an inline function that makes it commonly available so it can be
->>> used also for kexec support. Call the new of_tpm_get_sml_parameters()
->>> function from the TPM Open Firmware driver.
->>>
->>> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
->>> Cc: Jarkko Sakkinen <jarkko@kernel.org>
->>> Cc: Jason Gunthorpe <jgg@ziepe.ca>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: Frank Rowand <frowand.list@gmail.com>
->>> Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
->>> Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>
->>> Tested-by: Coiby Xu <coxu@redhat.com>
->>> Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
->>>
->>
->> Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
+On 06/09/2023 01:58 AM, Miquel Raynal wrote:
+> Hi William,
 > 
-> If I just pick tpm only patches they won't apply so maybe TPM changes
-> should be better separated if that is by any means possible.
+> william.zhang@broadcom.com wrote on Wed, 7 Jun 2023 13:01:56 -0700:
+> 
+>> Hi Miquel,
+>>
+>> On 06/07/2023 01:14 AM, Miquel Raynal wrote:
+>>> Hi William,
+>>>
+>>> william.zhang@broadcom.com wrote on Tue,  6 Jun 2023 16:12:45 -0700:
+>>>    
+>>>> Use new compatiable brcm,nand-bcmbca to support BCMBCA broadband
+>>>> product. The old compatible string is still kept in the driver so old
+>>>> dtb can still work.
+>>>>
+>>>> Add brcm,nand-use-wp property to have an option for disabling this
+>>>> feature on broadband board design that does not use write protection.
+>>>> Add brcm,nand-ecc-use-strap to get ecc setting from board strap for
+>>>> broadband board designs because they do not specify ecc setting in dts
+>>>> but rather using the strap setting.
+>>>>
+>>>> Remove the requirement of interrupts and interrupt-names properties to
+>>>> reflect the driver code.
+>>>>
+>>>> This patch also includes a few minor fixes to the BCM63xx compatibles
+>>>> and add myself to the list of maintainers.
+>>>>
+>>>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+>>>> ---
+>>>>
+>>>>    .../bindings/mtd/brcm,brcmnand.yaml           | 64 +++++++++++++------
+>>>>    1 file changed, 43 insertions(+), 21 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+>>>> index 1571024aa119..1fe1c166a9db 100644
+>>>> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+>>>> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+>>>> @@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
+>>>>    maintainers:
+>>>>      - Brian Norris <computersforpeace@gmail.com>
+>>>>      - Kamal Dasu <kdasu.kdev@gmail.com>
+>>>> +  - William Zhang <william.zhang@broadcom.com>
+>>>>    >>   description: |
+>>>>      The Broadcom Set-Top Box NAND controller supports low-level access to raw NAND
+>>>> @@ -18,9 +19,10 @@ description: |
+>>>>      supports basic PROGRAM and READ functions, among other features.
+>>>>    >>     This controller was originally designed for STB SoCs (BCM7xxx) but is now
+>>>> -  available on a variety of Broadcom SoCs, including some BCM3xxx, BCM63xx, and
+>>>> -  iProc/Cygnus. Its history includes several similar (but not fully register
+>>>> -  compatible) versions.
+>>>> +  available on a variety of Broadcom SoCs, including some BCM3xxx, MIPS based
+>>>> +  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc/Cygnus.
+>>>> +  Its history includes several similar (but not fully register compatible)
+>>>> +  versions.
+>>>>    >>     -- Additional SoC-specific NAND controller properties --
+>>>>    >> @@ -53,9 +55,9 @@ properties:
+>>>>                  - brcm,brcmnand-v7.2
+>>>>                  - brcm,brcmnand-v7.3
+>>>>              - const: brcm,brcmnand
+>>>> -      - description: BCM63138 SoC-specific NAND controller
+>>>> +      - description: BCMBCA SoC-specific NAND controller
+>>>>            items:
+>>>> -          - const: brcm,nand-bcm63138
+>>>> +          - const: brcm,nand-bcmbca
+>>>>              - enum:
+>>>>                  - brcm,brcmnand-v7.0
+>>>>                  - brcm,brcmnand-v7.1
+>>>> @@ -65,11 +67,15 @@ properties:
+>>>>              - const: brcm,nand-iproc
+>>>>              - const: brcm,brcmnand-v6.1
+>>>>              - const: brcm,brcmnand
+>>>> -      - description: BCM63168 SoC-specific NAND controller
+>>>> +      - description: BCM63xx SoC-specific NAND controller
+>>>>            items:
+>>>> -          - const: brcm,nand-bcm63168
+>>>> -          - const: brcm,nand-bcm6368
+>>>> -          - const: brcm,brcmnand-v4.0
+>>>> +          - enum:
+>>>> +              - brcm,nand-bcm63168
+>>>> +              - brcm,nand-bcm6368
+>>>> +          - enum:
+>>>> +              - brcm,brcmnand-v2.1
+>>>> +              - brcm,brcmnand-v2.2
+>>>> +              - brcm,brcmnand-v4.0
+>>>>              - const: brcm,brcmnand
+>>>>    >>     reg:
+>>>> @@ -111,6 +117,19 @@ properties:
+>>>>          earlier versions of this core that include WP
+>>>>        type: boolean
+>>>>    >> +  brcm,nand-use-wp:
+>>>> +    description:
+>>>> +      Use this integer to indicate if board design uses
+>>>> +      controller's write protection feature and connects its
+>>>> +      NAND_WPb pin to nand chip's WP_L pin. Driver defaults to
+>>>> +      use this feature when this property does not exist.
+>>>> +      Set to 0 if WP pins are not connected and feature is not
+>>>> +      used. Set to 1 if WP pins are connected and feature is used.
+>>>> +      Set to 2 if WP pins are connected but disable this feature
+>>>> +      through driver that sets controller to output high on NAND_WPb.
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    enum: [0, 1, 2]
+>>>
+>>> Perhaps strings would be welcome. I'll let binding maintainers say what
+>>> they think of it.
+>>>    
+>> Practically there is really just use cases of 0 and 1. I could use a bool flag but to keep consistent with the driver code and in case there is any existing usage of 2.
+>>
+>>>> +
+>>>>    patternProperties:
+>>>>      "^nand@[a-f0-9]$":
+>>>>        type: object
+>>>> @@ -136,13 +155,23 @@ patternProperties:
+>>>>              layout.
+>>>>            $ref: /schemas/types.yaml#/definitions/uint32
+>>>>    >> +      brcm,nand-ecc-use-strap:
+>>>> +        description:
+>>>> +          This flag is used by the driver to get the ecc strength and
+>>>> +          spare area size from the SoC NAND boot strap setting. This
+>>>> +          is commonly used by the BCMBCA SoC board design. If ecc
+>>>> +          strength and spare area size are set by nand-ecc-strength
+>>>> +          and brcm,nand-oob-sector-size in the dts, these settings
+>>>> +          have precedence and override this flag.
+>>>> +        $ref: /schemas/types.yaml#/definitions/flag
+>>>
+>>> How in practice do you access the strap value? Don't you need a phandle
+>>> over a specific area in the SoC?
+>>>    
+>> The strap value is latched and stored in the NAND controller register so there is no extra phandle needed.
+> 
+> Ok.
+> 
+>>
+>>>> +
+>>>>    allOf:
+>>>>      - $ref: nand-controller.yaml#
+>>>>      - if:
+>>>>          properties:
+>>>>            compatible:
+>>>>              contains:
+>>>> -            const: brcm,nand-bcm63138
+>>>> +            const: brcm,nand-bcmbca
+>>>>        then:
+>>>>          properties:
+>>>>            reg-names:
+>>>> @@ -153,7 +182,9 @@ allOf:
+>>>>          properties:
+>>>>            compatible:
+>>>>              contains:
+>>>> -            const: brcm,nand-bcm6368
+>>>> +            enum:
+>>>> +              - brcm,nand-bcm63168
+>>>> +              - brcm,nand-bcm6368
+>>>>        then:
+>>>>          properties:
+>>>>            reg-names:
+>>>> @@ -173,20 +204,12 @@ allOf:
+>>>>                - const: nand
+>>>>                - const: iproc-idm
+>>>>                - const: iproc-ext
+>>>> -  - if:
+>>>> -      properties:
+>>>> -        interrupts:
+>>>> -          minItems: 2
+>>>> -    then:
+>>>> -      required:
+>>>> -        - interrupt-names
+>>>
+>>> Why do you remove this? Removing "interrupts" from the required
+>>> properties is fine, but constraining the interrupts property when it is
+>>> relevant is still expected.
+>>>    
+>> There is no requirement for interrupt name even if it have two interrupts. Driver code does not use interrupt name but the interrupt index instead.
+> 
+> It does not matter in this case how the driver uses the interrupts. If
+> names have been provided once in the bindings, you could expect another
+> project using the same bindings to use the interrupt names instead of
+> the order. So you must keep the names. Just don't mark them required it
+> they are.
+> 
+Certainly any dts file can still have interrupts names with one or two 
+interrupts but to my understand it is not required to have the name when 
+there are two interrupts. Anyway I will add this back so this constrain 
+remains.
 
-Per the comment here I am putting this series here on hold.
-https://lore.kernel.org/linux-integrity/20230418134409.177485-1-stefanb@linux.ibm.com/T/#m03745c2af2c46f19f329522fcb6ccb2bf2eaedc7
+>>
+>>>>    >>   unevaluatedProperties: false
+>>>>    >>   required:
+>>>>      - reg
+>>>>      - reg-names
+>>>> -  - interrupts
+>>>
+>>> This should be done in a separate patch.
+>>>    
+>> I thought this is also related to my update for bcmbca chips because they don't need to interrupt and interrupt name.
+> 
+> The fact that the driver does not use the interrupts does not mean they
+> should not be described.
+> 
+>>
+>>>>    >>   examples:
+>>>>      - |
+>>>> @@ -215,8 +238,7 @@ examples:
+>>>>        };
+>>>>      - |
+>>>>        nand-controller@10000200 {
+>>>> -        compatible = "brcm,nand-bcm63168", "brcm,nand-bcm6368",
+>>>> -                     "brcm,brcmnand-v4.0", "brcm,brcmnand";
+>>>> +        compatible = "brcm,nand-bcm6368", "brcm,brcmnand-v2.1", "brcm,brcmnand";
+>>>>            reg = <0x10000200 0x180>,
+>>>>                  <0x100000b0 0x10>,
+>>>>                  <0x10000600 0x200>;
+>>>
+>>>
+>>> Thanks,
+>>> Miquèl
+>>>    
+> 
+> 
+> Thanks,
+> Miquèl
+> 
 
+--0000000000001a0b8c05fdb70d2e
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-BR,
-    Stefan
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOeOIH0MdkAdtTSLvdCf23aitW91
+vKKD9kgYCBfL3oKwMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDYwOTE5MDUyNFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQA4o+OQKsizTIa5advpfKsObCmIvYlnLDBdfjQh7NiLO8O8
+7PhZDMc0+ONikYMsS4IicTY6htObKjvTUDOGs5Jv8nUdaTWqi0JATS8QnD0V3sI8uyXj/7KeaNXI
+0znEK8QJW/kgpT7yxUf7bND2GP+VeKdjXWyWvsML3QM+6Dtcj0FArYK4EtHvua5UVyZdmmzbcjjm
+nPrHUbrFPdNTxrEewWPlwCO3VejIapOWHZLbhYOeIrF9JC7mVzFYQ3EHM0gpBQCLniv/OJ0UN44+
+JoQPuzgdJoDkWm+JtlOPwRECOWhmmrhJPL6EZ0MkTFNUTIbUwNqkVupBGtofh4MqcLr5
+--0000000000001a0b8c05fdb70d2e--
