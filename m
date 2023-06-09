@@ -2,138 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55EED7294E1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF8E72950F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239234AbjFIJYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 05:24:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47768 "EHLO
+        id S241586AbjFIJ22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 05:28:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240985AbjFIJXr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 05:23:47 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A9549FA
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 02:18:04 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b1b084620dso16563951fa.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 02:18:04 -0700 (PDT)
+        with ESMTP id S241292AbjFIJ2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 05:28:15 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DFAC3C31
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 02:22:32 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-ba82059ef0bso1594457276.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 02:22:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686302230; x=1688894230;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cdOMZOFFK46XMQWHJQR/JNKfoVWF5Xuwowhgn1zGCvg=;
-        b=Mm8gNGYpStPF+iQ4QjxKSa39Z4C7KdUmTYszNraI0kz4arWFCaIRAnq3VhMvXAQ/0D
-         PHhpTweQN70rwWxlAzsyhhnrIKryeGmB0ndZi7/9me0OYJO4oM3SdCMrSuiDNIQ7iUJs
-         Gr3iDmjY03z8cErtzS8upas+avQS2iyGcw5iOP4FfbnICHGwCBIrFy6pE5vR+V5LYKtL
-         06mOqO4O56AA5UklVoDStlMbxqVsTBmIPRyD155Lyj8m0DLTya3JadOnuYbMKQfh3rI/
-         w4qRF1xkFRVa8olthy96IVSyUB1mDa+fTsnd7CEQZEHrWOqia4i8lIiTekY0mFEsuZxC
-         Psmw==
+        d=linaro.org; s=google; t=1686302547; x=1688894547;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sXFu4yUMtLkQVLqZs27cGbref0m1NvZ9UABnGnW3Zcc=;
+        b=UBQAX/5uOqkq3FVbYkIpGwXDdC7zYxEj9ZCa2YkX9AgC70xteA6Ot86vmBj6fJUKLy
+         FUScht9XSfZArtomzMF3WkuN2YwxSbadDhQcju/pF0b2/byYXJ2ll5BFy3p82eg4RGay
+         zotuozoiQJnCvgaOUBrABeOjSqMQzLaqVndxuIS3txByOyXrhVHWBEGyYA7E8KDJOpAJ
+         9NAMtK6HH1f9Mj4BozJXoomHjc9rrP1ueWQ5rR0ghHMsgocsbjw4kzf9as6X+6eg8K9Z
+         SNx+K1M0kVM+qhLww01ec5m7QsZ4Y5HCzE/3n1ffcPm7yaGo5jsowvCodSuYuUOYHZIq
+         eUxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686302230; x=1688894230;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdOMZOFFK46XMQWHJQR/JNKfoVWF5Xuwowhgn1zGCvg=;
-        b=WcUkXdFzH95JZDdWDixlKlDHSSInWKWpYv5J6ktOL0ueTmXLhUepjWC6TBna3SfPZt
-         ZWM/xp8TLqXLA4z/A8Qecjnbb7id5UpFjhGbRYVXDTxWd/f47de9dS3WCza7oaeIa4Wq
-         w0cmeZwyxCZseLpyRbb0lNuL3l0XK0co96+4TG0wVa03r41ODov5HYvrBAoLHUMdPBe6
-         zBRPEVYzKb2O1rtJO11qbwyfetp95u6hCvsNqfce3uWCXgkZcnv+t3Tn+iGbeHzi9z3g
-         klZtdV+6lxlOYNDi6f2umBb5HCzVVQJQOFyvKiU7SZ3zklxhfGpQsH3N+lFhpsT8oCA5
-         rRNw==
-X-Gm-Message-State: AC+VfDzTD2rZ8VKPWQHMSfR8sdLiclXiBiUGlua2T49Yv6bwVCVI5tjQ
-        i6FEmMmPJbsTPUJGhixE8+ljXw==
-X-Google-Smtp-Source: ACHHUZ5z73R2zFNnCer+RMV1zZqn9H/fLIsIv+bZQWOcA7XTkZ3bXhfJq9Jda7zGqPuFoVUM9SDfNQ==
-X-Received: by 2002:a05:6512:521:b0:4f3:bbe1:34fc with SMTP id o1-20020a056512052100b004f3bbe134fcmr565962lfc.38.1686302230232;
-        Fri, 09 Jun 2023 02:17:10 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id j8-20020ac25508000000b004eb44c2ab6bsm477216lfk.294.2023.06.09.02.17.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 02:17:09 -0700 (PDT)
-Message-ID: <f44293c7-fce9-e7a3-2a02-7ad5f7980e81@linaro.org>
-Date:   Fri, 9 Jun 2023 11:17:08 +0200
+        d=1e100.net; s=20221208; t=1686302547; x=1688894547;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sXFu4yUMtLkQVLqZs27cGbref0m1NvZ9UABnGnW3Zcc=;
+        b=KU3ZnjAZJkePkPifA6Gxg1goGCmdvlf87O4e5kSu9XLhBc8c9DM32drc2Lky1Qbpc4
+         3OvyDW/Mi2XEF1IEltxeqwr/vEJz4HvHn360Rwzn5IAmL9kisEaPFZnWQRhX14sjXUnh
+         v4gase47op9a1UXzGbznfHZjXXspYPB+01wI34metEammFrzc741D1VqO9c3IrSObIQ+
+         FdoCM7FPnEXavwQS0HICo7YnffEcC0xX+cwAdBsz3ZKhI4z66RU3qvZjszYKpSN/RuZ5
+         qpu7gK9F39xPFtfoZ4S/xs9dOf2lcn/vNbRU7HxeJQ6mOhusqDXyZJZeUDauqxbNrdif
+         wAmw==
+X-Gm-Message-State: AC+VfDxThxYIMcBNiFQZlpb7txAtzxSppXE5ipAMF7a3RM7JdeJRGTHl
+        wxe8Ox1Vw/eg45mSra4vxtvBAGkFIwUVnU4VLWqHFg==
+X-Google-Smtp-Source: ACHHUZ48RvbMw1+M+7v2VlVgLESWvZ6AGC8PU94FcGcAeLzJMhza44IJ1d+WbK+hcPxCXuMt0Oxh3ZuEmfwL/Xhodm8=
+X-Received: by 2002:a25:e6cb:0:b0:bad:e86:8fda with SMTP id
+ d194-20020a25e6cb000000b00bad0e868fdamr501993ybh.22.1686302547555; Fri, 09
+ Jun 2023 02:22:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 4/5] dt-bindings: cpufreq: cpufreq-qcom-hw: Add SDX75
- compatible
-Content-Language: en-US
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        rafael@kernel.org, viresh.kumar@linaro.org, tglx@linutronix.de,
-        maz@kernel.org, mani@kernel.org, robimarko@gmail.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <1686138469-1464-1-git-send-email-quic_rohiagar@quicinc.com>
- <1686138469-1464-5-git-send-email-quic_rohiagar@quicinc.com>
- <20230609050052.GA472607@hu-pkondeti-hyd.qualcomm.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230609050052.GA472607@hu-pkondeti-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230602115201.415718-1-matthias.schiffer@ew.tq-group.com>
+ <3241150.44csPzL39Z@steina-w> <CACRpkda2yQefuUMn6Ot8Ns6nNgfC25i9nwmzwxOy5fUg=A44hQ@mail.gmail.com>
+ <4784636.LvFx2qVVIh@steina-w>
+In-Reply-To: <4784636.LvFx2qVVIh@steina-w>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 9 Jun 2023 11:22:16 +0200
+Message-ID: <CACRpkdb66Br+nVPiih+oQQfXokMRYXUSE4rriPykR-yA9eDAxg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] spi: dt-bindings: introduce linux,use-rt-queue flag
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux@ew.tq-group.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 9, 2023 at 11:13=E2=80=AFAM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
 
+> > I fully sympathize with this problem, because I have faced
+> > similar problems myself.
+>
+> You mean RT-scheduling before userspace is up? Can you elaborate the issu=
+es
+> you see?
 
-On 9.06.2023 07:00, Pavan Kondeti wrote:
-> On Wed, Jun 07, 2023 at 05:17:48PM +0530, Rohit Agarwal wrote:
->> Add compatible for EPSS CPUFREQ-HW on SDX75.
->>
->> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
->> index a6b3bb8..866ed2d 100644
->> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
->> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
->> @@ -36,6 +36,7 @@ properties:
->>                - qcom,sa8775p-cpufreq-epss
->>                - qcom,sc7280-cpufreq-epss
->>                - qcom,sc8280xp-cpufreq-epss
->> +              - qcom,sdx75-cpufreq-epss
->>                - qcom,sm6375-cpufreq-epss
->>                - qcom,sm8250-cpufreq-epss
->>                - qcom,sm8350-cpufreq-epss
-> 
-> This is a very basic question, not completely related to this patch.
-> Apologies in advance.
-> 
-> What is the rationale for adding a new soc string under compatible and
-> using it in the new soc device tree? Is it meant for documentation purpose?
-> i.e one know what all SoCs / boards supported by this device node.
-It's two-fold:
+No. But choosing block layer scheduler (BFQ for MMC cards) before userspace
+is up, which is currently done by udev scripts in eg Fedora :(
 
-1. The device tree describes the hardware, and for lack of better terms (e.g.
-   an SoC-specific version number of the block that is identical to all other
-   implementations of that revision on all SoCs that use it), we tend to
-   associate it with the SoC it's been (first) found on.
-
-2. In case we ever needed to introduce a SoC-specific quirk, we can just add
-   an of_is_compatible-sorta check to the driver and not have to update the
-   device trees. This is very important for keeping backwards compatibility,
-   as it's assumed that not everybody may be running the latest one. This
-   means we have to avoid ABI breaks (unless we have *very* good reasons, like
-   "this would have never worked anyway" or "it was not described properly
-   and worked on this occasion by pure luck")
-
-Konrad
-> 
-> I ask this because, we don't add these compatible strings in the driver
-> [1] which means there is not SoC specific handling and there is no
-> module load assist (module alias matching by user space based on device
-> presence).
-> 
-> Thanks,
-> Pavan
+Yours,
+Linus Walleij
