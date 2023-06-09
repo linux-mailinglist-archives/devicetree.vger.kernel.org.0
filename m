@@ -2,142 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F45B728BB3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 01:25:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B53728C19
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 02:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjFHXY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jun 2023 19:24:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44910 "EHLO
+        id S230011AbjFIAA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jun 2023 20:00:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbjFHXY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 19:24:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE2D30D6;
-        Thu,  8 Jun 2023 16:24:30 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.239])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 753836606F1D;
-        Fri,  9 Jun 2023 00:24:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686266664;
-        bh=mCFzt9Y8896kdcxmhKQPvHOnPkcXSRatB/HlXjIKGQc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HcSfKi7LayIU/v34zNkIEAO6QPFs20sykANJIiRceDpKRd4hBFyrlKfBYal9/3iIr
-         5rvtCnsvrR8Ta18JeX7S0pkSdvFl/iJwv+QYkGizxbrD+0dnQQ1vPOTcb7h9uMaZKP
-         N0KFG+JJc0i6PRfIffG8SDw+EROmPehrb56fXbhnxQBFJuSZuCL7S/Xkj6n4edo1Yo
-         +G0ew41QMVPpyrzOs91GRBeMrMKaMa3kB19Q5dnfFJsZ/1ukC7e2ydRG51aqBPeZcd
-         6+VXsmfU4oyTvEQnzvqo5BKme0Nzlcb0o1ZeX7nsg+tfoW/+arro/nm7rJHew23KZp
-         ofFBskKzAUpgA==
-Received: by mercury (Postfix, from userid 1000)
-        id 29AFB1060A24; Fri,  9 Jun 2023 01:24:22 +0200 (CEST)
-Date:   Fri, 9 Jun 2023 01:24:22 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229622AbjFIAA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jun 2023 20:00:56 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38278273D
+        for <devicetree@vger.kernel.org>; Thu,  8 Jun 2023 17:00:55 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-3f80fef8b48so6748411cf.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jun 2023 17:00:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1686268854; x=1688860854;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LxR/SJuJesIlUhLkTQS/ZrnynBY91I1wlxCj9eCUbrY=;
+        b=GbRwwx/OqkWJ9IQ+Rs5Zfx0iisIV/EBwM+DVugwAuf3abBZKRoj3qmlMGj67wdeglk
+         MUlc2dRHqXX8AkcrMVJqWJPwS5OdbroufdHg8Rw12/m/90aeDm6bFrDt8ZKjWEp3RV0V
+         pFasEwj2J0txtU31XbRRlo+TWX6f2v0rucDho=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686268854; x=1688860854;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LxR/SJuJesIlUhLkTQS/ZrnynBY91I1wlxCj9eCUbrY=;
+        b=jK0+a8wLN9HWrt1bnvpgrdSToLs4O6A1zpq1RblBOXv1kUOn4iUssm6EhFTAKO4Tfw
+         hFPqVJxbWq+CiB4H+yAPEdUweVCLKlPGRMKfZlKVGJUDX15k5W78glzPHcJqNIjraoly
+         NDNQWlQNH9JHse5yP/TW1eaKZjJXrxeXl50UY9eEyzEPJ7aS8zULq0/QB3GDFamk8xkE
+         4HM1t18J5NkVJoJ8Yg+JMXLIOlF4xOgwaPPMEpQZyXBhFuizXMaxQJ8V8/SmCkfmqQEI
+         U9QdXfg+RzeLgcSj287RfHsgjswaOvQnDcCnrbEScIKETVEsz/p/aEDF+aWDHar7XtS5
+         NK0A==
+X-Gm-Message-State: AC+VfDwlmMCu3XRLQQG2WUk/+8Ziv1+B3mktCR2MlhRQpb5+3bBT1XYl
+        IDMUKC7VWrGizxX0oWHQf6BPzw==
+X-Google-Smtp-Source: ACHHUZ4s45lAPH6Y+drnrhqbzpj8plY2+oVJoqNvW6AvXkkg0gX+Nn3vk7faxBSlcaw3jATp+nMV0A==
+X-Received: by 2002:a05:622a:4b:b0:3f6:adda:afd6 with SMTP id y11-20020a05622a004b00b003f6addaafd6mr270680qtw.10.1686268854067;
+        Thu, 08 Jun 2023 17:00:54 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id x13-20020a05622a000d00b003e3918f350dsm741295qtw.25.2023.06.08.17.00.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 17:00:53 -0700 (PDT)
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+        Kalle Valo <kvalo@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Tom Rix <trix@redhat.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Subject: Re: [PATCH v9 0/2] power: supply: introduce support for the Qualcomm
- smb2 charger
-Message-ID: <20230608232422.ikckij5m4adwnrap@mercury.elektranox.org>
-References: <20230524-pmi8998-charger-v9-0-cd7f6d03c0ab@linaro.org>
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Arend Van Spriel <arend@broadcom.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/3] dt-bindings: net: wireless: brcm,bcm4329-fmac: add BCM4366 binding
+Date:   Thu,  8 Jun 2023 17:00:50 -0700
+Message-Id: <20230609000050.2986414-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230602135925.14143-1-zajec5@gmail.com>
+References: <20230602135925.14143-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="cv4aioka2xke3d7y"
-Content-Disposition: inline
-In-Reply-To: <20230524-pmi8998-charger-v9-0-cd7f6d03c0ab@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000000f5e4905fda71055"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--0000000000000f5e4905fda71055
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---cv4aioka2xke3d7y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-Hi,
-
-On Fri, May 26, 2023 at 10:44:13PM +0100, Caleb Connolly wrote:
-> Add a driver for the Qualcomm PMI8998/PM660 Switch-Mode Battery Charger.
-> This is the second generation SMB charger, and replaces the previous
-> SMBB hardware found in older PMICs.
->=20
-> Changes since v8:
->  * Add charger bindings reference to qcom,spmi-pmic.yaml
-> V8: https://lore.kernel.org/all/20230524-pmi8998-charger-v8-0-b87ffcd9864=
-d@linaro.org/
->=20
-> Changes since v7:
->  * Implement fixes suggested by Sebastian
->  * Fix format warning
-> V7: https://lore.kernel.org/linux-arm-msm/20230127230506.3140297-1-caleb.=
-connolly@linaro.org/
->=20
-> To: Sebastian Reichel <sre@kernel.org>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Caleb Connolly <caleb.connolly@linaro.org>
-> To: Andy Gross <agross@kernel.org>
-> To: Bjorn Andersson <andersson@kernel.org>
-> To: Konrad Dybcio <konrad.dybcio@linaro.org>
-> To: Nathan Chancellor <nathan@kernel.org>
-> To: Nick Desaulniers <ndesaulniers@google.com>
-> To: Tom Rix <trix@redhat.com>
-> ---
-> Caleb Connolly (2):
->       dt-bindings: power: supply: qcom,pmi8998-charger: add bindings for =
-smb2 driver
->       power: supply: add Qualcomm PMI8998 SMB2 Charger driver
->=20
->  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |    1 +
->  .../power/supply/qcom,pmi8998-charger.yaml         |   82 ++
->  drivers/power/supply/Kconfig                       |    9 +
->  drivers/power/supply/Makefile                      |    1 +
->  drivers/power/supply/qcom_pmi8998_charger.c        | 1059 ++++++++++++++=
-++++++
->  5 files changed, 1152 insertions(+)
+On Fri,  2 Jun 2023 15:59:23 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> It's an 802.11ac chipset that can be found hardwired in a lot of
+> Northstar based routers.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
 
-Thanks, queued.
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
--- Sebastian
+--0000000000000f5e4905fda71055
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
---cv4aioka2xke3d7y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSCYyEACgkQ2O7X88g7
-+ppw6w//Zzu/r/8Xz5uRQd7GSe12Dh9LxYrMQSBlUvnx7kDxgozjcNN+g34yd0aQ
-sRewvvYQy3jh5ssfNhTWI3uNp0TIeEtk+t1kJE2iTSry5wH7QikVOdydzd6+9CT1
-8TEEzUQBywONL3GxSMUeN05Wb72hTKWUeQgoLiSbeogp9G5oBcWKvimG8mEM0jIB
-yEazx6NM1SOdCMkA8LH89KoLo2xgXILpL6f2wFpCO3xYeKAa7n4+ifqweyOyvtjH
-JMK21eCrP1Zp3LHLYOQNrf+I535Geqh8QpSl4joqm3xfBWE3WqMUFVRhRucyQXPa
-k7PNzSwmmuf08w1unEXFImu5zSL1IvYwFRX+9dVPdxle2RmJnPjW3DJpCSyd+Zwk
-6NqL6q+4jU7VwrZHwSGEqXS1EDJXcEfIFdEKyZHTIJ8HaUfREmzeVIihUwOsGu00
-ifTffm90ySSeaZTIcQ0jZmNDryfF+hRTiNx5FgffjEqds/ppGmhackacJ86iefsu
-o6c6fhBbMJPSzc3oHfBrMz8sfQlu6AJw0wDq1PJp8SNpqLoFSOVc3rL6ksJAaXJj
-kmjYzOsfXiI+j5qN0aq+fac6uF875psA0DQFpjJSv4Qq01WhQAyxg4aLLKug2vyO
-blz63/fj3Qmq9fZA8axOy+JJpylYjkqX3WaQsZSvRGYh2Se/vr0=
-=F7Hh
------END PGP SIGNATURE-----
-
---cv4aioka2xke3d7y--
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEINy1EKe5iRSeIEAM
+sTSLhJ6Yq0TFdKTkBCLXTiLEj/xtMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDYwOTAwMDA1NFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCuqBl/WC0t5awiziiHhhLHoFj8TDG1/uDY
+AGNehtkLaNGxbmPCqMW/Q/E3C7UyNEfz05AxQcVNYTI/8Kh6Z/CJMTS1PbmAN7d6CWoz4u1hzrn4
+xYel3eKPV/GOY3YZytbcq2CPz52yNhVewx27GPlMAs1APdld6ouAodCEzb9SPHquY0Rw8pQvljF1
+OL6q8oYdQTc3gnagHr1DGH6ujXLH92Hv+u+d6GOATu6G9fYJo81cZrWQiWUtYGfSuDN2e3SVPCPP
+36eNMP/uKQbvDzv7PZ4qYBy8rpyZo20gtQzsLJ3g78czXwAdB/KWiS3/od/UvkyUC0LDvZC6tSGi
+EX6C
+--0000000000000f5e4905fda71055--
