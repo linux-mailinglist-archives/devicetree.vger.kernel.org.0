@@ -2,265 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3017F72A64D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 00:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC59872A662
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 00:54:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232239AbjFIWfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 18:35:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46920 "EHLO
+        id S229820AbjFIWyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 18:54:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231859AbjFIWfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 18:35:51 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EA0C35B8;
-        Fri,  9 Jun 2023 15:35:49 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359MDLQp019430;
-        Fri, 9 Jun 2023 22:35:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=4ECFYGWgHxIfacttR0hwtCNIBUZDxJHuS/5evG0+o7I=;
- b=h7Z+j/Zxm1BfNe0J1/LwgCKGnFQauif7LhmuN+GMSt8qm74myd7FbJ27g5JimTbSZ395
- +kFYyUhJnaY8V0V3oT4CRJu2C9EEwDbdEF2k3bRaKRWGhoVoWUwHCnYXI0EyqWwRh+zT
- dLK6ZPIxHlA5SnBMZWrQlW/L1S0fEJYtT+K49UPilpmb8MlpoJY3TtjzJLtwx8EPiX3o
- Bay5HK9z2qcV0F+6RKQlsDAc3G7Ai9eP37P7PXRh5hDzx0iZZnrURnXULwvB1ddfcoDi
- ZR07q/2JT8LGV2cL2yYJlXY53/MG3iSNGAHeaLfmHS0b+fc550ghD9VgU/NLUmFcnV3i eA== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3xyx9sq1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 22:35:33 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 359MZWPB029738
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 9 Jun 2023 22:35:32 GMT
-Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 9 Jun 2023
- 15:35:31 -0700
-Message-ID: <d31ac48b-13d3-cb9c-7a59-220b31a89274@quicinc.com>
-Date:   Fri, 9 Jun 2023 15:35:31 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v13 09/24] gunyah: rsc_mgr: Add RPC for sharing memory
-Content-Language: en-US
-To:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229631AbjFIWyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 18:54:46 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C13199D;
+        Fri,  9 Jun 2023 15:54:45 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-777b4c9e341so102106639f.0;
+        Fri, 09 Jun 2023 15:54:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686351285; x=1688943285;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pT8d709lUwR0H+C5hIKfiTzNt8kqiCGgM0Vbs93RSBI=;
+        b=iVfnN24Gzrxa6cN2tsyP05ZbU5QbFBw0n0K6+9cCza2GZf2GG0QafUPAqajiP3SQA5
+         GVoByI+4Qjd7U9WnbnCGqYP5nmx9DjWGiS+b6KeRXyti0wVSC12Ms5B+FHpnHhfdvm7p
+         8IX7S+phQ6ukr4Zuao9Rm1VIzo8Ro+QYvMGpx3hpvl7wb/q4NI8jbiwNA2k1eJxE4HvG
+         FPn1BRn9WYqesWEOPBFJCXsIqlErOTWYDa6lP9rTKrPRP6kegO2x67SBYnaUMUBifHmw
+         uhkBVdHOIkOVXBe4k7FIa0YLWzVRdZ49h3dOKkWFLBJpzU/icKIUS0UySbj9H6V4R7NA
+         78NA==
+X-Gm-Message-State: AC+VfDwinI1aD2AA1cSKelwH9K7Hs3UIdbBG3Mf0eAh83u0xh/5niVT2
+        PajPRynLwK3C0Xqbf+rXPA==
+X-Google-Smtp-Source: ACHHUZ4hkrjWTx1JroAsVMcvyH4QcGLOHYyPwn37uUR6Q/8eLHeqERimu9M7VUet3JdIarbD7Tic1A==
+X-Received: by 2002:a5e:c017:0:b0:778:735c:9bed with SMTP id u23-20020a5ec017000000b00778735c9bedmr2869964iol.0.1686351284694;
+        Fri, 09 Jun 2023 15:54:44 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id p22-20020a02b396000000b00420af1d2ce0sm1241761jan.5.2023.06.09.15.54.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 15:54:43 -0700 (PDT)
+Received: (nullmailer pid 2601357 invoked by uid 1000);
+        Fri, 09 Jun 2023 22:54:42 -0000
+Date:   Fri, 9 Jun 2023 16:54:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
- <20230509204801.2824351-10-quic_eberman@quicinc.com>
- <9747a71d-c6d0-b67b-a3b1-c84848268f46@linaro.org>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <9747a71d-c6d0-b67b-a3b1-c84848268f46@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Xmr9_AEb6KAl9_XsOFdiBftexFt5N-m5
-X-Proofpoint-GUID: Xmr9_AEb6KAl9_XsOFdiBftexFt5N-m5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_16,2023-06-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- suspectscore=0 priorityscore=1501 impostorscore=0 spamscore=0 bulkscore=0
- clxscore=1015 mlxscore=0 lowpriorityscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306090191
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: crypto: intel,ixp4xx: drop unneeded quotes
+Message-ID: <20230609225442.GA2588193-robh@kernel.org>
+References: <20230609140745.65046-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230609140745.65046-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/5/2023 12:48 PM, Alex Elder wrote:
-> On 5/9/23 3:47 PM, Elliot Berman wrote: >> +
->> +    req_header->mem_handle = cpu_to_le32(mem_handle);
->> +    if (end_append)
->> +        req_header->flags |= GH_MEM_APPEND_REQ_FLAGS_END;
->> +
->> +    mem_section->n_entries = cpu_to_le16(n_mem_entries);
->> +    memcpy(mem_section->entries, mem_entries, sizeof(*mem_entries) * 
->> n_mem_entries);
->> +
->> +    ret = gh_rm_call(rm, GH_RM_RPC_MEM_APPEND, msg, msg_size, NULL, 
->> NULL);
->> +    kfree(msg);
->> +
->> +    return ret;
->> +}
->> +
->> +static int gh_rm_mem_append(struct gh_rm *rm, u32 mem_handle,
->> +            struct gh_rm_mem_entry *mem_entries, size_t n_mem_entries)
->> +{
->> +    bool end_append;
->> +    int ret = 0;
->> +    size_t n;
->> +
->> +    while (n_mem_entries) {
->> +        if (n_mem_entries > GH_RM_MAX_MEM_ENTRIES) {
->> +            end_append = false;
->> +            n = GH_RM_MAX_MEM_ENTRIES;
->> +        } else {
->> +            end_append = true;
->> +            n = n_mem_entries;
->> +        }
->> +
->> +        ret = _gh_rm_mem_append(rm, mem_handle, end_append, 
->> mem_entries, n);
->> +        if (ret)
->> +            break;
->> +
->> +        mem_entries += n;
->> +        n_mem_entries -= n;
->> +    }
->> +
->> +    return ret;
->> +}
->> +
->> +static int gh_rm_mem_lend_common(struct gh_rm *rm, u32 message_id, 
->> struct gh_rm_mem_parcel *p)
->> +{
->> +    size_t msg_size = 0, initial_mem_entries = p->n_mem_entries, 
->> resp_size;
->> +    size_t acl_section_size, mem_section_size;
->> +    struct gh_rm_mem_share_req_acl_section *acl_section;
->> +    struct gh_rm_mem_share_req_mem_section *mem_section;
->> +    struct gh_rm_mem_share_req_header *req_header;
->> +    u32 *attr_section;
->> +    __le32 *resp;
->> +    void *msg;
->> +    int ret;
->> +
->> +    if (!p->acl_entries || !p->n_acl_entries || !p->mem_entries || 
->> !p->n_mem_entries ||
->> +        p->n_acl_entries > U8_MAX || p->mem_handle != 
->> GH_MEM_HANDLE_INVAL)
->> +        return -EINVAL;
->> +
->> +    if (initial_mem_entries > GH_RM_MAX_MEM_ENTRIES)
->> +        initial_mem_entries = GH_RM_MAX_MEM_ENTRIES;
+On Fri, Jun 09, 2023 at 04:07:45PM +0200, Krzysztof Kozlowski wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> Is it OK to truncate the number of entries silently?
-> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml         | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-The initial share/lend accepts GH_RM_MAX_MEM_ENTRIES. I append the rest 
-of the mem entries later.
+You missed $id and $schema values.
 
->> +
->> +    acl_section_size = struct_size(acl_section, entries, 
->> p->n_acl_entries);
-> 
-> Is there a limit on the number of ACL entries (as there is for
-> the number of mem entries).
-> 
+Within drivers/crypto, there's also:
 
-There is limit based at the transport level -- messages sent to resource 
-manager can only be so long. Max # ACL entries limit is dynamic based on 
-the size of the rest of the message such as how many mem entries there 
-are. We could try to compute the limit and even lower max number of 
-mem_entries, but max # of ACL entries in practice will single digits so 
-it seemed premature optimization to be "smarter" about the limit and let 
-the RPC core do the checking/complaining.
+diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bi
+ndings/crypto/amlogic,gxl-crypto.yaml
+index ecf98a9e72b2..948e11ebe4ee 100644
+--- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
++++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+@@ -19,8 +19,8 @@ properties:
+ 
+   interrupts:
+     items:
+-      - description: "Interrupt for flow 0"
+-      - description: "Interrupt for flow 1"
++      - description: Interrupt for flow 0
++      - description: Interrupt for flow 1
+ 
+   clocks:
+     maxItems: 1
 
->> +    mem_section_size = struct_size(mem_section, entries, 
->> initial_mem_entries);
->> +    /* The format of the message goes:
->> +     * request header
->> +     * ACL entries (which VMs get what kind of access to this memory 
->> parcel)
->> +     * Memory entries (list of memory regions to share)
->> +     * Memory attributes (currently unused, we'll hard-code the size 
->> to 0)
->> +     */
->> +    msg_size += sizeof(struct gh_rm_mem_share_req_header);
->> +    msg_size += acl_section_size;
->> +    msg_size += mem_section_size;
->> +    msg_size += sizeof(u32); /* for memory attributes, currently 
->> unused */
->> +
->> +    msg = kzalloc(msg_size, GFP_KERNEL);
->> +    if (!msg)
->> +        return -ENOMEM;
->> +
->> +    req_header = msg;
->> +    acl_section = (void *)req_header + sizeof(*req_header);
->> +    mem_section = (void *)acl_section + acl_section_size;
->> +    attr_section = (void *)mem_section + mem_section_size;
->> +
->> +    req_header->mem_type = p->mem_type;
->> +    if (initial_mem_entries != p->n_mem_entries)
->> +        req_header->flags |= GH_MEM_SHARE_REQ_FLAGS_APPEND;
->> +    req_header->label = cpu_to_le32(p->label);
->> +
->> +    acl_section->n_entries = cpu_to_le32(p->n_acl_entries);
->> +    memcpy(acl_section->entries, p->acl_entries,
->> +        flex_array_size(acl_section, entries, p->n_acl_entries));
->> +
->> +    mem_section->n_entries = cpu_to_le16(initial_mem_entries);
->> +    memcpy(mem_section->entries, p->mem_entries,
->> +        flex_array_size(mem_section, entries, initial_mem_entries));
->> +
->> +    /* Set n_entries for memory attribute section to 0 */
->> +    *attr_section = 0;
->> +
->> +    ret = gh_rm_call(rm, message_id, msg, msg_size, (void **)&resp, 
->> &resp_size);
->> +    kfree(msg);
->> +
->> +    if (ret)
->> +        return ret;
->> +
->> +    p->mem_handle = le32_to_cpu(*resp);
->> +    kfree(resp);
->> +
->> +    if (initial_mem_entries != p->n_mem_entries) {
->> +        ret = gh_rm_mem_append(rm, p->mem_handle,
->> +                    &p->mem_entries[initial_mem_entries],
->> +                    p->n_mem_entries - initial_mem_entries);
-> 
-> Will there always be at most one gh_rm_mem_append() call?
-> 
+Can you add this in here. No reason to split this up more that 1 patch 
+per subsystem really. 
 
-Yes, gh_rm_mem_append makes multiple RPC calls as necessary for all the 
-remaining entries.
+As I mentioned, I have a WIP tree[1] with yamllint checks enabled and 
+I scripted many of the changes. It was clean, but there's some new ones 
+since rebasing to v6.4-rc1:
 
->> +        if (ret) {
->> +            gh_rm_mem_reclaim(rm, p);
->> +            p->mem_handle = GH_MEM_HANDLE_INVAL;
->> +        }
->> +    }
->> +
->> +    return ret;
->> +}
-> 
-> . . .
-> 
+../Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml:30:16: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml:31:16: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml:42:16: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml:43:16: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml:38:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml:39:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml:40:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml:41:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml:42:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml:43:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml:34:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml:35:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml:36:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml:37:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/cirrus,cs35l45.yaml:65:15: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/cirrus,cs35l45.yaml:74:15: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/cirrus,cs35l45.yaml:83:15: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/cirrus,cs35l45.yaml:93:15: [error] string value is redundantly quoted with any quotes (quoted-strings)
+../Documentation/devicetree/bindings/sound/cirrus,cs35l45.yaml:117:15: [error] string value is redundantly quoted with any quotes (quoted-strings)
+
+Rob
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/log/?h=dt/yamllint
