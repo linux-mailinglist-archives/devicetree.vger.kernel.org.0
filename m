@@ -2,476 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E75E72A36F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 21:52:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8AF272A3EE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 22:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbjFITwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 15:52:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49984 "EHLO
+        id S229596AbjFIUAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 16:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjFITwl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 15:52:41 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 198B61730;
-        Fri,  9 Jun 2023 12:52:36 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1q7i9m-006Cop-EF; Fri, 09 Jun 2023 19:52:22 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v3] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
-Date:   Fri,  9 Jun 2023 12:52:19 -0700
-Message-Id: <20230609195220.3399055-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229541AbjFIUAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 16:00:33 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEA44210D;
+        Fri,  9 Jun 2023 13:00:31 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359JXQDX023055;
+        Fri, 9 Jun 2023 20:00:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=hNSFKWryMT4l8OSN2viRKRuPpy4F59qui6oi84nwnZc=;
+ b=hocPd0owKosziZRgIVGQxfUiVGYcXC6of1dJfsZlC2pQ6apE8NpgSbQs7qCkp83+DC1U
+ 0aKFDpCNrP2bdplAOCy87PAmtLaV/mw89V7a1LrzDRtD2O4i/TCxFx3CTZoR4ikGR/r2
+ IIx2teYx1jNEYGfPWcV3KUiGp2H8oGYKq2UIYupOqwjs9XKq0bsP/E1YByO21atZW1qu
+ rrgJcAxTdVr+RCNSM4i+E48ffL3EDqLABzutGIKBXSJn0aFEPEE9o2kqFgOZfMDDN6/+
+ pEeohxxG8DlH38JDoxK8QvgGlPInFJUukWQdVEi2WS5QMRfwwze75cjxly1XnC4TNb7g Bg== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3vu4hstr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Jun 2023 20:00:18 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 359K0Hql030988
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 9 Jun 2023 20:00:17 GMT
+Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 9 Jun 2023
+ 13:00:16 -0700
+Message-ID: <5a026df6-05d2-42ef-21dd-e0f70071fc90@quicinc.com>
+Date:   Fri, 9 Jun 2023 13:00:16 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v13 16/24] virt: gunyah: Translate gh_rm_hyp_resource into
+ gunyah_resource
+Content-Language: en-US
+To:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+ <20230509204801.2824351-17-quic_eberman@quicinc.com>
+ <91d52a40-98c5-3d79-79af-7a21b41acfc4@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <91d52a40-98c5-3d79-79af-7a21b41acfc4@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -Fe6BvKa1-udwQSoo5shOSKtZwc-7S-E
+X-Proofpoint-ORIG-GUID: -Fe6BvKa1-udwQSoo5shOSKtZwc-7S-E
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-09_14,2023-06-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=978
+ lowpriorityscore=0 phishscore=0 priorityscore=1501 clxscore=1015
+ suspectscore=0 spamscore=0 mlxscore=0 adultscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306090167
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the imx8mp-venice-gw74xx for revB:
- - add CAN1
- - add TIS-TPM on SPI2
- - add FAN controller
- - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
-   backward compatible option)
- - M2 socket GPIO's moved
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v3:
- - add missing address-cells and size-cells to gsc node causing
-   dtbs_check warnings
 
-v2:
- - fix fan-controller unit-address
----
- .../dts/freescale/imx8mp-venice-gw74xx.dts    | 263 +++++++++++-------
- 1 file changed, 161 insertions(+), 102 deletions(-)
+On 6/5/2023 12:49 PM, Alex Elder wrote:
+> On 5/9/23 3:47 PM, Elliot Berman wrote:
+>> When booting a Gunyah virtual machine, the host VM may gain capabilities
+>> to interact with resources for the guest virtual machine. Examples of
+>> such resources are vCPUs or message queues. To use those resources, we
+>> need to translate the RM response into a gunyah_resource structure which
+>> are useful to Linux drivers. Presently, Linux drivers need only to know
+>> the type of resource, the capability ID, and an interrupt.
+>>
+>> On ARM64 systems, the interrupt reported by Gunyah is the GIC interrupt
+>> ID number and always a SPI.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> 
+> Please zero the automatic variable in the place I suggest it.
+> I have two other comments/questions.  Otherwise, this looks good.
+> 
+> Reviewed-by: Alex Elder <elder@linaro.org>
+> 
+>> ---
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-index 92514b71b5f4..3473423ac939 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-@@ -125,12 +125,22 @@ reg_usb2_vbus: regulator-usb2 {
- 		regulator-max-microvolt = <5000000>;
- 	};
- 
-+	reg_can1_stby: regulator-can1-stby {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_can1>;
-+		regulator-name = "can1_stby";
-+		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	reg_can2_stby: regulator-can2-stby {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_reg_can>;
-+		pinctrl-0 = <&pinctrl_reg_can2>;
- 		regulator-name = "can2_stby";
--		gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
-+		gpio = <&gpio5 5 GPIO_ACTIVE_LOW>;
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 	};
-@@ -164,6 +174,21 @@ &A53_3 {
- 	cpu-supply = <&reg_arm>;
- };
- 
-+&ecspi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1>;
-+	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	tpm@0 {
-+		compatible = "tcg,tpm_tis-spi";
-+		#address-cells = <0x1>;
-+		#size-cells = <0x1>;
-+		reg = <0x0>;
-+		spi-max-frequency = <36000000>;
-+	};
-+};
-+
- /* off-board header */
- &ecspi2 {
- 	pinctrl-names = "default";
-@@ -204,6 +229,13 @@ fixed-link {
- 	};
- };
- 
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	xceiver-supply = <&reg_can1_stby>;
-+	status = "okay";
-+};
-+
- &flexcan2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan2>;
-@@ -214,38 +246,38 @@ &flexcan2 {
- &gpio1 {
- 	gpio-line-names =
- 		"", "", "", "", "", "", "", "",
--		"", "", "dio0", "", "dio1", "", "", "",
-+		"", "dio0", "", "dio1", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
- 
- &gpio2 {
- 	gpio-line-names =
--		"", "", "", "", "", "", "", "",
--		"", "", "", "", "", "", "pcie3_wdis#", "",
-+		"", "", "", "", "", "", "m2_pin20", "",
-+		"", "", "", "", "", "pcie1_wdis#", "pcie3_wdis#", "",
- 		"", "", "pcie2_wdis#", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
- 
- &gpio3 {
- 	gpio-line-names =
--		"m2_gdis#", "", "", "", "", "", "", "m2_rst#",
-+		"", "", "", "", "", "", "m2_rst", "",
-+		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
--		"m2_off#", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
- 
- &gpio4 {
- 	gpio-line-names =
-+		"", "", "m2_off#", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
--		"", "", "", "", "", "", "", "",
--		"", "", "", "", "m2_wdis#", "", "", "",
--		"", "", "", "", "", "", "", "uart_rs485";
-+		"", "", "m2_wdis#", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "rs485_en";
- };
- 
- &gpio5 {
- 	gpio-line-names =
--		"uart_half", "uart_term", "", "", "", "", "", "",
-+		"rs485_hd", "rs485_term", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
-@@ -268,6 +300,8 @@ gsc: gsc@20 {
- 		interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
- 		interrupt-controller;
- 		#interrupt-cells = <1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
- 
- 		adc {
- 			compatible = "gw,gsc-adc";
-@@ -286,6 +320,12 @@ channel@8 {
- 				label = "vdd_bat";
- 			};
- 
-+			channel@16 {
-+				gw,mode = <4>;
-+				reg = <0x16>;
-+				label = "fan_tach";
-+			};
-+
- 			channel@82 {
- 				gw,mode = <2>;
- 				reg = <0x82>;
-@@ -358,6 +398,11 @@ channel@a2 {
- 				gw,voltage-divider-ohms = <10000 10000>;
- 			};
- 		};
-+
-+		fan-controller@a {
-+			compatible = "gw,gsc-fan";
-+			reg = <0x0a>;
-+		};
- 	};
- 
- 	gpio: gpio@23 {
-@@ -369,85 +414,6 @@ gpio: gpio@23 {
- 		interrupts = <4>;
- 	};
- 
--	pmic@25 {
--		compatible = "nxp,pca9450c";
--		reg = <0x25>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_pmic>;
--		interrupt-parent = <&gpio3>;
--		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
--
--		regulators {
--			BUCK1 {
--				regulator-name = "BUCK1";
--				regulator-min-microvolt = <720000>;
--				regulator-max-microvolt = <1000000>;
--				regulator-boot-on;
--				regulator-always-on;
--				regulator-ramp-delay = <3125>;
--			};
--
--			reg_arm: BUCK2 {
--				regulator-name = "BUCK2";
--				regulator-min-microvolt = <720000>;
--				regulator-max-microvolt = <1025000>;
--				regulator-boot-on;
--				regulator-always-on;
--				regulator-ramp-delay = <3125>;
--				nxp,dvs-run-voltage = <950000>;
--				nxp,dvs-standby-voltage = <850000>;
--			};
--
--			BUCK4 {
--				regulator-name = "BUCK4";
--				regulator-min-microvolt = <3000000>;
--				regulator-max-microvolt = <3600000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			BUCK5 {
--				regulator-name = "BUCK5";
--				regulator-min-microvolt = <1650000>;
--				regulator-max-microvolt = <1950000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			BUCK6 {
--				regulator-name = "BUCK6";
--				regulator-min-microvolt = <1045000>;
--				regulator-max-microvolt = <1155000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			LDO1 {
--				regulator-name = "LDO1";
--				regulator-min-microvolt = <1650000>;
--				regulator-max-microvolt = <1950000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			LDO3 {
--				regulator-name = "LDO3";
--				regulator-min-microvolt = <1710000>;
--				regulator-max-microvolt = <1890000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			LDO5 {
--				regulator-name = "LDO5";
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--		};
--	};
--
- 	eeprom@50 {
- 		compatible = "atmel,24c02";
- 		reg = <0x50>;
-@@ -559,7 +525,6 @@ fixed-link {
- 	};
- };
- 
--/* off-board header */
- &i2c3 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default", "gpio";
-@@ -568,6 +533,85 @@ &i2c3 {
- 	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9450c";
-+		reg = <0x25>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+
-+		regulators {
-+			BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			reg_arm: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1025000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+				nxp,dvs-run-voltage = <950000>;
-+				nxp,dvs-standby-voltage = <850000>;
-+			};
-+
-+			BUCK4 {
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3600000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			BUCK5 {
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <1045000>;
-+				regulator-max-microvolt = <1155000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO3 {
-+				regulator-name = "LDO3";
-+				regulator-min-microvolt = <1710000>;
-+				regulator-max-microvolt = <1890000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
- };
- 
- /* off-board header */
-@@ -726,12 +770,14 @@ pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
- 			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
--			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_OFF# */
--			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
-+			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02	0x40000040 /* M2SKT_OFF# */
-+			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
-+			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x40000040 /* M2SKT_PIN20 */
-+			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x40000040 /* M2SKT_PIN22 */
-+			MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
- 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
-+			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
- 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
--			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
--			MX8MP_IOMUXC_NAND_ALE__GPIO3_IO00	0x40000150 /* M2SKT_GDIS# */
- 			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
- 			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
- 			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
-@@ -784,6 +830,13 @@ MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT	0x140
- 		>;
- 	};
- 
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SPDIF_RX__CAN1_RX		0x154
-+			MX8MP_IOMUXC_SPDIF_TX__CAN1_TX		0x154
-+		>;
-+	};
-+
- 	pinctrl_flexcan2: flexcan2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX		0x154
-@@ -869,7 +922,7 @@ MX8MP_IOMUXC_SD2_DATA1__GPIO2_IO16	0x10
- 
- 	pinctrl_pcie0: pciegrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x110
-+			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x106
- 		>;
- 	};
- 
-@@ -885,12 +938,18 @@ MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x140
- 		>;
- 	};
- 
--	pinctrl_reg_can: regcangrp {
-+	pinctrl_reg_can1: regcan1grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19	0x154
- 		>;
- 	};
- 
-+	pinctrl_reg_can2: regcan2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05	0x154
-+		>;
-+	};
-+
- 	pinctrl_reg_usb2: regusb2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06	0x140
-@@ -903,12 +962,12 @@ MX8MP_IOMUXC_NAND_DATA03__GPIO3_IO09	0x110
- 		>;
- 	};
- 
--	pinctrl_sai2: sai2grp {
-+	pinctrl_spi1: spi1grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC	0xd6
--			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00	0xd6
--			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK	0xd6
--			MX8MP_IOMUXC_SAI2_MCLK__AUDIOMIX_SAI2_MCLK	0xd6
-+			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK	0x82
-+			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI	0x82
-+			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO	0x82
-+			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09	0x140
- 		>;
- 	};
- 
--- 
-2.34.1
+...
 
+>> +struct gh_resource *gh_rm_alloc_resource(struct gh_rm *rm, struct 
+>> gh_rm_hyp_resource *hyp_resource)
+>> +{
+>> +    struct gh_resource *ghrsc;
+>> +    int ret;
+>> +
+>> +    ghrsc = kzalloc(sizeof(*ghrsc), GFP_KERNEL);
+>> +    if (!ghrsc)
+>> +        return NULL;
+>> +
+>> +    ghrsc->type = hyp_resource->type;
+>> +    ghrsc->capid = le64_to_cpu(hyp_resource->cap_id);
+>> +    ghrsc->irq = IRQ_NOTCONNECTED;
+>> +    ghrsc->rm_label = le32_to_cpu(hyp_resource->resource_label);
+>> +    if (hyp_resource->virq) {
+>> +        struct gh_irq_chip_data irq_data = {
+>> +            .gh_virq = le32_to_cpu(hyp_resource->virq),
+>> +        };
+>> +
+>> +        ret = irq_domain_alloc_irqs(rm->irq_domain, 1, NUMA_NO_NODE, 
+>> &irq_data);
+>> +        if (ret < 0) {
+>> +            dev_err(rm->dev,
+>> +                "Failed to allocate interrupt for resource %d label: 
+>> %d: %d\n",
+>> +                ghrsc->type, ghrsc->rm_label, ghrsc->irq);
+> 
+> Is it reasonable to return in this case without indicating to the
+> caller that something is wrong?
+> 
+
+I wasn't sure what to do here since this is unexpected edge case. Not 
+returning would cause a client's "request_irq" to fail down the line if 
+the client was interested in the irq. I had picked not to return since 
+this error doesn't put us in an unrecoverable state. No one currently 
+wants to try to recover from that error, so I'm really just deferring 
+the real error handling until later.
+
+I can return ret here.
+
+>> +        } else {
+>> +            ghrsc->irq = ret;
+>> +        }
+>> +    }
+>> +
+>> +    return ghrsc;
+
+...
