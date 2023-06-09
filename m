@@ -2,125 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16DBD7293A0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 769867293B5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237792AbjFIItE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50858 "EHLO
+        id S240024AbjFIIwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 04:52:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239070AbjFIIss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:48:48 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E018D95;
-        Fri,  9 Jun 2023 01:48:46 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3597Yl8X001707;
-        Fri, 9 Jun 2023 10:48:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=WGDsEtUbQjsFvu7ULw3SCAN8yQ9+asPwuUzhHmCHuYc=;
- b=Dgq4AotzIwyeLTgkdSSO3dIVUrJ6wBZpQWY+JET8WQjE6qMNvbnz7G1hfin3AEOFxHx8
- TU/sCueaQESuo3KblLYJRXHYhXshOFsoeJ2PPIMH8DmuDKZ1cOpag5GkXaHwHOnv3wG2
- mnwVHsRkYmfl0yDDAcwM3/y3jUINPPL9bMARX24yMXLPFxOVQvTpNKZzgp2DRfk7bVgo
- lGncF0yF8RNbs0x3deMn8HHhDbXaeP5NpK6673XeBjTNEwv6QilFv7Fngms7piJ9VJOB
- zhkOlNXKA5j2Mi2oZSPyxBqnGoYu0gxQWyp8FwuoCEMnD/dd+v33Sc59CYc7HQii9QNx UA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r3tkttgh3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 10:48:18 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4379810002A;
-        Fri,  9 Jun 2023 10:48:17 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 35F7B21A204;
-        Fri,  9 Jun 2023 10:48:17 +0200 (CEST)
-Received: from [10.252.21.206] (10.252.21.206) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 9 Jun
- 2023 10:48:16 +0200
-Message-ID: <1b8e744f-96e7-4f36-68da-9e82d3f8d0c5@foss.st.com>
-Date:   Fri, 9 Jun 2023 10:48:16 +0200
+        with ESMTP id S240899AbjFIIwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:52:34 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5575B2D48
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 01:52:30 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f6370ddd27so1847279e87.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 01:52:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686300748; x=1688892748;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t9M/6Ovu01rsBXyQ4z3CLV3BYJ2AwcXEt+92u20gYU0=;
+        b=iiurC7B4Vrou0Kyj6o9TuEY0C1+Vmop2kkwYy/JwMNiDfk3C9D08hdOM++i6BxmRzd
+         N6XKMnwQDiNi28JaRt3QECP7LHvaVt24MPE22p6pXGwK6auvy0rrH2tYKbG+LGUzpAlh
+         KcL+iHEQsD08trEyX01GdAoZzDL4Yqo7jQ2bZMe0rb62b1161EbSmTqgr768qYVVdbYj
+         GHkJAOdXKod0NW/s29U6r2rdyD0USPziPrBZLcc+Qh2zv37cNG/PnMd7SVTfaAJ/gmkN
+         NORjEeB6Eyz8QdYMI0rYneqdk3CVgwI3riZTea7I72bRNuswmBsd3NSm/R3eEeozJWmT
+         XEnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686300748; x=1688892748;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t9M/6Ovu01rsBXyQ4z3CLV3BYJ2AwcXEt+92u20gYU0=;
+        b=gl3bFZY/pQTyyNO9Jd8Oco8MZ2cySf6Juu2akQ7sl3q4ico5wpOeyE9rXdoWlaMNHy
+         IJJRwRl+0/JeuJIrm8ytvnDD1PNtE0rgM1sA6C6D6Whw06UxguBQXVFg+GnXErWk07gD
+         0owpxu2GVxxRAVuP7xrefl1vpYRdtN+uSbU2qWPYN07BwjuBs1rf/7wdUwvZuon8S8AL
+         xUMf3UFkPBb36VFd4v4tXxmonAS2gOA7Zf8LIGEFpLeIQRcPVCVmjJkGXAw5So5iY5Pq
+         HPTVdCdRBTa2gIc0hi0lTbara5UOHfMTTwRpCeaHBvCZBCKR46egOkk1zWHIpcbMap0G
+         wNqQ==
+X-Gm-Message-State: AC+VfDz8yKILVxysZpzg2JkoYTumZlAcV/FaSAVM2dJ6rDdkCbNtFlP6
+        nhM77QQiNuUXEf3i0rSlJezcsg==
+X-Google-Smtp-Source: ACHHUZ6URLbtsV/hVc8kbJlOW1RBbNBO9Skf8vY3qzFMeRqmyo3pp7TL7kBdL12IqDoWVnHxXtbA8Q==
+X-Received: by 2002:ac2:5f9b:0:b0:4ed:d2cf:857b with SMTP id r27-20020ac25f9b000000b004edd2cf857bmr411360lfe.5.1686300748434;
+        Fri, 09 Jun 2023 01:52:28 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id l13-20020ac24a8d000000b004f3b9adb04asm479339lfp.286.2023.06.09.01.52.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 01:52:27 -0700 (PDT)
+Message-ID: <79206b05-674b-1f6c-6eb1-ed45e6bd5637@linaro.org>
+Date:   Fri, 9 Jun 2023 10:52:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [Linux-stm32] [RFC PATCH 1/5] ARM: dts: stm32: Add alternate
- pinmux for i2s pins
-To:     Sean Nyekjaer <sean@geanix.com>, Rob Herring <robh+dt@kernel.org>,
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sa8775p: Add interconnect to SMMU
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dantuguf14105@gmail.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230606145555.2155664-1-sean@geanix.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Adam Skladowski <a39.skl@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org,
+        "linux-kernel @ vger . kernel . org Prasanna Kumar" 
+        <quic_kprasan@quicinc.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>
+References: <20230609054141.18938-1-quic_ppareek@quicinc.com>
 Content-Language: en-US
-From:   Olivier MOYSAN <olivier.moysan@foss.st.com>
-In-Reply-To: <20230606145555.2155664-1-sean@geanix.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230609054141.18938-1-quic_ppareek@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.21.206]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_06,2023-06-08_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean,
 
-You can add my:
-Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
 
-Thanks
-Olivier
+On 9.06.2023 07:41, Parikshit Pareek wrote:
+> Some qcom SoCs have SMMUs, which need the interconnect bandwidth to be
+> This series introduce the due support for associated interconnect, and
+> setting of the due interconnect-bandwidth. Setting due interconnect
+> bandwidth is needed to avoid the issues like [1], caused by not having
+> due clock votes(indirectly dependent upon interconnect bandwidth).
 
-On 6/6/23 16:55, Sean Nyekjaer wrote:
-> Add another mux option for i2s pins, this is used on Octavo OSD32MP1-RED board.
+[1] ???
+
+Konrad
 > 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> ---
->   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
+> Parikshit Pareek (3):
+>   dt-bindings: arm-smmu: Add interconnect for qcom SMMUs
+>   arm64: dts: qcom: sa8775p: Add interconnect to PCIe SMMU
+>   iommu/arm-smmu-qcom: Add support for the interconnect
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> index e86d989dd351..d79f89f37bc7 100644
-> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> @@ -686,6 +686,25 @@ pins {
->   		};
->   	};
->   
-> +	i2s2_pins_b: i2s2-1 {
-> +		pins {
-> +			pinmux = <STM32_PINMUX('C',  3, AF5)>, /* I2S2_SDO */
-> +				 <STM32_PINMUX('B', 12, AF5)>, /* I2S2_WS */
-> +				 <STM32_PINMUX('B', 13, AF5)>; /* I2S2_CK */
-> +			bias-disable;
-> +			drive-push-pull;
-> +			slew-rate = <1>;
-> +		};
-> +	};
-> +
-> +	i2s2_sleep_pins_b: i2s2-sleep-1 {
-> +		pins {
-> +			pinmux = <STM32_PINMUX('C', 3, ANALOG)>, /* I2S2_SDO */
-> +				 <STM32_PINMUX('B', 12, ANALOG)>, /* I2S2_WS */
-> +				 <STM32_PINMUX('B', 13, ANALOG)>; /* I2S2_CK */
-> +		};
-> +	};
-> +
->   	ltdc_pins_a: ltdc-0 {
->   		pins {
->   			pinmux = <STM32_PINMUX('G',  7, AF14)>, /* LCD_CLK */
+>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 22 +++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi         |  4 ++++
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c    | 16 ++++++++++++++
+>  3 files changed, 42 insertions(+)
+> 
