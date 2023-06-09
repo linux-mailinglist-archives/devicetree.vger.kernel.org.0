@@ -2,76 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85900729CE0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB06729CE5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231981AbjFIO2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:28:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52210 "EHLO
+        id S241455AbjFIOaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:30:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241459AbjFIO2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:28:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B99630D7
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:28:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E1F0165887
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 14:28:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5414C433D2;
-        Fri,  9 Jun 2023 14:28:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686320916;
-        bh=sJIqZ6V2YbrRnVNxl4pDOqAvbX9moFJnHdndQjjjP9M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S0BtoGwUMRcRr27R351mnwli/ELC8IJlwaO/mvOTNPdtddJFCUl9vum46krHi/X20
-         /MKXFbebiqpRAwVjXmLKltU0u7lUgaqtoobMUjRoBo06cJeyCM3woGjvG3BGHFwV7X
-         Us5uzQggn2XMFIgVvt3Gt7t9gFD1efGSMtTKQDZQwu+pd85WNCLSZfbWcOnNOQauTA
-         08gp+vkjaZAQSkfisB883FU5TrFgdvVABoDZkkfS+TLrYf6WXO2Atebq2VhXyIkDZt
-         sDps/5w4cHjFCB1i38D2ARgpUDTYU02RUVFrGfOsr+aYwWWmcMzeNWts3uK1EvFjqL
-         DaX1pHGGHgZwA==
-Date:   Fri, 9 Jun 2023 22:28:24 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/3] imx8mq DT fixes
-Message-ID: <20230609142824.GZ4199@dragon>
-References: <20230606150919.778261-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S241436AbjFIOaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:30:09 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C0930CB
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:29:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686320961;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=SeFjQ+AIqSoCw9oUu0kheJJ6w4RLgwEZPguDnMov+Ro=;
+        b=Jt9wSEpMLIQg3X78KTApvIPitabofva+3/b9CVg6xSBIBkN83TWajt0unsS50iqxdFFle8
+        tOgicfBVeNFO2jtqi8iVWBZZjYN54fhEHzvAT1I4wzBV2E2rg650wnWcfwq0BQp5Ei8lzM
+        8NNG53uPemeQhFJpVqdZE+wZIt3Q2e4=
+Received: from mail-yb1-f198.google.com (mail-yb1-f198.google.com
+ [209.85.219.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-614-K8RYCt5pPJqmheq5OjW-bw-1; Fri, 09 Jun 2023 10:29:20 -0400
+X-MC-Unique: K8RYCt5pPJqmheq5OjW-bw-1
+Received: by mail-yb1-f198.google.com with SMTP id 3f1490d57ef6-bb05f0e6ef9so2587076276.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:29:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686320960; x=1688912960;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SeFjQ+AIqSoCw9oUu0kheJJ6w4RLgwEZPguDnMov+Ro=;
+        b=HvftQVvHOflf7iT3BNEMl6OzqVx2XDlP6dO0Tlf/1OWyLtIS2fnh51hPIW1NBgeW97
+         ed8dCIYnof1sZMDBT6DaGsq8CPQGDjTUd0g8Q5o+40CHvMCSJPE0FO9F44OjyGPGmLY/
+         Y4pRYczeyw3/u3hajqJGgpQWptqA0xmiMFXBO7FHHSdjiVk8y1dP/L8tDjliJZlEd9z/
+         SrMQIWcp2vr57teZ1Kc59LarpVF+NWfvzXnZTHW3isem51sBZ2LZX67QQBCjfOjKCKtL
+         M3c5PANBvQrHPkYVJhtKaS1exajGxb5I5O8gEwbDn4+Z0jZUyt3txoVCN5FCd6SoAQ8l
+         X1Zg==
+X-Gm-Message-State: AC+VfDxhi+PBQAScWNtw1aVDRa2KkAGty3PUvUsjQQ8wE8HsCaEHAYi/
+        v3mtaD37EZnbm1ljNz802TCjzYbgIV24HS9gRVhzvOvUKp1Y0TJZ0vZBYrPS2r/s6O06fpemGYf
+        1j9W9SYLwijaNmXo66Efjjg==
+X-Received: by 2002:a25:f50f:0:b0:ba8:66fb:dd84 with SMTP id a15-20020a25f50f000000b00ba866fbdd84mr1101335ybe.20.1686320960004;
+        Fri, 09 Jun 2023 07:29:20 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ4TEL5O7n3UfPsYTiUfzgwgsZext91z/RVtBWG4mbDyI3+V4ZyAbGaL21xcL2PV/gyhI4oc1Q==
+X-Received: by 2002:a25:f50f:0:b0:ba8:66fb:dd84 with SMTP id a15-20020a25f50f000000b00ba866fbdd84mr1101326ybe.20.1686320959702;
+        Fri, 09 Jun 2023 07:29:19 -0700 (PDT)
+Received: from brian-x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id c5-20020a5b0145000000b00bb144da7d68sm905217ybp.13.2023.06.09.07.29.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 07:29:18 -0700 (PDT)
+Date:   Fri, 9 Jun 2023 10:29:16 -0400
+From:   Brian Masney <bmasney@redhat.com>
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        konrad.dybcio@linaro.org, andersson@kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, richardcochran@gmail.com, echanude@redhat.com
+Subject: Re: [PATCH] arm64: dts: qcom: sa8540p-ride: Specify ethernet phy OUI
+Message-ID: <ZIM3PPXi+ed3CJ2J@brian-x1>
+References: <20230608201513.882950-1-ahalaney@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230606150919.778261-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230608201513.882950-1-ahalaney@redhat.com>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 05:09:16PM +0200, Alexander Stein wrote:
-> Hi,
+On Thu, Jun 08, 2023 at 03:15:13PM -0500, Andrew Halaney wrote:
+> With wider usage on more boards, there have been reports of the
+> following:
 > 
-> this series fixes various dtbs_check warnings for imx8mq.
-> Admittedly I do not know why lcdif is currently usable without apb and axi
-> clocks configured.
+>     [  315.016174] qcom-ethqos 20000.ethernet eth0: no phy at addr -1
+>     [  315.016179] qcom-ethqos 20000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
 > 
-> Best regards,
-> Alexander
+> which has been fairly random and isolated to specific boards.
+> Early reports were written off as a hardware issue, but it has been
+> prevalent enough on boards that theory seems unlikely.
 > 
-> Alexander Stein (3):
->   arm64: dts: imx8mq: Fix lcdif compatible
->   arm64: dts: imx8mq: Fix lcdif clocks
->   arm64: dts: imx8mq: Add missing pci property
+> In bring up of a newer piece of hardware, similar was seen, but this
+> time _consistently_. Moving the reset to the mdio bus level (which isn't
+> exactly a lie, it is the only device on the bus so one could model it as
+> such) fixed things on that platform. Analysis on sa8540p-ride shows that
+> the phy's reset is not being handled during the OUI scan if the reset
+> lives in the phy node:
+> 
+>     # gpio 752 is the reset, and is active low, first mdio reads are the OUI
+>     modprobe-420     [006] .....   154.738544: mdio_access: stmmac-0 read  phy:0x08 reg:0x02 val:0x0141
+>     modprobe-420     [007] .....   154.738665: mdio_access: stmmac-0 read  phy:0x08 reg:0x03 val:0x0dd4
+>     modprobe-420     [004] .....   154.741357: gpio_value: 752 set 1
+>     modprobe-420     [004] .....   154.741358: gpio_direction: 752 out (0)
+>     modprobe-420     [004] .....   154.741360: gpio_value: 752 set 0
+>     modprobe-420     [006] .....   154.762751: gpio_value: 752 set 1
+>     modprobe-420     [007] .....   154.846857: gpio_value: 752 set 1
+>     modprobe-420     [004] .....   154.937824: mdio_access: stmmac-0 write phy:0x08 reg:0x0d val:0x0003
+>     modprobe-420     [004] .....   154.937932: mdio_access: stmmac-0 write phy:0x08 reg:0x0e val:0x0014
+> 
+> Moving it to the bus level, or specifying the OUI in the phy's
+> compatible ensures the reset is handled before any mdio access
+> Here is tracing with the OUI approach (which skips scanning the OUI):
+> 
+>     modprobe-549     [007] .....    63.860295: gpio_value: 752 set 1
+>     modprobe-549     [007] .....    63.860297: gpio_direction: 752 out (0)
+>     modprobe-549     [007] .....    63.860299: gpio_value: 752 set 0
+>     modprobe-549     [004] .....    63.882599: gpio_value: 752 set 1
+>     modprobe-549     [005] .....    63.962132: gpio_value: 752 set 1
+>     modprobe-549     [006] .....    64.049379: mdio_access: stmmac-0 write phy:0x08 reg:0x0d val:0x0003
+>     modprobe-549     [006] .....    64.049490: mdio_access: stmmac-0 write phy:0x08 reg:0x0e val:0x0014
+> 
+> The OUI approach is taken given the description matches the situation
+> perfectly (taken from ethernet-phy.yaml):
+> 
+>     - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
+>       description:
+>         If the PHY reports an incorrect ID (or none at all) then the
+>         compatible list may contain an entry with the correct PHY ID
+>         in the above form.
+>         The first group of digits is the 16 bit Phy Identifier 1
+>         register, this is the chip vendor OUI bits 3:18. The
+>         second group of digits is the Phy Identifier 2 register,
+>         this is the chip vendor OUI bits 19:24, followed by 10
+>         bits of a vendor specific ID.
+> 
+> With this in place the sa8540p-ride's phy is probing consistently, so
+> it seems the floating reset during mdio access was the issue. In either
+> case, it shouldn't be floating so this improves the situation. The below
+> link discusses some of the relationship of mdio, its phys, and points to
+> this OUI compatible as a way to opt out of the OUI scan pre-reset
+> handling which influenced this decision.
+> 
+> Link: https://lore.kernel.org/all/dca54c57-a3bd-1147-63b2-4631194963f0@gmail.com/
+> Fixes: 57827e87be54 ("arm64: dts: qcom: sa8540p-ride: Add ethernet nodes")
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 
-Applied all, thanks!
+Reviewed-by: Brian Masney <bmasney@redhat.com>
+
