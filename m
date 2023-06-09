@@ -2,95 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA7F729956
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 14:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9DBD72996C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 14:18:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbjFIMP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 08:15:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59468 "EHLO
+        id S231183AbjFIMSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 08:18:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbjFIMP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 08:15:57 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59DA0185
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 05:15:56 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-510d6b939bfso3048489a12.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 05:15:56 -0700 (PDT)
+        with ESMTP id S231197AbjFIMSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 08:18:08 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DBE198C
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 05:18:06 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-977d02931d1so258710266b.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 05:18:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686312955; x=1688904955;
+        d=linaro.org; s=google; t=1686313084; x=1688905084;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IsC1KD3dA45FMSsNnFjCf0F+PjjkyOHDGJNk30SGuGw=;
-        b=kUHgWml+tv4XhD5ftmOU5IF4nEN5LAwgIdDlC4Y/FKwp6EDi+3YQheOgzKDmmDDhvr
-         2s+afyry5obiGTXH8rnEExyYog8dI3YPChejOlBOE+slpSLFKF7Y23bEKTScN8z/LdcP
-         CjOpuUSb6qpYPRtUh8Lj3RNDWeyXJYIavLAQlP85TTErPXtKxVzI8QTnOObZJpAy5YQx
-         pktLowNxYOj3ehiyLv0oJVYHtWKyAofaoNW1Lib1sebk7vftO2Rm46oCFUT+5gNb0ept
-         NZCcS6nfecI/72MVh/7uMdHiCq5h4ikmVfniofN9l5zY3IjVE0ScyAdjBPc2RUCXOzFF
-         ojEw==
+        bh=ZRu/MVTufeKETQpJiuC5cRhJZg/KSEOpieRmGz/Iot0=;
+        b=AT+JS54/YcoxeD2FdFUR1c83U5gCnppF6Wqq4Fqf03Ocf50lfnu9Iz1J3fbY3NvViC
+         yJ8iYceB8QwKYJF+6i21C0Iglu2XxMtfPcV1o3T+u22tXGSjBkrRM0Pyg/r8FCrPJ2jF
+         qdvGX2fGMv9rc5wwDLf5bCytFUlkVnwkGamRYISctSFeDvN+nhHC9pItSmJ47G4nB6AJ
+         QhI0ErpMNzwKEC7ZQCXJtiX0R/vOBV+hRyRetMGrQJMKQZjw10oV5n7JX4dgptdZC7so
+         SGZUMZvBWy/H4ILCM2M32TjsoDjwLZmJSHOHLMTKYneNJMYuaOj3vbePe1Jc2+cbSYmP
+         lp9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686312955; x=1688904955;
+        d=1e100.net; s=20221208; t=1686313084; x=1688905084;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IsC1KD3dA45FMSsNnFjCf0F+PjjkyOHDGJNk30SGuGw=;
-        b=bT9Ej9leefhS5PUljEQExFEh84LZyREtpm8CfCpB+nYAesIuGlubbK7lR2qG/c0DCW
-         +I6qesiF/fwThMbnQ7d8SvuUwLKkc2dbPIDUNN0dZQ+i7MJt3c4xmgUzWfLGnt5idt7t
-         c0nUZxqj+z0ZH1BQggL+hulnxQSVZ2Oy3QBoS2KkNMzh5vZ0xYOsAq8ptRk6SzWg64ot
-         T0m4AfCuvOw86+g69PPh9hzkWwu/Tv0FvU6LLBZ21Dk2mh88Q0eGxVD4z8iDDO5i0PAa
-         qqibBBpTDgxwNyELdJBKbdmRe3FZ91u1gTSFfUYmiLzyM45rs8bOp8/jxxhvs6Wd32v9
-         qy/g==
-X-Gm-Message-State: AC+VfDwHQ2ZLrdc++G8tjV3fLYe6pZ15Q89MSI/WANYJYD3KEXfeaGP1
-        8SbRxeDN62uUUeO+zASwI+Ka5w==
-X-Google-Smtp-Source: ACHHUZ4yD8Eqbbnff1yTFECpfYeJdWVgPYCSBzh25RIaV6iF9P/2DbIGFHV4opVmEVKaUirgqZ1kyA==
-X-Received: by 2002:aa7:c401:0:b0:514:9dd7:4bcc with SMTP id j1-20020aa7c401000000b005149dd74bccmr1164011edq.14.1686312954847;
-        Fri, 09 Jun 2023 05:15:54 -0700 (PDT)
+        bh=ZRu/MVTufeKETQpJiuC5cRhJZg/KSEOpieRmGz/Iot0=;
+        b=UR1vuTdf/BYDvZAfysuT+etWbRYd3aNNdMxw/pC+RlUheVDXE4U9rQsjVca6KWKUY5
+         TPs9oNciSor2iPNwBezzRMpY12rQ5pD0IGs7tcbuXTzXhVBHa+65jld1eyK8P9Ypk06c
+         rNKEe+Zmx5rWMS/QYsNuwsrRlupckhKWQxR1a8A2JbVop3sLjBv91oIPPtHZR+jQ/81h
+         RJNjZZ5l1Bos4zkG6NCb7BZV9/5ob58WPw1IiYolVsY9tq/ifKhJlsxWzH4hlmzmDtqI
+         Gc0qAfj+JfudsrCAWdgeTtpPzbow3XNKdOszWGSomp8nQSADfW914S3NHqqvM6UvRK7z
+         tPdw==
+X-Gm-Message-State: AC+VfDw3r0ufZ2k/Z6L5nFAKWb/VNTioJC/1AJYtLrYfjd2manWY7Tk6
+        yeHC7Tr63tw/JwLx64nnZeUd+Q==
+X-Google-Smtp-Source: ACHHUZ417yfakjAMO9xbKZdpU50YulZOcwBUk+TaMyty/uupw4mVV6wMBq8n6/EkUfjiyLbm9NjQTw==
+X-Received: by 2002:a17:906:fd87:b0:973:e79c:3da8 with SMTP id xa7-20020a170906fd8700b00973e79c3da8mr1478316ejb.17.1686313084557;
+        Fri, 09 Jun 2023 05:18:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u11-20020aa7db8b000000b00514b3a2008esm1703436edt.2.2023.06.09.05.15.53
+        by smtp.gmail.com with ESMTPSA id k19-20020a170906129300b0097381fe7aaasm1215248ejb.180.2023.06.09.05.18.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 05:15:54 -0700 (PDT)
-Message-ID: <daeeebcf-d1cc-4dda-3450-8fa137c090bb@linaro.org>
-Date:   Fri, 9 Jun 2023 14:15:53 +0200
+        Fri, 09 Jun 2023 05:18:04 -0700 (PDT)
+Message-ID: <5fc609e0-a70f-03e6-6ac2-db96a2ff7747@linaro.org>
+Date:   Fri, 9 Jun 2023 14:18:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 1/1] dt-bindings: gpio: gpio-vf610: Add parsing of hogs
+Subject: Re: [PATCH v3 1/3] dt-bindings: timer: atmel,at91sam9260-pit: convert
+ to yaml
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230609121044.586214-1-alexander.stein@ew.tq-group.com>
+To:     Claudiu.Beznea@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        wim@linux-watchdog.org, linux@roeck-us.net
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20230530090758.1652329-1-claudiu.beznea@microchip.com>
+ <20230530090758.1652329-2-claudiu.beznea@microchip.com>
+ <46eced08-5bf6-3e4b-7a91-ff4d16c7dab9@linaro.org>
+ <e816a8c2-e4fb-a608-f8e0-232135243c8a@microchip.com>
+ <9e4a0756-8b42-81a7-5b5c-60c0ebea0d7f@linaro.org>
+ <e8fd0340-da21-0cf7-7ec3-a3f278716c15@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230609121044.586214-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <e8fd0340-da21-0cf7-7ec3-a3f278716c15@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2023 14:10, Alexander Stein wrote:
-> Allow parsing GPIO controller children nodes with GPIO hogs.
+On 09/06/2023 14:09, Claudiu.Beznea@microchip.com wrote:
+>>>>
+>>>> interrupts? They are still required, so why no description here?
+>>>
+>>> It was here in the previous versions but Conor suggested to remove it as it
+>>> was nothing specific about this description. For the if-then branch I kept
+>>> it to specify that the interrupt is share with other devices. In this
+>>> branch the interrupt is only for the timer itself. With this, would you
+>>> still prefer to add it back?
+>>
+>> I just don't understand why interrupts are in one arm of the if: and not
+>> in the other.
+>>
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> This implements the same as commit dfb49cc231a48 ("dt-bindings: gpio:
-> fsl-imx-gpio: Add parsing of hogs") and reuses the commit message as
-> well.
+> As previously mentioned, Conor suggested to have it like this.
 > 
 
-But it was suboptimal. Do it like in commit 6c19974d1e83 ("dt-bindings:
-gpio: Convert STMPE GPIO to YAML schema"), including also narrower pattern.
+ok
 
 Best regards,
 Krzysztof
