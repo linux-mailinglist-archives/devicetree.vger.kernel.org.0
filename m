@@ -2,93 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04553729893
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 13:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 286F772988B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 13:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239295AbjFILvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 07:51:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42464 "EHLO
+        id S233975AbjFILvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 07:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238739AbjFILvc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 07:51:32 -0400
+        with ESMTP id S238947AbjFILva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 07:51:30 -0400
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8870B3AAD;
-        Fri,  9 Jun 2023 04:50:58 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359Av9T0024877;
-        Fri, 9 Jun 2023 11:50:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=24lEg8bCMGcH8cHbp/wXPddAnU/D1pDxSHRdc8/G59I=;
- b=E9NKt82G82wAz+9A01jxkhx7Wgqm2ifTcaN2bO60fTjlu7tWVbgJooiKjQHsaxiTOKSD
- 41DesTIXUixVa50IUqK6zYnvf1lTNYHXEFbkemSXxxd6XkbyL05GpRZdfYdTCHAS8BvN
- IYU385I7jAbNuyHie2HOVlQrgs6DGzlr9lHa+SVKUd8PwB3+Y6TIzO6euRd3QWJVTT6s
- 2tYYg0HBZ677NgFVZUT2HLm1dG1YyjSzGErGIe5A5Q8CGus4q1i52xQYGAkZ25A/W07E
- k88VFHMnN1sO++Obm0+JdNitide8JS6N5eHFUSjkST75woIFedv0nGELPx4VzdEp9Lot ug== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3w7drqh3-1
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF2535A7;
+        Fri,  9 Jun 2023 04:50:52 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359BN8LN022324;
+        Fri, 9 Jun 2023 11:50:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=WKbDxd8L8ISCDrL4/pwMcGwoEU9qmC7+747cxLc0jnI=;
+ b=CX5oROG1Jr9TfqUtD7q7cPBL+UyiY+59uzPK1QzKyQFTxyKYKHIJowUGC9sxgdmB3RfL
+ r+8YwVzGICiJantvLyTSwRjYpALuR1pxSe/7SulH+2dMTzVT1kzAV7MJv0bvGJ6gEOpI
+ Qw8BTflfZ6OHMbP21vsCI11CmqgiUBZFgxmv5YxirCg+xoncgxpJOlAzpb+Rc89kYcVi
+ SnTAWuIJOxQb3aUX3dLRTE7ayhu3VVC990WFdriqXM/q0N4oufrqCE7lk/Jefw0s027I
+ 0Q9vmcZulv+s1eVQGrms1GFtIWg9WzirvAol+vPbdDBSHsJKSa4BGaBA2mLESn4rLA4D uQ== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3nwesd2a-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 11:50:54 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 359BoR31014281
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 9 Jun 2023 11:50:27 GMT
-Received: from [10.218.22.90] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 9 Jun 2023
- 04:50:21 -0700
-Message-ID: <1a6d46e4-7ec4-262c-dc3b-fc9c988f979e@quicinc.com>
-Date:   Fri, 9 Jun 2023 17:20:18 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH V2 3/6] clk: qcom: clk-alpha-pll: Remove explicit CAL_L
- configuration for EVO PLL
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230525172142.9039-1-quic_jkona@quicinc.com>
- <20230525172142.9039-4-quic_jkona@quicinc.com>
- <6e1d098d-03b9-aa63-a0bf-6cf748a0db0d@linaro.org>
- <7074f718-a3d5-8a03-3830-77a5a0b15500@linaro.org>
- <df7ab6f7-6c5e-9a7d-8d9b-09ff32da34d6@quicinc.com>
- <c60bb4d9-1b53-6c60-8b9d-13069bdff882@linaro.org>
-From:   Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <c60bb4d9-1b53-6c60-8b9d-13069bdff882@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+        Fri, 09 Jun 2023 11:50:45 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 359BoeuP019488;
+        Fri, 9 Jun 2023 11:50:40 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3r2g35rh4w-1;
+        Fri, 09 Jun 2023 11:50:40 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 359Boelu019475;
+        Fri, 9 Jun 2023 11:50:40 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 359BodTV019472;
+        Fri, 09 Jun 2023 11:50:40 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id 47F8D5F1A; Fri,  9 Jun 2023 17:20:39 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
+        tglx@linutronix.de, maz@kernel.org, mani@kernel.org,
+        robimarko@gmail.com
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH v4 0/5] Add devicetree support for SDX75 Modem and IDP
+Date:   Fri,  9 Jun 2023 17:20:33 +0530
+Message-Id: <1686311438-24177-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: y3TdAal3_8cUXyTGX4wfpfBn9VT8LGxB
-X-Proofpoint-ORIG-GUID: y3TdAal3_8cUXyTGX4wfpfBn9VT8LGxB
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SvpVtmEuWJbIVHthEpXTdoY8avObjHWg
+X-Proofpoint-ORIG-GUID: SvpVtmEuWJbIVHthEpXTdoY8avObjHWg
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
  definitions=2023-06-09_08,2023-06-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- spamscore=0 impostorscore=0 phishscore=0 adultscore=0 mlxlogscore=601
- lowpriorityscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306090100
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 mlxlogscore=536 phishscore=0 priorityscore=1501
+ suspectscore=0 clxscore=1015 spamscore=0 adultscore=0 mlxscore=0
+ lowpriorityscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306090100
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,94 +80,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+Hi,
 
-Thanks for your review!
+Changes in v4:
+ - Addressed some of the dt bindings check mentioned by Krzysztof.
 
-On 6/1/2023 8:13 PM, Dmitry Baryshkov wrote:
-> On 01/06/2023 17:33, Jagadeesh Kona wrote:
->> Hi Dmitry, Konrad,
->>
->> On 5/26/2023 9:23 PM, Dmitry Baryshkov wrote:
->>> On 26/05/2023 12:33, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 25.05.2023 19:21, Jagadeesh Kona wrote:
->>>>> In lucid evo pll, the CAL_L field is part of L value register 
->>>>> itself, and
->>>>> the l value configuration passed from clock controller driver includes
->>>>> CAL_L and L values as well. Hence remove explicit configuration of 
->>>>> CAL_L
->>>>> for evo pll.
->>>>>
->>>>> Fixes: 260e36606a03 ("clk: qcom: clk-alpha-pll: add Lucid EVO PLL 
->>>>> configuration interfaces")
->>>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->>>>> ---
->>>> Oh that isn't obvious at first sight, nice find!
->>>>
->>>> I'd suggest a different solution though:
->>>>
->>>> #define LUCID_EVO_PLL_L_LVAL    GENMASK(..
->>>> #define LUCID_EVO_PLL_L_CAL_L    GENMASK(..
->>>>
->>>> lval = FIELD_PREP(LUCID_EVO_PLL_L_LVAL, config->l) |
->>>>         FIELD_PREP(LUCID_EVO_PLL_L_CAL_L, config->cal_l);
->>>>
->>>> This would make the separation between the two parts more explicit
->>>>
->>>> however
->>>>
->>>> config->l would then represent the L value and not the end value
->>>> written to the L register
->>>
->>> Yes. I think there should be separate config->l and config->cal_l 
->>> values (and probably ringosc_cal_l, basing on the comment in the 
->>> source).
->>> Thanks for your suggestions. In all recent chipsets, L & CAL_L fields 
->> are encapsulated in the same register, so we feel it is better to 
->> directly pass the combined configuration value in config->l itself and 
->> program it directly into register without any additional handling 
->> required in pll driver code.
-> 
-> My feeling is that it is better to split it, since these are the 
-> different fields. The value .l = 0x4444003e doesn't mean anything per se.
-> 
-> Three values are much more meaningful:
-> .l = 0x3e,
-> .cal_l = 0x44,
-> .ringosc_cal_l = 0x44,
-> 
-> Not to mention that this way you don't have to touch pll configuration 
-> for the existing Lucid EVO PLL. Not to mention that for the Lucid ole 
-> PLLs the cal_l and ringosc_cal_l values seem to be static (0x44), so 
-> there is no need to put them to the variable data.
-> 
+Changes in v3:
+ - Clubbed all the dt node into a single patch as suggested by Krzysztof.
+ - Removed the applied patch.
+ - Addressed some comments from Konrad and Dmitry.
 
-Sure, will keep the existing code as is and will remove this patch in 
-the next series.
+Changes in v2:
+ - Added the CPUFreq support patch.
+ - Collected the Acked by tags.
+ - Addressed some minor comments from Konrad.
 
->>
->> Also the evo pll code is currently reused for both lucid evo and ole 
->> pll's. Lucid ole PLL has an additional RINGOSC_CAL_L field along with 
->> L, CAL_L fields in the same L register. By passing combined 
->> configuration value in config->l itself, we feel we can avoid all the 
->> additional handling required in PLL code.
->>
->>> Just a question: is camcc-sm8550 using the same PLL type or is it 
->>> some kind of subtype of lucid_evo PLL?
->>>
->> No, it is not the same lucid evo PLL. It uses lucid ole PLL.
-> 
-> Then please don't reuse the clk_lucid_evo_pll_configure() call.
-> You can add a new one, which will handle L/CAL_L/RINGOSC_CAL_L differences.
-> 
+This series adds devicetree support for Qualcomm SDX75 platform and IDP
+board. This series functionally depends on GCC and RPMh Clock support
+series [1], and pinctrl support for SDX75 [2] which are under review.
 
-The only difference between evo and ole pll configure is extra 
-RINGOSC_CAL_L programming needed only for ole pll. We can achieve the 
-same with clk_lucid_evo_pll_configure() itself by directly including 
-RINGOSC_CAL_L field in L configuration for OLE PLL's.
+With this current devicetree support, the IDP can boot into initramfsshell.
 
-Thanks & Regards,
-Jagadeesh
+[1] https://lore.kernel.org/lkml/20230419133013.2563-3-quic_tdas@quicinc.com/
+[2] https://lore.kernel.org/all/1684409015-25196-1-git-send-email-quic_rohiagar@quicinc.com/
+
+Thanks,
+Rohit.
+
+
+Rohit Agarwal (5):
+  dt-bindings: arm: qcom: Document SDX75 platform and boards
+  dt-bindings: firmware: scm: Add compatible for SDX75
+  dt-bindings: interrupt-controller: Add SDX75 PDC compatible
+  dt-bindings: cpufreq: cpufreq-qcom-hw: Add SDX75 compatible
+  arm64: dts: qcom: Add SDX75 platform and IDP board support
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   7 +
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml          |   1 +
+ .../devicetree/bindings/firmware/qcom,scm.yaml     |   1 +
+ .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ arch/arm64/boot/dts/qcom/sdx75-idp.dts             |  33 +
+ arch/arm64/boot/dts/qcom/sdx75.dtsi                | 670 +++++++++++++++++++++
+ 7 files changed, 714 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdx75-idp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sdx75.dtsi
+
+-- 
+2.7.4
+
