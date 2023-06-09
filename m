@@ -2,82 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC34A7295F4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 11:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA57B729686
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 12:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241927AbjFIJyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 05:54:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43458 "EHLO
+        id S240340AbjFIKOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 06:14:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbjFIJyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 05:54:02 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB20768F;
-        Fri,  9 Jun 2023 02:45:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686303947; x=1717839947;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sdk4GfKmT+9A6cNv+r44G3DJaK2ahYk6wc3iwdcCzMY=;
-  b=GBsYEuWPPQNpTOXZKnF6YbH0cCn0ac0ZL9tenRpjfMrwZO90TI1v+iZV
-   5uZAo9HnpngZ3x3bDFmWxYPhLEOfSO1OUliSugbkx/ZtfHbW8t7e6s8z/
-   rpDa5+vugiAvE7XPvfE9MOCBW3XM3z+Gvkgo3mvGRrYU5ghspXuYuVwaP
-   +masI3Ww4FkIk71w9SGBrE3RBjhPMkQYxt0jzKZSLC7aVlAOa74vlrXsR
-   PK7Whk6A6Lb2iEaMVCcMOvDEk0kAIzbajUuvHfm8Mn+Ejo9RlFzPYC92i
-   R0+rvynLOaChiDhEaLE0dWWnIZoIm9r7NS/joh3/5YtGWLjVXgtCEB7dj
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="355052559"
-X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; 
-   d="scan'208";a="355052559"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2023 02:44:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="834581685"
-X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; 
-   d="scan'208";a="834581685"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2023 02:44:21 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-        by kekkonen.fi.intel.com (Postfix) with SMTP id E125511F9D2;
-        Fri,  9 Jun 2023 12:44:18 +0300 (EEST)
-Date:   Fri, 9 Jun 2023 09:44:18 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-        martin.hecht@avnet.eu, michael.roeder@avnet.eu,
-        linuxfancy@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S240167AbjFIKNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 06:13:40 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF3064490;
+        Fri,  9 Jun 2023 03:03:16 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B39A26606F2A;
+        Fri,  9 Jun 2023 11:03:14 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686304995;
+        bh=Wgiw9IDIUgq3grTnCDHIQrPGKksKz/AqHv9EJoBFhRQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DxclosCgyQHuEe1lK16qHh+kHD7U5qtLaVKsJpkQ9i4QyqE7toKpA0fMGHbTBj7n1
+         Uk53Ul4OOn0Q6MUaur1cZWmX6OKy8p7Gck/4dolYZCgtztNWEF6zZILGnSklYjrpVu
+         J3duoaGgdCxiOdnQQxiSNUoOjc/H+/6aqDPh7hpRI9ZR2c2fvuCd2x1mLWq9sxrls0
+         k6NEBW7ZVbakWhR3iD9R0TLhv7+ozV0pcvteAJ1xF/vObld42lTN7vKHhJw/X/tni9
+         bMLHFjFDsvlB3q05u1MaE3sGcrbl88xcnUTA/NdIoOLa/rhfQ8U0b4VaBoLKImy9bv
+         6S7hqsc7Q+Aww==
+Message-ID: <33c2f13a-294c-fc69-55a3-2a7aef26f954@collabora.com>
+Date:   Fri, 9 Jun 2023 12:03:12 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 8/9] regulator: mt6358: Add output voltage fine tuning to
+ variable LDOs
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] media: dt-bindings: alvium: add document YAML
- binding
-Message-ID: <ZIL0ctohCl5181gJ@kekkonen.localdomain>
-References: <20230608083127.545750-1-tomm.merciai@gmail.com>
- <20230608083127.545750-3-tomm.merciai@gmail.com>
- <ZILkSEllSfSGD8XK@kekkonen.localdomain>
- <ZILzvMBCXfde3COF@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZILzvMBCXfde3COF@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-9-wenst@chromium.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230609083009.2822259-9-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,123 +65,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tommaso,
-
-On Fri, Jun 09, 2023 at 11:41:16AM +0200, Tommaso Merciai wrote:
-> Hi Sakari,
-> Thanks for your feedback.
+Il 09/06/23 10:30, Chen-Yu Tsai ha scritto:
+> Some of the LDO regulators in the MT6358/MT6366 have sparsely populated
+> voltage tables, supported by custom get/set operators. While it works,
+> it requires more code and an extra field to store the lookup table.
+> These LDOs also have fine voltage calibration settings that can slightly
+> boost the output voltage from 0 mV to 100 mV, in 10 mV increments.
 > 
-> On Fri, Jun 09, 2023 at 08:35:20AM +0000, Sakari Ailus wrote:
-> > Hi Tommaso,
-> > 
-> > On Thu, Jun 08, 2023 at 10:31:15AM +0200, Tommaso Merciai wrote:
-> > > Add documentation of device tree in YAML schema for the ALVIUM
-> > > Camera from Allied Vision Inc.
-> > > 
-> > > References:
-> > >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
-> > > 
-> > > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > > Changes since v1:
-> > >  - Fixed build error as suggested by RHerring bot
-> > > 
-> > > Changes since v2:
-> > >  - Fixed License as suggested by KKozlowski/CDooley
-> > >  - Removed rotation property as suggested by CDooley/LPinchart
-> > >  - Fixed example node name as suggested by CDooley
-> > >  - Fixed title as suggested by LPinchart
-> > >  - Fixed compatible name as suggested by LPinchart
-> > >  - Removed clock as suggested by LPinchart
-> > >  - Removed gpios not as suggested by LPinchart
-> > >  - Renamed property name streamon-delay into alliedvision,lp2hs-delay-us
-> > >  - Fixed vendor prefix, unit append as suggested by KKozlowski
-> > >  - Fixed data-lanes
-> > >  - Fixed blank space + example indentation (from 6 -> 4 space) as suggested by KKozlowski
-> > >  - Dropped status into example  as suggested by KKozlowski
-> > >  - Added vcc-ext-in supply as suggested by LPinchart
-> > >  - Dropped pinctrl into example as suggested by LPinchart
-> > > 
-> > > Changes since v3:
-> > >  - Fixed vcc-ext-in-supply description as suggested by LPinchart
-> > >  - Fixed alliedvision,lp2hs-delay-us description as suggested by LPinchart
-> > >  - Added maximum to alliedvision,lp2hs-delay-us as suggested by LPinchart
-> > >  - Collected Reviewed-by tag from LPinchart
-> > > 
-> > > Changes since v4:
-> > >  - Fixed id as reported by RHerring bot and LPinchart
-> > >  - Add minimum into alliedvision,lp2hs-delay-us as suggested by CDooley
-> > >  - Tested using make dt_binding_check DT_SCHEMA_FILES=alliedvision,alvium-csi2.yaml
-> > > 
-> > >  .../media/i2c/alliedvision,alvium-csi2.yaml   | 97 +++++++++++++++++++
-> > >  1 file changed, 97 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
-> > > new file mode 100644
-> > > index 000000000000..c771e5039641
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
-> > > @@ -0,0 +1,97 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium-csi2.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Allied Vision Alvium Camera
-> > > +
-> > > +maintainers:
-> > > +  - Tommaso Merciai <tomm.merciai@gmail.com>
-> > > +  - Martin Hecht <martin.hecht@avnet.eu>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: alliedvision,alvium-csi2
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  vcc-ext-in-supply:
-> > > +    description: |
-> > > +      The regulator that supplies power to the VCC_EXT_IN pins.
-> > > +
-> > > +  alliedvision,lp2hs-delay-us:
-> > > +    minimum: 1
-> > > +    maximum: 150000
-> > > +    description: |
-> > > +      Low power to high speed delay time.
-> > > +
-> > > +      If the value is larger than 0, the camera forces a reset of all
-> > > +      D-PHY lanes for the duration specified by this property. All lanes
-> > > +      will transition to the low-power state and back to the high-speed
-> > > +      state after the delay. Otherwise the lanes will transition to and
-> > > +      remain in the high-speed state immediately after power on.
-> > > +
-> > > +      This is meant to help CSI-2 receivers synchronizing their D-PHY
-> > > +      RX.
-> > 
-> > Why do you need this? D-PHY TX is obviously controlled by the driver.
-> > Explicit control of PHY initialisation is of course best option when
-> > combined with some receivers, done via driver's pre_streamon and s_stream
-> > callbacks. Can't your hardware do that?
+> These combined could be modeled as a pickable set of linear ranges. The
+> coarse voltage setting is modeled as the range selector, while each
+> range has 11 selectors, starting from the range's base voltage, up to
+> +100 mV, in 10mV increments.
 > 
-> You mean calculate this time in some dynamical way and program this
-> during pre_streamon or s_stream?
-> 
-> If yes, unfortunately hw can't do this.
 
-This shouldn't be based on timing but rather progress of the bus
-initialisation sequence. That's how it works on most sensors nowadays.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-The description is also lacking details on what delay this exactly is. What
-is the bus state during that delay?
 
--- 
-Regards,
-
-Sakari Ailus
