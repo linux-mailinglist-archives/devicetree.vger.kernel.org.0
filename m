@@ -2,89 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0AF0729EAF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8EE4729EBE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbjFIPhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:37:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35436 "EHLO
+        id S231725AbjFIPix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:38:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241659AbjFIPhg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:37:36 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C39930FA;
-        Fri,  9 Jun 2023 08:37:35 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-76c64da0e46so81840139f.0;
-        Fri, 09 Jun 2023 08:37:35 -0700 (PDT)
+        with ESMTP id S230092AbjFIPiw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:38:52 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2431359E
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:38:45 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-977c72b116fso291661566b.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 08:38:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686325124; x=1688917124;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jorRTe9x5lJeJhWfN/tUaEbK9cETxBDWnzXXAk2nPIU=;
+        b=LoTlSmKD8bjtAmd0AQnZrlssa8ZiOjN5pw90ZA+Nx4ze9+O4IXxvyRQJ12U+HCekvG
+         NuIpZEEqfYz/lIwanx4zEDhAHu4nRAWAfVElS61M04uvzM++LbvDq9CNl4vf91hJIdPZ
+         MaFmTMRgJbekFuzszLbGkriejLMK+WHquwo77er2yzrUuwirMAGYeoGnjKyLklLnr4j8
+         MsBfXGpFcgOKxtiD2bZv6fsDPuEprwkIUp4SrOaC5qDQVh0TgfDLkud021KMQ7xJARKo
+         J19bBo9p+IC9iSIoZLKFeccwg3VYNyZ3soF5xuFLrvJorMgcf1+Ee2n1ci0GD64UfQJL
+         vu7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686325054; x=1688917054;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6oTjKIZ7azTHgw2pBNs7zKCt3g58q7A8ytPzbYsnX9c=;
-        b=PSTbbanRUyRpN4N5vUsPWGpS/ilf/wk9SCscM2XzIDb5lY9SR1EbzrlZ+4S9u7SuW9
-         0D6FxF2tO8cPaIlhkLmlfSb96jUeMs9aYZAyPry7DvV3QQHz21dYagGXN0qdjj1+wJsq
-         HN5ZOZY6mrvt0d49xQDdulJBAB2N7Fl+v1w678XxL6f9zC3KArtJZHtbGo0m0kpJPWb0
-         waZndZarpzB6dZWDovH6PnZGk7IqZt5pNQEep+VdXeflAu+HpQvGJlQjPfgLmCdVZbeW
-         fC4tLS0JWhMl9iMbsvMXUH/nbFCZGLDWLEVPcySXl5FCBdEF5pcXepoo417GmEjkio/t
-         aX0g==
-X-Gm-Message-State: AC+VfDyVkgz3dGL2hiGHHWg3FziRASKlC5jNevjzFpj0RhcOheh3y5dL
-        mKcA8JKDPxxLyRBgFm4oxQ==
-X-Google-Smtp-Source: ACHHUZ7sQGgjnwd79XuSKsjkhH3R+CX/AXWDT5rsE/7aYgV6ugwqWjYzOSDIVHLCmJcdsuPA2SU50w==
-X-Received: by 2002:a6b:6119:0:b0:76f:f54d:36ff with SMTP id v25-20020a6b6119000000b0076ff54d36ffmr1935105iob.11.1686325054238;
-        Fri, 09 Jun 2023 08:37:34 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h20-20020a056638063400b0041f57eeedc2sm1056437jar.16.2023.06.09.08.37.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 08:37:33 -0700 (PDT)
-Received: (nullmailer pid 1104746 invoked by uid 1000);
-        Fri, 09 Jun 2023 15:37:31 -0000
-Date:   Fri, 9 Jun 2023 09:37:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v3 4/5] dt-bindings: phy: qcom,msm8996-qmp-usb3-phy: drop
- legacy bindings
-Message-ID: <168632505100.1104691.4662082864689299098.robh@kernel.org>
-References: <20230531023415.1209301-1-dmitry.baryshkov@linaro.org>
- <20230531023415.1209301-5-dmitry.baryshkov@linaro.org>
+        d=1e100.net; s=20221208; t=1686325124; x=1688917124;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jorRTe9x5lJeJhWfN/tUaEbK9cETxBDWnzXXAk2nPIU=;
+        b=kUqeJwyvZLqq+3wiOaUHv6JG6psPeAgclgaNKcYrcbPu/Md6+NE6GCEwxylTk8CZLR
+         nfzc7oilB1LumBPyHQ/zqctlSACxD1RfnhLa7wxJrIkzEJUf5mKnDnzWV6LFhFzLSGJd
+         cINonxOPAMT7dZXfnaMOindF3YahEPt1mOerTNMa07LnYiG/4p4aS83YjKfgKErigJW8
+         dWpuqnw+gd+1vIbJMDibQOJqnozpi4tJuRDLrBXGrsMNPtM3P+hz0EVY6yyvgW9J+rnG
+         eyBcL/sMIEBVUK5Xvz0egToxv4Ew3fwR+XJR+iX0jCAgLRPh/7cVg+CrdKKnuUNC9ivy
+         7KCg==
+X-Gm-Message-State: AC+VfDxx2BkH8Mj3P7e92aLjiZjnxYeDnE4oqZGR6pe8fc6mbNrQIInE
+        vFaY9tFKntREDt/DtHOhK+J8Tw==
+X-Google-Smtp-Source: ACHHUZ7Wu5jmfQjkYkox8N1dR5VIsH+RE9uA5DNord0lEbqHRXmFw/c2UNSs/zPBWk9kJ5cszg9boQ==
+X-Received: by 2002:a17:906:fd85:b0:969:f54c:dee2 with SMTP id xa5-20020a170906fd8500b00969f54cdee2mr1905215ejb.26.1686325124285;
+        Fri, 09 Jun 2023 08:38:44 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a12-20020a17090680cc00b0096f7105b3a6sm1418119ejx.189.2023.06.09.08.38.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 08:38:43 -0700 (PDT)
+Message-ID: <22e3c25e-487b-c02f-46f3-6d2ab2be8813@linaro.org>
+Date:   Fri, 9 Jun 2023 17:38:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230531023415.1209301-5-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH V2] dt-bindings: reset: convert the xlnx,zynqmp-reset.txt
+ to yaml
+Content-Language: en-US
+To:     Piyush Mehta <piyush.mehta@amd.com>, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, michal.simek@amd.com, michal.simek@xilinx.com,
+        nava.manne@xilinx.com
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, siva.durga.prasad.paladugu@amd.com,
+        git@amd.com
+References: <20230609110447.151235-1-piyush.mehta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230609110447.151235-1-piyush.mehta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 31 May 2023 05:34:14 +0300, Dmitry Baryshkov wrote:
-> The qcom,msm8996-qmp-usb3-phy.yaml defines bindings for several PHYs
-> which predate USB -> USB+DP migration. Now as sm8150 has been migrated,
-> drop the legacy bindings completely. No device trees use them anymore.
-> Newer USB+DP bindings should use combo bindings from the beginning.
+On 09/06/2023 13:04, Piyush Mehta wrote:
+> Convert the binding to DT schema format. It also updates the
+> reset-controller description.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
 > ---
->  .../phy/qcom,msm8996-qmp-usb3-phy.yaml        | 80 -------------------
->  1 file changed, 80 deletions(-)
+> - Addressed the Krzysztof review comment:
+>  - Update DT binding to fix the dt_binding_check warning.
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+...
+
+> diff --git a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> new file mode 100644
+> index 000000000000..a39b17599e05
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/xlnx,zynqmp-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Zynq UltraScale+ MPSoC and Versal reset binding
+
+Drop "binding"
+
+> +
+> +maintainers:
+> +  - Piyush Mehta <piyush.mehta@amd.com>
+> +
+> +description: |
+> +  The Zynq UltraScale+ MPSoC and Versal has several different resets.
+> +
+> +  The PS reset subsystem is responsible for handling the external reset
+> +  input to the device and that all internal reset requirements are met
+> +  for the system (as a whole) and for the functional units.
+> +
+> +  Please also refer to reset.txt in this directory for common reset
+> +  controller binding usage. Device nodes that need access to reset
+> +  lines should specify them as a reset phandle in their corresponding
+> +  node as specified in reset.txt.
+> +
+> +  For list of all valid reset indices for Zynq UltraScale+ MPSoC
+> +  <dt-bindings/reset/xlnx-zynqmp-resets.h>
+> +
+> +  For list of all valid reset indices for Versal
+> +  <dt-bindings/reset/xlnx-versal-resets.h>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - xlnx,zynqmp-reset
+> +      - xlnx,versal-reset
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#reset-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
+
+Drop, won't be needed after removing unrelated parts.
+
+> +
+> +    firmware {
+
+Drop
+
+> +        zynqmp_firmware: zynqmp-firmware {
+
+Drop, three level of indentations for that simple reset-controller...
+
+> +            zynqmp_reset: reset-controller {
+> +                compatible = "xlnx,zynqmp-reset";
+> +                #reset-cells = <1>;
+> +            };
+> +        };
+> +    };
+> +
+> +    /* Specifying sata reset control of devices */
+> +    sata {
+> +        resets = <&zynqmp_reset ZYNQMP_RESET_SATA>;
+> +        reset-names = "sata_rst";
+> +    };
+
+Drop this - not related.
+> +
+> +...
+
+Best regards,
+Krzysztof
 
