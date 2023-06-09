@@ -2,77 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A966D729CD5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:26:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBE08729CD4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:26:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbjFIO0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:26:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50248 "EHLO
+        id S241467AbjFIO0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:26:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241387AbjFIO0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:26:39 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73443AA6;
-        Fri,  9 Jun 2023 07:26:03 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359C2JBV013116;
-        Fri, 9 Jun 2023 16:25:40 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=gTMrkULiDs6QSP3inF3oO7QQrVUOWEej0DshuCInSWg=;
- b=4lEc9csjyPqLA+Aqp0Q96Ee2hu3rzb8hhITf6UdCzHUSplrAffJmH+GOgh8iTkvwza6A
- oLxgEZc8ZQ++9hX280NWudm5ZIIDXK00Vne1FpwRBhAenKVFEtqWXUF1250OeY82WQXz
- PnYzNLzhqHhuVENo4XYNpzgeB4d639vVzIylRIwzzyWKYM7Q9qPG1+McbBDH5bgEUfTf
- VhZa1s+2lDC9fohBVaIo0WsqFGV3FNSGNsF5t2IHG7Vv6aY7WaWsDrlTidhJeg2CTxbo
- DWIqfh6si4Cqh+qk6x7e+joz18zu9+0aXVxD9bvMHWmGcQPbrh21ZGDm6mdKcQ0DpJ8W 0A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r3yseankg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Jun 2023 16:25:40 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C9BE610002A;
-        Fri,  9 Jun 2023 16:25:39 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BF599237D6E;
-        Fri,  9 Jun 2023 16:25:39 +0200 (CEST)
-Received: from [10.129.178.187] (10.129.178.187) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 9 Jun
- 2023 16:25:37 +0200
-Message-ID: <a4c368ad-0dbf-4b75-3920-6a17465ce4b4@foss.st.com>
-Date:   Fri, 9 Jun 2023 16:25:36 +0200
+        with ESMTP id S241417AbjFIO02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:26:28 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 823003C2B;
+        Fri,  9 Jun 2023 07:25:41 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-77a1cad6532so81433539f.1;
+        Fri, 09 Jun 2023 07:25:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686320740; x=1688912740;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AZ+YmK/T9GmG6A7tTW5EH5jVTLp9UhBtnlEqA9a5NI8=;
+        b=L/kDuRyJpQk5PO7yNXkLPWLqPcMgcrmeCtrt6/+AzH7wEcGUPIhcy8YJ1PA+m72GYK
+         cHPA4KKG6qztH61fmL/VS8bn73/u7kUX7afYnf++rffIw14kjIgnUqQznTP5uYeBJoD3
+         z8J2IMIjT+NnXaVq663WguSowI3XRIpOCJTNn7v7DoQ3QbYgwt+qYFsp//UAT8aKaToV
+         DjF6hJE/rQNVGISF78DNPpzYIXVl2ZT5C+S09WFkPNfYC7+Ph7mQq06Qm06pvr5FRjtm
+         9Vul6+1BAeTGFI3XxtmMK0CRhhXeiEjkV4m6+q5IlYRMwXAxHJPiCesNWsk2RirolZLH
+         8doA==
+X-Gm-Message-State: AC+VfDzGXfT7w/CWcZaEyt/FO5zC+EpI33Ph4e7ZhSs3LGpd1YD11t07
+        go068fxuFpz2g2lGr1xfBw==
+X-Google-Smtp-Source: ACHHUZ7lJIICtOuYaskf7sg/dUBFKYvtBxAgH/nZ70S/2reCEK1731gMhLBF3Wrc8KGVz3qjO63tqw==
+X-Received: by 2002:a6b:7f47:0:b0:776:f6cd:f68e with SMTP id m7-20020a6b7f47000000b00776f6cdf68emr1750607ioq.1.1686320740592;
+        Fri, 09 Jun 2023 07:25:40 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id e9-20020a056638020900b00418af04e405sm283201jaq.116.2023.06.09.07.25.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jun 2023 07:25:39 -0700 (PDT)
+Received: (nullmailer pid 885695 invoked by uid 1000);
+        Fri, 09 Jun 2023 14:25:38 -0000
+Date:   Fri, 9 Jun 2023 08:25:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add bindings for Azoteq
+ IQS7210A/7211A/E
+Message-ID: <20230609142538.GA878396-robh@kernel.org>
+References: <ZHVD/9OgRTAwBhqx@nixie71>
+ <ZHVEa0yM1LLUJEfO@nixie71>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [Linux-stm32] [PATCH v3 3/4] ARM: dts: stm32: support display on
- stm32f746-disco board
-Content-Language: en-US
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <michael@amarulasolutions.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230609062050.2107143-1-dario.binacchi@amarulasolutions.com>
- <20230609062050.2107143-4-dario.binacchi@amarulasolutions.com>
-From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20230609062050.2107143-4-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.129.178.187]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-09_10,2023-06-09_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZHVEa0yM1LLUJEfO@nixie71>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,15 +64,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 6/9/23 08:20, Dario Binacchi wrote:
-> Add support to Rocktech RK043FN48H display on stm32f746-disco board.
->
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Reviewed-by: Raphaël Gallais-Pou <raphael.gallais-pou@foss.st.com>
+On Mon, May 29, 2023 at 07:33:47PM -0500, Jeff LaBundy wrote:
+> Add bindings for the Azoteq IQS7210A/7211A/E family of trackpad/
+> touchscreen controllers.
+> 
+> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
 > ---
->
-> (no changes since v1)
->
->  arch/arm/boot/dts/stm32f746-disco.dts | 51 +++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
+> Changes in v2:
+>  - Renamed 'azoteq,default-comms' to 'azoteq,forced-comms-default' and redefined
+>    0, 1 and 2 as unspecified, 0 and 1, respectively
+>  - Defined ATI upon its first occurrence
+>  - Redefined 'azoteq,gesture-angle' in units of degrees
+>  - Declared 'azoteq,rx-enable' to depend upon 'azoteq,tx-enable' within the
+>    'trackpad' node
+> 
+> Hi Rob,
+> 
+> I attempted to reference existing properties from a common binding [1] as per
+> your feedback in [2], however 'make DT_CHECKER_FLAGS=-m dt_binding_check' fails
+> with the message 'Vendor specific properties must have a type and description
+> unless they have a defined, common suffix.'
+
+Is that because you have differing constraints in each case?
+
+> This seems related to the discussion in [3], where you warned that the tooling
+> cannot yet deduce that vendor-specific properties have already been typed in an
+> externally $ref'd binding. The only other example of a common vendor schema is
+> [4], but in that case the common properties are defined under arbitraily named
+> pinmux config nodes. As such, they are part of 'additionalProperties' instead of
+> 'properties' and hence exempt from this particular validation.
+> 
+> Please let me know if I am mistaken (surprise!), in which case I will continue
+> on this path and send a v3. Otherwise, I would like to suggest that the review
+> moves forward under the premise that I will happily consolidate these bindings
+> once the tooling supports this idea.
+> 
+> Kind regards,
+> Jeff LaBundy
