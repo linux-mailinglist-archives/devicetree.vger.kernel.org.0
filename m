@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E292F729334
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB10F729337
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 10:32:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240134AbjFIIcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 04:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60788 "EHLO
+        id S240197AbjFIIcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 04:32:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240956AbjFIIb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:31:27 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773473C30
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 01:30:53 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-652328c18d5so1160104b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 01:30:53 -0700 (PDT)
+        with ESMTP id S240968AbjFIIb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 04:31:28 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157042132
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 01:30:55 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-652d1d3e040so1185081b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 01:30:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686299449; x=1688891449;
+        d=chromium.org; s=google; t=1686299452; x=1688891452;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hfBApkKJFoC1LAXLIDHIMvLkHHtkxFJ1T+708z95fzw=;
-        b=l8aMM0p/UA1wQFt8yk6HMlhCR9W3WJlICkTKzNmjrwrJw4MI54RIo/Ai1uOkPIo9D3
-         BMSy+9T+qP1txmuTuyeqHPzHJZLsqfZZbcMjpZF4DIJxVqsoQvNms0QMvgOdCpAG76gG
-         uHzlwXr88LeEhaaxSoQ6wWPbYBzv8RXREuOow=
+        bh=7N2GTAVTvejg4XyTSwRcmbBdgk1J778IcSYe2G8moyk=;
+        b=jhiOWWyQyji2Fh7ueCNL9nKUQBwj8te65HJnaRK08rO8tB8OZiLAgJdxIiWj5tbUNz
+         OFQS9ZqqPMzNmvrN/itYzZDHeeG2yef05RZtBC7sSub2qPk2bjSRlzEFHbFVKVSIcEXn
+         6o3koOM9dba2BZJUpOBz3AQ608t4h9ILRdcHg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686299449; x=1688891449;
+        d=1e100.net; s=20221208; t=1686299452; x=1688891452;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hfBApkKJFoC1LAXLIDHIMvLkHHtkxFJ1T+708z95fzw=;
-        b=em5n4rA4vcvi7oHtLZip91PjlkNna9l3o3GRz66KcGAFSoViB/UkmLuRsCqGAFdzzr
-         swv2j/2DlYDiq5sZU74ueK55Bvnb5OsNKNaGBLrt2JwmtpSeoOHfqyZknXd/+vIq7Nup
-         F69x3Ig59LyRhkrc4V/1FPfoLUALJvegYNY7CsIIH7235YPfN0NVOGz+4ybIObnENqPa
-         /hMcHtIfGiH/mDa5AeWeK4kksiBDf/wkZTmv3jBXquuU277/cZ5PRpUDYVFGaKho3E7c
-         6XusAT6BSPWMP76x6A1Qq0D2FiceP5QUUqUwd7d3OtKCN4kwpQXgep7u1nV44o1I1PE9
-         9Xfw==
-X-Gm-Message-State: AC+VfDwrYRvnxSt6YnymQ5XHZUNUdWch/rmh5btY7rfWkFwWQN7JFPf6
-        2ced0Fso4h5Ar6fqO1Xaw46/Fg==
-X-Google-Smtp-Source: ACHHUZ7vJ9BIbKrQXjopUBUG+0xKj1EqO3eRRU94itAGa4DToaoaq9ACVKLMXxLV0j4CWSWbQ5Jd/Q==
-X-Received: by 2002:a05:6a00:13a9:b0:65a:cbf3:4687 with SMTP id t41-20020a056a0013a900b0065acbf34687mr708335pfg.0.1686299449617;
-        Fri, 09 Jun 2023 01:30:49 -0700 (PDT)
+        bh=7N2GTAVTvejg4XyTSwRcmbBdgk1J778IcSYe2G8moyk=;
+        b=lRfAGGIqmw7Onk0ArfI+pCaJOsdg53/Y68SX/g0WrvQIIaBUQyd+Tzl6g7ql3zIw7x
+         VKDAiMK2hhuOoi1lddRP1Bpdlc3hS6NUYGReQoaYEshUk5Hmp29mcnpYyzBOkCf7DyyG
+         ULPMjTdATJf9ZZ+Cn7sJfA1zcFTF6Iecq0LeqdWbWXLnBeTEHJdX4yBpMhrYCwZ0VCAe
+         ceoNAMd2KXjPkeZfUp+9HoxW51r1WzqXFPariB9PYgiDvLxQvt/f5LuEqP7Td/N08263
+         N1xttlIuuWeq3sH0/vOWcbauoxcEsJgzbGiS6g4/vl+DQexalJbx01HCZ4W/7jVM5Bjv
+         hJlA==
+X-Gm-Message-State: AC+VfDyg4aiOvZFwF6Xmoph/SW8eT70S+abxwS0z15TvaaU766RPAgXQ
+        WVy3y5SwTI+EXdgl4Lj9c6ZhT6epxBODYAUlzX0=
+X-Google-Smtp-Source: ACHHUZ5lDIRC/zAwCIUKvqzUz89u9ILnKYLfuUpakL+u3IyTJ/LdwHmfnWZrLngRPiMikJDodvdkjQ==
+X-Received: by 2002:a05:6a00:1408:b0:65b:945:f221 with SMTP id l8-20020a056a00140800b0065b0945f221mr468676pfu.34.1686299451909;
+        Fri, 09 Jun 2023 01:30:51 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:c2ea:d8e4:1fe8:21f0])
-        by smtp.gmail.com with ESMTPSA id 23-20020aa79157000000b0063b806b111csm2184327pfi.169.2023.06.09.01.30.47
+        by smtp.gmail.com with ESMTPSA id 23-20020aa79157000000b0063b806b111csm2184327pfi.169.2023.06.09.01.30.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 01:30:49 -0700 (PDT)
+        Fri, 09 Jun 2023 01:30:51 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -58,9 +58,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 6/9] regulator: mt6358: Use linear voltage helpers for single range regulators
-Date:   Fri,  9 Jun 2023 16:30:03 +0800
-Message-ID: <20230609083009.2822259-7-wenst@chromium.org>
+Subject: [PATCH 7/9] regulator: mt6358: Add output voltage fine tuning to fixed regulators
+Date:   Fri,  9 Jun 2023 16:30:04 +0800
+Message-ID: <20230609083009.2822259-8-wenst@chromium.org>
 X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
 In-Reply-To: <20230609083009.2822259-1-wenst@chromium.org>
 References: <20230609083009.2822259-1-wenst@chromium.org>
@@ -76,263 +76,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the regulators on the MT6358/MT6366 PMICs have just one linear
-voltage range. These are the bulk regulators and VSRAM_* LDOs. Currently
-they are modeled with one linear range, but also have their minimum,
-maximum, and step voltage described.
+The "fixed" LDO regulators found on the MT6358 and MT6366 PMICs have
+either no voltage selection register, or only one valid setting.
+However these do have a fine voltage calibration setting that can
+slightly boost the output voltage from 0 mV to 100 mV, in 10 mV
+increments.
 
-Convert them to the linear voltage helpers. These helpers are a bit
-simpler, and we can also drop the linear range definitions. Also reflow
-the touched lines now that they are shorter.
+Add support for this by changing these into linear range regulators.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- drivers/regulator/mt6358-regulator.c | 121 +++++++++------------------
- 1 file changed, 40 insertions(+), 81 deletions(-)
+ drivers/regulator/mt6358-regulator.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
-index 2851ef53ac63..31a16fb28ecd 100644
+index 31a16fb28ecd..26060909cf90 100644
 --- a/drivers/regulator/mt6358-regulator.c
 +++ b/drivers/regulator/mt6358-regulator.c
-@@ -37,7 +37,7 @@ struct mt6358_regulator_info {
- #define to_regulator_info(x) container_of((x), struct mt6358_regulator_info, desc)
- 
- #define MT6358_BUCK(match, vreg, min, max, step,		\
--	volt_ranges, vosel_mask, _da_vsel_reg, _da_vsel_mask,	\
-+	vosel_mask, _da_vsel_reg, _da_vsel_mask,	\
- 	_modeset_reg, _modeset_shift)		\
- [MT6358_ID_##vreg] = {	\
- 	.desc = {	\
-@@ -48,8 +48,8 @@ struct mt6358_regulator_info {
- 		.id = MT6358_ID_##vreg,		\
- 		.owner = THIS_MODULE,		\
- 		.n_voltages = ((max) - (min)) / (step) + 1,	\
--		.linear_ranges = volt_ranges,		\
--		.n_linear_ranges = ARRAY_SIZE(volt_ranges),	\
-+		.min_uV = (min),		\
-+		.uV_step = (step),		\
- 		.vsel_reg = MT6358_BUCK_##vreg##_ELR0,	\
- 		.vsel_mask = vosel_mask,	\
- 		.enable_reg = MT6358_BUCK_##vreg##_CON0,	\
-@@ -89,7 +89,7 @@ struct mt6358_regulator_info {
- }
- 
- #define MT6358_LDO1(match, vreg, min, max, step,	\
--	volt_ranges, _da_vsel_reg, _da_vsel_mask,	\
-+	_da_vsel_reg, _da_vsel_mask,	\
- 	vosel, vosel_mask)	\
- [MT6358_ID_##vreg] = {	\
- 	.desc = {	\
-@@ -100,8 +100,8 @@ struct mt6358_regulator_info {
+@@ -123,10 +123,13 @@ struct mt6358_regulator_info {
+ 		.type = REGULATOR_VOLTAGE,	\
  		.id = MT6358_ID_##vreg,	\
  		.owner = THIS_MODULE,	\
- 		.n_voltages = ((max) - (min)) / (step) + 1,	\
--		.linear_ranges = volt_ranges,	\
--		.n_linear_ranges = ARRAY_SIZE(volt_ranges),	\
-+		.min_uV = (min),		\
-+		.uV_step = (step),		\
- 		.vsel_reg = vosel,	\
- 		.vsel_mask = vosel_mask,	\
- 		.enable_reg = MT6358_LDO_##vreg##_CON0,	\
-@@ -133,7 +133,7 @@ struct mt6358_regulator_info {
- }
- 
- #define MT6366_BUCK(match, vreg, min, max, step,		\
--	volt_ranges, vosel_mask, _da_vsel_reg, _da_vsel_mask,	\
-+	vosel_mask, _da_vsel_reg, _da_vsel_mask,	\
- 	_modeset_reg, _modeset_shift)		\
- [MT6366_ID_##vreg] = {	\
- 	.desc = {	\
-@@ -144,8 +144,8 @@ struct mt6358_regulator_info {
- 		.id = MT6366_ID_##vreg,		\
- 		.owner = THIS_MODULE,		\
- 		.n_voltages = ((max) - (min)) / (step) + 1,	\
--		.linear_ranges = volt_ranges,		\
--		.n_linear_ranges = ARRAY_SIZE(volt_ranges),	\
-+		.min_uV = (min),		\
-+		.uV_step = (step),		\
- 		.vsel_reg = MT6358_BUCK_##vreg##_ELR0,	\
- 		.vsel_mask = vosel_mask,	\
- 		.enable_reg = MT6358_BUCK_##vreg##_CON0,	\
-@@ -185,7 +185,7 @@ struct mt6358_regulator_info {
- }
- 
- #define MT6366_LDO1(match, vreg, min, max, step,	\
--	volt_ranges, _da_vsel_reg, _da_vsel_mask,	\
-+	_da_vsel_reg, _da_vsel_mask,	\
- 	vosel, vosel_mask)	\
- [MT6366_ID_##vreg] = {	\
- 	.desc = {	\
-@@ -196,8 +196,8 @@ struct mt6358_regulator_info {
+-		.n_voltages = 1,	\
++		.n_voltages = 11,	\
++		.vsel_reg = MT6358_##vreg##_ANA_CON0,	\
++		.vsel_mask = GENMASK(3, 0),	\
+ 		.enable_reg = enreg,	\
+ 		.enable_mask = BIT(enbit),	\
+ 		.min_uV = volt,	\
++		.uV_step = 10000, \
+ 	},	\
+ 	.status_reg = MT6358_LDO_##vreg##_CON1,	\
+ 	.qi = BIT(15),							\
+@@ -219,10 +222,13 @@ struct mt6358_regulator_info {
+ 		.type = REGULATOR_VOLTAGE,	\
  		.id = MT6366_ID_##vreg,	\
  		.owner = THIS_MODULE,	\
- 		.n_voltages = ((max) - (min)) / (step) + 1,	\
--		.linear_ranges = volt_ranges,	\
--		.n_linear_ranges = ARRAY_SIZE(volt_ranges),	\
-+		.min_uV = (min),		\
-+		.uV_step = (step),		\
- 		.vsel_reg = vosel,	\
- 		.vsel_mask = vosel_mask,	\
- 		.enable_reg = MT6358_LDO_##vreg##_CON0,	\
-@@ -228,21 +228,6 @@ struct mt6358_regulator_info {
+-		.n_voltages = 1,	\
++		.n_voltages = 11,	\
++		.vsel_reg = MT6358_##vreg##_ANA_CON0,	\
++		.vsel_mask = GENMASK(3, 0),	\
+ 		.enable_reg = enreg,	\
+ 		.enable_mask = BIT(enbit),	\
+ 		.min_uV = volt,	\
++		.uV_step = 10000, \
+ 	},	\
+ 	.status_reg = MT6358_LDO_##vreg##_CON1,	\
  	.qi = BIT(15),							\
- }
+@@ -476,8 +482,13 @@ static const struct regulator_ops mt6358_volt_table_ops = {
+ 	.get_status = mt6358_get_status,
+ };
  
--static const struct linear_range buck_volt_range1[] = {
--	REGULATOR_LINEAR_RANGE(500000, 0, 0x7f, 6250),
--};
--
--static const struct linear_range buck_volt_range2[] = {
--	REGULATOR_LINEAR_RANGE(500000, 0, 0x7f, 12500),
--};
--
--static const struct linear_range buck_volt_range3[] = {
--	REGULATOR_LINEAR_RANGE(500000, 0, 0x3f, 50000),
--};
--
--static const struct linear_range buck_volt_range4[] = {
--	REGULATOR_LINEAR_RANGE(1000000, 0, 0x7f, 12500),
--};
- 
- static const unsigned int vdram2_voltages[] = {
- 	600000, 1800000,
-@@ -466,8 +451,8 @@ static unsigned int mt6358_regulator_get_mode(struct regulator_dev *rdev)
- }
- 
- static const struct regulator_ops mt6358_volt_range_ops = {
--	.list_voltage = regulator_list_voltage_linear_range,
--	.map_voltage = regulator_map_voltage_linear_range,
-+	.list_voltage = regulator_list_voltage_linear,
++/* "Fixed" LDOs with output voltage calibration +0 ~ +10 mV */
+ static const struct regulator_ops mt6358_volt_fixed_ops = {
+ 	.list_voltage = regulator_list_voltage_linear,
 +	.map_voltage = regulator_map_voltage_linear,
- 	.set_voltage_sel = regulator_set_voltage_sel_regmap,
- 	.get_voltage_sel = mt6358_get_buck_voltage_sel,
- 	.set_voltage_time_sel = regulator_set_voltage_time_sel,
-@@ -502,32 +487,23 @@ static const struct regulator_ops mt6358_volt_fixed_ops = {
- /* The array is indexed by id(MT6358_ID_XXX) */
- static const struct mt6358_regulator_info mt6358_regulators[] = {
- 	MT6358_BUCK("buck_vdram1", VDRAM1, 500000, 2087500, 12500,
--		    buck_volt_range2, 0x7f, MT6358_BUCK_VDRAM1_DBG0, 0x7f,
--		    MT6358_VDRAM1_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VDRAM1_DBG0, 0x7f, MT6358_VDRAM1_ANA_CON0, 8),
- 	MT6358_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
--		    MT6358_VCORE_VGPU_ANA_CON0, 1),
-+		    0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f, MT6358_VCORE_VGPU_ANA_CON0, 1),
- 	MT6358_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
--		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
--		    MT6358_VPA_ANA_CON0, 3),
-+		    0x3f, MT6358_BUCK_VPA_DBG0, 0x3f, MT6358_VPA_ANA_CON0, 3),
- 	MT6358_BUCK("buck_vproc11", VPROC11, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VPROC11_DBG0, 0x7f,
--		    MT6358_VPROC_ANA_CON0, 1),
-+		    0x7f, MT6358_BUCK_VPROC11_DBG0, 0x7f, MT6358_VPROC_ANA_CON0, 1),
- 	MT6358_BUCK("buck_vproc12", VPROC12, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VPROC12_DBG0, 0x7f,
--		    MT6358_VPROC_ANA_CON0, 2),
-+		    0x7f, MT6358_BUCK_VPROC12_DBG0, 0x7f, MT6358_VPROC_ANA_CON0, 2),
- 	MT6358_BUCK("buck_vgpu", VGPU, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VGPU_ELR0, 0x7f,
--		    MT6358_VCORE_VGPU_ANA_CON0, 2),
-+		    0x7f, MT6358_BUCK_VGPU_ELR0, 0x7f, MT6358_VCORE_VGPU_ANA_CON0, 2),
- 	MT6358_BUCK("buck_vs2", VS2, 500000, 2087500, 12500,
--		    buck_volt_range2, 0x7f, MT6358_BUCK_VS2_DBG0, 0x7f,
--		    MT6358_VS2_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VS2_DBG0, 0x7f, MT6358_VS2_ANA_CON0, 8),
- 	MT6358_BUCK("buck_vmodem", VMODEM, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VMODEM_DBG0, 0x7f,
--		    MT6358_VMODEM_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VMODEM_DBG0, 0x7f, MT6358_VMODEM_ANA_CON0, 8),
- 	MT6358_BUCK("buck_vs1", VS1, 1000000, 2587500, 12500,
--		    buck_volt_range4, 0x7f, MT6358_BUCK_VS1_DBG0, 0x7f,
--		    MT6358_VS1_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VS1_DBG0, 0x7f, MT6358_VS1_ANA_CON0, 8),
- 	MT6358_REG_FIXED("ldo_vrf12", VRF12,
- 			 MT6358_LDO_VRF12_CON0, 0, 1200000),
- 	MT6358_REG_FIXED("ldo_vio18", VIO18,
-@@ -577,48 +553,35 @@ static const struct mt6358_regulator_info mt6358_regulators[] = {
- 	MT6358_LDO("ldo_vsim2", VSIM2, vsim_voltages, vsim_idx,
- 		   MT6358_LDO_VSIM2_CON0, 0, MT6358_VSIM2_ANA_CON0, 0xf00),
- 	MT6358_LDO1("ldo_vsram_proc11", VSRAM_PROC11, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_PROC11_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON0, 0x7f),
-+		    MT6358_LDO_VSRAM_PROC11_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON0, 0x7f),
- 	MT6358_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON2, 0x7f),
-+		    MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON2, 0x7f),
- 	MT6358_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON3, 0x7f),
-+		    MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON3, 0x7f),
- 	MT6358_LDO1("ldo_vsram_proc12", VSRAM_PROC12, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_PROC12_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON1, 0x7f),
-+		    MT6358_LDO_VSRAM_PROC12_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON1, 0x7f),
- };
- 
- /* The array is indexed by id(MT6366_ID_XXX) */
- static const struct mt6358_regulator_info mt6366_regulators[] = {
- 	MT6366_BUCK("buck_vdram1", VDRAM1, 500000, 2087500, 12500,
--		    buck_volt_range2, 0x7f, MT6358_BUCK_VDRAM1_DBG0, 0x7f,
--		    MT6358_VDRAM1_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VDRAM1_DBG0, 0x7f, MT6358_VDRAM1_ANA_CON0, 8),
- 	MT6366_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
--		    MT6358_VCORE_VGPU_ANA_CON0, 1),
-+		    0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f, MT6358_VCORE_VGPU_ANA_CON0, 1),
- 	MT6366_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
--		    buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
--		    MT6358_VPA_ANA_CON0, 3),
-+		    0x3f, MT6358_BUCK_VPA_DBG0, 0x3f, MT6358_VPA_ANA_CON0, 3),
- 	MT6366_BUCK("buck_vproc11", VPROC11, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VPROC11_DBG0, 0x7f,
--		    MT6358_VPROC_ANA_CON0, 1),
-+		    0x7f, MT6358_BUCK_VPROC11_DBG0, 0x7f, MT6358_VPROC_ANA_CON0, 1),
- 	MT6366_BUCK("buck_vproc12", VPROC12, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VPROC12_DBG0, 0x7f,
--		    MT6358_VPROC_ANA_CON0, 2),
-+		    0x7f, MT6358_BUCK_VPROC12_DBG0, 0x7f, MT6358_VPROC_ANA_CON0, 2),
- 	MT6366_BUCK("buck_vgpu", VGPU, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VGPU_ELR0, 0x7f,
--		    MT6358_VCORE_VGPU_ANA_CON0, 2),
-+		    0x7f, MT6358_BUCK_VGPU_ELR0, 0x7f, MT6358_VCORE_VGPU_ANA_CON0, 2),
- 	MT6366_BUCK("buck_vs2", VS2, 500000, 2087500, 12500,
--		    buck_volt_range2, 0x7f, MT6358_BUCK_VS2_DBG0, 0x7f,
--		    MT6358_VS2_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VS2_DBG0, 0x7f, MT6358_VS2_ANA_CON0, 8),
- 	MT6366_BUCK("buck_vmodem", VMODEM, 500000, 1293750, 6250,
--		    buck_volt_range1, 0x7f, MT6358_BUCK_VMODEM_DBG0, 0x7f,
--		    MT6358_VMODEM_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VMODEM_DBG0, 0x7f, MT6358_VMODEM_ANA_CON0, 8),
- 	MT6366_BUCK("buck_vs1", VS1, 1000000, 2587500, 12500,
--		    buck_volt_range4, 0x7f, MT6358_BUCK_VS1_DBG0, 0x7f,
--		    MT6358_VS1_ANA_CON0, 8),
-+		    0x7f, MT6358_BUCK_VS1_DBG0, 0x7f, MT6358_VS1_ANA_CON0, 8),
- 	MT6366_REG_FIXED("ldo_vrf12", VRF12,
- 			 MT6358_LDO_VRF12_CON0, 0, 1200000),
- 	MT6366_REG_FIXED("ldo_vio18", VIO18,
-@@ -657,17 +620,13 @@ static const struct mt6358_regulator_info mt6366_regulators[] = {
- 	MT6366_LDO("ldo_vsim2", VSIM2, vsim_voltages, vsim_idx,
- 		   MT6358_LDO_VSIM2_CON0, 0, MT6358_VSIM2_ANA_CON0, 0xf00),
- 	MT6366_LDO1("ldo_vsram_proc11", VSRAM_PROC11, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_PROC11_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON0, 0x7f),
-+		    MT6358_LDO_VSRAM_PROC11_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON0, 0x7f),
- 	MT6366_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON2, 0x7f),
-+		    MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON2, 0x7f),
- 	MT6366_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON3, 0x7f),
-+		    MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON3, 0x7f),
- 	MT6366_LDO1("ldo_vsram_proc12", VSRAM_PROC12, 500000, 1293750, 6250,
--		    buck_volt_range1, MT6358_LDO_VSRAM_PROC12_DBG0, 0x7f00,
--		    MT6358_LDO_VSRAM_CON1, 0x7f),
-+		    MT6358_LDO_VSRAM_PROC12_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON1, 0x7f),
- };
- 
- static int mt6358_sync_vcn33_setting(struct device *dev)
++	.set_voltage_sel = regulator_set_voltage_sel_regmap,
++	.get_voltage_sel = mt6358_get_buck_voltage_sel,
++	.set_voltage_time_sel = regulator_set_voltage_time_sel,
+ 	.enable = regulator_enable_regmap,
+ 	.disable = regulator_disable_regmap,
+ 	.is_enabled = regulator_is_enabled_regmap,
 -- 
 2.41.0.162.gfafddb0af9-goog
 
