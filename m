@@ -2,130 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFF7C729CA3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F46E729CA8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240166AbjFIOUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:20:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46150 "EHLO
+        id S240519AbjFIOVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:21:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239661AbjFIOUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:20:50 -0400
-Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB9130F5
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 07:20:48 -0700 (PDT)
-Received: by mail-vk1-xa2e.google.com with SMTP id 71dfb90a1353d-45d3e523a43so682228e0c.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 07:20:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686320447; x=1688912447;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Gk3Y9EY/4G9t9554iAhtE5UPK2oRaV2wjbMFQgOsj4I=;
-        b=VKe7oCjq3SxEv/zxvpmeCPEMsVzpU/uXXB32eR3nP/Q54+eWPv5yW519jwdlM8eCAW
-         I9/CNthU03pURfKTkT7dAj+3lzCmw671scd6Bg+6EwVwar2zO5/G5pht0YNjyE2FWJ1r
-         PcRZKFGInC3Rw3AS+YUHer6TKXOvhx1ZouNW+PR9lkn3g1O6PqijaO1yMrYoELDpAto3
-         L8O5yViC5H+WD9njoPNSIV4m9xoyhQbOhxfWYRnOlN+EukFCEfd9JzFuDMbFgsHphNho
-         SXHHhZ7AscKG+5oae0vR/hV7cOUsZrJnzvHFhi+6MkRhEt3LtUZQHGz+HcyvxynYj2AT
-         KbvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686320447; x=1688912447;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Gk3Y9EY/4G9t9554iAhtE5UPK2oRaV2wjbMFQgOsj4I=;
-        b=C0VlTUw8/+1hHsKQx1aVPxnOGhtJE6ulsauTSCN3QbNdIMA43CzEt72UocuUeeRm71
-         7rVhPp4TfpWodRMoxHA4WNxbRfKU3VWvlrMetiNWxDFv/JMXnuF9smevREtW7cbex0iL
-         LTKr5XlfOFl8Xz8WlfSFjBZgoGvISyKuiSzqs5tpnuwwGKQcyrTfzrAYyAE7ur5v7HWo
-         bs7ZCKYElF3muZmvqOLr1oH+Oz0+P+ozg9lW+89rKkwdIXiV6zy+1t5S2s8qPX0tTRl/
-         WczGDsjoGsYXQ8HcLHjfGzG/5eSRXQS6uJkuW4ncPlKmYofrG9LAwP4ZHqk9MCeLFef/
-         QwqQ==
-X-Gm-Message-State: AC+VfDwDsncRJK1TpkPY5KBu+ZM3/7oyRd5ur/GY44RenE98OROWQY55
-        wKRsk7Pbzp++YIxdz6jyB838G2aiMCqstFQJUbsEZIZPSzV/cvaF
-X-Google-Smtp-Source: ACHHUZ6jGX+k4hnv6McRoA+4AoD6fg4EicSO/DxfodOR/w9eMQZrCgZHfLQJJwAgIcFLs2P71TEEP8r839ZKblOhrTQ=
-X-Received: by 2002:a67:f794:0:b0:436:4da:8d63 with SMTP id
- j20-20020a67f794000000b0043604da8d63mr953067vso.27.1686320447446; Fri, 09 Jun
- 2023 07:20:47 -0700 (PDT)
+        with ESMTP id S231249AbjFIOVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:21:45 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD22D30F3;
+        Fri,  9 Jun 2023 07:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686320504; x=1717856504;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2a+lt3aPP+ngTS29/z29BKrwVI4Tp9UL/tf+aJWyQX8=;
+  b=QZjXBoFw8hL//vlPO5B7xLCesEhW2l5/dbdvgqjAlcDOWr4NQ7/6iKi3
+   upIvnb158yfImg0SPWjoWbS7iSZ4H2KapnPp9mpz76eoJuzaX6uToQ/UA
+   BF4dGXcKq7qLh3JI6p1RyvlKFVZFBpiJHQftSGkLGkfInx1m2PHHzF2QF
+   s1KJYBiEsGYvoJLCj8LjE7uWKsv/r8zmcmTg5sPeuNJZX0fVKs9ttW0GJ
+   MgTY7HaydKasbJNZZ+Wi2dZyfbekJesV9teMSj5cSpPq7TBw7Tz3I1AVJ
+   1AnpVEbha+S4JJyU8cgeZ8iRXDdIMR23dfRNy4URzAzWKLl4wYftiZX+m
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
+   d="asc'?scan'208";a="156290937"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Jun 2023 07:21:44 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 9 Jun 2023 07:21:43 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 9 Jun 2023 07:21:42 -0700
+Date:   Fri, 9 Jun 2023 15:21:17 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: riscv: cpus: drop unneeded quotes
+Message-ID: <20230609-discourse-lapped-5217cc4d7ede@wendy>
+References: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <20230605125248.279921-1-brgl@bgdev.pl> <CAL_JsqKczF9yYHWjqneBv-y+Qv+O7AkX4gwVG87+aPPazKxtDw@mail.gmail.com>
-In-Reply-To: <CAL_JsqKczF9yYHWjqneBv-y+Qv+O7AkX4gwVG87+aPPazKxtDw@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 9 Jun 2023 16:20:36 +0200
-Message-ID: <CAMRc=MfD1Ju-QCZbr87nP987RMSDko=t1R2cXGmSjdJhdPR5hw@mail.gmail.com>
-Subject: Re: [PATCH] gpiolib: demote the hogging log messages to debug
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kent Gibson <warthog618@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bGQeEsxycwJfD2sU"
+Content-Disposition: inline
+In-Reply-To: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 3:47=E2=80=AFPM Rob Herring <robh+dt@kernel.org> wro=
-te:
->
-> On Mon, Jun 5, 2023 at 6:53=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
-> wrote:
-> >
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Drivers should be silent when they work correctly. There's no reason to
-> > emit info messages when GPIO lines are hogged. Demote the message to
-> > debug.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > Suggested-by: Kent Gibson <warthog618@gmail.com>
-> > ---
-> >  drivers/gpio/gpiolib.c |  2 +-
-> >  drivers/of/unittest.c  | 16 ++++++++--------
-> >  2 files changed, 9 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-> > index a7220e04a93e..e4515bda8915 100644
-> > --- a/drivers/gpio/gpiolib.c
-> > +++ b/drivers/gpio/gpiolib.c
-> > @@ -4243,7 +4243,7 @@ int gpiod_hog(struct gpio_desc *desc, const char =
-*name,
-> >         /* Mark GPIO as hogged so it can be identified and removed late=
-r */
-> >         set_bit(FLAG_IS_HOGGED, &desc->flags);
-> >
-> > -       gpiod_info(desc, "hogged as %s%s\n",
-> > +       gpiod_dbg(desc, "hogged as %s%s\n",
-> >                 (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ? "output" : "input"=
-,
-> >                 (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ?
-> >                   (dflags & GPIOD_FLAGS_BIT_DIR_VAL) ? "/high" : "/low"=
- : "");
-> > diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> > index 2191c0136531..0060334a98a7 100644
-> > --- a/drivers/of/unittest.c
-> > +++ b/drivers/of/unittest.c
-> > @@ -1849,19 +1849,19 @@ static void __init of_unittest_overlay_gpio(voi=
-d)
-> >          * driver is registered
-> >          */
-> >
-> > -       EXPECT_BEGIN(KERN_INFO,
-> > +       EXPECT_BEGIN(KERN_DEBUG,
-> >                      "gpio-<<int>> (line-B-input): hogged as input\n");
->
-> As debug messages are normally off, I think you can just remove these.
->
-> Rob
+--bGQeEsxycwJfD2sU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I will send a follow-up.
+On Fri, Jun 09, 2023 at 04:07:06PM +0200, Krzysztof Kozlowski wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Bart
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--bGQeEsxycwJfD2sU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIM1XQAKCRB4tDGHoIJi
+0nBVAP0T8hWbMHaBw02aqSDgr7Tl2Q8lR8gW+HR1CNAnRw7BsAEA4TuanTVt5EJl
+qcen++SX5zQGb7LCunLo88GpZK932AI=
+=VSOJ
+-----END PGP SIGNATURE-----
+
+--bGQeEsxycwJfD2sU--
