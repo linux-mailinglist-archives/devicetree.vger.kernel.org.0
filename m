@@ -2,53 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC56D729805
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 13:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C904729834
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 13:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbjFILRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 07:17:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58992 "EHLO
+        id S229715AbjFIL3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 07:29:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238701AbjFILRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 07:17:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC242210E
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 04:17:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DFA965718
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 11:17:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 948DBC4339B;
-        Fri,  9 Jun 2023 11:17:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686309422;
-        bh=oikoyzHHpZSKhI1fvcipwda+kD2iBiCIbDawLRPCuoc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Odg9YvjOeLDUtWV594qmdpJxX7eHmRR0Wv1k0NJq18stHNLWu9X/dEmboTd+Vo74j
-         vUclqCEGimxdgtz6Gx2kKLeLXu61/oXPDkvx8k/awFSjY9SUz3nr9z2z+q+bxKArmz
-         VBLit6gYk+VWKtmoD0lnelk6ax1lTBIRF8tCwXtgZpvZ9fB9KiNe5JZvHlAdkQXwni
-         gLDFqPdmph0LQFqz9dIv/J7pcqvZXhCF+dbo7vLtLT6rbXJdwlQpecSxNluhcaI7jp
-         HwL0qVI3ftdXBasvO4KK/1Od5I2JslFhgjpPX7Zbb/mzsqh86Od/UFdWesJZruxISc
-         dj7/PHvO4IAcg==
-From:   Will Deacon <will@kernel.org>
-To:     frank.li@nxp.com, Xu Yang <xu.yang_2@nxp.com>, shawnguo@kernel.org,
-        mark.rutland@arm.com, festevam@gmail.com
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v2 1/3] drivers/perf: imx_ddr: Add support for NXP i.MX9 SoC DDRC PMU driver
-Date:   Fri,  9 Jun 2023 12:16:48 +0100
-Message-Id: <168630672680.3064705.17889676417989749870.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230418102910.2065651-1-xu.yang_2@nxp.com>
-References: <20230418102910.2065651-1-xu.yang_2@nxp.com>
+        with ESMTP id S237624AbjFIL3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 07:29:35 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74382270F
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 04:29:34 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5169f614977so2965021a12.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 04:29:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686310173; x=1688902173;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kxiN7myur7/0GPCT/YlFEtOdpW5toTcI/Nywric3aLQ=;
+        b=YlzRxBhuCSK70VDV0dZW+ujKcjhx4HbC1rs8EytAHb8rqlU6SU8hxNRMjHUD+QMhcn
+         UCrjeGZXEMM8+CmUHgSFl6Tc+O25dEAVREpYDzcAitOG2vNHg8/NTeuZo7z2WQ3+JfzY
+         EpDOvc/Z0L0VRXpe2f7gWbJvqhB84RZMSGPinvLDm+mTj4pHERZCtgyg1PQ6FU9Yi2DA
+         V5A5Lu49VgLiRma5ieva3qSSZYRU5/U8YENcGSaYIBRiXcDKxVTntV2O1HuqVZF/XXAH
+         hBfaDwo/jtGJ4V1aJeOplkASpUJ0UwbrjD8GZfdp/b5ZOJvBOyw+izn11YznXHe4umJO
+         hHDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686310173; x=1688902173;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kxiN7myur7/0GPCT/YlFEtOdpW5toTcI/Nywric3aLQ=;
+        b=iGkuMQBdG2zUg9nFK0bCjciW5ueo/lLZt4USJkjQZKuXizdnlL5cXFIzAkExbHGfG/
+         FldxiM48VN/GON+uLD8XqnYztwKW9+4Igj8aYPoqOLH12IgNxv6TUM+1y/bYmIaz2NcW
+         WxQLoptdweodpmSvjVTwdRHuPkvPD0Sp+KCUTlfM3K0beBdGI9se42d1KFDFhY8Se+Ok
+         z6hqXpV9DR0U59YEL6BzORCXdUmHdANHSJoQbRyejs1VrGOOBqsRS4H6dPp6o6AsGz/V
+         o3H8spxpizqNJylqD7XSzBCPhZEX8SGZPxvyFpDq+YwT7uLaV4yTWq354bD9V6AkYXo5
+         IMlQ==
+X-Gm-Message-State: AC+VfDywBU0HK0tGxYerwkvFAaVGcYcCJoL3iaF4tXPAZo7tGQUkA3hE
+        8NrP2Gbuq+tDkxSehZT4sRmgBw==
+X-Google-Smtp-Source: ACHHUZ4N8nCzxGEzlpoKN727/QlEt/dtap2HexlEjZXf6BjLVyzoQAOu7/kxf1+AaNNnWVFwP7S9rw==
+X-Received: by 2002:a05:6402:14d6:b0:50b:5dbe:e0f6 with SMTP id f22-20020a05640214d600b0050b5dbee0f6mr1096342edx.25.1686310172919;
+        Fri, 09 Jun 2023 04:29:32 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e22-20020a056402149600b00501d73cfc86sm1661497edv.9.2023.06.09.04.29.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 04:29:32 -0700 (PDT)
+Message-ID: <bff5ff40-fec2-123e-9896-6f5445289792@linaro.org>
+Date:   Fri, 9 Jun 2023 13:29:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v5 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
+Content-Language: en-US
+To:     =?UTF-8?B?Q2hlbi5QSiDpmbPmn4/ku7sgVEFP?= <Chen.PJ@inventec.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+Cc:     =?UTF-8?B?WWUuVmljIOiRieWuh+a4hSBUQU8=?= <ye.vic@inventec.com>,
+        =?UTF-8?B?SHVhbmcuQWxhbmcg6buD6Iux6YOOIFRBTw==?= 
+        <Huang.Alang@inventec.com>
+References: <b039b1b2673644af84db8f803bc7d156@inventec.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b039b1b2673644af84db8f803bc7d156@inventec.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,27 +86,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Apr 2023 18:29:08 +0800, Xu Yang wrote:
-> Add ddr performance monitor support for i.MX93.
+On 09/06/2023 07:59, Chen.PJ 陳柏任 TAO wrote:
+> Initial introduction of Inventec Starscream x86 family
+> equipped with AST2600 BMC SoC.
 > 
-> There are 11 counters for ddr performance events.
-> - Counter 0 is a 64-bit counter that counts only clock cycles.
-> - Counter 1-10 are 32-bit counters that can monitor counter-specific
->   events in addition to counting reference events.
+> Signed-off-by: Chen PJ <Chen.pj@inventec.com>
 > 
-> [...]
+> ---
+>  V4 -> V5:
+>   - Remove devices not defined in dt-binding yet.
+>  V3 -> V4:
+>   - Reply with devicetree binding
+>     https://lore.kernel.org/all/28f0ce0a82464083ae24f9ef2f598425@inventec.com/
 
-Applied first two patches to will (for-next/perf), thanks!
+I received only this patch 2/2 and first patch is missing.
 
-[1/3] drivers/perf: imx_ddr: Add support for NXP i.MX9 SoC DDRC PMU driver
-      https://git.kernel.org/will/c/55691f99d417
-[2/3] dt-bindings: perf: fsl-imx-ddr: Add i.MX93 compatible
-      https://git.kernel.org/will/c/b1acb4e5601b
+Best regards,
+Krzysztof
 
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
