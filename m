@@ -2,98 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F46E729CA8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49700729CB4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 16:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240519AbjFIOVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 10:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47024 "EHLO
+        id S231779AbjFIOYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 10:24:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231249AbjFIOVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:21:45 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD22D30F3;
-        Fri,  9 Jun 2023 07:21:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686320504; x=1717856504;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2a+lt3aPP+ngTS29/z29BKrwVI4Tp9UL/tf+aJWyQX8=;
-  b=QZjXBoFw8hL//vlPO5B7xLCesEhW2l5/dbdvgqjAlcDOWr4NQ7/6iKi3
-   upIvnb158yfImg0SPWjoWbS7iSZ4H2KapnPp9mpz76eoJuzaX6uToQ/UA
-   BF4dGXcKq7qLh3JI6p1RyvlKFVZFBpiJHQftSGkLGkfInx1m2PHHzF2QF
-   s1KJYBiEsGYvoJLCj8LjE7uWKsv/r8zmcmTg5sPeuNJZX0fVKs9ttW0GJ
-   MgTY7HaydKasbJNZZ+Wi2dZyfbekJesV9teMSj5cSpPq7TBw7Tz3I1AVJ
-   1AnpVEbha+S4JJyU8cgeZ8iRXDdIMR23dfRNy4URzAzWKLl4wYftiZX+m
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
-   d="asc'?scan'208";a="156290937"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Jun 2023 07:21:44 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 9 Jun 2023 07:21:43 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 9 Jun 2023 07:21:42 -0700
-Date:   Fri, 9 Jun 2023 15:21:17 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: drop unneeded quotes
-Message-ID: <20230609-discourse-lapped-5217cc4d7ede@wendy>
-References: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230431AbjFIOX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 10:23:59 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FA530CB;
+        Fri,  9 Jun 2023 07:23:58 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 359A35SA028075;
+        Fri, 9 Jun 2023 16:23:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=bj7M7t8bdQ08GXVPF25sRkD+ihWbmvO7R+gIAK9yWxE=;
+ b=m0DoBnS6trRvF1s4KiCAoQZUCLEAoZsgkHwNS6LkfGBQp6kGYGPN7fwaUZyBgrJDk2jZ
+ dFm5y+eEo5nutkVFTpPQP/8wUc6V7ZR1KBPQv9zlNgr8PX8e6qwfHc6ZG0R9LV8FPMmj
+ SEjvY+ZuWEzXYJ4ieV1+HHymQhZ8dtC1qMhdXLMPzIAlVTeWaXbLJ5mXLWzbIew7xYS4
+ bY5LP1Q7QAwE3FpHo3sKGoUe9RB3xCLaHsN0hJxWuFL0oS/G8N6HWKcIIVYWLF13gGUq
+ HMVhvXD/BQ4YFE0cxN+j9Uq068h3TGArRA2LTipHTDNDUlR1UtyAyGztvw2sr7qVS0L2 Ng== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r3xsfb7aa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Jun 2023 16:23:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 63F4510002A;
+        Fri,  9 Jun 2023 16:23:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 532CB23695E;
+        Fri,  9 Jun 2023 16:23:38 +0200 (CEST)
+Received: from [10.129.178.187] (10.129.178.187) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 9 Jun
+ 2023 16:23:35 +0200
+Message-ID: <559a146a-237b-ce42-93e7-ed13cfbb209d@foss.st.com>
+Date:   Fri, 9 Jun 2023 16:23:35 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="bGQeEsxycwJfD2sU"
-Content-Disposition: inline
-In-Reply-To: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [Linux-stm32] [PATCH v3 2/4] ARM: dts: stm32: add pin map for
+ LTDC on stm32f7
+Content-Language: en-US
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <michael@amarulasolutions.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230609062050.2107143-1-dario.binacchi@amarulasolutions.com>
+ <20230609062050.2107143-3-dario.binacchi@amarulasolutions.com>
+From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <20230609062050.2107143-3-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.129.178.187]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-09_10,2023-06-09_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---bGQeEsxycwJfD2sU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 09, 2023 at 04:07:06PM +0200, Krzysztof Kozlowski wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---bGQeEsxycwJfD2sU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIM1XQAKCRB4tDGHoIJi
-0nBVAP0T8hWbMHaBw02aqSDgr7Tl2Q8lR8gW+HR1CNAnRw7BsAEA4TuanTVt5EJl
-qcen++SX5zQGb7LCunLo88GpZK932AI=
-=VSOJ
------END PGP SIGNATURE-----
-
---bGQeEsxycwJfD2sU--
+On 6/9/23 08:20, Dario Binacchi wrote:
+> Add pin configurations for using LTDC (LCD-tft Display Controller) on
+> stm32f746-disco board.
+>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Reviewed-by: Raphaël Gallais-Pou <raphael.gallais-pou@foss.st.com>
+>
+> ---
+>
+> Changes in v3:
+> - rename ltdc-pins-a-0 to ltdc-0.
+>
+>  arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 35 ++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
