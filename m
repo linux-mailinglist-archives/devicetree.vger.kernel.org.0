@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36305729100
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 09:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56CD729110
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 09:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238697AbjFIH3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 03:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43742 "EHLO
+        id S238714AbjFIH3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 03:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbjFIH3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 03:29:42 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C38F330D2
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 00:29:12 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id 5614622812f47-390723f815fso374468b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 00:29:12 -0700 (PDT)
+        with ESMTP id S238701AbjFIH3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 03:29:44 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DADB35A9
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 00:29:15 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1a28de15c8aso452546fac.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 00:29:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686295752; x=1688887752;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=W8EsfWHpWeEAsNMtoQxkNmoUaO1QNi7pZmjCqABYF5Q=;
-        b=POi9nbAV25Brikqe/W2Ymh7GlIaZA9Dxo/7rn9kYc1cvJurZUpeHM2BZAKFHYiYObo
-         LJBHSru7swM0r+MXwDjjiuEStNs4CgsY3Ay3kgKF2OcP5utGRd/TVW2Dq7hPfyL00UK5
-         4HF7umJ7Bpww97g8cV4JxBo/DkLYSr+Fig/+Y=
+        d=chromium.org; s=google; t=1686295754; x=1688887754;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fiqfy79Fm9eELrPZKhr0IzKYUTLKfOcN1zfjvWIor1U=;
+        b=LxMNX7PgqJYg8YS2zT4J43YxXo9Sb8PLiIJ9k2lgNd1Xh5voESEHcivw8u8jtBBzP/
+         WiRjfyprxZi9kjfz9+meNBuo3OXBMaIc9u8YgtjYmT8e8l4RFqLi+LfeOuUoUm04yQKX
+         bABGqbnX15cF3yKr5Ljr5dlBDIn9cA8v6Uc0Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686295752; x=1688887752;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W8EsfWHpWeEAsNMtoQxkNmoUaO1QNi7pZmjCqABYF5Q=;
-        b=H8NAUqKA3XSMtGpoG/3TfA7DNNUlN8Bxtjjs1MYCcuVOI9dJjr999tHuNLJQrh528r
-         wru0k46B9bGY6+FDguK/g9u+/wq0KbbOdsDcunrQhfr/RtKaVNM3eyngdRDGPQVZPHkh
-         Jizhdab3giE86CxfWsz+va4kdRtawILKg58mC7uEaTZ8lXw8NYZD5j24+YjWcXjHeSkk
-         pmxDvFz33Rz5DZZ46L7j71I0rolbIjFwIN3X5wJhz0uOOtCWpYuDJa6VYgkJUjr1vOrW
-         O1k3atv7F9PX5pQWL+vUFh2roS2o7HsFktFkkVM9U/Xl7YiUfYpObp6YbAeeB7trPpfv
-         eOTA==
-X-Gm-Message-State: AC+VfDwpn3sZguJbz5y0RDAj27qLSW3DOpTMsuSBj8QToC1YmxYcVxzD
-        f2Rxg0+g4OGeYDYxS0+J4EpAvw==
-X-Google-Smtp-Source: ACHHUZ6gUAtIUXXV50rIS9fsoov6g8tykoRv2P3NMR3XnEWio1RRcO83nEpmRKXDIRmX0T5deps5XQ==
-X-Received: by 2002:a05:6808:2115:b0:39a:7830:f237 with SMTP id r21-20020a056808211500b0039a7830f237mr1010340oiw.7.1686295752093;
-        Fri, 09 Jun 2023 00:29:12 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686295754; x=1688887754;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Fiqfy79Fm9eELrPZKhr0IzKYUTLKfOcN1zfjvWIor1U=;
+        b=EYMUR00YsSVRnvhu8SXpFb1T/LrDRw8i/dnzBcpzEwG59NYYy5P6HE8xHErfp1TFST
+         Dxj9I+Mw3xECdUkJQ+w7FCXzgtDUQxepG0Rv4SanMqa69Xzhb5Wp7CZm4ytXS6/2QNaQ
+         ZMAZ+FZnDApq6qJOkf8XE/PGNRwkTQ4aBG/EltQ7df2ekKL3ACouvgNxfV9wpXuLqIjH
+         mpYLMdgsS+Hp31anKj6vUdMuCFQbrCLOVU6VTcJ887oXrIVO/VjAiJrp2royZNrUNzkE
+         A9cQjCRdTJ+tcu7FgDhfbGd1r5WiNc43veAaiJ2G962uMyMHd++cfvkjDbKkqnGYb/nk
+         VKnQ==
+X-Gm-Message-State: AC+VfDz9N5F/juMVg7hp3wY/DcUVIRngUgz5iAM4BUiew7EcM+KNFkZ5
+        ywO2BmKmSR6NaLpWz1t48aqmbw==
+X-Google-Smtp-Source: ACHHUZ501Ve/MgepNvdJuxacEzoyyJ1OpWSjaxrZfy48TfjQ3Y9Q5kePfUaxCgQyognbCgNex8NP+g==
+X-Received: by 2002:a05:6870:3505:b0:1a3:5de8:e78b with SMTP id k5-20020a056870350500b001a35de8e78bmr576923oah.21.1686295754188;
+        Fri, 09 Jun 2023 00:29:14 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:c2ea:d8e4:1fe8:21f0])
-        by smtp.gmail.com with ESMTPSA id y9-20020a655a09000000b005287a0560c9sm2160283pgs.1.2023.06.09.00.29.10
+        by smtp.gmail.com with ESMTPSA id y9-20020a655a09000000b005287a0560c9sm2160283pgs.1.2023.06.09.00.29.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 00:29:11 -0700 (PDT)
+        Fri, 09 Jun 2023 00:29:13 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
@@ -55,48 +56,204 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 0/4] arm64: dts: mediatek: mt8186: More DVFS nodes
-Date:   Fri,  9 Jun 2023 15:29:01 +0800
-Message-ID: <20230609072906.2784594-1-wenst@chromium.org>
+Subject: [PATCH v2 1/4] arm64: dts: mediatek: mt8186: Add CCI node and CCI OPP table
+Date:   Fri,  9 Jun 2023 15:29:02 +0800
+Message-ID: <20230609072906.2784594-2-wenst@chromium.org>
 X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
+In-Reply-To: <20230609072906.2784594-1-wenst@chromium.org>
+References: <20230609072906.2784594-1-wenst@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add a device node for the CCI (cache coherent interconnect) and an OPP
+table for it. The OPP table was taken from the downstream ChromeOS
+kernel.
 
-This adds more of the DVFS stuff at the SoC .dtsi level. This includes
-the CCI and GPU.
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+Angelo, I didn't pick up your Reviewed-by since I dropped the
+"opp-level" properties.
 
-Changes since v1:
-- Dropped opp-level property from CPU and CCI OPP tables
-- Used "opp-supported-hw = <0xff>" for GPU base OPPs to denote "all
-  variations"
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 101 +++++++++++++++++++++++
+ 1 file changed, 101 insertions(+)
 
-Please have a look and merge for this cycle if possible.
-
-On another note, I'm still cleaning up the MT6366 regulator's binding.
-We shouldn't upstream the boards until the PMIC is ready.
-
-ChenYu
-
-Chen-Yu Tsai (4):
-  arm64: dts: mediatek: mt8186: Add CCI node and CCI OPP table
-  arm64: dts: mediatek: mt8186: Wire up CPU frequency/voltage scaling
-  arm64: dts: mediatek: mt8186: Add GPU speed bin NVMEM cells
-  arm64: dts: mediatek: mt8186: Wire up GPU voltage/frequency scaling
-
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 490 ++++++++++++++++++++++-
- 1 file changed, 489 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+index 8c02232cac38..93f3c45ba372 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+@@ -27,6 +27,99 @@ aliases {
+ 		rdma1 = &rdma1;
+ 	};
+ 
++	cci: cci {
++		compatible = "mediatek,mt8186-cci";
++		clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>,
++			 <&apmixedsys CLK_APMIXED_MAINPLL>;
++		clock-names = "cci", "intermediate";
++		operating-points-v2 = <&cci_opp>;
++	};
++
++	cci_opp: opp-table-cci {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		cci_opp_0: opp-500000000 {
++			opp-hz = /bits/ 64 <500000000>;
++			opp-microvolt = <600000>;
++		};
++
++		cci_opp_1: opp-560000000 {
++			opp-hz = /bits/ 64 <560000000>;
++			opp-microvolt = <675000>;
++		};
++
++		cci_opp_2: opp-612000000 {
++			opp-hz = /bits/ 64 <612000000>;
++			opp-microvolt = <693750>;
++		};
++
++		cci_opp_3: opp-682000000 {
++			opp-hz = /bits/ 64 <682000000>;
++			opp-microvolt = <718750>;
++		};
++
++		cci_opp_4: opp-752000000 {
++			opp-hz = /bits/ 64 <752000000>;
++			opp-microvolt = <743750>;
++		};
++
++		cci_opp_5: opp-822000000 {
++			opp-hz = /bits/ 64 <822000000>;
++			opp-microvolt = <768750>;
++		};
++
++		cci_opp_6: opp-875000000 {
++			opp-hz = /bits/ 64 <875000000>;
++			opp-microvolt = <781250>;
++		};
++
++		cci_opp_7: opp-927000000 {
++			opp-hz = /bits/ 64 <927000000>;
++			opp-microvolt = <800000>;
++		};
++
++		cci_opp_8: opp-980000000 {
++			opp-hz = /bits/ 64 <980000000>;
++			opp-microvolt = <818750>;
++		};
++
++		cci_opp_9: opp-1050000000 {
++			opp-hz = /bits/ 64 <1050000000>;
++			opp-microvolt = <843750>;
++		};
++
++		cci_opp_10: opp-1120000000 {
++			opp-hz = /bits/ 64 <1120000000>;
++			opp-microvolt = <862500>;
++		};
++
++		cci_opp_11: opp-1155000000 {
++			opp-hz = /bits/ 64 <1155000000>;
++			opp-microvolt = <887500>;
++		};
++
++		cci_opp_12: opp-1190000000 {
++			opp-hz = /bits/ 64 <1190000000>;
++			opp-microvolt = <906250>;
++		};
++
++		cci_opp_13: opp-1260000000 {
++			opp-hz = /bits/ 64 <1260000000>;
++			opp-microvolt = <950000>;
++		};
++
++		cci_opp_14: opp-1330000000 {
++			opp-hz = /bits/ 64 <1330000000>;
++			opp-microvolt = <993750>;
++		};
++
++		cci_opp_15: opp-1400000000 {
++			opp-hz = /bits/ 64 <1400000000>;
++			opp-microvolt = <1031250>;
++		};
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -83,6 +176,7 @@ cpu0: cpu@0 {
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		cpu1: cpu@100 {
+@@ -101,6 +195,7 @@ cpu1: cpu@100 {
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		cpu2: cpu@200 {
+@@ -119,6 +214,7 @@ cpu2: cpu@200 {
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		cpu3: cpu@300 {
+@@ -137,6 +233,7 @@ cpu3: cpu@300 {
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		cpu4: cpu@400 {
+@@ -155,6 +252,7 @@ cpu4: cpu@400 {
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		cpu5: cpu@500 {
+@@ -173,6 +271,7 @@ cpu5: cpu@500 {
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		cpu6: cpu@600 {
+@@ -191,6 +290,7 @@ cpu6: cpu@600 {
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&l2_1>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		cpu7: cpu@700 {
+@@ -209,6 +309,7 @@ cpu7: cpu@700 {
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&l2_1>;
+ 			#cooling-cells = <2>;
++			mediatek,cci = <&cci>;
+ 		};
+ 
+ 		idle-states {
 -- 
 2.41.0.162.gfafddb0af9-goog
 
