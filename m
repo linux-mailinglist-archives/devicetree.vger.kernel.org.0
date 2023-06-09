@@ -2,99 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7901C72A42F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 22:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA4F172A4E2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 22:44:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbjFIUPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 16:15:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58778 "EHLO
+        id S232414AbjFIUoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 16:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230357AbjFIUPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 16:15:43 -0400
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F802136
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 13:15:41 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id ada2fe7eead31-43dc4d6fa2fso620486137.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 13:15:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686341740; x=1688933740;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=raGvAg29sSFwcM9RybsJx6+tqHFKznCftHEYSM8PqQ4=;
-        b=pPNHsRh9XiWRLgHB0psr+DFRlrIRviKoHNYjlD3Z2cAP6yYCcNYhAjkk4gy21UwZ5e
-         t8KNonsK5yKuN/oy7DksWVDxaBxUsNCI44HBD2rpaVVUxooIdgVaBZrHDpgV+eMLT+qs
-         9oy2zhNURd+ECpyD92bcnVa8viSrPWkhYVYzvQTIczSgH8rhBnzfth76pw2wfWL39z+N
-         CO92EIGZXp7n9l1uWigMJEUNLCsQa5Ct6RK3slYzQ6kviSoO8JybSKggVuS7Jmji6cGA
-         /E5MXZRmswlRVAkRh0doAjJdla9rKLboqyGYeW/WL0OzxLFrhhoGD2zt6zl/MBpyqvL0
-         7QVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686341740; x=1688933740;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=raGvAg29sSFwcM9RybsJx6+tqHFKznCftHEYSM8PqQ4=;
-        b=LflpS2ICibu+3La2vI3h9RjPorgLKSCiRLLvh7KWv8tSQYmEBW0j2RcbsFqsm0tuha
-         TKNDtOwiZUSghviQvazRbCMATaECaQVsgaNatEntnPQ3fgUGZFV+2fizUfVmFdUJM0rz
-         k0VknpfG88rko9+HasLrK9KRexnzsaHdJ9bSSoSuJZGA9PlbceYWrITjEqkJ9DlgGYOT
-         xX0AHD8mZCImVqODW3SoryHENAly2BUqcudeLObVyIzsIarSk6FxBO4ms3kMZKv3qwaE
-         chKA4hv8zqzcKz5RvEQnBcBoirfzuQbSoWzce+8+ifR5dSA2JRve/W9jNPhSWod8bZZz
-         dNcw==
-X-Gm-Message-State: AC+VfDzxDgr0RNJzNcqgVtx6JaSSOmjOORxQFqTyxNk6hIo4c8k3k3hM
-        pk8bP+Ty8PvyOYqJKBmp3ZrUvNUD40MJkTU3ldB38g==
-X-Google-Smtp-Source: ACHHUZ6buQWS9YCWGt3+h3H7ytmFRag705dKxxCwPKDrEa608VLfIidhHQ3FzwOdmHPVkkzqVsIHN/lz359RcfvV0DI=
-X-Received: by 2002:a67:f241:0:b0:43b:2551:5172 with SMTP id
- y1-20020a67f241000000b0043b25515172mr1263807vsm.24.1686341740176; Fri, 09 Jun
- 2023 13:15:40 -0700 (PDT)
+        with ESMTP id S232397AbjFIUoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 16:44:09 -0400
+Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch [185.70.40.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91DB2D7C;
+        Fri,  9 Jun 2023 13:44:07 -0700 (PDT)
+Date:   Fri, 09 Jun 2023 20:44:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1686343445; x=1686602645;
+        bh=pZVmlS0Dh4UwZm7Cf3ZnTS5MkKxcVS93i6YC2fAbp8s=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=OnePWlvYrdB3+LdTIJLj/ZvkKGb1GMsMBEwQVCo3UfKxMa7XhtUc9+2q6P3AZcv6b
+         N5yz9UYQvpEUIGdWWdsDA0Znin54iCHXYRbZQsxD3fpf+Xd3pl1fJ12rVoPyGnV8VO
+         YnB35ZNc0ldkrDHF+vkPTwq7FxkqNifQYvCSvEL4iqTt07/XCnhK1YMxJCt/fDMdlO
+         pP4205NPShQ+MKN1nOgwJcaye1qpTFzgfOauLqorGO5wKVYrRPfGbxBhxZns6Ae7ev
+         aVKBOYBw5GHoEuFvSV1uYF7zM796NEzHf5u1llfrnDDn8xOWke/QLLY63QpmmQvcx9
+         l497dnPOcNtTg==
+To:     krzysztof.kozlowski@linaro.org
+From:   Raymond Hackley <raymondhackley@protonmail.com>
+Cc:     broonie@kernel.org, davem@davemloft.net,
+        devicetree@vger.kernel.org, edumazet@google.com,
+        jk@codeconstruct.com.au, kuba@kernel.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, michael@walle.cc,
+        netdev@vger.kernel.org, pabeni@redhat.com,
+        raymondhackley@protonmail.com, robh+dt@kernel.org,
+        u.kleine-koenig@pengutronix.de
+Subject: Re: [PATCH v2 2/2] NFC: nxp-nci: Add pad supply voltage pvdd-supply
+Message-ID: <20230609204329.105189-1-raymondhackley@protonmail.com>
+In-Reply-To: <7ad5d027-9b15-f59e-aa76-17e498cb7aba@linaro.org>
+References: <20230609154033.3511-1-raymondhackley@protonmail.com> <20230609154200.3620-1-raymondhackley@protonmail.com> <e2bb439c-9b72-991b-00f6-0b5e7602efd9@linaro.org> <20230609173935.84424-1-raymondhackley@protonmail.com> <7ad5d027-9b15-f59e-aa76-17e498cb7aba@linaro.org>
+Feedback-ID: 49437091:user:proton
 MIME-Version: 1.0
-References: <20230609143609.209373-1-brgl@bgdev.pl> <CAL_JsqK77OW3n0PW6zP3FNdmuQHnDp9=wfX4E3ga-VW0_LRHHA@mail.gmail.com>
-In-Reply-To: <CAL_JsqK77OW3n0PW6zP3FNdmuQHnDp9=wfX4E3ga-VW0_LRHHA@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 9 Jun 2023 22:15:29 +0200
-Message-ID: <CAMRc=Mc7bbaDA1g3gn79XJZL6bTPGf9xZsB3=A4oiMUggzb4kA@mail.gmail.com>
-Subject: Re: [PATCH] of: unittest: drop assertions for GPIO hog messages
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 7:01=E2=80=AFPM Rob Herring <robh+dt@kernel.org> wro=
-te:
->
-> On Fri, Jun 9, 2023 at 8:36=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
-> wrote:
-> >
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > These have now been demoted to debug and are normally hidden. Drop the
-> > assertions entirely.
-> >
-> > Suggested-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  drivers/of/unittest.c | 28 ----------------------------
-> >  1 file changed, 28 deletions(-)
->
-> Why is this a separate patch? Don't I get at least 5 days to
-> review/ack changes in drivers/of/?
->
+Hi Krzysztof,
 
-Sorry, my bad, I queued the previous one through the GPIO tree after
-it was reviewed here thinking the unittests bits are trivial. I can
-back it out if you insist or you can ack this one and the end effect
-is the same? I will pay attention in the future.
+On Friday, June 9th, 2023 at 7:29 PM, Krzysztof Kozlowski <krzysztof.kozlow=
+ski@linaro.org> wrote:
 
-Bart
+> > > Why do you need these checks? This should be called in correct contex=
+t,
+> > > so when regulator is valid and enabled. If you have such checks it
+> > > suggests that code is buggy and this is being called in wrong context=
+s.
+> >=20
+> > First condition !IS_ERR(pvdd) is to check if pvdd exists.
+> > Some devices, msm8916-samsung-serranove for example, doesn't need pvdd =
+or
+> > have it bound in the device tree:
+>=20
+>=20
+> If regulator is missing you should get a dummy.
+>=20
+> But anyway the code will not be executed if you don't get proper regulato=
+r.
+>=20
+
+The current patch set is using devm_regulator_get_optional() instead of
+devm_regulator_get(), which doesn't get a dummy regulator.
+
+> > https://github.com/torvalds/linux/commit/ab0f0987e035f908d670fed7d86efa=
+6fac66c0bb
+> >=20
+> > Without !IS_ERR(pvdd), checking it with regulator_is_enabled(pvdd):
+> >=20
+> > [ 50.161882] 8<--- cut here ---
+> > [ 50.161906] Unable to handle kernel paging request at virtual address =
+fffffff9 when read
+> > [ 50.161916] [fffffff9] *pgd=3Daffff841, *pte=3D00000000, *ppte=3D00000=
+000
+> > [ 50.161938] Internal error: Oops: 27 [#1] PREEMPT SMP ARM
+> >=20
+> > Or disabling it directly with regulator_disable(pvdd):
+> >=20
+> > [ 69.439827] 8<--- cut here ---
+> > [ 69.439841] Unable to handle kernel NULL pointer dereference at virtua=
+l address 00000045 when read
+> > [ 69.439852] [00000045] *pgd=3D00000000
+> > [ 69.439864] Internal error: Oops: 5 [#1] PREEMPT SMP ARM
+> >=20
+> > Second condition regulator_is_enabled(pvdd) is to make sure that pvdd i=
+s
+> > disabled with balance.
+>=20
+>=20
+> So you have buggy code and to hide the bug you add checks? No, make the
+> code correct so the check is not needed.
+>=20
+
+Do you mean that I should use devm_regulator_get() instead in order to get
+a dummy regulator, so that it can disable pvdd without unnecessary checks?
+Actually there is v4 with those buggy codes and checks dropped.
+Please do let me know if I am understanding and doing it correctly. I would
+send it after proper period of cooldown.
+
+Regards,
+Raymond
+
