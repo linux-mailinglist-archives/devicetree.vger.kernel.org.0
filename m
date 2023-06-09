@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8718729E8C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 825D7729E95
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232324AbjFIPcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:32:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60484 "EHLO
+        id S241579AbjFIPdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232003AbjFIPcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:32:08 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57EC1271D
-        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:32:07 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f7f6341b99so14773335e9.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 08:32:07 -0700 (PDT)
+        with ESMTP id S241602AbjFIPdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:33:08 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B0630FD
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:33:05 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-970028cfb6cso342764066b.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 08:33:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686324726; x=1688916726;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=G1mhn381wGPq9VsfFUBH75JUbhAKYMmZAsIxZ0NhEH8=;
-        b=fPfahtDhAJMzJoNJVTccQv7orfyS/dgzun65AdxRuRSsxcpbEkPL/IjmLNcrvhlODs
-         KV9h/VpBXaPTKq5BYEWG30cPWUto9/0w2ujcb0PPSP5LpHwAhb8WU7RTXiOnZKVKkYAF
-         JTUd/K+GHh+yOrbcEuJDZmgmK7qpYlbjIUSnoNFiGVgsU5UlL4D9zYTsUkKdHY9uyyZm
-         EIG23rSUT2IH1dLUIFQyiwc/zkjbMJyIzLK+T73PUY7rb3ItLp8XWvqa69a50zk4/tXy
-         RBWiSjsbRfLNUCsXXKlXj3f8Dc9FTTkUciCsfwtIOwT8UkSfhWTjz8mZ79XUfFsy6RoZ
-         nkPg==
+        d=linaro.org; s=google; t=1686324784; x=1688916784;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ur31KDmwW2Vamx0iLWm8eg6eZn3xEBjuZ8itz/0+GJ8=;
+        b=mdsstRzL1QzvciUaKcbVLGU5Xu4erVa66pzYFwSDmbTqK10o6fleyMabNyzGT2Vylr
+         zsKdcQQcxcccKeNdC7iRPc7v9j5B0cpKHto6OR1Zhl6ijtRroUJCbvb44JOBxPvOI0bc
+         C93vTwtSB1Sjlgh/zaI+HPLS2r+eqJLRT4PG2CmH40Zck2w3jxN9gANBo4S0nkD6NRy/
+         ACXeLJR0qtn5HU2RdtFkK/L+AFCqwZB2hpRFz7Nr5PVGjyyeIZ7c15hlBVuuyz1L68bf
+         FdCP86LpyK2HBGj0rP9yli/1eRC8ioYTEGOOob6vWkvYMiAIAqG586uZ2t4mIAUGkJxx
+         AKGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686324726; x=1688916726;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G1mhn381wGPq9VsfFUBH75JUbhAKYMmZAsIxZ0NhEH8=;
-        b=Hq5gXCovGAP/zp/EYO1fxfIgAd0ZabzBDebXMGsAxBMwjh+Fl67jdJ96BNO55B+ySI
-         FxBRV4oiEwe1M9OSHD1BHQQ2iy45DpwfOxqV1vUXrYzudVeMYDK6JJp3MSg+CIM73QnN
-         h2+kjG+riIhUweYy1LrUcDk6h3WgHnvDQR/OLwOcuF0hbizLNhK2pak9mAMlKuyvFYyO
-         tPAhgOJ5+hGar74cVcIDI92kERo/2EIf8Hyc3QyribOlRx/HBkFpoLUKNFVz5pZtKh5l
-         G+6e2XqJ/i5PNtN451GrF05veZHON2V26QvRaxhWkvVr+OoD7LbiBFZbKpB7ZhoSST00
-         66xA==
-X-Gm-Message-State: AC+VfDwyK2ct/7/uHQhAoHM4HUc7HkbeLy2PF6q8rxM5PYMu+Hw42naG
-        MsMK5VPhY5IiNI+wtWh/IW8QcA==
-X-Google-Smtp-Source: ACHHUZ7Po/UKSSzifvbKjlrEYfqLwnw9C7rwIkJpErr95fAz+R4+DXk8WHplcmI40TSbk3pmILRgow==
-X-Received: by 2002:a1c:790f:0:b0:3f7:e629:9f3 with SMTP id l15-20020a1c790f000000b003f7e62909f3mr1145744wme.16.1686324725726;
-        Fri, 09 Jun 2023 08:32:05 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5c40:3a0f:b23:350f? ([2a01:e0a:982:cbb0:5c40:3a0f:b23:350f])
-        by smtp.gmail.com with ESMTPSA id l19-20020a7bc453000000b003f42328b5d9sm2960711wmi.39.2023.06.09.08.32.04
+        d=1e100.net; s=20221208; t=1686324784; x=1688916784;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ur31KDmwW2Vamx0iLWm8eg6eZn3xEBjuZ8itz/0+GJ8=;
+        b=io5jjYBAF8t5PsAwVxYTNmgczc+46YklyI7yPzNeAtBzA62xqnIPs/C5QN28fiAIZp
+         YmVvFA24X9eP/pt/RpuBraK5oOun+l+yQwRLorMsGw4qaIZqxNLeflobvKecKrmuek0G
+         JzGNqkiahWeNexQjh6VQKUTHVjocHRzKLR82p7enwAzmTxz/IyuQAYk/kw83ANhGS0Mn
+         /lkQFJAqiGzfMGd1p0v3br8fnTiG3cQMNHD82u5wxdTFBlU9s+sHUV7BjyGzJalfB3OK
+         aZiPgmhOlGi3aylpnE2J106xFevltI2+aKzXmF/Vbqx9s3UCVmyl2MNWOMRUuoC/E2Cr
+         ts4A==
+X-Gm-Message-State: AC+VfDxoeoZvFNPd1nu2/QFWeE6LRwzlHh7qlKBzaOt3ufi0AC4fyGPP
+        ngpQYzBUeRtOsuzl40gtvN3eNw==
+X-Google-Smtp-Source: ACHHUZ6y/JtCqm1Lj+q+Mwlen94gR/wsS1Sunol9iGCi91EQ5CdAJ2o7vqnELK3VT2rNmemmAe/ldw==
+X-Received: by 2002:a17:906:dc8e:b0:968:4ce9:677a with SMTP id cs14-20020a170906dc8e00b009684ce9677amr2279333ejc.38.1686324784301;
+        Fri, 09 Jun 2023 08:33:04 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e25-20020a170906081900b0094ee3e4c934sm1400632ejd.221.2023.06.09.08.33.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jun 2023 08:32:05 -0700 (PDT)
-Message-ID: <c76c6611-9c8c-27e1-3b60-1ec677bd6ad3@linaro.org>
-Date:   Fri, 9 Jun 2023 17:32:04 +0200
+        Fri, 09 Jun 2023 08:33:03 -0700 (PDT)
+Message-ID: <b913e3a3-bc32-8d2f-c2a9-9c7e860b7b15@linaro.org>
+Date:   Fri, 9 Jun 2023 17:33:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
- hw_onecell_data to drop NR_CLKS
+Subject: Re: [PATCH v3 1/2] dt-bindings:iio:adc: add max14001
 Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
- <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
- <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
- <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
- <1jwn0c672d.fsf@starbuckisacylon.baylibre.com>
-Organization: Linaro Developer Services
-In-Reply-To: <1jwn0c672d.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Kim Seer Paller <kimseer.paller@analog.com>
+Cc:     jic23@kernel.org, lars@metafoo.de, lgirdwood@gmail.com,
+        broonie@kernel.org, Michael.Hennerich@analog.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230608175517.40217-1-kimseer.paller@analog.com>
+ <20230608175517.40217-2-kimseer.paller@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230608175517.40217-2-kimseer.paller@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -90,137 +78,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2023 16:30, Jerome Brunet wrote:
-> 
-> On Thu 08 Jun 2023 at 14:53, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> On 08/06/2023 14:45, Jerome Brunet wrote:
->>>>    +struct meson_a1_pll_clks {
->>>> +	struct clk_hw **hw_clks;
->>>> +	unsigned int hw_clk_num;
->>>> +};
->>>> +
->>>> +static struct meson_a1_pll_clks a1_pll_clks = {
->>>> +	.hw_clks = a1_pll_hw_clks,
->>>> +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
->>>> +};
->>>> +
->>>> +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
->>>> +{
->>>> +	const struct meson_a1_pll_clks *data = clk_data;
->>>> +	unsigned int idx = clkspec->args[0];
->>>> +
->>>> +	if (idx >= data->hw_clk_num) {
->>>> +		pr_err("%s: invalid index %u\n", __func__, idx);
->>>> +		return ERR_PTR(-EINVAL);
->>>> +	}
->>>> +
->>>> +	return data->hw_clks[idx];
->>>> +}
->>> I'd prefer to have a single struct type and and single custom
->>> callback for the different SoC please.
->>
->> Sure, I've written a common code for that, but I have a hard time finding
->> a proper naming for it... so I choosed meson-clkc since it could have
->> more common helper code for duplicated code over the clk driver:
-> 
-> Agreed. meson-clkc-utils maybe ?
+On 08/06/2023 19:55, Kim Seer Paller wrote:
+> The MAX14001 is configurable, isolated 10-bit ADCs for multi-range
+> binary inputs.
 
-Ack seems better
+Subject: still missing spaces, no improvements.
 
-Thanks
-Neil
+This is a friendly reminder during the review process.
 
-> 
->>
->> ===================================><============================================================================
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index 8ce846fdbe43..9070dcfd9e71 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
->>   	tristate
->>   	select COMMON_CLK_MESON_REGMAP
->>
->> +config COMMON_CLK_MESON_CLKC
->> +	tristate
->> +
->>   config COMMON_CLK_MESON_AO_CLKC
->>   	tristate
->>   	select COMMON_CLK_MESON_REGMAP
->> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
->> index d5288662881d..13c6db466986 100644
->> --- a/drivers/clk/meson/Makefile
->> +++ b/drivers/clk/meson/Makefile
->> @@ -1,6 +1,7 @@
->>   # SPDX-License-Identifier: GPL-2.0-only
->>   # Amlogic clock drivers
->>
->> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
->>   obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
->>   obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
->>   obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
->> diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
->> new file mode 100644
->> index 000000000000..fa98b9d09011
->> --- /dev/null
->> +++ b/drivers/clk/meson/meson-clkc.c
->> @@ -0,0 +1,25 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
->> + */
->> +
->> +#include <linux/of_device.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/module.h>
->> +#include "meson-clkc.h"
->> +
->> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
->> +{
->> +	const struct meson_clk_hw_data *data = clk_hw_data;
->> +	unsigned int idx = clkspec->args[0];
->> +
->> +	if (idx >= data->num) {
->> +		pr_err("%s: invalid index %u\n", __func__, idx);
->> +		return ERR_PTR(-EINVAL);
->> +	}
->> +
->> +	return data->hws[idx];
->> +}
->> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
->> +
->> +MODULE_LICENSE("GPL v2");
->> diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
->> new file mode 100644
->> index 000000000000..e3bad2aa17eb
->> --- /dev/null
->> +++ b/drivers/clk/meson/meson-clkc.h
->> @@ -0,0 +1,19 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->> +/*
->> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
->> + */
->> +
->> +#ifndef __MESON_HW_CLKC_H__
->> +#define __MESON_HW_CLKC_H__
->> +
->> +#include <linux/of_device.h>
->> +#include <linux/clk-provider.h>
->> +
->> +struct meson_clk_hw_data {
->> +	struct clk_hw	**hws;
->> +	unsigned int	num;
->> +};
->> +
->> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
->> +
->> +#endif
->> ===================================><============================================================================
->>
->> If it's ok I'll send a v2 using this.
->>
->> Thanks,
->> Neil
-> 
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+With subject fixed:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you do not know the process, here is a short
+explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tools like b4 can help
+here. However, there's no need to repost patches *only* to add the tags.
+The upstream maintainer will do that for acks received on the version
+they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+Best regards,
+Krzysztof
 
