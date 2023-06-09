@@ -2,68 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A8772A0A4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 18:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B28572A0C9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 19:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbjFIQw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 12:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53800 "EHLO
+        id S229790AbjFIRBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 13:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjFIQw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 12:52:56 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E0981993;
-        Fri,  9 Jun 2023 09:52:54 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-777a6ebb542so82946039f.0;
-        Fri, 09 Jun 2023 09:52:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686329573; x=1688921573;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eujn8JUGHI0bBmgrTXDm/BLkyXowc0kt/C2sds+BNXQ=;
-        b=iPU0N01EfzqpjtP1WyrIQIHASkBXtdSJ59OUQUEX+qG1j67PPukrfAatgVB+oENiLD
-         4OOjY1H4FZHB31cqipRL9FzBJsiSGP8NDOSLWMdUrx48Cs6rryETb1sO7UuVPg3in4UY
-         +NMN0onbpo3kyD6gxqpBW4ny8tuvd5Xtg7qD00LQ6i7KZPrPjoUl/SxBK+hT+MHC66cn
-         wPi0Tmed4Qjup5AhZBOS+iEq/u2QXfyrZkv0rTWJcbHruqjY4I6OUGUGGCi+44/rh/+U
-         OegMtXxI8PbPvh4LQLRGpYHdvG2xWrXEQLuITL9pRNenTR1bww8PJvmdNYXtl9A8qim+
-         y2Xg==
-X-Gm-Message-State: AC+VfDzW5j77LqumHtS1+Jro+X6dmJ4Whz5aTLFt0d3x2QqtqRTM+4Iq
-        m0d+e7qiGeX7gW69GAU8sPUS5AIvhA==
-X-Google-Smtp-Source: ACHHUZ5W5KHyotltYhmI+LU0LABrhutXkkEdJQOh4ifI18m6JBhrPVQsDgMYEamdr04ba47axOw5+A==
-X-Received: by 2002:a5e:8612:0:b0:77a:c54c:1e51 with SMTP id z18-20020a5e8612000000b0077ac54c1e51mr2120674ioj.9.1686329573613;
-        Fri, 09 Jun 2023 09:52:53 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id y10-20020a5ec80a000000b0076c70f8c4d1sm1174734iol.45.2023.06.09.09.52.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 09:52:52 -0700 (PDT)
-Received: (nullmailer pid 1263494 invoked by uid 1000);
-        Fri, 09 Jun 2023 16:52:50 -0000
-Date:   Fri, 9 Jun 2023 10:52:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: power: reset: qcom-pon: define
- pm8941-pon
-Message-ID: <168632956664.1263392.15400080254479022707.robh@kernel.org>
-References: <20230609022553.1775844-1-dmitry.baryshkov@linaro.org>
- <20230609022553.1775844-2-dmitry.baryshkov@linaro.org>
+        with ESMTP id S229573AbjFIRBk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 13:01:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2AB53A89;
+        Fri,  9 Jun 2023 10:01:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 545A265A32;
+        Fri,  9 Jun 2023 17:01:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFFF3C4339E;
+        Fri,  9 Jun 2023 17:01:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686330098;
+        bh=GhisDNP0xKGx8dJcKdZnge943h22vyo+eQhu7nfZ35w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZqlNblg9IneIcVm1V6EWkDGO/PGXI1pBMhBUvqGLQFK2v3HEYyHtM8BmPqFb5eQow
+         U9uNDLn9Cjv6v5bW053o/S0bA70GAAfGbkjjdoOBPC5LQu/J+IrLEUAw7YsoRlvsBh
+         TRSmOvDya5om1eE47lNil/Hy2mKJdgfTR1GnLXafUzPGe2FFLZW/qBQTObUdGTIR7R
+         5v0IJsYC0XIdRMiykQQhukr+LbzGlf/uf4EIJyWkTh40nuBIlnxUlNOL5D5hIzvCxk
+         v29sYN8wtfMJ13xS7vKggQTmnRbR3cGfRNbTWTtSxUgp4GGSzlaWKbL4jgcs3agiy0
+         G1zIr+EekdV9w==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b1a86cdec6so22186301fa.3;
+        Fri, 09 Jun 2023 10:01:38 -0700 (PDT)
+X-Gm-Message-State: AC+VfDwM3EvQyd9YksqZm3RJE8NGOuD94jC+JFuGY07nObQ95ChgDYKq
+        obhlAlGnzJMyDkxo2/+JGRFRPkxdYoRRHfHNEw==
+X-Google-Smtp-Source: ACHHUZ4J03JLwJf7N3lccrKLGVK9xQF6FlOwMIZBpyBexKFg60td/QrLA6ccUIBjjoXZNgckErhuN4ILbDuKnoGWhS8=
+X-Received: by 2002:a2e:978c:0:b0:2b1:ccd1:d3b7 with SMTP id
+ y12-20020a2e978c000000b002b1ccd1d3b7mr1397834lji.46.1686330096733; Fri, 09
+ Jun 2023 10:01:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230609022553.1775844-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20230609143609.209373-1-brgl@bgdev.pl>
+In-Reply-To: <20230609143609.209373-1-brgl@bgdev.pl>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 9 Jun 2023 11:01:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK77OW3n0PW6zP3FNdmuQHnDp9=wfX4E3ga-VW0_LRHHA@mail.gmail.com>
+Message-ID: <CAL_JsqK77OW3n0PW6zP3FNdmuQHnDp9=wfX4E3ga-VW0_LRHHA@mail.gmail.com>
+Subject: Re: [PATCH] of: unittest: drop assertions for GPIO hog messages
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,17 +66,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 09 Jun 2023 05:25:50 +0300, Dmitry Baryshkov wrote:
-> On PM8941 pon doesn't store the reset reason. However we still need the
-> wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
-> device.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Fri, Jun 9, 2023 at 8:36=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl> =
+wrote:
+>
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> These have now been demoted to debug and are normally hidden. Drop the
+> assertions entirely.
+>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  .../bindings/power/reset/qcom,pon.yaml           | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
+>  drivers/of/unittest.c | 28 ----------------------------
+>  1 file changed, 28 deletions(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+Why is this a separate patch? Don't I get at least 5 days to
+review/ack changes in drivers/of/?
 
+
+Rob
