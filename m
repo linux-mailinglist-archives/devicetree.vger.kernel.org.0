@@ -2,272 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56670728F95
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 08:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CF49728F9A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 08:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230230AbjFIGAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 02:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
+        id S229811AbjFIGCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 02:02:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237810AbjFIGAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 02:00:08 -0400
-Received: from mail.inventec.com (mail.inventec.com [61.220.76.156])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E1135B8;
-        Thu,  8 Jun 2023 22:59:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-    s=sEx04; d=inventec.com;
-    h=from:to:cc:subject:date:message-id:content-type:mime-version;
-    bh=JXJiOYo62wfCi4z85yy8lHZu7RNg25JVuqt1GqbkrYs=;
-    b=IUTT0tZNxwjo5NP6lHjOHn2ovaGyA2a2t4AP6pG1HFu+/SkF6ezjngP2LGZ5/G
-      rMTnT8tbehYkg+5jK6xPIssjR1ZzRatlF34pEWloFi4w6uM0iiv8YEl7BK4ief
-      0PewF2bvSxuH8GvGFjqtFgOCvc3NJW2MIf1ixnc8l131Y4I=
-Received: from IEC1-EX2016-03.iec.inventec (10.15.2.59) by
- IEC1-EX2016-04.iec.inventec (10.1.254.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 9 Jun 2023 13:59:54 +0800
-Received: from IEC1-MSE-FE2.inventec.com (10.1.254.204) by
- IEC1-EX2016-03.iec.inventec (10.15.2.59) with Microsoft SMTP Server id
- 15.1.2507.23 via Frontend Transport; Fri, 9 Jun 2023 13:59:54 +0800
-Received: from IEC1-EX2016-02.iec.inventec (IEC1-EX2016-02.iec.inventec [10.1.254.221])
-        by IEC1-MSE-FE2.inventec.com with ESMTP id 3595xppj042352;
-        Fri, 9 Jun 2023 13:59:51 +0800 (GMT-8)
-        (envelope-from Chen.PJ@inventec.com)
-Received: from IEC1-EX2016-01.iec.inventec (10.15.2.58) by
- IEC1-EX2016-02.iec.inventec (10.1.254.221) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 9 Jun 2023 13:59:51 +0800
-Received: from IEC1-EX2016-01.iec.inventec ([fe80::3cbc:265e:12a1:d39b]) by
- IEC1-EX2016-01.iec.inventec ([fe80::3cbc:265e:12a1:d39b%7]) with mapi id
- 15.01.2507.023; Fri, 9 Jun 2023 13:59:51 +0800
-From:   =?big5?B?Q2hlbi5QSiCzr6xmpfQgVEFP?= <Chen.PJ@inventec.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-CC:     =?big5?B?WWUuVmljILitpnSyTSBUQU8=?= <ye.vic@inventec.com>,
-        =?big5?B?SHVhbmcuQWxhbmcgtsCtXq2mIFRBTw==?= 
-        <Huang.Alang@inventec.com>
-Subject: [PATCH v5 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
-Thread-Topic: [PATCH v5 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
-Thread-Index: AQHZmpc8ZT11f+G5h0KAq498L5ipOA==
-Date:   Fri, 9 Jun 2023 05:59:51 +0000
-Message-ID: <b039b1b2673644af84db8f803bc7d156@inventec.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-imapappendstamp: IEC1-EX2016-01.iec.inventec (15.01.2507.023)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [10.6.245.192]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229518AbjFIGCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 02:02:21 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7B313D;
+        Thu,  8 Jun 2023 23:02:19 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3594bSEJ006123;
+        Fri, 9 Jun 2023 06:02:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=Iu45rQ6XWEUxo/b1XJF4iBz3QcaMOpCLGop0Ai9kUw0=;
+ b=H+o3ej3VkIk125LeJ9Z4gDWbSSBtMFSRBaOfE4azdSGp6oOayMB//hbqx7KgiYwnKVqA
+ d4Zs/Y5iyA/500tUbq6UaEKzKBQB1Hxvp1mKbRobxzzKo4xwnaAaw7zF0+/nD/KIURTA
+ Pln9dcmwwPSEkGtEJZ+cKbZZuEXNeIokxhfbqS/mncssnsx5olSAn9+gAKm0w5ht9gdK
+ +2zZ/iGOqEiiApmLdgSZt9MogDEI5lCk8mb8keSm8GppQMISR5VdeDIHCLVXgJNAjZGl
+ Zy5m7VGBu8YyMiiaNqxrp1oB+46qLVRx+nZFpscrjJu1QiXFuB+dtvIDsfkY48ZkMgVc DQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r3nwerstm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Jun 2023 06:02:14 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35962DAH017167
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 9 Jun 2023 06:02:13 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 8 Jun 2023 23:02:08 -0700
+Date:   Fri, 9 Jun 2023 11:32:04 +0530
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <gregkh@linuxfoundation.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v14 3/5] arm64: dts: qcom: ipq9574: Add USB related nodes
+Message-ID: <20230609060203.GA22023@varda-linux.qualcomm.com>
+References: <cover.1686217906.git.quic_varada@quicinc.com>
+ <2f91eb879daaf9955dc56135d60a4be5e191a44d.1686217906.git.quic_varada@quicinc.com>
+ <71960b11-5686-9af5-423b-bfdaec56f3f9@linaro.org>
 MIME-Version: 1.0
-X-MAIL: IEC1-MSE-FE2.inventec.com 3595xppj042352
-X-TM-SNTS-SMTP: 90D72A97C3E18D66F7418256058E31B8144DE83F5F152141DA260F128639EA892000:8
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <71960b11-5686-9af5-423b-bfdaec56f3f9@linaro.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: K9thgWhAYYyu8mtu1-NM4SZjEHDrgngj
+X-Proofpoint-ORIG-GUID: K9thgWhAYYyu8mtu1-NM4SZjEHDrgngj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-09_03,2023-06-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 mlxlogscore=999 phishscore=0 priorityscore=1501
+ suspectscore=0 clxscore=1015 spamscore=0 adultscore=0 mlxscore=0
+ lowpriorityscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306090052
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED,WEIRD_QUOTING autolearn=ham
-        autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SW5pdGlhbCBpbnRyb2R1Y3Rpb24gb2YgSW52ZW50ZWMgU3RhcnNjcmVhbSB4ODYgZmFtaWx5DQpl
-cXVpcHBlZCB3aXRoIEFTVDI2MDAgQk1DIFNvQy4NCg0KU2lnbmVkLW9mZi1ieTogQ2hlbiBQSiA8
-Q2hlbi5wakBpbnZlbnRlYy5jb20+DQoNCi0tLQ0KIFY0IC0+IFY1Og0KICAtIFJlbW92ZSBkZXZp
-Y2VzIG5vdCBkZWZpbmVkIGluIGR0LWJpbmRpbmcgeWV0Lg0KIFYzIC0+IFY0Og0KICAtIFJlcGx5
-IHdpdGggZGV2aWNldHJlZSBiaW5kaW5nDQogICAgaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxs
-LzI4ZjBjZTBhODI0NjQwODNhZTI0ZjllZjJmNTk4NDI1QGludmVudGVjLmNvbS8NCiBWMiAtPiBW
-MzoNCiAgLSBSZW5hbWUgdGhlIG5vZGUgbmFtZSB0byBnZW5lcmljLg0KIFYxIC0+IFYyOg0KICAt
-IENvcnJlY3QgTGljZW5zZSBkZXNjcmlwdGlvbg0KICAtIFJlbW92ZSBub3Qgc3VwcG9ydGVkIGRl
-dmljZQ0KICAtIFVzaW5nIG9wZW5ibWMtZmxhc2gtbGF5b3V0LmR0c2kNCiAgLSBDb3JyZWN0IGRl
-dmljZSBmb3JtYXQNCi0tLQ0KIGFyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlICAgICAgICAgICAg
-ICAgICAgICB8ICAgMSArDQogLi4uL2R0cy9hc3BlZWQtYm1jLWludmVudGVjLXN0YXJzY3JlYW0u
-ZHRzICAgIHwgNDY2ICsrKysrKysrKysrKysrKysrKw0KIDIgZmlsZXMgY2hhbmdlZCwgNDY3IGlu
-c2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVk
-LWJtYy1pbnZlbnRlYy1zdGFyc2NyZWFtLmR0cw0KDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9v
-dC9kdHMvTWFrZWZpbGUgYi9hcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZQ0KaW5kZXggZWI2ODE5
-MDNkNTBiLi42YTg5N2ZmNDBmZjAgMTAwNjQ0DQotLS0gYS9hcmNoL2FybS9ib290L2R0cy9NYWtl
-ZmlsZQ0KKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUNCkBAIC0xNjI5LDYgKzE2Mjks
-NyBAQCBkdGItJChDT05GSUdfQVJDSF9BU1BFRUQpICs9IFwNCiAJYXNwZWVkLWJtYy1xdWFudGEt
-cTcxbC5kdGIgXA0KIAlhc3BlZWQtYm1jLXF1YW50YS1zNnEuZHRiIFwNCiAJYXNwZWVkLWJtYy1z
-dXBlcm1pY3JvLXgxMXNwaS5kdGIgXA0KKwlhc3BlZWQtYm1jLWludmVudGVjLXN0YXJzY3JlYW0u
-ZHRiIFwNCiAJYXNwZWVkLWJtYy1pbnZlbnRlYy10cmFuc2Zvcm1lcnMuZHRiIFwNCiAJYXNwZWVk
-LWJtYy10eWFuLXM3MTA2LmR0YiBcDQogCWFzcGVlZC1ibWMtdHlhbi1zODAzNi5kdGIgXA0KZGlm
-ZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC1ibWMtaW52ZW50ZWMtc3RhcnNjcmVh
-bS5kdHMgYi9hcmNoL2FybS9ib290L2R0cy9hc3BlZWQtYm1jLWludmVudGVjLXN0YXJzY3JlYW0u
-ZHRzDQpuZXcgZmlsZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMDAwMDAwLi5jMTkzZmUzMzY4
-NzUNCi0tLSAvZGV2L251bGwNCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC1ibWMtaW52
-ZW50ZWMtc3RhcnNjcmVhbS5kdHMNCkBAIC0wLDAgKzEsNDY2IEBADQorLy8gU1BEWC1MaWNlbnNl
-LUlkZW50aWZpZXI6IEdQTC0yLjAtb3ItbGF0ZXINCisvLyBDb3B5cmlnaHQgMjAyMyBJbnZlbnRl
-YyBDb3JwLg0KKw0KKy9kdHMtdjEvOw0KKw0KKyNpbmNsdWRlICJhc3BlZWQtZzYuZHRzaSINCisj
-aW5jbHVkZSAiYXNwZWVkLWc2LXBpbmN0cmwuZHRzaSINCisjaW5jbHVkZSA8ZHQtYmluZGluZ3Mv
-aTJjL2kyYy5oPg0KKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9ncGlvL2FzcGVlZC1ncGlvLmg+DQor
-DQorLyB7DQorCW1vZGVsID0gIlNUQVJTQ1JFQU0gQk1DIjsNCisJY29tcGF0aWJsZSA9ICJpbnZl
-bnRlYyxzdGFyc2NyZWFtLWJtYyIsICJhc3BlZWQsYXN0MjYwMCI7DQorDQorCWFsaWFzZXMgew0K
-KwkJc2VyaWFsNCA9ICZ1YXJ0NTsNCisJfTsNCisNCisJY2hvc2VuIHsNCisJCXN0ZG91dC1wYXRo
-ID0gJnVhcnQ1Ow0KKwl9Ow0KKw0KKwltZW1vcnlAODAwMDAwMDAgew0KKwkJZGV2aWNlX3R5cGUg
-PSAibWVtb3J5IjsNCisJCXJlZyA9IDwweDgwMDAwMDAwIDB4ODAwMDAwMDA+Ow0KKwl9Ow0KKw0K
-KwlyZXNlcnZlZC1tZW1vcnkgew0KKwkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkjc2l6ZS1j
-ZWxscyA9IDwxPjsNCisJCXJhbmdlczsNCisNCisJCXZpZGVvX2VuZ2luZV9tZW1vcnk6IHZpZGVv
-IHsNCisJCQlzaXplID0gPDB4MDQwMDAwMDA+Ow0KKwkJCWFsaWdubWVudCA9IDwweDAxMDAwMDAw
-PjsNCisJCQljb21wYXRpYmxlID0gInNoYXJlZC1kbWEtcG9vbCI7DQorCQkJcmV1c2FibGU7DQor
-CQl9Ow0KKwl9Ow0KKw0KKw0KKwlpaW8taHdtb24gew0KKwkJY29tcGF0aWJsZSA9ICJpaW8taHdt
-b24iOw0KKwkJaW8tY2hhbm5lbHMgPQ0KKwkJPCZhZGNfdTc0IDA+LCAvLyBQMF9WREQxMQ0KKwkJ
-PCZhZGNfdTc0IDE+LCAvLyBQMV9WREQxMQ0KKwkJPCZhZGNfdTc0IDI+LCAvLyBQMF8zVjNfUzUN
-CisJCTwmYWRjX3U3NCAzPiwgLy8gUDFfM1YzX1M1DQorCQk8JmFkY191NzQgND4sIC8vIFAzVjMN
-CisJCTwmYWRjX3U3NCA1PiwgLy8gVkJBVA0KKwkJPCZhZGNfdTc0IDY+LCAvLyBQM1YzX1NUQlkN
-CisJCTwmYWRjX3U3NCA3PiwgLy8gUDVWX1NUQlkNCisJCTwmYWRjX3U3NCA4PiwgLy8gUDVWDQor
-CQk8JmFkY191NzQgOT4sIC8vIFAxMlYNCisJCTwmYWRjX3U3NCAxMD4sIC8vIFAxX1ZERDE4X1M1
-DQorCQk8JmFkY191NzQgMTE+IC8vIFAwX1ZERDE4X1M1DQorCQk7DQorCX07DQorDQorCWxlZHMg
-ew0KKwkJY29tcGF0aWJsZSA9ICJncGlvLWxlZHMiOw0KKw0KKwkJdWlkIHsNCisJCQlsYWJlbCA9
-ICJVSURfTEVEIjsNCisJCQlncGlvcyA9IDwmZ3BpbzAgQVNQRUVEX0dQSU8oWCwgMikgR1BJT19B
-Q1RJVkVfTE9XPjsNCisJCX07DQorDQorCQloZWFydGJlYXQgew0KKwkJCWxhYmVsID0gIkhCX0xF
-RCI7DQorCQkJZ3Bpb3MgPSA8JmdwaW8wIEFTUEVFRF9HUElPKFAsIDcpIEdQSU9fQUNUSVZFX0xP
-Vz47DQorCQl9Ow0KKwl9Ow0KK307DQorDQorJm1kaW8wIHsNCisJc3RhdHVzID0gIm9rYXkiOw0K
-Kw0KKwlldGhwaHkwOiBldGhlcm5ldC1waHlAMCB7DQorCQljb21wYXRpYmxlID0gImV0aGVybmV0
-LXBoeS1pZWVlODAyLjMtYzIyIjsNCisJCXJlZyA9IDwxPjsNCisJfTsNCit9Ow0KKw0KKyZtYWMy
-IHsNCisJc3RhdHVzID0gIm9rYXkiOw0KKwlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KKwlw
-aHktbW9kZSA9ICJybWlpIjsNCisJcGluY3RybC0wID0gPCZwaW5jdHJsX3JtaWkzX2RlZmF1bHQ+
-Ow0KKwl1c2UtbmNzaTsNCit9Ow0KKw0KKyZtYWMzIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KKw0K
-KwlwaHktbW9kZSA9ICJyZ21paSI7DQorCXBoeS1oYW5kbGUgPSA8JmV0aHBoeTA+Ow0KKw0KKwlw
-aW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KKwlwaW5jdHJsLTAgPSA8JnBpbmN0cmxfcmdtaWk0
-X2RlZmF1bHQ+Ow0KK307DQorDQorJmZtYyB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJZmxhc2hA
-MCB7DQorCQlzdGF0dXMgPSAib2theSI7DQorCQltMjVwLGZhc3QtcmVhZDsNCisJCWxhYmVsID0g
-ImJtYyI7DQorCQlzcGktbWF4LWZyZXF1ZW5jeSA9IDw1MDAwMDAwMD47DQorCQlzcGktdHgtYnVz
-LXdpZHRoID0gPDQ+Ow0KKwkJc3BpLXJ4LWJ1cy13aWR0aCA9IDw0PjsNCisjaW5jbHVkZSAib3Bl
-bmJtYy1mbGFzaC1sYXlvdXQuZHRzaSINCisJfTsNCisNCisJZmxhc2hAMSB7DQorCQlzdGF0dXMg
-PSAib2theSI7DQorCQltMjVwLGZhc3QtcmVhZDsNCisJCWxhYmVsID0gImJtYzIiOw0KKwkJc3Bp
-LW1heC1mcmVxdWVuY3kgPSA8NTAwMDAwMDA+Ow0KKwkJc3BpLXR4LWJ1cy13aWR0aCA9IDw0PjsN
-CisJCXNwaS1yeC1idXMtd2lkdGggPSA8ND47DQorCX07DQorfTsNCisNCismc3BpMSB7DQorCXN0
-YXR1cyA9ICJva2F5IjsNCisJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCisJcGluY3RybC0w
-ID0gPCZwaW5jdHJsX3NwaTFfZGVmYXVsdD47DQorDQorCWZsYXNoQDAgew0KKwkJc3RhdHVzID0g
-Im9rYXkiOw0KKwkJbTI1cCxmYXN0LXJlYWQ7DQorCQlsYWJlbCA9ICJiaW9zIjsNCisJCXNwaS1t
-YXgtZnJlcXVlbmN5ID0gPDUwMDAwMDAwPjsNCisJCXNwaS10eC1idXMtd2lkdGggPSA8ND47DQor
-CQlzcGktcngtYnVzLXdpZHRoID0gPDQ+Ow0KKwl9Ow0KK307DQorDQorDQorJndkdDEgew0KKwlz
-dGF0dXMgPSAib2theSI7DQorfTsNCisNCismdnVhcnQxIHsNCisJc3RhdHVzID0gIm9rYXkiOw0K
-K307DQorDQorJnVhcnQxIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJnVhcnQzIHsN
-CisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJnVhcnQ1IHsNCisJc3RhdHVzID0gIm9rYXki
-Ow0KK307DQorDQorJmtjczMgew0KKwlhc3BlZWQsbHBjLWlvLXJlZyA9IDwweGNhMj47DQorCXN0
-YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZ1YXJ0X3JvdXRpbmcgew0KKwlzdGF0dXMgPSAib2th
-eSI7DQorfTsNCisNCismaTJjMCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKyZpMmMxIHsN
-CisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorJmkyYzIgew0KKwlzdGF0dXMgPSAib2theSI7DQor
-fTsNCismaTJjMyB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZpMmM0IHsNCisJc3Rh
-dHVzID0gIm9rYXkiOw0KKw0KKwkvLyBJMkMgRVhQQU5ERVINCisJaTJjLXN3aXRjaEA3MSB7DQor
-CQljb21wYXRpYmxlID0gIm54cCxwY2E5NTQ2IjsNCisJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0K
-KwkJI3NpemUtY2VsbHMgPSA8MD47DQorCQlyZWcgPSA8MHg3MT47DQorDQorCQlpMmNAMCB7DQor
-CQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJcmVn
-ID0gPDA+Ow0KKwkJCS8vIEFNRCBTQi1UU0kgQ1BVMQ0KKwkJCXNidHNpQDRjIHsNCisJCQkJY29t
-cGF0aWJsZSA9ICJhbWQsc2J0c2kiOw0KKwkJCQlyZWcgPSA8MHg0Yz47DQorCQkJfTsNCisJCX07
-DQorDQorCQlpMmNAMSB7DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2Vs
-bHMgPSA8MD47DQorCQkJcmVnID0gPDE+Ow0KKwkJCS8vIEFNRCBTQi1UU0kgQ1BVMg0KKwkJCXNi
-dHNpQDQ4IHsNCisJCQkJY29tcGF0aWJsZSA9ICJhbWQsc2J0c2kiOw0KKwkJCQlyZWcgPSA8MHg0
-OD47DQorCQkJfTsNCisJCX07DQorCX07DQorfTsNCisNCismaTJjNSB7DQorCXN0YXR1cyA9ICJv
-a2F5IjsNCisNCisJLy8gSTJDIEVYUEFOREVSIFUxNTMNCisJaTJjLXN3aXRjaEA3MCB7DQorCQlj
-b21wYXRpYmxlID0gIm54cCxwY2E5NTQ2IjsNCisJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJ
-I3NpemUtY2VsbHMgPSA8MD47DQorCQlyZWcgPSA8MHg3MD47DQorDQorCQl1c2JfaHViOiBpMmNA
-MCB7DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQor
-CQkJcmVnID0gPDA+Ow0KKw0KKwkJCS8vIFVTQiBVMTE0DQorCQkJdXNiLWh1YkAyYyB7DQorCQkJ
-CWNvbXBhdGlibGUgPSAibWljcm9jaGlwLHVzYjI1MTRiIjsNCisJCQkJcmVnID0gPDB4MmM+Ow0K
-KwkJCX07DQorCQl9Ow0KKw0KKwkJcmlzZXIxOiBpMmNAMSB7DQorCQkJI2FkZHJlc3MtY2VsbHMg
-PSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJcmVnID0gPDE+Ow0KKwkJfTsNCisN
-CisJCXJpc2VyMjogaTJjQDIgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXpl
-LWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwyPjsNCisJCX07DQorDQorCQlpMmNAMyB7DQorCQkJ
-I2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJcmVnID0g
-PDM+Ow0KKwkJfTsNCisJfTsNCit9Ow0KKw0KKyZpMmM2IHsNCisJc3RhdHVzID0gIm9rYXkiOw0K
-Kw0KKwkvLyBBRENfVTc0DQorCWFkY191NzQ6IGFkY0AzNSB7DQorCQljb21wYXRpYmxlID0gIm1h
-eGltLG1heDExMzkiOw0KKwkJcmVnID0gPDB4MzU+Ow0KKwkJI2lvLWNoYW5uZWwtY2VsbHMgPSA8
-MT47DQorCX07DQorDQorCXBzdUA1OCB7DQorCQljb21wYXRpYmxlID0gInBtYnVzIjsNCisJCXJl
-ZyA9IDwweDU4PjsNCisJfTsNCisNCisJcHN1QDVhIHsNCisJCWNvbXBhdGlibGUgPSAicG1idXMi
-Ow0KKwkJcmVnID0gPDB4NWE+Ow0KKwl9Ow0KKw0KKwkvLyBNb3RoZXJib2FyZCBUZW1wX1U4OQ0K
-Kwl0ZW1wZXJhdHVyZS1zZW5zb3JANGUgew0KKwkJY29tcGF0aWJsZSA9ICJ0aSx0bXA0MjEiOw0K
-KwkJcmVnID0gPDB4NGU+Ow0KKwl9Ow0KKw0KKwkvLyBSdW5CTUMgVGVtcF9VNg0KKwl0ZW1wZXJh
-dHVyZS1zZW5zb3JANDkgew0KKwkJY29tcGF0aWJsZSA9ICJ0aSx0bXA3NSI7DQorCQlyZWcgPSA8
-MHg0OT47DQorCX07DQorfTsNCisNCismaTJjNyB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJLy8g
-STJDIEVYUEFOREVSIFU0MA0KKwlpMmMtc3dpdGNoQDcwIHsNCisJCWNvbXBhdGlibGUgPSAibnhw
-LHBjYTk1NDUiOw0KKwkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkjc2l6ZS1jZWxscyA9IDww
-PjsNCisJCXJlZyA9IDwweDcwPjsNCisNCisJCWkyY0AwIHsNCisJCQkjYWRkcmVzcy1jZWxscyA9
-IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQlyZWcgPSA8MD47DQorCQl9Ow0KKw0K
-KwkJaTJjQDEgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0g
-PDA+Ow0KKwkJCXJlZyA9IDwxPjsNCisJCX07DQorDQorCQlpMmNAMiB7DQorCQkJI2FkZHJlc3Mt
-Y2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJcmVnID0gPDI+Ow0KKwkJ
-fTsNCisNCisJCWkyY0AzIHsNCisJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1j
-ZWxscyA9IDwwPjsNCisJCQlyZWcgPSA8Mz47DQorCQl9Ow0KKwl9Ow0KK307DQorDQorDQorJmky
-Yzggew0KKwlzdGF0dXMgPSAib2theSI7DQorCS8vIEZSVSBSdW5CTUMNCisJZWVwcm9tQDUxIHsN
-CisJCWNvbXBhdGlibGUgPSAiYXRtZWwsMjRjNTEyIjsNCisJCXJlZyA9IDwweDUxPjsNCisJCXBh
-Z2VzaXplID0gPDEyOD47DQorCX07DQorfTsNCisNCismaTJjOSB7DQorCXN0YXR1cyA9ICJva2F5
-IjsNCit9Ow0KKw0KKyZpMmMxMCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZpMmMx
-MSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZpMmMxMiB7DQorCXN0YXR1cyA9ICJv
-a2F5IjsNCisJLy8gRlJVIFNDTQ0KKwllZXByb21ANTEgew0KKwkJY29tcGF0aWJsZSA9ICJhdG1l
-bCwyNGM1MTIiOw0KKwkJcmVnID0gPDB4NTE+Ow0KKwkJcGFnZXNpemUgPSA8MTI4PjsNCisJfTsN
-CisNCisJLy8gU0NNIFRlbXBfVTE3DQorCXRlbXBlcmF0dXJlLXNlbnNvckA0ZiB7DQorCQljb21w
-YXRpYmxlID0gInRpLHRtcDc1IjsNCisJCXJlZyA9IDwweDRmPjsNCisJfTsNCit9Ow0KKw0KKw0K
-KyZncGlvMCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJZ3Bpby1saW5lLW5hbWVzID0NCisJLypB
-MC1BNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qQjAtQjcqLyAgICJhbGVydC1w
-c3UwLXNtYi1yLW4iLCJibWMtcmVhZHkiLCIiLCJhc3NlcnQtY3B1MC1wcm9jaG90LXItbiIsDQor
-CSIiLCIiLCIiLCIiLA0KKwkvKkMwLUM3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJ
-LypEMC1ENyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qRTAtRTcqLyAgICIiLCIi
-LCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkYwLUY3Ki8gICAiIiwiIiwiIiwiIiwicmVzZXQtc2dw
-aW8tci1uIiwiIiwiIiwiIiwNCisJLypHMC1HNyovICAgIiIsIiIsInNjbS1qdGFnLW11eC1zZWxl
-Y3QiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkgwLUg3Ki8gICAiIiwiIiwiIiwiIiwicmVzZXQtb3V0
-IiwicG93ZXItb3V0IiwiIiwiIiwNCisJLypJMC1JNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsImly
-cS1ibWMtY3B1MC1idWYtbm1pLW4iLCIiLA0KKwkvKkowLUo3Ki8gICAiIiwiIiwiIiwiIiwiIiwi
-IiwiIiwiIiwNCisJLypLMC1LNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qTDAt
-TDcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKk0wLU03Ki8gICAiIiwiIiwiIiwi
-IiwiIiwiIiwiIiwiIiwNCisJLypOMC1ONyovICAgIiIsIiIsIm5jc2ktb2NwLWNsay1lbi1uIiwi
-IiwiIiwiIiwiIiwiIiwNCisJLypPMC1PNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsImNwdTEtdGhl
-cm1hbC10cmlwLW4iLCIiLA0KKwkvKlAwLVA3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwN
-CisJLypRMC1RNyovICAgImNwdTAtcHJvY2hvdC1uIiwiIiwiY3B1MS1wcm9jaG90LW4iLCIiLCJj
-cHUwLXBlLXJzdDAiLCIiLCIiLCIiLA0KKwkvKlIwLVI3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwi
-IiwiIiwNCisJLypTMC1TNyovICAgIiIsIiIsIiIsIiIsDQorCSIiLCJQQ0hfU0xQX1M0X0JNQ19O
-IiwiY3B1MC10aGVybXRyaXAtbiIsImFsZXJ0LXBzdTEtc21iLXItbiIsDQorCS8qVDAtVDcqLyAg
-ICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKlUwLVU3Ki8gICAiIiwiIiwiIiwiIiwiIiwi
-IiwiIiwiIiwNCisJLypWMC1WNyovICAgImJpb3MtcmVjb3ZlcnktYnVmLW4iLCIiLCJhc3NlcnQt
-Y3B1MS1wcm9jaG90LXItbiIsIiIsDQorCSJwb3dlci1jaGFzc2lzLWdvb2QiLCIiLCIiLCIiLA0K
-KwkvKlcwLVc3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypYMC1YNyovICAgIiIs
-IiIsIiIsIiIsInBsYXRmb3JtLXR5cGUiLCIiLCIiLCIiLA0KKwkvKlkwLVk3Ki8gICAiIiwiIiwi
-IiwiIiwiIiwiIiwiIiwiIiwNCisJLypaMC1aNyovICAgIiIsImNwbGQtcG93ZXItYnJlYWstbiIs
-IiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qQUEwLUFBNyovICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIi
-LA0KKwkvKkFCMC1BQjcqLyAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypBQzAtQUM3Ki8g
-IiIsIiIsIiIsIiIsIiIsIiIsIiIsIiI7DQorfTsNCisNCismc2dwaW9tMCB7DQorCXN0YXR1cyA9
-ICJva2F5IjsNCisJbWF4LW5ncGlvcyA9IDw2ND47DQorCW5ncGlvcyA9IDw2ND47DQorCWJ1cy1m
-cmVxdWVuY3kgPSA8MTAwMDAwMD47DQorCWdwaW8tbGluZS1uYW1lcyA9DQorCS8qaW4gLSBvdXQg
-LSBpbiAtIG91dCAqLw0KKwkvKkEwLUE3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJ
-LypBMC1BNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qQjAtQjcqLyAgICIiLCJy
-ZXNldC1jcHUwLWkyYy1uIiwiIiwicmVzZXQtY3B1MS1pMmMtbiIsDQorCSIiLCJyZXNldC1pMmMt
-YnVzNy1uIiwiIiwidXNiMjUxNC0xLXJlc2V0LW4iLA0KKwkvKkIwLUI3Ki8gICAiIiwiYm1jLWNw
-dTAtdWFydC1lbiIsIiIsImhkdC1idWZmLWVuLW4iLA0KKwkiIiwiYXNzZXJ0LWNsZWFyLWNtb3Mi
-LCIiLCJoZHQtbXV4LXNlbGVjdC1tb24iLA0KKwkvKkMwLUM3Ki8gICAibGVkLWlkZW50aWZ5Iiwi
-Y3BsZC1qdGFnLW9lLXItbiIsImNwdTAtc3BkLWhvc3QtY3RybC1uIiwicmVzZXQtY3BsZC1oZHQt
-biIsDQorCSIiLCJpM2MtbXV4LXNlbGVjdCIsIiIsInNwaS1tdXgtc2VsZWN0IiwNCisJLypDMC1D
-NyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qRDAtRDcqLyAgICIiLCIiLCIiLCIi
-LCIiLCIiLCIiLCIiLA0KKwkvKkQwLUQ3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiYmlvcy1wb3N0
-LWNvbXBsZXRlLWJ1Zi1uIiwiIiwNCisJLypFMC1FNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIs
-IiIsDQorCS8qRTAtRTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkYwLUY3Ki8g
-ICAicHJlc2VuY2UtZmFuMC1uIiwiIiwicHJlc2VuY2UtZmFuMS1uIiwiIiwNCisJInByZXNlbmNl
-LWZhbjItbiIsIiIsInByZXNlbmNlLWZhbjMtbiIsIiIsDQorCS8qRjAtRjcqLyAgICJwcmVzZW5j
-ZS1mYW40LW4iLCIiLCJwcmVzZW5jZS1mYW41LW4iLCIiLA0KKwkicHJlc2VuY2UtY3B1MC1uIiwi
-IiwicHJlc2VuY2UtY3B1MS1uIiwiIiwNCisJLypHMC1HNyovICAgIiIsIiIsIiIsIiIsIiIsIiIs
-IiIsIiIsDQorCS8qRzAtRzcqLyAgICIiLCIiLCIiLCIiLCJwcmVzZW5jZS1wc3UwLWNwbGQtbiIs
-IiIsInByZXNlbmNlLXBzdTEtY3BsZC1uIiwiIiwNCisJLypIMC1INyovICAgIiIsIiIsIiIsIiIs
-IiIsIiIsIiIsIiIsDQorCS8qSDAtSDcqLyAgICIiLCIiLCIiLCIiLCJwcmVzZW5jZS1yaXNlcjAt
-biIsIiIsInByZXNlbmNlLXJpc2VyMS1uIiwiIjsNCit9Ow0KKw0KKw0KKyZscGNfc25vb3Agew0K
-KwlzdGF0dXMgPSAib2theSI7DQorCXNub29wLXBvcnRzID0gPDB4ODA+Ow0KK307DQorDQorJmVt
-bWNfY29udHJvbGxlciB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZlbW1jIHsNCisJ
-c3RhdHVzID0gIm9rYXkiOw0KKwlub24tcmVtb3ZhYmxlOw0KKwltYXgtZnJlcXVlbmN5ID0gPDUy
-MDAwMDAwPjsNCisJYnVzLXdpZHRoID0gPDg+Ow0KK307DQorDQorJnZpZGVvIHsNCisJc3RhdHVz
-ID0gIm9rYXkiOw0KKwltZW1vcnktcmVnaW9uID0gPCZ2aWRlb19lbmdpbmVfbWVtb3J5PjsNCit9
-Ow0KKw0KKyZ2aHViIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KKwlhc3BlZWQsdmh1Yi1kb3duc3Ry
-ZWFtLXBvcnRzID0gPDc+Ow0KKwlhc3BlZWQsdmh1Yi1nZW5lcmljLWVuZHBvaW50cyA9IDwyMT47
-DQorCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQorCXBpbmN0cmwtMCA9IDwmcGluY3RybF91
-c2IyYWRfZGVmYXVsdD47DQorfTsNCisNCismcnRjIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307
-DQorDQotLSANCjIuMjUuMQ0KDQo=
+On Thu, Jun 08, 2023 at 02:06:49PM +0300, Dmitry Baryshkov wrote:
+> On 08/06/2023 13:03, Varadarajan Narayanan wrote:
+> >Add USB phy and controller related nodes
+> >
+> >SS PHY need two supplies and HS PHY needs three supplies. 0.925V
+> >and 3.3V are from fixed regulators and 1.8V is generated from
+> >PMIC's LDO
+> >
+> >Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> >---
+> >  Changes in v13:
+> >	- Move fixed regulator definitions from SoC dtsi to board dts
+> >	- Remove 'dr_mode' from SoC dtsi
+> >	- Move 'status' property to the end
+> >  Changes in v12:
+> >	- Rebase
+> >  Changes in v11:
+> >	- Rename dwc_0 -> usb_0_dwc3
+> >  Changes in v10:
+> >	- Fix regulator definitions
+> >  Changes in v8:
+> >	- Change clocks order to match the bindings
+> >  Changes in v7:
+> >	- Change com_aux -> cfg_ahb
+> >  Changes in v6:
+> >	- Introduce fixed regulators for the phy
+> >	- Resolved all 'make dtbs_check' messages
+> >
+> >  Changes in v5:
+> >	- Fix additional comments
+> >	- Edit nodes to match with qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> >	- 'make dtbs_check' giving the following messages since
+> >	  ipq9574 doesn't have power domains. Hope this is ok
+> >
+> >		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
+> >         	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> >		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
+> >         	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> >
+> >  Changes in v4:
+> >	- Use newer bindings without subnodes
+> >	- Fix coding style issues
+> >
+> >  Changes in v3:
+> >	- Insert the nodes at proper location
+> >
+> >  Changes in v2:
+> >	- Fixed issues flagged by Krzysztof
+> >	- Fix issues reported by make dtbs_check
+> >	- Remove NOC related clocks (to be added with proper
+> >	  interconnect support)
+> >---
+> >  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 18 ++++++
+> >  arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 85 +++++++++++++++++++++++++++++
+> >  2 files changed, 103 insertions(+)
+> >
+> >diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >index 2b3ed8d..8261a2b 100644
+> >--- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >@@ -21,6 +21,24 @@
+> >  	chosen {
+> >  		stdout-path = "serial0:115200n8";
+> >  	};
+> >+
+> >+	regulator_fixed_3p3: s3300 {
+> >+		compatible = "regulator-fixed";
+> >+		regulator-min-microvolt = <3300000>;
+> >+		regulator-max-microvolt = <3300000>;
+> >+		regulator-boot-on;
+> >+		regulator-always-on;
+> >+		regulator-name = "fixed_3p3";
+> >+	};
+> >+
+> >+	regulator_fixed_0p925: s0925 {
+> >+		compatible = "regulator-fixed";
+> >+		regulator-min-microvolt = <925000>;
+> >+		regulator-max-microvolt = <925000>;
+> >+		regulator-boot-on;
+> >+		regulator-always-on;
+> >+		regulator-name = "fixed_0p925";
+> >+	};
+> >  };
+>
+> Let me repeat from v13, so that it is not lost (please excuse me for the
+> spam):
+>
+> Nit: these two regulators are not references from SoC dtsi. So they don't
+> have to be a part of this commit and can be moved to one of the next commits
+> (I'd prefer the last one).
+
+Sure. Have posted v15 with the suggested changes.
+Please review.
+
+Thanks
+Varada
+
+>
+> >  &blsp1_uart2 {
+> >diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> >index 0baeb10..feabc19 100644
+> >--- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> >+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> >@@ -465,6 +465,91 @@
+> >  			status = "disabled";
+> >  		};
+> >+		usb_0_qusbphy: phy@7b000 {
+> >+			compatible = "qcom,ipq9574-qusb2-phy";
+> >+			reg = <0x0007b000 0x180>;
+> >+			#phy-cells = <0>;
+> >+
+> >+			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> >+				 <&xo_board_clk>;
+> >+			clock-names = "cfg_ahb",
+> >+				      "ref";
+> >+
+> >+			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> >+			status = "disabled";
+> >+		};
+> >+
+> >+		usb_0_qmpphy: phy@7d000 {
+> >+			compatible = "qcom,ipq9574-qmp-usb3-phy";
+> >+			reg = <0x0007d000 0xa00>;
+> >+			#phy-cells = <0>;
+> >+
+> >+			clocks = <&gcc GCC_USB0_AUX_CLK>,
+> >+				 <&xo_board_clk>,
+> >+				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> >+				 <&gcc GCC_USB0_PIPE_CLK>;
+> >+			clock-names = "aux",
+> >+				      "ref",
+> >+				      "cfg_ahb",
+> >+				      "pipe";
+> >+
+> >+			resets = <&gcc GCC_USB0_PHY_BCR>,
+> >+				 <&gcc GCC_USB3PHY_0_PHY_BCR>;
+> >+			reset-names = "phy",
+> >+				      "phy_phy";
+> >+
+> >+			#clock-cells = <0>;
+> >+			clock-output-names = "usb0_pipe_clk";
+> >+
+> >+			status = "disabled";
+> >+		};
+> >+
+> >+		usb3: usb@8af8800 {
+> >+			compatible = "qcom,ipq9574-dwc3", "qcom,dwc3";
+> >+			reg = <0x08af8800 0x400>;
+> >+			#address-cells = <1>;
+> >+			#size-cells = <1>;
+> >+			ranges;
+> >+
+> >+			clocks = <&gcc GCC_SNOC_USB_CLK>,
+> >+				 <&gcc GCC_USB0_MASTER_CLK>,
+> >+				 <&gcc GCC_ANOC_USB_AXI_CLK>,
+> >+				 <&gcc GCC_USB0_SLEEP_CLK>,
+> >+				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> >+
+> >+			clock-names = "cfg_noc",
+> >+				      "core",
+> >+				      "iface",
+> >+				      "sleep",
+> >+				      "mock_utmi";
+> >+
+> >+			assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> >+					  <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> >+			assigned-clock-rates = <200000000>,
+> >+					       <24000000>;
+> >+
+> >+			interrupts-extended = <&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+> >+			interrupt-names = "pwr_event";
+> >+
+> >+			resets = <&gcc GCC_USB_BCR>;
+> >+			status = "disabled";
+> >+
+> >+			usb_0_dwc3: usb@8a00000 {
+> >+				compatible = "snps,dwc3";
+> >+				reg = <0x8a00000 0xcd00>;
+> >+				clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> >+				clock-names = "ref";
+> >+				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> >+				phys = <&usb_0_qusbphy>, <&usb_0_qmpphy>;
+> >+				phy-names = "usb2-phy", "usb3-phy";
+> >+				tx-fifo-resize;
+> >+				snps,is-utmi-l1-suspend;
+> >+				snps,hird-threshold = /bits/ 8 <0x0>;
+> >+				snps,dis_u2_susphy_quirk;
+> >+				snps,dis_u3_susphy_quirk;
+> >+			};
+> >+		};
+> >+
+> >  		intc: interrupt-controller@b000000 {
+> >  			compatible = "qcom,msm-qgic2";
+> >  			reg = <0x0b000000 0x1000>,  /* GICD */
+>
+> --
+> With best wishes
+> Dmitry
+>
