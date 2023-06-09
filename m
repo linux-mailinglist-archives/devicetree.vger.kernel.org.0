@@ -2,87 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93068729F21
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FE97729F28
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jun 2023 17:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241923AbjFIPuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jun 2023 11:50:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44516 "EHLO
+        id S241956AbjFIPuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jun 2023 11:50:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241911AbjFIPuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:50:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC60635BC;
-        Fri,  9 Jun 2023 08:49:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4DC0661C5A;
-        Fri,  9 Jun 2023 15:49:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 053D2C433D2;
-        Fri,  9 Jun 2023 15:49:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686325788;
-        bh=VujHTb3Jst7P7AKBSUf6SEnI2gqNIkp0cYDL1jRQ5Uw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VWXiQoWUZrbEzGfv1didX1XWnGpeFeM3Z0E5xFzq1wZBaoT+OTdszCqjUwy0vmHzA
-         X/7EPPA2WhjAo3F3jVs4bVDMkDHGijdyvrla3eg+6VFKx6NOtifHDjTLZ+ygZaxcpp
-         Ca8sGBOFBEoK2g5OG66BiWNwPKQM/z0CikQQvwqFbgL2nGGf/sGRdSjTy+bqT3iLOD
-         7WMHt+XsklMQxtJCVebXjk07aKWzN3RADgbrC/gOV0KkoVn3jrhAcnnmolSu2uRnI9
-         HrMbHmE6SyFeoiplswxjwGxg70IF2hXNATe6aE4Mbr9UEsrIzUWBwXu/HLL04U2oXh
-         W/z4gj442vyrg==
-Date:   Fri, 9 Jun 2023 16:49:44 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, kvalo@kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: net: ath11k: add
- ieee80211-freq-limit property
-Message-ID: <20230609-carded-stipulate-439950812469@spud>
-References: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+        with ESMTP id S231725AbjFIPuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jun 2023 11:50:08 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F87A3A94
+        for <devicetree@vger.kernel.org>; Fri,  9 Jun 2023 08:49:57 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-19f31d6b661so842700fac.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jun 2023 08:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686325796; x=1688917796;
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yrgoKXBwHUX7WEq9UMaUcmVG2l73/fiJgyEmMbnqlYc=;
+        b=wumVhPyiGuTYNfJupdHd62oH9GAZ2PCLmUDDwKDcX/P3q7ZJiv7dip83Lt1lbaCuHM
+         MigaIh4WrBk9OKrbyKNNNXa0kd/dwOrpTT9ewxlQGzS5PVLgpxmnzvdjmt7gq9owAdIF
+         9No7pVaKOYTtteE7AuLn0IsS5+Xu5qlHWkUdHDiQeLZDF5LdwKv8BkJDPevN5830rw6d
+         u8klF0jeWIRK2Mn54o9QDGIG5w7G6IFXIYMMQlFrZNpO61n39uEAV1uE+vjS4IG+auji
+         0O0mdkM1esVd84qo3mkpBegd7uuXID4I2Ay5go7S5hNkWWY7wITiJ9+OCtJRZXy0VjBp
+         g4rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686325796; x=1688917796;
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yrgoKXBwHUX7WEq9UMaUcmVG2l73/fiJgyEmMbnqlYc=;
+        b=f0Kc3VRKLMyRn/DOhC6havLSi+gD3Y24Hu4Ga5i1ihx2Z7cG7B3N1MiZsq4CFUA2ms
+         /XvUrPLnas7pOaYBrkTN5h7CasfwODzokOE66+DPqjlnmIkusXkkFo7tSFeNJ6gikOMB
+         VqxL+pJzMVQZCv6TuS7NWt1PTmgTcXFz4gWPTwFZC7k8whpnHPry76Dvtc18EtD4HVPM
+         5w3Kb5TMg8B/3v/66wGQ1b9dVhBn0OOl69fh5xlRJnsFWrJJgieZ3tzwbm5c/Zc0dPCE
+         t98Kbe7a8d7TfOuZgLIo1W3j+MD5crt1V/OaxBsvyz/hePL4U7Empc+3ZtIXCO0z23B/
+         Qkmg==
+X-Gm-Message-State: AC+VfDwjaz/EByXO0rdbtEVBYsuRLfOdPXIamn7M06Qj2Qq5JEThS0dX
+        HMSFc+8CPdQKBIckQ77TNW/PUTUEOBMuIksQrOqISQ==
+X-Google-Smtp-Source: ACHHUZ7xTLHhpKmBrjq1Rs7OSGnlzQSAus+GRPqqwKhHhI3913poqD6cqJyhGqkdmWsDuT1tIxGttok8cQaWzMIomls=
+X-Received: by 2002:a05:6870:988c:b0:1a1:d1c1:f69b with SMTP id
+ eg12-20020a056870988c00b001a1d1c1f69bmr1331796oab.55.1686325796513; Fri, 09
+ Jun 2023 08:49:56 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 9 Jun 2023 08:49:55 -0700
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220919-v4-0-687f09a06dd9@baylibre.com> <20220919-v4-1-687f09a06dd9@baylibre.com>
+ <20230608210504.GA3436215-robh@kernel.org>
+In-Reply-To: <20230608210504.GA3436215-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Hr0x/gMYpYr/cxtg"
-Content-Disposition: inline
-In-Reply-To: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Date:   Fri, 9 Jun 2023 08:49:55 -0700
+Message-ID: <CABnWg9tvBLH7R2Yqd_4=AOCdcHzw7Y-rigHN1jjoHe0EUGk1Bw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/8] dt-bindings: display: mediatek: add MT8195 hdmi bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mac.shen@mediatek.com,
+        stuart.lee@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 08 Jun 2023 23:05, Rob Herring <robh@kernel.org> wrote:
+>On Mon, May 29, 2023 at 04:30:58PM +0200, Guillaume Ranquet wrote:
+>> Add mt8195 SoC bindings for hdmi and hdmi-ddc
+>>
+>> On mt8195 the ddc i2c controller is part of the hdmi IP block and thus has no
+>> specific register range, power domain or interrupt, making it simpler
+>> than the legacy "mediatek,hdmi-ddc" binding.
+>>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> ---
+>>  .../bindings/display/mediatek/mediatek,hdmi.yaml   | 59 ++++++++++++++++++----
+>>  .../display/mediatek/mediatek,mt8195-hdmi-ddc.yaml | 45 +++++++++++++++++
+>>  2 files changed, 93 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
+>> index b90b6d18a828..4f62e6b94048 100644
+>> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
+>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
+>> @@ -21,6 +21,7 @@ properties:
+>>        - mediatek,mt7623-hdmi
+>>        - mediatek,mt8167-hdmi
+>>        - mediatek,mt8173-hdmi
+>> +      - mediatek,mt8195-hdmi
+>>
+>>    reg:
+>>      maxItems: 1
+>> @@ -29,18 +30,10 @@ properties:
+>>      maxItems: 1
+>>
+>>    clocks:
+>> -    items:
+>> -      - description: Pixel Clock
+>> -      - description: HDMI PLL
+>> -      - description: Bit Clock
+>> -      - description: S/PDIF Clock
+>> +    maxItems: 4
+>>
+>>    clock-names:
+>> -    items:
+>> -      - const: pixel
+>> -      - const: pll
+>> -      - const: bclk
+>> -      - const: spdif
+>> +    maxItems: 4
+>>
+>>    phys:
+>>      maxItems: 1
+>> @@ -58,6 +51,9 @@ properties:
+>>      description: |
+>>        phandle link and register offset to the system configuration registers.
+>>
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>>    ports:
+>>      $ref: /schemas/graph.yaml#/properties/ports
+>>
+>> @@ -86,9 +82,50 @@ required:
+>>    - clock-names
+>>    - phys
+>>    - phy-names
+>> -  - mediatek,syscon-hdmi
+>>    - ports
+>>
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: mediatek,mt8195-hdmi
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: APB
+>> +            - description: HDCP
+>> +            - description: HDCP 24M
+>> +            - description: Split HDMI
+>> +        clock-names:
+>> +          items:
+>> +            - const: hdmi_apb_sel
+>> +            - const: hdcp_sel
+>> +            - const: hdcp24_sel
+>> +            - const: split_hdmi
+>> +
+>> +      required:
+>> +        - power-domains
+>> +    else:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: Pixel Clock
+>> +            - description: HDMI PLL
+>> +            - description: Bit Clock
+>> +            - description: S/PDIF Clock
+>> +
+>> +        clock-names:
+>> +          items:
+>> +            - const: pixel
+>> +            - const: pll
+>> +            - const: bclk
+>> +            - const: spdif
+>
+>I don't understand how the same h/w block can have completely different
+>clocks. If not the same h/w or evolution of the same h/w, then do a
+>separate schema.
+>
 
---Hr0x/gMYpYr/cxtg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Rob,
 
-On Fri, Jun 09, 2023 at 10:44:54AM +0200, Christian Lamparter wrote:
-> This is an existing optional property that ieee80211.yaml/cfg80211
-> provides. It's useful to further restrict supported frequencies
-> for a specified device through device-tree.
->=20
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+I'm not entirely sure what's the best approach here.
+The IPs are different enough to warrant a separate schema IMHO.
+Though CK asked me to merge both IPs together (for both schema and code).
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+CK might want to chime in and advocate his point of view?
 
-Cheers,
-Conor.
+>> +
+>> +      required:
+>> +        - mediatek,syscon-hdmi
+>> +
+>>  additionalProperties: false
+>>
+>>  examples:
+>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+>> new file mode 100644
+>> index 000000000000..84c096835b47
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+>> @@ -0,0 +1,45 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Mediatek HDMI DDC for mt8195
+>> +
+>> +maintainers:
+>> +  - CK Hu <ck.hu@mediatek.com>
+>> +  - Jitao shi <jitao.shi@mediatek.com>
+>> +
+>> +description: |
+>> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - mediatek,mt8195-hdmi-ddc
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  mediatek,hdmi:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      A phandle to the mt8195 hdmi controller
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    hdmiddc0: i2c {
+>> +      compatible = "mediatek,mt8195-hdmi-ddc";
+>> +      mediatek,hdmi = <&hdmi0>;
+>> +      clocks = <&clk26m>;
+>
+>How does one access this h/w device? There is nothing described to
+>access it.
+>
 
---Hr0x/gMYpYr/cxtg
-Content-Type: application/pgp-signature; name="signature.asc"
+The device is embedded into the HDMI block and thus uses the
+mediatek,hdmi phandle to access its sets of registers in the middle of
+the mediatek,hdmi register range.
 
------BEGIN PGP SIGNATURE-----
+Hope this clarifies things,
+Guillaume.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZINKGAAKCRB4tDGHoIJi
-0g+3AQCFQ8p2CNxwxmughCknWM1xVeucR0xBQ1yAXg8iamMwtAD/RLoywsac7z6f
-gp1X+1swDTOiyPsYQXc2tf41bBIHxw0=
-=CDm6
------END PGP SIGNATURE-----
-
---Hr0x/gMYpYr/cxtg--
+>Rob
