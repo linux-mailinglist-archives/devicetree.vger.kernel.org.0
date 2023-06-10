@@ -2,92 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BDDB72AD84
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 18:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D661772ADA4
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 19:11:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbjFJQwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 12:52:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53918 "EHLO
+        id S229573AbjFJRLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 13:11:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbjFJQwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 12:52:10 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1AA26B0;
-        Sat, 10 Jun 2023 09:52:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686415926; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=S9tuWrHM9P+DwbMzIWWJRvgBYqviXieKUUL9XWt4RigB2zwzvZzUxrM25bXtcXNmwK
-    a61HYo2YnnwvVelVR088vIFhnxvyjXYtPzDUl+MkirujDfrP+c+/gI2UAXNXxuLYHVmT
-    JF242tHKxpooHcy9uLE0QRU8uSVDRhm9gIE14r4qHhXNj7gAxdbcVPz7p1cFiCynWOyi
-    UDDlfgZ8Vo65RPLqfBVM8F52ejJKA4FYzxzIi03e6MMRSI55qrkulhxMwYq0K/u0AYD2
-    T6ybeZ0H2plWb7K610RnRDXTwXaJ/RZzIf7CxHr00mRypcnjF6nZSLQIDX9nJwdunFJR
-    vPGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686415926;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=QWIRPWXgw/uXm0KjKjXznsIUsIykKDfMwhJ/S2bPOrE=;
-    b=rmP7bcyR2HDLLSeUXXrqOffceZhKyAtQ796mxNZwt/I5WFVA47bJzWjP6mkob9+DIO
-    pkn0euJQcChYe2wyeEYsde+SsUt+QQRa4qebA7wBefpsZJbfuPROziY45KI3gGf1Zh6l
-    UmTaOO8opjRbZUczAOlGfyQ1wUv3Ticd73Y7lQZfO/pugycgW0eG8YfphXdSWtHpeLgi
-    qe4HGBwovlcnvEdRY+Drei+nRnRUkKH/b6yeoFNZgg0eNu4CORaoka5NpSSzyQqf5VPC
-    Eoah4zT5eEqfW7tuOGwssslziKHmv4xYy3ms2vRwbnJw3YcGsVDVrcVSX0uLRK7sxYNf
-    Ah2g==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686415926;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=QWIRPWXgw/uXm0KjKjXznsIUsIykKDfMwhJ/S2bPOrE=;
-    b=akLBgHXBJdPQyaTJRYWr6t0syQ93uLKt0Tm23WYuBJEhIYKYuwXdG6QYnSIGf+S8vT
-    c1auiMaL2j/YocueXoEuzlnkXZBsmAR0GtgiGB2qv40cG1zMh72kFp2rG1CzPk9w7YQh
-    kUql4Hl+f0vhqJTOxw5Asew6CKF6Hr7GHAAM89V/SKkK4DMGumULDH78WePhCHKLsI8/
-    tkGjhm1GyOW8mSVCw0jwL6LCDkUcnTiiy++4GCjs8IBzYrCsIR3s2PCFWZixC0oMPR8G
-    VARpiBFnKFLQlJUzTd4CrOsjb6rPteW2WEloIUGQcx1R5b6dgfApM3A7uU1PdMn8MS1r
-    N+XQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686415926;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=QWIRPWXgw/uXm0KjKjXznsIUsIykKDfMwhJ/S2bPOrE=;
-    b=zwSi5lfSpJ7AnKLDZ/74+CyGQVo0tfEBcaWhfcmtSIzkqc1NBTkM9M7EK/QKQ0T0Q5
-    wGdI+WRSM3T8x+wZFBDg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA9J/h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.5.3 DYNA|AUTH)
-    with ESMTPSA id Z82ec2z5AGq6QY3
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sat, 10 Jun 2023 18:52:06 +0200 (CEST)
-Date:   Sat, 10 Jun 2023 18:52:04 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
+        with ESMTP id S229598AbjFJRLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 13:11:51 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E84C8359D;
+        Sat, 10 Jun 2023 10:11:46 -0700 (PDT)
+Received: from mercury (unknown [185.254.75.28])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4ABC76606EF5;
+        Sat, 10 Jun 2023 18:11:45 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686417105;
+        bh=GTCoI9gVT5Q9hQF9AbMQI6UBua8tpLElPPWw24KdOG4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PGnFPCSfquUqM+8KZiBnsFAYM9sr/+eCoL0ROcsNmS8mH9h/lAU4jHZWmmt4pultw
+         ZgT1P6a7SMYjaCa+Vfb9crZHLkwdVqKh7+uHn0QUgsft+owcEgvqCbln3PXXnc7iyH
+         KaeJ17DtpKZHM5zo65zSmmmZSula50dyNyQ7cAFY9N8tlLEpeOiXAEZJQ04f6oJjDF
+         X1TrzTgxQ6szCz1dByT2ANBCC6minjOKZdVBGJ4dA/gR7evMGHIz86wrZwS28nqTuk
+         HP4Y239iqAHblPTUEYhIMj139HH9ICqfYxG507uJVtfvOUH+IA4SuEzbABA8SmFVZ0
+         Gw9NFYglIL/5Q==
+Received: by mercury (Postfix, from userid 1000)
+        id AF4A81060921; Sat, 10 Jun 2023 19:11:42 +0200 (CEST)
+Date:   Sat, 10 Jun 2023 19:11:42 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v2 05/12] dt-bindings: remoteproc: Add Qualcomm RPM
- processor/subsystem
-Message-ID: <ZISqNPnQgPNEsmxa@gerhold.net>
-References: <20230531-rpm-rproc-v2-0-56a4a00c8260@gerhold.net>
- <20230531-rpm-rproc-v2-5-56a4a00c8260@gerhold.net>
- <9cdf22cc-6509-b87e-e631-4e3633d1f542@linaro.org>
+Cc:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        heiko@sntech.de, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, gustavo.padovan@collabora.com,
+        serge.broslavsky@collabora.com
+Subject: Re: [PATCH v2] dt-bindings: iio: rockchip: Fix 'oneOf' condition
+ failed warning
+Message-ID: <20230610171142.dsezim4gcxr2b65u@mercury.elektranox.org>
+References: <20230610143601.173307-1-shreeya.patel@collabora.com>
+ <c5243179-9baf-59ce-b979-c596dcf6692b@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="f23o6klw7upsg4lg"
 Content-Disposition: inline
-In-Reply-To: <9cdf22cc-6509-b87e-e631-4e3633d1f542@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+In-Reply-To: <c5243179-9baf-59ce-b979-c596dcf6692b@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -96,33 +64,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 10, 2023 at 06:43:17PM +0200, Krzysztof Kozlowski wrote:
-> On 08/06/2023 09:10, Stephan Gerhold wrote:
-> > On Qualcomm platforms, most subsystems (e.g. audio/modem DSP) are
-> > described as remote processors in the device tree, with a dedicated
-> > node where properties and services related to them can be described.
-> > +
-> > +  smd-edge:
-> > +    $ref: /schemas/remoteproc/qcom,smd-edge.yaml#
-> > +    description:
-> > +      Qualcomm Shared Memory subnode which represents communication edge,
-> > +      channels and devices related to the RPM subsystem.
-> > +
-> > +  glink-rpm:
-> 
-> This should be "glink-edge", to be a bit more generic and match existing
-> smd-edge.
-> 
 
-I fully agree and I actually made that change at some point before
-sending v1. Unfortunately, it doesn't work: The node name "glink-edge"
-is already reserved by qcom,glink-edge.yaml. While it's very similar it
-has some subtle differences to glink-rpm-edge.yaml. For example, there
-is no qcom,remote-pid in the RPM variant which is required by the normal
-glink-edge.
+--f23o6klw7upsg4lg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Would "glink-rpm-edge" sound better?
+Hi,
 
-Thanks,
-Stephan
+On Sat, Jun 10, 2023 at 06:30:57PM +0200, Krzysztof Kozlowski wrote:
+> On 10/06/2023 16:36, Shreeya Patel wrote:
+> > rk3588-saradc isn't compatible with the rk3399-saradc variant,
+> > hence, fix the following dtbs_check warning for 'oneOf' condition
+> > failure.
+>=20
+> Are you sure it isn't compatible? According to your driver it is and
+> this change is not enough.
 
+The driver changes are still in the iio testing branch and not yet
+in linux-next. RK3588 ADC is not compatible with previous
+generations. It's trivial to see in Shreeya's driver patch:
+
+https://lore.kernel.org/all/20230603185340.13838-3-shreeya.patel@collabora.=
+com/
+
+Greetings,
+
+-- Sebastian
+
+--f23o6klw7upsg4lg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSErsoACgkQ2O7X88g7
++pqdjA//fAN5NUk3NyyvjLVVAu3DIUPDIWnYahETYGCTp+c7Q5aVJ/ba/AifbEZ4
+r8EWHcqU6T6WwnWXsgTyEQrp22wmLpwR90TR6fMo2Coz6cGGh+z/fqYsQ6ndk0iF
+T2BcviSUpJ/Pcm7TPYMNrFVYp2r4Tik2cdJiTFpRkKMxGrv0A6XZ+/6Ulf59DaGT
+rU/tFrDr97nM/2uLEjdsWM249QmW6tV9qB9VpkHj5HSmwIuZkOe3tbTXvvUMxBj6
+qvq1VU8eKPbz30stpqJDsB/alqbQDmbMiv8A/mqEQKWqDEgWf1GjG1mTXraql+sB
+2BojWwTJOFNxlQGHXSn9l6aL7f+G1s4do5kf5ObxTViyfG48kjrbWtZxg7n9ZZaw
+fjJcMo+HRRIb+ywPjKpDGucgz9rb9o4W3OJn6Lh4koMUWZzQJR8CCFNgNHn8Z8Nr
+DNo+JNyhqCNwJb+pzXCGDY5gW/gdRtN+6pyTRzpx76AQpWGEa5yDy1DoT2mwNKLG
+bGw15HT6hG/oTS4sktYTreUU9bi1kcgHHQ0URTYrZeltyriUJDFMD90WGpJvogeM
+HiDVtwRcgaS2LCSs51nAxJRcdn+XuXHzpDDz2W3/EN7JotqnZibjo3A7t0LcR2rm
+k+89jth4jbuN1sKPjFIXV/adwv3Mf7N9H6KjX+nNuyO2B0/fo5c=
+=jpmA
+-----END PGP SIGNATURE-----
+
+--f23o6klw7upsg4lg--
