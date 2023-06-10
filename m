@@ -2,86 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 101C072ADB6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 19:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6B772ADC7
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 19:34:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjFJRZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 13:25:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60672 "EHLO
+        id S229936AbjFJRea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 13:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbjFJRZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 13:25:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2655E3588;
-        Sat, 10 Jun 2023 10:25:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B068B61564;
-        Sat, 10 Jun 2023 17:25:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46019C4339C;
-        Sat, 10 Jun 2023 17:25:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686417923;
-        bh=tuqTKew1pmcWljWXjwIE2elKVYInmZpla1AX7Tht4Qg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oXBwE1ORTw48+VW7+mlJJrrhcA7HLqhUB+nf5HY9Xlztjidq61XVGXytcYEQ27ptM
-         oPpZIvwcgdui/Bsiuj8ikSTclKZmSBL0Fpw8tEMETxt9E4ldi1j6ZR5+z1dle3spBL
-         wcjZDQsaZ0pTRoJHgtkRSyjxxVFsNFVzxLFcAHHtoA7qmFzNxAQH0zSEjXpcave89b
-         HhrC0EUXy6Q9al2iAxrIrirv5TcOfu18jvi1jYhVb1c3ven+s2sJbBZ2fgkM0Tjg8P
-         0WlQ4UueYqc89YpUZ0NtyDYHSsZn5kOaAvC3ElstCieo4nOwZ3wBXAXqK9hm3FEWsa
-         c6qqVxvh9NPsg==
-From:   Conor Dooley <conor@kernel.org>
-To:     palmer@dabbelt.com
-Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 6/6] dt-bindings: riscv: cpus: switch to unevaluatedProperties: false
-Date:   Sat, 10 Jun 2023 18:24:53 +0100
-Message-Id: <20230610-koala-bronze-3592637a5d1f@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230610-snaking-version-81ae5abb7573@spud>
-References: <20230610-snaking-version-81ae5abb7573@spud>
+        with ESMTP id S229667AbjFJRe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 13:34:29 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB6E358E
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 10:34:27 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51830f2523fso625826a12.2
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 10:34:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686418466; x=1689010466;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KDwuS8ivDaXoqweaWeaVy3Yc3d6wso3xwv2Ixdl0prg=;
+        b=x090GQhA4ZtVMlRRaeiyoF+aOZ9q0QqxGwFB2WJ4C6NkF48xzs3saVX7RdJIbeNSUg
+         1EsjysURbpivR9Ykn1fQwHgyA/bBbxYmTQcWHupdnq+yw2QBhVZ5Wzckc7rto4jgeVpO
+         gooStXFAkOeHT08lVH61GCuNaBIAFkxRL2RRarBYCPBLKcGdPe0CrBuBCfUVUXP+Je0d
+         cxA5bmHkmv53AsKHs2/qIS0RxlLDSdu8zw5af+JzdoZp4lvS0oqXyhTzenH9m8BEL7QN
+         ejT0ot0x1Ys8nYIdg5CcAFiq67W1gTHRwWoLlecEhlLomuYs4Uc5Q6BmNGZPZWO00cK8
+         5spA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686418466; x=1689010466;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KDwuS8ivDaXoqweaWeaVy3Yc3d6wso3xwv2Ixdl0prg=;
+        b=NNa9u4DpZe09digazNZeFL3/VMCht2GFJ96BVE3Z3AActjtcYYZkZnzuIiwmzplgbV
+         Qk5EyK+LkvIYl4v6VsPvkVme9C1DWNb/5HQuVl79EBb4ncCoaWOQQuGvI03Y4hzlIhFl
+         RwKA9QY/HvTWgtABZxnt/DtUpO3rrDKlKnXdVcXeykE6XhrrRxNppSHRO0tty1FYoj31
+         Bc0g8bQcutZLOkgjAVff+ajo87U5fUh77po+K24B68KLZPBTFMuPzmhJ6F6icZR+KyBV
+         rrbX3pyI/5d5wbE5Mbw9RC31NjRc7JFQOUvp2AOT+LpDMwma9yagmZHHqtl3oXpoJK9a
+         d8GA==
+X-Gm-Message-State: AC+VfDyip8k+RJO1HxdjMgXVt8Txy4mNqMPpRoPT5AkzlSUbLEQeyfZF
+        Ck78c2fGDuVOFU3nB4R+JrGvQHm0rWGxli3MtJU=
+X-Google-Smtp-Source: ACHHUZ4QLwPV4AAHZ1nnSvlebkLfLm6hTSfz7V3skL2ZlTi3k9c5gDLsQvctQyiunCRRfDDndPgBLA==
+X-Received: by 2002:a17:906:4786:b0:94f:694e:b953 with SMTP id cw6-20020a170906478600b0094f694eb953mr4758757ejc.59.1686418466379;
+        Sat, 10 Jun 2023 10:34:26 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id g8-20020a170906348800b00977cfa6ff46sm2788903ejb.103.2023.06.10.10.34.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Jun 2023 10:34:25 -0700 (PDT)
+Message-ID: <153ea7d7-25d5-8782-a622-ae512134161c@linaro.org>
+Date:   Sat, 10 Jun 2023 19:34:23 +0200
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=729; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=vzC5e7CTr+OJcy6GMX4g4oH7k/Hrsknp/1aNi4L7f2Y=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCktGx+emDH74qOflh+v/bC2/ByocltEcKedr2dId+3rg y9OGvwV6ShlYRDjYJAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBEslkZGRa+n5rY6vD+zadV fzef3sXSf+O60tuuSwaS0Y+3dfZrOUQy/BVsc8h4+GVB96vqpUc45tqt/jN/+kOpuoft/5cVu56 uCOUEAA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2] dt-bindings: iio: rockchip: Fix 'oneOf' condition
+ failed warning
+Content-Language: en-US
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        heiko@sntech.de, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, gustavo.padovan@collabora.com,
+        serge.broslavsky@collabora.com
+References: <20230610143601.173307-1-shreeya.patel@collabora.com>
+ <c5243179-9baf-59ce-b979-c596dcf6692b@linaro.org>
+ <20230610171142.dsezim4gcxr2b65u@mercury.elektranox.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230610171142.dsezim4gcxr2b65u@mercury.elektranox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On 10/06/2023 19:11, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Sat, Jun 10, 2023 at 06:30:57PM +0200, Krzysztof Kozlowski wrote:
+>> On 10/06/2023 16:36, Shreeya Patel wrote:
+>>> rk3588-saradc isn't compatible with the rk3399-saradc variant,
+>>> hence, fix the following dtbs_check warning for 'oneOf' condition
+>>> failure.
+>>
+>> Are you sure it isn't compatible? According to your driver it is and
+>> this change is not enough.
+> 
+> The driver changes are still in the iio testing branch and not yet
+> in linux-next. RK3588 ADC is not compatible with previous
+> generations. It's trivial to see in Shreeya's driver patch:
+> 
+> https://lore.kernel.org/all/20230603185340.13838-3-shreeya.patel@collabora.com/
 
-To permit validation of cpu nodes, swap "additionalProperties: true"
-out for "unevaluatedProperties: false".
+I was checking the next. It's fine then.
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index 5e2db35411f1..d82d5c872a0e 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -152,7 +152,7 @@ required:
-   - riscv,isa
-   - interrupt-controller
- 
--additionalProperties: true
-+unevaluatedProperties: false
- 
- examples:
-   - |
--- 
-2.39.2
+Best regards,
+Krzysztof
 
