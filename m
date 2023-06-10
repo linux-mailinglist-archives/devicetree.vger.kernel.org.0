@@ -2,134 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E75FC72AE46
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 21:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7096572AE5F
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 21:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbjFJTGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 15:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56288 "EHLO
+        id S229667AbjFJT0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 15:26:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjFJTGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 15:06:47 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E991988;
-        Sat, 10 Jun 2023 12:06:45 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-30e56fc9fd2so2770800f8f.0;
-        Sat, 10 Jun 2023 12:06:45 -0700 (PDT)
+        with ESMTP id S230316AbjFJT0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 15:26:45 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06BA6270F;
+        Sat, 10 Jun 2023 12:26:45 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-77a62a84855so136904639f.1;
+        Sat, 10 Jun 2023 12:26:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686424004; x=1689016004;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NLmWexq6F1fpCfKHIaE10IRWiqCed7zDFT7GaTdKHRo=;
-        b=IP3kaBlO+DW4oxuj+GWhC2vXnxRfDfZQpETl+JHJYyR0oesjS9GWJvz0w7Hsf+PcFP
-         eOq5kTAqpoIN6gV64ARWRDTstNnW/jDLoCgDLrmBIzGGPLHHDewvzOWcTt/gkSrxQ9KZ
-         bD0H2/atZHUtRflcoAhgn/IiaY7k2jRF0+BFTqw0ozLkG8vgk9+8tW1J8VKEA8So3JbB
-         DCwZkZDvChhicoFE/I4SpQHaeKtrIKRac4/L4QhIP2LhwRSPq7W2x+uKCk0MxsfdizIp
-         Wz4lKhnGtjF5GGsogQp0S9IPdpwD71IVlNzbhiDOEa9phf8e2Ps9w8B2ZRhV6sGwsaQQ
-         v8Hg==
+        d=gmail.com; s=20221208; t=1686425204; x=1689017204;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ByHw0rvddOiCXzdPhf00oxkKHXxWYbbkLr+bifjUB/o=;
+        b=Am7DkPXvoR8lhKRFR9YJ9/7DIEwja1sjBijIcqzTL14ZVsxmIM2QGu3ZfLDQcijMiR
+         xhSpS5LDqewUenmF1KmbcE5ov8StEXgdR9UK2ifviR6TZ5A1IeIj04vmD6AnQYoGwe+S
+         K9Mvim97LcW5Ndgo6TC920/H6ghhGB/p8bdQQqZLTp2SF0X3C1AqWYgs/pb1yNz+cXNk
+         BcBcMTlHkHyCwhKMagSo5kjClnKKmqTIGnyxvXsD+Yrtl933AJ27bLjaJFFmk8EA4egm
+         /gGhEIzDUcOqeHR8F97XvKfbkAhKsOv7Pgyk4+cHEK/UWpZ5kODMyviYOmn3g+qdpfIv
+         9mPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686424004; x=1689016004;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NLmWexq6F1fpCfKHIaE10IRWiqCed7zDFT7GaTdKHRo=;
-        b=cnaiwBsV7ECwXqGhsTi9v0tvgik6iunNbbREu5JCHz5QggqWJ+1MGKfpJAo4DNB3nt
-         c54po98mVLxTP3YJ3nmmb3JW1dBaNCoMRjk5Lj5P6GVYo9zBVIJRsL7iWO0hFjr5UhFh
-         QeG3gdnAb+ShryRGGaB2KTKlyMYewO8+Yc3eFh3FDxyaU7LJpX8xz2fAy4aEcaxIUL2D
-         lm88RWRVjD8FDcVJElQ90dgG8B9q556Uv6p3fMnSHkumOFkManUMq9EhpML7nRp6AC03
-         JY+X3Modr8gZSgMU7Z2lS83/dzARB+bvz0B5ZV6JDvQwN3es/FduqdDBf1vhzoC4tory
-         WvKw==
-X-Gm-Message-State: AC+VfDzrJHLhlVpolHHGYhAti6XYAKAkwSnGua1fiVnpsjr/O0a29Om9
-        TjgNCvANqffwjV/TpjveGbMnZKHXckaTuIfY
-X-Google-Smtp-Source: ACHHUZ7CIYvfhWjHA/EvyWexJGoYAIZjQeK0hazJ2nkWKdj9AUYLYe+9efJ0EHpIF4fE1f2Q50xXSw==
-X-Received: by 2002:adf:f347:0:b0:30a:f17e:e02e with SMTP id e7-20020adff347000000b0030af17ee02emr1642740wrp.12.1686424003802;
-        Sat, 10 Jun 2023 12:06:43 -0700 (PDT)
-Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
-        by smtp.gmail.com with ESMTPSA id a9-20020a5d5089000000b0030ae973c2e7sm7739586wrt.83.2023.06.10.12.06.42
+        d=1e100.net; s=20221208; t=1686425204; x=1689017204;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ByHw0rvddOiCXzdPhf00oxkKHXxWYbbkLr+bifjUB/o=;
+        b=MNMNsT9zoKfVvH1e2Eb6KbvBmUIjnftW2Jh5r6oyQHjrSfr9W0eNlomKGEX1aSwdRh
+         795pN/HCQfqLfhDmayoKbuEY8oWB2BNWUm97qdF2/0IEzHgICgmiCfJZ++yeuI18qxKb
+         qzgz7YjfS7bpQ7rnYLvPars4Ogb9OeozxG2/XoI80fiS9nWSHhbhLeqTax9Eqs81iDGt
+         pheAd2/Gmxh+7xH15qZZ6CBztr2uW2C931/wQ+9f8jYlsXF5gDbCN5tdlc0SaeRdbYUW
+         IMYCET9MYepXfLnXSoWBhL8DE9zrcVElSLqeBPs8mf0yCqAaU8TN6V3FupiFsTrpWbcK
+         zqWQ==
+X-Gm-Message-State: AC+VfDwYAB70FtYuGQ0WWq8a8HkY95LkkSf2nOVJ4Tvyfc2COqW1RQNA
+        GR90sBXa1YeP8aSTi6ewWok=
+X-Google-Smtp-Source: ACHHUZ6wex0UngegSlkbj4dzFzq8Lw9WAuvyuh/uPVvGYYWF6nONqF3iibg37rTl9voPdwzbRxAAMw==
+X-Received: by 2002:a5e:c20d:0:b0:76c:c974:9da with SMTP id v13-20020a5ec20d000000b0076cc97409damr4015315iop.19.1686425204215;
+        Sat, 10 Jun 2023 12:26:44 -0700 (PDT)
+Received: from aford-B741.lan ([2601:447:d001:897f:7d74:3e3b:c016:e413])
+        by smtp.gmail.com with ESMTPSA id a24-20020a6b6618000000b00752f62cd3bdsm1963834ioc.12.2023.06.10.12.26.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Jun 2023 12:06:43 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Maksim Kiselev <bigunclemax@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        Sat, 10 Jun 2023 12:26:43 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Leonard =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
-Date:   Sat, 10 Jun 2023 21:06:41 +0200
-Message-ID: <3563678.R56niFO833@jernej-laptop>
-In-Reply-To: <20230610191204.007c0159@jic23-huawei>
-References: <20230610122934.953106-1-bigunclemax@gmail.com>
- <20230610122934.953106-2-bigunclemax@gmail.com>
- <20230610191204.007c0159@jic23-huawei>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V3 0/3] arm64: dts: imx8mn/imx8mm-beacon:  Add HDMI
+Date:   Sat, 10 Jun 2023 14:26:33 -0500
+Message-Id: <20230610192637.263600-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 10. junij 2023 ob 20:12:04 CEST je Jonathan Cameron napisal(a):
-> On Sat, 10 Jun 2023 15:29:07 +0300
-> Maksim Kiselev <bigunclemax@gmail.com> wrote:
-> 
-> > From: Maxim Kiselev <bigunclemax@gmail.com>
-> > 
-> > The General Purpose ADC (GPADC) can convert the external signal into
-> > a certain proportion of digital value, to realize the measurement of
-> > analog signal, which can be applied to power detection and key detection.
-> > 
-> > Theoretically, this ADC can support up to 16 channels. All SoCs below
-> > contain this GPADC IP. The only difference between them is the number
-> > of available channels:
-> > 
-> >  T113 - 1 channel
-> >  D1   - 2 channels
-> >  R329 - 4 channels
-> >  T507 - 4 channels
-> > 
-> > Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> 
-> Looks good to me. Just the issue Connor pointed out in the DT binding to resolve.
-> Note that this will be cutting it fine for this cycle, but 'might'
-> make it in if the stars align.  If not it will need to wait for next cycle.
-
-Cutoff for sunxi DT changes is at -rc6, so I would say at least that part will
-land in 6.6 for sure.
-
-Best regards,
-Jernej
+The DSI updates are in the DRM tree and Linux next with some updates
+that now allow the DSI to connect to an HDMI bridge and successfully
+sync displays at various resolutions and refresh rates.
 
 
+V3:  Alphabetize regulator names.
+     Add register names for EDID and Packet
+     Add I2C address change for the camera since it
+     conflicted with the I2C address of the HDMI bridge.
+
+V2:  Make 'compatible' the first thing in the new nodes.
+
+Adam Ford (3):
+  arm64: dts: imx8mn-beacon: Add HDMI video with sound
+  arm64: dts: imx8mm-beacon: Change camera I2C address
+  arm64: dts: imx8mm-beacon: Add HDMI video with sound
+
+ .../freescale/imx8mm-beacon-baseboard.dtsi    |   4 +-
+ .../boot/dts/freescale/imx8mm-beacon-kit.dts  | 131 +++++++++++++++++
+ .../boot/dts/freescale/imx8mn-beacon-kit.dts  | 133 ++++++++++++++++++
+ 3 files changed, 266 insertions(+), 2 deletions(-)
+
+-- 
+2.39.2
 
