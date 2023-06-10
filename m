@@ -2,193 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3394872AEA6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 22:24:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AC172AEAA
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 22:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbjFJUYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 16:24:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
+        id S229513AbjFJUbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 16:31:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjFJUYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 16:24:12 -0400
-X-Greylist: delayed 619 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 10 Jun 2023 13:24:11 PDT
-Received: from mailrelay6-1.pub.mailoutpod2-cph3.one.com (mailrelay6-1.pub.mailoutpod2-cph3.one.com [46.30.211.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB3A35BE
-        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 13:24:11 -0700 (PDT)
+        with ESMTP id S229450AbjFJUbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 16:31:18 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39AA735B0;
+        Sat, 10 Jun 2023 13:31:17 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51475e981f0so5151377a12.1;
+        Sat, 10 Jun 2023 13:31:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=be6FcTyCK8ypmkrx62TPwHVjVnxpDN+BWdCTrOWPdqo=;
-        b=IpAj9esHfYVzSX0KRm0cFFVkJy6O86keJTa24mx9gt5t6v3n+JrS1Q9DufsCjDjCeoW4egu6tTEQE
-         tETuJCkiRthKkMQnsj1J5Dhdy/CS+7i9SbTGo6iCmXkPruF4nFAt+x+lDHBW1/01/IHJ9/DawL2KJs
-         zHmlF9mcLIYOMZDm55Y8G7fb8FuF2b1C7L0tugK1KpAL4vLYGaaVyNXd8xs8lkz5lcfC2op3gqn38x
-         7C24NcYNsBnpJ51QOzJvaBBelJmP8ojq4moX8mb7/P/1SXbvxuSF7wVe3mWNowDvo582MJONAj48Zh
-         dIgMSjGpXY2rPFm9SvKoIwHvhq+ScHA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=be6FcTyCK8ypmkrx62TPwHVjVnxpDN+BWdCTrOWPdqo=;
-        b=HyNjwtakEbfl+lS0CG8A4h+88ODvf2KVyNHmhxjVP6qFedsDPAjCardJbuPHxsSIObXm0AeNEDHwX
-         uMAu0+RBw==
-X-HalOne-ID: 92b083d3-07cc-11ee-bca9-6f01c1d0a443
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay6 (Halon) with ESMTPSA
-        id 92b083d3-07cc-11ee-bca9-6f01c1d0a443;
-        Sat, 10 Jun 2023 20:22:53 +0000 (UTC)
-Date:   Sat, 10 Jun 2023 22:22:51 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 6/7] drm/panel: sitronix-st7789v: Add EDT ET028013DMA
- panel support
-Message-ID: <20230610202251.GF1041001@ravnborg.org>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
- <20230609145951.853533-7-miquel.raynal@bootlin.com>
+        d=gmail.com; s=20221208; t=1686429075; x=1689021075;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7CUfh0ADpVTOvYtA/QmP/1yzn/jTq6xsCBbjiRAuVBc=;
+        b=M47Bs76cJZduUe2jX233QqIV+egitW4UlsEXHue+q2T4KOH4cAqzlb7wCpSXUpI5ei
+         /Pi7TGIp+sOjRdi+kTM4L67E/u7YIbJu5mtyl5qUDc4RFchU5c7uHXsAAwTt2H1uoxCV
+         Hfqzlj8/B7SADPb/+YEln2DmCrLl/Yo+Yzv6RjbzPMQEMW6/YascdgSIY28YE+Wec9/X
+         dX91y+QUiMlkJ54z+Gc8eIHBpvT+1ngCWfGJUg4QW5plYiX6uWT0y75UJ+SRiTpW0A0o
+         i+q82f/xOnog1S1/ovoy3GKVHDZl0Ns+Ce2hERd9m+gppCFbqIY+AmGOFjnmi9V37reW
+         2Cdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686429075; x=1689021075;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7CUfh0ADpVTOvYtA/QmP/1yzn/jTq6xsCBbjiRAuVBc=;
+        b=cTeGS1Cf1q3R35wL+CS6pnAev4dYq2dDN4h3O9FbnlgtbfZxhoXvzQ/jkJF/gfPl2p
+         1TLi6dDL23RzXoyoHgZZS1ofs4CidP4fPZpYXo4LVlUp5sck4lzuQ/vLljZyMhIQbNvk
+         O2mMCeHiWm7MPgxlt54Ee2pe25oGexcWAfDF5nj7+uwbJChkCyyF7nqRS6UYv289aXpi
+         JatvMwBe0majo+aOb8NkRJ2SMHtzqyrAfYegOU14WJ7/wGgqeXpJ6vl79bm7GrgXfzy6
+         oDKhqSUi2sCI5bv5xIR6b/W95XLO3EVezYo9QHdPtoU6Saka9q3knvfGTQh7Iv8a/0bb
+         19Uw==
+X-Gm-Message-State: AC+VfDz4uP8GlYqt3m9sdv+J3FsmaPjyIFQIPaXjLeJvMqGRqJ/h7rLZ
+        47t8xOG6wnX5VdEMWYF7bccaGlJF6tmgi5WoQHaQEidMI96Nquss
+X-Google-Smtp-Source: ACHHUZ4dpstWeM5AQfuAw9+nOwca/wduEjuy/62JuC2LfBIkzmkX6x8lh9InUH1M4rzcmOxdrSkt3SvaUvu4hsiDGbc=
+X-Received: by 2002:a17:907:9724:b0:979:7624:1f70 with SMTP id
+ jg36-20020a170907972400b0097976241f70mr6808874ejc.18.1686429075593; Sat, 10
+ Jun 2023 13:31:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230609145951.853533-7-miquel.raynal@bootlin.com>
+References: <20230610141739.999268-1-bigunclemax@gmail.com>
+ <20230610141739.999268-4-bigunclemax@gmail.com> <20230610-rehire-amid-2517f43504c0@spud>
+ <CALHCpMiEmc8L=O86_x7-KkBHFwf2QpuP0M7ugz7dNPr71cpJmQ@mail.gmail.com>
+ <20230610-enlarged-agonize-0e9219f9921d@spud> <20230610-crumpet-spender-4133090a4728@spud>
+In-Reply-To: <20230610-crumpet-spender-4133090a4728@spud>
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Date:   Sat, 10 Jun 2023 23:31:03 +0300
+Message-ID: <CALHCpMjFNvJAnd2_3-1n_L3QRz4eNc-Egm-BD6jcS6H694dSyg@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] dt-bindings: thermal: sun8i: Add binding for
+ D1/T113s THS controller
+To:     Conor Dooley <conor@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 09, 2023 at 04:59:50PM +0200, Miquel Raynal wrote:
-> This panel from Emerging Display Technologies Corporation features an
-> ST7789V2 panel inside which is almost identical to what the Sitronix
-> panel driver supports.
-> 
-> In practice, the module physical size is specific, and experiments show
-> that the display will malfunction if any of the following situation
-> occurs:
-> * Pixel clock is above 3MHz
-> * Pixel clock is not inverted
-> I could not properly identify the reasons behind these failures, scope
-> captures show valid input signals.
+=D1=81=D0=B1, 10 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 21:01, Con=
+or Dooley <conor@kernel.org>:
 
-The patch includes an additional change where the bus_flags are assigned
-to the connector. At least tell why, or maybe split it out.
-Other panels could learn to do the same - and I assume you did it
-because it was required in the atmel_hlcd driver.
+...
 
-	Sam
+> > > > +  - |
+> > > > +    thermal-sensor@2009400 {
+> > > > +          compatible =3D "allwinner,sun20i-d1-ths";
+> > > > +          reg =3D <0x02009400 0x400>;
+> > > > +          interrupts =3D <0 90 0>;
+> > > > +          clocks =3D <&ccu 0>;
+> > > > +          clock-names =3D "bus";
+> > > > +          resets =3D <&ccu 2>;
+> > > > +          nvmem-cells =3D <&ths_calibration>;
+> > > > +          nvmem-cell-names =3D "calibration";
+> > > > +          #thermal-sensor-cells =3D <0>;
+> > > >
+> > > >> Is this calibration required, or optional, for the d1?
+> > >
+> > > Calibration data for the D1 is optional as for the H6.
+> > > (But without it, the sensor data will be inaccurate).
+> >
+> > Okay. Modulo the signoff:
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Wait, that's not what I meant to say... Clearly turned my brain off for
+> a moment. If it is not going to function correctly without the
+> calibration data, why not make the calibration data required for the
+> d1's ths?
 
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  .../gpu/drm/panel/panel-sitronix-st7789v.c    | 34 +++++++++++++++++--
->  1 file changed, 32 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> index 212bccc31804..7de192a3a8aa 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> @@ -30,7 +30,8 @@
->  #define ST7789V_RGBCTRL_RCM(n)			(((n) & 3) << 5)
->  #define ST7789V_RGBCTRL_VSYNC_HIGH		BIT(3)
->  #define ST7789V_RGBCTRL_HSYNC_HIGH		BIT(2)
-> -#define ST7789V_RGBCTRL_PCLK_HIGH		BIT(1)
-> +#define ST7789V_RGBCTRL_PCLK_FALLING		BIT(1)
-> +#define ST7789V_RGBCTRL_PCLK_RISING		0
->  #define ST7789V_RGBCTRL_VBP(n)			((n) & 0x7f)
->  #define ST7789V_RGBCTRL_HBP(n)			((n) & 0x1f)
->  
-> @@ -117,6 +118,7 @@ struct st7789v_panel_info {
->  	u16 width_mm;
->  	u16 height_mm;
->  	u32 bus_format;
-> +	u32 bus_flags;
->  };
->  
->  struct st7789v {
-> @@ -175,6 +177,18 @@ static const struct drm_display_mode default_mode = {
->  	.vtotal = 320 + 8 + 4 + 4,
->  };
->  
-> +static const struct drm_display_mode slow_mode = {
-> +	.clock = 3000,
-> +	.hdisplay = 240,
-> +	.hsync_start = 240 + 38,
-> +	.hsync_end = 240 + 38 + 10,
-> +	.htotal = 240 + 38 + 10 + 10,
-> +	.vdisplay = 320,
-> +	.vsync_start = 320 + 8,
-> +	.vsync_end = 320 + 8 + 4,
-> +	.vtotal = 320 + 8 + 4 + 4,
-> +};
-> +
->  static int st7789v_get_modes(struct drm_panel *panel,
->  			     struct drm_connector *connector)
->  {
-> @@ -197,6 +211,7 @@ static int st7789v_get_modes(struct drm_panel *panel,
->  
->  	connector->display_info.width_mm = panel_info->width_mm;
->  	connector->display_info.height_mm = panel_info->height_mm;
-> +	connector->display_info.bus_flags = panel_info->bus_flags;
->  	drm_display_info_set_bus_formats(&connector->display_info,
->  					 &panel_info->bus_format, 1);
->  
-> @@ -206,8 +221,13 @@ static int st7789v_get_modes(struct drm_panel *panel,
->  static int st7789v_prepare(struct drm_panel *panel)
->  {
->  	struct st7789v *ctx = panel_to_st7789v(panel);
-> +	const struct st7789v_panel_info *panel_info = ctx->panel_info;
-> +	u8 pck = ST7789V_RGBCTRL_PCLK_FALLING;
->  	int ret;
->  
-> +	if (panel_info->bus_flags & DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE)
-> +		pck = ST7789V_RGBCTRL_PCLK_RISING;
-> +
->  	ret = regulator_enable(ctx->power);
->  	if (ret)
->  		return ret;
-> @@ -321,7 +341,7 @@ static int st7789v_prepare(struct drm_panel *panel)
->  					     ST7789V_RGBCTRL_RCM(2) |
->  					     ST7789V_RGBCTRL_VSYNC_HIGH |
->  					     ST7789V_RGBCTRL_HSYNC_HIGH |
-> -					     ST7789V_RGBCTRL_PCLK_HIGH));
-> +					     pck));
->  	ST7789V_TEST(ret, st7789v_write_data(ctx, ST7789V_RGBCTRL_VBP(8)));
->  	ST7789V_TEST(ret, st7789v_write_data(ctx, ST7789V_RGBCTRL_HBP(20)));
->  
-> @@ -422,14 +442,24 @@ static const struct st7789v_panel_info st7789v_info = {
->  	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
->  };
->  
-> +static const struct st7789v_panel_info et028013dma_info = {
-> +	.display_mode = &slow_mode,
-> +	.width_mm = 43,
-> +	.height_mm = 58,
-> +	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
-> +	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE,
-> +};
-> +
->  static const struct of_device_id st7789v_of_match[] = {
->  	{ .compatible = "sitronix,st7789v", .data = &st7789v_info },
-> +	{ .compatible = "edt,et028013dma", .data = &et028013dma_info },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, st7789v_of_match);
->  
->  static const struct spi_device_id st7789v_ids[] = {
->  	{ "st7789v", },
-> +	{ "et028013dma", },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(spi, st7789v_ids);
-> -- 
-> 2.34.1
+I don't really know why, but the calibration data is optional for
+other controllers.
+So I just did it the same way.
+Here is explanation comment about it from the driver:
+        /*
+         * Even if the external calibration data stored in sid is
+         * not accessible, the THS hardware can still work, although
+         * the data won't be so accurate.
+         *
+         * The default value of calibration register is 0x800 for
+         * every sensor, and the calibration value is usually 0x7xx
+         * or 0x8xx, so they won't be away from the default value
+         * for a lot.
+         *
+         * So here we do not return error if the calibration data is
+         * not available, except the probe needs deferring.
+         */
