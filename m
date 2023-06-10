@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B0972AD55
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 18:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 017F972AD58
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 18:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjFJQg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 12:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46516 "EHLO
+        id S229616AbjFJQge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 12:36:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjFJQgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 12:36:25 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 001923588
-        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 09:36:23 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9786c67ec32so467051266b.1
-        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 09:36:23 -0700 (PDT)
+        with ESMTP id S229883AbjFJQgd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 12:36:33 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA98F3588
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 09:36:31 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-97467e06511so465108566b.2
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 09:36:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686414982; x=1689006982;
+        d=linaro.org; s=google; t=1686414990; x=1689006990;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=i7AY8vbgZJuMRuKGKhXc3CaPpdpOazXr/FWch842YUk=;
-        b=VxbOVRcwsU7PAsw5hy2wRGW6Z6yIPXnFYabaHbIS/sC2RYXFxkQNn/X6dLOP4pu6gU
-         huZXwYVOHjuj9hFVFpWr6BB5WUl8MtpABmqC2hutByzqwOg/NWJL945cRpWXRtSI7+UQ
-         rf/vuoUhmUDkuaAcwdDP+st4mLnmkk3r8MfOUjaN5ko+vSwUN388mU8LtC5sl8jMB5GY
-         CVx++rd20QqNx6xAMeoU90E9QCCFRhktgASe/7aIh/DFlqSBoKNspMkZz5KQzIbW9kvK
-         KY4RHCYw5PurhLoyJsU/72kkl7Ztlx3Zeabm3RYiumxST8vChuBSNkFLJNFGHTbXv6TS
-         Cuwg==
+        bh=gVqKXkm6UdMGsr/6uJkX7hXU3csy2qVKj/NiyJxtouY=;
+        b=S5WU3P2PFFG/PK52QOhky/XHmE2v8HGo0CW2WjT4vIbsKfo/3Q0bKCpj9s65H0fdjE
+         smBhkenTRREoM8gnVO+Ze5jdlqkuK09zrBwpqbXnwGkWhfJ/cXgklgpjzM5475k+m6Jr
+         LvXdQA0qUJU63uq6u4OJ0Zvvcw1RVMpgJtdPYZ+URLKPdx6frwtFW2RneOeIKucDR+dB
+         VMQToKkemm0RIKU82m6dI0hWlnByWIY3DmWfKlBKNEhl8/PWlhR+A+zuninQSu6nlrzz
+         eMVjn20zUrnRm2e28/F6QIBWiStgT43xdTiaIe8LikTz+Ok8g0aD+ouOT2CM5G/CYntd
+         1aWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686414982; x=1689006982;
+        d=1e100.net; s=20221208; t=1686414990; x=1689006990;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i7AY8vbgZJuMRuKGKhXc3CaPpdpOazXr/FWch842YUk=;
-        b=Z9FPCwhZiUA8rARanybTx4KVTgv0fTQcsG3ltlM1YKJeoZaYIeyJU3MO+Z9kAJjR/U
-         dgymG0qqlOoKqU10gtDgtHHK8ntGysRVk2H3ajkEMJbpjPQ/bz7qTgkw+D+Sbv6LbyLR
-         W1s5Ssk1sb9RhdGdvkl2z161j6QrWkdDm4SfKuevRqTwj5dm7CJjZRJPsS8OykdnKZ9c
-         1tmirSUvfKgrmlU46/r2UKOJu2Fuzyq7KXo42G1WFrOtgPaXhmzAFL6iTZFha9rzpjCZ
-         YYgtv/EEFYINTs2D9jR4GjGpTFKshksKfDsp5riFFZEFTUIH+6midhtKI/zQQc4akijE
-         P4bg==
-X-Gm-Message-State: AC+VfDzzqANUNV2PBCysa/8kEBJfRQ++75XCHH2xUZPJEvZnNSe5Tbzs
-        63lYv6D3QR+GWZaa5ZAXkTF0CQ==
-X-Google-Smtp-Source: ACHHUZ6f7e9kt2rg7rJDTnmgDGuBIfEo9uR7tv20U+70roOf+SNw6N3s/gfAVo2mw6o+J90tvKqOhg==
-X-Received: by 2002:a17:907:1b0b:b0:978:9011:5893 with SMTP id mp11-20020a1709071b0b00b0097890115893mr4670163ejc.37.1686414982474;
-        Sat, 10 Jun 2023 09:36:22 -0700 (PDT)
+        bh=gVqKXkm6UdMGsr/6uJkX7hXU3csy2qVKj/NiyJxtouY=;
+        b=O5Mr8YVksqxH/LrTGrfnWMqGcmoFVL/jW9IJ5LWvjIuAOa0fDB5R4PDNf0C7l1IWEL
+         wtLR51wJuu4cT7ZIiEwLuGtjnJqmKsU1RaxdncGYVgM18UvXpFmgju8kAdOFYqRBMsmT
+         xZbTCSkg08nmN5A2dJ+Wg40UCNJ52AYd2qxIPjEaRSCBhDMyj2ZKYqliyr2b5fzaA24a
+         kRb7yEaTo48OoRWjBlxPiXCf1E4/ygfgSNpdCOxiNHS15fA9n3Kd+UiuOHLsVtYpl5xJ
+         gRJhCpx0eJq+L7YdM1gSZzxyFCDOKflb6yOHhk/HPE+NdJmvx73XP58tFCPiXcrzujfg
+         //Eg==
+X-Gm-Message-State: AC+VfDyhjcJ+lsbi80He0rfwm2DT7RXzeFeHx2NJAdDRdVipqkKVqXJb
+        apIAU+FjAqnphCVbt8j3izeirQ==
+X-Google-Smtp-Source: ACHHUZ7rlmuBqlJj6WbXv6buDuz/3vJ0zdznNuYHO4cJUBpVia5GC0LBzZVFoWuASDWymHJO69fXcA==
+X-Received: by 2002:a17:907:7fa3:b0:977:cdd6:6a5c with SMTP id qk35-20020a1709077fa300b00977cdd66a5cmr5792269ejc.10.1686414990197;
+        Sat, 10 Jun 2023 09:36:30 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id qp25-20020a170907207900b009787fbc2520sm2734226ejb.124.2023.06.10.09.36.21
+        by smtp.gmail.com with ESMTPSA id a17-20020a170906685100b00965ac1510f8sm2753800ejs.185.2023.06.10.09.36.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Jun 2023 09:36:22 -0700 (PDT)
-Message-ID: <c5ce8f8d-9e80-d8ce-3a82-36b2b4614766@linaro.org>
-Date:   Sat, 10 Jun 2023 18:36:20 +0200
+        Sat, 10 Jun 2023 09:36:29 -0700 (PDT)
+Message-ID: <a1fd28d8-684e-da6e-02f6-75424687889c@linaro.org>
+Date:   Sat, 10 Jun 2023 18:36:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Add Gateworks i.MX8M Mini gw72xx-2x
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Add Gateworks i.MX8M Mini gw71xx-2x
  board
 Content-Language: en-US
 To:     Tim Harvey <tharvey@gateworks.com>,
@@ -68,9 +68,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230607171004.2018275-1-tharvey@gateworks.com>
+References: <20230607170724.2016988-1-tharvey@gateworks.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230607171004.2018275-1-tharvey@gateworks.com>
+In-Reply-To: <20230607170724.2016988-1-tharvey@gateworks.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,12 +83,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2023 19:10, Tim Harvey wrote:
-> Add DT compatible string for a Gateworks GW72xx-2x board based on
+On 07/06/2023 19:07, Tim Harvey wrote:
+> Add DT compatible string for a Gateworks GW71xx-2x board based on
 > the i.MX8M Mini SoC from NXP.
 > 
 > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
