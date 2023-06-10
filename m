@@ -2,99 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E26A672A9DC
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 09:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 389C272AA77
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 11:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233756AbjFJH0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 03:26:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
+        id S234122AbjFJJI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 05:08:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233683AbjFJH0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 03:26:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547CE3AA7;
-        Sat, 10 Jun 2023 00:26:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E5BF1614BD;
-        Sat, 10 Jun 2023 07:26:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4EDFC433D2;
-        Sat, 10 Jun 2023 07:26:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686382000;
-        bh=W4jAN5UtwwRCSlIWle0GSOyMn537BHsZC7BQMLVcuso=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=nHqf/X2WwS16FkCQqkbtsIGJPGK4tdgajjbr3+J5l9qwiuj+QBSaS2nvl39WYjtnH
-         CbhCanA3aoqZbL+0ogRyFxFZuW4IAJQhVDRJAP8nCOBdm6a2SACHI8PleVWH8Xf4qo
-         jJa+n5jF4kdFCyoDcpVMd/b7+jFfIM1VE/YkErJJG0tJYYz7X8Udf0PMDWp6wHa3Oz
-         E6Pclxu7gFLMRgCeXDVf4XDHV1pBl86bB+z33ToSZBL05bNi9+FJBJ6d4mmlWuWBsR
-         62fPopZPUqoMuIbsv09yQe9yaHR5jhk2jpZikcQc/Md3dSN7857OK/G0gF3nAUsR6W
-         hpymSt7ftZOBw==
-Message-ID: <a69eca09-1f6d-6cae-061a-d483c9fb3715@kernel.org>
-Date:   Sat, 10 Jun 2023 10:26:32 +0300
+        with ESMTP id S234031AbjFJJI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 05:08:27 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA56B35BB
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 02:08:15 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5147f5efeb5so4559485a12.0
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 02:08:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686388094; x=1688980094;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=10why2ZoKYh8OCF9t05JfVcsTcRRTXdo00tGW5eG4P8=;
+        b=wjM3JfnbHH5o8w0xdL/Mhg8l3ykNyNiWyo3xZDAtY+1thDWlBisez4R36Q37ymOimy
+         5U4IL0DiurhhmjDGaTnNFLezHP9qoDb03NcW97L5UlfxCgc+IylCqkHpd50jsD9j/3XO
+         iD+R/+EI44R9jKiL9bprzZC10S/4Bb64UH2CfLcjjM7v9+C66X+87duNhh7BM/ekGcgJ
+         8bfkC/Y+cUxJNqrxgZcSnxSvCZ2ZI4O97nMkxk6DChgXK/SQvVdNMRKK2EWEFgI+6r1q
+         kbf/KZAZqnsC5Sqn99BOuKTvfKEXDV1ifykNdaETQZ4+18/ob0BaY/9cSKphms7mPAaL
+         V8wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686388094; x=1688980094;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=10why2ZoKYh8OCF9t05JfVcsTcRRTXdo00tGW5eG4P8=;
+        b=TQyP6Oj2OrCtou9yZGkmdwhsTEUNJcri7z203IaRJbtXCyHj2DnkpyzDw6jR5yxDrb
+         RqMcDL8DWPVvkP5YZyrcz1EOfaPLEw9JpnnG/3s+IkC+R/Nnw4SGKzEkAFXfsKzyr8hY
+         Yh4quKDnKDYSXlIFbKWBEYV/E4HspztytjVFkUXKKJsk2XXiWbBpydsGY7h7EJublxag
+         0+tsBIXFE0NJbE4PbIC4QLl3wkjtW0+cjwkZUM8bpc63ajYX61Y5GP1ujnlUHS9smzja
+         gsP18Zxad4coiYc/QxdFkpwrvkwS97ABRRi6YJElfdqM+TwBsR588SgIZY2/rU46jDUE
+         +Q6A==
+X-Gm-Message-State: AC+VfDzORSmnZ4qpg+Smasj58jkRuJvwfCARxi2mQC0a9IXvGy0RgPvN
+        GEpW6fD7f8mj+stIpzvlkgndyQ==
+X-Google-Smtp-Source: ACHHUZ7TsTyV7WKhpiWifl81yyvWaV2hJqCukEWQuqIz3aoJZs6EarLjzpDWqbSuq3qU9W73+A4Rew==
+X-Received: by 2002:a17:907:6d9e:b0:97e:a917:e6a5 with SMTP id sb30-20020a1709076d9e00b0097ea917e6a5mr226842ejc.19.1686388093875;
+        Sat, 10 Jun 2023 02:08:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id b16-20020a170906151000b009746023de34sm2325501ejd.150.2023.06.10.02.08.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Jun 2023 02:08:13 -0700 (PDT)
+Message-ID: <84588a21-135a-adf0-e6c7-146c1305cbbd@linaro.org>
+Date:   Sat, 10 Jun 2023 11:08:10 +0200
 MIME-Version: 1.0
-Subject: Re: [PATCH v6 3/4] clk: qcom: cbf-msm8996: scale CBF clock according
- to the CPUfreq
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-pm@vger.kernel.org
-References: <20230512001334.2983048-1-dmitry.baryshkov@linaro.org>
- <20230512001334.2983048-4-dmitry.baryshkov@linaro.org>
- <20230610001815.zgo23zlwo3z6e3y6@ripper>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH V2 1/2] ASoC: dt-bindings: max98388: add amplifier driver
+To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        rf@opensource.cirrus.com, ryans.lee@analog.com,
+        wangweidong.a@awinic.com, shumingf@realtek.com,
+        herve.codina@bootlin.com, ckeepax@opensource.cirrus.com,
+        doug@schmorgal.com, ajye_huang@compal.corp-partner.google.com,
+        kiseok.jo@irondevice.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     venkataprasad.potturu@amd.com
+References: <20230609234417.1139839-1-ryan.lee.analog@gmail.com>
 Content-Language: en-US
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20230610001815.zgo23zlwo3z6e3y6@ripper>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230609234417.1139839-1-ryan.lee.analog@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.06.23 3:18, Bjorn Andersson wrote:
-> On Fri, May 12, 2023 at 03:13:33AM +0300, Dmitry Baryshkov wrote:
->> Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
->> according to CPU frequencies.
->>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> Tested-by: Yassine Oudjana <y.oudjana@protonmail.com>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 10/06/2023 01:44, “Ryan wrote:
+> From: Ryan Lee <ryans.lee@analog.com>
 > 
-> Georgi,
+> Add dt-bindings information for Analog Devices MAX98388 I2S Amplifier
 > 
-> Dmitry tells me that you picked up the interconnect patches, I don't see
-> an immutable branch in your tree with them, but this patch has a build
-> time dependency on them. Could you please pick this through your tree as
-> well?
+> Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+> ---
+> Changes from v1:
+>   Removed unnecessary blank line and description. Modified quotes.
 
-It's done. Thanks a lot Bjorn!
 
-BR,
-Georgi
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Acked-by: Bjorn Andersson <andersson@kernel.org>
-> 
-> Regards,
-> Bjorn
-> 
->> ---
->>   drivers/clk/qcom/Kconfig        |  1 +
->>   drivers/clk/qcom/clk-cbf-8996.c | 60 ++++++++++++++++++++++++++++++++-
->>   2 files changed, 60 insertions(+), 1 deletion(-)
->>
+Best regards,
+Krzysztof
 
