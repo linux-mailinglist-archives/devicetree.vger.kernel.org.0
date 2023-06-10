@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 389C272AA77
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 11:08:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C7C972AAA3
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 11:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234122AbjFJJI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 05:08:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
+        id S229961AbjFJJYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 05:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234031AbjFJJI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 05:08:27 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA56B35BB
-        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 02:08:15 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5147f5efeb5so4559485a12.0
-        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 02:08:15 -0700 (PDT)
+        with ESMTP id S229666AbjFJJYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 05:24:35 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56582136
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 02:24:32 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-974638ed5c5so545646466b.1
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 02:24:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686388094; x=1688980094;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1686389071; x=1688981071;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=10why2ZoKYh8OCF9t05JfVcsTcRRTXdo00tGW5eG4P8=;
-        b=wjM3JfnbHH5o8w0xdL/Mhg8l3ykNyNiWyo3xZDAtY+1thDWlBisez4R36Q37ymOimy
-         5U4IL0DiurhhmjDGaTnNFLezHP9qoDb03NcW97L5UlfxCgc+IylCqkHpd50jsD9j/3XO
-         iD+R/+EI44R9jKiL9bprzZC10S/4Bb64UH2CfLcjjM7v9+C66X+87duNhh7BM/ekGcgJ
-         8bfkC/Y+cUxJNqrxgZcSnxSvCZ2ZI4O97nMkxk6DChgXK/SQvVdNMRKK2EWEFgI+6r1q
-         kbf/KZAZqnsC5Sqn99BOuKTvfKEXDV1ifykNdaETQZ4+18/ob0BaY/9cSKphms7mPAaL
-         V8wg==
+        bh=XojwCKgKhnjiO7z1EOBqqb2iPuWe/crlH+uXgXBXB7A=;
+        b=D4dP8H2UTLxaQ6rpMaJJbgbnz794U2JDheN7mjLjVMohYf7LI27mHijVKeHZKvi1m3
+         c8FZP05OEPe4/uqoeFGdA6WE4mOna/HT/qi9LMq/LfO1Y/v2QWGkM+4AvUggZdZ8yjlQ
+         RgN8iphJ9IU/MZYT+z5meDUICzMrD3Y6/4HjuyJXQtjklemyl/4N1qCN2AoVc2E1Vb2m
+         Uyyn78vUsMP9ozBOzaLw+Qc74+NmHzWY9Ugchu94eucmVwaobaojT1Iznwy253sKE0HJ
+         Vk2bs6KS39V++1171UK1Sg3WDAJq//dVcn6/8sIio7dRLECWNtPZtftj/Z1hy5oAhOBj
+         vQzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686388094; x=1688980094;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1686389071; x=1688981071;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=10why2ZoKYh8OCF9t05JfVcsTcRRTXdo00tGW5eG4P8=;
-        b=TQyP6Oj2OrCtou9yZGkmdwhsTEUNJcri7z203IaRJbtXCyHj2DnkpyzDw6jR5yxDrb
-         RqMcDL8DWPVvkP5YZyrcz1EOfaPLEw9JpnnG/3s+IkC+R/Nnw4SGKzEkAFXfsKzyr8hY
-         Yh4quKDnKDYSXlIFbKWBEYV/E4HspztytjVFkUXKKJsk2XXiWbBpydsGY7h7EJublxag
-         0+tsBIXFE0NJbE4PbIC4QLl3wkjtW0+cjwkZUM8bpc63ajYX61Y5GP1ujnlUHS9smzja
-         gsP18Zxad4coiYc/QxdFkpwrvkwS97ABRRi6YJElfdqM+TwBsR588SgIZY2/rU46jDUE
-         +Q6A==
-X-Gm-Message-State: AC+VfDzORSmnZ4qpg+Smasj58jkRuJvwfCARxi2mQC0a9IXvGy0RgPvN
-        GEpW6fD7f8mj+stIpzvlkgndyQ==
-X-Google-Smtp-Source: ACHHUZ7TsTyV7WKhpiWifl81yyvWaV2hJqCukEWQuqIz3aoJZs6EarLjzpDWqbSuq3qU9W73+A4Rew==
-X-Received: by 2002:a17:907:6d9e:b0:97e:a917:e6a5 with SMTP id sb30-20020a1709076d9e00b0097ea917e6a5mr226842ejc.19.1686388093875;
-        Sat, 10 Jun 2023 02:08:13 -0700 (PDT)
+        bh=XojwCKgKhnjiO7z1EOBqqb2iPuWe/crlH+uXgXBXB7A=;
+        b=OMwm2U8PMKe+cjO2f/7KC7rHJRrcpylliFT0YoOumRHYLNyvB2dQ+K2O3tIMXufXil
+         0K9DPo7+L2M77gpKI6ceGvWcDACV1pIJX1qPCUI5AqTdgMOko18Wnu/hzQnbnA6IieMo
+         UfKg6isUUhcEOUIgZtWUSG4W3rrYbG64Gvn09I/HUpz5/fzj3e1BT+ZuTvSPUHpyLyC5
+         xt4RB3odWDiG+MmmPnh4finQQj6dIvS9ZhEo4+Y/LgcjXCekbAw1UlAXqlQwyk1kr6Lo
+         HBX2HK8YmdFFfQztOvmDkG/pjOJomu2kfDKQ3qLlboTiDhJIdnNJ7dSr1KP+g8Yc6Fh5
+         XZmQ==
+X-Gm-Message-State: AC+VfDwCEPffkBHWSwhm4sLc//mL1pwxE0be/KA0s1EAq8LbnM7K2duK
+        DMjwL9kHWOvsw1bnr/gkjc91og==
+X-Google-Smtp-Source: ACHHUZ4pBisGDKji6uOa3f0FnU4ZFqCgOV6oMmZC83f3QnL93SbSqlXkXMHN3OZ82e1apqn4uyjMxQ==
+X-Received: by 2002:a17:907:7f0b:b0:976:f2e:ad6a with SMTP id qf11-20020a1709077f0b00b009760f2ead6amr4462360ejc.28.1686389071126;
+        Sat, 10 Jun 2023 02:24:31 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id b16-20020a170906151000b009746023de34sm2325501ejd.150.2023.06.10.02.08.11
+        by smtp.gmail.com with ESMTPSA id fy25-20020a170906b7d900b0096b55be592asm2319503ejb.92.2023.06.10.02.24.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Jun 2023 02:08:13 -0700 (PDT)
-Message-ID: <84588a21-135a-adf0-e6c7-146c1305cbbd@linaro.org>
-Date:   Sat, 10 Jun 2023 11:08:10 +0200
+        Sat, 10 Jun 2023 02:24:30 -0700 (PDT)
+Message-ID: <87d90ade-644c-a45d-ce50-bdeded755b04@linaro.org>
+Date:   Sat, 10 Jun 2023 11:24:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH V2 1/2] ASoC: dt-bindings: max98388: add amplifier driver
+Subject: Re: [PATCH V2 2/2] ASoC: max98388: add amplifier driver
+Content-Language: en-US
 To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
         lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
@@ -64,17 +65,17 @@ To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
         doug@schmorgal.com, ajye_huang@compal.corp-partner.google.com,
         kiseok.jo@irondevice.com, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     venkataprasad.potturu@amd.com
+Cc:     venkataprasad.potturu@amd.com, kernel test robot <lkp@intel.com>
 References: <20230609234417.1139839-1-ryan.lee.analog@gmail.com>
-Content-Language: en-US
+ <20230609234417.1139839-2-ryan.lee.analog@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230609234417.1139839-1-ryan.lee.analog@gmail.com>
+In-Reply-To: <20230609234417.1139839-2-ryan.lee.analog@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,15 +85,205 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 10/06/2023 01:44, “Ryan wrote:
 > From: Ryan Lee <ryans.lee@analog.com>
 > 
-> Add dt-bindings information for Analog Devices MAX98388 I2S Amplifier
+> Added Analog Devices MAX98388 amplifier driver.
+> MAX98388 provides a PCM interface for audio data and a standard I2C
+> interface for control data communication.
 > 
 > Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+
+There is nothing to report here.
+
+> Closes: 
+> https://urldefense.com/v3/__https://lore.kernel.org/oe-kbuild-all/2023
+> 06082054.jIU9oENf-lkp@intel.com/__;!!A3Ni8CS0y2Y!46sHiAsmIiXxZ_QXIobho
+> mY8F1f7F2yMYd_65NNFwRlcgut33--RdFjVAbg6jKf7Vs8GaYZ7oA$
+
+Nothing to close and also broken link. Fix your mailer.
+
 > ---
 > Changes from v1:
->   Removed unnecessary blank line and description. Modified quotes.
+>   Fixed build warnings.
+> 
+>  sound/soc/codecs/Kconfig    |   10 +
+>  sound/soc/codecs/Makefile   |    2 +
+>  sound/soc/codecs/max98388.c | 1042 +++++++++++++++++++++++++++++++++++
+>  sound/soc/codecs/max98388.h |  234 ++++++++
+>  4 files changed, 1288 insertions(+)
+>  create mode 100644 sound/soc/codecs/max98388.c
+>  create mode 100644 sound/soc/codecs/max98388.h
+
+...
+
+> +
+> +static void max98388_read_deveice_property(struct device *dev,
+> +					   struct max98388_priv *max98388)
+> +{
+> +	int value;
+> +
+> +	if (!device_property_read_u32(dev, "adi,vmon-slot-no", &value))
+> +		max98388->v_slot = value & 0xF;
+> +	else
+> +		max98388->v_slot = 0;
+> +
+> +	if (!device_property_read_u32(dev, "adi,imon-slot-no", &value))
+> +		max98388->i_slot = value & 0xF;
+> +	else
+> +		max98388->i_slot = 1;
+> +
+> +	if (device_property_read_bool(dev, "adi,interleave-mode"))
+> +		max98388->interleave_mode = true;
+> +	else
+> +		max98388->interleave_mode = false;
+> +
+> +	if (dev->of_node) {
+> +		max98388->reset_gpio = of_get_named_gpio(dev->of_node,
+> +							 "reset-gpio", 0);
+
+Nope, use devm
+
+> +		if (!gpio_is_valid(max98388->reset_gpio)) {
+> +			dev_err(dev, "Looking up %s property in node %s failed %d\n",
+> +				"reset-gpio", dev->of_node->full_name,
+> +				max98388->reset_gpio);
+> +		} else {
+> +			dev_dbg(dev, "reset-gpio=%d",
+> +				max98388->reset_gpio);
+> +		}
+> +	} else {
+> +		/* this makes reset_gpio as invalid */
+> +		max98388->reset_gpio = -1;
+
+Why? To request it again? It does not make sense.
+
+> +	}
+> +}
+> +
+> +static int max98388_i2c_probe(struct i2c_client *i2c)
+> +{
+> +	int ret = 0;
+> +	int reg = 0;
+> +
+> +	struct max98388_priv *max98388 = NULL;
+> +
+> +	max98388 = devm_kzalloc(&i2c->dev, sizeof(*max98388), GFP_KERNEL);
+> +
+
+Drop blank line.
+
+> +	if (!max98388) {
+> +		ret = -ENOMEM;
+
+return -ENOMEM;
+
+> +		return ret;
+> +	}
+> +	i2c_set_clientdata(i2c, max98388);
+> +
+> +	/* regmap initialization */
+> +	max98388->regmap = devm_regmap_init_i2c(i2c, &max98388_regmap);
+> +	if (IS_ERR(max98388->regmap)) {
+> +		ret = PTR_ERR(max98388->regmap);
+> +		dev_err(&i2c->dev,
+> +			"Failed to allocate regmap: %d\n", ret);
+> +		return ret;
+
+return dev_err_probe
+
+> +	}
+> +
+> +	/* voltage/current slot & gpio configuration */
+> +	max98388_read_deveice_property(&i2c->dev, max98388);
+> +
+> +	/* Power on device */
+> +	if (gpio_is_valid(max98388->reset_gpio)) {
+
+What's this? You request it twice? No.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +		ret = devm_gpio_request(&i2c->dev, max98388->reset_gpio,
+> +					"MAX98388_RESET");
+> +		if (ret) {
+> +			dev_err(&i2c->dev, "%s: Failed to request gpio %d\n",
+> +				__func__, max98388->reset_gpio);
+
+return dev_err_probe
+
+> +			return -EINVAL;
+> +		}
+> +		gpio_direction_output(max98388->reset_gpio, 0);
+> +		msleep(50);
+> +		gpio_direction_output(max98388->reset_gpio, 1);
+
+1 means keep in reset, so why do you keep deviec reset afterwards? Was
+it tested? You probably messed up values used for GPIOs as you stated in
+example that it is active low.
+
+> +		msleep(20);
+> +	}
+> +
+> +	/* Read Revision ID */
+> +	ret = regmap_read(max98388->regmap,
+> +			  MAX98388_R22FF_REV_ID, &reg);
+> +	if (ret < 0) {
+> +		dev_err(&i2c->dev,
+> +			"Failed to read: 0x%02X\n", MAX98388_R22FF_REV_ID);
+> +		return ret;
+
+return dev_err_probe
+
+> +	}
+> +	dev_info(&i2c->dev, "MAX98388 revisionID: 0x%02X\n", reg);
+> +
+> +	/* codec registration */
+> +	ret = devm_snd_soc_register_component(&i2c->dev,
+> +					      &soc_codec_dev_max98388,
+> +					      max98388_dai,
+> +					      ARRAY_SIZE(max98388_dai));
+> +	if (ret < 0)
+> +		dev_err(&i2c->dev, "Failed to register codec: %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct i2c_device_id max98388_i2c_id[] = {
+> +	{ "max98388", 0},
+> +	{ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, max98388_i2c_id);
+> +
+> +#if defined(CONFIG_OF)
+
+Drop
+
+> +static const struct of_device_id max98388_of_match[] = {
+> +	{ .compatible = "adi,max98388", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, max98388_of_match);
+> +#endif
+> +
+> +#ifdef CONFIG_ACPI
+
+Drop
+
+> +static const struct acpi_device_id max98388_acpi_match[] = {
+> +	{ "ADS8388", 0 },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(acpi, max98388_acpi_match);
+> +#endif
+> +
+> +static struct i2c_driver max98388_i2c_driver = {
+> +	.driver = {
+> +		.name = "max98388",
+> +		.of_match_table = of_match_ptr(max98388_of_match),
+> +		.acpi_match_table = ACPI_PTR(max98388_acpi_match),
+
+Just drop all wrappers. They are useless and only limit your driver (OF
+can be used on some ACPI platforms).
+
 
 Best regards,
 Krzysztof
