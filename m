@@ -2,67 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B982E72AC98
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 17:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D83672ACB1
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 17:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235276AbjFJPbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 11:31:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53050 "EHLO
+        id S232032AbjFJPsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 11:48:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235278AbjFJPbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 11:31:03 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC790184;
-        Sat, 10 Jun 2023 08:31:01 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-977c72b116fso418356366b.3;
-        Sat, 10 Jun 2023 08:31:01 -0700 (PDT)
+        with ESMTP id S231775AbjFJPsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 11:48:23 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6F42D5F;
+        Sat, 10 Jun 2023 08:48:22 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-977c89c47bdso506989866b.2;
+        Sat, 10 Jun 2023 08:48:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686411060; x=1689003060;
+        d=gmail.com; s=20221208; t=1686412101; x=1689004101;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IxPCqAAcwCfGdUZiMxaBjYAZU0A3wquYmcYNKNjhuUY=;
-        b=VW/oFge+/+Orjlr3UpOgqadtUtBJ58tLJh7c0ptmvXHTALLI1Zz51N8TQSh9+aWdzL
-         7VvgNo2iitsbJxxSrRsWx2ElXrUNQuqwp58AqaSWSR4MSb2p9jFQXMx61pVnLw9CzoxG
-         +r0AdHepDGV1z/buMuMRwTLzgjk7Czyiwrfdwe7PF5abkrNROckIPIIXpr7LBt7cY1sp
-         EGzLGx82Tf4t+lCcuIQJGM9ENkfSvd62acQeVjSUx6IeJnINgNEDTEQ/AnZoyEfE7ybl
-         KA2+DI0SydJ5SmngpTSk2UYMStrAzFTfDFZ5jYHKRZcjhkat9scfDh6JIkCrSwnTMZ4g
-         7YcA==
+        bh=k+PV93m/s/NOXGrP+XMGqPRSJ4bMSqkEUav/3Sp/SUo=;
+        b=Q34XAtI54cIkhZYDotBTosBNKqeEtdaBGe/lHaZqbJ89DP58Z/qRC8OTHcB46m0Kz6
+         tYZDXB+eN1elN5uNcii6qfMo6QKRIew8HjOzxQnKjwfYtI8QH1TzeUvWXuWVjRKibAo5
+         oVqMa4yTNjPEnNLgASQGu+aEY31Mbd917fBUDjhMO0Jmw5zvHhRIwxxFUd6iayTCvK9d
+         2vdziEGtDX7yJ1vOOUw2skkhT6BdgQ8ZbyeDMLE9Qj8kL9nHchSq7AQxBYFVVRWghCFM
+         YkRPhqh9GgQAtJhC/Q9VULCI/TWMOpYGFRb/+xGzdTsj4a39ByFyLMzf8KrZU7Lyb0SW
+         OxDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686411060; x=1689003060;
+        d=1e100.net; s=20221208; t=1686412101; x=1689004101;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IxPCqAAcwCfGdUZiMxaBjYAZU0A3wquYmcYNKNjhuUY=;
-        b=DP6YVKQQNvCrAGeNS3VIppKe+SV17xsmXz0zgcug0CHDpdzXiXHs3/epY56PSoafRP
-         oxjElST0ND8wux59GX9yAUD2pFTz2Nrs9APZtqdzsQFYU3FqZeyCGU49MCTtlK0S7fx2
-         ABHAV56f6t4KVumc2zYCIVPFlOkyPNxo2CkvLBdNdjSNBPIaiFL9P2vNfuOE621j25bM
-         b/eDHQZaYJoOaeA9oS4N0rVALb4VnA9DdrIwpTMJ0Sec01wtKsS8fM4QaAsfEM+WXA6d
-         sJfHrI/R22rMppdPBRnYdegJkqCG1zdKdtk4k7phb7xfAKIcD1PJ3mG88gInN80uQxjo
-         77cg==
-X-Gm-Message-State: AC+VfDyr2t1FLnyBu53aBzRb9g/raTe0QuCenLYoZt87DxrDoDUJyyne
-        4iV3sv30q1hB0ctouwvUtLUjZ+Mizl+9vaS+uod/D5bKqrsKqk6U
-X-Google-Smtp-Source: ACHHUZ5ze2gv8QfGmKLPkmbnKeZqHcnYPyn27zxIIkW9XeukUemNkvD0q1gl/Wy1GyoPAlHRwGYvRgduuF0eBtVKhis=
-X-Received: by 2002:a17:907:c15:b0:97b:4c8f:c44f with SMTP id
- ga21-20020a1709070c1500b0097b4c8fc44fmr3530103ejc.46.1686411059681; Sat, 10
- Jun 2023 08:30:59 -0700 (PDT)
+        bh=k+PV93m/s/NOXGrP+XMGqPRSJ4bMSqkEUav/3Sp/SUo=;
+        b=jblZ8pkPpytCWceQe1hVBDVJvL5HLJqcgeMDFq4XCj8VtVKM7SXJ8J7GSeBMjM9Yzu
+         bzdzK647VZvHRsQQGNRiUvmT5GNGu7+3TmHgcI88eZxMLxMCho2ts/2KUMXORpn4FHqQ
+         b4F2gi2kVGDLcBzF9KfulPW6rELDdJLKegePAzzMRMVTqBTLg12K82hCcTeto6l29BMS
+         u/e9pSL0FDLg2R6MiKjZm7kb/5a8iXS93n/gTIMq5iWetYSae6329hyHYfDt5Q3k6PdN
+         qEtp1+rJg8YNPGSUv2u2i96eWNLC4aS3MFmmWxjvfTflKXPgiXcEzNXdmMDA/zv8uf5L
+         YOgQ==
+X-Gm-Message-State: AC+VfDx89UC1ZPmvMV3VsmpQngtC9Jf/kU6oTv7FNPS3cX+vd54n4xl6
+        xBZ9i0X0Fq10sXGLGot4ZG0CllaYkorWYCumwbw=
+X-Google-Smtp-Source: ACHHUZ4+yt8TVxdmv/KLF0owdyYhjmUilZj8tEPlviShNxjxsyve8eoayZ040B9uZ/VhtH2U+1jPZUtc7w/UhVrwtao=
+X-Received: by 2002:a17:907:728d:b0:96b:6fb:38d6 with SMTP id
+ dt13-20020a170907728d00b0096b06fb38d6mr6295931ejc.65.1686412100664; Sat, 10
+ Jun 2023 08:48:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230610141739.999268-1-bigunclemax@gmail.com>
- <20230610141739.999268-4-bigunclemax@gmail.com> <20230610-rehire-amid-2517f43504c0@spud>
-In-Reply-To: <20230610-rehire-amid-2517f43504c0@spud>
+References: <20230610122934.953106-1-bigunclemax@gmail.com>
+ <20230610122934.953106-3-bigunclemax@gmail.com> <20230610-ranged-outboard-2aaa0cc36cbd@spud>
+In-Reply-To: <20230610-ranged-outboard-2aaa0cc36cbd@spud>
 From:   Maxim Kiselev <bigunclemax@gmail.com>
-Date:   Sat, 10 Jun 2023 18:30:48 +0300
-Message-ID: <CALHCpMiEmc8L=O86_x7-KkBHFwf2QpuP0M7ugz7dNPr71cpJmQ@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] dt-bindings: thermal: sun8i: Add binding for
- D1/T113s THS controller
+Date:   Sat, 10 Jun 2023 18:48:08 +0300
+Message-ID: <CALHCpMhHxAdDMGmpD9i2Kt93XqyrW_ABzr7FZSE-0+54LwgzPw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: iio: adc: Add Allwinner
+ D1/T113s/R329/T507 SoCs GPADC
 To:     Conor Dooley <conor@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -72,9 +67,24 @@ Cc:     linux-kernel@vger.kernel.org,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
         linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -88,34 +98,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D1=81=D0=B1, 10 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 17:52, Con=
+Hey,
+
+=D1=81=D0=B1, 10 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 18:06, Con=
 or Dooley <conor@kernel.org>:
 
 ...
 
+> >+
+> >+    required:
+> >+      - reg
+> >+
+> >+    additionalProperties: false
+> >+
+> >+required:
+> >+  - "#io-channel-cells"
+> >+  - clocks
+> >+  - compatible
+> >+  - interrupts
+> >+  - reg
+> >+  - resets
+> >+
+> >+unevaluatedProperties: false
 >
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
->
->> Why do you have 2 sign-offs that are both you w/ different spellings?
+> How come this one changed to unevaluatedProperties: false?
+> Wasn't it for the ADC that we previously discussed whether
+> additionalProperties: false was correct or not?
 
-Sorry for that. I accidentally signed it twice.
-
-...
-
-> +  - |
-> +    thermal-sensor@2009400 {
-> +          compatible =3D "allwinner,sun20i-d1-ths";
-> +          reg =3D <0x02009400 0x400>;
-> +          interrupts =3D <0 90 0>;
-> +          clocks =3D <&ccu 0>;
-> +          clock-names =3D "bus";
-> +          resets =3D <&ccu 2>;
-> +          nvmem-cells =3D <&ths_calibration>;
-> +          nvmem-cell-names =3D "calibration";
-> +          #thermal-sensor-cells =3D <0>;
->
->> Is this calibration required, or optional, for the d1?
-
-Calibration data for the D1 is optional as for the H6.
-(But without it, the sensor data will be inaccurate).
+Hmm, I changed it to `unevaluatedProperties: false` as you suggested
+in this message
+https://lore.kernel.org/lkml/20230604-afternoon-frighten-42222010557b@spud/
