@@ -2,101 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C37AF72AE0D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 20:07:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 463D972AE42
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 21:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbjFJSHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 14:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46974 "EHLO
+        id S229601AbjFJTEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 15:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjFJSHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 14:07:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2501926B1;
-        Sat, 10 Jun 2023 11:07:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B3CF660F04;
-        Sat, 10 Jun 2023 18:07:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33DDBC433EF;
-        Sat, 10 Jun 2023 18:07:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686420452;
-        bh=/Oi+qoNXc1G119BAPXC4pSYlv8GVhGqklA7F5cmrK84=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=RYKw+cYbvgdgSGUCy0yaRSQfE2N/QUI0qYuics/RCj7xtEQWHkwIgZuL7uqtrllzQ
-         hNz3SJEyOHUEsE2G1MS1r/IGurTNO7mg0jKPxpYcnrVtZ7sgSNn4kUeuDcRfXB4pTa
-         YI3770ezMGkFAAOv3BeF9V0O0FL2ShwhWeUuBkMSzkbPKt7vIf14Ffovz271edTWbp
-         c+bpvqh9MfIAA/+Yuo8zbRDUalmYM/wdA7GoydFJ2l/jAN3HjTZAwPmTYmIa48flqr
-         X3E5p4ZhJjtPZNKRpohgMYo/di5Lb2RYxNdrg5I1d+hOdGD3+wtGcfYA3+mWK3isDA
-         K+8eNiUsUUKlw==
-Date:   Sat, 10 Jun 2023 19:24:05 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>, lars@metafoo.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, heiko@sntech.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, gustavo.padovan@collabora.com,
-        serge.broslavsky@collabora.com
-Subject: Re: [PATCH v2] dt-bindings: iio: rockchip: Fix 'oneOf' condition
- failed warning
-Message-ID: <20230610192405.1a56fb1b@jic23-huawei>
-In-Reply-To: <153ea7d7-25d5-8782-a622-ae512134161c@linaro.org>
-References: <20230610143601.173307-1-shreeya.patel@collabora.com>
-        <c5243179-9baf-59ce-b979-c596dcf6692b@linaro.org>
-        <20230610171142.dsezim4gcxr2b65u@mercury.elektranox.org>
-        <153ea7d7-25d5-8782-a622-ae512134161c@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        with ESMTP id S229552AbjFJTEk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 15:04:40 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F9761993;
+        Sat, 10 Jun 2023 12:04:39 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-30aebe2602fso1943026f8f.3;
+        Sat, 10 Jun 2023 12:04:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686423878; x=1689015878;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P+YjzUo1B2S2csqhYjgytz5WXmvhzS96d+qxUFRdrfc=;
+        b=FiZkOzgUV4WCSgew0MvSsd/J2ST7V62H/PbPxj6U9tz3f2mwkjLLt3zw1HbDLtjF1W
+         O/shoVGScGEQ0UwqJTyWX/8EFv0CmSl15OH4qwVDN5umIYmpMyRs6A29TBgQTr6ITLk5
+         Z0h3jDWIJuCVp3hjL4rufQHX9lpEz45mPdFILSqbPM1q2cc/asJKuImPV2Nq16Fywuzl
+         DajsNuquw8QvP7Rh1m2qCXNj641jxEvMrTMxnNMNdGg+yZua95BioqffM5VNGhP4miZw
+         uzSKUmDWIkjSdDqkWT+Qb5tyiP1dCIlkTdt0+PMr8IMb/dTiudd0u1YfmH9E1C+us7X/
+         fj3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686423878; x=1689015878;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P+YjzUo1B2S2csqhYjgytz5WXmvhzS96d+qxUFRdrfc=;
+        b=FCMvDzA33dJ07Na9BMemc4ibjVMvZ81xLARlTGYxV3LVvDUfffddTZd7WTfwT0/rSc
+         /+UYOWhDAL2IF+y0sIGGQXxYRs2ivokda3OUwU/7ZQQtDGcZ28sLtuvLtxz6qBJ0/+Kk
+         77rz+ytqfDNPD61jtnYomriP7UTIXGwYNfCva2S5l+tsGaBRuwoSG5UOu22qV4Vk6YL/
+         Nlp1Df0HdRJjl54EcH0js/paht3FRj/01DZNkhE8igB5I+NYQEw2Ul2p38N/PBWzOF+h
+         3EG3cZmLEVaJf3v6xhH/YdiUj4oWD2zlmRHrOBY5T+qLTGMSHBYSWrniKUCI9ul6AjfW
+         pr8A==
+X-Gm-Message-State: AC+VfDw1la0pGh+vvEdDnp1GFEYgg1NwSBNt3OuuYgZowORlAryAM6YK
+        wSsDmaW7ye6sjwtE95MZ6+Z7X8QshmncbECC
+X-Google-Smtp-Source: ACHHUZ7+FwyXPExmCGfTdhBoc8oJvU/zTiio5BdCHihsSEDTYpwdfYxIiMhA0liy4/BsVzbnEHqTuw==
+X-Received: by 2002:a5d:448a:0:b0:30d:8490:58 with SMTP id j10-20020a5d448a000000b0030d84900058mr1191214wrq.9.1686423877776;
+        Sat, 10 Jun 2023 12:04:37 -0700 (PDT)
+Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
+        by smtp.gmail.com with ESMTPSA id i1-20020adff301000000b002f28de9f73bsm7764607wro.55.2023.06.10.12.04.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 Jun 2023 12:04:37 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     linux-kernel@vger.kernel.org,
+        Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 0/3] Add D1/T113s thermal sensor controller support
+Date:   Sat, 10 Jun 2023 21:04:34 +0200
+Message-ID: <4275249.ejJDZkT8p0@jernej-laptop>
+In-Reply-To: <20230610141739.999268-1-bigunclemax@gmail.com>
+References: <20230610141739.999268-1-bigunclemax@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Jun 2023 19:34:23 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 10/06/2023 19:11, Sebastian Reichel wrote:
-> > Hi,
-> > 
-> > On Sat, Jun 10, 2023 at 06:30:57PM +0200, Krzysztof Kozlowski wrote:  
-> >> On 10/06/2023 16:36, Shreeya Patel wrote:  
-> >>> rk3588-saradc isn't compatible with the rk3399-saradc variant,
-> >>> hence, fix the following dtbs_check warning for 'oneOf' condition
-> >>> failure.  
-> >>
-> >> Are you sure it isn't compatible? According to your driver it is and
-> >> this change is not enough.  
-> > 
-> > The driver changes are still in the iio testing branch and not yet
-> > in linux-next. RK3588 ADC is not compatible with previous
-> > generations. It's trivial to see in Shreeya's driver patch:
-> > 
-> > https://lore.kernel.org/all/20230603185340.13838-3-shreeya.patel@collabora.com/  
+Dne sobota, 10. junij 2023 ob 16:17:31 CEST je Maksim Kiselev napisal(a):
+> This series adds support for Allwinner D1/T113s thermal sensor controller.
+> THIS controller is similar to the one on H6, but with only one sensor and
+> uses a different scale and offset values.
 > 
-> I was checking the next. It's fine then.
-And I forgot I only pushed out for next to pick it up earlier today.
-oops :)
+> Maxim Kiselev (3):
+>   thermal: sun8i: Add D1/T113s THS controller support
+>   riscv: dts: allwinner: d1: Add thermal sensor and thermal zone
+>   dt-bindings: thermal: sun8i: Add binding for D1/T113s THS controller
 
-Thanks and applied to the togreg branch of iio.git.
+As mentioned elsewhere, please fix SoB tags. Also binding patch should
+come before driver changes.
 
-Thanks,
-
-Jonathan
+Best regards,
+Jernej
 
 > 
-> Best regards,
-> Krzysztof
+>  .../thermal/allwinner,sun8i-a83t-ths.yaml     | 20 +++++++++++++-
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 26 +++++++++++++++++++
+>  drivers/thermal/sun8i_thermal.c               | 13 ++++++++++
+>  3 files changed, 58 insertions(+), 1 deletion(-)
 > 
+> 
+
+
+
 
