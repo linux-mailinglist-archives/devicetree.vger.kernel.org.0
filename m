@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5A8272AC7E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 17:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E20672AC94
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 17:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbjFJPKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 11:10:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49044 "EHLO
+        id S234913AbjFJP2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 11:28:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230265AbjFJPKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 11:10:21 -0400
+        with ESMTP id S234867AbjFJP2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 11:28:42 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301FC30E3;
-        Sat, 10 Jun 2023 08:10:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE70193;
+        Sat, 10 Jun 2023 08:28:41 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BE52E60C44;
-        Sat, 10 Jun 2023 15:10:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0E19C433EF;
-        Sat, 10 Jun 2023 15:10:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CCF8F6097D;
+        Sat, 10 Jun 2023 15:28:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D668BC433EF;
+        Sat, 10 Jun 2023 15:28:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686409819;
-        bh=Udl3gpTsbEFhzWm2UKL/yfURVDjduN41OaBF5GROL08=;
+        s=k20201202; t=1686410920;
+        bh=kzLwJY99VZTZ8NBdwacdpG6k9u7HHhHmdQHlIeBhBu8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JKB91dYaT4t2C8zflPEtdoyH8GAJjJmvteJEDovThYih7rG8wCuOt5QwUgYwceg3l
-         gIfpC/jmajAexLT8FUEnNCKUt8M/chF3/dRmAdJoara+nfY2ASrmv7ERFqHmhcw/Mn
-         XuqegBRCyd6N8ugVrjtPj4dC5DNCReEEkhSkR5ldBGMe+ydFjMq9Kq8PBYGnphIErb
-         R4QOOjrcay2nbJ+AAtLEG99IdcEzH9Wq17xQ9s8d7YK972THov9auqGxKlHA0z0Gho
-         zeX/N3ULuS3nVKM2xtIVAvoUn35XPwidqk75YTxXJK329txbi4qEcbFn2lobUnMn53
-         3Xe66yGU7YWFA==
-Date:   Sat, 10 Jun 2023 16:10:14 +0100
+        b=J2xSwOcFLJ8B5f8nRdWWliElcLA3IMuwUqNbCCU2IK+tfdHe1yhpQuN6fk1JFaPSE
+         MHmqWTKSqlGeSH7qXg4GZPxx6ZSLOTaPvSiIXUNpuEDvts8FbFNjlSTk3Il7Tu0sWb
+         RcKZkAvYsv2ON2h4T3zcL/mQ99T++arvz0pbW8URFhrE1mB8jIcwnCzExHGDNIc50S
+         D/boeuACNyCGNkbUTN4492qhDhL/vQxcnOLIpmtZYPH0QkqhIlbTil3JzZWv69CTj/
+         noqVZxnjnn9jiwyfcJjQbjGGBlcO6ullvKATkYo1//YgLZ6Egn4/sFcSsn17M1E81i
+         RirpEwMG+ihQA==
+Date:   Sat, 10 Jun 2023 16:28:35 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: display: ssd1307fb: Remove default
- width and height values
-Message-ID: <20230610-opposite-quality-81d4a1561c88@spud>
-References: <20230609170941.1150941-1-javierm@redhat.com>
- <20230609170941.1150941-3-javierm@redhat.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/9] regulator: mt6358: Merge VCN33_* regulators
+Message-ID: <20230610-bucket-rebuttal-c7c44c5b0a66@spud>
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-4-wenst@chromium.org>
+ <20230609-unpaved-propeller-b361fba89913@spud>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3cqXYw9khEbW+8jc"
+        protocol="application/pgp-signature"; boundary="ri/bM3MgJ18mNw64"
 Content-Disposition: inline
-In-Reply-To: <20230609170941.1150941-3-javierm@redhat.com>
+In-Reply-To: <20230609-unpaved-propeller-b361fba89913@spud>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -65,136 +65,91 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---3cqXYw9khEbW+8jc
+--ri/bM3MgJ18mNw64
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 09, 2023 at 07:09:37PM +0200, Javier Martinez Canillas wrote:
-> A default resolution in the ssd130x driver isn't set to an arbitrary 96x16
-> anymore. Instead is set to a width and height that's controller dependent.
+On Fri, Jun 09, 2023 at 04:56:05PM +0100, Conor Dooley wrote:
+> On Fri, Jun 09, 2023 at 04:30:00PM +0800, Chen-Yu Tsai wrote:
+> > The VCN33_BT and VCN33_WIFI regulators are actually the same regulator,
+> > having the same voltage setting and output pin. There are simply two
+> > enable bits that are ORed together to enable the regulator.
+> >=20
+> > Having two regulators representing the same output pin is misleading
+> > from a design matching standpoint, and also error-prone in driver
+> > implementations. If consumers try to set different voltages on either
+> > regulator, the one set later would override the one set before. There
+> > are ways around this, such as chaining them together and having the
+> > downstream one act as a switch. But given there's only one output pin,
+> > such a workaround doesn't match reality.
+> >=20
+> > Remove the VCN33_WIFI regulator. During the probe phase, have the driver
+> > sync the enable status of VCN33_WIFI to VCN33_BT. Also drop the suffix
+> > so that the regulator name matches the pin name in the datasheet.
+> >=20
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> >  drivers/regulator/mt6358-regulator.c       | 65 +++++++++++++++++-----
+> >  include/linux/regulator/mt6358-regulator.h |  6 +-
+> >  2 files changed, 52 insertions(+), 19 deletions(-)
+> >=20
+> > diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/m=
+t6358-regulator.c
+> > index c9e16bd092f6..faf6b0757019 100644
+> > --- a/drivers/regulator/mt6358-regulator.c
+> > +++ b/drivers/regulator/mt6358-regulator.c
+> > @@ -277,7 +277,7 @@ static const unsigned int vcama_voltages[] =3D {
+> >  	2800000, 2900000, 3000000,
+> >  };
+> > =20
+> > -static const unsigned int vcn33_bt_wifi_voltages[] =3D {
+> > +static const unsigned int vcn33_voltages[] =3D {
+> >  	3300000, 3400000, 3500000,
+> >  };
+> > =20
+> > @@ -321,7 +321,7 @@ static const u32 vcama_idx[] =3D {
+> >  	0, 7, 9, 10, 11, 12,
+> >  };
+> > =20
+> > -static const u32 vcn33_bt_wifi_idx[] =3D {
+> > +static const u32 vcn33_idx[] =3D {
+> >  	1, 2, 3,
+> >  };
+> > =20
+> > @@ -566,12 +566,8 @@ static struct mt6358_regulator_info mt6358_regulat=
+ors[] =3D {
+> >  		   MT6358_LDO_VCAMA1_CON0, 0, MT6358_VCAMA1_ANA_CON0, 0xf00),
+> >  	MT6358_LDO("ldo_vemc", VEMC, vmch_vemc_voltages, vmch_vemc_idx,
+> >  		   MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
+> > -	MT6358_LDO("ldo_vcn33_bt", VCN33_BT, vcn33_bt_wifi_voltages,
+> > -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_0,
+> > -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> > -	MT6358_LDO("ldo_vcn33_wifi", VCN33_WIFI, vcn33_bt_wifi_voltages,
+> > -		   vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_1,
+> > -		   0, MT6358_VCN33_ANA_CON0, 0x300),
+> > +	MT6358_LDO("ldo_vcn33", VCN33, vcn33_voltages, vcn33_idx,
+> > +		   MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x300),
+>=20
+> Excuse me if I am being daft here, but could you explain how this change
+> is compatible with existing devicetrees?
 
-Did that change to the driver not break backwards compatibility with
-existing devicetrees that relied on the default values to get 96x16?
+Ah, I see in the binding commit there's a "Luckily no device tree actually
+uses them." Does that just cover the kernel, or does it consider other
+operating systems/bootloaders?
 
 Cheers,
 Conor.
 
->=20
-> The datasheets for the chips describes the following display resolutions:
->=20
->  - SH1106:  132 x 64 Dot Matrix OLED/PLED
->  - SSD1305: 132 x 64 Dot Matrix OLED/PLED
->  - SSD1306: 128 x 64 Dot Matrix OLED/PLED
->  - SSD1307: 128 x 39 Dot Matrix OLED/PLED
->  - SSD1309: 128 x 64 Dot Matrix OLED/PLED
->=20
-> Update DT schema to reflect what the driver does and make its users aware.
->=20
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->=20
-> Changes in v2:
-> - List per controller default width/height values in DT schema (Maxime Ri=
-pard).
->=20
->  .../bindings/display/solomon,ssd1307fb.yaml   | 28 ++++++++++++++++---
->  1 file changed, 24 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.=
-yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> index 94bb5ef567c6..20e2bd15d4d2 100644
-> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -49,15 +49,15 @@ properties:
-> =20
->    solomon,height:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> -    default: 16
->      description:
-> -      Height in pixel of the screen driven by the controller
-> +      Height in pixel of the screen driven by the controller.
-> +      The default value is controller-dependent.
-> =20
->    solomon,width:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> -    default: 96
->      description:
-> -      Width in pixel of the screen driven by the controller
-> +      Width in pixel of the screen driven by the controller.
-> +      The default value is controller-dependent.
-> =20
->    solomon,page-offset:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> @@ -157,6 +157,10 @@ allOf:
->              const: sinowealth,sh1106
->      then:
->        properties:
-> +        width:
-> +          default: 132
-> +        height:
-> +          default: 64
->          solomon,dclk-div:
->            default: 1
->          solomon,dclk-frq:
-> @@ -171,6 +175,10 @@ allOf:
->                - solomon,ssd1305
->      then:
->        properties:
-> +        width:
-> +          default: 132
-> +        height:
-> +          default: 64
->          solomon,dclk-div:
->            default: 1
->          solomon,dclk-frq:
-> @@ -185,6 +193,10 @@ allOf:
->                - solomon,ssd1306
->      then:
->        properties:
-> +        width:
-> +          default: 128
-> +        height:
-> +          default: 64
->          solomon,dclk-div:
->            default: 1
->          solomon,dclk-frq:
-> @@ -199,6 +211,10 @@ allOf:
->                - solomon,ssd1307
->      then:
->        properties:
-> +        width:
-> +          default: 128
-> +        height:
-> +          default: 39
->          solomon,dclk-div:
->            default: 2
->          solomon,dclk-frq:
-> @@ -215,6 +231,10 @@ allOf:
->                - solomon,ssd1309
->      then:
->        properties:
-> +        width:
-> +          default: 128
-> +        height:
-> +          default: 64
->          solomon,dclk-div:
->            default: 1
->          solomon,dclk-frq:
-> --=20
-> 2.40.1
->=20
-
---3cqXYw9khEbW+8jc
+--ri/bM3MgJ18mNw64
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZISSVgAKCRB4tDGHoIJi
-0kHiAQCxzr20tUj6HolI6PerGWfwn14qZ8aiwPjBoCGR8H1eKgEA/9VvzM6t4Lxp
-ck/8Ct5TBUcK6DlRBTm57sSc1tb96wM=
-=ECGe
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZISWowAKCRB4tDGHoIJi
+0l89APwNEMc2r2C+d4UwTUOX/XMouILRZjMu2IaPj3r7a6eeUgD+KHx8XQacnnkv
+HFO0kkuPmHePVq4OcVTc8C13vlKo9Qo=
+=9LLU
 -----END PGP SIGNATURE-----
 
---3cqXYw9khEbW+8jc--
+--ri/bM3MgJ18mNw64--
