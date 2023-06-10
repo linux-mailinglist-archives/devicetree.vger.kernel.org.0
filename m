@@ -2,123 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B6D172A92D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 07:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26A672A9DC
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 09:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbjFJFfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 01:35:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46464 "EHLO
+        id S233756AbjFJH0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 03:26:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjFJFfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 01:35:13 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67EDA3A9E;
-        Fri,  9 Jun 2023 22:35:12 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-b9a6eec8611so5145636276.0;
-        Fri, 09 Jun 2023 22:35:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686375311; x=1688967311;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=66j/h+9cZEjKb4UdwLgMXHl/kBywtFkqb8wIoqWmDMo=;
-        b=Fgz9LE+WgSayy0gqznU4nHufTkzzOdkWA77tPaKYuOOBIE9nSZwtWlWTcLvi3I83Nm
-         yCIfnuvzBhkEvNL0TO3VEtAZZ8fhuE+QVZkNV13GWT8P7/Q1lOA+c2S9TbrH05K9BLbI
-         aJNSicKHM0yT4TIW2AMc4rUuuEp82Gxhf0pYn3KJMsnBRl52zleKRI5AFi9n1w1ntddC
-         qtpHb7ZgfWhXx0Kg5s8hU2ZU5sbR6lgSUbYyXqMocfve5ZNbM3OxXfSG8ENvGfy9YzF+
-         t4rZndmqRZNdYPwZlPGCiN63QGEx3E7n8/XVuMKO2N8A7vT/bLDCQny0///xi9fV/HD0
-         4WDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686375311; x=1688967311;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=66j/h+9cZEjKb4UdwLgMXHl/kBywtFkqb8wIoqWmDMo=;
-        b=OV2g8x7KCE8W3wI4tEwsvrPuh6P6CqFVgmpfq6DH/DFVsbvlT87cOI60C42Md+gJRJ
-         MtPpLKpG2VIIHBRq2oMQ/07RBNSB9TWOZqsV6lBAX92piSy2nzigUQu4j25eQYUuhsjp
-         8obCFjVGBfJTv3shFmHTmHd8pm+w0Vycg+XTWL3pMXzMK5hgHf4/G6jjWR4739ndh+da
-         wN4cnxxVOo/ew3oUItMnTeXC8pRH9xqNSGdVrp2jgUiUgCpAlKzu9EoWrivqQsJM3/Ee
-         klrqiajxTN2YGQbETnSUD1AXR6KUk97kouVx23ZlUxOl3DtGRYFHKTmnjsGnl42AqCYb
-         vWTA==
-X-Gm-Message-State: AC+VfDwrPd1XVa4TBoHCmgYWFFOQV8v+ZP0e5KOOGYAGS1u3QJ3oElKs
-        FVtgqY99lBNra0wat7pfj6GKWLmPDJvDu+JlhLM=
-X-Google-Smtp-Source: ACHHUZ44wzkF29g4xzNfFH994CgHcQled1GvWddTD2bcNqr/f4iQNWBbImwZgeL8vGFigKA1//NILymWMxvSlQDXSiY=
-X-Received: by 2002:a25:54f:0:b0:bac:46f2:8d0f with SMTP id
- 76-20020a25054f000000b00bac46f28d0fmr6290839ybf.3.1686375311574; Fri, 09 Jun
- 2023 22:35:11 -0700 (PDT)
+        with ESMTP id S233683AbjFJH0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 03:26:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547CE3AA7;
+        Sat, 10 Jun 2023 00:26:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E5BF1614BD;
+        Sat, 10 Jun 2023 07:26:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4EDFC433D2;
+        Sat, 10 Jun 2023 07:26:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686382000;
+        bh=W4jAN5UtwwRCSlIWle0GSOyMn537BHsZC7BQMLVcuso=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nHqf/X2WwS16FkCQqkbtsIGJPGK4tdgajjbr3+J5l9qwiuj+QBSaS2nvl39WYjtnH
+         CbhCanA3aoqZbL+0ogRyFxFZuW4IAJQhVDRJAP8nCOBdm6a2SACHI8PleVWH8Xf4qo
+         jJa+n5jF4kdFCyoDcpVMd/b7+jFfIM1VE/YkErJJG0tJYYz7X8Udf0PMDWp6wHa3Oz
+         E6Pclxu7gFLMRgCeXDVf4XDHV1pBl86bB+z33ToSZBL05bNi9+FJBJ6d4mmlWuWBsR
+         62fPopZPUqoMuIbsv09yQe9yaHR5jhk2jpZikcQc/Md3dSN7857OK/G0gF3nAUsR6W
+         hpymSt7ftZOBw==
+Message-ID: <a69eca09-1f6d-6cae-061a-d483c9fb3715@kernel.org>
+Date:   Sat, 10 Jun 2023 10:26:32 +0300
 MIME-Version: 1.0
-References: <cover.1686192243.git.zhoubinbin@loongson.cn> <bb2d5985a3d9fd8e7ccbe2794842d93a8978d8a6.1686192243.git.zhoubinbin@loongson.cn>
- <68bb3816-d707-3a21-59a2-8785dce7210a@linaro.org>
-In-Reply-To: <68bb3816-d707-3a21-59a2-8785dce7210a@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Sat, 10 Jun 2023 13:35:00 +0800
-Message-ID: <CAMpQs4JF-HtHpb_3YJBUNo2x6_E=S-gf1p9kJ7vp01S62PYSxw@mail.gmail.com>
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: dmaengine: Add Loongson LS2X
- APB DMA controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+Subject: Re: [PATCH v6 3/4] clk: qcom: cbf-msm8996: scale CBF clock according
+ to the CPUfreq
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>,
-        Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Taniya Das <quic_tdas@quicinc.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-pm@vger.kernel.org
+References: <20230512001334.2983048-1-dmitry.baryshkov@linaro.org>
+ <20230512001334.2983048-4-dmitry.baryshkov@linaro.org>
+ <20230610001815.zgo23zlwo3z6e3y6@ripper>
+Content-Language: en-US
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20230610001815.zgo23zlwo3z6e3y6@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 10, 2023 at 12:49=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 08/06/2023 04:55, Binbin Zhou wrote:
-> > Add Loongson LS2X APB DMA controller binding with DT schema
-> > format using json-schema.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
->
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: loongson,ls2k1000-apbdma
-> > +      - items:
-> > +          - const: loongson,ls2k0500-apbdma
-> > +          - const: loongson,ls2k1000-apbdma
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  "#dma-cells":
-> > +    const: 1
-> > +
-> > +  dma-channels:
-> > +    const: 1
->
-> If it is const, why do you need it?
->
-Hi Krzysztof:
+On 10.06.23 3:18, Bjorn Andersson wrote:
+> On Fri, May 12, 2023 at 03:13:33AM +0300, Dmitry Baryshkov wrote:
+>> Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
+>> according to CPU frequencies.
+>>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> Tested-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Georgi,
+> 
+> Dmitry tells me that you picked up the interconnect patches, I don't see
+> an immutable branch in your tree with them, but this patch has a build
+> time dependency on them. Could you please pick this through your tree as
+> well?
 
-IMO, although it is a single-channel DMAC, the "dma-channels" are
-still needed for a more comprehensive description of the hardware.
+It's done. Thanks a lot Bjorn!
 
-Thanks.
-Binbin
+BR,
+Georgi
 
-> Best regards,
-> Krzysztof
->
+> Acked-by: Bjorn Andersson <andersson@kernel.org>
+> 
+> Regards,
+> Bjorn
+> 
+>> ---
+>>   drivers/clk/qcom/Kconfig        |  1 +
+>>   drivers/clk/qcom/clk-cbf-8996.c | 60 ++++++++++++++++++++++++++++++++-
+>>   2 files changed, 60 insertions(+), 1 deletion(-)
+>>
+
