@@ -2,55 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E25A72AC78
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 17:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5A8272AC7E
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 17:10:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231961AbjFJPHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 11:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48004 "EHLO
+        id S231347AbjFJPKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 11:10:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231347AbjFJPHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 11:07:32 -0400
+        with ESMTP id S230265AbjFJPKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 11:10:21 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26B923A85;
-        Sat, 10 Jun 2023 08:07:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301FC30E3;
+        Sat, 10 Jun 2023 08:10:20 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A653A60B52;
-        Sat, 10 Jun 2023 15:07:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F353AC433EF;
-        Sat, 10 Jun 2023 15:07:27 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BE52E60C44;
+        Sat, 10 Jun 2023 15:10:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0E19C433EF;
+        Sat, 10 Jun 2023 15:10:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686409651;
-        bh=OFXw4bB33vMAMP/mYtrrZ0SI5zDOVjnAgufarPsOhB8=;
+        s=k20201202; t=1686409819;
+        bh=Udl3gpTsbEFhzWm2UKL/yfURVDjduN41OaBF5GROL08=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UQGn99pnynaq9uYtEVwDAzPaCVqzhpd1OTSMw7uX9tK3QuRXZ/3SyX2snVoz9deYn
-         7JIz9eaQdi/2YoK9ihy4ys4AsvU2vMOZAOcHyT/MnFU+syHwKbrQa6aHt7CD0Oxi/S
-         SVJgm5WT8Cc/AlFzhxQ4q5M0GcxyZF6bgCsipuYWod8lBpXLgcBkaTRKoJXutecd7E
-         vyP26AP8w6pAscSqadEnLZMahfGbdA0ngXAi6tyB/G7E0lZtk5jWcwUw46TXUdgKUr
-         S8F00qKBUTtlJ22KSmOmOk7x+anwzyLdK18xOg2h2MtnkXuFYOSZWizcyQcjYxO4Qe
-         5woFdFEakuMCg==
-Date:   Sat, 10 Jun 2023 16:07:25 +0100
+        b=JKB91dYaT4t2C8zflPEtdoyH8GAJjJmvteJEDovThYih7rG8wCuOt5QwUgYwceg3l
+         gIfpC/jmajAexLT8FUEnNCKUt8M/chF3/dRmAdJoara+nfY2ASrmv7ERFqHmhcw/Mn
+         XuqegBRCyd6N8ugVrjtPj4dC5DNCReEEkhSkR5ldBGMe+ydFjMq9Kq8PBYGnphIErb
+         R4QOOjrcay2nbJ+AAtLEG99IdcEzH9Wq17xQ9s8d7YK972THov9auqGxKlHA0z0Gho
+         zeX/N3ULuS3nVKM2xtIVAvoUn35XPwidqk75YTxXJK329txbi4qEcbFn2lobUnMn53
+         3Xe66yGU7YWFA==
+Date:   Sat, 10 Jun 2023 16:10:14 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        heiko@sntech.de, sebastian.reichel@collabora.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, gustavo.padovan@collabora.com,
-        serge.broslavsky@collabora.com
-Subject: Re: [PATCH v2] dt-bindings: iio: rockchip: Fix 'oneOf' condition
- failed warning
-Message-ID: <20230610-agreed-aground-8a08f6854965@spud>
-References: <20230610143601.173307-1-shreeya.patel@collabora.com>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: display: ssd1307fb: Remove default
+ width and height values
+Message-ID: <20230610-opposite-quality-81d4a1561c88@spud>
+References: <20230609170941.1150941-1-javierm@redhat.com>
+ <20230609170941.1150941-3-javierm@redhat.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="HX7e/hojOdb6OlLG"
+        protocol="application/pgp-signature"; boundary="3cqXYw9khEbW+8jc"
 Content-Disposition: inline
-In-Reply-To: <20230610143601.173307-1-shreeya.patel@collabora.com>
+In-Reply-To: <20230609170941.1150941-3-javierm@redhat.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -62,44 +65,136 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---HX7e/hojOdb6OlLG
+--3cqXYw9khEbW+8jc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 10, 2023 at 08:06:01PM +0530, Shreeya Patel wrote:
-> rk3588-saradc isn't compatible with the rk3399-saradc variant,
-> hence, fix the following dtbs_check warning for 'oneOf' condition
-> failure.
->=20
-> DTC_CHK arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
-> /home/shreeya/linux/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb:
-> 	saradc@fec10000: compatible: 'oneOf' conditional failed,
-> 	one must be fixed:
-> 	['rockchip,rk3588-saradc'] is too short
-> 	'rockchip,saradc' was expected
-> 	'rockchip,rk3066-tsadc' was expected
-> 	'rockchip,rk3399-saradc' was expected
->=20
-> Fixes: 2daf2ae9793d ("dt-bindings: iio: adc: Add rockchip,rk3588-saradc s=
-tring")
-> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+On Fri, Jun 09, 2023 at 07:09:37PM +0200, Javier Martinez Canillas wrote:
+> A default resolution in the ssd130x driver isn't set to an arbitrary 96x16
+> anymore. Instead is set to a width and height that's controller dependent.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Did that change to the driver not break backwards compatibility with
+existing devicetrees that relied on the default values to get 96x16?
 
 Cheers,
 Conor.
 
---HX7e/hojOdb6OlLG
+>=20
+> The datasheets for the chips describes the following display resolutions:
+>=20
+>  - SH1106:  132 x 64 Dot Matrix OLED/PLED
+>  - SSD1305: 132 x 64 Dot Matrix OLED/PLED
+>  - SSD1306: 128 x 64 Dot Matrix OLED/PLED
+>  - SSD1307: 128 x 39 Dot Matrix OLED/PLED
+>  - SSD1309: 128 x 64 Dot Matrix OLED/PLED
+>=20
+> Update DT schema to reflect what the driver does and make its users aware.
+>=20
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>=20
+> Changes in v2:
+> - List per controller default width/height values in DT schema (Maxime Ri=
+pard).
+>=20
+>  .../bindings/display/solomon,ssd1307fb.yaml   | 28 ++++++++++++++++---
+>  1 file changed, 24 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.=
+yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> index 94bb5ef567c6..20e2bd15d4d2 100644
+> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> @@ -49,15 +49,15 @@ properties:
+> =20
+>    solomon,height:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> -    default: 16
+>      description:
+> -      Height in pixel of the screen driven by the controller
+> +      Height in pixel of the screen driven by the controller.
+> +      The default value is controller-dependent.
+> =20
+>    solomon,width:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> -    default: 96
+>      description:
+> -      Width in pixel of the screen driven by the controller
+> +      Width in pixel of the screen driven by the controller.
+> +      The default value is controller-dependent.
+> =20
+>    solomon,page-offset:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -157,6 +157,10 @@ allOf:
+>              const: sinowealth,sh1106
+>      then:
+>        properties:
+> +        width:
+> +          default: 132
+> +        height:
+> +          default: 64
+>          solomon,dclk-div:
+>            default: 1
+>          solomon,dclk-frq:
+> @@ -171,6 +175,10 @@ allOf:
+>                - solomon,ssd1305
+>      then:
+>        properties:
+> +        width:
+> +          default: 132
+> +        height:
+> +          default: 64
+>          solomon,dclk-div:
+>            default: 1
+>          solomon,dclk-frq:
+> @@ -185,6 +193,10 @@ allOf:
+>                - solomon,ssd1306
+>      then:
+>        properties:
+> +        width:
+> +          default: 128
+> +        height:
+> +          default: 64
+>          solomon,dclk-div:
+>            default: 1
+>          solomon,dclk-frq:
+> @@ -199,6 +211,10 @@ allOf:
+>                - solomon,ssd1307
+>      then:
+>        properties:
+> +        width:
+> +          default: 128
+> +        height:
+> +          default: 39
+>          solomon,dclk-div:
+>            default: 2
+>          solomon,dclk-frq:
+> @@ -215,6 +231,10 @@ allOf:
+>                - solomon,ssd1309
+>      then:
+>        properties:
+> +        width:
+> +          default: 128
+> +        height:
+> +          default: 64
+>          solomon,dclk-div:
+>            default: 1
+>          solomon,dclk-frq:
+> --=20
+> 2.40.1
+>=20
+
+--3cqXYw9khEbW+8jc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZISRrQAKCRB4tDGHoIJi
-0q+iAQCBDXnjy5NryPeQQk7XL4f/lyuDEbE/4xBNyy6UWaXdmwD+L91PrMDYIF6a
-CaCNra/LYyBrWPHVG64IgrjYkvtNrwc=
-=3vCR
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZISSVgAKCRB4tDGHoIJi
+0kHiAQCxzr20tUj6HolI6PerGWfwn14qZ8aiwPjBoCGR8H1eKgEA/9VvzM6t4Lxp
+ck/8Ct5TBUcK6DlRBTm57sSc1tb96wM=
+=ECGe
 -----END PGP SIGNATURE-----
 
---HX7e/hojOdb6OlLG--
+--3cqXYw9khEbW+8jc--
