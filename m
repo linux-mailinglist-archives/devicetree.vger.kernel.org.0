@@ -2,133 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4FB72AB7B
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 14:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D02CE72AB89
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 14:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234668AbjFJMbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 08:31:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38604 "EHLO
+        id S230156AbjFJMw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 08:52:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234634AbjFJMbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 08:31:13 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75E33C2A;
-        Sat, 10 Jun 2023 05:31:02 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f6da07ff00so27563665e9.3;
-        Sat, 10 Jun 2023 05:31:02 -0700 (PDT)
+        with ESMTP id S229749AbjFJMw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 08:52:27 -0400
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B2E83A9E;
+        Sat, 10 Jun 2023 05:52:27 -0700 (PDT)
+Received: by mail-oo1-xc2f.google.com with SMTP id 006d021491bc7-55afa2472d9so1778495eaf.0;
+        Sat, 10 Jun 2023 05:52:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686400261; x=1688992261;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1686401546; x=1688993546;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9/TmEA+PoC7xu6/KU/ll32pvJQ2ck1CrGNuRyF6FIV0=;
-        b=LXnm8gPbPQkQWKDuC02ieMibyFgLdcZnn88V0/4WRrpJ+/82BLx419ELyBKEzKDuJ1
-         EytK1+TtoApSioJlkL9L1JGf9koy7mTG6XAERLAil475SHg6QSPUHAcwX0NkqsemMa1Q
-         8fmyO6WeLVmb5MYgiaL13FR6Z8OZpf0fIcfitSS59euxOUES68UA9aReJ1o70FjbI0RL
-         hYrclT9vuW1CCHdjtveVm19YpZ31bwdJtbAujx4+X0w2ndKHY+JII8r2kmsYmZrU1o9R
-         eqKQPmpOD2dMZhKqNXDG9K+TPQKHWcVFQud6DPUVWiTwbuSasvYHBLee2lZ+9aG4oR9v
-         4Rqg==
+        bh=ypunSIKUqzh75YIeQaRkHjhmNZ/hwFhCbdx6FqXAu9o=;
+        b=g45/G3xC9sH2xNWZ6p7/51PCGM+7NosvtHN4VJoiDJxnTel/9M5KBWRJXTrbVFGxk8
+         u5MXFHO/yBVREKnKTeZSFVBJnairzfK8l1912tF7jCrey4fPFI64Pjn5A4IXCo51t7un
+         rlMZ3BK6wD3AMoJWg0v7rJaPx2kNXTrUOrvjya6R6McblHu89Sl/Hj1xbcOe6qhCHage
+         2c72hl7T8Zq8yX5rzilD+b0AupIowbIqRpCuUTckO2QE+qpWcYWRo4zpPxtk52Cc/TXM
+         Wdvjj+/rVzXDwDEXINf80szdTpuCkkzXTjacnVTfc3RUieDfTEpJ+RG928/jsC3D3q25
+         2rAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686400261; x=1688992261;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9/TmEA+PoC7xu6/KU/ll32pvJQ2ck1CrGNuRyF6FIV0=;
-        b=hwZhpvne9J8p353gQWolcSXJFflhu4cddtFvVoVMPcig8EP3NoEIHOo+DPAAeA5urQ
-         w40BtnEOhrvMRZffVJ1mlB1EiUQG7J1PatM2pmcP6nffEiddmnbAeM4YefGbNqsd2489
-         qVLS6p8KwTs3+QG3zofmFzxbybElW2w7VONgpP73zK2mt5m1aCLaR+3PDRxfH8cnSTvd
-         J8gfJMxfL0wm6qGNoyWOHMcE8L0bb5sJf2EsDvZW26V1sJkzZdYSthcEdiZ4d5DFlJWn
-         npy6kDhrNGvVYrJme9kCZBY3iCHh1YDpd6cPIHHx9yQPlDuwMG9p7m046H9dypMik7c6
-         LZDA==
-X-Gm-Message-State: AC+VfDxDBkzofkRTut01l1T6QGVo+lCuPw5M0PT/Y9QqboFHdj8WvT42
-        JcAcAszCtOJC+GzIDF5U19x1ROd++OE6LfUn
-X-Google-Smtp-Source: ACHHUZ6oQnfcW+hVFxDL3r5DfdtcISrzUdyYfVhCOqBjpbqMOY2nywjUESWhtMB1LNwj370onHD7sA==
-X-Received: by 2002:a05:600c:2186:b0:3f6:e79:3a8e with SMTP id e6-20020a05600c218600b003f60e793a8emr3710347wme.12.1686400260702;
-        Sat, 10 Jun 2023 05:31:00 -0700 (PDT)
-Received: from user-PC.. ([178.134.198.138])
-        by smtp.gmail.com with ESMTPSA id v26-20020a1cf71a000000b003f80e81705asm2310487wmh.45.2023.06.10.05.30.57
+        d=1e100.net; s=20221208; t=1686401546; x=1688993546;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ypunSIKUqzh75YIeQaRkHjhmNZ/hwFhCbdx6FqXAu9o=;
+        b=CJswm5iSn1cQzY8ZEnyI9FesRGdKQtjqkCs32oDr9xHmFJ265bBCC0NEUebVHTmcw7
+         7eQeivaoO78WrAkJ/JVayeYcjGTpu1FkL+v3vn9Mk8oSiawNUTEK0LZpNjZ1/8muhrSY
+         kn8ih6CH2nY8etdczJA1XQ2CWhsjqD/ef7Ce2yhw1XqWGcvJ2wrZI3dNSqFXMnxFqEmq
+         YXeRyIyhDc+euy8F6qqYX7MfdJ7yVPqFPBePOpoyaj73z9ihfXtj+lBGXiU39/ar/hWs
+         WXJZ/F1YBkVs/m2pYhRoGNEmQzYXcOuvfmMMJQIgGO8TddnUB+mwjmpd5r50fUMIG6z5
+         l0VQ==
+X-Gm-Message-State: AC+VfDxx6bt/Qpil7W8Pd03THMLbRkMmYg+JCSEb1HyvG+QYVcHd96T0
+        cLRKxYvrD64S7TnmxDAARg==
+X-Google-Smtp-Source: ACHHUZ5tZl6zQi3tZ3ZIyb80b0WEZFIQ3IM8ZhCNGZxrKoZC2y3OSR1/MtXGpq4cjDjk0GM+k+2xPQ==
+X-Received: by 2002:a4a:e7c1:0:b0:546:dd51:f74f with SMTP id y1-20020a4ae7c1000000b00546dd51f74fmr2296073oov.4.1686401546227;
+        Sat, 10 Jun 2023 05:52:26 -0700 (PDT)
+Received: from serve.minyard.net (serve.minyard.net. [2001:470:b8f6:1b::1])
+        by smtp.gmail.com with ESMTPSA id v4-20020a4aa504000000b00552acb7c89dsm1652130ook.21.2023.06.10.05.52.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Jun 2023 05:31:00 -0700 (PDT)
-From:   Maksim Kiselev <bigunclemax@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     Maxim Kiselev <bigunclemax@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        Sat, 10 Jun 2023 05:52:25 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from mail.minyard.net (unknown [IPv6:2001:470:b8f6:1b:8f19:4a52:beef:59ed])
+        by serve.minyard.net (Postfix) with ESMTPSA id 76BDB1800BA;
+        Sat, 10 Jun 2023 12:52:24 +0000 (UTC)
+Date:   Sat, 10 Jun 2023 07:52:23 -0500
+From:   Corey Minyard <minyard@acm.org>
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v4 3/3] riscv: dts: allwinner: d1: Add GPADC node
-Date:   Sat, 10 Jun 2023 15:29:09 +0300
-Message-Id: <20230610122934.953106-4-bigunclemax@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230610122934.953106-1-bigunclemax@gmail.com>
-References: <20230610122934.953106-1-bigunclemax@gmail.com>
+        Joel Stanley <joel@jms.id.au>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: ipmi: aspeed,ast2400-kcs-bmc: drop unneeded
+ quotes
+Message-ID: <ZIRyB531ttuE1SUI@mail.minyard.net>
+Reply-To: minyard@acm.org
+References: <20230609140729.64799-1-krzysztof.kozlowski@linaro.org>
+ <778e2930-1678-45bb-a01e-21bf321fb6d8@betaapp.fastmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <778e2930-1678-45bb-a01e-21bf321fb6d8@betaapp.fastmail.com>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maxim Kiselev <bigunclemax@gmail.com>
+On Sat, Jun 10, 2023 at 08:49:27AM +0930, Andrew Jeffery wrote:
+> 
+> 
+> On Fri, 9 Jun 2023, at 23:37, Krzysztof Kozlowski wrote:
+> > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> > checking for this can be enabled in yamllint.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Acked-by: Andrew Jeffery <andrew@aj.id.au>
 
-This patch adds declaration of the general purpose ADC for D1
-and T113s SoCs.
+This is in my next tree.  Thank you.
 
-Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
----
- arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+-corey
 
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-index 922e8e0e2c09..90c79041cfba 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-@@ -138,6 +138,16 @@ ccu: clock-controller@2001000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		gpadc: adc@2009000 {
-+			compatible = "allwinner,sun20i-d1-gpadc";
-+			reg = <0x2009000 0x1000>;
-+			clocks = <&ccu CLK_BUS_GPADC>;
-+			resets = <&ccu RST_BUS_GPADC>;
-+			interrupts = <SOC_PERIPHERAL_IRQ(57) IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+			#io-channel-cells = <1>;
-+		};
-+
- 		dmic: dmic@2031000 {
- 			compatible = "allwinner,sun20i-d1-dmic",
- 				     "allwinner,sun50i-h6-dmic";
--- 
-2.39.2
-
+> 
+> > ---
+> >  .../devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml  | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git 
+> > a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml 
+> > b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+> > index 4ff6fabfcb30..129e32c4c774 100644
+> > --- a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+> > +++ b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+> > @@ -41,7 +41,7 @@ properties:
+> >        - description: STR register
+> > 
+> >    aspeed,lpc-io-reg:
+> > -    $ref: '/schemas/types.yaml#/definitions/uint32-array'
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> >      minItems: 1
+> >      maxItems: 2
+> >      description: |
+> > @@ -50,7 +50,7 @@ properties:
+> >        status address may be optionally provided.
+> > 
+> >    aspeed,lpc-interrupts:
+> > -    $ref: "/schemas/types.yaml#/definitions/uint32-array"
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> >      minItems: 2
+> >      maxItems: 2
+> >      description: |
+> > @@ -63,12 +63,12 @@ properties:
+> > 
+> >    kcs_chan:
+> >      deprecated: true
+> > -    $ref: '/schemas/types.yaml#/definitions/uint32'
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      description: The LPC channel number in the controller
+> > 
+> >    kcs_addr:
+> >      deprecated: true
+> > -    $ref: '/schemas/types.yaml#/definitions/uint32'
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      description: The host CPU IO map address
+> > 
+> >  required:
+> > -- 
+> > 2.34.1
