@@ -2,69 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC53772AAC7
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 12:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAAE372AAE0
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 12:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231335AbjFJKD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 06:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42542 "EHLO
+        id S231342AbjFJK1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 06:27:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbjFJKD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 06:03:58 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021DE30D6
-        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 03:03:58 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id 5b1f17b1804b1-3f735bfcbbbso18764075e9.2
-        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 03:03:57 -0700 (PDT)
+        with ESMTP id S230308AbjFJK1L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 06:27:11 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E68E35BB
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 03:27:10 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-565eb83efe4so24840177b3.0
+        for <devicetree@vger.kernel.org>; Sat, 10 Jun 2023 03:27:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686391436; x=1688983436;
-        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SvKsWt9LONNBbmyn76CUaIRFpx6XrGejj9uupqUqu0c=;
-        b=bYClprQpRDicTUk4vocRDMqbCH9gj8RbB4N2DvUTKqoOuVc2UZj+pu9MwcwEmJ2LWw
-         u3j6QBX2uJCOq3eCmnFEWHVTNuiQaF5gayNs5aHdDU61+hnIJvn+k+YVlC1163hudwwg
-         TcW2pYKYFrK0+F/qqrHuSyp5Ohhw8tbRtNbRYocDIXyaytmBVgNrbNeZl2XhBeDibwMB
-         gS+8LK2R+i8PCiIJj3P3NBkQl12Pg2szk3R5nugUR6kPjCLQcGXwgaV83ku6EpSeHWNZ
-         E0U/u3cuMd0lMgT50MddHuZhdAM6pLJKu1cotZ1myfdjWUEAtpCMosaXXK518JGJa1+M
-         UJxQ==
+        d=linaro.org; s=google; t=1686392829; x=1688984829;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=to8oZ7L4fC+T49c7O2RXAbP8nJvmZRdwodJiT0ePUgs=;
+        b=VtfoIIBi2gjH8mp/MVxkQnvYC58lGIrKyL1oN9HdMV2QIktHsfiMb7nG1eK+hsPfAn
+         c96AHXJCFWm4BYoTbUUw+s0mrnbCF0m4V1D4E1TAAUEdHPVBdztK+sR/B53Aeu3DA2WF
+         bR5lRfV0MrgBcPEMC3yfPypP3eQswXm2ZNAfBVQg/Recb+MgBGw8THISDUfL3IROQF/h
+         zi6pMuJO66v17QGaf9n6xOa6kIb5OkjVHwJODl23BlrrbGcSedvUm8WyAatcB5Qvfsp1
+         DiGywfyCvuey04+bMIQJZYw3HaIpFrJmLVUafIO6QhGwZUv50Relfvjfkbo0XLyywpbY
+         9CdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686391436; x=1688983436;
-        h=to:subject:message-id:date:from:sender:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SvKsWt9LONNBbmyn76CUaIRFpx6XrGejj9uupqUqu0c=;
-        b=R1e+/9MSEfbO/MFOgkp7pIz3g0Z3BsxP9yBzDuYLUSh00Z30gM+9l+JEEFdTs5rzcN
-         QdA5viywRih7pg1JFwjDOCnKPN/64TonScnv7B37MJdsilgV5wJ+nMBIVT4S5M/ZI4Zv
-         PZDXxQKQoZglvFP1+B+lbVi4bxCZ/JoZpjNxPc9VCv3ColmFooRveiDYIsdJnRxPdcmu
-         y/XN9zbMRim/jpL1+Ky4L33kDlrogPz414hPQWYmlihExNI6lBtd1c8o/+jjKdGhKEWL
-         fqB2qE9pmJFbkcTAaFgKdN+7zr8jcWAFB2xZJoRs2/3Zk8DH/K8QJoMHt2Qv2tV4vIIU
-         6UYQ==
-X-Gm-Message-State: AC+VfDy9LVpbrZ0lFYSHVWwHUzfw7wd/issoPV5a2+ou14R1l2jBuL3X
-        PI7n0zoO7WlJ3hXQGobLUt/0BdHlfcdhXYTvH4g=
-X-Google-Smtp-Source: ACHHUZ4esFF9JNppY/Ko1tyQmxlGu6rMgTtnkFA24M0/Z4bEgaj9mfoWyLz6MGNLE2ZCEA6JGO9BrL7UsY17uthrp6E=
-X-Received: by 2002:a05:600c:cd:b0:3f7:e7a0:967c with SMTP id
- u13-20020a05600c00cd00b003f7e7a0967cmr2352757wmm.19.1686391435922; Sat, 10
- Jun 2023 03:03:55 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686392829; x=1688984829;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=to8oZ7L4fC+T49c7O2RXAbP8nJvmZRdwodJiT0ePUgs=;
+        b=c9Xd4eNlnjfFliag4MiNLYgpBz88pkVUwqn7P3AgBy3mBWMe1Zt56+0LG/0HYEO4VV
+         b+5tbR5SzU2YPrzwGK2NOallYcvX6g60Gg7UHCc0ZsCBFD6B+y55wbDw0+NdP3bX5a2Z
+         6C1AkLwEJT2FvUSujq9Y288nVChSh2v0B/Kz0ues2gdOPfX7edFJf/o1EJjIib8ck7Bj
+         cZpnXz0mZrLpm6Sc+2WpVEPeKGSWp9iGM4eC4i8+0M+2R3QM/uDFLaiugV6HETp73CS4
+         4E0WBATUEdgsXw1dUmabr2f8O0/D3EvCfTdsOpMZlh/UhT0wGsYoR4U13Mp1UN1UsXwe
+         vb7A==
+X-Gm-Message-State: AC+VfDz+ntkE5uHKDgpRJQ8HmKTutRzrnFSvSeVa/iiEKF5FUWLHJsW2
+        gMxsLt7/pG5lEaATQ7n4X3UoVS5NbWdxrZ/hYpTljw==
+X-Google-Smtp-Source: ACHHUZ6OSKyE7M/AKX5RnhMGNLiUXry/Ecu8iTy734i4jNpdrWoupgCkvkkVY50NCYi04PH1Fm8GCv9SFC9Tcqs5ltM=
+X-Received: by 2002:a81:8841:0:b0:565:9a3d:a3f9 with SMTP id
+ y62-20020a818841000000b005659a3da3f9mr3920231ywf.9.1686392829544; Sat, 10 Jun
+ 2023 03:27:09 -0700 (PDT)
 MIME-Version: 1.0
-Sender: zaniidia2@gmail.com
-Received: by 2002:a05:6020:7011:b0:279:8c3b:9389 with HTTP; Sat, 10 Jun 2023
- 03:03:55 -0700 (PDT)
-From:   Vasylina Matviyko <vasylinamatviyko@gmail.com>
-Date:   Sat, 10 Jun 2023 12:03:55 +0200
-X-Google-Sender-Auth: -rcUq25FGwEypQjK6enJYRH-4Mk
-Message-ID: <CAJR8GoXK_NYPqkqEeR8PjhG_kPgE5=5uNe_q5gjkhSDs0yPdZg@mail.gmail.com>
-Subject: Is this email still active
-To:     undisclosed-recipients:;
+References: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
+ <1676286704-818-3-git-send-email-quic_kalyant@quicinc.com> <20230301082403.vm4ejqod3ba5wkzp@SoMainline.org>
+In-Reply-To: <20230301082403.vm4ejqod3ba5wkzp@SoMainline.org>
+From:   Yongqin Liu <yongqin.liu@linaro.org>
+Date:   Sat, 10 Jun 2023 18:26:58 +0800
+Message-ID: <CAMSo37VmhB1-PUp1qu8gaxOXtu98eEYmWd71FOai+cwLb-JvSg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] drm/msm/dpu: add DSPPs into reservation upon a CTM request
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Kalyan Thota <quic_kalyant@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com, Amit Pundir <amit.pundir@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <jstultz@google.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Kalyan Thota
+
+It seems this change caused some drm problems with the Android build.
+I tested with one Android build that based on the ACK android-mainline
+kernel[1], and there are the message printed like
+    01-01 06:51:50.541   504   504 E         :
+[drm:_dpu_rm_check_lm_and_get_connected_blks] [dpu error]failed to get
+dspp on lm 0
+    01-01 06:51:50.551   504   504 E         :
+[drm:_dpu_rm_check_lm_and_get_connected_blks] [dpu error]failed to get
+dspp on lm 0
+    01-01 06:51:50.560   504   504 E         :
+[drm:_dpu_rm_check_lm_and_get_connected_blks] [dpu error]failed to get
+dspp on lm 0
+    01-01 06:51:50.570   504   504 E         :
+[drm:_dpu_rm_check_lm_and_get_connected_blks] [dpu error]failed to get
+dspp on lm 0
+    01-01 06:51:50.579   504   504 E         :
+[drm:_dpu_rm_make_reservation] [dpu error]unable to find appropriate
+mixers
+    01-01 06:51:50.588   504   504 E         : [drm:dpu_rm_reserve]
+[dpu error]failed to reserve hw resources: -119
+For details, please check the link here: https://termbin.com/31lc
+
+If I revert this commit, then the problem will be gone.
+Could you please help check if there is any problem with this commit?
+
+[1]: https://android.googlesource.com/kernel/common/+/refs/heads/android-mainline
+
+Thanks,
+Yongqin Liu
+
+On Wed, 1 Mar 2023 at 16:24, Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
+>
+> On 2023-02-13 03:11:42, Kalyan Thota wrote:
+> > Add DSPP blocks into the topology for reservation, if there
+> > is a CTM request for that composition.
+> >
+> > Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+>
+> > ---
+> > Changes in v1:
+> > - Minor nits (Dmitry)
+> >
+> > Changes in v2:
+> > - Populate DSPPs into the reservation only if CTM is requested (Dmitry)
+> > ---
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 15 ++++++---------
+> >  1 file changed, 6 insertions(+), 9 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > index 9c6817b..46d2a5c 100644
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > @@ -545,7 +545,8 @@ bool dpu_encoder_use_dsc_merge(struct drm_encoder *drm_enc)
+> >  static struct msm_display_topology dpu_encoder_get_topology(
+> >                       struct dpu_encoder_virt *dpu_enc,
+> >                       struct dpu_kms *dpu_kms,
+> > -                     struct drm_display_mode *mode)
+> > +                     struct drm_display_mode *mode,
+> > +                     struct drm_crtc_state *crtc_state)
+> >  {
+> >       struct msm_display_topology topology = {0};
+> >       int i, intf_count = 0;
+> > @@ -563,8 +564,7 @@ static struct msm_display_topology dpu_encoder_get_topology(
+> >        * 1 LM, 1 INTF
+> >        * 2 LM, 1 INTF (stream merge to support high resolution interfaces)
+> >        *
+> > -      * Adding color blocks only to primary interface if available in
+> > -      * sufficient number
+> > +      * Add dspps to the reservation requirements if ctm is requested
+> >        */
+> >       if (intf_count == 2)
+> >               topology.num_lm = 2;
+> > @@ -573,11 +573,8 @@ static struct msm_display_topology dpu_encoder_get_topology(
+> >       else
+> >               topology.num_lm = (mode->hdisplay > MAX_HDISPLAY_SPLIT) ? 2 : 1;
+> >
+> > -     if (dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_DSI) {
+> > -             if (dpu_kms->catalog->dspp &&
+> > -                     (dpu_kms->catalog->dspp_count >= topology.num_lm))
+> > -                     topology.num_dspp = topology.num_lm;
+> > -     }
+> > +     if (crtc_state->ctm)
+> > +             topology.num_dspp = topology.num_lm;
+> >
+> >       topology.num_enc = 0;
+> >       topology.num_intf = intf_count;
+> > @@ -643,7 +640,7 @@ static int dpu_encoder_virt_atomic_check(
+> >               }
+> >       }
+> >
+> > -     topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode);
+> > +     topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode, crtc_state);
+> >
+> >       /* Reserve dynamic resources now. */
+> >       if (!ret) {
+> > --
+> > 2.7.4
+> >
+
+
+
 -- 
-I haven't gotten a reply from u after my last email
+Best Regards,
+Yongqin Liu
+---------------------------------------------------------------
+#mailing list
+linaro-android@lists.linaro.org
+http://lists.linaro.org/mailman/listinfo/linaro-android
