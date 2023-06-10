@@ -2,97 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9D172AB90
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 14:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70AA172ABA6
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jun 2023 15:16:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231364AbjFJM5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jun 2023 08:57:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43552 "EHLO
+        id S231486AbjFJNQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jun 2023 09:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjFJM5Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 08:57:16 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFBAAAB;
-        Sat, 10 Jun 2023 05:57:13 -0700 (PDT)
-Received: from i53875b22.versanet.de ([83.135.91.34] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1q7y9L-0005N2-CT; Sat, 10 Jun 2023 14:56:59 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        sebastian.reichel@collabora.com,
-        Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, gustavo.padovan@collabora.com,
-        serge.broslavsky@collabora.com,
-        Shreeya Patel <shreeya.patel@collabora.com>
-Subject: Re: [PATCH] dt-bindings: iio: rockchip: Fix 'oneOf' condition failed warning
-Date:   Sat, 10 Jun 2023 14:56:58 +0200
-Message-ID: <2621715.Lt9SDvczpP@diego>
-In-Reply-To: <20230610122200.161741-1-shreeya.patel@collabora.com>
-References: <20230610122200.161741-1-shreeya.patel@collabora.com>
+        with ESMTP id S230311AbjFJNQa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jun 2023 09:16:30 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E316626AD;
+        Sat, 10 Jun 2023 06:16:28 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-654f8b56807so2862379b3a.1;
+        Sat, 10 Jun 2023 06:16:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686402988; x=1688994988;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=+6ecJGJDuuEEHRoPE7ipHiRhKubpIsd+Z4uIhEGj22E=;
+        b=EnHaoUtnWBfp61G7idmJ+243jNQ9zoixKb8v5lFB83ObX93cho2hWFPH51MMLpB0An
+         GYw/rKGnK0kSZaFKhZSEv7AGhgEjI5JIryR0vASUy+0p+ukAsi40101y4BbbOhOC1aEp
+         c8aqikHiCad0YwmMsnGzCpU+9Y5mqBT5qn2aAP9p/dWCTc3e4O30BYd38iA15NaXUzSY
+         D0zCQZVQoLK8pay3X4gsYlNMptn8BQqeOc9es8KG17cFXBIa9/w44YaLIZcStf8tGa6J
+         aWcVu4jYQOlrE08EiW6ScZP/6tgvepPp1s3+jX8Hm3PbwEzNvHvPH1wqIVCP5RAS7cPZ
+         mmFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686402988; x=1688994988;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+6ecJGJDuuEEHRoPE7ipHiRhKubpIsd+Z4uIhEGj22E=;
+        b=GMX8T9Hh8uXfYFq2Pi1EDf0V4r95HscKWHGtlxMVkLdDQUSdP5T2AVl3IsmxNgSiKz
+         ypkkyxQzRGB/m1tss0TeT56UhAtLKsQNUI6OvAZRNAUfMTp5HhCPdqR5BctEeLYdoTLu
+         G4Nl3pj4SwUmRgwhhTTD55M0qkhRfcaEOH5hfJP4cei8hbG8Zo2f0TyC00hppQF4Xjvr
+         mK3eZW++L6QoWAD30R8vhn4pWjPLscG43mLocHxb033ZIYoCMEyKIZuVzia0BqRDOvt7
+         2+oCj/NY0oAZko3XADK+9A2oqKwoxNZ3PMJJqviqiVITPj7ryv71wlUs2+kn/wBNRWvE
+         Iplw==
+X-Gm-Message-State: AC+VfDwTHMhd1jfiX2xqhv1trO/IuGbuSXVlcWuo0AtoODj/IlPUZlot
+        iJJ5K+GsagJe22MnkQzy/RI=
+X-Google-Smtp-Source: ACHHUZ64/c2TGyOHXIs+2seDSd6fkb6u7cXrIE+DgseUC/1VzddEpRZeI7jJXQywUmd8QqKIGsvBEQ==
+X-Received: by 2002:a05:6a00:1705:b0:662:5c39:48e4 with SMTP id h5-20020a056a00170500b006625c3948e4mr4664245pfc.9.1686402988206;
+        Sat, 10 Jun 2023 06:16:28 -0700 (PDT)
+Received: from [172.30.1.8] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id e14-20020aa78c4e000000b006439df7ed5fsm4180336pfd.6.2023.06.10.06.16.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Jun 2023 06:16:27 -0700 (PDT)
+Message-ID: <77b25ee9-34a6-d651-3476-05b1c5590521@gmail.com>
+Date:   Sat, 10 Jun 2023 22:16:24 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: extcon: wlf,arizona: drop unneeded quotes
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        - <patches@opensource.cirrus.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230609140740.64990-1-krzysztof.kozlowski@linaro.org>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20230609140740.64990-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 10. Juni 2023, 14:22:00 CEST schrieb Shreeya Patel:
-> Fix the dtbs_check warning for 'oneOf' condition failure.
+On 23. 6. 9. 23:07, Krzysztof Kozlowski wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> DTC_CHK arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
-> /home/shreeya/linux/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb:
-> 	saradc@fec10000: compatible: 'oneOf' conditional failed,
-> 	one must be fixed:
-> 	['rockchip,rk3588-saradc'] is too short
-> 	'rockchip,saradc' was expected
-> 	'rockchip,rk3066-tsadc' was expected
-> 	'rockchip,rk3399-saradc' was expected
-> 
-
-Nit: the commit message could explain that the rk3588 in fact isn't
-compatible with the rk3399-saradc variant.
-
-Otherwise I checked the implementation, so
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-> Fixes: 2daf2ae9793d ("dt-bindings: iio: adc: Add rockchip,rk3588-saradc string")
-> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/extcon/wlf,arizona.yaml    | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> index 11c27ea451c8..aa24b841393c 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> @@ -15,13 +15,13 @@ properties:
->        - const: rockchip,saradc
->        - const: rockchip,rk3066-tsadc
->        - const: rockchip,rk3399-saradc
-> +      - const: rockchip,rk3588-saradc
->        - items:
->            - enum:
->                - rockchip,px30-saradc
->                - rockchip,rk3308-saradc
->                - rockchip,rk3328-saradc
->                - rockchip,rk3568-saradc
-> -              - rockchip,rk3588-saradc
->                - rockchip,rv1108-saradc
->                - rockchip,rv1126-saradc
->            - const: rockchip,rk3399-saradc
-> 
+> diff --git a/Documentation/devicetree/bindings/extcon/wlf,arizona.yaml b/Documentation/devicetree/bindings/extcon/wlf,arizona.yaml
+> index efdf59abb2e1..351b202d0e10 100644
+> --- a/Documentation/devicetree/bindings/extcon/wlf,arizona.yaml
+> +++ b/Documentation/devicetree/bindings/extcon/wlf,arizona.yaml
+> @@ -23,7 +23,7 @@ properties:
+>        headphone detect mode to HPDETL, ARIZONA_ACCDET_MODE_HPR/2 sets it
+>        to HPDETR.  If this node is not included or if the value is unknown,
+>        then headphone detection mode is set to HPDETL.
+> -    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+>      minimum: 1
+>      maximum: 2
+>  
+> @@ -51,7 +51,7 @@ properties:
+>      description:
+>        Additional software microphone detection debounce specified in
+>        milliseconds.
+> -    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+>  
+>    wlf,micd-pol-gpio:
+>      description:
+> @@ -63,7 +63,7 @@ properties:
+>      description:
+>        Time allowed for MICBIAS to startup prior to performing microphone
+>        detection, specified as per the ARIZONA_MICD_TIME_XXX defines.
+> -    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+>      minimum: 0
+>      maximum: 12
+>  
+> @@ -71,7 +71,7 @@ properties:
+>      description:
+>        Delay between successive microphone detection measurements, specified
+>        as per the ARIZONA_MICD_TIME_XXX defines.
+> -    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+>      minimum: 0
+>      maximum: 12
+>  
+> @@ -79,7 +79,7 @@ properties:
+>      description:
+>        Microphone detection hardware debounces specified as the number of
+>        measurements to take.
+> -    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [2, 4]
+>  
+>    wlf,micd-timeout-ms:
+> @@ -97,7 +97,7 @@ properties:
+>        CTIA / OMTP headsets), the field can be of variable length but
+>        should always be a multiple of 3 cells long, each three cell group
+>        represents one polarity configuration.
+> -    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>      items:
+>        items:
+>          - description:
+> @@ -119,7 +119,7 @@ properties:
+>      description:
+>        Settings for the general purpose switch, set as one of the
+>        ARIZONA_GPSW_XXX defines.
+> -    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+>      minimum: 0
+>      maximum: 3
+>  
 
+Applied it.Thanks.
 
-
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
 
