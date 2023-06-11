@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CDC272B1DA
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 14:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0643072B1E2
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 14:40:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233238AbjFKMhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 08:37:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48922 "EHLO
+        id S231655AbjFKMj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 08:39:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbjFKMhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 08:37:37 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C30C10CF;
-        Sun, 11 Jun 2023 05:37:36 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5147f4bbfdaso4745188a12.0;
-        Sun, 11 Jun 2023 05:37:36 -0700 (PDT)
+        with ESMTP id S229624AbjFKMj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 08:39:58 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE342E63;
+        Sun, 11 Jun 2023 05:39:57 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-3f9e36e5ea8so11065451cf.3;
+        Sun, 11 Jun 2023 05:39:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686487055; x=1689079055;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
-        b=cF6z1xdITZwBuJSfEmjH/z+MYgQa6wthMLGjBetd3+r+x+rszQ+Rm9mZozEEA9cHR7
-         2chTWTmNsABqQmt99SjzmNhB5X4R0F/0QIj0/7D558ncNVgwKZwzDuFgzA5U4AdxJsTL
-         4S8JPhYcuGHxn1NNbL7+t/QHJTKg0gYiAyDhM7tZ1/Tb9nRsv1RM87ySMLs5kbpulmEH
-         Utga4iCqqyo263e32Up7YU2oMkVFX+I1T9KimFgLCDXkJLWm8xYDIAJOFEREkO5/08UO
-         n5/9qrB7yxoeu8COJ29bHPXmKtxM+chHgyjz7KlO2IZgkvrkQfa8cj4TG7E3ZynmZQl8
-         bfNw==
+        d=gmail.com; s=20221208; t=1686487197; x=1689079197;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ddaw/98usWKqo9LXEQ3oXd23WqC3x1yMaUSTSAxj6Po=;
+        b=Alqi4glh/pcDbLn8cBdVsqXSqxuuGz6qLo270zjsz4o29HCxIoCgO3RIwwgtv9RWY8
+         pQQpBXFj6TOJlg23zFA5dp4dt2bauW8iMO5gq6bXMZo0cuWb/viGOIyavT1rZx/XOQik
+         +S/G35jELWmBs0/4xZ1jjMwKXhnTEpxZwIWZcnTLT2rDNAOl3PkQhjsiPS44Gt1Kw3Bp
+         XiGno0wZuw+HkwsAGYtIU2qR4L4SVMd29+rzqmPqcUUhQuk5BRybXc3lkY/bNBfj95FO
+         hdLE7Pl+DIZ0hFjXz8+4BqsPa8elh8nEqyacA/HCM85WmqaOg0dwSmxPckSek2qiIQ7h
+         fYSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686487055; x=1689079055;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
-        b=cSeVaNQQPB4qFSA0JBI2UVQ5QjQASgm30F2kaFstm+k3zddlqvP21vHVtkCALtxggU
-         B9Zt30KbdcZW3Khj3fsB6/m5+MUbLtuLsiSYoy3HtRDjo6ir+UpmE2cVsQsuq0PdO2Pz
-         6xB69sazoUofvrBKln1eJeAu5O/tusGTylTZ9dggggeCmfcepXt5ZT5MPimNaAoBRFEh
-         M5ULxJyxWFtGnL8uCpPo3oXJUxFrlH5CtTC4IZJalO/OYLmfLxTS4yordVq12qIKROG4
-         ufvpScxhcwo4OXQ0kdr/K/UmuPsNWmtiI2XopVpL52KpeROwSLTSZFVkddaGWtU5xo3l
-         iLqQ==
-X-Gm-Message-State: AC+VfDwBCBC1Unw3tVy+yG+BWTqgDd0jYQHUq+bUDDuutYjUq9YQsVnM
-        BGmIoFOgV49Cl//7BCCprxeckhPDyCc=
-X-Google-Smtp-Source: ACHHUZ5VWP0NHERLXgSX8/htApGTFSp4xIZ43YimlNMEmqPkZyr/BbV5qoFPogbWxjoMRvXLVK0GgA==
-X-Received: by 2002:a17:907:a0d:b0:978:6fbf:869c with SMTP id bb13-20020a1709070a0d00b009786fbf869cmr7003552ejc.16.1686487054755;
-        Sun, 11 Jun 2023 05:37:34 -0700 (PDT)
-Received: from shift.daheim (p4fd09ff6.dip0.t-ipconnect.de. [79.208.159.246])
-        by smtp.gmail.com with ESMTPSA id dx15-20020a170906a84f00b0097bb01516c2sm2738842ejb.0.2023.06.11.05.37.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Jun 2023 05:37:33 -0700 (PDT)
-Received: from chuck by shift.daheim with local (Exim 4.96)
-        (envelope-from <chuck@shift.daheim>)
-        id 1q8KK4-000LN5-2Z;
-        Sun, 11 Jun 2023 14:37:32 +0200
-From:   Christian Lamparter <chunkeey@gmail.com>
-To:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Cc:     kvalo@kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: [PATCH v2 2/2] wifi: ath11k: add support DT ieee80211-freq-limit
-Date:   Sun, 11 Jun 2023 14:37:32 +0200
-Message-Id: <ed266944c721de8dbf0fe35f387a3a71b2c84037.1686486468.git.chunkeey@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
-References: <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
+        d=1e100.net; s=20221208; t=1686487197; x=1689079197;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ddaw/98usWKqo9LXEQ3oXd23WqC3x1yMaUSTSAxj6Po=;
+        b=X+hIFeAppT97AMcBwY8CRw9QExx7XIpW+MeZelYSj5RP+s1Uw2+LfK2ugaceTg+TZB
+         JRcjSD9xg2gBPzbFZsG1VhaWAPq+iQHRKqnnYVG6k/ieKV2Z6FtG0H2hljCgJXD+Lrgw
+         OH6kx8sznzWNDEk4HBidPz1Ejxv+ToiX47m3wjCIOMYPOeQw39UK88nO9OAM7VfFUict
+         5x0cTpjzV8z0NzNTfMN/MrbORWpsL3DtQcRdNvgcSRX/9LIij82eiPLk8baBw2wAuMQ0
+         7rfgFb4aU1FsnGHdXIzKfibRI9I3fwCnNurBkkc3nEwfDEbWuL13sOVw5qlEclyFSuV8
+         7TYA==
+X-Gm-Message-State: AC+VfDyjs72/VhwropdHOxNsOcPIWS3t8L2Cq7BJXtOPuUU0u/1sf747
+        UNXtPl0K8Yq0zsjz3mCLq3A=
+X-Google-Smtp-Source: ACHHUZ5dYz6T2L3E4eMVDIjz2tj7aIB3Oi16Wg+I1xH70IOUG8m+FjkltpD5kBNTc3DA9c2pfSNfbA==
+X-Received: by 2002:ac8:7f03:0:b0:3f9:cb01:9da9 with SMTP id f3-20020ac87f03000000b003f9cb019da9mr7941277qtk.38.1686487196880;
+        Sun, 11 Jun 2023 05:39:56 -0700 (PDT)
+Received: from [10.1.97.4] (rrcs-24-39-76-222.nys.biz.rr.com. [24.39.76.222])
+        by smtp.gmail.com with ESMTPSA id bq13-20020a05622a1c0d00b003f872332a9asm2603444qtb.64.2023.06.11.05.39.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Jun 2023 05:39:56 -0700 (PDT)
+Message-ID: <22a21176-f2e2-bce5-2223-97cb095162c5@gmail.com>
+Date:   Sun, 11 Jun 2023 07:39:54 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] gpiolib: demote the hogging log messages to debug
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Kent Gibson <warthog618@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230605125248.279921-1-brgl@bgdev.pl>
+ <CAL_JsqKczF9yYHWjqneBv-y+Qv+O7AkX4gwVG87+aPPazKxtDw@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <CAL_JsqKczF9yYHWjqneBv-y+Qv+O7AkX4gwVG87+aPPazKxtDw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,29 +80,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The common DT property can be used to limit the available
-channels/frequencies. But ath11k has to manually call
-wiphy_read_of_freq_limits().
+On 6/9/23 08:47, Rob Herring wrote:
+> On Mon, Jun 5, 2023 at 6:53 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>
+>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>
+>> Drivers should be silent when they work correctly. There's no reason to
+>> emit info messages when GPIO lines are hogged. Demote the message to
+>> debug.
+>>
+>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> Suggested-by: Kent Gibson <warthog618@gmail.com>
+>> ---
+>>  drivers/gpio/gpiolib.c |  2 +-
+>>  drivers/of/unittest.c  | 16 ++++++++--------
+>>  2 files changed, 9 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+>> index a7220e04a93e..e4515bda8915 100644
+>> --- a/drivers/gpio/gpiolib.c
+>> +++ b/drivers/gpio/gpiolib.c
+>> @@ -4243,7 +4243,7 @@ int gpiod_hog(struct gpio_desc *desc, const char *name,
+>>         /* Mark GPIO as hogged so it can be identified and removed later */
+>>         set_bit(FLAG_IS_HOGGED, &desc->flags);
+>>
+>> -       gpiod_info(desc, "hogged as %s%s\n",
+>> +       gpiod_dbg(desc, "hogged as %s%s\n",
+>>                 (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ? "output" : "input",
+>>                 (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ?
+>>                   (dflags & GPIOD_FLAGS_BIT_DIR_VAL) ? "/high" : "/low" : "");
+>> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+>> index 2191c0136531..0060334a98a7 100644
+>> --- a/drivers/of/unittest.c
+>> +++ b/drivers/of/unittest.c
+>> @@ -1849,19 +1849,19 @@ static void __init of_unittest_overlay_gpio(void)
+>>          * driver is registered
+>>          */
+>>
+>> -       EXPECT_BEGIN(KERN_INFO,
+>> +       EXPECT_BEGIN(KERN_DEBUG,
+>>                      "gpio-<<int>> (line-B-input): hogged as input\n");
+> 
+> As debug messages are normally off, I think you can just remove these.
 
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
----
-compile-tested only.
----
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- 1 file changed, 1 insertion(+)
+This patch is an example of exactly why the message level is the first parameter
+passed to EXPECT_*().  The test results are then _always_ valid, not just
+_normally_.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c947d1c8d8c1..7e43f2770f27 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9414,6 +9414,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	if (ret)
- 		goto err;
- 
-+	wiphy_read_of_freq_limits(ar->hw->wiphy);
- 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
- 	ath11k_mac_setup_he_cap(ar, cap);
- 
--- 
-2.40.1
+-Frank
+
+> 
+> Rob
 
