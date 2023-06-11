@@ -2,132 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D87B972BB64
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 10:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0959672B3E3
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 22:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233761AbjFLIzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 04:55:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52508 "EHLO
+        id S229512AbjFKUH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 16:07:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234640AbjFLIyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 04:54:45 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E72741711;
-        Mon, 12 Jun 2023 01:53:09 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-30aebe2602fso2590363f8f.3;
-        Mon, 12 Jun 2023 01:53:09 -0700 (PDT)
+        with ESMTP id S229455AbjFKUH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 16:07:26 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D643299;
+        Sun, 11 Jun 2023 13:07:24 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f660e57123so2064848e87.3;
+        Sun, 11 Jun 2023 13:07:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686559984; x=1689151984;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=aS9YsrNAcOn+NlKyUNyoFu7MvoAIEEYn2rw1UEKfcUg=;
-        b=dKjArm/xhT6edX4xaOmPXGu4g5jfK0NVxHxgtp+8qwLi0r4ZwcbMwnJElg3YMxWjb/
-         4+Oo39SV8Xi8f7hS7tg1LODUTpZh+vLmgw7LUO+F+TtVu/hnh00brmd65WQ2gticoWrM
-         NjZeguUUaYjBPL2jeUr9NsoIdQjNeBxXLkmrP0fU0ZdXUrqQUnlTwUJiMrgkze4sMdKr
-         F6lq7e+ZDFTiF4VFIvY74ZsZJeXsD82yiB7NzRi5sUUDQbENL7Gt54O0XwzqGhxVSm5c
-         JBK8lA/0ptgWGnh9JGGd9fYjTr6DCyG3uLGMa1Dk7jOSFoayjDNCdSZsetYddiWV264F
-         j7aA==
+        d=gmail.com; s=20221208; t=1686514043; x=1689106043;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DPAXUJMl2olgLfel3fMTObIngqSlcX9cwamWvtgEryU=;
+        b=U90IpPzzDT1hYVjCAzUYQ8SH+qZ9LJ9b/4gKcgd+QWBGGt4cwKs1AO/LJKvWQOxGdf
+         lFFhRDU67j/CuN+5SSBeK8eIyTTICTlp1/3oGlSk2HT0eaheaM8BHDVoxjMsIk1eHdOu
+         dxAZhMmOu2UrspCZ0gp2W8G4zac+HtXkoTUJjQfHR8TBAMjPpKWbjM56LVCoWftyshRI
+         eE2N7r9tK1tDu9BmGFvIbR/BbkLIaj3al69jy+m/iARqsrLiWBTRA5i5gwHM/HV7YG/E
+         CGxrK3sqptY+OvelKMemwVbaehCExCG5iMGDE0kejZGQAWcP/Dsiqpq4AsxCv3FV98R5
+         RjSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686559984; x=1689151984;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20221208; t=1686514043; x=1689106043;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aS9YsrNAcOn+NlKyUNyoFu7MvoAIEEYn2rw1UEKfcUg=;
-        b=jWEKw1XfJsHbhhdGr5ntczAwdbIntG9lnQFEaG4Un7iw1OBMhP0gaKPcy9JgvrG1dY
-         C0qFaKmmtmteIQ6e8oRoMJU9MGX8z06YvEX06rdmy6YOk+ypVrRl9tpMnNqu+TvSrx2V
-         Jom+eryflvm8MwCxJ8QJtzKD6MF4yi1jnNNxm7phIlorehndTqRADxmzELawIbUgUT5Y
-         iX0vgcHsaFjesHqoFoc+nKeKYwXpICPGxobaB414QUGpmyZT64men52oSassAp/CF/vl
-         3BEJz8LW0yN23GjPKTLBDU+LJ6PZfptLYS/HeC2ee5QwGY0rBG0j9GQPT54GVFu8SSS7
-         tokg==
-X-Gm-Message-State: AC+VfDxN3kEQc8SKNqrTCqvPWrpfzc4WOAxYgK/ux9rUdTIC8mwoZ9p+
-        p67aLk9Pzi0XQcibZw/2lZ8=
-X-Google-Smtp-Source: ACHHUZ6OCXAHFB7ym2sqsJaX2aXW1mpqMoedSF5d27PM8ZVqy+wqMdokykjds2qq2trJkyITWxNVrw==
-X-Received: by 2002:adf:f10c:0:b0:30f:bb83:e6f6 with SMTP id r12-20020adff10c000000b0030fbb83e6f6mr2965454wro.0.1686559983908;
-        Mon, 12 Jun 2023 01:53:03 -0700 (PDT)
-Received: from Ansuel-xps. (93-34-93-173.ip49.fastwebnet.it. [93.34.93.173])
-        by smtp.gmail.com with ESMTPSA id a3-20020a056000050300b003068f5cca8csm11758463wrf.94.2023.06.12.01.53.02
+        bh=DPAXUJMl2olgLfel3fMTObIngqSlcX9cwamWvtgEryU=;
+        b=L64HfMOvjq0yxCofbMB812Eu9BhuqyP5kTy05dsNwLCt8oACiXLHj14Zy6Tlk5H7Gp
+         L4a5PS6uR6LCV5OqqUe0KN6kf2n4yr3ZJTVd/8TopGtmD4tR8PMEyCTzAeKE3ElXW4fe
+         Y0wGCkPw/+J8T2wwpPAzoiXfV9utx0YsOewhtv8APkLVgQ1f8WRDDMdtWd84VDAwBsiJ
+         761xh9zTinVjUcAPbtqASkV8bvjZXGaiCb/aJ8Hh9YHsu9+ef99RFKQzJCNJre1zraEt
+         5ON4xFAXPIO5Y8YFMpoi9akNSLhX41tC2HJ5TrtR9DSKXHnlDLpWV4uPgDz9/fCvfALJ
+         Fh3Q==
+X-Gm-Message-State: AC+VfDxWrmarRCADSyWo371XRGHtp/QDyD+dJBWQcokSU+/+QXZVbuab
+        7rXoLHp8VP0rEBpmYtZ3zPY=
+X-Google-Smtp-Source: ACHHUZ7TUfI6VgL+wCYiJszZCQaUW35B1SFLTNT2ijeS+m8ypXT3rz4F5aZE/26qGRRhbAtmY3gF9Q==
+X-Received: by 2002:a05:6512:1d1:b0:4f3:94b5:3274 with SMTP id f17-20020a05651201d100b004f394b53274mr2903819lfp.63.1686514042768;
+        Sun, 11 Jun 2023 13:07:22 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id s6-20020a19ad46000000b004efff420b11sm1235506lfd.181.2023.06.11.13.07.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 01:53:03 -0700 (PDT)
-Message-ID: <6486dcef.050a0220.4c054.4c59@mx.google.com>
-X-Google-Original-Message-ID: <ZIX12RbMtonZb+yM@Ansuel-xps.>
-Date:   Sun, 11 Jun 2023 18:27:05 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sun, 11 Jun 2023 13:07:21 -0700 (PDT)
+Date:   Sun, 11 Jun 2023 23:07:19 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 00/18] ARM: qcom: apq8064: support CPU frequency scaling
-References: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v3 1/5] dt-bindings: ata: dwc-ahci: add PHY clocks
+Message-ID: <20230611200719.exct7r7z5izqzz4t@mobilestation>
+References: <20230608162238.50078-1-sebastian.reichel@collabora.com>
+ <20230608162238.50078-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+In-Reply-To: <20230608162238.50078-2-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 08:39:04AM +0300, Dmitry Baryshkov wrote:
-> Implement CPUFreq support for one of the oldest supported Qualcomm
-> platforms, APQ8064. Each core has independent power and frequency
-> control. Additionally the L2 cache is scaled to follow the CPU
-> frequencies (failure to do so results in strange semi-random crashes).
-
-Hi, can we talk, maybe in private about this interconnect-cpu thing?
-
-I see you follow the original implementation of the msm_bus where in
-practice with the use of the kbps the correct clock and voltage was set.
-(and this was also used to set the fabric clock from nominal to fast)
-
-On ipq806x and I assume other SoC there isn't always a 1:1 map of CPU
-freq and L2 freq. For example on ipq8064 we have max CPU freq of 1.4GHz
-and L2 freq of 1.2GHz, on ipq8065 we have CPU 1.7GHz and L2 of 1.4GHz.
-(and even that is curious since I used the debug regs and the cxo
-crystal to measure the clock by hardware (yes i ported the very ancient
-clk-debug to modern kernel and it works and discovered all sort of
-things) the L2 (I assume due to climitation of the hfpll) actually can't
-never reach that frequency (1.4GHz in reality results to something like
-1.2GHz from what I notice a stable clock is there only with frequency of
-max 1GHz))
-
-So my idea was to introduce a simple devfreq driver and use the PASSIVE
-governor where it was added the possibility to link to a CPU frequency
-and with interpolation select the L2 frequency (and voltage)
-
-From some old comments in ancient qsdk code it was pointed out that due
-to a hw limitation the secondary cpu can't stay at a high clock if L2
-was at the idle clock. (no idea if this is specific to IPQ806x) So this
-might be a cause of your crash? (I also have random crash with L2
-scaling and we are planning to just force the L2 at max frequency)
-
-But sorry for all of this (maybe) useless info. I checked the other
-patch and I didn't understand how the different L2 frequency are
-declared and even the voltage. Is this something that will come later?
-I'm very interested in this implementation.
-
+On Thu, Jun 08, 2023 at 06:22:34PM +0200, Sebastian Reichel wrote:
+> Add PHY transmit and receive clocks as described by the
+> DW SATA AHCI HW manual.
 > 
-> Core voltage is controlled through the SAW2 devices, one for each core.
-> The L2 has two regulators, vdd-mem and vdd-dig.
-> 
-> Depenency: [1] for interconnect-clk implementation
-> 
-> https://lore.kernel.org/linux-arm-msm/20230512001334.2983048-3-dmitry.baryshkov@linaro.org/
-> 
+> Suggested-by: Serge Semin <fancer.lancer@gmail.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
--- 
-	Ansuel
+Looks good. Thanks.
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+
+-Serge(y)
+
+> ---
+>  .../devicetree/bindings/ata/snps,dwc-ahci-common.yaml     | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
+> index c1457910520b..34c5bf65b02d 100644
+> --- a/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
+> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
+> @@ -31,11 +31,11 @@ properties:
+>        PM-alive clock, RxOOB detection clock, embedded PHYs reference (Rx/Tx)
+>        clock, etc.
+>      minItems: 1
+> -    maxItems: 4
+> +    maxItems: 6
+>  
+>    clock-names:
+>      minItems: 1
+> -    maxItems: 4
+> +    maxItems: 6
+>      items:
+>        oneOf:
+>          - description: Application APB/AHB/AXI BIU clock
+> @@ -48,6 +48,10 @@ properties:
+>            const: pmalive
+>          - description: RxOOB detection clock
+>            const: rxoob
+> +        - description: PHY Transmit Clock
+> +          const: asic
+> +        - description: PHY Receive Clock
+> +          const: rbc
+>          - description: SATA Ports reference clock
+>            const: ref
+>  
+> -- 
+> 2.39.2
+> 
