@@ -2,117 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2DA272B046
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 06:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 153D872B092
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 09:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbjFKEuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 00:50:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44356 "EHLO
+        id S232705AbjFKHN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 03:13:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbjFKEun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 00:50:43 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 980A426AD;
-        Sat, 10 Jun 2023 21:50:40 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35B4h4KM009524;
-        Sun, 11 Jun 2023 04:50:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=0CNloHrquHQMvmc+4hDQ+f1JhsN0G1wIV9bJDTOOqQs=;
- b=HayVU8gJor39utzAXsJYRHY1iPVlDbuo3ddgqxLXYYCX3Ql8cWmPedcoltOFDhptXlg+
- vjuqREoCk23Rs7gPdMcJWfkj4O2ZTpdYoMvfsza2c7Ahu2bW6jKGbdNr+gLIuT+E2dGi
- eGAZJdh4rWEnokwDidi8mgGUctGux1B8UDdO8f7yoHnru8uZjgUzmgSNQ1x2Dx2IyWOM
- B5XkoGk0BMEGgCvoK1fiYB9yXvI4iyr9muPJopZHT7U5+MJ8OA/6Dkp8XgLWGUORPohL
- DqtIxeBeW4+yhH84sJO4Zqv/N7UhDpwnfFbiw0leOQDcn8D7Ef2fquRbFWuKpX+VhB+4 bQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r4hxns6mw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 11 Jun 2023 04:50:07 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35B4o6OJ005158
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 11 Jun 2023 04:50:06 GMT
-Received: from [10.216.24.161] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sat, 10 Jun
- 2023 21:49:59 -0700
-Message-ID: <d073f2de-559e-7e76-2c38-114cda2d9948@quicinc.com>
-Date:   Sun, 11 Jun 2023 10:19:56 +0530
+        with ESMTP id S229450AbjFKHN2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 03:13:28 -0400
+Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4199D1FDE;
+        Sun, 11 Jun 2023 00:13:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686467572; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=eQ5G7E7rZFdJv7z1y0YnNSCD0XXNSR3tt2n44g7L5IvgCzVuwQhRm3BC9MalRzvFg2GpMKoPlXmgMQZ5GY/LZ0cx4F2UqR96HYp6NxEyNkhmGMXswv1GP5Z2dYniKdWEmrIqHVZoABETlQz1SCRRDu01yinliC4h+e4IuMy8q0I=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1686467572; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=iLY204uKrvZ3qum7/jEEKmL/Du4g5HxeLNUjW1ufbi0=; 
+        b=C7ekqaRH4HzdV9xqca05I2nEXVXk1+Xn0k8BWB1vVV6L60Mmjh5n/abYMt6e0DG9KzbMDh9Ok18s4aaSeYj2q7wCXtHercn59NSwOs0HBb8f4ReWxrmAYzwK3pN7XJxqchiDQgAUwiJuFRHiwOVNGgMjpYSF2x4UbzsluTIIEYU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1686467572;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:References:Cc:Cc:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=iLY204uKrvZ3qum7/jEEKmL/Du4g5HxeLNUjW1ufbi0=;
+        b=EZaTCxnyQpo3vwWW5QZg2j9+k86P03qUbrGJZ3n+nPcrW/BC8nkNruKLwJ/EjylY
+        JykbdXMi3yoKVgFr5YnyneIQYX505UCy5rvuPBufpDPCs9cMm5WrQ/6tznq/3CPQ3xh
+        6ZPmS+STIp197DxqLvs+INHWNlaf98WJNjjdqOqI=
+Received: from [192.168.99.249] (178-147-169-233.haap.dm.cosmote.net [178.147.169.233]) by mx.zohomail.com
+        with SMTPS id 1686467569583987.4480341802586; Sun, 11 Jun 2023 00:12:49 -0700 (PDT)
+Message-ID: <b6c7462d-99fc-a8e1-1cc2-d0a1efc7c34d@arinc9.com>
+Date:   Sun, 11 Jun 2023 10:12:40 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [v9 2/8] clk: qcom: Add Global Clock controller (GCC) driver for
- IPQ5018
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: net: mediatek,net: add missing
+ mediatek,mt7621-eth
+To:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Felix Fietkau <nbd@nbd.name>, Greg Ungerer <gerg@kernel.org>,
+        =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>
+References: <ZIUSZR6I3Ki6mZRO@makrotopia.org>
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>,
-        <krzysztof.kozlowski@linaro.org>, <andy.shevchenko@gmail.com>
-References: <20230608122152.3930377-1-quic_srichara@quicinc.com>
- <20230608122152.3930377-3-quic_srichara@quicinc.com>
- <7e915a4b-d2e8-c162-2e45-d08aced5a5d1@linaro.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <7e915a4b-d2e8-c162-2e45-d08aced5a5d1@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: SFyXHq_2eFwcKahelHTQytglkQvjhxIw
-X-Proofpoint-GUID: SFyXHq_2eFwcKahelHTQytglkQvjhxIw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-11_02,2023-06-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 adultscore=0 suspectscore=0 mlxscore=0 bulkscore=0
- mlxlogscore=455 priorityscore=1501 spamscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2306110044
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <ZIUSZR6I3Ki6mZRO@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks for working on this.
 
-
-On 6/9/2023 7:22 PM, Konrad Dybcio wrote:
+On 11.06.2023 03:16, Daniel Golle wrote:
+> Document the Ethernet controller found in the MediaTek MT7621 MIPS SoC
+> family which is supported by the mtk_eth_soc driver.
 > 
+> Fixes: 889bcbdeee57 ("net: ethernet: mediatek: support MT7621 SoC ethernet hardware")
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>   .../devicetree/bindings/net/mediatek,net.yaml | 27 ++++++++++++++++++-
+>   1 file changed, 26 insertions(+), 1 deletion(-)
 > 
-> On 8.06.2023 14:21, Sricharan Ramabadhran wrote:
->> Add support for the global clock controller found on IPQ5018
->> based devices.
->>
->> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> Co-developed-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> ---
->> [v9]       Sorted the headers and cleaned the unwanted ones
->>             Added trailing comma for .parent_hws member
->>             Removed the hunk touching ipq5332 kconfig  (unintentionally)
->>
-> You did not address the comments I made in v4.
-> 
-> https://lore.kernel.org/linux-arm-msm/21a5642c-e6e5-9323-7db1-383a18616ac0@linaro.org/
+> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> index acb2b2ac4fe1e..38aa3d97ee234 100644
+> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> @@ -19,6 +19,7 @@ properties:
+>       enum:
+>         - mediatek,mt2701-eth
+>         - mediatek,mt7623-eth
+> +      - mediatek,mt7621-eth
+>         - mediatek,mt7622-eth
+>         - mediatek,mt7629-eth
+>         - mediatek,mt7981-eth
+> @@ -32,7 +33,7 @@ properties:
+>     clock-names: true
+>   
+>     interrupts:
+> -    minItems: 3
+> +    minItems: 1
 
-  oops, sorry, i guess, missed it, will send with fixed.
+I suppose this is to allow a single item for mediatek,mt7621-eth?
 
-Regards,
-  Sricharan
+>       maxItems: 4
+>   
+>     power-domains:
+> @@ -131,6 +132,30 @@ allOf:
+>   
+>           mediatek,wed-pcie: false
+>   
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt7621-eth
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +
+> +        clock-names:
+> +          items:
+> +            - const: ethif
+> +            - const: fe
+> +
+> +        mediatek,wed: false
+> +
+> +        mediatek,wed-pcie: false
+> +
+>     - if:
+>         properties:
+>           compatible:
+
+I'm getting warnings with this patch applied:
+
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+resets: [[2, 6], [2, 23]] is too short
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+reset-names:1: 'gmac' was expected
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+reset-names: ['fe', 'eth'] is too short
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+clock-names:0: 'ethif' was expected
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+clock-names:1: 'fe' was expected
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+mac@0: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+mac@0: 'phy-handle' is a required property
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+mac@1: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+mac@1: 'phy-handle' is a required property
+arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
+Unevaluated properties are not allowed ('reset-names', 'resets' were 
+unexpected)
+
+I see the bindings for the MT7621 SoC are a bit different than the 
+bindings for the current SoCs on this schema, interrupts, phy-handle non 
+requirement, resets, reset-names, etc. Maybe we should overwrite things 
+under the check for mediatek,mt7621-eth.
+
+I'm not very confident all the bindings for mediatek,mt7621-eth on 
+mt7621.dtsi are correct either.
+
+Arınç
