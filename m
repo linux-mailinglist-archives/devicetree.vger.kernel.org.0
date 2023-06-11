@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7037472B18F
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 13:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4382B72B1C0
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 13:57:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233572AbjFKLM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 07:12:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34872 "EHLO
+        id S231641AbjFKL5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 07:57:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232308AbjFKLMX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 07:12:23 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E4910FB;
-        Sun, 11 Jun 2023 04:12:22 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35BBC9uj120502;
-        Sun, 11 Jun 2023 06:12:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686481929;
-        bh=yBSAo++kWI0H08QwloTcaMwv6EV8HcXo2PfSECaQf5A=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZiQ4hzJWN5ooO9jzcwSX2ClggQpc75fZ4+1YsVns13v7kQ6Xm/LN2w3IKjPnbgzry
-         Mu6UfbED/HoqlQGxaKFjq2XCV99cTSghtXf6vWMmymbB9pWyGDVr22p0YVP5G4Ij2Z
-         VAFW9DfCPO7GjJhjkaixKHJVxX1OcOl8VJG2TfLw=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35BBC96I011054
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 11 Jun 2023 06:12:09 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 11
- Jun 2023 06:12:08 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 11 Jun 2023 06:12:08 -0500
-Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35BBBh14010303;
-        Sun, 11 Jun 2023 06:12:05 -0500
-From:   Udit Kumar <u-kumar1@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <conor+dt@kernel.org>, <m-chawdhry@ti.com>, <n-francis@ti.com>
-CC:     Udit Kumar <u-kumar1@ti.com>
-Subject: [v4 6/6] arm64: dts: ti: k3-j7200: Drop SoC level aliases
-Date:   Sun, 11 Jun 2023 16:41:40 +0530
-Message-ID: <20230611111140.3189111-7-u-kumar1@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230611111140.3189111-1-u-kumar1@ti.com>
-References: <20230611111140.3189111-1-u-kumar1@ti.com>
+        with ESMTP id S229455AbjFKL5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 07:57:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF239FD;
+        Sun, 11 Jun 2023 04:57:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7696460C55;
+        Sun, 11 Jun 2023 11:57:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF48EC433EF;
+        Sun, 11 Jun 2023 11:57:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686484637;
+        bh=Ud6DijTGw2KIKTv6kjmgnirT63T3fx5KrKvK33LlULk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h/vQAFibCaPW0yRJvgsnM2JG0UujIwtsVSVTqGJvQPFv+H42fiCbfhAawJnAF6nTo
+         fZetCVS+Pu6JP6v9aOys2k9+l7KcJMD5R7QWdx4K7frnMQoMRWkdccTjaUv/yudaEK
+         W0sbQVSE/VVB3UvCEPtx7hza7hhwGN/p3rdfj0AwkJ8u+9BOzNvKdalZdugvB4d9b1
+         lO/kO7f/QsfY9zKH+abWn1s+FV9kbTNlUIAOTcVF80y5TnKzsLEQ54KTRPlsMkg5ri
+         cX3jRtVWHcOrAbinuHgLZg/Wm7mWrkk6EOdHaZaxxXPmc+kUYtSN4NhT3CIJyWtzjd
+         WUONGCEj39sHg==
+Date:   Sun, 11 Jun 2023 12:57:10 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Patrick Lai <quic_plai@quicinc.com>
+Subject: Re: [PATCH v2 2/2] ASoC: codecs: wsa884x: Add WSA884x family of
+ speakers
+Message-ID: <191859d3-42e3-4ef2-87ff-dd56864103f9@sirena.org.uk>
+References: <20230611102657.74714-1-krzysztof.kozlowski@linaro.org>
+ <20230611102657.74714-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2UHYA9utW3zi5EMo"
+Content-Disposition: inline
+In-Reply-To: <20230611102657.74714-2-krzysztof.kozlowski@linaro.org>
+X-Cookie: List was current at time of printing.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,41 +68,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aiases are defined at board level, so dropping from soc level
 
-Signed-off-by: Udit Kumar <u-kumar1@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200.dtsi | 17 -----------------
- 1 file changed, 17 deletions(-)
+--2UHYA9utW3zi5EMo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-index f1836ec8e934..5ea869014bbc 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-@@ -18,23 +18,6 @@ / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
--	aliases {
--		serial0 = &wkup_uart0;
--		serial1 = &mcu_uart0;
--		serial2 = &main_uart0;
--		serial3 = &main_uart1;
--		serial4 = &main_uart2;
--		serial5 = &main_uart3;
--		serial6 = &main_uart4;
--		serial7 = &main_uart5;
--		serial8 = &main_uart6;
--		serial9 = &main_uart7;
--		serial10 = &main_uart8;
--		serial11 = &main_uart9;
--		mmc0 = &main_sdhci0;
--		mmc1 = &main_sdhci1;
--	};
--
- 	chosen { };
- 
- 	cpus {
--- 
-2.34.1
+On Sun, Jun 11, 2023 at 12:26:57PM +0200, Krzysztof Kozlowski wrote:
 
+> +static struct reg_default wsa884x_defaults[] = {
+
+> +	{ WSA884X_CHIP_ID0,			0x00 },
+> +	{ WSA884X_CHIP_ID1,			0x00 },
+> +	{ WSA884X_CHIP_ID2,			0x04 },
+> +	{ WSA884X_CHIP_ID3,			0x02 },
+> +	{ WSA884X_BUS_ID,			0x00 },
+
+It is generally bad practice to provide defaults for ID registers since
+it rather defeats the point of having them.
+
+> +	{ WSA884X_INTR_STATUS0,			0x00 },
+> +	{ WSA884X_INTR_STATUS1,			0x00 },
+
+Interrupt status registers will be volatile and therefore should not
+have defaults.
+
+> +	{ WSA884X_OTP_REG_0,			0x05 },
+> +	{ WSA884X_OTP_REG_1,			0x49 },
+> +	{ WSA884X_OTP_REG_2,			0x80 },
+> +	{ WSA884X_OTP_REG_3,			0xc9 },
+> +	{ WSA884X_OTP_REG_4,			0x40 },
+> +	{ WSA884X_OTP_REG_5,			0xff },
+> +	{ WSA884X_OTP_REG_6,			0xff },
+> +	{ WSA884X_OTP_REG_7,			0xff },
+> +	{ WSA884X_OTP_REG_8,			0xff },
+> +	{ WSA884X_OTP_REG_9,			0xff },
+> +	{ WSA884X_OTP_REG_10,			0xff },
+> +	{ WSA884X_OTP_REG_11,			0xff },
+> +	{ WSA884X_OTP_REG_12,			0xff },
+> +	{ WSA884X_OTP_REG_13,			0xff },
+> +	{ WSA884X_OTP_REG_14,			0xff },
+> +	{ WSA884X_OTP_REG_15,			0xff },
+> +	{ WSA884X_OTP_REG_16,			0xff },
+> +	{ WSA884X_OTP_REG_17,			0xff },
+> +	{ WSA884X_OTP_REG_18,			0xff },
+> +	{ WSA884X_OTP_REG_19,			0xff },
+> +	{ WSA884X_OTP_REG_20,			0xff },
+> +	{ WSA884X_OTP_REG_21,			0xff },
+> +	{ WSA884X_OTP_REG_22,			0xff },
+> +	{ WSA884X_OTP_REG_23,			0xff },
+> +	{ WSA884X_OTP_REG_24,			0x00 },
+> +	{ WSA884X_OTP_REG_25,			0x22 },
+> +	{ WSA884X_OTP_REG_26,			0x03 },
+> +	{ WSA884X_OTP_REG_27,			0x00 },
+> +	{ WSA884X_OTP_REG_28,			0x00 },
+> +	{ WSA884X_OTP_REG_29,			0x00 },
+> +	{ WSA884X_OTP_REG_30,			0x00 },
+> +	{ WSA884X_OTP_REG_31,			0x8f },
+> +	{ WSA884X_OTP_REG_32,			0x00 },
+> +	{ WSA884X_OTP_REG_33,			0xff },
+> +	{ WSA884X_OTP_REG_34,			0x0f },
+> +	{ WSA884X_OTP_REG_35,			0x12 },
+> +	{ WSA884X_OTP_REG_36,			0x08 },
+> +	{ WSA884X_OTP_REG_37,			0x1f },
+> +	{ WSA884X_OTP_REG_38,			0x0b },
+> +	{ WSA884X_OTP_REG_39,			0x00 },
+> +	{ WSA884X_OTP_REG_40,			0x00 },
+> +	{ WSA884X_OTP_REG_41,			0x00 },
+> +	{ WSA884X_OTP_REG_63,			0x40 },
+
+These appear to be OTP data which suggests that they shouldn't have
+defaults either since they can be programmed.
+
+> +static bool wsa884x_readonly_register(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+
+In general the read only registers probably shouldn't have defaults...
+
+> +static bool wsa884x_volatile_register(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case WSA884X_ANA_WO_CTL_0:
+> +	case WSA884X_ANA_WO_CTL_1:
+> +		return true;
+> +	}
+> +	return wsa884x_readonly_register(dev, reg);
+> +}
+
+...and the volatile regiseters definitely not, the default values will
+never be used and just waste space.
+
+> +static struct regmap_config wsa884x_regmap_config = {
+> +	.reg_bits = 32,
+> +	.val_bits = 8,
+> +	.cache_type = REGCACHE_RBTREE,
+
+Please use REGCACHE_MAPLE for new devices.
+
+> +	/* Speaker mode by default */
+> +	{ WSA884X_DRE_CTL_0, 0x7 << WSA884X_DRE_CTL_0_PROG_DELAY_SHIFT },
+> +	{ WSA884X_CLSH_CTL_0, (0x37 & ~WSA884X_CLSH_CTL_0_DLY_CODE_MASK) |
+> +			      (0x6 << WSA884X_CLSH_CTL_0_DLY_CODE_SHIFT) },
+> +	{ WSA884X_CLSH_SOFT_MAX, 0xff },
+
+Why not just leave as the chip default?
+
+--2UHYA9utW3zi5EMo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSFtpUACgkQJNaLcl1U
+h9Bc2wf+MW3w20yWsADZfhfgAfmIMBYWCXDCv8gztK+ATSXpMqDU22Z+cNIX5V9h
+hEegPQLq4qhuoNGundoTJkCccxhSZwvET/NlYtfxuxqhKFuI0qILC2VmVttTApX/
+bP/D8kQxSNu0tmi06qzuqoJ9mb2RXV0dgfLZAesNqhqryCSnq9HdX9dX/zevFdlH
+moxCU+WyoRFVvCwpJkHmrZXNkntoa58SkA73zFVpCX7DoZGOtbxRdlKRaNpuR8Ge
+/Zf95c5xmwiNYFxToTUQm+YLIRySIrn5hRZGjkW18mj/gw8BWHSGyIY/llDsJ3i7
+cdYyJANPFun6BAoRDMoG1p3zlzliOw==
+=5kvz
+-----END PGP SIGNATURE-----
+
+--2UHYA9utW3zi5EMo--
