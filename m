@@ -2,179 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 153D872B092
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 09:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE1972B0A8
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 09:54:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232705AbjFKHN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 03:13:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56356 "EHLO
+        id S231652AbjFKHyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 03:54:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjFKHN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 03:13:28 -0400
-Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4199D1FDE;
-        Sun, 11 Jun 2023 00:13:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686467572; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=eQ5G7E7rZFdJv7z1y0YnNSCD0XXNSR3tt2n44g7L5IvgCzVuwQhRm3BC9MalRzvFg2GpMKoPlXmgMQZ5GY/LZ0cx4F2UqR96HYp6NxEyNkhmGMXswv1GP5Z2dYniKdWEmrIqHVZoABETlQz1SCRRDu01yinliC4h+e4IuMy8q0I=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1686467572; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=iLY204uKrvZ3qum7/jEEKmL/Du4g5HxeLNUjW1ufbi0=; 
-        b=C7ekqaRH4HzdV9xqca05I2nEXVXk1+Xn0k8BWB1vVV6L60Mmjh5n/abYMt6e0DG9KzbMDh9Ok18s4aaSeYj2q7wCXtHercn59NSwOs0HBb8f4ReWxrmAYzwK3pN7XJxqchiDQgAUwiJuFRHiwOVNGgMjpYSF2x4UbzsluTIIEYU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1686467572;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:References:Cc:Cc:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=iLY204uKrvZ3qum7/jEEKmL/Du4g5HxeLNUjW1ufbi0=;
-        b=EZaTCxnyQpo3vwWW5QZg2j9+k86P03qUbrGJZ3n+nPcrW/BC8nkNruKLwJ/EjylY
-        JykbdXMi3yoKVgFr5YnyneIQYX505UCy5rvuPBufpDPCs9cMm5WrQ/6tznq/3CPQ3xh
-        6ZPmS+STIp197DxqLvs+INHWNlaf98WJNjjdqOqI=
-Received: from [192.168.99.249] (178-147-169-233.haap.dm.cosmote.net [178.147.169.233]) by mx.zohomail.com
-        with SMTPS id 1686467569583987.4480341802586; Sun, 11 Jun 2023 00:12:49 -0700 (PDT)
-Message-ID: <b6c7462d-99fc-a8e1-1cc2-d0a1efc7c34d@arinc9.com>
-Date:   Sun, 11 Jun 2023 10:12:40 +0300
+        with ESMTP id S232753AbjFKHyM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 03:54:12 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698952D4B;
+        Sun, 11 Jun 2023 00:54:11 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-97458c97333so548259866b.2;
+        Sun, 11 Jun 2023 00:54:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686470050; x=1689062050;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v2bYmU9gOFw7prawoSArqsjj7q30vNelMkCTOp3DUZA=;
+        b=ZIEOX3tJHJOzGLZrKAdQ+Em+CgSdACZ6I8FnuJaC4jYMStxwz09k1IUU5ZVNT1dW2v
+         ogPNUK7ZS+3BABiwD25+IzvvjnBLi493MzDiM/IR6p3MMAwZt7gXj55mTTsPuV1GhUnB
+         iq6nxosD3itFoqyejgow+y2d+JcxEim7S9fh42peyFKgPu1KbhgXG/+edgWI+9mRGdCA
+         yCU+aQjqgUZYEEPCg7Xt6cnvbidmIInJNEc58JumOG7Xe0aO208JhTCnXrR+QlWi1wMM
+         tRieArJ9twGrAHIA7Zobx4X3k4JDjR7avO4YwD1ezT3hNQ7OM9N1Ahi5W08doshMsRBk
+         2skQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686470050; x=1689062050;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=v2bYmU9gOFw7prawoSArqsjj7q30vNelMkCTOp3DUZA=;
+        b=I+ttrntzS2C14wJErvLh6A0742Xvi0NCeQS3UqRRtZ+cqSe9qNKU41gM9bTXbtskiG
+         O6uyZd2LFqdSdamROVyawlpe3OZX6dCHI0pej4OZe7qnzMPP9DNvSYqF9lP51CPyeKPs
+         LZ6Uno9HEc/xufPG5XhQZ1vF9vxlphlnmTDr2ARMFjiAguSm2NQI4XSXk2cG9i6TlvW+
+         MMiy90BUBlzZ9//mwFe0nk6iDlGItr+KsJ/cvVJePgkCHc6GEQEPU9kS3PBCTD1yxH6S
+         Bunn81P+I1JvL73kYlIGUiLI0oiQJCRcII67dwlWpqBInR2VT/f/ESBPD31hhvJoXvui
+         IdVg==
+X-Gm-Message-State: AC+VfDzOoW+HNJi0lhatKq4CUfXsvaNrYJAKj+f3cmmv+fbD0ook5giV
+        O1gXC0MgGKbkpma5bqKMadWlJgBKx9cOWmpvnm8MNqL2tjJmRaKT
+X-Google-Smtp-Source: ACHHUZ5ja8bZ3Ma/lzFyJGdan7jkXrsKOmmJXjhxvrXILS4V+ZNLzwM/6ID9I2oXbI3TE6BVuXmHvV/daKEMgKQnrEw=
+X-Received: by 2002:a17:907:7f09:b0:973:a30d:b264 with SMTP id
+ qf9-20020a1709077f0900b00973a30db264mr6940129ejc.46.1686470049410; Sun, 11
+ Jun 2023 00:54:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: net: mediatek,net: add missing
- mediatek,mt7621-eth
-To:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+References: <20230610141739.999268-1-bigunclemax@gmail.com>
+ <20230610141739.999268-4-bigunclemax@gmail.com> <20230610-rehire-amid-2517f43504c0@spud>
+ <CALHCpMiEmc8L=O86_x7-KkBHFwf2QpuP0M7ugz7dNPr71cpJmQ@mail.gmail.com>
+ <20230610-enlarged-agonize-0e9219f9921d@spud> <20230610-crumpet-spender-4133090a4728@spud>
+ <CALHCpMjFNvJAnd2_3-1n_L3QRz4eNc-Egm-BD6jcS6H694dSyg@mail.gmail.com> <20230610-whimsical-unrushed-2f5b30349588@spud>
+In-Reply-To: <20230610-whimsical-unrushed-2f5b30349588@spud>
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Date:   Sun, 11 Jun 2023 10:53:56 +0300
+Message-ID: <CALHCpMhQ8XxffHr_f=AtO-HoWadBQb1mSvojELctdwMKnF1tbw@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] dt-bindings: thermal: sun8i: Add binding for
+ D1/T113s THS controller
+To:     Conor Dooley <conor@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Felix Fietkau <nbd@nbd.name>, Greg Ungerer <gerg@kernel.org>,
-        =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>
-References: <ZIUSZR6I3Ki6mZRO@makrotopia.org>
-Content-Language: en-US
-Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <ZIUSZR6I3Ki6mZRO@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for working on this.
+=D0=B2=D1=81, 11 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 01:14, Con=
+or Dooley <conor@kernel.org>:
+>
+> On Sat, Jun 10, 2023 at 11:31:03PM +0300, Maxim Kiselev wrote:
+> > =D1=81=D0=B1, 10 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 21:01,=
+ Conor Dooley <conor@kernel.org>:
+> >
+> > ...
+> >
+> > > > > > +  - |
+> > > > > > +    thermal-sensor@2009400 {
+> > > > > > +          compatible =3D "allwinner,sun20i-d1-ths";
+> > > > > > +          reg =3D <0x02009400 0x400>;
+> > > > > > +          interrupts =3D <0 90 0>;
+> > > > > > +          clocks =3D <&ccu 0>;
+> > > > > > +          clock-names =3D "bus";
+> > > > > > +          resets =3D <&ccu 2>;
+> > > > > > +          nvmem-cells =3D <&ths_calibration>;
+> > > > > > +          nvmem-cell-names =3D "calibration";
+> > > > > > +          #thermal-sensor-cells =3D <0>;
+> > > > > >
+> > > > > >> Is this calibration required, or optional, for the d1?
+> > > > >
+> > > > > Calibration data for the D1 is optional as for the H6.
+> > > > > (But without it, the sensor data will be inaccurate).
+> > > >
+> > > > Okay. Modulo the signoff:
+> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > >
+> > > Wait, that's not what I meant to say... Clearly turned my brain off f=
+or
+> > > a moment. If it is not going to function correctly without the
+> > > calibration data, why not make the calibration data required for the
+> > > d1's ths?
+> >
+> > I don't really know why, but the calibration data is optional for
+> > other controllers.
+> > So I just did it the same way.
+> > Here is explanation comment about it from the driver:
+> >         /*
+> >          * Even if the external calibration data stored in sid is
+> >          * not accessible, the THS hardware can still work, although
+> >          * the data won't be so accurate.
+> >          *
+> >          * The default value of calibration register is 0x800 for
+> >          * every sensor, and the calibration value is usually 0x7xx
+> >          * or 0x8xx, so they won't be away from the default value
+> >          * for a lot.
+> >          *
+> >          * So here we do not return error if the calibration data is
+> >          * not available, except the probe needs deferring.
+> >          */
+>
+> Wait, so if there is no calibration data then this thing will just defer
+> probing, ad infinitum? Looks like everything other than the a33 has the
+> cells in the dts, and the software seems to expect the cells.
+> What am I missing?
 
-On 11.06.2023 03:16, Daniel Golle wrote:
-> Document the Ethernet controller found in the MediaTek MT7621 MIPS SoC
-> family which is supported by the mtk_eth_soc driver.
-> 
-> Fixes: 889bcbdeee57 ("net: ethernet: mediatek: support MT7621 SoC ethernet hardware")
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->   .../devicetree/bindings/net/mediatek,net.yaml | 27 ++++++++++++++++++-
->   1 file changed, 26 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> index acb2b2ac4fe1e..38aa3d97ee234 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> @@ -19,6 +19,7 @@ properties:
->       enum:
->         - mediatek,mt2701-eth
->         - mediatek,mt7623-eth
-> +      - mediatek,mt7621-eth
->         - mediatek,mt7622-eth
->         - mediatek,mt7629-eth
->         - mediatek,mt7981-eth
-> @@ -32,7 +33,7 @@ properties:
->     clock-names: true
->   
->     interrupts:
-> -    minItems: 3
-> +    minItems: 1
+Not quite. If we don't have a calibration cell in the dts, then we
+just skip the calibration.
+We will only get EPROBE_DEFER if we have calibration in the dts.
+Here is the whole function code:
 
-I suppose this is to allow a single item for mediatek,mt7621-eth?
+static int sun8i_ths_calibrate(struct ths_device *tmdev)
+{
+    struct nvmem_cell *calcell;
+    struct device *dev =3D tmdev->dev;
+    u16 *caldata;
+    size_t callen;
+    int ret =3D 0;
 
->       maxItems: 4
->   
->     power-domains:
-> @@ -131,6 +132,30 @@ allOf:
->   
->           mediatek,wed-pcie: false
->   
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt7621-eth
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ethif
-> +            - const: fe
-> +
-> +        mediatek,wed: false
-> +
-> +        mediatek,wed-pcie: false
-> +
->     - if:
->         properties:
->           compatible:
+    calcell =3D devm_nvmem_cell_get(dev, "calibration");
+    if (IS_ERR(calcell)) {
+        if (PTR_ERR(calcell) =3D=3D -EPROBE_DEFER)
+            return -EPROBE_DEFER;
+        /*
+         * Even if the external calibration data stored in sid is
+         * not accessible, the THS hardware can still work, although
+         * the data won't be so accurate.
+         *
+         * The default value of calibration register is 0x800 for
+         * every sensor, and the calibration value is usually 0x7xx
+         * or 0x8xx, so they won't be away from the default value
+         * for a lot.
+         *
+         * So here we do not return error if the calibration data is
+         * not available, except the probe needs deferring.
+         */
+        goto out;
+    }
 
-I'm getting warnings with this patch applied:
+    caldata =3D nvmem_cell_read(calcell, &callen);
+    if (IS_ERR(caldata)) {
+        ret =3D PTR_ERR(caldata);
+        goto out;
+    }
 
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-resets: [[2, 6], [2, 23]] is too short
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-reset-names:1: 'gmac' was expected
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-reset-names: ['fe', 'eth'] is too short
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-clock-names:0: 'ethif' was expected
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-clock-names:1: 'fe' was expected
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-mac@0: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-mac@0: 'phy-handle' is a required property
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-mac@1: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-mac@1: 'phy-handle' is a required property
-arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb: ethernet@1e100000: 
-Unevaluated properties are not allowed ('reset-names', 'resets' were 
-unexpected)
+    tmdev->chip->calibrate(tmdev, caldata, callen);
 
-I see the bindings for the MT7621 SoC are a bit different than the 
-bindings for the current SoCs on this schema, interrupts, phy-handle non 
-requirement, resets, reset-names, etc. Maybe we should overwrite things 
-under the check for mediatek,mt7621-eth.
-
-I'm not very confident all the bindings for mediatek,mt7621-eth on 
-mt7621.dtsi are correct either.
-
-Arınç
+    kfree(caldata);
+out:
+    return ret;
+}
