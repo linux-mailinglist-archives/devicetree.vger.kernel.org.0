@@ -2,190 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4382B72B1C0
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 13:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9193872B1D9
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 14:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231641AbjFKL5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 07:57:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42618 "EHLO
+        id S232856AbjFKMhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 08:37:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjFKL5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 07:57:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF239FD;
-        Sun, 11 Jun 2023 04:57:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7696460C55;
-        Sun, 11 Jun 2023 11:57:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF48EC433EF;
-        Sun, 11 Jun 2023 11:57:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686484637;
-        bh=Ud6DijTGw2KIKTv6kjmgnirT63T3fx5KrKvK33LlULk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h/vQAFibCaPW0yRJvgsnM2JG0UujIwtsVSVTqGJvQPFv+H42fiCbfhAawJnAF6nTo
-         fZetCVS+Pu6JP6v9aOys2k9+l7KcJMD5R7QWdx4K7frnMQoMRWkdccTjaUv/yudaEK
-         W0sbQVSE/VVB3UvCEPtx7hza7hhwGN/p3rdfj0AwkJ8u+9BOzNvKdalZdugvB4d9b1
-         lO/kO7f/QsfY9zKH+abWn1s+FV9kbTNlUIAOTcVF80y5TnKzsLEQ54KTRPlsMkg5ri
-         cX3jRtVWHcOrAbinuHgLZg/Wm7mWrkk6EOdHaZaxxXPmc+kUYtSN4NhT3CIJyWtzjd
-         WUONGCEj39sHg==
-Date:   Sun, 11 Jun 2023 12:57:10 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Patrick Lai <quic_plai@quicinc.com>
-Subject: Re: [PATCH v2 2/2] ASoC: codecs: wsa884x: Add WSA884x family of
- speakers
-Message-ID: <191859d3-42e3-4ef2-87ff-dd56864103f9@sirena.org.uk>
-References: <20230611102657.74714-1-krzysztof.kozlowski@linaro.org>
- <20230611102657.74714-2-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229562AbjFKMhh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 08:37:37 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15559E63;
+        Sun, 11 Jun 2023 05:37:36 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-977d55ac17bso619311966b.3;
+        Sun, 11 Jun 2023 05:37:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686487054; x=1689079054;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aKDEqVBNJxLHyWcpWhxYEDcaagbwl62DkbQPgzzJEqQ=;
+        b=E0p+bg1sj7/jjAdpQm12mb9yfZuRaSIHsKURrMBsPg2Qc+YYVpDKF3tnuveUOXhcDO
+         o30y4uhNOG0sjjRyMlJD7MiHeodHxRZCTohRQTZMH6m5VU5kTwg9/lXTADcRaY0yPERL
+         10SAWyArRExkxSaZZFJxKQQjxS4tjW06bvz34CD4njybQrP0DkX2k3/mNIW/KW9DrFTL
+         Kji3fG3WNgGwd8rb5Tx8z/RAZlYnL2ReY28lTqeXANbbY9PLgROnGD3/NlM0jVsdzsIc
+         9k1mxxnrsMvhRvvihBwwEgCKY6coxlnrYf9GyRISExPu4Fa6hDe+E5pTFavMV1UH9sAM
+         51QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686487054; x=1689079054;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aKDEqVBNJxLHyWcpWhxYEDcaagbwl62DkbQPgzzJEqQ=;
+        b=USp3do78CWGhpY08EOo+xtdbadEFlQgZ7K2/laKRxantm/WcQIAsik/ehZ1iVdZe58
+         TI02EaohV3eUQT1hJQU0VPuIn/0Wpk31Rq1knXyIsrnv7Jmt0YpALi0ynKISegm5/jRZ
+         dVKvlB/DMOFQK8XBuNacRJtnfzYi5pkd5fUQP/v1hwkUmADFJcL4jQLG3PJC2MuMihgI
+         lhd8hvab3KX3iDt8vSW6ZjioR3gCrc4thB0/Xdpe59zqy0KCjPYCpDEjtG5LD+J6gptj
+         eVV70Ew4n+nM1HCVUVGW+4NZymzazZjrTmGQ/j78HWAbCV5LLn7NxJyBIkHV53uybC0n
+         HomA==
+X-Gm-Message-State: AC+VfDy0JxDIXOhfVwwFql/A5+2P5x8ae4MIOBTMj4CjhLI8EzZUb1Lm
+        DGNpk+jjPWysKx7wkZ0gClZQ7uuPDFE=
+X-Google-Smtp-Source: ACHHUZ4kwduvkYS33AizAyoJQ6d6KJtRYPJOcLthUw+LV4CKh7RnIjj1QFaMFbRCtPkVbhDpaSri8Q==
+X-Received: by 2002:a17:907:16a4:b0:974:216f:dc36 with SMTP id hc36-20020a17090716a400b00974216fdc36mr6680424ejc.17.1686487054314;
+        Sun, 11 Jun 2023 05:37:34 -0700 (PDT)
+Received: from shift.daheim (p4fd09ff6.dip0.t-ipconnect.de. [79.208.159.246])
+        by smtp.gmail.com with ESMTPSA id p17-20020a1709060dd100b0094f282fc29asm3709170eji.207.2023.06.11.05.37.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jun 2023 05:37:33 -0700 (PDT)
+Received: from chuck by shift.daheim with local (Exim 4.96)
+        (envelope-from <chuck@shift.daheim>)
+        id 1q8KK4-000LMu-2R;
+        Sun, 11 Jun 2023 14:37:32 +0200
+From:   Christian Lamparter <chunkeey@gmail.com>
+To:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Cc:     rafal@milecki.pl, kvalo@kernel.org, f.fainelli@gmail.com,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org
+Subject: [PATCH v1] dt-bindings: net: wireless: bcm4329-fmac: add ieee80211-freq-limit property
+Date:   Sun, 11 Jun 2023 14:37:29 +0200
+Message-Id: <288fc9a0db6c292bc132e828611c41785b075078.1686486461.git.chunkeey@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2UHYA9utW3zi5EMo"
-Content-Disposition: inline
-In-Reply-To: <20230611102657.74714-2-krzysztof.kozlowski@linaro.org>
-X-Cookie: List was current at time of printing.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is an existing optional property that ieee80211.yaml/cfg80211
+provides. It's useful to further restrict supported frequencies
+for a specified device through device-tree.
 
---2UHYA9utW3zi5EMo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The driver supported this since ~2017 by
+commit 0f83ff697356 ("brcmfmac: use wiphy_read_of_freq_limits to respect limits from DT")
 
-On Sun, Jun 11, 2023 at 12:26:57PM +0200, Krzysztof Kozlowski wrote:
+This property is already being used by:
+arch/arm/dts/bcm4709-netgear-r8000.dts
 
-> +static struct reg_default wsa884x_defaults[] = {
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+---
+ .../devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml  | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> +	{ WSA884X_CHIP_ID0,			0x00 },
-> +	{ WSA884X_CHIP_ID1,			0x00 },
-> +	{ WSA884X_CHIP_ID2,			0x04 },
-> +	{ WSA884X_CHIP_ID3,			0x02 },
-> +	{ WSA884X_BUS_ID,			0x00 },
+diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+index fec1cc9b9a08..44e5f6677289 100644
+--- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+@@ -15,6 +15,9 @@ description:
+   These chips also have a Bluetooth portion described in a separate
+   binding.
+ 
++allOf:
++  - $ref: ieee80211.yaml#
++
+ properties:
+   compatible:
+     oneOf:
+@@ -63,6 +66,8 @@ properties:
+     description: Name for the OOB IRQ, this must be set to "host-wake".
+     const: host-wake
+ 
++  ieee80211-freq-limit: true
++
+   brcm,drive-strength:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: Drive strength used for the SDIO pins on the device in mA.
+-- 
+2.40.1
 
-It is generally bad practice to provide defaults for ID registers since
-it rather defeats the point of having them.
-
-> +	{ WSA884X_INTR_STATUS0,			0x00 },
-> +	{ WSA884X_INTR_STATUS1,			0x00 },
-
-Interrupt status registers will be volatile and therefore should not
-have defaults.
-
-> +	{ WSA884X_OTP_REG_0,			0x05 },
-> +	{ WSA884X_OTP_REG_1,			0x49 },
-> +	{ WSA884X_OTP_REG_2,			0x80 },
-> +	{ WSA884X_OTP_REG_3,			0xc9 },
-> +	{ WSA884X_OTP_REG_4,			0x40 },
-> +	{ WSA884X_OTP_REG_5,			0xff },
-> +	{ WSA884X_OTP_REG_6,			0xff },
-> +	{ WSA884X_OTP_REG_7,			0xff },
-> +	{ WSA884X_OTP_REG_8,			0xff },
-> +	{ WSA884X_OTP_REG_9,			0xff },
-> +	{ WSA884X_OTP_REG_10,			0xff },
-> +	{ WSA884X_OTP_REG_11,			0xff },
-> +	{ WSA884X_OTP_REG_12,			0xff },
-> +	{ WSA884X_OTP_REG_13,			0xff },
-> +	{ WSA884X_OTP_REG_14,			0xff },
-> +	{ WSA884X_OTP_REG_15,			0xff },
-> +	{ WSA884X_OTP_REG_16,			0xff },
-> +	{ WSA884X_OTP_REG_17,			0xff },
-> +	{ WSA884X_OTP_REG_18,			0xff },
-> +	{ WSA884X_OTP_REG_19,			0xff },
-> +	{ WSA884X_OTP_REG_20,			0xff },
-> +	{ WSA884X_OTP_REG_21,			0xff },
-> +	{ WSA884X_OTP_REG_22,			0xff },
-> +	{ WSA884X_OTP_REG_23,			0xff },
-> +	{ WSA884X_OTP_REG_24,			0x00 },
-> +	{ WSA884X_OTP_REG_25,			0x22 },
-> +	{ WSA884X_OTP_REG_26,			0x03 },
-> +	{ WSA884X_OTP_REG_27,			0x00 },
-> +	{ WSA884X_OTP_REG_28,			0x00 },
-> +	{ WSA884X_OTP_REG_29,			0x00 },
-> +	{ WSA884X_OTP_REG_30,			0x00 },
-> +	{ WSA884X_OTP_REG_31,			0x8f },
-> +	{ WSA884X_OTP_REG_32,			0x00 },
-> +	{ WSA884X_OTP_REG_33,			0xff },
-> +	{ WSA884X_OTP_REG_34,			0x0f },
-> +	{ WSA884X_OTP_REG_35,			0x12 },
-> +	{ WSA884X_OTP_REG_36,			0x08 },
-> +	{ WSA884X_OTP_REG_37,			0x1f },
-> +	{ WSA884X_OTP_REG_38,			0x0b },
-> +	{ WSA884X_OTP_REG_39,			0x00 },
-> +	{ WSA884X_OTP_REG_40,			0x00 },
-> +	{ WSA884X_OTP_REG_41,			0x00 },
-> +	{ WSA884X_OTP_REG_63,			0x40 },
-
-These appear to be OTP data which suggests that they shouldn't have
-defaults either since they can be programmed.
-
-> +static bool wsa884x_readonly_register(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-
-In general the read only registers probably shouldn't have defaults...
-
-> +static bool wsa884x_volatile_register(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-> +	case WSA884X_ANA_WO_CTL_0:
-> +	case WSA884X_ANA_WO_CTL_1:
-> +		return true;
-> +	}
-> +	return wsa884x_readonly_register(dev, reg);
-> +}
-
-...and the volatile regiseters definitely not, the default values will
-never be used and just waste space.
-
-> +static struct regmap_config wsa884x_regmap_config = {
-> +	.reg_bits = 32,
-> +	.val_bits = 8,
-> +	.cache_type = REGCACHE_RBTREE,
-
-Please use REGCACHE_MAPLE for new devices.
-
-> +	/* Speaker mode by default */
-> +	{ WSA884X_DRE_CTL_0, 0x7 << WSA884X_DRE_CTL_0_PROG_DELAY_SHIFT },
-> +	{ WSA884X_CLSH_CTL_0, (0x37 & ~WSA884X_CLSH_CTL_0_DLY_CODE_MASK) |
-> +			      (0x6 << WSA884X_CLSH_CTL_0_DLY_CODE_SHIFT) },
-> +	{ WSA884X_CLSH_SOFT_MAX, 0xff },
-
-Why not just leave as the chip default?
-
---2UHYA9utW3zi5EMo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSFtpUACgkQJNaLcl1U
-h9Bc2wf+MW3w20yWsADZfhfgAfmIMBYWCXDCv8gztK+ATSXpMqDU22Z+cNIX5V9h
-hEegPQLq4qhuoNGundoTJkCccxhSZwvET/NlYtfxuxqhKFuI0qILC2VmVttTApX/
-bP/D8kQxSNu0tmi06qzuqoJ9mb2RXV0dgfLZAesNqhqryCSnq9HdX9dX/zevFdlH
-moxCU+WyoRFVvCwpJkHmrZXNkntoa58SkA73zFVpCX7DoZGOtbxRdlKRaNpuR8Ge
-/Zf95c5xmwiNYFxToTUQm+YLIRySIrn5hRZGjkW18mj/gw8BWHSGyIY/llDsJ3i7
-cdYyJANPFun6BAoRDMoG1p3zlzliOw==
-=5kvz
------END PGP SIGNATURE-----
-
---2UHYA9utW3zi5EMo--
