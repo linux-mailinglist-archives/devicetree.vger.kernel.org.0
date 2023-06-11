@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2609972B153
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 12:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3D1872B157
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 12:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbjFKKV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 06:21:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55954 "EHLO
+        id S232648AbjFKK1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 06:27:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjFKKV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 06:21:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5AC812B;
-        Sun, 11 Jun 2023 03:21:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C62761086;
-        Sun, 11 Jun 2023 10:21:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 696E8C433EF;
-        Sun, 11 Jun 2023 10:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686478914;
-        bh=eDy1DNnFmuqct2VM5FZyW/QF4ZpT++8h8SfJtyuKwWk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=crix+RAzPczBIvCUNOTOtGmr51kjEkLyMRIif2FGs/Wj63GML/XRx8wbbffMRURWj
-         Xdj8FDVuZxtQi5SZgQ4vtvL4njVRIriONzPtWlwVniFzlpAfLDlw8ArZ83VRG7Hfmj
-         c2poavuA7dKGhcxMmppwXl8AYbL6sGbBGKXiqoTZXhnSC+tL9xqXM1EC9xt554hqWJ
-         Gehbnw3u0PM/xsWc5CYFADJe+UYKvI1x2ce4lGeN7kmEakEi4J/0iB8676wn8zWHRq
-         d8sTF0VYbFCkiWl4nzsSn2ziMGTjfndy4eeLoJ58iTrJG1nwtMdchrj+epLrgdC/62
-         m08HeCfqu0nfQ==
-Date:   Sun, 11 Jun 2023 11:21:47 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S231480AbjFKK1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 06:27:04 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 819CBE69
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 03:27:02 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-977d6aa3758so608990866b.0
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 03:27:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686479221; x=1689071221;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a22HjzVjSoWXGTL9TglCphqPmf2Pi6NIr/Is0weeN9o=;
+        b=RnUfUrdL6sWZr9D4mK3Vi1cDtRMbQk0vZDIGXp3858j7hX63QeV1fZGs5lGNF3DSL6
+         3W8fE/ccu5d+BXkN87POWFmUVROI6PtlM2Fm8zCBb0nzH8Mh5PLUVHcTmTqQmVsNig9g
+         l+If9Dfu5ZdHY7ocfMPmZz7WZsIswIPrr3K4WynmSHM8f/1XtYKBrXMFRLrLxC6XKei1
+         XK2ESw/LBWa45tjg5jEBqTObFAQf0k1Y8daB1+TPsrgWmnsu8kytDnAmD+528j8fN/LH
+         yZDiFKPlLrSxLRBYp5dS+VjRcLPcYhDC0JlVtBHuwwVb27023L5nLC7ah8+mwgiZwT+L
+         ADBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686479221; x=1689071221;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a22HjzVjSoWXGTL9TglCphqPmf2Pi6NIr/Is0weeN9o=;
+        b=SS+d3je+yGTHbhOSskw9TrT/q5zdGSq2WAozbYv885PNZOzTsS/pkAT8Y7C9Buu1jU
+         Qeo9NPtEkYa/ADLtJZsEK8wnFgAFpBCBb5hq75lcDOldci/oZTrsxcQ93tDETttuElQZ
+         irBYY1bxJKkFWfJC5CqjtofazxWIFB2rZm0Fanewf4HTKiN6Uwh6ZCWZm2ylvCT624Yl
+         222q60IPbXKmP0du8aYzE+VBeCFJa16sgBDZ2t0syi6UcPuz5orhaa04ywX3QP83EOYy
+         xJQeTqnCRD6woqLvMuj7IhmZR6nNHk/uV5Ioyq4OeSEXXDHK2e35pH6vSJxRy25hDZ4V
+         +tnw==
+X-Gm-Message-State: AC+VfDzSKmamQKoNwVCTqXn44HSWtz6P5V4SWyVAHMKOPzGbJEXPVeg9
+        V03AeehEtpgXJpE8QGFqfGJ01Q==
+X-Google-Smtp-Source: ACHHUZ6E9ylSdo9+OY0Zw2a+lCirUbPbGQZJDOrHG+7A7s72zMIAZ4Fbk9IzFifcsPKHY7jJpdVOYQ==
+X-Received: by 2002:a17:907:928a:b0:973:940e:a01d with SMTP id bw10-20020a170907928a00b00973940ea01dmr7870043ejc.67.1686479220830;
+        Sun, 11 Jun 2023 03:27:00 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a12-20020a17090680cc00b0096f7105b3a6sm3666806ejx.189.2023.06.11.03.26.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jun 2023 03:27:00 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: thermal: sun8i: Add binding for
- D1/T113s THS controller
-Message-ID: <20230611-lilly-lilly-fba1c6fe8c5d@spud>
-References: <20230610204225.1133473-1-bigunclemax@gmail.com>
- <20230610204225.1133473-2-bigunclemax@gmail.com>
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Patrick Lai <quic_plai@quicinc.com>
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: qcom,wsa8840: Add WSA884x family of speakers
+Date:   Sun, 11 Jun 2023 12:26:56 +0200
+Message-Id: <20230611102657.74714-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pp3DI5TDdJDuqtL4"
-Content-Disposition: inline
-In-Reply-To: <20230610204225.1133473-2-bigunclemax@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,34 +81,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add binding for WSA8840/WSA8845/WSA8845H smart speaker amplifiers used
+in Qualcomm QRD8550 board with SM8550 SoC.
 
---pp3DI5TDdJDuqtL4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Sat, Jun 10, 2023 at 11:42:18PM +0300, Maksim Kiselev wrote:
-> From: Maxim Kiselev <bigunclemax@gmail.com>
->=20
-> Add a binding for D1/T113s thermal sensor controller.
->=20
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+---
 
-Since the calibration stuff now makes sense to me (and thanks for that),
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Changes in v2:
+1. Correct compatible (sdw version 1 -> 2).
 
-Cheers,
-Conor.
+Cc: Patrick Lai <quic_plai@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ .../bindings/sound/qcom,wsa8840.yaml          | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
 
---pp3DI5TDdJDuqtL4
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
+new file mode 100644
+index 000000000000..e6723c9e312a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/qcom,wsa8840.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm WSA8840/WSA8845/WSA8845H smart speaker amplifier
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++description:
++  WSA884X is a family of Qualcomm Aqstic smart speaker amplifiers using
++  SoundWire digital audio interface.
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: sdw20217020400
++
++  reg:
++    maxItems: 1
++
++  powerdown-gpios:
++    description: Powerdown/Shutdown line to use (pin SD_N)
++    maxItems: 1
++
++  '#sound-dai-cells':
++    const: 0
++
++  vdd-1p8-supply: true
++  vdd-io-supply: true
++
++required:
++  - compatible
++  - reg
++  - powerdown-gpios
++  - '#sound-dai-cells'
++  - vdd-1p8-supply
++  - vdd-io-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    soundwire-controller {
++        #address-cells = <2>;
++        #size-cells = <0>;
++
++        speaker@0,1 {
++            compatible = "sdw20217020400";
++            reg = <0 1>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&spkr_2_sd_n_active>;
++            powerdown-gpios = <&lpass_tlmm 18 GPIO_ACTIVE_LOW>;
++            #sound-dai-cells = <0>;
++            sound-name-prefix = "SpkrRight";
++            vdd-1p8-supply = <&vreg_l15b_1p8>;
++            vdd-io-supply = <&vreg_l3g_1p2>;
++        };
++    };
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIWgOwAKCRB4tDGHoIJi
-0udzAQDzhi9sIZfLH+m04LetoCOBs1Pmxigngt06hVp/ljyoNAD/abfWCWC5ETGg
-5j257iZ4rNVAc0LpMOZfitAsJZ3c3Q8=
-=bfL2
------END PGP SIGNATURE-----
-
---pp3DI5TDdJDuqtL4--
