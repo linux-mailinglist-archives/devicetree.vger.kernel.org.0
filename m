@@ -2,126 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0959672B3E3
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 22:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C674172B3EF
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jun 2023 22:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbjFKUH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 16:07:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46696 "EHLO
+        id S231786AbjFKUfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 16:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjFKUH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 16:07:26 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D643299;
-        Sun, 11 Jun 2023 13:07:24 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f660e57123so2064848e87.3;
-        Sun, 11 Jun 2023 13:07:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686514043; x=1689106043;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DPAXUJMl2olgLfel3fMTObIngqSlcX9cwamWvtgEryU=;
-        b=U90IpPzzDT1hYVjCAzUYQ8SH+qZ9LJ9b/4gKcgd+QWBGGt4cwKs1AO/LJKvWQOxGdf
-         lFFhRDU67j/CuN+5SSBeK8eIyTTICTlp1/3oGlSk2HT0eaheaM8BHDVoxjMsIk1eHdOu
-         dxAZhMmOu2UrspCZ0gp2W8G4zac+HtXkoTUJjQfHR8TBAMjPpKWbjM56LVCoWftyshRI
-         eE2N7r9tK1tDu9BmGFvIbR/BbkLIaj3al69jy+m/iARqsrLiWBTRA5i5gwHM/HV7YG/E
-         CGxrK3sqptY+OvelKMemwVbaehCExCG5iMGDE0kejZGQAWcP/Dsiqpq4AsxCv3FV98R5
-         RjSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686514043; x=1689106043;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DPAXUJMl2olgLfel3fMTObIngqSlcX9cwamWvtgEryU=;
-        b=L64HfMOvjq0yxCofbMB812Eu9BhuqyP5kTy05dsNwLCt8oACiXLHj14Zy6Tlk5H7Gp
-         L4a5PS6uR6LCV5OqqUe0KN6kf2n4yr3ZJTVd/8TopGtmD4tR8PMEyCTzAeKE3ElXW4fe
-         Y0wGCkPw/+J8T2wwpPAzoiXfV9utx0YsOewhtv8APkLVgQ1f8WRDDMdtWd84VDAwBsiJ
-         761xh9zTinVjUcAPbtqASkV8bvjZXGaiCb/aJ8Hh9YHsu9+ef99RFKQzJCNJre1zraEt
-         5ON4xFAXPIO5Y8YFMpoi9akNSLhX41tC2HJ5TrtR9DSKXHnlDLpWV4uPgDz9/fCvfALJ
-         Fh3Q==
-X-Gm-Message-State: AC+VfDxWrmarRCADSyWo371XRGHtp/QDyD+dJBWQcokSU+/+QXZVbuab
-        7rXoLHp8VP0rEBpmYtZ3zPY=
-X-Google-Smtp-Source: ACHHUZ7TUfI6VgL+wCYiJszZCQaUW35B1SFLTNT2ijeS+m8ypXT3rz4F5aZE/26qGRRhbAtmY3gF9Q==
-X-Received: by 2002:a05:6512:1d1:b0:4f3:94b5:3274 with SMTP id f17-20020a05651201d100b004f394b53274mr2903819lfp.63.1686514042768;
-        Sun, 11 Jun 2023 13:07:22 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id s6-20020a19ad46000000b004efff420b11sm1235506lfd.181.2023.06.11.13.07.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Jun 2023 13:07:21 -0700 (PDT)
-Date:   Sun, 11 Jun 2023 23:07:19 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v3 1/5] dt-bindings: ata: dwc-ahci: add PHY clocks
-Message-ID: <20230611200719.exct7r7z5izqzz4t@mobilestation>
-References: <20230608162238.50078-1-sebastian.reichel@collabora.com>
- <20230608162238.50078-2-sebastian.reichel@collabora.com>
+        with ESMTP id S229441AbjFKUfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 16:35:20 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C382E4E;
+        Sun, 11 Jun 2023 13:35:16 -0700 (PDT)
+Received: from i53875b22.versanet.de ([83.135.91.34] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1q8RmL-0005fi-Em; Sun, 11 Jun 2023 22:35:13 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     sebastian.reichel@collabora.com, conor+dt@kernel.org,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
+        serge.broslavsky@collabora.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com,
+        linux-arm-kernel@lists.infradead.org,
+        gustavo.padovan@collabora.com, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: rock5b: Add saradc node
+Date:   Sun, 11 Jun 2023 22:35:11 +0200
+Message-Id: <168651570335.1681170.7335757398130366912.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230610134841.172313-1-shreeya.patel@collabora.com>
+References: <20230610134841.172313-1-shreeya.patel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230608162238.50078-2-sebastian.reichel@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 08, 2023 at 06:22:34PM +0200, Sebastian Reichel wrote:
-> Add PHY transmit and receive clocks as described by the
-> DW SATA AHCI HW manual.
+On Sat, 10 Jun 2023 19:18:41 +0530, Shreeya Patel wrote:
+> Add ADC support for ROCK 5B.
 > 
-> Suggested-by: Serge Semin <fancer.lancer@gmail.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-Looks good. Thanks.
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-
--Serge(y)
-
-> ---
->  .../devicetree/bindings/ata/snps,dwc-ahci-common.yaml     | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
-> index c1457910520b..34c5bf65b02d 100644
-> --- a/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
-> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
-> @@ -31,11 +31,11 @@ properties:
->        PM-alive clock, RxOOB detection clock, embedded PHYs reference (Rx/Tx)
->        clock, etc.
->      minItems: 1
-> -    maxItems: 4
-> +    maxItems: 6
->  
->    clock-names:
->      minItems: 1
-> -    maxItems: 4
-> +    maxItems: 6
->      items:
->        oneOf:
->          - description: Application APB/AHB/AXI BIU clock
-> @@ -48,6 +48,10 @@ properties:
->            const: pmalive
->          - description: RxOOB detection clock
->            const: rxoob
-> +        - description: PHY Transmit Clock
-> +          const: asic
-> +        - description: PHY Receive Clock
-> +          const: rbc
->          - description: SATA Ports reference clock
->            const: ref
->  
-> -- 
-> 2.39.2
-> 
+
+Applied, thanks!
+
+[1/1] arm64: dts: rockchip: rock5b: Add saradc node
+      commit: 2fe1f20144fb68dd31798cc22a67d148f517deef
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
