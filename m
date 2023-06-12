@@ -2,148 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A088672BE7D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 12:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE3D72BE99
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 12:17:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232944AbjFLKNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 06:13:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48772 "EHLO
+        id S232370AbjFLKRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 06:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232269AbjFLKNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 06:13:18 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16DE10CC;
-        Mon, 12 Jun 2023 02:53:56 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5AE1E6605907;
-        Mon, 12 Jun 2023 10:53:54 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686563635;
-        bh=12+M92ejc+eDkMrCoA63t6hfzspIbG8XPxdjeW+mgqE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=IEjF90KqrXkK2WXSoPZpydyHRiHNiisuQv0m/SM8Icg68gW/oWxAhG7JpoS2bPH3A
-         ECZs3viXyqx83QNASlzbfaP4XcIDuAPijapONC6WRlhIwLUioYvHXt5AHXZRsqUtpb
-         dHcoHLn1oGJSTJCBqN6IvGwgGRqNY4SijA993M+HuKivXnM5LER+zRSQclNA+zjqcJ
-         si8uTlazy6ukbUAP2RFAmCTMc9PLqXcVXrqRAgkn6uPk6QNskA+Z9PFlao54EZy7rL
-         0zX9P8xaaMNp75bQoZWzzR/vkKe+zFz7je2tA0Kf7Bb37Z92qltgyLsewoTbvQdPWY
-         oKQ1uWqcd2C9A==
-Message-ID: <fda4f196-8466-8290-9072-d80fff367720@collabora.com>
-Date:   Mon, 12 Jun 2023 11:53:51 +0200
+        with ESMTP id S232452AbjFLKRJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 06:17:09 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A51F9EDC
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:57:43 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f644dffd71so4832766e87.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686563824; x=1689155824;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AhoB3ALj7H7qpQhLC6O+NX79N+bwK/GWfxrVkpc2ZkU=;
+        b=HXZW+3ixlUzQEiOrY1kWyDQBYMHCE0DjLosTb04wKryhn1dnwEEB5SPl2ip94eJBKF
+         5RfrUTbgBs4XbvMLiqXi/ASZ2xl8gRwh4GNUXmCx+Kb64RRRYjeZkqQg63FzvDjKSQdA
+         ZNqzMP7VqreaInw2ip6mJoLwO5E8KwUux6+4+1+OlitCLkm/F2vvlmaIpkqOsFkfwbr/
+         Z3PVwf9akRZtr3J+IQvVTs78DlQ/eckv/qEt/w33YVEQCXQw10oNB57ScVY9wI0q+9q/
+         Z/1Mjqh4gJn32BFuGoLbpdxQiFhrj9nsArClxQ43/0jwcM1I1iWO7YdQk20kHP8o3yv/
+         6I2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686563824; x=1689155824;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AhoB3ALj7H7qpQhLC6O+NX79N+bwK/GWfxrVkpc2ZkU=;
+        b=Q5Vz673YR2L36YojlSwUTdXNHA6NgCukRKG/bStej6VMOec91YhZV3V6EUUwoECdXc
+         5z2uYT85ZwTOBvM3EWoHEl3+mnHyYjNf3XBCTr38QbX2LAUi4MNsxV1e0TfBgodABwnq
+         fU5Uj2FQpoqvKF82eVOrCx52OdurvLp+ekv4jdvY/TwJYjqXzmU3cnYfbiIEQP90h9Ot
+         ksOQPzJcLEK3ex3+/McsxUCI7gVUccLYYGnPAs/DcrDbI6d7poU+4X9WoJrNessN6HYp
+         8uZypPxmE0nEZDOyT3bGwY1xJYtcF4v/0Iy5z8f2SqDasLTg/U78o6otkaMGIXpxI3+Z
+         u7fQ==
+X-Gm-Message-State: AC+VfDzkbIi3/V1XF1Hzgx6J3gkvCKxhPPzEW8KmA3196UGW25R40BBO
+        lTF20sYP2KhPh3mL5EZWUQp4Pg==
+X-Google-Smtp-Source: ACHHUZ6uQcLz+SEsWMNOQ4M60EgceCTYf8hbLid3I3CJyudtieN29zhvLVpysI82W9J+Bgmn9YxLaw==
+X-Received: by 2002:a19:7117:0:b0:4f6:25cb:5910 with SMTP id m23-20020a197117000000b004f625cb5910mr3275622lfc.42.1686563823780;
+        Mon, 12 Jun 2023 02:57:03 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.153])
+        by smtp.gmail.com with ESMTPSA id h17-20020a05600c28d100b003f080b2f9f4sm10954816wmd.27.2023.06.12.02.57.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jun 2023 02:57:03 -0700 (PDT)
+Message-ID: <6e12d585-701d-f635-6943-6aecdb45c659@linaro.org>
+Date:   Mon, 12 Jun 2023 10:57:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 0/5] Enable decoder for mt8183
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] mtd: spi-nor: Add support for sst26vf032b flash
 Content-Language: en-US
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     kernel@collabora.com, Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20230607205714.510012-1-nfraprado@collabora.com>
- <380c6489-7a3c-778b-5b81-6339b6964b90@xs4all.nl>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <380c6489-7a3c-778b-5b81-6339b6964b90@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230609144324.850617-1-miquel.raynal@bootlin.com>
+ <20230609144324.850617-3-miquel.raynal@bootlin.com>
+From:   Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20230609144324.850617-3-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 12/06/23 09:02, Hans Verkuil ha scritto:
-> Hi Nicolas,
-> 
-> On 07/06/2023 22:53, Nícolas F. R. A. Prado wrote:
->>
->> This series enables the hardware decoder present on mt8183. At first
->> glance, the only missing piece is the devicetree node for it, however,
->> simply adding it as is would cause an address collision between the
->> first register iospace and the clock-controller node, so a rework of the
->> dt-binding and driver, as well as addition of a clock, were needed
->> first.
->>
->> Tested that H264 decoding works with the hardware decoder on
->> mt8183-kukui-jacuzzi-juniper-sku16, giving a fluster score of 98/135 on
->> the JVT-AVC_V1 test suite. And ensured other SoCs (MT8192 and MT8195)
->> still work as usual.
->>
->> Changes in v2:
->> - Merged commit 1 (media: dt-bindings: mediatek,vcodec: Allow single
->>    clock for mt8183) into commit 3 (media: dt-bindings: mediatek,vcodec:
->>    Remove VDEC_SYS for mt8183)
->> - Further constrained properties in dt-binding
->> - Added CLK_IGNORE_UNUSED flag to active clock
->> - Reformatted reg-names in DT node
->>
->> Nícolas F. R. A. Prado (4):
->>    media: dt-bindings: mediatek,vcodec: Don't require assigned-clocks
->>    media: dt-bindings: mediatek,vcodec: Remove VDEC_SYS for mt8183
->>    media: mediatek: vcodec: Read HW active status from clock
->>    clk: mediatek: mt8183: Add CLK_VDEC_ACTIVE to vdec
-> 
-> Is the clk patch independent from the others? It's not clear to me.
-> 
-> If the clk patch has to go in together with the media patches, then
-> please let me know and post a v3 where the clk patch is also CC-ed to
-> the linux-media mailinglist to ensure it ends up in our patchwork system.
-> 
-> And in that case I need a Acked-by from the clk maintainer as well.
-> 
-> If it is independent, then there is no need for a v3 (at least, not
-> for this).
-> 
-
-The clock patch is not independent, as in the devicetree changes will not
-work without the addition of that clock (and of course even fail building),
-so that series needs a v3.
-
-Nícolas, please go on and send a v3 as requested.
-
-Cheers,
-Angelo
-
-> Regards,
-> 
-> 	Hans
-> 
->>
->> Yunfei Dong (1):
->>    arm64: dts: mediatek: mt8183: Add decoder
->>
->>   .../media/mediatek,vcodec-decoder.yaml        | 65 +++++++++++++++----
->>   arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 30 +++++++++
->>   drivers/clk/mediatek/clk-mt8183-vdec.c        |  5 ++
->>   .../mediatek/vcodec/mtk_vcodec_dec_drv.c      | 59 +++++++++++++----
->>   .../mediatek/vcodec/mtk_vcodec_dec_hw.c       | 20 ++++--
->>   .../mediatek/vcodec/mtk_vcodec_dec_pm.c       | 12 +++-
->>   .../platform/mediatek/vcodec/mtk_vcodec_drv.h |  1 +
->>   include/dt-bindings/clock/mt8183-clk.h        |  3 +-
->>   8 files changed, 165 insertions(+), 30 deletions(-)
->>
-> 
-> 
 
 
+On 6/9/23 15:43, Miquel Raynal wrote:
+> Describe this new part. I simply copy/pasted the entry for its cousins
+> with twice more/less storage capacity. The datasheet is public:
+
+All the cousins should be updated to use PARSE_SFDP instead.
+
+> https://ww1.microchip.com/downloads/aemDocuments/documents/MPD/ProductDocuments/DataSheets/SST26VF032B-SST26VF032BA-2.5V-3.0V-32-Mbit-Serial-Quad-IO-%28SQI%29-Flash-Memory-20005218K.pdf
+> Without the NO_SFDP_FLAGs only partial erasures happen so I believe the
+
+What do you mean by "partial erasures happen"?
+
+> 4K sector flag is needed. I cannot test dual/quad reads, so I kept these
+> to mimic the other entries, just in case.
+
+The flash seems to have the SFDP tables (you dumped them below), so I
+would expect the 4k erase size to be discovered at SFDP parsing time.
+> 
+> Here are the sfdp tables plus base testing to show it works.
+> 
+> $ cat /sys/bus/spi/devices/spi0.0/spi-nor/partname
+> sst26vf032b
+> $ cat /sys/bus/spi/devices/spi0.0/spi-nor/jedec_id
+> bf2642
+> $ cat /sys/bus/spi/devices/spi0.0/spi-nor/manufacturer
+> sst
+> $ xxd -p /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
+> 53464450060102ff00060110300000ff81000106000100ffbf0001180002
+> 0001fffffffffffffffffffffffffffffffffd20f1ffffffff0144eb086b
+> 083b80bbfeffffffffff00ffffff440b0c200dd80fd810d820914824806f
+> 1d81ed0f773830b030b0f7ffffff29c25cfff030c080ffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffff0004fff37f0000f57f0000f9ff
+> 3d00f57f0000f37f0000ffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+> ffffbf2642ffb95ffdff30f260f332ff0a122346ff0f19320f1919ffffff
+> ffffffff00669938ff05013506040232b03072428de89888a585c09faf5a
+> ffff06ec060c0003080bffffffffff07ffff0202ff060300fdfd040600fc
+> 0300fefe0202070e
+> $ md5sum /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
+> e7efddddb3d5ee89ca37bf6b6e789645  /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
+> 
+> $ dd if=/dev/urandom of=./qspi_test bs=1M count=1
+> 1+0 records in
+> 1+0 records out
+> $ mtd_debug write /dev/mtd0 0 1048576 qspi_test
+> Copied 1048576 bytes from qspi_test to address 0x00000000 in flash
+> $ mtd_debug erase /dev/mtd0 0 1048576
+> Erased 1048576 bytes from address 0x00000000 in flash
+> $ mtd_debug read /dev/mtd0 0 1048576 qspi_read
+> Copied 1048576 bytes from address 0x00000000 in flash to qspi_read
+> $ hexdump qspi_read
+> 0000000 ffff ffff ffff ffff ffff ffff ffff ffff
+> *
+> 0100000
+> $ mtd_debug write /dev/mtd0 0 1048576 qspi_test
+> Copied 1048576 bytes from qspi_test to address 0x00000000 in flash
+> $ mtd_debug read /dev/mtd0 0 1048576 qspi_read
+> Copied 1048576 bytes from address 0x00000000 in flash to qspi_read
+> $ sha1sum qspi_test qspi_read
+> 2f2f191c7a937eca5db21a1c39e79e7327587cc1  qspi_test
+> 2f2f191c7a937eca5db21a1c39e79e7327587cc1  qspi_read
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  drivers/mtd/spi-nor/sst.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/mtd/spi-nor/sst.c b/drivers/mtd/spi-nor/sst.c
+> index 99c8a19493f5..43f37d66f73a 100644
+> --- a/drivers/mtd/spi-nor/sst.c
+> +++ b/drivers/mtd/spi-nor/sst.c
+> @@ -113,6 +113,10 @@ static const struct flash_info sst_nor_parts[] = {
+>  		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_SWP_IS_VOLATILE)
+>  		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ)
+>  		.fixups = &sst26vf_nor_fixups },
+> +	{ "sst26vf032b", INFO(0xbf2642, 0, 64 * 1024, 64)
+> +		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_SWP_IS_VOLATILE)
+> +		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ)
+
+If you replace the NO_SFDP_FLAGS line with PARSE_SFDP, is the flash
+working correctly?
+
+> +		.fixups = &sst26vf_nor_fixups },
+>  	{ "sst26vf064b", INFO(0xbf2643, 0, 64 * 1024, 128)
+>  		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_SWP_IS_VOLATILE)
+>  		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ)
