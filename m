@@ -2,147 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DB4A72C342
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 13:42:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E3672C397
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 14:01:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230412AbjFLLkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 07:40:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55030 "EHLO
+        id S230353AbjFLMBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 08:01:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237306AbjFLLja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 07:39:30 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC62BBD;
-        Mon, 12 Jun 2023 04:33:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=36XT+W2jk5CIFa+WG0Q2ZcCHn/yHT0eHq3gE6BLySHQ=; b=U1lQrQVH5nBqDOyuohzmMYHg5j
-        X8OJVBhjV1g+IZlMta6smtL5UyG5THn0GEpnDDC1GX5OLBe/7FyN6hw9VL1f4SNyzn7aKSq7PSp7G
-        rxuRWlALT6mNIbCyeOh9uXuQMMwfduQiRgCR1tJXpcXsAfCsLDatmemMgCbEN3csev3SCSEOZbbZ4
-        vfEIfita03v846CVuFGdpr4rnEADICC1l2nIC21h0sWEwRLuS/TxAB/5LDw/T/NVxbonuHCY/CP3h
-        sLLXiFczoHwtDxrsIqydkENI/eQwKPRd9ZZa2MywV75dqpMCVzQQhJEYqkda1Xa/uYoKPl/Tyjaq3
-        tmiMSjGQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38822)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1q8fnd-0005fn-Pp; Mon, 12 Jun 2023 12:33:29 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1q8fna-0004va-3b; Mon, 12 Jun 2023 12:33:26 +0100
-Date:   Mon, 12 Jun 2023 12:33:25 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Sam Shih <Sam.Shih@mediatek.com>
-Subject: Re: [PATCH net-next 8/8] net: ethernet: mtk_eth_soc: add basic
- support for MT7988 SoC
-Message-ID: <ZIcChW9FTHm+HbYV@shell.armlinux.org.uk>
-References: <ZIUYubFtVGYHhlMt@makrotopia.org>
+        with ESMTP id S230331AbjFLMBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 08:01:34 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F4C8F;
+        Mon, 12 Jun 2023 05:01:33 -0700 (PDT)
+Received: from mail.alien8.de (mail.alien8.de [IPv6:2a01:4f9:3051:3f93::2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E05711EC0398;
+        Mon, 12 Jun 2023 14:01:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1686571291;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=aCD0rhhYxmitMKHhWCG0kd5hHn491gY3FyRL/Ejl4QU=;
+        b=IeBV6G30DY01vSH2jKXlHAUV8ULyYztISDDfO+WnZ/Ife/P+Wm1aZ+Fa2X7eq/SWZZCGvs
+        X/NtQN1owm9vW9nd9I4jynTAUPnCL07c0VamaU1vdliE84hTtv6uPwI6a5bkVUK8m4ofkd
+        RnPW2KeWM3YhsnxSiPFBJbDBhS/cDvI=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+        t=1686571291; bh=aCD0rhhYxmitMKHhWCG0kd5hHn491gY3FyRL/Ejl4QU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dowkXs+B87WSwIt+wt4kae8OPbwGHpysMIdlUgxYi6mpcCYXfHY7bcTpHcEyx6BE4
+         QuNGx+gtMOW38joxrpG6nIfHUyrGcw1qdw8SnLK4RT3I36fpmYgNIrCBOr2hAsMwbs
+         NIlp5Scate82a4kBAH17xJZ5vbQ2frJU1PTL7/4bL1XNn8utkIdCclaNtWweRIwyuB
+         PlLzyy0jE8Ak/LPXFI3/ef4sBV6bAosUkheJ8Ks9+CQEubyD4Jjl87mKqQLo4PM7Xi
+         bT3ybyQnZYf0ImQAI80vgjNrQmahDSDo//UwiZ3MqeCFhSl9lSnE16FzIdJElbQjbq
+         q5WG5Nigmj4CR07YvTghFIp3b67HZa5t1KfzuToX1LWLlY3vjSOdB857vHnn8OmDtv
+         qZIS/ORJbmaBLIJfGSlNULog4sqHQvzBZIWnTX6PK8IlhQneDUcRr3x7bOv2XARTWp
+         gNdVio981/xZODDLtHPxSBy0yau/o5WuHogrddu3cmAEZuFUUPNFhMA/WIF/ql0KO2
+         Y9CWWOqKO0W7I/ltMkWv3cSkRpEucQ805KIlav4/XzcgDB7cdbVgzC9heMNL/WA6ik
+         w6FU7RWuZCS/GvX3w9OhPDgdPSdporzM5bXdnwlTWIvmucwFNry+CBcfhxW/zv7pTN
+         yeEQP7TqNCBcKPVa3aOXAnSk=
+X-Virus-Scanned: Debian amavisd-new at mail.maysoba.com
+Authentication-Results: mail.maysoba.com (amavisd-new);
+        dkim=pass (4096-bit key) header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+        by localhost (mail.maysoba.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id dflzjxyCl_ZZ; Mon, 12 Jun 2023 12:01:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+        t=1686571289; bh=aCD0rhhYxmitMKHhWCG0kd5hHn491gY3FyRL/Ejl4QU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AwvwLYEXlqknXMl8J6hgmWUHplUdHj5dna8ng/ccDjbTWTh4rcFZ/996X4BCd4hez
+         vCl73VpkA+2IpBYWqpgJFMHaxzW1Aswuqw0dbsdsmr8Ol97TD9AMR+rpc+b938jKwh
+         Gdyj50s/qz1TkeNq69n6SuuZF8EGB3D6wiqyZ/S06cocX474NZoLX3F9qXeqPNOxlP
+         bvNqsFOEfcwrHmxwo4euEyi+t6uzJeagYcDwvhrp5IGQaxzjPojuCSjGZger4ghzAG
+         gjKeJs41PmIg5Ptu8A7i5WSQa8dheS77pjxRP/3vY8q8i06SQrEN92DveX+6JbXMlB
+         MLreY8TDAictVGIUVsKnkPrPqsecGXIPkrEm1i1iYHYhoy1cqAcWXyfY/VYXgQvoub
+         HJ0LFjZ5X9m6RB7pLfFFqX/TG26tMcjrQ/XyGArXjTF8ybO3BoEkUpww8PH+Ch5ja5
+         HJbxB6y5cdIwC8bGrgBYwNTKuZpPK+gZslYxPGxIqwDkZt03lS/0XkXrdTyceqW2LA
+         jqqJQdN4VTiv/MzFDfYvbzlYbrqMBHz5GkF/96vr8Gr/EWRaE8iIbYgYHpuK1GsflQ
+         HUt5qRD5kHyShyr2/yfr2MF2xzs36LFzvwBBIJ0FXPPYkZoY+FMrK/5qUZ34pgKcLW
+         CQkng9EhhBvSFXsccz9rIlzQ=
+Received: from zn.tnic (p200300eA971dC5f0329C23fffEa6a903.dip0.t-ipconnect.de [IPv6:2003:ea:971d:c5f0:329c:23ff:fea6:a903])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+        (No client certificate requested)
+        by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 1495C40E00EA;
+        Mon, 12 Jun 2023 12:01:08 +0000 (UTC)
+Date:   Mon, 12 Jun 2023 14:01:07 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Marvin Lin <milkfafa@gmail.com>, robh+dt@kernel.org,
+        tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
+        rric@kernel.org, benjaminfair@google.com, yuenn@google.com,
+        venture@google.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org, KWLIU@nuvoton.com, YSCHU@nuvoton.com,
+        ctcchien@nuvoton.com, kflin@nuvoton.com
+Subject: Re: [PATCH v18 1/3] ARM: dts: nuvoton: Add node for NPCM memory
+ controller
+Message-ID: <20230612120107.GFZIcJA3zktkiyTS2+@fat_crate.local>
+References: <20230111093245.318745-1-milkfafa@gmail.com>
+ <20230111093245.318745-2-milkfafa@gmail.com>
+ <20230612110401.GPZIb7oZPdsPGFzSDc@fat_crate.local>
+ <38c30778-9526-cba6-4ddb-00bcefeb5647@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZIUYubFtVGYHhlMt@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <38c30778-9526-cba6-4ddb-00bcefeb5647@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 11, 2023 at 01:43:37AM +0100, Daniel Golle wrote:
->  	if (updated) {
-> -		val = mtk_r32(eth, MTK_MAC_MISC);
-> +		val = mtk_r32(eth, reg);
->  		val = (val & mask) | set;
-> -		mtk_w32(eth, val, MTK_MAC_MISC);
-> +		mtk_w32(eth, val, reg);
+On Mon, Jun 12, 2023 at 01:22:09PM +0200, Krzysztof Kozlowski wrote:
+> It is preferred this goes via Nuvoton ARM SoC tree. I don't understand
+> why this is first in the series - it's clearly wrong.
 
-mtk_m32() ?
+Don't ask me...
 
-> +	/* Force Port1 XGMAC Link Up */
-> +	val = mtk_r32(eth, MTK_XGMAC_STS(MTK_GMAC1_ID));
-> +	mtk_w32(eth, val | MTK_XGMAC_FORCE_LINK(MTK_GMAC1_ID),
-> +		MTK_XGMAC_STS(MTK_GMAC1_ID));
-> +
-> +	/* Adjust GSW bridge IPG to 11 */
-> +	val = mtk_r32(eth, MTK_GSW_CFG);
-> +	val &= ~(GSWTX_IPG_MASK | GSWRX_IPG_MASK);
-> +	val |= (GSW_IPG_11 << GSWTX_IPG_SHIFT) |
-> +	       (GSW_IPG_11 << GSWRX_IPG_SHIFT);
-> +	mtk_w32(eth, val, MTK_GSW_CFG);
+So the EDAC driver itself is self-contained so I can review it and you
+can pick it up with the rest, if it looks ok.
 
-mtk_m32() for both these?
-
-> +	/* Setup gmac */
-> +	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V3) &&
-> +	    mac->interface == PHY_INTERFACE_MODE_INTERNAL) {
-> +		mtk_w32(mac->hw, MTK_GDMA_XGDM_SEL, MTK_GDMA_EG_CTRL(mac->id));
-> +		mtk_w32(mac->hw, MAC_MCR_FORCE_LINK_DOWN, MTK_MAC_MCR(mac->id));
-> +
-> +		mtk_setup_bridge_switch(eth);
-
-
-I think this should be documented somewhere - that
-PHY_INTERFACE_MODE_INTERNAL means the MAC is connected to a switch.
-However, I'm not sure that's the best condition to use - don't we have a
-way for a MAC to test if it's connected to a DSA switch?
-
-> +	/* Configure MDC Turbo Mode */
-> +	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V3)) {
-> +		val = mtk_r32(eth, MTK_MAC_MISC_V3);
-> +		val |= MISC_MDC_TURBO;
-> +		mtk_w32(eth, val, MTK_MAC_MISC_V3);
-> +	}
->  	val = mtk_r32(eth, MTK_PPSC);
-> +	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V1) ||
-> +	    MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-> +		val |= PPSC_MDC_TURBO;
-> +
-> +	/* Configure MDC Divider */
->  	val &= ~PPSC_MDC_CFG;
-> -	val |= FIELD_PREP(PPSC_MDC_CFG, divider) | PPSC_MDC_TURBO;
-> +	val |= FIELD_PREP(PPSC_MDC_CFG, divider);
->  	mtk_w32(eth, val, MTK_PPSC);
-
-More opportunities for mtk_m32().
-
-> +	if (MTK_HAS_CAPS(mac->hw->soc->caps, MTK_NETSYS_V3_BIT) &&
-> +	    MTK_HAS_CAPS(mac->hw->soc->caps, MTK_ESW_BIT) &&
-> +	    id == MTK_GMAC1_ID) {
-> +		mac->phylink_config.mac_capabilities = MAC_ASYM_PAUSE |
-> +						       MAC_SYM_PAUSE |
-> +						       MAC_10000FD;
-> +		phy_interface_zero(mac->phylink_config.supported_interfaces);
-
-Were there bits set that you don't want?
-
-Thanks!
+That ok?
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
