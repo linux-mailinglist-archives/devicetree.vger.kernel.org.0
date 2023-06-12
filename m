@@ -2,86 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8EF72C606
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 15:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A328972C61D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 15:36:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbjFLNdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 09:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58600 "EHLO
+        id S232135AbjFLNgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 09:36:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233724AbjFLNdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 09:33:15 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0BFF4
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 06:33:13 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f6170b1486so5289861e87.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 06:33:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686576791; x=1689168791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j0BtWef05P50AZolUyxN0L22aqNjqMA9iLYT2Vrx8+Y=;
-        b=IuDOVYUWJTrtVM24OGVA8/rlFHy+y1Y6hkL5PK0wbxK3vLwgD3SY3BX8HrNBULnbvU
-         gfNdk07aqfXijq5d8ip4FtvWlxoka0locpI4e59IX5WIYNqW2EyxOI87BE7YwVv0wnOk
-         AY8ecLHBiTdSgm7lkJgVnDazQW+6OUzSYqA7Wpag0cRx9OgE0H0u1ziWfkv6FjEPGDqU
-         4Qbw7lXx+PyMevgo/81gjp9TXSYLc3KXDQiOaMd8RY7+ogRxPnKIzedqhbAEf+wWekci
-         Fa/Xh6dFkgng/yZtkfpWCdT2yY12GvQxK2CSmiqg/ZBygxULYpC2BrtukEnZKSDQAp78
-         vizA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686576791; x=1689168791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j0BtWef05P50AZolUyxN0L22aqNjqMA9iLYT2Vrx8+Y=;
-        b=kuSH2SXAZPTJrfTPoSJ6u08vWIHyHnoehXhMC7N3tWv01SiIKOFZaxTg7/5kpawsDw
-         twmk0RDUYnqWY3hfQiVq2+rOmmJJB2H3DXywlOEO6SI3kyOChhsFHD9gVxSAqNKUeyaz
-         MAIqN/42Y1kPIXABQTN5WYW0j3ovXh7GAhfIVb+xiGGMDMbDnZXfiPmzgQPP1r+yS3FT
-         LVNRLsIkYCr53T2+Ogl3je8wvAHFvu4s6RU7165k1468Z7Yz+SaJvkYGSSH/ZbPgAqdJ
-         isomEAJo2SVE8L2NwwXSZTKUjCuet8sZmim+R7/QJFzhda2HSUEBVUsWgTc4itmhJkit
-         qw2Q==
-X-Gm-Message-State: AC+VfDzYDwtf/Y9z0d5PTwNgFp6IhtmwSqalE7sDbPG27dkUGm82cLmD
-        mM3XdxokQfgwx8NA17RozSSVbQ==
-X-Google-Smtp-Source: ACHHUZ5jg8U5re+laJc3UhaUZ6VSMxMxuIF+CKl/Y9e6iJ4ubnZWGquHHnHTu+8mWEPO+Pk1PZqv3A==
-X-Received: by 2002:a05:6512:1ca:b0:4f4:2717:7e6f with SMTP id f10-20020a05651201ca00b004f427177e6fmr3166286lfp.23.1686576791391;
-        Mon, 12 Jun 2023 06:33:11 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id x3-20020ac259c3000000b004f39bb71ed2sm1440105lfn.138.2023.06.12.06.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 06:33:10 -0700 (PDT)
-Message-ID: <8c1085fd-8a73-d192-6624-d4f35728e68a@linaro.org>
-Date:   Mon, 12 Jun 2023 16:33:09 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 15/18] ARM: dts: qcom: apq8064: provide voltage scaling
- tables
-Content-Language: en-GB
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S236502AbjFLNgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 09:36:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60E21A1;
+        Mon, 12 Jun 2023 06:36:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6BBD4616FD;
+        Mon, 12 Jun 2023 13:36:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 754D0C4339C;
+        Mon, 12 Jun 2023 13:36:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686576999;
+        bh=6t8SLEGkV+2LuUffPXlHIp83vOrBIwLaJMF1fy6qrmo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=to/QjNsRYu8mIPyhEBttCfHICSEZ1ZCL7V9KhsJIIk1PmYlxawzN6TRhxdgHCuNRS
+         IaJ9dbbVGsiT5zRDYoFlSOu1gEYEA2pWauiQTsZl63cO6aiejasai/piMfGX/zU87Y
+         +mkSpVhhA/4a5oq9JYP/VWvt+eM/QwGxhAWlGtdVRpTiNrn3fB3/NAzLDGlsGARf8J
+         RiZcOLamRWgw54EVGUNqaJkykkbgEgqrzJusreiKQtd7NMbRJ41KWhKPzEHKgL8TIQ
+         SZrGMEFaOSn2iQwbMZGjENGbl2XLZ6V+GIFEw3ZIxG7ALqU2PjELYWbBdCJZg3854P
+         55/IpyjwitbQw==
+Date:   Mon, 12 Jun 2023 14:36:33 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>
-References: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
- <20230612053922.3284394-16-dmitry.baryshkov@linaro.org>
- <ZIbez4RA0OoVfHzt@gerhold.net>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <ZIbez4RA0OoVfHzt@gerhold.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        linux-kernel@vger.kernel.org, Patrick Lai <quic_plai@quicinc.com>
+Subject: Re: [PATCH v2 2/2] ASoC: codecs: wsa884x: Add WSA884x family of
+ speakers
+Message-ID: <bf81773c-8d9d-46bc-b9ba-db7b86600e3d@sirena.org.uk>
+References: <20230611102657.74714-1-krzysztof.kozlowski@linaro.org>
+ <20230611102657.74714-2-krzysztof.kozlowski@linaro.org>
+ <191859d3-42e3-4ef2-87ff-dd56864103f9@sirena.org.uk>
+ <421ddd6d-3938-027c-2099-57248a111831@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4W2AYxZZZ8GOZJ6I"
+Content-Disposition: inline
+In-Reply-To: <421ddd6d-3938-027c-2099-57248a111831@linaro.org>
+X-Cookie: If it heals good, say it.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,159 +70,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2023 12:01, Stephan Gerhold wrote:
-> On Mon, Jun 12, 2023 at 08:39:19AM +0300, Dmitry Baryshkov wrote:
->> APQ8064 has 4 speed bins, each of them having from 4 to 6 categorization
->> kinds. Provide tables necessary to handle voltage scaling on this SoC.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   arch/arm/boot/dts/qcom-apq8064.dtsi | 1017 +++++++++++++++++++++++++++
->>   1 file changed, 1017 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
->> index 4ef13f3d702b..f35853b59544 100644
->> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
->> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
->> @@ -49,6 +49,9 @@ CPU0: cpu@0 {
->>   			clocks = <&kraitcc KRAIT_CPU_0>;
->>   			clock-names = "cpu";
->>   			clock-latency = <100000>;
->> +			vdd-mem-supply = <&pm8921_l24>;
->> +			vdd-dig-supply = <&pm8921_s3>;
->> +			vdd-core-supply = <&saw0_vreg>;
->>   			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>   			operating-points-v2 = <&cpu_opp_table>;
->>   			#cooling-cells = <2>;
->> @@ -66,6 +69,9 @@ CPU1: cpu@1 {
->>   			clocks = <&kraitcc KRAIT_CPU_1>;
->>   			clock-names = "cpu";
->>   			clock-latency = <100000>;
->> +			vdd-mem-supply = <&pm8921_l24>;
->> +			vdd-dig-supply = <&pm8921_s3>;
->> +			vdd-core-supply = <&saw1_vreg>;
->>   			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>   			operating-points-v2 = <&cpu_opp_table>;
->>   			#cooling-cells = <2>;
->> @@ -83,6 +89,9 @@ CPU2: cpu@2 {
->>   			clocks = <&kraitcc KRAIT_CPU_2>;
->>   			clock-names = "cpu";
->>   			clock-latency = <100000>;
->> +			vdd-mem-supply = <&pm8921_l24>;
->> +			vdd-dig-supply = <&pm8921_s3>;
->> +			vdd-core-supply = <&saw2_vreg>;
->>   			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>   			operating-points-v2 = <&cpu_opp_table>;
->>   			#cooling-cells = <2>;
->> @@ -100,6 +109,9 @@ CPU3: cpu@3 {
->>   			clocks = <&kraitcc KRAIT_CPU_3>;
->>   			clock-names = "cpu";
->>   			clock-latency = <100000>;
->> +			vdd-mem-supply = <&pm8921_l24>;
->> +			vdd-dig-supply = <&pm8921_s3>;
->> +			vdd-core-supply = <&saw3_vreg>;
->>   			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>   			operating-points-v2 = <&cpu_opp_table>;
->>   			#cooling-cells = <2>;
->> @@ -132,6 +144,81 @@ cpu_opp_table: opp-table-cpu {
->>   		opp-384000000 {
->>   			opp-hz = /bits/ 64 <384000000>;
->>   			opp-peak-kBps = <384000>;
->> +			opp-microvolt-speed0-pvs0 = <1050000 1050000 1150000>,
->> +						    <950000 950000 1150000>,
->> +						    <950000 950000 975000>;
-> 
-> I think this won't result in the correct switch order without making
-> some changes to the OPP core. In _set_opp() the OPP core does
-> 
-> 	/* Scaling up? Configure required OPPs before frequency */
-> 	if (!scaling_down) {
-> 		_set_required_opps();
-> 		_set_opp_bw();
-> 		opp_table->config_regulators();
-> 	}
-> 
-> 	opp_table->config_clks();
-> 
-> 	/* Scaling down? Configure required OPPs after frequency */
-> 	if (scaling_down) {
-> 		opp_table->config_regulators();
-> 		_set_opp_bw();
-> 		_set_required_opps();
-> 	}
-> 
-> Since the "bandwidth" for the L2 cache is set before the regulators
-> there is a short window where the L2 clock is running at a high
-> frequency with too low voltage, which could potentially cause
-> instability. On downstream this seems to be done in the proper order [1].
-> 
-> I'm not sure if the order in the OPP core is on purpose. If not, you
-> could propose moving the config_regulators() first (for scaling up)
-> and last (for scaling down). This would resolve the problem.
 
-Nice catch, I missed this ordering point.
+--4W2AYxZZZ8GOZJ6I
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
-> The alternative that I've already argued for on IRC in #linux-msm a
-> couple of days ago would be to give the L2 cache (here: "interconnect")
-> an own OPP table where it can describe its voltage requirements,
-> independent from the CPU. That way the icc_set_bw() would be guaranteed
-> to apply the correct voltage before adjusting the L2 cache clock. It
-> looks like the "l2_level" voltages for vdd_dig and vdd_mem are not
-> speedbin/PVS-specific [2] so this would also significantly reduce the DT
-> size, since you wouldn't need to repeat the same vdd_dig/vdd_mem
-> voltages for all of them.
+On Mon, Jun 12, 2023 at 09:25:44AM +0200, Krzysztof Kozlowski wrote:
+> On 11/06/2023 13:57, Mark Brown wrote:
+> > On Sun, Jun 11, 2023 at 12:26:57PM +0200, Krzysztof Kozlowski wrote:
 
-Yes. I fact our discussion triggered me to do this patchset.
+> >> +	{ WSA884X_OTP_REG_40,			0x00 },
+> >> +	{ WSA884X_OTP_REG_41,			0x00 },
+> >> +	{ WSA884X_OTP_REG_63,			0x40 },
 
-So, another option would be to have something like the following 
-snippet. Do you know if we are allowed to squish additional data into 
-the L2 cache DT node?
+> > These appear to be OTP data which suggests that they shouldn't have
+> > defaults either since they can be programmed.
 
-CPU0: cpu@0 {
-     vdd-core-supply = <&saw0_vreg>;
-     interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
-     operating-points-v2 = <&cpu_opp_table>;
-};
+> Just to be clear - I don't have access to datasheet so I don't know what
+> are these. The downstream driver actually initializes (writes to) two
+> OTP registers - 38 and 40.
 
-L2: l2-cache {
-     compatible = "qcom,apq8064-l2-cache", "cache";
+That's...  counterintuitive given the naming.
 
-     clocks = <&kraitcc KRAIT_L2>;
-     vdd-mem-supply = <&pm8921_l24>;
-     vdd-dig-supply = <&pm8921_s3>;
-     operating-points-v2 = <&l2_opp_table>;
+> >> +static bool wsa884x_readonly_register(struct device *dev, unsigned int reg)
+> >> +{
+> >> +	switch (reg) {
 
-     l2_opp_table {
-         compatible = "operating-points-v2";
-         opp-384000000 {
-             opp-hz = /bits/ 64 <384000000>;
-             opp-microvolt = <1050000 1050000 1150000>,
-                             <950000 950000 1150000>;
-         };
+> > In general the read only registers probably shouldn't have defaults...
 
-         opp-648000000 {
-             opp-hz = /bits/ 64 <648000000>;
-             opp-microvolt = <1050000 1050000 1150000>,
-                             <1050000 1050000 1150000>;
-         };
+> For the case when regmap is being read before device enumerates (thus
+> synced)?
 
-         opp-1134000000 {
-             opp-hz = /bits/ 64 <1134000000>;
-             opp-microvolt = <1150000 1150000 1150000>,
-                             <1150000 1150000 1150000>;
-         };
-     };
-};
+If you're reading read only registers from the cache defaults like that
+you may as well cut out the middle man and not bother parsing the
+register at all - the value is just hard coded.  Either power up the
+device to find out what the values are or use the values directly.
 
-> 
-> Thanks,
-> Stephan
-> 
-> [1]: https://git.codelinaro.org/clo/la/kernel/msm/-/blob/LA.AF.1.2.1-08410-8064.0/arch/arm/mach-msm/acpuclock-krait.c#L529-588
-> [2]: https://git.codelinaro.org/clo/la/kernel/msm/-/blob/LA.AF.1.2.1-08410-8064.0/arch/arm/mach-msm/acpuclock-8064.c#L118-135
+> >> +	/* Speaker mode by default */
+> >> +	{ WSA884X_DRE_CTL_0, 0x7 << WSA884X_DRE_CTL_0_PROG_DELAY_SHIFT },
+> >> +	{ WSA884X_CLSH_CTL_0, (0x37 & ~WSA884X_CLSH_CTL_0_DLY_CODE_MASK) |
+> >> +			      (0x6 << WSA884X_CLSH_CTL_0_DLY_CODE_SHIFT) },
+> >> +	{ WSA884X_CLSH_SOFT_MAX, 0xff },
 
--- 
-With best wishes
-Dmitry
+> > Why not just leave as the chip default?
 
+> Sincerely, I don't know. Without any documentation, I am relying
+> entirely on downstream driver which has some code like this. I don't
+> know whether some parts here make sense only for downstream case or
+> shall be applicable also for upstream.
+
+This sounds like someone hard coding their use case TBH.
+
+--4W2AYxZZZ8GOZJ6I
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSHH2AACgkQJNaLcl1U
+h9CaPwf/aX9WQEFcA6zXSh74pvL2X9EgjCIw0+zTNqo4m9a4OWMHcrlXGqKsi7pm
+b/kdJ53Asst3GGbTO+2V6+P3WctJRkxgrZRIswHYUfJVuZRwol07nq2v1T+2qu4l
+zPPqa9TNf7WOFJpm4xTEAD12CZsGeNUo8WSCoCR7qotMmqwUA2ZIqp7HsOzHfr2N
+C/zvaFTnotbGn73s+oZE6wqtQWF8GGXCu5wMcqGvGMHoxgU6MXcwwRFT3xXz0TkD
+j4fy8QoU7907ARX0cy6fMJEQtiZjrg41DJxkIY3GPGDJAS7YUdnI85/44YHga9EC
+ePr9Kxof5jGBxa7rDk0NVSwFtNFbyA==
+=AnsO
+-----END PGP SIGNATURE-----
+
+--4W2AYxZZZ8GOZJ6I--
