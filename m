@@ -2,203 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E127272BCC0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B32972BCC9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:34:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235271AbjFLJc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 05:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48928 "EHLO
+        id S235260AbjFLJeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 05:34:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbjFLJbW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:31:22 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3BC3A86
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:25:04 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f6da07ff00so42338585e9.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:25:04 -0700 (PDT)
+        with ESMTP id S231214AbjFLJeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:34:10 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 175AB55A1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:26:16 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5149e65c244so5750029a12.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:26:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686561903; x=1689153903;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R5Kztbbt+Lx+Q6hVK4LvKEHOry/qYQ8OvL9Z8ei/Rso=;
-        b=P/Jhfjzh0ruh8aQrw/lvBEWcmDeyZDzd+KU0wuDZSn9r92Pbi5G0y48qPXJTHn5RC4
-         kIzNj52wkDwMA68v/kq9zzP3zPaQKZim/cG9i+vNjAzcAMo1M4AcuVkSgWsHGt2DU2LU
-         PFrSXKzl06uMIUf7pVrJo4DjNQp8LvcL0gIpifSO0LwHiJsrWKXsQGTWDhllY4QeBTNF
-         CNaL9VHRXacLDGSae9qdh7Z++fN1rP4KZe9SPL0P3QQeakYkXnojA+fEt/yIZB3h/PPT
-         QNUg7068ipJqt+O5/0maFA8OJzwE+Ya05qCeGA7lNrXRD1vNSDOG0Hl6TSakoutgdRgf
-         VzLA==
+        d=linaro.org; s=google; t=1686561974; x=1689153974;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pZgj9wvv613Msqi5j0pNGHar4gpn1QPcjVJUf+RkefE=;
+        b=i2TCaqhZmtxqKa2FTr8J4p+zAFI/+lVqsWQ5y7bdE6iNVyw+L98nByQq/SFsTHNxKZ
+         hZLWCXh1+WWkSdGx67v8v58MUcGnJEtmW5f4QTZ4Hcej2Y226Aim935GXxaTT+5CEObh
+         i8G17mDBpJWZGh/CtQBuFeznNW0GzNd8YCCmYnWsx0n5LZwXpAMZnfIIXSFlOxXt4yFc
+         trstfV5qnwQU4B16XRPfFhq8tsUjmF6lHyFA3pnjFmByIqhdmx3qU6Q0CGf5sn4wBovU
+         I1TSwjQm027D5TUoiQwmvCRjLYj0bDkAyAYyrkqfufQRUuv5i/M+PcmpvCNlYAbHNM41
+         Lmug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686561903; x=1689153903;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R5Kztbbt+Lx+Q6hVK4LvKEHOry/qYQ8OvL9Z8ei/Rso=;
-        b=QXuShWXL5Zmd1y69v1xdgozTr7aFdLh+Yh9qTCtFSQ0P4BB62BtYceq9coRvf2B5Yr
-         lqQhkCqIwXGARh6Bhlu4R55j9qD5hqp20jyD2jXl2VKJtGcjjitEinOjVmJ1CVFpsit2
-         wfZuZq1D9pmq9xcF8mbBPO7Dk8OsK8yRGvvS7tn21pv0cNnq/+b/6jTo6Fpl+fIgqeQq
-         7z1OGJ90vkrP72UIX0Xvihqr54dzfb/P+F0oh2lZ7sRXVUyHNjXBIQtwEI/IuK19Qn7U
-         TXDZt8C3k3Qfe/T8cyngpgNkXmRRcYajYQjIhE+3Tnpw5QNUHh3c8ktdr53SaIHhVK9V
-         w7Ow==
-X-Gm-Message-State: AC+VfDyXkqpHP0q7H9AOAbV3zogmfCKWIHZjUOGsTa0GDYwuuiBHNrHy
-        TpURj5ZJ8earprGeJ++DxhAFdw==
-X-Google-Smtp-Source: ACHHUZ6kJTKSQMRxQnmZHKgDHv+8GM+Ey+dfH5KXUQrQ58aTzmadnxCcaM+NOxPdk4JKh+HKGp5Seg==
-X-Received: by 2002:a5d:6403:0:b0:307:7e64:4b52 with SMTP id z3-20020a5d6403000000b003077e644b52mr4735283wru.36.1686561903258;
-        Mon, 12 Jun 2023 02:25:03 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:a222:bbe9:c688:33ae])
-        by smtp.gmail.com with ESMTPSA id p14-20020a7bcc8e000000b003f727764b10sm10892044wma.4.2023.06.12.02.25.01
+        d=1e100.net; s=20221208; t=1686561974; x=1689153974;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pZgj9wvv613Msqi5j0pNGHar4gpn1QPcjVJUf+RkefE=;
+        b=NKtPoRusj7/UbCXFqmGu9TwSl4Hebnsxk2xWrMaFrSixD9052BbfNUykioIicyT2g4
+         vI2+Yj5qRaBk2bgUrkFMfvpXwcSRzOUsAtbTiwgbP1GZPMzrV8qFzx1DnH2npzCrxaOW
+         clDkAFdzzmoaHNHb2qGwOWbFpPMfXmW/xJIZy298WKpKnomP7YOKNt7rH3uaKdt01jxM
+         RFU+fGpRUHb9YIQ8u/EhUcM3Yl6XF/9QqP7ZNEcmn3HAQPJpnqnNIx8Do0zWOHMT52cx
+         S5nGdBCSAkiGdZ4CD/P8ZFpSGYeKzBAFgoZauzPckCyE0+YSIMSjwc/0fEPQCu8ay7QB
+         jStA==
+X-Gm-Message-State: AC+VfDzXi7CtF7PIDb8IwZxXcLwn19uXUNvd7v2C1Qvd+hofwBh3QvZr
+        dTm2Yhh+FyLIdTziO49a3daE3Q==
+X-Google-Smtp-Source: ACHHUZ5/TSH+NnE5zaLXzI48jDVBI9q7FBbcwiHpWan/hFHxb2/LmYxEPMrVPOY5GOABNato6EZyNQ==
+X-Received: by 2002:a17:907:94ce:b0:973:dbcd:52d4 with SMTP id dn14-20020a17090794ce00b00973dbcd52d4mr8177843ejc.37.1686561974430;
+        Mon, 12 Jun 2023 02:26:14 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id kt5-20020a170906aac500b00978868cb24csm5035900ejb.144.2023.06.12.02.26.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 02:25:02 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 12 Jun 2023 02:26:14 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 26/26] arm64: dts: qcom: sa8775p-ride: enable ethernet0
-Date:   Mon, 12 Jun 2023 11:23:55 +0200
-Message-Id: <20230612092355.87937-27-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230612092355.87937-1-brgl@bgdev.pl>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: example-schema: don't use enum as fallback, explain clock-names
+Date:   Mon, 12 Jun 2023 11:26:11 +0200
+Message-Id: <20230612092611.12385-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Compatibles with multiple entries should have usually only one fallback
+compatible thus enum followed by enum is not a common case.  Use 'const'
+as second compatible to show the recommended approach.
 
-Enable the first 1Gb ethernet port on sa8775p-ride development board.
+Explain also when clock-names are not really necessary.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 89 +++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
+ Documentation/devicetree/bindings/example-schema.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index dbd9553aa5c7..13508271bca8 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -261,6 +261,95 @@ vreg_l8e: ldo8 {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/example-schema.yaml b/Documentation/devicetree/bindings/example-schema.yaml
+index f4eec4c42fb3..a41f9b9a196b 100644
+--- a/Documentation/devicetree/bindings/example-schema.yaml
++++ b/Documentation/devicetree/bindings/example-schema.yaml
+@@ -52,8 +52,7 @@ properties:
+               - vendor,soc4-ip
+               - vendor,soc3-ip
+               - vendor,soc2-ip
+-          - enum:
+-              - vendor,soc1-ip
++          - const: vendor,soc1-ip
+         # additionalItems being false is implied
+         # minItems/maxItems equal to 2 is implied
+       - items:
+@@ -85,6 +84,9 @@ properties:
+       discouraged.
  
-+&ethernet0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&sgmii_phy>;
-+	phy-supply = <&vreg_l5a>;
-+
-+	pinctrl-0 = <&ethernet0_default>;
-+	pinctrl-names = "default";
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,ps-speed = <1000>;
-+
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <11000>;
-+		reset-post-delay-us = <70000>;
-+
-+		sgmii_phy: phy@8 {
-+			reg = <0x8>;
-+			device_type = "ethernet-phy";
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
- &i2c11 {
- 	clock-frequency = <400000>;
- 	pinctrl-0 = <&qup_i2c11_default>;
+   clock-names:
++    # For single-entry lists in clocks, resets etc., the xxx-names often do not
++    # bring any value, especially if they copy the IP block name.  In such case
++    # just skip the xxx-names.
+     items:
+       - const: bus
+ 
 -- 
-2.39.2
+2.34.1
 
