@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DCCB72CC88
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:27:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 814C972CCF2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237538AbjFLR1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 13:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37894 "EHLO
+        id S229716AbjFLRfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 13:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237060AbjFLR1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:27:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D2E130;
-        Mon, 12 Jun 2023 10:27:13 -0700 (PDT)
+        with ESMTP id S238377AbjFLRfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:35:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE27C297E;
+        Mon, 12 Jun 2023 10:34:44 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 46533615A9;
-        Mon, 12 Jun 2023 17:27:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFA9FC4339B;
-        Mon, 12 Jun 2023 17:27:07 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B800612A5;
+        Mon, 12 Jun 2023 17:34:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82225C433D2;
+        Mon, 12 Jun 2023 17:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686590832;
-        bh=F/xfsUaVL/B3Qc4E2prwYl5t9MVB1CSnSrmP09x8b5g=;
+        s=k20201202; t=1686591283;
+        bh=krvfK0/q6PmPdvzX+Hdeinv7nYJ3LKMoC434Ebw/YGE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mzTPTpPTd1To2ISnxdmYL8ef9TJZSAU9PdNRTmq/k9VtENcockLRuxRDPcn5NPxky
-         +zFFOaM8mFfDezhQPlKMNQ794b98mqyxxbYjjDmM211ai4i6uAsjYj3u9/r9XXQbSG
-         5boDRT4BO0vgX/nLPtzD4+L7AC9NI/Sclrq86Cn3oeaqm83Q7eKMkhSX8raJTWpp77
-         ofJLljmbbsdvCMYM7s8hkr0AmvajAn1P2Nsfl1PjyjwDpYUn8qXTFSbL83/iEA2R8d
-         ORGGVnJOC2Vkv72Hu8YqLkRMwhntgG6JRFJUJCQb3u6+WC/2WcHbGbv6goIdrv0UsT
-         3XFgo4p7+BTlg==
-Date:   Mon, 12 Jun 2023 18:27:05 +0100
+        b=daEMvXEFNX5MsuOFcFsYRewvi2fCkfEzBJe5grsXSO+Dhu0/nUfssYuOBxn3KagFc
+         D3YdhRxV/+KL9OoY4uscICNCiWsQ1vJ+2t8w4K9EQS9KHFW6mEPiLr+t4McjDdm4jo
+         px0VI7+MLXCfb/06ZasT0YlPEoVUxu1xrI1t8Hvk/fdfHEiY8UStLOefgCjl/iAs5e
+         QG1CDnSUmhLOvmdIXGlEQQTY+4jGKThYmXzzQfhWBhcV8RChk2LKRgBddjMlxKaMvn
+         RbAhJmtM7TuNbFz8RYkH3s5CnGDErhO1sZHsfgozlCOgavCjjZ80xT/osG2uQRt5GZ
+         gydN/i3jNJASA==
+Date:   Mon, 12 Jun 2023 18:34:37 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 3/3] riscv: dts: allwinner: d1: Add thermal sensor and
- thermal zone
-Message-ID: <20230612-manhole-awoke-599b8ff72edb@spud>
-References: <20230612063429.3343061-1-bigunclemax@gmail.com>
- <20230612063429.3343061-4-bigunclemax@gmail.com>
- <20230612-wriggle-remindful-89d5105c94ee@wendy>
- <CALHCpMjxboLn2eTjOJkE2JAzH3S8OB3v9fWqDOdeipAmLvLx2Q@mail.gmail.com>
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/9] regulator: mt6358: Merge VCN33_* regulators
+Message-ID: <20230612-ardently-undertow-5060562a6c7a@spud>
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-4-wenst@chromium.org>
+ <20230609-unpaved-propeller-b361fba89913@spud>
+ <20230610-bucket-rebuttal-c7c44c5b0a66@spud>
+ <CAGXv+5EcXW8P-EuWZp4MFUFAjaNTzEtRP_d8bkrFyPdq2k2Bqw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YndCLQNRUhwsHafT"
+        protocol="application/pgp-signature"; boundary="sGt7s4jlNXh0bRiH"
 Content-Disposition: inline
-In-Reply-To: <CALHCpMjxboLn2eTjOJkE2JAzH3S8OB3v9fWqDOdeipAmLvLx2Q@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <CAGXv+5EcXW8P-EuWZp4MFUFAjaNTzEtRP_d8bkrFyPdq2k2Bqw@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,50 +67,53 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---YndCLQNRUhwsHafT
+--sGt7s4jlNXh0bRiH
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 12, 2023 at 11:17:20AM +0300, Maxim Kiselev wrote:
-> Hi, Conor
+On Mon, Jun 12, 2023 at 12:19:01PM +0800, Chen-Yu Tsai wrote:
+> On Sat, Jun 10, 2023 at 11:28=E2=80=AFPM Conor Dooley <conor@kernel.org> =
+wrote:
+
+> > Ah, I see in the binding commit there's a "Luckily no device tree actua=
+lly
+> > uses them." Does that just cover the kernel, or does it consider other
+> > operating systems/bootloaders?
 >=20
-> =D0=BF=D0=BD, 12 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 10:55, C=
-onor Dooley <conor.dooley@microchip.com>:
+> That comment covers the upstream kernel and the downstream ChromeOS kernel
+> specifically. The bootloader that ChromeOS uses (coreboot) doesn't use
+> device trees. I don't know what MediaTek uses for their phones though.
 >=20
-> ...
+> AFAIK MediaTek only supports the Linux kernel, be it for Android or Chrom=
+eOS.
+> There's not a large community around it, unlike some of the other ARM SoC=
+s.
 >=20
-> > The RISC-V patchwork automation is complaining about this patch while
-> > running dtbs_check:
-> > arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dtb: thermal-zones:=
- cpu-thermal: 'trips' is a required property
-> >         From schema: Documentation/devicetree/bindings/thermal/thermal-=
-zones.yaml
+> I did find an old v4.4 Android kernel [1] for the MediaTek Helio P60
+> (MT6771) that is also paired with MT6358. There are no device tree
+> references to the VCN33 regulator either. Only the definition exists
+> in the mt6358.dtsi file, much like what we have upstream.
 >=20
-> I didn't add 'trips' because I'm not sure if they should be the same
-> for the D1 and the T113s.
+> As far as the regulator driver goes, if it can't find a matching regulator
+> node, it's the same as if the node doesn't exist, and therefore the given
+> constraints are not ingested. If no constraints are ingested that can
+> turn it on, and no consumer references to enable it either, we can say
+> that the regulator is effectively unused.
 
-I'm sorry, but I am of no help there. Perhaps some of the Allwinner devs
-can help you on that front.
+Okay, that sounds reasonable. Seems like you've done your research,
+so thanks for that!
 
-> Maybe it's better to drop 'thermal-zones' from this patch and add them
-> later in separate patches
-> for T113s and D1?
 
-Does it pass dtbs_check with the thermal-zones removed?
-
-Cheers,
-Conor.
-
---YndCLQNRUhwsHafT
+--sGt7s4jlNXh0bRiH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIdVaQAKCRB4tDGHoIJi
-0icUAQDwugDXiKIix1q9MpKsiXdSHj6OKofB7WNjaX+WRaIpQwEAkCWK9ab2/bj7
-4IMW9hBtFvXjJov/I8+GOF9h4yNFVgM=
-=fE32
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIdXLQAKCRB4tDGHoIJi
+0rA9AQDwMUmhZfjdCs786HEk1DGNkXy1ugjH0Nc6pP0ntHEGHgEAupMpRQXYl1g0
+kmfIm+oR6urnbBisNHxTkzBCjokx4g4=
+=BCFa
 -----END PGP SIGNATURE-----
 
---YndCLQNRUhwsHafT--
+--sGt7s4jlNXh0bRiH--
