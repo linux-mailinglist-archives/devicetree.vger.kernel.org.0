@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59EDC72C9D0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 535D472C9D3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238171AbjFLPXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 11:23:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50156 "EHLO
+        id S239527AbjFLPXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 11:23:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239457AbjFLPXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:23:01 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C67BF1BF
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:22:58 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f6e13940daso46525395e9.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:22:58 -0700 (PDT)
+        with ESMTP id S238783AbjFLPXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:23:00 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84EC1E57
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:22:59 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f6d38a140bso33243185e9.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:22:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686583377; x=1689175377;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Uuj0XULtFaQvAuryQsrKeMY0XLRwJecu37s7Jri30GU=;
-        b=rxeKG198QHG4ADhFMnEXxJct6s32p5YodueNk1XzgcqP4fNL6Ypdnze7OBnOnJaG8j
-         VZW81nFHAEny4x35s0LouP5OTg+nE6Plg/jOyFFcbi+4wGr3sN2UH5zDWNw9dJQgkEHg
-         qF5rnmeZwaOtEP08AnTrW8blcCSC320YZUQhXQpHMZg4mNylSdWmjeq01QAtHCg/btDR
-         JQp2SbstKco5erVgrf6aVrWEL65gvEO3mWGmCz/OQ7+0/3KJS7JNEUeUtcfIvAb//O1A
-         WT81C2dXfxZHUrKI8Od8DnOroQZXA8miSgkBEtMRlsJ/Kp7VOne00hBzNQgV0QXpGCew
-         0+iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686583377; x=1689175377;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1686583378; x=1689175378;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Uuj0XULtFaQvAuryQsrKeMY0XLRwJecu37s7Jri30GU=;
-        b=PmVvvLAOR/MgMKHbqEJEbRuV/e/bIZYy9CUimq+dlq7p+Re/1RIqnctRSsbuhWm8iS
-         IcaNnZoMAt0uRsw3UbB4N6pdW+4tePE6GGmidzUW8o5QojvRLSzAgo23u8H8WcGYGUmO
-         twrXvKxen6oLcbp+jm8Avq0KFhyHa4X+1uvkWzGsuxjvRNev9j0bGSOqLgbRSw7+t+Yl
-         XRv8mtZCaE2bMNgMXM/dAVHgWCqUr46yeFXaY/QBJhVF/8MRzfbptNoCd9T2elGf97N+
-         6avMO0xldHpVzO/6xefUAknnbamAnTPfLveMzKs5uKFyu/EIOs7dDJ31jK/GuSBK+zee
-         oPCQ==
-X-Gm-Message-State: AC+VfDymygSwrI0piZl70HmWze7CFWhcUE1UgzCHl+nR+4xnLOx9Sldq
-        tT4yPC2rUCSwG4uUi2y8PVjN0Q==
-X-Google-Smtp-Source: ACHHUZ4+8Wc/LhkGQI5K7JEa4ang2eelkn6xRDnu4fOn7Eq0LoQO/Vi5kALxMojL4fgHB8Xo7vKGow==
-X-Received: by 2002:a05:600c:255:b0:3f6:53a:6665 with SMTP id 21-20020a05600c025500b003f6053a6665mr8009562wmj.19.1686583377055;
+        bh=j2P1a0KOBTLZC+uophPc49gdJwmZcbyKH/gBQdQP/Mk=;
+        b=WIUZ21+fOCK0ijBgB4RtC6H+xxxnX+qpQ6WPHdf4uRaaQRTc7KxwEbA9yqfF+uHRUV
+         jU3WyzWR0iS7TbpsyOJTmDTCELfDsOqr9nOaTQgOIHZMVj5hWComsMsJQD2Cuqcr0nM7
+         uf0lfV2HfUS/Ll7rzxjxboio/ACzzjQ6T2ZaHrNxta0pkhYiamNSbUNkLYkEKpyCW+li
+         6SeoRQYpYzFpQhbBhUwFcpMkh5Tsz30aHG5Xa0uNxuFk62/8TtXWQHZaLFNFn/HUOEjS
+         QrmXOWHv1OV/MJiCblTKgJ1FAteDI0mUHsfyjrckEAfoAlAT4+7ySCxdxvhtOvWOrEDs
+         +qyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686583378; x=1689175378;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j2P1a0KOBTLZC+uophPc49gdJwmZcbyKH/gBQdQP/Mk=;
+        b=QlfNRCYaqwTx0jyi/ZkMTCha2dnLz7AWElO7bIYw5MiaLCTN2sYGT4T6YTeM12W0u5
+         lt6An0jZXzFRfAEBUBlkGdTG8ULIS4L+g/u9XwTNQXIsR0U57IDjw/WzKY1C1FwVP9Zq
+         DZjOOFiqBTTiQFKbzlylZLAPfj+ztdj+EK95sC1hPYWXiKJTonvNPGSJNm8UboNxHNVU
+         qiIyMa5stLUtPqXiw8zL2viZVb8oYv7sPNbJQj4JWJFJz6OFi5aHoHe/tlHZseWgq99L
+         rupxN7+vlu5mHcMTwE/J/ViIClR8lW/sq2t/f4UffzN2uZPH7xW1jCMFQ9xeXSMO6bzS
+         6TRA==
+X-Gm-Message-State: AC+VfDzQZ+aV9+kaivZ1dmFWwaDmkZNG+l64lhjztxoNPNA6JeM5rRqL
+        5Tk5IlHtOoBwTm84RIAhY9yJRw==
+X-Google-Smtp-Source: ACHHUZ4A+zPVbNtrBFJx3oJ4Zf1+tvbSu37MA4+/+B8rokYRxCU/eGiUrDSAe0nOQIMHUafwojlwOA==
+X-Received: by 2002:a05:600c:1c15:b0:3f7:aee8:c23a with SMTP id j21-20020a05600c1c1500b003f7aee8c23amr9973614wms.19.1686583377942;
         Mon, 12 Jun 2023 08:22:57 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id l7-20020a7bc347000000b003f4248dcfcbsm11876512wmj.30.2023.06.12.08.22.56
+        by smtp.gmail.com with ESMTPSA id l7-20020a7bc347000000b003f4248dcfcbsm11876512wmj.30.2023.06.12.08.22.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 08:22:56 -0700 (PDT)
+        Mon, 12 Jun 2023 08:22:57 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v4 0/4] arm64: qcom: sm8550: enable PMIC devices
-Date:   Mon, 12 Jun 2023 17:22:48 +0200
-Message-Id: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v4-0-a288f24af81b@linaro.org>
+Date:   Mon, 12 Jun 2023 17:22:49 +0200
+Subject: [PATCH v4 1/4] arm64: dts: qcom: pm8550: add PWM controller
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEg4h2QC/53PQW7DIBAF0KtErDsVngEHZ9V7VFlgwDaSAwgcK
- 1Xkuxenm1ZdJcs/i/f/3Flx2bvCToc7y271xcdQg3g7MDPpMDrwtmaGHIlLlLDE5A2Ui5KSwzW
- VJTt9gfST5zSCXcBQI6S0iAO2rEq9Lg76rIOZqhWu81yPKbvB3x7Vn+eaJ1+WmL8eS9Zmvz5Xu
- jbAoZdKkD1K3SJ9zD7oHN9jHvcRz2PCSntsef2i47+xfe2KLyzEimrqVcdbLozo/qH0AkoVVQr
- JOUEDDeYPum3bN9HeT0LjAQAA
+Message-Id: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v4-1-a288f24af81b@linaro.org>
+References: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v4-0-a288f24af81b@linaro.org>
+In-Reply-To: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v4-0-a288f24af81b@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -70,20 +68,20 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1559;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=875;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=Xg44Q0NEL8frWaOLXdk+yFgGi/1YYP5AYukfj8+ycW8=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkhzhMZdPDEnFjLZ5hp8RgXNs+zeoS+++3yMCAKcpN
- EC4QyQmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIc4TAAKCRB33NvayMhJ0eB6EA
- C8LcR6rK3VkoylF4vMMSMIHmFd0poQCe8xecbJTHo4il9cKVaB8CT3fqU7AxPyCtHCt3BlGGMVZO7Y
- hNaQOb1eJl+6PARDErfaPyRN1Gt1cn0UhVZg4xtEofk6Hsz9hg48O4SFLwXXRfqoD+TjH6gYU18ySd
- u3jUdrsz8qOTmp59QgrPQ8O0xWd/tzFsFvi0f4oUtu9Ms1+aY9xlt1vMxHkF+f2AmC/1xGMQgtIikC
- YTgDIQSE4v3wH1QajOQ3sfCDuXsXtN4Dc1dOBftfiAdJVJ7HeXRQnyRDaIBIPOlGgabgGJY/wZxqvh
- Xeh6x1fYddgkPLAxwtXS3ns9kzMB5hS9umlebRY32nve1Y2Fhdyxm4vxvRaM0CzGE1e/utALDHTo+7
- u6kdzglctd0ncQMFW47AlI7eYQecapMoLD/LojUCERzBEbaoXbQ8LvWa36KKku/oYzj56F4JVga396
- gJgVrnTl4NKQRvp9X/GWR3NY19HzssCQfsolMq1p3ZUvEFUyTp196ICmgydoPW13A/rsoC8oi/SCqt
- vGprrujZSDu0oS4yBCwsDqGh81nO8bdaTLSHanimb6hqzxsaz5yERq8R6VvvxbsgnfoMflN4CYoqu1
- gK9WgF3jcPYKXqlBjXfOsH4oV9qI2wcE/viC4jyZIcet8UrN4mfAzHV8vcgQ==
+ bh=AHgyGipOMjlGOCP8Y/c8QiME6jknRqzIvtxw7+SzMLM=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkhzhNffOKbpqOTlJ7ehlprja6Mfz8TolaYO5f5kla
+ jQvWi6uJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIc4TQAKCRB33NvayMhJ0bDID/
+ 9nJV71LhuBdLg0LLppUmmcErYY9LFxIkgGjPtAZgImSBHKcfcvQ5P3kj6ztO9/ZCPta5fcKpwqJEOn
+ e02yMocpoEuK9qTv3jIHlClAyVT/kkbZp4Kone3AVlm1iHpz11yfMH5LNc4xdwne8eMFN4E6INp2C/
+ sKSQzv5vege2OzYDQfMTp3kj6gXVUjj6KAC5h+N8+DnZIymwCgUSGqDurOcJ4/UawGdPaNV64jNWdi
+ rRG+Vieujrwbmqx2DIeCqKjFCxlUgYy8NpXHfg6JSKzWJpzvpEe2nuxQ7+AQksfqdUOcMSZoCMy2Sq
+ LrR7E8tk41P2miFwJquH/Vgzi2Uil9ZsuaYm/Zq/cq2fky451yS8OHHQLa37218mQcwuFIBkuzu1aZ
+ TkwrulhOK9tPwoFpXK8x207JlXRMgj8H6Xixd/nzyboVtg/eOilYHfEwP+57AkGw1AKW8xRqJn4n/a
+ fnCjdLzdTStUl0lJf5SX8ZN7CZLcVBoYCwHCXLkLybYbAwix0c/wV3W+nOzC9aifTEF2rh4berQ0Qz
+ uma/XuzoPnEW19ooSfyYr4szIZGRARqNCWhyMd5Ox4bU7g4BDcYrZcPtZYWefEZNab+LFa48DNrUMd
+ MLTMrhc+HT1zH+zpavdX8OZ9wvnDJVgixjGpFacBXzmOkCIk2dFn3nBf7c6w==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -96,48 +94,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the following PMIC devices:
-- PWM RGB LED
-- RTC
-- Volume and Power buttons
+Add the PWM function to the pm8550 dtsi, this is usually used
+to drive RGB leds on platforms using this PMIC.
 
-on the SM8550 boards.
-
-No dependencies when applied on next-20230609
-
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v4:
-- rebased on next-20230609
-- Link to v3: https://lore.kernel.org/r/20230525-topic-sm8550-upstream-pm8550-lpg-dt-v3-0-8823ee43f3fc@linaro.org
+ arch/arm64/boot/dts/qcom/pm8550.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Changes in v3:
-- Added all review tags
-- Fixed pinctrl-names/-0 order in last patch
-- Link to v2: https://lore.kernel.org/r/20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-0-a3b890604c49@linaro.org
+diff --git a/arch/arm64/boot/dts/qcom/pm8550.dtsi b/arch/arm64/boot/dts/qcom/pm8550.dtsi
+index 33f357a80636..db3d5c17a77d 100644
+--- a/arch/arm64/boot/dts/qcom/pm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8550.dtsi
+@@ -61,5 +61,15 @@ pm8550_flash: led-controller@ee00 {
+ 			reg = <0xee00>;
+ 			status = "disabled";
+ 		};
++
++		pm8550_pwm: pwm {
++			compatible = "qcom,pm8550-pwm", "qcom,pm8350c-pwm";
++
++			#address-cells = <1>;
++			#size-cells = <0>;
++			#pwm-cells = <2>;
++
++			status = "disabled";
++		};
+ 	};
+ };
 
-Changes in v2:
-- Always enable RTC in a new patch
-- Drop patch enabling RTC on boards
-- Move PON names to meet alphabetical order
-- Link to v1: https://lore.kernel.org/r/20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-0-4d5d7602f290@linaro.org
-
----
-Neil Armstrong (4):
-      arm64: dts: qcom: pm8550: add PWM controller
-      arm64: dts: qcom: sm8550-qrd: add notification RGB LED
-      arm64: dts: qcom: pmk8550: always enable RTC PMIC device
-      arm64: dts: qcom: sm8550-qrd: enable PMIC Volume and Power buttons
-
- arch/arm64/boot/dts/qcom/pm8550.dtsi    | 10 ++++++
- arch/arm64/boot/dts/qcom/pmk8550.dtsi   |  1 -
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 63 +++++++++++++++++++++++++++++++++
- 3 files changed, 73 insertions(+), 1 deletion(-)
----
-base-commit: 53ab6975c12d1ad86c599a8927e8c698b144d669
-change-id: 20230525-topic-sm8550-upstream-pm8550-lpg-dt-c31455d22f26
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
