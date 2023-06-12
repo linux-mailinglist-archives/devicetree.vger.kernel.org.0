@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A6972C276
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 13:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6896C72C287
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 13:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237290AbjFLLGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 07:06:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43058 "EHLO
+        id S238328AbjFLLJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 07:09:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238221AbjFLLGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 07:06:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C935AD25;
-        Mon, 12 Jun 2023 03:53:56 -0700 (PDT)
-X-UUID: 6b4006b4090f11eeb20a276fd37b9834-20230612
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=WuLcXYdyZj0kxuMtUpOW4fppbN422IheP8ldjLAPRmc=;
-        b=mmtuW9R8K5gj8wY0diQQbYfj+Krghoi5mo/VrSxhTrXJ3fJoE70Lub6qM76idURRV6gCZgF7qlO4lU0R3QTnpXUM0osKhWIPyQaIEvOGrF3AE0T+nw/8i8Z9Hw63+j9fE/wq2nJTOH9CIsOvcFvIMUnaev56tXoBzJ9JKYiOxn0=;
-X-CID-CACHE: Type:Local,Time:202306121845+08,HitQuantity:1
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.26,REQID:57d5be1d-1f9c-4c9d-ac4c-aedbc6c90523,IP:0,U
-        RL:25,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:cb9a4e1,CLOUDID:194d5a3e-7aa7-41f3-a6bd-0433bee822f3,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-        NO
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 6b4006b4090f11eeb20a276fd37b9834-20230612
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <maso.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1374289385; Mon, 12 Jun 2023 18:53:52 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 12 Jun 2023 18:53:51 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 12 Jun 2023 18:53:51 +0800
-From:   Maso Hunag <maso.huang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Ren Zhijie <renzhijie2@huawei.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Maso Huang <maso.huang@mediatek.com>
-Subject: [PATCH 7/7] ASoC: dt-bindings: mediatek,mt79xx-afe: add audio afe document
-Date:   Mon, 12 Jun 2023 18:52:50 +0800
-Message-ID: <20230612105250.15441-8-maso.huang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230612105250.15441-1-maso.huang@mediatek.com>
-References: <20230612105250.15441-1-maso.huang@mediatek.com>
+        with ESMTP id S237720AbjFLLIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 07:08:49 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36A4558B
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 03:57:34 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-56d3d7a5b84so3469677b3.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 03:57:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686567454; x=1689159454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FweiWQAKeJ1qYvQwzXHdf5IwJMN0iNTbE1K9BK6H9xg=;
+        b=WnDiBYhrr8ywVzCLEe4cmZxqw6YeuzJj5kGb3e9xBpYCsF4tbkjSAHM0lKnXCio0F5
+         KozJRq3iCeWP1uGoP5A7lCdZm4YCww49oj1wCin/CkDPVGVjAYIH0Z+AIV/Af+hdZ21n
+         qteRcYtgwDBdXRqRluQz4pcRpjDvVdsr4AsZw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686567454; x=1689159454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FweiWQAKeJ1qYvQwzXHdf5IwJMN0iNTbE1K9BK6H9xg=;
+        b=bjDEC4512Lku22ICMJRXgH80VnEXlCAnF/dWWtXAirN9YYxqr05NOKmnDaN+NhcKJv
+         ealk8h4nVi0XI+MtvvR2qPiSmo07qiIdW5SVL+LzHsRWWQa8uIoErWv0gwh9/3Ly61ET
+         Y0fgMTneXc9jrwApqOr3cEsOlZd4sqlQIwS4E7kQaHt7pgJQFUZX24PPpMX+hQr5OOXH
+         Z8Ne/YPc3UoetMTkU4k3S4ew/ALH/K2uAc1qO2oyqEdMlMkRm965GVxGvVny9492KMq3
+         UGuqcX1DuRiD2UeIEfETAgAcZWen/o58Oos+jNmrIkb0ZjuwmEFIhnvjgNrsbOBU36Kg
+         VxWw==
+X-Gm-Message-State: AC+VfDxJSwTJCtmvw4sdgK5TlzZK/znsaGBa18/KXRvHHyadPvd6v77L
+        V0FyrDjgUu5HvtyRXZhateJVzEynKB7qxA7Pz/v+zA==
+X-Google-Smtp-Source: ACHHUZ5DiVPqDVDXyr1wW3qzzIDwHKIlLI2Yp2xZlxBWD7laHCQv1Vj9L02XabmKUv0TtDZGQLdqNKnCpn3hBA1KwtY=
+X-Received: by 2002:a0d:cc56:0:b0:56c:fd58:ac27 with SMTP id
+ o83-20020a0dcc56000000b0056cfd58ac27mr6184234ywd.8.1686567453877; Mon, 12 Jun
+ 2023 03:57:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+References: <20230609083009.2822259-1-wenst@chromium.org> <20230609083009.2822259-4-wenst@chromium.org>
+In-Reply-To: <20230609083009.2822259-4-wenst@chromium.org>
+From:   Fei Shao <fshao@chromium.org>
+Date:   Mon, 12 Jun 2023 18:56:57 +0800
+Message-ID: <CAJ66y9H91WaRxaZzXRYc5LN9t+M+ZpEy6nbgo=W1kOn_Yu_BCg@mail.gmail.com>
+Subject: Re: [PATCH 3/9] regulator: mt6358: Merge VCN33_* regulators
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,124 +73,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maso Huang <maso.huang@mediatek.com>
+On Fri, Jun 9, 2023 at 4:30=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> wr=
+ote:
+>
+> The VCN33_BT and VCN33_WIFI regulators are actually the same regulator,
+> having the same voltage setting and output pin. There are simply two
+> enable bits that are ORed together to enable the regulator.
+>
+> Having two regulators representing the same output pin is misleading
+> from a design matching standpoint, and also error-prone in driver
+> implementations. If consumers try to set different voltages on either
+> regulator, the one set later would override the one set before. There
+> are ways around this, such as chaining them together and having the
+> downstream one act as a switch. But given there's only one output pin,
+> such a workaround doesn't match reality.
+>
+> Remove the VCN33_WIFI regulator. During the probe phase, have the driver
+> sync the enable status of VCN33_WIFI to VCN33_BT. Also drop the suffix
+> so that the regulator name matches the pin name in the datasheet.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  drivers/regulator/mt6358-regulator.c       | 65 +++++++++++++++++-----
+>  include/linux/regulator/mt6358-regulator.h |  6 +-
+>  2 files changed, 52 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6=
+358-regulator.c
+> index c9e16bd092f6..faf6b0757019 100644
+> --- a/drivers/regulator/mt6358-regulator.c
+> +++ b/drivers/regulator/mt6358-regulator.c
+> @@ -277,7 +277,7 @@ static const unsigned int vcama_voltages[] =3D {
+>         2800000, 2900000, 3000000,
+>  };
+>
+> -static const unsigned int vcn33_bt_wifi_voltages[] =3D {
+> +static const unsigned int vcn33_voltages[] =3D {
+>         3300000, 3400000, 3500000,
+>  };
+>
+> @@ -321,7 +321,7 @@ static const u32 vcama_idx[] =3D {
+>         0, 7, 9, 10, 11, 12,
+>  };
+>
+> -static const u32 vcn33_bt_wifi_idx[] =3D {
+> +static const u32 vcn33_idx[] =3D {
+>         1, 2, 3,
+>  };
+>
+> @@ -566,12 +566,8 @@ static struct mt6358_regulator_info mt6358_regulator=
+s[] =3D {
+>                    MT6358_LDO_VCAMA1_CON0, 0, MT6358_VCAMA1_ANA_CON0, 0xf=
+00),
+>         MT6358_LDO("ldo_vemc", VEMC, vmch_vemc_voltages, vmch_vemc_idx,
+>                    MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
+> -       MT6358_LDO("ldo_vcn33_bt", VCN33_BT, vcn33_bt_wifi_voltages,
+> -                  vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_0,
+> -                  0, MT6358_VCN33_ANA_CON0, 0x300),
+> -       MT6358_LDO("ldo_vcn33_wifi", VCN33_WIFI, vcn33_bt_wifi_voltages,
+> -                  vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_1,
+> -                  0, MT6358_VCN33_ANA_CON0, 0x300),
+> +       MT6358_LDO("ldo_vcn33", VCN33, vcn33_voltages, vcn33_idx,
+> +                  MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x3=
+00),
+>         MT6358_LDO("ldo_vcama2", VCAMA2, vcama_voltages, vcama_idx,
+>                    MT6358_LDO_VCAMA2_CON0, 0, MT6358_VCAMA2_ANA_CON0, 0xf=
+00),
+>         MT6358_LDO("ldo_vmc", VMC, vmc_voltages, vmc_idx,
+> @@ -662,12 +658,8 @@ static struct mt6358_regulator_info mt6366_regulator=
+s[] =3D {
+>                    MT6358_LDO_VMCH_CON0, 0, MT6358_VMCH_ANA_CON0, 0x700),
+>         MT6366_LDO("ldo_vemc", VEMC, vmch_vemc_voltages, vmch_vemc_idx,
+>                    MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
+> -       MT6366_LDO("ldo_vcn33_bt", VCN33_BT, vcn33_bt_wifi_voltages,
+> -                  vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_0,
+> -                  0, MT6358_VCN33_ANA_CON0, 0x300),
+> -       MT6366_LDO("ldo_vcn33_wifi", VCN33_WIFI, vcn33_bt_wifi_voltages,
+> -                  vcn33_bt_wifi_idx, MT6358_LDO_VCN33_CON0_1,
+> -                  0, MT6358_VCN33_ANA_CON0, 0x300),
+> +       MT6366_LDO("ldo_vcn33", VCN33, vcn33_voltages, vcn33_idx,
+> +                  MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x3=
+00),
+>         MT6366_LDO("ldo_vmc", VMC, vmc_voltages, vmc_idx,
+>                    MT6358_LDO_VMC_CON0, 0, MT6358_VMC_ANA_CON0, 0xf00),
+>         MT6366_LDO("ldo_vsim2", VSIM2, vsim_voltages, vsim_idx,
+> @@ -690,13 +682,56 @@ static struct mt6358_regulator_info mt6366_regulato=
+rs[] =3D {
+>                     MT6358_LDO_VSRAM_CON1, 0x7f),
+>  };
+>
+> +static int mt6358_sync_vcn33_setting(struct device *dev)
+> +{
+> +       struct mt6397_chip *mt6397 =3D dev_get_drvdata(dev->parent);
+> +       unsigned int val;
+> +       int ret;
+> +
+> +       /*
+> +        * VCN33_WIFI and VCN33_BT are two separate enable bits for the s=
+ame
+> +        * regulator. They share the same voltage setting and output pin.
+> +        * Instead of having two potentially conflicting regulators, just=
+ have
+> +        * one VCN33 regulator. Sync the two enable bits and only use one=
+ in
+> +        * the regulator device.
+> +        */
+> +       ret =3D regmap_read(mt6397->regmap, MT6358_LDO_VCN33_CON0_1, &val=
+);
+> +       if (ret) {
+> +               dev_err(dev, "Failed to read VCN33_WIFI setting\n");
+> +               return ret;
+> +       }
+> +
+> +       if (!(val & BIT(0)))
+> +               return 0;
+> +
+> +       /* Sync VCN33_WIFI enable status to VCN33_BT */
+> +       ret =3D regmap_update_bits(mt6397->regmap, MT6358_LDO_VCN33_CON0_=
+0, BIT(0), BIT(0));
+> +       if (ret) {
+> +               dev_err(dev, "Failed to sync VCN33_WIFI setting to VCN33_=
+BT\n");
+> +               return ret;
+> +       }
+> +
+> +       /* Disable VCN33_WIFI */
+> +       ret =3D regmap_update_bits(mt6397->regmap, MT6358_LDO_VCN33_CON0_=
+1, BIT(0), 0);
+> +       if (ret) {
+> +               dev_err(dev, "Failed to disable VCN33_BT\n");
 
-Add mt79xx audio afe document.
+I think it should be "VCN33_WIFI" in the error message?
 
-Signed-off-by: Maso Huang <maso.huang@mediatek.com>
----
- .../bindings/sound/mediatek,mt79xx-afe.yaml   | 102 ++++++++++++++++++
- 1 file changed, 102 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml
-new file mode 100644
-index 000000000000..11ef1cfdf49b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mediatek,mt79xx-afe.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek AFE PCM controller for MT79xx
-+
-+maintainers:
-+  - Maso Huang <maso.huang@mediatek.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: mediatek,mt79xx-afe
-+      - items:
-+          - enum:
-+              - mediatek,mt7981-afe
-+              - mediatek,mt7986-afe
-+              - mediatek,mt7988-afe
-+          - const: mediatek,mt79xx-afe
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 5
-+    items:
-+      - description: audio bus clock
-+      - description: audio 26M clock
-+      - description: audio intbus clock
-+      - description: audio hopping clock
-+      - description: audio pll clock
-+      - description: mux for pcm_mck
-+      - description: audio i2s/pcm mck
-+
-+  clock-names:
-+    minItems: 5
-+    items:
-+      - const: aud_bus_ck
-+      - const: aud_26m_ck
-+      - const: aud_l_ck
-+      - const: aud_aud_ck
-+      - const: aud_eg2_ck
-+      - const: aud_sel
-+      - const: aud_i2s_m
-+
-+  assigned-clocks:
-+    minItems: 3
-+    maxItems: 4
-+
-+  assigned-clock-parents:
-+    minItems: 3
-+    maxItems: 4
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - assigned-clocks
-+  - assigned-clock-parents
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/mediatek,mt7981-clk.h>
-+
-+    afe@11210000 {
-+        compatible = "mediatek,mt7981-afe","mediatek,mt79xx-afe";
-+        reg = <0x11210000 0x9000>;
-+        interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&infracfg_ao CLK_INFRA_AUD_BUS_CK>,
-+                 <&infracfg_ao CLK_INFRA_AUD_26M_CK>,
-+                 <&infracfg_ao CLK_INFRA_AUD_L_CK>,
-+                 <&infracfg_ao CLK_INFRA_AUD_AUD_CK>,
-+                 <&infracfg_ao CLK_INFRA_AUD_EG2_CK>,
-+                 <&topckgen CLK_TOP_AUD_SEL>;
-+        clock-names = "aud_bus_ck",
-+                      "aud_26m_ck",
-+                      "aud_l_ck",
-+                      "aud_aud_ck",
-+                      "aud_eg2_ck",
-+                      "aud_sel";
-+        assigned-clocks = <&topckgen CLK_TOP_AUD_SEL>,
-+                          <&topckgen CLK_TOP_A1SYS_SEL>,
-+                          <&topckgen CLK_TOP_AUD_L_SEL>,
-+                          <&topckgen CLK_TOP_A_TUNER_SEL>;
-+        assigned-clock-parents = <&topckgen CLK_TOP_CB_APLL2_196M>,
-+                                 <&topckgen CLK_TOP_APLL2_D4>,
-+                                 <&topckgen CLK_TOP_CB_APLL2_196M>,
-+                                 <&topckgen CLK_TOP_APLL2_D4>;
-+    };
-+
-+...
--- 
-2.18.0
-
+Regards,
+Fei
