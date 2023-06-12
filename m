@@ -2,94 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C41C872D321
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7420972D329
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:20:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236028AbjFLVTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 17:19:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
+        id S236013AbjFLVUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 17:20:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236078AbjFLVTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:19:23 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BCAE6A7E
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:12:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686604301;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=UVvZ3v/vxKNyCI7w7GwLJIJ0X+T6wDAbj+0uoM6y2a8=;
-        b=e/sKaIwScRIgPP7/ixe8nNh/wErjK1mgelvQlJoBLyJLGZTW/fR2T4bhSVui28jbdIQ3Pu
-        33fmkUvKwt1AatXHYaEieTv7XGPhlkIpkW5hKGo29kk2+xsEgcyL6dIiUl8zWH9inAV1sX
-        RrDQonImr1GyUBuP37Gfz+/JZTVlvkk=
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
- [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-613-oN8Po01ZOT6Q6jAlIQHAIA-1; Mon, 12 Jun 2023 17:11:40 -0400
-X-MC-Unique: oN8Po01ZOT6Q6jAlIQHAIA-1
-Received: by mail-ot1-f70.google.com with SMTP id 46e09a7af769-6b163346b7eso3003655a34.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:11:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686603996; x=1689195996;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S238710AbjFLVUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:20:06 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5809F1BFD
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:22 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51873c3da6fso24520a12.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686604460; x=1689196460;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UVvZ3v/vxKNyCI7w7GwLJIJ0X+T6wDAbj+0uoM6y2a8=;
-        b=en6P3aIVmjg6bJZOBfXn7ftym8ehX4eOduTnBCBW8oH6236IXP5uainwq/dA4g+SH3
-         ncgJHOYFDGSCaatbNNYXTK82xrLe7B/4/pFH5mzjrqvK8buk0R9kH6o3J0kVHqYPPlc6
-         GGH8Pj9hJM2A1ZRQ8nNVsA4rhPqEM7vaXqwh9sWcf807N+bJaszWGMEVrCzMOFeibxqi
-         uCGGO276Dk2iJcf4Ts60VwjLf6R0VVDb27eaJm5phQfuULT6LRNCyvp7aoiwowloJ8wd
-         /3NIN0k4y6DMYUzVnUZb+6UCW+GOs1H3xyHjzPPO9CBMQss6htHKETF43qTJBzBKspAG
-         cmHw==
-X-Gm-Message-State: AC+VfDxcc+vFhYlsCxp8dylGHuOTXwm+Jlapnhh+IDD6JkOSO9HhxjAc
-        qiVrPF4T+o0xZ1wL8qmmvGOHPrviEIB6s/wWVix4ojYtuFV+kPDQOYhw527XzUl3Jhx22FU43/9
-        KUn3DNdzvWVfESRT+UQUP6A==
-X-Received: by 2002:a05:6870:770d:b0:1a6:7ae5:8e31 with SMTP id dw13-20020a056870770d00b001a67ae58e31mr2707680oab.15.1686603996096;
-        Mon, 12 Jun 2023 14:06:36 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ5l8CIOc/fjbn/4dLBsqStqDJVa3ICb/fLC7IjnpwzGvy8FQcOZ753YVKUTI3PaLVSqB/0bAw==
-X-Received: by 2002:a05:6870:770d:b0:1a6:7ae5:8e31 with SMTP id dw13-20020a056870770d00b001a67ae58e31mr2707670oab.15.1686603995860;
-        Mon, 12 Jun 2023 14:06:35 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
-        by smtp.gmail.com with ESMTPSA id nw27-20020a056870bb1b00b001a6825ed5cfsm2251974oab.4.2023.06.12.14.06.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 14:06:35 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 16:06:32 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        bh=piafe3QLAC9LHm4AYATazedwVeQ9NAHsKdbJCFfjx24=;
+        b=jvvkuaRNcUIgjnFQzJVSHs6ytBdktN8Ix4OlqNlPZTaE70kQTwCrec4JdyQjlDXsZK
+         cEZtCMQ8lo7SF6FfY8sbAIT9WzsGkY3Q2eE9D4NctxYAYwJktff+Me93hX07+y7bwbun
+         NSQ2K3igJffsdDAxMKJ7epdX9KQQCMp132M8c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686604460; x=1689196460;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=piafe3QLAC9LHm4AYATazedwVeQ9NAHsKdbJCFfjx24=;
+        b=FRrJGu/YBW8dZHZks7f6U9e1auhxS87C3/+k8pKFZYUHkopteeTZwej9jmEMJCjkDm
+         gojPPFe8DY/trm8yPTQTiVMEg+0hOVwBQXLN7dznfwQD1zdyInDz8ThanZLTA/OxNvab
+         lvYD65cZImVIqBfW4P5lCfYL89qkOPg+qe26WVXYLgiwFoLFm3sr+V9xfbKMa9xJKtOg
+         um7HKa/iabJrw9wBaI7JZjaeKDgC30HGZL29ZOIF3jZ0vniQwTafPnU5Dx+BPR8d7XZM
+         ZBqYV/jXnZ1DYcmxGYJq3jcMoYxRZOnADpRe0TMgERnlX+1tat0z1zqve1eYuhVac+b1
+         HG2w==
+X-Gm-Message-State: AC+VfDzxEwfoP+Cm3vp5TtKHm/urulcURowJl6xNnW43tOycQRMVdcpn
+        hr2RtIGtuv+orXudDU68x2+HkhA3vRWpNI0JAYV1QA==
+X-Google-Smtp-Source: ACHHUZ6JyDAMwoiU4T/+VTr8xOviwcro9x1LkBOi7+pn0hZ2p6nECwkwhYWEGwwijoBBM/5senQtSA==
+X-Received: by 2002:a17:907:31ca:b0:978:a01c:3698 with SMTP id xf10-20020a17090731ca00b00978a01c3698mr10946186ejb.6.1686604460516;
+        Mon, 12 Jun 2023 14:14:20 -0700 (PDT)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
+        by smtp.gmail.com with ESMTPSA id l15-20020a170906a40f00b0097d9e2b5f9csm4241953ejz.170.2023.06.12.14.14.20
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jun 2023 14:14:20 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-513ea2990b8so4178a12.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:20 -0700 (PDT)
+X-Received: by 2002:a50:9e81:0:b0:514:95d4:c2bb with SMTP id
+ a1-20020a509e81000000b0051495d4c2bbmr51305edf.2.1686604438620; Mon, 12 Jun
+ 2023 14:13:58 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230607215224.2067679-1-dianders@chromium.org>
+ <jehxiy3z4aieop5qgzmlon4u76n7gvt3kc6knxhb5yqkiz3rsp@mx27m75sx43r>
+ <CAD=FV=Wr7Xatw1LsofiZ5Xx7WBvAuMMdq4D5Po1yJUC1VdtZdg@mail.gmail.com> <z7wi4z4lxpkhvooqhihlkpubyvueb37gvrpmwk6v7xwj2lm6jn@b7rwyr5ic5x5>
+In-Reply-To: <z7wi4z4lxpkhvooqhihlkpubyvueb37gvrpmwk6v7xwj2lm6jn@b7rwyr5ic5x5>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 12 Jun 2023 14:13:46 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XnANRM=+2D9+DzcXx9Gw6iKKQsgkAiq8=izNEN-91f_Q@mail.gmail.com>
+Message-ID: <CAD=FV=XnANRM=+2D9+DzcXx9Gw6iKKQsgkAiq8=izNEN-91f_Q@mail.gmail.com>
+Subject: Re: [PATCH v2 00/10] drm/panel and i2c-hid: Allow panels and
+ touchscreens to power sequence together
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 15/26] net: stmmac: dwmac-qcom-ethqos: add support for
- the optional phy-supply
-Message-ID: <20230612210632.agp4ybeseujblao2@halaney-x13s>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-16-brgl@bgdev.pl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230612092355.87937-16-brgl@bgdev.pl>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        linux-kernel@vger.kernel.org, hsinyi@google.com,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        linux-arm-msm@vger.kernel.org,
+        Chris Morgan <macroalpha82@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -97,49 +96,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:23:44AM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> On sa8775p-ride we need to enable the power supply for the external PHY.
+Hi,
 
-Is this for the external phy? It doesn't seem like it from the board
-schematic I have... the regulator never makes it out of the black box that
-is the SIP/SOM if I'm reading right.
+On Mon, Jun 12, 2023 at 9:03=E2=80=AFAM Maxime Ripard <mripard@kernel.org> =
+wrote:
+>
+> > > I guess we can have
+> > > something much simpler with a bunch of helpers that would register a
+> > > i2c-hid device and would be called by the panel driver itself.
+> > >
+> > > And then, since everything is self-contained managing the power state
+> > > becomes easier as well.
+> >
+> > Can you give me more details about how you think this would work?
+> >
+> > When you say that the panel would register an i2c-hid device itself,
+> > do you mean that we'd do something like give a phandle to the i2c bus
+> > to the panel and then the panel would manually instantiate the i2c-hid
+> > device on it? ...and I guess it would need to be a "subclass" of
+> > i2c-hid that knew about the connection to the panel code? This
+> > subclass and the panel code would communicate with each other about
+> > power sequencing needs through some private API (like MFD devices
+> > usually do?). Assuming I'm understanding correctly, I think that could
+> > work.
+>
+> I guess what I had in mind is to do something similar to what we're
+> doing with hdmi-codec already for example.
 
-My (poor) understanding was this was for the serdes phy that's doing the
-conversion to SGMII before hitting the board... good chance I'm wrong
-though.
+By this you mean "rockchip,hdmi-codec" and "mediatek,hdmi-codec", right?
 
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 2f6b9b419601..21f329d2f7eb 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -8,6 +8,7 @@
->  #include <linux/phy.h>
->  #include <linux/phy/phy.h>
->  #include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
->  
->  #include "stmmac.h"
->  #include "stmmac_platform.h"
-> @@ -692,6 +693,10 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto out_config_dt;
->  
-> +	ret = devm_regulator_get_enable_optional(dev, "phy");
-> +	if (ret < 0 && ret != -ENODEV)
-> +		goto out_config_dt;
-> +
->  	ethqos->serdes_phy = devm_phy_optional_get(dev, "serdes");
->  	if (IS_ERR(ethqos->serdes_phy)) {
->  		ret = PTR_ERR(ethqos->serdes_phy);
-> -- 
-> 2.39.2
-> 
 
+> We have several logical components already, in separate drivers, that
+> still need some cooperation.
+>
+> If the panel and touchscreen are on the same i2c bus, I think we could
+> even just get a reference to the panel i2c adapter, get a reference, and
+> pass that to i2c-hid (with a nice layer of helpers).
+
+Just for reference: the panel and touchscreen aren't on the same i2c
+bus. In the cases that I've looked at the panel is either controlled
+entirely by eDP or MIPI signals and isn't on any i2c bus at all. The
+touchscreen is on the i2c bus in the cases I've looked at, though I
+suppose I could imagine one that used a different bus.
+
+
+> What I'm trying to say is: could we just make it work by passing a bunch
+> of platform_data, 2-3 callbacks and a device registration from the panel
+> driver directly?
+
+I think I'm still confused about what you're proposing. Sorry! :( Let
+me try rephrasing why I'm confused and perhaps we can get on the same
+page. :-)
+
+First, I guess I'm confused about how you have one of these devices
+"register" the other device.
+
+I can understand how one device might "register" its sub-devices in
+the MFD case. To make it concrete, we can look at a PMIC like
+max77686.c. The parent MFD device gets probed and then it's in charge
+of creating all of its sub-devices. These sub-devices are intimately
+tied to one another. They have shared data structures and can
+coordinate power sequencing and whatnot. All good.
+
+...but here, we really have something different in two fundamental ways:
+
+a) In this case, the two components (panel and touchscreen) both use
+separate primary communication methods. In DT the primary
+communication method determines where the device is described in the
+hierarchy. For eDP, this means that the DT node for the panel should
+be under the eDP controller. For an i2c touchscreen, this means that
+the DT node for the touchscreen should be under the i2c controller.
+Describing things like this causes the eDP controller to "register"
+the panel and the i2c controller to "register" the touchscreen. If we
+wanted the panel driver to "register" the touchscreen then it would
+get really awkward. Do we leave the touchscreen DT node under the i2c
+controller but somehow tell the i2c subsytem not to register it? Do we
+try to dynamically construct the touchscreen i2c node? Do we make a
+fake i2c controller under our panel DT node and somehow tell the i2c
+core to look at it?
+
+b) Things are different because the two devices here are not nearly as
+intimately tied to one another. At least in the case of "homestar",
+the only reason that the devices were tied to one another was because
+the board designers chose to share power rails, but otherwise the
+drivers were both generic.
+
+
+In any case, is there any chance that we're in violent agreement and
+that if you dig into my design more you might like it? Other than the
+fact that the panel doesn't "register" the touchscreen device, it
+kinda sounds as if what my patches are already doing is roughly what
+you're describing. The touchscreen and panel driver are really just
+coordinating with each other through a shared data structure (struct
+drm_panel_follower) that has a few callback functions. Just like with
+"hdmi-codec", the devices probe separately but find each other through
+a phandle. The coordination between the two happens through a few
+simple helper functions.
+
+
+> > Is it cleaner than my current approach, though?
+>
+> "cleaner" is subjective, really, but it's a more "mainstream" approach
+> that one can follow more easily through function calls.
+>
+> > I guess, alternatively, we could put the "panel" directly under the
+> > i2c bus in this case. That would probably work for Cong Yang's current
+> > needs, but we'd end up in trouble if we ever had a similar situation
+> > with an eDP panel since eDP panels need to be under the DP-AUX bus.
+>
+> I don't know DP-AUX very well, what is the issue that you're mentioning?
+
+Hopefully I've explained what I meant above (see point "a)").
