@@ -2,260 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C05572CF6D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 21:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01EF472CF74
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 21:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232673AbjFLT1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 15:27:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52960 "EHLO
+        id S237648AbjFLT3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 15:29:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237424AbjFLT1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 15:27:33 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA43319AE;
-        Mon, 12 Jun 2023 12:27:05 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f624daccd1so5370864e87.0;
-        Mon, 12 Jun 2023 12:27:05 -0700 (PDT)
+        with ESMTP id S236853AbjFLT3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 15:29:01 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FB3172A
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 12:28:53 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f736e0c9a8so35875415e9.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 12:28:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686598024; x=1689190024;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ejV5kgx3hh37txIAYRNNYKvIriYQUHYrwXp8KRCJYl4=;
-        b=LYER8swJIMWaeDGZ2hkjyJOD6ND8uFats/yvoPB7ibeB5ZjEBi5yxPSWnmn7dYoDy5
-         9YzgYvQa/lmsZH27yWeAyaJHL6o6p/ATfvr/+QI/CvmWSa0LtzaDCFdVtcS4b8hLNmLs
-         KC1DfDe23MY7B+edf2XG9ZSoVcT2hvmexqOIaXRiHdbRDzNhXeL6UNUXz/ihVnXM5RJ8
-         zYolz5pt7aznawgMX4deagz9rt3FU3as8j2na+PvHllzryco963N80M+XQGuh4zcfZPT
-         SYFEq99/wEqAgeId8wN2JeF5sOvL748sDNHQvBq/0c9PsxccdxokurM8rc6/hRKxbakb
-         zRHg==
+        d=linaro.org; s=google; t=1686598131; x=1689190131;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nJZJSaEZDg70TXbshUH3X07m1qzGMFDczgD0hVDQgVw=;
+        b=cp7o0HoGkxtGnWAvfPLUcigk1NXL22/mysLv2Xtu+BWI9J/YI7aKTBLHbf+4S4De4b
+         IJ3Qtv7wM6Mp4sN/lKa+Fo/8ldPIx23PT7wxeeBbZdZ+LJx8ULV8nTuWoKAiq3aGtWtB
+         cU5KBL+/AIJrdiRDrHJDK2+uHxSx/QePtYDhRp76VSJ/XozzWlcYGOkk5JahdeJRXLgD
+         RAdHnAFdjI4UjLTBzCLQqrbZzWasP271gPYWjPH35aaZ84rXWbqFi8RtsYKlAos/VRLl
+         yFN+YFWqZvuwtb/hvdK6GH/hNSHC6SrR/3Wn32b1FK10iZDlyfHUZljdNjgegR9bT+6S
+         HdoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686598024; x=1689190024;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ejV5kgx3hh37txIAYRNNYKvIriYQUHYrwXp8KRCJYl4=;
-        b=ltYqQDLZkOYtAt3PFa+pAjU8H61BsjF8SR89h8+BQG1UJSMTQCP7zG+lKgWFLkOhM9
-         QlWctmBzl/Wt5TFu5YFQeSXayrT+E2RsrLZb7c5toO7UrwWIuI4zAZ3DEMpHmJX9W6SJ
-         0gmC1lWigJ0wnQSx9afWEWb3MWpW1qSmrnzMQCqa02cEu3KbCR1ZCGhqevU4HwGtprrn
-         OjOMArDHZoBe2ERrMffVKSldwj6YoXRPMOqEU+gtpdR+q2WBIIwnl0aN+v9d9T5BDDSZ
-         YOq9w3WLlE0lo4PQA14365C/VvPMPyeW+YN9vLiXB11aXdeAZNfNqIzRLqNLRI3S8mxa
-         rx7g==
-X-Gm-Message-State: AC+VfDyVEp8cY4c6FiaweA2SINu0G+rf+PMZuYFMdQ/HK7NT+MIQOTbG
-        FhcE+cbMSzxJc8IOLaeTTpU=
-X-Google-Smtp-Source: ACHHUZ6A6MkVpb+0rEzh/Ln9SlF8OV11QAdT0mkQWx0k205rKa35tH+XEtW7A0DwjsG6evJQCknNXw==
-X-Received: by 2002:a05:6512:60f:b0:4f6:133e:a0ec with SMTP id b15-20020a056512060f00b004f6133ea0ecmr5130780lfe.25.1686598023507;
-        Mon, 12 Jun 2023 12:27:03 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id n17-20020a195511000000b004f252a753e1sm1553756lfe.22.2023.06.12.12.27.02
+        d=1e100.net; s=20221208; t=1686598131; x=1689190131;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nJZJSaEZDg70TXbshUH3X07m1qzGMFDczgD0hVDQgVw=;
+        b=ZbPdweCdP4vV1kORTjGZavawDzKE2wYJtNB3EGOI/AlSTg0s7K/Si9UnymLA2J2OSY
+         k/6ZBWUZWpkOBMTA/Zg8mQwQ5nvHA3PoH4W4Mg1678aO5ijnatS2z834iI0dySReN3pc
+         CsetTyl2U0lUPcxExfK0AcooprNimC758i2BmgIopQn3RNJD0gY204BRLWXbv3b7aoVp
+         fldP6fkv5ac8A3iuGySRuK7F/dOF2bLsTNutaXDhr+Ax7BqKTDN/J2w5J9CuDb8GLuxt
+         muEkER7SQx75gK4dcqHwiNX8WU0vJ3zTVJTpndTaTTyfBlivjpC26zEimHeUe0TcnpxM
+         ivLg==
+X-Gm-Message-State: AC+VfDy6iIVVxknuiaEhJfcLe817Siv1vbvIsydMuokOj8hyN0B+2rWy
+        0q+fSj8rsyvPhHoP6b5Pxvp3sg==
+X-Google-Smtp-Source: ACHHUZ5OzKiW3U57XN0Htaa50N2NhdLd5CFniE1NlCW4kDpPPcqYy2HPZOQKXayyvEEZJhY+ya0Wwg==
+X-Received: by 2002:a05:600c:2190:b0:3f7:395e:46a2 with SMTP id e16-20020a05600c219000b003f7395e46a2mr6389324wme.16.1686598131498;
+        Mon, 12 Jun 2023 12:28:51 -0700 (PDT)
+Received: from hackbox.lan ([86.121.163.20])
+        by smtp.gmail.com with ESMTPSA id a7-20020a05600c224700b003f60a9ccd34sm12286861wmm.37.2023.06.12.12.28.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 12:27:02 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 22:27:00 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mon, 12 Jun 2023 12:28:50 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v4 2/5] dt-bindings: ata: dwc-ahci: add Rockchip RK3588
-Message-ID: <20230612192700.nd5t4ekt6my5dqqo@mobilestation>
-References: <20230612171337.74576-1-sebastian.reichel@collabora.com>
- <20230612171337.74576-3-sebastian.reichel@collabora.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: [RESEND v7 0/3] Add dedicated Qcom ICE driver
+Date:   Mon, 12 Jun 2023 22:28:44 +0300
+Message-Id: <20230612192847.1599416-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230612171337.74576-3-sebastian.reichel@collabora.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 07:13:34PM +0200, Sebastian Reichel wrote:
-> This adds Rockchip RK3588 AHCI binding. In order to narrow down the
-> allowed clocks without bloating the generic binding, the description
-> of Rockchip's AHCI controllers has been moved to its own file.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+As both SDCC and UFS drivers use the ICE with duplicated implementation,
+while none of the currently supported platforms make use concomitantly
+of the same ICE IP block instance, the new SM8550 allows both UFS and
+SDCC to do so. In order to support such scenario, there is a need for
+a unified implementation and a devicetree node to be shared between
+both types of storage devices. So lets drop the duplicate implementation
+of the ICE from both SDCC and UFS and make it a dedicated (soc) driver.
 
-Thanks. The patch now looks good.
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+The v7 is here:
+https://lore.kernel.org/all/20230408214041.533749-1-abel.vesa@linaro.org/
 
--Serge(y)
+Changes since v7:
+ * rebased on next-20230609
 
-> ---
->  .../bindings/ata/rockchip,dwc-ahci.yaml       | 124 ++++++++++++++++++
->  .../bindings/ata/snps,dwc-ahci.yaml           |  13 +-
->  2 files changed, 133 insertions(+), 4 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml
-> new file mode 100644
-> index 000000000000..b5e5767d8698
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml
-> @@ -0,0 +1,124 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/rockchip,dwc-ahci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DWC AHCI SATA controller for Rockchip devices
-> +
-> +maintainers:
-> +  - Serge Semin <fancer.lancer@gmail.com>
-> +
-> +description:
-> +  This document defines device tree bindings for the Synopsys DWC
-> +  implementation of the AHCI SATA controller found in Rockchip
-> +  devices.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - rockchip,rk3568-dwc-ahci
-> +          - rockchip,rk3588-dwc-ahci
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - rockchip,rk3568-dwc-ahci
-> +          - rockchip,rk3588-dwc-ahci
-> +      - const: snps,dwc-ahci
-> +
-> +  ports-implemented:
-> +    const: 1
-> +
-> +  sata-port@0:
-> +    $ref: /schemas/ata/snps,dwc-ahci-common.yaml#/$defs/dwc-ahci-port
-> +
-> +    properties:
-> +      reg:
-> +        const: 0
-> +
-> +    unevaluatedProperties: false
-> +
-> +patternProperties:
-> +  "^sata-port@[1-9a-e]$": false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - ports-implemented
-> +
-> +allOf:
-> +  - $ref: snps,dwc-ahci-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3588-dwc-ahci
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 5
-> +        clock-names:
-> +          items:
-> +            - const: sata
-> +            - const: pmalive
-> +            - const: rxoob
-> +            - const: ref
-> +            - const: asic
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3568-dwc-ahci
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: sata
-> +            - const: pmalive
-> +            - const: rxoob
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/ata/ahci.h>
-> +    #include <dt-bindings/phy/phy.h>
-> +
-> +    sata@fe210000 {
-> +      compatible = "rockchip,rk3588-dwc-ahci", "snps,dwc-ahci";
-> +      reg = <0xfe210000 0x1000>;
-> +      clocks = <&cru ACLK_SATA0>, <&cru CLK_PMALIVE0>,
-> +               <&cru CLK_RXOOB0>, <&cru CLK_PIPEPHY0_REF>,
-> +               <&cru CLK_PIPEPHY0_PIPE_ASIC_G>;
-> +      clock-names = "sata", "pmalive", "rxoob", "ref", "asic";
-> +      interrupts = <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH 0>;
-> +      ports-implemented = <0x1>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      sata-port@0 {
-> +        reg = <0>;
-> +        hba-port-cap = <HBA_PORT_FBSCP>;
-> +        phys = <&combphy0_ps PHY_TYPE_SATA>;
-> +        phy-names = "sata-phy";
-> +        snps,rx-ts-max = <32>;
-> +        snps,tx-ts-max = <32>;
-> +      };
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> index 5afa4b57ce20..4c848fcb5a5d 100644
-> --- a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> @@ -13,6 +13,15 @@ description:
->    This document defines device tree bindings for the generic Synopsys DWC
->    implementation of the AHCI SATA controller.
->  
-> +select:
-> +  properties:
-> +    compatible:
-> +      enum:
-> +        - snps,dwc-ahci
-> +        - snps,spear-ahci
-> +  required:
-> +    - compatible
-> +
->  allOf:
->    - $ref: snps,dwc-ahci-common.yaml#
->  
-> @@ -23,10 +32,6 @@ properties:
->          const: snps,dwc-ahci
->        - description: SPEAr1340 AHCI SATA device
->          const: snps,spear-ahci
-> -      - description: Rockhip RK3568 AHCI controller
-> -        items:
-> -          - const: rockchip,rk3568-dwc-ahci
-> -          - const: snps,dwc-ahci
->  
->  patternProperties:
->    "^sata-port@[0-9a-e]$":
-> -- 
-> 2.39.2
-> 
+Changes since v6:
+ * Dropped the patches 1, 3 and 6 as they are already in Bjorn's tree.
+ * Dropped the minItems for both the qcom,ice and the reg in the
+   qcom,ice compatile subschema, in the ufs schema file,
+   like Krzysztof suggested
+
+Changes since v5:
+ * See each individual patch for changelogs.
+
+Changes since v4:
+ * dropped the SDHCI dt-bindings patch as it will be added along
+   with the first use of qcom,ice property from an SDHCI DT node
+
+Abel Vesa (3):
+  dt-bindings: ufs: qcom: Add ICE phandle
+  scsi: ufs: ufs-qcom: Switch to the new ICE API
+  mmc: sdhci-msm: Switch to the new ICE API
+
+ .../devicetree/bindings/ufs/qcom,ufs.yaml     |  24 ++
+ drivers/mmc/host/Kconfig                      |   2 +-
+ drivers/mmc/host/sdhci-msm.c                  | 223 ++++------------
+ drivers/ufs/host/Kconfig                      |   2 +-
+ drivers/ufs/host/Makefile                     |   4 +-
+ drivers/ufs/host/ufs-qcom-ice.c               | 244 ------------------
+ drivers/ufs/host/ufs-qcom.c                   |  99 ++++++-
+ drivers/ufs/host/ufs-qcom.h                   |  32 +--
+ 8 files changed, 176 insertions(+), 454 deletions(-)
+ delete mode 100644 drivers/ufs/host/ufs-qcom-ice.c
+
+-- 
+2.34.1
+
