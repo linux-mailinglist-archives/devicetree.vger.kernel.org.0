@@ -2,236 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B47F072CFDD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 21:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE6B72CFFA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 21:58:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231896AbjFLTv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 15:51:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34656 "EHLO
+        id S237971AbjFLT53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 15:57:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbjFLTv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 15:51:57 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF10DE6B;
-        Mon, 12 Jun 2023 12:51:54 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b1b72dc2feso57170231fa.3;
-        Mon, 12 Jun 2023 12:51:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686599513; x=1689191513;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/MWf7Q/K0NjrUwXki3MgZotu77l7jin1HkBnvAkN0hM=;
-        b=cGe27AGOeRiiE3rHlHDW5TnBsYv23B5NqYJ3hIJ7b78fFZ+C2q16xDu8y5LKf5jto/
-         ERsytukvKtPrzPcvmxdPufgvSH/N2dbzSI3N0EQEk0lTh2H0YqWrG3are75co3XxfG6U
-         OHGCGriUMH2W2cEWLwzFXrNZsVZNkwGKuf5PLyuGB0yDy38k632lQFL6iVV9ozK6pgXz
-         TfvrpgUfL2g7XHTz3ZifCNoSlJi4iXmZ9Cx2xupld7u5LU9emXVihC5GeHCPbRWkH4lw
-         orPGcKhXrlG5qwQQpb2NzWJL9WPX3KW/Zk65mjo/U+1VGy4c2V8uhuDS/o148zUrtae2
-         BUXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686599513; x=1689191513;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/MWf7Q/K0NjrUwXki3MgZotu77l7jin1HkBnvAkN0hM=;
-        b=WWZkOsZ/tfszCje1Yjp/CWSG+08SqZhHp/6LPq1jOTIcGFzKjynD0Y3aRq211nRoO2
-         YW3C4ioX0AAuuu/WZDJl2hS8bjn6HLQGS7hd+3hUtFm10GkoHGk8+D4WuTEdUs69MwiE
-         cHFLXMEzXU5J4ZTDumEJIydkdzdKwXVRsxKc2GOwHu4WUk3EKusZ82JEoScvl0RyeyES
-         U6kJndPF7GjbFItwfX0yFHRehVx+jXC7eLOCGbU04PZxYpUV439Qz9hOsl1Hkv4iWzU0
-         OzKlfe322FM8l2CVN6lW2i1VAi+feBmikslcNaxpmjPzQciLJ/rZOMWCu6Qi2lgJVhEk
-         leAw==
-X-Gm-Message-State: AC+VfDyUsBfw3qmWcK4j5/gWzAg8Sw/M4Oj47FMk90tRYbozqriaRzQ/
-        ZK4vgxbJaUJ8o48osHUP++s=
-X-Google-Smtp-Source: ACHHUZ4jlWoZM4ZZsiIEooIFTvhdYERK+lWUHl8q/EQDZd1d/3VJaUYAdgqlvIuInJZirF1rjD3Ejw==
-X-Received: by 2002:a2e:8684:0:b0:2b1:ae68:82ca with SMTP id l4-20020a2e8684000000b002b1ae6882camr3885439lji.43.1686599512826;
-        Mon, 12 Jun 2023 12:51:52 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id j9-20020a2e8249000000b002a7746800d0sm1900460ljh.130.2023.06.12.12.51.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 12:51:51 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 22:51:49 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v16 19/22] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Message-ID: <20230612195149.hdnttkcabynmf4kx@mobilestation>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
- <20230510062234.201499-20-yoshihiro.shimoda.uh@renesas.com>
- <20230605143908.fcgqzedp7oiarbyu@mobilestation>
- <TYBPR01MB5341A67CF6DFFCB396F13195D853A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230607121533.cxvidvdqat5h2tqu@mobilestation>
- <TYBPR01MB53417E55F5F9E667D679901CD850A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230608121115.qnilmougdfd6fdyq@mobilestation>
- <TYBPR01MB5341AD39983D6B39034AF01BD851A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230609105407.c4olqepv7vuoqktz@mobilestation>
- <TYBPR01MB53411835ACCD884FCA9ECBE2D854A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        with ESMTP id S234031AbjFLT5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 15:57:19 -0400
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E4FE73;
+        Mon, 12 Jun 2023 12:57:18 -0700 (PDT)
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35CJqdGU024910;
+        Mon, 12 Jun 2023 19:56:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=w8QDzgP0fMv5SkPQ3RMbBfTPNkUSqRxyIBjRBSpsT1Y=;
+ b=Ji15yHQXdWIQNk2PhxVQhL7Ox0iLH9eOWLqw9GH67/nbreeLO2QaHFy2rS6737aTC5P5
+ EZgIwwX0FY51Ri54fg1iEPC/3c54rJuxynssQo2Uu3cSXSlvRede6XajjFlXv+Zl8qWI
+ CP+aRHZ5WUSiNQmr8XAsXH/EOPZpsrWxZ+JeagTaex3pIaVtwb1NYfFVMpizYNdumaJm
+ COYgClAhUCBnKedtTTop9NFvYKBuT83GjC5XlaMz2TkDuUjEvIW7QHGY7fQN0oGRye1r
+ cdMjKqduURZ639EY9iK3EQAO0nTdXSEFUuhQOM+e/NmwOlc7D/gxLgHenZ2FhSiWPXZ8 8Q== 
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3r69wgr30f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Jun 2023 19:56:59 +0000
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+        by ppma03wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 35CHjMA7002823;
+        Mon, 12 Jun 2023 19:56:58 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
+        by ppma03wdc.us.ibm.com (PPS) with ESMTPS id 3r4gt5cm92-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Jun 2023 19:56:58 +0000
+Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
+        by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 35CJuvJG22020524
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 12 Jun 2023 19:56:58 GMT
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id D393958055;
+        Mon, 12 Jun 2023 19:56:57 +0000 (GMT)
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 914D458059;
+        Mon, 12 Jun 2023 19:56:57 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.148.226])
+        by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
+        Mon, 12 Jun 2023 19:56:57 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-fsi@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, jk@ozlabs.org, joel@jms.id.au,
+        alistair@popple.id.au, andrew@aj.id.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 00/14] fsi: Miscellaneous fixes and I2C Responder driver
+Date:   Mon, 12 Jun 2023 14:56:43 -0500
+Message-Id: <20230612195657.245125-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYBPR01MB53411835ACCD884FCA9ECBE2D854A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: B-uG64PmwxPCeZ1gYsNLZXvrqbTzftzQ
+X-Proofpoint-ORIG-GUID: B-uG64PmwxPCeZ1gYsNLZXvrqbTzftzQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-12_14,2023-06-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=877 malwarescore=0 mlxscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ adultscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306120169
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 01:19:02PM +0000, Yoshihiro Shimoda wrote:
-> Hello Serge,
-> 
-> > From: Serge Semin, Sent: Friday, June 9, 2023 7:54 PM
-> <snip>
-> > > > > static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
-> > > > > {
-> > > > >         struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> > > > >         int i;
-> > > > >
-> > > > >         rcar_gen4_pcie_ltssm_enable(rcar, true);
-> > > > >
-> > > > >         /*
-> > > > >          * Require direct speed change here. Otherwise RDLH_LINK_UP of
-> > > > >          * PCIEINTSTS0 which is this controller specific register may not
-> > > > >          * be set.
-> > > > >          */
-> > > >
-> > > > >         if (rcar->needs_speed_change) {
-> > > >
-> > > > Seeing this is specified for the root port only what about
-> > > > replacing the statement with just test whether the rcar_gen4_pcie.mode ==
-> > > > DW_PCIE_RC_TYPE? Thus you'll be ablt to drop the needs_speed_change field.
-> > >
-> > > Thank you for the comment. I'll fix it.
-> > >
-> > > > BTW Just curious. Why is the loop below enabled for the Root Port
-> > > > only? What about the end-point controller? It's the same hardware
-> > > > after all..
-> > >
-> > > This is reused from v16 and then it used "link retraining" which is only for
-> > > the Root Port. As you mentioned, it seems endpoint controller is also needed
-> > > if we use direct speed change.
-> > >
-> > > > >                 for (i = 0; i < SPEED_CHANGE_MAX_RETRIES; i++) {
-> > > > >                         rcar_gen4_pcie_speed_change(dw);
-> > > > >                         msleep(100);
-> > > > >                         if (rcar_gen4_pcie_check_current_link(dw))
-> > > > >                                 return 0;
-> > > > >                 }
-> > > >
-> > > > Did you trace how many iterations this loop normally takes?
-> > >
-> > > i = 0 or 1 (if the max-link-speed is suitable for a connected device.)
-> > >
-> > > > Is it
-> > > > constant or varies for the same platform setup and a connected link
-> > > > partner? Does the number of iterations depend on the target link speed
-> > > > specified via the "max-link-speed" property?
-> > >
-> > 
-> > > This is not related to the "max-link-speed". It seems to related to
-> > > a link partner.
-> > > 		LinkCap	max-link-speed	loop
-> > > Device A		4	4		1
-> > > Device A		4	3		1
-> > > Device B		3	3		0
-> > 
-> > Great! If so I would have just left a single unconditional
-> > rcar_gen4_pcie_speed_change() call placed right after the
-> > rcar_gen4_pcie_ltssm_enable() method with no delays afterwards. These
-> > methods would have been invoked in the framework of
-> > dw_pcie_start_link() after which the dw_pcie_wait_for_link() method is
-> > called with several checks parted with the ~100ms delay. It will make
-> > sure that at least some link is up with the link state printed to the
-> > system log. If for some reason the performance degradation happens
-> > then it will be up to the system administrator to investigate what was
-> > wrong. Your driver did as much is it could to reach the best link gen.
-> 
-> IIUC, is your suggestion like the following code?
-> ---
-> 	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> 	if (!dw_pcie_wait_for_link(dw)) {
-> 		rcar_gen4_pcie_speed_change(dw);
-> 		return 0;
-> 	}
-> ---
-> 
-> Unfortunately, it doesn't work correctly...
-> The following code can work correctly. The value of i is still 1 on the device A.
-> What do you think that the following code is acceptable?
-> ---
-> 	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> 	for (i = 0; i < SPEED_CHANGE_MAX_RETRIES; i++) {
-> 		msleep(100);
-> 		rcar_gen4_pcie_speed_change(dw);
-> 		if (dw_pcie_link_up(dw)) {
-> 			printk("%s:%d\n", __func__, i);
-> 			return 0;
-> 		}
-> 	}
-> ---
+This series adds a number of fixes and improvements to the FSI driver
+and adds the I2C Responder driver. The I2C Responder(I2CR) is an I2C
+device that translates I2C commands to CFAM or SCOM operations,
+effectively implementing an FSI master and bus.
 
-My idea was to implement something like this:
+Eddie James (14):
+  fsi: Move fsi_slave structure definition to header
+  fsi: Add aliased device numbering
+  fsi: Use of_match_table for bus matching if specified
+  fsi: sbefifo: Don't check status during probe
+  fsi: sbefifo: Add configurable in-command timeout
+  fsi: sbefifo: Remove limits on user-specified read timeout
+  fsi: aspeed: Reset master errors after CFAM reset
+  fsi: core: Add trace events for scan and unregister
+  fsi: core: Fix legacy minor numbering
+  fsi: core: Switch to ida_alloc/free
+  fsi: Improve master indexing
+  dt-bindings: fsi: Document the IBM I2C Responder virtual FSI master
+  fsi: Add IBM I2C Responder virtual FSI master
+  fsi: Add I2C Responder SCOM driver
 
-+static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
-+{
-+	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-+
-+	rcar_gen4_pcie_ltssm_enable(rcar, true);
-+
-+	rcar_gen4_pcie_speed_change(dw);
-+
-+	return 0;
-+}
+ .../bindings/fsi/ibm,i2cr-fsi-master.yaml     |  41 +++
+ drivers/fsi/Kconfig                           |  17 +
+ drivers/fsi/Makefile                          |   2 +
+ drivers/fsi/fsi-core.c                        | 122 ++++---
+ drivers/fsi/fsi-master-aspeed.c               |   4 +-
+ drivers/fsi/fsi-master-ast-cf.c               |   2 +-
+ drivers/fsi/fsi-master-gpio.c                 |   2 +-
+ drivers/fsi/fsi-master-hub.c                  |   4 +-
+ drivers/fsi/fsi-master-i2cr.c                 | 316 ++++++++++++++++++
+ drivers/fsi/fsi-master-i2cr.h                 |  33 ++
+ drivers/fsi/fsi-master.h                      |   2 +-
+ drivers/fsi/fsi-sbefifo.c                     |  47 ++-
+ drivers/fsi/fsi-scom.c                        |   8 +
+ drivers/fsi/fsi-slave.h                       |  28 ++
+ drivers/fsi/i2cr-scom.c                       | 154 +++++++++
+ include/trace/events/fsi.h                    |  31 ++
+ include/trace/events/fsi_master_i2cr.h        | 107 ++++++
+ include/uapi/linux/fsi.h                      |  10 +
+ 18 files changed, 865 insertions(+), 65 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,i2cr-fsi-master.yaml
+ create mode 100644 drivers/fsi/fsi-master-i2cr.c
+ create mode 100644 drivers/fsi/fsi-master-i2cr.h
+ create mode 100644 drivers/fsi/fsi-slave.h
+ create mode 100644 drivers/fsi/i2cr-scom.c
+ create mode 100644 include/trace/events/fsi_master_i2cr.h
 
-and retain the rcar_gen4_pcie_link_up() method as is.
+-- 
+2.31.1
 
-* Note: originally your loop used to have the msleep() call performed
-after the first rcar_gen4_pcie_speed_change() invocation. Thus the
-delay can be dropped if there is only one iteration implemented (see
-further to understand why).
-
-You don't need to wait for the link to actually get up in the
-start_link() callback because there is the link_up() callback, which
-is called from the dw_pcie_wait_for_link() method during the generic
-DWC PCIe setup procedure. See:
-
-dw_pcie_host_init():
-+-> ops->host_init()
-+-> ...
-+-> dw_pcie_setup_rc()
-|   +-> ...
-|   +-> dw_pcie_setup()
-|   +-> ...
-+-> if !dw_pcie_link_up()
-|   |   +-> ops->link_up()
-|   +-> dw_pcie_start_link()
-|       +-> ops->start_link()
-+-> dw_pcie_wait_for_link();   // See, wait-procedure is already performed
-|   +-> loop 10 times          // for you in the core driver together
-|       +-> dw_pcie_link_up()  // with the delays between the checks
-|           +-> ops->link_up()
-|       +-> msleep(~100)
-+-> ...
-
--Serge(y)
-
-> 
-> Best regards,
-> Yoshihiro Shimoda
-> 
-> > -Serge(y)
-> 
