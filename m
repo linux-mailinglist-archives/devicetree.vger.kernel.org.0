@@ -2,104 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9F1B72CE7D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F85872CE88
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:35:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236093AbjFLSea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 14:34:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53960 "EHLO
+        id S234565AbjFLSfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 14:35:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237125AbjFLSeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:34:25 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19B7171F;
-        Mon, 12 Jun 2023 11:34:10 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-977d6aa3758so846760366b.0;
-        Mon, 12 Jun 2023 11:34:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686594849; x=1689186849;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HjxKYpDykfJHHAFMlYnHgt/KtNfNEauymoXHInEP4vM=;
-        b=fdYVg3CrHfYmOH+yQnThlmPuy5K7Ec9e+rHetrmfAE8U3jCTdYy30Lz22r6JK/dUWO
-         fGXiUbALgxdGn2lw2KSzhZYVZ1cEYH6M8+p8bbAR5d7mr/T2LqrOGv2cmf/Rt8SPBagW
-         zIVLfGcnCEGk0C/e6R76r6ovMDsRaFgQmgmwLTtA1i3UzQHEfQHkqdSwYK6fLpm4xFgE
-         mjrdut3xCamDSyzfp1xFRAs+hmGZ5wKc+D5rE7joQF4E8WiovvkeVt8Wq0Ce7QoKtd00
-         f50SP5YRSF2zVFRDJ/jPYFMRfoITlONYXDYUSNMbdOm8fFNXBrZBWelj/LNME/yZlee8
-         3uBw==
+        with ESMTP id S238519AbjFLSf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:35:27 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B581AE6F
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:34:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686594878;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=fA7PgHsHXUvTzj6r/c+oFo9WuyCUMyzAZAoI7rpa/bU=;
+        b=G9ICo0tqXtxlhmkXu8WG8mnr6oZ35IMGnPsHWVfJZyUYYBTbkK75bGLe203hSFzn6fZhxA
+        W5duos/D5hIeAfW5dY32Bsiw6KC+ad6qp2O1PLzU/lSvOMQJzj6tnoEggVqepK1vuPacuk
+        hsx+TwBoQrdiW4Yp92taQelhmvrTAaU=
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
+ [209.85.210.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-101--i_xN86bPj6Do9vydLqO_g-1; Mon, 12 Jun 2023 14:34:37 -0400
+X-MC-Unique: -i_xN86bPj6Do9vydLqO_g-1
+Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-6b2bf00f660so3211652a34.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:34:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686594849; x=1689186849;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HjxKYpDykfJHHAFMlYnHgt/KtNfNEauymoXHInEP4vM=;
-        b=ZtZ4lEcyxBElQb655qg0t2JRlbeh84ONsPYPDgY5B7nr+BNX/FHwCo0B0HWNrlo+yN
-         P7jE6/bXZaJPLrHSs3MlSj2iEQM+rRJuXJDhoblJ89KhrLmUA3T3IhsDgVpJPPj82Qsu
-         V9z2uJGhW0B7WlEZ1W/RdFS+zfoX9qop7uNpZ4U/ieMBtV5tc6LkExY+nyb81pho66Zb
-         9AYUmmGaCj8Ub7aFHEi4ZIqdTryQmETjZWyza5+dqYIc3COxk1kOWofywY1wzqfIiXMx
-         Q6zNf5AFVICBqDLfvWFcjaUZ6TErMaTjdM2/0ofWDHVtXq2Zhp6nGWSdo3nNa0i94UF3
-         pYEg==
-X-Gm-Message-State: AC+VfDw4R83fE5hNIiqQkAe+rL98y0egt4+oF51HjlHXelqn/MiUNtaj
-        YXoRnpJtzuIG12D0TwaoD6VxAOb8W3cmtPjl4TY=
-X-Google-Smtp-Source: ACHHUZ6HVJPNDxoxp2Cvdq8Nf48yX+kPMvxENdK/HbCk4P4iVuj89/INjrfgS3cZ3HvNthb6VJXM7cJI0toaf9QtkR0=
-X-Received: by 2002:a17:907:320a:b0:975:942e:81d5 with SMTP id
- xg10-20020a170907320a00b00975942e81d5mr10759652ejb.1.1686594848974; Mon, 12
- Jun 2023 11:34:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230610203549.1127334-1-bigunclemax@gmail.com> <13282074.uLZWGnKmhe@jernej-laptop>
-In-Reply-To: <13282074.uLZWGnKmhe@jernej-laptop>
-From:   Maxim Kiselev <bigunclemax@gmail.com>
-Date:   Mon, 12 Jun 2023 21:33:57 +0300
-Message-ID: <CALHCpMi9h_KGJKJ4qH44kypePsMpqjgDke-A1LiBgiSOnXjXLA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Add D1/T113s thermal sensor controller support
-To:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        d=1e100.net; s=20221208; t=1686594877; x=1689186877;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fA7PgHsHXUvTzj6r/c+oFo9WuyCUMyzAZAoI7rpa/bU=;
+        b=Jx1qW713Dulj7h6KVUz57Srt6i4XokcOAmixori1jOho8CpAikvl4XpIPY2dLKtyOU
+         miJlvyalZDZC+MPfpaakcMLN52DkmHUDmSW5TTFOfCztJum1mWivdxC6PcscQOimPH7O
+         HAxHrO6EqidhpWJlv3eDEV6deN9lNG2epwbM23kafSIAjTy4Ev/IF5jdu+NwMq778Y6f
+         cR4BDUq5+aXDX1PiOoppMPUHgvzgOWkWfihsGClWH21P9sntmoCsTBRUhQZEoWF8QBbc
+         58fogJP3FpMeR3gq7nTitSSwakGTgKYQoP1+d+ijsajAZvLSygDAuqO5itPv5cXcqsyi
+         Ni/g==
+X-Gm-Message-State: AC+VfDzhRca3n41zEiOkXTgB0bEooD5zfbiXF2hywSwJL79aNGH0tJ8x
+        F5miY5W7CpvJ/jHyXndXj5CBo16m5GKuqZh8FEzPzCB0oH2pNoQV5/fJH3saxt+izIRj5Z5i6hE
+        kymyavn+MaMcSeh3TiyNPlg==
+X-Received: by 2002:a9d:6299:0:b0:6b2:b82c:1418 with SMTP id x25-20020a9d6299000000b006b2b82c1418mr6159642otk.9.1686594876849;
+        Mon, 12 Jun 2023 11:34:36 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ71QwPMhZSycXjuAG8mCHe8g88dFSFJqGDZsnw2ZprTbOlJNax+lvJcUSmy8K0z+ff8r52HsQ==
+X-Received: by 2002:a9d:6299:0:b0:6b2:b82c:1418 with SMTP id x25-20020a9d6299000000b006b2b82c1418mr6159634otk.9.1686594876618;
+        Mon, 12 Jun 2023 11:34:36 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
+        by smtp.gmail.com with ESMTPSA id q21-20020a056830019500b006b2a31ec95dsm4137128ota.65.2023.06.12.11.34.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 11:34:36 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 13:34:33 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 07/26] net: stmmac: dwmac-qcom-ethqos: tweak the order of
+ local variables
+Message-ID: <20230612183433.ii23wc2yie5n25vs@halaney-x13s>
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-8-brgl@bgdev.pl>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230612092355.87937-8-brgl@bgdev.pl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 12 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 21:22, Jer=
-nej =C5=A0krabec <jernej.skrabec@gmail.com>:
->
-> Dne sobota, 10. junij 2023 ob 22:35:41 CEST je Maksim Kiselev napisal(a):
-> > This series adds support for Allwinner D1/T113s thermal sensor controll=
-er.
-> > THIS controller is similar to the one on H6, but with only one sensor a=
-nd
-> > uses a different scale and offset values.
-> >
-> > v2:
-> > - Fixed SoB tag
->
-> It doesn't seems you fixed that.
+On Mon, Jun 12, 2023 at 11:23:36AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Make sure we follow the reverse-xmas tree convention.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Sorry for that. I accidentally sent the wrong version of patches . And
-immediately after that I sent v3.
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> index 16e856861558..28d2514a8795 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> @@ -594,9 +594,9 @@ static void ethqos_clks_disable(void *data)
+>  static int qcom_ethqos_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *np = pdev->dev.of_node;
+> +	const struct ethqos_emac_driver_data *data;
+>  	struct plat_stmmacenet_data *plat_dat;
+>  	struct stmmac_resources stmmac_res;
+> -	const struct ethqos_emac_driver_data *data;
+>  	struct qcom_ethqos *ethqos;
+>  	int ret;
+>  
+> -- 
+> 2.39.2
+> 
+
