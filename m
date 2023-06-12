@@ -2,63 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7646E72CD26
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:45:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BE9172CD49
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:55:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234490AbjFLRpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 13:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51430 "EHLO
+        id S236626AbjFLRzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 13:55:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236691AbjFLRo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:44:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72677C7;
-        Mon, 12 Jun 2023 10:44:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0DB3062C64;
-        Mon, 12 Jun 2023 17:44:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B7BC433EF;
-        Mon, 12 Jun 2023 17:44:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686591895;
-        bh=eI6fIoMUgSoE+G73OUjoTl05RN1AaQwDyQOnx0TU2bk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tfJUH6LUNWWA3FoOA6nZIe5AWvLJPVgdzxi2Nao2A//0mc3bPPf42vEMIeCTMcCZY
-         KBaROnGtlOw54pddRX4sUfpmJ/HlB1is7xHR9FBUO7rGpMyoVh/fezfklTrxB/fDm0
-         FNbkFeup1b7HGt9nXkhP8jWdfIUJlNVJQR9938zWkk2y7msb77iOyraG7imvpkVa07
-         jf6kz+oCrqGeLFlXNHyfNIRlA1c65M3QIBl7kBIdOZ2D4X4BpjQJ6j67B3kyE8yCVc
-         9M4ArKrgi5JRG0lqbAGEP7ycnB/qIXrVsnzC8oqIBP5oSO9iTxgBuuH7W49jdFCcC7
-         hZIK9s8ewxn1w==
-Date:   Mon, 12 Jun 2023 18:44:50 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Javier Martinez Canillas <javierm@redhat.com>,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S237074AbjFLRy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:54:59 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6FAE134
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:54:57 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-652a6bf4e6aso3659272b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:54:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686592497; x=1689184497;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=W3QVmqP35ml+Zcd/ACOdBpI7Nl407UcaAzEIMqiZ+kc=;
+        b=EKX5sORL5xWywKAInrL8721zWX/+Td5IhSfbCg0UB2+aOGAnbONy7wM7llHRvCN4pj
+         ENHSqSPG5zQwAIhuwG21Y0WFEXml9YJx1GhSTR2fQSEB5B5QN3ii+aQsr+15Z3iQSK2p
+         CWyR0TJE/TZYDQlPeQHqAFC+sATrLr1MOL8pnwjW8SnI80u6oJK+MQAqwi81FNnnIVpj
+         FT0+k1xj8CQ04ygLZSgo+kTEfJt25w3jadn0FUj9I6aDrnEiCY5x85zFiZH6UEKA0H15
+         9HJT5jAH3z/KRTcPDbl0Xzuw9P/ZQtYWVeSXhyLmTQm4lWA8HVLHymgqizhW29nzXHGa
+         KuQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686592497; x=1689184497;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W3QVmqP35ml+Zcd/ACOdBpI7Nl407UcaAzEIMqiZ+kc=;
+        b=dGFURIdpKro1Uxe5YK3GTT31EEFFoJGtnGKOKdliB3GhtgWjwfAjzH3wVFEqGQOmbF
+         Jy9l2e5PGr3oGUAojRruv8eQR5HedDUeDQUnXb8U+RE3z0zglnPnWN0L9PDaTpIhzONK
+         hS2ziDvr3hULqGq66TgVieWKl/lpXv12lOrf8pHD66MdZh2Wzj2Fb4k5pnIEkUr/6f03
+         86uz3kFF4CV9/6JP+MQigc5UvSWE5H+8aAIvLUID0h75Mmsr2O13gEIZpe4wIVYNcmlh
+         oYhSMJXC5JvtHMY1Ry+9Xr2osVmeST3vk7/b9Nkrmf2C8CKLTJVkoTn5gijYYqFRYKtw
+         id0g==
+X-Gm-Message-State: AC+VfDwiRZoEIzaWwItbZ99nl9wCTWcbLSlppGqzoGxL2HZqiDXgtFTp
+        zuJTno90B4tbMKXvDbx6ppEUcw==
+X-Google-Smtp-Source: ACHHUZ7c3dE4bFyUEg0IBA9gRJo/g3kfgnIer48hTU53YCzcy0yu3zeW7SAdtKluX0MICYM4Pb3iPg==
+X-Received: by 2002:a05:6a00:1401:b0:661:4a00:1e8b with SMTP id l1-20020a056a00140100b006614a001e8bmr11394543pfu.23.1686592497280;
+        Mon, 12 Jun 2023 10:54:57 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:8960:fd1b:9d08:8ca1])
+        by smtp.gmail.com with ESMTPSA id x21-20020aa784d5000000b0064d566f658esm7155939pfn.135.2023.06.12.10.54.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 10:54:56 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 11:54:54 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        dri-devel@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: display: ssd1307fb: Remove default
- width and height values
-Message-ID: <20230612-parade-sauciness-16225ce0a643@spud>
-References: <20230609170941.1150941-1-javierm@redhat.com>
- <20230609170941.1150941-3-javierm@redhat.com>
- <20230610-opposite-quality-81d4a1561c88@spud>
- <87r0qj19zs.fsf@minerva.mail-host-address-is-not-set>
- <20230610-unused-engaged-c1f4119cff08@spud>
- <87jzwa29ff.fsf@minerva.mail-host-address-is-not-set>
- <d4828a3d-639a-a207-ff36-45c8c5d4d311@suse.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v13 07/11] remoteproc: mediatek: Add scp_boot_peers and
+ scp_shutdown_peers operations
+Message-ID: <ZIdb7n3LWKRekOdu@p14s>
+References: <20230607072222.8628-1-tinghan.shen@mediatek.com>
+ <20230607072222.8628-8-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5DyWqCbkPsD3ovzU"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d4828a3d-639a-a207-ff36-45c8c5d4d311@suse.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230607072222.8628-8-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,56 +81,165 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 07, 2023 at 03:22:18PM +0800, Tinghan Shen wrote:
+> Due to that SCP core 0 controls the SCP clock and SRAM power, add two
+> new mtk_scp_of_data operations, scp_boot_peers and scp_shutdown_peers,
+> to manage the boot sequence and watchdog timeout handling of SCP core 1.
+> It ensures that core 1 boots after or shuts down before core 0 for
+> maintaining the proper control flow over SCP core 1.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  drivers/remoteproc/mtk_common.h |  3 ++
+>  drivers/remoteproc/mtk_scp.c    | 55 +++++++++++++++++++++++++++++++++
+>  2 files changed, 58 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index 56395e8664cb..0bfd242c41cc 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -93,6 +93,8 @@ struct mtk_scp_of_data {
+>  	void (*scp_reset_deassert)(struct mtk_scp *scp);
+>  	void (*scp_stop)(struct mtk_scp *scp);
+>  	void *(*scp_da_to_va)(struct mtk_scp *scp, u64 da, size_t len);
+> +	void (*scp_boot_peers)(struct mtk_scp *scp);
+> +	void (*scp_shutdown_peers)(struct mtk_scp *scp);
 
---5DyWqCbkPsD3ovzU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This isn't what I suggested in my previous email.  This solution will not work
+if a user is looking to independently start/stop CPU1 from sysfs.
 
-On Mon, Jun 12, 2023 at 09:47:12AM +0200, Thomas Zimmermann wrote:
-> Am 11.06.23 um 01:18 schrieb Javier Martinez Canillas:
+I will not go further with this revision.
 
-> > But I will be OK to drop the "solomon,ssd130?fb-i2c" compatible strings
-> > from the DRM driver and only match against the new "solomon,ssd130?-i2c"
-> > compatible strings. And add a different DT binding schema for the ssd13=
-0x
-> > driver, if that would mean being able to fix things like the one mentio=
-ned
-> > in this patch.
+Mathieu
 
-If there are different compatibles, then it can always be sorted out
-later iff it turns out to be a problem, since new devicetrees should not
-be using the deprecated compatibles anyway. I didn't realise that those
-deprecated compatibles existed, thanks for your patience.
-
-> > In my opinion, trying to always make the drivers backward compatible wi=
-th
-> > old DTBs only makes the drivers code more complicated for unclear benef=
-it.
-> >=20
-> > Usually this just ends being code that is neither used nor tested. Beca=
-use
-> > in practice most people update the DTBs and kernels, instead of trying =
-to
-> > make the DTB a stable ABI like firmware.
-> >=20
->=20
-> From my understanding, fixing the resolution is the correct thing to do
-> here. Userspace needs to be able to handle these differences.
-
-Fixing meaning correcting, or fixing meaning using a fixed resolution?
-Not clear to me what you mean, sorry.
-
-
---5DyWqCbkPsD3ovzU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIdZkgAKCRB4tDGHoIJi
-0hy6APsHDkPD8VrqTNelS7nbRrC8vr5zxL5uQULyMVymFgX2jwEAwbyuKGaOgdoP
-9WRjHxaFMkPMiyl4EYe1IBwp3iJSeQU=
-=PcwL
------END PGP SIGNATURE-----
-
---5DyWqCbkPsD3ovzU--
+>  
+>  	u32 host_to_scp_reg;
+>  	u32 host_to_scp_int_bit;
+> @@ -130,6 +132,7 @@ struct mtk_scp {
+>  	struct rproc_subdev *rpmsg_subdev;
+>  
+>  	struct list_head elem;
+> +	struct list_head *cluster;
+>  };
+>  
+>  /**
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index d644e232dfec..edbf71f4c21e 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -74,8 +74,21 @@ void scp_put(struct mtk_scp *scp)
+>  }
+>  EXPORT_SYMBOL_GPL(scp_put);
+>  
+> +static void mt8195_scp_shutdown_peers(struct mtk_scp *scp)
+> +{
+> +	struct mtk_scp *next_scp;
+> +
+> +	next_scp = list_next_entry(scp, elem);
+> +	list_for_each_entry_from(next_scp, scp->cluster, elem) {
+> +		rproc_shutdown(next_scp->rproc);
+> +	}
+> +}
+> +
+>  static void scp_wdt_handler(struct mtk_scp *scp, u32 scp_to_host)
+>  {
+> +	if (scp->data->scp_shutdown_peers)
+> +		scp->data->scp_shutdown_peers(scp);
+> +
+>  	dev_err(scp->dev, "SCP watchdog timeout! 0x%x", scp_to_host);
+>  	rproc_report_crash(scp->rproc, RPROC_WATCHDOG);
+>  }
+> @@ -539,6 +552,18 @@ static int scp_parse_fw(struct rproc *rproc, const struct firmware *fw)
+>  	return ret;
+>  }
+>  
+> +static void mt8195_scp_boot_peers(struct mtk_scp *scp)
+> +{
+> +	struct mtk_scp *next_scp;
+> +
+> +	if (scp->cluster && !list_empty(scp->cluster)) {
+> +		next_scp = list_next_entry(scp, elem);
+> +		list_for_each_entry_from(next_scp, scp->cluster, elem) {
+> +			rproc_boot(next_scp->rproc);
+> +		}
+> +	}
+> +}
+> +
+>  static int scp_start(struct rproc *rproc)
+>  {
+>  	struct mtk_scp *scp = rproc->priv;
+> @@ -574,6 +599,9 @@ static int scp_start(struct rproc *rproc)
+>  	clk_disable_unprepare(scp->clk);
+>  	dev_info(dev, "SCP is ready. FW version %s\n", run->fw_ver);
+>  
+> +	if (scp->data->scp_boot_peers)
+> +		scp->data->scp_boot_peers(scp);
+> +
+>  	return 0;
+>  
+>  stop:
+> @@ -977,6 +1005,8 @@ static int scp_add_single_core(struct platform_device *pdev)
+>  	if (IS_ERR(scp))
+>  		return PTR_ERR(scp);
+>  
+> +	scp->cluster = cluster;
+> +
+>  	ret = rproc_add(scp->rproc);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to add rproc\n");
+> @@ -989,6 +1019,15 @@ static int scp_add_single_core(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +static void scp_rproc_boot_core0(const struct firmware *fw, void *context)
+> +{
+> +	struct rproc *rproc = context;
+> +
+> +	rproc_boot(rproc);
+> +
+> +	release_firmware(fw);
+> +}
+> +
+>  static int scp_add_multi_core(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -1029,6 +1068,10 @@ static int scp_add_multi_core(struct platform_device *pdev)
+>  			goto init_fail;
+>  		}
+>  
+> +		/* boot after all cores are discovered */
+> +		scp->rproc->auto_boot = false;
+> +		scp->cluster = cluster;
+> +
+>  		ret = rproc_add(scp->rproc);
+>  		if (ret) {
+>  			dev_err(dev, "Failed to add rproc of core %d\n", core_id);
+> @@ -1041,6 +1084,16 @@ static int scp_add_multi_core(struct platform_device *pdev)
+>  		core_id++;
+>  	}
+>  
+> +	/* boot core 0, and other cores are booted following core 0 */
+> +	scp = list_first_entry(cluster, struct mtk_scp, elem);
+> +	ret = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
+> +				      scp->rproc->firmware, &scp->rproc->dev, GFP_KERNEL,
+> +				      scp->rproc, scp_rproc_boot_core0);
+> +	if (ret < 0) {
+> +		dev_err(dev, "request_firmware_nowait err: %d\n", ret);
+> +		goto init_fail;
+> +	}
+> +
+>  	return 0;
+>  
+>  init_fail:
+> @@ -1198,6 +1251,8 @@ static const struct mtk_scp_of_data mt8195_of_data = {
+>  	.scp_reset_deassert = mt8192_scp_reset_deassert,
+>  	.scp_stop = mt8195_scp_stop,
+>  	.scp_da_to_va = mt8192_scp_da_to_va,
+> +	.scp_boot_peers = mt8195_scp_boot_peers,
+> +	.scp_shutdown_peers = mt8195_scp_shutdown_peers,
+>  	.host_to_scp_reg = MT8192_GIPC_IN_SET,
+>  	.host_to_scp_int_bit = MT8192_HOST_IPC_INT_BIT,
+>  };
+> -- 
+> 2.18.0
+> 
