@@ -2,345 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACF3072D43D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 00:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA8672D449
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 00:17:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238816AbjFLWPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 18:15:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
+        id S234365AbjFLWRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 18:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238339AbjFLWPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 18:15:09 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047BC10F2;
-        Mon, 12 Jun 2023 15:15:07 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35CJrWqn018957;
-        Mon, 12 Jun 2023 22:15:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=pGyvwgOlbTLUo+V/Y9nEOaXJa/euEuK6f+dzmjv3IZ8=;
- b=Pp94PJcnhy3iWHX0XFwvsvm7xLHUnN6/KpEcl2Sqmr7uEO5U8BBwDWRKFl6Emiv+d5z4
- 2JFYq0uQ5CygKCFpW9KsEnpgXWJxq6r1ZRQ7lRkWtFRzBsPlYd3HWnQP/iCDvwC8dmB6
- D+rLoK/l8QUjEAtDJ5D6hLelfkQqV/U3ZvjGEZbrWCQ8VywO2V47i+hLBVUHRzdpUITa
- P+a8ZxlZoOw5ZjJpbJcYJLw4W1M2qLYFXk5qpppESD+DSuvNRmKRHi/9YcYSHbUakZUQ
- SdZawfccgLwQn1QR7Wt0y15Ih1t3boAbZmW+PxpZ7/W01+14w/pNor9eeyL5R5pq3Ldb DQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r60pesfk4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Jun 2023 22:15:04 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35CMF3pY022238
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Jun 2023 22:15:03 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 12 Jun 2023 15:15:02 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S232586AbjFLWRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 18:17:20 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4782710D5
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 15:16:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686608195;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=kTZtyuUlXixxMxO/No1lfJ4jfgIlGKSKtZpjkWwouX4=;
+        b=DtHxAP0e9o9nTKYopjuWtKGSDiTfqclAtwU7NdRj8mcFWrfquNGIQRYJlOGvhj4WRSQwFc
+        prLjvK0C/0cURZHvZws9jwNf28ZG4FvUDmfQZ7l3J4xhJzLOTCxa4qDKN9RVv+yzFo5qbD
+        ZkHaYqsGrwlhH1Bb6yn7KCxOeIOfWpU=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-231-WdEhD09PMjCe-CSSnsDEMA-1; Mon, 12 Jun 2023 18:16:34 -0400
+X-MC-Unique: WdEhD09PMjCe-CSSnsDEMA-1
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-30fa3ea38bcso1228683f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 15:16:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686608193; x=1689200193;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kTZtyuUlXixxMxO/No1lfJ4jfgIlGKSKtZpjkWwouX4=;
+        b=Z/MAlYuCjCo1UkhCf6ksu2UmD6UBftY9IVkYqc2umOpKW3WspbjsI6UrLDWc1TFtyY
+         daFUGgWwjOwLZSVW5UeDfxJlzG3r/xSBeGaX4PwzGI/YRlIaY1ftvndUf2+nFLslgP2v
+         FXtwfZc+Jg3ezLf5BgmzKw8ACX9C5KFGWByjlR6Eu/AModwnbnjSwZBn95mNYivlXNQb
+         JUuVE+vKh4kpjuG32gyxLZGhtnM+hjY4eYUhy0BYRpjGxVzQ0IYwsIT0WAc9oN70V5HJ
+         3li0zRctcXSP2PWo00SQNM7i4AwoIJaNICAx9Jk2Uk0iTGVynTMNR4O2FM1vOks39E1V
+         DMEQ==
+X-Gm-Message-State: AC+VfDyq6ZdFIVzzAENtKC2e8Z9xP8Sqvx3+ThNP7Zqh7UD/Q6BgdYQ9
+        4mwv0mJYo82LLYCup7x8+UM4dGo7+geVG8fX+q7hIxsONXWyolu/w/WsJwEBo0NBONvi3XlVwef
+        heqlQJyw6HnS0g3bTe+R2fg==
+X-Received: by 2002:a5d:4c88:0:b0:30f:bb0c:a2c0 with SMTP id z8-20020a5d4c88000000b0030fbb0ca2c0mr3763729wrs.5.1686608193384;
+        Mon, 12 Jun 2023 15:16:33 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6vhzxAZAyN5mFmZdbyQbsrTmXIEJTazMrYY97aHI+UWILU1SiUfJAeHgaq8ps1Vzz+ZOsSqw==
+X-Received: by 2002:a5d:4c88:0:b0:30f:bb0c:a2c0 with SMTP id z8-20020a5d4c88000000b0030fbb0ca2c0mr3763713wrs.5.1686608193039;
+        Mon, 12 Jun 2023 15:16:33 -0700 (PDT)
+Received: from localhost (net-130-25-106-149.cust.vodafonedsl.it. [130.25.106.149])
+        by smtp.gmail.com with ESMTPSA id e4-20020adfdbc4000000b0030ada01ca78sm13512230wrj.10.2023.06.12.15.16.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 15:16:32 -0700 (PDT)
+Date:   Tue, 13 Jun 2023 00:16:30 +0200
+From:   Lorenzo Bianconi <lorenzo.bianconi@redhat.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: sc8180x-flex5g: Wire up USB Type-C
-Date:   Mon, 12 Jun 2023 15:14:56 -0700
-Message-ID: <20230612221456.1887533-4-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230612221456.1887533-1-quic_bjorande@quicinc.com>
-References: <20230612221456.1887533-1-quic_bjorande@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Sam Shih <Sam.Shih@mediatek.com>
+Subject: Re: [PATCH net-next 5/8] net: ethernet: mtk_eth_soc: add
+ MTK_NETSYS_V3 capability bit
+Message-ID: <ZIeZPqFJqdf928f4@lore-desk>
+References: <ZIUXf9APDFCNaUG1@makrotopia.org>
+ <ZIb/WKKNlzjTIu2h@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CqIVJeCj7HUS553nE3pthGnz8pCp_Y3h
-X-Proofpoint-ORIG-GUID: CqIVJeCj7HUS553nE3pthGnz8pCp_Y3h
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-12_16,2023-06-12_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0
- adultscore=0 suspectscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0
- phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2306120191
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MZEWyw36ZZKq14wi"
+Content-Disposition: inline
+In-Reply-To: <ZIb/WKKNlzjTIu2h@shell.armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following the SC8180X Primus reference design, add pmic_glink and USB
-Type-C wiring for battery manager, external display and orientation
-switching.
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  | 196 ++++++++++++++++++
- 1 file changed, 196 insertions(+)
+--MZEWyw36ZZKq14wi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-index fe3b366e1435..677cb255fad2 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-@@ -45,6 +45,84 @@ lid {
- 		};
- 	};
- 
-+	pmic-glink {
-+		compatible = "qcom,sc8180x-pmic-glink", "qcom,pmic-glink";
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_con0_hs: endpoint {
-+						remote-endpoint = <&usb_prim_role_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_con0_ss: endpoint {
-+						remote-endpoint = <&usb_prim_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					pmic_glink_con0_sbu: endpoint {
-+						remote-endpoint = <&usbprim_sbu_mux>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_con1_hs: endpoint {
-+						remote-endpoint = <&usb_sec_role_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_con1_ss: endpoint {
-+						remote-endpoint = <&usb_sec_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					pmic_glink_con1_sbu: endpoint {
-+						remote-endpoint = <&usbsec_sbu_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	reserved-memory {
- 		rmtfs_mem: rmtfs-region@85500000 {
- 			compatible = "qcom,rmtfs-mem";
-@@ -100,6 +178,44 @@ vreg_s4a_1p8: pm8150-s4-regulator {
- 
- 		vin-supply = <&vph_pwr>;
- 	};
-+
-+	usbprim-sbu-mux {
-+		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
-+
-+		enable-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+		select-gpios = <&tlmm 100 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbprim_sbu_default>;
-+
-+		mode-switch;
-+		orientation-switch;
-+
-+		port {
-+			usbprim_sbu_mux: endpoint {
-+				remote-endpoint = <&pmic_glink_con0_sbu>;
-+			};
-+		};
-+	};
-+
-+	usbsec-sbu-mux {
-+		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
-+
-+		enable-gpios = <&tlmm 188 GPIO_ACTIVE_LOW>;
-+		select-gpios = <&tlmm 187 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbsec_sbu_default>;
-+
-+		mode-switch;
-+		orientation-switch;
-+
-+		port {
-+			usbsec_sbu_mux: endpoint {
-+				remote-endpoint = <&pmic_glink_con1_sbu>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -283,6 +399,24 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_dp0 {
-+	status = "okay";
-+};
-+
-+&mdss_dp0_out {
-+	data-lanes = <0 1>;
-+	remote-endpoint = <&usb_prim_qmpphy_dp_in>;
-+};
-+
-+&mdss_dp1 {
-+	status = "okay";
-+};
-+
-+&mdss_dp1_out {
-+	data-lanes = <0 1>;
-+	remote-endpoint = <&usb_sec_qmpphy_dp_in>;
-+};
-+
- &mdss_edp {
- 	data-lanes = <0 1 2 3>;
- 
-@@ -419,6 +553,8 @@ &usb_prim_qmpphy {
- 	vdda-phy-supply = <&vreg_l3c_1p2>;
- 	vdda-pll-supply = <&vreg_l5e_0p88>;
- 
-+	orientation-switch;
-+
- 	status = "okay";
- };
- 
-@@ -430,6 +566,18 @@ &usb_prim_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_prim_qmpphy_dp_in {
-+	remote-endpoint = <&mdss_dp0_out>;
-+};
-+
-+&usb_prim_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_con0_ss>;
-+};
-+
-+&usb_prim_role_switch {
-+	remote-endpoint = <&pmic_glink_con0_hs>;
-+};
-+
- &usb_sec_hsphy {
- 	vdda-pll-supply = <&vreg_l5e_0p88>;
- 	vdda18-supply = <&vreg_l12a_1p8>;
-@@ -442,9 +590,23 @@ &usb_sec_qmpphy {
- 	vdda-phy-supply = <&vreg_l3c_1p2>;
- 	vdda-pll-supply = <&vreg_l5e_0p88>;
- 
-+	orientation-switch;
-+
- 	status = "okay";
- };
- 
-+&usb_sec_qmpphy_dp_in {
-+	remote-endpoint = <&mdss_dp1_out>;
-+};
-+
-+&usb_sec_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_con1_ss>;
-+};
-+
-+&usb_sec_role_switch {
-+	remote-endpoint = <&pmic_glink_con1_hs>;
-+};
-+
- &usb_sec {
- 	status = "okay";
- };
-@@ -560,6 +722,40 @@ wake-n-pins {
- 		};
- 	};
- 
-+	usbprim_sbu_default: usbprim-sbu-state {
-+		oe-n-pins {
-+			pins = "gpio152";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <16>;
-+			output-high;
-+		};
-+
-+		sel-pins {
-+			pins = "gpio100";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <16>;
-+		};
-+	};
-+
-+	usbsec_sbu_default: usbsec-sbu-state {
-+		oe-n-pins {
-+			pins = "gpio188";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <16>;
-+			output-high;
-+		};
-+
-+		sel-pins {
-+			pins = "gpio187";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <16>;
-+		};
-+	};
-+
- 	uart13_state: uart13-state {
- 		cts-pins {
- 			pins = "gpio43";
--- 
-2.25.1
+> On Sun, Jun 11, 2023 at 01:38:23AM +0100, Daniel Golle wrote:
+> > @@ -1333,8 +1354,13 @@ static int mtk_tx_map(struct sk_buff *skb, struc=
+t net_device *dev,
+> >  	mtk_tx_set_dma_desc(dev, itxd, &txd_info);
+> > =20
+> >  	itx_buf->flags |=3D MTK_TX_FLAGS_SINGLE0;
+> > -	itx_buf->flags |=3D (!mac->id) ? MTK_TX_FLAGS_FPORT0 :
+> > -			  MTK_TX_FLAGS_FPORT1;
+> > +	if (mac->id =3D=3D MTK_GMAC1_ID)
+> > +		itx_buf->flags |=3D MTK_TX_FLAGS_FPORT0;
+> > +	else if (mac->id =3D=3D MTK_GMAC2_ID)
+> > +		itx_buf->flags |=3D MTK_TX_FLAGS_FPORT1;
+> > +	else
+> > +		itx_buf->flags |=3D MTK_TX_FLAGS_FPORT2;
+>=20
+> There appears to be two places that this code structure appears, and
+> this is in the path for packet transmission. I wonder if it would be
+> more efficient to instead do:
+>=20
+> 	itx_buf->flags |=3D MTK_TX_FLAGS_SINGLE0 | mac->tx_flags;
+>=20
+> with mac->tx_flags appropriately initialised?
+>=20
+> > @@ -2170,7 +2214,9 @@ static int mtk_poll_tx_qdma(struct mtk_eth *eth, =
+int budget,
+> >  		tx_buf =3D mtk_desc_to_tx_buf(ring, desc,
+> >  					    eth->soc->txrx.txd_size);
+> >  		if (tx_buf->flags & MTK_TX_FLAGS_FPORT1)
+> > -			mac =3D 1;
+> > +			mac =3D MTK_GMAC2_ID;
+> > +		else if (tx_buf->flags & MTK_TX_FLAGS_FPORT2)
+> > +			mac =3D MTK_GMAC3_ID;
+>=20
+> This has me wondering whether the flags are used for hardware or just
+> for the driver's purposes. If it's the latter, can we instead store the
+> MAC index in tx_buf, rather than having to decode a bitfield?
+>=20
+> I suspect these are just for the driver given that the addition of
+> MTK_TX_FLAGS_FPORT2 changes all subsequent bit numbers in this struct
+> member.
+
+ack, I agree. I will rework it.
+
+Regards,
+Lorenzo
+
+>=20
+> > =20
+> >  		if (!tx_buf->data)
+> >  			break;
+> > @@ -3783,7 +3829,26 @@ static int mtk_hw_init(struct mtk_eth *eth, bool=
+ reset)
+> >  	mtk_w32(eth, eth->soc->txrx.rx_irq_done_mask, reg_map->qdma.int_grp +=
+ 4);
+> >  	mtk_w32(eth, 0x21021000, MTK_FE_INT_GRP);
+> > =20
+> > -	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
+> > +	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V3)) {
+> > +		/* PSE should not drop port1, port8 and port9 packets */
+> > +		mtk_w32(eth, 0x00000302, PSE_DROP_CFG);
+> > +
+> > +		/* GDM and CDM Threshold */
+> > +		mtk_w32(eth, 0x00000707, MTK_CDMW0_THRES);
+> > +		mtk_w32(eth, 0x00000077, MTK_CDMW1_THRES);
+> > +
+> > +		/* Disable GDM1 RX CRC stripping */
+> > +		val =3D mtk_r32(eth, MTK_GDMA_FWD_CFG(0));
+> > +		val &=3D ~MTK_GDMA_STRP_CRC;
+> > +		mtk_w32(eth, val, MTK_GDMA_FWD_CFG(0));
+>=20
+> mtk_m32() ?
+>=20
+> Thanks!
+>=20
+> --=20
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+>=20
+
+--MZEWyw36ZZKq14wi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZIeZPgAKCRA6cBh0uS2t
+rOWZAP93LCOL1i0nkHkj6wrpRzOraRpEoqEK3GPo84WYL1nFzQEAs2hJgVY3XzfF
+KF3PwyoYttShSk1kgjn4c0xzXmKqKgU=
+=Fpo3
+-----END PGP SIGNATURE-----
+
+--MZEWyw36ZZKq14wi--
 
