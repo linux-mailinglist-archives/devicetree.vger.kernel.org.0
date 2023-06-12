@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEAAD72B76C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 07:39:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E51B872B76F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 07:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235235AbjFLFj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 01:39:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40118 "EHLO
+        id S235392AbjFLFja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 01:39:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234802AbjFLFj1 (ORCPT
+        with ESMTP id S234927AbjFLFj1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 01:39:27 -0400
 Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3399E62
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 22:39:25 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f63ab1ac4aso4437848e87.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 22:39:25 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40CD6E67
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 22:39:26 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f640e48bc3so4416526e87.2
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 22:39:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1686548364; x=1689140364;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EHz2Z30tdvTqewGRLECO+NJy+cg3ayTbdySyYZr/5UI=;
-        b=t5ZwCfhAOWC8wyPB2ZlDMdiTPngHUZ7nZ67kwnm/Dr2UbttazmKj8zlhUsLQR3Nuwj
-         sfgqBP5oTIR9ghn3OnfIeQYlA7lzPDb3uGGdvf4KFY/DKAJFt9d1+ybNNYuMeltV53gp
-         GHykpbnZ3mc6xK/YNr54xghuoB4Y12dK444kxCDtSdO2qTus7IpqbPF3DPTKUUvHxJdh
-         iVhwWNkFOOCtUAMIoFrBeRIXYovBournrXZWLlhdNg+ocGw4uyRRocNNY/X/B4apQ5N0
-         3Pyn4woxc0otUDwXNV6TjAtS19C0NosBSXBykyzUMONyXhvTi8FLYMWbT+8HtmHFCp9Q
-         aFaQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K3XrlP3qxGGbuMeyHpbUTgn9VuSrjhayHzqHOlF2VRg=;
+        b=cEMdGuL89H/fBK/hrDnEwKkZXZoJ0OUmsU+EQ/gwvB/yBFhGsoLuQrtxhGect2whhV
+         TyMAeGFLPBdr1PC8ulLzzWPIb/jqu0lC+ZpV+/CqijhBFPqpCWZTQDLXji1UOojKsCcL
+         vtEzDKdT+MDUm7pFuEOru2IE4keXIAVv0Zc9u0A0AIxdwnxSdhJjDkbtY+phXOSenYYX
+         9gdGouv88NjsyYBNosNOoCZ7z+7UyX3qQn38Y0YfQuYuF+z2UA+9CzIbMjmpaMzTU6zk
+         hDnwjvB8FUEECO3+dL57pf9EkhP6KRIPKeWnxdibL1BAU5ofNFC0D/nLMXJPcflo0K3m
+         n0+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20221208; t=1686548364; x=1689140364;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EHz2Z30tdvTqewGRLECO+NJy+cg3ayTbdySyYZr/5UI=;
-        b=G2Tysj4+klAsSHVkzxP3cZzfpy5/gXvqtCF53f4QYW4wNHoshyMflAWSyOCBoWikLJ
-         qQOZx846v34vYYi8Ay1ZD8N6dgcS7lREmli8MDyOEsmwqYK/YQ4eB2B4MtyC8JF5ppPA
-         w4oqRg5QuGWM4uEzvhyxfxxQuStddy7f42bvGVQkb1tgfnYOzxJQyt5zxeLktD7bI86d
-         LQqf/NKetnxsORoK2R9+KgybzakwT9NQQfDTcrcMIcoaqzjJKg/S/nPH7MPjfOG9+DmL
-         qoslOfcrudd1lKlykaQcRBUS2eqcOwr35mpVXWphQ182TvxFdQaF2HYGczxoicJp6qc6
-         +R6g==
-X-Gm-Message-State: AC+VfDxhkB6hZY/pTk3HSVBKNQ606hPCFbEZAp2HM8ZcbQ6CorpeZp9d
-        +zcipL0rnp4It/1/yFzPx+qJzA==
-X-Google-Smtp-Source: ACHHUZ7TiqLKPzDu6AYEp6emATujNOYmnTZgqrXZO3dHGPkZgxy28WkN209PjWMbBoSf8p81CeYTMA==
-X-Received: by 2002:a19:6418:0:b0:4f3:c7f8:d40c with SMTP id y24-20020a196418000000b004f3c7f8d40cmr3325848lfb.29.1686548363705;
-        Sun, 11 Jun 2023 22:39:23 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K3XrlP3qxGGbuMeyHpbUTgn9VuSrjhayHzqHOlF2VRg=;
+        b=CV5MSoRIytXUg3hEWRIIqILbeuqhp77NeFEalD0WgqOAXx8SDP5wgo2H0GLrGfXjlC
+         7VXme8cYnEtM6N2iM4D1s1eXaUU+Wy2CwZH78QAzh9pV77Et4ypYl71Fz9j/P2bq1Q11
+         04u9xAXhLlGeQ21CgqitlGu20c7PwZ/lyXO2DlZDZEJMNxfY8ZlCWMiHwky7e+bxA8Ca
+         AKWZMaGMkh3ZEjaKg8+9bGTjfZwOJYOA9mNpun5Stw4c9yfJBoC4Xf48vc9mV7fN3F8P
+         lxr4KyJqOo+EwSCcc+Cfz8Clii7MTd96NS38HvaGF7eraVi0NXIfadGs686rT+5x8ls+
+         AOVw==
+X-Gm-Message-State: AC+VfDyYp11WAHRcilNtt0wVNs9uUkarhR1JHITjBaDXe0rgKUEpne4n
+        V2BbKm1Y3fODFOOqLmc9mYKwCg==
+X-Google-Smtp-Source: ACHHUZ5Rt7kSjxAgZ2EuBEP9nABNPmD18A8ONgsSEqAa4+c/iDsem3zIxfurYPgYBJ2RN93F7jHrhQ==
+X-Received: by 2002:a19:2d58:0:b0:4f6:2a63:d3fc with SMTP id t24-20020a192d58000000b004f62a63d3fcmr2882685lft.32.1686548364629;
+        Sun, 11 Jun 2023 22:39:24 -0700 (PDT)
 Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id n6-20020a195506000000b004f38260f196sm1324125lfe.218.2023.06.11.22.39.22
+        by smtp.gmail.com with ESMTPSA id n6-20020a195506000000b004f38260f196sm1324125lfe.218.2023.06.11.22.39.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Jun 2023 22:39:22 -0700 (PDT)
+        Sun, 11 Jun 2023 22:39:24 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -63,10 +64,12 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
         Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH 00/18] ARM: qcom: apq8064: support CPU frequency scaling
-Date:   Mon, 12 Jun 2023 08:39:04 +0300
-Message-Id: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 01/18] dt-bindings: opp: opp-v2-kryo-cpu: support Qualcomm Krait SoCs
+Date:   Mon, 12 Jun 2023 08:39:05 +0300
+Message-Id: <20230612053922.3284394-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
+References: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,55 +82,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement CPUFreq support for one of the oldest supported Qualcomm
-platforms, APQ8064. Each core has independent power and frequency
-control. Additionally the L2 cache is scaled to follow the CPU
-frequencies (failure to do so results in strange semi-random crashes).
+Exted the opp-v2-kryo-cpu.yaml to support defining OPP tables for the
+previous generation of Qualcomm CPUs, 32-bit Krait-based platforms.
 
-Core voltage is controlled through the SAW2 devices, one for each core.
-The L2 has two regulators, vdd-mem and vdd-dig.
+It makes no sense to use 'operating-points-v2-kryo-cpu' compatibility
+node for the Krait cores. Add support for the Krait-specific
+'operating-points-v2-krait-cpu' compatibility string and the relevant
+opp-microvolt subclasses properties.
 
-Depenency: [1] for interconnect-clk implementation
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../devicetree/bindings/opp/opp-v2-kryo-cpu.yaml      | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-https://lore.kernel.org/linux-arm-msm/20230512001334.2983048-3-dmitry.baryshkov@linaro.org/
-
-Dmitry Baryshkov (18):
-  dt-bindings: opp: opp-v2-kryo-cpu: support Qualcomm Krait SoCs
-  dt-bindings: soc: qcom: merge qcom,saw2.txt into qcom,spm.yaml
-  dt-bindings: soc: qcom: qcom,saw2: define optional regulator node
-  dt-bindings: clock: qcom,krait-cc: Krait core clock controller
-  clk: qcom: krait-cc: rewrite driver to use clk_hw instead of clk
-  clk: qcom: krait-cc: export L2 clock as an interconnect
-  soc: qcom: spm: add support for voltage regulator
-  cpufreq: qcom-nvmem: also accept operating-points-v2-krait-cpu
-  cpufreq: qcom-nvmem: Add support for voltage scaling
-  cpufreq: qcom-nvmem: drop pvs_ver for format a fuses
-  cpufreq: qcom-nvmem: provide separate configuration data for apq8064
-  ARM: dts: qcom: apq8064: rename SAW nodes to power-manager
-  ARM: dts: qcom: apq8064: declare SAW2 regulators
-  ARM: dts: qcom: apq8064: add simple CPUFreq support
-  ARM: dts: qcom: apq8064: provide voltage scaling tables
-  ARM: dts: qcom: apq8064: enable passive CPU cooling
-  ARM: dts: qcom: apq8064-asus-nexus7-flo: constraint cpufreq regulators
-  ARM: dts: qcom: apq8064-ifc6410: constraint cpufreq regulators
-
- .../devicetree/bindings/arm/msm/qcom,saw2.txt |   58 -
- .../bindings/opp/opp-v2-kryo-cpu.yaml         |   11 +-
- .../qcom/{qcom,spm.yaml => qcom,saw2.yaml}    |   39 +-
- .../boot/dts/qcom-apq8064-asus-nexus7-flo.dts |   14 +-
- arch/arm/boot/dts/qcom-apq8064-ifc6410.dts    |   18 +-
- arch/arm/boot/dts/qcom-apq8064.dtsi           | 1247 ++++++++++++++++-
- drivers/clk/qcom/Kconfig                      |    1 +
- drivers/clk/qcom/krait-cc.c                   |  185 +--
- drivers/cpufreq/qcom-cpufreq-nvmem.c          |  164 ++-
- drivers/soc/qcom/spm.c                        |  205 ++-
- include/dt-bindings/clock/qcom,krait-cc.h     |   20 +
- include/soc/qcom/spm.h                        |    9 +
- 12 files changed, 1806 insertions(+), 165 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
- rename Documentation/devicetree/bindings/soc/qcom/{qcom,spm.yaml => qcom,saw2.yaml} (58%)
- create mode 100644 include/dt-bindings/clock/qcom,krait-cc.h
-
+diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+index bbbad31ae4ca..93ec778bf333 100644
+--- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
++++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+@@ -26,7 +26,9 @@ description: |
+ 
+ properties:
+   compatible:
+-    const: operating-points-v2-kryo-cpu
++    enum:
++      - operating-points-v2-krait-cpu
++      - operating-points-v2-kryo-cpu
+ 
+   nvmem-cells:
+     description: |
+@@ -63,14 +65,15 @@ patternProperties:
+           5:  MSM8996SG, speedbin 1
+           6:  MSM8996SG, speedbin 2
+           7-31:  unused
+-        enum: [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7,
+-               0x9, 0xd, 0xe, 0xf,
+-               0x10, 0x20, 0x30, 0x70]
++        $ref: /schemas/types.yaml#/definitions/uint32
+ 
+       clock-latency-ns: true
+ 
+       required-opps: true
+ 
++    patternProperties:
++      '^opp-microvolt-speed[0-9]+-pvs[0-9]+$': true
++
+     required:
+       - opp-hz
+ 
 -- 
 2.39.2
 
