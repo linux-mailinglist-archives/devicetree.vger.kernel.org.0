@@ -2,149 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E10B072CA12
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4867272CA4F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237231AbjFLP3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 11:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56322 "EHLO
+        id S237684AbjFLPfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 11:35:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236249AbjFLP3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:29:30 -0400
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08737E62;
-        Mon, 12 Jun 2023 08:29:29 -0700 (PDT)
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-777b4c9e341so292571739f.0;
-        Mon, 12 Jun 2023 08:29:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686583768; x=1689175768;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=02DkNPWWONbv0u1k4t26LVu45zaxMd+aECoLnHrf170=;
-        b=MdF2tOlfSHiirrsl7M0p3aqTekOVXCxokiuy1fPEoMEdcOcpvzVD7ctZ9pItRzy4Um
-         cj2ZjYE80tyM8qjoFxx8fPEb1i8DrG7TmX0Sq+cWM5UwUpcWPMP4ErRKJQZDO30UosWW
-         RRB9peu5Ih0uxMSFhMYL2RUSknuxZBjzjEHLMEgGdkJHcswO6C6eEKXIFWI30nRxkyM8
-         xlvyedY7GSlGuQ54JYd5xQUhMp2KnQF1Po7VAHRbCbZmeNdY+0J3JCFgfwndU8KT8ZDS
-         w+RSAdlxjGA6Cffgf3uVT9ntd4iOfMg/HZj8G++U5zSzdxOUUJQ2PakLjpZ3doNG7vGG
-         9ypA==
-X-Gm-Message-State: AC+VfDzOw6JkXbPl1ADvVoJ8c+VDDsBl6LAevqptkn4Qgg8n1dTRvaxs
-        iCe1+k1941A8kaRrFXWUVw==
-X-Google-Smtp-Source: ACHHUZ5OTMtb2/1iP67kCEtc1B3C124Kbz/uogOGn3ZX8BywrbEYr3v1mN1WAB1C6eG21xCyaXSDNQ==
-X-Received: by 2002:a5e:db07:0:b0:777:8e86:7636 with SMTP id q7-20020a5edb07000000b007778e867636mr9282230iop.15.1686583768097;
-        Mon, 12 Jun 2023 08:29:28 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id k19-20020a02cb53000000b004167410a9bcsm2773773jap.113.2023.06.12.08.29.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 08:29:27 -0700 (PDT)
-Received: (nullmailer pid 87347 invoked by uid 1000);
-        Mon, 12 Jun 2023 15:29:25 -0000
-Date:   Mon, 12 Jun 2023 09:29:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add bindings for Azoteq
- IQS7210A/7211A/E
-Message-ID: <20230612152925.GA65549-robh@kernel.org>
-References: <ZHVD/9OgRTAwBhqx@nixie71>
- <ZHVEa0yM1LLUJEfO@nixie71>
- <20230609142538.GA878396-robh@kernel.org>
- <ZIZvkGqr4a0kOGnR@nixie71>
+        with ESMTP id S237962AbjFLPfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:35:50 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3368E10C3;
+        Mon, 12 Jun 2023 08:35:49 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EBF511FB;
+        Mon, 12 Jun 2023 08:36:33 -0700 (PDT)
+Received: from [10.57.27.113] (unknown [10.57.27.113])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2E9163F5A1;
+        Mon, 12 Jun 2023 08:35:46 -0700 (PDT)
+Message-ID: <16b08ba8-f23e-af24-881c-61fe4e4c92e1@arm.com>
+Date:   Mon, 12 Jun 2023 16:35:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZIZvkGqr4a0kOGnR@nixie71>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.11.1
+Subject: Re: [PATCH v5 03/13] coresight-tpdm: Introduce TPDM subtype to TPDM
+ driver
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1686553666-5811-1-git-send-email-quic_taozha@quicinc.com>
+ <1686553666-5811-4-git-send-email-quic_taozha@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1686553666-5811-4-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 11, 2023 at 08:06:24PM -0500, Jeff LaBundy wrote:
-> Hi Rob,
+On 12/06/2023 08:07, Tao Zhang wrote:
+> Introduce the new subtype of "CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM"
+> for TPDM components in driver.
 > 
-> On Fri, Jun 09, 2023 at 08:25:38AM -0600, Rob Herring wrote:
-> > On Mon, May 29, 2023 at 07:33:47PM -0500, Jeff LaBundy wrote:
-> > > Add bindings for the Azoteq IQS7210A/7211A/E family of trackpad/
-> > > touchscreen controllers.
-> > > 
-> > > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> > > ---
-> > > Changes in v2:
-> > >  - Renamed 'azoteq,default-comms' to 'azoteq,forced-comms-default' and redefined
-> > >    0, 1 and 2 as unspecified, 0 and 1, respectively
-> > >  - Defined ATI upon its first occurrence
-> > >  - Redefined 'azoteq,gesture-angle' in units of degrees
-> > >  - Declared 'azoteq,rx-enable' to depend upon 'azoteq,tx-enable' within the
-> > >    'trackpad' node
-> > > 
-> > > Hi Rob,
-> > > 
-> > > I attempted to reference existing properties from a common binding [1] as per
-> > > your feedback in [2], however 'make DT_CHECKER_FLAGS=-m dt_binding_check' fails
-> > > with the message 'Vendor specific properties must have a type and description
-> > > unless they have a defined, common suffix.'
-> > 
-> > Is that because you have differing constraints in each case?
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-core.c | 1 +
+>   drivers/hwtracing/coresight/coresight-tpdm.c | 2 +-
+>   include/linux/coresight.h                    | 1 +
+>   3 files changed, 3 insertions(+), 1 deletion(-)
 > 
-> In the failing example [2], I have started with a simple boolean that carries
-> nothing but a type and description. From the new azoteq,common.yaml:
-> 
-> properties:
->   [...]
-> 
->   azoteq,use-prox:
->     type: boolean
->     description: foo
-> 
-> And from the first consumer:
-> 
-> patternProperties:
->   "^hall-switch-(north|south)$":
->     type: object
->     allOf:
->       - $ref: input.yaml#
->       - $ref: azoteq,common.yaml#
->     description: bar
-> 
->     properties:
->       linux,code: true
->       azoteq,use-prox: true
-> 
-> However, the tooling presents the following:
-> 
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> /home/jlabundy/work/linux/Documentation/devicetree/bindings/input/iqs62x-keys.yaml: patternProperties:^hall-switch-(north|south)$:properties:azoteq,use-prox: True is not of type 'object'
-> 	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-> 	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 
-> [...]
-> 
-> I am committed to addressing your feedback; to help me do so, can you help me
-> identify what I've done wrong, and/or point me to an example that successfully
-> passes dt_binding_check?
+> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
+> index 118fcf2..23b18c2 100644
+> --- a/drivers/hwtracing/coresight/coresight-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-core.c
+> @@ -1093,6 +1093,7 @@ static int coresight_validate_source(struct coresight_device *csdev,
+>   
+>   	if (subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_PROC &&
+>   	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE &&
+> +		subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM &&
 
-You're not doing anything wrong. There's 2 options here. The first is we 
-could just relax the check to allow boolean schema for vendor 
-properties. The main issue with that is we then have to look for that 
-improperly used and it doesn't help if you do have additional 
-constraints to add on top of the common definition. The former can 
-mostly be addressed by checking there is a type associated with the 
-property. I'm going to look into adding that.
+minor nit: Alignment. Please always double check your patch for
+styling issues.
 
-Alternatively, you could drop listing the properties and 
-use 'unevaluatedProperties'. That's not quite equal to what you have. 
-Presumably, you have 'additionalProperties' in this case, so listing 
-them serves the purpose of defining what subset of properties each node 
-uses from the referenced schema. We frequently don't worry if there are 
-common properties not used by a specific schema. This also wouldn't work 
-if you have additional constraints to add.
 
-Rob
+Otherwise looks good to me
+
+Suzuki
