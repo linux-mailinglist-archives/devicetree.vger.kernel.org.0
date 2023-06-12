@@ -2,93 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0E672C53B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 14:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F176872C54A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 15:00:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232486AbjFLM5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 08:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40784 "EHLO
+        id S235513AbjFLNA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 09:00:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232467AbjFLM5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 08:57:42 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC13A10CC
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 05:57:39 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-76c64da0e46so209784139f.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 05:57:39 -0700 (PDT)
+        with ESMTP id S234855AbjFLNA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 09:00:26 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E406E51
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 06:00:25 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-977e83d536fso622101766b.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 06:00:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686574659; x=1689166659;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1686574823; x=1689166823;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mcs/mzLIm1WsqdeHjzGZbuX7KtKU1yS6rQCOIH1J8I0=;
-        b=xqC6MKpngECoQvoYMSW33//Z/IKlUMIllTI83I+x158liBOcOl7RCaT7RULcYvp7Ph
-         m+2/w5j/2GbjBdORnBj2KHO+dN9IJXC3j1upgDuHEpXaGEYJCI4ibKda0jN0ubmaa0Fq
-         rxiLTZ6SUZsGYZ4H91fpDNokyCdWkS0gBl436W3T9kxDSOAea7eovYflrFEakmL/qkg2
-         alAwlke7UkgcmKzfQZOgkbETVsxnSKwq3bnCrNm8NbwUJzJgWvUl//zSJnKzcnA9Jx8j
-         rUoEgmIEphfcjVDijdVjk8/Tnky7TXrFqLA1ZG3kDtaBrB9RaBxvPYZdEmFIiJ2UwmKx
-         6/cA==
+        bh=wo+1PodCdHHB0tD1Y4UaF7/JGvZd1Adl0KqOZuyCrYQ=;
+        b=hmGzaL/1fj4DxM7vQM6aLIC7mcImR1hXuEfn+ACYbTVsZKQzCpzR8zD6hhLAxosEhA
+         RaWLvToMqnRT3rIITCOEJwEz1S1SIlRt6ykOhDCQ0bMTeQzKTIZbmX7cHf4/0k1vzo81
+         72zCI1PWJRlbabQkCA9TJRsdQIKyjYaaT4BBmX5HpHxJheD4jxtEOenAg1lv+O1AnmKL
+         eou1Cs5EwqNGjVQpMjmJfGB75ZFsP4ZUw6mZL4XaB8pvV9OWsl6rnK+qtJNEbYtWhSgD
+         eBZxi5FhD0caIzAnWiCUcD4yBP1Y3PVf8Et2l1L3JhVVyKhls+1r7x7r3Vh8HvZw2Xre
+         +pLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686574659; x=1689166659;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1686574823; x=1689166823;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mcs/mzLIm1WsqdeHjzGZbuX7KtKU1yS6rQCOIH1J8I0=;
-        b=aI8yQG0L6R2BNEpg6mizGeAIz+Ck2FZrH6PBklqthwA5/Ihoi+t0bSXYYtVzMz7zkO
-         sM01GQKOEjYQgwT20nZpw9Tahxo/E8/vVAuO7iI4lLjUueH1wQbeb2p6w2v0sVLWt8xw
-         OBovw+SjMjB0RfixGX2XgfbzmN5KEcp5cBZkKyyrjZaMiOGSrISz1IUYoxSJxxs35LCQ
-         D9yZZxIdQfRyoT+y1LTQ5nZKPIct3cvGYmmzyWUuZqN1AlUpP3PJgqtp2BdKR89L8QPn
-         y5CW93/pL7gQdFhyuaqazSkMHRbJ+Rklzl8gugeEACWCNVLIDWUcHJFtBKRy2Dt15Rag
-         JYYg==
-X-Gm-Message-State: AC+VfDyDsRoVgDgknSrWWbM2DJCfVDSdXKaq2slxn3lc0mRYsd4aMMQt
-        zktpb5As6WuIdF951K/m+l5e0w==
-X-Google-Smtp-Source: ACHHUZ4154bImSu2u2zX5xxEjDVt2RyADN5K86hrxC1hYjrP9agk1PMGoXyFm23au2IshSS0kJicBw==
-X-Received: by 2002:a05:6602:1851:b0:76c:6c78:5144 with SMTP id d17-20020a056602185100b0076c6c785144mr8089910ioi.17.1686574659284;
-        Mon, 12 Jun 2023 05:57:39 -0700 (PDT)
-Received: from [172.22.22.28] ([98.61.227.136])
-        by smtp.gmail.com with ESMTPSA id w1-20020a02cf81000000b0041675393f68sm2690066jar.6.2023.06.12.05.57.37
+        bh=wo+1PodCdHHB0tD1Y4UaF7/JGvZd1Adl0KqOZuyCrYQ=;
+        b=aJPX9bevyrdJR7r/U5bSOteB1m29SDxyp+f6aGvjwfefdmrMTYQdHnTXz6s9nFBE1z
+         UlDM4ZVB+8aB/+m2dETl/QCPIaqjRL+GVqpJcRuP7so4Lomccy/DDerZ8BITloMa85iz
+         Ad2CGsNyF/zzyN0ULmnxwqoAEfjVqN1NASkA1+DBgIFCaDSnxjuNGuMQ85BNvIFs140U
+         GAv0N1YrgbJjpMv1c12qneIG31tGUxYWM+3l7r3pp3p78PRV3k6hshDZhGmQAxCfF0HQ
+         Y91pOs7q1f+OmqFpByyFOJTuXCKasI+x5owtlH0C2nMsnu1HjO15gb+eeWCHTWNPZ0ez
+         c+bg==
+X-Gm-Message-State: AC+VfDw7vJLngP5ApPQ8ReXtMYYd04uTmzAg8zIp3JAfODhI87KzEWGI
+        oRPTn5C2kAs4srlmdq02RsVtyQ==
+X-Google-Smtp-Source: ACHHUZ6jYurA4SzJZWnpU4r2a9vrK80Vq4jKofL3dpTyho0SzI6ysux5e/lKnYhD8iQ8gZrCaJ4czg==
+X-Received: by 2002:a17:907:96ab:b0:96f:f98c:ac71 with SMTP id hd43-20020a17090796ab00b0096ff98cac71mr8490655ejc.67.1686574823483;
+        Mon, 12 Jun 2023 06:00:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b0096a6bf89259sm5168854ejc.167.2023.06.12.06.00.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 05:57:38 -0700 (PDT)
-Message-ID: <31b88290-5e2b-5c13-338c-3a08ad1e02fb@linaro.org>
-Date:   Mon, 12 Jun 2023 07:57:37 -0500
+        Mon, 12 Jun 2023 06:00:22 -0700 (PDT)
+Message-ID: <e0171cb6-54e7-41bd-4b08-fa667fe58ff4@linaro.org>
+Date:   Mon, 12 Jun 2023 15:00:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v13 17/24] gunyah: vm_mgr: Add framework for VM Functions
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v18 1/3] ARM: dts: nuvoton: Add node for NPCM memory
+ controller
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     Marvin Lin <milkfafa@gmail.com>, robh+dt@kernel.org,
+        tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
+        rric@kernel.org, benjaminfair@google.com, yuenn@google.com,
+        venture@google.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org, KWLIU@nuvoton.com, YSCHU@nuvoton.com,
+        ctcchien@nuvoton.com, kflin@nuvoton.com
+References: <20230111093245.318745-1-milkfafa@gmail.com>
+ <20230111093245.318745-2-milkfafa@gmail.com>
+ <20230612110401.GPZIb7oZPdsPGFzSDc@fat_crate.local>
+ <38c30778-9526-cba6-4ddb-00bcefeb5647@linaro.org>
+ <20230612120107.GFZIcJA3zktkiyTS2+@fat_crate.local>
+ <99795947-0584-df42-a28a-aa89d7e21c7e@linaro.org>
+ <20230612123925.GGZIcR/dUrcu03z6V+@fat_crate.local>
 Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
- <20230509204801.2824351-18-quic_eberman@quicinc.com>
- <3dd82ec0-2a9a-3401-5385-965c624f9f32@linaro.org>
- <c625a138-d27e-bbcb-8056-25abefb75152@quicinc.com>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <c625a138-d27e-bbcb-8056-25abefb75152@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230612123925.GGZIcR/dUrcu03z6V+@fat_crate.local>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,38 +87,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/9/23 2:49 PM, Elliot Berman wrote:
->>> +static struct gh_vm_function *gh_vm_get_function(u32 type)
->>> +{
->>> +    struct gh_vm_function *fn;
->>> +    int r;
->>> +
->>> +    fn = xa_load(&gh_vm_functions, type);
->>> +    if (!fn) {
->>> +        r = request_module("ghfunc:%d", type);
->>> +        if (r)
->>> +            return ERR_PTR(r > 0 ? -r : r);
->>
->> Almost all callers of request_module() simply ignore the
->> return value.  What positive values are you expecting to
->> see here (and are you sure they're positive errno values)?
->>
+On 12/06/2023 14:39, Borislav Petkov wrote:
+> On Mon, Jun 12, 2023 at 02:09:33PM +0200, Krzysztof Kozlowski wrote:
+>> Please route the DTS (1/3) via Nuvoton SoC tree.
 > 
-> I can ignore the return value here, too, to follow the convention.
-> 
-> I had observed request_module can return modprobe's exit code.
+> Don't all three need to go together?
 
-I actually like checking the return value, but if a positive one comes
-back it's not clear at all that it should be interpreted as an errno.
+No, the DTS is always independent because it describes the hardware.
+Linux should work fine regardless of hardware description. Tying Linux
+to specific DTS is usually sign of an ABI break.
 
-Given that almost everybody ignores the return value, maybe the
-called function should change, but blk_request_module() and
-cpufreq_parse_governor() (for two examples) actually use the
-return value to affect behavior.
+Best regards,
+Krzysztof
 
-If you check its return, and it's positive, I would return a
-known negative errno rather than just negating it--and perhaps
-issue a warning.  But it's OK with me if you just ignore it
-like most other callers.
-
-					-Alex
