@@ -2,74 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1234C72BAFE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 10:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5361A72BB12
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 10:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231310AbjFLImc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 04:42:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46910 "EHLO
+        id S229456AbjFLIov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 04:44:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbjFLImb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 04:42:31 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3258F5
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 01:42:29 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-514859f3ffbso6163940a12.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 01:42:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686559348; x=1689151348;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XkAtBHZAqEexY8XTljgfOwsv5AHv1wbpBye0cnGEpPM=;
-        b=WAs0JyvzR/RmxmAKv7lxMooExqSxJ6YuKowpuEU2Qt6hMQf6H+nnwhPntikudB0dUZ
-         7TADMWUlyNANhU/YTU+qUUGWDV44jVW8N2Lc1zTfJBQBq2rLD2OFPUZBHMQW7SrFFjII
-         HSRv5en4jt+Bb2ZhPjmIzQqbPArSvkaShCSwtDYUCX+SZ9usJ46ojQByrS4s4sYMp96T
-         ++ocKGHoC3WH7KnO75QjxdsRtCxo97Ev6Q5GeiOijXa+V41a5mWmHULCQN1bd60RwyWs
-         6/NrUAD3sfTXPsWtwSf8e13eDy7f0AGRtQOWMP33lIGglyYrGnD3CsvgO8qMycoidaPh
-         I0DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686559348; x=1689151348;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XkAtBHZAqEexY8XTljgfOwsv5AHv1wbpBye0cnGEpPM=;
-        b=OTmE6am0jyNRTddoasinRXxyOYzaelmYs2ol5KjlTpWHU1WzXnbIB02usBErVw/zZw
-         sf9Aj2jnX91cpbEh4hgnZ1CotIIDEcHjPIz3qTeDjX0ErWwXoqmNHRF+BdvxFQCTDCZu
-         4sAhUyjp5nnvLaeQVRTfPXX2/tgp/2TK+8AwWU5Buf1kMzMLzi4fEVU9iXAkv8+om+Oe
-         dGkkN4pEyX+VLLpMIXymUZRnUdG+ns1MFAxUkByItxeXax/e4K7ItilaTvTKXokcfU5B
-         TZWhLKAt3XwTBGX44lkEjlci3gbqRhVaOiEbH5PZ4Hb9VY2bLnBSuNWJR2ZOIWLhI1Mf
-         na4g==
-X-Gm-Message-State: AC+VfDxwGiBC5qbUjbmc2f10J1LtbWCjchiL+MrsREPTiJ10ppufM/su
-        fNra1OorcOX3J2x/rSg5tttHcw==
-X-Google-Smtp-Source: ACHHUZ67uLX939dGXEu+gmLKwNEWbxc2E5Y5xg5PACugaEyWHvaaHh3LVIz6TsgWNz3YcgwtPwHl4A==
-X-Received: by 2002:a05:6402:2058:b0:514:9500:7e51 with SMTP id bc24-20020a056402205800b0051495007e51mr4218423edb.9.1686559348281;
-        Mon, 12 Jun 2023 01:42:28 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id g6-20020a170906594600b00968db60e070sm4893676ejr.67.2023.06.12.01.42.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 01:42:27 -0700 (PDT)
-Message-ID: <c8e5772e-0781-0799-0ab8-03694746a3e1@linaro.org>
-Date:   Mon, 12 Jun 2023 10:42:25 +0200
+        with ESMTP id S232183AbjFLIol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 04:44:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9662810B
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 01:44:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 29A4462185
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:44:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10537C433EF;
+        Mon, 12 Jun 2023 08:44:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686559479;
+        bh=PvW69xSn/ZnscQwnR3pGAydQ1x3Pq+L3epgJsaYuygU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=X2U0TNR2frupVx4XLj+Be6LKtikr8mYRTmadd5OPQSEkVshLwIQJ09Va7UsWOTHAz
+         VWkfsFGq17SGNmVUEiRlh8wDOP/VbICI7gGF03dkQJGVWJsqlThtb96cUbXGzuTixJ
+         SlpZmkT4kPcgMsHhTdU8i3CEG1QcZtQzDOt6A/JExh9q21O/xKQlk+W0HOKVY+QEGF
+         NjwbRjwczCDkiopO59wJjmmSDzke3NjXZBqFMD26hDwJ1NI4v9uz//wDzgQ1SWYKSv
+         kehLQ530mbO2RC5cWeyszeLXkrkLEM3oDVXGskEZZndpFac5WtiJKyVwtscjFiToIc
+         3GwGR/zrk0jnw==
+Date:   Mon, 12 Jun 2023 10:44:36 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 3/7] drm/panel: sitronix-st7789v: Specify the expected
+ bus format
+Message-ID: <5fo6iwwx3ljzp6p32vh35lrewpqdpenvpartadsf5dim3ewdm3@wcfnue5kizfj>
+References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
+ <20230609145951.853533-4-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v1] dt-bindings: net: wireless: bcm4329-fmac: add
- ieee80211-freq-limit property
-Content-Language: en-US
-To:     Christian Lamparter <chunkeey@gmail.com>,
-        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     rafal@milecki.pl, kvalo@kernel.org, f.fainelli@gmail.com,
-        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-References: <288fc9a0db6c292bc132e828611c41785b075078.1686486461.git.chunkeey@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <288fc9a0db6c292bc132e828611c41785b075078.1686486461.git.chunkeey@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230609145951.853533-4-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,22 +62,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/06/2023 14:37, Christian Lamparter wrote:
-> This is an existing optional property that ieee80211.yaml/cfg80211
-> provides. It's useful to further restrict supported frequencies
-> for a specified device through device-tree.
-> 
-> The driver supported this since ~2017 by
-> commit 0f83ff697356 ("brcmfmac: use wiphy_read_of_freq_limits to respect limits from DT")
-> 
-> This property is already being used by:
-> arch/arm/dts/bcm4709-netgear-r8000.dts
-> 
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+Hi,
+
+On Fri, Jun 09, 2023 at 04:59:47PM +0200, Miquel Raynal wrote:
+> The LCD controller supports RGB444, RGB565 and RGB888. The value that is
+> written in the COLMOD register indicates using RGB888, so let's clearly
+> specify the in-use bus format.
+>=20
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
+>  drivers/gpu/drm/panel/panel-sitronix-st7789v.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu=
+/drm/panel/panel-sitronix-st7789v.c
+> index e9ca7ebb458a..0abb45bea18d 100644
+> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+> @@ -6,6 +6,7 @@
+>  #include <linux/delay.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/module.h>
+> +#include <linux/media-bus-format.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/spi/spi.h>
+> =20
+> @@ -170,6 +171,7 @@ static int st7789v_get_modes(struct drm_panel *panel,
+>  			     struct drm_connector *connector)
+>  {
+>  	struct drm_display_mode *mode;
+> +	u32 bus_format =3D MEDIA_BUS_FMT_RGB666_1X18;
 
-So this is superseded?
+I'm not sure it should be set in stone in the driver.
 
-Best regards,
-Krzysztof
+This is a property of the panel/controller, but also one of the RGB
+controller upstream that will and how the board has been wired.
 
+It's not unusual for boards with a limited number of GPIOs to take a
+RGB888 panel and connect only as a RGB565 with the lowest bits to the
+ground for example.
+
+So I think this should come from the device tree, ideally from the media
+graph endpoint.
+
+Maxime
