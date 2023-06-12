@@ -2,138 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A328972C61D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 15:36:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7806572C635
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 15:40:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232135AbjFLNgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 09:36:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60556 "EHLO
+        id S234997AbjFLNkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 09:40:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236502AbjFLNgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 09:36:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60E21A1;
-        Mon, 12 Jun 2023 06:36:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6BBD4616FD;
-        Mon, 12 Jun 2023 13:36:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 754D0C4339C;
-        Mon, 12 Jun 2023 13:36:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686576999;
-        bh=6t8SLEGkV+2LuUffPXlHIp83vOrBIwLaJMF1fy6qrmo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=to/QjNsRYu8mIPyhEBttCfHICSEZ1ZCL7V9KhsJIIk1PmYlxawzN6TRhxdgHCuNRS
-         IaJ9dbbVGsiT5zRDYoFlSOu1gEYEA2pWauiQTsZl63cO6aiejasai/piMfGX/zU87Y
-         +mkSpVhhA/4a5oq9JYP/VWvt+eM/QwGxhAWlGtdVRpTiNrn3fB3/NAzLDGlsGARf8J
-         RiZcOLamRWgw54EVGUNqaJkykkbgEgqrzJusreiKQtd7NMbRJ41KWhKPzEHKgL8TIQ
-         SZrGMEFaOSn2iQwbMZGjENGbl2XLZ6V+GIFEw3ZIxG7ALqU2PjELYWbBdCJZg3854P
-         55/IpyjwitbQw==
-Date:   Mon, 12 Jun 2023 14:36:33 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Patrick Lai <quic_plai@quicinc.com>
-Subject: Re: [PATCH v2 2/2] ASoC: codecs: wsa884x: Add WSA884x family of
- speakers
-Message-ID: <bf81773c-8d9d-46bc-b9ba-db7b86600e3d@sirena.org.uk>
-References: <20230611102657.74714-1-krzysztof.kozlowski@linaro.org>
- <20230611102657.74714-2-krzysztof.kozlowski@linaro.org>
- <191859d3-42e3-4ef2-87ff-dd56864103f9@sirena.org.uk>
- <421ddd6d-3938-027c-2099-57248a111831@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4W2AYxZZZ8GOZJ6I"
-Content-Disposition: inline
-In-Reply-To: <421ddd6d-3938-027c-2099-57248a111831@linaro.org>
-X-Cookie: If it heals good, say it.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229736AbjFLNkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 09:40:46 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73552F1;
+        Mon, 12 Jun 2023 06:40:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=kNf+uzMQZD8+1AoV3+R+vFlgRuzS6yncC97/lo8/oiU=; b=gKeT4CrJeiH7MTC978DlfTZAkm
+        DZMNaBWXy0r13VRlEiuKzB44TJ5T0minvCVBADSxCuje8CddpLk3oiD9Ong3lVyEUAStuNEpjRAzw
+        s0votYcbwFuNzffSSc42zbb9CSGZtuZhhF6DUr5A5ApXBQFZyRcca7ISjMBQgYR2SX1w=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:58460 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q8hmY-0003Gh-M9; Mon, 12 Jun 2023 09:40:31 -0400
+Date:   Mon, 12 Jun 2023 09:40:29 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Lech Perczak <lech.perczak@camlingroup.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        jesse.sung@canonical.com, isaac.true@canonical.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230612094029.ca1c993a7094c6e6e72254d3@hugovil.com>
+In-Reply-To: <c76607ce-c75e-760e-9920-abf197bb0a88@camlingroup.com>
+References: <20230607140525.833982-1-hugo@hugovil.com>
+        <c76607ce-c75e-760e-9920-abf197bb0a88@camlingroup.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: Re: [PATCH v8 00/10] serial: sc16is7xx: fix GPIO regression and
+ rs485 improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 12 Jun 2023 14:10:20 +0200
+Lech Perczak <lech.perczak@camlingroup.com> wrote:
 
---4W2AYxZZZ8GOZJ6I
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> W dniu 7.06.2023 o=A016:05, Hugo Villeneuve pisze:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> >
+> > Hello,
+> > this patch series mainly fixes a GPIO regression and improve RS485 flag=
+s and
+> > properties detection from DT.
+> >
+> > It now also includes various small fixes and improvements that were pre=
+viously
+> > sent as separate patches, but that made testing everything difficult.
+> >
+> > Patch 1 fixes an issue with init of first port during probing.
+> >
+> > Patch 2 fixes an issue when debugging IOcontrol register, but it is also
+> > necessary for patch "fix regression with GPIO configuration" to work.
+> >
+> > Patch 3 fixes an incorrect label in sc16is7xx_probe() cleanup code.
+> >
+> > Patch 4 is a refactor of GPIO registration code in preparation for patc=
+h 5.
+> >
+> > Patches 5 and 6 fix a GPIO regression by (re)allowing to choose GPIO fu=
+nction
+> > for GPIO pins shared with modem status lines.
+> >
+> > Patch 7 fixes a bug with the output value when first setting the GPIO d=
+irection.
+> >
+> > Patch 8 allows to read common rs485 device-tree flags and properties.
+> >
+> > Patch 9 introduces a delay after a reset operation to respect datasheet
+> > timing recommandations.
+> >
+> > Patch 10 improves comments about chip variants.
+> >
+> > I have tested the changes on a custom board with two SC16IS752 DUART us=
+ing a
+> > Variscite IMX8MN NANO SOM.
+> >
+> > Thank you.
+> >
+> > Link: [v1] https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/lkml/2=
+023/5/17/967>
+> > [v1] https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/2023/5/=
+17/777>
+> > [v1] https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/2023/5/=
+17/780>
+> > [v1] https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/2023/5/=
+17/785>
+> > [v1] https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkml/2023/5=
+/17/1311>
+> > [v2] https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/2023/5/=
+18/516>
+> > [v3] https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/2023/5/25=
+/7>
+> > [v4] https://lkml.org/lkml/2023/5/29/656 <https://lkml.org/lkml/2023/5/=
+29/656>
+> > [v5] https://lkml.org/lkml/2023/6/1/1046 <https://lkml.org/lkml/2023/6/=
+1/1046>
+> > [v6] https://lkml.org/lkml/2023/6/1/1328 <https://lkml.org/lkml/2023/6/=
+1/1328>
+> > [v7] https://lkml.org/lkml/2023/6/2/861 <https://lkml.org/lkml/2023/6/2=
+/861>
+> >
+> > Changes for V3:
+> > - Integrated all patches into single serie to facilitate debugging and =
+tests.
+> > - Reduce number of exported GPIOs depending on new property
+> > nxp,modem-control-line-ports
+> > - Added additional example in DT bindings
+> >
+> > Changes for V4:
+> > - Increase reset post delay to relax scheduler.
+> > - Put comments patches at the end.
+> > - Remove Fixes tag for patch "mark IOCONTROL register as volatile".
+> > - Improve commit messages after reviews.
+> > - Fix coding style issues after reviews.
+> > - Change GPIO registration to always register the maximum number of GPI=
+Os
+> > supported by the chip, but maks-out GPIOs declared as modem control lin=
+es.
+> > - Add patch to refactor GPIO registration.
+> > - Remove patch "serial: sc16is7xx: fix syntax error in comments".
+> > - Remove patch "add dump registers function"
+> >
+> > Changes for V5:
+> > - Change patch order to facilitate stable backport(s).
+> > - Change duplicate device addresses in DT binding examples.
+> > - Use GENMASK for bit masks.
+> > - Replace of_property_for_each_u32() with device_property_read_u32_array
+> > - Add "Cc: stable..." tags
+> >
+> > Changes for V6:
+> > - Fix compilation bug introduced by patch 3
+> >
+> > Changes for V7:
+> > - Minor changes and coding style fixes after review for
+> > patch 5 "fix regression with GPIO configuration".
+> >
+> > Changes for V8:
+> > - Move mctrl_mask to "struct sc16is7xx_port" to avoid compiler warning =
+when
+> > CONFIG_GPIOLIB is undefined.
+> > - Add "struct device" member to "struct sc16is7xx_port", in order to av=
+oid
+> > passing a raw "struct device" to called functions from sc16is7xx_probe(=
+).
+> > - Add new patch "serial: sc16is7xx: remove obsolete out_thread label"
+> >
+> > Hugo Villeneuve (10):
+> > serial: sc16is7xx: fix broken port 0 uart init
+> > serial: sc16is7xx: mark IOCONTROL register as volatile
+> > serial: sc16is7xx: remove obsolete out_thread label
+> > serial: sc16is7xx: refactor GPIO controller registration
+> > dt-bindings: sc16is7xx: Add property to change GPIO function
+> > serial: sc16is7xx: fix regression with GPIO configuration
+> > serial: sc16is7xx: fix bug when first setting GPIO direction
+> > serial: sc16is7xx: add call to get rs485 DT flags and properties
+> > serial: sc16is7xx: add post reset delay
+> > serial: sc16is7xx: improve comments about variants
+> >
+> > .../bindings/serial/nxp,sc16is7xx.txt | 46 +++++
+> > drivers/tty/serial/sc16is7xx.c | 177 +++++++++++++-----
+> > 2 files changed, 181 insertions(+), 42 deletions(-)
+> >
+> >
+> > base-commit: a4d7d701121981e3c3fe69ade376fe9f26324161
+> > --=20
+> > 2.30.2
+> >
+> Hello Hugo,
+>=20
+> I had a chance to retest and re-review everything, including setting stat=
+e at direction change.
+> So if the pending changes to v9 are only the conversion of dt-bindings to=
+ YAML and fixups to them, then:
+> Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+> Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
 
-On Mon, Jun 12, 2023 at 09:25:44AM +0200, Krzysztof Kozlowski wrote:
-> On 11/06/2023 13:57, Mark Brown wrote:
-> > On Sun, Jun 11, 2023 at 12:26:57PM +0200, Krzysztof Kozlowski wrote:
+Hi Lech,
+thank you for testing this again.
 
-> >> +	{ WSA884X_OTP_REG_40,			0x00 },
-> >> +	{ WSA884X_OTP_REG_41,			0x00 },
-> >> +	{ WSA884X_OTP_REG_63,			0x40 },
+By the way, conversion of dt-bindings to YAML and fixups to them will
+be done in a new serie, after we finish/close this one.
 
-> > These appear to be OTP data which suggests that they shouldn't have
-> > defaults either since they can be programmed.
+If all goes well, I do not intend to publish a v9, depending on feedback
+from Andy and Greg.
 
-> Just to be clear - I don't have access to datasheet so I don't know what
-> are these. The downstream driver actually initializes (writes to) two
-> OTP registers - 38 and 40.
+Hugo.
 
-That's...  counterintuitive given the naming.
 
-> >> +static bool wsa884x_readonly_register(struct device *dev, unsigned int reg)
-> >> +{
-> >> +	switch (reg) {
-
-> > In general the read only registers probably shouldn't have defaults...
-
-> For the case when regmap is being read before device enumerates (thus
-> synced)?
-
-If you're reading read only registers from the cache defaults like that
-you may as well cut out the middle man and not bother parsing the
-register at all - the value is just hard coded.  Either power up the
-device to find out what the values are or use the values directly.
-
-> >> +	/* Speaker mode by default */
-> >> +	{ WSA884X_DRE_CTL_0, 0x7 << WSA884X_DRE_CTL_0_PROG_DELAY_SHIFT },
-> >> +	{ WSA884X_CLSH_CTL_0, (0x37 & ~WSA884X_CLSH_CTL_0_DLY_CODE_MASK) |
-> >> +			      (0x6 << WSA884X_CLSH_CTL_0_DLY_CODE_SHIFT) },
-> >> +	{ WSA884X_CLSH_SOFT_MAX, 0xff },
-
-> > Why not just leave as the chip default?
-
-> Sincerely, I don't know. Without any documentation, I am relying
-> entirely on downstream driver which has some code like this. I don't
-> know whether some parts here make sense only for downstream case or
-> shall be applicable also for upstream.
-
-This sounds like someone hard coding their use case TBH.
-
---4W2AYxZZZ8GOZJ6I
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSHH2AACgkQJNaLcl1U
-h9CaPwf/aX9WQEFcA6zXSh74pvL2X9EgjCIw0+zTNqo4m9a4OWMHcrlXGqKsi7pm
-b/kdJ53Asst3GGbTO+2V6+P3WctJRkxgrZRIswHYUfJVuZRwol07nq2v1T+2qu4l
-zPPqa9TNf7WOFJpm4xTEAD12CZsGeNUo8WSCoCR7qotMmqwUA2ZIqp7HsOzHfr2N
-C/zvaFTnotbGn73s+oZE6wqtQWF8GGXCu5wMcqGvGMHoxgU6MXcwwRFT3xXz0TkD
-j4fy8QoU7907ARX0cy6fMJEQtiZjrg41DJxkIY3GPGDJAS7YUdnI85/44YHga9EC
-ePr9Kxof5jGBxa7rDk0NVSwFtNFbyA==
-=AnsO
------END PGP SIGNATURE-----
-
---4W2AYxZZZ8GOZJ6I--
+> Pozdrawiam/With kind regards,
+> Lech Perczak
+>=20
+> Sr. Software Engineer
+> Camlin Technologies Poland Limited Sp. z o.o.
+> Strzegomska 54,
+> 53-611 Wroclaw
+> Tel:     (+48) 71 75 000 16
+> Email:   lech.perczak@camlingroup.com
+> Website: http://www.camlingroup.com
+>=20
+>=20
