@@ -2,125 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F3D72CC4D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7B8C72CC63
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234891AbjFLRVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 13:21:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
+        id S237087AbjFLRZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 13:25:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234242AbjFLRVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:21:42 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECA5B2
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686590457;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=7qlKft7mE4b2kNS3x9A8djvNWYAtiYtMSSZe9V4o7Ek=;
-        b=M10ATpywmZ8brCSrGlzHvB3SxQyTyuHDUSf4oAUiKPaQHMymu350osFn6xjfjN7HDP9fbo
-        ECMEOFGQdg8vmdYIM/4we/Un6ySDYDEWxc+oOv4wJILSN3bPH4YVJx/6vWSGbqZc6jdeeB
-        LKvsQGHw9ucazxotPygm2ecBBPOJjNY=
-Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
- [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-498-_m7JDHMCPIyvbjNUN_5_dQ-1; Mon, 12 Jun 2023 13:20:56 -0400
-X-MC-Unique: _m7JDHMCPIyvbjNUN_5_dQ-1
-Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-56cf9a86277so33058597b3.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:20:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686590440; x=1689182440;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7qlKft7mE4b2kNS3x9A8djvNWYAtiYtMSSZe9V4o7Ek=;
-        b=PLtn1wyXQFsq6l/FNXOfsuS6xqGvRzidhXpjNuDVEYBas3oI42iOjpkU+7WDBXn4ye
-         vzX7g7i6dIMJMdkv8ULaq/b3YzqWcEwqA0ilu4vS2/itsveyXCZ6bcrraocPMFXY6yUi
-         XFfOf/V/076S1qTnWIh0eMEtTYOLBt20mBJxXKE14BX5T02yDS5XqyY7D0iImOTtEjKP
-         A0ZKFZJXZT299Q4VGRCyoIdEBTbAM19/WJu9qjo4rWeHz03+QBN8eAeOD+6Oxll8sLVK
-         qmYC5FCnJFFC/0WbZ6fdClwwsHkxDUSQki6C5r1xY60Z7eHjb64lUyIWgYZk0tesm2J7
-         jCmg==
-X-Gm-Message-State: AC+VfDx+21UD5XApqeFUDVM9+7BVeGfF4hZpV4u8ICAIHGGPalrxTCoy
-        VeNsGQS3LFvDqg0dlOryjx5Yk5I/yIY+GcYUTMboJJKkZYHhVCGJjpjvQxB8rItLUb1aWI+YfY9
-        71iElbQ/oWmTy+UKDe6opuA==
-X-Received: by 2002:a81:8047:0:b0:565:c888:1d09 with SMTP id q68-20020a818047000000b00565c8881d09mr11436047ywf.30.1686590440569;
-        Mon, 12 Jun 2023 10:20:40 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6pK0EspHiEwXLJwZSnTgF0PmnWrSSsx5/e6T7JNdTcNpiEDXWG/J7snMtSub/jvW4XBEs/gg==
-X-Received: by 2002:a81:8047:0:b0:565:c888:1d09 with SMTP id q68-20020a818047000000b00565c8881d09mr11436028ywf.30.1686590440315;
-        Mon, 12 Jun 2023 10:20:40 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
-        by smtp.gmail.com with ESMTPSA id t7-20020a815f07000000b0054f9e7fed7asm2622065ywb.137.2023.06.12.10.20.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 10:20:39 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 12:20:36 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 01/26] phy: qualcomm: fix indentation in Makefile
-Message-ID: <20230612172036.ztvjdzblh6bvmxp2@halaney-x13s>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-2-brgl@bgdev.pl>
+        with ESMTP id S237357AbjFLRZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:25:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8F51739;
+        Mon, 12 Jun 2023 10:24:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 833B062C1D;
+        Mon, 12 Jun 2023 17:24:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CBDCC4339B;
+        Mon, 12 Jun 2023 17:24:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686590692;
+        bh=ZviscbX9M2rOxWTwPjv7UOibrGDjoVPRxgUStOnIxnI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uEC7H107ndGmqemB+0KODTu0C4q45ijuTj7sKRu4oaSo1xO0l33rwXm2x1fe3iUK3
+         vaHfGRgRJyXWHIv2ZsCx99VhKk/6qPuoaq0GZJdnKxcyeU+YGAMNYAeuVcF7ye0PrB
+         X+VDip1uveaMXMPHC4XX3kbQMjDHVpGpoCPFGmJ+5tbz0v/0Sl3red4JJs8vZYFkXF
+         vNWje+yvpj3sCg9CPVUHqn4H8VGXYJ/B19rWgFGEyiwuD019FbQBuSzCBpw4T/Osfy
+         vsspcQdaRfJNpT/I9FmBUfVkQ62VcmYVERp0+0grmuMc4Og8MaP1IeYT52xsqyvX+S
+         0gOeZorOkFx7w==
+Date:   Mon, 12 Jun 2023 18:24:48 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     YingKun Meng <mengyingkun@loongson.cn>
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, loongarch@lists.linux.dev,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [ PATCH v2 3/3] ASoC: dt-bindings: Add support for Loongson
+ audio card
+Message-ID: <20230612-booted-french-186dd95e78a9@spud>
+References: <20230612085614.3039498-1-mengyingkun@loongson.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6d68HPAgsdFO37XF"
 Content-Disposition: inline
-In-Reply-To: <20230612092355.87937-2-brgl@bgdev.pl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230612085614.3039498-1-mengyingkun@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:23:30AM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Align all entries in Makefile.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+--6d68HPAgsdFO37XF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> ---
->  drivers/phy/qualcomm/Makefile | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/phy/qualcomm/Makefile b/drivers/phy/qualcomm/Makefile
-> index de3dc9ccf067..5fb33628566b 100644
-> --- a/drivers/phy/qualcomm/Makefile
-> +++ b/drivers/phy/qualcomm/Makefile
-> @@ -20,4 +20,4 @@ obj-$(CONFIG_PHY_QCOM_USB_HSIC) 	+= phy-qcom-usb-hsic.o
->  obj-$(CONFIG_PHY_QCOM_USB_HS_28NM)	+= phy-qcom-usb-hs-28nm.o
->  obj-$(CONFIG_PHY_QCOM_USB_SS)		+= phy-qcom-usb-ss.o
->  obj-$(CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2)+= phy-qcom-snps-femto-v2.o
-> -obj-$(CONFIG_PHY_QCOM_IPQ806X_USB)		+= phy-qcom-ipq806x-usb.o
-> +obj-$(CONFIG_PHY_QCOM_IPQ806X_USB)	+= phy-qcom-ipq806x-usb.o
-> -- 
-> 2.39.2
-> 
+Hey!
 
+On Mon, Jun 12, 2023 at 04:56:14PM +0800, YingKun Meng wrote:
+> From: Yingkun Meng <mengyingkun@loongson.cn>
+>=20
+> The audio card uses loongson I2S controller present in
+> 7axxx/2kxxx chips to transfer audio data.
+>=20
+> On loongson platform, the chip has only one I2S controller.
+>=20
+> Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
+
+I got 2 copies of this patch, but none of the rest of the series appears
+to be threaded with it.
+
+>  .../sound/loongson,ls-audio-card.yaml         | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/loongson,ls-a=
+udio-card.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/loongson,ls-audio-ca=
+rd.yaml b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.ya=
+ml
+> new file mode 100644
+> index 000000000000..61e8babed402
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/loongson,ls-audio-card.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson 7axxx/2kxxx ASoC audio sound card driver
+> +
+> +maintainers:
+> +  - Yingkun Meng <mengyingkun@loongson.cn>
+> +
+> +description:
+> +  The binding describes the sound card present in loongson
+> +  7axxx/2kxxx platform. The sound card is an ASoC component
+> +  which uses Loongson I2S controller to transfer the audio data.
+> +
+> +properties:
+> +  compatible:
+> +    const: loongson,ls-audio-card
+
+Reviewing sound stuff is beyond my pay grade, so forgive me if I am off
+the rails here, but this (and the "x"s in the description) look a bit
+odd. Recently, we've noticed quite a few loongson dt-bindings attempting
+to use a single compatible for many different chips.
+Usually you have individual compatibles for the various SoCs with this
+core, which can fall back to a generic one, rather than just adding a
+generic compatible for all devices.
+As far as I know, there's several SoCs fitting 2kxxx, and the format
+being used elsewhere is "loongson,ls2k1000" etc.
+
+Cheers,
+Conor.
+
+
+--6d68HPAgsdFO37XF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIdU4AAKCRB4tDGHoIJi
+0pvPAQDLOvIKZkTAaQl0HQVvqkzTD2ZIBpWC2JkPUbpettjwcwD/ScIh+4m599jA
+XPMYLPRh5o1a5CxmAICrIt+p4avOIAU=
+=D7u/
+-----END PGP SIGNATURE-----
+
+--6d68HPAgsdFO37XF--
