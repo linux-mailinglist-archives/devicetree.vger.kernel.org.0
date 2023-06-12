@@ -2,175 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4E672CC2E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F3D72CC4D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:21:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237063AbjFLRN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 13:13:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S234891AbjFLRVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 13:21:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237050AbjFLRNq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:13:46 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06240188;
-        Mon, 12 Jun 2023 10:13:45 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-210-131.ewe-ip-backbone.de [91.248.210.131])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C34516606EE0;
-        Mon, 12 Jun 2023 18:13:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686590023;
-        bh=uHNhWU1jmIOWUBoodh01ywxlZr0fhauLWpShle6WDA0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=eo+0Brh05JGSEEIja1s2f8Mg+SuZWAm7KhcmxPXYwqNopH7zqOMlpvkm5zL9DuW68
-         tlzNLCUxN6sGXaUHv5KsH3vThDYuwX2dH0GsR9o+y4nqNMlvpSlMhxRwSsUn+ERDo/
-         1IYBMK1GKEVOBqdgMb1dBKWwHbF4IojwaqcmoJh55ZpsAgkyEoNZbesfEh5Im4kfkG
-         JwBQf2Pw43NdP5+jKusfj5CYJELb5my+YC3bHIJO65KMG56Ae+gf6b88ndi0KUQFEo
-         uVVAquepDPJK1lh+ZtYqyzypwA6VlwrRbUm+KGXGyHKcj2pPhqNEb3LUUYuZEi86vS
-         bj3cjkLxCMWbQ==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id AAD1F4807F0; Mon, 12 Jun 2023 19:13:38 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234242AbjFLRVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:21:42 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECA5B2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:20:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686590457;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=7qlKft7mE4b2kNS3x9A8djvNWYAtiYtMSSZe9V4o7Ek=;
+        b=M10ATpywmZ8brCSrGlzHvB3SxQyTyuHDUSf4oAUiKPaQHMymu350osFn6xjfjN7HDP9fbo
+        ECMEOFGQdg8vmdYIM/4we/Un6ySDYDEWxc+oOv4wJILSN3bPH4YVJx/6vWSGbqZc6jdeeB
+        LKvsQGHw9ucazxotPygm2ecBBPOJjNY=
+Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
+ [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-498-_m7JDHMCPIyvbjNUN_5_dQ-1; Mon, 12 Jun 2023 13:20:56 -0400
+X-MC-Unique: _m7JDHMCPIyvbjNUN_5_dQ-1
+Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-56cf9a86277so33058597b3.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:20:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686590440; x=1689182440;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7qlKft7mE4b2kNS3x9A8djvNWYAtiYtMSSZe9V4o7Ek=;
+        b=PLtn1wyXQFsq6l/FNXOfsuS6xqGvRzidhXpjNuDVEYBas3oI42iOjpkU+7WDBXn4ye
+         vzX7g7i6dIMJMdkv8ULaq/b3YzqWcEwqA0ilu4vS2/itsveyXCZ6bcrraocPMFXY6yUi
+         XFfOf/V/076S1qTnWIh0eMEtTYOLBt20mBJxXKE14BX5T02yDS5XqyY7D0iImOTtEjKP
+         A0ZKFZJXZT299Q4VGRCyoIdEBTbAM19/WJu9qjo4rWeHz03+QBN8eAeOD+6Oxll8sLVK
+         qmYC5FCnJFFC/0WbZ6fdClwwsHkxDUSQki6C5r1xY60Z7eHjb64lUyIWgYZk0tesm2J7
+         jCmg==
+X-Gm-Message-State: AC+VfDx+21UD5XApqeFUDVM9+7BVeGfF4hZpV4u8ICAIHGGPalrxTCoy
+        VeNsGQS3LFvDqg0dlOryjx5Yk5I/yIY+GcYUTMboJJKkZYHhVCGJjpjvQxB8rItLUb1aWI+YfY9
+        71iElbQ/oWmTy+UKDe6opuA==
+X-Received: by 2002:a81:8047:0:b0:565:c888:1d09 with SMTP id q68-20020a818047000000b00565c8881d09mr11436047ywf.30.1686590440569;
+        Mon, 12 Jun 2023 10:20:40 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6pK0EspHiEwXLJwZSnTgF0PmnWrSSsx5/e6T7JNdTcNpiEDXWG/J7snMtSub/jvW4XBEs/gg==
+X-Received: by 2002:a81:8047:0:b0:565:c888:1d09 with SMTP id q68-20020a818047000000b00565c8881d09mr11436028ywf.30.1686590440315;
+        Mon, 12 Jun 2023 10:20:40 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
+        by smtp.gmail.com with ESMTPSA id t7-20020a815f07000000b0054f9e7fed7asm2622065ywb.137.2023.06.12.10.20.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 10:20:39 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 12:20:36 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: [PATCH v4 5/5] arm64: dts: rockchip: rk3588: add SATA support
-Date:   Mon, 12 Jun 2023 19:13:37 +0200
-Message-Id: <20230612171337.74576-6-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230612171337.74576-1-sebastian.reichel@collabora.com>
-References: <20230612171337.74576-1-sebastian.reichel@collabora.com>
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 01/26] phy: qualcomm: fix indentation in Makefile
+Message-ID: <20230612172036.ztvjdzblh6bvmxp2@halaney-x13s>
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-2-brgl@bgdev.pl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230612092355.87937-2-brgl@bgdev.pl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all three SATA IP blocks to the RK3588 DT.
+On Mon, Jun 12, 2023 at 11:23:30AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Align all entries in Makefile.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588.dtsi  | 23 +++++++++++
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 48 +++++++++++++++++++++++
- 2 files changed, 71 insertions(+)
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-index 9d8539b5309b..b9508cea34f1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-@@ -129,6 +129,29 @@ gmac0_mtl_tx_setup: tx-queues-config {
- 		};
- 	};
- 
-+	sata1: sata@fe220000 {
-+		compatible = "rockchip,rk3588-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfe220000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA1>, <&cru CLK_PMALIVE1>,
-+			 <&cru CLK_RXOOB1>, <&cru CLK_PIPEPHY1_REF>,
-+			 <&cru CLK_PIPEPHY1_PIPE_ASIC_G>;
-+		clock-names = "sata", "pmalive", "rxoob", "ref", "asic";
-+		interrupts = <GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH 0>;
-+		ports-implemented = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		sata-port@0 {
-+			reg = <0>;
-+			hba-port-cap = <HBA_PORT_FBSCP>;
-+			phys = <&combphy1_ps PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			snps,rx-ts-max = <32>;
-+			snps,tx-ts-max = <32>;
-+		};
-+	};
-+
- 	combphy1_ps: phy@fee10000 {
- 		compatible = "rockchip,rk3588-naneng-combphy";
- 		reg = <0x0 0xfee10000 0x0 0x100>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 45ae457a22a4..00a91b08e3bb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -9,6 +9,8 @@
- #include <dt-bindings/power/rk3588-power.h>
- #include <dt-bindings/reset/rockchip,rk3588-cru.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/ata/ahci.h>
- 
- / {
- 	compatible = "rockchip,rk3588";
-@@ -1717,6 +1719,52 @@ gmac1_mtl_tx_setup: tx-queues-config {
- 		};
- 	};
- 
-+	sata0: sata@fe210000 {
-+		compatible = "rockchip,rk3588-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfe210000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA0>, <&cru CLK_PMALIVE0>,
-+			 <&cru CLK_RXOOB0>, <&cru CLK_PIPEPHY0_REF>,
-+			 <&cru CLK_PIPEPHY0_PIPE_ASIC_G>;
-+		clock-names = "sata", "pmalive", "rxoob", "ref", "asic";
-+		interrupts = <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH 0>;
-+		ports-implemented = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		sata-port@0 {
-+			reg = <0>;
-+			hba-port-cap = <HBA_PORT_FBSCP>;
-+			phys = <&combphy0_ps PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			snps,rx-ts-max = <32>;
-+			snps,tx-ts-max = <32>;
-+		};
-+	};
-+
-+	sata2: sata@fe230000 {
-+		compatible = "rockchip,rk3588-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfe230000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA2>, <&cru CLK_PMALIVE2>,
-+			 <&cru CLK_RXOOB2>, <&cru CLK_PIPEPHY2_REF>,
-+			 <&cru CLK_PIPEPHY2_PIPE_ASIC_G>;
-+		clock-names = "sata", "pmalive", "rxoob", "ref", "asic";
-+		interrupts = <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH 0>;
-+		ports-implemented = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		sata-port@0 {
-+			reg = <0>;
-+			hba-port-cap = <HBA_PORT_FBSCP>;
-+			phys = <&combphy2_psu PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			snps,rx-ts-max = <32>;
-+			snps,tx-ts-max = <32>;
-+		};
-+	};
-+
- 	sdmmc: mmc@fe2c0000 {
- 		compatible = "rockchip,rk3588-dw-mshc", "rockchip,rk3288-dw-mshc";
- 		reg = <0x0 0xfe2c0000 0x0 0x4000>;
--- 
-2.39.2
+> ---
+>  drivers/phy/qualcomm/Makefile | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/phy/qualcomm/Makefile b/drivers/phy/qualcomm/Makefile
+> index de3dc9ccf067..5fb33628566b 100644
+> --- a/drivers/phy/qualcomm/Makefile
+> +++ b/drivers/phy/qualcomm/Makefile
+> @@ -20,4 +20,4 @@ obj-$(CONFIG_PHY_QCOM_USB_HSIC) 	+= phy-qcom-usb-hsic.o
+>  obj-$(CONFIG_PHY_QCOM_USB_HS_28NM)	+= phy-qcom-usb-hs-28nm.o
+>  obj-$(CONFIG_PHY_QCOM_USB_SS)		+= phy-qcom-usb-ss.o
+>  obj-$(CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2)+= phy-qcom-snps-femto-v2.o
+> -obj-$(CONFIG_PHY_QCOM_IPQ806X_USB)		+= phy-qcom-ipq806x-usb.o
+> +obj-$(CONFIG_PHY_QCOM_IPQ806X_USB)	+= phy-qcom-ipq806x-usb.o
+> -- 
+> 2.39.2
+> 
 
