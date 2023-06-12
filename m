@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D5A72CD05
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6BF572CD09
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 19:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231867AbjFLRi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 13:38:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45074 "EHLO
+        id S229735AbjFLRi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 13:38:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234982AbjFLRig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:38:36 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2856519B5
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:38:06 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5186d5508afso329018a12.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:38:06 -0700 (PDT)
+        with ESMTP id S235435AbjFLRih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 13:38:37 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896CF1BC7
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:38:07 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51492ae66a4so6580097a12.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 10:38:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686591484; x=1689183484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pohf3jyshJu2JxNqYLlPYLTjUPMpfwEBoQx4CTKe4VQ=;
-        b=BhLuodm/lum9Jdxd5Vdrr/qAKrU8z/w4faTouoLjz+Al8yCOr/yXxgpJrx+1bwL721
-         YXr7Fw/wsrQw5NHtsknWiefmTYLvMDi/SjpRWSc9Z0/K8D7ObEfG16wwwhg7UziT1Ft9
-         DwBMO+bXlQQjg24+/8y3laS12ROV7Bn57MX4kfzS7HTpuubkjrM8gJg2K4yjpapmmUV7
-         GUHrnQm5RNeFtp+vGfejS4ZQrOak/r1Lglegh0/TgyJPgJyHMewaLY7tf0H7MaT126o9
-         FS9eujy7WVci7zo9HLnJYFwTL3qsvEQ1NquJPcHaNJeuxEAlsVTvfDhb4EeK/iiMLN2q
-         9W5g==
+        d=linaro.org; s=google; t=1686591486; x=1689183486;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KNLvSqvE3OWBG10u+NGTDOsq6O7ZNO/LdPhT/ZdB0Fw=;
+        b=Ef10wwZoAbpHtT7Lhb8V3zzTlSliCxftcgo7fBGKKL4JEDaVAeUojiEtN/UTTE5nsM
+         Z2RD16N9C38le4AOmWNPWHf5Bdq/K6aOlSq7gRLTkFZbUZool6r3A1dUeJMVt9OiVi8s
+         CzPFsZLAFY1LZOwEh3Ng1xoaGrxEcv53g/g0pCYqhr2BA3JsZgOtiIwosa1oInxWjCAy
+         IKbKfasIlXwELrSAb95MbzmtRVskG22kFWP8TUTaVBwrZZedHSJL/qSfZlVYcRZSdwYB
+         oo+RNnjyr94vFwHfZg+jBkfpxX7KmoHWolJtZmh749U4Fgyy9gmiB4NpG4CF5+7dNm5+
+         EwxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686591484; x=1689183484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pohf3jyshJu2JxNqYLlPYLTjUPMpfwEBoQx4CTKe4VQ=;
-        b=VT/RUbVK/ExwuTpTUEGpE0325VU+k61odNWrQpIuZjxauVeBWe38AsxAY0zu8v9Ice
-         Zo3DP9nCGgBGyykm+QJyeUFwnjL+sNcPW5JE5azF4ii/EXoNM5eGn9H7KO9kW2NpodvD
-         7mD+K4a9XJLdYPrVtHtfYn5nx6uec1fUuyYvywzH08M/Rs94fcPVLeHke25Q8bD/x3fk
-         ahTKMJUF+OvlYBNJfM5z4YCWWzunKGv2Xbsx5pHiNutRZakMqvoSmK31zwqoqlLBvlSY
-         Crdx+4D9paa4ET/kvK6mGviwq9f0oUOZS9PoNbpmfpL6oathfGhBIF/j7IV3TnrObKaR
-         zyFA==
-X-Gm-Message-State: AC+VfDyUCwzILs/sJPwVvB/Su2O9f/4QKqo0x3gZatkUoJcOkZ/EQa4K
-        1BhVScnId35IeHKsfGubEivRLQ==
-X-Google-Smtp-Source: ACHHUZ6JWvl/AkjQ33tK0nixWSlGSO7S/vl/vIehMLQSilEeWBqqSfiW/boXj+mcbx3y6ZJ675nsrw==
-X-Received: by 2002:a17:907:9342:b0:973:91f7:508a with SMTP id bv2-20020a170907934200b0097391f7508amr9370903ejc.4.1686591484611;
-        Mon, 12 Jun 2023 10:38:04 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686591486; x=1689183486;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KNLvSqvE3OWBG10u+NGTDOsq6O7ZNO/LdPhT/ZdB0Fw=;
+        b=Mn0TbOj9TyhxMo6GzP/+hRwuF0uBXMJQtQKFGiOHAysRHmPyYr4uxuxzN4PUKi+O4o
+         zoQFDJsrfbE+DB7VVYKmfmYgHAVQSXQN+jR4fLTlusdev9cV6NoS2lAl7EWEf4TWXoxM
+         OFlPq8qxLlXuud+hyBYrVc8INc0oh1gX4LH45YtEdF27wtoVqb3A/VBWUoWqpeENfJpY
+         Xb+LOJC74ysa/zPza3WONoIl06J9WgSCOhJxQcIrmJDOu73eIOvsi7aBqg577FJpOMnm
+         Gla0EiD0HmoWUJS5g0sa8Mp8Wri/osFvsbk1B8ZT8U8k5Iny21Srs6weXjXWHoOWHgec
+         He7w==
+X-Gm-Message-State: AC+VfDyHhKsLDVVDf05i6u3Rd8eppq5Gi9mwClRi3xAFFVdv+9esRqt7
+        rwmlt7fpZmdwXyRF+KIGmeJDiw==
+X-Google-Smtp-Source: ACHHUZ4TrE+PQvNN4bMlTGHGjb35apk1pQTccfPN26UQQq+YF6sk9yMUx/YpsLBTRM7PB9RR0AnR8g==
+X-Received: by 2002:a17:907:3f12:b0:974:6287:f67f with SMTP id hq18-20020a1709073f1200b009746287f67fmr10539860ejc.28.1686591486054;
+        Mon, 12 Jun 2023 10:38:06 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id ks27-20020a170906f85b00b00977eec5bb2csm5454093ejb.156.2023.06.12.10.38.02
+        by smtp.gmail.com with ESMTPSA id ks27-20020a170906f85b00b00977eec5bb2csm5454093ejb.156.2023.06.12.10.38.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 10:38:04 -0700 (PDT)
+        Mon, 12 Jun 2023 10:38:05 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,10 +59,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] arm64: dts: qcom: sm8550-qrd: add sound card
-Date:   Mon, 12 Jun 2023 19:37:57 +0200
-Message-Id: <20230612173758.286411-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: sm8550-mtp: add sound card
+Date:   Mon, 12 Jun 2023 19:37:58 +0200
+Message-Id: <20230612173758.286411-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230612173758.286411-1-krzysztof.kozlowski@linaro.org>
+References: <20230612173758.286411-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,27 +85,22 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
-Bindings for the sound card were not sent to LKML. Work-in-progress is
-available here:
-https://github.com/krzk/linux/tree/n/audio-wsa884x-on-top-of-wip-sm8450-audio-on-next
-
-Depends on my previous patch adding WSA8845 speakers:
-https://lore.kernel.org/linux-arm-msm/20230608094323.267278-1-krzysztof.kozlowski@linaro.org/T/#t
+Not tested on hardware. Should be the same as on QRD8550.
 ---
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 81 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 81 +++++++++++++++++++++++++
  1 file changed, 81 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 7ef7079dd640..cb0369fbbc81 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -97,6 +97,87 @@ pmic_glink_sbu: endpoint {
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index 54f8957499a3..34b548b3e43d 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -95,6 +95,87 @@ pmic_glink_sbu: endpoint {
  		};
  	};
  
 +	sound {
 +		compatible = "qcom,sm8550-sndcard", "qcom,sm8450-sndcard";
-+		model = "SM8550-QRD";
++		model = "SM8550-MTP";
 +		audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
 +				"SpkrRight IN", "WSA_SPK2 OUT",
 +				"IN1_HPHL", "HPHL_OUT",
@@ -156,7 +154,7 @@ index 7ef7079dd640..cb0369fbbc81 100644
 +			};
 +
 +			codec {
-+				sound-dai = <&north_spkr>, <&south_spkr>, <&swr0 0>, <&lpass_wsamacro 0>;
++				sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&lpass_wsamacro 0>;
 +			};
 +
 +			platform {
