@@ -2,111 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 264EE72B5FD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 05:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2C972B60D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 05:23:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234837AbjFLDSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 23:18:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51018 "EHLO
+        id S233235AbjFLDXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 23:23:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234642AbjFLDSG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 23:18:06 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC3C35A9
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 20:16:38 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b1a7e31dcaso42543761fa.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 20:16:38 -0700 (PDT)
+        with ESMTP id S232113AbjFLDXP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 23:23:15 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1121C9E;
+        Sun, 11 Jun 2023 20:23:14 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-30fbf253dc7so477424f8f.0;
+        Sun, 11 Jun 2023 20:23:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686539785; x=1689131785;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=i8bbUw1QYsNj4ZuF741sMEm9dNSqu8lftaNCRxtP03g=;
-        b=Ty4GkavvoCkw1OR6pEPSh0h1rS1tL/IZ3JrBR9IZRX9r4OKqs/QVVZX6adPnzoSaYG
-         M6rLDEgB9o3j0ExVlbSfUFwrkJuxl6ECKiwNH2YQCrvd4hgxRiTUUzH1UXr33YDA6TVa
-         Xei3zzffwDNfNa4bHT0htNslei8IPrBMpyYEtjBUG/+P2TL10AdSqUYZm+ar0/B+Ls8I
-         H+erCOTMSHz02V0f6LDcZpDMsfdioT27VBpQg8S3ASt3p72OZMDzV4Dby/s8qd4fyj3/
-         Zcm/MoDnLZvk81d9lhdcb1abWlL4FwEtA6RMQYAzs94+CPgmJh5F+hBZCB6S4JoXMg2d
-         rflA==
+        d=gmail.com; s=20221208; t=1686540192; x=1689132192;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4fi82/5hriQh9bwxuMPdwuuiMbrhOT9Zprm0iOwA4ok=;
+        b=TrAFQfviPO4XVZogd/3hCmxwRND5zk3Zq6+gdKgycV7Ni9aTaYqbTjyWHQnVyqGEE3
+         UiGBxN2H80zpTlUcMSQx5cChMPV5a7nF9KiMJTtuQUn5DgLY3pmqgqAtbrmsrBCOVwZ3
+         DwhoONsOqy1anFugY5/ZtCJbrKssqke2+72El5WWKehCb0mBz00b6VE5iIzSNRcvybs7
+         nIXGUJQvcErv3yvTAs8oqVnuuXYD/NlGDVP6RNoACSws1fkhXv1CA4T0lmJQ+kQysYpB
+         EBlNXjaJNRNKuE/CZNipUZR2f7Bms9JLTLxEuR4YdK/thV+Li86BH9D2+KOc3SFTnBO5
+         jQ1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686539785; x=1689131785;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i8bbUw1QYsNj4ZuF741sMEm9dNSqu8lftaNCRxtP03g=;
-        b=MsVijVg+AowlF7bT7cQh1Kdg3qU2HyObH8sQMHDFq28AGl98fNpvWnLHofBOaOTu36
-         o+5PHQa4M4BFkFc9qYpzH6PeCUmKJlabNALGmsvRCLFFM9UaQ03sv1PSNdDllkb6Afsx
-         Ncvnqry04jfa6cwf1qSQEz5iZRoodwJYXhdOjAC7/O3wSs5Y/X/6IDeDgjRL/seAncP5
-         /UjfHlEpQt5W2T90WuPRJWbEJMg09dNjzL0Nsq0PAcnVs9C/xcMQOWI1qj69WL1u1VaS
-         xtwpYKf8mEqJsz/M2GGjBr8qNvbnhVJT1lMMA0QiQW9dcLdA5U/aY1SJo+5PnuVNT+x8
-         TReA==
-X-Gm-Message-State: AC+VfDzNPvtJDAt9eTNc0cmPE1L1LZkA2JcqCjlslymYopQ1zD5rNYV/
-        0jpS8ssc3FYJVqTJf8wfhpFA3A==
-X-Google-Smtp-Source: ACHHUZ633YwU7nj4H37EMlrzk6y1s4B13oddDZfwTAu0IYWjbvj8IB+kHVD0VUVOYv1zNtaZXTLNAg==
-X-Received: by 2002:a2e:b046:0:b0:2b1:eca3:4e8d with SMTP id d6-20020a2eb046000000b002b1eca34e8dmr2122945ljl.12.1686539784753;
-        Sun, 11 Jun 2023 20:16:24 -0700 (PDT)
-Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id b8-20020a2e8488000000b002b32f9b6bd3sm120937ljh.62.2023.06.11.20.16.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Jun 2023 20:16:24 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Degdag Mohamed <degdagmohamed@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: sm8150: use proper DSI PHY compatible
-Date:   Mon, 12 Jun 2023 06:16:23 +0300
-Message-Id: <20230612031623.3620155-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20221208; t=1686540192; x=1689132192;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4fi82/5hriQh9bwxuMPdwuuiMbrhOT9Zprm0iOwA4ok=;
+        b=V0qLY7V3nkP41nCFoGg+e9hlnA+zbFZeq1PHVHno9I4rx9WksrXAdgsblz7zwYLgvO
+         7unKpj+pUyaCz82ZF7BSQ/mHJLttu/Ibj//it189DlYUaxpMMo33lF55H/oc6pTfXhy3
+         mxCjvL3l+dypeZ3e/UF6Ufn6tDcoG7IQ5lkus23T04R/mdG0HiuP1GuKNDEK6qd7GmMo
+         5Chi/Zjler/jo7Pej6EN8EcmkDuJpjFYi8u75FzsECEgvVgGfE63CywaA362s4IMXuY9
+         Os4MJeUTbDrPZvCo9CvgMKXBeK+Tq93Z3XUeCvio+E4T7gKExyVkQWXkM+fVMLNyhGfJ
+         mzGw==
+X-Gm-Message-State: AC+VfDzHTe7bmqoecbd9Iz42X9FPpRypHzBkhmYh9lknNIbt7kDBFlCn
+        AdJmBtULpkFYbO+s19b2aeU=
+X-Google-Smtp-Source: ACHHUZ7WdySQeKVjN6moe6hPIOkvIIrCXllx1zfnjYVmrYg8hGDAUfax1zx88uED4kNO12BLmQ+7QQ==
+X-Received: by 2002:adf:df09:0:b0:309:599e:ea81 with SMTP id y9-20020adfdf09000000b00309599eea81mr4078724wrl.3.1686540192263;
+        Sun, 11 Jun 2023 20:23:12 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id v16-20020adfe4d0000000b00307a83ea722sm11118373wrm.58.2023.06.11.20.23.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Jun 2023 20:23:10 -0700 (PDT)
+Message-ID: <786ae93b-b89f-0587-b084-2f93554df479@gmail.com>
+Date:   Mon, 12 Jun 2023 05:23:09 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: mt7986: increase bl2 partition on NAND of
+ Bananapi R3
+Content-Language: en-US, ca-ES, es-ES
+To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Weijie Gao <weijie.gao@mediatek.com>
+References: <ZH9UGF99RgzrHZ88@makrotopia.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <ZH9UGF99RgzrHZ88@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DSI PHY on the Qualcomm SM8150 platform requires platform-specific
-handling. Use the proper SoC-specific compatible string for the DSI
-PHYs.
 
-Reported-by: Degdag Mohamed <degdagmohamed@gmail.com>
-Fixes: 2ef3bb17c45c ("arm64: dts: qcom: sm8150: Add DISPCC node")
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 197c016aaeba..95d361443dff 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3832,7 +3832,7 @@ opp-358000000 {
- 			};
- 
- 			mdss_dsi0_phy: phy@ae94400 {
--				compatible = "qcom,dsi-phy-7nm";
-+				compatible = "qcom,dsi-phy-7nm-8150";
- 				reg = <0 0x0ae94400 0 0x200>,
- 				      <0 0x0ae94600 0 0x280>,
- 				      <0 0x0ae94900 0 0x260>;
-@@ -3906,7 +3906,7 @@ mdss_dsi1_out: endpoint {
- 			};
- 
- 			mdss_dsi1_phy: phy@ae96400 {
--				compatible = "qcom,dsi-phy-7nm";
-+				compatible = "qcom,dsi-phy-7nm-8150";
- 				reg = <0 0x0ae96400 0 0x200>,
- 				      <0 0x0ae96600 0 0x280>,
- 				      <0 0x0ae96900 0 0x260>;
--- 
-2.39.2
+On 06/06/2023 17:43, Daniel Golle wrote:
+> The bootrom burned into the MT7986 SoC will try multiple locations on
+> the SPI-NAND flash to load bl2 in case the bl2 image located at the the
+> previously attempted offset is corrupt.
+> 
+> Use 0x100000 instead of 0x80000 as partition size for bl2 on SPI-NAND,
+> allowing for up to four redundant copies of bl2 (typically sized a
+> bit less than 0x40000).
+> 
+> Fixes: 8e01fb15b8157 ("arm64: dts: mt7986: add Bananapi R3")
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 
+Applied, thanks!
+
+> ---
+>   .../boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso     | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
+> index 15ee8c568f3c3..543c13385d6e3 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
+> @@ -29,13 +29,13 @@ partitions {
+>   
+>   					partition@0 {
+>   						label = "bl2";
+> -						reg = <0x0 0x80000>;
+> +						reg = <0x0 0x100000>;
+>   						read-only;
+>   					};
+>   
+> -					partition@80000 {
+> +					partition@100000 {
+>   						label = "reserved";
+> -						reg = <0x80000 0x300000>;
+> +						reg = <0x100000 0x280000>;
+>   					};
+>   
+>   					partition@380000 {
