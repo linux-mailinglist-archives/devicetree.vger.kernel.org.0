@@ -2,100 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 698D572CA04
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:27:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E10B072CA12
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236691AbjFLP06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 11:26:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53720 "EHLO
+        id S237231AbjFLP3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 11:29:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238490AbjFLP0w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:26:52 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4717B10FE
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:26:49 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f6dfc4e01fso45516265e9.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:26:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686583608; x=1689175608;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LWxp0A9f2AiWgsptaHzRYn+xtrjX1untDQt897ukbeo=;
-        b=N9gaZs3GOrtMfoObvoHXAIZYbDkqzj43EiMUg1n+ZSC7S7wTMeoVX3vY+xMue/lK0U
-         +4W5YGbVwZW/YSJbachvLaQWJhMgqfDzKklacB7ElGpOsil3wAeclrpuhq8/rLtgBsiM
-         98gRAkV5ZNmgkSRnmAyCQ0mXvVwsiSsrNF/FP5BOp0rnuMQujqrCyvEa6eZBoU7aR8Ck
-         AeKxtIneDTASmN5xWbdBU+j/qS5ccbIAgwDxsN0v45cevSDyqlWizPRKaIThIIkqD3Xa
-         OwM2VlDnVAh5l/lmA2ogaerIq2ao0hhWIY+ctmL+3moYPWaybmCX06GjzuzJ3BxKf24z
-         Wxyw==
+        with ESMTP id S236249AbjFLP3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:29:30 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08737E62;
+        Mon, 12 Jun 2023 08:29:29 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-777b4c9e341so292571739f.0;
+        Mon, 12 Jun 2023 08:29:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686583608; x=1689175608;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LWxp0A9f2AiWgsptaHzRYn+xtrjX1untDQt897ukbeo=;
-        b=NyXP5WLPuREz4xIVF6SG6PkeaUy6fTH+OK89krw+MPdQFMns9ubUP3zxfdL/SW6st4
-         SyU+VMql310J2yxxF+G6fd+SMpxL4pbVUHC7am8DdBaNZOT5ABjhSdWF2kXCUEDddxPQ
-         bQjiDMUjDc5jbHm3kZe2B5CCxXvDO5xMsDrXSNQBsCd1SE0iBrG0RqQYKr0AvLow5f/m
-         fh3DLEOT25SqWZqklVJ4GsZJoe74z8GUFxkzkoxYTi9fXc6Zmr+7Srca+HN2xl75/DX5
-         87H0QfDGx03Yz0DxpUm4oeJi2dWBueKZzkQLIwxh49WFuvAu+tiajMpbNVgdiA3+s9HF
-         m0hg==
-X-Gm-Message-State: AC+VfDzNPpCG/YnsoVMlPS1MTAzVz3cq/cKxkdwaHP0fSCTCLeDrU7kl
-        QsIE2YySlyprLGULNaTu3rz7HQ==
-X-Google-Smtp-Source: ACHHUZ6cxLwpV2DDPgY96MVULz4xXUcm/ukdR+f9kNyYlHBOiaPSx6vdMauIEiHJ/hr3Ws0OlctSlg==
-X-Received: by 2002:a7b:c458:0:b0:3f8:6d6:d4a4 with SMTP id l24-20020a7bc458000000b003f806d6d4a4mr7390462wmi.10.1686583607669;
-        Mon, 12 Jun 2023 08:26:47 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id h17-20020a05600c28d100b003f080b2f9f4sm11816344wmd.27.2023.06.12.08.26.46
+        d=1e100.net; s=20221208; t=1686583768; x=1689175768;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=02DkNPWWONbv0u1k4t26LVu45zaxMd+aECoLnHrf170=;
+        b=MdF2tOlfSHiirrsl7M0p3aqTekOVXCxokiuy1fPEoMEdcOcpvzVD7ctZ9pItRzy4Um
+         cj2ZjYE80tyM8qjoFxx8fPEb1i8DrG7TmX0Sq+cWM5UwUpcWPMP4ErRKJQZDO30UosWW
+         RRB9peu5Ih0uxMSFhMYL2RUSknuxZBjzjEHLMEgGdkJHcswO6C6eEKXIFWI30nRxkyM8
+         xlvyedY7GSlGuQ54JYd5xQUhMp2KnQF1Po7VAHRbCbZmeNdY+0J3JCFgfwndU8KT8ZDS
+         w+RSAdlxjGA6Cffgf3uVT9ntd4iOfMg/HZj8G++U5zSzdxOUUJQ2PakLjpZ3doNG7vGG
+         9ypA==
+X-Gm-Message-State: AC+VfDzOw6JkXbPl1ADvVoJ8c+VDDsBl6LAevqptkn4Qgg8n1dTRvaxs
+        iCe1+k1941A8kaRrFXWUVw==
+X-Google-Smtp-Source: ACHHUZ5OTMtb2/1iP67kCEtc1B3C124Kbz/uogOGn3ZX8BywrbEYr3v1mN1WAB1C6eG21xCyaXSDNQ==
+X-Received: by 2002:a5e:db07:0:b0:777:8e86:7636 with SMTP id q7-20020a5edb07000000b007778e867636mr9282230iop.15.1686583768097;
+        Mon, 12 Jun 2023 08:29:28 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id k19-20020a02cb53000000b004167410a9bcsm2773773jap.113.2023.06.12.08.29.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 08:26:47 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Mon, 12 Jun 2023 17:26:41 +0200
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sm8550: add display port nodes
+        Mon, 12 Jun 2023 08:29:27 -0700 (PDT)
+Received: (nullmailer pid 87347 invoked by uid 1000);
+        Mon, 12 Jun 2023 15:29:25 -0000
+Date:   Mon, 12 Jun 2023 09:29:25 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add bindings for Azoteq
+ IQS7210A/7211A/E
+Message-ID: <20230612152925.GA65549-robh@kernel.org>
+References: <ZHVD/9OgRTAwBhqx@nixie71>
+ <ZHVEa0yM1LLUJEfO@nixie71>
+ <20230609142538.GA878396-robh@kernel.org>
+ <ZIZvkGqr4a0kOGnR@nixie71>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230601-topic-sm8550-upstream-dp-v3-2-5f9ffdcb8369@linaro.org>
-References: <20230601-topic-sm8550-upstream-dp-v3-0-5f9ffdcb8369@linaro.org>
-In-Reply-To: <20230601-topic-sm8550-upstream-dp-v3-0-5f9ffdcb8369@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3472;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=OT9fRI9abb+RycwRAR3WBnAhUBfEPjR/71I2pAue+x4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkhzkzNMCe8HsWmMOH3B20DVFcSIBhFzdJrkQ+SEgW
- 5AkwBfCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIc5MwAKCRB33NvayMhJ0eDwD/
- 9zdODZUvqdgFl9NF0db1A4Ghx6Zfx0diVgO3rjcprByoxdgIz0LqJhT5ySkTNQneTWr/Uz5gm6+DhM
- 5i7Nw+ORnQhKYqT5FMPlRE13yuS4VBb7I0GKqBkKQ3BZMhZqhzTEYtc6pU98oTAH5GTiYl1aymCxoA
- u1VycC8eWP4EJj4ib6/X2MjOdNmrhvixPn+bvXkiMvxI6qI5xisrYZPLUdtvQbsGaMQtHcVTKtnNuC
- iajYn2WthnCHgOiANjlRcB8B+O4PwavyRg0oAgNC3IiFXNQeXOVNW3C7q8CCL/9Edhzunva84e+Pa+
- IqiJlPY7M3jACH3V50NQVusNAT3k0GVROyHagYMcZ5AQjVLr6hVVySnmsiv7z5qTIqtCIBQhz1RqL6
- JF4yg7EfUKp7KaTWtnsPlfhZLnnivm89iVYWwE9YrGyrUJAAm8dvnJRDn/UKwWNmbvUn1l51QqYPwE
- XRjJQrjJzH88co0Fs0hdb2fmae9mALK7im+iSAGl7urR7c9X8MVGRJm1xRoJY5m1w0x+/oeFS/oS/G
- WieLzgdd46wMz5ZkbBKU4ZooFhBtcGDWUUSk8RqgIv/mGtdBpRoLi8unp5vTILXtU+oIu/SSxd/og1
- UwD/H90N5uzEWAVA6BZVKVr88kQbaBhCMw3+KjTeYA7EmjR8tyyMZ4QSsn2Q==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZIZvkGqr4a0kOGnR@nixie71>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,129 +67,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Display Port controller subnode to the MDSS node.
+On Sun, Jun 11, 2023 at 08:06:24PM -0500, Jeff LaBundy wrote:
+> Hi Rob,
+> 
+> On Fri, Jun 09, 2023 at 08:25:38AM -0600, Rob Herring wrote:
+> > On Mon, May 29, 2023 at 07:33:47PM -0500, Jeff LaBundy wrote:
+> > > Add bindings for the Azoteq IQS7210A/7211A/E family of trackpad/
+> > > touchscreen controllers.
+> > > 
+> > > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> > > ---
+> > > Changes in v2:
+> > >  - Renamed 'azoteq,default-comms' to 'azoteq,forced-comms-default' and redefined
+> > >    0, 1 and 2 as unspecified, 0 and 1, respectively
+> > >  - Defined ATI upon its first occurrence
+> > >  - Redefined 'azoteq,gesture-angle' in units of degrees
+> > >  - Declared 'azoteq,rx-enable' to depend upon 'azoteq,tx-enable' within the
+> > >    'trackpad' node
+> > > 
+> > > Hi Rob,
+> > > 
+> > > I attempted to reference existing properties from a common binding [1] as per
+> > > your feedback in [2], however 'make DT_CHECKER_FLAGS=-m dt_binding_check' fails
+> > > with the message 'Vendor specific properties must have a type and description
+> > > unless they have a defined, common suffix.'
+> > 
+> > Is that because you have differing constraints in each case?
+> 
+> In the failing example [2], I have started with a simple boolean that carries
+> nothing but a type and description. From the new azoteq,common.yaml:
+> 
+> properties:
+>   [...]
+> 
+>   azoteq,use-prox:
+>     type: boolean
+>     description: foo
+> 
+> And from the first consumer:
+> 
+> patternProperties:
+>   "^hall-switch-(north|south)$":
+>     type: object
+>     allOf:
+>       - $ref: input.yaml#
+>       - $ref: azoteq,common.yaml#
+>     description: bar
+> 
+>     properties:
+>       linux,code: true
+>       azoteq,use-prox: true
+> 
+> However, the tooling presents the following:
+> 
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> /home/jlabundy/work/linux/Documentation/devicetree/bindings/input/iqs62x-keys.yaml: patternProperties:^hall-switch-(north|south)$:properties:azoteq,use-prox: True is not of type 'object'
+> 	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+> 	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> 
+> [...]
+> 
+> I am committed to addressing your feedback; to help me do so, can you help me
+> identify what I've done wrong, and/or point me to an example that successfully
+> passes dt_binding_check?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 89 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 87 insertions(+), 2 deletions(-)
+You're not doing anything wrong. There's 2 options here. The first is we 
+could just relax the check to allow boolean schema for vendor 
+properties. The main issue with that is we then have to look for that 
+improperly used and it doesn't help if you do have additional 
+constraints to add on top of the common definition. The former can 
+mostly be addressed by checking there is a type associated with the 
+property. I'm going to look into adding that.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 972df1ef86ee..b41b3981b3ce 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -2495,6 +2495,13 @@ dpu_intf2_out: endpoint {
- 							remote-endpoint = <&mdss_dsi1_in>;
- 						};
- 					};
-+
-+					port@2 {
-+						reg = <2>;
-+						dpu_intf0_out: endpoint {
-+							remote-endpoint = <&mdss_dp0_in>;
-+						};
-+					};
- 				};
- 
- 				mdp_opp_table: opp-table {
-@@ -2522,6 +2529,84 @@ opp-514000000 {
- 				};
- 			};
- 
-+			mdss_dp0: displayport-controller@ae90000 {
-+				compatible = "qcom,sm8550-dp", "qcom,sm8350-dp";
-+				reg = <0 0xae90000 0 0x200>,
-+				      <0 0xae90200 0 0x200>,
-+				      <0 0xae90400 0 0xc00>,
-+				      <0 0xae91000 0 0x400>,
-+				      <0 0xae91400 0 0x400>;
-+				interrupt-parent = <&mdss>;
-+				interrupts = <12>;
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-+				clock-names = "core_iface",
-+					      "core_aux",
-+					      "ctrl_link",
-+					      "ctrl_link_iface",
-+					      "stream_pixel";
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-+				assigned-clock-parents = <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+							 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-+
-+				phys = <&usb_dp_qmpphy QMP_USB43DP_DP_PHY>;
-+				phy-names = "dp";
-+
-+				#sound-dai-cells = <0>;
-+
-+				operating-points-v2 = <&dp_opp_table>;
-+				power-domains = <&rpmhpd SM8550_MMCX>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dp0_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdss_dp0_out: endpoint {
-+						};
-+					};
-+				};
-+
-+				dp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-162000000 {
-+						opp-hz = /bits/ 64 <162000000>;
-+						required-opps = <&rpmhpd_opp_low_svs_d1>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
- 			mdss_dsi0: dsi@ae94000 {
- 				compatible = "qcom,sm8550-dsi-ctrl", "qcom,mdss-dsi-ctrl";
- 				reg = <0 0x0ae94000 0 0x400>;
-@@ -2705,8 +2790,8 @@ dispcc: clock-controller@af00000 {
- 				 <&mdss_dsi0_phy 1>,
- 				 <&mdss_dsi1_phy 0>,
- 				 <&mdss_dsi1_phy 1>,
--				 <0>, /* dp0 */
--				 <0>,
-+				 <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+				 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
- 				 <0>, /* dp1 */
- 				 <0>,
- 				 <0>, /* dp2 */
+Alternatively, you could drop listing the properties and 
+use 'unevaluatedProperties'. That's not quite equal to what you have. 
+Presumably, you have 'additionalProperties' in this case, so listing 
+them serves the purpose of defining what subset of properties each node 
+uses from the referenced schema. We frequently don't worry if there are 
+common properties not used by a specific schema. This also wouldn't work 
+if you have additional constraints to add.
 
--- 
-2.34.1
-
+Rob
