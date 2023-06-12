@@ -2,81 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D508672CE73
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B417872CE82
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237548AbjFLSb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 14:31:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
+        id S233213AbjFLSes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 14:34:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238031AbjFLSbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:31:24 -0400
+        with ESMTP id S230408AbjFLSel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:34:41 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03820A7
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:30:34 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A44AF10CB
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:33:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686594625;
+        s=mimecast20190719; t=1686594769;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=ytk4CBUD5ymgdb/TV8v27oVrKqeWA1Ac0y1484kVuMA=;
-        b=Ns2DTuh91AG7n9kAg7VJ675+fJ3EqI7ZPZhpG8UG1tmhhebeuzRJC4oqTHiGQKizRk6fly
-        A1L2Zdyk5Df+V6BBVreZlr9dWUuSchui9W2TRgWSVZ9ec/1wWPpbkDptOZCTI71a4RASsJ
-        ABdpwltxmK+D6g7rMXsCCVbCto6mMY8=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=qSuO83O2GJF69D20JvszqVCusWGni7xZeOtz58f06pw=;
+        b=P1Gzm0BvCPN7KWcYUorr5D3fvJVkAGDa9p/j/PG+2h5kIVuKTNofQyGirvEUugLLMBzIMD
+        dKh5l5KPdtRspWNPJcuP/Lw6dP5PLsH+bj8a72EN8z6l+yTayTnkbnh7L2whfUeMxLP5Fd
+        BJOSzaB7QMsxJJpg7uuyEZEfS6GH2bY=
+Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
+ [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-140-kE_Nl2iHOqWqY9tdL5ygWQ-1; Mon, 12 Jun 2023 14:30:23 -0400
-X-MC-Unique: kE_Nl2iHOqWqY9tdL5ygWQ-1
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-3f7f4a7b289so88222995e9.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:30:23 -0700 (PDT)
+ us-mta-18-pA8ohtu9MkubLe8a8fmcNw-1; Mon, 12 Jun 2023 14:32:48 -0400
+X-MC-Unique: pA8ohtu9MkubLe8a8fmcNw-1
+Received: by mail-ot1-f72.google.com with SMTP id 46e09a7af769-6b2a7789f31so2297251a34.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:32:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686594622; x=1689186622;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ytk4CBUD5ymgdb/TV8v27oVrKqeWA1Ac0y1484kVuMA=;
-        b=LML+aRYzzJLrClwWdLftFbluUXYMknOPl8hXzR3GTW7G6pU0HAMU3cnZlE3sRb9k44
-         GYUeoipwp1lGRogJ9MsPq1e5I98TPJjWdTELpWLw0qYeiWGdYQqU3gwO0y+gt/P1Om3K
-         AnzDUedLBMVOzebb6unP0g95qUMtKpEUHUwkfRnZEKRvbWIzRzkVqjlhajJ5WEKFilVu
-         vDIXaaBqJ5j2Zoy/+fwRFBS1rY672V29TP0kgRPDw3nk/cXHapHSIFIYpjvw92CEb614
-         n+h5RMavfp36EBJ6SSlAzKCGEP8se74cc6VIA9AE3AkHafq+q7y8Mxj17aRKkP4dOi7T
-         q9dQ==
-X-Gm-Message-State: AC+VfDwtOl8Ye/5tmbh0j44+JzWkgVVSCvU10Dfq25VPPR12GrsJW8dU
-        0tqE5zad7bBfv2KBI4+x21uZozGMSvrP+7R4zdH3hmMi6EhRQebuH2BGbZv+JppFq8GZqd1h2fT
-        DjGL7ovRPQta/QaJixvYWqg==
-X-Received: by 2002:a05:600c:2297:b0:3f7:f544:4993 with SMTP id 23-20020a05600c229700b003f7f5444993mr8211861wmf.20.1686594622650;
-        Mon, 12 Jun 2023 11:30:22 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6f87goxu4tLEIjzoynyJtL5A/keJi5mHvAB0RC30rg0lgcZJDIaJ1gEOYrsjRA3uu+QEeiPA==
-X-Received: by 2002:a05:600c:2297:b0:3f7:f544:4993 with SMTP id 23-20020a05600c229700b003f7f5444993mr8211850wmf.20.1686594622317;
-        Mon, 12 Jun 2023 11:30:22 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id r15-20020adfda4f000000b002fe96f0b3acsm13271835wrl.63.2023.06.12.11.30.21
+        d=1e100.net; s=20221208; t=1686594767; x=1689186767;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qSuO83O2GJF69D20JvszqVCusWGni7xZeOtz58f06pw=;
+        b=kPd86FMr1ZwNO9u7ukTPJlzM1vDZt8bNm6QBMm7Te6lNyy5WZfblWWxz+Fe7cKtmgM
+         s5gr/HNDvNIKnVW7tBBcUBAzXmAUj+QJ6jHVLVlU6RQGLMt0qODEgCE9mIWXkcOF7EiQ
+         ARtCqQtVqKN0bVqQmPFyPaO3gX47ZlHfs+cZb/z326TJkhUxtDXY0eIqMAkFRKFypxgv
+         duCQhLmW61RKtWcrOwc3vFmVONQZO3y9s9VRnYfe7l5OJHbp27S9Ooe4cJQChyZ57TB6
+         al/85HUevvZtCLjrJdGvQ/ezXdYlpVPUiYlQMs+ArpVGHtJ63dtp4/ehYJtG9IlsbO1m
+         0ESQ==
+X-Gm-Message-State: AC+VfDzbQDl2bBEP3O4c2wdJoY3DA84znc5FEuP4eEmMxZHq9Vj51mS8
+        y0ry4cP+xAPSRYc60lcicTOu6DPT0Vhi6Xr5nzojWOEuvoA/nk0MhMu5CrQQfjbO/MBTBlcpvaF
+        WN7yEmZdyCnjy2b5LVp4X2Q==
+X-Received: by 2002:a05:6830:92:b0:6a5:dd70:38cd with SMTP id a18-20020a056830009200b006a5dd7038cdmr6651285oto.2.1686594767178;
+        Mon, 12 Jun 2023 11:32:47 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5HntANaGm+HkD+UPQVxKZBUJkVk1zEqMvLrahjA8N+vIH05i26ddN13SkrcVSLU5flZVuT2A==
+X-Received: by 2002:a05:6830:92:b0:6a5:dd70:38cd with SMTP id a18-20020a056830009200b006a5dd7038cdmr6651260oto.2.1686594766931;
+        Mon, 12 Jun 2023 11:32:46 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
+        by smtp.gmail.com with ESMTPSA id w14-20020a056830060e00b006af9d8af435sm4138880oti.50.2023.06.12.11.32.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 11:30:21 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     Conor Dooley <conor@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Mon, 12 Jun 2023 11:32:46 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 13:32:43 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        dri-devel@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: display: ssd1307fb: Remove default
- width and height values
-In-Reply-To: <20230612-parade-sauciness-16225ce0a643@spud>
-References: <20230609170941.1150941-1-javierm@redhat.com>
- <20230609170941.1150941-3-javierm@redhat.com>
- <20230610-opposite-quality-81d4a1561c88@spud>
- <87r0qj19zs.fsf@minerva.mail-host-address-is-not-set>
- <20230610-unused-engaged-c1f4119cff08@spud>
- <87jzwa29ff.fsf@minerva.mail-host-address-is-not-set>
- <d4828a3d-639a-a207-ff36-45c8c5d4d311@suse.de>
- <20230612-parade-sauciness-16225ce0a643@spud>
-Date:   Mon, 12 Jun 2023 20:30:21 +0200
-Message-ID: <87h6rc354y.fsf@minerva.mail-host-address-is-not-set>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 06/26] net: stmmac: dwmac-qcom-ethqos: rename a label in
+ probe()
+Message-ID: <20230612183243.5rkphsaqofi42bgc@halaney-x13s>
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-7-brgl@bgdev.pl>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230612092355.87937-7-brgl@bgdev.pl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
@@ -88,61 +98,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Conor Dooley <conor@kernel.org> writes:
+On Mon, Jun 12, 2023 at 11:23:35AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> The err_mem label's name is unclear. It actually should be reached on
+> any error after stmmac_probe_config_dt() succeeds. Name it after the
+> cleanup action that needs to be called before exiting.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-> On Mon, Jun 12, 2023 at 09:47:12AM +0200, Thomas Zimmermann wrote:
->> Am 11.06.23 um 01:18 schrieb Javier Martinez Canillas:
->
->> > But I will be OK to drop the "solomon,ssd130?fb-i2c" compatible strings
->> > from the DRM driver and only match against the new "solomon,ssd130?-i2c"
->> > compatible strings. And add a different DT binding schema for the ssd130x
->> > driver, if that would mean being able to fix things like the one mentioned
->> > in this patch.
->
-> If there are different compatibles, then it can always be sorted out
-> later iff it turns out to be a problem, since new devicetrees should not
-> be using the deprecated compatibles anyway. I didn't realise that those
-> deprecated compatibles existed, thanks for your patience.
->
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
-No worries, thanks for raising this question.
-
->> > In my opinion, trying to always make the drivers backward compatible with
->> > old DTBs only makes the drivers code more complicated for unclear benefit.
->> > 
->> > Usually this just ends being code that is neither used nor tested. Because
->> > in practice most people update the DTBs and kernels, instead of trying to
->> > make the DTB a stable ABI like firmware.
->> > 
->> 
->> From my understanding, fixing the resolution is the correct thing to do
->> here. Userspace needs to be able to handle these differences.
->
-> Fixing meaning correcting, or fixing meaning using a fixed resolution?
-> Not clear to me what you mean, sorry.
->
-
-Fixing meaning using as a default the correct maximum resolution for each
-OLED controller, rather than an arbitrary 96x16 resolution that was added
-just to be compatible with the panel that was tested the original driver.
-
-But after talking with Thomas and Maxime about this issue, I realized that
-it won't even cause an issue for theoretical users that may be relying on
-the previous default.
-
-Changing the default resolution to something smaller could cause an issue
-since a user expecting a bigger default would get their display output cut
-but changing to something bigger just means user-space being able to write
-more pixels than those that will be displayed.
-
-Because there isn't really a "resolution" configured in the chip, but just
-how many pixels a particular controller can drive. The new default is the
-maximum that each controller supports according to their documentation.
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+> ---
+>  .../ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> index 2da0738eed24..16e856861558 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> @@ -615,14 +615,14 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>  	ethqos = devm_kzalloc(&pdev->dev, sizeof(*ethqos), GFP_KERNEL);
+>  	if (!ethqos) {
+>  		ret = -ENOMEM;
+> -		goto err_mem;
+> +		goto out_config_dt;
+>  	}
+>  
+>  	ethqos->pdev = pdev;
+>  	ethqos->rgmii_base = devm_platform_ioremap_resource_byname(pdev, "rgmii");
+>  	if (IS_ERR(ethqos->rgmii_base)) {
+>  		ret = PTR_ERR(ethqos->rgmii_base);
+> -		goto err_mem;
+> +		goto out_config_dt;
+>  	}
+>  
+>  	data = of_device_get_match_data(&pdev->dev);
+> @@ -634,16 +634,16 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>  	ethqos->rgmii_clk = devm_clk_get(&pdev->dev, "rgmii");
+>  	if (IS_ERR(ethqos->rgmii_clk)) {
+>  		ret = PTR_ERR(ethqos->rgmii_clk);
+> -		goto err_mem;
+> +		goto out_config_dt;
+>  	}
+>  
+>  	ret = ethqos_clks_config(ethqos, true);
+>  	if (ret)
+> -		goto err_mem;
+> +		goto out_config_dt;
+>  
+>  	ret = devm_add_action_or_reset(&pdev->dev, ethqos_clks_disable, ethqos);
+>  	if (ret)
+> -		goto err_mem;
+> +		goto out_config_dt;
+>  
+>  	ethqos->speed = SPEED_1000;
+>  	ethqos_update_rgmii_clk(ethqos, SPEED_1000);
+> @@ -662,11 +662,11 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>  
+>  	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+>  	if (ret)
+> -		goto err_mem;
+> +		goto out_config_dt;
+>  
+>  	return ret;
+>  
+> -err_mem:
+> +out_config_dt:
+>  	stmmac_remove_config_dt(pdev, plat_dat);
+>  
+>  	return ret;
+> -- 
+> 2.39.2
+> 
 
