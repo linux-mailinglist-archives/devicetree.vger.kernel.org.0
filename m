@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6728772BC9A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8B5F72BC9C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235019AbjFLJbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 05:31:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49228 "EHLO
+        id S232847AbjFLJby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 05:31:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232636AbjFLJaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:30:18 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 759E13581
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:24:49 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f7353993cbso29796915e9.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:24:49 -0700 (PDT)
+        with ESMTP id S233080AbjFLJaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:30:20 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3999C359A
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:24:51 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f78a32266bso41291855e9.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:24:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686561888; x=1689153888;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686561889; x=1689153889;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cjVXwVFp50u0PUxr/5pPlG4sgNjLclV10ezIygBZf1w=;
-        b=2LxLhnK7e46mui8dhof9QAMYFAXj+RyNY51koDXFIyUq+oeAgfB5Yunm2wkRuj1JMn
-         kZaCwUavQC6RW+LqMlWJwEmkbL8jYXkjd+0ANuO3gB4RfugPiO63GVGDem2oaXmUGXY6
-         eAlLWzfGQJsrYyk6s/qe+xejpzIL2oEbCV4biO8JIzCtGSZlK2U1RNqppXvdTzoPFYj1
-         3uySIa1BuTRWIipEsHrVcQc4yvQ9rYYM8rlnBgv7OYXKE2GKN9SYzVWyi+JBty3FKAs6
-         AGFFcXEHyxxr14wTLOjNholiBRGWtf+J2xMsFuYww1sG2cHVlfE8DjukIKEYzRH+nuip
-         3ZBA==
+        bh=WtiGUP9ra+nN5+GqOB+XAIPugwOoW0PwoEeYaWXDQls=;
+        b=ewW4ilPWNv7194ancCa8h4Y2nB9YHWmOOTZiAPChRO1LOfZRRdXY/Q3X6OjGm5QyED
+         tzZCF5qaleZ00eF4KQLSjPLPk0TNPsnKTOsx1fxBzPooOeCLgmEZO5nQjr7l6tFLgkGG
+         1LOt8o7G8ubTSO0VPXoauA3uLBTwM2nytfqbwwophk78EeKKzwtErTWeIxU2wLFl7y2j
+         KwWADOmvCOeU5Rm1K6AjUUnsQsZ/qLncaNkUlaE3uC/dgn61R0oY2Htjc0phFZVhW6va
+         P1mlE2HiQxyKUAfTNmtu+HrwE7ov3+pP2vTpYOFzD2ppmg7FNeZ+c8ipUBfuQsficczr
+         85+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686561888; x=1689153888;
+        d=1e100.net; s=20221208; t=1686561889; x=1689153889;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cjVXwVFp50u0PUxr/5pPlG4sgNjLclV10ezIygBZf1w=;
-        b=LaWfAN+IbJ1IhjqL/Nj7703VmMmR3Emc/UZLNpQcfIC3aU9dfe1jAnEc8GW1RVh+PL
-         09UBjqFxBboozzobGgzyXT53rkqBFwe5zhZk2KrRCc+KUpy5ObUxyYzfAC//6qndxXmS
-         04Wa3uYGdXueOqsAp+VLji2IJt3ZosW00+bTeXifXVbWaUMlPFLPBt6IC87bouYLBOn9
-         4EGHYB6hwna9xjbj+prGACV0FAb+X1dgXedJBD6GBGM8y9w8T/9NXO0QV2Z5cS8YWoPB
-         hiq97gPW1i20rVoSvesjprwc7D8Ae4vlptvV/30qGGHidBE/4teoq5srCHXeB/4PXIhQ
-         CP4A==
-X-Gm-Message-State: AC+VfDzd0XDiT7KPT5ZQYNOnHUSTfwrTX15nPsEP4nFzJGEAZptipJaK
-        UIpt1zEUu4EXB1/nx2dCdWe8AQ==
-X-Google-Smtp-Source: ACHHUZ5VMYcwm8OhSaptz22TDIOQZKg2qtYe5RLNTkB2yZzQSZhIqFe5Wt+EaJyET4ed5soNUXNxKQ==
-X-Received: by 2002:a05:600c:880f:b0:3f7:148b:c310 with SMTP id gy15-20020a05600c880f00b003f7148bc310mr8862440wmb.13.1686561888007;
-        Mon, 12 Jun 2023 02:24:48 -0700 (PDT)
+        bh=WtiGUP9ra+nN5+GqOB+XAIPugwOoW0PwoEeYaWXDQls=;
+        b=CLmGT0LNRx5c39S3dnbLgwEG7AvbSIwiPjWvii0BiXQAEabLIvLsLeVmiOIXXlDQ8V
+         l2GPH+ZfOnmn73JG22dKVgIm8WYCOiEYIhfoQnoPEhz+Gg4JHXw6VncQz7fHmXAWL6lx
+         LP/YVHCX8wgb59aH/+D3Wj1/z0Sb8BD2yOyLlCer7GgFtfKXWdOARdmemgis4UAZ0GJH
+         vGulMZ+fJGM5lJyuhDCrl3IybQmU9JyIHlE2pYA6biyKihsIWomf7O56kW9prkFGWlUJ
+         1D8nPQwgeGdKnz0PzZMfUqnivASSL4bPQXpUizjR+6d7U/MVKLer8HEfKqqa8/4HW8Cf
+         96XA==
+X-Gm-Message-State: AC+VfDx4ZZ614B7ZYZ4vnJ5RRjzrUqVHPW6x4rcF4Ifw9Xn7RgKtDqKV
+        1gt5Un3/tJNFq6zkzBI0jwG3Sg==
+X-Google-Smtp-Source: ACHHUZ7G+zYHl342266e7renMY1/jG2Z7MG3iQRcKeI8tKXg+RpONFzFBLeozTMO3uKFJ5OCB8zY3Q==
+X-Received: by 2002:a05:600c:2204:b0:3f7:35a9:dfdf with SMTP id z4-20020a05600c220400b003f735a9dfdfmr6517067wml.24.1686561889654;
+        Mon, 12 Jun 2023 02:24:49 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:a222:bbe9:c688:33ae])
-        by smtp.gmail.com with ESMTPSA id p14-20020a7bcc8e000000b003f727764b10sm10892044wma.4.2023.06.12.02.24.46
+        by smtp.gmail.com with ESMTPSA id p14-20020a7bcc8e000000b003f727764b10sm10892044wma.4.2023.06.12.02.24.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 02:24:47 -0700 (PDT)
+        Mon, 12 Jun 2023 02:24:48 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Vinod Koul <vkoul@kernel.org>,
         Bhupesh Sharma <bhupesh.sharma@linaro.org>,
@@ -72,9 +72,9 @@ Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 15/26] net: stmmac: dwmac-qcom-ethqos: add support for the optional phy-supply
-Date:   Mon, 12 Jun 2023 11:23:44 +0200
-Message-Id: <20230612092355.87937-16-brgl@bgdev.pl>
+Subject: [PATCH 16/26] net: stmmac: dwmac-qcom-ethqos: prepare the driver for more PHY modes
+Date:   Mon, 12 Jun 2023 11:23:45 +0200
+Message-Id: <20230612092355.87937-17-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230612092355.87937-1-brgl@bgdev.pl>
 References: <20230612092355.87937-1-brgl@bgdev.pl>
@@ -92,36 +92,94 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-On sa8775p-ride we need to enable the power supply for the external PHY.
+In preparation for supporting SGMII, let's make the code a bit more
+generic. Add a new callback for MAC configuration so that we can assign
+a different variant of it in the future.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 31 ++++++++++++++++---
+ 1 file changed, 26 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index 2f6b9b419601..21f329d2f7eb 100644
+index 21f329d2f7eb..2f96f2c11278 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -8,6 +8,7 @@
- #include <linux/phy.h>
- #include <linux/phy/phy.h>
- #include <linux/property.h>
-+#include <linux/regulator/consumer.h>
+@@ -92,12 +92,14 @@ struct ethqos_emac_driver_data {
+ struct qcom_ethqos {
+ 	struct platform_device *pdev;
+ 	void __iomem *rgmii_base;
++	int (*configure_func)(struct qcom_ethqos *ethqos);
  
- #include "stmmac.h"
- #include "stmmac_platform.h"
-@@ -692,6 +693,10 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto out_config_dt;
+ 	unsigned int rgmii_clk_rate;
+ 	struct clk *rgmii_clk;
+ 	struct clk *phyaux_clk;
+ 	struct phy *serdes_phy;
+ 	unsigned int speed;
++	int phy_mode;
  
-+	ret = devm_regulator_get_enable_optional(dev, "phy");
-+	if (ret < 0 && ret != -ENODEV)
-+		goto out_config_dt;
+ 	const struct ethqos_emac_por *por;
+ 	unsigned int num_por;
+@@ -332,13 +334,11 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+ {
+ 	struct device *dev = &ethqos->pdev->dev;
+ 	int phase_shift;
+-	int phy_mode;
+ 	int loopback;
+ 
+ 	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
+-	phy_mode = device_get_phy_mode(dev);
+-	if (phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
+-	    phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
++	if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
++	    ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
+ 		phase_shift = 0;
+ 	else
+ 		phase_shift = RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN;
+@@ -485,7 +485,7 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+ 	return 0;
+ }
+ 
+-static int ethqos_configure(struct qcom_ethqos *ethqos)
++static int ethqos_configure_rgmii(struct qcom_ethqos *ethqos)
+ {
+ 	struct device *dev = &ethqos->pdev->dev;
+ 	volatile unsigned int dll_lock;
+@@ -561,6 +561,11 @@ static int ethqos_configure(struct qcom_ethqos *ethqos)
+ 	return 0;
+ }
+ 
++static int ethqos_configure(struct qcom_ethqos *ethqos)
++{
++	return ethqos->configure_func(ethqos);
++}
 +
- 	ethqos->serdes_phy = devm_phy_optional_get(dev, "serdes");
- 	if (IS_ERR(ethqos->serdes_phy)) {
- 		ret = PTR_ERR(ethqos->serdes_phy);
+ static void ethqos_fix_mac_speed(void *priv, unsigned int speed)
+ {
+ 	struct qcom_ethqos *ethqos = priv;
+@@ -660,6 +665,22 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+ 		goto out_config_dt;
+ 	}
+ 
++	ethqos->phy_mode = device_get_phy_mode(dev);
++	switch (ethqos->phy_mode) {
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++		ethqos->configure_func = ethqos_configure_rgmii;
++		break;
++	case -ENODEV:
++		ret = -ENODEV;
++		goto out_config_dt;
++	default:
++		ret = -EINVAL;
++		goto out_config_dt;
++	}
++
+ 	ethqos->pdev = pdev;
+ 	ethqos->rgmii_base = devm_platform_ioremap_resource_byname(pdev, "rgmii");
+ 	if (IS_ERR(ethqos->rgmii_base)) {
 -- 
 2.39.2
 
