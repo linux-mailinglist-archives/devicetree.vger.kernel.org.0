@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F1572BBCB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:12:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2588E72BBEE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233236AbjFLJMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 05:12:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36880 "EHLO
+        id S232840AbjFLJVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 05:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231293AbjFLJLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:11:31 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A525B93
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:06:23 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f7f6341bf9so40840465e9.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:06:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686560781; x=1689152781;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cfthyup1MM34d0KPR41lO7/SV8nsTNgfaRPuqAAmHjE=;
-        b=RKFp2NK0zdHnKIFeM6f7rUowCZzE2y9qekqT+LTMxeK/YmE4lYWYNgRQnMt4Q/j5XY
-         lMVhwj5Z9QYHhvn1cyrNiHnqqZ2CGlYb8JWFVkWVODpVTn2CAP7l6Y0WJ6la46eYtzw0
-         SiA23a41q9Jn19pS6WAS+snPVV/fdjB80/a9TDkjlZNbEvybZEDACnqsKdGexl7WaedC
-         mVq62YRfoo6CetEr+1Xz/9a5rVtNj4dXY1xwgNd3cuuUzlXzcM1hv6rOeTnYLR2mHgGH
-         /ZbIc4w8XVMWsStCDNJzBERKPzaLK+EdWC7U0XJSlGwwCBzAaxm+ClAXDgnXH5XRQony
-         e6Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686560781; x=1689152781;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cfthyup1MM34d0KPR41lO7/SV8nsTNgfaRPuqAAmHjE=;
-        b=MUQJSJ6lzeiY6w0cQAaLCT+wj/o5m2vlUBTkKIwc/uLQW6oW3mxrpz4JIv3G2D/u0L
-         9N/uWoFTBL7z1J/mH46nj8vxbl+BipnkxmJeVvixu7GY9Kvh+EXLm05NaZ4EhD8Ifyfb
-         Q/00i9UOvQ4oHvEkSCkZni5ILOERJWBoZMKjafhPttHdJCtkvb9bT80El6WejToqMcLx
-         wxpMKA/s54GbatNtJxTTwm96WbLRiJemJygSXOPUja8e4w7OQ+wqPUS3ckrMz7E8X/Jx
-         /kycU55td0+a8xpyzGHW6aUfK7Apx4VSIeffvEjdJq20H0RO31eHrvWyDbCdSZqts3Wz
-         I3WA==
-X-Gm-Message-State: AC+VfDw5zbMBZjVVAK++ca7K1frjRxa+b7C04T3tWTuRFcQvRLb0JUDG
-        j2x1fveIH31mg2/Q5Eg295nKIg==
-X-Google-Smtp-Source: ACHHUZ4+wH0IwnnWvjE8PFwigNlLEgCkL86MFl72DGZKSAmgYyYjdHySxJnwFZhE/T8iPGe8i43fDg==
-X-Received: by 2002:a7b:cd13:0:b0:3f7:355f:cd9f with SMTP id f19-20020a7bcd13000000b003f7355fcd9fmr6634879wmj.12.1686560781032;
-        Mon, 12 Jun 2023 02:06:21 -0700 (PDT)
-Received: from linaro.org ([86.121.163.20])
-        by smtp.gmail.com with ESMTPSA id m19-20020a7bcb93000000b003f7e75b053dsm10830553wmi.34.2023.06.12.02.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 02:06:20 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 12:06:18 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: clock: imx8m: Add missing interrupt
- property
-Message-ID: <ZIbgCk3DjnPLC2iY@linaro.org>
-References: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S232812AbjFLJU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:20:28 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D1E555AF
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:13:08 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 148A980F53;
+        Mon, 12 Jun 2023 11:13:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1686561186;
+        bh=5YCO0654Itqgrf0uCoj5p0lBM0I4GVOJ/5sMCRIUu/E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=s+EdMc43oXFoRvGLXrkBA/uJRTxABeTWEdbiy7fkezfwUbzU3jeDXHqswxWOSRoyD
+         s37K4+w1x3ZkNiWRTFcpqkigt+j0FJT0LRD96PSjruRGlkvv2V/abxhFlGpZwCNfaH
+         OrwvtcCGyuGyn5oiVEVC6l5xsq1rqmHcGy6BGp8fY4N4sq6fVG5Vh/dFzJmxH7xllL
+         g5hihjh+K4yXbipt9oWy8FK9rQ4oQfW2TdLk8ywcpNDRYqxcLlM8zxgkEOmV9s6QxV
+         4THAI2+lNMHdent/coKZQ3OdHm/ixp37Hz7ndVpp1d0yd8KOKBYlw5a5tnB4fk/dU/
+         e0vh5lMg5eAaA==
+Message-ID: <26cfd848-a29d-2b38-3c15-fdcda532bcef@denx.de>
+Date:   Mon, 12 Jun 2023 11:13:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
+ mailbox for emtrion emSBC-Argon
+Content-Language: en-US
+To:     Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
+        Arnaud POULIQUEN <arnaud.pouliquen@st.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "kernel@dh-electronics.com" <kernel@dh-electronics.com>
+References: <20230518011246.438097-1-marex@denx.de>
+ <PAXPR10MB471850924065C987981634C1F14B9@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+ <133c8b4a-8680-f613-807a-2d7931d0a186@denx.de>
+ <PAXPR10MB4718D37242FF00D47DF0CEF1F1499@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+ <81f4574d-38c2-21f2-b947-d13e5fc99c60@denx.de>
+ <PAXPR10MB471825B145645894D626F070F152A@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+ <0d304968-74c8-47ce-f87a-127449f36f4b@denx.de>
+ <PAXPR10MB4718E8CE58A881DAE3983A27F153A@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+ <b65288f6-1d3d-424f-5df5-98e86cc51dec@denx.de>
+ <c944123c-bcd8-89cf-c2cd-8d5742931f68@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <c944123c-bcd8-89cf-c2cd-8d5742931f68@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,38 +78,123 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-05-10 08:56:41, Alexander Stein wrote:
-> All i.MX8M SoC have 2 CCM interrupts, called:
-> * Interrupt Request 1
-> * Interrupt Request 2
+On 6/12/23 10:26, Arnaud POULIQUEN wrote:
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> 
+> On 6/10/23 15:46, Marek Vasut wrote:
+>> On 6/7/23 11:53, Arnaud POULIQUEN wrote:
+>>
+>> Hi,
+>>
+>> [...]
+>>
+>>>>>>>>> Rather than adding unused optional mailbox, I will more in favor
+>>>>>>>>> of having a mbox_request_channel_byname_optional helper or
+>>>>>>>>> something similar
+>>>>>>>>
+>>>>>>>> See above, I think it is better to have the mailbox described in DT
+>>>>>>>> always and not use it (the user can always remove it), than to not
+>>>>>>>> have it described on some boards and have it described on other
+>>>>>>>> boards
+>>>>>> (inconsistency).
+>>>>>>>
+>>>>>>> Adding it in the DT ( and especially in the Soc DTSI) can also be
+>>>>>>> interpreted as "it is defined so you must use it". I would expect
+>>>>>>> that the Bindings already provide the information to help user to add it
+>>>> on need.
+>>>>>>
+>>>>>> Why should every single board add it separately and duplicate the
+>>>>>> same stuff, if they can all start with it, and if anyone needs to
+>>>>>> tweak the mailbox allocation, then they can do that in the board DT ?
+>>>>>> I really don't like the duplication suggestion here.
+>>>>>
+>>>>> I was speaking about "detach mailbox. Here is what I would like to
+>>>>> propose to you
+>>>>>
+>>>>> 1)  move all the mailbox declaration in the DTSI except "detach"
+>>>>> 2) don't declare "detach" in boards DTS ( except ST board for legacy
+>>>>> compliance)
+>>>>> 3) as a next step we will have to fix the unexpected warning on the
+>>>>>       "detach" mailbox.
+>>>>
+>>>> Why not make the mailbox available by default on all boards ?
+>>>
+>>> It has been introduced mainly to test the detach feature,
+>>> on a second platform to help remoteproc maintainers for the review
+>>> process. But the feature is not fully implemented on stm32mp1
+>>> ( auto reboot of thye M4 on crash, appropriate resource table clean-up,...)
+>>
+>> This is a driver bug, unrelated to DT description, please just fix it.
+> 
+> No, it is a system usecase that depends on Hardware, M4 firmware, A7
+> applications, ...
+> The detach/re-attach is a quite complex feature that needs to understand
+> the whole picture. As already mentioned above it as been introduced for
+> test on upstream.
+> 
+>>
+>>> I would prefer to remove it in ST board DT than add it in the DTSI.
+>>> That said as mentioned for legacy support, better to keep for ST board.
+>>
+>> Why not remove it from ST boards if this was legacy test feature and is no
+>> longer needed ?
+> 
+> If you can guaranty that this will not introduce regression on legacy, yes we can.
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Then clearly the only way to avoid this fragmentation is to add it on 
+all boards.
 
-> ---
-> Admittedly despite listing them in the interrupt list, there is no
-> further description.
-> If it is deemed these IRQs are useless, the corresponding property in
-> imx8mq.dtsi should be removed instead.
+>>>> As far as I can tell, if the software is not using the detach mailbox, there
+>>>> is no
+>>>> downside, it would just be unused. User can always remove it in their DT if
+>>>> really needed.
+>>>
+>>> The inverse it true, User can add it in their DT if really need.
+>>
+>> Is there a downside if this is enabled by default, yes or no ?
 > 
->  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Yes, by doing this you impose that this channel is reserved for the detach.
+> making it no more optional.
+
+Not really, the user can still define whatever channels they need for 
+their custom setup in their DT. The SoC DTSI should be just a default.
+
+>>>> I believe once can build demos using the detach mailbox for boards with
+>>>> stm32mp15xx not manufactured by ST, correct ?[]
+>>>
+>>> Everything could be possible...
+>>> Once can want to replace the shutdown mailbox by the detach.
+>>> Once can also build demo using the detach mailbox channel for another purpose.
+>>>
+>>> I quite confuse why you insist to declare this detach mailbox in the DTSI?
+>>> Is there a strong constraint on your side?
+>>
+>> I just don't see any explanation why ST board(s) should be somehow special and
+>> have the detach mailbox described in DT by default, while other boards would
+>> require separate DT patch to use the detach mailbox first. That just reduces
+>> usability of non-ST-manufactured boards and increases fragmentation. I do not
+>> like that.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> index 0dbc1433fede..80539f88bc27 100644
-> --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> @@ -24,6 +24,9 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  interrupts:
-> +    maxItems: 2
-> +
->    clocks:
->      minItems: 6
->      maxItems: 7
-> -- 
-> 2.34.1
+> The "somehow special" should only be an internal M4 firmware  allowing to test
+> the feature to help remoteproc maintainers to verify it on demand.
+> But I can not know if someone in the community have another firmware using
+> detach on the ST boards.
+> Anyway what you propose here is that we impose it for all boards. Some boards
+> would require separate DT patch to not use it. We just inverse the things...
+> The difference is that I would not impose something optional.
+
+I believe it is better to have single capable consistent default and let 
+users remove the capabilities for specific application if needed, than 
+to have fragmented inconsistent board-specific configurations where 
+users have to first determine whether they need to patch them to add 
+missing capabilities, and then possibly patch them, that's just a mess.
+
+It also puts non-ST-manufactured boards into worse position.
+
+> In term of fragmentation I can only see a specificity for the ST boards.As
+> already said if you can ensure that this will not generate impact on legacy,
+> it can be removed from the ST DT.
 > 
+> @Alex: any opinion on that?
+
+[...]
