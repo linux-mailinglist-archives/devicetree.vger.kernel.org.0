@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E22172B6C5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 06:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEAAD72B76C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 07:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233866AbjFLEqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 00:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46306 "EHLO
+        id S235235AbjFLFj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 01:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235691AbjFLEpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 00:45:36 -0400
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0F91A5
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 21:45:33 -0700 (PDT)
-Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-55b3fe7a788so2521385eaf.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 21:45:33 -0700 (PDT)
+        with ESMTP id S234802AbjFLFj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 01:39:27 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3399E62
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 22:39:25 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f63ab1ac4aso4437848e87.0
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 22:39:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686545133; x=1689137133;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B8PjX/aOXa3D/DnSIe/K9/s+OsmRXVqzcni+yFefbXo=;
-        b=SiM+aG3JrJbkzgBR0VBVug7fBxoWkJMWBYaON6CcIT1cIB2IMsknprPYSLSVZtGt6a
-         K/p6m/eBIsDmlzxNPkCe/gneRcrBLANYXoOZW9AUOkwmYSagXnnlNWJz7z2zYr4JcLdk
-         E6Gf7ia1Mx76DK7wwOY9f1xRXHya2IQuaZMXo=
+        d=linaro.org; s=google; t=1686548364; x=1689140364;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EHz2Z30tdvTqewGRLECO+NJy+cg3ayTbdySyYZr/5UI=;
+        b=t5ZwCfhAOWC8wyPB2ZlDMdiTPngHUZ7nZ67kwnm/Dr2UbttazmKj8zlhUsLQR3Nuwj
+         sfgqBP5oTIR9ghn3OnfIeQYlA7lzPDb3uGGdvf4KFY/DKAJFt9d1+ybNNYuMeltV53gp
+         GHykpbnZ3mc6xK/YNr54xghuoB4Y12dK444kxCDtSdO2qTus7IpqbPF3DPTKUUvHxJdh
+         iVhwWNkFOOCtUAMIoFrBeRIXYovBournrXZWLlhdNg+ocGw4uyRRocNNY/X/B4apQ5N0
+         3Pyn4woxc0otUDwXNV6TjAtS19C0NosBSXBykyzUMONyXhvTi8FLYMWbT+8HtmHFCp9Q
+         aFaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686545133; x=1689137133;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B8PjX/aOXa3D/DnSIe/K9/s+OsmRXVqzcni+yFefbXo=;
-        b=KMt4GhVnzy5H3GK0CrJDtvX+HUJSG0VtOuGYcqRlDcmPRMgBbZYVMpNXRKZO0sMYH9
-         xi8GRUgP4je5HIC4bJ2geHafQ45axivDJr747sogl1AWoICpFVEv8TcUKpdIp8zW5R1M
-         v3Mfzf7vklqDouPntVFmx2Jrmo7lz2DtBPBSKrZvhb4pTtlasun4CPpA9+3F2UmegNaY
-         I+nObGNPQUZk0QTLnhaviU7XWZMEgrO++OOdzgALFI+QcaA5x+0SroG74QsV+PRH7Etg
-         0si7N6s5pXRCUBXSu77fJaYNN8QKzR8zBeZy8KA8gOUlMZCzMGdysgzm2inQH05k/ekG
-         +QeQ==
-X-Gm-Message-State: AC+VfDzRoxps9aXrYnSJN1yOS/zBjM7iVhzzIqX5gEzAmolP7KSL2Qok
-        biB2oqd6qf56w6tfPdu2Ri4xaArmdhP6Pg1KPcnMaQ==
-X-Google-Smtp-Source: ACHHUZ59qM3qtQdWanFUYraxh4tCd+HRdsqwvAeH16+bcYuPxn5Z5kNdapzrWdVRi/Y9P+z48jlOBEOHfRnsOZ/ruBI=
-X-Received: by 2002:aca:c41:0:b0:39b:d6f1:36e5 with SMTP id
- i1-20020aca0c41000000b0039bd6f136e5mr3313176oiy.50.1686545132808; Sun, 11 Jun
- 2023 21:45:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230609083009.2822259-1-wenst@chromium.org> <20230609083009.2822259-5-wenst@chromium.org>
- <a7b7476d-3bbd-5503-db3d-5d57356764f8@collabora.com>
-In-Reply-To: <a7b7476d-3bbd-5503-db3d-5d57356764f8@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 12 Jun 2023 12:45:21 +0800
-Message-ID: <CAGXv+5FskpxjATk5aJA4CG0GyarO55XXYSYkvxWd-40d4ML8RQ@mail.gmail.com>
-Subject: Re: [PATCH 4/9] regulator: mt6358: Drop *_SSHUB regulators
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1686548364; x=1689140364;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EHz2Z30tdvTqewGRLECO+NJy+cg3ayTbdySyYZr/5UI=;
+        b=G2Tysj4+klAsSHVkzxP3cZzfpy5/gXvqtCF53f4QYW4wNHoshyMflAWSyOCBoWikLJ
+         qQOZx846v34vYYi8Ay1ZD8N6dgcS7lREmli8MDyOEsmwqYK/YQ4eB2B4MtyC8JF5ppPA
+         w4oqRg5QuGWM4uEzvhyxfxxQuStddy7f42bvGVQkb1tgfnYOzxJQyt5zxeLktD7bI86d
+         LQqf/NKetnxsORoK2R9+KgybzakwT9NQQfDTcrcMIcoaqzjJKg/S/nPH7MPjfOG9+DmL
+         qoslOfcrudd1lKlykaQcRBUS2eqcOwr35mpVXWphQ182TvxFdQaF2HYGczxoicJp6qc6
+         +R6g==
+X-Gm-Message-State: AC+VfDxhkB6hZY/pTk3HSVBKNQ606hPCFbEZAp2HM8ZcbQ6CorpeZp9d
+        +zcipL0rnp4It/1/yFzPx+qJzA==
+X-Google-Smtp-Source: ACHHUZ7TiqLKPzDu6AYEp6emATujNOYmnTZgqrXZO3dHGPkZgxy28WkN209PjWMbBoSf8p81CeYTMA==
+X-Received: by 2002:a19:6418:0:b0:4f3:c7f8:d40c with SMTP id y24-20020a196418000000b004f3c7f8d40cmr3325848lfb.29.1686548363705;
+        Sun, 11 Jun 2023 22:39:23 -0700 (PDT)
+Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id n6-20020a195506000000b004f38260f196sm1324125lfe.218.2023.06.11.22.39.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jun 2023 22:39:22 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Gene Chen <gene_chen@richtek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH 00/18] ARM: qcom: apq8064: support CPU frequency scaling
+Date:   Mon, 12 Jun 2023 08:39:04 +0300
+Message-Id: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,138 +79,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 5:03=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 09/06/23 10:30, Chen-Yu Tsai ha scritto:
-> > The *_SSHUB regulators are actually alternate configuration interfaces
-> > for their non *_SSHUB counterparts. They are not separate regulator
-> > outputs. These registers are intended for the companion processor to
-> > use to configure the power rails while the main processor is sleeping.
-> > They are not intended for the main operating system to use.
-> >
-> > Since they are not real outputs they shouldn't be modeled separately.
-> > Remove them. Luckily no device tree actually uses them.
-> >
->
-> I'm not sure that MT6358/6366 are used only on Chromebook SoCs, and that =
-this SSHUB
-> mechanism (companion processor) is the same across all firmwares.
+Implement CPUFreq support for one of the oldest supported Qualcomm
+platforms, APQ8064. Each core has independent power and frequency
+control. Additionally the L2 cache is scaled to follow the CPU
+frequencies (failure to do so results in strange semi-random crashes).
 
-AFAICT from Internet sources there's also the MT6771 and MT6781, which
-are used on some phones.
+Core voltage is controlled through the SAW2 devices, one for each core.
+The L2 has two regulators, vdd-mem and vdd-dig.
 
-But what part are you concerned about? The upstream regulator driver does
-not actually have any code to switch to/from normal operation and SSHUB
-mode.
+Depenency: [1] for interconnect-clk implementation
 
-In a downstream kernel I found that the SSHUB mode is only used if SCP is
-doing DVFS [1]. In that same kernel, the regulator driver [2] doesn't even
-list the *_SSHUB versions. So if SCP DVFS is used, the regulator driver
-has no idea what's going on, and can't interfere either, which I think is
-actually a good thing. Only one side should have complete control of one
-output.
+https://lore.kernel.org/linux-arm-msm/20230512001334.2983048-3-dmitry.baryshkov@linaro.org/
 
-ChenYu
+Dmitry Baryshkov (18):
+  dt-bindings: opp: opp-v2-kryo-cpu: support Qualcomm Krait SoCs
+  dt-bindings: soc: qcom: merge qcom,saw2.txt into qcom,spm.yaml
+  dt-bindings: soc: qcom: qcom,saw2: define optional regulator node
+  dt-bindings: clock: qcom,krait-cc: Krait core clock controller
+  clk: qcom: krait-cc: rewrite driver to use clk_hw instead of clk
+  clk: qcom: krait-cc: export L2 clock as an interconnect
+  soc: qcom: spm: add support for voltage regulator
+  cpufreq: qcom-nvmem: also accept operating-points-v2-krait-cpu
+  cpufreq: qcom-nvmem: Add support for voltage scaling
+  cpufreq: qcom-nvmem: drop pvs_ver for format a fuses
+  cpufreq: qcom-nvmem: provide separate configuration data for apq8064
+  ARM: dts: qcom: apq8064: rename SAW nodes to power-manager
+  ARM: dts: qcom: apq8064: declare SAW2 regulators
+  ARM: dts: qcom: apq8064: add simple CPUFreq support
+  ARM: dts: qcom: apq8064: provide voltage scaling tables
+  ARM: dts: qcom: apq8064: enable passive CPU cooling
+  ARM: dts: qcom: apq8064-asus-nexus7-flo: constraint cpufreq regulators
+  ARM: dts: qcom: apq8064-ifc6410: constraint cpufreq regulators
 
-[1] https://github.com/nokia-dev/android_kernel_nokia_mt6771/blob/android-9=
-.0/drivers/misc/mediatek/scp/mt6771/scp_dvfs.c
-[2] https://github.com/nokia-dev/android_kernel_nokia_mt6771/blob/android-9=
-.0/drivers/misc/mediatek/pmic/mt6358/v1/regulator_codegen.c
+ .../devicetree/bindings/arm/msm/qcom,saw2.txt |   58 -
+ .../bindings/opp/opp-v2-kryo-cpu.yaml         |   11 +-
+ .../qcom/{qcom,spm.yaml => qcom,saw2.yaml}    |   39 +-
+ .../boot/dts/qcom-apq8064-asus-nexus7-flo.dts |   14 +-
+ arch/arm/boot/dts/qcom-apq8064-ifc6410.dts    |   18 +-
+ arch/arm/boot/dts/qcom-apq8064.dtsi           | 1247 ++++++++++++++++-
+ drivers/clk/qcom/Kconfig                      |    1 +
+ drivers/clk/qcom/krait-cc.c                   |  185 +--
+ drivers/cpufreq/qcom-cpufreq-nvmem.c          |  164 ++-
+ drivers/soc/qcom/spm.c                        |  205 ++-
+ include/dt-bindings/clock/qcom,krait-cc.h     |   20 +
+ include/soc/qcom/spm.h                        |    9 +
+ 12 files changed, 1806 insertions(+), 165 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+ rename Documentation/devicetree/bindings/soc/qcom/{qcom,spm.yaml => qcom,saw2.yaml} (58%)
+ create mode 100644 include/dt-bindings/clock/qcom,krait-cc.h
 
-> I'd like someone from MediaTek to confirm that this is valid for both Chr=
-omebook
-> and Smartphone firmwares.
->
-> Regards,
-> Angelo
->
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >   drivers/regulator/mt6358-regulator.c       | 14 --------------
-> >   include/linux/regulator/mt6358-regulator.h |  4 ----
-> >   2 files changed, 18 deletions(-)
-> >
-> > diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/m=
-t6358-regulator.c
-> > index faf6b0757019..946a251a8b3a 100644
-> > --- a/drivers/regulator/mt6358-regulator.c
-> > +++ b/drivers/regulator/mt6358-regulator.c
-> > @@ -505,9 +505,6 @@ static struct mt6358_regulator_info mt6358_regulato=
-rs[] =3D {
-> >       MT6358_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
-> >                   buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
-> >                   MT6358_VCORE_VGPU_ANA_CON0, 1),
-> > -     MT6358_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 625=
-0,
-> > -                 buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0,=
- 0x7f,
-> > -                 MT6358_VCORE_VGPU_ANA_CON0, 1),
-> >       MT6358_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
-> >                   buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
-> >                   MT6358_VPA_ANA_CON0, 3),
-> > @@ -583,10 +580,6 @@ static struct mt6358_regulator_info mt6358_regulat=
-ors[] =3D {
-> >       MT6358_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 62=
-50,
-> >                   buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f0=
-0,
-> >                   MT6358_LDO_VSRAM_CON2, 0x7f),
-> > -     MT6358_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
-> > -                 1293750, 6250, buck_volt_range1,
-> > -                 MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
-> > -                 MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
-> >       MT6358_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
-> >                   buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
-> >                   MT6358_LDO_VSRAM_CON3, 0x7f),
-> > @@ -603,9 +596,6 @@ static struct mt6358_regulator_info mt6366_regulato=
-rs[] =3D {
-> >       MT6366_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
-> >                   buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f,
-> >                   MT6358_VCORE_VGPU_ANA_CON0, 1),
-> > -     MT6366_BUCK("buck_vcore_sshub", VCORE_SSHUB, 500000, 1293750, 625=
-0,
-> > -                 buck_volt_range1, 0x7f, MT6358_BUCK_VCORE_SSHUB_ELR0,=
- 0x7f,
-> > -                 MT6358_VCORE_VGPU_ANA_CON0, 1),
-> >       MT6366_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
-> >                   buck_volt_range3, 0x3f, MT6358_BUCK_VPA_DBG0, 0x3f,
-> >                   MT6358_VPA_ANA_CON0, 3),
-> > @@ -670,10 +660,6 @@ static struct mt6358_regulator_info mt6366_regulat=
-ors[] =3D {
-> >       MT6366_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 62=
-50,
-> >                   buck_volt_range1, MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f0=
-0,
-> >                   MT6358_LDO_VSRAM_CON2, 0x7f),
-> > -     MT6366_LDO1("ldo_vsram_others_sshub", VSRAM_OTHERS_SSHUB, 500000,
-> > -                 1293750, 6250, buck_volt_range1,
-> > -                 MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f,
-> > -                 MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1, 0x7f),
-> >       MT6366_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
-> >                   buck_volt_range1, MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00,
-> >                   MT6358_LDO_VSRAM_CON3, 0x7f),
-> > diff --git a/include/linux/regulator/mt6358-regulator.h b/include/linux=
-/regulator/mt6358-regulator.h
-> > index a4307cd9edd6..c71a6a9fce7a 100644
-> > --- a/include/linux/regulator/mt6358-regulator.h
-> > +++ b/include/linux/regulator/mt6358-regulator.h
-> > @@ -47,8 +47,6 @@ enum {
-> >       MT6358_ID_VLDO28,
-> >       MT6358_ID_VAUD28,
-> >       MT6358_ID_VSIM2,
-> > -     MT6358_ID_VCORE_SSHUB,
-> > -     MT6358_ID_VSRAM_OTHERS_SSHUB,
-> >       MT6358_ID_RG_MAX,
-> >   };
-> >
-> > @@ -88,8 +86,6 @@ enum {
-> >       MT6366_ID_VMC,
-> >       MT6366_ID_VAUD28,
-> >       MT6366_ID_VSIM2,
-> > -     MT6366_ID_VCORE_SSHUB,
-> > -     MT6366_ID_VSRAM_OTHERS_SSHUB,
-> >       MT6366_ID_RG_MAX,
-> >   };
-> >
->
+-- 
+2.39.2
+
