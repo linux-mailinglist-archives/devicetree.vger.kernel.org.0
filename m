@@ -2,178 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0F2372B56E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 04:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7527772B580
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 04:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232979AbjFLCb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 22:31:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35948 "EHLO
+        id S233834AbjFLCyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 22:54:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbjFLCb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 22:31:26 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 996FCC5;
-        Sun, 11 Jun 2023 19:31:23 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.22])
-        by gateway (Coremail) with SMTP id _____8AxGup6g4ZkqWIDAA--.7455S3;
-        Mon, 12 Jun 2023 10:31:22 +0800 (CST)
-Received: from [10.180.13.22] (unknown [10.180.13.22])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx+OR4g4ZkrcMUAA--.59923S3;
-        Mon, 12 Jun 2023 10:31:20 +0800 (CST)
-Message-ID: <78ba489e-9391-ac05-2c25-c0210f61b7ed@loongson.cn>
-Date:   Mon, 12 Jun 2023 10:30:54 +0800
+        with ESMTP id S229476AbjFLCyE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 22:54:04 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11626BF;
+        Sun, 11 Jun 2023 19:54:02 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-65299178ac5so4270697b3a.1;
+        Sun, 11 Jun 2023 19:54:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686538441; x=1689130441;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SJ4E1TgPuKj4e6/UbDNdpEAQ2dguYdZ7sp49HDGjVLI=;
+        b=XtbMv+TYZ2FCIG+gAx6eT3GNWYeuNplC2pPNxGhm9EH9ap2kumPpsKtqD1kPX+XAgX
+         4DWnK/wX4PxZNW6Mbi9J26d0wzkkj83dIcOfFTIH/qjHfD1s99JWV7y8PsCwbfeW2Yf9
+         jReHN1bOYow/ky/pr6wcF76qoReaqOfWXJFhodWVcN9XN9TkZ6nN5F/h4evPjVDzoVjU
+         AWoN+SkrGbtWh8uOWS6e2lhQ25VchunRJ6P5ELxJvabIzdRbATRsjh9WhVZyDoddLeX3
+         NHAh3194LeKCNkEtQBNtdenoA4Lf2BGp/LtIyqjf8mA4niY+i7yrx/HS28aojBX0YC1S
+         NHcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686538441; x=1689130441;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SJ4E1TgPuKj4e6/UbDNdpEAQ2dguYdZ7sp49HDGjVLI=;
+        b=EAoBPJbYNIze1heXXu2B/5vBy1/U3nrW+Y1YccH+HN0Y9gGGVB5K3/A8iIzJjywToz
+         hwz+VmOb8uEUgp6cfsoAgfDppl0f+qnuaKJ5D4KTlgMRptvoeot4kKkMcPgE9MTF1SQp
+         RxYgmr+iMivKqDPaVcTO4joqPnEZw8mAVZ63uyAP/pnqLL4pcDK47Rscc8lf/XAwy8af
+         iQBd1IbNjNaE3wXkUl5jtGPpYJeP8j5B+cJEFgaHoCzESDFCMRujuVbG/rGNwtVJHJwk
+         Rwr6D/bfnMQzgz2ZyCc7Ddk32TNBj9M+C0J/3s9n+6hckLkk2AggxW4ugJGbMdkT3fvE
+         IeLA==
+X-Gm-Message-State: AC+VfDyWi6jpt2he7n5PC/A+JQoethsX23fm7nnpOQQWCUSB1DtLWqey
+        m4FgVGSPw4k5BzgCNWqSeVg=
+X-Google-Smtp-Source: ACHHUZ5Mvcf8OPknIRnZQm3CgeiEWpRcROv0fp6QqNJv5Eu/nEMOEz9silQMOUqDgNY/o+eGRaeiLA==
+X-Received: by 2002:a05:6a20:244d:b0:10c:dd4f:faa9 with SMTP id t13-20020a056a20244d00b0010cdd4ffaa9mr9762483pzc.14.1686538441367;
+        Sun, 11 Jun 2023 19:54:01 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id i21-20020aa78d95000000b0064d34ace753sm5931403pfr.114.2023.06.11.19.53.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jun 2023 19:54:00 -0700 (PDT)
+From:   Jacky Huang <ychuang570808@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, tmaimon77@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, arnd@arndb.de, soc@kernel.org,
+        schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH v14 0/1] Introduce Nuvoton ma35d1 SoC
+Date:   Mon, 12 Jun 2023 02:53:54 +0000
+Message-Id: <20230612025355.547871-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 3/3] ASoC: dt-bindings: Add support for Loongson audio
- card
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>, lgirdwood@gmail.com,
-        broonie@kernel.org
-Cc:     alsa-devel@alsa-project.org, loongarch@lists.linux.dev,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230605120934.2306548-1-mengyingkun@loongson.cn>
- <20230605120934.2306548-3-mengyingkun@loongson.cn>
- <118d13ef-a247-cf88-5084-afdebc6b7651@kernel.org>
-From:   Yingkun Meng <mengyingkun@loongson.cn>
-In-Reply-To: <118d13ef-a247-cf88-5084-afdebc6b7651@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Bx+OR4g4ZkrcMUAA--.59923S3
-X-CM-SenderInfo: 5phqw55lqjy33q6o00pqjv00gofq/1tbiAQAADGSFuYED8wABsl
-X-Coremail-Antispam: 1Uk129KBj93XoWxZw43CF4rtF48tw18uF13KFX_yoW5Zw1xpa
-        s5Ca12kFW8t3W7C3yrZ3W8Aw45X39ayanxtF42qw1UGFZ093WFgw4ak3Wj9a4Yyrn5Kay7
-        Za45Wa4xGa1qyagCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-        0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-        0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-        wI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-        xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-        Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwI
-        xGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
-        6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
-        xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
-        jxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw2
-        0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
-        67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8CksDUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-Thanks for your kindly work.
+This patchset adds initial support for the Nuvoton ma35d1 SoC, including
+initial device tree, clock driver, reset driver, and serial driver.
 
+This patchset cover letter is based from the initial support for Nuvoton
+ma35d1 to keep tracking the version history.
 
-On 2023/6/5 22:45, Krzysztof Kozlowski wrote:
-> On 05/06/2023 14:09, YingKun Meng wrote:
->> From: Yingkun Meng <mengyingkun@loongson.cn>
->>
->> The audio card uses loongson I2S controller present in 7axxx/2kxxx chips
->> to transfer audio data.
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
->
-> You missed at least DT list (maybe more), so this won't be tested.
-> Please resend and include all necessary entries.
->
+This patchset had been applied to Linux kernel 6.4.0-rc6
+and tested on the Nuvoton ma35d1 SOM evaluation board.
 
-Sorry for my mistake. Fixed in new version.
+(ma35d1 information: https://www.nuvoton.com/products/microprocessors/arm-cortex-a35-mpus/)
+MA35D1 porting on linux-5.10.y can be found at: https://github.com/OpenNuvoton/MPU-Family
 
->> Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
->> ---
->>   .../sound/loongson,ls-audio-card.yaml         | 64 +++++++++++++++++++
->>   1 file changed, 64 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
->> new file mode 100644
->> index 000000000000..f1d6ee346bb3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
->> @@ -0,0 +1,64 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/loongson-audio-card.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson generic ASoC audio sound card.
-> What is a "generic audio card"? Does it even match hardware? Bindings
-> are supposed to describe hardware, which is usually very specific.
->
-> Also: Drop full stop. It's a title.
->
-On loongson platform, the I2S controllers connect different codecs to
-form different audio devices that can be driven by the same machine driver.
-The "generic audio card" refers to these audio devices.
+v14:
+  - Removed patches PATCH v13 1/10 ~ 9/10 as they were applied
+  - Modify serial driver
+    - Fixed coding style issues
 
-Currently, it can match some specific hardware, such as
-2k2000 + es8323: the 2k2000 is a loogson SoC with a I2S controller
-7a2000 + es8288: the 7a2000 is a bridge chip with a I2S controller
+v13:
+  - Modify serial driver
+    - Added a check for oops_in_progress in ma35d1serial_console_write to
+      determine whether to perform the spin_lock.
+    - Rebased drivers/tty/serial/Kconfig and recreate the patch
+    - Rebased MAINTAINERS and recreate the patch
 
+v12:
+  - Modify serial driver
+    - Added PORT_MA35 to include/uapi/linux/serial_core.h, and apply to
+      the port->type of ma35d1 serial driver
+    - Added check for the return value of ioremap()
+    - Fixed several coding issues
+  - Rebase MAINTAINERS and recreate the patch
 
->> +
->> +maintainers:
->> +  - Yingkun Meng <mengyingkun@loongson.cn>
->> +
->> +description:
->> +  Generic ASoC audio device for loongson platform.
->> +
->> +properties:
->> +  compatible:
->> +    const: loongson,ls-audio-card
->> +
->> +  model:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description: User specified audio sound card name
->> +
->> +  mclk-fs:
->> +    $ref: simple-card.yaml#/definitions/mclk-fs
->> +
->> +  cpu:
->> +    description: Holds subnode which indicates cpu dai.
->> +    type: object
->> +    additionalProperties: false
->> +    properties:
->> +      sound-dai:
->> +        maxItems: 1
-> In the cpu: required with sound-dai
+v11:
+  - Rebase on top of 2023.05.24
+  - Modify serial driver
+    - Fixed several coding style issues
+    - Fixed ma35d1serial_set_mctrl()
+    - Added the 'MA35_' prefix to all register and bit field definitions.
+    - Used 'ttyNVT' instead of 'ttyS'
+  - Modify clock driver
+    - Added 'source nuvoton/Kconfig' to drivers/clk/Kconfig
+    - Fixed several coding issues
+    - Removed unnecessary inline specifier
+  - Modify reset driver
+    - Fixed typo and added comments
+  - Modify ma35d1.dtsi l2-cache node
+    - Added cache-unified and cache-size properties
 
+v10:
+  - Change from using ARCH_NUVOTON to using ARCH_MA35. The following patch files
+    have been modified:
+    - patch 1 arch/arm64/Kconfig.platforms
+    - patch 2 arch/arm64/configs/defconfig
+    - patch 7 arch/arm64/boot/dts/nuvoton/Makefile
+    - patch 8 drivers/clk/Makefile
+              drivers/clk/nuvoton/Kconfig
+              drivers/clk/nuvoton/Makefile
+    - patch 9 drivers/reset/Kconfig
+    - patch 10 drivers/tty/serial/Kconfig
 
-OK.
+v9:
+  - Combine MAINTAINERS patch into patch 5 'dt-bindings: arm: Add initial bindings
+    for Nuvoton platform'
+  - Modify clock driver
+    - Use the helper function for 64-bit division
+    - Fixed minor issues
+  - Modify reset driver
+    - Refine coding style and add required header files
+    - Add spin_lock protection
+  - Add error return handling to the serial driver probe function
 
->> +
->> +  codec:
->> +    description: Holds subnode which indicates codec dai.
->> +    type: object
->> +    additionalProperties: false
->> +    properties:
->> +      sound-dai:
->> +        maxItems: 1
-> In the codec: required with sound-dai
->
-> No multiple dai links? Are you sure this card is so limited?
+v8:
+  - Remove '0005-dt-bindings-mfd-syscon-Add-nuvoton-ma35d1-sys-compat.patch' as it was applied.
+  - Modify MAINTAINERS NUVOTON MA35 and NPCM path settings
+  - Remove 'syscon' from dtsi 'sys' node and modify the corresponding yaml
+  - Modify clock driver
+    - Remove the header file and move definitions into .c files.
+    - Use parent_data instead of parent name.
+  - Modify serial driver
+  - Modify reset driver
+    - Modify reset register/offset lookup table to be indexed by reset id
+    - Combined reset and reboot structure
 
+v7:
+  - Fixed dts system-management node and compatible driver
+  - move 'nuvoton,npcm-gcr.yaml' from 'binding/arm/nuvoton' to 'binding/soc/nuvoton'
+  - In ma35d1.dtsi, create the soc node for ma35d1 SoC
+  - Modify the issues found in serial driver
+  - Modify the issues found in clock driver
+  - Modify the IDs of reset driver to be contiguous numbers and use lookup table
+    to find register offset and bit position.
+  - Modify MAINTAINERS NUVOTON NPCM path as npcm directory name to nuvoton
 
-Yes.  The audio device has only one channel.
+v6:
+  - Combine nuvoton,ma35d1-clk.yaml and nuvoton,ma35d1-clk.h into one patch
+  - Combine nuvoton,ma35d1-reset.yaml and nuvoton,ma35d1-reset.h into one patch
+  - rename Documentation/devicetree/bindings/arm/npcm directory as nuvoton
+  - Remove patch for adding include/linux/mfd/ma35d1-sys.h as it's not required
+  - Update dtsi & dts files and move board-specific nodes to dts
+  - Modify reset driver
+  - Modify serial driver, fix coding style issues
+  - Modify clock driver, rewrite the PLL calculation functions
 
->
-> Best regards,
-> Krzysztof
+v5:
+  - Add ARCH_NUVOTON to arm64 Kconfig
+  - Add ARCH_NUVOTON to defconfig
+  - Add the clock driver
+  - Add the reset driver
+  - Add the serial driver
+  - Add us to the maintainer
 
+v4:
+  - patch 4/5 is a resend
+  - Fixed dt_binding_check errors of nuvoton,ma35d1-clk.yaml
+  - Modify ma35d1.dtsi
+    1. Add a node hxt_24m
+    2. Fixed the base address of gic node
+    3. Add clocks and clock-names to clock node
+  - Fixed borad binding mistakes of nuvoton.yaml
 
-Thanks,
+v3:
+  - added patch 4/5 and 5/5
+  - introduce CONFIG_ARCH_NUVOTON option
+  - add initial bindings for Nuvoton Platform boards
+  - fixed coding style problem of nuvoton,ma35d1-clk.h
+  - added CAPLL to clock-controller node
+  - modify the chosen node of ma35d1-evb.dts
+  - modify clock yaml "clk-pll-mode" to "nuvoton,clk-pll-mode"
 
-Yingkun Meng
+v2:
+  - fixed dt_binding_check failed of nuvoton,ma35d1-clk.yaml
+
+Jacky Huang (1):
+  tty: serial: Add Nuvoton ma35d1 serial driver support
+
+ drivers/tty/serial/Kconfig         |  18 +
+ drivers/tty/serial/Makefile        |   1 +
+ drivers/tty/serial/ma35d1_serial.c | 817 +++++++++++++++++++++++++++++
+ include/uapi/linux/serial_core.h   |   3 +
+ 4 files changed, 839 insertions(+)
+ create mode 100644 drivers/tty/serial/ma35d1_serial.c
+
+-- 
+2.34.1
 
