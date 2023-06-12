@@ -2,125 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99D7F72B91A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 09:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD99A72B92E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 09:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235482AbjFLHud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 03:50:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58024 "EHLO
+        id S235351AbjFLHvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 03:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236430AbjFLHuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 03:50:11 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4F54B10C7;
-        Mon, 12 Jun 2023 00:49:38 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Cxe+rsy4Zkgo0DAA--.7674S3;
-        Mon, 12 Jun 2023 15:40:28 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxVeTry4Zk10EVAA--.61405S3;
-        Mon, 12 Jun 2023 15:40:27 +0800 (CST)
-Subject: Re: [PATCH v12 1/2] spi: add loongson spi bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235441AbjFLHuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 03:50:32 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on20601.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eae::601])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F12510CC;
+        Mon, 12 Jun 2023 00:50:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZNZov1+rNP77lyOixQt5VX/AtAlSX71EH21QsH1XhQIbVtdYRu2eDxZdrDAi3e2nPeQQeE/IqDWK4RKmtf6otMLhz4fcpZxBplxvV8kUyQN8lBMoiGP+YEVGyi0iM5giZJpZcDj4QXZREHBxHT7r3SuD7bButZL5Vv3J+yJi+x44gzV++47fEB1RzbmlEN0YO49IkX53qiweAAZ6l11dT9b6bLLVRMd4LvWE4TzObdIZy2uEjIsBoKifo2olM0nNuMXBu8m6N0Qqn+LKuscqAZtnOJdOP9nA3lHvSnZ770TN7dl0AOUVcY1uMqyhDvEuyCXEpdaijYKbMx7g9RK3zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hJ+Hxw3NbsunbCkE2bMam0WEBUCbPvkSDplBt/1jnYQ=;
+ b=dbecDcddqKwrET8Cb18JxsNqiubpW0+FkcUj27N6H7CGyDbTgQU6UQwuJ1n75e6P8AVoFONjDOW1sG9b5bDtO0iX6cSjjE+O+90yJ+Lyl+RdC3wj1xnTC8pfFS1d1MvaHcYeDo8aO+I5fohDOt+A6hf0pE3uYtuJqzyYy7VZucnGF1Cl0cMrHKMEg8kz7MYGlP9BSlLgD7DLQrzCrTvLfPOyDDdgxOWRpu3g8iJAJOPREp8dD4MZW2v7+PwyFfqUqq0cjRtZ/+bOeqx+k3O2aEyoAJwuWdgj4zViPxh6l0cdxwjJ3+QnCKAEF2PdnY9npHmxIofFErmxKhZzmmhoeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hJ+Hxw3NbsunbCkE2bMam0WEBUCbPvkSDplBt/1jnYQ=;
+ b=ityaNEl09jWldjhUx5S3U1NR6FKE/7YK0B06dYujrOJQBczoLIhDOvOhovzgVbNUb9MltwUo/LZWL3fWm/7SoNuFmmfdc2VpAbqtW/kZdvxVYVdMzkKs/zPV7TWNAyG9+aNTkxDQyvEx6Vrd05K8/a/2xRqT//kNQ8+S7B3/jio=
+Received: from MW4PR04CA0155.namprd04.prod.outlook.com (2603:10b6:303:85::10)
+ by SA1PR12MB8988.namprd12.prod.outlook.com (2603:10b6:806:38e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Mon, 12 Jun
+ 2023 07:42:21 +0000
+Received: from CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:85:cafe::c9) by MW4PR04CA0155.outlook.office365.com
+ (2603:10b6:303:85::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.33 via Frontend
+ Transport; Mon, 12 Jun 2023 07:42:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT077.mail.protection.outlook.com (10.13.175.55) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.23 via Frontend Transport; Mon, 12 Jun 2023 07:42:20 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 12 Jun
+ 2023 02:42:16 -0500
+From:   Michal Simek <michal.simek@amd.com>
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Sharath Kumar Dasari <sharath.kumar.dasari@xilinx.com>,
+        "Amit Kumar Mahapatra" <amit.kumar-mahapatra@xilinx.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
- <20230608072819.25930-2-zhuyinbo@loongson.cn>
- <6ebed84c-2b42-c981-7b3f-e71cc88e4c2c@linaro.org>
- <4bf747c4-b767-b20c-e00f-724b50f44edb@loongson.cn>
- <6bfc2a22-6901-0858-7b90-bc4c52c66810@linaro.org>
- <bd2d7830-3ab6-0906-b06a-83d3e0a96749@loongson.cn>
- <11ca2b90-544d-18c2-fb15-7909ca60507f@linaro.org>
- <f6d4ecb5-e9df-346e-4aab-772fd01689c8@loongson.cn>
- <a9952e76-1204-5bc7-7856-0c7f8a411d76@linaro.org>
- <9c94397d-1e31-02fa-bdbe-af888c72eac4@loongson.cn>
- <657f8d19-de83-8be6-4a9d-5f13b1df7383@linaro.org>
- <b0e5e13e-6746-bd90-2a49-31ee6dd3e8a2@loongson.cn>
- <84ccf4cc-072d-adbf-0361-95ceae13f333@linaro.org>
- <5d060cac-ff28-60e9-98a8-f2bd4d378455@loongson.cn>
- <4e30870d-86e2-8536-8e0d-aab4ce5027d2@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <0c532e09-4821-5e07-92e6-7bc3cd79869e@loongson.cn>
-Date:   Mon, 12 Jun 2023 15:40:26 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: zynqmp: Add memory reserved node for k26 Kria SOM board
+Date:   Mon, 12 Jun 2023 09:41:45 +0200
+Message-ID: <8ddc7fb4bf40faead7a015ad7e095f3f7d2ec191.1686555698.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-In-Reply-To: <4e30870d-86e2-8536-8e0d-aab4ce5027d2@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1086; i=michal.simek@amd.com; h=from:subject:message-id; bh=w6JfC03gzUsXK9qu3GdeOaZlOr1C/FiP/08AEzrGoqo=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpS2M8am66rka7ck3Hv37c/qT8/etxzV67zdLiC6SnwVu 4D/U5+OjlgWBkEmBlkxRRZpmytn9lbOmCJ88bAczBxWJpAhDFycAjARlwUM82tu/Zwu8sVu4yFf kRPv9k28PyP7/iOGeeYTRHOlDp29smPl6VlZP//uPlhVygcA
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxVeTry4Zk10EVAA--.61405S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT077:EE_|SA1PR12MB8988:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8a08e99d-480d-4fed-6e53-08db6b188e16
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: u/p/ou8bn7q17kHmB6n+oIbeZVI52dN7ru+pnl+F49StHkjYjmW0mR5OHPaTl2rrZdOzafmDret3XfGw/bjoTcR4HXwpKqxA3nc9rv7bC6j0aXO6ZAZbGKqiYUibUqsKRwwAvZMYfQnI6A+OIeiXF+pMKtANBrZ3iaH68Vj3djbJW1s1nzBtxxWIrxZcuvg4ZXzPtDGSca5qhmJmH2aRGi/Tu/Irf3Qq9I3oKgOY9XgtAAcJ/FXq/h5DamudxB90aLvlWghE+UPklpRA1ePQk+9LA//KeZbXeafSKZgGHPYbZvoUEWQaF38xqbjYlU6Gs3glC5sXRFTd14dfJXqcvTDYHfFhIQ3pCbDZAMLvsiHxmfdhAYM8of5w8JM4t0kGxm+yLfLbTyiYRMm3qcIYwyqCKvi0MzyNDLMuN0CwaQBfAZHM9L+hBgxORoMr3r7L9X56yjomaqpTvufiyUlDJM0UZpnM194FyLJ4Hj2N0jurrySmk/YMhuJNj5j+4MhSJYhqsn5DNKhUrsA2eOt51Rsavfb1VRy+YJL6hO/+aFUNQtVtX5/GYlaAoniS2Axdcslu1N5tl+5KtifihlMmM5yoWJ/LdP9wcXjt6B6lplJ7CopFEZIoZ/s/EYtJTZulwlVkmIm8U8BPegas6jkaKjF1IBbwaBNmLuLOvJ+ca8FFAc11VVFAGz1xom8xs+jY5AwxrhVzOFj86tgkWhmPGG3oiW3OkB+Qp25UFPDhx9buHaj+cCuVsH3GX8S83ax7VtbHjuxGaiISn6igL2S5f5AC7d7nWPeVvVAfm5tNaM0=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(346002)(136003)(396003)(451199021)(36840700001)(40470700004)(46966006)(54906003)(5660300002)(110136005)(4326008)(7416002)(8936002)(8676002)(44832011)(41300700001)(316002)(186003)(16526019)(2906002)(478600001)(70206006)(70586007)(6666004)(40460700003)(356005)(82740400003)(81166007)(40480700001)(26005)(83380400001)(426003)(336012)(47076005)(36860700001)(36756003)(86362001)(82310400005)(2616005)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2023 07:42:20.8716
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a08e99d-480d-4fed-6e53-08db6b188e16
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8988
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Sharath Kumar Dasari <sharath.kumar.dasari@xilinx.com>
 
+PMUFW (Power Management Unit firmware) requires top 1MB of the lower DDR
+memory reserved for its operation, this is missing in k26 SM static dts
+file. Bootloader or kernel shouldn't access this location.
 
-在 2023/6/12 下午3:17, Krzysztof Kozlowski 写道:
-> On 12/06/2023 09:13, zhuyinbo wrote:
->>
->>
->> 在 2023/6/10 上午12:45, Krzysztof Kozlowski 写道:
->>> On 09/06/2023 05:13, zhuyinbo wrote:
->>>>
->>>>
->>>> 在 2023/6/8 下午9:26, Krzysztof Kozlowski 写道:
->>>>> On 08/06/2023 14:10, zhuyinbo wrote:
->>>>>>
->>>>>>
->>>>>> 在 2023/6/8 下午7:45, Krzysztof Kozlowski 写道:
->>>>>>> On 08/06/2023 13:42, zhuyinbo wrote:
->>>>>>>> --- a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>>>>> @@ -16,6 +16,7 @@ properties:
->>>>>>>>         compatible:
->>>>>>>>           enum:
->>>>>>>>             - loongson,ls2k1000-spi
->>>>>>>> +      - loongson,ls2k0500-spi
->>>>>>>
->>>>>>> Aren't they compatible?
->>>>>>>
->>>>>>
->>>>>>
->>>>>> Are you saying that the spi driver is compatible with 2k0500 ?
->>>>>
->>>>> Didn't you say this through 11 previous revisions?
->>>>
->>>>
->>>> Yes, did I understand your meaning incorrectly ?
->>>
->>> If they are compatible, then they are not part of one enum. They could
->>> not be as this would easily fail in testing of your DTS.
->>>
->>
->>
->> The "loongson,ls2k0500-spi" wasn't a compatible in previous version and
->> I will add "loongson,ls2k0500-spi" as a compatible in spi driver and
->> added it as a part of the one enum in dt-binding.
-> 
-> No, because you claimed - if I understood correctly - that they are
-> compatible. Don't add fake entries to the driver.
-> 
+Signed-off-by: Sharath Kumar Dasari <sharath.kumar.dasari@xilinx.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
+ arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-I'm a bit confused, and I just need to add 'loongson,ls2k0500-spi' as
-one enum in dt-bindings, but driver don't add this entry ?
-
-Thanks,
-Yinbo
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+index c1f21b0e1760..c4774a42d5fc 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+@@ -50,6 +50,17 @@ memory@0 {
+ 		reg = <0x0 0x0 0x0 0x80000000>, <0x8 0x00000000 0x0 0x80000000>;
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		pmu_region: pmu@7ff00000 {
++			reg = <0x0 0x7ff00000 0x0 0x100000>;
++			no-map;
++		};
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		autorepeat;
+-- 
+2.36.1
 
