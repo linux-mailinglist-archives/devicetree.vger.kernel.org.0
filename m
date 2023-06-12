@@ -2,218 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3A572D15F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C41C872D321
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238843AbjFLVEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 17:04:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53172 "EHLO
+        id S236028AbjFLVTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 17:19:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234811AbjFLVEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:04:07 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE7963ABA;
-        Mon, 12 Jun 2023 14:00:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686603617; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=WLDKkvJRNVu8N8coamiwd2tzciZhWD5yabOKMIsjjM6kXquHnA8C98Qvl8t6i1zEhW
-    zb4BrnxYx5ZRzjzuMcqw9uvO5Bv25TY9qwwsCBhQ05T0yaTonLDA+DIi7+uQVgzKXzmN
-    9u28WkE4kP94TCvAoJMGDATJnfMbExj3NNOK9aPc1ce+FFZfXGFsHcZ19NhR8eSyYKcL
-    OHsgH6nqTLjDqkyAlYc2K4tO2NRS7kfDgGxPVCon54Cy/s2lwD2vUAs5HrbW7BGM2JzL
-    IqXBULr5iYpXnkvxMifPDwBoFVMGNfhAgXycKxcKJp41C1I0ZXX+KLS5DK/9H61dxRp4
-    X8wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686603617;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=3kOqOx7nI7SpaP0UiDjapjrm0lXe9fAD4eSGBSG+MAQ=;
-    b=jjHuwaF22BDulBwmk/9vQkE2zFS3Xux6MsNgDKRJa0OMkaKz+xAr/7hyGut8w4v5uE
-    LZ31/yx0gSNpR9OAcH1MHWyHWZd6XQibUqWWYWoTLzwzoVTNH4YPEuz2+ALuwxRNn7Ih
-    LRRDHlXzpBLTuFbeaKazSKDfZCNKnyc4rrfT5hhV+GaL4cZEGLmHRRiW6r4N3LoC3cBf
-    yUIdjvyX0MHodlBvSPHD7oMaflBaEErYXycQTiYIMM0OWEMFenAyPHpjxUmqATtfl/qI
-    ibmnhZYbYMA1rQEnM/FjnUHmZ5rUkXhFXsE+MUzvOL7Hzkn/Vt3SAIkjN0MOZDKQ1xI5
-    w4xQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686603617;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=3kOqOx7nI7SpaP0UiDjapjrm0lXe9fAD4eSGBSG+MAQ=;
-    b=qZN6kZ5cwuV/Cnx5zrJum33iQ3Tji8+etd/G3bDNbYML4nwfkKziFEYJA5mZlDUx3p
-    5RWVFzPeOKxdno3JpmQ2cHFtaCVQ+dpvCSEiFQcnjEzH8oLNZYTSoQhTnKfHLbqHBdeZ
-    ZbMoTB3IxvgyH7bqWU8xWD4+DS2MefMY/Z9z47vQk3HaUUHeuZBFxGuT5r8MfoQvjF6d
-    HkTzttAPLI/7TBP1Cr6NPy7AlGHE4rdJ3mHXtby3z0T/m2DMKXNqniFPCAX5zdX42MWl
-    is3+Imp4dDtjsVW20ibqBz0JKjgmWYyFx2CMfBMhXG4fwc2eW45TvYQwXAYrENW82cYO
-    KGYQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686603617;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=3kOqOx7nI7SpaP0UiDjapjrm0lXe9fAD4eSGBSG+MAQ=;
-    b=Ht/VtUIgljwuiC940yUcUnK16BRgqiB0XLDbFWCJRhhb5xo3Cm3YTSONSRwYRkjVz2
-    Fjet0suquc9AuCkPyqBw==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8peN1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.5.3 DYNA|AUTH)
-    with ESMTPSA id Z82ec2z5CL0GW06
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 12 Jun 2023 23:00:16 +0200 (CEST)
-Date:   Mon, 12 Jun 2023 23:00:15 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S236078AbjFLVTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:19:23 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BCAE6A7E
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:12:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686604301;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=UVvZ3v/vxKNyCI7w7GwLJIJ0X+T6wDAbj+0uoM6y2a8=;
+        b=e/sKaIwScRIgPP7/ixe8nNh/wErjK1mgelvQlJoBLyJLGZTW/fR2T4bhSVui28jbdIQ3Pu
+        33fmkUvKwt1AatXHYaEieTv7XGPhlkIpkW5hKGo29kk2+xsEgcyL6dIiUl8zWH9inAV1sX
+        RrDQonImr1GyUBuP37Gfz+/JZTVlvkk=
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
+ [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-613-oN8Po01ZOT6Q6jAlIQHAIA-1; Mon, 12 Jun 2023 17:11:40 -0400
+X-MC-Unique: oN8Po01ZOT6Q6jAlIQHAIA-1
+Received: by mail-ot1-f70.google.com with SMTP id 46e09a7af769-6b163346b7eso3003655a34.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:11:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686603996; x=1689195996;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UVvZ3v/vxKNyCI7w7GwLJIJ0X+T6wDAbj+0uoM6y2a8=;
+        b=en6P3aIVmjg6bJZOBfXn7ftym8ehX4eOduTnBCBW8oH6236IXP5uainwq/dA4g+SH3
+         ncgJHOYFDGSCaatbNNYXTK82xrLe7B/4/pFH5mzjrqvK8buk0R9kH6o3J0kVHqYPPlc6
+         GGH8Pj9hJM2A1ZRQ8nNVsA4rhPqEM7vaXqwh9sWcf807N+bJaszWGMEVrCzMOFeibxqi
+         uCGGO276Dk2iJcf4Ts60VwjLf6R0VVDb27eaJm5phQfuULT6LRNCyvp7aoiwowloJ8wd
+         /3NIN0k4y6DMYUzVnUZb+6UCW+GOs1H3xyHjzPPO9CBMQss6htHKETF43qTJBzBKspAG
+         cmHw==
+X-Gm-Message-State: AC+VfDxcc+vFhYlsCxp8dylGHuOTXwm+Jlapnhh+IDD6JkOSO9HhxjAc
+        qiVrPF4T+o0xZ1wL8qmmvGOHPrviEIB6s/wWVix4ojYtuFV+kPDQOYhw527XzUl3Jhx22FU43/9
+        KUn3DNdzvWVfESRT+UQUP6A==
+X-Received: by 2002:a05:6870:770d:b0:1a6:7ae5:8e31 with SMTP id dw13-20020a056870770d00b001a67ae58e31mr2707680oab.15.1686603996096;
+        Mon, 12 Jun 2023 14:06:36 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5l8CIOc/fjbn/4dLBsqStqDJVa3ICb/fLC7IjnpwzGvy8FQcOZ753YVKUTI3PaLVSqB/0bAw==
+X-Received: by 2002:a05:6870:770d:b0:1a6:7ae5:8e31 with SMTP id dw13-20020a056870770d00b001a67ae58e31mr2707670oab.15.1686603995860;
+        Mon, 12 Jun 2023 14:06:35 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
+        by smtp.gmail.com with ESMTPSA id nw27-20020a056870bb1b00b001a6825ed5cfsm2251974oab.4.2023.06.12.14.06.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 14:06:35 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 16:06:32 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 21/23] interconnect: qcom: icc-rpm: Set bandwidth on
- both contexts
-Message-ID: <ZIeHX_-p05MH9Nik@gerhold.net>
-References: <20230526-topic-smd_icc-v3-0-5fb7d39b874f@linaro.org>
- <20230526-topic-smd_icc-v3-21-5fb7d39b874f@linaro.org>
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 15/26] net: stmmac: dwmac-qcom-ethqos: add support for
+ the optional phy-supply
+Message-ID: <20230612210632.agp4ybeseujblao2@halaney-x13s>
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-16-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230526-topic-smd_icc-v3-21-5fb7d39b874f@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230612092355.87937-16-brgl@bgdev.pl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 08:24:38PM +0200, Konrad Dybcio wrote:
-> Up until now, for some reason we've only been setting bandwidth values
-> on the active-only context. That pretty much meant that RPM could lift
-> all votes when entering sleep mode. Or never sleep at all.
+On Mon, Jun 12, 2023 at 11:23:44AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> That in turn could potentially break things like USB wakeup, as the
-> connection between APSS and SNoC/PNoC would simply be dead.
+> On sa8775p-ride we need to enable the power supply for the external PHY.
+
+Is this for the external phy? It doesn't seem like it from the board
+schematic I have... the regulator never makes it out of the black box that
+is the SIP/SOM if I'm reading right.
+
+My (poor) understanding was this was for the serdes phy that's doing the
+conversion to SGMII before hitting the board... good chance I'm wrong
+though.
+
 > 
-> Set the values appropriately.
-> 
-> Fixes: 30c8fa3ec61a ("interconnect: qcom: Add MSM8916 interconnect provider driver")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
-
-Would be nice to have some caching for that as well so we don't keep
-sending pointless requests with the same bandwidths. Not directly
-related to your fixes though, it's an optimization that can be done in a
-future patch / series.
-
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  drivers/interconnect/qcom/icc-rpm.c | 54 +++++++++++++++++++------------------
->  1 file changed, 28 insertions(+), 26 deletions(-)
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qcom/icc-rpm.c
-> index 54a9999fe55d..8e4eb0b90905 100644
-> --- a/drivers/interconnect/qcom/icc-rpm.c
-> +++ b/drivers/interconnect/qcom/icc-rpm.c
-> @@ -205,34 +205,39 @@ static int qcom_icc_qos_set(struct icc_node *node)
->  	}
->  }
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> index 2f6b9b419601..21f329d2f7eb 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/phy.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
 >  
-> -static int qcom_icc_rpm_set(struct qcom_icc_node *qn, u64 sum_bw)
-> +static int qcom_icc_rpm_set(struct qcom_icc_node *qn, u64 *bw)
->  {
-> -	int ret = 0;
-> +	int ret, rpm_ctx = 0;
-> +	u64 bw_bps;
->  
->  	if (qn->qos.ap_owned)
->  		return 0;
->  
-> -	if (qn->mas_rpm_id != -1) {
-> -		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
-> -					    RPM_BUS_MASTER_REQ,
-> -					    qn->mas_rpm_id,
-> -					    sum_bw);
-> -		if (ret) {
-> -			pr_err("qcom_icc_rpm_smd_send mas %d error %d\n",
-> -			       qn->mas_rpm_id, ret);
-> -			return ret;
-> +	for (rpm_ctx = 0; rpm_ctx < QCOM_SMD_RPM_STATE_NUM; rpm_ctx++) {
-> +		bw_bps = icc_units_to_bps(bw[rpm_ctx]);
-> +
-> +		if (qn->mas_rpm_id != -1) {
-> +			ret = qcom_icc_rpm_smd_send(rpm_ctx,
-> +						    RPM_BUS_MASTER_REQ,
-> +						    qn->mas_rpm_id,
-> +						    bw_bps);
-> +			if (ret) {
-> +				pr_err("qcom_icc_rpm_smd_send mas %d error %d\n",
-> +				qn->mas_rpm_id, ret);
-> +				return ret;
-> +			}
->  		}
-> -	}
->  
-> -	if (qn->slv_rpm_id != -1) {
-> -		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
-> -					    RPM_BUS_SLAVE_REQ,
-> -					    qn->slv_rpm_id,
-> -					    sum_bw);
-> -		if (ret) {
-> -			pr_err("qcom_icc_rpm_smd_send slv %d error %d\n",
-> -			       qn->slv_rpm_id, ret);
-> -			return ret;
-> +		if (qn->slv_rpm_id != -1) {
-> +			ret = qcom_icc_rpm_smd_send(rpm_ctx,
-> +						    RPM_BUS_SLAVE_REQ,
-> +						    qn->slv_rpm_id,
-> +						    bw_bps);
-> +			if (ret) {
-> +				pr_err("qcom_icc_rpm_smd_send slv %d error %d\n",
-> +				qn->slv_rpm_id, ret);
-> +				return ret;
-> +			}
->  		}
->  	}
->  
-> @@ -337,7 +342,6 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
->  	struct qcom_icc_provider *qp;
->  	struct qcom_icc_node *src_qn = NULL, *dst_qn = NULL;
->  	struct icc_provider *provider;
-> -	u64 sum_bw;
->  	u64 active_rate, sleep_rate;
->  	u64 agg_avg[QCOM_SMD_RPM_STATE_NUM], agg_peak[QCOM_SMD_RPM_STATE_NUM];
->  	u64 max_agg_avg;
-> @@ -351,14 +355,12 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
->  
->  	qcom_icc_bus_aggregate(provider, agg_avg, agg_peak, &max_agg_avg);
->  
-> -	sum_bw = icc_units_to_bps(max_agg_avg);
-> -
-> -	ret = qcom_icc_rpm_set(src_qn, sum_bw);
-> +	ret = qcom_icc_rpm_set(src_qn, agg_avg);
+>  #include "stmmac.h"
+>  #include "stmmac_platform.h"
+> @@ -692,6 +693,10 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
 >  	if (ret)
->  		return ret;
+>  		goto out_config_dt;
 >  
->  	if (dst_qn) {
-> -		ret = qcom_icc_rpm_set(dst_qn, sum_bw);
-> +		ret = qcom_icc_rpm_set(dst_qn, agg_avg);
->  		if (ret)
->  			return ret;
->  	}
-> 
+> +	ret = devm_regulator_get_enable_optional(dev, "phy");
+> +	if (ret < 0 && ret != -ENODEV)
+> +		goto out_config_dt;
+> +
+>  	ethqos->serdes_phy = devm_phy_optional_get(dev, "serdes");
+>  	if (IS_ERR(ethqos->serdes_phy)) {
+>  		ret = PTR_ERR(ethqos->serdes_phy);
 > -- 
-> 2.41.0
+> 2.39.2
 > 
+
