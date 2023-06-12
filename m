@@ -2,92 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7420972D329
+	by mail.lfdr.de (Postfix) with ESMTP id C0DA472D32A
 	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:20:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236013AbjFLVUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S236108AbjFLVUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 12 Jun 2023 17:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38476 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238710AbjFLVUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:20:06 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5809F1BFD
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:22 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51873c3da6fso24520a12.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:22 -0700 (PDT)
+        with ESMTP id S238718AbjFLVUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:20:07 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 337711FC3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:23 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51478f6106cso8368396a12.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686604460; x=1689196460;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=piafe3QLAC9LHm4AYATazedwVeQ9NAHsKdbJCFfjx24=;
-        b=jvvkuaRNcUIgjnFQzJVSHs6ytBdktN8Ix4OlqNlPZTaE70kQTwCrec4JdyQjlDXsZK
-         cEZtCMQ8lo7SF6FfY8sbAIT9WzsGkY3Q2eE9D4NctxYAYwJktff+Me93hX07+y7bwbun
-         NSQ2K3igJffsdDAxMKJ7epdX9KQQCMp132M8c=
+        d=linaro.org; s=google; t=1686604461; x=1689196461;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qRapFMDM3VwfrRdeIe5Po/TWol/AUPXl4tSgkIwIhOk=;
+        b=limPOmnoclWDxiGJBhuMu+J6EeGQSmknjQdT72EGTBnVB2eCSK1WWFhPVQTJQtbmlE
+         HvzXgmpucFS6iK8hZ/sjfK+PWvPaBEugZhBNTn7uwEL6qAPAfGBW4q6avo/mFvGqlF2B
+         36ScTXQmDyBABnzxd9U+zzpsPJ8miTB8KNvVozlq3pmKWgMH99fUwlnjK8U9YVBbGUsC
+         XITSVBIow6MkU+mPGz2l8OHKUXsKeqvQB9yAia+yqh9MB1kFRosrAPNUA5ZKSQ2/GWHJ
+         QhQNlTMrLZeINuitPDi3DqxKpPu7AGSUJHzZ5XzTQJr5O/L9Txf5HQHLfMJdFcX5XepY
+         uWrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686604460; x=1689196460;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=piafe3QLAC9LHm4AYATazedwVeQ9NAHsKdbJCFfjx24=;
-        b=FRrJGu/YBW8dZHZks7f6U9e1auhxS87C3/+k8pKFZYUHkopteeTZwej9jmEMJCjkDm
-         gojPPFe8DY/trm8yPTQTiVMEg+0hOVwBQXLN7dznfwQD1zdyInDz8ThanZLTA/OxNvab
-         lvYD65cZImVIqBfW4P5lCfYL89qkOPg+qe26WVXYLgiwFoLFm3sr+V9xfbKMa9xJKtOg
-         um7HKa/iabJrw9wBaI7JZjaeKDgC30HGZL29ZOIF3jZ0vniQwTafPnU5Dx+BPR8d7XZM
-         ZBqYV/jXnZ1DYcmxGYJq3jcMoYxRZOnADpRe0TMgERnlX+1tat0z1zqve1eYuhVac+b1
-         HG2w==
-X-Gm-Message-State: AC+VfDzxEwfoP+Cm3vp5TtKHm/urulcURowJl6xNnW43tOycQRMVdcpn
-        hr2RtIGtuv+orXudDU68x2+HkhA3vRWpNI0JAYV1QA==
-X-Google-Smtp-Source: ACHHUZ6JyDAMwoiU4T/+VTr8xOviwcro9x1LkBOi7+pn0hZ2p6nECwkwhYWEGwwijoBBM/5senQtSA==
-X-Received: by 2002:a17:907:31ca:b0:978:a01c:3698 with SMTP id xf10-20020a17090731ca00b00978a01c3698mr10946186ejb.6.1686604460516;
-        Mon, 12 Jun 2023 14:14:20 -0700 (PDT)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
-        by smtp.gmail.com with ESMTPSA id l15-20020a170906a40f00b0097d9e2b5f9csm4241953ejz.170.2023.06.12.14.14.20
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20221208; t=1686604461; x=1689196461;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qRapFMDM3VwfrRdeIe5Po/TWol/AUPXl4tSgkIwIhOk=;
+        b=TAhZCQRkU0Pmjx/o5/pZWow4Fa7EsiY+mr5uVh801YaSbS9dSpN7aF5RJEMVuYa/8m
+         QrhAwjMCsE3UKfW+e3+YZArqQTBIJAHTumyvsL8ob8WMv1ldFI5BRIlS5KNqGhtrmLWS
+         pelEvqYpyRa9X9jiPy/x/Smp0PMKEFacA+EOhUp1eUDQ54gvY//C/ugWvcRsTTPcVaOS
+         HUjl9oiOaO1Ut9JwDHJIKvSAatolgPX/d77WrCSORI+CiyDCt6WGRBQrNJEzCz3Rx6FD
+         ZrRCNNiyNMjRobgv11RhdB1Siox0mDTIUCT7jws9c434JD6GpIMBmzYA+XZe/htorXzG
+         1R4A==
+X-Gm-Message-State: AC+VfDzXBAezUgycJkT1TF+dDV6DdV64KFK8r4D3SGv+oHgSyNL2Px1f
+        Jm34ZaGp0y8Z/6oinF2+Abe7Vw==
+X-Google-Smtp-Source: ACHHUZ42+IL5g3lr/+eMfmK2tikJXyCCiWGif4uYdShqbc9xFvK+c5yxujn8HyTfBZii6o032gKQNw==
+X-Received: by 2002:a17:907:a08a:b0:97c:d2d1:3066 with SMTP id hu10-20020a170907a08a00b0097cd2d13066mr8180648ejc.33.1686604461560;
+        Mon, 12 Jun 2023 14:14:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id jp20-20020a170906f75400b0096f5781205fsm5716200ejb.165.2023.06.12.14.14.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 14:14:20 -0700 (PDT)
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-513ea2990b8so4178a12.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:20 -0700 (PDT)
-X-Received: by 2002:a50:9e81:0:b0:514:95d4:c2bb with SMTP id
- a1-20020a509e81000000b0051495d4c2bbmr51305edf.2.1686604438620; Mon, 12 Jun
- 2023 14:13:58 -0700 (PDT)
+        Mon, 12 Jun 2023 14:14:21 -0700 (PDT)
+Message-ID: <11497426-1b3d-169b-4af1-f24f90f4de39@linaro.org>
+Date:   Mon, 12 Jun 2023 23:14:18 +0200
 MIME-Version: 1.0
-References: <20230607215224.2067679-1-dianders@chromium.org>
- <jehxiy3z4aieop5qgzmlon4u76n7gvt3kc6knxhb5yqkiz3rsp@mx27m75sx43r>
- <CAD=FV=Wr7Xatw1LsofiZ5Xx7WBvAuMMdq4D5Po1yJUC1VdtZdg@mail.gmail.com> <z7wi4z4lxpkhvooqhihlkpubyvueb37gvrpmwk6v7xwj2lm6jn@b7rwyr5ic5x5>
-In-Reply-To: <z7wi4z4lxpkhvooqhihlkpubyvueb37gvrpmwk6v7xwj2lm6jn@b7rwyr5ic5x5>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 12 Jun 2023 14:13:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XnANRM=+2D9+DzcXx9Gw6iKKQsgkAiq8=izNEN-91f_Q@mail.gmail.com>
-Message-ID: <CAD=FV=XnANRM=+2D9+DzcXx9Gw6iKKQsgkAiq8=izNEN-91f_Q@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] drm/panel and i2c-hid: Allow panels and
- touchscreens to power sequence together
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        linux-kernel@vger.kernel.org, hsinyi@google.com,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        yangcong5@huaqin.corp-partner.google.com,
-        linux-arm-msm@vger.kernel.org,
-        Chris Morgan <macroalpha82@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [EXTERNAL] Re: [PATCH v5 4/4] ASoC: dt-bindings: Add tas2781
+ amplifier
+To:     "Ding, Shenghao" <shenghao-ding@ti.com>
+Cc:     Shenghao Ding <13916275206@139.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "Lu, Kevin" <kevin-lu@ti.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
+        "Navada Kanyana, Mukund" <navada@ti.com>,
+        "gentuser@gmail.com" <gentuser@gmail.com>,
+        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
+        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>,
+        "tiwai@suse.de" <tiwai@suse.de>
+References: <20230610141821.576926-1-13916275206@139.com>
+ <95aca760-c17c-eb96-bcfb-85f20124812b@linaro.org>
+ <303B184A-1A35-4049-97F5-90D17FE990DA@ti.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <303B184A-1A35-4049-97F5-90D17FE990DA@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -96,114 +94,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 12/06/2023 22:57, Ding, Shenghao wrote:
+> 
+> 
+>> 在 2023年6月11日，00:33，Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 写道：
+>>
+>> ﻿On 10/06/2023 16:18, Shenghao Ding wrote:
+>>> Create tas2781.yaml for tas2781 driver.
+>>>
+>>> Signed-off-by: Shenghao Ding <13916275206@139.com>
+>>
+>> We keep telling you that your email threading is broken. It still is
+>> makes reviewers life more difficult. Maintainer as well as applying is
+>> not straightforward.
+>>
+>> Why this is not improved?
+>>
+> Sorry for causing difficulties. Would you be so kind and tell me how to avoid threading broken? I get the threading broken issue every time, but I really have no idea of how to fix it.
 
-On Mon, Jun 12, 2023 at 9:03=E2=80=AFAM Maxime Ripard <mripard@kernel.org> =
-wrote:
->
-> > > I guess we can have
-> > > something much simpler with a bunch of helpers that would register a
-> > > i2c-hid device and would be called by the panel driver itself.
-> > >
-> > > And then, since everything is self-contained managing the power state
-> > > becomes easier as well.
-> >
-> > Can you give me more details about how you think this would work?
-> >
-> > When you say that the panel would register an i2c-hid device itself,
-> > do you mean that we'd do something like give a phandle to the i2c bus
-> > to the panel and then the panel would manually instantiate the i2c-hid
-> > device on it? ...and I guess it would need to be a "subclass" of
-> > i2c-hid that knew about the connection to the panel code? This
-> > subclass and the panel code would communicate with each other about
-> > power sequencing needs through some private API (like MFD devices
-> > usually do?). Assuming I'm understanding correctly, I think that could
-> > work.
->
-> I guess what I had in mind is to do something similar to what we're
-> doing with hdmi-codec already for example.
+git format-patch -v6 -4
+git send-email v6*
 
-By this you mean "rockchip,hdmi-codec" and "mediatek,hdmi-codec", right?
+You keep sending them as separate emails thus no proper threading.
+Everything is explained:
+https://elixir.bootlin.com/linux/v6.4-rc6/source/Documentation/process/5.Posting.rst
+https://elixir.bootlin.com/linux/v6.4-rc6/source/Documentation/process/submitting-patches.rst
+
+>>>
+>>> ---
+>>> Changes in v5:
+>>> - remove ti,broadcast-addr
+>>> - remove address-cells
+>>> - remove size-cells
+>>> - put compatible item first in properties
+>>> - change the maxItems of reg from 4 to 8
+>>> - remove white space around <>
+>>> - correct the reg format to <0x38>, <0x3a> etc
+>>> - remove '\t' in the file
+>>> - correct a comment in the example
+>>> ---
+>>> .../devicetree/bindings/sound/ti,tas2781.yaml | 73 +++++++++++++++++++
+>>> 1 file changed, 73 insertions(+)
+>>> create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+>>> new file mode 100644
+>>> index 000000000000..61db14a39630
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+>>> @@ -0,0 +1,73 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Texas Instruments TAS2781 SmartAMP
+>>> +
+>>> +maintainers:
+>>> +  - Shenghao Ding <shenghao-ding@ti.com>
+>>> +
+>>> +description:
+>>> +  The TAS2781 is a mono, digital input Class-D audio amplifier
+>>> +  optimized for efficiently driving high peak power into small
+>>> +  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
+>>> +  Smart Amp speaker protection algorithm. The integrated speaker
+>>> +  voltage and current sense provides for real time
+>>> +  monitoring of loudspeaker behavior.
+>>> +
+>>> +allOf:
+>>> +  - $ref: dai-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - ti,tas2781
+>>> +
+>>> +  reg:
+>>> +    description:
+>>> +      I2C address, in multiple tas2781s case, all the i2c address
+>>> +      aggreate as one Audio Device to support multiple audio slots.
+>>> +    maxItems: 8
+>>> +    items:
+>>> +      minimum: 0x38
+>>> +      maximum: 0x3f
+>>
+>> It does not look like you tested the bindings, at least after quick
+>> look. Please run `make dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>>
+> Kindly point my mistake, I run the commands from the Documentation/devicetree/bindings/writing-schema.rst before submission.
+> For dt_binding_check, command as follow, no issue reported,
+> make DT_CHECKER_FLAGS=-m O= O=build_dir/x86 dt_binding_check -j $(expr $(nproc) - 1) 2>&1 | tee $OUTPUT_DIR1/$OUTPUT_DIR2/dt_binding_check.log
+> ……………
+>   DTEX    Documentation/devicetree/bindings/sound/samsung,tm2.example.dts
+>   DTEX    Documentation/devicetree/bindings/sound/ti,tas2781.example.dts
+>   DTEX    Documentation/devicetree/bindings/sound/amlogic,t9015.example.dts
+
+Hm, you are right, it passes the checks. There must be a bug in dtschema
+around minimal items if "items" is present. You miss minItems: X, next
+to maxItems.
+
+> ……………..
+>   DTC_CHK Documentation/devicetree/bindings/sound/samsung,tm2.example.dtb
+>   DTC_CHK Documentation/devicetree/bindings/sound/ti,tas2781.example.dtb
+>   DTC_CHK Documentation/devicetree/bindings/sound/amlogic,t9015.example.dtb
+> ……………..
+> 
+> As to “make dtbs_checktest”, it can’t work in default compiling system(x86) at all. In order to test the bindings, it was integrated into the BeagleBoneBlack compiling system.
+
+There is no problem running it on x86 system. We all run it there. Just
+install basic cross compiler. Every distro has it...
 
 
-> We have several logical components already, in separate drivers, that
-> still need some cooperation.
->
-> If the panel and touchscreen are on the same i2c bus, I think we could
-> even just get a reference to the panel i2c adapter, get a reference, and
-> pass that to i2c-hid (with a nice layer of helpers).
+Best regards,
+Krzysztof
 
-Just for reference: the panel and touchscreen aren't on the same i2c
-bus. In the cases that I've looked at the panel is either controlled
-entirely by eDP or MIPI signals and isn't on any i2c bus at all. The
-touchscreen is on the i2c bus in the cases I've looked at, though I
-suppose I could imagine one that used a different bus.
-
-
-> What I'm trying to say is: could we just make it work by passing a bunch
-> of platform_data, 2-3 callbacks and a device registration from the panel
-> driver directly?
-
-I think I'm still confused about what you're proposing. Sorry! :( Let
-me try rephrasing why I'm confused and perhaps we can get on the same
-page. :-)
-
-First, I guess I'm confused about how you have one of these devices
-"register" the other device.
-
-I can understand how one device might "register" its sub-devices in
-the MFD case. To make it concrete, we can look at a PMIC like
-max77686.c. The parent MFD device gets probed and then it's in charge
-of creating all of its sub-devices. These sub-devices are intimately
-tied to one another. They have shared data structures and can
-coordinate power sequencing and whatnot. All good.
-
-...but here, we really have something different in two fundamental ways:
-
-a) In this case, the two components (panel and touchscreen) both use
-separate primary communication methods. In DT the primary
-communication method determines where the device is described in the
-hierarchy. For eDP, this means that the DT node for the panel should
-be under the eDP controller. For an i2c touchscreen, this means that
-the DT node for the touchscreen should be under the i2c controller.
-Describing things like this causes the eDP controller to "register"
-the panel and the i2c controller to "register" the touchscreen. If we
-wanted the panel driver to "register" the touchscreen then it would
-get really awkward. Do we leave the touchscreen DT node under the i2c
-controller but somehow tell the i2c subsytem not to register it? Do we
-try to dynamically construct the touchscreen i2c node? Do we make a
-fake i2c controller under our panel DT node and somehow tell the i2c
-core to look at it?
-
-b) Things are different because the two devices here are not nearly as
-intimately tied to one another. At least in the case of "homestar",
-the only reason that the devices were tied to one another was because
-the board designers chose to share power rails, but otherwise the
-drivers were both generic.
-
-
-In any case, is there any chance that we're in violent agreement and
-that if you dig into my design more you might like it? Other than the
-fact that the panel doesn't "register" the touchscreen device, it
-kinda sounds as if what my patches are already doing is roughly what
-you're describing. The touchscreen and panel driver are really just
-coordinating with each other through a shared data structure (struct
-drm_panel_follower) that has a few callback functions. Just like with
-"hdmi-codec", the devices probe separately but find each other through
-a phandle. The coordination between the two happens through a few
-simple helper functions.
-
-
-> > Is it cleaner than my current approach, though?
->
-> "cleaner" is subjective, really, but it's a more "mainstream" approach
-> that one can follow more easily through function calls.
->
-> > I guess, alternatively, we could put the "panel" directly under the
-> > i2c bus in this case. That would probably work for Cong Yang's current
-> > needs, but we'd end up in trouble if we ever had a similar situation
-> > with an eDP panel since eDP panels need to be under the DP-AUX bus.
->
-> I don't know DP-AUX very well, what is the issue that you're mentioning?
-
-Hopefully I've explained what I meant above (see point "a)").
