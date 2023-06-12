@@ -2,91 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0DA472D32A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADF572D340
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236108AbjFLVUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 17:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38420 "EHLO
+        id S238130AbjFLVZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 17:25:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238718AbjFLVUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:20:07 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 337711FC3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:23 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51478f6106cso8368396a12.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:14:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686604461; x=1689196461;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qRapFMDM3VwfrRdeIe5Po/TWol/AUPXl4tSgkIwIhOk=;
-        b=limPOmnoclWDxiGJBhuMu+J6EeGQSmknjQdT72EGTBnVB2eCSK1WWFhPVQTJQtbmlE
-         HvzXgmpucFS6iK8hZ/sjfK+PWvPaBEugZhBNTn7uwEL6qAPAfGBW4q6avo/mFvGqlF2B
-         36ScTXQmDyBABnzxd9U+zzpsPJ8miTB8KNvVozlq3pmKWgMH99fUwlnjK8U9YVBbGUsC
-         XITSVBIow6MkU+mPGz2l8OHKUXsKeqvQB9yAia+yqh9MB1kFRosrAPNUA5ZKSQ2/GWHJ
-         QhQNlTMrLZeINuitPDi3DqxKpPu7AGSUJHzZ5XzTQJr5O/L9Txf5HQHLfMJdFcX5XepY
-         uWrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686604461; x=1689196461;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qRapFMDM3VwfrRdeIe5Po/TWol/AUPXl4tSgkIwIhOk=;
-        b=TAhZCQRkU0Pmjx/o5/pZWow4Fa7EsiY+mr5uVh801YaSbS9dSpN7aF5RJEMVuYa/8m
-         QrhAwjMCsE3UKfW+e3+YZArqQTBIJAHTumyvsL8ob8WMv1ldFI5BRIlS5KNqGhtrmLWS
-         pelEvqYpyRa9X9jiPy/x/Smp0PMKEFacA+EOhUp1eUDQ54gvY//C/ugWvcRsTTPcVaOS
-         HUjl9oiOaO1Ut9JwDHJIKvSAatolgPX/d77WrCSORI+CiyDCt6WGRBQrNJEzCz3Rx6FD
-         ZrRCNNiyNMjRobgv11RhdB1Siox0mDTIUCT7jws9c434JD6GpIMBmzYA+XZe/htorXzG
-         1R4A==
-X-Gm-Message-State: AC+VfDzXBAezUgycJkT1TF+dDV6DdV64KFK8r4D3SGv+oHgSyNL2Px1f
-        Jm34ZaGp0y8Z/6oinF2+Abe7Vw==
-X-Google-Smtp-Source: ACHHUZ42+IL5g3lr/+eMfmK2tikJXyCCiWGif4uYdShqbc9xFvK+c5yxujn8HyTfBZii6o032gKQNw==
-X-Received: by 2002:a17:907:a08a:b0:97c:d2d1:3066 with SMTP id hu10-20020a170907a08a00b0097cd2d13066mr8180648ejc.33.1686604461560;
-        Mon, 12 Jun 2023 14:14:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id jp20-20020a170906f75400b0096f5781205fsm5716200ejb.165.2023.06.12.14.14.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 14:14:21 -0700 (PDT)
-Message-ID: <11497426-1b3d-169b-4af1-f24f90f4de39@linaro.org>
-Date:   Mon, 12 Jun 2023 23:14:18 +0200
+        with ESMTP id S238167AbjFLVZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:25:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 088551985;
+        Mon, 12 Jun 2023 14:23:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8F9256209A;
+        Mon, 12 Jun 2023 21:23:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DFFEC433EF;
+        Mon, 12 Jun 2023 21:23:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686605037;
+        bh=Le3gA2ClE6ECL6WF9fV8Q54wWv/RXKwEzvYFXFKgqDA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JzaWBe097VzKJvl0oBZkVur7A0DKcS4yn5zcvAcJUhnuXNZhfYLv/fpjG1HqJ246k
+         o9uvOq5NK6Ex58+pRdpTgDveEEWcqjdmHkPe6soCi+7qyCcs+cx+2z1njQCFAHPRoU
+         uffrFY/Oljmq0iF23XmmYHHfJ9J8Nty98dYeJ9625mRzqe3s5pz0DsaoNt3q/Y4T5G
+         L1LiDsOYM5vsrmS/jqTEF8Us+X4Xh4w4kkmMTxu5JiMiDLlkNCngJ/+MceOMvDfZVU
+         wW9cEVA6nRM2bb8GDSGcdWu10UuDOcdpScFsrgAfLatrZd9q4tLV8mt/oYAR+R7WtJ
+         SXMsqLe0lhR2A==
+Date:   Mon, 12 Jun 2023 22:23:50 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>, palmer@dabbelt.com,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230612-relic-fetal-1beeae3455aa@spud>
+References: <20230518-thermos-sanitary-cf3fbc777ea1@wendy>
+ <20230518-4050231ca8dbe93c08cf9c9a@orel>
+ <CAAhSdy07Mg_JBF+4ucGFiWdBKh-Ass5G_aUWqBqTnDSFp7S=0A@mail.gmail.com>
+ <20230518-hammock-doornail-478e8ea8e6a7@wendy>
+ <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+ <20230518-monkhood-dispersal-6749b1228b0d@spud>
+ <20230530-duller-reset-a34ae111f207@wendy>
+ <20230608191537.GA3233857-robh@kernel.org>
+ <20230608-cobbler-giving-e0fac2185e11@spud>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [EXTERNAL] Re: [PATCH v5 4/4] ASoC: dt-bindings: Add tas2781
- amplifier
-To:     "Ding, Shenghao" <shenghao-ding@ti.com>
-Cc:     Shenghao Ding <13916275206@139.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "Lu, Kevin" <kevin-lu@ti.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
-        "Navada Kanyana, Mukund" <navada@ti.com>,
-        "gentuser@gmail.com" <gentuser@gmail.com>,
-        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
-        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>,
-        "tiwai@suse.de" <tiwai@suse.de>
-References: <20230610141821.576926-1-13916275206@139.com>
- <95aca760-c17c-eb96-bcfb-85f20124812b@linaro.org>
- <303B184A-1A35-4049-97F5-90D17FE990DA@ti.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <303B184A-1A35-4049-97F5-90D17FE990DA@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RnjcFuwrw0FxHlVc"
+Content-Disposition: inline
+In-Reply-To: <20230608-cobbler-giving-e0fac2185e11@spud>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,120 +74,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2023 22:57, Ding, Shenghao wrote:
-> 
-> 
->> 在 2023年6月11日，00:33，Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 写道：
->>
->> ﻿On 10/06/2023 16:18, Shenghao Ding wrote:
->>> Create tas2781.yaml for tas2781 driver.
->>>
->>> Signed-off-by: Shenghao Ding <13916275206@139.com>
->>
->> We keep telling you that your email threading is broken. It still is
->> makes reviewers life more difficult. Maintainer as well as applying is
->> not straightforward.
->>
->> Why this is not improved?
->>
-> Sorry for causing difficulties. Would you be so kind and tell me how to avoid threading broken? I get the threading broken issue every time, but I really have no idea of how to fix it.
 
-git format-patch -v6 -4
-git send-email v6*
+--RnjcFuwrw0FxHlVc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You keep sending them as separate emails thus no proper threading.
-Everything is explained:
-https://elixir.bootlin.com/linux/v6.4-rc6/source/Documentation/process/5.Posting.rst
-https://elixir.bootlin.com/linux/v6.4-rc6/source/Documentation/process/submitting-patches.rst
+Rob,
+Before I press on with more versions...
 
->>>
->>> ---
->>> Changes in v5:
->>> - remove ti,broadcast-addr
->>> - remove address-cells
->>> - remove size-cells
->>> - put compatible item first in properties
->>> - change the maxItems of reg from 4 to 8
->>> - remove white space around <>
->>> - correct the reg format to <0x38>, <0x3a> etc
->>> - remove '\t' in the file
->>> - correct a comment in the example
->>> ---
->>> .../devicetree/bindings/sound/ti,tas2781.yaml | 73 +++++++++++++++++++
->>> 1 file changed, 73 insertions(+)
->>> create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
->>> new file mode 100644
->>> index 000000000000..61db14a39630
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
->>> @@ -0,0 +1,73 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Texas Instruments TAS2781 SmartAMP
->>> +
->>> +maintainers:
->>> +  - Shenghao Ding <shenghao-ding@ti.com>
->>> +
->>> +description:
->>> +  The TAS2781 is a mono, digital input Class-D audio amplifier
->>> +  optimized for efficiently driving high peak power into small
->>> +  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
->>> +  Smart Amp speaker protection algorithm. The integrated speaker
->>> +  voltage and current sense provides for real time
->>> +  monitoring of loudspeaker behavior.
->>> +
->>> +allOf:
->>> +  - $ref: dai-common.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - ti,tas2781
->>> +
->>> +  reg:
->>> +    description:
->>> +      I2C address, in multiple tas2781s case, all the i2c address
->>> +      aggreate as one Audio Device to support multiple audio slots.
->>> +    maxItems: 8
->>> +    items:
->>> +      minimum: 0x38
->>> +      maximum: 0x3f
->>
->> It does not look like you tested the bindings, at least after quick
->> look. Please run `make dt_binding_check` (see
->> Documentation/devicetree/bindings/writing-schema.rst for instructions).
->>
-> Kindly point my mistake, I run the commands from the Documentation/devicetree/bindings/writing-schema.rst before submission.
-> For dt_binding_check, command as follow, no issue reported,
-> make DT_CHECKER_FLAGS=-m O= O=build_dir/x86 dt_binding_check -j $(expr $(nproc) - 1) 2>&1 | tee $OUTPUT_DIR1/$OUTPUT_DIR2/dt_binding_check.log
-> ……………
->   DTEX    Documentation/devicetree/bindings/sound/samsung,tm2.example.dts
->   DTEX    Documentation/devicetree/bindings/sound/ti,tas2781.example.dts
->   DTEX    Documentation/devicetree/bindings/sound/amlogic,t9015.example.dts
+On Thu, Jun 08, 2023 at 08:30:28PM +0100, Conor Dooley wrote:
+> On Thu, Jun 08, 2023 at 01:15:37PM -0600, Rob Herring wrote:
+> > On Tue, May 30, 2023 at 03:12:12PM +0100, Conor Dooley wrote:
+> > > On Thu, May 18, 2023 at 10:42:34PM +0100, Conor Dooley wrote:
+> > > > On Thu, May 18, 2023 at 02:30:53PM -0400, Sean Anderson wrote:
+> > >=20
+> > > > >=20
+> > > > > Why not just have something like
+> > > > >=20
+> > > > > mycpu {
+> > > > > 	...
+> > > > > 	riscv,isa {
+> > > > > 		i;
+> > > > > 		m;
+> > > > > 		a;
+> > > > > 		zicsr;
+> > > > > 		...
+> >=20
+> > I prefer property names be globally unique. The tools are geared toward=
+s=20
+> > that too. That's largely a symptom of having 0 type information in the=
+=20
+> > DT.
+> >=20
+> > For example if you had an extension called 'reg', it would be a problem.
+>=20
+> Per the current ISA rules, that'd not be valid. But then again, I do
+> have trust issues & it's not like "reg" is the only property name in DT
+> land.
 
-Hm, you are right, it passes the checks. There must be a bug in dtschema
-around minimal items if "items" is present. You miss minItems: X, next
-to maxItems.
+=2E..you say "prefer" here. Is that a NAK, or a "you keep the pieces"?
 
-> ……………..
->   DTC_CHK Documentation/devicetree/bindings/sound/samsung,tm2.example.dtb
->   DTC_CHK Documentation/devicetree/bindings/sound/ti,tas2781.example.dtb
->   DTC_CHK Documentation/devicetree/bindings/sound/amlogic,t9015.example.dtb
-> ……………..
-> 
-> As to “make dtbs_checktest”, it can’t work in default compiling system(x86) at all. In order to test the bindings, it was integrated into the BeagleBoneBlack compiling system.
+--RnjcFuwrw0FxHlVc
+Content-Type: application/pgp-signature; name="signature.asc"
 
-There is no problem running it on x86 system. We all run it there. Just
-install basic cross compiler. Every distro has it...
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIeM5gAKCRB4tDGHoIJi
+0uzcAQDu/tJVEgDQEG2BFIFoTPaZznrjs1Il4oaLCWo/dTGTigEAtYV2jXPQafdF
+DrSPBnySqez+fzXzA9+5KTRu5WWsKg8=
+=Olcx
+-----END PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
-
+--RnjcFuwrw0FxHlVc--
