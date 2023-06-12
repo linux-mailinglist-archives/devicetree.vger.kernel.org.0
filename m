@@ -2,66 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F26EF72C9B8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:20:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59EDC72C9D0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:23:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233617AbjFLPUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 11:20:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47416 "EHLO
+        id S238171AbjFLPXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 11:23:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239753AbjFLPT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:19:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1E710C7;
-        Mon, 12 Jun 2023 08:19:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B8E2161E4F;
-        Mon, 12 Jun 2023 15:19:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F79DC433D2;
-        Mon, 12 Jun 2023 15:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686583190;
-        bh=2Q20y0Ssx+Qnm5l9jPWYn3Pa7yN/CQx6/2ZtlgetIYg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=h67fcwz+ADhIo8Ww/uLQxiifaD81QYQYZR7hnm8BUFb0IMRitWiYAQmsWJdH99em0
-         yatrjqAyaUpkLKyV1uY5IKIZhzW3t08h2o8oblkIl5QWbZi2mp9cxeXfXAmZp6Ajh3
-         G04KaGsTY3cSG9TE3jSb/cOr3tQzlekHFuOkbuZaeJbXgNFR2okRX24Oo0HxFCW8Wm
-         B/ByDO9+RET9IUVOJersCfr1r83wp2uUXxzpa8p/ned6mEe8Ti9MoLytRxsQACFh3A
-         RxWlLhUgfhRDFB9yO7FIlD6ZHe2HFIZAjGoTrOlsMEpeAzM7uN6VrJDWYn1y3DTfhW
-         ZNO4NI0M+IFmw==
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-4f63a2e1c5fso5308548e87.2;
-        Mon, 12 Jun 2023 08:19:49 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxA+EwP9YNmSg+ERie3caW3/8vJrVt8B9sZt8FvtHPSgyWsEHuk
-        G+x+pOO9dC/vqHpPSgh3j2WYM2HnpU1ct8uuDw==
-X-Google-Smtp-Source: ACHHUZ7YxJzSB669feL0VIOCXTzs7RUFULvVqeaRA4EK8WzrSV1+iAUrw39mOzvDWBX7fX2GbkgV+5Vu7419NCtE+ZQ=
-X-Received: by 2002:a2e:a408:0:b0:2ad:d949:dd39 with SMTP id
- p8-20020a2ea408000000b002add949dd39mr3431947ljn.29.1686583188085; Mon, 12 Jun
- 2023 08:19:48 -0700 (PDT)
+        with ESMTP id S239457AbjFLPXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:23:01 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C67BF1BF
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:22:58 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f6e13940daso46525395e9.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:22:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686583377; x=1689175377;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uuj0XULtFaQvAuryQsrKeMY0XLRwJecu37s7Jri30GU=;
+        b=rxeKG198QHG4ADhFMnEXxJct6s32p5YodueNk1XzgcqP4fNL6Ypdnze7OBnOnJaG8j
+         VZW81nFHAEny4x35s0LouP5OTg+nE6Plg/jOyFFcbi+4wGr3sN2UH5zDWNw9dJQgkEHg
+         qF5rnmeZwaOtEP08AnTrW8blcCSC320YZUQhXQpHMZg4mNylSdWmjeq01QAtHCg/btDR
+         JQp2SbstKco5erVgrf6aVrWEL65gvEO3mWGmCz/OQ7+0/3KJS7JNEUeUtcfIvAb//O1A
+         WT81C2dXfxZHUrKI8Od8DnOroQZXA8miSgkBEtMRlsJ/Kp7VOne00hBzNQgV0QXpGCew
+         0+iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686583377; x=1689175377;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Uuj0XULtFaQvAuryQsrKeMY0XLRwJecu37s7Jri30GU=;
+        b=PmVvvLAOR/MgMKHbqEJEbRuV/e/bIZYy9CUimq+dlq7p+Re/1RIqnctRSsbuhWm8iS
+         IcaNnZoMAt0uRsw3UbB4N6pdW+4tePE6GGmidzUW8o5QojvRLSzAgo23u8H8WcGYGUmO
+         twrXvKxen6oLcbp+jm8Avq0KFhyHa4X+1uvkWzGsuxjvRNev9j0bGSOqLgbRSw7+t+Yl
+         XRv8mtZCaE2bMNgMXM/dAVHgWCqUr46yeFXaY/QBJhVF/8MRzfbptNoCd9T2elGf97N+
+         6avMO0xldHpVzO/6xefUAknnbamAnTPfLveMzKs5uKFyu/EIOs7dDJ31jK/GuSBK+zee
+         oPCQ==
+X-Gm-Message-State: AC+VfDymygSwrI0piZl70HmWze7CFWhcUE1UgzCHl+nR+4xnLOx9Sldq
+        tT4yPC2rUCSwG4uUi2y8PVjN0Q==
+X-Google-Smtp-Source: ACHHUZ4+8Wc/LhkGQI5K7JEa4ang2eelkn6xRDnu4fOn7Eq0LoQO/Vi5kALxMojL4fgHB8Xo7vKGow==
+X-Received: by 2002:a05:600c:255:b0:3f6:53a:6665 with SMTP id 21-20020a05600c025500b003f6053a6665mr8009562wmj.19.1686583377055;
+        Mon, 12 Jun 2023 08:22:57 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id l7-20020a7bc347000000b003f4248dcfcbsm11876512wmj.30.2023.06.12.08.22.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 08:22:56 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v4 0/4] arm64: qcom: sm8550: enable PMIC devices
+Date:   Mon, 12 Jun 2023 17:22:48 +0200
+Message-Id: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v4-0-a288f24af81b@linaro.org>
 MIME-Version: 1.0
-References: <1681366162-4949-1-git-send-email-xinlei.lee@mediatek.com> <1681366162-4949-2-git-send-email-xinlei.lee@mediatek.com>
-In-Reply-To: <1681366162-4949-2-git-send-email-xinlei.lee@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 12 Jun 2023 23:19:36 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9H9qbPC411rRZrvwEC3dLEvz5m=tn=CysWCZErtyKdnw@mail.gmail.com>
-Message-ID: <CAAOTY_9H9qbPC411rRZrvwEC3dLEvz5m=tn=CysWCZErtyKdnw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: display: mediatek: dsi: Add compatible
- for MediaTek MT8188
-To:     xinlei.lee@mediatek.com
-Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        jitao.shi@mediatek.com, shuijing.li@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEg4h2QC/53PQW7DIBAF0KtErDsVngEHZ9V7VFlgwDaSAwgcK
+ 1Xkuxenm1ZdJcs/i/f/3Flx2bvCToc7y271xcdQg3g7MDPpMDrwtmaGHIlLlLDE5A2Ui5KSwzW
+ VJTt9gfST5zSCXcBQI6S0iAO2rEq9Lg76rIOZqhWu81yPKbvB3x7Vn+eaJ1+WmL8eS9Zmvz5Xu
+ jbAoZdKkD1K3SJ9zD7oHN9jHvcRz2PCSntsef2i47+xfe2KLyzEimrqVcdbLozo/qH0AkoVVQr
+ JOUEDDeYPum3bN9HeT0LjAQAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1559;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Xg44Q0NEL8frWaOLXdk+yFgGi/1YYP5AYukfj8+ycW8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkhzhMZdPDEnFjLZ5hp8RgXNs+zeoS+++3yMCAKcpN
+ EC4QyQmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIc4TAAKCRB33NvayMhJ0eB6EA
+ C8LcR6rK3VkoylF4vMMSMIHmFd0poQCe8xecbJTHo4il9cKVaB8CT3fqU7AxPyCtHCt3BlGGMVZO7Y
+ hNaQOb1eJl+6PARDErfaPyRN1Gt1cn0UhVZg4xtEofk6Hsz9hg48O4SFLwXXRfqoD+TjH6gYU18ySd
+ u3jUdrsz8qOTmp59QgrPQ8O0xWd/tzFsFvi0f4oUtu9Ms1+aY9xlt1vMxHkF+f2AmC/1xGMQgtIikC
+ YTgDIQSE4v3wH1QajOQ3sfCDuXsXtN4Dc1dOBftfiAdJVJ7HeXRQnyRDaIBIPOlGgabgGJY/wZxqvh
+ Xeh6x1fYddgkPLAxwtXS3ns9kzMB5hS9umlebRY32nve1Y2Fhdyxm4vxvRaM0CzGE1e/utALDHTo+7
+ u6kdzglctd0ncQMFW47AlI7eYQecapMoLD/LojUCERzBEbaoXbQ8LvWa36KKku/oYzj56F4JVga396
+ gJgVrnTl4NKQRvp9X/GWR3NY19HzssCQfsolMq1p3ZUvEFUyTp196ICmgydoPW13A/rsoC8oi/SCqt
+ vGprrujZSDu0oS4yBCwsDqGh81nO8bdaTLSHanimb6hqzxsaz5yERq8R6VvvxbsgnfoMflN4CYoqu1
+ gK9WgF3jcPYKXqlBjXfOsH4oV9qI2wcE/viC4jyZIcet8UrN4mfAzHV8vcgQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,38 +96,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-<xinlei.lee@mediatek.com> =E6=96=BC 2023=E5=B9=B44=E6=9C=8813=E6=97=A5 =E9=
-=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:09=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: Xinlei Lee <xinlei.lee@mediatek.com>
->
-> Add dt-binding documentation of dsi for MediaTek MT8188 SoC.
+This enables the following PMIC devices:
+- PWM RGB LED
+- RTC
+- Volume and Power buttons
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+on the SM8550 boards.
 
->
-> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,dsi.yaml       | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-dsi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.=
-yaml
-> index 4707b60238b0..13fa76299254 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam=
-l
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam=
-l
-> @@ -29,6 +29,7 @@ properties:
->        - mediatek,mt8173-dsi
->        - mediatek,mt8183-dsi
->        - mediatek,mt8186-dsi
-> +      - mediatek,mt8188-dsi
->
->    reg:
->      maxItems: 1
-> --
-> 2.18.0
->
+No dependencies when applied on next-20230609
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v4:
+- rebased on next-20230609
+- Link to v3: https://lore.kernel.org/r/20230525-topic-sm8550-upstream-pm8550-lpg-dt-v3-0-8823ee43f3fc@linaro.org
+
+Changes in v3:
+- Added all review tags
+- Fixed pinctrl-names/-0 order in last patch
+- Link to v2: https://lore.kernel.org/r/20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-0-a3b890604c49@linaro.org
+
+Changes in v2:
+- Always enable RTC in a new patch
+- Drop patch enabling RTC on boards
+- Move PON names to meet alphabetical order
+- Link to v1: https://lore.kernel.org/r/20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-0-4d5d7602f290@linaro.org
+
+---
+Neil Armstrong (4):
+      arm64: dts: qcom: pm8550: add PWM controller
+      arm64: dts: qcom: sm8550-qrd: add notification RGB LED
+      arm64: dts: qcom: pmk8550: always enable RTC PMIC device
+      arm64: dts: qcom: sm8550-qrd: enable PMIC Volume and Power buttons
+
+ arch/arm64/boot/dts/qcom/pm8550.dtsi    | 10 ++++++
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi   |  1 -
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 63 +++++++++++++++++++++++++++++++++
+ 3 files changed, 73 insertions(+), 1 deletion(-)
+---
+base-commit: 53ab6975c12d1ad86c599a8927e8c698b144d669
+change-id: 20230525-topic-sm8550-upstream-pm8550-lpg-dt-c31455d22f26
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
