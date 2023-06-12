@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6118072C29A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 13:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E92472C2B1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 13:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232414AbjFLLMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 07:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46662 "EHLO
+        id S233600AbjFLLQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 07:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237996AbjFLLMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 07:12:19 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F3D5B91;
-        Mon, 12 Jun 2023 04:01:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=JWHXuE2v7XY71npjrwZZ/s4PnkNNKrmbBcmZ9MpyCUc=; b=Ugsm2iCmu+49vpJCbDSH3eFR13
-        6GUog7n5Q6IAxQfzp8M/UAga2BmCcqh27JOLQzrONBZ9wNcYa2+ODc2MF7T9kxESzQcffbbQd/Hja
-        ZOBkl0A4e+2WFfiYdYoYVQ4IsY+pxM0NSWi9PhzktV+RXaBXAvUoLFLpHXVkRs07m3yT2EI3I5xnR
-        Qe4KUX2ichqIgYbr0jiA5Td5enXcsHrpZ0k2HaYcPl6iBuOSCpf25QBRv/dOsWg0ZEy6DtFLKg/M9
-        RkfGiMO9+TJevYVckk/IISndMQgnVxN9LQwXQ1HphBawU90o2zSy77M1xUswzxeoBd15HMR7TXD+R
-        e7XyVXzg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:50682)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1q8fIE-0005aq-HQ; Mon, 12 Jun 2023 12:01:02 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1q8fIB-0004u0-G6; Mon, 12 Jun 2023 12:00:59 +0100
-Date:   Mon, 12 Jun 2023 12:00:59 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Sam Shih <Sam.Shih@mediatek.com>
-Subject: Re: [PATCH net-next 3/8] net: ethernet: mtk_eth_soc: move MAX_DEVS
- in mtk_soc_data
-Message-ID: <ZIb6604WRJsevaWN@shell.armlinux.org.uk>
-References: <ZIUWxQ9H7hNSd6rJ@makrotopia.org>
+        with ESMTP id S233318AbjFLLQO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 07:16:14 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CBF86A0;
+        Mon, 12 Jun 2023 04:04:34 -0700 (PDT)
+Received: from mail.alien8.de (mail.alien8.de [IPv6:2a01:4f9:3051:3f93::2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id D44581EC00F8;
+        Mon, 12 Jun 2023 13:04:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1686567867;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=T5nu9ZiswE8RQGkFS+4IJ1ouiCYUZY13HPLb8yI2yYA=;
+        b=W8nu84eTQvRnF4UeMz24J1cC/kFA7UM8HvnIScr0+6ShSg/m9dBxHr/AR2+sIojoCny6Fx
+        +MucpbBbReK/MKa7gk+pV7AahSZ3LiEPafYMxq6uVzDcQrjpg20xayNjtwcJprHZj3pOav
+        g11YP2oAJPTUU3rG4HuXXhYWtHMbyeM=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+        t=1686567866; bh=T5nu9ZiswE8RQGkFS+4IJ1ouiCYUZY13HPLb8yI2yYA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ikUWVJffQiCr88x+Hnv0MZdtPiDa8ZUbowg/PIC/eVozysKk3SHxztfxvdVn9oHbo
+         2c6G7xZxO8Jr+66yEpo1w6U0tcMUbSst+7SXc+0y045AwbO5m2qPhPDrWpsVyGhoTX
+         V0KlSjUZcpRUPRwFB7secNmlWkXMzhRC1c9o3gPb1ARdBClu5ktMwkVtnNMEZjKaxh
+         0yQ8PRcwWwiyEDrkd6dii6zh5LjqxmAXbC8sIxCGuLWgqUbNHZowElNQuUzuXZeyNZ
+         yObK5b0MkZPXrWyvWbW1VTNOw1f+UO3/pDCI72sT9TtsoZgY5NR+eYxvCy5r3kymNA
+         3scktC3xgYzodIKWcWD2W3Z3QoAejgSVj4KHHfymnD9ZhPwec5aRnwJTUmUD/bRbFY
+         xaieyDoSqieP/ro+HlpZN3AV0D08AlzX2KEVPNLMO0Drp6fohmaWJnRsMOkwBk6ea9
+         gn9bAlKn2fOLWcCbt4hvWgr+XqZBO0g1PGCs+Weu183bt+qpeHdBckjpVjL8bplXKJ
+         SpNY2ML/EPJaxvVUfGBlV67nuOLcT5t9pQTTYdbr0xuTwSpgkxpvv3oG2AECE9fhsf
+         AbDXWErEprnRwmGJ/+B3AnRB/b0d0zMal7acrgICjYc5T93VN+YvEDON0825Ajr9Zt
+         ymxQOB6ieMSpIIE8nWHqyi50=
+Received: from zn.tnic (p200300eA971dc508329c23FFFEa6A903.dip0.t-ipconnect.de [IPv6:2003:ea:971d:c508:329c:23ff:fea6:a903])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+        (No client certificate requested)
+        by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 4567740E01E6;
+        Mon, 12 Jun 2023 11:04:05 +0000 (UTC)
+Date:   Mon, 12 Jun 2023 13:04:01 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Marvin Lin <milkfafa@gmail.com>
+Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
+        rric@kernel.org, benjaminfair@google.com, yuenn@google.com,
+        venture@google.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org, KWLIU@nuvoton.com, YSCHU@nuvoton.com,
+        ctcchien@nuvoton.com, kflin@nuvoton.com
+Subject: Re: [PATCH v18 1/3] ARM: dts: nuvoton: Add node for NPCM memory
+ controller
+Message-ID: <20230612110401.GPZIb7oZPdsPGFzSDc@fat_crate.local>
+References: <20230111093245.318745-1-milkfafa@gmail.com>
+ <20230111093245.318745-2-milkfafa@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZIUWxQ9H7hNSd6rJ@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230111093245.318745-2-milkfafa@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 11, 2023 at 01:35:17AM +0100, Daniel Golle wrote:
-> @@ -1106,14 +1105,14 @@ struct mtk_eth {
->  	spinlock_t			tx_irq_lock;
->  	spinlock_t			rx_irq_lock;
->  	struct net_device		dummy_dev;
-> -	struct net_device		*netdev[MTK_MAX_DEVS];
-> -	struct mtk_mac			*mac[MTK_MAX_DEVS];
-> +	struct net_device		**netdev;
-> +	struct mtk_mac			**mac;
->  	int				irq[3];
->  	u32				msg_enable;
->  	unsigned long			sysclk;
->  	struct regmap			*ethsys;
->  	struct regmap			*infra;
-> -	struct phylink_pcs		*sgmii_pcs[MTK_MAX_DEVS];
-> +	struct phylink_pcs		**sgmii_pcs;
->  	struct regmap			*pctl;
->  	bool				hwlro;
->  	refcount_t			dma_refcnt;
+On Wed, Jan 11, 2023 at 05:32:43PM +0800, Marvin Lin wrote:
+> Add node for memory controller present on Nuvoton NPCM SoCs. The
+> memory controller supports single bit error correction and double bit
+> error detection.
+> 
+> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
+> ---
+>  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-Is it really worth the extra allocations?
-
-There's three pointers here per device. Let's talk about modern systems,
-so that's 8 bytes each, and if MTK_MAX_DEVS was two, that's 48 bytes in
-all. If we expanded the array to allow three, that would be 72 bytes.
-
-If we allocate separately, then we're allocating 16 or 24 bytes three
-times depending on whether we want two or three of them.
-
-On arm64, I'm seeing the minimum slab size as 128 bytes, which means
-that's the minimum memory allocation. So, allocating three arrays will
-be 384 bytes in all, irrespective of whether we want two or three
-entries.
-
-That's a waste of about 5x the memory over just expanding the arrays!
-
-If you want to go down the route of dynamically allocating these, it
-would make better sense to combine them into a single structure that
-itself is an array, and thus requiring only one allocation. That
-reduces the wastage to about 56 bytes for three ports or 80 bytes
-for two.
-
-Thanks.
+I guess this needs an Ack from OF folks if it is going to go through the
+EDAC tree ...
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
