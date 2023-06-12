@@ -2,187 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 090A672BB33
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 10:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A39DC72BB3C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 10:52:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233604AbjFLIv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 04:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50954 "EHLO
+        id S233957AbjFLIwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 04:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233717AbjFLIvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 04:51:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B75E114
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 01:51:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 21901621AC
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:51:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A289C433D2;
-        Mon, 12 Jun 2023 08:51:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686559872;
-        bh=qqZpQbw+uJ4TgveRfEHhizk7kcrsXFsffDdBs7ZZqiU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K2jxseoh5MVLk7tajv3VlH968eMfH9tMZzzrCnoa4LbPnIvnLhfpeZrK4KeEDqYk9
-         rey6jSIfPV41SsRXz4bB/sJ4HVoG1bUyxOCKx/A4IJGjk5RbJ1NMhkS8ajC0g1Ct9v
-         aU8K8wNA7/8y839htIkzH+ctswE2PVg0U0gwU6R3t3uCvQ7S6KZqu5vwVqVy/IzNA9
-         Udhg52Zq+ibJKubV+GZEKJLZoTdgxV6LHpI3+vsFejax1oXL3v+gSnhu2Wrew3EiL7
-         k2Lz8iCTDpyaBNIYNtf0mVMTqesps8IxVoUoIiLUlt+KHRRJZqRBm0s1qArtluDT9i
-         gIfb/YQ7qH7Pg==
-Date:   Mon, 12 Jun 2023 10:51:09 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 6/7] drm/panel: sitronix-st7789v: Add EDT ET028013DMA
- panel support
-Message-ID: <tr2rmz375jwkwjufhgvb7vbxwqik2w6i276yshh2tbo6dcfhh7@llvt6bigivfy>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
- <20230609145951.853533-7-miquel.raynal@bootlin.com>
+        with ESMTP id S233773AbjFLIwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 04:52:16 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E92F1B3;
+        Mon, 12 Jun 2023 01:52:05 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b1b06af50eso46999481fa.1;
+        Mon, 12 Jun 2023 01:52:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686559923; x=1689151923;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vC6uwJ0JqcA9AI2hZ192LN4Lm6HljDsWRRLUQCbqRcI=;
+        b=ha+NLGOPK268A8Rm69MB2VrlRZ+bdLMoCKBLy0i1SKtuixABoEGpHl4oGE70nPdWrI
+         fWHYhWb5EBh38UF+ViInymqzwkg/Zad+alqWfDprpVo9fgantG3Tz2sziWPw8upec7ts
+         /Fv3t/yWt6xY9KXU53ybP9Y85wyqEazYhy6JiPo96nIX5SF4uRKG5GITBsqxWuCk1vQX
+         EkWAFhD8ZV+9RpimOe60IiIxpLQXcl/lff1tzJzFERRz1X4gJJh8cCQuDLq3wpAnM8wY
+         WWTst4ebBmy5XYqnnge0LQw1u/wcQ76+CfadGwNDS32TMQdIsStrT+N5jEUX9QHUrcCk
+         D7qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686559923; x=1689151923;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vC6uwJ0JqcA9AI2hZ192LN4Lm6HljDsWRRLUQCbqRcI=;
+        b=i0l5Dbz4oZrBwXUAkXHVFeZ7TxK0rZA95I9mLV51H4+VshpWkkQ4M3cFRW1Wn77gCf
+         kwxhr0FBsSWBAUMrKCV94zMNtYjYH28KTNQ0kr3cmmJlG92z3AA0nSjfQJR2e7BKaOmF
+         yM+olLohriLVAsGE+RJICsSgOnGBkew11lYXORLPNUqWf86+QzJWqRlKFqv5YJ2A04Rn
+         qNSOZIGI2VN4454iqsXY8g+7hyevJMFguQ8a3LLDceGSAn5DnT6lEpQXMhZzAqWoXXxK
+         vgSsknsJMkBVJ3obSW5lFkVffTuIfub3MpJ4NgyMubAaXV7WMM3ky+a5PRqHbM6zyBk+
+         MNQg==
+X-Gm-Message-State: AC+VfDzHqtwgSNirCeCPQ8pNHmuHPaJ3rXs5268hQHdLRvuKsrkaOTjw
+        6fYCxRp0MfLCd4stLJFn/b8=
+X-Google-Smtp-Source: ACHHUZ7EKA8vldamQ7vDC+e0lKSYEpHmgr+nXY6Twa32SsY75+3B3FPeePjMNjp0U0aabyKDkLIrCw==
+X-Received: by 2002:a05:651c:1039:b0:2af:d2ef:49d4 with SMTP id w25-20020a05651c103900b002afd2ef49d4mr2231817ljm.1.1686559923246;
+        Mon, 12 Jun 2023 01:52:03 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id s9-20020a2e9c09000000b002b31e0be2d7sm1003800lji.90.2023.06.12.01.52.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 01:52:02 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 11:52:00 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v3 2/5] dt-bindings: ata: dwc-ahci: add Rockchip RK3588
+Message-ID: <20230612085200.5okxcipiw5sofo62@mobilestation>
+References: <20230608162238.50078-1-sebastian.reichel@collabora.com>
+ <20230608162238.50078-3-sebastian.reichel@collabora.com>
+ <4c914503-c2e5-a5d8-97af-daaee0b4ec7c@linaro.org>
+ <20230612083536.q3sq7w6cyiuxaqtv@mobilestation>
+ <838ed0e6-985d-9a45-7ece-c607bda15871@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230609145951.853533-7-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <838ed0e6-985d-9a45-7ece-c607bda15871@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 09, 2023 at 04:59:50PM +0200, Miquel Raynal wrote:
-> This panel from Emerging Display Technologies Corporation features an
-> ST7789V2 panel inside which is almost identical to what the Sitronix
-> panel driver supports.
->=20
-> In practice, the module physical size is specific, and experiments show
-> that the display will malfunction if any of the following situation
-> occurs:
-> * Pixel clock is above 3MHz
-> * Pixel clock is not inverted
-> I could not properly identify the reasons behind these failures, scope
-> captures show valid input signals.
->=20
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  .../gpu/drm/panel/panel-sitronix-st7789v.c    | 34 +++++++++++++++++--
->  1 file changed, 32 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu=
-/drm/panel/panel-sitronix-st7789v.c
-> index 212bccc31804..7de192a3a8aa 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> @@ -30,7 +30,8 @@
->  #define ST7789V_RGBCTRL_RCM(n)			(((n) & 3) << 5)
->  #define ST7789V_RGBCTRL_VSYNC_HIGH		BIT(3)
->  #define ST7789V_RGBCTRL_HSYNC_HIGH		BIT(2)
-> -#define ST7789V_RGBCTRL_PCLK_HIGH		BIT(1)
-> +#define ST7789V_RGBCTRL_PCLK_FALLING		BIT(1)
-> +#define ST7789V_RGBCTRL_PCLK_RISING		0
->  #define ST7789V_RGBCTRL_VBP(n)			((n) & 0x7f)
->  #define ST7789V_RGBCTRL_HBP(n)			((n) & 0x1f)
-> =20
-> @@ -117,6 +118,7 @@ struct st7789v_panel_info {
->  	u16 width_mm;
->  	u16 height_mm;
->  	u32 bus_format;
-> +	u32 bus_flags;
->  };
-> =20
->  struct st7789v {
-> @@ -175,6 +177,18 @@ static const struct drm_display_mode default_mode =
-=3D {
->  	.vtotal =3D 320 + 8 + 4 + 4,
->  };
-> =20
-> +static const struct drm_display_mode slow_mode =3D {
-> +	.clock =3D 3000,
-> +	.hdisplay =3D 240,
-> +	.hsync_start =3D 240 + 38,
-> +	.hsync_end =3D 240 + 38 + 10,
-> +	.htotal =3D 240 + 38 + 10 + 10,
-> +	.vdisplay =3D 320,
-> +	.vsync_start =3D 320 + 8,
-> +	.vsync_end =3D 320 + 8 + 4,
-> +	.vtotal =3D 320 + 8 + 4 + 4,
-> +};
+On Mon, Jun 12, 2023 at 10:39:57AM +0200, Krzysztof Kozlowski wrote:
+> On 12/06/2023 10:35, Serge Semin wrote:
+> > On Mon, Jun 12, 2023 at 10:24:06AM +0200, Krzysztof Kozlowski wrote:
+> >> On 08/06/2023 18:22, Sebastian Reichel wrote:
+> >>> This adds Rockchip RK3588 AHCI binding. In order to narrow down the
+> >>> allowed clocks without bloating the generic binding, the description
+> >>> of Rockchip's AHCI controllers has been moved to its own file.
+> >>>
+> >>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> >>> ---
+> >>
+> >> ...
+> >>
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    items:
+> >>> +      - enum:
+> >>> +          - rockchip,rk3568-dwc-ahci
+> >>> +          - rockchip,rk3588-dwc-ahci
+> >>> +      - const: snps,dwc-ahci
+> >>> +
+> >>> +  ports-implemented:
+> >>> +    const: 1
+> >>> +
+> >>> +patternProperties:
+> >>> +  "^sata-port@[0-9a-e]$":
+> >>> +    $ref: /schemas/ata/snps,dwc-ahci-common.yaml#/$defs/dwc-ahci-port
+> >>> +
+> >>> +    unevaluatedProperties: false
+> >>
+> > 
+> >> You should be able to skip this patternProperties entirely, because it
+> >> comes from dwc-ahci-common -> ahci-common schema. Did you try the patch
+> >> without it?
+> > 
 
-Why is it supposed to be slow (and compared to what)? It looks like a
-fairly normal mode to me? Or is it because it's refreshed at 30Hz?
+> > Please see my message about this. The "sata-port@[0-9a-e]$" sub-node
+> > bindings could be updated with the "reg" property constraint which,
+> > based on the "ports-implemented" property value, most likely is
+> > supposed to be always set to const: 1.
+> 
+> Then anyway the pattern is wrong as it should be @1 always.
 
-Either way, the ST7789V is a panel controller and can be connected to a
-wide range of panels depending on the model, so it would be better to
-just use the model name there.
+* I miscalculated a bit, it should have been zero but in general
+the pattern-property is indeed redundant.
 
->  static int st7789v_get_modes(struct drm_panel *panel,
->  			     struct drm_connector *connector)
->  {
-> @@ -197,6 +211,7 @@ static int st7789v_get_modes(struct drm_panel *panel,
-> =20
->  	connector->display_info.width_mm =3D panel_info->width_mm;
->  	connector->display_info.height_mm =3D panel_info->height_mm;
-> +	connector->display_info.bus_flags =3D panel_info->bus_flags;
->  	drm_display_info_set_bus_formats(&connector->display_info,
->  					 &panel_info->bus_format, 1);
-> =20
-> @@ -206,8 +221,13 @@ static int st7789v_get_modes(struct drm_panel *panel,
->  static int st7789v_prepare(struct drm_panel *panel)
->  {
->  	struct st7789v *ctx =3D panel_to_st7789v(panel);
-> +	const struct st7789v_panel_info *panel_info =3D ctx->panel_info;
-> +	u8 pck =3D ST7789V_RGBCTRL_PCLK_FALLING;
->  	int ret;
-> =20
-> +	if (panel_info->bus_flags & DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE)
-> +		pck =3D ST7789V_RGBCTRL_PCLK_RISING;
-> +
+As a conclusion the change should look like this:
 
-I guess it could be in a separate commit
++properties:
++  compatible:
++    items:
++      - enum:
++          - rockchip,rk3568-dwc-ahci
++          - rockchip,rk3588-dwc-ahci
++      - const: snps,dwc-ahci
++
++  ports-implemented:
++    const: 1
++
++  "sata-port@0":
++    $ref: /schemas/ata/snps,dwc-ahci-common.yaml#/$defs/dwc-ahci-port
++
++    properties:
++      reg:
++        const: 0
++
++    unevaluatedProperties: false
++
++ ...
 
-Maxime
+Right?
 
->  	ret =3D regulator_enable(ctx->power);
->  	if (ret)
->  		return ret;
-> @@ -321,7 +341,7 @@ static int st7789v_prepare(struct drm_panel *panel)
->  					     ST7789V_RGBCTRL_RCM(2) |
->  					     ST7789V_RGBCTRL_VSYNC_HIGH |
->  					     ST7789V_RGBCTRL_HSYNC_HIGH |
-> -					     ST7789V_RGBCTRL_PCLK_HIGH));
-> +					     pck));
->  	ST7789V_TEST(ret, st7789v_write_data(ctx, ST7789V_RGBCTRL_VBP(8)));
->  	ST7789V_TEST(ret, st7789v_write_data(ctx, ST7789V_RGBCTRL_HBP(20)));
-> =20
-> @@ -422,14 +442,24 @@ static const struct st7789v_panel_info st7789v_info=
- =3D {
->  	.bus_format =3D MEDIA_BUS_FMT_RGB666_1X18,
->  };
-> =20
-> +static const struct st7789v_panel_info et028013dma_info =3D {
-> +	.display_mode =3D &slow_mode,
-> +	.width_mm =3D 43,
-> +	.height_mm =3D 58,
-> +	.bus_format =3D MEDIA_BUS_FMT_RGB666_1X18,
-> +	.bus_flags =3D DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE,
-> +};
-> +
->  static const struct of_device_id st7789v_of_match[] =3D {
->  	{ .compatible =3D "sitronix,st7789v", .data =3D &st7789v_info },
-> +	{ .compatible =3D "edt,et028013dma", .data =3D &et028013dma_info },
+-Serge(y)
 
-We should sort them by alphabetical order
-
-Maxime
+> 
+> Best regards,
+> Krzysztof
+> 
