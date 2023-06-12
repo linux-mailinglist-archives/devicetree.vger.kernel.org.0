@@ -2,126 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC55472CDBE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE2272CDCE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237491AbjFLSUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 14:20:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41568 "EHLO
+        id S233957AbjFLSWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 14:22:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236889AbjFLSUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:20:02 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD1DE0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:19:59 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-977cf86aae5so705122166b.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:19:59 -0700 (PDT)
+        with ESMTP id S232341AbjFLSWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:22:48 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BBE7E0;
+        Mon, 12 Jun 2023 11:22:47 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9745ba45cd1so705306366b.1;
+        Mon, 12 Jun 2023 11:22:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686593998; x=1689185998;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C4cxOfKTTvDZcNfp7Q3cCq6cFjQ+nLVM01oDWqMRamI=;
-        b=a/yq5FtlV3i+LTkUI21h759UVdMobPe33EwC9V1kaTkfOEceXO8gcVEwppExH93p61
-         XmJM9aqDB9ob8SwguvAGhu1UEK9nyf90lRhsWtIjW0qaZoXMpjZQOr2t+n6aK3C+Pqtb
-         3P5lSHbH8eQXEuLH9BJvM3LxqC4H7LCiFCtV9uvD6MDuPOQ0dhMlEkAMxxThB3W6Mh8Z
-         pbCjeltU8snS7hMrKHfrruhn3V+qt+P9Uqk/4Mb86yXwfxmJ3beYwpLCPtRWQF/oJxW2
-         7UP4Xs3L917msGb2NwjGuttf7+f4boW+EuYoW4KfIuXgBoEOtJk1mEHUR+1diepscOJ/
-         ib7Q==
+        d=gmail.com; s=20221208; t=1686594165; x=1689186165;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QKqLQJH1mqzuRzsiJTvJ04rfDSsqHrrA3iBCbUsSHOI=;
+        b=T/UJRDl9pOyQ3VKr8bq+HySE8u53jPaikn0peb1zVwX9CuhAUw4k3534zSzLozIQ9N
+         HjwDar/76Lpgu9u93/0q1djWVtidybQ842u0ZOQ9wcRR1SVPweBamtp4hVueu7CmckxZ
+         oFa/h95Nui+af9J+pwpmVGOq9kdaUrtHzqakK7OELmRk537vkUhpgvueF71cMHQQWdDB
+         8rB7mwoKQgDvY4M5lkbqqbAV4239QPN+025gzlzz8M4R6Tcd4y8ZyFzcVC+wgEiXrum7
+         z7U0coETkDZnD64r54ssnqfMLxX9lNsY2Lvpeyfh5XB4Ao71wKaevaCNFCV/jWe2rpDg
+         XZag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686593998; x=1689185998;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C4cxOfKTTvDZcNfp7Q3cCq6cFjQ+nLVM01oDWqMRamI=;
-        b=U4NurUlSNo+dpPAW+ZnyHn3dKnrtUli4g6EZFLGZewmOIj9PUY0+vl8zN/JkUE9JaJ
-         FI7FLRBjD3h0UFYSqrUklIgvpdlx/a0IDIome5sgxbbsl3V0Jtaka7c6d0ktqmqCLchT
-         rx7WmQOQ2W5e8z7USS/WlcxoofTqXyDkF+gDWeqUQvzoz46UM4o506Emv2LTr/SmDHSa
-         srv92O6iSl7l/SpMdvCGebcnbQocc9WyqyfX8SndFc29gAHD9IVCKB4lYiA4J94S9xl9
-         xuOJh5Uqsbt2yoAWZNXpm1+zbmuBGsRzpqRmCawWE/pr3+DpxOfJcJ6Jgu987/VG4Cn2
-         CDaw==
-X-Gm-Message-State: AC+VfDwzJkN5ixVhSoJ7ld6Q3rxlzuk03eeJtT6djpkQ4mHzChul/UaR
-        sUD+pptXyYzt62Wc50KbWSBCRw==
-X-Google-Smtp-Source: ACHHUZ6EnMu+AeLIi6226BV8ycsU3I7rA5S34eKhYzKJmE27e3+zJ4AJxKMBdeYLfK1LwtNfze4BPg==
-X-Received: by 2002:a17:907:9307:b0:973:ebbc:1d6a with SMTP id bu7-20020a170907930700b00973ebbc1d6amr10489039ejc.33.1686593997962;
-        Mon, 12 Jun 2023 11:19:57 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id a9-20020a17090680c900b0096f782f727esm5618321ejx.140.2023.06.12.11.19.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 11:19:57 -0700 (PDT)
-Message-ID: <73243db4-3caa-9746-0a78-223f512c9130@linaro.org>
-Date:   Mon, 12 Jun 2023 20:19:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 05/12] dt-bindings: remoteproc: Add Qualcomm RPM
- processor/subsystem
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20221208; t=1686594165; x=1689186165;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QKqLQJH1mqzuRzsiJTvJ04rfDSsqHrrA3iBCbUsSHOI=;
+        b=hYu5pio1+PDhQrO52E39JfDO5OgP5Q+vxrUVA0le7Ac9Sm0zj0OL3WEtafG06pztk3
+         fZyM6j14KkboBnXv+qt6mIfg7oajQRzQdbsjEuLFpyGuVNZu0HJZgEqbqbcAY83/DN6+
+         B0wj+o2FfttufP/kRU263AqwWXLZ7zPhUu3CI7E3l1BAN/hi8YdwtqwBR5EpdR6dSt1j
+         f932WB4d9XyfsI0VXeWX31U7Exi/YwMp9bzR9pifFvoepnmcqeLQdGb93rDNlWMd4jYY
+         iuvqII54xow235vSQbBZlD9PQ39ex2nF7zWb7j6Tg0mPa8vTisL3O8OZMxmA3DUMaukM
+         aqdA==
+X-Gm-Message-State: AC+VfDxDE2xGuuLyPO6IsC9k/4ZPoc1l3ODhYlhFi+17N4Qt+hhrtHj3
+        6Ls/fxWaLYjnAGSnmKt7PIm5pmUbNPPNdL0p
+X-Google-Smtp-Source: ACHHUZ7SIa1EObO/QHbeisX6ifIqewTz5w73pxUAYksizGq0x9vX6Bwlibfza1dl8IakcSAsMmJE1g==
+X-Received: by 2002:a17:906:fe43:b0:978:9235:d428 with SMTP id wz3-20020a170906fe4300b009789235d428mr9303920ejb.36.1686594165554;
+        Mon, 12 Jun 2023 11:22:45 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id c19-20020a170906925300b0096f67b55b0csm5575839ejx.115.2023.06.12.11.22.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 11:22:45 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     linux-kernel@vger.kernel.org,
+        Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20230531-rpm-rproc-v2-0-56a4a00c8260@gerhold.net>
- <20230531-rpm-rproc-v2-5-56a4a00c8260@gerhold.net>
- <9cdf22cc-6509-b87e-e631-4e3633d1f542@linaro.org>
- <ZISqNPnQgPNEsmxa@gerhold.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZISqNPnQgPNEsmxa@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/3] Add D1/T113s thermal sensor controller support
+Date:   Mon, 12 Jun 2023 20:22:43 +0200
+Message-ID: <13282074.uLZWGnKmhe@jernej-laptop>
+In-Reply-To: <20230610203549.1127334-1-bigunclemax@gmail.com>
+References: <20230610203549.1127334-1-bigunclemax@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/06/2023 18:52, Stephan Gerhold wrote:
-> On Sat, Jun 10, 2023 at 06:43:17PM +0200, Krzysztof Kozlowski wrote:
->> On 08/06/2023 09:10, Stephan Gerhold wrote:
->>> On Qualcomm platforms, most subsystems (e.g. audio/modem DSP) are
->>> described as remote processors in the device tree, with a dedicated
->>> node where properties and services related to them can be described.
->>> +
->>> +  smd-edge:
->>> +    $ref: /schemas/remoteproc/qcom,smd-edge.yaml#
->>> +    description:
->>> +      Qualcomm Shared Memory subnode which represents communication edge,
->>> +      channels and devices related to the RPM subsystem.
->>> +
->>> +  glink-rpm:
->>
->> This should be "glink-edge", to be a bit more generic and match existing
->> smd-edge.
->>
+Dne sobota, 10. junij 2023 ob 22:35:41 CEST je Maksim Kiselev napisal(a):
+> This series adds support for Allwinner D1/T113s thermal sensor controller.
+> THIS controller is similar to the one on H6, but with only one sensor and
+> uses a different scale and offset values.
 > 
-> I fully agree and I actually made that change at some point before
-> sending v1. Unfortunately, it doesn't work: The node name "glink-edge"
-> is already reserved by qcom,glink-edge.yaml. While it's very similar it
-> has some subtle differences to glink-rpm-edge.yaml. For example, there
-> is no qcom,remote-pid in the RPM variant which is required by the normal
-> glink-edge.
+> v2:
+> - Fixed SoB tag
 
-But the other variant has, so they are pretty similar. It could be one
-binding or some common part. Anyway we can as well drop the nodename
-from the qcom,glink-edge.yaml binding. Anyway the binding is referenced
-by each specific remote proc, so this nodename brings nothing.
-
-> Would "glink-rpm-edge" sound better?
-> 
-> Thanks,
-> Stephan
-> 
+It doesn't seems you fixed that.
 
 Best regards,
-Krzysztof
+Jernej
+
+> - Moved binding patch before driver changes
+> 
+> v1:
+> - Initial version
+> 
+> Maxim Kiselev (3):
+>   dt-bindings: thermal: sun8i: Add binding for D1/T113s THS controller
+>   thermal: sun8i: Add D1/T113s THS controller support
+>   riscv: dts: allwinner: d1: Add thermal sensor and thermal zone
+> 
+>  .../thermal/allwinner,sun8i-a83t-ths.yaml     | 20 +++++++++++++-
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 26 +++++++++++++++++++
+>  drivers/thermal/sun8i_thermal.c               | 13 ++++++++++
+>  3 files changed, 58 insertions(+), 1 deletion(-)
+> 
+> 
+
+
+
 
