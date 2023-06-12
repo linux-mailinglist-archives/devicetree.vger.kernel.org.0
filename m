@@ -2,167 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48BA672CD6B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3814372CD78
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:06:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236949AbjFLSDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 14:03:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33084 "EHLO
+        id S237084AbjFLSGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 14:06:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234857AbjFLSDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:03:53 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4060E63
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:03:51 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-97881a996a0so826556166b.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:03:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686593030; x=1689185030;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+gBq/t0JN3IzKswRA94RxVh/S2cDbwUrf8NJSpnNdH8=;
-        b=Pw8r5MbGovGypHmtBmz6yfhQEnE+zUeLQ2WrirrWlxDjY+Aa/GR882ginIgV7EVeZR
-         br86bMhYeKThvzp+ijHJIOzfkudyrCQgNEeI1xZPfJpUWA9zHTYufZK1o4L34Y3+wauY
-         +LRr3vGFamsvz3GrEHI5t0TjS/UnwvcdkK7Ttg9Xwe7VA6LI6Iy97c8UEXAYEGgMCwpC
-         TDC3sSa8xRknm9JvynmXNuOFlWIoV+x11A/BihgqxvM5YSBCWoIr2PjcfQiAfbIiW/rM
-         +ouAZt1X1wqeE8eJhWRkvj7xu2jlCvbs8/vpRLwlxcS0ntoqAXDW5kQoVvl5B3S0mP7Q
-         k0rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686593030; x=1689185030;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+gBq/t0JN3IzKswRA94RxVh/S2cDbwUrf8NJSpnNdH8=;
-        b=LABEnDTRPKZFak4hsWHWP/gMsu3AbW09/cR8PJPJFVXf+RntzFy2/3b2IuLTFhxaKU
-         EFb6pr7ZbjWk12mieNn4/wO2MNnxVBz0kmxq6bJe+n2JXYgGptGileirDore5ZI1J8YH
-         vk+1j+9uZgXrU7tmNdXRKp3uLBsHsXGXJQU5rm43Lkf4vdCSvzCGSc8oSTlkI498dLCN
-         gmwWcSUyLQvY6FFGoXFZ4RmO7y58NL4kD7W1ugwO0s5KztNWWEcfrBnjGNW3M1+CTAYa
-         m40qmrJdlbSAUkpsP33TV4Ivo6srXz8mvY9BfQPg88IF5+K776GbJFz/vgUlFizp296H
-         ct+w==
-X-Gm-Message-State: AC+VfDzr6Dvvu+v3cuMY5P9vB9OP8MMevbXsvErHkkhEUIBKq/PzTam3
-        kQqhVLdQiv1iNdx4n1y37bmaYt2EaeW3TbML1n4=
-X-Google-Smtp-Source: ACHHUZ6r1a+S4U278JHtoJCXri2PKwOvWFUCGuQzut1SdnewBrBtda3IbFuJC7OwiaB1N2wI/WMZYw==
-X-Received: by 2002:a17:907:6d23:b0:96f:b8a0:6cfe with SMTP id sa35-20020a1709076d2300b0096fb8a06cfemr10181499ejc.54.1686593030299;
-        Mon, 12 Jun 2023 11:03:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id e26-20020a1709062c1a00b00974556e50a6sm5524182ejh.114.2023.06.12.11.03.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 11:03:49 -0700 (PDT)
-Message-ID: <28e776f8-1e37-79f4-5c10-a57c5cd7d4e4@linaro.org>
-Date:   Mon, 12 Jun 2023 20:03:47 +0200
+        with ESMTP id S236337AbjFLSGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:06:17 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C680FE63;
+        Mon, 12 Jun 2023 11:06:15 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AE45C6606EAE;
+        Mon, 12 Jun 2023 19:06:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686593174;
+        bh=yYx4qqYv+3yHSQphvr+NHsZgUVmCj4ZXNZY98wPyhWA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XPwPwMLI0ZfzEdBT8NjCN8q1A+cvE199gGBV1X45+SJfJJB0mbIJk2K1rMcrnJhyD
+         434Aobe2o5K1K6BFcgdkCkdZhKQRXpjgiq6DVu3e+vOY3qzwY+Rn5nTZCNNaA7+t5t
+         YxHRblK9m+YNlhA8FmzTFZ9yoivi4FS6CmknWzsBM8zf5U6U8Vm7avDPcUltH0cYyv
+         h/0tdUgOFiqkGM9tGHKq0KcRJTq1kwPy90I/lCBmj1nDCsPQrHX3mrAXIq1zrRoc9I
+         TQpFLmNlJzThpP28xKpw4tP8kE8R9FaB9faRh17rNxN/q1hJbojtfIjS17qyIZ4UCA
+         IIDebQY46fBQg==
+Date:   Mon, 12 Jun 2023 14:06:06 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2] media: mediatek: vcodec: fix cancel_work_sync fail
+ with fluster test
+Message-ID: <b130377d-4e1a-423c-9e51-c96a3833b51c@notapiano>
+References: <20230612101939.20259-1-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v12 1/2] spi: add loongson spi bindings
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
- <20230608072819.25930-2-zhuyinbo@loongson.cn>
- <6ebed84c-2b42-c981-7b3f-e71cc88e4c2c@linaro.org>
- <4bf747c4-b767-b20c-e00f-724b50f44edb@loongson.cn>
- <6bfc2a22-6901-0858-7b90-bc4c52c66810@linaro.org>
- <bd2d7830-3ab6-0906-b06a-83d3e0a96749@loongson.cn>
- <11ca2b90-544d-18c2-fb15-7909ca60507f@linaro.org>
- <f6d4ecb5-e9df-346e-4aab-772fd01689c8@loongson.cn>
- <a9952e76-1204-5bc7-7856-0c7f8a411d76@linaro.org>
- <9c94397d-1e31-02fa-bdbe-af888c72eac4@loongson.cn>
- <657f8d19-de83-8be6-4a9d-5f13b1df7383@linaro.org>
- <b0e5e13e-6746-bd90-2a49-31ee6dd3e8a2@loongson.cn>
- <84ccf4cc-072d-adbf-0361-95ceae13f333@linaro.org>
- <5d060cac-ff28-60e9-98a8-f2bd4d378455@loongson.cn>
- <4e30870d-86e2-8536-8e0d-aab4ce5027d2@linaro.org>
- <0c532e09-4821-5e07-92e6-7bc3cd79869e@loongson.cn>
- <d24f1e60-0ef3-2cb9-9675-846d861ef0c8@linaro.org>
- <9fec9cfa-0686-91d8-cba4-91ea67243b47@loongson.cn>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9fec9cfa-0686-91d8-cba4-91ea67243b47@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230612101939.20259-1-yunfei.dong@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2023 13:29, zhuyinbo wrote:
+On Mon, Jun 12, 2023 at 06:19:39PM +0800, Yunfei Dong wrote:
+> Will cause below warning then reboot when exercising the decoder with
+> fluster on mt8192-asurada-spherion.
 > 
+> This deinit function is called on the v4l2 release callback, even though the
+> work might not have been initialized as that only happens if/when the codec
+> specific 'decode' callback is called (as a result of device_run m2m callback).
 > 
-> 在 2023/6/12 下午4:16, Krzysztof Kozlowski 写道:
->>>>>>>>> 在 2023/6/8 下午7:45, Krzysztof Kozlowski 写道:
->>>>>>>>>> On 08/06/2023 13:42, zhuyinbo wrote:
->>>>>>>>>>> --- a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>>>>>>>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>>>>>>>> @@ -16,6 +16,7 @@ properties:
->>>>>>>>>>>          compatible:
->>>>>>>>>>>            enum:
->>>>>>>>>>>              - loongson,ls2k1000-spi
->>>>>>>>>>> +      - loongson,ls2k0500-spi
->>>>>>>>>>
->>>>>>>>>> Aren't they compatible?
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> Are you saying that the spi driver is compatible with 2k0500 ?
->>>>>>>>
->>>>>>>> Didn't you say this through 11 previous revisions?
->>>>>>>
->>>>>>>
->>>>>>> Yes, did I understand your meaning incorrectly ?
->>>>>>
->>>>>> If they are compatible, then they are not part of one enum. They could
->>>>>> not be as this would easily fail in testing of your DTS.
->>>>>>
->>>>>
->>>>>
->>>>> The "loongson,ls2k0500-spi" wasn't a compatible in previous version and
->>>>> I will add "loongson,ls2k0500-spi" as a compatible in spi driver and
->>>>> added it as a part of the one enum in dt-binding.
->>>>
->>>> No, because you claimed - if I understood correctly - that they are
->>>> compatible. Don't add fake entries to the driver.
->>>>
->>>
->>>
->>> I'm a bit confused, and I just need to add 'loongson,ls2k0500-spi' as
->>> one enum in dt-bindings, but driver don't add this entry ?
->>
->> Compatibility is expressed with a list:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#compatible
->> so it cannot be just one enum, but "items". There are hundreds of
->> examples including example-schema.
+> CPU: 5 PID: 2338 Comm: gst-launch-1.0 Tainted: G        W          6.4.0-rc5-next-20230607+ #475
+> Hardware name: Google Spherion (rev0 - 3) (DT)
+> pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : __flush_work.isra.0+0x23c/0x258
+> lr : __cancel_work_timer+0x14c/0x1c8
+> sp : ffff8000896e3b00
+> x29: ffff8000896e3b00 x28: ffff57c3d4079f80 x27: 0000000000000000
+> x26: ffff57c3d4079f80 x25: ffffb76395b59dc8 x24: 0000000000000001
+> x23: ffffb763928daab8 x22: ffff57c3d4079f80 x21: 0000000000000000
+> x20: ffffb763955f6778 x19: ffff57c3cf06f4a0 x18: 0000000000000000
+> x17: 000000040044ffff x16: 005000f2b5503510 x15: 0000000000000000
+> x14: ffff57c3c03a1f80 x13: ffffa0616a2fc000 x12: 000000003464d91d
+> x11: 0000000000000000 x10: 0000000000001b10 x9 : ffffb763928de61c
+> x8 : ffff57c3d407baf0 x7 : 0000000000000000 x6 : ffff57c3d4079f80
+> x5 : ffff57c3d4079f80 x4 : 0000000000000000 x3 : 0000000000000000
+> x2 : ffff8000896e3bf0 x1 : 0000000000000011 x0 : 0000000000000000
+> Call trace:
+>  __flush_work.isra.0+0x23c/0x258
+>  __cancel_work_timer+0x14c/0x1c8
+>  cancel_work_sync+0x1c/0x30
+>  vdec_msg_queue_deinit+0xac/0xc8
+>  vdec_h264_slice_deinit+0x64/0xb8
+>  vdec_if_deinit+0x3c/0x68
+>  mtk_vcodec_dec_release+0x20/0x40
+>  fops_vcodec_release+0x50/0xd8
+>  v4l2_release+0x7c/0x100
+>  __fput+0x80/0x270
+>  ____fput+0x18/0x30
+>  task_work_run+0x78/0xe0
+>  do_notify_resume+0x29c/0x7f8
+>  el0_svc+0xa4/0xb8
+>  el0t_64_sync_handler+0xc0/0xc8
+>  el0t_64_sync+0x1a8/0x1b0
+> ---[ end trace 0000000000000000 ]---
 > 
-> 
-> Is it a description like the following?
-> 
->   properties:
->     compatible:
-> -    enum:
-> -      - loongson,ls2k1000-spi
-> +    oneOf:
-> +      - enum:
-> +          - loongson,ls2k1000-spi
-> +      - items:
-> +          - enum:
-> +              - loongson,ls2k1000-spi
-> +          - const: loongson,ls2k1000-spi
+> Fixes: 297160d411e3 ("media: mediatek: vcodec: move core context from device to each instance")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reported-by: N�colas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Remove this items part - it does not make sense. Device is not
-compatible with itself. Rest looks ok.
+Hi Yunfei,
 
+thanks for addressing the issue. The warnings are now gone with this patch
+applied.
 
+Tested-by: N�colas F. R. A. Prado <nfraprado@collabora.com>
 
-Best regards,
-Krzysztof
-
+Thanks,
+N�colas
