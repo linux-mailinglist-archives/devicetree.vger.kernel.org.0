@@ -2,171 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC06972D39F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 23:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F9672D40E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 00:05:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238170AbjFLVyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 17:54:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55996 "EHLO
+        id S238348AbjFLWE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 18:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238394AbjFLVxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 17:53:40 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C982B1984
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:52:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686606771;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Lig8bfKofULub0rdesjmJTGhCjl+c+cZITPDTaTBD/c=;
-        b=SK3t2i4HWkvOs0bA/+lNwejEFm32sd9+9kUGrSglII7LdTwJVXLY8Vt1ezKiCOjniIEVYE
-        v/YNfVH+OOZ9x29fBM6AiMyMKf+1Tmqx+wDnji0jqxFhj4Dupsexkb6XiXl8TfBPIF/I/5
-        w/o/QyE2TTEtQr6HNGjeU0jVL9lW1nc=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-653--cuxyrszP-KCCSxmb8tSFw-1; Mon, 12 Jun 2023 17:52:50 -0400
-X-MC-Unique: -cuxyrszP-KCCSxmb8tSFw-1
-Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-30793c16c78so7240056f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 14:52:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686606769; x=1689198769;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lig8bfKofULub0rdesjmJTGhCjl+c+cZITPDTaTBD/c=;
-        b=ipKldGZhPxRPlNMN0oFjdyXeJBvM4BMP7bcboWzSxMGYAaSC8uwvkg1/31qZCE/ola
-         IcwyH2gsV7chQ/idCVY9yAYK4hJCQudXDz9Vc9gltPv20DuFoYaITQ4I3zqitrYoEhSR
-         jlYIDc+kP9TKCBLNONRe9lch/uGZBavpjKS4XcGLp5E1OmdNyNnrfEaRo2x8wStp5ZEF
-         paR0sebSkxTB55y+t/AQPh7OjuR5N7y65OAgeIyeJVrfRgctqa/qasWIu8H+PuRhO6Q8
-         q5tJrsQ6D7oYPUaKhK8C+YsUzzi4cogL55xBkHTloQm6U37eioADeEft2Bx7bCnsB7Xt
-         Aq9g==
-X-Gm-Message-State: AC+VfDytkfHPc0oxPo5rcdxhgL+7PAuVgeH0/NfkAIDjKvDBdBXTqUBn
-        a0GsLWWoeW3kb8b3SOKWCKZ5RRGlAKwKS6WWFumPeCg7KO/f+Ec6gwSS3Tjz9AUAv3j7OSR0c4H
-        tsjW/O/hujBnFiu507issbA==
-X-Received: by 2002:a5d:4e85:0:b0:30a:d2e6:6a78 with SMTP id e5-20020a5d4e85000000b0030ad2e66a78mr5644114wru.24.1686606769103;
-        Mon, 12 Jun 2023 14:52:49 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ533dy2vongGwe/ijXoDrZL6tuCydkYrtVs8jx5yk/Ac46ZodmFGImZx55e7jFjVeMCqkk2YQ==
-X-Received: by 2002:a5d:4e85:0:b0:30a:d2e6:6a78 with SMTP id e5-20020a5d4e85000000b0030ad2e66a78mr5644097wru.24.1686606768769;
-        Mon, 12 Jun 2023 14:52:48 -0700 (PDT)
-Received: from localhost (net-130-25-106-149.cust.vodafonedsl.it. [130.25.106.149])
-        by smtp.gmail.com with ESMTPSA id a11-20020a05600c224b00b003f8126bcf34sm8119367wmm.48.2023.06.12.14.52.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 14:52:48 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 23:52:46 +0200
-From:   Lorenzo Bianconi <lorenzo.bianconi@redhat.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S238630AbjFLWEt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 18:04:49 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B23C1172A;
+        Mon, 12 Jun 2023 15:04:30 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35CLxle7025746;
+        Mon, 12 Jun 2023 22:04:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=ej4/2OpOV46vGovK8GGZdeZ7EhyQvISVrSPaPx7jFsQ=;
+ b=SMZz9CdE0OZh+L0ZjCr5S9uiupMpYlw2sMmgbQp23ehy4nuifpqmwpJiea3sQugj0qXx
+ 0yO4C5fcnYrGUbb+AngR3zNvPXjv2/4lWNJ0dwy7bSjCGPNrHts3gdVMCO2vf4o82AYj
+ q77jeVH9kvCCdlIU3FCH79p8aZ4E8zKguUP06uu5hcNC/PjGp5SyYOhTvYCUvvOxcoof
+ FsYW4F3nogOtU4rICftLQlAbMeX5+24GarztPejw0+9ja52qiiHYfSVjbaB/6491SrnL
+ 3U9RZLWHyeGkJF7P1p6POum1/Hd4hWDjUuJCj86WkCwr/FhYuq214MsjrB8z7OVpuTbl Tg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r60pesf3k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Jun 2023 22:04:27 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35CM4Q5Z028470
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Jun 2023 22:04:26 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Mon, 12 Jun 2023 15:04:25 -0700
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Sam Shih <Sam.Shih@mediatek.com>
-Subject: Re: [PATCH net-next 3/8] net: ethernet: mtk_eth_soc: move MAX_DEVS
- in mtk_soc_data
-Message-ID: <ZIeTrjCsyQSiCnsr@lore-desk>
-References: <ZIUWxQ9H7hNSd6rJ@makrotopia.org>
- <ZIb6604WRJsevaWN@shell.armlinux.org.uk>
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sc8180x-primus: dispcc is already okay
+Date:   Mon, 12 Jun 2023 15:04:20 -0700
+Message-ID: <20230612220420.1884631-1-quic_bjorande@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+jV/BeWnWuWrIw8B"
-Content-Disposition: inline
-In-Reply-To: <ZIb6604WRJsevaWN@shell.armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: xqQW4q2IF2yhpM78UUk5T8NqCAoK-aHc
+X-Proofpoint-ORIG-GUID: xqQW4q2IF2yhpM78UUk5T8NqCAoK-aHc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-12_16,2023-06-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0
+ adultscore=0 suspectscore=0 mlxlogscore=815 impostorscore=0 mlxscore=0
+ phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306120189
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+&dispcc status was changed to okay by default in the platform, no need
+to do it again in the board.
 
---+jV/BeWnWuWrIw8B
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: 2ce38cc1e8fe ("arm64: dts: qcom: sc8180x: Introduce Primus")
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts | 4 ----
+ 1 file changed, 4 deletions(-)
 
-> On Sun, Jun 11, 2023 at 01:35:17AM +0100, Daniel Golle wrote:
-> > @@ -1106,14 +1105,14 @@ struct mtk_eth {
-> >  	spinlock_t			tx_irq_lock;
-> >  	spinlock_t			rx_irq_lock;
-> >  	struct net_device		dummy_dev;
-> > -	struct net_device		*netdev[MTK_MAX_DEVS];
-> > -	struct mtk_mac			*mac[MTK_MAX_DEVS];
-> > +	struct net_device		**netdev;
-> > +	struct mtk_mac			**mac;
-> >  	int				irq[3];
-> >  	u32				msg_enable;
-> >  	unsigned long			sysclk;
-> >  	struct regmap			*ethsys;
-> >  	struct regmap			*infra;
-> > -	struct phylink_pcs		*sgmii_pcs[MTK_MAX_DEVS];
-> > +	struct phylink_pcs		**sgmii_pcs;
-> >  	struct regmap			*pctl;
-> >  	bool				hwlro;
-> >  	refcount_t			dma_refcnt;
->=20
-> Is it really worth the extra allocations?
->=20
-> There's three pointers here per device. Let's talk about modern systems,
-> so that's 8 bytes each, and if MTK_MAX_DEVS was two, that's 48 bytes in
-> all. If we expanded the array to allow three, that would be 72 bytes.
->=20
-> If we allocate separately, then we're allocating 16 or 24 bytes three
-> times depending on whether we want two or three of them.
->=20
-> On arm64, I'm seeing the minimum slab size as 128 bytes, which means
-> that's the minimum memory allocation. So, allocating three arrays will
-> be 384 bytes in all, irrespective of whether we want two or three
-> entries.
->=20
-> That's a waste of about 5x the memory over just expanding the arrays!
-
-ack, I agree. I will fix it.
-
-Regards,
-Lorenzo
-
->=20
-> If you want to go down the route of dynamically allocating these, it
-> would make better sense to combine them into a single structure that
-> itself is an array, and thus requiring only one allocation. That
-> reduces the wastage to about 56 bytes for three ports or 80 bytes
-> for two.
->=20
-> Thanks.
->=20
-> --=20
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
->=20
-
---+jV/BeWnWuWrIw8B
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZIeTrgAKCRA6cBh0uS2t
-rNj4AP9deO0Gr7/2QBPFl0zwa5owkvBsU7Fw1f3Xo0VOcoEEOQEApfOn/gVjmHQW
-s9GY/xg59Fhdvwhh8lfHmXEvgidsqAg=
-=V5g1
------END PGP SIGNATURE-----
-
---+jV/BeWnWuWrIw8B--
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+index cca663bcb92d..fc038474cb71 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
++++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+@@ -291,10 +291,6 @@ vreg_l16e_3p0: ldo16 {
+ 	};
+ };
+ 
+-&dispcc {
+-	status = "okay";
+-};
+-
+ &gpu {
+ 	status = "okay";
+ 
+-- 
+2.25.1
 
