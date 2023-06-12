@@ -2,148 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76C6072CEDB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F9B472CEEC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 21:03:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237286AbjFLS7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 14:59:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38736 "EHLO
+        id S237350AbjFLTDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 15:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjFLS7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:59:16 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3349313A;
-        Mon, 12 Jun 2023 11:59:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686596355; x=1718132355;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VZa1fYkJlOSJPNfqG8vxxOmpB4Z55y+Js6DTs8pgAj4=;
-  b=MOPLBkzPlZTP0DbGBZi8WmXlvGBp6P+EYEC+Zz2kfTnzbrv7Wn68sHnH
-   gPtsxHSF46qQloZp6LNeaVQnKz2f1cDMx3IX5xk3Oc4nqpGZZ9lzqsfsT
-   hlVqi1Wm1grmxoTfZ7GZXwZhgxi/SNVs2FEhYbIKLmE/xbhieZxu520LR
-   YXJbec/mVHBQeBHjgs74G1lG1y/ubV2wCClJuGym57+dkjyXUu/pCUICh
-   yoDOItDinHIHQvlRSl460Ah0iuB9MdTNiLtd2LiazhsBWiLfEWwcyBqen
-   kTjz64Ebxp+h+TxiqRrFnef00A4qDFENQOpo4MAM4kFd37Z3KHmhkwKxb
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="342820431"
-X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; 
-   d="scan'208";a="342820431"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2023 11:59:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="801125292"
-X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; 
-   d="scan'208";a="801125292"
-Received: from lkp-server01.sh.intel.com (HELO 211f47bdb1cb) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 12 Jun 2023 11:59:11 -0700
-Received: from kbuild by 211f47bdb1cb with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q8mkw-0000aG-34;
-        Mon, 12 Jun 2023 18:59:10 +0000
-Date:   Tue, 13 Jun 2023 02:58:32 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] rtc: isl12022: add support for trip level DT bindings
-Message-ID: <202306130201.ai7ck1mx-lkp@intel.com>
-References: <20230612113059.247275-5-linux@rasmusvillemoes.dk>
+        with ESMTP id S237636AbjFLTDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 15:03:52 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15ED0B7;
+        Mon, 12 Jun 2023 12:03:49 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 598B16606EAE;
+        Mon, 12 Jun 2023 20:03:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686596627;
+        bh=skSAnaTgSHIV6cwfzXxaMUW4myAnueW+/ns3bFUzy8M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bJf/h/MKb4PKJ/uT4rymeQgnn0AllhVGqODjBRQDpE57+Wxi/lMfC8ncPQ296ZiQn
+         sCiTiqNTX3mlAgBI3bbXccPVVcvUffOrx4pqlPhzh5jIFL2szdnE9tK7ZL3wyTjYyP
+         Ksc7VY7cbgFNvKxGgEavDw0NprkEh5aLbX6v7t00uiOW44RAe8n4ReZQtGnfQBVC/x
+         hmX2luZj3O21yCQki+gw+Ot3iJz9y0K6niH/NPyjLwxxOzL4GpP8171UilbtnsDh12
+         +J4l/Dc4sDW7jGQhSe/7oYvJZwSWb1m/6P7DOo+J06sMZ+KWz26T+k6X5XToMvdDjL
+         LBoNvN30WoGEA==
+Date:   Mon, 12 Jun 2023 15:03:39 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        kernel@collabora.com, Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 0/5] Enable decoder for mt8183
+Message-ID: <e8ddbc54-b929-4363-9bc7-b0f406062f46@notapiano>
+References: <20230607205714.510012-1-nfraprado@collabora.com>
+ <380c6489-7a3c-778b-5b81-6339b6964b90@xs4all.nl>
+ <fda4f196-8466-8290-9072-d80fff367720@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230612113059.247275-5-linux@rasmusvillemoes.dk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fda4f196-8466-8290-9072-d80fff367720@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rasmus,
+On Mon, Jun 12, 2023 at 11:53:51AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 12/06/23 09:02, Hans Verkuil ha scritto:
+> > Hi Nicolas,
+> > 
+> > On 07/06/2023 22:53, Nícolas F. R. A. Prado wrote:
+> > > 
+> > > This series enables the hardware decoder present on mt8183. At first
+> > > glance, the only missing piece is the devicetree node for it, however,
+> > > simply adding it as is would cause an address collision between the
+> > > first register iospace and the clock-controller node, so a rework of the
+> > > dt-binding and driver, as well as addition of a clock, were needed
+> > > first.
+> > > 
+> > > Tested that H264 decoding works with the hardware decoder on
+> > > mt8183-kukui-jacuzzi-juniper-sku16, giving a fluster score of 98/135 on
+> > > the JVT-AVC_V1 test suite. And ensured other SoCs (MT8192 and MT8195)
+> > > still work as usual.
+> > > 
+> > > Changes in v2:
+> > > - Merged commit 1 (media: dt-bindings: mediatek,vcodec: Allow single
+> > >    clock for mt8183) into commit 3 (media: dt-bindings: mediatek,vcodec:
+> > >    Remove VDEC_SYS for mt8183)
+> > > - Further constrained properties in dt-binding
+> > > - Added CLK_IGNORE_UNUSED flag to active clock
+> > > - Reformatted reg-names in DT node
+> > > 
+> > > Nícolas F. R. A. Prado (4):
+> > >    media: dt-bindings: mediatek,vcodec: Don't require assigned-clocks
+> > >    media: dt-bindings: mediatek,vcodec: Remove VDEC_SYS for mt8183
+> > >    media: mediatek: vcodec: Read HW active status from clock
+> > >    clk: mediatek: mt8183: Add CLK_VDEC_ACTIVE to vdec
+> > 
+> > Is the clk patch independent from the others? It's not clear to me.
+> > 
+> > If the clk patch has to go in together with the media patches, then
+> > please let me know and post a v3 where the clk patch is also CC-ed to
+> > the linux-media mailinglist to ensure it ends up in our patchwork system.
+> > 
+> > And in that case I need a Acked-by from the clk maintainer as well.
+> > 
+> > If it is independent, then there is no need for a v3 (at least, not
+> > for this).
+> > 
+> 
+> The clock patch is not independent, as in the devicetree changes will not
+> work without the addition of that clock (and of course even fail building),
 
-kernel test robot noticed the following build errors:
+Yes, but that means that the devicetree patch is dependent of the clock patch,
+but the clock patch is independent from the media patches, and can therefore be
+applied through the clock tree as usual.
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on robh/for-next linus/master v6.4-rc6 next-20230609]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+So, the media patches (first three) can be merged through the media tree, the
+clock patch (patch 4) through the clock tree independently, and the only
+requirement is that the DT patch (last one) is only applied by Matthias after
+the clock patch is present, to avoid build problems, and also after the media
+patches are present, to avoid dt-binding errors.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rasmus-Villemoes/rtc-isl12022-remove-wrong-warning-for-low-battery-level/20230612-211434
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20230612113059.247275-5-linux%40rasmusvillemoes.dk
-patch subject: [PATCH 4/8] rtc: isl12022: add support for trip level DT bindings
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20230613/202306130201.ai7ck1mx-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 12.3.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git remote add abelloni https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git
-        git fetch abelloni rtc-next
-        git checkout abelloni/rtc-next
-        b4 shazam https://lore.kernel.org/r/20230612113059.247275-5-linux@rasmusvillemoes.dk
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=alpha olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash drivers/
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306130201.ai7ck1mx-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/rtc/rtc-isl12022.c: In function 'isl12022_set_trip_levels':
->> drivers/rtc/rtc-isl12022.c:238:15: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
-     238 |         val = FIELD_PREP(ISL12022_REG_VB85_MASK, x85) | FIELD_PREP(ISL12022_REG_VB75_MASK, x75);
-         |               ^~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/FIELD_PREP +238 drivers/rtc/rtc-isl12022.c
-
-   219	
-   220	static void isl12022_set_trip_levels(struct device *dev)
-   221	{
-   222		struct regmap *regmap = dev_get_drvdata(dev);
-   223		u32 level85 = 0, level75 = 0;
-   224		int ret, x85, x75;
-   225		u8 val, mask;
-   226	
-   227		device_property_read_u32(dev, "isil,trip-level85-microvolt", &level85);
-   228		device_property_read_u32(dev, "isil,trip-level75-microvolt", &level75);
-   229	
-   230		for (x85 = 0; x85 < ARRAY_SIZE(trip_level85) - 1; ++x85)
-   231			if (level85 <= trip_level85[x85])
-   232				break;
-   233	
-   234		for (x75 = 0; x75 < ARRAY_SIZE(trip_level75) - 1; ++x75)
-   235			if (level75 <= trip_level75[x75])
-   236				break;
-   237	
- > 238		val = FIELD_PREP(ISL12022_REG_VB85_MASK, x85) | FIELD_PREP(ISL12022_REG_VB75_MASK, x75);
-   239		mask = ISL12022_REG_VB85_MASK | ISL12022_REG_VB75_MASK;
-   240	
-   241		ret = regmap_update_bits(regmap, ISL12022_REG_PWR_VBAT, mask, val);
-   242		if (ret)
-   243			dev_warn(dev, "unable to set battery alarm levels: %d\n", ret);
-   244	}
-   245	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Nícolas
