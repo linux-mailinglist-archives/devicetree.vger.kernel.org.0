@@ -2,84 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBB072B566
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 04:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0F2372B56E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 04:31:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233533AbjFLCZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 22:25:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34476 "EHLO
+        id S232979AbjFLCb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 22:31:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233487AbjFLCZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 22:25:53 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECAEE4E
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 19:25:45 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f6d7abe9a4so26771945e9.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 19:25:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686536744; x=1689128744;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7ZKG0ffrkcy1xii/drViWf4QWyfzui60KGk55lhMEuw=;
-        b=AYXs+BNS/C3jqjKVjMdVPoFBYjntnN4UTZ+btsasdNT1GNiuLtA7tJKG3Qcj5UCSOd
-         u6+vaNskESi7SG1rL0LF0yiLoSpTj4VSn0dxFw2VX4ZgJBe8Tx7iTEC0JquXZZesQ9j6
-         nbVkduqTVANFu3t8PHaAN+RUsWnMWEMlzF2OcnY9gW+RXkqOhEFLKqKCwusxFq2UlO6O
-         z5TAc2031fIgsLnPMBbT4V46ODxRXQKYAca1/WEdiTb98qzX3t/mvsuQUCyoIflOBcjS
-         A2hN2RWCAF8xeMExRmeHINcOjVWzGZ4vhTeA9zT6lmB4dS6W8mQE5JUKc7Yny/ZF+n5Y
-         YerQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686536744; x=1689128744;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ZKG0ffrkcy1xii/drViWf4QWyfzui60KGk55lhMEuw=;
-        b=hIEugDIO6hl7sMHzPiqeAzoqhED++PA8xyOX57owjpv7+z+O75r8SvpdXBWy2J9j2c
-         H11AAoU8zQ/pXELxDtBjq8TyRCdpDEVmeHXfg4e4skS7yUoA0MsiE84Bu3GBVIBTPXzY
-         ESGVux+etRUzJA3qUXsaZHDm2Zl6331JAidubkxCiGMq8iGDAHeWtJrTvGksAa6b1F9n
-         Xivh3rQ2ZbmPS2FeTBs1SiZeFdMbksBIn8Gf2cWoolyZcNwZmRunpYAWnIVQLVFeM8m0
-         M8ryn8x9K1po1w/ldup9TY45tgDDVaoKu1mk/xE1ZrvMP51P+QBlLcISScGk67BPdbH1
-         D4fw==
-X-Gm-Message-State: AC+VfDx6hwR9QB9bmyPhfZEsCj0yiGyIDrauWfgKZUqhXQ+xkvjXL2n6
-        kG1LkBjsfwDtDhqt80E9t/4BHQ==
-X-Google-Smtp-Source: ACHHUZ7Mo0TD6O9mkw5mKyecmLn6CRnZGtRiAqjqHg5t5KHVLq7hJN0qZ1A4oqj02qkAEndI2fWRZQ==
-X-Received: by 2002:a05:6000:191:b0:30a:ceb3:26bd with SMTP id p17-20020a056000019100b0030aceb326bdmr2854711wrx.56.1686536744219;
-        Sun, 11 Jun 2023 19:25:44 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id u9-20020a5d4349000000b003079c402762sm10934057wrr.19.2023.06.11.19.25.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Jun 2023 19:25:43 -0700 (PDT)
-Message-ID: <09ccfa54-5ada-8dff-03a2-b2ffb07a58c1@linaro.org>
-Date:   Mon, 12 Jun 2023 03:25:42 +0100
+        with ESMTP id S231786AbjFLCb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 22:31:26 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 996FCC5;
+        Sun, 11 Jun 2023 19:31:23 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.22])
+        by gateway (Coremail) with SMTP id _____8AxGup6g4ZkqWIDAA--.7455S3;
+        Mon, 12 Jun 2023 10:31:22 +0800 (CST)
+Received: from [10.180.13.22] (unknown [10.180.13.22])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx+OR4g4ZkrcMUAA--.59923S3;
+        Mon, 12 Jun 2023 10:31:20 +0800 (CST)
+Message-ID: <78ba489e-9391-ac05-2c25-c0210f61b7ed@loongson.cn>
+Date:   Mon, 12 Jun 2023 10:30:54 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V4 0/4] Add camera clock controller support for SM8550
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 3/3] ASoC: dt-bindings: Add support for Loongson audio
+ card
 Content-Language: en-US
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230609115058.9059-1-quic_jkona@quicinc.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230609115058.9059-1-quic_jkona@quicinc.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>, lgirdwood@gmail.com,
+        broonie@kernel.org
+Cc:     alsa-devel@alsa-project.org, loongarch@lists.linux.dev,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230605120934.2306548-1-mengyingkun@loongson.cn>
+ <20230605120934.2306548-3-mengyingkun@loongson.cn>
+ <118d13ef-a247-cf88-5084-afdebc6b7651@kernel.org>
+From:   Yingkun Meng <mengyingkun@loongson.cn>
+In-Reply-To: <118d13ef-a247-cf88-5084-afdebc6b7651@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Bx+OR4g4ZkrcMUAA--.59923S3
+X-CM-SenderInfo: 5phqw55lqjy33q6o00pqjv00gofq/1tbiAQAADGSFuYED8wABsl
+X-Coremail-Antispam: 1Uk129KBj93XoWxZw43CF4rtF48tw18uF13KFX_yoW5Zw1xpa
+        s5Ca12kFW8t3W7C3yrZ3W8Aw45X39ayanxtF42qw1UGFZ093WFgw4ak3Wj9a4Yyrn5Kay7
+        Za45Wa4xGa1qyagCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+        0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+        0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
+        wI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
+        xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
+        Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwI
+        xGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
+        6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
+        xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
+        jxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw2
+        0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
+        67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8CksDUUUUU==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,32 +68,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2023 12:50, Jagadeesh Kona wrote:
-> Add bindings, driver and devicetree node for camera clock controller on
-> SM8550.
+Hi Krzysztof,
 
-This is very confusing.
+Thanks for your kindly work.
 
-Your cover letter doesn't detail any changes and your individual patches 
-all say "no changes since v3", "no changes since v2"
 
-If this is a RESEND then mark it as a RESEND.
+On 2023/6/5 22:45, Krzysztof Kozlowski wrote:
+> On 05/06/2023 14:09, YingKun Meng wrote:
+>> From: Yingkun Meng <mengyingkun@loongson.cn>
+>>
+>> The audio card uses loongson I2S controller present in 7axxx/2kxxx chips
+>> to transfer audio data.
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC.  It might happen, that command when run on an older
+> kernel, gives you outdated entries.  Therefore please be sure you base
+> your patches on recent Linux kernel.
+>
+> You missed at least DT list (maybe more), so this won't be tested.
+> Please resend and include all necessary entries.
+>
 
-Good practice is to for example add a note that says
+Sorry for my mistake. Fixed in new version.
 
-"I looked at updating the yaml for the camcc but opted to do this in 
-another series" or "opted not to do this at this time" or "it doesn't 
-make sense because of X"
+>> Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
+>> ---
+>>   .../sound/loongson,ls-audio-card.yaml         | 64 +++++++++++++++++++
+>>   1 file changed, 64 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+>> new file mode 100644
+>> index 000000000000..f1d6ee346bb3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+>> @@ -0,0 +1,64 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/loongson-audio-card.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Loongson generic ASoC audio sound card.
+> What is a "generic audio card"? Does it even match hardware? Bindings
+> are supposed to describe hardware, which is usually very specific.
+>
+> Also: Drop full stop. It's a title.
+>
+On loongson platform, the I2S controllers connect different codecs to
+form different audio devices that can be driven by the same machine driver.
+The "generic audio card" refers to these audio devices.
 
-https://lore.kernel.org/linux-arm-msm/546876ba-970d-5cd5-648e-723698ca74fd@linaro.org/
+Currently, it can match some specific hardware, such as
+2k2000 + es8323: the 2k2000 is a loogson SoC with a I2S controller
+7a2000 + es8288: the 7a2000 is a bridge chip with a I2S controller
 
-Could you perhaps RESEND this V4 with a log that explains what has 
-changed from one version to the next.
 
-If nothing has changed then don't bump the version prefix with RESEND..
+>> +
+>> +maintainers:
+>> +  - Yingkun Meng <mengyingkun@loongson.cn>
+>> +
+>> +description:
+>> +  Generic ASoC audio device for loongson platform.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: loongson,ls-audio-card
+>> +
+>> +  model:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: User specified audio sound card name
+>> +
+>> +  mclk-fs:
+>> +    $ref: simple-card.yaml#/definitions/mclk-fs
+>> +
+>> +  cpu:
+>> +    description: Holds subnode which indicates cpu dai.
+>> +    type: object
+>> +    additionalProperties: false
+>> +    properties:
+>> +      sound-dai:
+>> +        maxItems: 1
+> In the cpu: required with sound-dai
 
-Second thought even replying to your cover email with the changelog 
-would do.....
 
----
-bod
+OK.
+
+>> +
+>> +  codec:
+>> +    description: Holds subnode which indicates codec dai.
+>> +    type: object
+>> +    additionalProperties: false
+>> +    properties:
+>> +      sound-dai:
+>> +        maxItems: 1
+> In the codec: required with sound-dai
+>
+> No multiple dai links? Are you sure this card is so limited?
+
+
+Yes.  The audio device has only one channel.
+
+>
+> Best regards,
+> Krzysztof
+
+
+Thanks,
+
+Yingkun Meng
+
