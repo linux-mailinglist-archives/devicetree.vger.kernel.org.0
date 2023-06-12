@@ -2,80 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B7C72BCF7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A332672BD02
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 11:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbjFLJrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 05:47:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59132 "EHLO
+        id S229612AbjFLJtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 05:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231684AbjFLJrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:47:11 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6745266
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:34:15 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5162d2373cdso7406445a12.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:34:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686562396; x=1689154396;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uw2vt//oAwfRUDirKEfuFTfUTv7LIcANL47GaMhJ2HY=;
-        b=tvljEK9M9gicBQPrr2CvNMR0e2D10EWl3TIXpZe8jfDI9UB/j1pUJcHMOgNNVrLmnB
-         CroIaJhnNHy9vKCpoAFHXsQrGEf9K2Lx4N0Nfvmlvig51euRaPlEj2yr1FgyXDM0I65P
-         xmBJ0QtcIyx+yxX+Pk0uaDHuQUk2P2u/nwCPJqydxAwRgTzWP8gYMvwEvOZxWnLtJKw+
-         7EEnsDkLGlaRB7lssdiIVnPVXxI30A99q6MhZS9zkovz9EJ9DuE7N6lUfsMwVLjgxH6Q
-         fEX08uTQjGMpURhdBUovE0+AUEYg1i2+70WYWT6RRt0Z9FwkM5o5JX64JstJ82f6Pe1N
-         XGqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686562396; x=1689154396;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uw2vt//oAwfRUDirKEfuFTfUTv7LIcANL47GaMhJ2HY=;
-        b=FLa99zCj0zpcD1PQcrSY35LdSiGVchLGDSfEkI8vIXQiCMoUWVfFTPQq3vFWMKhfP9
-         lvE2ECjQC08XqCX5SfwChHeenlA60GcQ0c95OOMZzo2iuyLbtaBnKJB6A6Pr5dmxIedS
-         +UZsbi/mdhjna7BtK4fLqyYIEI5kFU0Eqgz4fbQhAmMdxxdyYTL/xR0gZ37NvSy/gta1
-         5bwKYv2XhKL8eW4VmpP+JInDkAGkeJqFpFgX5i3oGALiLzqzlAeyz5C8L5x7lmUEEjB7
-         3YEve8hq4xZiRKspkXa/Iy4fXI2T1ZI/IGkV8MY+AtOLJKsHwAcdjDPCx32u6ppvm6zM
-         jOxw==
-X-Gm-Message-State: AC+VfDyvF9WDAwid9Rr4/+1BgkNgNw80Ek/gVTWZPyaC/Vg/G527V7s1
-        2maeQFEUTewUCn+qYr9/4LaXTw==
-X-Google-Smtp-Source: ACHHUZ4VY3Aoz4gm30K5nUpn2AqyMQacV3tqPC7J4zZGUar4ttwHkuiDYKSoqdModohkXNgm4rVyxg==
-X-Received: by 2002:a17:907:16ab:b0:94f:1a23:2f1c with SMTP id hc43-20020a17090716ab00b0094f1a232f1cmr11100570ejc.50.1686562395859;
-        Mon, 12 Jun 2023 02:33:15 -0700 (PDT)
-Received: from hackbox.lan ([86.121.163.20])
-        by smtp.gmail.com with ESMTPSA id gj13-20020a170906e10d00b00965a56f82absm4908151ejb.212.2023.06.12.02.33.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 02:33:15 -0700 (PDT)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230361AbjFLJsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 05:48:01 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A884558D
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:34:39 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q8dvJ-0007lJ-Kv; Mon, 12 Jun 2023 11:33:17 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q8dvI-006r1G-Db; Mon, 12 Jun 2023 11:33:16 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q8dvH-00DTIu-Ns; Mon, 12 Jun 2023 11:33:15 +0200
+Date:   Mon, 12 Jun 2023 11:33:15 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: clock: imx8m: Add missing interrupt property
-Date:   Mon, 12 Jun 2023 12:32:36 +0300
-Message-Id: <168656228138.662397.5023054171384904344.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
-References: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
+        Anson Huang <anson.huang@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: drop unneeded quotes
+Message-ID: <20230612093315.gbabepl5qg44xf5d@pengutronix.de>
+References: <20230609140709.64655-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ywa6wsg5cd34k7qa"
+Content-Disposition: inline
+In-Reply-To: <20230609140709.64655-1-krzysztof.kozlowski@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,18 +66,80 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 10 May 2023 08:56:41 +0200, Alexander Stein wrote:
-> All i.MX8M SoC have 2 CCM interrupts, called:
-> * Interrupt Request 1
-> * Interrupt Request 2
-> 
-> 
+--ywa6wsg5cd34k7qa
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+Hello,
 
-[1/4] dt-bindings: clock: imx8m: Add missing interrupt property
-      commit: 6e6bb1639136f36c82efda147b63e2a2197fa3f8
+On Fri, Jun 09, 2023 at 04:07:09PM +0200, Krzysztof Kozlowski wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
+in my book quoting everything instead of dropping quotes is the better
+option. While that policy adds more quotes, it prevents surprises like:
+
+	$ yaml2json << EOF
+	> countrycodes:
+	>  - de
+	>  - fr
+	>  - no
+	>  - pl
+	> EOF
+	{
+	  "countrycodes": [
+	    "de",
+	    "fr",
+	    false,
+	    "pl"
+	  ]
+	}
+
+And if you use the "only-when-needed" rule of yamllint you have to write
+the above list as:
+
+	countrycodes:
+	 - de
+	 - fr
+	 - "no"
+	 - pl
+
+which is IMHO really ugly.
+
+Another culprit is "on" (which is used e.g. in github action workflows),
+so yamllint tells for example for
+https://github.com/pengutronix/microcom/blob/main/.github/workflows/build.y=
+ml:
+
+	  3:1       warning  truthy value should be one of [false, true]  (truthy)
+
+and there are still more surprises (e.g. version numbers might be
+subject to conversion to float). So at least in my bubble the general
+hint is to *always* quote strings. Note that required: true is also the
+default for yamllint's quoted-strings setting, proably for pitfalls like
+these.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ywa6wsg5cd34k7qa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSG5loACgkQj4D7WH0S
+/k6ArQf/b00Bh9jtwpjsQUidCR7aV3sXe4wGk2E2np3MSScx9uTV5nNd3PEwuDXA
+gyH3OxCa59XjEAv4ldnNRq0vzgzg/+C3QazJbBNgK52hrNNJWcq0qmEUEJb7s1Xo
+HwZuUlIBzijuWwXTganvs3MT8/gihXcJZFJh1pYpaBW1cAPIaOivtOVgBEkG8Clh
+1/MuNXFbwuOECYdB/+EVU/L18k0UvHzOcPMkoG8PiNe7Qlrc4SRoMHKoQ2ODTg+e
+KnajlqePGTyRrawgZYlyQikCpnCR8RIEfuVe+kpM3c6bU6nXXCituhHEJqW0Cetv
+O3CieA77s+5NvHqazJ19xF+pYDaVPg==
+=r9PT
+-----END PGP SIGNATURE-----
+
+--ywa6wsg5cd34k7qa--
