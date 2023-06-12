@@ -2,287 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E74FF72CFE6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 21:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D501972D021
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 22:06:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236654AbjFLT5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 15:57:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35646 "EHLO
+        id S235128AbjFLUGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 16:06:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231867AbjFLT5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 15:57:18 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B90A10D3;
-        Mon, 12 Jun 2023 12:57:17 -0700 (PDT)
-Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35CJl1vt005313;
-        Mon, 12 Jun 2023 19:57:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=M5sEvBBCcKHBbmC45TNh3NfbOdkfuoDAjydAI0t3/10=;
- b=p4ls+LATtwjIYZz2NkhVVk0WfmI+vcgaV5BZD1dd0zBoVkzs25ly5zQotmUw4h552fow
- z/7ZcH7Z9JPSvjNwRzixgx75STXN8K4m9GjE/dSinSSDZ1VCaF48v/+ynHely7XdoQ+O
- cpycNZ7iliIh5kdP/6OiPOrvBzSKzAz1bFStNRnpBaESkscIjPLDIdJRihX9mqqiP8N8
- S22Kt0rzhRAwHmXNmYwICBgHZ8WWO5KTmy1Or1tP5Inxx5hBX2j4Cp9VR2MSf3OQLPbQ
- GQS8jKFwNLFofGc1W7LtEYxuppNyvkivS0Wq8VLabV46ylKzJ52HTDkkzcuBVsitklsR Xg== 
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3r69tqg669-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Jun 2023 19:57:04 +0000
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-        by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 35CJ52kl011883;
-        Mon, 12 Jun 2023 19:57:04 GMT
-Received: from smtprelay04.dal12v.mail.ibm.com ([9.208.130.102])
-        by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3r4gt5krsk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Jun 2023 19:57:03 +0000
-Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
-        by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 35CJv2am57737700
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 12 Jun 2023 19:57:02 GMT
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id B33705805D;
-        Mon, 12 Jun 2023 19:57:02 +0000 (GMT)
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 771FB58059;
-        Mon, 12 Jun 2023 19:57:02 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.148.226])
-        by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
-        Mon, 12 Jun 2023 19:57:02 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-fsi@lists.ozlabs.org
-Cc:     linux-kernel@vger.kernel.org, jk@ozlabs.org, joel@jms.id.au,
-        alistair@popple.id.au, andrew@aj.id.au, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 14/14] fsi: Add I2C Responder SCOM driver
-Date:   Mon, 12 Jun 2023 14:56:57 -0500
-Message-Id: <20230612195657.245125-15-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20230612195657.245125-1-eajames@linux.ibm.com>
-References: <20230612195657.245125-1-eajames@linux.ibm.com>
+        with ESMTP id S236654AbjFLUGE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 16:06:04 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF9213D
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:05:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686600313;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Nu157xz+O3RrfYdQYG6rQQumwKRQGhj7CP2oD+0VisM=;
+        b=aJUwScu7iO0GjPgINQU/4YIz/PcTOOTj/9rPeD+JuFvhrhNmVvpaQ7P9pNARfnkZnOS5aH
+        hpgLUkPXmjLp6sNlwFqrafnLSqUil8XS/ufoNyvxxbdcL0qQsD1oxqYmmScWmMqQVAbkE/
+        JcvZ5kWCWpd0CdiT1lriPg/28vWraGI=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-510-sLP5yXIyMpOsN87qpaR9Nw-1; Mon, 12 Jun 2023 16:05:06 -0400
+X-MC-Unique: sLP5yXIyMpOsN87qpaR9Nw-1
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-62def0f1f57so3677286d6.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:05:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686600306; x=1689192306;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Nu157xz+O3RrfYdQYG6rQQumwKRQGhj7CP2oD+0VisM=;
+        b=AfBPeQJmaU4w7m73I2K0isop6PH1jZ7GiyV8xX2SVdJxnrx7LVSqOjQlycHit20ccP
+         hkYz+TWNQkUJ1L0an9EhdO6f4MpngYJXGfWeRd5Ch467aBEhtZiUHKhL9NVEo/8HS5ob
+         i6AyyE50MYBeNwJh09ZbdheTvHuMsEzHiqiSs1lW+rOxarxXnusuIr5FMPeVurVlYvab
+         3SF6mMrLnAjmcE//MjUmvlJMF3Ei1ztcii8y7nVn2Xozseo8KWX2YfXFaiAskjuQfHPm
+         LX/z/XyiYZhTVrC60PNEaMkZCFyLywMATRtktMHpIf6i4I3jX6qPLGySg4vO14YFHDX2
+         4FFA==
+X-Gm-Message-State: AC+VfDxwZ2xMWIhVMEVLHzQbAEnfCq2GcwJa6Ik86LGV3Axde9PSke1k
+        zGj2b5oOkVw3UQSygkgADL8lmhbBGWSzV/SNYS7vqVk1yWy+jn2Vk1cFSYXcNmYtCf4nsM3TbGF
+        BbIwJ7WzNntwFJJuaYMOyLOg4A+rLNQ==
+X-Received: by 2002:ad4:5baa:0:b0:5dd:b986:b44 with SMTP id 10-20020ad45baa000000b005ddb9860b44mr11463296qvq.6.1686600305788;
+        Mon, 12 Jun 2023 13:05:05 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7H1q1DqRrvkCipMgEiYgZRTlES9wltJActf/Pf2oZyZoWtJF7Gh3R8ohVrTXCxblcZ5KibxQ==
+X-Received: by 2002:ad4:5baa:0:b0:5dd:b986:b44 with SMTP id 10-20020ad45baa000000b005ddb9860b44mr11463264qvq.6.1686600305457;
+        Mon, 12 Jun 2023 13:05:05 -0700 (PDT)
+Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
+        by smtp.gmail.com with ESMTPSA id e1-20020a0cf341000000b0062dee768501sm719812qvm.99.2023.06.12.13.05.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jun 2023 13:05:05 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 16:05:04 -0400
+From:   Eric Chanudet <echanude@redhat.com>
+To:     Lucas Karpinski <lkarpins@redhat.com>
+Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, ahalaney@redhat.com,
+        bmasney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH] Revert "arm64: dts: qcom: sa8540p-ride: enable pcie2a
+ node"
+Message-ID: <6m7xpqs73wrlin2ghhviwc4ijb5kyvk7ba2wpflqkgjivv6ol2@z5i5uli3h7f3>
+References: <pmodcoakbs25z2a7mlo5gpuz63zluh35vbgb5itn6k5aqhjnny@jvphbpvahtse>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: ATc1AAoVNKi_oSJXY4FtOB6okzHinYLG
-X-Proofpoint-GUID: ATc1AAoVNKi_oSJXY4FtOB6okzHinYLG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-12_14,2023-06-12_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- clxscore=1015 mlxlogscore=999 bulkscore=0 spamscore=0 lowpriorityscore=0
- phishscore=0 suspectscore=0 adultscore=0 priorityscore=1501 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306120169
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <pmodcoakbs25z2a7mlo5gpuz63zluh35vbgb5itn6k5aqhjnny@jvphbpvahtse>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2CR has the capability to directly perform SCOM operations,
-circumventing the need to drive the FSI2PIB engine. Add a new
-driver to perform SCOM operations through the I2CR.
+On Fri, Jun 02, 2023 at 03:33:21PM -0400, Lucas Karpinski wrote:
+> This reverts commit 2eb4cdcd5aba2db83f2111de1242721eeb659f71.
+> 
+> The patch introduced a sporadic error where the Qdrive3 will fail to
+> boot occasionally due to an rcu preempt stall.
+> Qualcomm has disabled pcie2a downstream:
+> https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/rh-patch/-/commit/447f2135909683d1385af36f95fae5e1d63a7e2f
+> 
+> rcu: INFO: rcu_preempt self-detected stall on CPU
+> rcu:     0-....: (1 GPs behind) idle=77fc/1/0x4000000000000004 softirq=841/841 fqs=2476
+> rcu:     (t=5253 jiffies g=-175 q=2552 ncpus=8)
+> Call trace:
+>  __do_softirq
+>  ____do_softirq
+>  call_on_irq_stack
+>  do_softirq_own_stack
+>  __irq_exit_rcu
+>  irq_exit_rcu
+> 
+> The issue occurs normally once every 3-4 boot cycles.
+> There is likely a race condition caused when setting up the two pcie
+> domains concurrently (pcie2a and pcie3a).
+> 
+> The issue is not present when only pcie2a is enabled or when only pcie3a
+> is enabled.
+> A workaround was found that allowed the Qdrive3 to boot with both pcie2a
+> and pcie3a enabled.
+> Set the .probe_type to PROBE_FORCE_SYNCHRONOUS and add an msleep() to
+> the probing function.
+> This is not a solution, so this patch is disabling pcie2a as it seems
+> Red Hat are the only ones working on the board,
+> we're find with disabling the node until a root cause is found. If
+> anyone has further suggestions for debugging, let me know.
+> 
+> Signed-off-by: Lucas Karpinski <lkarpins@redhat.com>
+> ---
+>  During debugging:
+>         - Added additional time for clock/regulator stabilization.
+>         - Reduced the bandwidth across pcie2a and pcie3a.
+>         - Replaced the interconnect setup from another driver.
+>         - The 32-bit/64-bit/config-io space for both pcie2a and pcie3a look to be mapped correctly.
+>         - Verified interconnects were started successfully.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/fsi/Kconfig     |   8 +++
- drivers/fsi/Makefile    |   1 +
- drivers/fsi/i2cr-scom.c | 154 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 163 insertions(+)
- create mode 100644 drivers/fsi/i2cr-scom.c
+I was looking at another issue downstream triggering a soft lock on
+CPU0, but it turns out this could be the same thing except the symptoms
+are less noticeable (the 3-4 boot cycles you mention).
 
-diff --git a/drivers/fsi/Kconfig b/drivers/fsi/Kconfig
-index 999be82720c5..79a31593618a 100644
---- a/drivers/fsi/Kconfig
-+++ b/drivers/fsi/Kconfig
-@@ -94,4 +94,12 @@ config FSI_OCC
- 	provide the raw sensor data as well as perform thermal and power
- 	management on the system.
- 
-+config I2CR_SCOM
-+	tristate "IBM I2C Responder SCOM driver"
-+	depends on FSI_MASTER_I2CR
-+	help
-+	  This option enables an I2C Responder based SCOM device driver. The
-+	  I2CR has the capability to directly perform SCOM operations instead
-+	  of using the FSI2PIB engine.
-+
- endif
-diff --git a/drivers/fsi/Makefile b/drivers/fsi/Makefile
-index 34dbaa1c452e..5550aa15e0b1 100644
---- a/drivers/fsi/Makefile
-+++ b/drivers/fsi/Makefile
-@@ -9,3 +9,4 @@ obj-$(CONFIG_FSI_MASTER_AST_CF) += fsi-master-ast-cf.o
- obj-$(CONFIG_FSI_SCOM) += fsi-scom.o
- obj-$(CONFIG_FSI_SBEFIFO) += fsi-sbefifo.o
- obj-$(CONFIG_FSI_OCC) += fsi-occ.o
-+obj-$(CONFIG_I2CR_SCOM) += i2cr-scom.o
-diff --git a/drivers/fsi/i2cr-scom.c b/drivers/fsi/i2cr-scom.c
-new file mode 100644
-index 000000000000..cb7e02213032
---- /dev/null
-+++ b/drivers/fsi/i2cr-scom.c
-@@ -0,0 +1,154 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (C) IBM Corporation 2023 */
-+
-+#include <linux/cdev.h>
-+#include <linux/device.h>
-+#include <linux/fs.h>
-+#include <linux/fsi.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+
-+#include "fsi-master-i2cr.h"
-+#include "fsi-slave.h"
-+
-+struct i2cr_scom {
-+	struct device dev;
-+	struct cdev cdev;
-+	struct fsi_master_i2cr *i2cr;
-+};
-+
-+static loff_t i2cr_scom_llseek(struct file *file, loff_t offset, int whence)
-+{
-+	switch (whence) {
-+	case SEEK_CUR:
-+		break;
-+	case SEEK_SET:
-+		file->f_pos = offset;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return offset;
-+}
-+
-+static ssize_t i2cr_scom_read(struct file *filep, char __user *buf, size_t len, loff_t *offset)
-+{
-+	struct i2cr_scom *scom = filep->private_data;
-+	u64 data;
-+	int ret;
-+
-+	if (len != sizeof(data))
-+		return -EINVAL;
-+
-+	ret = fsi_master_i2cr_read(scom->i2cr, (u32)*offset, &data);
-+	if (ret)
-+		return ret;
-+
-+	ret = copy_to_user(buf, &data, len);
-+	if (ret)
-+		return ret;
-+
-+	return len;
-+}
-+
-+static ssize_t i2cr_scom_write(struct file *filep, const char __user *buf, size_t len,
-+			       loff_t *offset)
-+{
-+	struct i2cr_scom *scom = filep->private_data;
-+	u64 data;
-+	int ret;
-+
-+	if (len != sizeof(data))
-+		return -EINVAL;
-+
-+	ret = copy_from_user(&data, buf, len);
-+	if (ret)
-+		return ret;
-+
-+	ret = fsi_master_i2cr_write(scom->i2cr, (u32)*offset, data);
-+	if (ret)
-+		return ret;
-+
-+	return len;
-+}
-+
-+static const struct file_operations i2cr_scom_fops = {
-+	.owner		= THIS_MODULE,
-+	.open		= simple_open,
-+	.llseek		= i2cr_scom_llseek,
-+	.read		= i2cr_scom_read,
-+	.write		= i2cr_scom_write,
-+};
-+
-+static int i2cr_scom_probe(struct device *dev)
-+{
-+	struct fsi_device *fsi_dev = to_fsi_dev(dev);
-+	struct i2cr_scom *scom;
-+	int didx;
-+	int ret;
-+
-+	if (!is_fsi_master_i2cr(fsi_dev->slave->master))
-+		return -ENODEV;
-+
-+	scom = devm_kzalloc(dev, sizeof(*scom), GFP_KERNEL);
-+	if (!scom)
-+		return -ENOMEM;
-+
-+	scom->i2cr = to_fsi_master_i2cr(fsi_dev->slave->master);
-+	dev_set_drvdata(dev, scom);
-+
-+	scom->dev.type = &fsi_cdev_type;
-+	scom->dev.parent = dev;
-+	device_initialize(&scom->dev);
-+
-+	ret = fsi_get_new_minor(fsi_dev, fsi_dev_scom, &scom->dev.devt, &didx);
-+	if (ret)
-+		return ret;
-+
-+	dev_set_name(&scom->dev, "scom%d", didx);
-+	cdev_init(&scom->cdev, &i2cr_scom_fops);
-+	ret = cdev_device_add(&scom->cdev, &scom->dev);
-+	if (ret)
-+		fsi_free_minor(scom->dev.devt);
-+
-+	return ret;
-+}
-+
-+static int i2cr_scom_remove(struct device *dev)
-+{
-+	struct i2cr_scom *scom = dev_get_drvdata(dev);
-+
-+	cdev_device_del(&scom->cdev, &scom->dev);
-+	fsi_free_minor(scom->dev.devt);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id i2cr_scom_of_ids[] = {
-+	{ .compatible = "ibm,i2cr-scom" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, i2cr_scom_of_ids);
-+
-+static const struct fsi_device_id i2cr_scom_ids[] = {
-+	{ 0x5, FSI_VERSION_ANY },
-+	{ }
-+};
-+
-+static struct fsi_driver i2cr_scom_driver = {
-+	.id_table = i2cr_scom_ids,
-+	.drv = {
-+		.name = "i2cr_scom",
-+		.bus = &fsi_bus_type,
-+		.of_match_table = i2cr_scom_of_ids,
-+		.probe = i2cr_scom_probe,
-+		.remove = i2cr_scom_remove,
-+	}
-+};
-+
-+module_fsi_driver(i2cr_scom_driver);
-+
-+MODULE_AUTHOR("Eddie James <eajames@linux.ibm.com>");
-+MODULE_DESCRIPTION("IBM I2C Responder SCOM driver");
-+MODULE_LICENSE("GPL");
+Using next-20230609, if I add a return kprobe on dw_handle_msi_irq:
+
+echo 'r:dwmsi_probe dw_handle_msi_irq $retval' > /sys/kernel/debug/tracing/kprobe_events
+echo 1 > /sys/kernel/debug/tracing/events/kprobes/dwmsi_probe/enable 
+cat /sys/kernel/debug/tracing/trace_pipe
+<idle>-0       [000] d.h1.   690.417268: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
+<idle>-0       [000] d.h1.   690.417272: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
+<idle>-0       [000] d.h1.   690.417276: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
+<idle>-0       [000] d.h1.   690.417281: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
+<idle>-0       [000] d.h1.   690.417284: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
+<idle>-0       [000] d.h1.   690.417288: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
+[...]
+
+dw_handle_msi_irq constantly fires and never returns IRQ_HANDLED. It
+happens consistently for pcie2a or pcie3a, after I disable one or the
+other. I presume having both might be enough to overwhelm the system and
+trigger the stall?
+
+Looking at the handler, the status is always 0 after:
+status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
+			   (i * MSI_REG_CTRL_BLOCK_SIZE));
+
+Unfortunately I do not know why that is yet.
+
+> 
+>  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 44 -----------------------
+>  1 file changed, 44 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> index 24fa449d48a6..d492723ccf7c 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> @@ -186,27 +186,6 @@ &i2c18 {
+>  	status = "okay";
+>  };
+>  
+> -&pcie2a {
+> -	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
+> -		 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
+> -		 <0x03000000 0x5 0x00000000 0x5 0x00000000 0x1 0x00000000>;
+> -
+> -	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
+> -	wake-gpios = <&tlmm 145 GPIO_ACTIVE_HIGH>;
+> -
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&pcie2a_default>;
+> -
+> -	status = "okay";
+> -};
+> -
+> -&pcie2a_phy {
+> -	vdda-phy-supply = <&vreg_l11a>;
+> -	vdda-pll-supply = <&vreg_l3a>;
+> -
+> -	status = "okay";
+> -};
+> -
+>  &pcie3a {
+>  	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
+>  		 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
+> @@ -356,29 +335,6 @@ i2c18_default: i2c18-default-state {
+>  		bias-pull-up;
+>  	};
+>  
+> -	pcie2a_default: pcie2a-default-state {
+> -		perst-pins {
+> -			pins = "gpio143";
+> -			function = "gpio";
+> -			drive-strength = <2>;
+> -			bias-pull-down;
+> -		};
+> -
+> -		clkreq-pins {
+> -			pins = "gpio142";
+> -			function = "pcie2a_clkreq";
+> -			drive-strength = <2>;
+> -			bias-pull-up;
+> -		};
+> -
+> -		wake-pins {
+> -			pins = "gpio145";
+> -			function = "gpio";
+> -			drive-strength = <2>;
+> -			bias-pull-up;
+> -		};
+> -	};
+> -
+>  	pcie3a_default: pcie3a-default-state {
+>  		perst-pins {
+>  			pins = "gpio151";
+> -- 
+> 2.40.1
+> 
+
 -- 
-2.31.1
+Eric Chanudet
 
