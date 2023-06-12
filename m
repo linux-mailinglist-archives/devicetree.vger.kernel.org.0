@@ -2,189 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAF1E72BAB2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 10:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D7F72B91A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 09:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbjFLIbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 04:31:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35660 "EHLO
+        id S235482AbjFLHud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 03:50:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232540AbjFLIan (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 04:30:43 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B573589;
-        Mon, 12 Jun 2023 01:30:09 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35C1Ksgi010128;
-        Mon, 12 Jun 2023 09:35:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=opv3kX/ph4BOOfru46Fxfd30UvHEy9/IFAiCrxHELPs=;
- b=xeCAtb+HSOplkuvGUk2p1b2verNsEL46d+xjVg+BPe4glBbyCPue57Skz4XQd9wr9NDM
- DT/ljCLasrv8aOw/Ufd+DcuJ/eI8r0/as61jAtyTdOcV8rBKfP+dVPS+lboGZkMfEHt9
- 5NhesBE7HWJbacAM16Pb4Kby+zerJxbCST7N2wE3biIVaVE4Kei4X4P9R0Pw5r0RxjDX
- pzJmptNNH5G5j5Mn112VXde725iW0m1AvsGDkwuEbGEmRKYacJlzhp8hIhdcAQT6yiLy
- C15ZP2fzWbua5yNrWtUYO2br64U5I1NlM3RIqan8Ks/59vJpGcXSEwjk/dq8U0B+5tde kw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r5smd1ps3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Jun 2023 09:35:48 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2957810002A;
-        Mon, 12 Jun 2023 09:35:47 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1B557216835;
-        Mon, 12 Jun 2023 09:35:47 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Mon, 12 Jun
- 2023 09:35:46 +0200
-Message-ID: <3580b822-1d6e-91af-3f5b-f076a8aaddf1@foss.st.com>
-Date:   Mon, 12 Jun 2023 09:35:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [RESEND PATCH v2 2/6] ARM: dts: stm32: add pin map for LTDC on
- stm32f7
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <michael@amarulasolutions.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S236430AbjFLHuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 03:50:11 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4F54B10C7;
+        Mon, 12 Jun 2023 00:49:38 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8Cxe+rsy4Zkgo0DAA--.7674S3;
+        Mon, 12 Jun 2023 15:40:28 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxVeTry4Zk10EVAA--.61405S3;
+        Mon, 12 Jun 2023 15:40:27 +0800 (CST)
+Subject: Re: [PATCH v12 1/2] spi: add loongson spi bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-References: <20230607063139.621351-1-dario.binacchi@amarulasolutions.com>
- <20230607063139.621351-3-dario.binacchi@amarulasolutions.com>
- <7139fb21-6a1d-a26f-fef3-d3154d234ca2@foss.st.com>
- <CABGWkvoRZqQsEmpNRhhrRUrf+WHebErPO9Jt2L9bsNL_EKeoHg@mail.gmail.com>
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230608072819.25930-1-zhuyinbo@loongson.cn>
+ <20230608072819.25930-2-zhuyinbo@loongson.cn>
+ <6ebed84c-2b42-c981-7b3f-e71cc88e4c2c@linaro.org>
+ <4bf747c4-b767-b20c-e00f-724b50f44edb@loongson.cn>
+ <6bfc2a22-6901-0858-7b90-bc4c52c66810@linaro.org>
+ <bd2d7830-3ab6-0906-b06a-83d3e0a96749@loongson.cn>
+ <11ca2b90-544d-18c2-fb15-7909ca60507f@linaro.org>
+ <f6d4ecb5-e9df-346e-4aab-772fd01689c8@loongson.cn>
+ <a9952e76-1204-5bc7-7856-0c7f8a411d76@linaro.org>
+ <9c94397d-1e31-02fa-bdbe-af888c72eac4@loongson.cn>
+ <657f8d19-de83-8be6-4a9d-5f13b1df7383@linaro.org>
+ <b0e5e13e-6746-bd90-2a49-31ee6dd3e8a2@loongson.cn>
+ <84ccf4cc-072d-adbf-0361-95ceae13f333@linaro.org>
+ <5d060cac-ff28-60e9-98a8-f2bd4d378455@loongson.cn>
+ <4e30870d-86e2-8536-8e0d-aab4ce5027d2@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <0c532e09-4821-5e07-92e6-7bc3cd79869e@loongson.cn>
+Date:   Mon, 12 Jun 2023 15:40:26 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <4e30870d-86e2-8536-8e0d-aab4ce5027d2@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <CABGWkvoRZqQsEmpNRhhrRUrf+WHebErPO9Jt2L9bsNL_EKeoHg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-12_04,2023-06-09_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-CM-TRANSID: AQAAf8DxVeTry4Zk10EVAA--.61405S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Dario
 
-On 6/9/23 08:21, Dario Binacchi wrote:
-> Hi Alexandre,
-> 
-> On Thu, Jun 8, 2023 at 2:42 PM Alexandre TORGUE
-> <alexandre.torgue@foss.st.com> wrote:
->>
->> Hi Dario
->>
->> On 6/7/23 08:31, Dario Binacchi wrote:
->>> Add pin configurations for using LTDC (LCD-tft Display Controller) on
->>> stm32f746-disco board.
->>>
->>> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
->>> ---
->>>
->>> (no changes since v1)
->>>
->>>    arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 35 ++++++++++++++++++++++++++
->>>    1 file changed, 35 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
->>> index 9f65403295ca..f3f90b9bcd61 100644
->>> --- a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
->>> +++ b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
->>> @@ -365,6 +365,41 @@ pins2 {
->>>                                        bias-pull-up;
->>>                                };
->>>                        };
->>> +
->>> +
->>> +                     ltdc_pins_a: ltdc-pins-a-0 {
->>
->>    ltdc-pins-a-0 -->  ltdc-pins-0 is a bit cleaner. I know that I have to
->> fix sdio pins nodes in this file to keep the same spirit for all group
->> names.
-> 
-> I have looked at the file arch/arm/boot/dts/stm32f7-pinctrl.dtsi, and
-> based on the following nodes:
-> usart1_pins_a: usart1-0
-> i2c1_pins_b: i2c1-0
-> can1_pins_a: can1-0
-> 
-> I have decided to rename ltdc-pins-a-0 to ltdc-0.
-> 
-> I hope you agree.
 
-Yes! perfect.
+在 2023/6/12 下午3:17, Krzysztof Kozlowski 写道:
+> On 12/06/2023 09:13, zhuyinbo wrote:
+>>
+>>
+>> 在 2023/6/10 上午12:45, Krzysztof Kozlowski 写道:
+>>> On 09/06/2023 05:13, zhuyinbo wrote:
+>>>>
+>>>>
+>>>> 在 2023/6/8 下午9:26, Krzysztof Kozlowski 写道:
+>>>>> On 08/06/2023 14:10, zhuyinbo wrote:
+>>>>>>
+>>>>>>
+>>>>>> 在 2023/6/8 下午7:45, Krzysztof Kozlowski 写道:
+>>>>>>> On 08/06/2023 13:42, zhuyinbo wrote:
+>>>>>>>> --- a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
+>>>>>>>> @@ -16,6 +16,7 @@ properties:
+>>>>>>>>         compatible:
+>>>>>>>>           enum:
+>>>>>>>>             - loongson,ls2k1000-spi
+>>>>>>>> +      - loongson,ls2k0500-spi
+>>>>>>>
+>>>>>>> Aren't they compatible?
+>>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> Are you saying that the spi driver is compatible with 2k0500 ?
+>>>>>
+>>>>> Didn't you say this through 11 previous revisions?
+>>>>
+>>>>
+>>>> Yes, did I understand your meaning incorrectly ?
+>>>
+>>> If they are compatible, then they are not part of one enum. They could
+>>> not be as this would easily fail in testing of your DTS.
+>>>
+>>
+>>
+>> The "loongson,ls2k0500-spi" wasn't a compatible in previous version and
+>> I will add "loongson,ls2k0500-spi" as a compatible in spi driver and
+>> added it as a part of the one enum in dt-binding.
+> 
+> No, because you claimed - if I understood correctly - that they are
+> compatible. Don't add fake entries to the driver.
+> 
 
-Alex
 
-> 
-> Thanks and regards,
-> 
-> Dario
-> 
->>
->> If there is no V3 I wil do it directly when I'll apply DT patches if you
->> agree.
->>
->> Alex
->>
->>
->>> +                             pins {
->>> +                                     pinmux = <STM32_PINMUX('E', 4, AF14)>, /* LCD_B0 */
->>> +                                              <STM32_PINMUX('G',12, AF9)>,  /* LCD_B4 */
->>> +                                              <STM32_PINMUX('I', 9, AF14)>, /* LCD_VSYNC */
->>> +                                              <STM32_PINMUX('I',10, AF14)>, /* LCD_HSYNC */
->>> +                                              <STM32_PINMUX('I',14, AF14)>, /* LCD_CLK */
->>> +                                              <STM32_PINMUX('I',15, AF14)>, /* LCD_R0 */
->>> +                                              <STM32_PINMUX('J', 0, AF14)>, /* LCD_R1 */
->>> +                                              <STM32_PINMUX('J', 1, AF14)>, /* LCD_R2 */
->>> +                                              <STM32_PINMUX('J', 2, AF14)>, /* LCD_R3 */
->>> +                                              <STM32_PINMUX('J', 3, AF14)>, /* LCD_R4 */
->>> +                                              <STM32_PINMUX('J', 4, AF14)>, /* LCD_R5 */
->>> +                                              <STM32_PINMUX('J', 5, AF14)>, /* LCD_R6 */
->>> +                                              <STM32_PINMUX('J', 6, AF14)>, /* LCD_R7 */
->>> +                                              <STM32_PINMUX('J', 7, AF14)>, /* LCD_G0 */
->>> +                                              <STM32_PINMUX('J', 8, AF14)>, /* LCD_G1 */
->>> +                                              <STM32_PINMUX('J', 9, AF14)>, /* LCD_G2 */
->>> +                                              <STM32_PINMUX('J',10, AF14)>, /* LCD_G3 */
->>> +                                              <STM32_PINMUX('J',11, AF14)>, /* LCD_G4 */
->>> +                                              <STM32_PINMUX('J',13, AF14)>, /* LCD_B1 */
->>> +                                              <STM32_PINMUX('J',14, AF14)>, /* LCD_B2 */
->>> +                                              <STM32_PINMUX('J',15, AF14)>, /* LCD_B3 */
->>> +                                              <STM32_PINMUX('K', 0, AF14)>, /* LCD_G5 */
->>> +                                              <STM32_PINMUX('K', 1, AF14)>, /* LCD_G6 */
->>> +                                              <STM32_PINMUX('K', 2, AF14)>, /* LCD_G7 */
->>> +                                              <STM32_PINMUX('K', 4, AF14)>, /* LCD_B5 */
->>> +                                              <STM32_PINMUX('K', 5, AF14)>, /* LCD_B6 */
->>> +                                              <STM32_PINMUX('K', 6, AF14)>, /* LCD_B7 */
->>> +                                              <STM32_PINMUX('K', 7, AF14)>; /* LCD_DE */
->>> +                                     slew-rate = <2>;
->>> +                             };
->>> +                     };
->>>                };
->>>        };
->>>    };
->>
-> 
-> 
+I'm a bit confused, and I just need to add 'loongson,ls2k0500-spi' as
+one enum in dt-bindings, but driver don't add this entry ?
+
+Thanks,
+Yinbo
 
