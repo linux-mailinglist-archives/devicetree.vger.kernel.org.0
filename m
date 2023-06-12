@@ -2,185 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1214672CDD9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E483B72D4D2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 01:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237569AbjFLSXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 14:23:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43626 "EHLO
+        id S230095AbjFLXLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 19:11:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233496AbjFLSXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:23:51 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CF51E1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:23:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686594184;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=WuZqmtvd4WjoknFOrkLRYxUsHp5/t5pNlhuMb2dd9d8=;
-        b=UwHa/K6K8PBd+IbAfsLhzMyxNYy7pLe0MoKG6IzbVOldXhSQ26IJosc0JyIlVznb2eMSYl
-        wgcSkY6tpM4EJER3hkienM1c2ND2m4lN6fLXx6COsm7oec8ARi3Z7GBB088QPJqs68VXnN
-        AjXY1rm6G/zZWxNSguqZZGkQ724X1NY=
-Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com
- [209.85.160.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-183-maWr5nzXNIG2072bWMg37w-1; Mon, 12 Jun 2023 14:23:02 -0400
-X-MC-Unique: maWr5nzXNIG2072bWMg37w-1
-Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-1a66bf3a386so1710572fac.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:23:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686594180; x=1689186180;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WuZqmtvd4WjoknFOrkLRYxUsHp5/t5pNlhuMb2dd9d8=;
-        b=ejFI+Gs6o0XmzdxlobnT+rc03/Y9clLfzzWH6DjqzQSwvW0v5VfMs7blGoiPtDYr/0
-         0JqO4OHVkOpWHzTmKOMNHIds7q3zIMC+0xVIvmzayEq72w6XzvR8QhIFYI+f7MGhb0Rc
-         WxZ6QlDGY5FcRqZo0OImJB1IzQ+4PmTq/fcfam0vlUq56eZ4QVNVge/tkRWNFixLew/g
-         uoLdGjtYnf1kBgmQzUl2PLDz1qdAa8A9UVQv8DyZdrOGXMKOgb9e/45mqKHpoPkMyHoi
-         IB51nPavWcrm25ek9dNjElG54zCs1ckLiKIhf5vthzzp7J2Ke6oD6AWiQyHuK6GaHKJB
-         fobg==
-X-Gm-Message-State: AC+VfDzZ0SNKQIXoQSIT2Yj0eTaM8t+YfQIjvu1TfcAtXXUJBLodly9A
-        1ogo/9ZDMRXwcq8ffDNQ/bJYGdVx1r4aOJDD9ZjzmR11ut73UAaTyjW+L1F+RiCEroMZ+dvV5/1
-        07perXQ/8p+QlrDvUfMG8bQ==
-X-Received: by 2002:a05:6870:3403:b0:1a6:a28b:6e4 with SMTP id g3-20020a056870340300b001a6a28b06e4mr1424769oah.37.1686594180232;
-        Mon, 12 Jun 2023 11:23:00 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ4ojOAZsqcF6bnSAgTcknWHmKu5ibIbDyN5vE0vwVE23kVcIn47oSmy77InfhxOlx0UQ4BxKw==
-X-Received: by 2002:a05:6870:3403:b0:1a6:a28b:6e4 with SMTP id g3-20020a056870340300b001a6a28b06e4mr1424739oah.37.1686594179927;
-        Mon, 12 Jun 2023 11:22:59 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
-        by smtp.gmail.com with ESMTPSA id r34-20020a05687108a200b001a68feb9440sm1579964oaq.9.2023.06.12.11.22.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 11:22:59 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 13:22:56 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 05/26] net: stmmac: dwmac-qcom-ethqos: shrink clock code
- with devres
-Message-ID: <20230612182256.7cc3goqwid32fdn6@halaney-x13s>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-6-brgl@bgdev.pl>
+        with ESMTP id S229532AbjFLXLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 19:11:36 -0400
+X-Greylist: delayed 16203 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 12 Jun 2023 16:11:34 PDT
+Received: from 9.mo582.mail-out.ovh.net (9.mo582.mail-out.ovh.net [87.98.171.146])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33170E4E
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 16:11:34 -0700 (PDT)
+Received: from director8.ghost.mail-out.ovh.net (unknown [10.108.4.200])
+        by mo582.mail-out.ovh.net (Postfix) with ESMTP id 56B43241B4
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 18:23:27 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-7pw2s (unknown [10.110.115.83])
+        by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 1950F1FDC7;
+        Mon, 12 Jun 2023 18:23:27 +0000 (UTC)
+Received: from RCM-web3.webmail.mail.ovh.net ([178.33.236.78])
+        by ghost-submission-6684bf9d7b-7pw2s with ESMTPSA
+        id U53TBZ9ih2ThsQEAYGFhMA
+        (envelope-from <rafal@milecki.pl>); Mon, 12 Jun 2023 18:23:27 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230612092355.87937-6-brgl@bgdev.pl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Date:   Mon, 12 Jun 2023 20:23:26 +0200
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Christian Lamparter <chunkeey@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com, kvalo@kernel.org,
+        f.fainelli@gmail.com, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH v1] dt-bindings: net: wireless: bcm4329-fmac: add
+ ieee80211-freq-limit property
+In-Reply-To: <288fc9a0db6c292bc132e828611c41785b075078.1686486461.git.chunkeey@gmail.com>
+References: <288fc9a0db6c292bc132e828611c41785b075078.1686486461.git.chunkeey@gmail.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <f19c93cc90d6fa92e7e0430a12ec838b@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 93.159.183.33
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Ovh-Tracer-Id: 7106398739039759254
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrgeduhedguddvfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepggffhffvvefujghffgfkgihitgfgsehtjehjtddtredvnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpefgueelueetteefueehhffhgfetvdegjeefleffuedvhfeuffdvheegueevuefhleenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeduvdejrddtrddtrddupdelfedrudehledrudekfedrfeefpddujeekrdeffedrvdefiedrjeeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekvddpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:23:34AM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 2023-06-11 14:37, Christian Lamparter wrote:
+> This is an existing optional property that ieee80211.yaml/cfg80211
+> provides. It's useful to further restrict supported frequencies
+> for a specified device through device-tree.
 > 
-> We can use a devm action to completely drop the remove callback and use
-> stmmac_pltfr_remove() directly for remove. We can also drop one of the
-> goto labels.
+> The driver supported this since ~2017 by
+> commit 0f83ff697356 ("brcmfmac: use wiphy_read_of_freq_limits to
+> respect limits from DT")
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> This property is already being used by:
+> arch/arm/dts/bcm4709-netgear-r8000.dts
+> 
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
 
-I think using the remove callback seems more direct to a reader, but
-that's pretty opinionated. The change itself looks good so:
+I've already submitted patch for that:
+https://patchwork.kernel.org/project/linux-wireless/patch/20230602135925.14143-2-zajec5@gmail.com/
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+This patch isn't needed anymore.
+
 
 > ---
->  .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 24 +++++++++----------
->  1 file changed, 11 insertions(+), 13 deletions(-)
+>  .../devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml  | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index c801838fae2a..2da0738eed24 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -586,6 +586,11 @@ static int ethqos_clks_config(void *priv, bool enabled)
->  	return ret;
->  }
->  
-> +static void ethqos_clks_disable(void *data)
-> +{
-> +	ethqos_clks_config(data, false);
-> +}
-> +
->  static int qcom_ethqos_probe(struct platform_device *pdev)
->  {
->  	struct device_node *np = pdev->dev.of_node;
-> @@ -636,6 +641,10 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_mem;
->  
-> +	ret = devm_add_action_or_reset(&pdev->dev, ethqos_clks_disable, ethqos);
-> +	if (ret)
-> +		goto err_mem;
-> +
->  	ethqos->speed = SPEED_1000;
->  	ethqos_update_rgmii_clk(ethqos, SPEED_1000);
->  	ethqos_set_func_clk_en(ethqos);
-> @@ -653,27 +662,16 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  
->  	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
->  	if (ret)
-> -		goto err_clk;
-> +		goto err_mem;
->  
->  	return ret;
->  
-> -err_clk:
-> -	ethqos_clks_config(ethqos, false);
-> -
->  err_mem:
->  	stmmac_remove_config_dt(pdev, plat_dat);
->  
->  	return ret;
->  }
->  
-> -static void qcom_ethqos_remove(struct platform_device *pdev)
-> -{
-> -	struct qcom_ethqos *ethqos = get_stmmac_bsp_priv(&pdev->dev);
-> -
-> -	stmmac_pltfr_remove(pdev);
-> -	ethqos_clks_config(ethqos, false);
-> -}
-> -
->  static const struct of_device_id qcom_ethqos_match[] = {
->  	{ .compatible = "qcom,qcs404-ethqos", .data = &emac_v2_3_0_data},
->  	{ .compatible = "qcom,sc8280xp-ethqos", .data = &emac_v3_0_0_data},
-> @@ -684,7 +682,7 @@ MODULE_DEVICE_TABLE(of, qcom_ethqos_match);
->  
->  static struct platform_driver qcom_ethqos_driver = {
->  	.probe  = qcom_ethqos_probe,
-> -	.remove_new = qcom_ethqos_remove,
-> +	.remove_new = stmmac_pltfr_remove,
->  	.driver = {
->  		.name           = "qcom-ethqos",
->  		.pm		= &stmmac_pltfr_pm_ops,
-> -- 
-> 2.39.2
+> diff --git
+> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> index fec1cc9b9a08..44e5f6677289 100644
+> --- 
+> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> +++ 
+> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -15,6 +15,9 @@ description:
+>    These chips also have a Bluetooth portion described in a separate
+>    binding.
 > 
+> +allOf:
+> +  - $ref: ieee80211.yaml#
 
+FWIW:
+This isn't enough without changing additionalProperties to 
+unevaluatedProperties.
+
+
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -63,6 +66,8 @@ properties:
+>      description: Name for the OOB IRQ, this must be set to 
+> "host-wake".
+>      const: host-wake
+> 
+> +  ieee80211-freq-limit: true
+
+FWIW:
+You don't need it here with allOf.
+
+
+>    brcm,drive-strength:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: Drive strength used for the SDIO pins on the device 
+> in mA.
