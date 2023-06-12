@@ -2,173 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B417872CE82
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F1B72CE7D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 20:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233213AbjFLSes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 14:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
+        id S236093AbjFLSea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 14:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230408AbjFLSel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:34:41 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A44AF10CB
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:33:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686594769;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=qSuO83O2GJF69D20JvszqVCusWGni7xZeOtz58f06pw=;
-        b=P1Gzm0BvCPN7KWcYUorr5D3fvJVkAGDa9p/j/PG+2h5kIVuKTNofQyGirvEUugLLMBzIMD
-        dKh5l5KPdtRspWNPJcuP/Lw6dP5PLsH+bj8a72EN8z6l+yTayTnkbnh7L2whfUeMxLP5Fd
-        BJOSzaB7QMsxJJpg7uuyEZEfS6GH2bY=
-Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
- [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-18-pA8ohtu9MkubLe8a8fmcNw-1; Mon, 12 Jun 2023 14:32:48 -0400
-X-MC-Unique: pA8ohtu9MkubLe8a8fmcNw-1
-Received: by mail-ot1-f72.google.com with SMTP id 46e09a7af769-6b2a7789f31so2297251a34.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 11:32:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686594767; x=1689186767;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S237125AbjFLSeZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 14:34:25 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19B7171F;
+        Mon, 12 Jun 2023 11:34:10 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-977d6aa3758so846760366b.0;
+        Mon, 12 Jun 2023 11:34:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686594849; x=1689186849;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qSuO83O2GJF69D20JvszqVCusWGni7xZeOtz58f06pw=;
-        b=kPd86FMr1ZwNO9u7ukTPJlzM1vDZt8bNm6QBMm7Te6lNyy5WZfblWWxz+Fe7cKtmgM
-         s5gr/HNDvNIKnVW7tBBcUBAzXmAUj+QJ6jHVLVlU6RQGLMt0qODEgCE9mIWXkcOF7EiQ
-         ARtCqQtVqKN0bVqQmPFyPaO3gX47ZlHfs+cZb/z326TJkhUxtDXY0eIqMAkFRKFypxgv
-         duCQhLmW61RKtWcrOwc3vFmVONQZO3y9s9VRnYfe7l5OJHbp27S9Ooe4cJQChyZ57TB6
-         al/85HUevvZtCLjrJdGvQ/ezXdYlpVPUiYlQMs+ArpVGHtJ63dtp4/ehYJtG9IlsbO1m
-         0ESQ==
-X-Gm-Message-State: AC+VfDzbQDl2bBEP3O4c2wdJoY3DA84znc5FEuP4eEmMxZHq9Vj51mS8
-        y0ry4cP+xAPSRYc60lcicTOu6DPT0Vhi6Xr5nzojWOEuvoA/nk0MhMu5CrQQfjbO/MBTBlcpvaF
-        WN7yEmZdyCnjy2b5LVp4X2Q==
-X-Received: by 2002:a05:6830:92:b0:6a5:dd70:38cd with SMTP id a18-20020a056830009200b006a5dd7038cdmr6651285oto.2.1686594767178;
-        Mon, 12 Jun 2023 11:32:47 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ5HntANaGm+HkD+UPQVxKZBUJkVk1zEqMvLrahjA8N+vIH05i26ddN13SkrcVSLU5flZVuT2A==
-X-Received: by 2002:a05:6830:92:b0:6a5:dd70:38cd with SMTP id a18-20020a056830009200b006a5dd7038cdmr6651260oto.2.1686594766931;
-        Mon, 12 Jun 2023 11:32:46 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
-        by smtp.gmail.com with ESMTPSA id w14-20020a056830060e00b006af9d8af435sm4138880oti.50.2023.06.12.11.32.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 11:32:46 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 13:32:43 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        bh=HjxKYpDykfJHHAFMlYnHgt/KtNfNEauymoXHInEP4vM=;
+        b=fdYVg3CrHfYmOH+yQnThlmPuy5K7Ec9e+rHetrmfAE8U3jCTdYy30Lz22r6JK/dUWO
+         fGXiUbALgxdGn2lw2KSzhZYVZ1cEYH6M8+p8bbAR5d7mr/T2LqrOGv2cmf/Rt8SPBagW
+         zIVLfGcnCEGk0C/e6R76r6ovMDsRaFgQmgmwLTtA1i3UzQHEfQHkqdSwYK6fLpm4xFgE
+         mjrdut3xCamDSyzfp1xFRAs+hmGZ5wKc+D5rE7joQF4E8WiovvkeVt8Wq0Ce7QoKtd00
+         f50SP5YRSF2zVFRDJ/jPYFMRfoITlONYXDYUSNMbdOm8fFNXBrZBWelj/LNME/yZlee8
+         3uBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686594849; x=1689186849;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HjxKYpDykfJHHAFMlYnHgt/KtNfNEauymoXHInEP4vM=;
+        b=ZtZ4lEcyxBElQb655qg0t2JRlbeh84ONsPYPDgY5B7nr+BNX/FHwCo0B0HWNrlo+yN
+         P7jE6/bXZaJPLrHSs3MlSj2iEQM+rRJuXJDhoblJ89KhrLmUA3T3IhsDgVpJPPj82Qsu
+         V9z2uJGhW0B7WlEZ1W/RdFS+zfoX9qop7uNpZ4U/ieMBtV5tc6LkExY+nyb81pho66Zb
+         9AYUmmGaCj8Ub7aFHEi4ZIqdTryQmETjZWyza5+dqYIc3COxk1kOWofywY1wzqfIiXMx
+         Q6zNf5AFVICBqDLfvWFcjaUZ6TErMaTjdM2/0ofWDHVtXq2Zhp6nGWSdo3nNa0i94UF3
+         pYEg==
+X-Gm-Message-State: AC+VfDw4R83fE5hNIiqQkAe+rL98y0egt4+oF51HjlHXelqn/MiUNtaj
+        YXoRnpJtzuIG12D0TwaoD6VxAOb8W3cmtPjl4TY=
+X-Google-Smtp-Source: ACHHUZ6HVJPNDxoxp2Cvdq8Nf48yX+kPMvxENdK/HbCk4P4iVuj89/INjrfgS3cZ3HvNthb6VJXM7cJI0toaf9QtkR0=
+X-Received: by 2002:a17:907:320a:b0:975:942e:81d5 with SMTP id
+ xg10-20020a170907320a00b00975942e81d5mr10759652ejb.1.1686594848974; Mon, 12
+ Jun 2023 11:34:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230610203549.1127334-1-bigunclemax@gmail.com> <13282074.uLZWGnKmhe@jernej-laptop>
+In-Reply-To: <13282074.uLZWGnKmhe@jernej-laptop>
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Date:   Mon, 12 Jun 2023 21:33:57 +0300
+Message-ID: <CALHCpMi9h_KGJKJ4qH44kypePsMpqjgDke-A1LiBgiSOnXjXLA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Add D1/T113s thermal sensor controller support
+To:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 06/26] net: stmmac: dwmac-qcom-ethqos: rename a label in
- probe()
-Message-ID: <20230612183243.5rkphsaqofi42bgc@halaney-x13s>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-7-brgl@bgdev.pl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230612092355.87937-7-brgl@bgdev.pl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:23:35AM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> The err_mem label's name is unclear. It actually should be reached on
-> any error after stmmac_probe_config_dt() succeeds. Name it after the
-> cleanup action that needs to be called before exiting.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+=D0=BF=D0=BD, 12 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 21:22, Jer=
+nej =C5=A0krabec <jernej.skrabec@gmail.com>:
+>
+> Dne sobota, 10. junij 2023 ob 22:35:41 CEST je Maksim Kiselev napisal(a):
+> > This series adds support for Allwinner D1/T113s thermal sensor controll=
+er.
+> > THIS controller is similar to the one on H6, but with only one sensor a=
+nd
+> > uses a different scale and offset values.
+> >
+> > v2:
+> > - Fixed SoB tag
+>
+> It doesn't seems you fixed that.
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
-
-> ---
->  .../ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 2da0738eed24..16e856861558 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -615,14 +615,14 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  	ethqos = devm_kzalloc(&pdev->dev, sizeof(*ethqos), GFP_KERNEL);
->  	if (!ethqos) {
->  		ret = -ENOMEM;
-> -		goto err_mem;
-> +		goto out_config_dt;
->  	}
->  
->  	ethqos->pdev = pdev;
->  	ethqos->rgmii_base = devm_platform_ioremap_resource_byname(pdev, "rgmii");
->  	if (IS_ERR(ethqos->rgmii_base)) {
->  		ret = PTR_ERR(ethqos->rgmii_base);
-> -		goto err_mem;
-> +		goto out_config_dt;
->  	}
->  
->  	data = of_device_get_match_data(&pdev->dev);
-> @@ -634,16 +634,16 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  	ethqos->rgmii_clk = devm_clk_get(&pdev->dev, "rgmii");
->  	if (IS_ERR(ethqos->rgmii_clk)) {
->  		ret = PTR_ERR(ethqos->rgmii_clk);
-> -		goto err_mem;
-> +		goto out_config_dt;
->  	}
->  
->  	ret = ethqos_clks_config(ethqos, true);
->  	if (ret)
-> -		goto err_mem;
-> +		goto out_config_dt;
->  
->  	ret = devm_add_action_or_reset(&pdev->dev, ethqos_clks_disable, ethqos);
->  	if (ret)
-> -		goto err_mem;
-> +		goto out_config_dt;
->  
->  	ethqos->speed = SPEED_1000;
->  	ethqos_update_rgmii_clk(ethqos, SPEED_1000);
-> @@ -662,11 +662,11 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  
->  	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
->  	if (ret)
-> -		goto err_mem;
-> +		goto out_config_dt;
->  
->  	return ret;
->  
-> -err_mem:
-> +out_config_dt:
->  	stmmac_remove_config_dt(pdev, plat_dat);
->  
->  	return ret;
-> -- 
-> 2.39.2
-> 
-
+Sorry for that. I accidentally sent the wrong version of patches . And
+immediately after that I sent v3.
