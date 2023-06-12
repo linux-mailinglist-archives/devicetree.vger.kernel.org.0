@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADDD272BF0B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 12:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ECE872BECA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 12:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234509AbjFLKat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 06:30:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39248 "EHLO
+        id S234636AbjFLKWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 06:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234749AbjFLKa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 06:30:28 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC91E42BB0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 03:11:24 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f63a2e1c5fso4832310e87.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 03:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686564613; x=1689156613;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Cd7PhI4uncnTBCRMKgoa7sypXa7kqhSnYna6vDQQeow=;
-        b=GdctLD9H9VPmHPuJiUagySmf7YhAmbmGilRckwCHBqGuhYTXMbmJFY+2xxoaJORS6C
-         /+paOPsYesK5nJPaYI1YzpK5aWVX5HeW6f9lTOpNGcqUqkmTAnxhIwcnQTCYdwn+IRwT
-         mpZA+wY+UlzukquwnNDO7DdcRrYODDxW9l43zI7eDZlnLhkBZC5Outvp45EFIgrFalKF
-         hu1V5fiAMh6IsyebRXp7Ftp9t4BUeTWWN4GtayDmVWMPFuJ5puLte7rqw6io3k4r/Pot
-         UnEfoRsw5Gbf/Mj1rMwt2kvykf59j/lydDfgdhMpa82tqgmhvt0cgSjx4fBtjy+9eu4n
-         zLdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686564613; x=1689156613;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cd7PhI4uncnTBCRMKgoa7sypXa7kqhSnYna6vDQQeow=;
-        b=LzVt4MANhcOUFAvHgwF+MKSITtQCYVMDYNl9y/Fob9iTHq9AztK7QDEioUEJy1wwxe
-         n12L8x++O94DgLGIFL5QOH4ZmGfN5C58IKLC/9HfNMN2qgxqJ55YcUO4uOayba7VOnuo
-         iDEONGRW0b1KKZ+axISjaO+uIk1uAvIq/+PlM9AMz0rmJ8VrDBEbZpmw0iI8LZlvVmyx
-         O8pYS2dRVPnIDf6RiZc9akKTPkpDnwZyuEyMTjRqfczWQWGzbLJTQ6plk5VNI8OnXs8P
-         RQAUPWSNEJrRzhsUQ55yBqW7vDvLKMtwA3VdmlKZSb0Tz3TGF7z4pS4K1IGSXUo/QESP
-         DkNA==
-X-Gm-Message-State: AC+VfDwVVS6969IlYiEjdia2HgjHNiD3GfyVNTbpvhRuA6DcsjrGkz3X
-        BLBr9EWo61sKDIh3rY2TYy1XO3LY5rP2qqqAIMbA4Q==
-X-Google-Smtp-Source: ACHHUZ4Y0HfTQsMP/LWxD0BzuVSdyG9mh0VPmXlcP3jMPRUZkYIbvXzz/r2xBtIm3lJM4PEpSXNM6Q==
-X-Received: by 2002:a17:906:7303:b0:96f:893:7f5 with SMTP id di3-20020a170906730300b0096f089307f5mr9512875ejc.26.1686564005582;
-        Mon, 12 Jun 2023 03:00:05 -0700 (PDT)
-Received: from [192.168.2.107] ([79.115.63.153])
-        by smtp.gmail.com with ESMTPSA id dk17-20020a170906f0d100b0097886843f75sm5035070ejb.177.2023.06.12.03.00.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 03:00:04 -0700 (PDT)
-Message-ID: <d816499e-baab-6200-0780-17a8205b252e@linaro.org>
-Date:   Mon, 12 Jun 2023 11:00:03 +0100
+        with ESMTP id S233788AbjFLKWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 06:22:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A01280CD;
+        Mon, 12 Jun 2023 03:01:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC3C76233F;
+        Mon, 12 Jun 2023 10:00:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0CB2FC4339E;
+        Mon, 12 Jun 2023 10:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686564020;
+        bh=fd4cfXXX+PL9XfONOIfuuKx40StrUtxc6WwcSiy9Q0U=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=iySDKzKjo2ln1pXfyHGboc5hcwaLHVMvCWUke2VRF5bgeoX98N71gYZkCcHpHo/Zr
+         KPXU4P/6SiL1aZdnNOy+dMEtBittCA7FO5pGdj4YH54c/HLZs7RlNgAyn1qc/qfzzt
+         Cm8zkDen8zagaz1Nt2NgpioXY8ewXECKmWDnuYmI/EE2sGKXJH38KiRxJ0ZmCKRue9
+         BU+uf24apUEiKt3nzSzAzVg/caXGfR3XPr3yGXH/Us6xx6O15PeasrAGDFBnCegy+r
+         sYCMX8FiKWa/abOjyjfkAc5t3rLogATn0XxT3eF4PP6h2YEkHUMYKFU8aDuSfh0sRU
+         knDZCcGbLYRJA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D81D1C395EC;
+        Mon, 12 Jun 2023 10:00:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: spi-nor: Document sst26vf0xxb flash
- series
-Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230609144324.850617-1-miquel.raynal@bootlin.com>
- <20230609144324.850617-2-miquel.raynal@bootlin.com>
-From:   Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20230609144324.850617-2-miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: drop unneeded quotes
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168656401987.30960.9087751436682057307.git-patchwork-notify@kernel.org>
+Date:   Mon, 12 Jun 2023 10:00:19 +0000
+References: <20230609140713.64701-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230609140713.64701-1-krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        opendmb@gmail.com, florian.fainelli@broadcom.com,
+        bcm-kernel-feedback-list@broadcom.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, heiko@sntech.de,
+        nobuhiro1.iwamatsu@toshiba.co.jp, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, mripard@kernel.org,
+        vineetha.g.jaya.kumaran@intel.com, biao.huang@mediatek.com,
+        xiaoning.wang@nxp.com, david.wu@rock-chips.com,
+        grygorii.strashko@ti.com, nsekhar@ti.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,30 +74,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
+This patch was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-On 6/9/23 15:43, Miquel Raynal wrote:
-> Add compatibles for the sst26vf0{40,80,16,32,64}b flash devices.
+On Fri,  9 Jun 2023 16:07:12 +0200 you wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index 7149784a36ac..5a788a429b0d 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -25,7 +25,7 @@ properties:
->                (mxicy|macronix),mx25l(4005a|1606e|6405d|8005|12805d|25635e)|\
->                (mxicy|macronix),mx25u(4033|4035)|\
->                (spansion,)?s25fl(128s|256s1|512s|008k|064k|164k)|\
-> -              (sst|microchip),sst25vf(016b|032b|040b)|\
-> +              (sst|microchip),sst(25|26)vf(008|016|032|040|064)b|\
+>  .../devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml     | 2 +-
+>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 2 +-
+>  .../devicetree/bindings/net/amlogic,meson-dwmac.yaml          | 2 +-
+>  Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml      | 2 +-
+>  Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml   | 2 +-
+>  Documentation/devicetree/bindings/net/mediatek-dwmac.yaml     | 2 +-
+>  Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml      | 2 +-
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml     | 2 +-
+>  .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 4 ++--
+>  .../devicetree/bindings/net/toshiba,visconti-dwmac.yaml       | 2 +-
+>  10 files changed, 11 insertions(+), 11 deletions(-)
 
-We don't add new compatibles to this list, one should instead use the
-generic jedec,spi-nor compatible. Please drop this patch.
+Here is the summary with links:
+  - dt-bindings: net: drop unneeded quotes
+    https://git.kernel.org/netdev/net-next/c/61ab5a060a57
 
->                (sst,)?sst26wf016b|\
->                (sst,)?sst25wf(040b|080)|\
->                winbond,w25x(80|32)|\
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
