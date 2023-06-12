@@ -2,96 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E92472C2B1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 13:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D675F72C2FE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 13:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233600AbjFLLQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 07:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
+        id S235548AbjFLLiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 07:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233318AbjFLLQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 07:16:14 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CBF86A0;
-        Mon, 12 Jun 2023 04:04:34 -0700 (PDT)
-Received: from mail.alien8.de (mail.alien8.de [IPv6:2a01:4f9:3051:3f93::2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id D44581EC00F8;
-        Mon, 12 Jun 2023 13:04:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1686567867;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=T5nu9ZiswE8RQGkFS+4IJ1ouiCYUZY13HPLb8yI2yYA=;
-        b=W8nu84eTQvRnF4UeMz24J1cC/kFA7UM8HvnIScr0+6ShSg/m9dBxHr/AR2+sIojoCny6Fx
-        +MucpbBbReK/MKa7gk+pV7AahSZ3LiEPafYMxq6uVzDcQrjpg20xayNjtwcJprHZj3pOav
-        g11YP2oAJPTUU3rG4HuXXhYWtHMbyeM=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-        t=1686567866; bh=T5nu9ZiswE8RQGkFS+4IJ1ouiCYUZY13HPLb8yI2yYA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ikUWVJffQiCr88x+Hnv0MZdtPiDa8ZUbowg/PIC/eVozysKk3SHxztfxvdVn9oHbo
-         2c6G7xZxO8Jr+66yEpo1w6U0tcMUbSst+7SXc+0y045AwbO5m2qPhPDrWpsVyGhoTX
-         V0KlSjUZcpRUPRwFB7secNmlWkXMzhRC1c9o3gPb1ARdBClu5ktMwkVtnNMEZjKaxh
-         0yQ8PRcwWwiyEDrkd6dii6zh5LjqxmAXbC8sIxCGuLWgqUbNHZowElNQuUzuXZeyNZ
-         yObK5b0MkZPXrWyvWbW1VTNOw1f+UO3/pDCI72sT9TtsoZgY5NR+eYxvCy5r3kymNA
-         3scktC3xgYzodIKWcWD2W3Z3QoAejgSVj4KHHfymnD9ZhPwec5aRnwJTUmUD/bRbFY
-         xaieyDoSqieP/ro+HlpZN3AV0D08AlzX2KEVPNLMO0Drp6fohmaWJnRsMOkwBk6ea9
-         gn9bAlKn2fOLWcCbt4hvWgr+XqZBO0g1PGCs+Weu183bt+qpeHdBckjpVjL8bplXKJ
-         SpNY2ML/EPJaxvVUfGBlV67nuOLcT5t9pQTTYdbr0xuTwSpgkxpvv3oG2AECE9fhsf
-         AbDXWErEprnRwmGJ/+B3AnRB/b0d0zMal7acrgICjYc5T93VN+YvEDON0825Ajr9Zt
-         ymxQOB6ieMSpIIE8nWHqyi50=
-Received: from zn.tnic (p200300eA971dc508329c23FFFEa6A903.dip0.t-ipconnect.de [IPv6:2003:ea:971d:c508:329c:23ff:fea6:a903])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-        (No client certificate requested)
-        by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 4567740E01E6;
-        Mon, 12 Jun 2023 11:04:05 +0000 (UTC)
-Date:   Mon, 12 Jun 2023 13:04:01 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Marvin Lin <milkfafa@gmail.com>
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
-        rric@kernel.org, benjaminfair@google.com, yuenn@google.com,
-        venture@google.com, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org, KWLIU@nuvoton.com, YSCHU@nuvoton.com,
-        ctcchien@nuvoton.com, kflin@nuvoton.com
-Subject: Re: [PATCH v18 1/3] ARM: dts: nuvoton: Add node for NPCM memory
- controller
-Message-ID: <20230612110401.GPZIb7oZPdsPGFzSDc@fat_crate.local>
-References: <20230111093245.318745-1-milkfafa@gmail.com>
- <20230111093245.318745-2-milkfafa@gmail.com>
+        with ESMTP id S235764AbjFLLhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 07:37:54 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 063F77D94;
+        Mon, 12 Jun 2023 04:20:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=TV21Jmzs5HQxIuTayrf/mU1uRUNmyAiPllP7jU37Xqc=; b=ymw/V7OeZAEdwfvrsdF0h7hem3
+        P2MsH19HdcpAUn5jgAqvtrHcr1v+prQ6HGwnZwNY5HGIVTVMqR8bJpG8QL+R6BsExpfurAJoFyzgO
+        mTOQryoWtvarDKOfsLxbMNlY4uYZLfspASeOE9nXQEDK8Dfo1lMqnEB3HZL8Sowmp65K7AVBv/EzY
+        aasIUJmN6gAT0nfrFXjq4ZYcQTn5A69DWGB9x9Ukm4IF6hFiazutEUzl5rSluwnVo1UP1EfNzIIz1
+        ibt+BUxG04j1w8PNhucatldK7t5a+HV4nsd0n4ZVyMTW2R7omrRh8b3EhZFgs+t11VfcRezgoQ0R8
+        4NRkg+oA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36050)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1q8faY-0005e2-JP; Mon, 12 Jun 2023 12:19:58 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1q8faS-0004v7-27; Mon, 12 Jun 2023 12:19:52 +0100
+Date:   Mon, 12 Jun 2023 12:19:52 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Sam Shih <Sam.Shih@mediatek.com>
+Subject: Re: [PATCH net-next 5/8] net: ethernet: mtk_eth_soc: add
+ MTK_NETSYS_V3 capability bit
+Message-ID: <ZIb/WKKNlzjTIu2h@shell.armlinux.org.uk>
+References: <ZIUXf9APDFCNaUG1@makrotopia.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230111093245.318745-2-milkfafa@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ZIUXf9APDFCNaUG1@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 11, 2023 at 05:32:43PM +0800, Marvin Lin wrote:
-> Add node for memory controller present on Nuvoton NPCM SoCs. The
-> memory controller supports single bit error correction and double bit
-> error detection.
-> 
-> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
-> ---
->  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+On Sun, Jun 11, 2023 at 01:38:23AM +0100, Daniel Golle wrote:
+> @@ -1333,8 +1354,13 @@ static int mtk_tx_map(struct sk_buff *skb, struct net_device *dev,
+>  	mtk_tx_set_dma_desc(dev, itxd, &txd_info);
+>  
+>  	itx_buf->flags |= MTK_TX_FLAGS_SINGLE0;
+> -	itx_buf->flags |= (!mac->id) ? MTK_TX_FLAGS_FPORT0 :
+> -			  MTK_TX_FLAGS_FPORT1;
+> +	if (mac->id == MTK_GMAC1_ID)
+> +		itx_buf->flags |= MTK_TX_FLAGS_FPORT0;
+> +	else if (mac->id == MTK_GMAC2_ID)
+> +		itx_buf->flags |= MTK_TX_FLAGS_FPORT1;
+> +	else
+> +		itx_buf->flags |= MTK_TX_FLAGS_FPORT2;
 
-I guess this needs an Ack from OF folks if it is going to go through the
-EDAC tree ...
+There appears to be two places that this code structure appears, and
+this is in the path for packet transmission. I wonder if it would be
+more efficient to instead do:
+
+	itx_buf->flags |= MTK_TX_FLAGS_SINGLE0 | mac->tx_flags;
+
+with mac->tx_flags appropriately initialised?
+
+> @@ -2170,7 +2214,9 @@ static int mtk_poll_tx_qdma(struct mtk_eth *eth, int budget,
+>  		tx_buf = mtk_desc_to_tx_buf(ring, desc,
+>  					    eth->soc->txrx.txd_size);
+>  		if (tx_buf->flags & MTK_TX_FLAGS_FPORT1)
+> -			mac = 1;
+> +			mac = MTK_GMAC2_ID;
+> +		else if (tx_buf->flags & MTK_TX_FLAGS_FPORT2)
+> +			mac = MTK_GMAC3_ID;
+
+This has me wondering whether the flags are used for hardware or just
+for the driver's purposes. If it's the latter, can we instead store the
+MAC index in tx_buf, rather than having to decode a bitfield?
+
+I suspect these are just for the driver given that the addition of
+MTK_TX_FLAGS_FPORT2 changes all subsequent bit numbers in this struct
+member.
+
+>  
+>  		if (!tx_buf->data)
+>  			break;
+> @@ -3783,7 +3829,26 @@ static int mtk_hw_init(struct mtk_eth *eth, bool reset)
+>  	mtk_w32(eth, eth->soc->txrx.rx_irq_done_mask, reg_map->qdma.int_grp + 4);
+>  	mtk_w32(eth, 0x21021000, MTK_FE_INT_GRP);
+>  
+> -	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
+> +	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V3)) {
+> +		/* PSE should not drop port1, port8 and port9 packets */
+> +		mtk_w32(eth, 0x00000302, PSE_DROP_CFG);
+> +
+> +		/* GDM and CDM Threshold */
+> +		mtk_w32(eth, 0x00000707, MTK_CDMW0_THRES);
+> +		mtk_w32(eth, 0x00000077, MTK_CDMW1_THRES);
+> +
+> +		/* Disable GDM1 RX CRC stripping */
+> +		val = mtk_r32(eth, MTK_GDMA_FWD_CFG(0));
+> +		val &= ~MTK_GDMA_STRP_CRC;
+> +		mtk_w32(eth, val, MTK_GDMA_FWD_CFG(0));
+
+mtk_m32() ?
+
+Thanks!
 
 -- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
