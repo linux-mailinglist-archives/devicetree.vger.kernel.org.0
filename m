@@ -2,199 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CA3F72B50A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 03:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CBB072B566
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 04:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbjFLBGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jun 2023 21:06:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48670 "EHLO
+        id S233533AbjFLCZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jun 2023 22:25:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjFLBGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 21:06:37 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38BBD12D;
-        Sun, 11 Jun 2023 18:06:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JWd0I090naWF8mGBQCZ96LtpFudgpTw7+fZ+CY4IbZIS7tUeCss8Fo7FSymgDlW1sosc3FNLGbqdH2wHLz/o+29HZsrqCDjZsEZYW0MokUW4we0bbfEStSR+EcueIzSEaSfPuX+fw++cxyFSYIOv/dyaJh8MsKAy/bDiSF8D3VKW5DacGh/y+fv1NtkNexl43NbEHpACAH+mwKVIShf2BX8LtxG9hXmZi/8PZsxCfxki/HdweLtZcm571MwcKr4ugWiVaI70S48Dn1uisqxDuHk1CKPAZJ9l9wgApbyirO0XkcJ9xMr/ofpAVpN5MWZ90CPJ7XtPWDChI58k21P6Sg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ULFmjent1KJ87cyf48CnrsJBiil03YDIZr7TMwfS1/o=;
- b=gaqFVgsxIF8rhRBPN71bmxE/sEEQZy9qfNFhThD7IefrJl95slwNesIXlNggjkKFrpVdzR19QwQ8uFxAzdAAuoJ6kFpkQG5AyjRNImzDTVHQwJ81E7scrvNggWHRePokZKb55JSJaFyMx3wynrmDHCwYSiHb44F2yncOYHM8aj6NyGO8L8Y8rheWZjrHIU5/oLi168Ab2osSRppTDv+8HVQymwYUoXprlt8SouL4Or6C0XX4ImTc3FsmMH/8f+r8C4MS6zwjQ2uSpU2jAswYpB+ExU6lNWwl5YE54u1NZTGNIibsQyEas48tO0fLUAbzoKZdA8Z0TWQVSxiMbapptw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
+        with ESMTP id S233487AbjFLCZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jun 2023 22:25:53 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECAEE4E
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 19:25:45 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f6d7abe9a4so26771945e9.2
+        for <devicetree@vger.kernel.org>; Sun, 11 Jun 2023 19:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ULFmjent1KJ87cyf48CnrsJBiil03YDIZr7TMwfS1/o=;
- b=uhQOaA4H6xaw1aE631UKperY74NzANT28QdpcVkoW88G1FwLTRyxEl8P9/19hEmN6ag0zC1tuiu30bckAp7gx5Z+bKC9Kdu1261JZBSATJOphFrEIWRPXPi7l/t+MBn3ZWlto5bSdr/QpT0R/NGN47zqkTAsVzhqMAULze+C5FU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by SJ0PR08MB8457.namprd08.prod.outlook.com
- (2603:10b6:a03:4e0::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Mon, 12 Jun
- 2023 01:06:32 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::ca3a:84ac:381c:1506]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::ca3a:84ac:381c:1506%4]) with mapi id 15.20.6455.043; Mon, 12 Jun 2023
- 01:06:32 +0000
-Date:   Sun, 11 Jun 2023 20:06:24 -0500
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add bindings for Azoteq
- IQS7210A/7211A/E
-Message-ID: <ZIZvkGqr4a0kOGnR@nixie71>
-References: <ZHVD/9OgRTAwBhqx@nixie71>
- <ZHVEa0yM1LLUJEfO@nixie71>
- <20230609142538.GA878396-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230609142538.GA878396-robh@kernel.org>
-X-ClientProxiedBy: DM6PR06CA0061.namprd06.prod.outlook.com
- (2603:10b6:5:54::38) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+        d=linaro.org; s=google; t=1686536744; x=1689128744;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7ZKG0ffrkcy1xii/drViWf4QWyfzui60KGk55lhMEuw=;
+        b=AYXs+BNS/C3jqjKVjMdVPoFBYjntnN4UTZ+btsasdNT1GNiuLtA7tJKG3Qcj5UCSOd
+         u6+vaNskESi7SG1rL0LF0yiLoSpTj4VSn0dxFw2VX4ZgJBe8Tx7iTEC0JquXZZesQ9j6
+         nbVkduqTVANFu3t8PHaAN+RUsWnMWEMlzF2OcnY9gW+RXkqOhEFLKqKCwusxFq2UlO6O
+         z5TAc2031fIgsLnPMBbT4V46ODxRXQKYAca1/WEdiTb98qzX3t/mvsuQUCyoIflOBcjS
+         A2hN2RWCAF8xeMExRmeHINcOjVWzGZ4vhTeA9zT6lmB4dS6W8mQE5JUKc7Yny/ZF+n5Y
+         YerQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686536744; x=1689128744;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ZKG0ffrkcy1xii/drViWf4QWyfzui60KGk55lhMEuw=;
+        b=hIEugDIO6hl7sMHzPiqeAzoqhED++PA8xyOX57owjpv7+z+O75r8SvpdXBWy2J9j2c
+         H11AAoU8zQ/pXELxDtBjq8TyRCdpDEVmeHXfg4e4skS7yUoA0MsiE84Bu3GBVIBTPXzY
+         ESGVux+etRUzJA3qUXsaZHDm2Zl6331JAidubkxCiGMq8iGDAHeWtJrTvGksAa6b1F9n
+         Xivh3rQ2ZbmPS2FeTBs1SiZeFdMbksBIn8Gf2cWoolyZcNwZmRunpYAWnIVQLVFeM8m0
+         M8ryn8x9K1po1w/ldup9TY45tgDDVaoKu1mk/xE1ZrvMP51P+QBlLcISScGk67BPdbH1
+         D4fw==
+X-Gm-Message-State: AC+VfDx6hwR9QB9bmyPhfZEsCj0yiGyIDrauWfgKZUqhXQ+xkvjXL2n6
+        kG1LkBjsfwDtDhqt80E9t/4BHQ==
+X-Google-Smtp-Source: ACHHUZ7Mo0TD6O9mkw5mKyecmLn6CRnZGtRiAqjqHg5t5KHVLq7hJN0qZ1A4oqj02qkAEndI2fWRZQ==
+X-Received: by 2002:a05:6000:191:b0:30a:ceb3:26bd with SMTP id p17-20020a056000019100b0030aceb326bdmr2854711wrx.56.1686536744219;
+        Sun, 11 Jun 2023 19:25:44 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id u9-20020a5d4349000000b003079c402762sm10934057wrr.19.2023.06.11.19.25.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Jun 2023 19:25:43 -0700 (PDT)
+Message-ID: <09ccfa54-5ada-8dff-03a2-b2ffb07a58c1@linaro.org>
+Date:   Mon, 12 Jun 2023 03:25:42 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|SJ0PR08MB8457:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ef3479d-8ca8-4c4e-31fe-08db6ae1428d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5E6qlyXJ4+VDTcFy/26sUGFxnhr57MJbFD3sGPMvlA31tczrpB0pHJQN7ckKIrly5sjuwZy44yo0dYhYEA2BuSyjuLePKD4tnD0x86tC8kbtuXn3MNHGI/5rYGDkextBg5u2oy/X0X3mn7AlwwNVwSPo1+lhMMziQaE3TCShOdLHcPpyt1xTnbWk56qEZZVt7OnbsDrSSaXCzh51bZZre0kB3wTWEU5/V3xEqkr6ueg+RvQmCYJxQOaLJrT4We0VdDWkwxiN6dkCXX/AReRfM2hjMQuTGpafwwBQlSjJ2R66Idq1P4VIwSBZ0ApZ15Su+CatQ0kOZjfO1QAeK+RELsv9Le3zzgNvYB9xyOY0XoUf4bbTjOTRmOjMWlAZZ4S/X0Qy9qoEO3PIkLOAt5Sx0JGB0p/LNtKpNVLJFI5M/jDPnEK+pD/EW1hkWlEo2H5REjb2tHxwnxqyhrlsuY4+J1bRKOVimKqHK81PZB/SelqOqnl2cD5QnYST8WFtBZkpuWZDuoNgrX8EQvDGXwGmJDdOTsINYcBcYWUTlFIQjf4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(396003)(39830400003)(366004)(376002)(136003)(346002)(84040400005)(451199021)(66946007)(6506007)(9686003)(966005)(6512007)(6666004)(26005)(478600001)(186003)(83380400001)(6486002)(6916009)(66476007)(316002)(8676002)(38100700002)(8936002)(66556008)(5660300002)(2906002)(4326008)(41300700001)(86362001)(33716001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8btW9eYEB0JSubIPvLEKPitSG1QOf+A6n10qx5xnCMarmPar0ClR0aLqBg1x?=
- =?us-ascii?Q?6Z6v7SeL14xInGumSGnO2Tw9PQI7EOXJCCUEcaiBOB+9RI6vVWrrpOsL77Ap?=
- =?us-ascii?Q?AX69BuG4yn6GdrsOaF8ItwNpg2l3ofWF+Tas5JaF+zHB2KA4y853y6Btv6kh?=
- =?us-ascii?Q?X2wKJZq8xGTcB+bEXUOVSDF7HbRxK8NGPvKs844eYkUkIta/gYY4/Dvx1lxt?=
- =?us-ascii?Q?ERKbhEAIngOSOANenQZTSIiN6mSXkon7dGD/H3eLHdmGl3VpFD29NT7um7iH?=
- =?us-ascii?Q?Sagq4iaEvqAOpf138owviF6qpXdnzVA1zgpPn23WswfSsqYM2LI7fC7rf4nJ?=
- =?us-ascii?Q?0BwexVRi6CHASS+NeK/JiuUrQ6fPUP4880s3t8hpNW0w5Sb7xpTxGFnmPZ9V?=
- =?us-ascii?Q?OOdtILHtL29B3k8EOiDRzfCc8EiValKQhee4BhKTdHZ6yBQuZb6QdGRPKrGu?=
- =?us-ascii?Q?zospNcSauGOEo35AHp8qHnKU0XEwjFMgS/9dq/tCFUPbIcQm4JmqaahY3//3?=
- =?us-ascii?Q?ZMffwKx8nHbMcmL+iDcqJO7NkuJYuDCWtYVDp1F2VoSiMPJB78uGELzo12Ji?=
- =?us-ascii?Q?/fxgiB9dpds1jZ8P1CqeYizOQENE37Ca50Ml9g3pijZn5q3kCg1st8MO6Oxp?=
- =?us-ascii?Q?N1WS8itKGDGXypjftp89eSHlraapKXlXV/38X1lttp1OvY23IkA5AJxl5ZF+?=
- =?us-ascii?Q?igFY7xSnmkHyUa0i4kBEpEgbxDSI7pc/U57d+d5O5c4K4eJUwIRTx5LOa/oD?=
- =?us-ascii?Q?PYpJaANRi/GIBkwBIJnSC1DIZtJRwIOgv0N6h+yu88VPI834WhQsl/WO654T?=
- =?us-ascii?Q?qcZqbmP/GwhRNVbafJ9iWU16ZQHFyBMDUVxgb5Q9aZgEokLBa7j7oYuNgbt/?=
- =?us-ascii?Q?IhbTL76kKd8KYBDkJT3zLCTMBGRJVqao5tJVJ8QseT0WEGompQU+Vm7PviBF?=
- =?us-ascii?Q?Hl0eA8dlu2Pz7nLvSxo22ZOqsx2OEpqdvPXXx5HC+bOFADEx9tg9K7qWsOkT?=
- =?us-ascii?Q?CwdfEx1/PbqktEZqw2s+CsjuCTsNn2kl3ijQiroHQVi5f7codLBWRZ70WngX?=
- =?us-ascii?Q?5CjfYKxm0A347QHRq/bPHFtZFhCXlzg/nwOa+p73q/5jm7XLa5Xj/jIeWRG2?=
- =?us-ascii?Q?qYF5vuKqhGamPFssV70bD1+1KGi2KEzYZOYduRQtJS9yfqCuf0VXfVdnjN0w?=
- =?us-ascii?Q?mRBU4syBzRP0XmrdtRWVq3yrFEbtxl6Ox89oAn0vok4yvPKEQ9VuiY3/Ry0q?=
- =?us-ascii?Q?coPvgwZREsi+Qcuw6qRXDP315Ov7st8hwVsRmGJlngUbdDqZLt8i9x9YJhb4?=
- =?us-ascii?Q?+oXuTBZX/Wtp4WVftvS77IYFl0g4z2VesLX7dKELcPQTZL0Z/258efeFcEan?=
- =?us-ascii?Q?64bqellboJj27zt+j7bVVPCtiAxlCNeJ36pDs80molsLQQMoLwXKGvyCTRRI?=
- =?us-ascii?Q?9Kzu1VkxsNIwcNCZveI5C+NvtvXaqq79ywEqXt2rykRooou8RnpzCUlY4mcA?=
- =?us-ascii?Q?/anUZDpHjY1g6DXg2hHr3+e9VJLi78wIRiqfGL1xc/p8p7lOgq6mRQa0tZ8w?=
- =?us-ascii?Q?D7pps2JpnlUmXbbUu8U+HzjwDqudJeaKg/RhuXUu?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ef3479d-8ca8-4c4e-31fe-08db6ae1428d
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2023 01:06:32.1426
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hKHdWENV19Ik+Jq0amGQibTbccInnc1j6c3KA+q/zk/D3tEKoY9Npu+xsix8HGTKoT3A2W7Srjg1KI1sq5hUqQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR08MB8457
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V4 0/4] Add camera clock controller support for SM8550
+Content-Language: en-US
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230609115058.9059-1-quic_jkona@quicinc.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230609115058.9059-1-quic_jkona@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 09/06/2023 12:50, Jagadeesh Kona wrote:
+> Add bindings, driver and devicetree node for camera clock controller on
+> SM8550.
 
-On Fri, Jun 09, 2023 at 08:25:38AM -0600, Rob Herring wrote:
-> On Mon, May 29, 2023 at 07:33:47PM -0500, Jeff LaBundy wrote:
-> > Add bindings for the Azoteq IQS7210A/7211A/E family of trackpad/
-> > touchscreen controllers.
-> > 
-> > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> > ---
-> > Changes in v2:
-> >  - Renamed 'azoteq,default-comms' to 'azoteq,forced-comms-default' and redefined
-> >    0, 1 and 2 as unspecified, 0 and 1, respectively
-> >  - Defined ATI upon its first occurrence
-> >  - Redefined 'azoteq,gesture-angle' in units of degrees
-> >  - Declared 'azoteq,rx-enable' to depend upon 'azoteq,tx-enable' within the
-> >    'trackpad' node
-> > 
-> > Hi Rob,
-> > 
-> > I attempted to reference existing properties from a common binding [1] as per
-> > your feedback in [2], however 'make DT_CHECKER_FLAGS=-m dt_binding_check' fails
-> > with the message 'Vendor specific properties must have a type and description
-> > unless they have a defined, common suffix.'
-> 
-> Is that because you have differing constraints in each case?
+This is very confusing.
 
-In the failing example [2], I have started with a simple boolean that carries
-nothing but a type and description. From the new azoteq,common.yaml:
+Your cover letter doesn't detail any changes and your individual patches 
+all say "no changes since v3", "no changes since v2"
 
-properties:
-  [...]
+If this is a RESEND then mark it as a RESEND.
 
-  azoteq,use-prox:
-    type: boolean
-    description: foo
+Good practice is to for example add a note that says
 
-And from the first consumer:
+"I looked at updating the yaml for the camcc but opted to do this in 
+another series" or "opted not to do this at this time" or "it doesn't 
+make sense because of X"
 
-patternProperties:
-  "^hall-switch-(north|south)$":
-    type: object
-    allOf:
-      - $ref: input.yaml#
-      - $ref: azoteq,common.yaml#
-    description: bar
+https://lore.kernel.org/linux-arm-msm/546876ba-970d-5cd5-648e-723698ca74fd@linaro.org/
 
-    properties:
-      linux,code: true
-      azoteq,use-prox: true
+Could you perhaps RESEND this V4 with a log that explains what has 
+changed from one version to the next.
 
-However, the tooling presents the following:
+If nothing has changed then don't bump the version prefix with RESEND..
 
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-/home/jlabundy/work/linux/Documentation/devicetree/bindings/input/iqs62x-keys.yaml: patternProperties:^hall-switch-(north|south)$:properties:azoteq,use-prox: True is not of type 'object'
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+Second thought even replying to your cover email with the changelog 
+would do.....
 
-[...]
-
-I am committed to addressing your feedback; to help me do so, can you help me
-identify what I've done wrong, and/or point me to an example that successfully
-passes dt_binding_check?
-
-> 
-> > This seems related to the discussion in [3], where you warned that the tooling
-> > cannot yet deduce that vendor-specific properties have already been typed in an
-> > externally $ref'd binding. The only other example of a common vendor schema is
-> > [4], but in that case the common properties are defined under arbitraily named
-> > pinmux config nodes. As such, they are part of 'additionalProperties' instead of
-> > 'properties' and hence exempt from this particular validation.
-> > 
-> > Please let me know if I am mistaken (surprise!), in which case I will continue
-> > on this path and send a v3. Otherwise, I would like to suggest that the review
-> > moves forward under the premise that I will happily consolidate these bindings
-> > once the tooling supports this idea.
-> > 
-> > Kind regards,
-> > Jeff LaBundy
-
-[2] https://github.com/jlabundy/linux/tree/azoteq-common
-
-Kind regards,
-Jeff LaBundy
+---
+bod
