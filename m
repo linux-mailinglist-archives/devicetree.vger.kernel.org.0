@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C75672CA9F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C44F372CAC1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:55:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236177AbjFLPs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 11:48:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40270 "EHLO
+        id S231867AbjFLPzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 11:55:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232559AbjFLPsy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:48:54 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C647CA;
-        Mon, 12 Jun 2023 08:48:54 -0700 (PDT)
+        with ESMTP id S238581AbjFLPyz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:54:55 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81D151A7;
+        Mon, 12 Jun 2023 08:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686584934; x=1718120934;
+  t=1686585293; x=1718121293;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W2HNM/FeZheU8WV1c9liGFrJzpMAfIbGq2q6Q46HIms=;
-  b=nIUGiu9fkdYw8jEnSTdxSRQpgyRhll5VgBlFR2G3LKeZDKkKC5gIYNG4
-   tt6wpKb73QZpK1xr6oswMQJ/FZDBLMyHHuFo7t/7mEd/0CjQTdm0MANb9
-   2lTkJ5CWWxBhM+jqhFZ/RLOGt9aeh0aUYKF4BOsgHevcA5bhofNm1v3xz
-   kc3lLKK3++eN0+XkKhLth0xm8YbBRWDrg30YFZNzR9oZlxpKJY6041RoI
-   72c0QPgbuK+q33Um7mOf4MN8e7i1vHl22hRKcBh1NvigoWu8PzzMAu5YZ
-   gz0Ht05689vNzOjHQ77Tf3yfOO/jcXFUguubmza1BLEr9u+jbjDGXwNBr
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="347735363"
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=OmlB9fd/SZKZioKkBBkhE9JBfd98aiviiICcFmjDiWY=;
+  b=gIIS/wMUMFuxnyrbV9XArR4UzeO/AFybXTTXXDWky4UbOZLXODzHn9u4
+   yR82EfmkXTVB86EDI2QemNBjvcuIxofGCalkbct6ID6BPP7LrUyhXNSq8
+   c7LFrD7jjUAl3FEgLY6rzfRu7FMxARBC1KLC/IaNl8nNXv6H9a4D8D180
+   ihUklHNUf7bX1aCdzXyZMPuqkRz+jFc2oZy3jUzhCDuGc3s2lC47pJM97
+   3bonIZHLefoy7T49Zf3MT1b2TF4tGWoiGAGkdrTzUkbjOy9tENDLQQxCJ
+   GYpN9hXsU8wDpz6vNv+LVk7cwO9wbwzQjXKoRWXX5efym2QkdD/9Zem40
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="358080099"
 X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; 
-   d="scan'208";a="347735363"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2023 08:48:53 -0700
+   d="scan'208";a="358080099"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2023 08:54:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="741076865"
+X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="711257660"
 X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; 
-   d="scan'208";a="741076865"
+   d="scan'208";a="711257660"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 12 Jun 2023 08:48:51 -0700
+  by orsmga002.jf.intel.com with ESMTP; 12 Jun 2023 08:54:36 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
         (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1q8jmj-0039RP-1V;
-        Mon, 12 Jun 2023 18:48:49 +0300
-Date:   Mon, 12 Jun 2023 18:48:49 +0300
+        id 1q8jsJ-0039Us-0I;
+        Mon, 12 Jun 2023 18:54:35 +0300
+Date:   Mon, 12 Jun 2023 18:54:34 +0300
 From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/8] rtc: isl12022: implement RTC_VL_READ and RTC_VL_CLR
- ioctls
-Message-ID: <ZIc+YdUPIAt6L4fi@smile.fi.intel.com>
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230612113059.247275-6-linux@rasmusvillemoes.dk>
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>
+Cc:     jic23@kernel.org, mazziesaccount@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lars@metafoo.de, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 5/7] iio: accel: kionix-kx022a: Refactor driver and
+ add chip_info structure
+Message-ID: <ZIc/uvB1zxNRnuRS@smile.fi.intel.com>
+References: <cover.1686578553.git.mehdi.djait.k@gmail.com>
+ <3a41a5ae9857cacdb062c398715a5938ccd47014.1686578554.git.mehdi.djait.k@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230612113059.247275-6-linux@rasmusvillemoes.dk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3a41a5ae9857cacdb062c398715a5938ccd47014.1686578554.git.mehdi.djait.k@gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 01:30:55PM +0200, Rasmus Villemoes wrote:
-> Hook up support for reading the values of the SR_LBAT85 and SR_LBAT75
-> bits. Translate the former to "battery low", and the latter to
-> "battery empty or not-present".
+On Mon, Jun 12, 2023 at 04:22:08PM +0200, Mehdi Djait wrote:
+> Add the chip_info structure to the driver's private data to hold all
+> the device specific infos.
+> Refactor the kx022a driver implementation to make it more generic and
+> extensible.
 
 ...
 
-> +static int isl12022_read_sr(struct regmap *regmap)
-> +{
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret = regmap_read(regmap, ISL12022_REG_SR, &val);
-> +	if (ret < 0)
-> +		return ret;
-> +	return val;
+> +	chip_info = spi_get_device_match_data(spi);
 
-Wondering if the bit 31 is in use with this register (note, I haven't checked
-the register width nor datasheet).
+Missing check. You addressed only I²C case. Is there any explanation?
 
-> +}
+...
+
+>  struct kx022a_data {
+> +	const struct kx022a_chip_info *chip_info;
+>  	struct regmap *regmap;
+
+I would suggest to run bloat-o-meter with this version and if you place
+chip_info after regmap. Does it gain us some memory?
+
+>  	struct iio_trigger *trig;
+>  	struct device *dev;
 
 -- 
 With Best Regards,
