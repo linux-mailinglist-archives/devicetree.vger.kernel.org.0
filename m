@@ -2,226 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D501972D021
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 22:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3326872D027
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 22:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235128AbjFLUGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 16:06:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41232 "EHLO
+        id S233213AbjFLUHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 16:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236654AbjFLUGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 16:06:04 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF9213D
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:05:14 -0700 (PDT)
+        with ESMTP id S229974AbjFLUHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 16:07:15 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB82313D
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:06:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686600313;
+        s=mimecast20190719; t=1686600390;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=Nu157xz+O3RrfYdQYG6rQQumwKRQGhj7CP2oD+0VisM=;
-        b=aJUwScu7iO0GjPgINQU/4YIz/PcTOOTj/9rPeD+JuFvhrhNmVvpaQ7P9pNARfnkZnOS5aH
-        hpgLUkPXmjLp6sNlwFqrafnLSqUil8XS/ufoNyvxxbdcL0qQsD1oxqYmmScWmMqQVAbkE/
-        JcvZ5kWCWpd0CdiT1lriPg/28vWraGI=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=0M/d98x762H4zuN8FNzgVtnMfzxWhlymbFLqT2RC6Mg=;
+        b=eQUIbk58nF8WmByk2PK17J9lOhQ3AHXM/yJ6US5jXEpENIBwhDxqFszRJR9dFNQQpUw1YW
+        P1vu2iZzB21uD6XpyfY6RabGN1Tm58jq+NDbVeDLnemQ3qPeg7og/Ill3u83njjoKGwi3+
+        yubwi9NkloclG4HnAbJjQaWDtMVUSn0=
+Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
+ [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-510-sLP5yXIyMpOsN87qpaR9Nw-1; Mon, 12 Jun 2023 16:05:06 -0400
-X-MC-Unique: sLP5yXIyMpOsN87qpaR9Nw-1
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-62def0f1f57so3677286d6.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:05:06 -0700 (PDT)
+ us-mta-199-IkYTFF4kM_q6P6Obbzvzeg-1; Mon, 12 Jun 2023 16:06:29 -0400
+X-MC-Unique: IkYTFF4kM_q6P6Obbzvzeg-1
+Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-56d4daabd37so11538687b3.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:06:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686600306; x=1689192306;
+        d=1e100.net; s=20221208; t=1686600388; x=1689192388;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Nu157xz+O3RrfYdQYG6rQQumwKRQGhj7CP2oD+0VisM=;
-        b=AfBPeQJmaU4w7m73I2K0isop6PH1jZ7GiyV8xX2SVdJxnrx7LVSqOjQlycHit20ccP
-         hkYz+TWNQkUJ1L0an9EhdO6f4MpngYJXGfWeRd5Ch467aBEhtZiUHKhL9NVEo/8HS5ob
-         i6AyyE50MYBeNwJh09ZbdheTvHuMsEzHiqiSs1lW+rOxarxXnusuIr5FMPeVurVlYvab
-         3SF6mMrLnAjmcE//MjUmvlJMF3Ei1ztcii8y7nVn2Xozseo8KWX2YfXFaiAskjuQfHPm
-         LX/z/XyiYZhTVrC60PNEaMkZCFyLywMATRtktMHpIf6i4I3jX6qPLGySg4vO14YFHDX2
-         4FFA==
-X-Gm-Message-State: AC+VfDxwZ2xMWIhVMEVLHzQbAEnfCq2GcwJa6Ik86LGV3Axde9PSke1k
-        zGj2b5oOkVw3UQSygkgADL8lmhbBGWSzV/SNYS7vqVk1yWy+jn2Vk1cFSYXcNmYtCf4nsM3TbGF
-        BbIwJ7WzNntwFJJuaYMOyLOg4A+rLNQ==
-X-Received: by 2002:ad4:5baa:0:b0:5dd:b986:b44 with SMTP id 10-20020ad45baa000000b005ddb9860b44mr11463296qvq.6.1686600305788;
-        Mon, 12 Jun 2023 13:05:05 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7H1q1DqRrvkCipMgEiYgZRTlES9wltJActf/Pf2oZyZoWtJF7Gh3R8ohVrTXCxblcZ5KibxQ==
-X-Received: by 2002:ad4:5baa:0:b0:5dd:b986:b44 with SMTP id 10-20020ad45baa000000b005ddb9860b44mr11463264qvq.6.1686600305457;
-        Mon, 12 Jun 2023 13:05:05 -0700 (PDT)
-Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
-        by smtp.gmail.com with ESMTPSA id e1-20020a0cf341000000b0062dee768501sm719812qvm.99.2023.06.12.13.05.04
+        bh=0M/d98x762H4zuN8FNzgVtnMfzxWhlymbFLqT2RC6Mg=;
+        b=EO/hajjJSQ/Enix1CO9x1LIBX69LNAEttcTg/2eaG20FeHtX16bf9hh3Cvtk0opcrh
+         MAJFEoDvO0iLkPOVAIvsWHEblwyODaAcOB0kMf/GLUMogRijPJXM6YCMCdlzUj5psVTM
+         KWFayhG/3llXKt4AuUbeSC1oK+Y/JII4xYn92v0oDb4Sx6qD0QnbYcsbWDfRpja2P6Vn
+         +d5qg0NVJKyXbjQhvQo90Io4vnrBL5dDxdg84p1cL1uUpw7Fej3NxrI1jUJoIefQQnIW
+         8Rio39dn5AptDRP/NcTUTV8oIypdjHNYO3SRIXZdTBYDtupOUzlKo+Jgeao66Mk8q8uh
+         AG4Q==
+X-Gm-Message-State: AC+VfDw26QolCrZbC3BhFVDWOfGMejwgcVsUoOC9KldclY3zzffAGf5d
+        Zj5jSPjvJ3b+R4N4Nr9ciy66mt6JzRFyUAfF/86/fgTiHVgZWEqW3hxMArKNhyYqezIkUtao9bV
+        TuGzGeJD/xngBgxTiTUze9A==
+X-Received: by 2002:a0d:d914:0:b0:56d:3cb6:8a85 with SMTP id b20-20020a0dd914000000b0056d3cb68a85mr3028336ywe.13.1686600388571;
+        Mon, 12 Jun 2023 13:06:28 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ76nT4fsOumxEmo+PTpkq6Cy2kw7r9EpHd6856hkyTJvZHjyfWwkpG7DXRuh3pkEkAcTXM4cw==
+X-Received: by 2002:a0d:d914:0:b0:56d:3cb6:8a85 with SMTP id b20-20020a0dd914000000b0056d3cb68a85mr3028315ywe.13.1686600388330;
+        Mon, 12 Jun 2023 13:06:28 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
+        by smtp.gmail.com with ESMTPSA id q67-20020a818046000000b0054f83731ad2sm2736173ywf.0.2023.06.12.13.06.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 13:05:05 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 16:05:04 -0400
-From:   Eric Chanudet <echanude@redhat.com>
-To:     Lucas Karpinski <lkarpins@redhat.com>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ahalaney@redhat.com,
-        bmasney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH] Revert "arm64: dts: qcom: sa8540p-ride: enable pcie2a
- node"
-Message-ID: <6m7xpqs73wrlin2ghhviwc4ijb5kyvk7ba2wpflqkgjivv6ol2@z5i5uli3h7f3>
-References: <pmodcoakbs25z2a7mlo5gpuz63zluh35vbgb5itn6k5aqhjnny@jvphbpvahtse>
+        Mon, 12 Jun 2023 13:06:27 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 15:06:24 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 09/26] net: stmmac: dwmac-qcom-ethqos: add missing include
+Message-ID: <20230612200624.jvlyemz7g5aoen62@halaney-x13s>
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-10-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <pmodcoakbs25z2a7mlo5gpuz63zluh35vbgb5itn6k5aqhjnny@jvphbpvahtse>
+In-Reply-To: <20230612092355.87937-10-brgl@bgdev.pl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 02, 2023 at 03:33:21PM -0400, Lucas Karpinski wrote:
-> This reverts commit 2eb4cdcd5aba2db83f2111de1242721eeb659f71.
+On Mon, Jun 12, 2023 at 11:23:38AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> The patch introduced a sporadic error where the Qdrive3 will fail to
-> boot occasionally due to an rcu preempt stall.
-> Qualcomm has disabled pcie2a downstream:
-> https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/rh-patch/-/commit/447f2135909683d1385af36f95fae5e1d63a7e2f
+> device_get_phy_mode() is declared in linux/property.h but this header
+> is not included.
 > 
-> rcu: INFO: rcu_preempt self-detected stall on CPU
-> rcu:     0-....: (1 GPs behind) idle=77fc/1/0x4000000000000004 softirq=841/841 fqs=2476
-> rcu:     (t=5253 jiffies g=-175 q=2552 ncpus=8)
-> Call trace:
->  __do_softirq
->  ____do_softirq
->  call_on_irq_stack
->  do_softirq_own_stack
->  __irq_exit_rcu
->  irq_exit_rcu
-> 
-> The issue occurs normally once every 3-4 boot cycles.
-> There is likely a race condition caused when setting up the two pcie
-> domains concurrently (pcie2a and pcie3a).
-> 
-> The issue is not present when only pcie2a is enabled or when only pcie3a
-> is enabled.
-> A workaround was found that allowed the Qdrive3 to boot with both pcie2a
-> and pcie3a enabled.
-> Set the .probe_type to PROBE_FORCE_SYNCHRONOUS and add an msleep() to
-> the probing function.
-> This is not a solution, so this patch is disabling pcie2a as it seems
-> Red Hat are the only ones working on the board,
-> we're find with disabling the node until a root cause is found. If
-> anyone has further suggestions for debugging, let me know.
-> 
-> Signed-off-by: Lucas Karpinski <lkarpins@redhat.com>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+
 > ---
->  During debugging:
->         - Added additional time for clock/regulator stabilization.
->         - Reduced the bandwidth across pcie2a and pcie3a.
->         - Replaced the interconnect setup from another driver.
->         - The 32-bit/64-bit/config-io space for both pcie2a and pcie3a look to be mapped correctly.
->         - Verified interconnects were started successfully.
-
-I was looking at another issue downstream triggering a soft lock on
-CPU0, but it turns out this could be the same thing except the symptoms
-are less noticeable (the 3-4 boot cycles you mention).
-
-Using next-20230609, if I add a return kprobe on dw_handle_msi_irq:
-
-echo 'r:dwmsi_probe dw_handle_msi_irq $retval' > /sys/kernel/debug/tracing/kprobe_events
-echo 1 > /sys/kernel/debug/tracing/events/kprobes/dwmsi_probe/enable 
-cat /sys/kernel/debug/tracing/trace_pipe
-<idle>-0       [000] d.h1.   690.417268: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
-<idle>-0       [000] d.h1.   690.417272: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
-<idle>-0       [000] d.h1.   690.417276: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
-<idle>-0       [000] d.h1.   690.417281: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
-<idle>-0       [000] d.h1.   690.417284: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
-<idle>-0       [000] d.h1.   690.417288: dwmsi_probe: (dw_chained_msi_isr+0x38/0xb8 <- dw_handle_msi_irq) arg1=0x0
-[...]
-
-dw_handle_msi_irq constantly fires and never returns IRQ_HANDLED. It
-happens consistently for pcie2a or pcie3a, after I disable one or the
-other. I presume having both might be enough to overwhelm the system and
-trigger the stall?
-
-Looking at the handler, the status is always 0 after:
-status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
-			   (i * MSI_REG_CTRL_BLOCK_SIZE));
-
-Unfortunately I do not know why that is yet.
-
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
->  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 44 -----------------------
->  1 file changed, 44 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> index 24fa449d48a6..d492723ccf7c 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> @@ -186,27 +186,6 @@ &i2c18 {
->  	status = "okay";
->  };
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> index e19d142630d3..ecb94e5388c7 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> @@ -6,6 +6,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/phy.h>
+> +#include <linux/property.h>
+>  #include "stmmac.h"
+>  #include "stmmac_platform.h"
 >  
-> -&pcie2a {
-> -	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
-> -		 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
-> -		 <0x03000000 0x5 0x00000000 0x5 0x00000000 0x1 0x00000000>;
-> -
-> -	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 145 GPIO_ACTIVE_HIGH>;
-> -
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pcie2a_default>;
-> -
-> -	status = "okay";
-> -};
-> -
-> -&pcie2a_phy {
-> -	vdda-phy-supply = <&vreg_l11a>;
-> -	vdda-pll-supply = <&vreg_l3a>;
-> -
-> -	status = "okay";
-> -};
-> -
->  &pcie3a {
->  	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
->  		 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
-> @@ -356,29 +335,6 @@ i2c18_default: i2c18-default-state {
->  		bias-pull-up;
->  	};
->  
-> -	pcie2a_default: pcie2a-default-state {
-> -		perst-pins {
-> -			pins = "gpio143";
-> -			function = "gpio";
-> -			drive-strength = <2>;
-> -			bias-pull-down;
-> -		};
-> -
-> -		clkreq-pins {
-> -			pins = "gpio142";
-> -			function = "pcie2a_clkreq";
-> -			drive-strength = <2>;
-> -			bias-pull-up;
-> -		};
-> -
-> -		wake-pins {
-> -			pins = "gpio145";
-> -			function = "gpio";
-> -			drive-strength = <2>;
-> -			bias-pull-up;
-> -		};
-> -	};
-> -
->  	pcie3a_default: pcie3a-default-state {
->  		perst-pins {
->  			pins = "gpio151";
 > -- 
-> 2.40.1
+> 2.39.2
 > 
-
--- 
-Eric Chanudet
 
