@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3326872D027
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 22:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF4CA72D02F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 22:07:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233213AbjFLUHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 16:07:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42256 "EHLO
+        id S236160AbjFLUHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 16:07:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbjFLUHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 16:07:15 -0400
+        with ESMTP id S235128AbjFLUHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 16:07:53 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB82313D
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:06:30 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713DC18C
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:07:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686600390;
+        s=mimecast20190719; t=1686600423;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=0M/d98x762H4zuN8FNzgVtnMfzxWhlymbFLqT2RC6Mg=;
-        b=eQUIbk58nF8WmByk2PK17J9lOhQ3AHXM/yJ6US5jXEpENIBwhDxqFszRJR9dFNQQpUw1YW
-        P1vu2iZzB21uD6XpyfY6RabGN1Tm58jq+NDbVeDLnemQ3qPeg7og/Ill3u83njjoKGwi3+
-        yubwi9NkloclG4HnAbJjQaWDtMVUSn0=
-Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
- [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=X+0noFHcj2yLtNYh9uCwW0uaG8SfjbhqsP5is69vjY8=;
+        b=FeT9By5iDJT4jAduDQ0IpJpwJaNd92XuY9fBD9GLE3OjTxJh5Vqm/gSkw4v1KPQQDD0+hm
+        1/9HB/x0pZ/CHDVnh9ZtxZGCnXTNMG2h/SbPwxMFjcvfo6lJB2NhUKWpbYXqjZkR8L37hX
+        XL3PbwJpEK6HddBceK7Wf7m3GWqN/v0=
+Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com
+ [209.85.128.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-199-IkYTFF4kM_q6P6Obbzvzeg-1; Mon, 12 Jun 2023 16:06:29 -0400
-X-MC-Unique: IkYTFF4kM_q6P6Obbzvzeg-1
-Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-56d4daabd37so11538687b3.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:06:29 -0700 (PDT)
+ us-mta-171-623a_BEWM0mmmvoEw4XkbQ-1; Mon, 12 Jun 2023 16:07:00 -0400
+X-MC-Unique: 623a_BEWM0mmmvoEw4XkbQ-1
+Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-5651d8acfe2so77357817b3.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 13:07:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686600388; x=1689192388;
+        d=1e100.net; s=20221208; t=1686600420; x=1689192420;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0M/d98x762H4zuN8FNzgVtnMfzxWhlymbFLqT2RC6Mg=;
-        b=EO/hajjJSQ/Enix1CO9x1LIBX69LNAEttcTg/2eaG20FeHtX16bf9hh3Cvtk0opcrh
-         MAJFEoDvO0iLkPOVAIvsWHEblwyODaAcOB0kMf/GLUMogRijPJXM6YCMCdlzUj5psVTM
-         KWFayhG/3llXKt4AuUbeSC1oK+Y/JII4xYn92v0oDb4Sx6qD0QnbYcsbWDfRpja2P6Vn
-         +d5qg0NVJKyXbjQhvQo90Io4vnrBL5dDxdg84p1cL1uUpw7Fej3NxrI1jUJoIefQQnIW
-         8Rio39dn5AptDRP/NcTUTV8oIypdjHNYO3SRIXZdTBYDtupOUzlKo+Jgeao66Mk8q8uh
-         AG4Q==
-X-Gm-Message-State: AC+VfDw26QolCrZbC3BhFVDWOfGMejwgcVsUoOC9KldclY3zzffAGf5d
-        Zj5jSPjvJ3b+R4N4Nr9ciy66mt6JzRFyUAfF/86/fgTiHVgZWEqW3hxMArKNhyYqezIkUtao9bV
-        TuGzGeJD/xngBgxTiTUze9A==
-X-Received: by 2002:a0d:d914:0:b0:56d:3cb6:8a85 with SMTP id b20-20020a0dd914000000b0056d3cb68a85mr3028336ywe.13.1686600388571;
-        Mon, 12 Jun 2023 13:06:28 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ76nT4fsOumxEmo+PTpkq6Cy2kw7r9EpHd6856hkyTJvZHjyfWwkpG7DXRuh3pkEkAcTXM4cw==
-X-Received: by 2002:a0d:d914:0:b0:56d:3cb6:8a85 with SMTP id b20-20020a0dd914000000b0056d3cb68a85mr3028315ywe.13.1686600388330;
-        Mon, 12 Jun 2023 13:06:28 -0700 (PDT)
+        bh=X+0noFHcj2yLtNYh9uCwW0uaG8SfjbhqsP5is69vjY8=;
+        b=cbApp8Dp4POOqFnAxAFIni3HrT+eZNjfjmftSkNNvGpbYU1wjs7HFMGjwhb21Z80xU
+         1AVavFs6w9JBRkc5KaO87ZWcXb3ZuVI5Q7DYaJDgcrJ8owdfN6Uatd8WE2f7Av6d8j9g
+         WEqDTzqpBOFFjBAlAy9tTgCy62VkDwBf2hY/V13qoEUOiAg5ggckFXhZkdstv8/sr3Ko
+         YkKC3+uXNMjMl+1qOMZzc7MTxGBCjKT4XZ0Wh4Fm/Uy5qAIODBdxKh9p592V6NURzegB
+         /+yTp/LonU3JYwHIs8vsEOzVOnNdzyMpctTHA8GbRs1MpRtUq9aAN9OQdpPyLEPqyb+7
+         BL1g==
+X-Gm-Message-State: AC+VfDyNlESq0ZczX0VF3UhhJ8EAObUXAmzgtQvdYz8qNPmz0P76YF4I
+        9FRsrMoesNllmATNNdi30gmJYiPqaSu9j+sLlK14sXowN/gHGG4sMDzleCMv1ZNgjTY7jkm8mOK
+        MAGqvlT8V6JNzWuV2veqsHg==
+X-Received: by 2002:a0d:d142:0:b0:569:feee:3950 with SMTP id t63-20020a0dd142000000b00569feee3950mr12226022ywd.2.1686600419881;
+        Mon, 12 Jun 2023 13:06:59 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7PzolWatF3tOgmfa9XBAGwXjOlATUx5vSje4PclwYgketu3avPNRnBzek6n0LaOUY30qXC9g==
+X-Received: by 2002:a0d:d142:0:b0:569:feee:3950 with SMTP id t63-20020a0dd142000000b00569feee3950mr12225997ywd.2.1686600419621;
+        Mon, 12 Jun 2023 13:06:59 -0700 (PDT)
 Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
-        by smtp.gmail.com with ESMTPSA id q67-20020a818046000000b0054f83731ad2sm2736173ywf.0.2023.06.12.13.06.27
+        by smtp.gmail.com with ESMTPSA id m14-20020a819e0e000000b00568e7e21db7sm2713928ywj.96.2023.06.12.13.06.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 13:06:27 -0700 (PDT)
-Date:   Mon, 12 Jun 2023 15:06:24 -0500
+        Mon, 12 Jun 2023 13:06:59 -0700 (PDT)
+Date:   Mon, 12 Jun 2023 15:06:56 -0500
 From:   Andrew Halaney <ahalaney@redhat.com>
 To:     Bartosz Golaszewski <brgl@bgdev.pl>
 Cc:     Vinod Koul <vkoul@kernel.org>,
@@ -78,17 +78,18 @@ Cc:     Vinod Koul <vkoul@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 09/26] net: stmmac: dwmac-qcom-ethqos: add missing include
-Message-ID: <20230612200624.jvlyemz7g5aoen62@halaney-x13s>
+Subject: Re: [PATCH 10/26] net: stmmac: dwmac-qcom-ethqos: add a newline
+ between headers
+Message-ID: <20230612200656.ndt5pwhi3gqj42a5@halaney-x13s>
 References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-10-brgl@bgdev.pl>
+ <20230612092355.87937-11-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230612092355.87937-10-brgl@bgdev.pl>
+In-Reply-To: <20230612092355.87937-11-brgl@bgdev.pl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,11 +97,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:23:38AM +0200, Bartosz Golaszewski wrote:
+On Mon, Jun 12, 2023 at 11:23:39AM +0200, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> device_get_phy_mode() is declared in linux/property.h but this header
-> is not included.
+> Typically we use a newline between global and local headers so add it
+> here as well.
 > 
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
@@ -111,14 +112,14 @@ Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 >  1 file changed, 1 insertion(+)
 > 
 > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index e19d142630d3..ecb94e5388c7 100644
+> index ecb94e5388c7..5b56abacbf6b 100644
 > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
 > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -6,6 +6,7 @@
->  #include <linux/of_device.h>
+> @@ -7,6 +7,7 @@
 >  #include <linux/platform_device.h>
 >  #include <linux/phy.h>
-> +#include <linux/property.h>
+>  #include <linux/property.h>
+> +
 >  #include "stmmac.h"
 >  #include "stmmac_platform.h"
 >  
