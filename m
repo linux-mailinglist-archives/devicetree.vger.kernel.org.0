@@ -2,88 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 415B672CA66
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8397F72CA7C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 17:43:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238617AbjFLPij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 11:38:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
+        id S238391AbjFLPnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 11:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237359AbjFLPii (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:38:38 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D49A10CC
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:38:35 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b1b2ca09b9so53316341fa.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 08:38:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686584313; x=1689176313;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6j+4xQEH1M/R/NQt831AU88wINq39ctKhdxH/376xe8=;
-        b=ZmYcILAuFJRWyFReOLXxXy2Gd7G6ysWJ/yBu6etw7IwytgQPZPqxjDFfvipbfw+GDy
-         S3ZAbO83vbSZqdNeyj8b0ilsycbAjw5UzMCaH5RUruPNO99Tc4dTtd8ZkW3RkiseuqnO
-         HmvxSZd2HyPJW/OGaXCIPagATwdi58gOees4HyLySflAFBV2D7oVRUon9zDHzIMnpgma
-         0TI35pyFvCcD/JIJFye5cTBYyY1VdkhIbf5y2cYvkoi6RDA3Kgtvf0S2+s55PmbDr9jY
-         C36u/NJmUhshqu1ecDnhDa9U9mI5n0NYvtalnjAY2h3EttEZfBRfjXc+bdkYlafP4KQz
-         kG2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686584313; x=1689176313;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6j+4xQEH1M/R/NQt831AU88wINq39ctKhdxH/376xe8=;
-        b=VsXHjF+t4/J61ywoqGwZ1o/v7Xskf6rNRDEOMYQqO7XGEjDK5rlF8/VgGUj8acrHvf
-         /aEyW3NXiT70n05n5Voo2PKEO2SaL6xQlGKHjoxwX4MtCdbaK+zcbET4RnarEghWL9V0
-         fpa9e+rKA3Ng4NqTYKVe5ehIZblRmMugOr5i3ahfDVREUYwF2VF7zRIq34CtHopBmz4t
-         wqCzW8lOavKsbSdRB5cAEUoP/XqesiPOi5+nyRgDEcoFaLVmNZxPK/4H3jV8x7N2cVye
-         6UVL7tWHB7OdOPe1SdbLigxdfb9ee3JQql37eeerKK7w0CW4JQcZ6ZPVE1OBNNCFoYeJ
-         gV2A==
-X-Gm-Message-State: AC+VfDxBrZnSkHE8gq1cxlNyPbjjvsCJv67ItA9i2t5qNidoSSp80UJC
-        TsL1jxEC/RusaT1FSxFa1LEhmw==
-X-Google-Smtp-Source: ACHHUZ4Teau1vBIt9NE9tpRSAXxSnYawNGGHP0WPg9NHLirIprLF6ye3xlV7W9UxE9+b939q64+g7Q==
-X-Received: by 2002:a05:651c:86:b0:2b2:104d:8f89 with SMTP id 6-20020a05651c008600b002b2104d8f89mr3097381ljq.0.1686584313327;
-        Mon, 12 Jun 2023 08:38:33 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id i5-20020a2e8085000000b002ad994b0b51sm1812951ljg.16.2023.06.12.08.38.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 08:38:32 -0700 (PDT)
-Message-ID: <ced1d731-d39f-5192-ca1d-882b7f3fc322@linaro.org>
-Date:   Mon, 12 Jun 2023 18:38:32 +0300
+        with ESMTP id S233394AbjFLPnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 11:43:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2422610C7;
+        Mon, 12 Jun 2023 08:42:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD27B60C78;
+        Mon, 12 Jun 2023 15:42:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19E05C433A0;
+        Mon, 12 Jun 2023 15:42:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686584578;
+        bh=V+v277y/LQOz1Bd9zPL2sVCJjEZLpKCmRiZipD29G+Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nV8jgN32EqcJ+FTLKjKQrdO+6UGgsibH0hBgFrN3I6uszPhudDY8fexRMZ/07CnjD
+         lw3+Zkm13jI3yKUkZjoMGfJ5pOyDmBMs5gf3zBW4D+b/N9gPaFIlklW/M1AXPbIuHi
+         lVO0uJpbVnBMPt0l1oOh8+Mn4xkaXfq7/BZ/WA2gDZ+YKD/68mkWciuq/aAA1ZQC8Z
+         XNXVERcMaX8v7+avRuFwq04OcQYlfy+QWbhL1dCi9y3fTIaweLBKD4Km0w0kHhGqJc
+         zkHM8IZbVti8WBdKOmSeBxI3JVIYXsaBs6M07c2k182ldn5Jb1SPHTdNQ+TRETs3PE
+         3hUWZDrc3poZg==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-4f642a24555so5375902e87.3;
+        Mon, 12 Jun 2023 08:42:57 -0700 (PDT)
+X-Gm-Message-State: AC+VfDwaeYwc9Fybhw004xuKb5HGn8yzJ0n57AtvcvcmH+FiT7NCNhPg
+        SiHS+kb9Smf9gyOuoEOEXkQ021rqlupQPIZEPA==
+X-Google-Smtp-Source: ACHHUZ6nK/lGP80l1yVoeQh4mg6RqY5XjAR5DaGsogZyrQ2YZ6G1K4uViCXSD8gcr66iTuqg+9qD1vtGZ+/MAR57VpI=
+X-Received: by 2002:a2e:b618:0:b0:2a8:eee0:59f3 with SMTP id
+ r24-20020a2eb618000000b002a8eee059f3mr3172291ljn.41.1686584576044; Mon, 12
+ Jun 2023 08:42:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 15/18] ARM: dts: qcom: apq8064: provide voltage scaling
- tables
-Content-Language: en-GB
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>
-References: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
- <20230612053922.3284394-16-dmitry.baryshkov@linaro.org>
- <ZIbez4RA0OoVfHzt@gerhold.net>
- <8c1085fd-8a73-d192-6624-d4f35728e68a@linaro.org>
- <ZIck0L-gK_a_jCtc@gerhold.net>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <ZIck0L-gK_a_jCtc@gerhold.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20230605125248.279921-1-brgl@bgdev.pl> <CAL_JsqKczF9yYHWjqneBv-y+Qv+O7AkX4gwVG87+aPPazKxtDw@mail.gmail.com>
+ <22a21176-f2e2-bce5-2223-97cb095162c5@gmail.com> <98a35030-6dd3-795c-4381-1db4e94a18e4@gmail.com>
+In-Reply-To: <98a35030-6dd3-795c-4381-1db4e94a18e4@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 12 Jun 2023 09:42:43 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKDQy+tq7uDJ9impTr+uetkb7vz-K4BYX8bZBkpvZ=8uQ@mail.gmail.com>
+Message-ID: <CAL_JsqKDQy+tq7uDJ9impTr+uetkb7vz-K4BYX8bZBkpvZ=8uQ@mail.gmail.com>
+Subject: Re: [PATCH] gpiolib: demote the hogging log messages to debug
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Kent Gibson <warthog618@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,113 +68,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2023 16:59, Stephan Gerhold wrote:
-> On Mon, Jun 12, 2023 at 04:33:09PM +0300, Dmitry Baryshkov wrote:
->> On 12/06/2023 12:01, Stephan Gerhold wrote:
->>> On Mon, Jun 12, 2023 at 08:39:19AM +0300, Dmitry Baryshkov wrote:
->>>> APQ8064 has 4 speed bins, each of them having from 4 to 6 categorization
->>>> kinds. Provide tables necessary to handle voltage scaling on this SoC.
->>>>
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    arch/arm/boot/dts/qcom-apq8064.dtsi | 1017 +++++++++++++++++++++++++++
->>>>    1 file changed, 1017 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
->>>> index 4ef13f3d702b..f35853b59544 100644
->>>> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
->>>> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
->>>> @@ -49,6 +49,9 @@ CPU0: cpu@0 {
->>>>    			clocks = <&kraitcc KRAIT_CPU_0>;
->>>>    			clock-names = "cpu";
->>>>    			clock-latency = <100000>;
->>>> +			vdd-mem-supply = <&pm8921_l24>;
->>>> +			vdd-dig-supply = <&pm8921_s3>;
->>>> +			vdd-core-supply = <&saw0_vreg>;
->>>>    			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>>>    			operating-points-v2 = <&cpu_opp_table>;
->>>>    			#cooling-cells = <2>;
->>>> @@ -66,6 +69,9 @@ CPU1: cpu@1 {
->>>>    			clocks = <&kraitcc KRAIT_CPU_1>;
->>>>    			clock-names = "cpu";
->>>>    			clock-latency = <100000>;
->>>> +			vdd-mem-supply = <&pm8921_l24>;
->>>> +			vdd-dig-supply = <&pm8921_s3>;
->>>> +			vdd-core-supply = <&saw1_vreg>;
->>>>    			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>>>    			operating-points-v2 = <&cpu_opp_table>;
->>>>    			#cooling-cells = <2>;
->>>> @@ -83,6 +89,9 @@ CPU2: cpu@2 {
->>>>    			clocks = <&kraitcc KRAIT_CPU_2>;
->>>>    			clock-names = "cpu";
->>>>    			clock-latency = <100000>;
->>>> +			vdd-mem-supply = <&pm8921_l24>;
->>>> +			vdd-dig-supply = <&pm8921_s3>;
->>>> +			vdd-core-supply = <&saw2_vreg>;
->>>>    			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>>>    			operating-points-v2 = <&cpu_opp_table>;
->>>>    			#cooling-cells = <2>;
->>>> @@ -100,6 +109,9 @@ CPU3: cpu@3 {
->>>>    			clocks = <&kraitcc KRAIT_CPU_3>;
->>>>    			clock-names = "cpu";
->>>>    			clock-latency = <100000>;
->>>> +			vdd-mem-supply = <&pm8921_l24>;
->>>> +			vdd-dig-supply = <&pm8921_s3>;
->>>> +			vdd-core-supply = <&saw3_vreg>;
->>>>    			interconnects = <&kraitcc MASTER_KRAIT_L2 &kraitcc SLAVE_KRAIT_L2>;
->>>>    			operating-points-v2 = <&cpu_opp_table>;
->>>>    			#cooling-cells = <2>;
->>>> @@ -132,6 +144,81 @@ cpu_opp_table: opp-table-cpu {
->>>>    		opp-384000000 {
->>>>    			opp-hz = /bits/ 64 <384000000>;
->>>>    			opp-peak-kBps = <384000>;
->>>> +			opp-microvolt-speed0-pvs0 = <1050000 1050000 1150000>,
->>>> +						    <950000 950000 1150000>,
->>>> +						    <950000 950000 975000>;
->>>
+On Sun, Jun 11, 2023 at 6:48=E2=80=AFAM Frank Rowand <frowand.list@gmail.co=
+m> wrote:
+>
+> On 6/11/23 07:39, Frank Rowand wrote:
+> > On 6/9/23 08:47, Rob Herring wrote:
+> >> On Mon, Jun 5, 2023 at 6:53=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev=
+.pl> wrote:
+> >>>
+> >>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >>>
+> >>> Drivers should be silent when they work correctly. There's no reason =
+to
+> >>> emit info messages when GPIO lines are hogged. Demote the message to
+> >>> debug.
+> >>>
+> >>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >>> Suggested-by: Kent Gibson <warthog618@gmail.com>
+> >>> ---
+> >>>  drivers/gpio/gpiolib.c |  2 +-
+> >>>  drivers/of/unittest.c  | 16 ++++++++--------
+> >>>  2 files changed, 9 insertions(+), 9 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+> >>> index a7220e04a93e..e4515bda8915 100644
+> >>> --- a/drivers/gpio/gpiolib.c
+> >>> +++ b/drivers/gpio/gpiolib.c
+> >>> @@ -4243,7 +4243,7 @@ int gpiod_hog(struct gpio_desc *desc, const cha=
+r *name,
+> >>>         /* Mark GPIO as hogged so it can be identified and removed la=
+ter */
+> >>>         set_bit(FLAG_IS_HOGGED, &desc->flags);
+> >>>
+> >>> -       gpiod_info(desc, "hogged as %s%s\n",
+> >>> +       gpiod_dbg(desc, "hogged as %s%s\n",
+> >>>                 (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ? "output" : "inpu=
+t",
+> >>>                 (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ?
+> >>>                   (dflags & GPIOD_FLAGS_BIT_DIR_VAL) ? "/high" : "/lo=
+w" : "");
+> >>> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> >>> index 2191c0136531..0060334a98a7 100644
+> >>> --- a/drivers/of/unittest.c
+> >>> +++ b/drivers/of/unittest.c
+> >>> @@ -1849,19 +1849,19 @@ static void __init of_unittest_overlay_gpio(v=
+oid)
+> >>>          * driver is registered
+> >>>          */
+> >>>
+> >>> -       EXPECT_BEGIN(KERN_INFO,
+> >>> +       EXPECT_BEGIN(KERN_DEBUG,
+> >>>                      "gpio-<<int>> (line-B-input): hogged as input\n"=
+);
+> >>
+> >> As debug messages are normally off, I think you can just remove these.
+> >
+> > This patch is an example of exactly why the message level is the first =
+parameter
+> > passed to EXPECT_*().  The test results are then _always_ valid, not ju=
+st
+> > _normally_.
+>
+> One should never say never.  One should never say always. :-)
+>
+> Yes, there is still the exception where debug can be enabled independentl=
+y
+> for drivers/gpio/gpiolib.c  vs for drivers/of/unittest.c.  And dynamic
+> debug can make things even more wonky.
 
-[skipped the OPP voltage vs bw ordering]
+If we turned on debug messages for drivers/of/, the unittest would be
+hopelessly broken.
 
->>
->>>
->>> The alternative that I've already argued for on IRC in #linux-msm a
->>> couple of days ago would be to give the L2 cache (here: "interconnect")
->>> an own OPP table where it can describe its voltage requirements,
->>> independent from the CPU. That way the icc_set_bw() would be guaranteed
->>> to apply the correct voltage before adjusting the L2 cache clock. It
->>> looks like the "l2_level" voltages for vdd_dig and vdd_mem are not
->>> speedbin/PVS-specific [2] so this would also significantly reduce the DT
->>> size, since you wouldn't need to repeat the same vdd_dig/vdd_mem
->>> voltages for all of them.
->>
->> Yes. I fact our discussion triggered me to do this patchset.
->>
->> So, another option would be to have something like the following snippet. Do
->> you know if we are allowed to squish additional data into the L2 cache DT
->> node?
->>
-> 
-> I suspect no one has tried this before, so only the DT maintainers could
-> answer this. I would say that it just follows the existing design of
-> clocks/-supply/OPPs on the CPU nodes. vdd-mem-supply isn't a property of
-> the CPU, it's a property of the L2 cache so it actually fits better there. >
-> I think the more controversial questions might be:
-> 
->    - Is a L2 cache really an "interconnect"? I suppose one could argue it
->      connects multiple CPU cores to a cluster (similar how a CCI connects
->      multiple clusters to a system).
+Debug messages are special compared to all the other levels as they
+are normally off whereas the rest are always on. For the unittest we
+should assume they are off.
 
-Yes. This was my reasoning for CBF clock as well as for this L2 clock. 
-The separate L2 cache device is also an interconnect from my POV. It 
-connects all CPU cores and we have to vote on its frequency.
-
->    - What would bind to the l2-cache node? A separate driver? Does that
->      work if it sits below the /cpus node?
-
-In the worst case we'd have to populate that manually. E.g. from the 
-qcom-cpufreq-nvmem.c
-
--- 
-With best wishes
-Dmitry
-
+Rob
