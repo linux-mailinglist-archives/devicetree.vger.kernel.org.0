@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87A6472BEB4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 12:19:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7891972BEB3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jun 2023 12:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234520AbjFLKTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 06:19:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53140 "EHLO
+        id S234498AbjFLKTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 06:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229922AbjFLKSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 06:18:30 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D41229F3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:59:15 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f62b552751so4677746e87.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:59:15 -0700 (PDT)
+        with ESMTP id S233842AbjFLKSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 06:18:24 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E63BB229F1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:59:12 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f78a32266bso41614355e9.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 02:59:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686563872; x=1689155872;
+        d=linaro.org; s=google; t=1686563873; x=1689155873;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cygOskfWXusdpGUAH4VtoxUGPB85ArQ0tIqjq+ZLZMY=;
-        b=wiUoGsdWU47N/zsJmYKgM11VRIQxfUHl/wDow3WU+7YUHWCiFAb2fLY8mjy6ooRqsK
-         puMI5rU80RYYcFz7iHpQuOmaj4n8BUO/vrn45OyZBYuIcE27lVOE+ivRdkACIEbmCBSr
-         TSqQb9lNAbm6l2qAw6yhFwYY3x/EvoYgqlhvuMflxvk93w33Jtgz2Q9QBxxOehslrHeF
-         NVpvKOnQR1DIzxa0IDYexOD4+bpScGr8s/t5eudKoUptjCz+2RZ+UWD0mQQpOi/9rIxO
-         74lz6EJcKnXQnwFPXAyX8JPxicHkGqW6+CZDhW7HD3zu4MX/sJVG8ZI5agjBlEkxV+V9
-         dx/Q==
+        bh=ZL7F676qnGuDggNTxNbDvWwuuEoE9PWaV3K3eMeu4cY=;
+        b=ZJhQLvTlBIAKPJI07OjUieRfKmCPgu3j55886ScyUilRznd0SKbmB9apDzwj3Tqj5x
+         T2mNQh5iowlGKVkiZ46Gd/gpv2Wy6NLFSgVR5fHOR2OuGf+FGpOSwjaTeQA6cqOkxqxi
+         3V5qKAnPRZbMKSHHM+vb8Kxx8AtKnoqyKmQXRg0feNx3KfiMPFFMNV+0SfCdOT8jkNRZ
+         hxzcfi2tjr8eNPpACRfFNfA+kkK8JCUMn/qdcbcCga6vs6ozs+iUw/6GOLo9cezpdzZH
+         ou4dcgqHkqSRY4t3WmZm2auawHu6R8i0b6yoUAHQ3P66jX6iLlBbnzngM/sO0aDlCDwx
+         s0DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686563872; x=1689155872;
+        d=1e100.net; s=20221208; t=1686563873; x=1689155873;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cygOskfWXusdpGUAH4VtoxUGPB85ArQ0tIqjq+ZLZMY=;
-        b=BDMndsOfpYqfQWLqEW+Vg2n1A3WtyIIA8/GJnLHh9Gr2Un5XNgioXP2oN3RSAm4JqH
-         qSeogmlS1pHlGV+LaTOc6RcaPtqCiylFI9QyapTYwnlUAah4Jh/u0cOks83u7KDlZ7d9
-         RpT9ff8Mish86PMwIXPzlb77+Zwg84viYhfdeaYpzZKejuLjCjSwXx5ihE4uR20N1/Oe
-         HGCxihOAwqt+C5Sw7hPTS8hthqr3NbSCrbpjU+8W9lxUBg8k50MEkrE/Bmqxlszd/H3j
-         VflY1lQK3D7qidZBjMhnyPqyaPCg76Z4PbnZLW0N8Pis+2sNjYIhHKu7gi9h0VCbkb1B
-         L6mQ==
-X-Gm-Message-State: AC+VfDztHt+hbWQgDuCkj2T2j88y2KJa64mz9yaCUxmQp41DKIXMq5wu
-        QmmaYxVU7UfE57rNSgdGOcRyJw==
-X-Google-Smtp-Source: ACHHUZ7YJy6tu64K5FLHKVS3lhMDWbGs93kRlOXDyiti2Ma8AlEo3Y2ZfLIxRyzYFy9oFz6bPMdE0A==
-X-Received: by 2002:ac2:464d:0:b0:4f4:c972:981f with SMTP id s13-20020ac2464d000000b004f4c972981fmr4263806lfo.54.1686563872398;
-        Mon, 12 Jun 2023 02:57:52 -0700 (PDT)
+        bh=ZL7F676qnGuDggNTxNbDvWwuuEoE9PWaV3K3eMeu4cY=;
+        b=bCWedxvoHqiZKmFCmBsLDeytwQYDsIAqSM4j7S8Oc0W0I1Ixrk5oW80DK6K7F3tFXb
+         jeAfMitDBHbW9j7/OZyxQo+I6/G1Uh+8gXRzmsQkzKyRDTy425cEqQIU5Al3nJs5YdqK
+         BO3+OY2V0SrTFm92s367IMW62nSCdRzexQmDHfoe6aFH4uAxu9wCYov+KNMgWIEw7FLJ
+         Sgq86wfdS6mLQ3uZ73MhZNr8IUG9UkxN54sTbdZR0UNGp77zFmo5hGUZg8YmhdEPCUoj
+         94k27q8rcA1hmNRk458HurxmESNi2heXWFbl7IYB1jEm+A7hrM0Ckh2Aj1k51VKWPx7Q
+         q2vg==
+X-Gm-Message-State: AC+VfDxaF0vB5AVwX8VTitOnwBYtJcpx3InTMWPZoMcmee/gGrJBOm4t
+        RdYnz/scBjYCt++csnPTFZVChw==
+X-Google-Smtp-Source: ACHHUZ7BccJFx+y0enM2+1OFciMk5fgTOpRVaVbW0GIHvdntA/ixkQVmIzJGCm0Fz09GTpZ2HrWoiA==
+X-Received: by 2002:a05:600c:2310:b0:3f7:4961:52aa with SMTP id 16-20020a05600c231000b003f7496152aamr6850138wmo.15.1686563873362;
+        Mon, 12 Jun 2023 02:57:53 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id f25-20020a7bcd19000000b003f7ff520a14sm10829525wmj.22.2023.06.12.02.57.51
+        by smtp.gmail.com with ESMTPSA id f25-20020a7bcd19000000b003f7ff520a14sm10829525wmj.22.2023.06.12.02.57.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 12 Jun 2023 02:57:52 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Mon, 12 Jun 2023 11:57:35 +0200
-Subject: [PATCH v2 18/19] clk: meson: meson8b: move bindings include to
+Date:   Mon, 12 Jun 2023 11:57:36 +0200
+Subject: [PATCH v2 19/19] clk: meson: axg-audio: move bindings include to
  main driver
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-18-38172d17c27a@linaro.org>
+Message-Id: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-19-38172d17c27a@linaro.org>
 References: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
 In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>,
@@ -72,25 +72,25 @@ Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1355;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1218;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=F+2Srg/4sQPMMfVWsDuv7F9eteW1x3up035F2/YQpfY=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkhuwMMKtWPmeip81lFra9k4LHq4SHD3LGAt3P6j/j
- jdneYnqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIbsDAAKCRB33NvayMhJ0RZEEA
- CcMf271vDPYofqAE6DHXz9RcQGziswp5v8xT6Mn99BRK/QQMOupQGM83aLXYCVC6ytBxzru/RlmkXc
- TOJO/H0UvdEcR8Scu/lq5WnMKwnZm2K0hem9noz1xeaVbz/JKhAr3wTYaV29FskgXXAJFH64gSPC95
- sEip7dRQmFM8ZKQVPqyaJfuIeeJzWozkkBc4XaQj9W50/V6vi1IpsoVlDqxW3qArXCQmUSynyjUWoA
- po8xRZfUB93zbWFNg/sRuaY8Bf66jVt3GH58AAmtco/i/T1Rj07N9E8u3ofq+jq5vtRRvE7cy9yJgq
- aWPWjV/F3Faa3GSuWOEmoc4A/6NdhZyPJNhrBR6cZGPTYdv/DZW4VOp/xdbBcMBuC1V2OBA2qpurnc
- EwMH9fv15V4iJnvBXHPrFJ5mzOVNLgCp4CGpK1EK1bODBQs1igv7A0QxPLEj2MtvTvGY7prfPY90mh
- SRogtVHXhoW188QV/Z2AXsE3QVorpULU+cbvONLbYRMoIeZDBJHyJ+O+5fuKnhNo5IGKhCTKOPSmWs
- bHtKh/KnTr3cBettR6+ekGP1uuxiJLHfFHMJldc50Zt0IxjRi3ouAu8BVezlqjZ6frFsR/OPgj2PLG
- QIGCV2jW63nnMUXK1c3CSoTRZDWBQfh4ZUoe/yK+kt2MB/yonwZtet5G5sWg==
+ bh=tdQh/9l9bbOO/xduw4X55YNw4CGdSuUcP4MCwJ672SM=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkhuwMajJn0JjAA6/q5/GCSSK8FW4zQ5lCG+SLMeYI
+ Y9WBiP+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIbsDAAKCRB33NvayMhJ0W5aD/
+ kB1Y6fa+guMuUVS04lb4q/w0zkGu6tny+ys/DakB1hd8KJvHhB9usTDp1i/zA0MFmddC8Ob0H+pazF
+ NrBuq9fvnuctYR3Fbx7dq0ou+i1TUGxkq9/OZz9GSawxSWipZ2gnc0Ld2EZN/FByH8xgRqodTtqaXf
+ Xxls79k/mr3sixj+ETzANRfhTOCb+42jJ6yFvhh8FQ4e4/aM1TZILftVB5B9XfwTFDFTxM/Mg84gO1
+ OAC7DsrVGUzXd5OHjlAqm2xjeE0/IPMeRDbEe7TYd5rgUgDF+LJeKLPsssWjkNjFYG94A5UFz9enGq
+ 988wLDobKgDxDnom/raCWlFACKPYZfmttUKqgTv9u93ZF1ZJ3IYUxy4VNINPiC5DoCbVRgHSogG2JU
+ Qq2V7yadzzrscVwIbY/pa6HEWmIFqN7aIYYn9Aab58jRx8a5g0pg36RALx81l6tHizpY1LE3rFIF4Y
+ UElNq1G9Ywd9vh5GW04HOUI70sNCViR45IvrqNa4Cmk/v1U9dBqdNxsNsr6qVL9//MtD4bK6g0P0bZ
+ yxqmHK1awPTy51C99Ft8VDS5WXPDHKM1v4dCmppgUo2tfDDHCjhfoFSKp2NNtYl5AAmeLeegYeLwAs
+ Q0skahEYpqSvPYcn7QDPs/QN6teL0TcS/qIQ4B+pFLs60SMFt9idTFCoOiBQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -104,40 +104,35 @@ driver file.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/clk/meson/meson8b.c | 3 +++
- drivers/clk/meson/meson8b.h | 7 -------
- 2 files changed, 3 insertions(+), 7 deletions(-)
+ drivers/clk/meson/axg-audio.c | 2 ++
+ drivers/clk/meson/axg-audio.h | 3 ---
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index cea246daea39..b7417ac262d3 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -22,6 +22,9 @@
- #include "clk-pll.h"
- #include "clk-mpll.h"
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index 6917e35232b6..6aca231b1d81 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -21,6 +21,8 @@
+ #include "clk-phase.h"
+ #include "sclk-div.h"
  
-+#include <dt-bindings/clock/meson8b-clkc.h>
-+#include <dt-bindings/reset/amlogic,meson8b-clkc-reset.h>
++#include <dt-bindings/clock/axg-audio-clkc.h>
 +
- static DEFINE_SPINLOCK(meson_clk_lock);
+ #define AUD_GATE(_name, _reg, _bit, _pname, _iflags) {			\
+ 	.data = &(struct clk_regmap_gate_data){				\
+ 		.offset = (_reg),					\
+diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
+index faf08748b205..01a3da19933e 100644
+--- a/drivers/clk/meson/axg-audio.h
++++ b/drivers/clk/meson/axg-audio.h
+@@ -65,7 +65,4 @@
+ #define AUDIO_CLK81_CTRL	0x030
+ #define AUDIO_CLK81_EN		0x034
  
- struct meson8b_clk_reset {
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index 2a9c4fe29ca2..a5b6e67eeefb 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -77,11 +77,4 @@
- #define HHI_MPLL_CNTL9			0x2A0 /* 0xa8 offset in data sheet */
- #define HHI_MPLL_CNTL10			0x2A4 /* 0xa9 offset in data sheet */
- 
--/*
-- * include the CLKID and RESETID that have
-- * been made part of the stable DT binding
-- */
--#include <dt-bindings/clock/meson8b-clkc.h>
--#include <dt-bindings/reset/amlogic,meson8b-clkc-reset.h>
+-/* include the CLKIDs which are part of the DT bindings */
+-#include <dt-bindings/clock/axg-audio-clkc.h>
 -
- #endif /* __MESON8B_H */
+ #endif /*__AXG_AUDIO_CLKC_H */
 
 -- 
 2.34.1
