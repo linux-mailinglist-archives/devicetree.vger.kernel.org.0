@@ -2,189 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B2C72EB0A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE88272EB16
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbjFMSed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 14:34:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36820 "EHLO
+        id S230117AbjFMSiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 14:38:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235184AbjFMSeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:34:31 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C44AC1BD2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:34:29 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9788faaca2dso961317966b.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:34:29 -0700 (PDT)
+        with ESMTP id S240119AbjFMSiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:38:05 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE121BDA
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:38:03 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-97668583210so854443166b.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:38:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686681268; x=1689273268;
+        d=linaro.org; s=google; t=1686681482; x=1689273482;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NtcqOw9tGOLwmlWw5dD/FwSbu+eMTAPAiQdNyorGdKs=;
-        b=TF06f9ZKq7pMgbq7ormbfzR+qN7ngTNxN1iQAXw5U5DuvJrUq1xjjW5xw9Ize6wSp7
-         EYxB2YzFz/QtVppI3GMbtwa4xgZ9sRQc3f4t8YBK/meyV6UR1DiBbMgwpXwOIgNKFs33
-         U87sFC0COYk9vce4kBnTGAGE2hazjZOGeQSpl2b7BLjyXbNQiuFuyb5xpd60z2nQkxnA
-         4ykIXEPRyNRfLYITKW1o/rh6DBnkOaeN2/hn1ZF0+4KTDPZWhyejI8hH3+tu0EYeYbJB
-         EJffQ0cUT8Gpm0QKBn3ydp3Uf+0X+hUyQ9Savf8KEz8OyniD+XdZ/s6VAtYcnNCFkcFq
-         8qsQ==
+        bh=yv0ezbwFqQwpvx+BWAvYK95gbYiy8pu6m4NXyrIcJi0=;
+        b=aSBGeOVWv0EQYYWeowP5nyk1Rq4YoQToAfmc0dTkRpZIV6YkkrQTxEqqrNBhLxVVvX
+         x5KHnTf600s+UbhwtXUYZjZyW7cZQBwd6sZK4wpjc1s+jAeQBa/8TtPPcNz4PUekvla7
+         xhuqwzvCeYt1d/VPxIm1q07I228+eblf4i+3vPHpSswFSo4zCJoGbcfJlDrC2isiNl3s
+         Rw+20Mwvg9CvrcBdYKD/koUQxsx+1y6Ducx5TE2lXjIKKBHTwjieT22rid0OM1sHlR35
+         fF7f+3OAXAiM7PGeDkVHYFMgIaFtyLQXQKF1gGwh/mXJ97Z90cQM8EYGBuw+w+v8uS1W
+         ifEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686681268; x=1689273268;
+        d=1e100.net; s=20221208; t=1686681482; x=1689273482;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NtcqOw9tGOLwmlWw5dD/FwSbu+eMTAPAiQdNyorGdKs=;
-        b=QioGrkawM2RiBurCIp7WuC7Mqx+pwZar+48oNQ+qMhja9H0Px2djxvBssLDHUIgGw6
-         MigiEmpNLv7/7PC5I8oeLAhvWjI1bqEajMtATaYTw//Lpi9WHACaLlBTxqPE0GufnhuN
-         ZWfdqOfFButJBKl+ibvHncvhCxJlpHoxI7w6juVlpiCyj6x88kAx/o3YlFQu0KkBJd98
-         z0bHQPcSCkS+W9aiEP0UXHaKwIFSPPBHoFaFeUVVJ3V+BeqZDFWvOAtNKeBTOvpTm25L
-         IIU1OeX+g0WJdtq2oyYJOGEWiJCSHfGhkAr4LgVzVY4dzyl/3B7X1UtfPT8Ahq/YBZjx
-         HAFQ==
-X-Gm-Message-State: AC+VfDyARAuAmbkroobVO3ECjaU7DHCW/Abj+XKOvSE9SqhIrjV4Nzk0
-        dENA5wQPLv0N37KLq3OugcbEYw==
-X-Google-Smtp-Source: ACHHUZ5h4YyZdlSWo9Eiykl6LWg95TEWZGgJxSeDzTRZm8HcaKkAKbdZzhGVqPwl1h+uQO5nbWUlYg==
-X-Received: by 2002:a17:907:eac:b0:978:8925:7a08 with SMTP id ho44-20020a1709070eac00b0097889257a08mr15533059ejc.72.1686681268157;
-        Tue, 13 Jun 2023 11:34:28 -0700 (PDT)
+        bh=yv0ezbwFqQwpvx+BWAvYK95gbYiy8pu6m4NXyrIcJi0=;
+        b=lc7/egUxvjUletx1rM4eF4fie685E6+cqOucUS1apKoaDW+Te9uE2tty1ENB1Qqb8X
+         F+AsPM4SySU1qM5+A+4PQqsU74I1QCJOfflc8m/bJ3yV0/HCwQpiKCElwr+QTP9cpeqI
+         DBfEdmPAzh6XUEKOvyZfMlZ8wUfVq0OneU/ovqeK19Jw9F9NseqaydGNktUeeSTtx2o2
+         bVNDeLLSVwxYCIjmYQItQll2JYgCE6RPvsNQEnMx5q84CFGiBrMEze+8/OsRPga7uN/S
+         HpEh/ZPjqQnLDpb+NKiuWdu2OliNLc5SpcEElkbZlgtHz3AdPuIqIbub/gORzn9QWtyz
+         cObg==
+X-Gm-Message-State: AC+VfDwbfGbgCzA5f//6hn9aHqOWi4VNCkg2UJ495Faj9nk1Wo7TjOpf
+        8g6n7VXnefHomnRqQWbqzjiPyw==
+X-Google-Smtp-Source: ACHHUZ7GMOecKk6wDEM7Ozt28UyG3zTIyK9GprVXrBebNme5UQYJDt+gmOGfV9xLwAsmVXYmBRpTwA==
+X-Received: by 2002:a17:907:6d1e:b0:977:b397:bbfa with SMTP id sa30-20020a1709076d1e00b00977b397bbfamr13864739ejc.6.1686681481895;
+        Tue, 13 Jun 2023 11:38:01 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id pv12-20020a170907208c00b0096b4ec45e10sm6946337ejb.139.2023.06.13.11.34.26
+        by smtp.gmail.com with ESMTPSA id bn14-20020a170906c0ce00b0095807ab4b57sm7119476ejb.178.2023.06.13.11.37.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 11:34:27 -0700 (PDT)
-Message-ID: <75508c4d-d86e-f88f-191f-dd870ebe7bd7@linaro.org>
-Date:   Tue, 13 Jun 2023 20:34:25 +0200
+        Tue, 13 Jun 2023 11:38:01 -0700 (PDT)
+Message-ID: <7f2d89ed-9964-6d02-5511-ac66c01dc415@linaro.org>
+Date:   Tue, 13 Jun 2023 20:37:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v5 3/7] dt-bindings: clock: jh7110-syscrg: Add PLL clock
- inputs
+Subject: Re: [PATCH v3 5/8] qcom: pmic_glink: enable altmode for SM8550
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230613125852.211636-1-xingyu.wu@starfivetech.com>
- <20230613125852.211636-4-xingyu.wu@starfivetech.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v3-5-22c9973012b6@linaro.org>
+ <5851627e-2972-f860-e965-dc8e73b01225@linaro.org>
+ <8f9c549a-e37b-2877-be74-f25304a476fd@linaro.org>
+ <9c3db237-9bec-36e0-8b0c-28062c631068@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230613125852.211636-4-xingyu.wu@starfivetech.com>
+In-Reply-To: <9c3db237-9bec-36e0-8b0c-28062c631068@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 14:58, Xingyu Wu wrote:
-> Add optional PLL clock inputs from PLL clock generator.
-
-Are you sure that PLLs are optional? Usually they are not...
-
+On 13/06/2023 15:58, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  .../clock/starfive,jh7110-syscrg.yaml         | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> index 84373ae31644..5536e5f9e20b 100644
-> --- a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> @@ -39,6 +39,33 @@ properties:
->            - description: External TDM clock
->            - description: External audio master clock
->  
-> +      - items:
-> +          - description: Main Oscillator (24 MHz)
-> +          - description: GMAC1 RMII reference or GMAC1 RGMII RX
-> +          - description: External I2S TX bit clock
-> +          - description: External I2S TX left/right channel clock
-> +          - description: External I2S RX bit clock
-> +          - description: External I2S RX left/right channel clock
-> +          - description: External TDM clock
-> +          - description: External audio master clock
-> +          - description: PLL0
-> +          - description: PLL1
-> +          - description: PLL2
+> On 13.06.2023 15:43, Neil Armstrong wrote:
+>> On 13/06/2023 13:54, Krzysztof Kozlowski wrote:
+>>> On 13/06/2023 09:55, Neil Armstrong wrote:
+>>>> Altmode is also supported for SM8550, allow it.
+>>>>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>>>   drivers/soc/qcom/pmic_glink.c | 6 +-----
+>>>>   1 file changed, 1 insertion(+), 5 deletions(-)
+>>>>
+>>>> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
+>>>> index c87056769ebd..8af06bdc6f5a 100644
+>>>> --- a/drivers/soc/qcom/pmic_glink.c
+>>>> +++ b/drivers/soc/qcom/pmic_glink.c
+>>>> @@ -342,13 +342,9 @@ static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT
+>>>>                                  BIT(PMIC_GLINK_CLIENT_ALTMODE) |
+>>>>                                  BIT(PMIC_GLINK_CLIENT_UCSI);
+>>>>   -/* Do not handle altmode for now on those platforms */
+>>>> -static const unsigned long pmic_glink_sm8550_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
+>>>> -                               BIT(PMIC_GLINK_CLIENT_UCSI);
+>>>> -
+>>>>   static const struct of_device_id pmic_glink_of_match[] = {
+>>>>       { .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+>>>
+>>> Orientation and maybe all of the USB-related properties do not look like
+>>> sm8450 specific, but PM8350B. That's where CC_OUT pin is. I don't think
+>>> we represented this correctly, but rather copy-pasted downstream solution...
+>>
+>> We do not interact directly with PM8350B or PM8550B but with pmic_glink who
+>> does the work work for use, and this is platform specific.
+> Yep, pmic_glink is totally a firmware construct and not all platforms with
+> pm8350b or so implement it.
 
-Add these three to the existing entry with minItems.
-
-> +
-> +      - items:
-> +          - description: Main Oscillator (24 MHz)
-> +          - description: GMAC1 RMII reference
-> +          - description: GMAC1 RGMII RX
-> +          - description: External I2S TX bit clock
-> +          - description: External I2S TX left/right channel clock
-> +          - description: External I2S RX bit clock
-> +          - description: External I2S RX left/right channel clock
-> +          - description: External TDM clock
-> +          - description: External audio master clock
-> +          - description: PLL0
-> +          - description: PLL1
-> +          - description: PLL2
-
-Add these three to the existing entry with minItems.
-
-
-
-> +
->    clock-names:
->      oneOf:
->        - items:
-> @@ -64,6 +91,35 @@ properties:
->            - const: tdm_ext
->            - const: mclk_ext
->  
-> +      - items:
-> +          - const: osc
-> +          - enum:
-> +              - gmac1_rmii_refin
-> +              - gmac1_rgmii_rxin
-> +          - const: i2stx_bclk_ext
-> +          - const: i2stx_lrck_ext
-> +          - const: i2srx_bclk_ext
-> +          - const: i2srx_lrck_ext
-> +          - const: tdm_ext
-> +          - const: mclk_ext
-> +          - const: pll0_out
-> +          - const: pll1_out
-> +          - const: pll2_out
-
-Add these three to the existing entry with minItems.
-
-
-> +
-> +      - items:
-> +          - const: osc
-> +          - const: gmac1_rmii_refin
-> +          - const: gmac1_rgmii_rxin
-> +          - const: i2stx_bclk_ext
-> +          - const: i2stx_lrck_ext
-> +          - const: i2srx_bclk_ext
-> +          - const: i2srx_lrck_ext
-> +          - const: tdm_ext
-> +          - const: mclk_ext
-> +          - const: pll0_out
-> +          - const: pll1_out
-> +          - const: pll2_out
-
-Add these three to the existing entry with minItems.
-
-
+The drivers interact like this, but there is no pmic glink on schematics
+but PM8350B and PM8550 and DT represents here the hardware, thus the
+schematics, not your chosen way of interface. This looks like a copy of
+downstream choice which is in most cases just wrong choice.
 
 Best regards,
 Krzysztof
