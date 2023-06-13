@@ -2,141 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97B2072DBD3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 660F772DBE3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:01:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240830AbjFMIAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 04:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50442 "EHLO
+        id S240839AbjFMIBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 04:01:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241191AbjFMH76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:59:58 -0400
-Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F19BA3C33
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:58:56 -0700 (PDT)
-Received: by mail-vs1-xe2b.google.com with SMTP id ada2fe7eead31-43d10b0bf6cso299166137.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:58:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686643135; x=1689235135;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UsJLNzamcvflvt39bJ653iKfbKKP5ytmbnffadMCPyM=;
-        b=NzCmxWBnfmLYJE9eX8SGkh9EhG7MM+9AO4XxEFNdYE36a5jCujth0fxlxzD/WRlvI8
-         wwHufGE06Z+3m94N+4rDADqMOC4ANpUJorLdPwiUD00X2QXZznGT46ZEvMM0nF5r7Hri
-         9GXJltOAClw2tO8tc9BIcNcAmC/T/tpq50YHo40fVChd+g0FeBMUbytkvo7nId5TBP0R
-         1L0PMHqcFc6yCQ9/WNDJ5GubKrmAIjPco7+TvVkVgtJNRwxw658g7/AUVJ8UH0JCOH2P
-         tjKwFbEn3WJEakotGAE6Gq3ferV6U8Sae8+CLPLCZsmps1TPLgesfq6pbt4z12KWyPjJ
-         ekjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686643135; x=1689235135;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UsJLNzamcvflvt39bJ653iKfbKKP5ytmbnffadMCPyM=;
-        b=hsfkYaTHW0YiFm/eJCWDzpVO4rpOZNFUPXRFieg/ieMrd2Tv7Pv54Sqfwcg31RQ4tv
-         0ulp/Pi2eq/UTs/siSmMDXSt0I2DtlPBjILltdGycG9LlO/puN4CPY4iTL1Va1Q41T4D
-         oNJnQjImV6TCiuYxcKKOpRCFzBN1k06pbsPSYVb2XY4v+Ds/1/paym27z3J0WWQAWADC
-         wyugd71TEMbzaNL/U7eCvVciWF2dQSKqg01MXsJQ3XX90/H5ShMLHUtPM4Lz1qKELxRM
-         LY0Q0sLrRWhYVSb0GmsnaLaQqK19wp5iAsUJZqy33iGduwzbCXdzk/C7JOahN6YmEIPQ
-         vVzQ==
-X-Gm-Message-State: AC+VfDy8S9kgjZKf0Q0z9hfEPvfxQIQwGuByW2zSt/C8zIIEyyy9wb4y
-        x32hBZX1iCm0pwEcCsfPPQ4Ee9za8Qdsj1TpxDl3lg==
-X-Google-Smtp-Source: ACHHUZ6UD0q4lBsFYRt1iBzo8nMQl6CBXd1e25IrTyG7lfVFArPC+BBaQLENtHQYb5mOM3DJ18qcoESm5mZWq4y4/aI=
-X-Received: by 2002:a67:f610:0:b0:43b:398c:b251 with SMTP id
- k16-20020a67f610000000b0043b398cb251mr6161345vso.5.1686643135653; Tue, 13 Jun
- 2023 00:58:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230612092355.87937-1-brgl@bgdev.pl> <20230612092355.87937-14-brgl@bgdev.pl>
- <20230612204042.litbbv23zdb3u5k7@halaney-x13s>
-In-Reply-To: <20230612204042.litbbv23zdb3u5k7@halaney-x13s>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 13 Jun 2023 09:58:44 +0200
-Message-ID: <CAMRc=MeFnbcpjxNb537t0nb8Gd4ZsGVWZn2j+yHusWjmQQge4w@mail.gmail.com>
-Subject: Re: [PATCH 13/26] net: stmmac: dwmac-qcom-ethqos: make the rgmii
- clock optional
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S240843AbjFMIAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:00:51 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7DEA1BD0;
+        Tue, 13 Jun 2023 01:00:09 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686643208;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=rd/XsfPHYPjYWaY07hPncGtbRCyEuLUp22IAn5v29r4=;
+        b=oGdpKjgpNu08N2uUAgpCGHd8N5hAGIMRJCwlpnSNDv0ljGSyOFGfEqivtG8W6LNnRYFmgB
+        O2lz/a+CDqHon+Vx+iu2vZyhBOqJRp22Vo7sjM3NVqfFDCjriQW2M0D8tV1wP5ibo6fqmT
+        8MxpRpBFvoJg+Nld2DCPm/mHEdYQjwymrgoKqgMUuVLLL5/7ZDyCbjJvy/mPrJWl4Voecg
+        8lLV+50gZAslzG68s4CpPEnj8My0R1zOmb9IpazpXumoJbUK1pB12MDb/WZ/5tolCKiWcm
+        FDZQ+TKiVBfDhhX6z6H6+vHZKuAx2+814/BZ63VuvsJHcUwAscSMeEfdhKfZFg==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A7C961C0006;
+        Tue, 13 Jun 2023 08:00:01 +0000 (UTC)
+Date:   Tue, 13 Jun 2023 10:00:00 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 06/12] minmax: Introduce {min,max}_array()
+Message-ID: <20230613100000.6bd9e690@bootlin.com>
+In-Reply-To: <CAHp75Vf2dmAS9VD-pgyZwVopVCFy8yFjhPWEj8sym=pfE7uxSA@mail.gmail.com>
+References: <20230612122926.107333-1-herve.codina@bootlin.com>
+        <20230612122926.107333-7-herve.codina@bootlin.com>
+        <CAHp75Vf2dmAS9VD-pgyZwVopVCFy8yFjhPWEj8sym=pfE7uxSA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 10:40=E2=80=AFPM Andrew Halaney <ahalaney@redhat.co=
-m> wrote:
->
-> On Mon, Jun 12, 2023 at 11:23:42AM +0200, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi Andy,
+
+On Mon, 12 Jun 2023 17:10:40 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+
+> On Mon, Jun 12, 2023 at 3:30 PM Herve Codina <herve.codina@bootlin.com> wrote:
 > >
-> > On sa8775p there's no RGMII clock so make it optional in the driver.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > Introduce min_array() (resp max_array()) in order to get the
+> > minimal (resp maximum) of values present in an array.  
+> 
+> Some comments below, after addressing them,
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > > ---
-> >  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >  include/linux/minmax.h | 26 ++++++++++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
 > >
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/=
-drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> > index 3438b6229351..252dca400071 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> > @@ -663,7 +663,7 @@ static int qcom_ethqos_probe(struct platform_device=
- *pdev)
-> >       ethqos->rgmii_config_loopback_en =3D data->rgmii_config_loopback_=
-en;
-> >       ethqos->has_emac3 =3D data->has_emac3;
+> > diff --git a/include/linux/minmax.h b/include/linux/minmax.h
+> > index 396df1121bff..37a211f22404 100644
+> > --- a/include/linux/minmax.h
+> > +++ b/include/linux/minmax.h
+> > @@ -133,6 +133,32 @@
+> >   */
+> >  #define max_t(type, x, y)      __careful_cmp((type)(x), (type)(y), >)
 > >
-> > -     ethqos->rgmii_clk =3D devm_clk_get(dev, "rgmii");
-> > +     ethqos->rgmii_clk =3D devm_clk_get_optional(dev, "rgmii");
->
-> This makes it optional for older platforms too, but as far as I know on
-> those platforms it is mandatory.
->
-> This can be enforced in dt-binding checks, but should we also enforce
-> that in the driver still? Honestly I feel like yes, but there's probably
-> some precedent maintainers follow on this front that I don't know of.
->
+> > +#define __minmax_array(op, array, len) ({                      \  
+> 
+> Maybe it's my MUA, maybe the code contains spaces, can you switch to
+> TABs if it's the case?
+> 
+> > +       typeof(array) __array = (array);                        \  
+> 
+> We have __must_be_array()
 
-While my gut feeling is that enforcing the clock list on the DT
-binding lever is enough, we can also do a different thing: rename the
-clock from rgmii_clk to link_clk or something similar and just
-determine the name based on the HW variant ("rgmii" or "phyaux"). Or
-even get the clock by its index? this way we could fold the next patch
-in the series into this one and simplify the code.
+Using __must_be_array() will lead to some failure.
+Indeed, we can have:
+  --- 8< ---
+  int *buff
+  ...
+  min = min_array(buff, nb_item);
+  --- 8< ---
 
-Bart
+In this case, __must_be_array() will report that buff is not an array.
 
->
-> >       if (IS_ERR(ethqos->rgmii_clk)) {
-> >               ret =3D PTR_ERR(ethqos->rgmii_clk);
-> >               goto out_config_dt;
-> > --
-> > 2.39.2
-> >
->
+To avoid any confusion, what do you think if I renamed {min,max}_array()
+to {min,max}_buffer() and replace __array by __buff and use *(__buff + xxx)
+instead of array[xxx] in the macro.
+
+This will lead to:
+--- 8< ---
+#define __minmax_buffer(op, buff, len) ({			\
+	typeof(buff) __buff = (buff);			\
+	typeof(len) __len = (len);				\
+	typeof(*buff + 0) __element = *(__buff + --__len);	\
+	while (__len--)						\
+		__element = op(__element, *(__buff + __len]));	\
+	__element; })
+
+#define min_buffer(buffer, len) __minmax_array(min, buffer, len)
+#define max_buffer(buffer, len) __minmax_array(max, buffer, len)
+--- 8< ---
+
+Regards,
+Hervé
+
+> 
+> You will need to fix the inclusions in minmax.h at the same time, it needs
+> linux/build_bug.h (which includes compiler.h needed for __UNIQUE_ID()
+> and for the above mentioned one).
+> 
+> > +       typeof(len) __len = (len);                              \
+> > +       typeof(*__array + 0) __element = __array[--__len];      \  
+> 
+> After above, this can be written as __array[0].
+> 
+> > +       while (__len--)                                         \
+> > +               __element = op(__element, __array[__len]);      \
+> > +       __element; })
+> > +
+> > +/**
+> > + * min_array - return minimum of values present in an array
+> > + * @array: array
+> > + * @len: array length
+> > + *
+> > + * Note that @len must not be zero (empty array).
+> > + */
+> > +#define min_array(array, len) __minmax_array(min, array, len)
+> > +
+> > +/**
+> > + * max_array - return maximum of values present in an array
+> > + * @array: array
+> > + * @len: array length
+> > + *
+> > + * Note that @len must not be zero (empty array).
+> > + */
+> > +#define max_array(array, len) __minmax_array(max, array, len)
+> > +
+> >  /**
+> >   * clamp_t - return a value clamped to a given range using a given type
+> >   * @type: the type of variable to use  
+> 
+
