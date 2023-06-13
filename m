@@ -2,173 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB5D72E3AA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:02:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9777372E3B5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:03:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242538AbjFMNBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55124 "EHLO
+        id S242548AbjFMND6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:03:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242479AbjFMNBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:01:16 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467741720
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:01:14 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f649db9b25so6691341e87.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:01:14 -0700 (PDT)
+        with ESMTP id S242614AbjFMNDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:03:45 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6B919B7;
+        Tue, 13 Jun 2023 06:03:41 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id 6a1803df08f44-62dea65edb2so5658746d6.0;
+        Tue, 13 Jun 2023 06:03:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1686661272; x=1689253272;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1686661420; x=1689253420;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=46KkCoyCaP4pL/jEPklf2fuk5AVWyAvfGth05Co0T18=;
-        b=haQOPWKa3ER2duykMm+Sd0Nw4FfDB0m4UkrtopsZoLbZe5z0EQuBlcfaZjRcVf7oI7
-         gSOYW1J5eCDYEE938vG6q9t9zkVV1LYsz1/P0Ya6BTaYoYiY2lRDk6SfKNE6FV+Qc1+D
-         QK/hgXfh4ct2iLAwQgA0Z8UuyFOUsvcCdAGS0=
+        bh=ph8muSYdWfoSysNozHej0lspNPRmqVyqDCHut3XIIUY=;
+        b=ln4YUxRpK9f8I0HhdEpd3858fLpiCbXpocosM3zRqygyHl9hyBPjUxT+VR91cFlFvm
+         SrGpVOwRuy2qhZvkPlOGuQILYTukeFo9Bg3uC/QOod5fjB11XhE9Xk3T8NpJfEKtDTsI
+         8W9+g4X79V6llo/DMNJTA8V+NV8wYsoIpca8C5kqStEZXfEKurpdmcjz/ZRDzVDDtd1J
+         PgjHR54Hlnrb6NkJy48VfGywsN78zbALz9eiBOvMWf+TJUx91ipSjMGos8meeRi2U58C
+         iEavMOG6xrHPTZCUTGXyJojaR5nPjJ+sNOnTv/WsikKRVOprOtT9ZXgEA3X8OGfyWoWB
+         fJTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686661272; x=1689253272;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1686661420; x=1689253420;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=46KkCoyCaP4pL/jEPklf2fuk5AVWyAvfGth05Co0T18=;
-        b=k3mNPdR42hufmC+pBGfcc+yy3/goE/svcq6gNhOg+CpHqSzJf683m1uV20wjgya1iM
-         mv7X1l3wJPG3lXtRy5OZHKBV0ULp8Q3GQsijzAkUsNf0YvXE937IlIdNEfxCgphVj0hP
-         2gk1Q8QkcXkr2JYXSrlQE8zq53n3ErKIiTrRMelcCwv/uiHOVBlVypLmKojdMeg88utt
-         Oy0wU3PAKOmxHUov/xcLE8hxBVSrO96LZQLC6LJxECgzjgnsIfpPmDra7qc8FVYxu291
-         nsvwfLN/KhoYUTfrP/pDzQvrqYCb+jMo6+bkQCIQEb6I8c+ZcaRVrlVEOYwSJu1Lu9II
-         GD5Q==
-X-Gm-Message-State: AC+VfDxHFQcXMh/28a4fmJGJw8v88o0ic//M7s1lcohcC5GgreqRr8yJ
-        O2KxztSgBMDvAQGI1ErFRUITFA==
-X-Google-Smtp-Source: ACHHUZ73JuWNHjEuDGnIJzA9IFe0ASfyWKtlyLgVfjFM/EXl0T/cvjy8lsrXXCSpjHmDHJbHAFtFnQ==
-X-Received: by 2002:a19:771d:0:b0:4f6:217a:561e with SMTP id s29-20020a19771d000000b004f6217a561emr5797407lfc.37.1686661272390;
-        Tue, 13 Jun 2023 06:01:12 -0700 (PDT)
-Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id u24-20020ac243d8000000b004f14ae5ded8sm1793786lfl.28.2023.06.13.06.01.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 06:01:11 -0700 (PDT)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] rtc: isl12022: implement support for the #clock-cells DT property
-Date:   Tue, 13 Jun 2023 15:00:10 +0200
-Message-Id: <20230613130011.305589-9-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230613130011.305589-1-linux@rasmusvillemoes.dk>
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+        bh=ph8muSYdWfoSysNozHej0lspNPRmqVyqDCHut3XIIUY=;
+        b=PkQWidmvtEJeqqE2sejzFq6t6dAtFB4hqpMxBr/iuRsL2hcts9dZ9VLesHaC2p9kkC
+         SN43wXqXUGAZfum79VfJoURSKvTDZ4aPP3zGjG1SjLWNPQYVpB+0ae+8dRM5Iq44IZI/
+         YjAFHOPIvQL/rXcRAgbmY7PLFLiIQusf5RRHhi7fFkSHdqUjip7qjcKEsYqF0gPIQzWb
+         YPqCKJqGPe3krrYzke7O7/QuXzXrwEoUOpcZswHnB0X9DEm4kmwvN35qDuyOo4VwezL3
+         9akcBVozYRa2w68vwLdnY6viDjn2TUfH4zPFYbw8PuE4Q1xBzTeW80dtY7GDf0RWNIjw
+         GFfw==
+X-Gm-Message-State: AC+VfDxZ/P1DqeaW8hzycwsJcKZ4nGupr52Rz735mYAGcttEhRy5bd62
+        +jhncQ/7AEI33M+2ONib5tyOBUSMTdptru6RDhI=
+X-Google-Smtp-Source: ACHHUZ5nOTLhze+E2wXOckkmMBUzoKHAynMMVWwnxk/gQWe9ti2e0UBDodLfEIjcbxBl0q5mNW1fPU58CsqjOiGw3xo=
+X-Received: by 2002:a05:6214:401c:b0:62d:e73b:c4ab with SMTP id
+ kd28-20020a056214401c00b0062de73bc4abmr6160647qvb.1.1686661420050; Tue, 13
+ Jun 2023 06:03:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230613075834.5219-1-zhuyinbo@loongson.cn> <20230613075834.5219-3-zhuyinbo@loongson.cn>
+In-Reply-To: <20230613075834.5219-3-zhuyinbo@loongson.cn>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 13 Jun 2023 16:03:03 +0300
+Message-ID: <CAHp75VdtFjkyBF4K1+MOHAmp0S6RU5Cg3NYD8yGH+8FBBG0Zuw@mail.gmail.com>
+Subject: Re: [PATCH v13 2/2] spi: loongson: add bus driver for the loongson
+ spi controller
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If device tree implies that the chip's IRQ/F_OUT pin is used as a
-clock, expose that in the driver. For now, pretend it is a
-fixed-rate (32kHz) clock; if other use cases appear the driver can be
-updated to provide its own clk_ops etc.
+On Tue, Jun 13, 2023 at 10:58=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> w=
+rote:
 
-When the clock output is not used on a given board, one can prolong
-the battery life by ensuring that the FOx bits are 0. For the hardware
-I'm currently working on, the RTC draws 1.2uA with the FOx bits at
-their default 0001 value, dropping to 0.88uA when those bits are
-cleared.
+...
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
----
- drivers/rtc/rtc-isl12022.c | 40 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+> Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-diff --git a/drivers/rtc/rtc-isl12022.c b/drivers/rtc/rtc-isl12022.c
-index 44603169e575..3e69f1a5dc12 100644
---- a/drivers/rtc/rtc-isl12022.c
-+++ b/drivers/rtc/rtc-isl12022.c
-@@ -10,6 +10,7 @@
- 
- #include <linux/bcd.h>
- #include <linux/bitfield.h>
-+#include <linux/clk-provider.h>
- #include <linux/err.h>
- #include <linux/hwmon.h>
- #include <linux/i2c.h>
-@@ -44,6 +45,9 @@
- #define ISL12022_SR_LBAT75	(1 << 1)
- 
- #define ISL12022_INT_WRTC	(1 << 6)
-+#define ISL12022_INT_FO_MASK	GENMASK(3, 0)
-+#define ISL12022_INT_FO_OFF	0x0
-+#define ISL12022_INT_FO_32K	0x1
- 
- #define ISL12022_REG_VB85_MASK	GENMASK(5, 3)
- #define ISL12022_REG_VB75_MASK	GENMASK(2, 0)
-@@ -241,6 +245,37 @@ static const struct regmap_config regmap_config = {
- 	.use_single_write = true,
- };
- 
-+static int isl12022_register_clock(struct device *dev)
-+{
-+	struct regmap *regmap = dev_get_drvdata(dev);
-+	struct clk_hw *hw;
-+	int ret;
-+
-+	if (!device_property_present(dev, "#clock-cells")) {
-+		/*
-+		 * Disabling the F_OUT pin reduces the power
-+		 * consumption in battery mode by ~25%.
-+		 */
-+		regmap_update_bits(regmap, ISL12022_REG_INT, ISL12022_INT_FO_MASK,
-+				   ISL12022_INT_FO_OFF);
-+
-+		return 0;
-+	}
-+
-+	/*
-+	 * For now, only support a fixed clock of 32768Hz (the reset default).
-+	 */
-+	ret = regmap_update_bits(regmap, ISL12022_REG_INT, ISL12022_INT_FO_MASK, ISL12022_INT_FO_32K);
-+	if (ret)
-+		return ret;
-+
-+	hw = devm_clk_hw_register_fixed_rate(dev, "isl12022", NULL, 0, 32768);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, hw);
-+}
-+
- static const u32 trip_level85[] = { 2125000, 2295000, 2550000, 2805000, 3060000, 4250000, 4675000 };
- static const u32 trip_level75[] = { 1875000, 2025000, 2250000, 2475000, 2700000, 3750000, 4125000 };
- 
-@@ -284,6 +319,7 @@ static int isl12022_probe(struct i2c_client *client)
- {
- 	struct rtc_device *rtc;
- 	struct regmap *regmap;
-+	int ret;
- 
- 	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
- 		return -ENODEV;
-@@ -296,6 +332,10 @@ static int isl12022_probe(struct i2c_client *client)
- 
- 	dev_set_drvdata(&client->dev, regmap);
- 
-+	ret = isl12022_register_clock(&client->dev);
-+	if (ret)
-+		return ret;
-+
- 	isl12022_set_trip_levels(&client->dev);
- 	isl12022_hwmon_register(&client->dev);
- 
--- 
-2.37.2
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
+Just a remark for the next contribution. When you have a tag, no need
+to have a Cc for the same person, Git tools automatically add all
+tagged people to the Cc list of email.
+
+--=20
+With Best Regards,
+Andy Shevchenko
