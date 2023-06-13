@@ -2,117 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FEC72EA26
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 749BB72EA4A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231994AbjFMRmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 13:42:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38140 "EHLO
+        id S231407AbjFMRy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 13:54:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236376AbjFMRmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:42:25 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BECA6;
-        Tue, 13 Jun 2023 10:42:24 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DHfu9W084100;
-        Tue, 13 Jun 2023 12:41:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686678116;
-        bh=igyZvlOfVcSf4nGPg6BKktZlYY6keooO5jqV4M4Sjf8=;
-        h=Date:Subject:From:To:CC:References:In-Reply-To;
-        b=GxpXVusBEQWpKJk8EBWTP2BMfzh9WPp8AV+k33AdMWxN4P+v8hMs6zUxuJDgxnwbH
-         0Q+oKfWMpNgZBmev9FwdcO+h35SbYXjFwi/be+J+7xOCvrnwn3msEPUShT7FPrvgAm
-         oYLb8mIxa09TV4psU4JfK4DwyfphqOMFfSi4fG+o=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DHfuOi122876
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Jun 2023 12:41:56 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
- Jun 2023 12:41:55 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 13 Jun 2023 12:41:55 -0500
-Received: from [128.247.81.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DHftFR010861;
-        Tue, 13 Jun 2023 12:41:55 -0500
-Message-ID: <9905aefb-0d27-a4d6-b72d-5b852dc04465@ti.com>
-Date:   Tue, 13 Jun 2023 12:41:55 -0500
+        with ESMTP id S229590AbjFMRy0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:54:26 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 503291980;
+        Tue, 13 Jun 2023 10:54:25 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35DAcQUT005633;
+        Tue, 13 Jun 2023 17:54:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=FhHkLfZLOO4yubpLLOyR5XbfFkbOYFd4xCfqu/OhtOM=;
+ b=WLBdAf4s58gCWraHEtcEbi+333ggNU+wSCE5XiFjnaS8jpvIAsWxBJSNiBxv0UodIaN/
+ BEz2YDZDHPpyoneYq2uItCzMI1Y4EEiV0LmKu/7boadOEbE5VVP1QF2XV07cwLfi+uMT
+ vFzYtChsr13HHcUBZ3qgsCzsrJYdsrHZ+6Pr27JpvK+JeDEpKHSalDXfT6979rl+gQqB
+ 8Q/4AcsVHFUQSCyEA6CKsoRfUFw1dl3g2aTZKNcfzImXyzo7K03HpFqi3TOYmBlhvtG5
+ WdLHivwDzAxRw5R1AtJL0psbPiNRrSlR3eDVQgmWC/8SkOFS2DsSUCkxA0K4aVxWl9Gg Vw== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r6nqh17wm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Jun 2023 17:54:08 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35DHs6ds018982
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Jun 2023 17:54:06 GMT
+Received: from [10.71.108.253] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 13 Jun
+ 2023 10:54:05 -0700
+Message-ID: <e907ce20-b523-eedc-9883-18a5484464be@quicinc.com>
+Date:   Tue, 13 Jun 2023 10:54:05 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v8 0/2] Enable multiple MCAN on AM62x
-Content-Language: en-US
-From:   Judith Mendez <jm@ti.com>
-To:     <linux-can@vger.kernel.org>, Marc Kleine-Budde <mkl@pengutronix.de>
-CC:     Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v13 10/24] gunyah: vm_mgr: Add/remove user memory regions
+To:     Will Deacon <will@kernel.org>
+CC:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Arnd Bergmann" <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>,
-        Conor Dooley <conor+dt@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>
-References: <20230530224820.303619-1-jm@ti.com>
-In-Reply-To: <20230530224820.303619-1-jm@ti.com>
+        Jonathan Corbet <corbet@lwn.net>,
+        "Bagas Sanjaya" <bagasdotme@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <qperret@google.com>,
+        <quic_cgoldswo@quicinc.com>, <quic_pdaly@quicinc.com>
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+ <20230509204801.2824351-11-quic_eberman@quicinc.com>
+ <20230519115948.GB2637@willie-the-truck>
+ <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
+ <20230605141839.GD21212@willie-the-truck>
+Content-Language: en-US
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <20230605141839.GD21212@willie-the-truck>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RRoR3Wi9gjSZJW0Y14gRHykPVltqrZeH
+X-Proofpoint-ORIG-GUID: RRoR3Wi9gjSZJW0Y14gRHykPVltqrZeH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-13_20,2023-06-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=607 bulkscore=0
+ suspectscore=0 mlxscore=0 priorityscore=1501 impostorscore=0 spamscore=0
+ phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306130158
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
 
-On 5/30/23 5:48 PM, Judith Mendez wrote:
-> On AM62x there are two MCANs in MCU domain. The MCANs in MCU domain
-> were not enabled since there is no hardware interrupt routed to A53
-> GIC interrupt controller. Therefore A53 Linux cannot be interrupted
-> by MCU MCANs.
-> 
-> This solution instantiates a hrtimer with 1 ms polling interval
-> for MCAN device when there is no hardware interrupt property in
-> DTB MCAN node. The hrtimer generates a recurring software interrupt
-> which allows to call the isr. The isr will check if there is pending
-> transaction by reading a register and proceed normally if there is.
-> MCANs with hardware interrupt routed to A53 Linux will continue to
-> use the hardware interrupt as expected.
-> 
-> Timer polling method was tested on both classic CAN and CAN-FD
-> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
-> switching.
-> 
-> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
-> 1 MBPS timer polling interval is the better timer polling interval
-> since it has comparable latency to hardware interrupt with the worse
-> case being 1ms + CAN frame propagation time and CPU load is not
-> substantial. Latency can be improved further with less than 1 ms
-> polling intervals, howerver it is at the cost of CPU usage since CPU
-> load increases at 0.5 ms.
-> 
-> Note that in terms of power, enabling MCU MCANs with timer-polling
-> implementation might have negative impact since we will have to wake
-> up every 1 ms whether there are CAN packets pending in the RX FIFO or
-> not. This might prevent the CPU from entering into deeper idle states
-> for extended periods of time.
 
-Was wondering if I am still pending some updates for this patch series? 
-Or if any other issues please let me know. (: Thanks all
+On 6/5/2023 7:18 AM, Will Deacon wrote:
+> Hi Elliot,
+> 
+> [+Quentin since he's looked at the MMU notifiers]
+> 
+> Sorry for the slow response, I got buried in email during a week away.
+> 
+> On Fri, May 19, 2023 at 10:02:29AM -0700, Elliot Berman wrote:
+>> On 5/19/2023 4:59 AM, Will Deacon wrote:
+>>> On Tue, May 09, 2023 at 01:47:47PM -0700, Elliot Berman wrote:
+>>>> +	ret = account_locked_vm(ghvm->mm, mapping->npages, true);
+>>>> +	if (ret)
+>>>> +		goto free_mapping;
+>>>> +
+>>>> +	mapping->pages = kcalloc(mapping->npages, sizeof(*mapping->pages), GFP_KERNEL_ACCOUNT);
+>>>> +	if (!mapping->pages) {
+>>>> +		ret = -ENOMEM;
+>>>> +		mapping->npages = 0; /* update npages for reclaim */
+>>>> +		goto unlock_pages;
+>>>> +	}
+>>>> +
+>>>> +	gup_flags = FOLL_LONGTERM;
+>>>> +	if (region->flags & GH_MEM_ALLOW_WRITE)
+>>>> +		gup_flags |= FOLL_WRITE;
+>>>> +
+>>>> +	pinned = pin_user_pages_fast(region->userspace_addr, mapping->npages,
+>>>> +					gup_flags, mapping->pages);
+>>>> +	if (pinned < 0) {
+>>>> +		ret = pinned;
+>>>> +		goto free_pages;
+>>>> +	} else if (pinned != mapping->npages) {
+>>>> +		ret = -EFAULT;
+>>>> +		mapping->npages = pinned; /* update npages for reclaim */
+>>>> +		goto unpin_pages;
+>>>> +	}
+>>>
+>>> Sorry if I missed it, but I still don't see where you reject file mappings
+>>> here.
+>>>
+>>
+>> Sure, I can reject file mappings. I didn't catch that was the ask previously
+>> and thought it was only a comment about behavior of file mappings.
+> 
+> I thought the mention of filesystem corruption was clear enough! It's
+> definitely something we shouldn't allow.
+> 
 
-~ Judith
+I tried preventing file mappings but this breaks memfd used by crosvm. I 
+didn't understand the vector you were tracking for filesystem 
+corruption. I ran a few basic experiments with real filesystem backed 
+memory mappings and didn't observe corruption, but maybe my experiments 
+weren't right.
+
+[snip; response to other comments in 
+https://lore.kernel.org/all/3bd86221-ee2e-d157-009b-11f6ada98537@quicinc.com/]
