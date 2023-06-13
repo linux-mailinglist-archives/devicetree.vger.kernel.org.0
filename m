@@ -2,134 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8475E72E989
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60EF572E9E1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240096AbjFMRYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 13:24:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50498 "EHLO
+        id S238635AbjFMRbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 13:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239136AbjFMRYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:24:04 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F105D2717;
-        Tue, 13 Jun 2023 10:22:41 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35DFfOJ1025233;
-        Tue, 13 Jun 2023 17:21:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=tREdu/Nnl8Ne/RNsSa0WRhFpAKhpL0Eq+1KJo/+tcbM=;
- b=IY3Vx5O6Kw3p5xgdtvMRvUUqDXqhE6xTl9OZgBvNt02qEHAfwv1HWq2QSl90EdmNWhY4
- WaciuD9kSBklcDS715rsyqTk2JlKRqQcmBcOVSngYAUqdvAQB+AZXreM6OjHMKKP91gO
- 4baqkjwxlPuw5SmUKRETYBgUf3/FrFiWvxwOW0qUuKwdGy+Rn/RKtla1NmFbivQTlmnk
- +2RSaDAgJg2V2jpnhwr3pcifP3tCeaq6Spxwp3LDwGxKwhHDZklTqy1SHHjR3aah3T10
- ys9uAGO5ATukt+X/tct5H8tR0v5eD71McVugdQWcVUOAmtIvx2vA1exXo88cO0n0iI0t GQ== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r68x9ae1q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Jun 2023 17:21:59 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35DHLwDP006410
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Jun 2023 17:21:58 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 13 Jun 2023 10:21:57 -0700
-From:   Elliot Berman <quic_eberman@quicinc.com>
-To:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-CC:     Elliot Berman <quic_eberman@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S231277AbjFMRbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:31:34 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0050F1BF9;
+        Tue, 13 Jun 2023 10:31:08 -0700 (PDT)
+Received: from mercury (dyndsl-091-248-189-170.ewe-ip-backbone.de [91.248.189.170])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BFD6A6606EC6;
+        Tue, 13 Jun 2023 18:24:38 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686677078;
+        bh=4rasFY34I/XTUiOf9VJ79l/mxOmZFAZu43QjJc0pgJQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M1sykmhm4gIpYvUkVjvTX9a1XM2iB8Dm1WECS5cIyLzyd0qYVLBb7B+LwsjW44jb/
+         tPHb+WN3B2wpvpUTc4BhlYZI4XM/PLLsOMlTlH/euIbAvLOcmJ6x+/VVXVP+izcifH
+         1Ya9dZa7b4Jfz9woAVMqOh0kAHMnPR43cOQQEd9bAXBY2SQt5IWGWmCO7fEouM8Iox
+         p4zCtA9v13n4d6zhb+JMHprOOk+Jp3Y2qLr9OA94NvvI9p+xeQxF0tBHDsrkQbAyTJ
+         aZu/GExwl2vceio6G8BEShDyl4ReTUscNVTG/1t5GwD/mmziABdJEl6uy+Zuu9B0CA
+         0d1aOfxMbqIow==
+Received: by mercury (Postfix, from userid 1000)
+        id B0D0F1066FC6; Tue, 13 Jun 2023 19:24:36 +0200 (CEST)
+Date:   Tue, 13 Jun 2023 19:24:36 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Vincent Legoll <vincent.legoll@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v14 25/25] MAINTAINERS: Add Gunyah hypervisor drivers section
-Date:   Tue, 13 Jun 2023 10:20:53 -0700
-Message-ID: <20230613172054.3959700-26-quic_eberman@quicinc.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230613172054.3959700-1-quic_eberman@quicinc.com>
-References: <20230613172054.3959700-1-quic_eberman@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v5 18/25] PM / devfreq: rockchip-dfi: account for
+ multiple DDRMON_CTRL registers
+Message-ID: <20230613172436.ah5oyhnt6sbxj5hf@mercury.elektranox.org>
+References: <20230524083153.2046084-1-s.hauer@pengutronix.de>
+ <20230524083153.2046084-19-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: d1Sy9XHzR0tV1J4EomRdBrjJXZzfdXiw
-X-Proofpoint-ORIG-GUID: d1Sy9XHzR0tV1J4EomRdBrjJXZzfdXiw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-13_19,2023-06-12_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 lowpriorityscore=0 impostorscore=0 spamscore=0
- suspectscore=0 mlxlogscore=907 mlxscore=0 adultscore=0 malwarescore=0
- clxscore=1015 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306130153
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="qcgjuyhdjwqhjjno"
+Content-Disposition: inline
+In-Reply-To: <20230524083153.2046084-19-s.hauer@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself and Prakruthi as maintainers of Gunyah hypervisor drivers.
 
-Reviewed-by: Alex Elder <elder@linaro.org>
-Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+--qcgjuyhdjwqhjjno
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f794002a192e2..b25e20c871827 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8973,6 +8973,19 @@ L:	linux-efi@vger.kernel.org
- S:	Maintained
- F:	block/partitions/efi.*
- 
-+GUNYAH HYPERVISOR DRIVER
-+M:	Elliot Berman <quic_eberman@quicinc.com>
-+M:	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
-+F:	Documentation/virt/gunyah/
-+F:	arch/arm64/gunyah/
-+F:	drivers/mailbox/gunyah-msgq.c
-+F:	drivers/virt/gunyah/
-+F:	include/linux/gunyah*.h
-+F:	samples/gunyah/
-+
- HABANALABS PCI DRIVER
- M:	Oded Gabbay <ogabbay@kernel.org>
- L:	dri-devel@lists.freedesktop.org
--- 
-2.40.0
+Hi,
 
+On Wed, May 24, 2023 at 10:31:46AM +0200, Sascha Hauer wrote:
+> The currently supported RK3399 has a set of registers per channel, but
+> it has only a single DDRMON_CTRL register. With upcoming RK3588 this
+> will be different, the RK3588 has a DDRMON_CTRL register per channel.
+>=20
+> Instead of expecting a single DDRMON_CTRL register, loop over the
+> channels and write the channel specific DDRMON_CTRL register. Break
+> out early out of the loop when there is only a single DDRMON_CTRL
+> register like on the RK3399.
+>=20
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> ---
+
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  drivers/devfreq/event/rockchip-dfi.c | 72 ++++++++++++++++++----------
+>  1 file changed, 48 insertions(+), 24 deletions(-)
+>=20
+> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event=
+/rockchip-dfi.c
+> index a872550a7caf5..23d66fe737975 100644
+> --- a/drivers/devfreq/event/rockchip-dfi.c
+> +++ b/drivers/devfreq/event/rockchip-dfi.c
+> @@ -113,12 +113,13 @@ struct rockchip_dfi {
+>  	int burst_len;
+>  	int buswidth[DMC_MAX_CHANNELS];
+>  	int ddrmon_stride;
+> +	bool ddrmon_ctrl_single;
+>  };
+> =20
+>  static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
+>  {
+>  	void __iomem *dfi_regs =3D dfi->regs;
+> -	int ret =3D 0;
+> +	int i, ret =3D 0;
+> =20
+>  	mutex_lock(&dfi->mutex);
+> =20
+> @@ -132,29 +133,41 @@ static int rockchip_dfi_enable(struct rockchip_dfi =
+*dfi)
+>  		goto out;
+>  	}
+> =20
+> -	/* clear DDRMON_CTRL setting */
+> -	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN | DDRMON_CTRL_=
+SOFTWARE_EN |
+> -		       DDRMON_CTRL_HARDWARE_EN), dfi_regs + DDRMON_CTRL);
+> +	for (i =3D 0; i < DMC_MAX_CHANNELS; i++) {
+> +		u32 ctrl =3D 0;
+> =20
+> -	/* set ddr type to dfi */
+> -	switch (dfi->ddr_type) {
+> -	case ROCKCHIP_DDRTYPE_LPDDR2:
+> -	case ROCKCHIP_DDRTYPE_LPDDR3:
+> -		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE=
+_MASK),
+> -			       dfi_regs + DDRMON_CTRL);
+> -		break;
+> -	case ROCKCHIP_DDRTYPE_LPDDR4:
+> -	case ROCKCHIP_DDRTYPE_LPDDR4X:
+> -		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_=
+MASK),
+> -			       dfi_regs + DDRMON_CTRL);
+> -		break;
+> -	default:
+> -		break;
+> -	}
+> +		if (!(dfi->channel_mask & BIT(i)))
+> +			continue;
+> =20
+> -	/* enable count, use software mode */
+> -	writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTW=
+ARE_EN),
+> -		       dfi_regs + DDRMON_CTRL);
+> +		/* clear DDRMON_CTRL setting */
+> +		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN |
+> +			       DDRMON_CTRL_SOFTWARE_EN | DDRMON_CTRL_HARDWARE_EN),
+> +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
+> +
+> +		/* set ddr type to dfi */
+> +		switch (dfi->ddr_type) {
+> +		case ROCKCHIP_DDRTYPE_LPDDR2:
+> +		case ROCKCHIP_DDRTYPE_LPDDR3:
+> +			ctrl =3D DDRMON_CTRL_LPDDR23;
+> +			break;
+> +		case ROCKCHIP_DDRTYPE_LPDDR4:
+> +		case ROCKCHIP_DDRTYPE_LPDDR4X:
+> +			ctrl =3D DDRMON_CTRL_LPDDR4;
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +
+> +		writel_relaxed(HIWORD_UPDATE(ctrl, DDRMON_CTRL_DDR_TYPE_MASK),
+> +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
+> +
+> +		/* enable count, use software mode */
+> +		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFT=
+WARE_EN),
+> +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
+> +
+> +		if (dfi->ddrmon_ctrl_single)
+> +			break;
+> +	}
+>  out:
+>  	mutex_unlock(&dfi->mutex);
+> =20
+> @@ -164,6 +177,7 @@ static int rockchip_dfi_enable(struct rockchip_dfi *d=
+fi)
+>  static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
+>  {
+>  	void __iomem *dfi_regs =3D dfi->regs;
+> +	int i;
+> =20
+>  	mutex_lock(&dfi->mutex);
+> =20
+> @@ -174,8 +188,17 @@ static void rockchip_dfi_disable(struct rockchip_dfi=
+ *dfi)
+>  	if (dfi->usecount > 0)
+>  		goto out;
+> =20
+> -	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
+> -		       dfi_regs + DDRMON_CTRL);
+> +	for (i =3D 0; i < DMC_MAX_CHANNELS; i++) {
+> +		if (!(dfi->channel_mask & BIT(i)))
+> +			continue;
+> +
+> +		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
+> +			      dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
+> +
+> +		if (dfi->ddrmon_ctrl_single)
+> +			break;
+> +	}
+> +
+>  	clk_disable_unprepare(dfi->clk);
+>  out:
+>  	mutex_unlock(&dfi->mutex);
+> @@ -663,6 +686,7 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
+>  	dfi->buswidth[1] =3D FIELD_GET(RK3399_PMUGRF_OS_REG2_BW_CH1, val) =3D=
+=3D 0 ? 4 : 2;
+> =20
+>  	dfi->ddrmon_stride =3D 0x14;
+> +	dfi->ddrmon_ctrl_single =3D true;
+> =20
+>  	return 0;
+>  };
+> --=20
+> 2.39.2
+>=20
+
+--qcgjuyhdjwqhjjno
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSIplQACgkQ2O7X88g7
++poSVQ/8CdcfkOAIJEK9UNTf1vpgujtEuSeIYOsifZifSXVZO6S73Qkzec3iYFDw
+iI0H8DmfO3dOI/bj8viBWFSkHIK/zYe3LHgyEst9l7gbg0gxsClOuUIyhV7MoZpi
+/+o+GDHzbxO0murEnOpwGfJgyVoPODrTmN+2ZsHDZWRUK1hoeL3q4seJ+bNwmHOw
+RIoLx/fRkpQrI6+cjg0QalJyRavazv2niUBa0Too8ogPxPLo+e8yYVTQhvddER6k
+Jb+7LTnx6yUY1LQt0SgBTWrmHkS8b3wYG32fEbKsU/hYQguHQ+kD8rGFW0LaKBzQ
+y3yfqsXnQxAGcHdJtsg+vbxzdJ5JgvgdPEgKtJoWKT9i7veWf/5gt9enNU0bLL52
+qz2uuc7lZgJ4OzWakd2lcPYL6iN32NAs8a9hAF52cXtzRyqH3LgH1QXAXoiDUWvg
+Le/vlsw4mu6Ltz/AytwZNVUT3HPWVPuwRc9YuYGnTaP+NsOceqUVZn4dylmVDc7k
+uqPMnYakS26rkDrJVoeflgyjtj3ekXFZN9SjIhk5WpSJBKPHy4+h4Vf1Sr0nvlT/
+XHZ83IZ3WU9JEJvoXIj8wOHFm2WzCOiqz/3EhHrJbikAboE1nDQFXzIhXCORVWU7
+vssSowYyNQ5FIrFIAGSTlGrf8LlWrjwsb3R6VC2OeXN2Dg19+RE=
+=eEfi
+-----END PGP SIGNATURE-----
+
+--qcgjuyhdjwqhjjno--
