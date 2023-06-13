@@ -2,143 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6861272E34A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 14:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E627372E480
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234245AbjFMMrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 08:47:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47152 "EHLO
+        id S240058AbjFMNoX convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Jun 2023 09:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238753AbjFMMrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 08:47:11 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02938E4;
-        Tue, 13 Jun 2023 05:47:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686660429; x=1718196429;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9KV3amG53H3ns2W2UWEPrWJRjgAoTih55p2OZIWk4nM=;
-  b=IYnhILDagPWgl5o0h9SR3hVu8dhzZviVmHZT7qtjROYenV4COsMd1PYQ
-   BHBjLBl8q28TBispGWmitvFT6JTdU4lnmKNiLKTMOi3ZntIW9VsiJfveW
-   3l3swOZ5fyirqLMh76GqevN9bMjBkzpP6dMg4VgATEmKpuMq+Z63Jhykm
-   3/xfdPN2tXBRAg+eOjVgTbERRzOzfG5yKZ0utGEOaM1D5mwDn6IEM/+F7
-   e4x6rCu2WUOV1d5cwae80YiPs3FUhrgrky5oLh3PC0tZgeHG+vbfzcnnv
-   oIeIRzjCQY5mdLy59alMZOOxh6LgAWU1sgqadFsTN4eFKRQn37kc0c2BF
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,239,1681196400"; 
-   d="asc'?scan'208";a="229858885"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jun 2023 05:47:08 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 13 Jun 2023 05:47:08 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 13 Jun 2023 05:47:06 -0700
-Date:   Tue, 13 Jun 2023 13:46:41 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Yingkun Meng <mengyingkun@loongson.cn>
-CC:     Conor Dooley <conor@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <loongarch@lists.linux.dev>,
-        <loongson-kernel@lists.loongnix.cn>
-Subject: Re: [ PATCH v2 3/3] ASoC: dt-bindings: Add support for Loongson
- audio card
-Message-ID: <20230613-depletion-garnet-ccc2009111c3@wendy>
-References: <20230612085614.3039498-1-mengyingkun@loongson.cn>
- <20230612-booted-french-186dd95e78a9@spud>
- <bda7c25f-65cf-d45f-3ac0-f2471e3aacf8@loongson.cn>
- <20230613-zoologist-panorama-a87858bba075@wendy>
- <887f9cc4-6457-9d14-8aef-011ff4c9aeda@loongson.cn>
+        with ESMTP id S242613AbjFMNoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:44:17 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFDAF1BC9;
+        Tue, 13 Jun 2023 06:44:05 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id E973824E1FE;
+        Tue, 13 Jun 2023 21:43:56 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 13 Jun
+ 2023 20:58:53 +0800
+Received: from localhost.localdomain (113.72.145.34) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 13 Jun
+ 2023 20:58:52 +0800
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        "William Qiu" <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v5 0/7] Add PLL clocks driver and syscon for StarFive JH7110 SoC
+Date:   Tue, 13 Jun 2023 20:58:45 +0800
+Message-ID: <20230613125852.211636-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="aKk1AB1djxJIjJ7/"
-Content-Disposition: inline
-In-Reply-To: <887f9cc4-6457-9d14-8aef-011ff4c9aeda@loongson.cn>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [113.72.145.34]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---aKk1AB1djxJIjJ7/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch serises are to add PLL clocks driver and providers by writing
+and reading syscon registers for the StarFive JH7110 RISC-V SoC. And add 
+documentation and nodes to describe StarFive System Controller(syscon)
+Registers. This patch serises are based on Linux 6.4-rc1.
 
-On Tue, Jun 13, 2023 at 08:38:59PM +0800, Yingkun Meng wrote:
-> On 2023/6/13 20:28, Conor Dooley wrote:
-> > On Tue, Jun 13, 2023 at 08:23:58PM +0800, Yingkun Meng wrote:
-> > > On 2023/6/13 01:24, Conor Dooley wrote:
-> > > > On Mon, Jun 12, 2023 at 04:56:14PM +0800, YingKun Meng wrote:
-> > > > > From: Yingkun Meng <mengyingkun@loongson.cn>
-> > > > >=20
-> > > > > The audio card uses loongson I2S controller present in
-> > > > > 7axxx/2kxxx chips to transfer audio data.
-> > > > >=20
-> > > > > On loongson platform, the chip has only one I2S controller.
+PLL are high speed, low jitter frequency synthesizers in JH7110.
+Each PLL clocks work in integer mode or fraction mode by some dividers,
+and the dividers are set in several syscon registers.
+The formula for calculating frequency is: 
+Fvco = Fref * (NI + NF) / M / Q1
 
-> > > > > +description:
-> > > > > +  The binding describes the sound card present in loongson
-> > > > > +  7axxx/2kxxx platform. The sound card is an ASoC component
-> > > > > +  which uses Loongson I2S controller to transfer the audio data.
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    const: loongson,ls-audio-card
+The first patch adds docunmentation to describe PLL clock bindings,
+and the second patch adds documentation to decribe syscon registers.
+The patch 3 modifies the SYSCRG dibindings and adds PLL clock inputs.
+The patch 4 adds driver to support PLL clocks for JH7110.
+The patch 5 modifies the system clock driver and can select the PLL clock
+source from PLL clocks driver. And the patch 6 adds the 
+stg/sys/aon syscon nodes for JH7110 SoC. The last patch modifies the
+syscrg node in JH7110 dts file.
 
-> > > > Reviewing sound stuff is beyond my pay grade, so forgive me if I am=
- off
-> > > > the rails here, but this (and the "x"s in the description) look a b=
-it
-> > > > odd. Recently, we've noticed quite a few loongson dt-bindings attem=
-pting
-> > > > to use a single compatible for many different chips.
-> > > > Usually you have individual compatibles for the various SoCs with t=
-his
-> > > > core, which can fall back to a generic one, rather than just adding=
- a
-> > > > generic compatible for all devices.
-> > > > As far as I know, there's several SoCs fitting 2kxxx, and the format
-> > > > being used elsewhere is "loongson,ls2k1000" etc.
-> > >=20
-> > > Currently, Loongson has 2K0500/2K1000LA/2K1500/2K2000 chips.
-> > >=20
-> > > Here, its' possible to use a single compatible for different chips,
-> > >=20
-> > > as the audio device is a logical device, not dependent on chip model.
-> > What, may I ask, is a "logical device"?
->=20
->=20
-> I means it's not a physical one, like "platform bus".
+Changes since v4:
+- Rebased on Linux 6.4-rc6.
+- Patch 2 dropped the example node about sys-syscon.
+- Patch 3 used PLL clocks as one of optional items in SYSCRG bindings.
+- Patch 4 used the patch instead about PLL clocks driver from Emil.
+- Patch 5 retained the fixed factor PLL clocks as the optional source
+  about PLL clocks in SYSCRG clock driver.
+- Patch 6 added the child node clock-controller as the complete
+  sys-syscon node and patch 7 dropped this part.
 
-So it is entirely a software construct? Why does it need a dt-binding
-then? Your commit message says the controller is present on the device!
+v4: https://lore.kernel.org/all/20230512022036.97987-1-xingyu.wu@starfivetech.com/
 
-Confused,
-Conor.
+Changes since v3: 
+- Rebased on Linux 6.4-rc1.
+- Dropped the 'power-controller' property and used 'power-domain-cells'
+  instead in syscon binding.
+- Used the data by of_device_id to get the syscon registers'
+  configuration include offset, mask and shift.
 
---aKk1AB1djxJIjJ7/
-Content-Type: application/pgp-signature; name="signature.asc"
+v3: https://lore.kernel.org/all/20230414024157.53203-1-xingyu.wu@starfivetech.com/
 
------BEGIN PGP SIGNATURE-----
+Changes since v2: 
+- Rebased on latest JH7110 basic clock drivers.
+- Added the complete documentation to describe syscon register.
+- Added syscon node in JH7110 dts file.
+- Modified the clock rate selection to match the closest rate in
+  PLL driver when setting rate.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIhlMQAKCRB4tDGHoIJi
-0k/DAQCasCv+M+mHIyy3THECy16Hhwe7ITu/f3lb4MVy64A/CwD7BlnAWtgAfv7H
-IktHIHxxC6ITwBVp8qA9b1IE2/XejAA=
-=INbA
------END PGP SIGNATURE-----
+v2: https://lore.kernel.org/all/20230316030514.137427-1-xingyu.wu@starfivetech.com/
 
---aKk1AB1djxJIjJ7/--
+Changes since v1: 
+- Changed PLL clock node to be child of syscon node in dts.
+- Modifed the definitions and names of function in PLL clock driver.
+- Added commit to update syscon and syscrg dt-bindings.
+
+v1: https://lore.kernel.org/all/20230221141147.303642-1-xingyu.wu@starfivetech.com/
+
+William Qiu (2):
+  dt-bindings: soc: starfive: Add StarFive syscon module
+  riscv: dts: starfive: jh7110: Add syscon nodes
+
+Xingyu Wu (5):
+  dt-bindings: clock: Add StarFive JH7110 PLL clock generator
+  dt-bindings: clock: jh7110-syscrg: Add PLL clock inputs
+  clk: starfive: Add StarFive JH7110 PLL clock driver
+  clk: starfive: jh7110-sys: Add PLL clocks source from DTS
+  riscv: dts: starfive: jh7110: Add PLL clock source in SYSCRG node
+
+ .../bindings/clock/starfive,jh7110-pll.yaml   |  46 ++
+ .../clock/starfive,jh7110-syscrg.yaml         |  56 ++
+ .../soc/starfive/starfive,jh7110-syscon.yaml  |  62 +++
+ MAINTAINERS                                   |  13 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  30 +-
+ drivers/clk/starfive/Kconfig                  |   9 +
+ drivers/clk/starfive/Makefile                 |   1 +
+ .../clk/starfive/clk-starfive-jh7110-pll.c    | 507 ++++++++++++++++++
+ .../clk/starfive/clk-starfive-jh7110-sys.c    |  45 +-
+ .../dt-bindings/clock/starfive,jh7110-crg.h   |   6 +
+ 10 files changed, 755 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-pll.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-pll.c
+
+-- 
+2.25.1
+
