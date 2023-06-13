@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60C8572EBAB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F24572EBB8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:14:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbjFMTK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 15:10:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54586 "EHLO
+        id S238536AbjFMTOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 15:14:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233130AbjFMTK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:10:56 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9054C199C
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:10:55 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f764e92931so26530e87.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:10:55 -0700 (PDT)
+        with ESMTP id S235289AbjFMTOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:14:06 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D47B8
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:14:03 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f642a24555so7485100e87.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:14:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686683454; x=1689275454;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0bsthYoTMoxKvhCTREZdV1Kid7Fcy+tC3T2OnmSeiNw=;
-        b=GD+dsWXhc4Jx4h5q1rLFVbaICNav2yheoYx+hViDBrl+DYy6sh22S+/NJAGlO862nj
-         ra1TFSwxC9DtpUR/p37d2Xr45DWefo+F5OlEq05Esb8K/f0K2uT00il8AC87oD4IfgEM
-         +mtCFS5e6/pM9m+nt7QSVyM9a5jTQKjtkeD5m38D5OLuefXBHwAxcnIrCI66C/Uyg4ii
-         K/Ql5mHMk9H2KQTmCpL4zLsaXkL1emJZfChO+GveeBYvH7Dvjzz1+3tknlbyWqB3PQIp
-         yjZCkBQoxYoA9q6L8Lf0RPuTWePxStd3mjVAlHSsqIhd3Pss00hiiNIx8A+AdzhMOJNY
-         gEpQ==
+        d=linaro.org; s=google; t=1686683642; x=1689275642;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=635jy0e2lhv+fSXWusJ9DIeLST1wGeeAsUy28K1WJGY=;
+        b=wKr5ulDRcUGas1ZQElff+75ttyWitE9A2pG6uIyMcsh9rbZNbpQQPGy0e3xduAGF76
+         Dg8nnEIJGJAUnmqy9boYhZZXK5gqC4C1mgb1HAgvcZtiPrVXIURc0dBwOQOEWNyyroXq
+         OXx22UUciThFQdfHJwzcuRPOPwhNQcFuSrHEUQNR1XFFrF56vz9qhdLJxj1oi+ztIiGY
+         SH3cUlbqNGlWOdtchsZfmfGSe+DeykDru7LMjTqS7Uv7JUaMOaJXqtrs3xZ2PLs6DLNf
+         NNr4X1ynAyzN9nkcEqe/OGt10fyC717jFt1AP/tNZPolq5hOgKFcJdPIj1OmWu569VHv
+         jVAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686683454; x=1689275454;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0bsthYoTMoxKvhCTREZdV1Kid7Fcy+tC3T2OnmSeiNw=;
-        b=Pa3jDejXc/KsT4XxS+GitlAFJ0XazSSYdrJvYyXBchUsv6GKaNxGQjCvlbTe1WWNqw
-         BT6eAkOrYtwtrtR6275U7XH+vukxy/RoPzRwlpbE8WZLCbqF743jxt+3ifL61uXD2SPS
-         wwaDwJkZbgYDLx3FDkwHu7Ml2yV3M00gNCLTwTt18ahLFTM/la6jusrk5sp4/pmRu8Fo
-         m6mR4RvZXIU+L/5Vr1SsFR3go9jC08KVziwtrGy/CWgK7rTD+/D7CA7bUCMDrmqK6ty5
-         px9QrFlzLhwKMtt+q58oxYNrDD4JgFQw4uBnjSttZI9dZXHGE+H0xhdBr730/boARDaR
-         A9pA==
-X-Gm-Message-State: AC+VfDzjZdTWWXjH6qXRk4zxjoJ1KB1C9VQlgGIvUxxzT0utOsH3d7BY
-        xv4yvZ/2nLMlKQRfrC/RTUCFIU2AvGeDXk6CPpw=
-X-Google-Smtp-Source: ACHHUZ5OMU9IQGCMZ6AHR8ezt2PQkmNVD/i8Q4phlBfYM0zoCZUE85NqI4RSCWrszKbuQ+cbdZbc4A==
-X-Received: by 2002:ac2:5f87:0:b0:4f6:4d92:9ffb with SMTP id r7-20020ac25f87000000b004f64d929ffbmr6606096lfe.21.1686683453771;
-        Tue, 13 Jun 2023 12:10:53 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id b8-20020aa7cd08000000b005187af2dbe3sm588947edw.6.2023.06.13.12.10.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 12:10:53 -0700 (PDT)
-Message-ID: <208d06d1-58e3-748e-de28-075dc0cd28de@linaro.org>
-Date:   Tue, 13 Jun 2023 21:10:51 +0200
+        d=1e100.net; s=20221208; t=1686683642; x=1689275642;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=635jy0e2lhv+fSXWusJ9DIeLST1wGeeAsUy28K1WJGY=;
+        b=i1a5pgrcYbHnFkaw9jOagBENIDNYjehqt3mLhXu+Og5kuk55e1uKbNQozOgRiYUZ5/
+         7jOlhNbTtjmRVaHYH5JKrmHwK9fgD9dOvwCMrS35Z+jZvyuq9clY9KUZ9u7gFGqU6KpQ
+         O0OXe6iWLrwR8buTlzgBWTEu1gB0mpVFc8RW6uUYKX6uzILMWpN50tQfyINc6CUp/QFO
+         024zf729MPia7KE/GHssDELar4qxZiRPI0v1MguDxQ73fGK8zHfPNdcKl3SMAe0X+Jqc
+         m4jbWERtp5ilvAe1HJGerLTVX+bRnSU0DiGjylwiXgD28MQ5d8BEi8XcOE3isMHwgOvC
+         No5Q==
+X-Gm-Message-State: AC+VfDwiBGHAXtVCORT/8Ern6gUL+IbSbXmO0Fz3OjaLYqRcf/Tu86md
+        8rIgVzoq01gth6jRl4r/dPVQeA==
+X-Google-Smtp-Source: ACHHUZ55beN8wEnTRnmUwg8tqV6a5fXlfZlqoktgNmZpS1/giMsp6FpkoM6QbtOQkicojGYauLAjyw==
+X-Received: by 2002:a19:655d:0:b0:4f3:5038:5857 with SMTP id c29-20020a19655d000000b004f350385857mr6843243lfj.55.1686683642073;
+        Tue, 13 Jun 2023 12:14:02 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id r10-20020a19ac4a000000b004f01ae1e63esm1848443lfc.272.2023.06.13.12.14.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 12:14:01 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Date:   Tue, 13 Jun 2023 21:13:47 +0200
+Subject: [PATCH] arm64: dts: qcom: sm6115: Fix up cluster idle states
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 7/8] dt-bindings: rtc: isl12022: add #clock-cells
- property
-Content-Language: en-US
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-8-linux@rasmusvillemoes.dk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230613130011.305589-8-linux@rasmusvillemoes.dk>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Message-Id: <20230613-topic-6115idlestates-v1-1-fa017052319d@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAOq/iGQC/x2N0QrCMAwAf2Xk2cDSzon+ivjQdtEFSjeaToSxf
+ zfs8Q6O20G5Cis8uh0qf0VlKQZ06SDNoXwYZTIG1zvfj+SxLaskHImuMmXWFhorxuAHut0dx+j
+ A0hiUMdZQ0mxx2XI2uVZ+y+98PV/H8QfLQ2YCewAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1686683640; l=2325;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=ufJhln1rknyOKoYvw+gm0MwBsfp76sKNCVfI2Po21t8=;
+ b=27kXMW5EZ44Lbx87/FcPywSyvc5LxOtI9IAN063mDoObOoPsmxZiyav4YbG0+wtrGPnaX9WAT
+ FliyoOQjYNcBgSpap2gGyIce5BCP9qzaFLDO8QAkVk0NwYjsL6jpXBW
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,35 +86,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 15:00, Rasmus Villemoes wrote:
-> The isl12022 has a dual-purpose irq/f_out pin, which can either be
-> used as an interrupt or clock output.
-> 
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-> ---
->  .../devicetree/bindings/rtc/intersil,isl12022.yaml     | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
-> index d5d3a687a34d..a9ef68b5fdcd 100644
-> --- a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
-> @@ -11,6 +11,13 @@ maintainers:
->  
->  allOf:
->    - $ref: rtc.yaml#
-> +  # If #clock-cells is present, interrupts must not be present
-> +  - if:
-> +      required:
-> +        - '#clock-cells'
-> +    then:
-> +      properties:
-> +        interrupts: false
+The lowest nibble of the PSCI suspend param denotes the CPU state.
+It was mistakenly set to mimic the cluster state, resulting in poking
+PSCI with undocumented 0x2 and 0x4 states (both of which seem to be
+implemented and undocumented). Also, GDHS cluster param was wrong for C1.
 
-Entire allOf block should be like in example-schema, so before
-unevaluatedProperties. Please put it in correct place in your first
-patch so here it does not have to be moved.
+Fix that.
+
+Fixes: b5de1a9ff1f2 ("arm64: dts: qcom: sm6115: Add CPU idle-states")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 55118577bf92..07d8b842d7be 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -225,7 +225,7 @@ domain-idle-states {
+ 			CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
+ 				/* GDHS */
+ 				compatible = "domain-idle-state";
+-				arm,psci-suspend-param = <0x40000022>;
++				arm,psci-suspend-param = <0x40000023>;
+ 				entry-latency-us = <360>;
+ 				exit-latency-us = <421>;
+ 				min-residency-us = <782>;
+@@ -234,7 +234,7 @@ CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
+ 			CLUSTER_0_SLEEP_1: cluster-sleep-0-1 {
+ 				/* Power Collapse */
+ 				compatible = "domain-idle-state";
+-				arm,psci-suspend-param = <0x41000044>;
++				arm,psci-suspend-param = <0x41000043>;
+ 				entry-latency-us = <800>;
+ 				exit-latency-us = <2118>;
+ 				min-residency-us = <7376>;
+@@ -243,7 +243,7 @@ CLUSTER_0_SLEEP_1: cluster-sleep-0-1 {
+ 			CLUSTER_1_SLEEP_0: cluster-sleep-1-0 {
+ 				/* GDHS */
+ 				compatible = "domain-idle-state";
+-				arm,psci-suspend-param = <0x40000042>;
++				arm,psci-suspend-param = <0x40000023>;
+ 				entry-latency-us = <314>;
+ 				exit-latency-us = <345>;
+ 				min-residency-us = <660>;
+@@ -252,7 +252,7 @@ CLUSTER_1_SLEEP_0: cluster-sleep-1-0 {
+ 			CLUSTER_1_SLEEP_1: cluster-sleep-1-1 {
+ 				/* Power Collapse */
+ 				compatible = "domain-idle-state";
+-				arm,psci-suspend-param = <0x41000044>;
++				arm,psci-suspend-param = <0x41000043>;
+ 				entry-latency-us = <640>;
+ 				exit-latency-us = <1654>;
+ 				min-residency-us = <8094>;
+
+---
+base-commit: 1f6ce8392d6ff486af5ca96df9ded5882c4b6977
+change-id: 20230613-topic-6115idlestates-ba341792ebb2
 
 Best regards,
-Krzysztof
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
