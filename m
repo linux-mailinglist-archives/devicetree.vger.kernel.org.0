@@ -2,140 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A1672E1DF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 13:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F3F472E244
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 13:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239273AbjFMLoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 07:44:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41070 "EHLO
+        id S242342AbjFMLwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 07:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235301AbjFMLoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 07:44:03 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB547BA
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 04:44:00 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686656639;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=d+viFyHRWDefnY4D6QJul4yohlKiSyTDIqKgOG5jej0=;
-        b=nX47Wvbd8EtfxIm1fg2SxtA1L6bRyebAPZxVBDh+pTniYAMq1CwwskGyPE/fGNPCU9wOlH
-        wiWRbuunrR82JlkWGZZ0YmpyAUjX05BG3h1HaiMbtxvWtRw1kMexRKuX0l7xJLb6Zhn2Ss
-        MTeZiunmwCfUcOTqvfa70GzkAgJBqZIJxEM+nlup//mushdf/rPeUsxEBdeqS88zlmTDgk
-        B2eiPkkWhqxnC/zdvrtBqOyN37uEUk3CBM8YGag6REEr+d++hZ6e1FJWgPgug6kJUV+X/f
-        emsTHG3cthJTBe5dEMBxCv5TmbiGQ+kv8VM2Qcmc8R8vaT0fHSXbFXr6TFSlpg==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 976A2E0004;
-        Tue, 13 Jun 2023 11:43:51 +0000 (UTC)
-Date:   Tue, 13 Jun 2023 13:43:50 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Samuel Holland <samuel@sholland.org>,
-        Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>,
-        Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-Subject: Re: [PATCH v2 00/17] Prevent NAND chip unevaluated properties
-Message-ID: <20230613134350.3cab6780@xps-13>
-In-Reply-To: <e886db25-dd5f-c8d9-83d4-77540fc3826e@kernel.org>
-References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
-        <e886db25-dd5f-c8d9-83d4-77540fc3826e@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S242345AbjFMLvz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 07:51:55 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B2EF1BE8
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 04:51:30 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-970056276acso821293066b.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 04:51:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686657089; x=1689249089;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RvgRqV++n772I/d7wLPA5rsuuZeDf6O7UA25bKaKXNk=;
+        b=MQ9381wrJR+klO2Uqe2UjAdSKpKAfdwBmxOJPfriSeB/8NzH64V2iyO2V5arQs4Bwv
+         4Ug3nM1vYZ6pjfEp2vyw9zYI3OW1c04YXEagaUD11CwXiEq+etoqYKxsXeXuVp1CgwR2
+         VToJzvHhCB74bgz7LqTGJ51mhxyuAHOJh6HBXVhg75gZ79oQHXtbwrhI+AfJPkCrQCNy
+         T/+7H2B2xWDZYiOuaUYsh1ysGW4Z7hWAYjzscZKmhXOMivd/WO5USSIS7PYjrGdiPWuR
+         45w/9JWzokYGMj8dnRNGoHod31e2wM6u3vfXyM3gikSE0qoBPg2u6di+ztN12XqHPp82
+         v7PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686657089; x=1689249089;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RvgRqV++n772I/d7wLPA5rsuuZeDf6O7UA25bKaKXNk=;
+        b=R2KGpvShB9qOtbHPCh2NcI9DkQy/xuuCTJETAkzj1fYyQ9yCgENGKU8pvtP1O8wNe5
+         t8y0dHuNHg771rrXZ102kX/aXmrwFRuK2tXnLClVTnZQh2c/ZAYIcQfZptvRQE3xjcC7
+         l6doFCpIN7u5OB7AXJSKoviy/eQljPWOjZz/30X0Y0iOLUkiQMWtkHXJl2xXKiuyTp4K
+         X4/EBar/dRYz0dMqv3z5tG85+T+fv3xSFCCnhaA4aoepxz302C/zQLIs5knqRaF6KP3H
+         ThbJxWtHchBVDXQ55O91cibakrKbSIo6xr2ExC2ukTzINF1j68mC+mEGGLVhLPK2mkzM
+         bw9g==
+X-Gm-Message-State: AC+VfDy/pDDrDx5zU7qYkuXwUpp3lJLLdSdNf/6ZpqgCG2iWA3L7h5Qv
+        DyCkubxt9jlQwOLp+AsfCP+5LQ==
+X-Google-Smtp-Source: ACHHUZ4iOHIXzVqnZ/JnP6iQdCy7t4gbxOUo5FN94mdl1eyboMAP5cirp8q3BcpMjH9VepEaPnGLfg==
+X-Received: by 2002:a17:907:a40f:b0:978:ae78:a77f with SMTP id sg15-20020a170907a40f00b00978ae78a77fmr11136368ejc.21.1686657088911;
+        Tue, 13 Jun 2023 04:51:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id i8-20020a17090671c800b009659fa6eeddsm6528453ejk.196.2023.06.13.04.51.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 04:51:28 -0700 (PDT)
+Message-ID: <768c66e4-748a-b63d-7aef-fbbeb61044de@linaro.org>
+Date:   Tue, 13 Jun 2023 13:51:26 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 1/8] dt-bindings: connector: usb-connector: add a gpio
+ used to determine the Type-C port plug orientation
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v3-1-22c9973012b6@linaro.org>
+ <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
+ <cfa788c3-be57-5109-73df-b82099dd17a0@linaro.org>
+ <9abec6ec-1995-8e20-8926-f57969341932@linaro.org>
+ <f708a6d3-321e-c425-8048-1c0d2ac7a6f0@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f708a6d3-321e-c425-8048-1c0d2ac7a6f0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 13/06/2023 11:24, neil.armstrong@linaro.org wrote:
+> On 13/06/2023 11:02, Krzysztof Kozlowski wrote:
+>> On 13/06/2023 10:54, Neil Armstrong wrote:
+>>> On 13/06/2023 10:13, Krzysztof Kozlowski wrote:
+>>>> On 13/06/2023 09:55, Neil Armstrong wrote:
+>>>>> On some platforms, the Type-C plug orientation is given on a GPIO line.
+>>>>>
+>>>>> Document this optional Type-C connector property, and take the
+>>>>> assumption an active level represents an inverted/flipped orientation.
+>>>>>
+>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>
+>>>> Rob had here objections as these are bindings for the connector, not
+>>>> PMIC glink/altmode. I still doubt that Qualcomm USB Type-C connectors
+>>>> have such pin exposed. If you open the schematics, the GPIO is actually
+>>>> coming out from PMIC and is nowhere around the connector. Please drop my
+>>>> Ack.
+>>>>
+>>>> This however could be a pin of the PMIC because it clearly is on the
+>>>> schematics.
+>>>
+>>> Yes it comes from the PMIC, but this part of the PMIC is handled by
+>>> the PMIC_GLINK firmware service, so the logical place would be into
+>>> the pmic_glink node with a gpio array in order to handle multi-ports.
+>>
+>> I think all PMICs have only one CC_OUT pin, so this would be now
+>> maxItems: 1, but there will be no problem in growing this later.
+> 
+> Yep, I'll only allow for sm8550-pmic-glink and set maxItems: 1 for now
+> since it's the first occurence.
 
-krzk@kernel.org wrote on Sat, 10 Jun 2023 11:27:55 +0200:
+You can add to pm8350 as well - it's already used in HDK8450.
 
-> On 06/06/2023 19:52, Miquel Raynal wrote:
-> > As discussed with Krzysztof and Chris, it seems like each NAND
-> > controller binding should actually restrain the properties allowed in
-> > the NAND chip node with its own "unevaluatedProperties: false". This
-> > only works if we reference a yaml schema which contains all the possible
-> > properties *in the NAND chip node*. Indeed, the NAND controller yaml
-> > schema contains properties for the NAND chip which are not evaluated
-> > with this construction.
-> >=20
-> > Link: https://lore.kernel.org/all/a23dd485-a3d9-e31f-be3e-0ab293fcfc4a@=
-linaro.org/ =20
->=20
-> Please rebase on latest kernel. This is some very old tree if you CC
-> this address.
+Best regards,
+Krzysztof
 
-Sorry for the trouble, it was a hardcoded address on my side. I've
-updated the address to
-
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-
-The series is based on v6.4-rc1. Against what branch/tag do you want it
-to be rebased?
-
-Thanks,
-Miqu=C3=A8l
