@@ -2,111 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DECC72E4C4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CACEF72E4CD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:03:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242313AbjFMOBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 10:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56254 "EHLO
+        id S240128AbjFMODQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 10:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239765AbjFMOBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:01:00 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BBDECE;
-        Tue, 13 Jun 2023 07:00:59 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DE0kCa029992;
-        Tue, 13 Jun 2023 09:00:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686664846;
-        bh=AirbliOyuSWWs91uv2JHWAl9G1WVDzgNFAvtMfpXgwI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=qznXiAORyfRiNMto8Cl3acHuWXX9qRJaF4Kn/3VIkhjIab7cEYiqX5EDF6DRhGT5l
-         c/it0Ea00rrA8h4VyGilDH27+N/qfN9zDWJKcANxvy85lzrJbJmiOIWoZpqzFizP7Q
-         J8gQnp1E+MMloP1WPb8kkApalUUwRzHqlFagv3HA=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DE0kWg020812
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Jun 2023 09:00:46 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
- Jun 2023 09:00:46 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 13 Jun 2023 09:00:46 -0500
-Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DE0fjc056318;
-        Tue, 13 Jun 2023 09:00:42 -0500
-Message-ID: <ed28db1a-dc59-3a90-edcd-7e9f5b94f7fd@ti.com>
-Date:   Tue, 13 Jun 2023 19:30:41 +0530
+        with ESMTP id S242464AbjFMODM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:03:12 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD9D3D1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 07:03:09 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b1b92845e1so68095321fa.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 07:03:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686664988; x=1689256988;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fgkWRSFPd0yuD0FGNaR13nds2yAxVTwu7JL5XkNXpyk=;
+        b=zHRXGuIuBd+yORTqRycH2QnjeEOxY2V7UnUyoRU01wMPDcAx3F1buHnlmfPm0uOy2N
+         6f8vCg/96QYp7+M9m8cVxHbr8m5kkkXMjub5BvRNov0Lg2OL18nUhqtPy9ZoMK3x6l7o
+         9H9NuFEtjDhNUOE7Ly3X64OT+MMlIu9zCOHihcabAfZwYqpEbHOnNiZyxZd92urL3yH0
+         k8SfpVvmrS4tqu2470z1qpe/7zPMZo+eHrUhR9RS2thNnsksRB1AN4dlrjI4nK/SHCPM
+         imGT5XGydOjhpeFjmz4O5l28uyhU637HwYZ1mJDN9YLizOXB9EVhhx3hb7y/0SDDA4lB
+         0GAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686664988; x=1689256988;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fgkWRSFPd0yuD0FGNaR13nds2yAxVTwu7JL5XkNXpyk=;
+        b=bw4QckWzF/Bh9V/ZXA2AyO91sZhnjxJfv2vRjeC01Rt4v8QvtW9qQWfh0n2LJ56kv3
+         gjSQb6U8+w5BHJxWf96h81nWX0w9CMaDTztX5LpJWAEISlD1eXxO1gchfasW30++pAaR
+         h1LfpjsGUOudNYcoPvxJkE/pqN0xZ8Lym291bDJYxZ2frbKZDffCOem/TyCM72pcsUF0
+         lgsEa+PQupLo6Dbv6BCN62/qRImU604P3Ebu2wTfm4S+iZPL8KvJy00Q9aA01slk42Jp
+         w62dy5ts2JqGBBzaz4HwnCbKkLsmxuV+JO/dTqjoInc/9yKsd5oYLYonRRLbkQu0psMV
+         DVmg==
+X-Gm-Message-State: AC+VfDwa89GZU8OLaB8ikUSnRMZiqKMSdDDHa6zYz789y9GiOZImY8zN
+        YICul3fTFQjJsAGNB2IHHh0DYg==
+X-Google-Smtp-Source: ACHHUZ6zTU5wN3YPGfxLYadXb5CUKxNEAqCy7iL6N7ZCNbxg6Ynd/e9WzAiE+zpbR9yKsCfY2xEUiQ==
+X-Received: by 2002:a2e:6a09:0:b0:2b1:ecac:91d3 with SMTP id f9-20020a2e6a09000000b002b1ecac91d3mr4570823ljc.25.1686664987908;
+        Tue, 13 Jun 2023 07:03:07 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id a18-20020a05651c011200b002b32af2e9c6sm901490ljb.116.2023.06.13.07.03.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 07:03:07 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v4 00/22] Restructure RPM SMD ICC
+Date:   Tue, 13 Jun 2023 16:03:00 +0200
+Message-Id: <20230526-topic-smd_icc-v4-0-5ba82b6fbba2@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 0/8] arm64: dts: ti: k3-j784s4/am69: Add uart, i2c,
- eeprom, misc
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Nitin Yadav <n-yadav@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Thejasvi Konduru <t-konduru@ti.com>,
-        Dasnavis Sabiya <sabiya.d@ti.com>
-References: <20230602214937.2349545-1-nm@ti.com>
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230602214937.2349545-1-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIABR3iGQC/33NywrCMBQE0F+RrI00j7apK/9DRPK4tRdqUpIal
+ NJ/N7oT0eUMnJmFJIgIiew3C4mQMWHwJcjththB+wtQdCUTXnFR1byhc5jQ0nR1Z7SWGsWZ6KT
+ SNThSjNEJqIna26EofxvHUk4Rery/T46nkgdMc4iP92dmr/bXfGa0osz0CpqmEVbCYUSvY9iFe
+ CGvqcz/cl441J2QpmqdYuKLi79cFF73pnWiM6qV/Qdf1/UJcZ4+kj4BAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1686664985; l=6104;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=f4ve/r5dOx6VGwd2ZbygUbCzlofyl0BUKmt3Opqvf44=;
+ b=2ywBgLO92trnU5XePfddi6Ac6Xr37EsS/ZjMv8v03lI4L7b66oU2vmCijK3IQHzZg/qS8W0FR
+ OhBh3P95LsbBkxQ6PcJzeop4KXcVbTyGQbj6skmFziRj8SCwW1ryzLK
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Nishanth
+This series reshuffles things around, moving the management of SMD RPM
+bus clocks to the interconnect framework where they belong. This helps
+us solve a couple of issues:
 
-On 6/3/2023 3:19 AM, Nishanth Menon wrote:
-> Hi,
->
-> This series picks up from where [1] left off. After fixing the mux
-> regions, introduce the basic i2c, uarts, ethernet, and a few alias
-> fixups sprinkled along with it.
->
-> This series also takes over [2] and rebased on top of [1] and my series.
->
-> Test log:
->
-> Dasnavis Sabiya (1):
->    arm64: dts: ti: k3-am69-sk: Add pinmux for RPi Header
->
-> Nishanth Menon (7):
->    arm64: dts: ti: k3-j784s4-evm: Fix main_i2c0 alias
->    arm64: dts: ti: k3-j784s4-evm: Add mcu and wakeup uarts
->    arm64: dts: ti: k3-j784s4-evm: Enable wakeup_i2c0 and eeprom
->    arm64: dts: ti: k3-am69-sk: Fix main_i2c0 alias
->    arm64: dts: ti: k3-am69-sk: Enable mcu network port
->    arm64: dts: ti: k3-am69-sk: Add mcu and wakeup uarts
->    arm64: dts: ti: k3-am69-sk: Enable wakeup_i2c0 and eeprom
->
->   arch/arm64/boot/dts/ti/k3-am69-sk.dts    | 165 ++++++++++++++++++++++-
->   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts |  56 +++++++-
->   2 files changed, 219 insertions(+), 2 deletions(-)
+1. We can work towards unused clk cleanup of RPMCC without worrying
+   about it killing some NoC bus, resulting in the SoC dying.
+   Deasserting actually unused RPM clocks (among other things) will
+   let us achieve "true SoC-wide power collapse states", also known as
+   VDD_LOW and VDD_MIN.
 
+2. We no longer have to keep tons of quirky bus clock ifs in the icc
+   driver. You either have a RPM clock and call "rpm set rate" or you
+   have a single non-RPM clock (like AHB_CLK_SRC) or you don't have any.
 
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+3. There's less overhead - instead of going through layers and layers of
+   the CCF, ratesetting comes down to calling max() and sending a single
+   RPM message. ICC is very very dynamic so that's a big plus.
 
->
-> [1] https://lore.kernel.org/linux-arm-kernel/20230503083143.32369-1-t-konduru@ti.com/
-> [2] https://lore.kernel.org/linux-arm-kernel/20230316104743.482972-3-sabiya.d@ti.com/
+The clocks still need to be vaguely described in the clk-smd-rpm driver,
+as it gives them an initial kickoff, before actually telling RPM to
+enable DVFS scaling.  After RPM receives that command, all clocks that
+have not been assigned a rate are considered unused and are shut down
+in hardware, leading to the same issue as described in point 1.
+
+We can consider marking them __initconst in the future, but this series
+is very fat even without that..
+
+Apart from that, it squashes a couple of bugs that really need fixing..
+
+--- MERGING STRATEGY ---
+If Stephen and Georgi agree, it would be best to take all of this through
+the qcom tree, as it touches on heavily intertwined components and
+introduces compile-time dependencies between icc and clk drivers.
+
+Tested on SM6375 (OOT), MSM8998 (OOT), MSM8996.
+
+MSM8974 conversion to common code and modernization will be handled separately.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v4:
+- Only set clk rate on a context if necessary
+- Mention qcom,icc.h is not the correct header in "Control bus rpmcc form icc"
+- Fix the bindings (BIT vs 1<<)
+- Fix one more wrong use of qcom,icc.h in "Fix bucket numer" and uninclude it
+- Drop "Allow negative QoS offset" (will be handled separately)
+- Export icc clocks descriptions to unbreak =m builds
+- Pick up tags
+- Link to v3: https://lore.kernel.org/r/20230526-topic-smd_icc-v3-0-5fb7d39b874f@linaro.org
+
+Changes in v3:
+- Use devm_clk_get_optional and only get() the clock once
+- Drop unnecessary NULL-checks for qp->bus_clk
+- Handle ARM32 CCF limitations, add an explicit comment about them
+- Use Stephan's alternative rpmcc readiness check
+- Fix one more wrong usage of QCOM_ICC_NUM_BUCKETS in icc-rpm.h
+- Introduce new dt-bindings for icc rpm tags
+- Mention the rpm tags situation in the commit message of
+  "Fix bucket number"
+- Pick up tags
+- Link to v2: https://lore.kernel.org/r/20230526-topic-smd_icc-v2-0-e5934b07d813@linaro.org
+
+Changes in v2:
+- Sort entries properly in "Add missing headers in icc-rpm.h"
+- Fix the check for no clocks on a given provider
+- Replace "Divide clk rate by src node bus width" with a proper fix
+- Add "Set correct bandwidth through RPM bw req"
+- Split "Add QCOM_SMD_RPM_STATE_NUM" into 2 logical changes
+- Move "Separate out interconnect bus clocks" a bit later in the series
+- Link to v1: https://lore.kernel.org/r/20230526-topic-smd_icc-v1-0-1bf8e6663c4e@linaro.org
+
+---
+Konrad Dybcio (21):
+      dt-bindings: interconnect: Add Qcom RPM ICC bindings
+      soc: qcom: smd-rpm: Add QCOM_SMD_RPM_STATE_NUM
+      soc: qcom: smd-rpm: Use tabs for defines
+      clk: qcom: smd-rpm: Move some RPM resources to the common header
+      interconnect: qcom: icc-rpm: Introduce keep_alive
+      interconnect: qcom: Fold smd-rpm.h into icc-rpm.h
+      interconnect: qcom: smd-rpm: Add rpmcc handling skeleton code
+      interconnect: qcom: Add missing headers in icc-rpm.h
+      interconnect: qcom: Define RPM bus clocks
+      interconnect: qcom: sdm660: Hook up RPM bus clk definitions
+      interconnect: qcom: msm8996: Hook up RPM bus clk definitions
+      interconnect: qcom: qcs404: Hook up RPM bus clk definitions
+      interconnect: qcom: msm8939: Hook up RPM bus clk definitions
+      interconnect: qcom: msm8916: Hook up RPM bus clk definitions
+      interconnect: qcom: qcm2290: Hook up RPM bus clk definitions
+      interconnect: qcom: icc-rpm: Control bus rpmcc from icc
+      clk: qcom: smd-rpm: Separate out interconnect bus clocks
+      interconnect: qcom: icc-rpm: Fix bucket number
+      interconnect: qcom: icc-rpm: Set bandwidth on both contexts
+      interconnect: qcom: icc-rpm: Set correct bandwidth through RPM bw req
+      interconnect: qcom: icc-rpm: Fix bandwidth calculations
+
+Stephan Gerhold (1):
+      soc: qcom: smd-rpm: Move icc_smd_rpm registration to clk-smd-rpm
+
+ drivers/clk/qcom/clk-smd-rpm.c                  | 312 +++++++++++-------------
+ drivers/interconnect/qcom/Makefile              |   2 +-
+ drivers/interconnect/qcom/icc-rpm-clocks.c      |  77 ++++++
+ drivers/interconnect/qcom/icc-rpm.c             | 217 ++++++++--------
+ drivers/interconnect/qcom/icc-rpm.h             |  55 ++++-
+ drivers/interconnect/qcom/msm8916.c             |   4 +-
+ drivers/interconnect/qcom/msm8939.c             |   5 +-
+ drivers/interconnect/qcom/msm8974.c             |   2 +-
+ drivers/interconnect/qcom/msm8996.c             |   9 +-
+ drivers/interconnect/qcom/qcm2290.c             |   7 +-
+ drivers/interconnect/qcom/qcs404.c              |   4 +-
+ drivers/interconnect/qcom/sdm660.c              |   7 +-
+ drivers/interconnect/qcom/smd-rpm.c             |  24 +-
+ drivers/interconnect/qcom/smd-rpm.h             |  15 --
+ drivers/soc/qcom/smd-rpm.c                      |  17 +-
+ include/dt-bindings/interconnect/qcom,rpm-icc.h |  13 +
+ include/linux/soc/qcom/smd-rpm.h                |  20 +-
+ 17 files changed, 453 insertions(+), 337 deletions(-)
+---
+base-commit: 1f6ce8392d6ff486af5ca96df9ded5882c4b6977
+change-id: 20230526-topic-smd_icc-b8213948a5ed
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
