@@ -2,85 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C450A72EBA7
+	by mail.lfdr.de (Postfix) with ESMTP id 7A01072EBA6
 	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230498AbjFMTIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 15:08:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
+        id S229834AbjFMTJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 15:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232764AbjFMTIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:08:22 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC7D199E
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:08:19 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f6283d0d84so7400893e87.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:08:19 -0700 (PDT)
+        with ESMTP id S232117AbjFMTJJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:09:09 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C781BDB
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:09:06 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5183101690cso6547247a12.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:09:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686683298; x=1689275298;
+        d=linaro.org; s=google; t=1686683345; x=1689275345;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F+tm3+Pdm0PaXfiZEzyRYLx0bL/2PcssnIDcJqEcG00=;
-        b=pXvtSrfvSZFtqXr7gBQNbwO93crNLRG5kDvQKUb9i07WRGV8cuKSZdeN2AHPfkSYEV
-         s9Kj4TDyZ6xACpGIQJynV4qJHfQP8x2u9sRicGgoFESj5RceIKeBfElicevTTgiNi7RL
-         9QVYc+lVnCKM1rsbq+3A8n10G22u07GDwcLiscU3lmCZ6y7WPLfCyTgRAVZA4pyyw5Yn
-         JKU8Q+vKxm0IHBX04DCwxktI6OGATGIu3ihwztTO+oNXjo8vTM8yorfcSd8ysJEEaPSj
-         +opeKcUuZUOr+FiHdS+JpkxNfEiaACOn71VVmdwpa4d0A54Sj9plaNCeEqJ1uAKxPOTX
-         1XpQ==
+        bh=MKlCZA3/0PkDlUywQkb1PhLDuUB0+9ELHymR4eA15rU=;
+        b=lZ1wJxBDp4pcSXNcp8cWxLTeTK+HfrIKZf+m6Da9S4dJxZnFROIxyPWK29t5lg1uIz
+         f1vRtdGpZwRVf763rgTVMVwR52eCt803s6ILFw2sgIwPUWkL73MljIkpr4sheWylcuRy
+         IdJCUShTOt/IM3ybMAIoedKwvM1U2UAUzAByDo40cgdBapXMYB33FM8PLgrfRI7mCy3G
+         i1kcpoccvYIFngDig6XYaxjmxrD3eM2eiDq0BOxzXbr3Q7AGJ/44syvx/knQZz6NUWv5
+         Ru5Sc4OsHz5xRVMvUd9RxoIXp+VA99Mg8ZtC+zGhpZ10wgU6JWA4QDHTWWzWtgq2dNae
+         r2Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686683298; x=1689275298;
+        d=1e100.net; s=20221208; t=1686683345; x=1689275345;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F+tm3+Pdm0PaXfiZEzyRYLx0bL/2PcssnIDcJqEcG00=;
-        b=B4DaVmIYv3MOHdr1ngB2KuOtXRelpXBHs0d6Pi2xcXYQhDDHFxJuqt5r+CPsu8kvHJ
-         Fdhf5yAnaxz8WtooNdOYlKcpg/VPdvUbZzzyjF1IhAWmQBuXP059ugN6J8ndOfUqe261
-         DDWZxCjHILU4nC87ZNNQWNrED6FjCP4ayxOfqCP5Z0Ay4cEawwtt9iy61Y/LcZRwI2Et
-         JJ5K81g7E0bmdnlx8ipQT/4aOY+H+VE2WKT6NBglV0cJb2HDV7RO+Yfe4wmPi3XHwu9f
-         7V/+pzqm16/zrNtAJ5Yq63ZgdpEryftZxRKymh8//caMaoE+h5KmD4uUcQacG/TfsOJz
-         j/Xg==
-X-Gm-Message-State: AC+VfDymkTsXOgDhKJvqstJA2jbRASkmBaOQITwlIOyy3upJDxkechqo
-        Mu7sCOeI/uCF0qBJNBTNB5Rhtw==
-X-Google-Smtp-Source: ACHHUZ5hlHejaHU5jlNuZeMW5cevHnRvyHVwiIHOuhObHOVK4r0Ifh+Y4UFnRCtLYlUAMdVar7JMhg==
-X-Received: by 2002:a19:e059:0:b0:4d5:8306:4e9a with SMTP id g25-20020a19e059000000b004d583064e9amr6458878lfj.46.1686683298079;
-        Tue, 13 Jun 2023 12:08:18 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id m5-20020a056512014500b004f73eac0308sm1148576lfo.183.2023.06.13.12.08.15
+        bh=MKlCZA3/0PkDlUywQkb1PhLDuUB0+9ELHymR4eA15rU=;
+        b=WYtN0Yc3NTUea/g5eAz3PtG0gQHb1Gx3yZA/7lHyIrLp2i5bGPP0EIY834gHIkB1bY
+         dswK8VbI9NibYiMeeKpen6oFW8NgK/UrcElsNgWW5u28MyNdpl4aFbOkOWjcVOGfRM0f
+         9kcWxVtwnI0CG+zoIGQAnWXdRTVBTrbY3lguKc2BF8eSwSraWGU1A9D6ovgx6xOAgXcL
+         MECKDcBfExIHwtrLfNjzFu7L3RFs+iX3StMxowfGYzNQQqgItqBfg13fOw2rfPi51UyC
+         +phhkAB/WBUowsUT1S8OBlrwHi2L+KjubcIOdHJr7XPT9ZGkjumX8RYISYTX2blu4Q/H
+         uHYg==
+X-Gm-Message-State: AC+VfDzjwA0+JI3CZ8BeyDsEyBQqrxHzWPd1yjsEy/aSFogzdZkP4sXr
+        S9huyMFpg/Ixlt4uMKRpS04R0Q==
+X-Google-Smtp-Source: ACHHUZ4yc/iBIzssqHOIK2gvJxevALXcV3FSbVA9Not+FCwtqKOBEB2uVioxt8Oj1PA/XRY9ZE8rTg==
+X-Received: by 2002:a05:6402:2691:b0:514:9e81:6185 with SMTP id w17-20020a056402269100b005149e816185mr9449038edd.16.1686683344773;
+        Tue, 13 Jun 2023 12:09:04 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id j25-20020aa7c0d9000000b005148f0e8568sm6820301edp.39.2023.06.13.12.09.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 12:08:17 -0700 (PDT)
-Message-ID: <cf515539-9a60-c3ae-18af-463651651a27@linaro.org>
-Date:   Tue, 13 Jun 2023 21:08:14 +0200
+        Tue, 13 Jun 2023 12:09:04 -0700 (PDT)
+Message-ID: <0600a505-d1bf-f4be-57ef-51d34c77501e@linaro.org>
+Date:   Tue, 13 Jun 2023 21:09:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 26/26] arm64: dts: qcom: sa8775p-ride: enable ethernet0
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 3/8] dt-bindings: rtc: isl12022: add bindings for
+ battery alarm trip levels
 Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>, Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-27-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230612092355.87937-27-brgl@bgdev.pl>
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-4-linux@rasmusvillemoes.dk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230613130011.305589-4-linux@rasmusvillemoes.dk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,121 +82,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12.06.2023 11:23, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 13/06/2023 15:00, Rasmus Villemoes wrote:
+> The isl12022 has a built-in support for monitoring the voltage of the
+> backup battery, and setting bits in the status register when that
+> voltage drops below two predetermined levels (usually 85% and 75% of
+> the nominal voltage). However, since it can operate at wide range of
+> battery voltages (2.5V - 5.5V), one must configure those trip levels
+> according to which battery is used on a given board.
 > 
-> Enable the first 1Gb ethernet port on sa8775p-ride development board.
+> Add bindings for defining these two trip levels. While the register
+> and bit names suggest that they should correspond to 85% and 75% of
+> the nominal battery voltage, the data sheet also says
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>   There are total of 7 levels that could be selected for the first
+>   alarm. Any of the of levels could be selected as the first alarm
+>   with no reference as to nominal Battery voltage level.
+> 
+> Hence this provides the hardware designer the ability to choose values
+> based on the discharge characteristics of the battery chosen for the
+> given product, rather than just having one battery-microvolt property
+> and having the driver choose levels close to 0.85/0.75 times that.
+> 
+> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 > ---
-I don't know a whole lot about this, but it passes bindings checks
-and looks good overall, so:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 89 +++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
+>  .../devicetree/bindings/rtc/intersil,isl12022.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> index dbd9553aa5c7..13508271bca8 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> @@ -261,6 +261,95 @@ vreg_l8e: ldo8 {
->  	};
->  };
+> diff --git a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+> index 7c1e638d657a..d5d3a687a34d 100644
+> --- a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+> @@ -22,6 +22,18 @@ properties:
+>    interrupts:
+>      maxItems: 1
 >  
-> +&ethernet0 {
-> +	phy-mode = "sgmii";
-> +	phy-handle = <&sgmii_phy>;
-> +	phy-supply = <&vreg_l5a>;
-> +
-> +	pinctrl-0 = <&ethernet0_default>;
-> +	pinctrl-names = "default";
-> +
-> +	snps,mtl-rx-config = <&mtl_rx_setup>;
-> +	snps,mtl-tx-config = <&mtl_tx_setup>;
-> +	snps,ps-speed = <1000>;
-> +
-> +	status = "okay";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-> +		reset-delay-us = <11000>;
-> +		reset-post-delay-us = <70000>;
-> +
-> +		sgmii_phy: phy@8 {
-> +			reg = <0x8>;
-> +			device_type = "ethernet-phy";
-> +		};
-> +	};
-> +
-> +	mtl_rx_setup: rx-queues-config {
-> +		snps,rx-queues-to-use = <4>;
-> +		snps,rx-sched-sp;
-> +
-> +		queue0 {
-> +			snps,dcb-algorithm;
-> +			snps,map-to-dma-channel = <0x0>;
-> +			snps,route-up;
-> +			snps,priority = <0x1>;
-> +		};
-> +
-> +		queue1 {
-> +			snps,dcb-algorithm;
-> +			snps,map-to-dma-channel = <0x1>;
-> +			snps,route-ptp;
-> +		};
-> +
-> +		queue2 {
-> +			snps,avb-algorithm;
-> +			snps,map-to-dma-channel = <0x2>;
-> +			snps,route-avcp;
-> +		};
-> +
-> +		queue3 {
-> +			snps,avb-algorithm;
-> +			snps,map-to-dma-channel = <0x3>;
-> +			snps,priority = <0xc>;
-> +		};
-> +	};
-> +
-> +	mtl_tx_setup: tx-queues-config {
-> +		snps,tx-queues-to-use = <4>;
-> +		snps,tx-sched-sp;
-> +
-> +		queue0 {
-> +			snps,dcb-algorithm;
-> +		};
-> +
-> +		queue1 {
-> +			snps,dcb-algorithm;
-> +		};
-> +
-> +		queue2 {
-> +			snps,avb-algorithm;
-> +			snps,send_slope = <0x1000>;
-> +			snps,idle_slope = <0x1000>;
-> +			snps,high_credit = <0x3e800>;
-> +			snps,low_credit = <0xffc18000>;
-> +		};
-> +
-> +		queue3 {
-> +			snps,avb-algorithm;
-> +			snps,send_slope = <0x1000>;
-> +			snps,idle_slope = <0x1000>;
-> +			snps,high_credit = <0x3e800>;
-> +			snps,low_credit = <0xffc18000>;
-> +		};
-> +	};
-> +};
-> +
->  &i2c11 {
->  	clock-frequency = <400000>;
->  	pinctrl-0 = <&qup_i2c11_default>;
+> +  isil,trip-level85-microvolt:
+
+Why encoding level85 in the property name? Your commit msg (datasheet)
+suggests this is quite flexible, so why it cannot be just list of two
+trip levels - for first and second interrupt?
+
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+Best regards,
+Krzysztof
+
