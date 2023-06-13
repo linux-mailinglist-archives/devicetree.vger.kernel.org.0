@@ -2,292 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4846372E5B5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C1772E5BF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242914AbjFMO2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 10:28:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47316 "EHLO
+        id S242918AbjFMOaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 10:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240612AbjFMO2E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:28:04 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2079.outbound.protection.outlook.com [40.107.8.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4CC199;
-        Tue, 13 Jun 2023 07:28:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M63p+OtueD+fLur0A+gvpWSYPLjapcGYuKwCOoRdxEa1sclHJlQlMlZWL8OFiY0HskDWtdmp5ToyqE7IpcVASlks5lWRhNcuC8v+xwJlZlDFrpqRK2z89kAPoUqCnDNKkS/Y4Uv0q0g2hn9RXzLHONwD6lSEkGYC5Ook7xETmooirxmp86/Qh7eRg0b0MqGC7d/SLYe6kwueA6horYiW7NJ/6uDSRM3YbJ/jlck3+8qqLxCpTI6+RFSjqmwuHRuwgLKoAX4NMM9cyllGoVJ/REFgCpgW8NSvVf23e9F0ue+x41zZ+/0C1tUfX4BUfFPVNCfS8rqsvXaZrq7KeBNAIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3yqzD08utCEzs/KBhbd0tFml476ZMZlAHrteLHly8Ms=;
- b=W34eeVNbLk49OShmEYE+ro0ssrRAPzpErn4A1/ED/yMAcma8Sy6xMAuC428Sn6GjcTXBi6hysy0IRKDr+N0Yko0KNm/aXsQHvjpY1tF58kktiCVJsX0peSuXySnyoTMet5TmhNNM5hYH0q3f6rDjP06feEdEj42pREFeNd8yDrRNSUWC0riQRStPRexewUigjn2/BRYN8u4QIliACupIyvTE3W5vBFFja1MoPEM5FtxKFmemU/PNydm9mz5boSQW694xaXVnoMNMiq1Hfw5BYzfFifpbRYAPySq7Uy/MXUWR1qJ3OEZIRq4w7Pvs6NExTY+sVzrACJOJQLTD/OK53w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3yqzD08utCEzs/KBhbd0tFml476ZMZlAHrteLHly8Ms=;
- b=Ch6QiXAX0lPbjFVCkGmoK6AClvmwgMM8u3lHjARsAk0HxCf4CV8+x5vSB6hofuG3wO4TZPCDl04gwGqYjtPfGGfc6/W03cM/UG/TWk4KB6fyVIkLurnBTKJBOgjxqRPFc62lenx0XPjKAxOyrTqiahE7PR+WOqK5dDgXHynLMaw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by DU2PR04MB9212.eurprd04.prod.outlook.com (2603:10a6:10:2fb::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.44; Tue, 13 Jun
- 2023 14:27:59 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::c40e:d76:fd88:f460]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::c40e:d76:fd88:f460%4]) with mapi id 15.20.6455.045; Tue, 13 Jun 2023
- 14:27:58 +0000
-Date:   Tue, 13 Jun 2023 17:27:54 +0300
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?utf-8?B?RmVybuKUnMOtbmRleg==?= Rojas <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
-Message-ID: <20230613142754.wr5njtjo4tbloqwu@skbuf>
-References: <7c7ab84b-3c4a-4e44-b5b5-4acf733a0246@seco.com>
- <20230429172422.vc35tnwkekfieoru@skbuf>
- <c81d23b6-ed22-0b37-d71b-ddce9d5d58eb@seco.com>
- <c2f928d2-25f6-0e31-9ab3-9d585968df1b@seco.com>
- <20230522150010.q5zndfwcuvrb6pg2@skbuf>
- <22a28a6f-2c84-a6b1-bb57-a269af34c993@seco.com>
- <20230610222123.mzmfjx7zfw4nh2lo@skbuf>
- <c702e2b6-cb0f-4ac9-86fe-a220284d45aa@seco.com>
- <20230612163353.dwouatvqbuo6h4ea@skbuf>
- <1dd01fe2-08a8-ec2f-1184-a58b2f55ba85@seco.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1dd01fe2-08a8-ec2f-1184-a58b2f55ba85@seco.com>
-X-ClientProxiedBy: AM4PR07CA0007.eurprd07.prod.outlook.com
- (2603:10a6:205:1::20) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
+        with ESMTP id S239831AbjFMOaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:30:07 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2C2E54;
+        Tue, 13 Jun 2023 07:30:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686666606; x=1718202606;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=uE8h88szvoGxwdIx+6c5cOD/htbOXhAFq/tdRywRONE=;
+  b=Olr+8lkQUIJ9uUZPFEoZknMt2l6GidZ6ovf0c2q2EEHo5/WDx5FXI8if
+   dfGqeQ0HFijr5qSkdNXuZ2aj8xWJUGklZ36TH6xH3Wm9CAQGMzWsEMwAb
+   p+AMsdGGMx701vctiRHYl78kRpthKustp7kDfP9iOFYZ6oePOUt+6tZ8a
+   7MEDKFUZbXZ7dOF+twr/hACsSg/Chmc2UfcxrKtc7wpvnHrVcf1EKwd4u
+   nrrpc4xWm+2ex57GUaRfWMsXYx9Zkv7AXgqyxugM30OztwUdZTh3lzPi4
+   HMoW9B/7412DELJaspqVDUHsUMhpcIdPqLHtDMaLREQTVZqU6Iuwh8TvD
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,239,1681196400"; 
+   d="asc'?scan'208";a="215841586"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jun 2023 07:30:05 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 13 Jun 2023 07:30:01 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 13 Jun 2023 07:29:59 -0700
+Date:   Tue, 13 Jun 2023 15:29:33 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Yingkun Meng <mengyingkun@loongson.cn>,
+        Conor Dooley <conor@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <conor+dt@kernel.org>, <lgirdwood@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <loongarch@lists.linux.dev>,
+        <loongson-kernel@lists.loongnix.cn>
+Subject: Re: [ PATCH v2 3/3] ASoC: dt-bindings: Add support for Loongson
+ audio card
+Message-ID: <20230613-crewmate-levitate-597ab96ea2d7@wendy>
+References: <20230612085614.3039498-1-mengyingkun@loongson.cn>
+ <20230612-booted-french-186dd95e78a9@spud>
+ <bda7c25f-65cf-d45f-3ac0-f2471e3aacf8@loongson.cn>
+ <20230613-zoologist-panorama-a87858bba075@wendy>
+ <887f9cc4-6457-9d14-8aef-011ff4c9aeda@loongson.cn>
+ <20230613-depletion-garnet-ccc2009111c3@wendy>
+ <449d07d9-5538-4f36-83a0-3a81a9ab9ea2@sirena.org.uk>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|DU2PR04MB9212:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02107575-476f-41bd-74e1-08db6c1a62d8
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LCjZAoPw9Of4yxZcjufAjeKtXhjnb3SJB35cON3zs1klC0vsfdCdzAMYz/bUS5Zuw0QD2NYs2YihdLG9ZGB0NtDiO33fDp8ErPmpaasiBMcUI1AfetbIEuT4uZtlWqL40EMBxbxe81mll9PWyiKJpOoGr3GIFZ4Ptj5RBDfl+PLis7KyF8cvfwIMg3ECj/lZTqRDOXBqDxGfLtf+2IAF8sQAdN5hCKnVPUElmg60kUpZSi096QvbzCrWXiA2Dx8uGZrACZc65RinftmpKWdK2PEMqspBIrnlannXeesoq9KNGVEpM6nzJbhScApjZWNBoGJmlwLWhx5zQl0oJfroJW2ZyKLVIFFim70CvVF0/W+yAPd++s8JVhF/J0UUL7M8nICe/NNmyfuml2QW9mAY8gybtUybzVAQ2lbrhtkW0Fcx3EsNyqdQF0s6NLXFN265l4HoqXrhJG++qxHpOzSeaYnzQjMoLfjntwfFVcuVW4C19h5S6BtneW4uFpXlRkvqmXQav6iPqX6NrNvZ9myvhbxbZfvopnEE/UQT0Yq0LMXzeykQTysvqtaLnlP96KxE
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(4636009)(376002)(136003)(396003)(39860400002)(366004)(346002)(451199021)(66556008)(66476007)(6916009)(8676002)(8936002)(5660300002)(66946007)(54906003)(4326008)(478600001)(6666004)(66899021)(41300700001)(6486002)(316002)(38100700002)(53546011)(186003)(6506007)(6512007)(1076003)(9686003)(44832011)(7416002)(26005)(83380400001)(86362001)(33716001)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gTD+YO9HLpBPpEod/cjNzDlONepQdrNlX4oEV6oeDqWh9u9ndKbBY5D7Sn9R?=
- =?us-ascii?Q?eqFpG7pLGY0jy+qwJGg9/XoY/ZOnl7iAM+I9jF8y2EWYeUILY/PpH8y16tcP?=
- =?us-ascii?Q?2Ba6sLgv+gZieYM/okLvOfA89rGwcBT7ENhW0xnAPszgiNfMCClCXZ2p+MeU?=
- =?us-ascii?Q?cqJD0aLCxoby7qHs019XM7xFHxn1BQDfurC/BXXFe8508QAFFhIPP1Y0K2N9?=
- =?us-ascii?Q?LCp7eymut+9iloBT9JN5wBA9BFc2yOy3r39ZakRf3mVN0/+d6SfubguA/P8+?=
- =?us-ascii?Q?9g88y4UjWnYvv4p/aZA3O36TacSi5vD16le8Gt+pYphu9v5h6XbSB1zQpjJg?=
- =?us-ascii?Q?NF4dqgGTAujS1cAFAWfg7DKbqvAND7fngeUwKnhEDpkq4QaesLs32MhDaYGo?=
- =?us-ascii?Q?Wnwhp9/tJs99/0adQAzw40+K15ifo/x90AX3FM6czBG3U/JTvPmb0UuAgUA8?=
- =?us-ascii?Q?IwI0V/X7G88S82iaLOMpHQw6r8CAw9l6b5HscdlnJyG9FXDogPan27t0E48x?=
- =?us-ascii?Q?BeYsU9qKMUltEuvo+LWtrggeH/IvNqTo8L7wO8uFmeSJ9Lnl+hhSpm3kgO2K?=
- =?us-ascii?Q?NasNOkbCpFXA1z0qc7mwkznoxXLftodJstz5YePIy3ibMqEdnZ2X4KF2zy2m?=
- =?us-ascii?Q?wzY5riphdQ6+5zWjQpgPK2SoxHFlPFf2FeblFsWKJrBbGEcxKqBURf12bugw?=
- =?us-ascii?Q?/EMPvLjR6GEAh+wTfKT8dTy2ppv5/Qs6TtLqLlSfqD237ZnevnbA8qZqM8/x?=
- =?us-ascii?Q?gc6Idhjb7GZGmY/3QuWKL21wTXAmCZrxGubyhCr7LONyeUz0XVxu4NSz2vvI?=
- =?us-ascii?Q?5jpU4ZIi244S00UEJjPM5X3o49QHF3wmJRqXqHAoixaUdDJLG9mUNLAoszBM?=
- =?us-ascii?Q?QljcSNioZlchtbKg9JJUmSc21w3Ok8TrtHBIiIqiynOuFl7lyjdoAF2HLnLA?=
- =?us-ascii?Q?VXCBJ7IBq70wFrbpOU/90SglQyqINx3A7zG/S+6GUCoAV07Ey7txlNS+cKEr?=
- =?us-ascii?Q?M4kuqkeicqdMuRsCAOQ0DgYAaij74IwguqC3h1Ohn5dBiN/a3ToR6X+3JMbm?=
- =?us-ascii?Q?eAI9F9a7gs38dL8DvnJOhOTZchzzvMN73K/UD7kdpY5FQSnxM5SHCuuicIqs?=
- =?us-ascii?Q?p1TF/HTcK1BfS98ZM7neUWqoyw5sLWILkOhHhZKyOKDvBGuIoDx2YBRfZlOJ?=
- =?us-ascii?Q?dLWDsfNsU22Kws/jitp9Kdyh+sqEvM0zVOFiPrfCtyyfcvO8W5g3q67W80o+?=
- =?us-ascii?Q?r6wAyj45/zza3xJ6liAadMIan12muMPywJn6pdB/5AeCA+xqK0VYojswl0x7?=
- =?us-ascii?Q?A5dtwK6AHHowut9SXH+6dOgVcOWmQEye7HEYvBigaVqeaOkzMENnt7OhLG9r?=
- =?us-ascii?Q?ZBykw8AeH1FAAIaem4IP7P6DHSnvf1xYhkEbidiBfoEM0YLktPPAYD6lDSYp?=
- =?us-ascii?Q?+fO4vzRt4Uze8GQasPSwlmwhIQRKA2Kd47efqKsgQxRi4boLMCSJIYwbmrIa?=
- =?us-ascii?Q?uQImnfQBiBoI8LZcNxBxe4C5HaVIiDD4Tg4E+oq1N5TsX60QORu8T0hLPxBI?=
- =?us-ascii?Q?BJq2VDRFmG9BNUKYvumzt1ouVyVyZoQCpNnNasji+Y6/PoSwo8KrgDXb0gpa?=
- =?us-ascii?Q?BA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02107575-476f-41bd-74e1-08db6c1a62d8
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2023 14:27:58.8559
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UKkZVma6r9HCiNsIzVyqu3nOCytXYr3BnEmXMTgq8nOQxF49sljPGw7Cna2/YVOwaQwT+AeRbzPZv4/Z5yN2JA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9212
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="F73UMBvZBx0/ykU7"
+Content-Disposition: inline
+In-Reply-To: <449d07d9-5538-4f36-83a0-3a81a9ab9ea2@sirena.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 04:46:16PM -0400, Sean Anderson wrote:
-> On 6/12/23 12:33, Vladimir Oltean wrote:
-> > On Mon, Jun 12, 2023 at 10:35:21AM -0400, Sean Anderson wrote:
-> >> > And if SERDES protocol switching was not physically possible, would this
-> >> > patch set still have value?
-> 
-> More to the point, did you make any progress in this area?
+--F73UMBvZBx0/ykU7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Aha. It is two email exchanges later that you've thought of asking that.
+On Tue, Jun 13, 2023 at 02:54:36PM +0100, Mark Brown wrote:
+> On Tue, Jun 13, 2023 at 01:46:41PM +0100, Conor Dooley wrote:
+>=20
+> > So it is entirely a software construct? Why does it need a dt-binding
+> > then? Your commit message says the controller is present on the device!
+>=20
+> A typical embedded (or power efficient laptop) audio design will consist
+> of multiple devices connected together (frequently via non-control
+> buses) together with system level passive components and plastics which
+> are also important to the audio configuration.  A card binding describes
+> the interconections between the devices in the system and provides
+> identification information for the audio subsystem.  This system level
+> audio integration is a physical thing that can be pointed at that
+> requires real software control.
 
-No, I haven't made progress. Though I managed to get some extra pointers
-and things to try out, and at this stage I am the limiting factor. I will
-let you know once the investigation has reached a conclusion.
+The bit you were responding to with that was a disingenuous question.
+Probably not fair of me to ask one of a non-native speaker like that,
+when all I wanted to know was whether it was appropriate not to add
+a more specific compatible, or whether this was something invariant.
 
-So many things depend on whether major SERDES protocol reconfiguration
-is possible, that if I were you, my question would be just that, instead
-of the equivalent of "Vladimir, when can my driver be merged ???".
-I understand how incredibly frustrating it is that the responses are
-coming in so slowly, and this is the reason why I am responding at all
-to your pings even if I have essentially nothing new to say.
+> Like I said before please look at the existing audio card bindings.
 
-And it's not that you don't care whether protocol reconfiguration is
-possible or not - you do, but at the same time you're overcome with this
-strong attachment to your solution just because it is yours, that I
-don't know how to deal with.
+Yah, ofc I did that to see if there were other similar bindings that
+used specific compatibles...
 
-> 2222 also does not work, as outlined above.
-> 
-> The clocking is incompatible, and must be fixed by software.
-> 
-> The only thing self-inflicted is NXP's conflicting design.
 
-The way things are supposed to work (*if* this works at all) is that the
-reset state machine starts with a supported PLL / refclk configuration
-that permits a certain subset of protocols, and the SERDES protocols can
-be changed from the reset state, as desired, for the individual lanes.
+--F73UMBvZBx0/ykU7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-What is self-inflicted is that the refclks on your board design are not
-supportable by any reset state machine configuration, and wiring them
-that way was a conscious decision. Did your company's board designers
-receive the recommendation to disconnect RESET_REQ from NXP, and has NXP
-said that the end result will be something that continues to be supportable?
-I've searched the customer support database and the answer seems to be no.
-In any case, if you have to disconnect RESET_REQ from the SoC to make
-the driver in this form useful, then... yeah, no. You're obviously free
-to do whatever you want with your products, but that's not how mainline
-Linux works, it needs to be useful beyond you.
+-----BEGIN PGP SIGNATURE-----
 
-If protocol switching works, I will maintain that your board should have
-wired the refclks to PLLs the other way around (which is supported by
-the RCW), and then proceed to do protocol switching to reach the desired
-configuration.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIh9TQAKCRB4tDGHoIJi
+0im6AQCKC+utNKucFVTzatpu/JT9toHFnwcH/P19lIwDWM2GMwD+LgeihZ5UpRNH
+1O78Io5ySAoSy/xH4fujDTp98LU1SQI=
+=AuWz
+-----END PGP SIGNATURE-----
 
-So you can see that many things change based on whether protocol reconfig
-is possible or not. The patch set presented here looks exactly like the
-product of someone infatuated with form over substance, and who misses
-the overall picture. My belief is that if you shift your attitude from
-"is the work done?" to "is the work generally useful?", the interactions
-will improve by a lot.
-
-> > Have you actually tested changing individual lanes from SGMII to SGMII 2.5?
-> > I know it works on LS1028A, but I don't know if that's also true on LS1046A.
-> > Your comments do say "LYNX_PROTO_SGMII25, /* Not tested */".
-> 
-> Not yet. 
-
-Aha. So concretely, what makes you so confident with moving this forward?
-You like the code to just be there, no?
-
-It helps your board, I understand. But not everything has to stay in
-mainline if it's not useful for others, and I've proposed an alternative
-solution which I'm not sure how seriously you took.
-
-> This driver would also be a good place to add the KR link training with
-> NXP tried to upstream a few years ago.
-
-Well, speaking as someone who is now also tasked with the copper backplane
-support, believe me that I know that, and this is why I'm so desperate
-with the logic you're trying to push forward. It's clear that we should
-try to collaborate rather than try to push individualistic non-tested
-non-solutions.
-
-> > Assuming a start from SERDES protocol 3333 with PLL mapping 2222,
-> > this protocol change implies powering on PLL 1 (reset state machine
-> > wants it to be disabled) and moving those lanes from PLL 2 to PLL 1.
-> > 
-> > At first sight you might appear to have a point related to the fact that
-> > PLL register writes are necessary, and thus this whole shebang is necessary.
-> > But this can all be done using PBI commands, with the added benefit that
-> > U-Boot can also use those SERDES networking ports, and not just Linux.
-> > You can use the RCW+PBL specific to your board to inform the SoC that
-> > your platform's refclk 1 is 156 MHz (something which the reset state
-> > machine seems unable to learn, with protocol 0x3333). You don't have to
-> > put that in the device tree. You don't have to push code to any open
-> > source project to expose your platform specific details. Then, just like
-> > in the case of the Lynx 28G driver on LX2160, the SERDES driver could
-> > just treat the PLL configuration as read-only, which would greatly
-> > simplify things and eliminate the need for a clk driver.
-> > 
-> > Here is an illustrative example (sorry, I don't have a board with the
-> > right refclk on that PLL, to verify all the way):
-> > 
-> > ... snip ...
-> 
-> (which of course complicates the process of building the PBIs...)
-
-Maybe this is the language barrier, but what are you trying to say here?
-
-> > In short, I believe the reasons you have cited do not justify the
-> > complexity of the solution that you propose.
-> 
-> The work is done,
-
-:)
-
-> and it is certainly more flexible than what you propose. E.g. imagine
-> a clock which needs to be configured before it has the correct
-> frequency. Such a thing is difficult to do in a PBI solution, but is
-> trivial in Linux.
-
-So "a clock which needs to be configured" means a programmable clock
-generator that provides the refclk to the PLL, correct?
-
-With QorIQ/Layerscape SoCs, I imagine that case would typically be done
-by a board CPLD during the boot sequence, because if the PLL refclks
-don't have the right frequency, the main SoC doesn't start. You've hacked
-the RESET_REQ signal so you don't have that problem. But surprise -
-others haven't - so it's not exactly a relevant argument in favor.
-
-It's clear that the hardware has limitations that have impact upon the
-way in which both boards and software is designed. Because you don't
-know whether protocol reconfig is possible, you don't know *if* it is
-possible, *under what circumstances* it will be possible. What if XFI
-only works with 156 MHz provided to PLL 2, and not to PLL 1? You're
-trying to push a non-final solution as a final solution.
-
-The programmable refclk generator that is reconfigured at runtime is
-another can of worms, which I'm not sure can be feasibly implemented on
-this hardware given the fact that multiple lanes share one PLL, and
-there are many more lanes (4 or 8) than PLLs (2). Again, I need to see
-some practical functionality that this patch set provides.
-
-Do you _actually_ have a programmable clock generator that the CPLD
-can't program, or is this a "what if" situation?
-
-More to the point of the "flexibility" that you claim. You haven't
-addressed my point of networking over the SERDES ports in U-Boot.
-You don't need that - I'm clear with that, otherwise we'd be having this
-conversation on the U-Boot mailing lists - but what if others, wanting
-to follow your solution, would? Would you see that as an opportunity to
-write even more code?
+--F73UMBvZBx0/ykU7--
