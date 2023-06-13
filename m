@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0551B72E488
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D110972E4AA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:55:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240290AbjFMNqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:46:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49384 "EHLO
+        id S242642AbjFMNzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:55:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240124AbjFMNqV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:46:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CCBAC;
-        Tue, 13 Jun 2023 06:46:20 -0700 (PDT)
+        with ESMTP id S235739AbjFMNyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:54:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C80AA6;
+        Tue, 13 Jun 2023 06:54:44 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 43DEC62E96;
-        Tue, 13 Jun 2023 13:46:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A59D1C433F0;
-        Tue, 13 Jun 2023 13:46:18 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 955266366E;
+        Tue, 13 Jun 2023 13:54:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71160C433D9;
+        Tue, 13 Jun 2023 13:54:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686663978;
-        bh=0rLyJ7Um8xHPNMu03OwaG3r7b8np6OjbkMb9kt0aihQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=iM+rcbROLB5JB/ybOayIqTBFWRea5VRToEaYbL7v/gTfVtFBx+lzMIaSVUSe/fcml
-         mDgb6VM1iRjtbcjMLqXsnSVO9LkEZmDlmiC3YZ2W05mijUgwOCvovA4SjuQHwFKM3Y
-         Jv9yrcViXVcndpEEH8y2D5oByRKcU1Qju4ILu1rOw/dePVRdDfb0fj6QfIMzsQJMG+
-         xLrGpqTC2Zz2kFpnNFbAniPV6W8fqPA6q6c5gDMBsR5wV+Qh6MYLQxSQp6GKhBta8C
-         i2XbGrCRBn0+WJIDynCpUNjIZtsrhfTHUkUKePbADlUAsC1phPYqi/JHHe1Xq+5Xc2
-         Hhs2pnXa8zStA==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2b2f9f47256so42792081fa.1;
-        Tue, 13 Jun 2023 06:46:18 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxicfrVknVkrozVwQvQvYdGmSruaz8wmpjRgpFK7ANpqeEw5jcK
-        VxBzbu23sz9f3nBEkVNubc7sBstWHpMl5OoXYg==
-X-Google-Smtp-Source: ACHHUZ6WmyAIhsvQmsDE0BVCAxrCpRVVRL5HwS87Mu9fv5OxAQFMDCIxNRznw/fOYZNggQvJaqHC522pRJwlOweV5/A=
-X-Received: by 2002:a2e:3c0c:0:b0:2af:25cf:92ae with SMTP id
- j12-20020a2e3c0c000000b002af25cf92aemr5357006lja.22.1686663976708; Tue, 13
- Jun 2023 06:46:16 -0700 (PDT)
+        s=k20201202; t=1686664483;
+        bh=iSmSOi8YU02GjFRauD4K5+rplja7hUixCkETFWDQmlQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XJ5yJAExaLmvMqk4coILGi79B+899BpXgOZNH4uuP/eQuKwpaNkARmEFmkVgn7biz
+         EEk2e+3JekdMhMo0W7NRgYdtxxHKZ+2ekT+UnnDi7deCGPYnxY/WR/BnOeOTufBdXt
+         2CO2oDQnuIytFqJHXpZLWgWY2sVqHohlXOxyNOQLT/iDxGK5j29fqVnVKlwduZ5cjF
+         8S8JY68gz0Yn9r1clxM30GVBZT+z4k55qSAGM24UixT+z9/+OROWkalpCMi7/olPR+
+         Xoi0srk5u0usumLttenNwwwFYQwj4iXHoENmAPci1Y0sBd6eXoJJZqKdrlqxTtC7cH
+         X1AQRtNmIl8mw==
+Date:   Tue, 13 Jun 2023 14:54:36 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Yingkun Meng <mengyingkun@loongson.cn>,
+        Conor Dooley <conor@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, loongarch@lists.linux.dev,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [ PATCH v2 3/3] ASoC: dt-bindings: Add support for Loongson
+ audio card
+Message-ID: <449d07d9-5538-4f36-83a0-3a81a9ab9ea2@sirena.org.uk>
+References: <20230612085614.3039498-1-mengyingkun@loongson.cn>
+ <20230612-booted-french-186dd95e78a9@spud>
+ <bda7c25f-65cf-d45f-3ac0-f2471e3aacf8@loongson.cn>
+ <20230613-zoologist-panorama-a87858bba075@wendy>
+ <887f9cc4-6457-9d14-8aef-011ff4c9aeda@loongson.cn>
+ <20230613-depletion-garnet-ccc2009111c3@wendy>
 MIME-Version: 1.0
-References: <20230418150606.1528107-1-robh@kernel.org> <b8a062a0-10e9-bf17-c109-f6986f9dd02c@linaro.org>
-In-Reply-To: <b8a062a0-10e9-bf17-c109-f6986f9dd02c@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 13 Jun 2023 07:46:04 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJvmN7824Q0vnWpnO3a_Fdo5Ybc2tcGnJZAfDLM=-1Apg@mail.gmail.com>
-Message-ID: <CAL_JsqJvmN7824Q0vnWpnO3a_Fdo5Ybc2tcGnJZAfDLM=-1Apg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,pmic-mpp: Fix schema for "qcom,paired"
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="bcFqVBu2j9qZWhmQ"
+Content-Disposition: inline
+In-Reply-To: <20230613-depletion-garnet-ccc2009111c3@wendy>
+X-Cookie: Not a flying toy.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,38 +66,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 12:50=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 18/04/2023 17:06, Rob Herring wrote:
-> > The "qcom,paired" schema is all wrong. First, it's a list rather than a=
-n
-> > object(dictionary). Second, it is missing a required type. The meta-sch=
-ema
-> > normally catches this, but schemas under "$defs" was not getting checke=
-d.
-> > A fix for that is pending.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
->
-> Linus,
-> Could you take it for current fixes? The code was wrong and dtschema is
-> warning now about this.
 
-I have other things ready for 6.4, so I'll add this one.
+--bcFqVBu2j9qZWhmQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks,
-Rob
+On Tue, Jun 13, 2023 at 01:46:41PM +0100, Conor Dooley wrote:
 
->
-> Fixes: f9a06b810951 ("dt-bindings: pinctrl: qcom,pmic-mpp: Convert qcom
-> pmic mpp bindings to YAML")
->
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> So it is entirely a software construct? Why does it need a dt-binding
+> then? Your commit message says the controller is present on the device!
 
->
-> Best regards,
-> Krzysztof
->
+A typical embedded (or power efficient laptop) audio design will consist
+of multiple devices connected together (frequently via non-control
+buses) together with system level passive components and plastics which
+are also important to the audio configuration.  A card binding describes
+the interconections between the devices in the system and provides
+identification information for the audio subsystem.  This system level
+audio integration is a physical thing that can be pointed at that
+requires real software control.
+
+Like I said before please look at the existing audio card bindings.
+
+--bcFqVBu2j9qZWhmQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSIdRwACgkQJNaLcl1U
+h9AOEAf/djOuF0KqRDXHKbgIdlBrak/uDTEiHEoqXTlaTW9hPHgCP27FoU5F15vG
+/mS+Obydc9IWyOl0uscQPGFP9nLoayDYduM5nEIlAJiBH0rvBjqZ6UVnAofy1Ec7
+9ebQPTGDGmWs8iwKgfQjZmw7UJI2J4QQ5pFjZjNTkgmMb9Pu8ixylIbjiXyeiEZH
+8Ad65tmEvYRhcGdTFZZ/88Drx+ne7TczcBg4wwcFN0V51NWhXr2XwaEaGKfKTizA
+Vx3gq40qxkwzZQPp5UcSL/O7FqhwFh3zHwzduDMVv80tsDbHnD64xRQpZNWELycv
+lO4MOL8CZc5th3RnMJat7bXSNHcKuQ==
+=JHLU
+-----END PGP SIGNATURE-----
+
+--bcFqVBu2j9qZWhmQ--
