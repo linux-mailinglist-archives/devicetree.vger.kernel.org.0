@@ -2,79 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C2F72EA8C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:09:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12C5F72EA91
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:10:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231285AbjFMSJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 14:09:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
+        id S230498AbjFMSKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 14:10:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229869AbjFMSJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:09:08 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96F7F19A8
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:09:07 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f6170b1486so7120107e87.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:09:07 -0700 (PDT)
+        with ESMTP id S235288AbjFMSJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:09:53 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31DE1BD2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:09:52 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-56cfce8862aso40557007b3.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:09:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686679746; x=1689271746;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lEVb9IU/qLN25isZtE62j5+X+b1dacmJcTX7I3nYwwo=;
-        b=jMYpcRoe2VA1OzbxShNcKcjRqDuFHxYqSWYKbv0bQUgDmAvOIeQcVsq7xrDOW7sWYz
-         4Kn39Czmrx5xvHyOSOLDINxyKGy/2P80piuCDUkfx4tzfWku4ULcCQvEdZFTMzjvzJx2
-         XbxKXrVbtPVSTtTRaIr/fEhYaresDQQZ/y1CijE8D1OK8PpJiqNlHS316vi5sSNSIDNv
-         nX669Qkp3h67TNGI0a0OCO8pqLRXdhGeULu2lxxg1m3JrFzFrPX//8Y0q0o45KqHUnX7
-         dferSCjen1bXnndvLANifVpew8Ul1eK2UrRPQ1fsgt2vTZl1IGA06p6yQNojtqFYPX1v
-         tOIw==
+        d=linaro.org; s=google; t=1686679791; x=1689271791;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TESX54vILo0n1pvOdyskuCPzlhG1Qnfeg9SAHlfLO0E=;
+        b=WqJQlDbj84qhqbJnTBjCD2q/ecrppE1AqGXhimErpGbEh6NQ4LNx9h+LXHzDXOSDOp
+         eYRJ/2bJlMnUYfVXwgGBN5ZgYfHrsaiXB/unauuYqhMXIC0uySbiymEoN6UbPq/0n7+U
+         wMnOyVgVrLjfDxJvY9/rZ9/G55dmLMrlIEAMhITPF7m6LaEPMFwld+1w1BfdUuugBUkD
+         7BZjKuZTDTS04g45c35eZn7WpBD9rJWwXCXCvjtJiA43I8y2112fuIqkdG7OAWo7K6MD
+         C3PwaDBZQmq9/0lzViUGKKraZvkamF7LYDAFj9oJS1yUyK4OKXR4YGhkROgLlVvZf0sF
+         7xTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686679746; x=1689271746;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lEVb9IU/qLN25isZtE62j5+X+b1dacmJcTX7I3nYwwo=;
-        b=Nx8q0XK7LMY8uJsvVWByyW42fgMTxVqeBspgc4DhaMGBCtYoIHoLifmhsqr83dg2fy
-         KRwWG//RZfNqMVX1Ol4lsFyFWJ+QGk4cKJmVS8nehnGhGZ8qWdseOhiHcNGQEKVKF1pf
-         NHDTYlbsggFGon75VJBUamoKhXgEaJ+dw0Suot0Qo2xHo05iJrlJiw9Uon73ZH24vjSp
-         HT+VxJXWF2zoVKx7B9P0vp6TriQaEM74YG/yIsnYQ1OatL5JvAP6N1CbldxxD4PM9tR9
-         Z7iGiIOx0GJLh/eNYZdACqP6E5YvOkDXZhwu3iZpzosizOqIC99FUAVVAP1GiHSw6riv
-         pi+A==
-X-Gm-Message-State: AC+VfDwjlmW5mqyOfJUX4+uiIk8lniLeUn3N6ixgwrlWP6CJwDbJr49g
-        UuLmXNgcQ6/X/V3TRwm0p/D2yw==
-X-Google-Smtp-Source: ACHHUZ4Txu8rmkV8rAox0K2Jc9y2jvZqt1cpxRVy8Q++mlVFHUoK9t8ymQBvu5/3rvE/UoNnd6FGHA==
-X-Received: by 2002:a19:770e:0:b0:4eb:e8e:4139 with SMTP id s14-20020a19770e000000b004eb0e8e4139mr4117966lfc.2.1686679745827;
-        Tue, 13 Jun 2023 11:09:05 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id x12-20020a19f60c000000b004efe8991806sm1842899lfe.6.2023.06.13.11.09.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 11:09:05 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 13 Jun 2023 20:09:00 +0200
-Subject: [PATCH] arm64: dts: qcom: qrb4210-rb2: Enable on-board buttons
+        d=1e100.net; s=20221208; t=1686679792; x=1689271792;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TESX54vILo0n1pvOdyskuCPzlhG1Qnfeg9SAHlfLO0E=;
+        b=TtSw8Aiwxdqe+NvRn8+hStxDq9ijUYYAgLB2AvlrO0o9jScPEZHP36VSaKc+G7r/jh
+         5ZyD10Mv+HJUvwEdu9lG2Uv0/Guu3cBis7PIPUMMTy8s/j6EQR+9L8jgcDucGdz9zWu+
+         Z1iVWsl7vr627oAisApU98xBB5BSBkaNfhHYAuerAzfv389vxnV28MkgPjwCQcerv2rz
+         49g3hRk9kSn4sIkUq6Xpr5AMegWk8s9qn4eoUXAHe1XoVeLiVxrUYbpJBHAalQkwEP8S
+         CYmkhSBjIdnT8hwlJRoArD3RER6gUhaqgPQ5sZNatL3U5I7I6B86wnhrVK681BS1CQ6J
+         aAwA==
+X-Gm-Message-State: AC+VfDwsVzZT0re4tPjzLVAFCyvg409bHvaz/cjL4li/ndIGcSRmSNJX
+        0im/h36L3NgRAGaAVtQnyIAY2OPn6vFDpqJ+QfcbUw==
+X-Google-Smtp-Source: ACHHUZ4gbDPGd/3NVLS7j+rLPJi4AjmZ5nwQ+/jbPcc7n0nq76nZz+kSiGmAsCXrZAwPPSZBCVIp3TDFsllfdqAmOZE=
+X-Received: by 2002:a25:a506:0:b0:ba8:3613:76a8 with SMTP id
+ h6-20020a25a506000000b00ba8361376a8mr2590951ybi.41.1686679791771; Tue, 13 Jun
+ 2023 11:09:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230613-topic-rb2_-v1-1-696cd7dbda28@linaro.org>
-X-B4-Tracking: v=1; b=H4sIALuwiGQC/x2N0QqDMAwAf0XyvIBt1Yf9yhijjdkMSJV0ilD8d
- 4OPd3BchcIqXODZVFDepciSDdyjAZpi/jHKaAy+9aEdXMD/sgqhJv/BfiR2PQWXugEsSLEwJo2
- ZJkvyNs8mV+WvHPfh9T7PC1dpEGxxAAAA
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+ <20230601054549.10843-15-nikita.shubin@maquefel.me> <cacd8ea8-f834-4983-20ff-a875fee8011a@linaro.org>
+ <CACRpkdZVhwsoHg3jOWuXtdL5kqbnbHjEYJOGsBCTcfLrVKbX3w@mail.gmail.com> <CAMRc=MfgBAnSwLTKuCZ9WgbX_oWoB2xLk=J86QCo9YkcfWaq_Q@mail.gmail.com>
+In-Reply-To: <CAMRc=MfgBAnSwLTKuCZ9WgbX_oWoB2xLk=J86QCo9YkcfWaq_Q@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 13 Jun 2023 20:09:40 +0200
+Message-ID: <CACRpkdab48ag5jbACrN-z4CSV=Vnd5kbni=yK6crzK6GsE4iTA@mail.gmail.com>
+Subject: Re: [PATCH v1 33/43] dt-bindings: gpio: Add Cirrus EP93xx
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nikita Shubin <nikita.shubin@maquefel.me>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1686679744; l=1716;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=/X0tAGEydFCfBkn2TuDyVWHG8ilu9psIXgXCnXJLL14=;
- b=hhTmXGpcfJqAOkPldbPkbIpOLeq3jmpYU8AhaQpOrw279OvsgxGLUaetpPkrUGMpapw11Oj6o
- 1v8esRZNCusCUE5YfBakoUvRleHt/2TWYuLjGWRVBQdlOkOQBqFsT5z
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+        Michael Peters <mpeters@embeddedts.com>,
+        Kris Bahnsen <kris@embeddedts.com>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -85,81 +77,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the PMIC GPIO- and RESIN-connected buttons on the board.
+On Tue, Jun 13, 2023 at 4:55=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
+ wrote:
+> On Fri, Jun 2, 2023 at 9:41=E2=80=AFAM Linus Walleij <linus.walleij@linar=
+o.org> wrote:
+> > On Thu, Jun 1, 2023 at 10:20=E2=80=AFAM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 37 ++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+> > > Did you choose correct maintainers? Bartosz, Linus, do you take care
+> > > about EP93xx platform?
+> >
+> > I'm fine with it (I have a platform).
+>
+> I don't but I'm actually not sure how DT bindings maintainership works
+> - do GPIO bindings all fall under the GPIO jurisdiction automatically?
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index 39597277343c..e23a0406eacc 100644
---- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/leds/common.h>
- #include "sm4250.dtsi"
-+#include "pm6125.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. QRB4210 RB2";
-@@ -28,6 +29,23 @@ clk40M: can-clk {
- 		};
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "gpio-keys";
-+
-+		pinctrl-0 = <&kypd_vol_up_n>;
-+		pinctrl-names = "default";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
- 	hdmi-connector {
- 		compatible = "hdmi-connector";
- 		type = "a";
-@@ -219,6 +237,25 @@ &mdss_dsi0_phy {
- 	status = "okay";
- };
- 
-+&pm6125_gpios {
-+	kypd_vol_up_n: kypd-vol-up-n-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		power-source = <0>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+Not really, more on the people selected by the person writing the
+bindings, confirmed by them being merged.
 
----
-base-commit: 1f6ce8392d6ff486af5ca96df9ded5882c4b6977
-change-id: 20230613-topic-rb2_-5dce15c31b46
+Traditionally, Linux as the biggest software project with the most
+active subsystem maintainers do the reviewing and take the
+responsibility for them.
 
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+Technically, e.g. BSD people could appear
+on the devicetree mailinglist and review patches and suggest
+maintainership from their side, but I haven't seen them much
+around. Neither Apple Computer or anyone else who ought
+to be there but isn't.
 
+Yours,
+Linus Walleij
