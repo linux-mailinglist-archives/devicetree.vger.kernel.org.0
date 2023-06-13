@@ -2,120 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92C4172E4B2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E052372E4B6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233859AbjFMN45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:56:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54488 "EHLO
+        id S240192AbjFMN6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:58:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239868AbjFMN44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:56:56 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CF1CA;
-        Tue, 13 Jun 2023 06:56:54 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DDucch028956;
-        Tue, 13 Jun 2023 08:56:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686664598;
-        bh=AisEUQFN6qXK+ZgbfXrx9CrTIJoeUeeHyqEZJKH9pKM=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=PsJvvz5XS41tAsGYDTqgIlugg1p3do7L3bGivru8HYzOGi4LLcdSbaNU3oi5jDpTl
-         L+pNu0JZn7Ov2KQDK+OWZ3MYDiXiUfQKkCaLLdN/cJfVNkea3afwdYmEh8koGE6bvJ
-         ExP7htS3QjYq3ilWqDiysNwxkF7t9tSvwmQLECsw=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DDucY1033792
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Jun 2023 08:56:38 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
- Jun 2023 08:56:38 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 13 Jun 2023 08:56:38 -0500
-Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DDuZbr051552;
-        Tue, 13 Jun 2023 08:56:35 -0500
-Message-ID: <22b67e80-1f5f-d8e0-3c85-c69d97ea0d39@ti.com>
-Date:   Tue, 13 Jun 2023 19:26:34 +0530
+        with ESMTP id S240291AbjFMN6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:58:42 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C33EC
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:58:39 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b344476313so229421fa.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:58:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686664718; x=1689256718;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eYEjJGS1UUCjJyusiKu9spXvZVC2LuJOiUk5VQb5qBg=;
+        b=uNjYiaaXwGbisnriVGiyDPW7ZI45SzlN8FOVeTNbbxQb4PXZ+AuM66H4Yerp0ztmPX
+         01S78XYRrc7zNj88Pxcc1yV1tTzr3QBXuGBkzGMuS5uOyENuRaUoUFwpH+pm9eLJ7JcF
+         nWUUkS/MhD+1NGnKuogt5np26PCxhwF8tUjQehy+RMFNIpeT8xZ7TNB5Yyfs31jl2spX
+         eQ4xds7UIgd9KNJZNU/vGmbBV0mM0Uo+h6hq5N6tBa+uN2xA+BUbCVCu9DHBrde3BGKR
+         tUWBvko6KywEIxeFVBGndQm556lwHleld9lw81gVJE6FplEQBzWSvAPE/dAPBGTeHwL2
+         sc6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686664718; x=1689256718;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eYEjJGS1UUCjJyusiKu9spXvZVC2LuJOiUk5VQb5qBg=;
+        b=gr1avdkf4AHpmqWfgFi6IO5DL3tvb8+JD/Z7a6SI+0SALvGYZv/M0Hr7RcZpkVVka9
+         wuEOPrhCXEwzvCQzWxM4duD7qoJNohnC3DLFdx9ID1nGjRpo0WE/WHYo9H1Uq/MiuxY5
+         vYyzBZbSy9O5zw92SimbeyoTzZNR1bJ3PMsfdjV66OJgagYEWMc1/zodsGiafksZZdD4
+         c3TtsMxOOSlzNCyfNc1ITVe42EX7kqNnyXZKpGJ1HKfpntZZtL+790/sRozyWbERAfx4
+         +61v0TaJTWAwSkACOXeU3tpd3mc7wZXcpKlxZ1m6CPWRFnj8BUprRolr90oEeePsYAZV
+         oPRA==
+X-Gm-Message-State: AC+VfDz9oIoWB7uKtjQJRmoJaWCx89ZlxOaF+T+S4XzPflZbH+mFMX25
+        nDDtFZwrfmX5w+BwRAZOJWf9XQ==
+X-Google-Smtp-Source: ACHHUZ4SeTgZwVp9xbt9r8WkNO8LW+MR7fA9doV9DSkOr/bC5m6r+nBHbjgHbz+tZM+MSk/aawBhBw==
+X-Received: by 2002:a2e:88d8:0:b0:2af:c9d8:87b4 with SMTP id a24-20020a2e88d8000000b002afc9d887b4mr4444624ljk.29.1686664717906;
+        Tue, 13 Jun 2023 06:58:37 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id z6-20020a2e3506000000b002adb98fdf81sm2162821ljz.7.2023.06.13.06.58.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 06:58:37 -0700 (PDT)
+Message-ID: <9c3db237-9bec-36e0-8b0c-28062c631068@linaro.org>
+Date:   Tue, 13 Jun 2023 15:58:35 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 6/9] arm64: dts: ti: k3-j721e-beagleboneai64: Add
- wakeup_uart pinmux
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 5/8] qcom: pmic_glink: enable altmode for SM8550
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     neil.armstrong@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Neha Malcom Francis <n-francis@ti.com>
-References: <20230601183151.1000157-1-nm@ti.com>
- <20230601183151.1000157-7-nm@ti.com>
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230601183151.1000157-7-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v3-5-22c9973012b6@linaro.org>
+ <5851627e-2972-f860-e965-dc8e73b01225@linaro.org>
+ <8f9c549a-e37b-2877-be74-f25304a476fd@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <8f9c549a-e37b-2877-be74-f25304a476fd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
-
-On 6/2/2023 12:01 AM, Nishanth Menon wrote:
-> Define the wakeup uart pin-mux for completeness. This allows the
-> device tree usage in bootloader and firmwares that can configure the
-> same appropriately.
->
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 9 +++++++++
->   1 file changed, 9 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> index c13246a9ed8f..bc53ca566a68 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> @@ -531,6 +531,13 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
->   		>;
->   	};
->   
-> +	wkup_uart0_pins_default: wkup-uart0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721E_WKUP_IOPAD(0xa0, PIN_INPUT, 0) /* (J29) WKUP_UART0_RXD */
-> +			J721E_WKUP_IOPAD(0xa4, PIN_OUTPUT, 0) /* (J28) WKUP_UART0_TXD */
-> +		>;
-> +	};
-> +
->   	mcu_usbss1_pins_default: mcu-usbss1-pins-default {
->   		pinctrl-single,pins = <
->   			J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO0_30 */
-> @@ -541,6 +548,8 @@ J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO
->   &wkup_uart0 {
->   	/* Wakeup UART is used by TIFS firmware. */
->   	status = "reserved";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_uart0_pins_default>;
->   };
 
 
-If you like to consider alias for wkup_uart0 for this board ,
+On 13.06.2023 15:43, Neil Armstrong wrote:
+> On 13/06/2023 13:54, Krzysztof Kozlowski wrote:
+>> On 13/06/2023 09:55, Neil Armstrong wrote:
+>>> Altmode is also supported for SM8550, allow it.
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   drivers/soc/qcom/pmic_glink.c | 6 +-----
+>>>   1 file changed, 1 insertion(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
+>>> index c87056769ebd..8af06bdc6f5a 100644
+>>> --- a/drivers/soc/qcom/pmic_glink.c
+>>> +++ b/drivers/soc/qcom/pmic_glink.c
+>>> @@ -342,13 +342,9 @@ static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT
+>>>                                  BIT(PMIC_GLINK_CLIENT_ALTMODE) |
+>>>                                  BIT(PMIC_GLINK_CLIENT_UCSI);
+>>>   -/* Do not handle altmode for now on those platforms */
+>>> -static const unsigned long pmic_glink_sm8550_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
+>>> -                               BIT(PMIC_GLINK_CLIENT_UCSI);
+>>> -
+>>>   static const struct of_device_id pmic_glink_of_match[] = {
+>>>       { .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+>>
+>> Orientation and maybe all of the USB-related properties do not look like
+>> sm8450 specific, but PM8350B. That's where CC_OUT pin is. I don't think
+>> we represented this correctly, but rather copy-pasted downstream solution...
+> 
+> We do not interact directly with PM8350B or PM8550B but with pmic_glink who
+> does the work work for use, and this is platform specific.
+Yep, pmic_glink is totally a firmware construct and not all platforms with
+pm8350b or so implement it.
 
-Just to align with other boards for this SOC family.  I understand 
-wkup_uart0 is not being used.
-
-
->   
->   &main_uart0 {
+Konrad
+> 
+> Neil
+> 
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
