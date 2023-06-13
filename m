@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA1E872DA6F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:07:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0819E72DABE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:27:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233951AbjFMHHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 03:07:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51096 "EHLO
+        id S238839AbjFMH1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 03:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240522AbjFMHHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:07:03 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5A6199C;
-        Tue, 13 Jun 2023 00:06:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686639986; x=1718175986;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=f2qQAm0UZf7UtrFx6oR5NwKNYKB3AFkXaIrdgsAp/kA=;
-  b=njZ3YTL86B9lkaZeb41rqtSBaa8yEUXBE4JJklV3ww/slAbSyRrr0UYA
-   xJZXtB0Eu5dgI0pUMiUPc92b4kywhgU+WOmH4YZx08iDVQBjjnaHntLIM
-   f32WGluIYXGtMuqd0MoGVASEQvbruU1O3kF174QGfxkpe7bcqHUkYCJPE
-   hMGvpDTBogpRXh8FEbyXC6lVminhbYG1GVGgzCP73s7siY7ELWWM8mprC
-   ESatUnLrGIYyP8hU/JhiBbfMsFWkl5MiiPACozCSRu7xH+wZ9UIpqOLf9
-   El5eUUc/1yiGPu2ua6IskpxcZcZEvDRWlc4ReH23PyOw9692PiJdnFyRW
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,238,1681196400"; 
-   d="scan'208";a="217554200"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jun 2023 00:06:24 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 13 Jun 2023 00:06:23 -0700
-Received: from che-lt-i67131.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Tue, 13 Jun 2023 00:06:15 -0700
-From:   Manikandan Muralidharan <manikandan.m@microchip.com>
-To:     <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <claudiu.beznea@microchip.com>, <sam@ravnborg.org>,
-        <bbrezillon@kernel.org>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
-CC:     <Hari.PrasathGE@microchip.com>,
-        <Balamanikandan.Gunasundar@microchip.com>,
-        <Durai.ManickamKR@microchip.com>, <Nayabbasha.Sayed@microchip.com>,
-        <Dharma.B@microchip.com>, <Varshini.Rajendran@microchip.com>,
-        <Balakrishnan.S@microchip.com>,
-        Manikandan <manikandan.m@microchip.com>,
-        Durai Manickam KR <durai.manickamkr@microchip.com>
-Subject: [PATCH 9/9] drm: atmel-hlcdc: add support for DSI output formats
-Date:   Tue, 13 Jun 2023 12:34:26 +0530
-Message-ID: <20230613070426.467389-10-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230613070426.467389-1-manikandan.m@microchip.com>
-References: <20230613070426.467389-1-manikandan.m@microchip.com>
+        with ESMTP id S240477AbjFMH1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:27:15 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B02A0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:27:13 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f60a27c4a2so5930828e87.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:27:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google; t=1686641231; x=1689233231;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iCo9VX6y9eskW7XjUhZdDSOq/PCOqTXRwWrOd9wTu+s=;
+        b=XYA14pIhapBKivqyi3B9Ed9HUVcA0lKpuz2vxCxtj8/5rWSJ8C1VCgk+GIdV7X66xa
+         kN5ndtyrdGmXN6zQQXpNy5Sz0dP56rvMvPNv7UlWHQJniiWRuKfTmBkzYXyU27yf0GfD
+         RK9vUQyEbi6qr/C/0geRHm1FhKhtRUffLe/zQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686641231; x=1689233231;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iCo9VX6y9eskW7XjUhZdDSOq/PCOqTXRwWrOd9wTu+s=;
+        b=A06wlSlkOWeQJ2DAoQoFD78Q+N67DCPyLj6FqyUTJNftA5WXKStUtMb7ag0zEbMHpo
+         gre5zQzzniJMEIzq7CYuXcyIM4qev9E6L3SjiO9MTacXpZOEMCUEigzgaZFaVce1hmeD
+         1aF8+otQDvr2g8g8R3vKse3fOrMxOWLeJXz0IDAv2+uwqySwbfG0F0YezCVgmZ2Zja8v
+         tNnHgYgVaQ9c6aktiMEGsDXtLlvPpW2zCo+q7oW2PNRWMbbbUrLfWOG+9FmTILCPlBtI
+         4pnKqKxb8w2Rrpc1F8tYCHdcHXUVOUEGNHxm98WR4//kazjD3EVrays6+uxdAg6Uu5aU
+         hsoA==
+X-Gm-Message-State: AC+VfDy7MDdoG+oJgJYrxQG9C0y3LxS83vvkrx3E7AK/ntdyGiJi3vlU
+        EDwP7dBTxD1YyB9/j7Sahv9TZQ==
+X-Google-Smtp-Source: ACHHUZ7b79zF1t3JexEgFXaaW0BEgSSi2mVnZwe64OwRddvWIYqYcVYq/ieGRFeTDhaQJKFKuKaiSw==
+X-Received: by 2002:a19:4312:0:b0:4f4:b28f:6b9c with SMTP id q18-20020a194312000000b004f4b28f6b9cmr4619711lfa.29.1686641231173;
+        Tue, 13 Jun 2023 00:27:11 -0700 (PDT)
+Received: from [172.16.11.116] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id j7-20020ac24547000000b004f251cf3d31sm1678280lfm.153.2023.06.13.00.27.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 00:27:10 -0700 (PDT)
+Message-ID: <76f0f62d-e53f-8708-e8a8-f71777a95f21@rasmusvillemoes.dk>
+Date:   Tue, 13 Jun 2023 09:27:09 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 5/8] rtc: isl12022: implement RTC_VL_READ and RTC_VL_CLR
+ ioctls
+Content-Language: en-US, da
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230612113059.247275-6-linux@rasmusvillemoes.dk>
+ <2023061214074623dcc0cf@mail.local>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <2023061214074623dcc0cf@mail.local>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,177 +78,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the following DPI mode if the encoder type
-is DSI as per the XLCDC IP datasheet:
-- 16BPPCFG1
-- 16BPPCFG2
-- 16BPPCFG3
-- 18BPPCFG1
-- 18BPPCFG2
-- 24BPP
+On 12/06/2023 16.07, Alexandre Belloni wrote:
+> On 12/06/2023 13:30:55+0200, Rasmus Villemoes wrote:
 
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-[durai.manickamkr@microchip.com: update output format using is_xlcdc flag]
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
----
- .../gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c    | 117 +++++++++++++-----
- 1 file changed, 86 insertions(+), 31 deletions(-)
+>> +static int isl12022_rtc_ioctl(struct device *dev, unsigned int cmd, unsigned long arg)
+>> +{
+>> +	struct regmap *regmap = dev_get_drvdata(dev);
+>> +	u32 user = 0;
+>> +	int ret;
+>> +
+>> +	switch (cmd) {
+>> +	case RTC_VL_READ:
+>> +		ret = isl12022_read_sr(regmap);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		if (ret & ISL12022_SR_LBAT85)
+>> +			user |= RTC_VL_BACKUP_LOW;
+>> +
+>> +		if (ret & ISL12022_SR_LBAT75)
+>> +			user |= RTC_VL_BACKUP_EMPTY;
+>> +
+>> +		return put_user(user, (u32 __user *)arg);
+>> +
+>> +	case RTC_VL_CLR:
+>> +		return regmap_clear_bits(regmap, ISL12022_REG_SR,
+>> +					 ISL12022_SR_LBAT85 | ISL12022_SR_LBAT75);
+> 
+> I'm against using RTC_VL_CLR for this as it deletes important
+> information (i.e. the date is probably invalid). You should let the RTC
+> clear the bits once the battery has been changed:
+> 
+> "The LBAT75 bit is set when the
+> VBAT has dropped below the pre-selected trip level, and will self
+> clear when the VBAT is above the pre-selected trip level at the
+> next detection cycle either by manual or automatic trigger."
 
-diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-index abdece982507..dc8361ebf05b 100644
---- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-+++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-@@ -265,11 +265,18 @@ static void atmel_hlcdc_crtc_atomic_enable(struct drm_crtc *c,
- 
- }
- 
--#define ATMEL_HLCDC_RGB444_OUTPUT	BIT(0)
--#define ATMEL_HLCDC_RGB565_OUTPUT	BIT(1)
--#define ATMEL_HLCDC_RGB666_OUTPUT	BIT(2)
--#define ATMEL_HLCDC_RGB888_OUTPUT	BIT(3)
--#define ATMEL_HLCDC_OUTPUT_MODE_MASK	GENMASK(3, 0)
-+#define ATMEL_HLCDC_RGB444_OUTPUT		BIT(0)
-+#define ATMEL_HLCDC_RGB565_OUTPUT		BIT(1)
-+#define ATMEL_HLCDC_RGB666_OUTPUT		BIT(2)
-+#define ATMEL_HLCDC_RGB888_OUTPUT		BIT(3)
-+#define ATMEL_HLCDC_DPI_RGB565C1_OUTPUT		BIT(4)
-+#define ATMEL_HLCDC_DPI_RGB565C2_OUTPUT		BIT(5)
-+#define ATMEL_HLCDC_DPI_RGB565C3_OUTPUT		BIT(6)
-+#define ATMEL_HLCDC_DPI_RGB666C1_OUTPUT		BIT(7)
-+#define ATMEL_HLCDC_DPI_RGB666C2_OUTPUT		BIT(8)
-+#define ATMEL_HLCDC_DPI_RGB888_OUTPUT		BIT(9)
-+#define ATMEL_HLCDC_OUTPUT_MODE_MASK		GENMASK(3, 0)
-+#define ATMEL_XLCDC_OUTPUT_MODE_MASK		GENMASK(9, 0)
- 
- static int atmel_hlcdc_connector_output_mode(struct drm_connector_state *state)
- {
-@@ -283,37 +290,83 @@ static int atmel_hlcdc_connector_output_mode(struct drm_connector_state *state)
- 	if (!encoder)
- 		encoder = connector->encoder;
- 
--	switch (atmel_hlcdc_encoder_get_bus_fmt(encoder)) {
--	case 0:
--		break;
--	case MEDIA_BUS_FMT_RGB444_1X12:
--		return ATMEL_HLCDC_RGB444_OUTPUT;
--	case MEDIA_BUS_FMT_RGB565_1X16:
--		return ATMEL_HLCDC_RGB565_OUTPUT;
--	case MEDIA_BUS_FMT_RGB666_1X18:
--		return ATMEL_HLCDC_RGB666_OUTPUT;
--	case MEDIA_BUS_FMT_RGB888_1X24:
--		return ATMEL_HLCDC_RGB888_OUTPUT;
--	default:
--		return -EINVAL;
--	}
--
--	for (j = 0; j < info->num_bus_formats; j++) {
--		switch (info->bus_formats[j]) {
--		case MEDIA_BUS_FMT_RGB444_1X12:
--			supported_fmts |= ATMEL_HLCDC_RGB444_OUTPUT;
-+	if (encoder->encoder_type == DRM_MODE_ENCODER_DSI) {
-+		/*
-+		 * atmel-hlcdc to support DSI formats with DSI video pipeline
-+		 * when DRM_MODE_ENCODER_DSI type is set by
-+		 * connector driver component.
-+		 */
-+		switch (atmel_hlcdc_encoder_get_bus_fmt(encoder)) {
-+		case 0:
- 			break;
- 		case MEDIA_BUS_FMT_RGB565_1X16:
--			supported_fmts |= ATMEL_HLCDC_RGB565_OUTPUT;
--			break;
-+			return ATMEL_HLCDC_DPI_RGB565C1_OUTPUT;
- 		case MEDIA_BUS_FMT_RGB666_1X18:
--			supported_fmts |= ATMEL_HLCDC_RGB666_OUTPUT;
--			break;
-+			return ATMEL_HLCDC_DPI_RGB666C1_OUTPUT;
-+		case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
-+			return ATMEL_HLCDC_DPI_RGB666C2_OUTPUT;
- 		case MEDIA_BUS_FMT_RGB888_1X24:
--			supported_fmts |= ATMEL_HLCDC_RGB888_OUTPUT;
--			break;
-+			return ATMEL_HLCDC_DPI_RGB888_OUTPUT;
- 		default:
-+			return -EINVAL;
-+		}
-+
-+		for (j = 0; j < info->num_bus_formats; j++) {
-+			switch (info->bus_formats[j]) {
-+			case MEDIA_BUS_FMT_RGB565_1X16:
-+				supported_fmts |=
-+					ATMEL_HLCDC_DPI_RGB565C1_OUTPUT;
-+				break;
-+			case MEDIA_BUS_FMT_RGB666_1X18:
-+				supported_fmts |=
-+					ATMEL_HLCDC_DPI_RGB666C1_OUTPUT;
-+				break;
-+			case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
-+				supported_fmts |=
-+					ATMEL_HLCDC_DPI_RGB666C2_OUTPUT;
-+				break;
-+			case MEDIA_BUS_FMT_RGB888_1X24:
-+				supported_fmts |=
-+					ATMEL_HLCDC_DPI_RGB888_OUTPUT;
-+				break;
-+			default:
-+				break;
-+			}
-+		}
-+
-+	} else {
-+		switch (atmel_hlcdc_encoder_get_bus_fmt(encoder)) {
-+		case 0:
- 			break;
-+		case MEDIA_BUS_FMT_RGB444_1X12:
-+			return ATMEL_HLCDC_RGB444_OUTPUT;
-+		case MEDIA_BUS_FMT_RGB565_1X16:
-+			return ATMEL_HLCDC_RGB565_OUTPUT;
-+		case MEDIA_BUS_FMT_RGB666_1X18:
-+			return ATMEL_HLCDC_RGB666_OUTPUT;
-+		case MEDIA_BUS_FMT_RGB888_1X24:
-+			return ATMEL_HLCDC_RGB888_OUTPUT;
-+		default:
-+			return -EINVAL;
-+		}
-+
-+		for (j = 0; j < info->num_bus_formats; j++) {
-+			switch (info->bus_formats[j]) {
-+			case MEDIA_BUS_FMT_RGB444_1X12:
-+				supported_fmts |= ATMEL_HLCDC_RGB444_OUTPUT;
-+				break;
-+			case MEDIA_BUS_FMT_RGB565_1X16:
-+				supported_fmts |= ATMEL_HLCDC_RGB565_OUTPUT;
-+				break;
-+			case MEDIA_BUS_FMT_RGB666_1X18:
-+				supported_fmts |= ATMEL_HLCDC_RGB666_OUTPUT;
-+				break;
-+			case MEDIA_BUS_FMT_RGB888_1X24:
-+				supported_fmts |= ATMEL_HLCDC_RGB888_OUTPUT;
-+				break;
-+			default:
-+				break;
-+			}
- 		}
- 	}
- 
-@@ -322,7 +375,7 @@ static int atmel_hlcdc_connector_output_mode(struct drm_connector_state *state)
- 
- static int atmel_hlcdc_crtc_select_output_mode(struct drm_crtc_state *state)
- {
--	unsigned int output_fmts = ATMEL_HLCDC_OUTPUT_MODE_MASK;
-+	unsigned int output_fmts;
- 	struct atmel_hlcdc_crtc_state *hstate;
- 	struct drm_connector_state *cstate;
- 	struct drm_connector *connector;
-@@ -330,6 +383,8 @@ static int atmel_hlcdc_crtc_select_output_mode(struct drm_crtc_state *state)
- 	int i;
- 
- 	crtc = drm_crtc_to_atmel_hlcdc_crtc(state->crtc);
-+	output_fmts = crtc->dc->is_xlcdc ? ATMEL_XLCDC_OUTPUT_MODE_MASK :
-+		      ATMEL_HLCDC_OUTPUT_MODE_MASK;
- 
- 	for_each_new_connector_in_state(state->state, connector, cstate, i) {
- 		unsigned int supported_fmts = 0;
--- 
-2.25.1
+Well, the same thing means that the bit would get set again within a
+minute after the RTC_VL_CLR, so the information isn't lost as such. I
+actually don't understand what RTC_VL_CLR would be for if not this
+(though, again, in this case at least it would only have a very
+short-lived effect), but I'm perfectly happy to just rip out the
+RTC_VL_CLR case.
+
+Rasmus
 
