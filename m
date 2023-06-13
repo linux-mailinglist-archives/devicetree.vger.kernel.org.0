@@ -2,63 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E9672E255
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 13:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA0C472E270
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 14:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239585AbjFML41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 07:56:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48516 "EHLO
+        id S238408AbjFMMG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 08:06:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240096AbjFML40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 07:56:26 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B32C10DC;
-        Tue, 13 Jun 2023 04:56:23 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DBuEB9070920;
-        Tue, 13 Jun 2023 06:56:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686657374;
-        bh=pQ9WaPlbV98rBqPT/LDnqUYYD6JMcrbpjarsbj6aHsk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=DSIMz2mH6e+anqoT2a9v5DyOGznbT54RIGT3u066elgKGa6KmxNdVCzi3GzGku+NM
-         vcz9CyOcSPOFiwNj4zw2gdGMrEtIwTeEM85LFYtLHEOPXATbaA1A8eQjQkytjxaXUO
-         sa8Bc1swEFYga+Bkn/Auw+ZQGd/AtihHnJDY8tps=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DBuELR030036
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Jun 2023 06:56:14 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
- Jun 2023 06:56:14 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 13 Jun 2023 06:56:14 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DBuEgr124299;
-        Tue, 13 Jun 2023 06:56:14 -0500
-Date:   Tue, 13 Jun 2023 06:56:14 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Udit Kumar <u-kumar1@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <conor+dt@kernel.org>, <m-chawdhry@ti.com>, <n-francis@ti.com>
-Subject: Re: [v4 0/6] arm64: dts: ti: k3-j7200: Add properties and sync with
- uboot
-Message-ID: <20230613115614.73ewxi5c2gm2qkab@relative>
-References: <20230611111140.3189111-1-u-kumar1@ti.com>
+        with ESMTP id S234648AbjFMMGZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 08:06:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75888C5;
+        Tue, 13 Jun 2023 05:06:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 037276200B;
+        Tue, 13 Jun 2023 12:06:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5685C433EF;
+        Tue, 13 Jun 2023 12:06:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686657983;
+        bh=BIozQFeKN2aJ2jZ8p8QET0oaMrJoGdkmGxw7siSplFg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OkR4DKQ0GbOQL2zHAL3MwYkCx8Z06jPZxzdYzUjNUfgLdd8hdRv3F2M0ytfUApHAE
+         isEoOaYSdyvNDdEf8lvBBirbqd7P7N6drBz6wAB/xuXD/Mcb5JFutURj8ZLagV9wYi
+         k1f983F/a4l32CQzltJbP9wyAxhUpSkEZXlED73KePN7e1xNwTBpjtSA2O312iDzb1
+         7hoNLZYBbNaNmdCLFEA+9mPbHz0vQCrpNQgoXvZRgD8YROuDpaxhh40KLNA0pNKPCE
+         KQDe3cxh0+li6i7tTY9CR/xZZ59de+lv7wXvTcfFT+8CDa/w5X4NDszYWZGH7526sg
+         foa38RB5gH6GQ==
+Date:   Tue, 13 Jun 2023 14:06:20 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        linux-kernel@vger.kernel.org, hsinyi@google.com,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        linux-arm-msm@vger.kernel.org,
+        Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 00/10] drm/panel and i2c-hid: Allow panels and
+ touchscreens to power sequence together
+Message-ID: <boqzlmbrp5rvepmckkqht4h5auspjlbt5leam4xivy7a4bqxnj@iuxxhooxcphk>
+References: <20230607215224.2067679-1-dianders@chromium.org>
+ <jehxiy3z4aieop5qgzmlon4u76n7gvt3kc6knxhb5yqkiz3rsp@mx27m75sx43r>
+ <CAD=FV=Wr7Xatw1LsofiZ5Xx7WBvAuMMdq4D5Po1yJUC1VdtZdg@mail.gmail.com>
+ <z7wi4z4lxpkhvooqhihlkpubyvueb37gvrpmwk6v7xwj2lm6jn@b7rwyr5ic5x5>
+ <CAD=FV=XnANRM=+2D9+DzcXx9Gw6iKKQsgkAiq8=izNEN-91f_Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yl5nvno6lnks7ke3"
 Content-Disposition: inline
-In-Reply-To: <20230611111140.3189111-1-u-kumar1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+In-Reply-To: <CAD=FV=XnANRM=+2D9+DzcXx9Gw6iKKQsgkAiq8=izNEN-91f_Q@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,17 +77,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:41-20230611, Udit Kumar wrote:
-> In continuation of patch series posted by Nishanth for sync of uboot device tree with kernel device tree for AM64 SOC.
-> https://lore.kernel.org/linux-arm-kernel/20230414073328.381336-1-nm@ti.com/
-> 
-> This series extend device tree sync/clean up for J7200 SOC.
 
-Thank you for the cleanup. For the series:
+--yl5nvno6lnks7ke3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Nishanth Menon <nm@ti.com>
+On Mon, Jun 12, 2023 at 02:13:46PM -0700, Doug Anderson wrote:
+> Hi,
+>=20
+> On Mon, Jun 12, 2023 at 9:03=E2=80=AFAM Maxime Ripard <mripard@kernel.org=
+> wrote:
+> >
+> > > > I guess we can have
+> > > > something much simpler with a bunch of helpers that would register a
+> > > > i2c-hid device and would be called by the panel driver itself.
+> > > >
+> > > > And then, since everything is self-contained managing the power sta=
+te
+> > > > becomes easier as well.
+> > >
+> > > Can you give me more details about how you think this would work?
+> > >
+> > > When you say that the panel would register an i2c-hid device itself,
+> > > do you mean that we'd do something like give a phandle to the i2c bus
+> > > to the panel and then the panel would manually instantiate the i2c-hid
+> > > device on it? ...and I guess it would need to be a "subclass" of
+> > > i2c-hid that knew about the connection to the panel code? This
+> > > subclass and the panel code would communicate with each other about
+> > > power sequencing needs through some private API (like MFD devices
+> > > usually do?). Assuming I'm understanding correctly, I think that could
+> > > work.
+> >
+> > I guess what I had in mind is to do something similar to what we're
+> > doing with hdmi-codec already for example.
+>=20
+> By this you mean "rockchip,hdmi-codec" and "mediatek,hdmi-codec", right?
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+No, sorry it was a bit ambiguous. I meant how we instantiate the
+hdmi-codec driver here for example:
+
+https://elixir.bootlin.com/linux/v6.3.7/source/drivers/gpu/drm/exynos/exyno=
+s_hdmi.c#L1665
+https://elixir.bootlin.com/linux/v6.3.7/source/drivers/gpu/drm/vc4/vc4_hdmi=
+=2Ec#L2539
+https://elixir.bootlin.com/linux/v6.3.7/source/drivers/gpu/drm/tegra/hdmi.c=
+#L1525
+
+> > We have several logical components already, in separate drivers, that
+> > still need some cooperation.
+> >
+> > If the panel and touchscreen are on the same i2c bus, I think we could
+> > even just get a reference to the panel i2c adapter, get a reference, and
+> > pass that to i2c-hid (with a nice layer of helpers).
+>=20
+> Just for reference: the panel and touchscreen aren't on the same i2c
+> bus. In the cases that I've looked at the panel is either controlled
+> entirely by eDP or MIPI signals and isn't on any i2c bus at all. The
+> touchscreen is on the i2c bus in the cases I've looked at, though I
+> suppose I could imagine one that used a different bus.
+
+Ok, so we would indeed need a phandle to the i2c controller
+
+> > What I'm trying to say is: could we just make it work by passing a bunch
+> > of platform_data, 2-3 callbacks and a device registration from the panel
+> > driver directly?
+>=20
+> I think I'm still confused about what you're proposing. Sorry! :( Let
+> me try rephrasing why I'm confused and perhaps we can get on the same
+> page. :-)
+>=20
+> First, I guess I'm confused about how you have one of these devices
+> "register" the other device.
+>=20
+> I can understand how one device might "register" its sub-devices in
+> the MFD case. To make it concrete, we can look at a PMIC like
+> max77686.c. The parent MFD device gets probed and then it's in charge
+> of creating all of its sub-devices. These sub-devices are intimately
+> tied to one another. They have shared data structures and can
+> coordinate power sequencing and whatnot. All good.
+
+We don't necessarily need to use MFD, but yeah, we could just register a
+device for the i2c-hid driver to probe from (using
+i2c_new_client_device?)
+
+> ...but here, we really have something different in two fundamental ways:
+>=20
+> a) In this case, the two components (panel and touchscreen) both use
+> separate primary communication methods. In DT the primary
+> communication method determines where the device is described in the
+> hierarchy. For eDP, this means that the DT node for the panel should
+> be under the eDP controller. For an i2c touchscreen, this means that
+> the DT node for the touchscreen should be under the i2c controller.
+> Describing things like this causes the eDP controller to "register"
+> the panel and the i2c controller to "register" the touchscreen. If we
+> wanted the panel driver to "register" the touchscreen then it would
+> get really awkward. Do we leave the touchscreen DT node under the i2c
+> controller but somehow tell the i2c subsytem not to register it? Do we
+> try to dynamically construct the touchscreen i2c node? Do we make a
+> fake i2c controller under our panel DT node and somehow tell the i2c
+> core to look at it?
+
+I would expect not to have any DT node for the touchscreen, but we would
+register a new i2c device on the bus that it's connected to.
+
+In essence, it's also fairly similar to what we're doing with
+i2c_new_ancillary_device() on some bridges. Except the primary device
+isn't necessarily controlled through the I2C bus (but could be, I'm
+pretty sure we have that situation for RGB or LVDS panels too).
+
+The plus side would also be that we don't really need a DT to make it
+work either. We just need the panel driver to probe somehow and a
+pointer to the i2c_adapter.
+
+> b) Things are different because the two devices here are not nearly as
+> intimately tied to one another. At least in the case of "homestar",
+> the only reason that the devices were tied to one another was because
+> the board designers chose to share power rails, but otherwise the
+> drivers were both generic.
+
+Yeah, and that's fine I guess?
+
+> In any case, is there any chance that we're in violent agreement
+
+Is it even violent? Sorry if it came across that way, it's really isn't
+on my end.
+
+> and that if you dig into my design more you might like it? Other than
+> the fact that the panel doesn't "register" the touchscreen device, it
+> kinda sounds as if what my patches are already doing is roughly what
+> you're describing. The touchscreen and panel driver are really just
+> coordinating with each other through a shared data structure (struct
+> drm_panel_follower) that has a few callback functions. Just like with
+> "hdmi-codec", the devices probe separately but find each other through
+> a phandle. The coordination between the two happens through a few
+> simple helper functions.
+
+I guess we very much agree on the end-goal, and I'd really like to get
+this addressed somehow. There's a couple of things I'm not really
+sold on with your proposal though:
+
+ - It creates a ad-hoc KMS API for some problem that looks fairly
+   generic. It's also redundant with the notifier mechanism without
+   using it (probably for the best though).
+
+ - MIPI-DSI panel probe sequence is already fairly complex and fragile
+   (See https://www.kernel.org/doc/html/latest/gpu/drm-kms-helpers.html#spe=
+cial-care-with-mipi-dsi-bridges).
+   I'd rather avoid creating a new dependency in that graph.
+
+ - And yeah, to some extent it's inconsistent with how we dealt with
+   secondary devices in KMS so far.
+
+Maxime
+
+--yl5nvno6lnks7ke3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZIhbvAAKCRDj7w1vZxhR
+xXIAAQCiA6UpybaCLDHQkulMGBLH5FKxWq5xq17fc71pttcy+AEA8RVO666uTh5l
+w20OfxJELeyiCmUVWLP2lpv8iqIY9Q4=
+=cOpc
+-----END PGP SIGNATURE-----
+
+--yl5nvno6lnks7ke3--
