@@ -2,114 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E0472EBCA
+	by mail.lfdr.de (Postfix) with ESMTP id 6592872EBCB
 	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231129AbjFMTRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 15:17:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58448 "EHLO
+        id S229472AbjFMTRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 15:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbjFMTRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:17:39 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4833EB8
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:17:38 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5187a752745so1061008a12.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:17:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686683857; x=1689275857;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=93qZriFSRFXKcWPzylxuUuCclKMCIydNYI0fQlylMiE=;
-        b=YqPr33OceNzDlHmWcCZ8VZkcvJcZxD4IIpSNePFd3i00YG4JKWk2ppEy1QGpSYA/S9
-         egAWndeJj+c9tOLbj5tbvrmfOw6nW1ap3AmizpUOpYoNGndDCaxkSBaoI9n/2HCyjJII
-         SVONdOFjrqyE7g6QBSkhGMGZYv1CQnfsQ7KQRkZNW50vXv4BLQCB+Hi4ylZM1gZImhRX
-         jZXUWl7Hp9uw0O0GBwYYeh1STCE+rG1jRRhnjo2w1VH3FKFzkB/GOt1WGGYo13+Mn5Ey
-         +E13zylpUFU+yRsue6SpzZ7ikDle7IUsfGeqZcDNvFTrRUrH30Vt37Y3i4IezDRv3FM4
-         jWAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686683857; x=1689275857;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=93qZriFSRFXKcWPzylxuUuCclKMCIydNYI0fQlylMiE=;
-        b=fARtNlG8cpLaifXezvLsT91R40soXHfE+2CktRIs6SjfmPA+izq5BpMaJlUpEpOJG4
-         9YHqcJSrqcxlBtW0PwX5CpsXtI2Nm/fA/YX56ZJiEAjaufv/cyT1AcMRIBX7ckhs2FJU
-         7x2+diniSeuDJMJnf3dXJkgZwtK+m8HX6IsANulrgy+HmpnqfEPsNG2S3+xBsb/WZdHV
-         K/Q8Y9YaZmPFAm/HJTt5OQ8chkZxNsVeyXxp+Q20WEUMZZ81b1vduWQ9h6GIEogyMvrj
-         l/O4NftD8Cb19dJpVe5N11Ya00AX2eiJ5hxKskM7Y7Gu1IBFdUWGJt9QceZX7l9mRWaj
-         UwTw==
-X-Gm-Message-State: AC+VfDwLWLQktDewJB2H8Jsp6/xEAjwGITZ5zfB26bWhGY6MjeUPN2LG
-        +Sl3sCK9EQ2ACFItPeGc3PbP9A==
-X-Google-Smtp-Source: ACHHUZ4UY2DC8kT7+5aDoOESAH1A6ED4BE58jwrTzmeHd9E9SqXiJLo8ZrtWO1FYNdZBlkD5mZ5ovQ==
-X-Received: by 2002:a17:907:986:b0:971:1717:207b with SMTP id bf6-20020a170907098600b009711717207bmr15907519ejc.35.1686683856689;
-        Tue, 13 Jun 2023 12:17:36 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u1-20020a170906780100b00977cad140a8sm7006621ejm.218.2023.06.13.12.17.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 12:17:36 -0700 (PDT)
-Message-ID: <224e69e6-ac1e-70c3-c0b3-4b72cc3cb0ad@linaro.org>
-Date:   Tue, 13 Jun 2023 21:17:34 +0200
+        with ESMTP id S229674AbjFMTRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:17:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1FEC6;
+        Tue, 13 Jun 2023 12:17:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4DC3F63A09;
+        Tue, 13 Jun 2023 19:17:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48515C433F1;
+        Tue, 13 Jun 2023 19:17:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686683867;
+        bh=oD280Kq4hv47N+S/pekjBlHMpeiY3mor5pFjsES0eBU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GFaMCiooc9xqA+b6v8Ydxm4bW3t48zVN7o+ZLd9NGw0ecZInTVWNcNVsWdohpUWeo
+         7gyZ+f7Fvo+wbFePOydPko9zAxcfOd9DIrYPdthKHDBIeCVt4ky2Ij8rwjLsNHQubN
+         xD8g7S9oYJDWPtaqKcvrJQuI2BM5Th+SNP49XhZ/8Odl42JApkWMPYNhpk7Ew8WaDY
+         EG8c8EXeDjvhfvXO1CRLI6P6m0PV9kVbx1JOM/88yXzfkbaRfxamz9PEnqw/v4zPYN
+         pU+F39Ep5YJVdAkMNbgHDVeg1/P0gISYAIbp2N+sQCLKy/NZxNoWjLI7j3YTD/Bkk9
+         RImaTm1CyiEPA==
+Date:   Tue, 13 Jun 2023 20:17:41 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 3/7] dt-bindings: clock: jh7110-syscrg: Add PLL clock
+ inputs
+Message-ID: <20230613-vessel-gallantly-d8c7393c9aca@spud>
+References: <20230613125852.211636-1-xingyu.wu@starfivetech.com>
+ <20230613125852.211636-4-xingyu.wu@starfivetech.com>
+ <75508c4d-d86e-f88f-191f-dd870ebe7bd7@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: phy: mxs-usb-phy: add imx8ulp and
- imx8qm compatible
-Content-Language: en-US
-To:     Xu Yang <xu.yang_2@nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        jun.li@nxp.com
-References: <20230608033642.4097956-1-xu.yang_2@nxp.com>
- <20230608033642.4097956-2-xu.yang_2@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230608033642.4097956-2-xu.yang_2@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4FpC5bN6KyvzAt5G"
+Content-Disposition: inline
+In-Reply-To: <75508c4d-d86e-f88f-191f-dd870ebe7bd7@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2023 05:36, Xu Yang wrote:
-> The imx8ulp and imx8qm are compatible with imx8dxl. This will add such
-> compatible.
-> 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> 
-> ---
-> Changes in v2:
->  - no change
-> ---
->  Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> index 1b6b19fdf491..1395a982c387 100644
-> --- a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> @@ -32,7 +32,10 @@ properties:
->            - const: fsl,imx7ulp-usbphy
->            - const: fsl,imx6ul-usbphy
->        - items:
-> -          - const: fsl,imx8dxl-usbphy
-> +          - enum:
-> +              - fsl,imx8ulp-usbphy
-> +              - fsl,imx8dxl-usbphy
-> +              - fsl,imx8qm-usbphy
 
-Keep the items sorted. Your previous patch also had wrongly ordered
-imx6ul in enum.
+--4FpC5bN6KyvzAt5G
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Tue, Jun 13, 2023 at 08:34:25PM +0200, Krzysztof Kozlowski wrote:
+> On 13/06/2023 14:58, Xingyu Wu wrote:
+> > Add optional PLL clock inputs from PLL clock generator.
+>=20
+> Are you sure that PLLs are optional? Usually they are not...
 
+They're not. What's happening here is the original binding was defined
+without these clocks (obviously, since they're only being added now) so
+for the driver they are still "optional" to keep compatibility.
+In mainline, the driver takes the "osc" input and registers some
+fixed-factor clocks to mimic these PLLs & after this patchset that is
+only done as a fallback if the clock inputs to the clock controller,
+=66rom the PLLs, are missing.
+They should not be optional in the dt-binding because they're not
+optional in the hardware afaik!
+
+Cheers,
+Conor.
+
+--4FpC5bN6KyvzAt5G
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIjA1QAKCRB4tDGHoIJi
+0olYAQCUKGw49UtQ9fn/beKhbR7EyT1pRj5cgqbV4cYpDu9U9AEAqbt+eklBEBlT
+/UHn1MIfOjSf0NW68hlORp8JzD6gSgw=
+=aTi3
+-----END PGP SIGNATURE-----
+
+--4FpC5bN6KyvzAt5G--
