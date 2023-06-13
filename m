@@ -2,111 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38EF072DB85
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33CB72DB94
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:53:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238436AbjFMHvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 03:51:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46780 "EHLO
+        id S240522AbjFMHxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 03:53:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240417AbjFMHvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:51:06 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109C8E7C
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:51:05 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f63ab1ac4aso6280554e87.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:51:04 -0700 (PDT)
+        with ESMTP id S238593AbjFMHxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:53:06 -0400
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A67E7C
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:53:05 -0700 (PDT)
+Received: by mail-vk1-xa29.google.com with SMTP id 71dfb90a1353d-46288dcacb5so1692122e0c.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:53:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1686642663; x=1689234663;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lspr7HNHeaiV2qUAruENxLGYvC88tqFFiuL3gIqe8Ng=;
-        b=Bfcv+iym0jAhe6QyFmsR+93MybVzpMSVKmDEm8W2UVLvT6Inyo5pgZzRAJeHte+nxN
-         BJK4fExKC1I64Q4mGdw46jdbKaefgxZjaEhyPl+XmOvNr1W3ufD3pDmWVhJDcqBpM7V9
-         en1UM0NaP0oDUZu1vnk9SEvH1Qztxcbyb8Cgo=
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686642784; x=1689234784;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ksmnYzaAZG4SFOtuZwLT0Gj07ow0mCiA7tlTY9FP1/Y=;
+        b=d/XOUvzXq7CkULBNjOF5cPQ9T8PQ4GUN2VTUb4tV5GYUOU/bcCMFJER5wRcTiOAxaO
+         VEqeTPG5/GSimPhYdVoDC/uqRBqssvbhFmMqZ2UPpATKuDu0zcPmCBugjzLiimaHg+0O
+         9wZ1rW7T5SAVt/6r/SykeSUB1kSjjeu1v/QF9yZNVYeWYL/CqPipZS2RqbveG9GDYWQl
+         3yZcujcboW/sNqe2RjBd/XPxGCpKyPsA5S0Wt8H20ztGP/P8e2a+LHAM1iWQz7y5UEUU
+         byzRaCp7blF315uAiXD/wO22ggP+a/pLSa4fq9EoyeAoPW6lXUTFE4Oe4EeVpTJurQyN
+         Z0bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686642663; x=1689234663;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lspr7HNHeaiV2qUAruENxLGYvC88tqFFiuL3gIqe8Ng=;
-        b=doDFIDGcGvmQnBEQ37yKrGCDJy+3o+H/QAJKhefVRBY1SJULfiIK2M6rw204NfdJ7P
-         v+DfwhTvbBwLonmvsMMYd3GPh4wQqoOgXRIDbf1VLMJBxcofXRT2CzRCF7XB5rniNpdI
-         bLma32jPkmKvYxLtArKP2fq9HjC/8a8s2JdumnwA8Um//tGm1AsFGTSwcIxeFNgOPnhq
-         1MQCZMpjqkkON9n6Xby+cY+7BnliJy3XaOiIgZ4qIg7RwWCzXIY+r2COhp80EM5PFCos
-         91Je5BdHg4oi+MeR1LvNMpNHTnk7nbYXH4m00R+oAgIo1saJF7lpsk7AHGuBldlgLzTQ
-         Glww==
-X-Gm-Message-State: AC+VfDxLDyH8/zVBTtt8md1rPa+BX9LY+MznDNtptihey9ZHZVY5Lf5w
-        y5xDWLfsXPXGK/K2K6bF4QGPGQ==
-X-Google-Smtp-Source: ACHHUZ5NJdywuSGoAJEJ2wJgaZpkSFmc45vSo0/ophNi9f/UuDLXCQvRZe4z15pqwaznFKAZMCsw5g==
-X-Received: by 2002:a2e:9ad0:0:b0:2b2:1373:2377 with SMTP id p16-20020a2e9ad0000000b002b213732377mr3831735ljj.35.1686642663330;
-        Tue, 13 Jun 2023 00:51:03 -0700 (PDT)
-Received: from [172.16.11.116] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id w20-20020a2e3014000000b002b331e241edsm326177ljw.133.2023.06.13.00.51.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 00:51:02 -0700 (PDT)
-Message-ID: <919df40e-2f8a-1ad9-7c2e-9ba9fe1a481a@rasmusvillemoes.dk>
-Date:   Tue, 13 Jun 2023 09:51:01 +0200
+        d=1e100.net; s=20221208; t=1686642784; x=1689234784;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ksmnYzaAZG4SFOtuZwLT0Gj07ow0mCiA7tlTY9FP1/Y=;
+        b=cAg8WOVmqRSTdFl5YLxQld3lvcu0LIZd4T710o0N6LK91Fhj1JWEhPFQPPU8yZKPTE
+         9S6KFpXgBZ3N4OkXzHyFsNklfQg/p/TKPETtxT96TbA4+jFRhUPAv0NO4N6lhMfi3E1c
+         y84EWdxApP2AmDUfuCcOXfzyFMOa3AMf2fjokX7ex/x5CGbH76lnXQZzFoq1+xiGkc40
+         wEr+LT5Yj+x9LfQioXd1hJpst9gwTehVzRxfDzNxK0BbyZ+znaKmeCTt11UZ0QI8csvp
+         wZCX0pLqnQrVDIxHopRpWcrSzRjaNMNSup7Swhmk2cik7nvPf3wSnOmuS7497bHnzrVG
+         miRQ==
+X-Gm-Message-State: AC+VfDwBKX5wArqj46bbnFkfTW56+LtnJCGSA4jIrwSWKbZVvrwkGqjs
+        H40h1+hnhQv2VasxWCvBf+7+DjSxd+fegMgeGPjJMQ==
+X-Google-Smtp-Source: ACHHUZ7i+EBDY2WITwEIRgKogtaSChdc3S4PwWz2Qp9PZP5xCpoeIGDCpD2gClqT3kwLonr4MotjvY3YKsBM2PtVtCk=
+X-Received: by 2002:a1f:bd58:0:b0:46d:fd21:76fb with SMTP id
+ n85-20020a1fbd58000000b0046dfd2176fbmr580943vkf.10.1686642784529; Tue, 13 Jun
+ 2023 00:53:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 6/8] rtc: isl12022: trigger battery level detection during
- probe
-Content-Language: en-US, da
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+References: <20230612092355.87937-1-brgl@bgdev.pl> <20230612092355.87937-13-brgl@bgdev.pl>
+ <20230612203255.72t52ucry7zzq3em@halaney-x13s>
+In-Reply-To: <20230612203255.72t52ucry7zzq3em@halaney-x13s>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 13 Jun 2023 09:52:53 +0200
+Message-ID: <CAMRc=MfmzWDZuXpb4ySxi0Xu6EWVuEZ4ReaEYbo4KCMme-+G4A@mail.gmail.com>
+Subject: Re: [PATCH 12/26] net: stmmac: dwmac-qcom-ethqos: add support for the
+ optional serdes phy
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230612113059.247275-7-linux@rasmusvillemoes.dk>
- <665d9926-2e0f-4b16-1414-f6d8fc487124@rasmusvillemoes.dk>
- <2023061214170504ac9f0b@mail.local>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <2023061214170504ac9f0b@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2023 16.17, Alexandre Belloni wrote:
-> On 12/06/2023 14:30:18+0200, Rasmus Villemoes wrote:
+On Mon, Jun 12, 2023 at 10:33=E2=80=AFPM Andrew Halaney <ahalaney@redhat.co=
+m> wrote:
+>
+> On Mon, Jun 12, 2023 at 11:23:41AM +0200, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > On sa8775p platforms, there's a SGMII SerDes PHY between the MAC and
+> > external PHY that we need to enable and configure.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 37 +++++++++++++++++++
+> >  1 file changed, 37 insertions(+)
+> >
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/=
+drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> > index 8ed05f29fe8b..3438b6229351 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> > @@ -6,6 +6,7 @@
+> >  #include <linux/of_device.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/phy.h>
+> > +#include <linux/phy/phy.h>
+> >  #include <linux/property.h>
+> >
+> >  #include "stmmac.h"
+> > @@ -93,6 +94,7 @@ struct qcom_ethqos {
+> >
+> >       unsigned int rgmii_clk_rate;
+> >       struct clk *rgmii_clk;
+> > +     struct phy *serdes_phy;
+> >       unsigned int speed;
+> >
+> >       const struct ethqos_emac_por *por;
+> > @@ -566,6 +568,30 @@ static void ethqos_fix_mac_speed(void *priv, unsig=
+ned int speed)
+> >       ethqos_configure(ethqos);
+> >  }
+> >
+> > +static int qcom_ethqos_serdes_powerup(struct net_device *ndev, void *p=
+riv)
+> > +{
+> > +     struct qcom_ethqos *ethqos =3D priv;
+> > +     int ret;
+> > +
+> > +     ret =3D phy_set_speed(ethqos->serdes_phy, ethqos->speed);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D phy_init(ethqos->serdes_phy);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     return phy_power_on(ethqos->serdes_phy);
+>
+> The docs say (phy.rst):
+>
+>     The general order of calls should be::
+>
+>         [devm_][of_]phy_get()
+>         phy_init()
+>         phy_power_on()
+>         [phy_set_mode[_ext]()]
+>         ...
+>         phy_power_off()
+>         phy_exit()
+>         [[of_]phy_put()]
+>
+>     Some PHY drivers may not implement :c:func:`phy_init` or :c:func:`phy=
+_power_on`,
+>     but controllers should always call these functions to be compatible w=
+ith other
+>     PHYs. Some PHYs may require :c:func:`phy_set_mode <phy_set_mode_ext>`=
+, while
+>     others may use a default mode (typically configured via devicetree or=
+ other
+>     firmware). For compatibility, you should always call this function if=
+ you know
+>     what mode you will be using. Generally, this function should be calle=
+d after
+>     :c:func:`phy_power_on`, although some PHY drivers may allow it at any=
+ time.
+>
+> Not really dictating you need to do that order, but if possible I think
+> calling phy_set_speed after init + power_on is more generic. Not sure if
+> that plays nice with the phy driver in this series or not.
+>
+> Otherwise, I think this looks good.
+>
 
->> So testing this a bit more thoroughly reveals that the LBAT85/LBAT75
->> bits do not get updated immediately after the TSE bit is set; one needs
->> to wait a little before the battery voltage detection is done and the SR
->> bits updated. Unfortunately, the data sheet doesn't say anything about
->> how long that might be or if there's some busy bit one could look at;
->> all it says is actually exactly what I've done above:
->>
->>   The battery level monitor is not functional in battery backup
->>   mode. In order to read the monitor bits after powering up VDD,
->>   instigate a battery level measurement by setting the TSE bit to
->>   "1" (BETA register), and then read the bits.
->>
->> IOW, please don't apply this patch until I figure out how to do this
->> properly.
->>
-> 
-> The datasheet states 22ms for the temperature conversion so I would
-> expect it takes about that time.
+I had to rework the PHY driver code a bit for this order to work but
+it'll be good now in v2.
 
-It's most likely much shorter than that - if I just busy-read SR until
-the LBAT bits are clear, that takes no more than 2ms, and the final read
-of SR still has the BUSY bit set, indicating a temp conversion being
-(still) in progress. But I'd prefer to have Renesas provide the proper
-value rather than using some seems-to-work-on-my-desk. But but, it's
-probably moot, see other reply.
+Thanks!
+Bart
 
-Rasmus
-
+> > +}
+> > +
+> > +static void qcom_ethqos_serdes_powerdown(struct net_device *ndev, void=
+ *priv)
+> > +{
+> > +     struct qcom_ethqos *ethqos =3D priv;
+> > +
+> > +     phy_power_off(ethqos->serdes_phy);
+> > +     phy_exit(ethqos->serdes_phy);
+> > +}
+> > +
+> >  static int ethqos_clks_config(void *priv, bool enabled)
+> >  {
+> >       struct qcom_ethqos *ethqos =3D priv;
+> > @@ -651,6 +677,12 @@ static int qcom_ethqos_probe(struct platform_devic=
+e *pdev)
+> >       if (ret)
+> >               goto out_config_dt;
+> >
+> > +     ethqos->serdes_phy =3D devm_phy_optional_get(dev, "serdes");
+> > +     if (IS_ERR(ethqos->serdes_phy)) {
+> > +             ret =3D PTR_ERR(ethqos->serdes_phy);
+> > +             goto out_config_dt;
+> > +     }
+> > +
+> >       ethqos->speed =3D SPEED_1000;
+> >       ethqos_update_rgmii_clk(ethqos, SPEED_1000);
+> >       ethqos_set_func_clk_en(ethqos);
+> > @@ -666,6 +698,11 @@ static int qcom_ethqos_probe(struct platform_devic=
+e *pdev)
+> >       if (of_device_is_compatible(np, "qcom,qcs404-ethqos"))
+> >               plat_dat->rx_clk_runs_in_lpi =3D 1;
+> >
+> > +     if (ethqos->serdes_phy) {
+> > +             plat_dat->serdes_powerup =3D qcom_ethqos_serdes_powerup;
+> > +             plat_dat->serdes_powerdown  =3D qcom_ethqos_serdes_powerd=
+own;
+> > +     }
+> > +
+> >       ret =3D stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
+> >       if (ret)
+> >               goto out_config_dt;
+> > --
+> > 2.39.2
+> >
+>
