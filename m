@@ -2,95 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AB5A72E72C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 17:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9835172E746
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 17:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242985AbjFMP1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 11:27:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46704 "EHLO
+        id S240561AbjFMPeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 11:34:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235642AbjFMP1E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 11:27:04 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BA0109;
-        Tue, 13 Jun 2023 08:27:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686670023; x=1718206023;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0SIDUmMfNBgZeXy9i27rr+EM79cGhD2Ibj9Sfla/Xiw=;
-  b=WzNpJj9LIpGjAwbubpTKGMP2WBX/22JZ7VDMWRDqgw/jrA5y7fPkyIHr
-   AB2dTR6sbkaA/BC5LFsUSiThqmS166uQn2+lqDp5wV/xK4bKGtNmRYT/v
-   MBc3xMBzsXsib5DadaibOJfVF5Wb+m4lHcd/Ifoe5vejxG8t456XaDbex
-   sBYcOMi2wzkRoVS9FSTWW0RZnwz6HT9K4ap7bGTsniSxVMd6OxOYkaWy8
-   c7Idd7xg3Sm+YsedetvgJpz52ZSp0oSwwhSFUzpALwqpEzPasDXGDVxEy
-   l5iZf5ydwFVOegjfT91Tc4lqcqrJLTNW6Yset9A4otz6ipWEOe3Jlufx4
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="361736047"
-X-IronPort-AV: E=Sophos;i="6.00,240,1681196400"; 
-   d="scan'208";a="361736047"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2023 08:26:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="958440913"
-X-IronPort-AV: E=Sophos;i="6.00,240,1681196400"; 
-   d="scan'208";a="958440913"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga006.fm.intel.com with ESMTP; 13 Jun 2023 08:26:47 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1q95uu-003UEY-0g;
-        Tue, 13 Jun 2023 18:26:44 +0300
-Date:   Tue, 13 Jun 2023 18:26:43 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239278AbjFMPef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 11:34:35 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5273122
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 08:34:33 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id 5614622812f47-38ede2e0e69so3463881b6e.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 08:34:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1686670473; x=1689262473;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VsADkvrA5S1kbrkqvdaSHEE1vVM0lyWbIsRf34hJch0=;
+        b=QcvoS6qCya0lGy2C9YBKXjfHCysqEV2Tg24L2Vp+nEQmSCcH3TK/NUl7vsZRw7Giph
+         NHql/xcBrcrK8cCu7oiQXI5BZJKbKFXJEOC4eS57uWZ84WQ/CObt+fV97Aa3QikDz1/s
+         aOhi24sVsYx1ZlzEuFhCW5ZjKZWI7CIQ4qsFDic+p9MAvEbihcWrphyw9WfFEV4FPhu5
+         oTYIpXiwkFczKZLkbvIcyWeDAnO8BFaEcd0XvjCQyvl/a/8vLhO9baZOl2+z/szJ5SSZ
+         6eai9sdV3DkHmGivTEPlkWhBaMUw1+TOz29I/gWwZbPKQQTsb4SVwrNC1SpVONI+JUuT
+         sLxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686670473; x=1689262473;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VsADkvrA5S1kbrkqvdaSHEE1vVM0lyWbIsRf34hJch0=;
+        b=TyctmqPccMV6AjA7CO3NuB2gkd8AQrUAYbkqHTA20qUZKnTRgiNPNq/z3vRWwWq0ql
+         SOJ3tiz8aN6P5VXcXn8NnQx1ErYR6AtuKtWcJxHQRji8S+KMYoUxdb3B+fwGTSroeB5V
+         FMXfCA41gPI2xkF4wwmuDBg6bxihRQx7wpQkuDNe/MPjai8h6ZgMXunMcteB2YqQh7eq
+         mHCSe0rPpYgchFI+Zp+zbk3c3clILwrxJxFqjw5UsVRAKLISCfRTdSOscbTeizodUF8I
+         vhCkBJSUEuMxIu5LckgKTy4K83oq2jtgxYXtgMIQ+wwC4cv6jCQp0H/cE8XyDYM5ntiI
+         4Zxg==
+X-Gm-Message-State: AC+VfDzqjKihIOsi1dD55THiry80B+Wbh4Y1yAMgMg2exVrB4rnT04ah
+        +FzNgHjqQtfDFnTAAGXrpptRFw==
+X-Google-Smtp-Source: ACHHUZ5C6PHpJR9woDHJHbAl8srvmzU0pQcvBbUPxH8+bIF5BtDVwfB8mNfUN66XKC+7bA5NTe9D2w==
+X-Received: by 2002:a05:6808:181f:b0:399:b0ee:de1 with SMTP id bh31-20020a056808181f00b00399b0ee0de1mr8291881oib.49.1686670472960;
+        Tue, 13 Jun 2023 08:34:32 -0700 (PDT)
+Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
+        by smtp.gmail.com with ESMTPSA id n2-20020acabd02000000b0039ce305ea4fsm1630807oif.14.2023.06.13.08.34.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 08:34:32 -0700 (PDT)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/8] rtc: isl12022: battery backup voltage and clock
- support
-Message-ID: <ZIiKs5IHOYnNaNhk@smile.fi.intel.com>
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Conor Dooley <conor@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v4 00/10] Linux RISC-V AIA Support
+Date:   Tue, 13 Jun 2023 21:04:05 +0530
+Message-Id: <20230613153415.350528-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230613130011.305589-1-linux@rasmusvillemoes.dk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 03:00:02PM +0200, Rasmus Villemoes wrote:
-> The current handling of the low-battery bits in the status register is
-> wrong. The first six patches fix that and implement proper support for
-> RTC_VL_READ.
-> 
-> The last two patches allow describing the isl12022 as a clock
-> provider, for now just as a fixed 32kHz clock. They are also
-> tangentially related to the backup battery, in that when the isl12022
-> is not used as a clock source, one can save some power consumption in
-> battery mode by setting the FOx bits to 0.
+The RISC-V AIA specification is now frozen as-per the RISC-V international
+process. The latest frozen specifcation can be found at:
+https://github.com/riscv/riscv-aia/releases/download/1.0-RC1/riscv-interrupts-1.0-RC1.pdf
 
-> v2 changes:
+At a high-level, the AIA specification adds three things:
+1) AIA CSRs
+   - Improved local interrupt support
+2) Incoming Message Signaled Interrupt Controller (IMSIC)
+   - Per-HART MSI controller
+   - Support MSI virtualization
+   - Support IPI along with virtualization
+3) Advanced Platform-Level Interrupt Controller (APLIC)
+   - Wired interrupt controller
+   - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
+   - In Direct-mode, injects external interrupts directly into HARTs
 
-A nit-pick regarding to the process. You used In-reply-to email header and
-this a bit inconvenient if you operate with a threads in MUA, for example,
-I would like to delete old thread, but in this case it automatically marks
-v2 for deletion (I'm using classical mutt).
+For an overview of the AIA specification, refer the recent AIA virtualization
+talk at KVM Forum 2022:
+https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_in_KVM_RISCV_final.pdf
+https://www.youtube.com/watch?v=r071dL8Z0yo
+
+The PATCH2 of this series conflicts with the "irqchip/riscv-intc: Add ACPI
+support" patch of the "Add basic ACPI support for RISC-V" series hence this
+series is based upon the "Add basic ACPI support for RISC-V" series.
+(Refer, https://lore.kernel.org/lkml/20230515054928.2079268-1-sunilvl@ventanamicro.com/)
+
+To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or higher).
+
+These patches can also be found in the riscv_aia_v4 branch at:
+https://github.com/avpatel/linux.git
+
+Changes since v3:
+ - Rebased on Linux-6.4-rc6
+ - Droped PATCH2 of v3 series instead we now set FWNODE_FLAG_BEST_EFFORT via
+   IRQCHIP_DECLARE()
+ - Extend riscv_fw_parent_hartid() to support both DT and ACPI in PATCH1
+ - Extend iommu_dma_compose_msi_msg() instead of adding iommu_dma_select_msi()
+   in PATCH6
+ - Addressed Conor's comments in PATCH3
+ - Addressed Conor's and Rob's comments in PATCH7
+
+Changes since v2:
+ - Rebased on Linux-6.4-rc1
+ - Addressed Rob's comments on DT bindings patches 4 and 8.
+ - Addessed Marc's comments on IMSIC driver PATCH5
+ - Replaced use of OF apis in APLIC and IMSIC drivers with FWNODE apis
+   this makes both drivers easily portable for ACPI support. This also
+   removes unnecessary indirection from the APLIC and IMSIC drivers.
+ - PATCH1 is a new patch for portability with ACPI support
+ - PATCH2 is a new patch to fix probing in APLIC drivers for APLIC-only systems.
+ - PATCH7 is a new patch which addresses the IOMMU DMA domain issues pointed
+   out by SiFive
+
+Changes since v1:
+ - Rebased on Linux-6.2-rc2
+ - Addressed comments on IMSIC DT bindings for PATCH4
+ - Use raw_spin_lock_irqsave() on ids_lock for PATCH5
+ - Improved MMIO alignment checks in PATCH5 to allow MMIO regions
+   with holes.
+ - Addressed comments on APLIC DT bindings for PATCH6
+ - Fixed warning splat in aplic_msi_write_msg() caused by
+   zeroed MSI message in PATCH7
+ - Dropped DT property riscv,slow-ipi instead will have module
+   parameter in future.
+
+Anup Patel (10):
+  RISC-V: Add riscv_fw_parent_hartid() function
+  irqchip/riscv-intc: Add support for RISC-V AIA
+  dt-bindings: interrupt-controller: Add RISC-V incoming MSI controller
+  irqchip: Add RISC-V incoming MSI controller driver
+  irqchip/riscv-imsic: Add support for PCI MSI irqdomain
+  irqchip/riscv-imsic: Improve IOMMU DMA support
+  dt-bindings: interrupt-controller: Add RISC-V advanced PLIC
+  irqchip: Add RISC-V advanced PLIC driver
+  RISC-V: Select APLIC and IMSIC drivers
+  MAINTAINERS: Add entry for RISC-V AIA drivers
+
+ .../interrupt-controller/riscv,aplic.yaml     |  169 +++
+ .../interrupt-controller/riscv,imsics.yaml    |  172 +++
+ MAINTAINERS                                   |   12 +
+ arch/riscv/Kconfig                            |    2 +
+ arch/riscv/include/asm/processor.h            |    3 +
+ arch/riscv/kernel/cpu.c                       |   16 +
+ drivers/iommu/dma-iommu.c                     |   24 +-
+ drivers/irqchip/Kconfig                       |   20 +-
+ drivers/irqchip/Makefile                      |    2 +
+ drivers/irqchip/irq-riscv-aplic.c             |  765 ++++++++++++
+ drivers/irqchip/irq-riscv-imsic.c             | 1076 +++++++++++++++++
+ drivers/irqchip/irq-riscv-intc.c              |   36 +-
+ include/linux/irqchip/riscv-aplic.h           |  119 ++
+ include/linux/irqchip/riscv-imsic.h           |   86 ++
+ 14 files changed, 2492 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+ create mode 100644 drivers/irqchip/irq-riscv-aplic.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic.c
+ create mode 100644 include/linux/irqchip/riscv-aplic.h
+ create mode 100644 include/linux/irqchip/riscv-imsic.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
