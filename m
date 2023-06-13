@@ -2,127 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C49272E3EB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD1F072E40D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240572AbjFMNTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:19:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S242503AbjFMNZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:25:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240826AbjFMNTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:19:39 -0400
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD691AC;
-        Tue, 13 Jun 2023 06:19:38 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-34070ecad56so2025885ab.3;
-        Tue, 13 Jun 2023 06:19:38 -0700 (PDT)
+        with ESMTP id S242455AbjFMNZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:25:36 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7471B0;
+        Tue, 13 Jun 2023 06:25:35 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id 6a1803df08f44-62df2192d13so7676466d6.1;
+        Tue, 13 Jun 2023 06:25:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686662735; x=1689254735;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PGWVSRLSWiSQmgCzVp1crJX1PaYgdtyOOFzd4KI8WPY=;
+        b=HWfrF9TfgiK84XltXfvEgJRiai43zOeGut8vINME/9REh2L3cElV8+jnFD9w1O4hCa
+         DOSLZRxfWQrvdXAonKLk4FnRb2jIBi7XLmGQgeF3fpheKhw1QiiaXteIPU65Z3BHmabx
+         PVBvMLCKFvLvZsn1uFcP9OKv5ZYU/OmETC3D8hALocTj1s02fudpY9GutoTjtLQSfq8N
+         BUM19YwPqIKRWmM0hed8lbHmYSNn4IXrLcq6JgCKGChoNCZKD5uyNWifQfBXN5dmMNiy
+         tgkqxWiCu53VpV40XJc5vCbXO37JudVTGjb4hjVI4J48uy6frPRTHL4AhmzHS8eD/2WY
+         EzyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686662377; x=1689254377;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=dT8m3Cu24ixjgaGAl25zXjiqNcC5dV8yRe8XpfUJ2IQ=;
-        b=bowsdthfXE0WYxgg66Q1+sD6nSSLevN48cqBBMWe9Ip2AAbNmH0vrbhRT8OwgiPzNR
-         ZjuUUATSaRW0Nlm6UPJz00+BYX/q+b00jq/BbsZ1wQZKbxi5dEHSf2WLbYZhFagA94lm
-         p7NIKocSKYMdrwhxqEwtN/vJCHdYfiuN5bRdorFEA7pt9Vv6mSiG07NCuEGzn2fxxwPS
-         Ajq7if8aHa11aLvKCWA9dwCDGDC/Cafy7G30KOG4pPqzPNvyoq/gG8sn5wFRDbO6Hkve
-         z45mDFSRud4N/KlBvDaNhMftIrV2zchuofn7GSXEwp9MssxB3NpKaPr21AKfYruaMx/z
-         seNw==
-X-Gm-Message-State: AC+VfDyvuoI5Roy0+eSwJOSvak3qqrJhnVRoGCrgrNZXy32F52Dw3bvg
-        KQ3KbTi9diPCy99oUtUxgmoQGhAQIg==
-X-Google-Smtp-Source: ACHHUZ6LVxhdrfDigUUxZyyKOzUm0MeS+qqoJHzIRx8RuSnPu1sAgcWkvmpQVZ2+A3XSjEIAaFXQZw==
-X-Received: by 2002:a92:d6c2:0:b0:340:8959:1268 with SMTP id z2-20020a92d6c2000000b0034089591268mr270515ilp.21.1686662377402;
-        Tue, 13 Jun 2023 06:19:37 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id v5-20020a92cd45000000b0032f240a0802sm500815ilq.48.2023.06.13.06.19.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 06:19:36 -0700 (PDT)
-Received: (nullmailer pid 1671700 invoked by uid 1000);
-        Tue, 13 Jun 2023 13:19:34 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1686662735; x=1689254735;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PGWVSRLSWiSQmgCzVp1crJX1PaYgdtyOOFzd4KI8WPY=;
+        b=hcbvx+JEWJUekvXLRT65OrNi3GKOxLebMbgEWpYSb7x2VaeycyzYL31cx8f7zJrXdN
+         azZrSlYARefUlBPeHtu/faNybWCjEQ/RxM/0aDl/ZSa4/uLiEZX6j3NjL9WcvB8C6qDd
+         9VH8FBmZlPsExhjjqmF6M7NnkXVf+lyQnUatfvCcHXHvPaxZ1WLaFF78fYJfVdZVfJqJ
+         EDQ4HpttNeaRJoWYw9ry9posD4Wt1RRDuPDOTrUkkD6pdB2UhvhtuYL7wILVDdjYdzSl
+         +eFykw3GzRxUlY495MqVU4itBsWT+6g9mOBHrWnX4dw0Duzk/U0OE1DUg6vOyoAkIIIx
+         9odw==
+X-Gm-Message-State: AC+VfDzQj6SJkc0qyLp/4tX/16e2/ubzNyCASUXNwzCp7JSmWQT+GWFi
+        vmpeXsw4nIPqmA/+4FmUrV1/W8XejDN17AYfno0=
+X-Google-Smtp-Source: ACHHUZ5kz189tnuVuyMuffOhKxE4YMOwXJzuYUWwxct+eUXsThGzOBu6ItCuKQ3mJGC+D7Re2VsLvEk8QpOGwIlN9E8=
+X-Received: by 2002:a05:6214:1cce:b0:62d:fddb:1856 with SMTP id
+ g14-20020a0562141cce00b0062dfddb1856mr392857qvd.43.1686662734879; Tue, 13 Jun
+ 2023 06:25:34 -0700 (PDT)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Piyush Mehta <piyush.mehta@amd.com>
-Cc:     michal.simek@xilinx.com, robh+dt@kernel.org, git@amd.com,
-        nava.manne@xilinx.com, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        michal.simek@amd.com, conor+dt@kernel.org, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, siva.durga.prasad.paladugu@amd.com
-In-Reply-To: <20230613123048.2935502-1-piyush.mehta@amd.com>
-References: <20230613123048.2935502-1-piyush.mehta@amd.com>
-Message-Id: <168666237486.1671584.5832429615873674500.robh@kernel.org>
-Subject: Re: [PATCH V3] dt-bindings: reset: convert the
- xlnx,zynqmp-reset.txt to yaml
-Date:   Tue, 13 Jun 2023 07:19:34 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20230612122926.107333-1-herve.codina@bootlin.com>
+ <20230612122926.107333-12-herve.codina@bootlin.com> <CAHp75Vfz+vSJ7rQ4sxb0R+zRbrjipXUX3VpaHyvOWWePdPxejQ@mail.gmail.com>
+ <20230613113707.0b5d9648@bootlin.com>
+In-Reply-To: <20230613113707.0b5d9648@bootlin.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 13 Jun 2023 16:24:58 +0300
+Message-ID: <CAHp75Vd0SNY6XgKwS5j74VftY46MDQ9=Zc3wXwGLOiMc_ZX8Ow@mail.gmail.com>
+Subject: Re: [PATCH v3 11/12] ASoC: codecs: Add support for the generic IIO
+ auxiliary devices
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 13, 2023 at 12:37=E2=80=AFPM Herve Codina <herve.codina@bootlin=
+.com> wrote:
+> On Mon, 12 Jun 2023 17:37:00 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-On Tue, 13 Jun 2023 18:00:48 +0530, Piyush Mehta wrote:
-> Convert the binding to DT schema format. It also updates the
-> reset-controller description.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
-> ---
-> Changes in V2:
-> - Addressed the Krzysztof review comment:
->  - Update DT binding to fix the dt_binding_check warning.
->  - Removed 2/2 - xlnx,zynqmp-firmware.yaml binding patch: Will send after
->    xlnx,zynqmp-reset.yaml binding merge.
-> 
-> Link: https://lore.kernel.org/lkml/168612336438.2153757.6000360498539992409.robh@kernel.org/T/#m4abfe6287177d5fd09f781d298dd19d56aae5e27
-> 
-> Changes in V3:
-> - Addressed the Krzysztof review comment:
->  - Removed 2/2 - xlnx,zynqmp-firmware.yaml binding patch: Will send after
->    xlnx,zynqmp-reset.yaml binding merge.
->  - Update title: Removed "binding".
->  - Update Example:
->   - Removed header file.
->   - Dropped three levels of indentations: firmware and zynqmp_firmware.
->   - Removed the sata example.
-> 
-> Link: https://lore.kernel.org/all/22e3c25e-487b-c02f-46f3-6d2ab2be8813@linaro.org/
-> ---
->  .../bindings/reset/xlnx,zynqmp-reset.txt      | 55 -------------------
->  .../bindings/reset/xlnx,zynqmp-reset.yaml     | 52 ++++++++++++++++++
->  2 files changed, 52 insertions(+), 55 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.txt
->  create mode 100644 Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
-> 
+...
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > > +       struct snd_kcontrol_new control =3D {0};
+> >
+> > 0 is not needed.
+>
+> Not for this one.
+>
+> The variable is in stack.
+> Some of the structure members will be set in the code but we need to ensu=
+re
+> that all others are set to 0.
 
-yamllint warnings/errors:
+Yes, and as I said, 0 is not needed. Compiler assumes that if you just
+use plain {}.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml: $defs:qcom-pmic-mpp-state:properties:qcom,paired: [{'description': 'Indicates that the pin should be operating in paired mode.'}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230613123048.2935502-1-piyush.mehta@amd.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--=20
+With Best Regards,
+Andy Shevchenko
