@@ -2,122 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 025FB72E9FC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FEC72EA26
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbjFMRgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 13:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33700 "EHLO
+        id S231994AbjFMRmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 13:42:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjFMRgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:36:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5294FAA;
-        Tue, 13 Jun 2023 10:36:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4F52B6391D;
-        Tue, 13 Jun 2023 17:36:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 108C9C433D9;
-        Tue, 13 Jun 2023 17:36:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686677775;
-        bh=yT/YcUbrOqFENj+tlyHyK738bYhHXlmlxIpioLPwxNE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rsKT4uS9AZe+fe56mjdyH4mmF18zXzKHAWTiypuw4L4FlmNcloe/tEO3mgmU8ul+Z
-         ycS6v4BBbOoY9vJCs5Nivz20DPB0rQAxO0C4FWbZVgoOrjqpFWj1wNkFQzqVRnaZ3v
-         7NcAPUEpf2Vz2o0h979YmL+0fa9+vT8ay5Eym2y0R5BZage9kJJZ5TcnrE3HloHtyB
-         oHCv8KWsPajFqsfxtjoq6REYwNFQ+HmsGVXJPcoEi5c8Jkm66SACpJjHy43B847gSB
-         KvOU0+/V3L6G02M+zRgLeipDlnY185JSyTaLeo+a/mwBh1NI6AD8DKA8M39RJoXiKO
-         5gAtpZkwrATrQ==
-Date:   Tue, 13 Jun 2023 10:39:37 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S236376AbjFMRmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:42:25 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BECA6;
+        Tue, 13 Jun 2023 10:42:24 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DHfu9W084100;
+        Tue, 13 Jun 2023 12:41:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686678116;
+        bh=igyZvlOfVcSf4nGPg6BKktZlYY6keooO5jqV4M4Sjf8=;
+        h=Date:Subject:From:To:CC:References:In-Reply-To;
+        b=GxpXVusBEQWpKJk8EBWTP2BMfzh9WPp8AV+k33AdMWxN4P+v8hMs6zUxuJDgxnwbH
+         0Q+oKfWMpNgZBmev9FwdcO+h35SbYXjFwi/be+J+7xOCvrnwn3msEPUShT7FPrvgAm
+         oYLb8mIxa09TV4psU4JfK4DwyfphqOMFfSi4fG+o=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DHfuOi122876
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 13 Jun 2023 12:41:56 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ Jun 2023 12:41:55 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 Jun 2023 12:41:55 -0500
+Received: from [128.247.81.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DHftFR010861;
+        Tue, 13 Jun 2023 12:41:55 -0500
+Message-ID: <9905aefb-0d27-a4d6-b72d-5b852dc04465@ti.com>
+Date:   Tue, 13 Jun 2023 12:41:55 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v8 0/2] Enable multiple MCAN on AM62x
+Content-Language: en-US
+From:   Judith Mendez <jm@ti.com>
+To:     <linux-can@vger.kernel.org>, Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     Wolfgang Grandegger <wg@grandegger.com>,
         "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Schuyler Patton <spatton@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 03/26] phy: qcom: add the SGMII SerDes PHY driver
-Message-ID: <20230613173937.fhk2cqcankg6oej6@ripper>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-4-brgl@bgdev.pl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230612092355.87937-4-brgl@bgdev.pl>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        <devicetree@vger.kernel.org>,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Simon Horman <simon.horman@corigine.com>,
+        Conor Dooley <conor+dt@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>
+References: <20230530224820.303619-1-jm@ti.com>
+In-Reply-To: <20230530224820.303619-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:23:32AM +0200, Bartosz Golaszewski wrote:
-> diff --git a/drivers/phy/qualcomm/phy-qcom-sgmii-eth.c b/drivers/phy/qualcomm/phy-qcom-sgmii-eth.c
-[..]
-> +static int qcom_dwmac_sgmii_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct qcom_dwmac_sgmii_phy_data *data;
-> +	struct device *dev = &pdev->dev;
-> +	struct phy_provider *provider;
-> +	struct clk *refclk;
-> +	void __iomem *base;
-> +	struct phy *phy;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	data->regmap = devm_regmap_init_mmio(dev, base,
-> +					     &qcom_dwmac_sgmii_phy_regmap_cfg);
-> +	if (IS_ERR(data->regmap))
-> +		return PTR_ERR(data->regmap);
-> +
-> +	phy = devm_phy_create(dev, NULL, &qcom_dwmac_sgmii_phy_ops);
-> +	if (IS_ERR(phy))
-> +		return PTR_ERR(phy);
-> +
-> +	refclk = devm_clk_get_enabled(dev, "sgmi_ref");
-> +	if (IS_ERR(refclk))
-> +		return PTR_ERR(refclk);
-> +
-> +	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(provider))
-> +		return PTR_ERR(provider);
-> +
-> +	phy_set_drvdata(phy, data);
-> +	platform_set_drvdata(pdev, data);
+Hi all,
 
-You don't use the pdev's dev's drvdata, so I think you can drop the
-platform_set_drvdata()
+On 5/30/23 5:48 PM, Judith Mendez wrote:
+> On AM62x there are two MCANs in MCU domain. The MCANs in MCU domain
+> were not enabled since there is no hardware interrupt routed to A53
+> GIC interrupt controller. Therefore A53 Linux cannot be interrupted
+> by MCU MCANs.
+> 
+> This solution instantiates a hrtimer with 1 ms polling interval
+> for MCAN device when there is no hardware interrupt property in
+> DTB MCAN node. The hrtimer generates a recurring software interrupt
+> which allows to call the isr. The isr will check if there is pending
+> transaction by reading a register and proceed normally if there is.
+> MCANs with hardware interrupt routed to A53 Linux will continue to
+> use the hardware interrupt as expected.
+> 
+> Timer polling method was tested on both classic CAN and CAN-FD
+> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
+> switching.
+> 
+> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
+> 1 MBPS timer polling interval is the better timer polling interval
+> since it has comparable latency to hardware interrupt with the worse
+> case being 1ms + CAN frame propagation time and CPU load is not
+> substantial. Latency can be improved further with less than 1 ms
+> polling intervals, howerver it is at the cost of CPU usage since CPU
+> load increases at 0.5 ms.
+> 
+> Note that in terms of power, enabling MCU MCANs with timer-polling
+> implementation might have negative impact since we will have to wake
+> up every 1 ms whether there are CAN packets pending in the RX FIFO or
+> not. This might prevent the CPU from entering into deeper idle states
+> for extended periods of time.
 
-Regards,
-Bjorn
+Was wondering if I am still pending some updates for this patch series? 
+Or if any other issues please let me know. (: Thanks all
 
-> +
-> +	return 0;
-> +}
+~ Judith
