@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D760C72E417
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BFDA72E42F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240133AbjFMN2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:28:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39718 "EHLO
+        id S240707AbjFMNd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:33:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235323AbjFMN2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:28:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87357E5;
-        Tue, 13 Jun 2023 06:28:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B5B5F6363A;
-        Tue, 13 Jun 2023 13:28:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2481DC4166A;
-        Tue, 13 Jun 2023 13:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686662929;
-        bh=Tq282l+C2Dr1lf2RPS2aM+A8Oyr7+h44UW4Jg8xfhbs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KcgaJ6b3WJUNmYRSAfZ6WsF8uW14i0pHGUqfQ8qbVrnwHv8mkwzliNY52bKdNkzyw
-         8oaUyvyCC780GZKnZH7KC9oC6otccI0eauPbGL9IgmQtnO3R5aSpv5ARer1rB32lkF
-         2d4uKUE5XCBpIUm5U4BSU4DCrQpbGaie4LwHbJj1Siu5+1zT/muUy+h3szYViKJAFw
-         oVzVrwW8F/o7VbqwygRlpxQFJUoAcazKCkvWPkHe6zjm75poQ3WFbTO3ZlMYb9/Dkz
-         pw/ooL9JV7uYkoyjm75SLOFnSjhj13q03rSWUvGniN9XsFR1qwltOw2Ujx5sQGuDZH
-         pj3hxljD5e64g==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so6734705e87.2;
-        Tue, 13 Jun 2023 06:28:49 -0700 (PDT)
-X-Gm-Message-State: AC+VfDyFb6J1jrxv+FAqojxdGJaE5ek1QR3wg48tz8JqohieqJ2Dz/R0
-        7QT2NaheEYV5SC+NbJVD+uUSthGcAasXQLxdtQ==
-X-Google-Smtp-Source: ACHHUZ7xEzfSwXxw+hZJuk+2aAUcZRqN2kDCLuPdkshb6lV2DAnOexM7QB+9J/ErB3X9G0jVZAtdNv9Xt6ie8WSLIls=
-X-Received: by 2002:a2e:9595:0:b0:2b3:3de8:7330 with SMTP id
- w21-20020a2e9595000000b002b33de87330mr747015ljh.29.1686662926823; Tue, 13 Jun
- 2023 06:28:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230518-thermos-sanitary-cf3fbc777ea1@wendy> <20230518-4050231ca8dbe93c08cf9c9a@orel>
- <CAAhSdy07Mg_JBF+4ucGFiWdBKh-Ass5G_aUWqBqTnDSFp7S=0A@mail.gmail.com>
- <20230518-hammock-doornail-478e8ea8e6a7@wendy> <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
- <20230518-monkhood-dispersal-6749b1228b0d@spud> <20230530-duller-reset-a34ae111f207@wendy>
- <20230608191537.GA3233857-robh@kernel.org> <20230608-cobbler-giving-e0fac2185e11@spud>
- <20230612-relic-fetal-1beeae3455aa@spud>
-In-Reply-To: <20230612-relic-fetal-1beeae3455aa@spud>
+        with ESMTP id S242553AbjFMNd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:33:58 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BCBE5;
+        Tue, 13 Jun 2023 06:33:57 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-77ac2eb07a3so221461139f.2;
+        Tue, 13 Jun 2023 06:33:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686663236; x=1689255236;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gVMF0cNkOvWOotSiCVqWjAUYo2pClvF2wLwm2zYOVjQ=;
+        b=Dx7RV1suQsxbD6ol5j32WwQTVz3aUe/fB8o0liMZTcpBn1uX52/C2EJHohs/ZU0fYV
+         oa2F8UiQ0U0TuHGkVzvYfWsALTrDH4+aqHHjWR1pVksQOD4269YoER9bznyPnz5M5Xfb
+         61SWV+2thDXUgczy/XgPoAY6IlKDQVswkAQYiCdielzbN80JFKPDzJ5bYJrNgkTuRKYJ
+         rZ9DtT5dGRudBBzEHXLMzGvb/UJxOBw8L4KPoba2t1GNqfU1lOPIFV/NzQYMF+rF8gpf
+         FPDbbKQyG4WomTkGklF6kZ9cGAwhRaIK80RTuegY25x6nxjJJNDsvIPz8CgZHHdxXU8v
+         TLWg==
+X-Gm-Message-State: AC+VfDwd2SKvTYv8FgZmhA78ZYLhYxXJNfEiVivHkAScTB/EirVLjhVK
+        xFDTi3m2DvnN+7/fclWJUHuns5H4DA==
+X-Google-Smtp-Source: ACHHUZ49q1Oh89Wc+426zGavzltcBtj6qS6mPvOOgEpcvRcr08SDV8e1ae7C3q137hDz1vfIgIb1Kw==
+X-Received: by 2002:a05:6602:1d6:b0:774:8d9f:e3e2 with SMTP id w22-20020a05660201d600b007748d9fe3e2mr9832851iot.17.1686663236369;
+        Tue, 13 Jun 2023 06:33:56 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id g21-20020a02b715000000b00422bf19bccdsm892919jam.121.2023.06.13.06.33.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 06:33:55 -0700 (PDT)
+Received: (nullmailer pid 1766960 invoked by uid 1000);
+        Tue, 13 Jun 2023 13:33:54 -0000
+Date:   Tue, 13 Jun 2023 07:33:54 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 13 Jun 2023 07:28:34 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+CJ-mEcEujd5Sk4SLvgTfUX1A7NRXYcMDqkoViDYxTXw@mail.gmail.com>
-Message-ID: <CAL_Jsq+CJ-mEcEujd5Sk4SLvgTfUX1A7NRXYcMDqkoViDYxTXw@mail.gmail.com>
-Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Anup Patel <anup@brainfault.org>,
-        Andrew Jones <ajones@ventanamicro.com>, palmer@dabbelt.com,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: reserved-memory: Add
+ alloc-{bottom-up,top-down}
+Message-ID: <20230613133354.GA1750589-robh@kernel.org>
+References: <20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net>
+ <20230510-dt-resv-bottom-up-v1-1-3bf68873dbed@gerhold.net>
+ <20230608140256.GA2478894-robh@kernel.org>
+ <ZILt0X0uyIyUdxqH@gerhold.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZILt0X0uyIyUdxqH@gerhold.net>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,45 +72,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 3:23=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> Rob,
-> Before I press on with more versions...
->
-> On Thu, Jun 08, 2023 at 08:30:28PM +0100, Conor Dooley wrote:
-> > On Thu, Jun 08, 2023 at 01:15:37PM -0600, Rob Herring wrote:
-> > > On Tue, May 30, 2023 at 03:12:12PM +0100, Conor Dooley wrote:
-> > > > On Thu, May 18, 2023 at 10:42:34PM +0100, Conor Dooley wrote:
-> > > > > On Thu, May 18, 2023 at 02:30:53PM -0400, Sean Anderson wrote:
-> > > >
-> > > > > >
-> > > > > > Why not just have something like
-> > > > > >
-> > > > > > mycpu {
-> > > > > >       ...
-> > > > > >       riscv,isa {
-> > > > > >               i;
-> > > > > >               m;
-> > > > > >               a;
-> > > > > >               zicsr;
-> > > > > >               ...
-> > >
-> > > I prefer property names be globally unique. The tools are geared towa=
-rds
-> > > that too. That's largely a symptom of having 0 type information in th=
-e
-> > > DT.
-> > >
-> > > For example if you had an extension called 'reg', it would be a probl=
-em.
-> >
-> > Per the current ISA rules, that'd not be valid. But then again, I do
-> > have trust issues & it's not like "reg" is the only property name in DT
-> > land.
->
-> ...you say "prefer" here. Is that a NAK, or a "you keep the pieces"?
+On Fri, Jun 09, 2023 at 11:16:01AM +0200, Stephan Gerhold wrote:
+> Hi Rob,
+> 
+> Thanks for your suggestions!
+> 
+> On Thu, Jun 08, 2023 at 08:02:56AM -0600, Rob Herring wrote:
+> > On Mon, May 15, 2023 at 12:12:16PM +0200, Stephan Gerhold wrote:
+> > > Right now the allocation behavior for dynamic reserved memory is
+> > > implementation-defined. On Linux it is dependent on the architecture.
+> > > This is usually fine if the address is completely arbitrary.
+> > > 
+> > > However, when using "alloc-ranges" it is helpful to allow controlling
+> > > this. That way you can make sure that the reservations are placed next
+> > > to other (static) allocations to keep the free memory contiguous if
+> > > possible.
+> > 
+> > That should already be possible with all the information you 
+> > already have. IOW, you are looking at all the region and "alloc-ranges" 
+> > addresses to decide top-down or bottom-up. Why can't the kernel do that.
+> > 
+> 
+> Would you accept a patch implementing such a behavior?
 
-Don't do the above node.
+Yes.
+ 
+> There are obviously infinitely complicated algorithms possible for the
+> allocation. A fairly simple one would be to check if the "alloc-ranges"
+> overlap or are adjacent to an already existing reservation, i.e.
+> 
+>   1. If the "alloc-range" starts at the end or inside an existing
+>      reservation, use bottom-up.
+>   2. If the "alloc-range" ends at the start or inside an existing
+>      reservation, use top-down.
+>   3. If both or none is the case, keep current (implementation-defined)
+>      behavior.
+> 
+> For reference, here are some examples how it behaves. |...| is the
+> unallocated memory, RRR existing allocations, and each RRR--- line
+> below a requested alloc-range (and where it was allocated):
+> 
+> Bottom-up (rule 1):
+>   |.....RRRR................RRRRRRRRR...........|
+>             RRR----
+>          ---RRR-------
+> 
+> Top-down (rule 2):
+>   |.....RRRR................RRRRRRRRR...........|
+>                      ----RRR
+>                 ---------RRR------
+> 
+> Otherwise rule 3 just behaves as currently where either bottom-up
+> or top-down is used depending on the implementation/architecture:
+>   |.....RRRR................RRRRRRRRR...........|
+>                -----RRR
+>      or        RRR-----
+>           ---------------RRR----
+>      or   --RRR-----------------
+> 
+> There are plenty of edge cases where it doesn't produce the optimal
+> result, but it just results in exactly the same behavior as currently
+> so it's not any worse (with rule 3):
+> 
+>   |.....RRRR................RRRRRRRRR...........|
+>                           -----------RRR-----
+>                  or       ----------------RRR
+>                      ---------------------RRR  (no way to handle this
+>                  or  RRR---------------------   with top-down/bottom-up)
+> 
+> > Alternatively, if you really care about the allocation locations, don't 
+> > use dynamic regions.
+> > 
+> 
+> Yes, this is the option used at the moment. As outlined in detail in the
+> examples of RFC PATCH 4/5 and 5/5 I would like a solution inbetween. The
+> exact address doesn't matter but the way (direction) the region is
+> filled should preferably stay the same.
+> 
+> > > 
+> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > > ---
+> > >  .../bindings/reserved-memory/reserved-memory.yaml  | 39 ++++++++++++++++++++++
+> > >  1 file changed, 39 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> > > index c680e397cfd2..56f4bc6137e7 100644
+> > > --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> > > +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> > > @@ -52,6 +52,18 @@ properties:
+> > >        Address and Length pairs. Specifies regions of memory that are
+> > >        acceptable to allocate from.
+> > >  
+> > > +  alloc-bottom-up:
+> > > +    type: boolean
+> > > +    description: >
+> > > +      Specifies that the memory region should be preferably allocated
+> > > +      at the lowest available address within the "alloc-ranges" region.
+> > > +
+> > > +  alloc-top-down:
+> > > +    type: boolean
+> > > +    description: >
+> > > +      Specifies that the memory region should be preferably allocated
+> > > +      at the highest available address within the "alloc-ranges" region.
+> > 
+> > What happens when both are set?
+> > 
+> 
+> They are not meant to be both set. I should have added an if statement
+> for this, sorry about that.
+
+Ideally, you define the properties in a way to avoid that situation 
+rather than relying on schema checks. For example, a single property 
+with values defined for top-down and bottom-up.
 
 Rob
