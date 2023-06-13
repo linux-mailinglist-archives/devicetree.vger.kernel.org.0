@@ -2,107 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9688F72DD85
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F84B72DD95
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:25:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241857AbjFMJTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 05:19:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
+        id S242009AbjFMJZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 05:25:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241860AbjFMJS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:18:57 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8980E7A;
-        Tue, 13 Jun 2023 02:18:52 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-34070ecad56so1286555ab.3;
-        Tue, 13 Jun 2023 02:18:52 -0700 (PDT)
+        with ESMTP id S239876AbjFMJYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:24:51 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B46FD18E
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:24:45 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-30fbf6603d2so2058124f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:24:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686648284; x=1689240284;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=pXZ4aijj1pbGg+3aoennLfPzwPG0hMvQp5jgoTVxVm8=;
+        b=GZA9yI5bwW4oCmT4IZAkYKgpuay7dbOmcoOpQ7W/6x4Y5hg97080ZzsiYso50gGdds
+         RZVnCyTiL62fr18WkB3y2+DYnLJuuKvblwA0wczGmYyboB3AHOHYXB5FnB+MSxKhbT13
+         iuvvq0cYySFYrLTDn5jnNSMntKeNNRkW9tJV3f+xQrPDBUfbCm1K19QHSlDUTHdEYZrJ
+         Ncqdt5nwZZlQZFOZb3IvmM2ArE+r3GSK2RrjnUddUO+mNeCMeJkA5mNmzUaOxolhXkx3
+         wb1WlbZIuzusH9H6oZEwwRyQFdYOp1lp9jpv1h9RGzXXLrII5l6qLCZx0dbFul+vx9Va
+         /zuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686647932; x=1689239932;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3l7i3ti7Ci+JAIfrqJMPuqYwSi/QpzUEyhd2W9zcJMQ=;
-        b=JyWKeYjNesxCe+GqlqmLhu0yPTy/nVq0C/yWInnI6Jv5V47A4poldt/7JNaY1tVuSa
-         4U6ZzQLDtaDxfO6DcSeBraMHzlM12TFQiuAQFObpbZ8/GBu3IHbr6SkahsD+FPOeCqrh
-         iYChh8JY0MG1zTJTd8zoP+5e6kI1X/y6mvkaQx2Ppgu8IQ1ByTJHET3J10/fV0zZ0S9k
-         w2X6f2jsIY3uDt/WEOIvOxX7CRb6g7ckK9B0JISiAa6AWhw+3F0nXLiENxc++WRKCgGk
-         BnX4BxcnJTNeaqi0fP72odO/EkUOycR/3C/sDTGugstdmA/un+TxIKDCHs4h3SnSqvH9
-         dixQ==
-X-Gm-Message-State: AC+VfDw5FUVBsArkGKhZvSwfte77YRfIWiWgXv3YNbIbc21nVmr27RZU
-        EI2R006P+aaONzjvp+5M8w==
-X-Google-Smtp-Source: ACHHUZ4UEbo3jcsK6QJZwFJIadLOuNXhsYrmCm2eEJADv3BGbeK/HQpFbgZyJG8xnpy45roW1OQ7aQ==
-X-Received: by 2002:a92:cb42:0:b0:331:3b07:56e2 with SMTP id f2-20020a92cb42000000b003313b0756e2mr9377465ilq.31.1686647931922;
-        Tue, 13 Jun 2023 02:18:51 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id v5-20020a92d245000000b0032957b21c26sm3711047ilg.77.2023.06.13.02.18.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 02:18:51 -0700 (PDT)
-Received: (nullmailer pid 1147154 invoked by uid 1000);
-        Tue, 13 Jun 2023 09:18:49 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1686648284; x=1689240284;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pXZ4aijj1pbGg+3aoennLfPzwPG0hMvQp5jgoTVxVm8=;
+        b=QkXUB1/utdo/eVRHH0QMn1fRBba0dZeU+FLRUaMCZJ9miDwaYaiBgYrT8m0tO52mHu
+         Cv9+WCAc03x2t3KFMzP6MJxk7jkb7TqCWy8Xp9fWw6VKsv+LVAG2zqU96IVnzgevxzFR
+         0bfjINW7lmQ0ZeDetXb5a0sIYmlAuFAm/nQ7+ww3XKGCQfUIYmGM3fKFkcTrM62QLNpb
+         5pOxPZJgJQSz2Bgq8PIMrpZSZQbPcUkuJNY1LqRq5LIRofYMcyJ29yWaMpf2x/PszcMF
+         6R1OQwI1JHl0ClYzfXBmcWm0UCbMPqIt4tIa/NuUCQdSPcLQEEm11SH1CUdjreVdpBIV
+         AhLw==
+X-Gm-Message-State: AC+VfDw3D1pohDqSN7729Psq4/cJKVkikToGvMBwA+aLNLw0yNW0rUhZ
+        RlCVaMJShfPdQpyXLEz1wRfFsA==
+X-Google-Smtp-Source: ACHHUZ7PO/tsm9IXmJ7pb3uNDlot07rQqXgOCkR7DPpvfhLhNFDPFPOxgXcEUTv86r3jFpDeqkvMPg==
+X-Received: by 2002:a5d:614b:0:b0:30d:f75c:4a68 with SMTP id y11-20020a5d614b000000b0030df75c4a68mr6243782wrt.34.1686648284132;
+        Tue, 13 Jun 2023 02:24:44 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:48b:b939:c60e:e1ba? ([2a01:e0a:982:cbb0:48b:b939:c60e:e1ba])
+        by smtp.gmail.com with ESMTPSA id t18-20020adfeb92000000b003093a412310sm14770863wrn.92.2023.06.13.02.24.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 02:24:43 -0700 (PDT)
+Message-ID: <f708a6d3-321e-c425-8048-1c0d2ac7a6f0@linaro.org>
+Date:   Tue, 13 Jun 2023 11:24:42 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: connector: usb-connector: add a gpio
+ used to determine the Type-C port plug orientation
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230613080552.4492-2-okan.sahin@analog.com>
-References: <20230613080552.4492-1-okan.sahin@analog.com>
- <20230613080552.4492-2-okan.sahin@analog.com>
-Message-Id: <168664792963.1147059.8156399408819922296.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: regulator: max77857: Add ADI
- MAX77831/MAX77831 Regulator
-Date:   Tue, 13 Jun 2023 03:18:49 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v3-1-22c9973012b6@linaro.org>
+ <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
+ <cfa788c3-be57-5109-73df-b82099dd17a0@linaro.org>
+ <9abec6ec-1995-8e20-8926-f57969341932@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <9abec6ec-1995-8e20-8926-f57969341932@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 13 Jun 2023 11:05:49 +0300, Okan Sahin wrote:
-> Add ADI MAX77857 and MAX77831 Regulator device tree document.
+On 13/06/2023 11:02, Krzysztof Kozlowski wrote:
+> On 13/06/2023 10:54, Neil Armstrong wrote:
+>> On 13/06/2023 10:13, Krzysztof Kozlowski wrote:
+>>> On 13/06/2023 09:55, Neil Armstrong wrote:
+>>>> On some platforms, the Type-C plug orientation is given on a GPIO line.
+>>>>
+>>>> Document this optional Type-C connector property, and take the
+>>>> assumption an active level represents an inverted/flipped orientation.
+>>>>
+>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> Rob had here objections as these are bindings for the connector, not
+>>> PMIC glink/altmode. I still doubt that Qualcomm USB Type-C connectors
+>>> have such pin exposed. If you open the schematics, the GPIO is actually
+>>> coming out from PMIC and is nowhere around the connector. Please drop my
+>>> Ack.
+>>>
+>>> This however could be a pin of the PMIC because it clearly is on the
+>>> schematics.
+>>
+>> Yes it comes from the PMIC, but this part of the PMIC is handled by
+>> the PMIC_GLINK firmware service, so the logical place would be into
+>> the pmic_glink node with a gpio array in order to handle multi-ports.
 > 
-> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> ---
->  .../bindings/regulator/adi,max77857.yaml      | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77857.yaml
+> I think all PMICs have only one CC_OUT pin, so this would be now
+> maxItems: 1, but there will be no problem in growing this later.
+
+Yep, I'll only allow for sm8550-pmic-glink and set maxItems: 1 for now
+since it's the first occurence.
+
+Neil
+
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml: $defs:qcom-pmic-mpp-state:properties:qcom,paired: [{'description': 'Indicates that the pin should be operating in paired mode.'}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230613080552.4492-2-okan.sahin@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> Best regards,
+> Krzysztof
+> 
 
