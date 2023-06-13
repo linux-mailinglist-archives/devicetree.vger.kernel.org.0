@@ -2,172 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 505F772DD0C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C554072DD13
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241802AbjFMIv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 04:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
+        id S233711AbjFMIyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 04:54:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241805AbjFMIvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:51:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6C1188;
-        Tue, 13 Jun 2023 01:51:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BC05363305;
-        Tue, 13 Jun 2023 08:51:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FCAC4339B;
-        Tue, 13 Jun 2023 08:51:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686646307;
-        bh=Fs2TQdypARqaeonb0tIJpF45H+5ETzPPP/OhXKzKJfg=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=Z1ugRPqQAgG7q4ip7dzx+ov4MrcxTdMzqcxqT48GRQbzkZeiwjw0PnWb547BsIhcv
-         qCbTw0jLpG9oYZV8VzjskmU0ri0ZyMV0K+IBsnYJT4PaZpLclPb8hkk0RE4YuEzCRa
-         niRBpSMapLcUCNEJ0M1uILKbwJJcPi/XXBDrbU6ay/AzQdcM3kWFaICDDB3qJzDRcl
-         H4wA1GaRFxblgqutYYUKy4f0zhpbjB/9d2vA0twLy3PzOKJOLBJSxh6wieWtAiE2DF
-         aU+7NC2+1Q248T8bDA9uNefaicnxqhbcIkO7sLvcNRIlycjOebK6VGsWj0YaXFvQ3r
-         1aNYb0ahMjEAw==
-Message-ID: <d9cd1ff3-b537-1481-9453-5b3683d30fed@kernel.org>
-Date:   Tue, 13 Jun 2023 10:51:39 +0200
+        with ESMTP id S240474AbjFMIyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:54:10 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D396135
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:54:08 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f8cc042ea9so2909835e9.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:54:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686646447; x=1689238447;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NDiNhm2Y6nRuk/DDc8nzD8Q/rYbk+v+INjp84dQ4Gsk=;
+        b=jOtPBGa+GRY0pIqESl8Ji3GBrr+XDllWpqEsa7or8ljLDZwrpneARdDnvSnZC34rQn
+         fcI2uF7QFFzG9XIJNe6ffH4f4mr+7oj7frdUPNbE5wdgAnrg2Fe9K8JPs6OW3PMfWDUX
+         FFJ7ZmSXqtcA5EJjAa5JaAVkRRATKlpNU4qk2NLXoZq1wviRUy9tgXMXbCZnZApnWiCu
+         zViBQtFFxm3EMCpB1tXHZK74SgWz4DHIwbxWoU9KtNTisc60umEcb7iR7mlMtAo0qAOk
+         koi5vJN8M9RU16ER7rOXW5KEqFiWy+a2sIcqcYi7e/yYyfMC5opqD7VuXpI+MkHcna3F
+         eTkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686646447; x=1689238447;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NDiNhm2Y6nRuk/DDc8nzD8Q/rYbk+v+INjp84dQ4Gsk=;
+        b=jnNN7BXs0mwnXhwZ1VMgVCfnMH/S4ftuLkfvmZWB4AnMWDxT6gBzV6pfreh+HO2UWs
+         bSs03muswUzWlZtMt486Zo91irHY7a79TmH5mrlf5egO/1MwwjhlyxToFIgLDdz3ZC9+
+         ntagzZYt7/5z8Eut0vrWK5iIkDOb5qqO6cg4kHy8Y7Fv8qoQtUTa603m/N6GAtBeKaKN
+         oupj7xBVPpp3qtfao2s9Q9D6BP5UwE5sWE26Owwyog3LXSeYdIbY/1L0P/aZGp+dRavG
+         0z/N4Mpn5t5d6p9RMNlx5tSrGf97ZVwsSwyCi0hWqP/ALn5sXuiRvv9LU+njcKtpQnjO
+         uWRA==
+X-Gm-Message-State: AC+VfDwGWXjX7AoR5ksK8DbVSjW8yBFjUtbEEFoWx0zsOX60vuR45WLx
+        KQJtQbFI9Vh48VCin3cboA4KSw==
+X-Google-Smtp-Source: ACHHUZ45G18QLIN7+wDdZTsNEbpK70h739qxBNPbqmKWAndC1h4UuqNPazu8rDUPziKR7UcgGS2Mcw==
+X-Received: by 2002:a05:600c:22cc:b0:3f8:153b:a521 with SMTP id 12-20020a05600c22cc00b003f8153ba521mr4718978wmg.26.1686646446774;
+        Tue, 13 Jun 2023 01:54:06 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:48b:b939:c60e:e1ba? ([2a01:e0a:982:cbb0:48b:b939:c60e:e1ba])
+        by smtp.gmail.com with ESMTPSA id r11-20020a05600c2c4b00b003f7eb5375ddsm13829675wmg.15.2023.06.13.01.54.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 01:54:06 -0700 (PDT)
+Message-ID: <cfa788c3-be57-5109-73df-b82099dd17a0@linaro.org>
+Date:   Tue, 13 Jun 2023 10:54:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 7/7] ASoC: dt-bindings: mediatek,mt79xx-afe: add audio afe
- document
+ Thunderbird/102.11.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: connector: usb-connector: add a gpio
+ used to determine the Type-C port plug orientation
 Content-Language: en-US
-To:     Maso Hunag <maso.huang@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Ren Zhijie <renzhijie2@huawei.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230612105250.15441-1-maso.huang@mediatek.com>
- <20230612105250.15441-8-maso.huang@mediatek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230612105250.15441-8-maso.huang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v3-1-22c9973012b6@linaro.org>
+ <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2023 12:52, Maso Hunag wrote:
-> From: Maso Huang <maso.huang@mediatek.com>
+On 13/06/2023 10:13, Krzysztof Kozlowski wrote:
+> On 13/06/2023 09:55, Neil Armstrong wrote:
+>> On some platforms, the Type-C plug orientation is given on a GPIO line.
+>>
+>> Document this optional Type-C connector property, and take the
+>> assumption an active level represents an inverted/flipped orientation.
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Add mt79xx audio afe document.
+> Rob had here objections as these are bindings for the connector, not
+> PMIC glink/altmode. I still doubt that Qualcomm USB Type-C connectors
+> have such pin exposed. If you open the schematics, the GPIO is actually
+> coming out from PMIC and is nowhere around the connector. Please drop my
+> Ack.
+> 
+> This however could be a pin of the PMIC because it clearly is on the
+> schematics.
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+Yes it comes from the PMIC, but this part of the PMIC is handled by
+the PMIC_GLINK firmware service, so the logical place would be into
+the pmic_glink node with a gpio array in order to handle multi-ports.
+
+Thanks,
+Neil
 
 > 
-> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
-> ---
->  .../bindings/sound/mediatek,mt79xx-afe.yaml   | 102 ++++++++++++++++++
->  1 file changed, 102 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml
-> new file mode 100644
-> index 000000000000..11ef1cfdf49b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt79xx-afe.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mediatek,mt79xx-afe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek AFE PCM controller for MT79xx
-
-79XX sounds weird. Are you sure you are not using wildcards (which are
-not allowed)?
-
-> +
-> +maintainers:
-> +  - Maso Huang <maso.huang@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: mediatek,mt79xx-afe
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7981-afe
-> +              - mediatek,mt7986-afe
-> +              - mediatek,mt7988-afe
-> +          - const: mediatek,mt79xx-afe
-
-I already saw AFE, why it cannot be part of existing bindings?
-
-This list is odd. 79xx, 7981? So it is wildcard?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 5
-> +    items:
-> +      - description: audio bus clock
-> +      - description: audio 26M clock
-> +      - description: audio intbus clock
-> +      - description: audio hopping clock
-> +      - description: audio pll clock
-> +      - description: mux for pcm_mck
-> +      - description: audio i2s/pcm mck
-> +
-> +  clock-names:
-> +    minItems: 5
-> +    items:
-> +      - const: aud_bus_ck
-> +      - const: aud_26m_ck
-> +      - const: aud_l_ck
-> +      - const: aud_aud_ck
-> +      - const: aud_eg2_ck
-> +      - const: aud_sel
-> +      - const: aud_i2s_m
-
-Why this is variable?
-
-> +
-> +  assigned-clocks:
-> +    minItems: 3
-> +    maxItems: 4
-
-Drop assigned-clocks
-
-> +
-> +  assigned-clock-parents:
-> +    minItems: 3
-> +    maxItems: 4
-
-Drop
-
-
-
-Best regards,
-Krzysztof
+> 
+> Best regards,
+> Krzysztof
+> 
 
