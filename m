@@ -2,73 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50C1772E5BF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28B2D72E637
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242918AbjFMOaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 10:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48232 "EHLO
+        id S242706AbjFMOug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 10:50:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239831AbjFMOaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:30:07 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2C2E54;
-        Tue, 13 Jun 2023 07:30:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686666606; x=1718202606;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uE8h88szvoGxwdIx+6c5cOD/htbOXhAFq/tdRywRONE=;
-  b=Olr+8lkQUIJ9uUZPFEoZknMt2l6GidZ6ovf0c2q2EEHo5/WDx5FXI8if
-   dfGqeQ0HFijr5qSkdNXuZ2aj8xWJUGklZ36TH6xH3Wm9CAQGMzWsEMwAb
-   p+AMsdGGMx701vctiRHYl78kRpthKustp7kDfP9iOFYZ6oePOUt+6tZ8a
-   7MEDKFUZbXZ7dOF+twr/hACsSg/Chmc2UfcxrKtc7wpvnHrVcf1EKwd4u
-   nrrpc4xWm+2ex57GUaRfWMsXYx9Zkv7AXgqyxugM30OztwUdZTh3lzPi4
-   HMoW9B/7412DELJaspqVDUHsUMhpcIdPqLHtDMaLREQTVZqU6Iuwh8TvD
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,239,1681196400"; 
-   d="asc'?scan'208";a="215841586"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jun 2023 07:30:05 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 13 Jun 2023 07:30:01 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 13 Jun 2023 07:29:59 -0700
-Date:   Tue, 13 Jun 2023 15:29:33 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Yingkun Meng <mengyingkun@loongson.cn>,
-        Conor Dooley <conor@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <lgirdwood@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <loongarch@lists.linux.dev>,
-        <loongson-kernel@lists.loongnix.cn>
-Subject: Re: [ PATCH v2 3/3] ASoC: dt-bindings: Add support for Loongson
- audio card
-Message-ID: <20230613-crewmate-levitate-597ab96ea2d7@wendy>
-References: <20230612085614.3039498-1-mengyingkun@loongson.cn>
- <20230612-booted-french-186dd95e78a9@spud>
- <bda7c25f-65cf-d45f-3ac0-f2471e3aacf8@loongson.cn>
- <20230613-zoologist-panorama-a87858bba075@wendy>
- <887f9cc4-6457-9d14-8aef-011ff4c9aeda@loongson.cn>
- <20230613-depletion-garnet-ccc2009111c3@wendy>
- <449d07d9-5538-4f36-83a0-3a81a9ab9ea2@sirena.org.uk>
+        with ESMTP id S242808AbjFMOuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:50:17 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0758F1BE7
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 07:50:12 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-30c2bd52f82so5559821f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 07:50:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686667811; x=1689259811;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H2LLCez9aorcxAr6mSzBcwQNd+MPuO36BbwLgK2xh80=;
+        b=GNp8m+qsxqEl+uS7Tj6/6ghamE63p/fkyDZ4FlqympcOKezI09QyLFWw6gsaaWaeRP
+         6T4/9HF5oCvqhyDDUONSs+bmprePA197Xp6i2YKkYNBf8ucQ7TX2o7yDp24OezhysMwJ
+         j0dSGYthm1DrdwA0vK64qtjtE0RaStH4MxIu+KXZdv95hJYpmMOFzdObAYShcGSdAIyR
+         Cw2PdTZiifXZw6I6wm/NoYyeqioLCVY1mQOTpO8TAIGou/K0ghfylKeSqJ5TmtT2CoZl
+         /j8l3uYOldh+7wCe6dCPTHwFShMCLdsdm4EgwtO8xs3E3K2zEbVnQSH7uLfNtqXRIO0P
+         yMZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686667811; x=1689259811;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H2LLCez9aorcxAr6mSzBcwQNd+MPuO36BbwLgK2xh80=;
+        b=kIzyCq0JbsELgUlvt5lePlMLdVS/NXgzKnE2JO3jxwQhKrFNQbMIUQcn1TkUifV/NY
+         CgxR/6SVBqC/hZmYNNPOPEx9s/Ola/WE5ffm9h+1eJy1YwBOGgJDYqLHfVXlkFATAXr1
+         4zxIRmTemfI9/K/Iu+5wnlWm5EB3K7R2J9Yoqzozdpxm9eT1eGpBBabg5G7MNdz0ZT3k
+         BkbRnuq/BsfLCbbGTgLHph50rxcAX+oAlqiboWPlM+FGTAI6NbrIKNqjGhYV5Lk9AC0C
+         JA5CG7SLEV2CpHubtLLgWagV77rqY5Pvl3M1ZQhwYLA4BWdiwmwabUuEnp9vR8JYt4GZ
+         Zllw==
+X-Gm-Message-State: AC+VfDw0zTfoJ5rSZoh9OArrdUEwy6asUo13ipjviL7aBH2EBNmnNq18
+        tRJhSRLK0m7xaPVf54jWlwMiCQ==
+X-Google-Smtp-Source: ACHHUZ7eGVSDoeg1Bfhp4x5ZFfL5I2seRfwd15tZuEAp+bh9gjMZRf3wcAUjugSkGVsqFF7c2iXLNA==
+X-Received: by 2002:a5d:678e:0:b0:30f:c2a3:6281 with SMTP id v14-20020a5d678e000000b0030fc2a36281mr4373158wru.64.1686667810982;
+        Tue, 13 Jun 2023 07:50:10 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id l15-20020adff48f000000b003078cd719ffsm15623356wro.95.2023.06.13.07.50.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 07:50:10 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/2] typec: add support for the ON Semiconductor
+ nb7vpq904m Type-C Linear Redriver
+Date:   Tue, 13 Jun 2023 16:50:06 +0200
+Message-Id: <20230601-topic-sm8x50-upstream-redriver-v3-0-988c560e2195@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="F73UMBvZBx0/ykU7"
-Content-Disposition: inline
-In-Reply-To: <449d07d9-5538-4f36-83a0-3a81a9ab9ea2@sirena.org.uk>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB6CiGQC/5XOOw7CMBAE0Ksg1yyyDbECFfdAFP5skpWCHa2DB
+ UK5OyYdHZQzxZt5iYxMmMVp8xKMhTKlWMN+uxF+sLFHoFCz0FLvpZEK5jSRh3xrH42E+5RnRns
+ DxsBUkMGgNgpDaLw7iIo4mxEc2+iHysT7ONZyYuzosa5erjUPlOfEz/VEUZ/2572iQIKxQSt5P
+ HSd6c4jRctpl7gXH7vo/zxdvRBse3RaO+Xll7csyxsAR5hOMgEAAA==
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2276;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=xXZb2OsyboZyYfVP+VKtPE7/v/WGx8/ToNBGnKZ/IT8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkiIIgLITaA7eP/fNWa/QjYWht2TUsg0D8FucwHCcg
+ 6Le2PVOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIiCIAAKCRB33NvayMhJ0St0D/
+ 9imOc47cGQcR65ep/fNb56nj985Ex5H5OMEliEALAkiw8AgOGErgZD0RNfWCklE1R9OjW1Zm4/VnNm
+ usZnQgG71t2Ge9hFWfGOQkjDsbMULtpgQRqzexauMVtEFkVe+nq4wcCetjEtyjd9bEf/t+n0Lmtu+2
+ BRTmgbhy2/OpY0qJ+kxfV6vuOaNxf2/WgMZ73DKJAWkFZFAmh45FR2FSPG+jk64Sojtxw0Bfr5mH3m
+ afc71i0Q/50rp/tzMxzSq2IazinUlx1I5yPCvINH3Sp7aJIlvUCa9Gon7BNpCd3lyprzmx9EhtC80T
+ OTC7R0t1gCr9/vbWlzTEdXhzq5caHDmY3NACHRcnTYy1gu8m82hnvpT39RxtDF3ntCrANgh/QQMm8P
+ t2n/xNVIp74eMgI11XH5UgXsV9SgsyXKYtOvYiuLEe+lBn2N50AV1QO8HmSDIL9NwZub5UG9mxmDwY
+ tGNls+xgVp0FjJ+Zn0aurj4R8/3zyBye5PyYpHG1KzZ/eUR6S3f2/gmmo6YTZc1AD0w0AMP01t5jEg
+ c6F5E/ur/ZJl+MKvzw95PtZ7OP/ERcB2qA/rhrMR/V5c9kPzZ81/awmMxwYMYceYFqlkc1Yb3tKk5P
+ OR/otrEM+lJYK5DmlBOUHaK61Ddz9W3cEOFh0Ql2T3d21xgn7RvugWb46LzA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,46 +99,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---F73UMBvZBx0/ykU7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add support for the ON Semiconductor NB7VPQ904M Type-C USB SuperSpeed
+and DisplayPort ALT Mode Linear Redriver chip found on some devices
+with a Type-C port.
 
-On Tue, Jun 13, 2023 at 02:54:36PM +0100, Mark Brown wrote:
-> On Tue, Jun 13, 2023 at 01:46:41PM +0100, Conor Dooley wrote:
->=20
-> > So it is entirely a software construct? Why does it need a dt-binding
-> > then? Your commit message says the controller is present on the device!
->=20
-> A typical embedded (or power efficient laptop) audio design will consist
-> of multiple devices connected together (frequently via non-control
-> buses) together with system level passive components and plastics which
-> are also important to the audio configuration.  A card binding describes
-> the interconections between the devices in the system and provides
-> identification information for the audio subsystem.  This system level
-> audio integration is a physical thing that can be pointed at that
-> requires real software control.
+The redriver compensates ultra High-Speeed DisplayPort and USB
+Super Speed signal integrity losses mainly due to PCB & transmission
+cables.
 
-The bit you were responding to with that was a disingenuous question.
-Probably not fair of me to ask one of a non-native speaker like that,
-when all I wanted to know was whether it was appropriate not to add
-a more specific compatible, or whether this was something invariant.
+The redriver doesn't support SuperSpeed lines swapping, but
+can support Type-C SBU lines swapping.
 
-> Like I said before please look at the existing audio card bindings.
+Support is designed as a Type-C Switch and Retimer, and can propagate
+orientation settings to the source endpoint, which is usually
+a Super Speed PHY which does the data lanes swapping.
 
-Yah, ofc I did that to see if there were other similar bindings that
-used specific compatibles...
+Bindings are added first and can handle the fact data lanes pairs
+can be swapped on the PCB.
 
+Compile-time dependencies:
+- svid removal at [1]
 
---F73UMBvZBx0/ykU7
-Content-Type: application/pgp-signature; name="signature.asc"
+[1] https://lore.kernel.org/all/20230526131434.46920-1-heikki.krogerus@linux.intel.com/
 
------BEGIN PGP SIGNATURE-----
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Include bitfield.h
+- Use correct -EOPNOTSUPP
+- Correct nb7vpq904m_sw_set line wrapping
+- Link to v2: https://lore.kernel.org/r/20230601-topic-sm8x50-upstream-redriver-v2-0-dda89b22b1c0@linaro.org
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIh9TQAKCRB4tDGHoIJi
-0im6AQCKC+utNKucFVTzatpu/JT9toHFnwcH/P19lIwDWM2GMwD+LgeihZ5UpRNH
-1O78Io5ySAoSy/xH4fujDTp98LU1SQI=
-=AuWz
------END PGP SIGNATURE-----
+Changes in v2:
+- Switch to "retimer" infrastructure
+- Slight style fixups after switch to retimer
+- Bindings updates (did not keep Reviewed-by tag for those reasons)
+ - Update maintainer, was using Bjorn with invalid email
+ - Fixed swapped lanes mapping
+ - Switched to retimer-switch
+ - Fixed i2c top node in example
+- Link to v1: https://lore.kernel.org/r/20230601-topic-sm8x50-upstream-redriver-v1-0-6ad21094ff6f@linaro.org
 
---F73UMBvZBx0/ykU7--
+---
+Dmitry Baryshkov (1):
+      usb: typec: add support for the nb7vpq904m Type-C Linear Redriver
+
+Neil Armstrong (1):
+      dt-bindings: usb: add ON Semiconductor nb7vpq904m Type-C Linear Redriver bindings
+
+ .../devicetree/bindings/usb/onnn,nb7vpq904m.yaml   | 141 ++++++
+ drivers/usb/typec/mux/Kconfig                      |   8 +
+ drivers/usb/typec/mux/Makefile                     |   1 +
+ drivers/usb/typec/mux/nb7vpq904m.c                 | 529 +++++++++++++++++++++
+ 4 files changed, 679 insertions(+)
+---
+base-commit: ac9a78681b921877518763ba0e89202254349d1b
+change-id: 20230601-topic-sm8x50-upstream-redriver-6e261edd5cb4
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
