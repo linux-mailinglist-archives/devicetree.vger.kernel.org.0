@@ -2,261 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E324772DBB4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 011AA72DBD8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:00:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240717AbjFMH4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 03:56:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50138 "EHLO
+        id S240925AbjFMIAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 04:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239103AbjFMH41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:56:27 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25C419B3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:56:16 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f6255ad8aeso6380902e87.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:56:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686642975; x=1689234975;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z4K7kTQtIrV7AYfghnPwr2i8OE9ZNp1mkYN+KZLG/2w=;
-        b=H8sFXW/omLrIB54UrajgwFhbp5yT17lWzycM2YgbHyOIwSWQV+eYk3JJ8jqEpI5YPu
-         k6w3xAnUzhw7zgWYr3y/SVNf5tJx+HgpCE8OflWa+/RXHNk6QeW6JpoF5oWI+AeoDDtG
-         Z+O4LASpaN/puMf0lKwexhrW8xGRmP2IcBaa8LD1BeniSHNMurUivdEcc9UK2PKpeULt
-         WwJ0UjLXmbjzKoXAz7e5p7je/QKqbsPNwoblIo34gcNEbJtIfcJgoKhckV6S9a27P+cR
-         8q+txzA/bWHeJUrjTDM27pc/4ArVJgknBcFfaR4ZK8O9sMftF1pIs2N4Dq/0HhmjskCs
-         3MtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686642975; x=1689234975;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z4K7kTQtIrV7AYfghnPwr2i8OE9ZNp1mkYN+KZLG/2w=;
-        b=MfSil3FEh8/PafAm5K431x7Uit+5/YleUK6g3331QfgjbUxKfWSMjtL6/4B7kYbEAt
-         /jOc9boP0aYw00uU5Cp0MJbNsJ6sL+f7cW9zKOiLrKKp7MIvhFTKgrQCn1uW0NUe5dfh
-         hwntAyYieY3hBjGOMZHouCUsUZvYIiOHYms5LWzUZxZ0N5VJ8cK5aKNpJO/yX4NMpieZ
-         xQ2ZqYmNr74eRra3awWtei4BelOnMkPF8IEI0wavHVM/Qerw0bjN/Cu7X0/lnHxSOTPS
-         lGZAx6woOBPZLncdSlyHEcqOpKh1l+yRCXnLPbuQQC/igF0Cp2qxjrJf94S7YT1L1CKt
-         1jlA==
-X-Gm-Message-State: AC+VfDwn/STBRnbiMzGDLVHyn2YrwGxh8L+2ZvnyrJJ9jhY02h8+x+vW
-        ppyKGQdJvgtNMpTi5dKENKtn4Q==
-X-Google-Smtp-Source: ACHHUZ7JcmHHsjJMULJFqqIndYRZ9QQrs/gP6T/OMYRCt3kuS5Fxn1f1cn/WtVWKqyPZVEirEtVcnA==
-X-Received: by 2002:a05:6512:458:b0:4f3:a0f5:92e5 with SMTP id y24-20020a056512045800b004f3a0f592e5mr5575630lfk.31.1686642974793;
-        Tue, 13 Jun 2023 00:56:14 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id k20-20020a05600c0b5400b003f4266965fbsm13662316wmr.5.2023.06.13.00.56.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 00:56:14 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 13 Jun 2023 09:56:01 +0200
-Subject: [PATCH v3 8/8] arm64: dts: qcom: sm8550-qrd: add pmic glink
- port/endpoints
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230601-topic-sm8550-upstream-type-c-v3-8-22c9973012b6@linaro.org>
-References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
-In-Reply-To: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S241290AbjFMIAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:00:07 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 630BA2112;
+        Tue, 13 Jun 2023 00:59:03 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8Dxi+qyIYhkXIMEAA--.9419S3;
+        Tue, 13 Jun 2023 15:58:42 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxluSsIYhkdKsYAA--.5184S2;
+        Tue, 13 Jun 2023 15:58:41 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3113;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=Dpn5WYby65WZz8xrANOxqTxyRCrlf2lM9h7YQb2/kkk=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkiCEUdxo6zuTG5Nc48HP5ltUAmD9dDvDZC4r6LqFH
- u/p5+H+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIghFAAKCRB33NvayMhJ0QFkEA
- CY/gWxK3m56EazyLvgsQsPf9vJK7NduAyaudylzkInM6AHffKJuSVegL+q+oQlUr3jvLHuS1N3hLwT
- Pb03yFcGDKdlDE3+vaSYEx9sjeVtAlODhx5LY6Q5eXkr6HR4dTkmWp7OXATdC8akWU7o/hXiHKkM2K
- OVeVPSoLO5FC3uvhHZmCnq4zA4z3vb/xo1wiQoRrcsXw777wyoC7OFWQEc0ypW1LolVfx1IHbKBNvk
- Bj0OK3JusXGORirS4So8NEbQbWHm3Q1toN8D6AjoEhLw0K39tPDnqTxAjkEKfH83IObaYWcpZ9I+wt
- NyvLIO1CMnSbys31/LnSIOe7gbLmvAJNuEbJXlSMCTA2xAZc/mEq5oeGY1bflYWmG1T4xBZGQG4Ky3
- WqARJdgObo8JbOMhQ0lO/2SjLsBQJ2llmtOhA62Soxw9s8EoWiM6bOC5g7ZR8tfszG0nUTnHlhWbrC
- aBxTqy0ESFvZ5MrkHaxli/oKF+1XeWsLziJGQIq4AvPXMASAJzawNlFzNE9qDE5y+lp5RIq9i57DdG
- HHcP1TkxSAqOZ1UrdbHSlICBvS4lNqQRLObbx0uuDOfpsxt6fnqmNLGfVGRWVHbrVtUgn5Cn1DgNPs
- ADA3uSH8CzRBdtGqoFgDV3+mlegmfYVL6uP6QdTBAKjGaMuTbG1wbpWfdZ6A==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v13 0/2] spi: loongson: add bus driver for the loongson spi
+Date:   Tue, 13 Jun 2023 15:58:32 +0800
+Message-Id: <20230613075834.5219-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxluSsIYhkdKsYAA--.5184S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes to support Type-C USB/DP functionality.
+Loongson platform support spi hardware controller and this series patch
+was to add spi driver and binding support.
 
-On this platform, a Type-C redriver is added to the
-SuperSpeed graph.
+Change in v2:
+		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+	 	   https://
+		   lore.kernel.org/all/20230307115022.12846-1-zhuyinbo@loongson.cn/
+		2. Remove the clock-names in spi yaml file.
+		3. Add "loongson,ls7a-spi" compatible in spi yaml file.
+		4. Add an || COMPILE_TEST and drop && PCI then add some CONFIG_PCI
+		   macro to limit some pci code.
+		5. Make the spi driver top code comment block that use C++ style.
+		6. Drop spi->max_speed_hz.
+		7. Add a spin_lock for loongson_spi_setup.
+		8. Add a timeout and cpu_relax() in loongson_spi_write_read_8bit.
+		9. Add spi_transfer_one and drop transfer and rework entire spi
+		   driver that include some necessary changes.
+		10. Use module_init replace subsys_initcall.
+		11. About PM interface that I don't find any issue so I don't add
+		    any changes.
+Change in v3:
+		1. This [PATCH v3 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Drop the unused blank line in loongson,ls-spi.yaml file.
+		3. Replace clock minItems with clock maxItems in yaml file.
+		4. Separate spi driver into platform module, pci module and core
+		   module.
+		5. Replace DIV_ROUND_UP with DIV_ROUND_UP_ULL to fix compile error
+		   "undefined reference to `__aeabi_uldivmod'" and  "__udivdi3 undefined"
+		   that reported by test robot.
+		6. Remove the spin lock.
+		7. Clear the loongson_spi->hz and loongson_spi->mode in setup to fixup
+		   the issue that multiple spi device transfer that maybe cause spi was
+		   be misconfigured.
+Change in v4:
+		1. This [PATCH v4 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Add "#include <linux/io.h>" in spi-loongson-core.c for fix the compile
+		   issue which devm_ioremap no declaration.
+		3. Add "EXPORT_SYMBOL_GPL(loongson_spi_dev_pm_ops)" in
+		   spi-loongson-core.c for fix the compile issue which
+		   loongson_spi_dev_pm_ops undefined.
+Change in v5:
+		1. Get rid of the clock patch's dependency and open-code the clock IDs.
+		2. Fixup checkpatch issue that by installed ply and gitpython package
+		   locally, but this series of patch's code doesn't have any change.
+Change in v6:
+		1. Remove the "#include <dt-bindings/clock/loongson,ls2k-clk.h>" in
+		   yaml file.
+Change in v7:
+		1. Remove the "loongson,ls7a-spi" and change yaml file name as
+		   "loongson,ls2k-spi.yaml".
+		2. Use module_pci_driver and module_platform_driver to replace
+		   module_init and module_exit.
+		3. Drop ".owner	= THIS_MODULE" in spi platform driver.
+		4. Add devm_spi_alloc_master devm_spi_register_master to simplify code.
+		5. Add pci_disable_device() in loongson_spi_pci_unregister.
+Change in v8:
+		1. Add reviewed-by information for spi bindings patch.
+		2. Fixup the uncorrect spi yaml file path in MAINTAINERS file.
+		3. Add spi_master_suspend and spi_master_resume in spi pm function.
+Change in v9:
+		1. Make spi_master_suspend go first in pm suspend.
+Change in v10:
+		1. Fix the compile issue about of_node_get and of_get_property no
+		   declaration.
+		2. set config SPI_LOONGSON_CORE invisible.
+		3. Captial "spi" in commit log and Kconfig file.
+		4. Write header files in alphabetical order.
+		5. Use clamp_val, GENMASK() and BIT() in spi clock setting.
+		6. Optimize clock and mode setting code.
+		7. Use readb_poll_timeout in loongson_spi_write_read_8bit.
+		8. Remove some useless dmesg print.
+		9. Use device_set_node replace of_node_get.
+		10. Use dev_err_probe in code.
+		11. Use devm_clk_get_optional replace devm_clk_get.
+		12. Remove SPI_NO_CS for drop 2k500 non common type spi.
+		13. Use pcim_enable_device() and pcim_iomap_regions() in spi pci
+		    driver.
+		14. Passing the remapped address in loongson_spi_init_master.
+		15. Remove the useless goto flag "err_out".
+		16. Use pci vendor id in pci_ids.h.
+		17. Use devm_platform_ioremap_resource in spi platform driver.
+		18. Remove the useless item in pci_device_id.
+		19. Remove the inned comma in of_device_id.
+		20. Add some headfile in spi_loongson.h.
+		21. Remove the useless extern for loongson_spi_init_master in
+		    spi_loongson.h.
+Change in v11:
+		1. Use spi_get_chipselect() to replace all spi->chip_select in
+		   spi driver
+Change in v12:
+		1. Reword the dt-bindings patch title.
+		2. Use a specific spi compatible in dt-bindings and spi driver.
+		3. Add Cc list for the reviewers of the previous version.
+		4. Add a static for rdiv[12] array in loongson_spi_set_clk.
+		5. Fixup the compile warning for spi HZ that reported by robot.
+		6. Use "#define LOONGSON_... BIT(0)" in readb_poll_timeout.
+		7. Add a error code return that when write spi failed.
+		8. Use spi_controller* instead of spi_master* in all cases.
+		9. Check for the error first which for clock gain.
+		10. Drop the ->remove() in spi pci driver.
+		11. Drop the comma for the terminator entry in pci_device_id.
+		12. Adjust the head file in spi driver.
+		13. Use forward declarations for device and spi_controller.
+Change in v13:
+		1. Reword the dt-bindings patch title.
+		2. Add the items for compatible with 2k500 in dts-bindings.
+		3. Add a bit changes in commit log.
+		4. Add a Reviewed-by for spi driver patch.
+		5. Rework the function loongson_spi_set_cs.
+		6. Use GENMASK() to replace some constant in function
+		   loongson_spi_set_clk.
+		7. Add or remove some blank lines.
+		8. Use LOONGSON_SPI_PARA_MEM_EN replace a constant in
+		   loongson_spi_prepare_message.
+		9. Use SPI_MODE_X_MASK to replace "SPI_CPOL | SPI_CPHA".
+		10. Use USEC_PER_MSEC to replace MSEC_PER_SEC.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 99 ++++++++++++++++++++++++++++++++-
- 1 file changed, 97 insertions(+), 2 deletions(-)
+Yinbo Zhu (2):
+  spi: dt-bindings: add loongson spi
+  spi: loongson: add bus driver for the loongson spi controller
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 8669d29144bb..792351c44b46 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -64,6 +64,7 @@ connector@0 {
- 			reg = <0>;
- 			power-role = "dual";
- 			data-role = "dual";
-+			orientation-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
- 
- 			ports {
- 				#address-cells = <1>;
-@@ -81,7 +82,15 @@ port@1 {
- 					reg = <1>;
- 
- 					pmic_glink_ss_in: endpoint {
--						remote-endpoint = <&usb_1_dwc3_ss>;
-+						remote-endpoint = <&redriver_ss_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					pmic_glink_sbu: endpoint {
-+						remote-endpoint = <&fsa4480_sbu_mux>;
- 					};
- 				};
- 			};
-@@ -420,6 +429,69 @@ vreg_l3g_1p2: ldo3 {
- 	};
- };
- 
-+&i2c_master_hub_0 {
-+	status = "okay";
-+};
-+
-+&i2c_hub_2 {
-+	status = "okay";
-+
-+	typec-retimer@1c {
-+		compatible = "onnn,nb7vpq904m";
-+		reg = <0x1c>;
-+
-+		vcc-supply = <&vreg_l15b_1p8>;
-+
-+		retimer-switch;
-+		orientation-switch;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				redriver_ss_out: endpoint {
-+					remote-endpoint = <&pmic_glink_ss_in>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				redriver_ss_in: endpoint {
-+					data-lanes = <3 2 1 0>;
-+					remote-endpoint = <&usb_dp_qmpphy_out>;
-+				};
-+			};
-+		};
-+	};
-+
-+	typec-mux@42 {
-+		compatible = "fcs,fsa4480";
-+		reg = <0x42>;
-+
-+		vcc-supply = <&vreg_bob1>;
-+
-+		mode-switch;
-+		orientation-switch;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				fsa4480_sbu_mux: endpoint {
-+					remote-endpoint = <&pmic_glink_sbu>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &gcc {
- 	clocks = <&bi_tcxo_div2>, <&sleep_clk>,
- 		 <&pcie0_phy>,
-@@ -471,6 +543,15 @@ &mdss_dsi0_phy {
- 	status = "okay";
- };
- 
-+&mdss_dp0 {
-+	status = "okay";
-+};
-+
-+&mdss_dp0_out {
-+	data-lanes = <0 1>;
-+	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-+};
-+
- &pcie_1_phy_aux_clk {
- 	status = "disabled";
- };
-@@ -650,7 +731,7 @@ &usb_1_dwc3_hs {
- };
- 
- &usb_1_dwc3_ss {
--	remote-endpoint = <&pmic_glink_ss_in>;
-+	remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
- };
- 
- &usb_1_hsphy {
-@@ -666,9 +747,23 @@ &usb_dp_qmpphy {
- 	vdda-phy-supply = <&vreg_l3e_1p2>;
- 	vdda-pll-supply = <&vreg_l3f_0p88>;
- 
-+	orientation-switch;
-+
- 	status = "okay";
- };
- 
-+&usb_dp_qmpphy_dp_in {
-+	remote-endpoint = <&mdss_dp0_out>;
-+};
-+
-+&usb_dp_qmpphy_out {
-+	remote-endpoint = <&redriver_ss_in>;
-+};
-+
-+&usb_dp_qmpphy_usb_ss_in {
-+	remote-endpoint = <&usb_1_dwc3_ss>;
-+};
-+
- &xo_board {
- 	clock-frequency = <76800000>;
- };
+ .../bindings/spi/loongson,ls2k-spi.yaml       |  46 +++
+ MAINTAINERS                                   |  10 +
+ drivers/spi/Kconfig                           |  26 ++
+ drivers/spi/Makefile                          |   3 +
+ drivers/spi/spi-loongson-core.c               | 279 ++++++++++++++++++
+ drivers/spi/spi-loongson-pci.c                |  55 ++++
+ drivers/spi/spi-loongson-plat.c               |  47 +++
+ drivers/spi/spi-loongson.h                    |  49 +++
+ 8 files changed, 515 insertions(+)
 
 -- 
-2.34.1
+2.20.1
 
