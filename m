@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 382C272DB9D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9C8872DBA2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238416AbjFMHxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 03:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48274 "EHLO
+        id S232476AbjFMHzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 03:55:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240477AbjFMHxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:53:08 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856E610E2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:53:06 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so6321708e87.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:53:06 -0700 (PDT)
+        with ESMTP id S238986AbjFMHzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:55:54 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B76DF10E2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:55:53 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-bcad7f7dabcso1530104276.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:55:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1686642785; x=1689234785;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vgyeJguriMnbfi6ZGlMYcKZf5qXmQ+PSixMOFCnWr5o=;
-        b=b45BvBaHfVrHpwlCQG0xJEFZLSXZmuinIWauD4liAPwvqwlxtST+/46UW3d68Bmw5H
-         nxpyN+K1CqzlUo8bbuFkuwbRvKOQwnzM7SfeCC4t66etVTpCQPlFhICoKujGsnzOipJy
-         JcHaePank2UOcvUNi4Mks+EOERkqv7E1NNmbU=
+        d=ventanamicro.com; s=google; t=1686642953; x=1689234953;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GqkMTpZSPTrtiBwrlg2HB9jORG0uNI2X+Q54yKxHyHA=;
+        b=X1lH0zTSm/2trYaS1XeQ55Q9hA/9/r0gKILDhIP3BM1V9j/9FcNnlTg8C6eqes6MhY
+         kEEujrjfs/bXMw2MXXaDIEhSffQ3ZxmyyehIWQMaGdQ83t9lijLU+cai3uaF5ZNQ3hJ1
+         U4h+mNKlmJ4enUA0b9qIy8BcA850nZF9q8DNphIsqHIDVsbimRdE1m2LdXqy6pRLVSor
+         CuNaeb3ZHWvaqWp2UlX8SxpNaeTb54BL1Y6A72HUI8F4MxEPteEgE7OxPWAGRl2KwREW
+         FSjlxEtmon50dMqJgkzch8RTCiRJz+wMgeMWSkqDFbH4doZHuoKH0L9GHXdRo8TV+x0S
+         4DDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686642785; x=1689234785;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vgyeJguriMnbfi6ZGlMYcKZf5qXmQ+PSixMOFCnWr5o=;
-        b=VbDzUaAXaDC5oPh4wWk7xGfYzEVOIwiVzoS5HM8W/J2vx4Cj4gmtomYr9V25wBooCw
-         kMk1LcD7pTuCWZ9Wn6PT1uwvt4GOZcGmP4cfWYWqUmXD7jMyVw0+BZ7hj79+ltl5lalB
-         gZRk/mJ35smWIegQuCkV8P/eqkrgzg45pY7Tq92BkpC6DJX/u1SD4pffuWDsjxsGktDQ
-         QDhAjvbb5jSTJYSrmCD/EPBpcKm+h7fVH2WU96B/PA/gX33Mlkn5YvlG0q5ZYXY2CI6+
-         i8szhEs7YUSx5u8bGfsXND+AB7PEAWDTCJLnp1n5G/nJe63KvWUFqVBMy3PQG32CqTOX
-         5b9Q==
-X-Gm-Message-State: AC+VfDz5PZr7wUEweI/xoE+M7J8oBcZe/WkmsyHDSQ6aFJA4ntFmSCyS
-        R7vyQE/HMJtw2gdRVzpXq1WSJA==
-X-Google-Smtp-Source: ACHHUZ4cmU5qIKk9gkk33Hw8hZ16K2xoa8udfINvmQgU9tU31tIbOR09K8fChJ3KJ9cbDrsYguMM9w==
-X-Received: by 2002:a19:6445:0:b0:4f3:9868:bee4 with SMTP id b5-20020a196445000000b004f39868bee4mr5611190lfj.32.1686642784801;
-        Tue, 13 Jun 2023 00:53:04 -0700 (PDT)
-Received: from [172.16.11.116] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id e15-20020ac2546f000000b004db0d26adb4sm1712054lfn.182.2023.06.13.00.53.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 00:53:04 -0700 (PDT)
-Message-ID: <c7a2d554-5cb2-5b99-bb6d-855a320deb1b@rasmusvillemoes.dk>
-Date:   Tue, 13 Jun 2023 09:53:03 +0200
+        d=1e100.net; s=20221208; t=1686642953; x=1689234953;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GqkMTpZSPTrtiBwrlg2HB9jORG0uNI2X+Q54yKxHyHA=;
+        b=gDY/Zphl9cZ7ZaCJX7hjV8S6UrPQUZvESan3r4PV+/3YxJ9olaMZxyId6WDZhOPsR5
+         dxROJKkAD23j8/zozZ6hv8qj+AKhmzCy1U7ttKKHKzbDQzHFtsegZxFiibJK3qv9Qw82
+         HsV5+XxTsEGBuUc3ZAED96e/JhjC8tQiPs52+v3xSbPC5QmnkWoUngLrDbUfNsCCzjoR
+         ZCfgaCMMMvRSL9FrYBtQoTv3rx+eNazv/uufYSWry2DafEnfCPBBIsXA8GytdkTuPUQj
+         Hknggw+h6M6SaUh8Q5o694mdoNnWUyzIgnc7LwdseuCXBd1U8JjCnNnWrc5a33N+P1rH
+         j6aA==
+X-Gm-Message-State: AC+VfDwcIpzmteWGGqRXRA1imwvuKIFHIdHcWvt+BZ9D4hKmaEHaqUFK
+        BtA+BmkBmSlR+0rksMpztgG5G8AY8xK7l2lVw6lq4w==
+X-Google-Smtp-Source: ACHHUZ7O4IuL4c5Qy6TEcv499ftciQaYRXdKcvbuS5ivN5I0ThoFAm05aH64SAu17/J52IMOAeGVAiqoO7kjJSXAUJs=
+X-Received: by 2002:a0d:fd83:0:b0:56d:4014:dd20 with SMTP id
+ n125-20020a0dfd83000000b0056d4014dd20mr982407ywf.30.1686642952928; Tue, 13
+ Jun 2023 00:55:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 5/8] rtc: isl12022: implement RTC_VL_READ and RTC_VL_CLR
- ioctls
-Content-Language: en-US, da
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+References: <20230508142842.854564-1-apatel@ventanamicro.com>
+ <20230508142842.854564-8-apatel@ventanamicro.com> <ZGIrOKIT8uHcNqbQ@nvidia.com>
+In-Reply-To: <ZGIrOKIT8uHcNqbQ@nvidia.com>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Tue, 13 Jun 2023 13:25:41 +0530
+Message-ID: <CAK9=C2V9o4FsFXAfRHLGSuJaDubwM_HSL7keTYeWb_vFDNLd7g@mail.gmail.com>
+Subject: Re: [PATCH v3 07/11] irqchip/riscv-imsic: Improve IOMMU DMA support
+To:     Jason Gunthorpe <jgg@nvidia.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230612113059.247275-6-linux@rasmusvillemoes.dk>
- <ZIc+YdUPIAt6L4fi@smile.fi.intel.com> <202306121610404abc8cbc@mail.local>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <202306121610404abc8cbc@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        Vincent Chen <vincent.chen@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,43 +82,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2023 18.10, Alexandre Belloni wrote:
-> On 12/06/2023 18:48:49+0300, Andy Shevchenko wrote:
->> On Mon, Jun 12, 2023 at 01:30:55PM +0200, Rasmus Villemoes wrote:
->>> Hook up support for reading the values of the SR_LBAT85 and SR_LBAT75
->>> bits. Translate the former to "battery low", and the latter to
->>> "battery empty or not-present".
->>
->> ...
->>
->>> +static int isl12022_read_sr(struct regmap *regmap)
->>> +{
->>> +	int ret;
->>> +	u32 val;
->>> +
->>> +	ret = regmap_read(regmap, ISL12022_REG_SR, &val);
->>> +	if (ret < 0)
->>> +		return ret;
->>> +	return val;
->>
->> Wondering if the bit 31 is in use with this register (note, I haven't checked
->> the register width nor datasheet).
->>
-> 
-> register width is in the driver:
-> 
-> static const struct regmap_config regmap_config = {
-> 	.reg_bits = 8,
-> 	.val_bits = 8,
-> 	.use_single_write = true,
-> };
+On Mon, May 15, 2023 at 6:23=E2=80=AFPM Jason Gunthorpe <jgg@nvidia.com> wr=
+ote:
+>
+> On Mon, May 08, 2023 at 07:58:38PM +0530, Anup Patel wrote:
+> > We have a separate RISC-V IMSIC MSI address for each CPU so changing
+> > MSI (or IRQ) affinity results in re-programming of MSI address in
+> > the PCIe (or platform) device.
+> >
+> > Currently, the iommu_dma_prepare_msi() is called only once at the
+> > time of IRQ allocation so IOMMU DMA domain will only have mapping
+> > for one MSI page. This means iommu_dma_compose_msi_msg() called
+> > by imsic_irq_compose_msi_msg() will always use the same MSI page
+> > irrespective to target CPU MSI address. In other words, changing
+> > MSI (or IRQ) affinity for device using IOMMU DMA domain will not
+> > work.
+> >
+> > To address above issue, we do the following:
+> > 1) Map MSI pages for all CPUs in imsic_irq_domain_alloc()
+> >    using iommu_dma_prepare_msi().
+> > 2) Add a new iommu_dma_select_msi() API to select a specific
+> >    MSI page from a set of already mapped MSI pages.
+> > 3) Use iommu_dma_select_msi() to select a specific MSI page
+> >    before calling iommu_dma_compose_msi_msg() in
+> >    imsic_irq_compose_msi_msg().
+>
+> Is there an iommu driver somewhere in all this? I don't obviously see
+> one?
 
-Yeah.
+Sorry for the delayed response.
 
-But I only factored that out because I wanted to read the SR also in the
-isl12022_set_trip_levels() to emit the warning at boot time, but when
-that goes away, there's no longer any reason to not just fold this back
-into the ioctl() handler.
+The RISC-V IOMMU specification is frozen and will be ratified/released
+anytime this month or next.
+https://github.com/riscv-non-isa/riscv-iommu/releases/download/v1.0-rc6/ris=
+cv-iommu.pdf
 
-Rasmus
+The RISC-V IOMMU driver will be send-out on LKML pretty soon
+https://github.com/tjeznach/linux/tree/tjeznach/riscv-iommu
+which can be tested on QEMU
+https://github.com/tjeznach/qemu/tree/tjeznach/riscv-iommu
 
+>
+> There should be no reason to use the dma-iommu.c stuff just to make
+> interrupts work, that is only necessary if there is an iommu, and the
+> platform architecture requires the iommu to have the MSI region
+> programmed into IOPTEs.
+>
+> And I'd be much happier if we could clean this design up before risc-v
+> starts using it too :\
+>
+
+Sure, I will send-out v4 in the next few days.
+
+Regards,
+Anup
