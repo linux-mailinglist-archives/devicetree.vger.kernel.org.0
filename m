@@ -2,131 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E752272E6E2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 17:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C338972E6FA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 17:21:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239831AbjFMPSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 11:18:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S239617AbjFMPVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 11:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239617AbjFMPSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 11:18:18 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 457A710DA;
-        Tue, 13 Jun 2023 08:18:17 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-77af8476cd4so138365439f.1;
-        Tue, 13 Jun 2023 08:18:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686669496; x=1689261496;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oWDvuSYvyO0yT5XAM5g7LXE8j9cOzjQQlkcaunrDQec=;
-        b=JcojDTMG4Hgl+0fqpSG+UbOG/igey+m74D4NiHBMKc4VtvxzfZbvVZjzkVbDLv/mbG
-         aLYQoZIJrBSAlPm+UMeGSH3oYmKgOk0HU1JiYWEOgo5jBU2DRbIIku00YhS8JL+CCwM9
-         rkVQUTFXb9pWEZVRYgozZaxaWseZ2KJ9/HNrRqs3/f12O4UlYVjYlLMLe6nrAWAkkOPY
-         osVFSNJmfy/1lMH2iMZcqftDlsCblz9UG+kfxvKs5NyOy+1LShmi7CaluqwVrUA5UOXd
-         fLdJfPCkbAbHr41jlBCFo6G4/uklWuMhMnvaWGdJAG98n31hx1e0Se0lHOxfM1Go2yT/
-         y7dg==
-X-Gm-Message-State: AC+VfDx6qjpkYFEDNsmmX0k0Wc1ddqMraXvKyxkE+UVL5sS9Mtq4+Ei/
-        gV6OfSe3yXZhgnUI/zpqLg==
-X-Google-Smtp-Source: ACHHUZ52Cxir7VJt6AIP+N64lio1+ph206iUWkcaMQgfylkK4ArSxPjxdBB+C1xvzowTLCXV4c/Wkg==
-X-Received: by 2002:a5e:db0d:0:b0:77a:d862:242f with SMTP id q13-20020a5edb0d000000b0077ad862242fmr10727914iop.21.1686669496452;
-        Tue, 13 Jun 2023 08:18:16 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id x12-20020a02970c000000b0041f5a0b7f9bsm3524235jai.108.2023.06.13.08.18.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 08:18:15 -0700 (PDT)
-Received: (nullmailer pid 2136982 invoked by uid 1000);
-        Tue, 13 Jun 2023 15:18:14 -0000
-Date:   Tue, 13 Jun 2023 09:18:14 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S234367AbjFMPVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 11:21:02 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A794199A;
+        Tue, 13 Jun 2023 08:21:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686669662; x=1718205662;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=plNmqEkqncOE/3uGn703aXGX7ZUQBL5FWEgWSiyApfI=;
+  b=O0dpH6xIz/XCyfM3PxwfCzMhuFzKOIPErkS8ijCMMZeCHP1O5ZoQAnYN
+   Lyy+bjVUo/mrhFKqtIcZGLeXYZxvBzbcSDbPx2MC11HdFcjiYrZZjNIg4
+   RNvQzcmPqdqvAUSIHCmjZjy6UAQaBro5ngPqFHeE/CpwUmwgIN937Clb+
+   IdVwnC6JjE+x/LrBLU2ZVMTJVCV+CL0Su0z4ZgNqbqdXQ30JdNJvS8Xe+
+   CGGVpn9jZoHAnGVMdU+vDP0951MOHLxenzXmOqEwkN8byyU3fsx0Hw3ZY
+   9f6niiNWiq8fajeJwVYj5kIxrB5z5qkZa57rnJXfwepAbF8uXoRbOk+/F
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="348021136"
+X-IronPort-AV: E=Sophos;i="6.00,240,1681196400"; 
+   d="scan'208";a="348021136"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2023 08:21:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="711699337"
+X-IronPort-AV: E=Sophos;i="6.00,240,1681196400"; 
+   d="scan'208";a="711699337"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 13 Jun 2023 08:20:58 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1q95pI-003UAE-1G;
+        Tue, 13 Jun 2023 18:20:56 +0300
+Date:   Tue, 13 Jun 2023 18:20:56 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.4, part 3
-Message-ID: <20230613151814.GA2133279-robh@kernel.org>
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/8] rtc: isl12022: implement RTC_VL_READ ioctl
+Message-ID: <ZIiJWKBFojAcNCkA@smile.fi.intel.com>
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-6-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230613130011.305589-6-linux@rasmusvillemoes.dk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+On Tue, Jun 13, 2023 at 03:00:07PM +0200, Rasmus Villemoes wrote:
+> Hook up support for reading the values of the SR_LBAT85 and SR_LBAT75
+> bits. Translate the former to "battery low", and the latter to
+> "battery empty or not-present".
 
-Please pull a few DT fixes for 6.4.
+A couple of nit-picks below.
 
-Rob
+...
 
-The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
+> +static int isl12022_rtc_ioctl(struct device *dev, unsigned int cmd, unsigned long arg)
+> +{
+> +	struct regmap *regmap = dev_get_drvdata(dev);
+> +	u32 user = 0, val;
 
-  Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
+This assignment can be done in the actual case below.
 
-are available in the Git repository at:
+> +	int ret;
+> +
+> +	switch (cmd) {
+> +	case RTC_VL_READ:
+> +		ret = regmap_read(regmap, ISL12022_REG_SR, &val);
+> +		if (ret < 0)
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.4-3
+I always feel uneasy with ' < 0' — Does positive error makes sense?
+Is it even possible? OTOH if the entire driver uses this idiom...
+oh well, let's make it consistent.
 
-for you to fetch changes up to c7753ed71c160f75f92ff5679e9fc22526e56fc5:
+> +			return ret;
 
-  dt-bindings: pinctrl: qcom,pmic-mpp: Fix schema for "qcom,paired" (2023-06-13 07:58:47 -0600)
+		user = 0;
 
-----------------------------------------------------------------
-Devicetree fixes for v6.4, part 3:
+The rationale to avoid potential mistakes in the future in case this function
+will be expanded and user will be re-used.
 
-- Fix missing of_node_put() in init_overlay_changeset()
+> +		if (val & ISL12022_SR_LBAT85)
+> +			user |= RTC_VL_BACKUP_LOW;
+> +
+> +		if (val & ISL12022_SR_LBAT75)
+> +			user |= RTC_VL_BACKUP_EMPTY;
+> +
+> +		return put_user(user, (u32 __user *)arg);
+> +
+> +	default:
+> +		return -ENOIOCTLCMD;
+> +	}
+> +}
 
-- Fix schema for qcom,pmic-mpp "qcom,paired" property
+-- 
+With Best Regards,
+Andy Shevchenko
 
-- Fix 'additionalProperties' in silvaco,i3c-master binding
 
-- usage-model.rst: Use documented "arm,primecell" compatible string
-
-- Update Damien Le Moal's email address
-
-- Fixes in Realtek Bluetooth binding
-
-----------------------------------------------------------------
-Baruch Siach (2):
-      docs: dt: fix documented Primecell compatible string
-      docs: zh_CN/devicetree: sync usage-model fix
-
-Chris Morgan (1):
-      dt-bindings: net: realtek-bluetooth: Fix RTL8821CS binding
-
-Damien Le Moal (1):
-      dt-bindings: Change Damien Le Moal's contact email
-
-Diederik de Haas (1):
-      dt-bindings: net: realtek-bluetooth: Fix double RTL8723CS in desc
-
-Krzysztof Kozlowski (1):
-      dt-bindings: i3c: silvaco,i3c-master: fix missing schema restriction
-
-Kunihiko Hayashi (1):
-      of: overlay: Fix missing of_node_put() in error case of init_overlay_changeset()
-
-Rob Herring (1):
-      dt-bindings: pinctrl: qcom,pmic-mpp: Fix schema for "qcom,paired"
-
- Documentation/devicetree/bindings/ata/ahci-common.yaml           | 2 +-
- Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml     | 2 +-
- Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml    | 2 +-
- Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml    | 2 +-
- Documentation/devicetree/bindings/net/realtek-bluetooth.yaml     | 4 ++--
- Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml | 2 +-
- Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml     | 5 +++--
- Documentation/devicetree/bindings/reset/canaan,k210-rst.yaml     | 2 +-
- Documentation/devicetree/bindings/riscv/canaan.yaml              | 2 +-
- Documentation/devicetree/usage-model.rst                         | 2 +-
- Documentation/translations/zh_CN/devicetree/usage-model.rst      | 2 +-
- drivers/of/overlay.c                                             | 1 +
- 12 files changed, 15 insertions(+), 13 deletions(-)
