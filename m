@@ -2,55 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A1D72ED60
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 22:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ACAA72ED6B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 22:57:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232775AbjFMUym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 16:54:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51526 "EHLO
+        id S230229AbjFMU5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 16:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232514AbjFMUyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 16:54:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B95DD1701;
-        Tue, 13 Jun 2023 13:54:40 -0700 (PDT)
+        with ESMTP id S229472AbjFMU5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 16:57:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 277401713;
+        Tue, 13 Jun 2023 13:57:48 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 721A963ADB;
-        Tue, 13 Jun 2023 20:54:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26D11C433C0;
-        Tue, 13 Jun 2023 20:54:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B099C63ADB;
+        Tue, 13 Jun 2023 20:57:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C154C433C0;
+        Tue, 13 Jun 2023 20:57:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686689678;
-        bh=V+7wvrdAGdJCiaLWAv9usWBEYbulbrunmsViGawNtJ4=;
+        s=k20201202; t=1686689867;
+        bh=16rG3Y0vOlpHVgnmwY42ppaSUcT2KRuT590yu9eCc0I=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BX1JvrG4+ZrfgGyZWqmyBYZ3w+8Xfdpt+OP/iZcXJyB2uhGeGgpJmn58vZDK+bN+m
-         k+qUGEzq2fEBMzNSGypyUbeWCSI992VgzW++7n1owD9hUDkyp56Nq2vTI9ChP5/lLe
-         GKYVmVhRajnWMBo+lo4jt8PuSrWaGkFWQ/nzZkTleRzozeamMcBQM+soOcUyTwuOe5
-         fzCYsRPj3xPuigrIR1dIFLM4gUnpXP5yT2q24bhLnj6xeeAm6m8+24V9VF7XXD7Ki+
-         GL+GGCLqRUeYVuOw/n/89XHFhiAOzcdwPpB0rDJTTmgHE9x1r8lS8vTOd5bwyhW0cx
-         dimMqPXQnVFyA==
-Date:   Tue, 13 Jun 2023 21:54:34 +0100
+        b=EQUWBXsi0EP8QFDoW1PhOPTaNCzUaa2ygBgSHBdDJakb+67u6JKik08mC/OIv4IkZ
+         fM/D2m710nuqtuEOeGtfpDDUT2E11TRRGLqeO/VaEmnXnq8kpr0FLePxmFcF+tcD7N
+         ZSqj8Ke0Om6QowL4BxL/qmLt1SPlRymOoCvkLBO425Yn7g70EqAoDRGmfzfqNKPfZN
+         uwv3P/7H+q2GyuoGt8jhrP0TRp1qks825yCdM8PDD7fn4FN2ljl+nwyBLhJamx00KY
+         pEz7y4aP8iGZsQ/iaVsiiQbYHlVn4tfUXSDAUb+8c6qxv9EJF0A6ttxoNYDVuu5Qja
+         q/Z+8pz1DQXhg==
+Date:   Tue, 13 Jun 2023 21:57:42 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Peter Korsgaard <peter@korsgaard.com>,
-        Andrew Lunn <andrew@lunn.ch>,
+Cc:     Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+        Neeraj Kale <neeraj.sanjaykale@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: opencores: Add missing type for
- "regstep"
-Message-ID: <20230613-rinse-scrounger-fccd2fb1dab5@spud>
-References: <20230613201105.2824399-1-robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: bluetooth: nxp: Add missing type for
+ "fw-init-baudrate"
+Message-ID: <20230613-underfed-divinity-6b0736a99845@spud>
+References: <20230613200929.2822137-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="CZQK5/nX+1xRYy/Q"
+        protocol="application/pgp-signature"; boundary="gTLLYxVJbP1O93MX"
 Content-Disposition: inline
-In-Reply-To: <20230613201105.2824399-1-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230613200929.2822137-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,49 +64,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---CZQK5/nX+1xRYy/Q
+--gTLLYxVJbP1O93MX
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 13, 2023 at 02:11:04PM -0600, Rob Herring wrote:
-> "regstep" may be deprecated, but it still needs a type.
-
-Mea culpa!
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
+On Tue, Jun 13, 2023 at 02:09:29PM -0600, Rob Herring wrote:
+> "fw-init-baudrate" is missing a type, add it. While we're here, define the
+> default value with a schema rather than freeform text.
 >=20
 > Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/i2c/opencores,i2c-ocores.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/i2c/opencores,i2c-ocores.y=
-aml b/Documentation/devicetree/bindings/i2c/opencores,i2c-ocores.yaml
-> index 85d9efb743ee..d9ef86729011 100644
-> --- a/Documentation/devicetree/bindings/i2c/opencores,i2c-ocores.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/opencores,i2c-ocores.yaml
-> @@ -60,6 +60,7 @@ properties:
->      default: 0
-> =20
->    regstep:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
->      description: |
->        deprecated, use reg-shift above
->      deprecated: true
-> --=20
-> 2.39.2
->=20
 
---CZQK5/nX+1xRYy/Q
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--gTLLYxVJbP1O93MX
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIjXigAKCRB4tDGHoIJi
-0nhtAQD6qoeZtlATQKrd5zF9/Fi0JB5tkeBpuicmd22dJWAEqQD/RlwLecKLe2hM
-i9EJ/1K1v112DNTCBZKkKxqpwcRnfQA=
-=eShX
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIjYRgAKCRB4tDGHoIJi
+0irFAQCaXswTCJpW35F1LAkKLWwzD5HgwW1DCUp81fSoIGrZogEA6eyHcuhFLmsy
+j5XMZ+mgGcqayNc3lJcyVY47JCgfPgI=
+=RTuu
 -----END PGP SIGNATURE-----
 
---CZQK5/nX+1xRYy/Q--
+--gTLLYxVJbP1O93MX--
