@@ -2,87 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D27372DD47
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:06:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9688F72DD85
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:19:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241213AbjFMJGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 05:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36808 "EHLO
+        id S241857AbjFMJTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 05:19:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241388AbjFMJGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:06:50 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5081B8
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:06:47 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f65779894eso5298809e87.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:06:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686647205; x=1689239205;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k24Lafsnyyipy4bbdfe0wwTh9zApI1J6ii/T/AgJk2Q=;
-        b=yTGx/fLt7Qp+oiLbviwb5H1L4TejgbG24LlseJOOnCI2aStf8k0cLLLpVtodVKwS0T
-         9FQLyrjzjaVZYZk5LI2d89M23GMQKO7LVe3zUYzTOCpkhkYHsHKAJHTAYREU0vFUljE6
-         h4YVyAhT6S+q50CEbnhQ9M5n5Rsx2zK7PjOJlcp5ZdgkHhwDBu0M8/C3pctIHKJRo3Dl
-         ql/8HnWA+ShqpJdHXS7BbXFPjBYvSXsmaLphcMLCOKaDz8kcbtgQZj5OCSM9OgB7RvoO
-         PB6MA5ztb82/vtjXFwYiUR8VSs0UTz5NbV+G9VE0iTqPkDUldQS4qwA2Iygv5w0DIh2H
-         jMzw==
+        with ESMTP id S241860AbjFMJS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:18:57 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8980E7A;
+        Tue, 13 Jun 2023 02:18:52 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-34070ecad56so1286555ab.3;
+        Tue, 13 Jun 2023 02:18:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686647205; x=1689239205;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k24Lafsnyyipy4bbdfe0wwTh9zApI1J6ii/T/AgJk2Q=;
-        b=l7zO18e8MPc0ty7LjQoTGVnXKZyUkcrJ3uVr+cTPpDHA4CUp6U1wFyhWNEV9n6X5eH
-         5gtgoul8QX35sLEPS6r4NbK28MQ3PaNQz2p69X6BJsuv+3X4953LEIhte2lX/SWmHuoT
-         KPgCQGQ141RVOWcNiHY1UngJCW2KxpHuemz736bubBUf044yzkJJuU/vEHPt1mENp43k
-         sZkXKdnjSXA50MagtPJBgzCCp5WCtCtu3+gF/NeWWmjWaDr4werJuxNMG4YqQlTkWi34
-         mRuVPCw/NFT+vgOhihupfWKYJOZaX4frBeyJHt3QQdEqLnfFZsmjsUGMj0ywdva2PvAL
-         1Ncg==
-X-Gm-Message-State: AC+VfDzq6llQ+ilgohvjjbNBSaNgX/GWyAC37tH93AFr/YfDF5WfbAz1
-        GBOYPqgSyMx4WzmFXO795UXmMEhNP0UoalPnMc0=
-X-Google-Smtp-Source: ACHHUZ4kGtn5iyYh44KfD7k/afWcN7Di/N0xVMwtASdAptlWTKfnyJmL3XYi3+US9VxHmcWPg9rrFA==
-X-Received: by 2002:a2e:81ca:0:b0:295:d7a8:559b with SMTP id s10-20020a2e81ca000000b00295d7a8559bmr3237895ljg.10.1686647205174;
-        Tue, 13 Jun 2023 02:06:45 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id r10-20020a2e94ca000000b002b0488ef239sm2067426ljh.93.2023.06.13.02.06.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 02:06:44 -0700 (PDT)
-Message-ID: <d90b350f-0068-4ce1-014d-0c35f26abe54@linaro.org>
-Date:   Tue, 13 Jun 2023 11:06:43 +0200
+        d=1e100.net; s=20221208; t=1686647932; x=1689239932;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3l7i3ti7Ci+JAIfrqJMPuqYwSi/QpzUEyhd2W9zcJMQ=;
+        b=JyWKeYjNesxCe+GqlqmLhu0yPTy/nVq0C/yWInnI6Jv5V47A4poldt/7JNaY1tVuSa
+         4U6ZzQLDtaDxfO6DcSeBraMHzlM12TFQiuAQFObpbZ8/GBu3IHbr6SkahsD+FPOeCqrh
+         iYChh8JY0MG1zTJTd8zoP+5e6kI1X/y6mvkaQx2Ppgu8IQ1ByTJHET3J10/fV0zZ0S9k
+         w2X6f2jsIY3uDt/WEOIvOxX7CRb6g7ckK9B0JISiAa6AWhw+3F0nXLiENxc++WRKCgGk
+         BnX4BxcnJTNeaqi0fP72odO/EkUOycR/3C/sDTGugstdmA/un+TxIKDCHs4h3SnSqvH9
+         dixQ==
+X-Gm-Message-State: AC+VfDw5FUVBsArkGKhZvSwfte77YRfIWiWgXv3YNbIbc21nVmr27RZU
+        EI2R006P+aaONzjvp+5M8w==
+X-Google-Smtp-Source: ACHHUZ4UEbo3jcsK6QJZwFJIadLOuNXhsYrmCm2eEJADv3BGbeK/HQpFbgZyJG8xnpy45roW1OQ7aQ==
+X-Received: by 2002:a92:cb42:0:b0:331:3b07:56e2 with SMTP id f2-20020a92cb42000000b003313b0756e2mr9377465ilq.31.1686647931922;
+        Tue, 13 Jun 2023 02:18:51 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id v5-20020a92d245000000b0032957b21c26sm3711047ilg.77.2023.06.13.02.18.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 02:18:51 -0700 (PDT)
+Received: (nullmailer pid 1147154 invoked by uid 1000);
+        Tue, 13 Jun 2023 09:18:49 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 20/23] interconnect: qcom: icc-rpm: Fix bucket number
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20230526-topic-smd_icc-v3-0-5fb7d39b874f@linaro.org>
- <20230526-topic-smd_icc-v3-20-5fb7d39b874f@linaro.org>
- <ZIeGrCj2bk2nVvIc@gerhold.net>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZIeGrCj2bk2nVvIc@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230613080552.4492-2-okan.sahin@analog.com>
+References: <20230613080552.4492-1-okan.sahin@analog.com>
+ <20230613080552.4492-2-okan.sahin@analog.com>
+Message-Id: <168664792963.1147059.8156399408819922296.robh@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: regulator: max77857: Add ADI
+ MAX77831/MAX77831 Regulator
+Date:   Tue, 13 Jun 2023 03:18:49 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,51 +70,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 12.06.2023 22:57, Stephan Gerhold wrote:
-> On Mon, Jun 12, 2023 at 08:24:37PM +0200, Konrad Dybcio wrote:
->> SMD RPM only provides two buckets, one each for the active-only and
->> active-sleep RPM contexts. Use the correct constant to allocate and
->> operate on them.
->>
->> This will make the qcom,icc.h header no longer work with this driver,
->> mostly because.. it was never meant to! The commit that introduced
->> bucket support to SMD RPM was trying to shove a square into a round
->> hole and it did not work out very well. That said, there are no
->> active users of SMD RPM ICC + qcom,icc.h, so that doesn't hurt.
->>
->> Fixes: dcbce7b0a79c ("interconnect: qcom: icc-rpm: Support multiple buckets")
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/interconnect/qcom/icc-rpm.c | 14 +++++++-------
->>  drivers/interconnect/qcom/icc-rpm.h |  4 ++--
->>  2 files changed, 9 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qcom/icc-rpm.c
->> index 5ffcf5ca8914..54a9999fe55d 100644
->> --- a/drivers/interconnect/qcom/icc-rpm.c
->> +++ b/drivers/interconnect/qcom/icc-rpm.c
->> @@ -249,7 +249,7 @@ static void qcom_icc_pre_bw_aggregate(struct icc_node *node)
->>  	size_t i;
->>  
->>  	qn = node->data;
->> -	for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
->> +	for (i = 0; i < QCOM_SMD_RPM_STATE_NUM; i++) {
->>  		qn->sum_avg[i] = 0;
->>  		qn->max_peak[i] = 0;
->>  	}
->> @@ -275,7 +275,7 @@ static int qcom_icc_bw_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
->>  	if (!tag)
->>  		tag = QCOM_ICC_TAG_ALWAYS;
+On Tue, 13 Jun 2023 11:05:49 +0300, Okan Sahin wrote:
+> Add ADI MAX77857 and MAX77831 Regulator device tree document.
 > 
-> We should replace this with the RPM variant. Also, can you check which
-> header/file still includes qcom,icc.h? Don't think we should have it
-> included at all for RPM so that referencing the wrong things cannot
-> happen.
-Nice catch
-
-Konrad
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
+> ---
+>  .../bindings/regulator/adi,max77857.yaml      | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77857.yaml
 > 
-> Thanks,
-> Stephan
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml: $defs:qcom-pmic-mpp-state:properties:qcom,paired: [{'description': 'Indicates that the pin should be operating in paired mode.'}] is not of type 'object', 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230613080552.4492-2-okan.sahin@analog.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
