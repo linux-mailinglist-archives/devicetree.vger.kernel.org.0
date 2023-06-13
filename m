@@ -2,119 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3156472DD27
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD5E72DD2D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239462AbjFMJAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 05:00:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34082 "EHLO
+        id S239528AbjFMJCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 05:02:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239359AbjFMJAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:00:24 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B691BA;
-        Tue, 13 Jun 2023 02:00:22 -0700 (PDT)
-X-GND-Sasl: alexandre.belloni@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686646821;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IfOv7/EV35Molg1/s6J6mIgsThkcvsrNOtCmAlFGMPY=;
-        b=lD0FxXFsd1w8xrvQIJn5rtZHl3FQr7DkHE4vzxbtfWU/4zIx5EJL+t1kFH4Eqm4Evd9Nnr
-        70gMt/T011gpdAhWldpLaYKyXczoAXcexULsD9laCCEqWbguGT/NvImQBPMvWvY2QbkG6h
-        ovaigvzwBRF/MiIkSou1Br+cvXvSW1Om982GjIJ2S4iZxhxJ6O2hnYO64k4+npNLIJOSCm
-        hKZKPJRxPdaA/GLZ4PhL9mjjefnBpgiBuOvQvN3KK4ph4+mYiUHaCLNFBkYVtchC6A4SQE
-        ZWiNufyxpKP/nK8efLiXc5OXVHCuojuk9/vFeMTBwK6a3cAZ9Q47GOVjxwzVqg==
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 76026E0016;
-        Tue, 13 Jun 2023 09:00:20 +0000 (UTC)
-Date:   Tue, 13 Jun 2023 11:00:20 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/8] rtc: isl12022: implement RTC_VL_READ and RTC_VL_CLR
- ioctls
-Message-ID: <20230613090020b5405b61@mail.local>
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230612113059.247275-6-linux@rasmusvillemoes.dk>
- <ZIc+YdUPIAt6L4fi@smile.fi.intel.com>
- <202306121610404abc8cbc@mail.local>
- <c7a2d554-5cb2-5b99-bb6d-855a320deb1b@rasmusvillemoes.dk>
+        with ESMTP id S239121AbjFMJCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:02:10 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FEFC1AD
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:02:08 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5169f614977so9123646a12.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:02:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686646927; x=1689238927;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OzEfUin2MVF46i22qIi9tbZhydZS19+jfsJuN4LpO/g=;
+        b=ODYI3wxpO3HixCRP2frPjqwnfJgRWGk7GFxbW8XuI0pjsZjoLeWd0z1G5BvJ+I7+JL
+         n8ZVETj1JHhGMktsnvstHwvO57nZ3cG0SjF9ICovIcLsX+wkdOmZ8DgmnOyI/Dt8a/nQ
+         hfDJT79Amt6M0KXz6aEQsCGSYlPnX80va/05Lv9zgH0sCS/pta9RiS+yiDBlFHdmw3bm
+         0hwFYL8Lt/gbRd3/2HqYQbBMZ/IyjC7alh8/RshZPLl30pg3ZfOqkRvAIcjqd5EWwvpR
+         iTKssaMWwrGlpysA/ENAeFInyW3UPlfwmac2PPTC2fvsdH4OfQWVElneBDWsDBIWjchN
+         dVJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686646927; x=1689238927;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OzEfUin2MVF46i22qIi9tbZhydZS19+jfsJuN4LpO/g=;
+        b=iMqbpHwz4f7XyQriZlkp1CbWzoFCErTXXJseDXUOtZypJEUcwoiqEvLqgdu5+H/gA1
+         8A8p2ICAjPyd0fpOy7j/Kiga0fgcbQAejZQm8onzVT0YKr3WWZ3kShLhs/qsyduFQcxv
+         yj/P4O+ggiWVVEYjrbaNqr6WpQf2dGf+I9tBxOdhfTsPqBApMKFdCk7ODNYyUQDYVtNu
+         ZOSRzR0lYp4rZDO/SeAaq8DsD+Y3f1dPX38N4qk+MELwrt4T0xuTsFR67hN6o2CHv1fb
+         ZhFU6EQFR1tfHHZgXel9eYP83eKCv8c7cAqnQPqBFChItLcr7WfMVWt2I4d38xG64W69
+         kTOA==
+X-Gm-Message-State: AC+VfDzAjoPSNRWWchVdDHxuFnpfO0FAJC4PvmKSTyWCHxIribTCW17C
+        yqsvJ3GTJZ5b6RQGj4UOlYi8LA==
+X-Google-Smtp-Source: ACHHUZ7okwi/2iEWLqfIUdBxfgLqtlIDCd+KsF1Wji070WQCUC/NtGOsQ/n7XH77XbzKPgQwPgJJYQ==
+X-Received: by 2002:aa7:c3c2:0:b0:516:7928:ed70 with SMTP id l2-20020aa7c3c2000000b005167928ed70mr6862259edr.3.1686646927124;
+        Tue, 13 Jun 2023 02:02:07 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id u11-20020aa7d0cb000000b00514a97b6b80sm6137998edo.78.2023.06.13.02.02.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 02:02:06 -0700 (PDT)
+Message-ID: <9abec6ec-1995-8e20-8926-f57969341932@linaro.org>
+Date:   Tue, 13 Jun 2023 11:02:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c7a2d554-5cb2-5b99-bb6d-855a320deb1b@rasmusvillemoes.dk>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 1/8] dt-bindings: connector: usb-connector: add a gpio
+ used to determine the Type-C port plug orientation
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
+ <20230601-topic-sm8550-upstream-type-c-v3-1-22c9973012b6@linaro.org>
+ <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
+ <cfa788c3-be57-5109-73df-b82099dd17a0@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <cfa788c3-be57-5109-73df-b82099dd17a0@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 09:53:03+0200, Rasmus Villemoes wrote:
-> On 12/06/2023 18.10, Alexandre Belloni wrote:
-> > On 12/06/2023 18:48:49+0300, Andy Shevchenko wrote:
-> >> On Mon, Jun 12, 2023 at 01:30:55PM +0200, Rasmus Villemoes wrote:
-> >>> Hook up support for reading the values of the SR_LBAT85 and SR_LBAT75
-> >>> bits. Translate the former to "battery low", and the latter to
-> >>> "battery empty or not-present".
-> >>
-> >> ...
-> >>
-> >>> +static int isl12022_read_sr(struct regmap *regmap)
-> >>> +{
-> >>> +	int ret;
-> >>> +	u32 val;
-> >>> +
-> >>> +	ret = regmap_read(regmap, ISL12022_REG_SR, &val);
-> >>> +	if (ret < 0)
-> >>> +		return ret;
-> >>> +	return val;
-> >>
-> >> Wondering if the bit 31 is in use with this register (note, I haven't checked
-> >> the register width nor datasheet).
-> >>
-> > 
-> > register width is in the driver:
-> > 
-> > static const struct regmap_config regmap_config = {
-> > 	.reg_bits = 8,
-> > 	.val_bits = 8,
-> > 	.use_single_write = true,
-> > };
+On 13/06/2023 10:54, Neil Armstrong wrote:
+> On 13/06/2023 10:13, Krzysztof Kozlowski wrote:
+>> On 13/06/2023 09:55, Neil Armstrong wrote:
+>>> On some platforms, the Type-C plug orientation is given on a GPIO line.
+>>>
+>>> Document this optional Type-C connector property, and take the
+>>> assumption an active level represents an inverted/flipped orientation.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Rob had here objections as these are bindings for the connector, not
+>> PMIC glink/altmode. I still doubt that Qualcomm USB Type-C connectors
+>> have such pin exposed. If you open the schematics, the GPIO is actually
+>> coming out from PMIC and is nowhere around the connector. Please drop my
+>> Ack.
+>>
+>> This however could be a pin of the PMIC because it clearly is on the
+>> schematics.
 > 
-> Yeah.
-> 
-> But I only factored that out because I wanted to read the SR also in the
-> isl12022_set_trip_levels() to emit the warning at boot time, but when
-> that goes away, there's no longer any reason to not just fold this back
-> into the ioctl() handler.
+> Yes it comes from the PMIC, but this part of the PMIC is handled by
+> the PMIC_GLINK firmware service, so the logical place would be into
+> the pmic_glink node with a gpio array in order to handle multi-ports.
 
-That would be to clear a not self clearable battery low (but not empty)
-flag or a backup voltage switch flag.
+I think all PMICs have only one CC_OUT pin, so this would be now
+maxItems: 1, but there will be no problem in growing this later.
 
-> 
-> Rasmus
-> 
+Best regards,
+Krzysztof
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
