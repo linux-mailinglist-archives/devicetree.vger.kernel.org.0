@@ -2,121 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 342B972E3B8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E8DF72E3CF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:13:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242583AbjFMNEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57398 "EHLO
+        id S239740AbjFMNM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242575AbjFMNDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:03:53 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 470A11BC3;
-        Tue, 13 Jun 2023 06:03:50 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.22])
-        by gateway (Coremail) with SMTP id _____8AxW+o1aYhkhaYEAA--.9900S3;
-        Tue, 13 Jun 2023 21:03:49 +0800 (CST)
-Received: from [10.180.13.22] (unknown [10.180.13.22])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Axfco0aYhkZTEZAA--.63228S3;
-        Tue, 13 Jun 2023 21:03:48 +0800 (CST)
-Message-ID: <58b70e1b-d292-ec45-2309-e237a4a43d0d@loongson.cn>
-Date:   Tue, 13 Jun 2023 21:03:23 +0800
+        with ESMTP id S239418AbjFMNM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:12:28 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E5F10E6
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:12:27 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so6703317e87.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:12:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686661945; x=1689253945;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k/N6ziEjETs/fA7A5T0shJEBkxu3UxAJaNYSJhcIRdk=;
+        b=Rnr9xXP6tWFVZ13rAvJcc+XId0TzN8T3+DZv01LLIUh3OMYyYgTfJ7+Y6tm8MkBGYq
+         mSBuAZeJSg9//qB0DR37PR+xPwiRwhzPDDa6JGdRNuwMf9ZDHEIhdRqlak+/hUE4oe9i
+         kaSmbucaA/3CcHzC2IHnAckEuDQh945cWSwjo6R35MTOaxTqLcWAABNJb51XEpF3Wh+q
+         LseH0C1eCY/Pc8z+fSq8epEp8WJQK2V7CLWMLccLch1l7HnGo11KhcpoNraIqy6VL2mH
+         uSg3liLwPOYPz4HPObDROhqSkI5csW8/yD9wPcqeU7HFiLm04NlW7oXY/SV21EY4t1Ga
+         aScQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686661945; x=1689253945;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k/N6ziEjETs/fA7A5T0shJEBkxu3UxAJaNYSJhcIRdk=;
+        b=VPRqh/08ObuoL4nYOl/iDUn9bg+qskp4lo79h9Poxc5/ZbT4Y32NobtXnJ0fmSmujj
+         ftY1kT00DoJGr0Y7/2LmPnqWvX4G1dCXFFaPiJqCoT/o2cihAz2SQsn1nOBzjjbuU7Xc
+         xo97SbfmicxxH2YfI0EY9IaXqYJlH7g0Ysv7srf86d/wOzpuBwjH8lRCxR7elIctNfih
+         8w+aQj1Dx87Ltdt+QeOM4uWCJ6rrEP1Jcm3J/UFAxCqNqsfMOxT0BRb2vrHcspX159il
+         vo+6T+JsLhf2Q65iSYUqVdF2u5sU7ohwa6zmeirxTRDRE+DNr88/8oKB8vDoSsTNORL8
+         IWpg==
+X-Gm-Message-State: AC+VfDy6FY979w7HQghF1g+tbSXLJ+L6DoRRhDo22v0mvL0GmP2zfIDn
+        cDd+7VAaAacukOU5iFV7feAugw==
+X-Google-Smtp-Source: ACHHUZ5+v5EwRhrZ0XK/8Cw0plZo+xn7TooyTR5j71eo5SqtVKlLqb2v9snjgvKPicowoJfCNmPFHQ==
+X-Received: by 2002:a19:8c14:0:b0:4f6:1e9c:cb1f with SMTP id o20-20020a198c14000000b004f61e9ccb1fmr5890581lfd.16.1686661945599;
+        Tue, 13 Jun 2023 06:12:25 -0700 (PDT)
+Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
+        by smtp.gmail.com with ESMTPSA id w15-20020a19c50f000000b004f62229b6c9sm1766166lfe.89.2023.06.13.06.12.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 06:12:24 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: qrb5165-rb5: fix thermal zone conflict
+Date:   Tue, 13 Jun 2023 16:12:24 +0300
+Message-Id: <20230613131224.666668-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [ PATCH v2 3/3] ASoC: dt-bindings: Add support for Loongson audio
- card
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
-        lgirdwood@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        loongarch@lists.linux.dev, loongson-kernel@lists.loongnix.cn
-References: <20230612085614.3039498-1-mengyingkun@loongson.cn>
- <20230612-booted-french-186dd95e78a9@spud>
- <bda7c25f-65cf-d45f-3ac0-f2471e3aacf8@loongson.cn>
- <20230613-zoologist-panorama-a87858bba075@wendy>
- <887f9cc4-6457-9d14-8aef-011ff4c9aeda@loongson.cn>
- <20230613-depletion-garnet-ccc2009111c3@wendy>
-From:   Yingkun Meng <mengyingkun@loongson.cn>
-In-Reply-To: <20230613-depletion-garnet-ccc2009111c3@wendy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Axfco0aYhkZTEZAA--.63228S3
-X-CM-SenderInfo: 5phqw55lqjy33q6o00pqjv00gofq/1tbiAQABDGSIXIIBbgABsQ
-X-Coremail-Antispam: 1Uk129KBj93XoW7tF1kWF1DKr4DAF47uFykZwc_yoW8uw1fpF
-        W8Ja47KFn5Kw15Cr9Yvw18Jr42vFWftFZxXr4DXr17G390gry3Gr13tF1Fk3srCr18X342
-        vFWFka47J3Z8JagCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-        0xBIdaVrnRJUUUBFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-        IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-        0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-        xVWxJr0_GcWln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
-        xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
-        6r1DMcIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
-        1lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
-        JVW8JwCFI7km07C267AKxVW8ZVWrXwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
-        vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
-        x2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26c
-        xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAF
-        wI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jF4E_UUUUU=
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The commit 3a786086c6f8 ("arm64: dts: qcom: Add missing "-thermal"
+suffix for thermal zones") renamed the thermal zone in the pm8150l.dtsi
+file to comply with the schema. However this resulted in a clash with
+the RB5 board file, which already contained the pm8150l-thermal zone for
+the on-board sensor. This resulted in the board file definition
+overriding the thermal zone defined in the PMIC include file (and thus
+the on-die PMIC temp alarm was not probing at all).
 
-On 2023/6/13 20:46, Conor Dooley wrote:
-> On Tue, Jun 13, 2023 at 08:38:59PM +0800, Yingkun Meng wrote:
->> On 2023/6/13 20:28, Conor Dooley wrote:
->>> On Tue, Jun 13, 2023 at 08:23:58PM +0800, Yingkun Meng wrote:
->>>> On 2023/6/13 01:24, Conor Dooley wrote:
->>>>> On Mon, Jun 12, 2023 at 04:56:14PM +0800, YingKun Meng wrote:
->>>>>> From: Yingkun Meng <mengyingkun@loongson.cn>
->>>>>>
->>>>>> The audio card uses loongson I2S controller present in
->>>>>> 7axxx/2kxxx chips to transfer audio data.
->>>>>>
->>>>>> On loongson platform, the chip has only one I2S controller.
->>>>>> +description:
->>>>>> +  The binding describes the sound card present in loongson
->>>>>> +  7axxx/2kxxx platform. The sound card is an ASoC component
->>>>>> +  which uses Loongson I2S controller to transfer the audio data.
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    const: loongson,ls-audio-card
->>>>> Reviewing sound stuff is beyond my pay grade, so forgive me if I am off
->>>>> the rails here, but this (and the "x"s in the description) look a bit
->>>>> odd. Recently, we've noticed quite a few loongson dt-bindings attempting
->>>>> to use a single compatible for many different chips.
->>>>> Usually you have individual compatibles for the various SoCs with this
->>>>> core, which can fall back to a generic one, rather than just adding a
->>>>> generic compatible for all devices.
->>>>> As far as I know, there's several SoCs fitting 2kxxx, and the format
->>>>> being used elsewhere is "loongson,ls2k1000" etc.
->>>> Currently, Loongson has 2K0500/2K1000LA/2K1500/2K2000 chips.
->>>>
->>>> Here, its' possible to use a single compatible for different chips,
->>>>
->>>> as the audio device is a logical device, not dependent on chip model.
->>> What, may I ask, is a "logical device"?
->>
->> I means it's not a physical one, like "platform bus".
-> So it is entirely a software construct? Why does it need a dt-binding
-> then? Your commit message says the controller is present on the device!
+Rename the thermal zone in qcom/qrb5165-rb5.dts to remove this override.
 
-It's not. The audio device consists of an i2s controller and codec.
+Fixes: 3a786086c6f8 ("arm64: dts: qcom: Add missing "-thermal" suffix for thermal zones")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The dt-binding is for the audio device, not for i2s controller.
-
-> Confused,
-> Conor.
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index dd924331b0ee..ec066a89436a 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -121,7 +121,7 @@ active-config0 {
+ 			};
+ 		};
+ 
+-		pm8150l-thermal {
++		pm8150l-pcb-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&pm8150l_adc_tm 1>;
+-- 
+2.39.2
 
