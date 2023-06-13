@@ -2,135 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7BB72E9EE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:35:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFD772EA06
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:39:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbjFMRfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 13:35:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60356 "EHLO
+        id S239193AbjFMRiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 13:38:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232554AbjFMRfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:35:09 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9B41FE5;
-        Tue, 13 Jun 2023 10:34:44 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686677683;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=86rh1f0HBKfOE+lzuTwLJdkE+7pPjEWV2pIeiL0qQXk=;
-        b=pF/oK2cwuHCGuxVOM6DoseXfu83gnXuDTUpUvA9KEn0otsbNNzAA4pJPLVlJc5JrD3dGbr
-        V0NpyMNa0sSRNqbb3yOvL0S10jM9O8IGKL+jAbnAuDQZB9SQpm9XrkvoIKG3brJIIhGRRM
-        EcNFZEmvFvUb5QYmp9+Wd5Pnrf2Y8tv7aXv/Y/3hALFfIF356bK6jdj3nthmcCefNokuhy
-        Hb+vEuC8h9JBolygcQDRKCAAo5m2LFYvNdRcu0hbzUjh9vP3fRhNAs2jKaGxdoL6X7iBMm
-        pvVGec+DO94oFRPp6mXKfp+Og4FmeHRt4ldea3l3CoU9Q1/zxbN5bzyXeUX3Jg==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3B8E8E0003;
-        Tue, 13 Jun 2023 17:34:41 +0000 (UTC)
-Date:   Tue, 13 Jun 2023 19:34:40 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239148AbjFMRiW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:38:22 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D5EE1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 10:38:19 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f644dffd71so7291816e87.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 10:38:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686677898; x=1689269898;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/fdINgN0sqoUKaJt5t7kHQjc4xw1nfg/R7i5TeJ3AQA=;
+        b=PxxyA3rl/6LX/fkIheo9I9iKqveN4xCAbrZR6T4vb8DI7L8wTll7x000K61BHNvqop
+         gR3nVVTyhzyXOHWD2hoIlKy16kfv2gCK79wAr3Pbouub5N02QIueTuCniN97iU9xNo/p
+         NJPFyQnKgSBkUnBWSb3HNZVBw/quYrUUCvVIZ4WK0TIG9ua/0tn8no6oGzDqc/EVTmlp
+         w40YI3x1+PB+COMmz1Rb5UEqP0zg6KNfqgR0VJRKWJ0PBw4/1PlvAEhTS/V5+PquJyVw
+         7RJZ02KvSwSKunzeykagm87Ks+i1fY04QCBLUswJsTtx6lwUe+5P+/yOtJ7Vj9tKLb/7
+         p01Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686677898; x=1689269898;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/fdINgN0sqoUKaJt5t7kHQjc4xw1nfg/R7i5TeJ3AQA=;
+        b=aImyxQVYJK2USt8mlUoZWRmqGQShXg/V99O1WwaKEi22+9QCqQCvAJ/gaWZ5SD4uwc
+         cxf2d1JNtuXWxdTiPGvkBGGGhc2DNiz3GLfwvK4be4i9sW6Xo9OodNyE4lJBRsdxcoNz
+         /vJrQ66RuYK/c5yANXn//LytTNTzby9ZYjqVBb/Ryk0GF+L/Ge923LYuhtgWnG0n4flU
+         t92GkGsRLENfqv2epJPK3gL9K7+6lOVlS4Bc7XlXlMk+EW9jKhUILej0oGHSJUefQ/vr
+         DX0hsazshqL6FMxdvyaqm7P7/t/EVuZI1EA5jYydMd7ElPGjh2VilIWrxW4s7Sdf8CPo
+         jCfA==
+X-Gm-Message-State: AC+VfDwIG10Qm+9CRAzWFHxwILc9gyu0SXxw3atiG5czt30tIJ5usBe9
+        i9PCg7qzeu3x9AKi/kCzNGNFKQ==
+X-Google-Smtp-Source: ACHHUZ4BEY+8zOheAJZ4zKUdd/2nSaTf65aiMi/IBltqU4q4Coem3+XxUp/Op8XmnDUHULXgJrj1oQ==
+X-Received: by 2002:a19:6752:0:b0:4f7:5e82:6de2 with SMTP id e18-20020a196752000000b004f75e826de2mr890177lfj.30.1686677897766;
+        Tue, 13 Jun 2023 10:38:17 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id x8-20020ac25dc8000000b004f74056413fsm1038610lfq.166.2023.06.13.10.38.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 10:38:17 -0700 (PDT)
+Message-ID: <08011f4b-0e15-8fab-8a97-13baa5319863@linaro.org>
+Date:   Tue, 13 Jun 2023 19:38:15 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH] arm64: dts: qcom: sc8180x: Fix LLCC reg property
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 06/12] minmax: Introduce {min,max}_array()
-Message-ID: <20230613193440.1940c3a7@bootlin.com>
-In-Reply-To: <CAHp75Vcr5Owjn0HK-+D0mpPJAkAxG7F8bEO=sqvhT8w=_xnF7w@mail.gmail.com>
-References: <20230612122926.107333-1-herve.codina@bootlin.com>
-        <20230612122926.107333-7-herve.codina@bootlin.com>
-        <CAHp75Vf2dmAS9VD-pgyZwVopVCFy8yFjhPWEj8sym=pfE7uxSA@mail.gmail.com>
-        <20230613100000.6bd9e690@bootlin.com>
-        <CAHp75Vcr5Owjn0HK-+D0mpPJAkAxG7F8bEO=sqvhT8w=_xnF7w@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230612220632.1885175-1-quic_bjorande@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230612220632.1885175-1-quic_bjorande@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Jun 2023 20:08:08 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-> On Tue, Jun 13, 2023 at 11:00 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> > On Mon, 12 Jun 2023 17:10:40 +0300
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
-> > > On Mon, Jun 12, 2023 at 3:30 PM Herve Codina <herve.codina@bootlin.com> wrote:  
-> > > >
-> > > > Introduce min_array() (resp max_array()) in order to get the
-> > > > minimal (resp maximum) of values present in an array.  
-> > >
-> > > Some comments below, after addressing them,
-> > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>  
-> 
-> ...
-> 
-> > > > +       typeof(array) __array = (array);                        \  
-> > >
-> > > We have __must_be_array()  
-> >
-> > Using __must_be_array() will lead to some failure.
-> > Indeed, we can have:
-> >   --- 8< ---
-> >   int *buff
-> >   ...
-> >   min = min_array(buff, nb_item);
-> >   --- 8< ---
-> >
-> > In this case, __must_be_array() will report that buff is not an array.  
-> 
-> Oh, I missed that.
-> 
-> > To avoid any confusion, what do you think if I renamed {min,max}_array()
-> > to {min,max}_buffer() and replace __array by __buff and use *(__buff + xxx)
-> > instead of array[xxx] in the macro.  
-> 
-> But functionally it's still against an array.
-> 
-> I would stick with "array" in the name, but add a comment why
-> __must_be_array() is not used. If we need a stricter variant, we may
-> add a new wrapper with that check. That said, I think we can use
-> __array[0] and similar indexed accesses.
-> 
 
-Right, I will provide an updated version on the next iteration.
+On 13.06.2023 00:06, Bjorn Andersson wrote:
+> The LLCC binding and driver was recently corrected to handle the stride
+> varying between platforms. Switch to the new format to ensure accesses
+> are done in the right place.
+> 
+> Fixes: 8575f197b077 ("arm64: dts: qcom: Introduce the SC8180x platform")
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8180x.dtsi | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> index 88015742315b..3de62e26d56a 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> @@ -2541,8 +2541,11 @@ usb_sec_dpphy: dp-phy@88ef200 {
+>  
+>  		system-cache-controller@9200000 {
+>  			compatible = "qcom,sc8180x-llcc";
+> -			reg = <0 0x09200000 0 0x50000>, <0 0x09600000 0 0x50000>;
+> -			reg-names = "llcc_base", "llcc_broadcast_base";
+> +			reg = <0 0x09200000 0 0x50000>, <0 0x09280000 0 0x50000>,
+Is there anything inbetween these register ranges?
+Should they be 0x80000-long?
 
-Thanks for your feedback.
-Hervé
+Konrad
+> +			      <0 0x09300000 0 0x50000>, <0 0x09380000 0 0x50000>,
+> +			      <0 0x09600000 0 0x50000>;
+> +			reg-names = "llcc0_base", "llcc1_base", "llcc2_base",
+> +				    "llcc3_base", "llcc_broadcast_base";
+>  			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+>  
