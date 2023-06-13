@@ -2,200 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BA972D780
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 04:53:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABE3372D8B6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 06:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbjFMCxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 22:53:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48552 "EHLO
+        id S232386AbjFMEnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 00:43:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238474AbjFMCxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 22:53:38 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C44BD19AE;
-        Mon, 12 Jun 2023 19:53:27 -0700 (PDT)
-X-UUID: 7685db6c099511ee9cb5633481061a41-20230613
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=l+w/I967veNT7hGi2DGnopHRaF1aw67TPG082/07GWg=;
-        b=j/fleAlSwZYRLKFc+UaNgI2uQNJjk50W6YNleDHI4355HPzUoeDLaEYP8YPrHvDMq3LljXK5XgpSZULPoCY1wYh9nMbRjM1CVju6FxKwA9G7m2V/hJmgBvLTcpBAsPSiSwmuDdn4atTXfrbqzZsaRyevyufDWnpbjxHS6/mgkmU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.26,REQID:ebd957f3-aee7-40b3-a9c9-4488b85c495f,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:cb9a4e1,CLOUDID:ca7c3a3e-de1e-4348-bc35-c96f92f1dcbb,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 7685db6c099511ee9cb5633481061a41-20230613
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1793213232; Tue, 13 Jun 2023 10:53:23 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 13 Jun 2023 10:53:22 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 13 Jun 2023 10:53:22 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UXTHm6r6DoTpijU1e30zWnh6RaFVu/Tzy8Suzc0NhBhxC8E+Wm7rpVGJ9DjUA9HM+ssbgE1SCkS81YU3mLPE/78720wJ37Wkg7jKmSX61iPMdAg1L9XNJxRkgMeOpDDB5utd+IFl/hNpSh4P1E9AeYzpYy0O6KdoRUAAwKfY/ZDEw+sqQzRiI2jKJVuWDaESm5QrcLN4hW/vU1DwSMkrqogPXbbc00Hd9S3b9/iW/rWFpTNx/vtCVNUYQiVTlzB2UKb31cKhAsadWIOWeQDqKRPnEzpvEIPnt/IssD1FhFRj5LjjDnHvWlmBDHvV3fHTK+T4QHpQGTzL2aBONS6n6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l+w/I967veNT7hGi2DGnopHRaF1aw67TPG082/07GWg=;
- b=kcAv+g4SGYSP+h1h2LkvJP0Yvbw8zl2QUT84b7RgOXnZR6k9wzmS3SEnFdraDeI+UwycBFJ9jBGtdYnF7GDnQB8+Fw3vbzuvPEJwiw9gi/TBQhsRDWvR3olqgOmN/1S3C/GqLJeK+fOxli20aq3FTtuTM3Tc6kO/p62mkd/qRlMp1CWta4ZqB5OR/3EuTVZ3HICMHHyrgeSROMkKV80uRuG052NCv8J5pbTY9dR3quYcHDLL0JMdR9cLOpD8vWXISA85U/Yt21eKypwR4UHNZ/yttp6RjUSWPSZ8eRIfwFaHagEliKheLPCSrHJLpPu/5YYcGyFhRG5tBjrs+fzIKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+        with ESMTP id S233274AbjFMEnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 00:43:01 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D4C12C
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 21:42:53 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5151934a4e3so7535353a12.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jun 2023 21:42:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l+w/I967veNT7hGi2DGnopHRaF1aw67TPG082/07GWg=;
- b=Hb4XvAWTJc0/r8shk5ganJzFUK4RNxywzb7PBdFxXPpXbGvCMCeBuUyV1xtVfexidMKVDVq38fOAfjwyU4MJiM6QQJ/YGelYzrrtKS8/CKc2LkmptY/reWbs5z9hoi5Cd9v8IbbT/zQmmUJ7HnL/Dn3kTgzlc+uNC5n1i5DxXL4=
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
- by TYSPR03MB7330.apcprd03.prod.outlook.com (2603:1096:400:42e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.44; Tue, 13 Jun
- 2023 02:52:18 +0000
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::6fdb:ba2c:bcfc:d5ed]) by TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::6fdb:ba2c:bcfc:d5ed%6]) with mapi id 15.20.6455.037; Tue, 13 Jun 2023
- 02:52:18 +0000
-From:   =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        =?utf-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= 
-        <Chunfeng.Yun@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        =?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?utf-8?B?TWFjIFNoZW4gKOayiOS/iik=?= <Mac.Shen@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        =?utf-8?B?U3R1YXJ0IExlZSAo5p2O57+wKQ==?= <Stuart.Lee@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v4 5/8] drm/mediatek: hdmi: add v2 support
-Thread-Topic: [PATCH v4 5/8] drm/mediatek: hdmi: add v2 support
-Thread-Index: AQHZkjsmmHc/VTGOHU6M5MEfnDzs/6+IH6qA
-Date:   Tue, 13 Jun 2023 02:52:18 +0000
-Message-ID: <086c960fc79fd603424fa68363ebeb4099db8984.camel@mediatek.com>
-References: <20220919-v4-0-687f09a06dd9@baylibre.com>
-         <20220919-v4-5-687f09a06dd9@baylibre.com>
-In-Reply-To: <20220919-v4-5-687f09a06dd9@baylibre.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|TYSPR03MB7330:EE_
-x-ms-office365-filtering-correlation-id: caf3eda4-931b-42bf-decd-08db6bb933f6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bgFbASxPWTYY55QD/h3iTPpNIyNwyYbwk8ZgNwUwanoB2DKgzEsldONw+vQuWis3qhjuZOT11SMzEp7oyh6qscHoonSNVOXV293pgUKpxzSOaK0ubg2lCYVO8ab0aDvL7b1L7dJJe/1op9u+gwHt4nSGVyjANzBiBHjeOKrOsU2LoM7gdp3MQB8OX8MDLzjv70QbNS7/h/xKOVQMOhW9HIfVzCGPQomuqrytWSvHCVA3WPFSbAZDjeThmX2t/YURce9dr57oN/Jfka+X4IPJqwmU1Xk9dN5YmnW41PmAoZbnkT1bawjaRvTJ0sjTmUC9chJGETD3B4+vVL1NB2vCuw4VG7cx/gGbZ9NEuz7mMlniA5mFbSzjdMI5BYYf9zcjpAfA2ZRMWx5jasV6ucrJ3PXDztRaaz8oINv5/QZK1wH/dXzq13uBJrXeY4g9mMh5lmiHWZ1vTivxeabap4RO6z8ydMieEL1H/KFZLDMy9fYylksgHIHEmVAJjp/oJULu8DxHIXk6N7ownopOB3a+8Qt/OovAGOQWW/Gb/J6cl/vTeATovEyLMyHhVWLT43lalX7PU0gca3AC5sbXqE3UdaSjUfpCXQ8HwwQSX9yNE1l5skrZwRIpGrwQCSYSCMBgF5/oFh+wnME+5Rw843NQTmsayj41fAGp1bIKvXM/fmsPBxRoiJLMv/s7jsSbxOFj
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(39860400002)(366004)(346002)(136003)(451199021)(5660300002)(7416002)(8936002)(8676002)(2906002)(76116006)(66946007)(66556008)(64756008)(66476007)(66446008)(110136005)(54906003)(71200400001)(6486002)(4326008)(26005)(6506007)(6512007)(186003)(316002)(41300700001)(921005)(83380400001)(2616005)(478600001)(38070700005)(36756003)(38100700002)(86362001)(85182001)(122000001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NkVXYW5IeDUydnNTWlRXKzVzVUVoRzNKcWFaV0pKZ1d1QWhUVE9SU0JEZ1BN?=
- =?utf-8?B?cTAxdEFQSEdiemJCem9sNFNQUjJQbHdpbjdWTFB4YzVpYnNjQ1ZVbnNRd01S?=
- =?utf-8?B?aXVWZDhUdlllWWxnQ3dLZFVYMkdqeHpQNXJ5QW8xZUZwaTE0Y0xNbVZHRncz?=
- =?utf-8?B?RHFwRDEvbGtwMG14ZXA2REhvMytjQWhwUmo0a2pOZnBEVStxeUVHWUk2Skph?=
- =?utf-8?B?bnlmaFR6NCtwSUY5a0owREZhOWlsUkwyUGtEZE9qN3AwQ2Z6UFJEVGd2cHRz?=
- =?utf-8?B?bVZ5Z01QSHdSZUN1dHU3R3BwdHY3cDdsczVFamlaTldwUUZlcTRITi9JaHVC?=
- =?utf-8?B?ZGpkb0FYd3E1QVFSazZ2bjd1ZFVsNExyRitJNk9tUVR4NVNyb1QwWFR6QXVm?=
- =?utf-8?B?T3NGWkpUR0xvVmxuU09rM1lqNERaVU41Y3ZBcEk5MVkvTW1OOXpoQVNOZTRi?=
- =?utf-8?B?WEJZamxTUmpFNmVHVUpScU1yUmJPUmQ4TVI2NE05aVVHbm51YUNabGpmeEhp?=
- =?utf-8?B?NHhIOERjU2FHTHVJbUdVWHg2TU04a3lmcFVGMllYMExjZXVGaFk4VWY5a2dR?=
- =?utf-8?B?YTBuVjFzZUJxQVNkZk5HQWVyYjBDMDJmOERNVWNkSmRkaXJOSkVZOGxvRlZk?=
- =?utf-8?B?dlEwQTJ2SlI3WU8vTURxOFZ6YWVsQjA0YUdKSE1uVTEvVThZaUhQYTFlQklO?=
- =?utf-8?B?allsc1pZTmJJM2tiVDZWOFc5SEVqOHhWUUJVa0VYS0xvNVYzbkdJdnJlODRB?=
- =?utf-8?B?Nm8zN0RtelA1YWdiK0Z0VEZUNlRJNk5uVnQ5Rm5kY0tHU1Vkb3VBS2UzMGZu?=
- =?utf-8?B?U2l3YlVTeTh6MmNFT1hpM2tNcTREdVd0R1lqeFhXODBpTmlqVFpBREg3SWlT?=
- =?utf-8?B?RTF2QVlSWG4wcytpajJlaS9GWGVVblVOSHRBY2Z3OE9xUnRpdTZlQnZxcUdv?=
- =?utf-8?B?Rm1IbkIvbWUwVFNSdFNvRjdQcjVXQUo3U2FUcFJGZlFkeUpkckpBd0krdmlG?=
- =?utf-8?B?OVJYTXVGRmd6eXJ5T3hsZ29TQ3RSeE1wb2hqVFlTeGhFd1NiZnQ3UnVIdXlK?=
- =?utf-8?B?WHRQT21seFJ2NHJjYmRVUWM1cGlLQk0vM1l4ZTZkMHR5LytCelpBaER5L2dP?=
- =?utf-8?B?dFpVdUV0V1JmLy80dzZTMmRpTUR0VXF1VmU0R29TYi9zUmtUTFNkQVdmb0cv?=
- =?utf-8?B?ZWZXT3JwdHl3RmVBWUFIbGxJYTh6ejhHVzlxWit2WU9lcXMzcTl0ZlA5Vm1J?=
- =?utf-8?B?WTg2L29La0d1aDg4TUVtZlNuTkowdER0RkQyN1Bja3dkaWNPSjE4QjZuUEU5?=
- =?utf-8?B?NTFpQkc1T01aaE5NdlhsSUhwMGJ2aUhmaHUvWXVUT1luK2U5TDRkU3lWT3JV?=
- =?utf-8?B?WU8xSjNoTmhwYWpOWEMrVFc5NG90dWRoMDI1QndDdTVFRlJxS2hpTHZPTDE2?=
- =?utf-8?B?RGZpSDJrUFVQaWgveUE3OEJJTHBLVlI2SDlvVldTOUhtbzhZUUVxWkxFdGNt?=
- =?utf-8?B?WlFnUHN5bTBkZ3hCaUR6emlwQVphR201Nks1M3RzMnZ4VlFLTk5QM3ZodTRL?=
- =?utf-8?B?NkhsY2k5Y24za2w3NGtTREZvMExkaFZmRmNjdjlRcVlqSVN1cXdibFB2VGVa?=
- =?utf-8?B?K01kVVFlYmlwaTFtS0dYSmJDbjBidjIyWTZvY3NKeXpzc0NVN3p5U2Z5UHNu?=
- =?utf-8?B?M0lSajYrd3VYV1QzVzFacEY5WDg5ZWQvcGQ2YmVsRmdsQ2xXMHhRTXFjVGtF?=
- =?utf-8?B?blZha2liY2JPQUNiaXJaNmsrZWpMSm1UbWYwUjdISE9DZFVnMXlWTUNCU3o4?=
- =?utf-8?B?bGQ3bGZYUFhsbitJb0tFOFRyczBsT1FnSVJnTVZEL3dJWC9nLzlQRHlGUzJa?=
- =?utf-8?B?cm02QnJuSEVJZ0hScjFZN2RkV1dxQ1Evd0FCaGxqT1lvRURPenBTbWt1aWY0?=
- =?utf-8?B?cmF6V2xnY2E3TUxjaE55Si9GeXFCUGxacEN5K2ZtUU5XSEpaOVVYMGZDQ0pq?=
- =?utf-8?B?cnBUL1p1S3lYODNnazU5bXkzaDhlK2Z1SXRrVTJrR1pGZkQ5TjNHUVdIbjZB?=
- =?utf-8?B?d2RXMmtzMXNuKytSbXRoc3FkZ1VNdXNwb1I5dUpDTzF4YUh4L2paaWQ2L1pF?=
- =?utf-8?Q?ctBtyVt/Ejpwzu9Y3XDTvThib?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CC40A24D65BA2E448CA9A041653A3753@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=brainfault-org.20221208.gappssmtp.com; s=20221208; t=1686631372; x=1689223372;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CzwXO5LLinsbc81q9m0mJrThXDrRsGSZgZKBrqcWDhU=;
+        b=Re/JoZDdl7WWFhPNRzXIFIPRLlnyd5pZGoZse5aP6tFTQ1ruH4SblQBU/qotEyJ8+O
+         iMqIDMjO/+jluK8C/6EtzKspe3cTT3unitXHicVeJQf2SUUyk0agBJRXEkoityiA8USl
+         v82m85Hryu0TtYHH2IvWElQGzoJEg1Hu9nIdWCU1jFX2Bahe/MV3MRRvw/Ijm+3gPMB5
+         oTjOChfwoW7JOm9AYO1Uq0jt6SzTUsTP/bekTVKCXC9wOrzlXcAHZw8HEfWsXmQurh+D
+         6NBihHB3EucGRXJ+Rsd7kWSihtlrYwnUX7Kmnsaw2UqKgcpvTyaaNakSa1BFWTDPXa4R
+         HabA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686631372; x=1689223372;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CzwXO5LLinsbc81q9m0mJrThXDrRsGSZgZKBrqcWDhU=;
+        b=EX6/vZRMeV48q5Bxq3JGoHyL/WyvLZB7hL5fuM5O+HPmeiKWcFOfs3NBYfGf0QM1yf
+         G5w3ix4aqZbGDW7QEAgQcEyTeOm6oJJf4vI4k98Va3ISXFm5+WPpHrjngb8gVXNO0Cvt
+         bScJxJrqbM7JIlcyO2JFK535zoY2PnmaRInR6VA8uY3yJ5/c2KgH3bs3OGrcSeKMHfXm
+         lH5MFS9IZTpa90J/gzQ0+q4I8mkijG4HWX+8G4qK1fZB4VF2Us8n8HGiME/sOLOxnYEg
+         7tB0Pia7VnWiVhATT0/s0/YJA/+mAsM2c5Er/5hiemsY0d6ZyjT9QLi8FE4tDr11fg3u
+         ErKg==
+X-Gm-Message-State: AC+VfDzUqalf3Oh4GFJm02c/aa0vcwgHiayD+qIZ02EdpQRpCUNgJq76
+        9z1DT89O67H5lm1SLr//bRzWkkro2E6mv2BeEXeNPw==
+X-Google-Smtp-Source: ACHHUZ4ETr5UZ3VbtqL8LS3ZVa0OXp7qvMh694ytmLxSCEv5jRu14utuMLjd7mOBnSDm2aadOjxLwJ3P3GoNW1vtYdA=
+X-Received: by 2002:aa7:c553:0:b0:508:3b1f:e6b5 with SMTP id
+ s19-20020aa7c553000000b005083b1fe6b5mr5571374edr.15.1686631371900; Mon, 12
+ Jun 2023 21:42:51 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: caf3eda4-931b-42bf-decd-08db6bb933f6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jun 2023 02:52:18.7504
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9h2dAfueJ5xhld7WHf37qxDR2ozHJA8Qy2dv35VB2eTZgZvGlslPrumnjE9zoBcFdIoDocYkrtfAFS1MRGmjEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7330
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230508142842.854564-1-apatel@ventanamicro.com>
+ <20230508142842.854564-3-apatel@ventanamicro.com> <20230608182828.GA3183987-robh@kernel.org>
+ <CAGETcx_4OH=EmSUL2-rwKa=1uoOj+AH_xn4PoPsc0kt_aU0WOg@mail.gmail.com>
+ <CAK9=C2V1LH0739Nq5Ji7gGbgbyFtNAtBYR43fU7vr9omD5tKSA@mail.gmail.com> <CAGETcx--aEEB6ag1qGcEeygPyZM9Q-T1NOY+wK911LGJGisN8Q@mail.gmail.com>
+In-Reply-To: <CAGETcx--aEEB6ag1qGcEeygPyZM9Q-T1NOY+wK911LGJGisN8Q@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 13 Jun 2023 10:12:40 +0530
+Message-ID: <CAAhSdy2p6K70fc2yZLPdVGqEq61Y8F7WVT2J8st5mQrzBi4WHg@mail.gmail.com>
+Subject: Re: [PATCH v3 02/11] of/irq: Set FWNODE_FLAG_BEST_EFFORT for the
+ interrupt controller DT nodes
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Rob Herring <robh@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEd1aWxsYXVtZToNCg0KT24gTW9uLCAyMDIzLTA1LTI5IGF0IDE2OjMxICswMjAwLCBHdWls
-bGF1bWUgUmFucXVldCB3cm90ZToNCj4gIAkgDQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRv
-IG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZl
-cmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+ICBBZGRzIGhkbWkgYW5kIGhkbWkt
-ZGRjIHN1cHBvcnQgZm9yIHYyIElQLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogR3VpbGxhdW1lIFJh
-bnF1ZXQgPGdyYW5xdWV0QGJheWxpYnJlLmNvbT4NCj4gLS0tDQo+ICANCg0KW3NuaXBdDQoNCj4g
-Kw0KPiArc3RhdGljIHVuc2lnbmVkIGNoYXIgdmRkY19yZWFkKHN0cnVjdCBtdGtfaGRtaV9kZGMg
-KmRkYywgdW5zaWduZWQNCj4gaW50IHU0X2Nsa19kaXYsDQo+ICsgICAgICAgdW5zaWduZWQgY2hh
-ciB1Y19kZXYsIHVuc2lnbmVkIGludCB1NF9hZGRyLA0KDQpSZW1vdmUgdGhlIHR5cGUgc3R5bGUg
-aW4gbmFtaW5nLA0KDQp1NF9hZGRyID0+IGFkZHINCg0KUmVnYXJkcywNCkNLDQoNCj4gKyAgICAg
-ICBlbnVtIHNpZl9iaXRfdF9oZG1pIHVjX2FkZHJfdHlwZSwNCj4gKyAgICAgICB1bnNpZ25lZCBj
-aGFyICpwdWNfdmFsdWUsIHVuc2lnbmVkIGludCB1NF9jb3VudCkNCj4gK3sNCj4gK3Vuc2lnbmVk
-IGludCB1NF9yZWFkX2NvdW50ID0gMDsNCj4gK3Vuc2lnbmVkIGNoYXIgdWNfcmV0dXJuX3ZhbHVl
-ID0gMDsNCj4gKw0KPiAraWYgKCFwdWNfdmFsdWUgfHwgIXU0X2NvdW50IHx8ICF1NF9jbGtfZGl2
-IHx8DQo+ICsgICAgdWNfYWRkcl90eXBlID4gU0lGXzE2X0JJVF9IRE1JIHx8DQo+ICsgICAgKHVj
-X2FkZHJfdHlwZSA9PSBTSUZfOF9CSVRfSERNSSAmJiB1NF9hZGRyID4gMjU1KSB8fA0KPiArICAg
-ICh1Y19hZGRyX3R5cGUgPT0gU0lGXzE2X0JJVF9IRE1JICYmIHU0X2FkZHIgPiA2NTUzNSkpIHsN
-Cj4gK3JldHVybiAwOw0KPiArfQ0KPiArDQo+ICtpZiAodWNfYWRkcl90eXBlID09IFNJRl84X0JJ
-VF9IRE1JKQ0KPiArdTRfcmVhZF9jb3VudCA9IDI1NSAtIHU0X2FkZHIgKyAxOw0KPiArZWxzZSBp
-ZiAodWNfYWRkcl90eXBlID09IFNJRl8xNl9CSVRfSERNSSkNCj4gK3U0X3JlYWRfY291bnQgPSA2
-NTUzNSAtIHU0X2FkZHIgKyAxOw0KPiArDQo+ICt1NF9yZWFkX2NvdW50ID0gKHU0X3JlYWRfY291
-bnQgPiB1NF9jb3VudCkgPyB1NF9jb3VudCA6DQo+IHU0X3JlYWRfY291bnQ7DQo+ICt1Y19yZXR1
-cm5fdmFsdWUgPSBkZGNtX3JlYWRfaGRtaShkZGMsIHU0X2Nsa19kaXYsIHVjX2RldiwgdTRfYWRk
-ciwNCj4gKyB1Y19hZGRyX3R5cGUsIHB1Y192YWx1ZSwgdTRfcmVhZF9jb3VudCk7DQo+ICtyZXR1
-cm4gdWNfcmV0dXJuX3ZhbHVlOw0KPiArfQ0KPiArDQo+IA0K
+On Sat, Jun 10, 2023 at 2:47=E2=80=AFAM Saravana Kannan <saravanak@google.c=
+om> wrote:
+>
+> On Fri, Jun 9, 2023 at 4:40=E2=80=AFAM Anup Patel <apatel@ventanamicro.co=
+m> wrote:
+> >
+> > On Fri, Jun 9, 2023 at 1:35=E2=80=AFAM Saravana Kannan <saravanak@googl=
+e.com> wrote:
+> > >
+> > > On Thu, Jun 8, 2023 at 11:28=E2=80=AFAM Rob Herring <robh@kernel.org>=
+ wrote:
+> > > >
+> > > > +Saravana
+> > > >
+> > > > On Mon, May 08, 2023 at 07:58:33PM +0530, Anup Patel wrote:
+> > > > > The RISC-V APLIC interrupt controller driver is a regular platfor=
+m
+> > > > > driver so we need to ensure that it is probed as soon as possible=
+.
+> > > > > To achieve this, we mark the interrupt controller device nodes wi=
+th
+> > > > > FWNODE_FLAG_BEST_EFFORT (just like console DT node).
+> > > > >
+> > > > > Fixes: 8f486cab263c ("driver core: fw_devlink: Allow firmware to =
+mark devices as best effort")
+> > > >
+> > > > It is good practice to Cc the commit author of what you are fixing.
+> > > >
+> > > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > > > > ---
+> > > > >  drivers/of/irq.c | 10 ++++++++++
+> > > > >  1 file changed, 10 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> > > > > index 174900072c18..94e1d9245cff 100644
+> > > > > --- a/drivers/of/irq.c
+> > > > > +++ b/drivers/of/irq.c
+> > > > > @@ -535,6 +535,16 @@ void __init of_irq_init(const struct of_devi=
+ce_id *matches)
+> > > > >       INIT_LIST_HEAD(&intc_desc_list);
+> > > > >       INIT_LIST_HEAD(&intc_parent_list);
+> > > > >
+> > > > > +     /*
+> > > > > +      * We need interrupt controller platform drivers to work as=
+ soon
+> > > >
+> > > > If it's platform drivers/devices you care about, then perhaps this
+> > > > should be done when platform devices are created.
+> > > >
+> > > > > +      * as possible so mark the interrupt controller device node=
+s with
+> > > > > +      * FWNODE_FLAG_BEST_EFFORT so that fw_delink knows not to d=
+elay
+> > > > > +      * the probe of the interrupt controller device for supplie=
+rs
+> > > > > +      * without drivers.
+> > > > > +      */
+> > > > > +     for_each_node_with_property(np, "interrupt-controller")
+> > > >
+> > > > This function only operates on nodes matching 'matches', but this
+> > > > operates on everything.
+> > > >
+> > > > It does make sense that if we init an interrupt controller here, th=
+en we
+> > > > will surely want to probe its driver later on. So maybe just move
+> > > > setting FWNODE_FLAG_BEST_EFFORT within
+> > > > for_each_matching_node_and_match() below.
+> > > >
+> > > > > +             np->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
+> > > > > +
+> > >
+> > > Definite Nack. You are pretty much disabling fw_devlink for all
+> > > interrupt controllers. There are plenty of examples of the IRQ driver=
+s
+> > > being needed very early on and still probing properly without the nee=
+d
+> > > for this flag. Please fix your driver/DT.
+> >
+> > Okay, I will try to set FWNODE_FLAG_BEST_EFFORT only for
+> > APLIC device_node via IRQCHIP_DECLARE().
+>
+> No, my point is that you very likely don't need to use that flag.
+>
+> What exactly is the problem you are facing? Point to an example RISC-V
+> dts (not dtsi) in upstream and give specifics please.
+
+The APLIC irqchip driver added by this series is a platform driver. It
+used to work fine without setting FWNODE_FLAG_BEST_EFFORT
+flag in fwnode but after commit 8f486cab263c the APLIC irqchip
+driver did not probe hence this fix.
+
+Regards,
+Anup
