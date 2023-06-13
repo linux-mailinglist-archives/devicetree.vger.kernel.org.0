@@ -2,192 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 821FB72E907
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D3172E901
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236080AbjFMRIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 13:08:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43118 "EHLO
+        id S235168AbjFMRHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 13:07:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235279AbjFMRIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:08:50 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F39F187;
-        Tue, 13 Jun 2023 10:08:49 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-189-170.ewe-ip-backbone.de [91.248.189.170])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S235279AbjFMRHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:07:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825F5EA;
+        Tue, 13 Jun 2023 10:07:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DA62F6602121;
-        Tue, 13 Jun 2023 18:08:47 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686676128;
-        bh=iQ4ftuaDBWznEH5kDX5P/Q5kN2Byy7CoqD5P8dbx2Fo=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1580962DCC;
+        Tue, 13 Jun 2023 17:07:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8635C433D9;
+        Tue, 13 Jun 2023 17:07:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686676067;
+        bh=4tym3mpNouiPVG5YMxQ5NCtxU3PD6kbHD3sozEQml+s=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SMSzrc9xFt40RcZnTRnRdu5SpYhhgLOXDegVKwBQhYZVVwzU94lSbbkDIFRoLF5fR
-         N2bKCjUUwKuOb09ysuRw3IqWyQZVjyuJlSh6YvPT20jn94HrqRvNNJBhS1NCbbb8BC
-         OzcaWz/YP/QcSsYlKe3cZ9WVv8e7hjMTiR8xUZd0sFdKSj9PdH2DIWxWDxGxbv9NW4
-         K8V1pI0eWvzABG6Z59Chs04UOPga8mcn/kAxSkM9MO/CmHSWxa722i32rn8rhFkiyt
-         emmCZGyVMJWLwlNsgByytgQhV33ez/ZEVnm7XiNwp/eWINFvjRvlilNx7Tr7hHdax3
-         04faZNC2KZmhg==
-Received: by mercury (Postfix, from userid 1000)
-        id 8AC541066FC6; Tue, 13 Jun 2023 19:08:45 +0200 (CEST)
-Date:   Tue, 13 Jun 2023 19:08:45 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vincent Legoll <vincent.legoll@gmail.com>,
+        b=fNAOh7T1PonBAOB+B4XvjkRMB3sP3gr0SqsmZRZukoj0fTn61v9yJiekaPko426fh
+         Z+J+RLqQjuhR0eaMIUrYqdVy1n/XVRDdrZnjjaZl+BIkl7hbqQLCdtcu3OiB2KPj5y
+         fqXoXdLE2QsjBJZpaL5q5IrTetcE00PnB+I2iXxFXfsCSMmjTb/cNi+pvL8V08irfO
+         csV3h8MLn6Y3GbA5VWI9UDAo4OSQEAexppSo24Xs1dO2NciOs9wtaMD6Ezevrx8gx6
+         fsm4dbFXq7U1BU+0SiKmDgW80T06VfWZ6ZgUP5gwry3gb+a9c1o4KKcQ5tOrnpU0MV
+         lbWhYBVzIIbCg==
+Date:   Tue, 13 Jun 2023 10:11:10 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v5 13/25] PM / devfreq: rockchip-dfi: Pass private data
- struct to internal functions
-Message-ID: <20230613170845.j5fcj746u6n6tmsq@mercury.elektranox.org>
-References: <20230524083153.2046084-1-s.hauer@pengutronix.de>
- <20230524083153.2046084-14-s.hauer@pengutronix.de>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 06/10] soc: qcom: Add LLCC support for multi channel
+ DDR
+Message-ID: <20230613171110.ud2ybjpoxnwwflce@ripper>
+References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
+ <20230512122134.24339-7-quic_kbajaj@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fprcqslfdwew5bja"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230524083153.2046084-14-s.hauer@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230512122134.24339-7-quic_kbajaj@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---fprcqslfdwew5bja
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, May 24, 2023 at 10:31:41AM +0200, Sascha Hauer wrote:
-> The internal functions do not need the struct devfreq_event_dev *,
-> so pass them the struct rockchip_dfi *. This is a preparation for
-> adding perf support later which doesn't have a struct devfreq_event_dev *.
->=20
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Fri, May 12, 2023 at 05:51:30PM +0530, Komal Bajaj wrote:
+> Add LLCC support for multi channel DDR configuration
+> based on a feature register.
+> 
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
-
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
--- Sebastian
-
->  drivers/devfreq/event/rockchip-dfi.c | 15 ++++++---------
->  1 file changed, 6 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event=
-/rockchip-dfi.c
-> index 0a568c5551699..d39db5de7f19c 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -72,9 +72,8 @@ struct rockchip_dfi {
->  	unsigned int channel_mask;
->  };
-> =20
-> -static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev=
- *edev)
-> +static void rockchip_dfi_start_hardware_counter(struct rockchip_dfi *dfi)
->  {
-> -	struct rockchip_dfi *dfi =3D devfreq_event_get_drvdata(edev);
->  	void __iomem *dfi_regs =3D dfi->regs;
-> =20
->  	/* clear DDRMON_CTRL setting */
-> @@ -102,18 +101,16 @@ static void rockchip_dfi_start_hardware_counter(str=
-uct devfreq_event_dev *edev)
->  		       dfi_regs + DDRMON_CTRL);
+>  drivers/soc/qcom/llcc-qcom.c | 32 +++++++++++++++++++++++++++++---
+>  1 file changed, 29 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+> index 6cf373da5df9..1da337e7a378 100644
+> --- a/drivers/soc/qcom/llcc-qcom.c
+> +++ b/drivers/soc/qcom/llcc-qcom.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> +#include <linux/nvmem-consumer.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+>  #include <linux/regmap.h>
+> @@ -943,6 +944,19 @@ static int qcom_llcc_cfg_program(struct platform_device *pdev,
+>  	return ret;
 >  }
-> =20
-> -static void rockchip_dfi_stop_hardware_counter(struct devfreq_event_dev =
-*edev)
-> +static void rockchip_dfi_stop_hardware_counter(struct rockchip_dfi *dfi)
+> 
+> +static int qcom_llcc_get_cfg_index(struct platform_device *pdev, u8 *cfg_index)
+> +{
+> +	int ret = 0;
+
+First use is an assignment, no need to initialize here.
+
+> +
+> +	ret = nvmem_cell_read_u8(&pdev->dev, "multi_chan_ddr", cfg_index);
+> +	if (ret == -ENOENT) {
+> +		*cfg_index = 0;
+
+Does nvmem_cell_read_u8() cahnge cfg_index when it fails with -ENOENT?
+
+> +		return 0;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  static int qcom_llcc_remove(struct platform_device *pdev)
 >  {
-> -	struct rockchip_dfi *dfi =3D devfreq_event_get_drvdata(edev);
->  	void __iomem *dfi_regs =3D dfi->regs;
-> =20
->  	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
->  		       dfi_regs + DDRMON_CTRL);
->  }
-> =20
-> -static void rockchip_dfi_read_counters(struct devfreq_event_dev *edev, s=
-truct dmc_count *count)
-> +static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct =
-dmc_count *count)
->  {
-> -	struct rockchip_dfi *dfi =3D devfreq_event_get_drvdata(edev);
->  	u32 i;
->  	void __iomem *dfi_regs =3D dfi->regs;
-> =20
-> @@ -131,7 +128,7 @@ static int rockchip_dfi_disable(struct devfreq_event_=
-dev *edev)
->  {
->  	struct rockchip_dfi *dfi =3D devfreq_event_get_drvdata(edev);
-> =20
-> -	rockchip_dfi_stop_hardware_counter(edev);
-> +	rockchip_dfi_stop_hardware_counter(dfi);
->  	clk_disable_unprepare(dfi->clk);
-> =20
->  	return 0;
-> @@ -148,7 +145,7 @@ static int rockchip_dfi_enable(struct devfreq_event_d=
-ev *edev)
->  		return ret;
->  	}
-> =20
-> -	rockchip_dfi_start_hardware_counter(edev);
-> +	rockchip_dfi_start_hardware_counter(dfi);
->  	return 0;
->  }
-> =20
-> @@ -166,7 +163,7 @@ static int rockchip_dfi_get_event(struct devfreq_even=
-t_dev *edev,
->  	u32 access =3D 0, total =3D 0;
->  	int i;
-> =20
-> -	rockchip_dfi_read_counters(edev, &count);
-> +	rockchip_dfi_read_counters(dfi, &count);
-> =20
->  	/* We can only report one channel, so find the busiest one */
->  	for (i =3D 0; i < DMC_MAX_CHANNELS; i++) {
-> --=20
-> 2.39.2
->=20
+>  	/* Set the global pointer to a error code to avoid referencing it */
+> @@ -975,11 +989,13 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	int ret, i;
+>  	struct platform_device *llcc_edac;
+> -	const struct qcom_llcc_config *cfg;
+> +	const struct qcom_llcc_config *cfg, *entry;
+>  	const struct llcc_slice_config *llcc_cfg;
+>  	u32 sz;
+> +	u8 cfg_index;
+>  	u32 version;
+>  	struct regmap *regmap;
+> +	u32 num_entries = 0;
+> 
+>  	drv_data = devm_kzalloc(dev, sizeof(*drv_data), GFP_KERNEL);
+>  	if (!drv_data) {
+> @@ -1040,8 +1056,18 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+> 
+>  	drv_data->version = version;
+> 
+> -	llcc_cfg = cfg[0]->sct_data;
+> -	sz = cfg[0]->size;
+> +	ret = qcom_llcc_get_cfg_index(pdev, &cfg_index);
+> +	if (ret)
+> +		goto err;
+> +
+> +	for (entry = cfg; entry->sct_data; entry++, num_entries++);
 
---fprcqslfdwew5bja
-Content-Type: application/pgp-signature; name="signature.asc"
+This is not readable, move the increment of num_entries out of there.
 
------BEGIN PGP SIGNATURE-----
+> +	if (cfg_index >= num_entries || cfg_index < 0) {
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSIopgACgkQ2O7X88g7
-+prsew/+LN7A+w+Fxan4kvHnEiZpj4xZA3Avqs/Lsz2Rem4DqsupltVNzgsPMwlH
-8TJksf8RvETr2hPUT/2R/VgGApIR+QygSUj8Y/s/sPj0ngXuk/nrMvniByPEqN+g
-V1yNWPMNOYGpZX9SCvpAA1Nwlvsvg9oHRHI553vxF7F5JDine/YYhqjqATdJf7Bl
-WPo7YtJ+kCmjPuk+GK3Foll/+WJo8Sa1GJUNqw9ovdqtThn7lVvwuSqYGUCoVoii
-hkht0bKwaDuLDdwHVzvsZC81eeoLefsvAty+HDDveLZ1bgq6xdmdbKnAjOW9tbgg
-vrDV6qWDlsFdhemvfHPMAWsTLAz+azDDQAFJBU7PE9y8h0MVd/3nbRh42qgT1Yaf
-bnEShymXUwvk31rrrlJmZ0MPI9lLtZ/Zrs+UzhalDzDKiqWAFHnTqUIa2PxCpGkU
-TgbhRxy3zIefePLjkZeEwSMaCXmrRGCHaijM3DmVB1OvGGmYpr+2ydeEw5CT99Je
-sB9RcK1n/ROKIJG+jPVEt68SWuqDSC5uWRDrks9RYb97vVYTdtBLM2nqAkl0bXJJ
-GH9L5qjwWyJG4SQFQ1H+/87Zo/VrzHFaDY8jmf2iLEoH8zGd0GAG1PUp3TsFjbKS
-Cm+ng9GjXUu2/T9yTL5Q+G+YI5jghuX4R/i8Oi6wdOgsANTyz4A=
-=Lfwq
------END PGP SIGNATURE-----
+How can cfg_index be negative?
 
---fprcqslfdwew5bja--
+Regards,
+Bjorn
+
+> +		ret = -EINVAL;
+> +		goto err;
+> +	}
+> +
+> +	llcc_cfg = cfg[cfg_index].sct_data;
+> +	sz = cfg[cfg_index].size;
+> 
+>  	for (i = 0; i < sz; i++)
+>  		if (llcc_cfg[i].slice_id > drv_data->max_slices)
+> --
+> 2.17.1
+> 
