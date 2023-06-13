@@ -2,351 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 134A472DAE2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D35272DAE7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 09:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237456AbjFMHaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 03:30:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32834 "EHLO
+        id S235021AbjFMHad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 03:30:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240059AbjFMHaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:30:22 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2053.outbound.protection.outlook.com [40.107.8.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D631B0;
-        Tue, 13 Jun 2023 00:30:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WBz9s3fH1VNwnq9d+ek2peVzQbZ1BZ4DwW+h/9Zu2WxvwFhqNgVwwPD6bRUE11odw/GJjAacGcKNPZ+l4cf71u//vO4gon+TUmT0Hg84FtzEq9GVBwyf2Q+5Or+aLPZ177Hl/1VIjrinXwuxAm01fQ6dXA5Uf1RN24H7Yinq7BvxSIpIhfReZrwaBgVCPe7tQ7jQ1VIaICwyYmF+FejDeXT86a+Kk42FM9zyLgj0115nn/8z6t3HTriwri1dw1LY7dPV4nfisi4G6N/kG7Wn2Y6dQrlGxwdfE2vwU0UYYpfqMZREMYNS4ujFOWcnoKak32S+POzRz02EBLZ4PvNf4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0TPgNFKY0RqHauoALoKwyzF0gZaVfJ7O+1K1U48bf9c=;
- b=l8sYnng4Tc1UFS6xyE1mg8AGZKqs/ISLC7z4FTIKlobQeUPcUq3hcU+YjPcNLIeYej2WUjnL4/DFeqCcSCxbeA1wNmnZHEuhELB+N+cg164v+Yh49Juu7JySxf4YY++pp/cEc50G3ZpYbxGt6tQyJyc9x0tSvu+8DCcOG9g8oVxUk+Ow3M4Ty+fvDABuYXg08+0J5Bcx6bpeO5bhqStBidDQAjCIWhxI/bVMGGk5dC0FJxwIvmz7yF6Qqlu72IMtqVC6rnoFQ9ueNqbOE7GqAKhqnm3ZMGJP0EUp6r5i7zkD+QUrErA+luBHnFNJNWYaPiwS5V30mu0PQ40LRP6GYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0TPgNFKY0RqHauoALoKwyzF0gZaVfJ7O+1K1U48bf9c=;
- b=Il3+JlCLkx8K/clX+rjnzngDNPt+FoQwE9Sq87v8HYquMJcSehOhIeHlWF6Efp6q7Z0j1WsuMThEiImzCJA2Ml9NGtTAjGDlFTyBxMANT4Tn0lp0cxHXwIIw1VURI+bPqVwUcwolAGhQM3wae/Sib5QsTaE8Dwb3Tz7ByUmxBzw=
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
- AS8PR04MB8435.eurprd04.prod.outlook.com (2603:10a6:20b:346::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6477.28; Tue, 13 Jun 2023 07:30:09 +0000
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4]) by DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4%7]) with mapi id 15.20.6455.045; Tue, 13 Jun 2023
- 07:30:09 +0000
-From:   Xu Yang <xu.yang_2@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Jun Li <jun.li@nxp.com>
-Subject: RE: [EXT] Re: [PATCH v2 1/2] dt-bindings: phy: mxs-usb-phy: convert
- to DT schema format
-Thread-Topic: [EXT] Re: [PATCH v2 1/2] dt-bindings: phy: mxs-usb-phy: convert
- to DT schema format
-Thread-Index: AQHZmboSn6UDTrFVK06L5r7rtQ42ma+Cr6QAgAP0GLA=
-Date:   Tue, 13 Jun 2023 07:30:09 +0000
-Message-ID: <DB7PR04MB450553FBD13E3101F8C065008C55A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-References: <20230608033642.4097956-1-xu.yang_2@nxp.com>
- <b8f35a9a-7553-92fa-6fdd-2522dc9bd36d@linaro.org>
-In-Reply-To: <b8f35a9a-7553-92fa-6fdd-2522dc9bd36d@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB7PR04MB4505:EE_|AS8PR04MB8435:EE_
-x-ms-office365-filtering-correlation-id: 802d831f-fdfc-4a9b-59b9-08db6be00452
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: G9h1Go2ZxDmMTQXyphjRui1C52XcS2BRcAOvilrXLPwDBSU4o0dbcxINKVdvKlCnMtJzx6FTamH1c80mSIMuvldKdY4BR/HTxzJv6sgSEDi3ZFRFbDQsJHwmI/GVKwgWUwAQDft1JiTEaSRghmDozBt5a8BoEtzrhltHo8Jnyi7ljpERkmFAmJ47jojql52yQ1gOcA3PwFQWFoESdaFk9yRAWsRelieoXxbJwkTwP90z3g1IUlexMttF4KVg8QzlL9vR3sEUq0ucgWO+OEmTUv4lgxzmXMXzNYCWYf3BPx67FCvQhJT4c8QJ/lgPRUKCQBzEhX+2Nycs5Q4L1979bjQZE7/CaUQybmEh44H1Vr+KK0YY9EKn/Lg2xCIj8IylIA88LbCWATHSkeqUk99NWE1IVy/4YUuyX79Wuu7jgF5u7ia+LB8/ShI7lxF3UuaiRu84F41n+NjajGgEmBMr+6n0P0BD/CQ+tY3JzfpReev8HOopx1jS9s4ZanuJWx+mZJKHx7hnQS7jIFRfoEcndcSXJ85zCDnxOrEy6W10J3fcsW4lTrWWIrFGufD7NplKeVAYmDhcIlu7yRiZ3LWR3lc888EgZq8xKn5tbpNhPeuBhZc8YvowyUgP3Bx+15I93d2Ktqu9kRgpc1JfMHyi/g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(396003)(366004)(136003)(39860400002)(451199021)(54906003)(110136005)(83380400001)(38070700005)(6506007)(9686003)(33656002)(86362001)(26005)(53546011)(38100700002)(186003)(122000001)(478600001)(71200400001)(7696005)(966005)(45080400002)(55016003)(2906002)(41300700001)(316002)(8936002)(8676002)(52536014)(5660300002)(64756008)(66476007)(7416002)(4326008)(66446008)(76116006)(66946007)(66556008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9I33xskFg5VarE+vOTOe9cRy5Tifr4mLM3DhPV0ir2AZFw4VpYQV5XzdiSkD?=
- =?us-ascii?Q?iC+ngVON+PRC6lhqapEpKNRL3DRylarE+nCGUqtjyQSCamEWspv/1SAw7+vA?=
- =?us-ascii?Q?/HrRZnHto7b6HeHja97y++DJo5ROk3RAfLX6bH7FYtLcgpqxF1HWJ+YezzDz?=
- =?us-ascii?Q?8yPYi6E+cYKwCA0HvzvPlESn3JRBXLDYlpO36rEIEcYnx5JN7PeENFizctXC?=
- =?us-ascii?Q?1Q38X/ijgb5Q86SrX8cswjlYpyxk1MwxTHQY4/SWb7d5x9gV5Zb7QLPgfEqa?=
- =?us-ascii?Q?8fUjBQqQKDC4Vo/lhprhGagQgMeDKf0nYhl+etkKOnx0dVfNNwix3jGQ3Gs8?=
- =?us-ascii?Q?fkGjbdzZrzlj44j6SZmLRqybPunBkBBVbuoBTcDMZJo76qqExnE4jaRlIbti?=
- =?us-ascii?Q?x+JrgbtNxJy+3WN/vHumf1hqNHnkZ+vbruR0iWftM/owgqyWor3yKDTqTBuR?=
- =?us-ascii?Q?0PbGLZpXiNoZT02rqRqRXjeTZWxBUWev2J6iM6ZvjGDA8eOqklRi3LX9MvrJ?=
- =?us-ascii?Q?FVfUB1Tkr5wI/CpvEQR2TLmbFJWQlZpfNAAg5qTTkIhKHHzWqE7M8l61eCVD?=
- =?us-ascii?Q?R+V4u7sjROsAycL6+to26iRxTYCurdZEafOlGCplHABvyICPKZYLDbThVD0W?=
- =?us-ascii?Q?7K6OiyAHwC0S4O81hVGSoP6bvxt9Rv4FLTdUwmDw6WXdwKa1PYFLbqsOyckQ?=
- =?us-ascii?Q?y4vsOd1RKdvkTZjfZ7ftYwNXynC4cgCpfrllqRFGihn9/BJxjWH+lriT+YMk?=
- =?us-ascii?Q?Xx+wtzvh0cLnX/T6KUCQVqdg/AhDYc3P3cgengL7frgEwo9K6wPT0XaQqy1C?=
- =?us-ascii?Q?mz56KsJLbk8DFpTPTVPp0YYcz/k46AzlaRVzDsNk4mYFoC/S2vEsCm1mLS6p?=
- =?us-ascii?Q?dOklfy843zxSEXatdpAwMlchW3te1q2vrmXXXmV1NbyeGJyt6Ve6ZKaAWHR5?=
- =?us-ascii?Q?n69BNrXRLsbjrR5bTHCJzIdrw8uNiNsHfn4fFN2D0e0pqsaby4CpBW9cJSb+?=
- =?us-ascii?Q?aBhjXHbrYmQe++knuFUPv8A9+BL2ZDcHMcyFk40d6NiGwXnCSDXWPT7aaExI?=
- =?us-ascii?Q?S57wdNiP/yq2hFQCoKrITIv+yqjacq5VtbetjkQ52p4b3hmP+fAKDK05HnSP?=
- =?us-ascii?Q?S7iIbFo/J5xYC71vYhucJnYsgjn8srN3Jc9ayQDvYIH2vCXGpc66GY/7Mo3c?=
- =?us-ascii?Q?f/rX8hgSN/vMvyRrpmTsVVxSFyObVfXHuNtW2DDm+rBvow3FZHRXQ1tOUO7b?=
- =?us-ascii?Q?VSXp+gFNCA62RsSaWvoGQ0EQzh9hblzlxVPDOuKeX2BwfSIyXnsBhKUq6Ec4?=
- =?us-ascii?Q?srqgA52brwui34S59FQb51xJjDyIED7kR9KlQ78FE187wBtCd7j4qZND6E3R?=
- =?us-ascii?Q?XOtTWmGoptB448pjLKZIY6fO0NLYGyuAI/H7bS/g6kwK9fXih5t0WLTOhMb6?=
- =?us-ascii?Q?REzHcVqhv3wbOOhyh2oTMXhFPpEFRDnF1vmi3Y79rARuRael+pZw8dH3azkg?=
- =?us-ascii?Q?ybdjswm9yaJ77QmbrQsX+/vkbC76oraooNSSju6ftFbxdOtMpc1XEiCi6A5D?=
- =?us-ascii?Q?J4AQc0HJwIbIpLZARF8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S240248AbjFMHaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 03:30:23 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A56610DA
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:30:22 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f8cc04c2adso2907435e9.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 00:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686641420; x=1689233420;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PBDkCj6IzOprmvk0wsDqFhkKf1Z88p1shaiXxO1NVss=;
+        b=g/f6Nuxm5umr8221WLg2gB6WuAwwRdelfM9cp7jbHsFroUbgvCny5Hin0PWP1NCWqN
+         KmSQRXoc6iNaLWPW9F05YFj05Ze4Rn8yrKbiV1qLJ6PQgX/BGVLN2orFyf5kXoNcQiGM
+         wJagHXFxVbAyj9LvhM7/C/AI7+p6h9/eaD2lbPclK34C1kF/Nqn+ZOh6Qqu2rfVnAjU+
+         2Pk9P6HMInUEl1/snHf0J+y3YsGu7lYTVHufP5dMYcXGf32N/xCNptna+ugKoOVBFWte
+         aXDbRDgjnA1uZLWfIZ/YrPWm1QFvtE5kqtoctvorUMIaRTy8yhiY5ceKD7PbfGpx7X5D
+         nbpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686641420; x=1689233420;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PBDkCj6IzOprmvk0wsDqFhkKf1Z88p1shaiXxO1NVss=;
+        b=RM7AAHCy/T/SqIfpTRMBDj6hlPe5JoGby45z/O/0hnYONmqSZ2hV8ZTNRDESRgfGDn
+         fcmqFeczc3NqBxy4PeSCXZMK1cTltV3Qy4i250n7RSvKIABJ1ina6a8zWknPv58utkGb
+         AJD1iG4aKolwqwnxtYgmNDtiutGqIe3xRWrvbDDDAH9nGlA32FAmcKsnHvxdGRWv4EyF
+         KJedo6Goz7o6kyfYtFn6cIRkvZorp6V+toC6RnCJ/8i4060jvoiAfa4G5srguGgQQm+K
+         DUCqefpn9vURcoQ+/71vnXUFRbZcsW1WYkMUo46GoYlpqHBY9sn75MZeZRenytiiuaMU
+         yVPA==
+X-Gm-Message-State: AC+VfDyNdQT8t+VF+HuI1L1uRoWZxnqZF9q8uUtOIck4VBl7ePzlgw+p
+        sH50Vql4YyrbnbEGVsJo9LZXWw==
+X-Google-Smtp-Source: ACHHUZ6GhVpOh89E7wzRUZl8GRroyUGL8JF6b5FpJb/rSQKDuOUL+eUZZiMjzNbPPBGSLWTlVjOZ/g==
+X-Received: by 2002:a7b:cb88:0:b0:3f7:e4fe:1dd7 with SMTP id m8-20020a7bcb88000000b003f7e4fe1dd7mr9485430wmi.13.1686641420564;
+        Tue, 13 Jun 2023 00:30:20 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id q25-20020a7bce99000000b003f17848673fsm13474453wmj.27.2023.06.13.00.30.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 00:30:20 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v4 0/2] arm64: dts: qcom: add DP Controller to SM8550 DTS
+Date:   Tue, 13 Jun 2023 09:30:11 +0200
+Message-Id: <20230601-topic-sm8550-upstream-dp-v4-0-ac2c6899d22c@linaro.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 802d831f-fdfc-4a9b-59b9-08db6be00452
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jun 2023 07:30:09.2212
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kIRVVG1yZC4fgbYX8GT3phzS6GtgUJIfNg2dufPXIBUvWdFnOmduJQFxWjfCc6G0muniTNvkE+w9Kgxs53RBtA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8435
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAMbiGQC/43NTW7DIBQE4KtErPsqfoKBrnqPKAvADxvJAQscK
+ 1Hku4d4V3Xj5Yw037xIxRKxkp/TixRcY405tXD+OhE/2jQgxL5lwikXtKMMljxHD/WmpaRwn+t
+ S0N6gn8EpJpzlSvbKkzZ3tiK4YpMfG5Du09TKuWCIj/3vcm15jHXJ5bnfr+zTHnhaGVDgBgPyT
+ hspxe8Uky35O5eBfNSVH5V4k1ArpRk1Xkn1TxJHJdEkGUwIvXdadOaPtG3bGyb9a5lqAQAA
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1315;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=8DvxRryXQQQ0y8Oh2tMAV/xSohwX06++G2+ngE4ucu4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkiBsKTJOKtHi2EI9K2dRfEfI1j0+AEfmWgTRgqqGl
+ BTBUvuuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIgbCgAKCRB33NvayMhJ0ZjJEA
+ DJm9dMBNEkuCdJ3V0k54VYU3+fm2YHKjKvaokmK9lT0WHXfQ5ABko38xxGcM30yozhSFcOYLn+O1Oa
+ +PpY183grbzvysTLCfD0/uhAm8euXU/AFQAB5Qzpsm+v7gMSqQP96eXVSV498GA2EDB+ZRa3wlDitc
+ 5zUXSD9+nw9dxySsePDHZzWt+7GdCBSMUTBDnaXpp+VS5tFgk/UbVdNpUZ4B1a3eyHjbv7blKFyYs9
+ eOmjYmNGYuMVd3mab/17OvihVinkileSwI+hbyDhRPV2aLsFOXnOptoSTcPOx2HGZUxuGf5Bhfobt9
+ Ec4PgiVgwsU2gDd0YsMF1EbPgpBDcpdanesTjae7ews7tC9yU5PquZTGeZnaEtf5Jd/bErbEYvTviM
+ Y/hesIorIfPnONdmQIkutTQqqEvIHsp7hJLJV7bBcTUM+6xTYzbQeC0RaPNocET/5XJm/rFWaN6dVv
+ yMdqkdWVcLnMdx8bCJGw+Ss67mA9WgwpVis55V7A2WL8SlkMC4GV96ine9E2RD3iSmUuJ/CbrtvSUd
+ oDvLsL06kOeaL7rJwxWVLGI+kxTJ6dMKXm6pPP0ricTmTytaxDCabGH8Z8Mzyc57XK1JvaLNFeQBMR
+ aSYtPpsKhbqJt/wJyGZIRN7zPIiEfPNLdfa3C9ccoEzaZZAhWCq1JNR0wDrg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The DP output is shared with the USB3 SuperSpeed lanes and is
+usually connected to an USB-C port which Altmode is controlled
+by the PMIC Glink infrastructure.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Saturday, June 10, 2023 12:44 AM
-> To: Xu Yang <xu.yang_2@nxp.com>; robh+dt@kernel.org; krzysztof.kozlowski+=
-dt@linaro.org; conor+dt@kernel.org
-> Cc: shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de; f=
-estevam@gmail.com; dl-linux-imx <linux-
-> imx@nxp.com>; linux-phy@lists.infradead.org; devicetree@vger.kernel.org; =
-linux-arm-kernel@lists.infradead.org; linux-
-> usb@vger.kernel.org; Jun Li <jun.li@nxp.com>
-> Subject: [EXT] Re: [PATCH v2 1/2] dt-bindings: phy: mxs-usb-phy: convert =
-to DT schema format
->
-> Caution: This is an external email. Please take care when clicking links =
-or opening attachments. When in doubt, report the
-> message using the 'Report this email' button
->
->
-> On 08/06/2023 05:36, Xu Yang wrote:
-> > Convert the binding to DT schema format. Besides, this also add other
-> > optional properties not contained in txt file.
->
-> Why ones do you add?
+DT changes tying the DP controller to the USB-C port on the QRD
+board will be sent later.
 
-I add clock, power-domains and phy-3p0-supply to this doc. Because
-the txt file should contain these properties but it not. I think the
-txt doesn't get update in time.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v4:
+- Added review tags from v2
+- Link to v3: https://lore.kernel.org/r/20230601-topic-sm8550-upstream-dp-v3-0-5f9ffdcb8369@linaro.org
 
->
-> >
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> >
-> > ---
-> > Changes in v2:
-> >  - change filename to fsl,mxs-usbphy.yaml
-> >  - add other optional properties
-> >  - narrow fsl,anatop to imx6
-> >  - use additionalProperties
-> > ---
-> >  .../bindings/phy/fsl,mxs-usbphy.yaml          | 128 ++++++++++++++++++
-> >  .../devicetree/bindings/phy/mxs-usb-phy.txt   |  33 -----
-> >  2 files changed, 128 insertions(+), 33 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/phy/fsl,mxs-usbph=
-y.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/phy/mxs-usb-phy.t=
-xt
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> > new file mode 100644
-> > index 000000000000..1b6b19fdf491
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> > @@ -0,0 +1,128 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id:
-> http://devicetree.org/schemas/phy/fsl,mxs-
-> usbphy.yaml%23&data=3D05%7C01%7Cxu.yang_2%40nxp.com%7Ccdb34e27fd17419bbe3=
-608db6908b13d%7C686ea1d3bc2b4
-> c6fa92cd99c5c301635%7C0%7C0%7C638219258284008643%7CUnknown%7CTWFpbGZsb3d8=
-eyJWIjoiMC4wLjAwMDAiLCJQIj
-> oiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3D4pNCtSE9=
-x4kENZsGf2nq%2F2S8uazubTjeqpSZ
-> XyRRVOo%3D&reserved=3D0
-> > +$schema: http://devicetree.org/meta-
-> schemas%2Fcore.yaml%23&data=3D05%7C01%7Cxu.yang_2%40nxp.com%7Ccdb34e27fd1=
-7419bbe3608db6908b13d%7C686ea
-> 1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638219258284008643%7CUnknown%7CTWFp=
-bGZsb3d8eyJWIjoiMC4wLjAwM
-> DAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=
-=3DQjXo%2FzS6Ntl2RGBScVJfkdIONo6Sa
-> psDkcDM5AY9cgQ%3D&reserved=3D0
-> > +
-> > +title: Freescale MXS USB Phy Device
-> > +
-> > +maintainers:
-> > +  - Xu Yang <xu.yang_2@nxp.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - fsl,imx23-usbphy
-> > +          - fsl,vf610-usbphy
-> > +          - fsl,imx7ulp-usbphy
->
-> Keep the list sorted.
+Changes in v3:
+- Rebased on next-20230609
+- Dropped applied bindings
+- Link to v2: https://lore.kernel.org/r/20230601-topic-sm8550-upstream-dp-v2-0-e8778109c757@linaro.org
 
-Okay.
+Changes in v2:
+- Added review tags
+- s/lov_svs/low_svs/
+- Applied fixes suggested from Konrad
+- Link to v1: https://lore.kernel.org/r/20230601-topic-sm8550-upstream-dp-v1-0-29efe2689553@linaro.org
 
->
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,imx28-usbphy
-> > +              - fsl,imx6ul-usbphy
-> > +              - fsl,imx6sl-usbphy
-> > +              - fsl,imx6sx-usbphy
-> > +              - fsl,imx6q-usbphy
-> > +          - const: fsl,imx23-usbphy
-> > +      - items:
-> > +          - const: fsl,imx6sll-usbphy
-> > +          - const: fsl,imx6ul-usbphy
-> > +          - const: fsl,imx23-usbphy
-> > +      - items:
-> > +          - const: fsl,imx7ulp-usbphy
-> > +          - const: fsl,imx6ul-usbphy
-> > +      - items:
-> > +          - const: fsl,imx8dxl-usbphy
-> > +          - const: fsl,imx7ulp-usbphy
-> > +
-> > +  reg:
-> > +    minItems: 1
-> > +    maxItems: 2
->
-> You should list the items.
->
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 2
->
-> You should list the items.
+---
+Neil Armstrong (2):
+      arm64: dts: qcom: sm8550: fix low_svs RPMhPD labels
+      arm64: dts: qcom: sm8550: add display port nodes
 
-After my check, the maxItems value of reg and interrupts should be 1.
-Will change it.
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 95 ++++++++++++++++++++++++++++++++++--
+ 1 file changed, 90 insertions(+), 5 deletions(-)
+---
+base-commit: 53ab6975c12d1ad86c599a8927e8c698b144d669
+change-id: 20230601-topic-sm8550-upstream-dp-b713ba275d7c
 
->
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  '#phy-cells':
-> > +    const: 0
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  fsl,anatop:
-> > +    description:
-> > +      phandle for anatop register, it is only for imx6 SoC series.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +
-> > +  phy-3p0-supply:
-> > +    description:
-> > +      One of USB PHY's power supply. Can be used to keep a good signal
-> > +      quality.
-> > +
-> > +  fsl,tx-cal-45-dn-ohms:
-> > +    description:
-> > +      Resistance (in ohms) of switchable high-speed trimming resistor
-> > +      connected in parallel with the 45 ohm resistor that terminates
-> > +      the DN output signal.
-> > +    minimum: 35
-> > +    maximum: 54
-> > +    default: 45
-> > +
-> > +  fsl,tx-cal-45-dp-ohms:
-> > +    description:
-> > +      Resistance (in ohms) of switchable high-speed trimming resistor
-> > +      connected in parallel with the 45 ohm resistor that terminates
-> > +      the DP output signal.
-> > +    minimum: 35
-> > +    maximum: 54
-> > +    default: 45
-> > +
-> > +  fsl,tx-d-cal:
-> > +    description:
-> > +      Current trimming value (as a percentage) of the 17.78 mA TX
-> > +      reference current.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 79
-> > +    maximum: 119
-> > +    default: 100
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          oneOf:
-> > +            - enum:
-> > +              - fsl,imx6sl-usbphy
->
-> It does not look like you tested the bindings, at least after quick
-> look. Please run `make dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> Maybe you need to update your dtschema and yamllint.
-
-Missed this in v2, but already checked bindings in v3. However, I have
-checked schema using dt-doc-validate and dtbs using dt-validate tools.
-
->
-> > +              - fsl,imx6sx-usbphy
-> > +              - fsl,imx6sll-usbphy
-> > +              - fsl,imx6q-usbphy
-> > +              - fsl,vf610-usbphy
-> > +            - items:
-> > +              - const: fsl,imx6ul-usbphy
-> > +              - const: fsl,imx23-usbphy
-> > +    then:
-> > +      required:
-> > +        - fsl,anatop
-> > +
-> > +additionalProperties: false
-> > +
->
->
-> Best regards,
-> Krzysztof
-
-Thanks,
-Xu Yang
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
