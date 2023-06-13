@@ -2,122 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C554072DD13
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1CC772DD22
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:59:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233711AbjFMIyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 04:54:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59736 "EHLO
+        id S238653AbjFMI7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 04:59:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240474AbjFMIyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:54:10 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D396135
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:54:08 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f8cc042ea9so2909835e9.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:54:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686646447; x=1689238447;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NDiNhm2Y6nRuk/DDc8nzD8Q/rYbk+v+INjp84dQ4Gsk=;
-        b=jOtPBGa+GRY0pIqESl8Ji3GBrr+XDllWpqEsa7or8ljLDZwrpneARdDnvSnZC34rQn
-         fcI2uF7QFFzG9XIJNe6ffH4f4mr+7oj7frdUPNbE5wdgAnrg2Fe9K8JPs6OW3PMfWDUX
-         FFJ7ZmSXqtcA5EJjAa5JaAVkRRATKlpNU4qk2NLXoZq1wviRUy9tgXMXbCZnZApnWiCu
-         zViBQtFFxm3EMCpB1tXHZK74SgWz4DHIwbxWoU9KtNTisc60umEcb7iR7mlMtAo0qAOk
-         koi5vJN8M9RU16ER7rOXW5KEqFiWy+a2sIcqcYi7e/yYyfMC5opqD7VuXpI+MkHcna3F
-         eTkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686646447; x=1689238447;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NDiNhm2Y6nRuk/DDc8nzD8Q/rYbk+v+INjp84dQ4Gsk=;
-        b=jnNN7BXs0mwnXhwZ1VMgVCfnMH/S4ftuLkfvmZWB4AnMWDxT6gBzV6pfreh+HO2UWs
-         bSs03muswUzWlZtMt486Zo91irHY7a79TmH5mrlf5egO/1MwwjhlyxToFIgLDdz3ZC9+
-         ntagzZYt7/5z8Eut0vrWK5iIkDOb5qqO6cg4kHy8Y7Fv8qoQtUTa603m/N6GAtBeKaKN
-         oupj7xBVPpp3qtfao2s9Q9D6BP5UwE5sWE26Owwyog3LXSeYdIbY/1L0P/aZGp+dRavG
-         0z/N4Mpn5t5d6p9RMNlx5tSrGf97ZVwsSwyCi0hWqP/ALn5sXuiRvv9LU+njcKtpQnjO
-         uWRA==
-X-Gm-Message-State: AC+VfDwGWXjX7AoR5ksK8DbVSjW8yBFjUtbEEFoWx0zsOX60vuR45WLx
-        KQJtQbFI9Vh48VCin3cboA4KSw==
-X-Google-Smtp-Source: ACHHUZ45G18QLIN7+wDdZTsNEbpK70h739qxBNPbqmKWAndC1h4UuqNPazu8rDUPziKR7UcgGS2Mcw==
-X-Received: by 2002:a05:600c:22cc:b0:3f8:153b:a521 with SMTP id 12-20020a05600c22cc00b003f8153ba521mr4718978wmg.26.1686646446774;
-        Tue, 13 Jun 2023 01:54:06 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:48b:b939:c60e:e1ba? ([2a01:e0a:982:cbb0:48b:b939:c60e:e1ba])
-        by smtp.gmail.com with ESMTPSA id r11-20020a05600c2c4b00b003f7eb5375ddsm13829675wmg.15.2023.06.13.01.54.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 01:54:06 -0700 (PDT)
-Message-ID: <cfa788c3-be57-5109-73df-b82099dd17a0@linaro.org>
-Date:   Tue, 13 Jun 2023 10:54:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/8] dt-bindings: connector: usb-connector: add a gpio
- used to determine the Type-C port plug orientation
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234253AbjFMI7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:59:00 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF11AA;
+        Tue, 13 Jun 2023 01:58:56 -0700 (PDT)
+X-GND-Sasl: alexandre.belloni@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686646735;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=WzN2Ac9TNvZka8mc3EL6P/jfHd2/+XW2RC/3jQwoJKg=;
+        b=a+aUakOpxVgNwgM7lSaedlXEVyRkC2GC35n5dYwYOKEhLAaRBuSkeQ8BZpHKzczjhjSWmf
+        9MdK8+JPRUiU+eB/MIHvbSY3zNnSFv5dFbRhMU9qcMWyCZIpqrKQ8zbJZzI5514TNey0W7
+        yOuxYCGCMVk0bT1rw30HzbxiAjq4mTfAtRyuAafFYVgY9mpW52Qq/W1XybiGf8HcDwsPJd
+        1mlCxI+mNOGUfiyqZCME5nd0jF7z/gsEYeqRlZPYBQ2QkEA5+nbHi2ivBmnGwQeSN7kqAI
+        K5/QlnZox4mqqoV2EgaDMvmHyj3SFygyYhqL/BeOzMUr2WHe1uOrDAOtlgJ7rw==
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 90AC81C000E;
+        Tue, 13 Jun 2023 08:58:54 +0000 (UTC)
+Date:   Tue, 13 Jun 2023 10:58:54 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
- <20230601-topic-sm8550-upstream-type-c-v3-1-22c9973012b6@linaro.org>
- <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/8] rtc: isl12022: trigger battery level detection
+ during probe
+Message-ID: <2023061308585481c7cb97@mail.local>
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230612113059.247275-7-linux@rasmusvillemoes.dk>
+ <20230612141518c2119835@mail.local>
+ <f3dc01bc-cdd1-ab0c-5891-083f6d255a4c@rasmusvillemoes.dk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f3dc01bc-cdd1-ab0c-5891-083f6d255a4c@rasmusvillemoes.dk>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 10:13, Krzysztof Kozlowski wrote:
-> On 13/06/2023 09:55, Neil Armstrong wrote:
->> On some platforms, the Type-C plug orientation is given on a GPIO line.
->>
->> Document this optional Type-C connector property, and take the
->> assumption an active level represents an inverted/flipped orientation.
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 13/06/2023 09:44:55+0200, Rasmus Villemoes wrote:
+> On 12/06/2023 16.15, Alexandre Belloni wrote:
+> > On 12/06/2023 13:30:56+0200, Rasmus Villemoes wrote:
+> >> Since the meaning of the SR_LBAT85 and SR_LBAT75 bits are different in
+> >> battery backup mode, they may very well be set after power on, and
+> >> stay set for up to a minute (i.e. until the battery detection in VDD
+> >> mode happens when the seconds counter hits 59). This would mean that
+> >> userspace doing a ioctl(RTC_VL_READ) early on could get a false
+> >> positive.
+> >>
+> >> The battery level detection can also be triggered by explicitly
+> >> writing a 1 to the TSE bit in the BETA register. Do that once during
+> >> boot (well, probe), and emit a single warning to the kernel log if the
+> >> battery is already low.
+> >>
+> >> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> >> ---
+> >>  drivers/rtc/rtc-isl12022.c | 19 ++++++++++++++++++-
+> >>  1 file changed, 18 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/rtc/rtc-isl12022.c b/drivers/rtc/rtc-isl12022.c
+> >> index 1b6659a9b33a..690dbb446d1a 100644
+> >> --- a/drivers/rtc/rtc-isl12022.c
+> >> +++ b/drivers/rtc/rtc-isl12022.c
+> >> @@ -280,8 +280,25 @@ static void isl12022_set_trip_levels(struct device *dev)
+> >>  	mask = ISL12022_REG_VB85_MASK | ISL12022_REG_VB75_MASK;
+> >>  
+> >>  	ret = regmap_update_bits(regmap, ISL12022_REG_PWR_VBAT, mask, val);
+> >> -	if (ret)
+> >> +	if (ret) {
+> >>  		dev_warn(dev, "unable to set battery alarm levels: %d\n", ret);
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	ret = regmap_write_bits(regmap, ISL12022_REG_BETA,
+> >> +				ISL12022_BETA_TSE, ISL12022_BETA_TSE);
+> >> +	if (ret) {
+> >> +		dev_warn(dev, "unable to trigger battery level detection: %d\n", ret);
+> > 
+> > This is too verbose, there is no action for the user upon getting this
+> > message.
 > 
-> Rob had here objections as these are bindings for the connector, not
-> PMIC glink/altmode. I still doubt that Qualcomm USB Type-C connectors
-> have such pin exposed. If you open the schematics, the GPIO is actually
-> coming out from PMIC and is nowhere around the connector. Please drop my
-> Ack.
+> OK.
 > 
-> This however could be a pin of the PMIC because it clearly is on the
-> schematics.
+> > Setting TSE also enables temperature compensation, which may be an
+> > undesirable side effect. Shouldn't this be reverted if necessary?
+> 
+> Well, I can't imagine the board designer not wanting/expecting
+> temperature compensation to be enabled since they've spent the $$ on
+> using a part with that capability. Also, we anyway set TSE if
+> CONFIG_HWMON so that the TEMP registers get updated once per minute.
+> 
+> If you insist I'll do the proper logic to set it back to 0 if it wasn't
+> set beforehand, but I prefer to just keep it as-is.
+> 
 
-Yes it comes from the PMIC, but this part of the PMIC is handled by
-the PMIC_GLINK firmware service, so the logical place would be into
-the pmic_glink node with a gpio array in order to handle multi-ports.
+Ok, fine
 
-Thanks,
-Neil
+> > 
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	ret = isl12022_read_sr(regmap);
+> >> +	if (ret < 0) {
+> >> +		dev_warn(dev, "unable to read status register: %d\n", ret);
+> >> +	} else if (ret & (ISL12022_SR_LBAT85 | ISL12022_SR_LBAT75)) {
+> >> +		dev_warn(dev, "battery voltage is below %u%%\n",
+> >> +			 (ret & ISL12022_SR_LBAT75) ? 75 : 85);
+> > 
+> > This message is useless, I'd drop the whole block.
+> 
+> I only added this as "compensation" for ripping out the warning in 1/8,
+> since I assumed somebody actually wanted at least one warning in the
+> kernel log if the battery is low.
+> 
 
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+No need, I had a patch removing the message anyway.
+
+> I/we are not going to scrape dmesg but will use the ioctl() to monitor
+> the battery, so I'm perfectly happy to just remove this. That will also
+> make the question of how long to wait after setting TSE moot, since
+> certainly userspace won't be able to issue the ioctl() soon enough to
+> see stale values in the LBAT bits.
 > 
 
+Exactly.
+
+> Rasmus
+> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
