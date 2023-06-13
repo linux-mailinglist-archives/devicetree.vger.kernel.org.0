@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA5072ED6E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 22:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF0E72ED88
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 23:02:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbjFMU62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 16:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
+        id S231363AbjFMVC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 17:02:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjFMU61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 16:58:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A971730;
-        Tue, 13 Jun 2023 13:58:27 -0700 (PDT)
+        with ESMTP id S229447AbjFMVC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 17:02:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C44E1199B;
+        Tue, 13 Jun 2023 14:02:27 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EA81D63AF0;
-        Tue, 13 Jun 2023 20:58:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B630C433C0;
-        Tue, 13 Jun 2023 20:58:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 587146104B;
+        Tue, 13 Jun 2023 21:02:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E720AC433C8;
+        Tue, 13 Jun 2023 21:02:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686689904;
-        bh=+MPBvnhjOYB8US9eKD+PDWZ7Nb61K2hcSbKX4PkjofY=;
+        s=k20201202; t=1686690146;
+        bh=jyw8frzPoCYARfrEDCQDW+9wm0qWESJzWlGdSUEQ4vM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T0C84dnU/z+WJpnQ1ujhLFf8ha6+fe+Adw9e/sRbSc82E8Aw60V/qhxcEVovG1L8S
-         tDFtatcIi9rYfbu+/fChzJxh8UduFX9rOLZ3di7J2ri2ayyucV3il6DJgKEPIyMrxR
-         nQs2UJLm/9zzbdwJUDTinlLiCXhHvNaOHGdXT1qub2SP/S3TE4D00tJeWLSWp2Vc7Y
-         jFLjEW2qh3UfDMm79Shf+L3eGqwH5eHlaOR1PYWBeqcsX0F5o4ZUGEb7mHsLtyEu+x
-         j+iJdpSKun3MjdPBtr0O1B/+aKoEAbq04vd+rvlsPN35cjRCH+QMFcvlALeK86v2q5
-         kBByWe05oL0lw==
-Date:   Tue, 13 Jun 2023 21:58:20 +0100
+        b=E/52i+n0lFJdCwXaDLrEEo8Sr+kIVC40XOIu6Qj9sBJSRRMawRPZrnHGySsMZmDnB
+         rDanIwfX+gcEnZ3fHJiUKDKbxoPfnICb0SPKi6ew+vJX1KuLJtV511U5sJ/SWzpXoj
+         oVUnp5aUG9UIfn9KKFJtKn2G8GEEnDOyUw6ssia00UOE9xkw7FXNMb/ALGqzvZOwAx
+         IdGcYYXW6fWHuJPP4rMI3YVnCCUeYxocePySqqqP7v/rJjyyLr8Luohw3Epjtm5mt6
+         HoD+QcXuq9flJgIrL3gYwpGvPrZYNQOqLVOeJJnfTWd3tGpW63DS5jvDua95RQWDi6
+         Jd7gr+kXTjORA==
+Date:   Tue, 13 Jun 2023 22:02:22 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Lee Jones <lee@kernel.org>,
-        Alexandre Courbot <acourbot@nvidia.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] regulator: dt-bindings: pwm-regulator: Add missing type
- for "pwm-dutycycle-unit"
-Message-ID: <20230613-blustery-granny-f6c40b2fbbd3@spud>
-References: <20230613200956.2822740-1-robh@kernel.org>
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: partition: Add missing type for
+ "linux,rootfs"
+Message-ID: <20230613-massive-varmint-7c3b33cf1d02@spud>
+References: <20230613201014.2823185-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="0/VSTaqhwMdK1KNy"
+        protocol="application/pgp-signature"; boundary="qpOSysnE7Jq8zno5"
 Content-Disposition: inline
-In-Reply-To: <20230613200956.2822740-1-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230613201014.2823185-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,13 +62,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---0/VSTaqhwMdK1KNy
+--qpOSysnE7Jq8zno5
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 13, 2023 at 02:09:56PM -0600, Rob Herring wrote:
-> "pwm-dutycycle-unit" is missing a type, add it.
+On Tue, Jun 13, 2023 at 02:10:14PM -0600, Rob Herring wrote:
+> "linux,rootfs" is missing a type, add it.
 >=20
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
@@ -78,15 +77,15 @@ Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Cheers,
 Conor.
 
---0/VSTaqhwMdK1KNy
+--qpOSysnE7Jq8zno5
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIjYawAKCRB4tDGHoIJi
-0jwuAP9oDB/MpZD5C/WHFxgupbHiZaSWuWncmkxicItqbsqOZQD/RAXv+3C1cxlB
-wjwiB7DbhgMJXtf0CSmLw7hAZ2dpBww=
-=IgNX
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIjZXgAKCRB4tDGHoIJi
+0i0aAQDFRm9BBtjFLcppPVZdx5ZJLT/LY2z8dhtUjvOrme3xKAEAj0vflj1emuNf
+XYUKJeIlIsGDh8WQuJKgJvN5Fxm6uAU=
+=5DDt
 -----END PGP SIGNATURE-----
 
---0/VSTaqhwMdK1KNy--
+--qpOSysnE7Jq8zno5--
