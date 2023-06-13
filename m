@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5BE72DEA6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 12:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D1F72DEB3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 12:06:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232386AbjFMKAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 06:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40428 "EHLO
+        id S233490AbjFMKGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 06:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242103AbjFMJ7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:59:53 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C281701;
-        Tue, 13 Jun 2023 02:59:37 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35D9wFh6003963;
-        Tue, 13 Jun 2023 09:59:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ufUPbiatUXptd6DIdwAP3dnQZDjpTKViqvSPQwOlxfY=;
- b=efPv+J726zLy04AjXMbJInbK2jlr+h481+rAIRCXnT975ko1FYgob9TgBE50REP2OYcB
- XVb9K91zCmjSNnJxU3wcwD5JduzPBPbljTsAYvmjBkzFrVWKRFS/BVV42E4DgbHCrGu6
- tkY/u6zY7mladxaVBi2clr5K7tf3/pA7oDF3ErpSj/sC7TceLYpOB1uGwgLrzwMg6tPY
- Igwpxha6QhFuE9VNBxA9id3k401mwmzZfFIWrHOrO8eC1joOWGfXnVePCW9zDebsq9HI
- O8OFUYZ7k4xfbpXVCMvE10XA1rqHOJRZFGpfrRw57/6wjHU9f+XeELd7ml1k2Ait5xla ZQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r690q1c35-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Jun 2023 09:59:33 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35D9xVdP012700
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Jun 2023 09:59:31 GMT
-Received: from [10.218.22.90] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 13 Jun
- 2023 02:59:25 -0700
-Message-ID: <cc4e1339-f1d5-58e5-ba41-7bd5085f3c89@quicinc.com>
-Date:   Tue, 13 Jun 2023 15:29:22 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH V4 0/4] Add camera clock controller support for SM8550
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S240669AbjFMKFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 06:05:04 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F13568E;
+        Tue, 13 Jun 2023 03:05:01 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f611ac39c5so6706663e87.2;
+        Tue, 13 Jun 2023 03:05:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686650700; x=1689242700;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3aoW4c/0c2Y3ZUPrlBsCZCwmswvbzyn7amN1Oeqw4TU=;
+        b=UkKnxSys2MimNCCnHQVavNcXQH0kM0oF73GRxm7/61ytdQCvi/xCeQs213R5kuTWWx
+         NDwOviN0NXlEA4ESfJwtPkAsgwuzwMweyZsOVb1A7kS1PhQVC0H3Me7qVwjClO/xLviT
+         w/xzuZbfYQDaIApczjqpJlSpj5p3hsaKcAtX2NgZh7Y+cGH2veSM4ZYi2WUGm48IjBUR
+         53jSpRY3bn/rRfUGpT7n0jjwI8t8TvMW0cge4bkavTm78FWtpTcbsogfDGD8Viw9LcC0
+         vfsK7Q4gtvVBM/lBRmmZoQEIAlb+jc/vEy6f5YRTJJPOBXuTHcCTU0u/fZLqxxxz+5Xl
+         QP2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686650700; x=1689242700;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3aoW4c/0c2Y3ZUPrlBsCZCwmswvbzyn7amN1Oeqw4TU=;
+        b=OBjGkUwe8VzSFf7z/f2RG5BdyQ8cnuoTWMhLC+KOb6XwxOS0ZtVXCZplk+2FKm/69/
+         riVSh1ef3SXJnKjBJAMiY7azfvPTe2DjAsoErzSaf/39FmfWQhbWbYgVLAmy3EGgrYGi
+         UX8rcAukWbIMmcZb6qjFLOEo4ZoxBJFXJVsaEBQ7UROmjtd+94Cr8QaLzd5KI1VCyN5X
+         u4JTPNcyp86Oq28yuZWkHiV52BV+5c+mzIc3t0p05gJet0kcaYTHFpav/M9SBCfZUWS7
+         PTN9/a8lJvt2GzabAzfHT0Qp+DQvP2McPaKuYcZnkTarVnaQ4/SxHAWQf4IHIk6MM2xT
+         MHgg==
+X-Gm-Message-State: AC+VfDypeoBuTe3XRPLWC0b7ISWx9Qe74wk0l/74DD6YRT5wTfpNvBgS
+        4LUy/na+NXg5Nzgs9Gt1ywQ=
+X-Google-Smtp-Source: ACHHUZ4Ed4mGePopLNFCVASIfNhyrTc7NTMpG8L80ixdQsklr2xfY7MM3veonRoqYJQLIuxl4nNbKQ==
+X-Received: by 2002:a19:6446:0:b0:4e8:5e39:6234 with SMTP id b6-20020a196446000000b004e85e396234mr4987654lfj.16.1686650700027;
+        Tue, 13 Jun 2023 03:05:00 -0700 (PDT)
+Received: from dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id w7-20020ac24427000000b004f3945751b2sm1713043lfl.43.2023.06.13.03.04.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 03:04:59 -0700 (PDT)
+Date:   Tue, 13 Jun 2023 13:04:41 +0300
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230609115058.9059-1-quic_jkona@quicinc.com>
- <09ccfa54-5ada-8dff-03a2-b2ffb07a58c1@linaro.org>
- <feebd8cd-7713-f086-356b-cc2657a9708e@linaro.org>
-From:   Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <feebd8cd-7713-f086-356b-cc2657a9708e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _ikaCyHA4kUCNX8BpdkQ7iSBoggDETUa
-X-Proofpoint-GUID: _ikaCyHA4kUCNX8BpdkQ7iSBoggDETUa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-13_04,2023-06-12_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 priorityscore=1501 spamscore=0 lowpriorityscore=0
- suspectscore=0 clxscore=1015 bulkscore=0 adultscore=0 phishscore=0
- malwarescore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306130087
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Support ROHM BU27010 RGBC sensor
+Message-ID: <cover.1686650184.git.mazziesaccount@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="B/nlmydDbzf8YhvD"
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -94,56 +76,83 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--B/nlmydDbzf8YhvD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 6/13/2023 2:07 PM, Krzysztof Kozlowski wrote:
-> On 12/06/2023 04:25, Bryan O'Donoghue wrote:
->> On 09/06/2023 12:50, Jagadeesh Kona wrote:
->>> Add bindings, driver and devicetree node for camera clock controller on
->>> SM8550.
->>
->> This is very confusing.
->>
->> Your cover letter doesn't detail any changes and your individual patches
->> all say "no changes since v3", "no changes since v2"
->>
->> If this is a RESEND then mark it as a RESEND.
-> 
-> That's indeed odd. Three versions without changes...
-> 
-> Best regards,
-> Krzysztof
-> 
+Support ROHM BU27010 RGBC + flickering sensor.
 
-This is not a RESEND, actually there were changes from each version to 
-next version and change details were updated in respective patches. But 
-the patches in which changes were present were dropped in v4 based on 
-review comments. Will take care of updating cover letter as well with 
-changes across versions if we push the next series.
+Following description copied from commit log:
 
-Please find the summary of changes across versions till v4.
+> The ROHM BU27010 is an RGBC sensor with a flickering detection FIFO. The
+> RGBC+IR sensor functionality is largely similar to what the BU27008 has.
+> There are some notable things though:
+>  - gain setting is once again new and exotic. Now, there is 6bit gain
+>    setting where 4 of the bits are common to all channels and 2 bits
+>    can be configured separately for each channel. The BU27010 has
+>    similar "1X on other channels vs 2X on IR when selector is 0x0"
+>    gain design as BU27008 had. So, we use same gain setting policy for
+>    BU27010 as we did for BU27008 - driver sets same gain selector for
+>    all channels but shows the gains separately for all channels so users
+>    can (at least in theory) detect this 1X vs 2X madness...
+>  - BU27010 has suffled all the control register bitfields to new
+>    addresses and bit positions while still keeping the register naming
+>    same.
+>  - Some more power/reset control is added.
+>  - FIFO for "flickering detection" is added.
+>
+> The control register suffling made this slightly nasty. Still, it is
+> easier for maintenance perspective to add the BU27010 support in BU27008
+> driver because - even though the bit positions/addresses were changed -
+> most of the driver structure can be re-used. Writing own driver for
+> BU27010 would mean plenty of duplicate code albeit a tad more clarity.
 
-Changes in v4:
-  - Dropped the extra patches added in v2, since the review comments on 
-v3 recommended an alternate solution.
+This series is done on top of the iio-for-6.5a + this fix-up series:
+https://lore.kernel.org/all/cover.1686648422.git.mazziesaccount@gmail.com/
 
-Changes in v3:
-  - Squashed 2 extra patches added in v2 into single patch as per review 
-comments
-  - Link to v3: 
-https://patchwork.kernel.org/project/linux-clk/list/?series=753150
+---
 
-Changes in v2:
-  - Took care of review comments from v1
-  - Added 2 extra patches updating L configuration value across chipsets 
-to include CAL_L and RINGOSC_CAL_L fields and removed setting CAL_L 
-field in clk_lucid_evo_pll_configure().
-  - Link to v2: 
-https://patchwork.kernel.org/project/linux-clk/list/?series=751058
+Matti Vaittinen (3):
+  dt-bindings: ROHM BU27010 RGBC + flickering sensor
+  iio: light: bu27008: add chip info
+  iio: light: bd27008: Support BD27010 RGB
 
-v1:
-  - Initial CAMCC changes for SM8550
-  - Link to v1: 
-https://patchwork.kernel.org/project/linux-clk/list/?series=749294
+ .../bindings/iio/light/rohm,bu27010.yaml      |  50 ++
+ drivers/iio/light/rohm-bu27008.c              | 504 ++++++++++++++++--
+ 2 files changed, 500 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2701=
+0.yaml
 
-Thanks,
-Jagadeesh
+--=20
+2.40.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--B/nlmydDbzf8YhvD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmSIPygACgkQeFA3/03a
+ocUR6AgAqZBGR8ekHAaOcOnz1vVJ/y2iz8lTMsha0sH0YQht+QvkQd8FAUMUR//5
+C9wgca7NCmT13eh57YSavCHoOBmZqlxc/AGlQRVHpKRCjzsIaSNrcgu2W9FySmmG
+Y8x0k4iVRbWktipM5s1xZZICjsprLKsDEirVk4CBWEisF7inL8rvzRBGRuF5ZmA9
+jRuppoR6AwLXfWqD2FFWbhM2mULgRG6RG4UrRmx8bdzVSkh10ZbWEeXjjmawtDc6
+NbVdEzKrCK7HT0kDJaK0YWfBgaZsWUY+IfGzlSMRK+2ijaWJJv37XUlYixkjPAqJ
+53FkGgSa5uIYWnSORbchvs0vzbfw2w==
+=skCG
+-----END PGP SIGNATURE-----
+
+--B/nlmydDbzf8YhvD--
