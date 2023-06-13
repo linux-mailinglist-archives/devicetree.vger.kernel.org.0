@@ -2,57 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B62A72EEEE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 00:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 684C372EF28
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 00:27:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbjFMWMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 18:12:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S231905AbjFMW1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 18:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjFMWMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 18:12:15 -0400
+        with ESMTP id S229740AbjFMW1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 18:27:14 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3A010E9;
-        Tue, 13 Jun 2023 15:12:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E6210CC;
+        Tue, 13 Jun 2023 15:27:11 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A622F61F35;
-        Tue, 13 Jun 2023 22:12:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2937CC433C0;
-        Tue, 13 Jun 2023 22:12:13 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F05EB63B97;
+        Tue, 13 Jun 2023 22:27:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6108EC433C0;
+        Tue, 13 Jun 2023 22:27:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686694334;
-        bh=sKrQ7hdq4mSomL4LDC24g6oc1MHOuvi2wLr6vE0lxhU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cLiwMUlahN9DTyi23DbZ6NqIxjOb6N1knEUWKRKVTtnPtDYzzbQraEF4t0foek5ve
-         GTEEBrrxCnfBK4XplQfmh1XS6Yxf3vk72uqDxfWOg1Ozi7GbSnSOzSBvFMkkQ0n+0n
-         KD15Qsm5oJ6bBZQuPiMZ7EvIM/zYLyRbbd92TLZ7kI8YWvtxT+efgDI7AdQH54SmDP
-         anH1OdDexSZ1PqSmnOgLApBCoN0JdLZdOkRvaC1MUIwiNSSzRoYzBKHPndwfI5ml0P
-         eiXrm7VnPP3ZZBpIOmElsQ3jMp0pD2xLV9QD+n4TJno/EAJyfPLADZVFNb7swRHNfC
-         i5KMJ7S4VGU2g==
-Date:   Tue, 13 Jun 2023 15:15:36 -0700
+        s=k20201202; t=1686695230;
+        bh=brGnLs+934H/8ne5PgFLPYRlSLef8jdP9/Ha5mJTNWw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=LP7gRQ8F3048l17hzFYP7yo65uFsKMKyVS+w4c2ZPfDmt55M5Di/DOAB7TMXY3q3Q
+         FMs4mTCCcgIKAUUsTsZ3BrtKE+4bpIMrsOR7o1yRPojKTjgzZpOwRuZX8WvhYQr00B
+         dB/CIaB+VIQTpSaZvYCrtYOEFnzX5zV6+EHtoYSQXzS8us0PisOwPQw2RjWA018Byc
+         0yzYiz/eLtYQLEUy6bWHiEB6r23QWBDbDl2huQHceGL6C5MbNc0T0qM6SuCCxdme/P
+         St4o82SHCxfBbg0Ay1y9vsypAp3U3cr/pAEFx3XouNTucCbQaGCdlUm3prBgcbtxW0
+         KeH65xtEsmc5A==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 02/11] phy: qcom-qmp-ufs: populate offsets
- configuration
-Message-ID: <20230613221536.6tikam262jjvzcfx@ripper>
-References: <20230523140622.265692-1-dmitry.baryshkov@linaro.org>
- <20230523140622.265692-3-dmitry.baryshkov@linaro.org>
+To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
+Cc:     bmasney@redhat.com, echanude@redhat.com, agross@kernel.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        richardcochran@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, konrad.dybcio@linaro.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sa8540p-ride: Specify ethernet phy OUI
+Date:   Tue, 13 Jun 2023 15:30:09 -0700
+Message-Id: <168669542892.1315701.6882227491843598759.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230608201513.882950-1-ahalaney@redhat.com>
+References: <20230608201513.882950-1-ahalaney@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230523140622.265692-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -63,70 +58,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 23, 2023 at 05:06:13PM +0300, Dmitry Baryshkov wrote:
-> Populate offsets configuration for the rest of UFS PHYs to make it
-> possible to switch them to the new (single-node) bindings style.
+On Thu, 8 Jun 2023 15:15:13 -0500, Andrew Halaney wrote:
+> With wider usage on more boards, there have been reports of the
+> following:
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Regards,
-Bjorn
-
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>     [  315.016174] qcom-ethqos 20000.ethernet eth0: no phy at addr -1
+>     [  315.016179] qcom-ethqos 20000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> index 8c877b668bb9..d99dc1043f74 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> @@ -833,6 +833,8 @@ static const struct qmp_ufs_offsets qmp_ufs_offsets_v6 = {
->  static const struct qmp_phy_cfg msm8996_ufsphy_cfg = {
->  	.lanes			= 1,
->  
-> +	.offsets		= &qmp_ufs_offsets,
-> +
->  	.tbls = {
->  		.serdes		= msm8996_ufsphy_serdes,
->  		.serdes_num	= ARRAY_SIZE(msm8996_ufsphy_serdes),
-> @@ -924,6 +926,8 @@ static const struct qmp_phy_cfg sc8280xp_ufsphy_cfg = {
->  static const struct qmp_phy_cfg sdm845_ufsphy_cfg = {
->  	.lanes			= 2,
->  
-> +	.offsets		= &qmp_ufs_offsets,
-> +
->  	.tbls = {
->  		.serdes		= sdm845_ufsphy_serdes,
->  		.serdes_num	= ARRAY_SIZE(sdm845_ufsphy_serdes),
-> @@ -1038,6 +1042,8 @@ static const struct qmp_phy_cfg sm8150_ufsphy_cfg = {
->  static const struct qmp_phy_cfg sm8250_ufsphy_cfg = {
->  	.lanes			= 2,
->  
-> +	.offsets		= &qmp_ufs_offsets,
-> +
->  	.tbls = {
->  		.serdes		= sm8150_ufsphy_serdes,
->  		.serdes_num	= ARRAY_SIZE(sm8150_ufsphy_serdes),
-> @@ -1070,6 +1076,8 @@ static const struct qmp_phy_cfg sm8250_ufsphy_cfg = {
->  static const struct qmp_phy_cfg sm8350_ufsphy_cfg = {
->  	.lanes			= 2,
->  
-> +	.offsets		= &qmp_ufs_offsets,
-> +
->  	.tbls = {
->  		.serdes		= sm8350_ufsphy_serdes,
->  		.serdes_num	= ARRAY_SIZE(sm8350_ufsphy_serdes),
-> @@ -1102,6 +1110,8 @@ static const struct qmp_phy_cfg sm8350_ufsphy_cfg = {
->  static const struct qmp_phy_cfg sm8450_ufsphy_cfg = {
->  	.lanes			= 2,
->  
-> +	.offsets		= &qmp_ufs_offsets,
-> +
->  	.tbls = {
->  		.serdes		= sm8350_ufsphy_serdes,
->  		.serdes_num	= ARRAY_SIZE(sm8350_ufsphy_serdes),
-> -- 
-> 2.39.2
+> which has been fairly random and isolated to specific boards.
+> Early reports were written off as a hardware issue, but it has been
+> prevalent enough on boards that theory seems unlikely.
 > 
+> [...]
+
+Applied, thanks!
+
+[1/1] arm64: dts: qcom: sa8540p-ride: Specify ethernet phy OUI
+      commit: f04325e4d4d66e63fc4e474ff54835a28b3ff29e
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
