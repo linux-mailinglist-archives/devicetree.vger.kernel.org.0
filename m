@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A66BB72E28A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 14:13:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 570C272E2C3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 14:24:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240174AbjFMMNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 08:13:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54730 "EHLO
+        id S236391AbjFMMYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 08:24:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238041AbjFMMNF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 08:13:05 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F281CE
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 05:13:01 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f62d93f38aso6780399e87.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 05:13:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686658380; x=1689250380;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6CMlQba2o43/QiP5kbF00C5SMM+pc3bqKwMdZ4o71Wg=;
-        b=jM2BdMoNCbF74BgGgRDVYE6LKUcsY3HAYxwagM7IqNQFDHyA50WMO364I8ZuLvp9v2
-         qGs2ogbEf4zfjDoEPz0k4SbACIKnBKeIiIbl2KvH80pi+vzd5qOkPP5s4xlkhj+omVsY
-         Fda5TdW3CDeMJ1S+ETpk01VHjri3rDZvXPmReSFUWb3CKvBXoQ7CHvP0ADadNSMQvNXq
-         GHb7DJ5uGPve8Yb61BMTRIQgCsLJzAsT7XypLTm7vQOIfHTMUGXr8V4TRJHEUupLOi5z
-         Sy7JgxGVPqzsucyCgYlz42JPFMkpeynHYwsNMvKT/PqSPAfou+yAxlxlLZKOFub+XpaR
-         1eAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686658380; x=1689250380;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6CMlQba2o43/QiP5kbF00C5SMM+pc3bqKwMdZ4o71Wg=;
-        b=UD8IiBq2sbNDmepD17k4joJjZai2jprxOn9tPaKpKON2ZjpEudpRNogkEptoaoUw2v
-         QDKWQJjxCtfg8of6Pe0p3e1UYJxlri2LPmYgaPc8ibYwbgCQxvaEx/d9IfZZcCkRznir
-         +fFnYLWJYt1Km4HahXT9gpPU29StydLNzGEI3lLvDxgz+lLBz/+S87isYsjwRt5HzLvQ
-         9rXb3G5jpYk1NIabbVMXe79LSzDoSCjUQLc2nfU5HA67LCyo7RUegeSAhYKT79hOXSvV
-         QUWN3fDArcCKUkMvtOqp2x41efKLrbbA5NhHI7zPxC3lhtMFaT2HRbHjJdXatvHNMYyn
-         jz3A==
-X-Gm-Message-State: AC+VfDy343rP+NxRzmWzuZ+u007aNG2clmW9w3IylgJqHrv5UI3bkBuv
-        kIh0G+MFaRTiE/1cr+S93DRl6g==
-X-Google-Smtp-Source: ACHHUZ7v2g+t0UCuMLHeHfZftjO5zEOcIpmanWsJpdQFoH7LGbqE71Kf4m1iAu+cL1lUPxg/TiXWWg==
-X-Received: by 2002:ac2:5b83:0:b0:4f7:5a42:6af with SMTP id o3-20020ac25b83000000b004f75a4206afmr1024268lfn.37.1686658379752;
-        Tue, 13 Jun 2023 05:12:59 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id w28-20020ac2599c000000b004f61a57797fsm1759751lfn.60.2023.06.13.05.12.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 05:12:59 -0700 (PDT)
-Message-ID: <a04f8089-0117-7c22-c6cc-97f5bd42a7d8@linaro.org>
-Date:   Tue, 13 Jun 2023 14:12:57 +0200
+        with ESMTP id S233000AbjFMMY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 08:24:29 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E93B5CE;
+        Tue, 13 Jun 2023 05:24:25 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.22])
+        by gateway (Coremail) with SMTP id _____8Cx8Oj4X4hkYKMEAA--.8005S3;
+        Tue, 13 Jun 2023 20:24:24 +0800 (CST)
+Received: from [10.180.13.22] (unknown [10.180.13.22])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Ax6OT3X4hknyMZAA--.6254S3;
+        Tue, 13 Jun 2023 20:24:23 +0800 (CST)
+Message-ID: <bda7c25f-65cf-d45f-3ac0-f2471e3aacf8@loongson.cn>
+Date:   Tue, 13 Jun 2023 20:23:58 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 07/23] interconnect: qcom: icc-rpm: Allow negative QoS
- offset
+ Thunderbird/102.12.0
+Subject: Re: [ PATCH v2 3/3] ASoC: dt-bindings: Add support for Loongson audio
+ card
+To:     Conor Dooley <conor@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, loongarch@lists.linux.dev,
+        loongson-kernel@lists.loongnix.cn
+References: <20230612085614.3039498-1-mengyingkun@loongson.cn>
+ <20230612-booted-french-186dd95e78a9@spud>
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230526-topic-smd_icc-v3-0-5fb7d39b874f@linaro.org>
- <20230526-topic-smd_icc-v3-7-5fb7d39b874f@linaro.org>
- <ZId_qIAL8dvJOwai@gerhold.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZId_qIAL8dvJOwai@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
+From:   Yingkun Meng <mengyingkun@loongson.cn>
+In-Reply-To: <20230612-booted-french-186dd95e78a9@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-CM-TRANSID: AQAAf8Ax6OT3X4hknyMZAA--.6254S3
+X-CM-SenderInfo: 5phqw55lqjy33q6o00pqjv00gofq/1tbiAQABDGSIXIIAKwABsU
+X-Coremail-Antispam: 1Uk129KBj93XoWxGF4DKrW3ZF13AFWkuw43XFc_yoW5Gr47pF
+        WrCasrKF4xt3W7C3savFyrJr4fZFZayanxJr42qw1UC3s8Ka4rWw42kF1rZay2yrn5GrW2
+        vFyF9w48G3Z0yagCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+        0xBIdaVrnRJUUUP2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+        0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+        xVWxJr0_GcWln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+        xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+        6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
+        1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxG
+        rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14
+        v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkG
+        c2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI
+        0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4U
+        MIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8HKZJUUUU
+        U==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,71 +70,69 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 2023/6/13 01:24, Conor Dooley wrote:
+> Hey!
+>
+> On Mon, Jun 12, 2023 at 04:56:14PM +0800, YingKun Meng wrote:
+>> From: Yingkun Meng <mengyingkun@loongson.cn>
+>>
+>> The audio card uses loongson I2S controller present in
+>> 7axxx/2kxxx chips to transfer audio data.
+>>
+>> On loongson platform, the chip has only one I2S controller.
+>>
+>> Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
+> I got 2 copies of this patch, but none of the rest of the series appears
+> to be threaded with it.
+>
+>>   .../sound/loongson,ls-audio-card.yaml         | 70 +++++++++++++++++++
+>>   1 file changed, 70 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+>> new file mode 100644
+>> index 000000000000..61e8babed402
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+>> @@ -0,0 +1,70 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/loongson,ls-audio-card.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Loongson 7axxx/2kxxx ASoC audio sound card driver
+>> +
+>> +maintainers:
+>> +  - Yingkun Meng <mengyingkun@loongson.cn>
+>> +
+>> +description:
+>> +  The binding describes the sound card present in loongson
+>> +  7axxx/2kxxx platform. The sound card is an ASoC component
+>> +  which uses Loongson I2S controller to transfer the audio data.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: loongson,ls-audio-card
+> Reviewing sound stuff is beyond my pay grade, so forgive me if I am off
+> the rails here, but this (and the "x"s in the description) look a bit
+> odd. Recently, we've noticed quite a few loongson dt-bindings attempting
+> to use a single compatible for many different chips.
+> Usually you have individual compatibles for the various SoCs with this
+> core, which can fall back to a generic one, rather than just adding a
+> generic compatible for all devices.
+> As far as I know, there's several SoCs fitting 2kxxx, and the format
+> being used elsewhere is "loongson,ls2k1000" etc.
 
-On 12.06.2023 22:27, Stephan Gerhold wrote:
-> On Mon, Jun 12, 2023 at 08:24:24PM +0200, Konrad Dybcio wrote:
->> In some very very very very unfortunate cases, the correct offset of
->> the QoS registers will be.. negative. One such case is MSM8998, where
->> The DDR BWMON occupies what-would-be-the-BIMC-base which we usually
->> take into account with the register calculation, making the actual
->> BIMC node start at what-would-be-the-BIMC-base+0x300.
->>
->> In order to keep the calculation code sane, the simplest - however
->> ugly it may be - solution is to allow the offset to be negative.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> I'm a bit confused why this patch is part of this series. It doesn't
-> seem to be directly related.
-> 
-> Can you send it as part of the series that adds the MSM8998 interconnect
-> driver?
-Ack
 
-Konrad
-> 
-> Thanks,
-> Stephan
-> 
->> ---
->>  drivers/interconnect/qcom/icc-rpm.h | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/interconnect/qcom/icc-rpm.h b/drivers/interconnect/qcom/icc-rpm.h
->> index d2c04c400cad..ba840a436cc0 100644
->> --- a/drivers/interconnect/qcom/icc-rpm.h
->> +++ b/drivers/interconnect/qcom/icc-rpm.h
->> @@ -29,10 +29,10 @@ enum qcom_icc_type {
->>   * @num_intf_clks: the total number of intf_clks clk_bulk_data entries
->>   * @type: the ICC provider type
->>   * @regmap: regmap for QoS registers read/write access
->> - * @qos_offset: offset to QoS registers
->>   * @bus_clk_rate: bus clock rate in Hz
->>   * @bus_clks: the clk_bulk_data table of bus clocks
->>   * @intf_clks: a clk_bulk_data array of interface clocks
->> + * @qos_offset: offset to QoS registers
->>   * @keep_alive: whether to always keep a minimum vote on the bus clocks
->>   * @is_on: whether the bus is powered on
->>   */
->> @@ -42,7 +42,7 @@ struct qcom_icc_provider {
->>  	int num_intf_clks;
->>  	enum qcom_icc_type type;
->>  	struct regmap *regmap;
->> -	unsigned int qos_offset;
->> +	int qos_offset;
->>  	u64 bus_clk_rate[NUM_BUS_CLKS];
->>  	struct clk_bulk_data bus_clks[NUM_BUS_CLKS];
->>  	struct clk_bulk_data *intf_clks;
->> @@ -108,7 +108,7 @@ struct qcom_icc_desc {
->>  	bool no_clk_scaling;
->>  	enum qcom_icc_type type;
->>  	const struct regmap_config *regmap_cfg;
->> -	unsigned int qos_offset;
->> +	int qos_offset;
->>  };
->>  
->>  /* Valid for all bus types */
->>
->> -- 
->> 2.41.0
->>
+Currently, Loongson has 2K0500/2K1000LA/2K1500/2K2000 chips.
+
+Here, its' possible to use a single compatible for different chips,
+
+as the audio device is a logical device, not dependent on chip model.
+
+
+> Cheers,
+> Conor.
+>
+
