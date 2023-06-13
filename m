@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A381F72EF5C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 00:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B713672EF62
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 00:28:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239173AbjFMW2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 18:28:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60914 "EHLO
+        id S241113AbjFMW2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 18:28:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240330AbjFMW1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 18:27:50 -0400
+        with ESMTP id S240551AbjFMW1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 18:27:51 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A97951BD3;
-        Tue, 13 Jun 2023 15:27:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DA91BEB;
+        Tue, 13 Jun 2023 15:27:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1EE5D63BA3;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AF66E63B9D;
+        Tue, 13 Jun 2023 22:27:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71183C433C0;
         Tue, 13 Jun 2023 22:27:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0DF8C433C8;
-        Tue, 13 Jun 2023 22:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686695249;
-        bh=j4hUbMII4yGJoQdHnLq4/WHu40T0DGhs9v46PXPDFwk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=u9n7F/gWprSaxLBaE1ZlVOG7xTgw6nIz46bKNtpa7hvyJjiP0s5XhiPPq+ISzd9pW
-         vbI54tx0+XG6r+RV474ZEMD1w4qmLzDLmISsQ6WJag4dcbglDgC6Q3yApX/FYyyk6a
-         RCsYAVOoNM9sbJkGXypJVjcUNl5EAmgH8fvI0P/KPjPd89DuBpdEO8cwJblAD2WUpS
-         YUHkxCkufQmXjfy5x3OZxOiyA4CN8g/hog1yyS9TFpIdp2TOYwYlVnrgAhZ8KmP8gO
-         DPFJNZjw/kfAHAj3vDDg0+BORjuLzpCdKU3fjtz3fcwn1D3emFza7PCqEQ0MCfDXU3
-         Jorfw1aBn4SFw==
+        s=k20201202; t=1686695251;
+        bh=EKtYnbjdmzG18C1xM2bANYW8GbxfW0CSkbluJCVFnQk=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=bLRnGfp8P8rzxGJkWSKodg/ZfT9nMi/aZa0HKWx2XhenWF8OBFXnUd5vfSWOPvSUl
+         aXKIeF67cFb5khYvG8MLGIfkWYePDsqHeSl1xAXbWfWeXh4EU3bq4gYhDF1uIgc+l2
+         wRsMI3FiyvyZ4pMuXjuAGn50PgVJxei6T22j8h3l0wcEE0q0UunBQiD9twdpIpAd/a
+         Sh4284PX8SgYza6MZ5lYRt3Lkx+KoH3P+Nc7Gqn8qFUCP2ZzRQuPK2bmOHIzKTtCCC
+         YBxNvBgivU5ubUW4oFTLOmdW41S4BVzsw/Kp+cWoY2Nf+nz5BedOZF8H3OqEPFLFUK
+         +pLgz1TZ/x4cw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+To:     Kathiravan T <quic_kathirav@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8180x-primus: dispcc is already okay
-Date:   Tue, 13 Jun 2023 15:30:25 -0700
-Message-Id: <168669542893.1315701.16624254320123903741.b4-ty@kernel.org>
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH V2 0/4] Add initial support for RDP474 of IPQ5332 family
+Date:   Tue, 13 Jun 2023 15:30:27 -0700
+Message-Id: <168669542895.1315701.3480979194432341949.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230612220420.1884631-1-quic_bjorande@quicinc.com>
-References: <20230612220420.1884631-1-quic_bjorande@quicinc.com>
+In-Reply-To: <20230605080531.3879-1-quic_kathirav@quicinc.com>
+References: <20230605080531.3879-1-quic_kathirav@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -59,16 +59,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Jun 2023 15:04:20 -0700, Bjorn Andersson wrote:
-> &dispcc status was changed to okay by default in the platform, no need
-> to do it again in the board.
+On Mon, 5 Jun 2023 13:35:27 +0530, Kathiravan T wrote:
+> Add the initial device tree support for the Reference Design
+> Platform(RDP) 474 based on IPQ5332 family of SoC. This patch carries
+> the support for Console UART, eMMC, I2C and GPIO based buttons.
 > 
+> Most of the features of RDP474 is similar to RDP441, except that the
+> QDSP will not be used in RDP474, whereas it will be used in the RDP441.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8180x-primus: dispcc is already okay
-      commit: a277430b3836cdfb994f45cc87d1bd56c4d490aa
+[1/4] dt-bindings: arm: qcom,ids: add SoC ID for IPQ5300
+      commit: b56715957bc820ee4b01adfd6fa63fea63cd212a
+[2/4] soc: qcom: socinfo: Add Soc ID for IPQ5300
+      commit: f471f91a0d63539107004a8e826ff017ed4d2588
 
 Best regards,
 -- 
