@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6CF872E398
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0440272E39D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:02:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242491AbjFMNBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55020 "EHLO
+        id S242427AbjFMNBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:01:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242472AbjFMNBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:01:10 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D021998
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:01:08 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f62cf9755eso6668628e87.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:01:08 -0700 (PDT)
+        with ESMTP id S242479AbjFMNBL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:01:11 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2033B1A1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:01:10 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f620583bc2so6678870e87.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:01:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1686661267; x=1689253267;
+        d=rasmusvillemoes.dk; s=google; t=1686661268; x=1689253268;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WSH+Aow2U6ZzKr5DbKMcJzMIM4IZIKyfCdo88IJB1zw=;
-        b=HxKZiFubc/qPuai6rMa1n2wUzrSLBL5XcZuD5oLg3maVgs1PL2fLtf4wCyTWr54OHl
-         h+BBMXeBnnpn1klI7IgUDoHG+dIBYDsnYmmwcWLnWzSltTIesUgItp6ej/vAFxaP6V7J
-         m5VLToxav9L/mSYxpXTinufbijyDOT/m3E6II=
+        bh=ur6n0qRjGzRHDGudKm3FuB0Bjxk6aZigQtAmr4SnRcc=;
+        b=TfQ+si9zfMC1c2VVHNiGoJFdzNbiFiqOhy0k/qv87c7AZskvHQZAcsGE75D7fsI6UT
+         xpU3MM8/fRLVZ8Z4hxL2fRx2LCGrN0vo2xp2CM84wCAUrxlpYIzH/Tb3e54Dvr5T6XOQ
+         uPMvUj+0EbrFgQNI6pinpXztygCPyyh95V7HE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686661267; x=1689253267;
+        d=1e100.net; s=20221208; t=1686661268; x=1689253268;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WSH+Aow2U6ZzKr5DbKMcJzMIM4IZIKyfCdo88IJB1zw=;
-        b=AmTrku/LBpVnNkKuW1d9mXVA3khBU0nab4WFKkp7bW2d2oDLgJJumGAzWncDIq9fv/
-         GbNmCroesKX3o0xPZnp/WZqcYr01NU3xhOH+nD5F2VAGMKz/JJ6NVFGInfKYgqeh+Bq8
-         9TRqR9X9lTAHnpK0ezKkUjbaayY4OG92tO21G/0OblRKS29kaLPJ/nMeQoBT4OddWps0
-         C1b4BUluYM76emVvdZgcO5L7lAkiAAzBa1i/bJ3HhuV1AZQMIZAcXMUbm5PgIOvq+c17
-         ucN5UFr9cNGvSxFeim5HAOwf9fH+ALj1wm6dgEvtkUx17EBxIrc/Rdz7aQsYW9TDvGyN
-         ybdQ==
-X-Gm-Message-State: AC+VfDxTImoMK23eZc9M4qe0PvS9knpa01X+Tdno1Tq8QacitKkn4QJn
-        PQ+jEy5H9BJ7C04tc8TgqOIo2A==
-X-Google-Smtp-Source: ACHHUZ7h18EEeYiRz8Gdu9bLC4p2mbl7/n8BO0yWGIfrUkjcFq4JCSDyvQCIGrWT7+XY78y2HqXosw==
-X-Received: by 2002:a19:4f06:0:b0:4f4:d41b:f42b with SMTP id d6-20020a194f06000000b004f4d41bf42bmr6275093lfb.32.1686661266375;
-        Tue, 13 Jun 2023 06:01:06 -0700 (PDT)
+        bh=ur6n0qRjGzRHDGudKm3FuB0Bjxk6aZigQtAmr4SnRcc=;
+        b=DmiTdnGN4vvp15RXK7bH5XiGEYPexcOx7HG9yvCTis54KdOLHXKCHOEUpDIBjWDF5K
+         6yE24YmPBDTNpsv4Q62NJZz8sLrP53AMOW4ejf+55SS9HIoxTJMytGKlFIH5z2uRO2tl
+         ZMrgkRqKJvAj1cQP88StfVlUZb5JwYc3W3wHLPMYDFiqkhp0YeYS+jGIR7/8lL+z7KW5
+         rLBQhlQKvB2ts1wE017uLQR4kzTE76tnUe18L5MkkEpTnoGv09x3pXcnUoXqoPDQq0tq
+         QmcjvcvulqrCcQEL3FJoVt+bzoog1fv2ABYIzPe4WtWURGGJ9T+k9rKhRuIhQXnx5uoR
+         xnHg==
+X-Gm-Message-State: AC+VfDzqM8ZMXl3nLUyYPC4nFV++HbLuxbVDR3rqHlMxkNGyPJqe1GVq
+        Mc010i0qqUqhHXS7uN7Rbm7eGA==
+X-Google-Smtp-Source: ACHHUZ4M1sqvyhut3MbQtjYadzTdq+vm2CkSD8F5AYlwgvuUBEzp0EwJZ1aB9EY22TAAOoHDSgMVOA==
+X-Received: by 2002:a19:6756:0:b0:4f1:26f5:77fb with SMTP id e22-20020a196756000000b004f126f577fbmr6027137lfj.28.1686661268430;
+        Tue, 13 Jun 2023 06:01:08 -0700 (PDT)
 Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id u24-20020ac243d8000000b004f14ae5ded8sm1793786lfl.28.2023.06.13.06.01.05
+        by smtp.gmail.com with ESMTPSA id u24-20020ac243d8000000b004f14ae5ded8sm1793786lfl.28.2023.06.13.06.01.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 06:01:05 -0700 (PDT)
+        Tue, 13 Jun 2023 06:01:08 -0700 (PDT)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Alessandro Zummo <a.zummo@towertech.it>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>
@@ -55,9 +55,9 @@ Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
         Rasmus Villemoes <linux@rasmusvillemoes.dk>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/8] rtc: isl12022: add support for trip level DT bindings
-Date:   Tue, 13 Jun 2023 15:00:06 +0200
-Message-Id: <20230613130011.305589-5-linux@rasmusvillemoes.dk>
+Subject: [PATCH v2 5/8] rtc: isl12022: implement RTC_VL_READ ioctl
+Date:   Tue, 13 Jun 2023 15:00:07 +0200
+Message-Id: <20230613130011.305589-6-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230613130011.305589-1-linux@rasmusvillemoes.dk>
 References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
@@ -74,90 +74,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement support for using the values given in the
-isil,trip-level[87]5-microvolt properties to set appropriate values in
-the VB[87]5TP bits in the PWR_VBAT register.
+Hook up support for reading the values of the SR_LBAT85 and SR_LBAT75
+bits. Translate the former to "battery low", and the latter to
+"battery empty or not-present".
 
 Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 ---
- drivers/rtc/rtc-isl12022.c | 36 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ drivers/rtc/rtc-isl12022.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
 diff --git a/drivers/rtc/rtc-isl12022.c b/drivers/rtc/rtc-isl12022.c
-index ebd66b835cef..50bbd1fefad8 100644
+index 50bbd1fefad8..bf0d65643897 100644
 --- a/drivers/rtc/rtc-isl12022.c
 +++ b/drivers/rtc/rtc-isl12022.c
-@@ -9,6 +9,7 @@
-  */
+@@ -204,7 +204,33 @@ static int isl12022_rtc_set_time(struct device *dev, struct rtc_time *tm)
+ 	return regmap_bulk_write(regmap, ISL12022_REG_SC, buf, sizeof(buf));
+ }
  
- #include <linux/bcd.h>
-+#include <linux/bitfield.h>
- #include <linux/err.h>
- #include <linux/hwmon.h>
- #include <linux/i2c.h>
-@@ -31,6 +32,8 @@
- #define ISL12022_REG_SR		0x07
- #define ISL12022_REG_INT	0x08
- 
-+#define ISL12022_REG_PWR_VBAT	0x0a
-+
- #define ISL12022_REG_BETA	0x0d
- #define ISL12022_REG_TEMP_L	0x28
- 
-@@ -42,6 +45,9 @@
- 
- #define ISL12022_INT_WRTC	(1 << 6)
- 
-+#define ISL12022_REG_VB85_MASK	GENMASK(5, 3)
-+#define ISL12022_REG_VB75_MASK	GENMASK(2, 0)
-+
- #define ISL12022_BETA_TSE	(1 << 7)
- 
- static umode_t isl12022_hwmon_is_visible(const void *data,
-@@ -209,6 +215,35 @@ static const struct regmap_config regmap_config = {
- 	.use_single_write = true,
- };
- 
-+static const u32 trip_level85[] = { 2125000, 2295000, 2550000, 2805000, 3060000, 4250000, 4675000 };
-+static const u32 trip_level75[] = { 1875000, 2025000, 2250000, 2475000, 2700000, 3750000, 4125000 };
-+
-+static void isl12022_set_trip_levels(struct device *dev)
++static int isl12022_rtc_ioctl(struct device *dev, unsigned int cmd, unsigned long arg)
 +{
 +	struct regmap *regmap = dev_get_drvdata(dev);
-+	u32 level85 = 0, level75 = 0;
-+	int ret, x85, x75;
-+	u8 val, mask;
++	u32 user = 0, val;
++	int ret;
 +
-+	device_property_read_u32(dev, "isil,trip-level85-microvolt", &level85);
-+	device_property_read_u32(dev, "isil,trip-level75-microvolt", &level75);
++	switch (cmd) {
++	case RTC_VL_READ:
++		ret = regmap_read(regmap, ISL12022_REG_SR, &val);
++		if (ret < 0)
++			return ret;
 +
-+	for (x85 = 0; x85 < ARRAY_SIZE(trip_level85) - 1; x85++)
-+		if (level85 <= trip_level85[x85])
-+			break;
++		if (val & ISL12022_SR_LBAT85)
++			user |= RTC_VL_BACKUP_LOW;
 +
-+	for (x75 = 0; x75 < ARRAY_SIZE(trip_level75) - 1; x75++)
-+		if (level75 <= trip_level75[x75])
-+			break;
++		if (val & ISL12022_SR_LBAT75)
++			user |= RTC_VL_BACKUP_EMPTY;
 +
-+	val = FIELD_PREP(ISL12022_REG_VB85_MASK, x85) | FIELD_PREP(ISL12022_REG_VB75_MASK, x75);
-+	mask = ISL12022_REG_VB85_MASK | ISL12022_REG_VB75_MASK;
++		return put_user(user, (u32 __user *)arg);
 +
-+	ret = regmap_update_bits(regmap, ISL12022_REG_PWR_VBAT, mask, val);
-+	if (ret)
-+		dev_warn(dev, "unable to set battery alarm levels: %d\n", ret);
++	default:
++		return -ENOIOCTLCMD;
++	}
 +}
 +
- static int isl12022_probe(struct i2c_client *client)
- {
- 	struct rtc_device *rtc;
-@@ -225,6 +260,7 @@ static int isl12022_probe(struct i2c_client *client)
- 
- 	dev_set_drvdata(&client->dev, regmap);
- 
-+	isl12022_set_trip_levels(&client->dev);
- 	isl12022_hwmon_register(&client->dev);
- 
- 	rtc = devm_rtc_allocate_device(&client->dev);
+ static const struct rtc_class_ops isl12022_rtc_ops = {
++	.ioctl		= isl12022_rtc_ioctl,
+ 	.read_time	= isl12022_rtc_read_time,
+ 	.set_time	= isl12022_rtc_set_time,
+ };
 -- 
 2.37.2
 
