@@ -2,81 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 729A872E24A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 13:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E9672E255
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 13:56:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242049AbjFMLyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 07:54:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47400 "EHLO
+        id S239585AbjFML41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 07:56:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235981AbjFMLyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 07:54:13 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB142EA
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 04:54:11 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-970028cfb6cso974821566b.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 04:54:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686657250; x=1689249250;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xU6yN1IIA+6UwdBgt828/NiFur95ZAvJWWZKM66bpZA=;
-        b=pbNPJPLJzd+VW9/5QjUJGqDTvRKCjzZjGlpDvWh9kA/5ldR0qhtDppy957c7QfPFqE
-         uBJow20o8qkFP8bUAIaVD5H3iGMX1W1KNiGk08O1IhlrCL+FmXH9tWGniu141rDlrVJT
-         sFpwIkkX3ubwdg8PiVzxPQU3ovJf/xfG/bpwxl24LNBLETWhqNDOwefRM/YON3hLm3lu
-         cnWeadglU0yeqe6KaHluGHj7VUyG/wFsKjXv3sZ2unrbZJn5sUKbhoZO3Dt9lI1BT2Xw
-         ZJlkX0fCXg0eWc+Bt4CheMP0s0zEzzLdVBI53Z6YJskfzO/xxiXCEuDnzuX4rbmulWAu
-         AGFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686657250; x=1689249250;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xU6yN1IIA+6UwdBgt828/NiFur95ZAvJWWZKM66bpZA=;
-        b=Exnlwu9QOD+RVfBTmOh69fAhyTsM071/nYo4T+4l8LEXEzj8LaHx8FuYvJVnD9bZ3l
-         XkYEf8TDOCIUBXVWOlASXnhaMmlU960y+gapMKZ0Hl9xx2RXLIYB8Oyg7/e8hi0jyQAE
-         mLCLkY5/OmeGJEfwnBOpVbr5KjF3GXgP9Vcio8brvJ18lA84gFSv50l69AW/mybcGmyP
-         QHNaM6g7yiSernMyPIsGLxGOpy6lRlgwdRtL++Aggbh2PlhZOth7YKt7DKkZyL2jHto9
-         171RCylwRzWpWtOqVKqJLbtaDOuYIruh7bWkaCtZx7z5FYeXzkrlxmZ+uVYjTjysomMo
-         PYdg==
-X-Gm-Message-State: AC+VfDzGN/5EjunTlGiIO02o8+kZYlFLEVi6r66e3oq7ro3xEaFH8l3i
-        CFA8MuLSkq0wySwFBgGBF8s0Pg==
-X-Google-Smtp-Source: ACHHUZ4Z7G/vVQ715ReLAU2YsEmtH2Yw//I0SbDXHKPqLXwGL9N3doGeITkVAw65IJS9dH2OXCvTTA==
-X-Received: by 2002:a17:907:e8a:b0:977:c5b1:974b with SMTP id ho10-20020a1709070e8a00b00977c5b1974bmr13452293ejc.34.1686657250305;
-        Tue, 13 Jun 2023 04:54:10 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id rv14-20020a17090710ce00b00977c88d70c6sm6499105ejb.192.2023.06.13.04.54.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 04:54:09 -0700 (PDT)
-Message-ID: <5851627e-2972-f860-e965-dc8e73b01225@linaro.org>
-Date:   Tue, 13 Jun 2023 13:54:08 +0200
+        with ESMTP id S240096AbjFML40 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 07:56:26 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B32C10DC;
+        Tue, 13 Jun 2023 04:56:23 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DBuEB9070920;
+        Tue, 13 Jun 2023 06:56:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686657374;
+        bh=pQ9WaPlbV98rBqPT/LDnqUYYD6JMcrbpjarsbj6aHsk=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=DSIMz2mH6e+anqoT2a9v5DyOGznbT54RIGT3u066elgKGa6KmxNdVCzi3GzGku+NM
+         vcz9CyOcSPOFiwNj4zw2gdGMrEtIwTeEM85LFYtLHEOPXATbaA1A8eQjQkytjxaXUO
+         sa8Bc1swEFYga+Bkn/Auw+ZQGd/AtihHnJDY8tps=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DBuELR030036
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 13 Jun 2023 06:56:14 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ Jun 2023 06:56:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 Jun 2023 06:56:14 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DBuEgr124299;
+        Tue, 13 Jun 2023 06:56:14 -0500
+Date:   Tue, 13 Jun 2023 06:56:14 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Udit Kumar <u-kumar1@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <conor+dt@kernel.org>, <m-chawdhry@ti.com>, <n-francis@ti.com>
+Subject: Re: [v4 0/6] arm64: dts: ti: k3-j7200: Add properties and sync with
+ uboot
+Message-ID: <20230613115614.73ewxi5c2gm2qkab@relative>
+References: <20230611111140.3189111-1-u-kumar1@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 5/8] qcom: pmic_glink: enable altmode for SM8550
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
- <20230601-topic-sm8550-upstream-type-c-v3-5-22c9973012b6@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230601-topic-sm8550-upstream-type-c-v3-5-22c9973012b6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230611111140.3189111-1-u-kumar1@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,33 +66,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 09:55, Neil Armstrong wrote:
-> Altmode is also supported for SM8550, allow it.
+On 16:41-20230611, Udit Kumar wrote:
+> In continuation of patch series posted by Nishanth for sync of uboot device tree with kernel device tree for AM64 SOC.
+> https://lore.kernel.org/linux-arm-kernel/20230414073328.381336-1-nm@ti.com/
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/soc/qcom/pmic_glink.c | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
-> index c87056769ebd..8af06bdc6f5a 100644
-> --- a/drivers/soc/qcom/pmic_glink.c
-> +++ b/drivers/soc/qcom/pmic_glink.c
-> @@ -342,13 +342,9 @@ static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT
->  							   BIT(PMIC_GLINK_CLIENT_ALTMODE) |
->  							   BIT(PMIC_GLINK_CLIENT_UCSI);
->  
-> -/* Do not handle altmode for now on those platforms */
-> -static const unsigned long pmic_glink_sm8550_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
-> -							   BIT(PMIC_GLINK_CLIENT_UCSI);
-> -
->  static const struct of_device_id pmic_glink_of_match[] = {
->  	{ .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+> This series extend device tree sync/clean up for J7200 SOC.
 
-Orientation and maybe all of the USB-related properties do not look like
-sm8450 specific, but PM8350B. That's where CC_OUT pin is. I don't think
-we represented this correctly, but rather copy-pasted downstream solution...
+Thank you for the cleanup. For the series:
 
-Best regards,
-Krzysztof
+Reviewed-by: Nishanth Menon <nm@ti.com>
 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
