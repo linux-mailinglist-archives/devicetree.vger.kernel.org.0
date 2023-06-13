@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B1872EDB3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 23:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 663B672EDDC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 23:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbjFMVLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 17:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
+        id S232151AbjFMV06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 17:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbjFMVLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 17:11:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43CBCD2;
-        Tue, 13 Jun 2023 14:11:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CB68763B01;
-        Tue, 13 Jun 2023 21:11:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBA6FC433C8;
-        Tue, 13 Jun 2023 21:11:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686690704;
-        bh=/2DBzxw/VJp/qnkRIA18GUvvEiO24duySzvHczSOt4U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JlZpXnfwb4tZyHNWcILFW0uqwQJSYSdzq2TKRmtzmTmEXTqMHIh2v8WOph2qH786F
-         SuqqTp3k4mkqmXmrqv/E66ZNy5jyZO0QbRUIZshtvA63H0Md1fDzKzVEgxpjz+ytS4
-         Y7+xIBsUY0BNEwKLHv0dU+6rJ7U01UbSHn2/+VtUXoNFQaS+p/xYkgWyY9RwOrZYzE
-         UZE5hEe8FycL8T6U0DrokXIu1FpqZlIAszws98fRzgFyTTMythlcouoAdjC8ClSFiF
-         vM3PGgvNc4q4S2j5yyPGapv2ny/UL7rYGx+bXzNb1B9b3vgZPLbrojItCenMomrSfg
-         vzz0laU7cdM7g==
-Date:   Tue, 13 Jun 2023 22:11:39 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
-        Pankaj Gupta <pankaj.gupta@nxp.com>,
-        Gaurav Jain <gaurav.jain@nxp.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S230220AbjFMV05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 17:26:57 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C614173C;
+        Tue, 13 Jun 2023 14:26:53 -0700 (PDT)
+X-GND-Sasl: alexandre.belloni@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686691612;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jjZCe4TrlpXSYUUbagVQDBLP7aBDJF+vIKC3en79nPo=;
+        b=pKDOX8HkYiifDAB1XriX5mIBW5Jz9sucTkoPOBmTln+QszEhusmswpdySTBA97iXRfsGBf
+        sbZCJH+832cgP7WciP76y3ADpuYljAlsCGBghvKvcr48hW9nis7qUFDVCaImlVBb1JzyzO
+        uVzuEGgtnX2+vU+h0Gm9ZEK9kpR4EGvLINJSGl8OzggbkfHLwJLBmaMkAT4jcAOXGjXQsy
+        muI1LIIJXUhIytwDFNoycJZTaaKP6kobo/tsX+eqMw/gAzZ73cRGDqSBWl6r8TDEANIOEr
+        JnDhxiOWSdFgeimQO5vJVBjsSbXz5ujqmew0nD1tgEIuKtqgy4YiwT2Xz2u1FA==
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 029941C0002;
+        Tue, 13 Jun 2023 21:26:51 +0000 (UTC)
+Date:   Tue, 13 Jun 2023 23:26:51 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: crypto: fsl,sec-v4.0-mon: Add
- "linux,keycodes" and deprecate "linux,keycode"
-Message-ID: <20230613-sculptor-prepaid-9dc5afcc2dcc@spud>
-References: <20230613201231.2826352-1-robh@kernel.org>
- <20230613201231.2826352-2-robh@kernel.org>
+Subject: Re: [PATCH v2 5/8] rtc: isl12022: implement RTC_VL_READ ioctl
+Message-ID: <20230613212651c8770218@mail.local>
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-6-linux@rasmusvillemoes.dk>
+ <ZIiJWKBFojAcNCkA@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="8vgAm8btVIL4CtSR"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230613201231.2826352-2-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZIiJWKBFojAcNCkA@smile.fi.intel.com>
+X-GND-Spam-Score: 400
+X-GND-Status: SPAM
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,57 +69,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/06/2023 18:20:56+0300, Andy Shevchenko wrote:
+> On Tue, Jun 13, 2023 at 03:00:07PM +0200, Rasmus Villemoes wrote:
+> > Hook up support for reading the values of the SR_LBAT85 and SR_LBAT75
+> > bits. Translate the former to "battery low", and the latter to
+> > "battery empty or not-present".
+> 
+> A couple of nit-picks below.
+> 
+> ...
+> 
+> > +static int isl12022_rtc_ioctl(struct device *dev, unsigned int cmd, unsigned long arg)
+> > +{
+> > +	struct regmap *regmap = dev_get_drvdata(dev);
+> > +	u32 user = 0, val;
+> 
+> This assignment can be done in the actual case below.
+> 
+> > +	int ret;
+> > +
+> > +	switch (cmd) {
+> > +	case RTC_VL_READ:
+> > +		ret = regmap_read(regmap, ISL12022_REG_SR, &val);
+> > +		if (ret < 0)
+> 
+> I always feel uneasy with ' < 0' — Does positive error makes sense?
+> Is it even possible? OTOH if the entire driver uses this idiom...
+> oh well, let's make it consistent.
+> 
 
---8vgAm8btVIL4CtSR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+/**
+ * regmap_read() - Read a value from a single register
+ *
+ * @map: Register map to read from
+ * @reg: Register to be read from
+ * @val: Pointer to store read value
+ *
+ * A value of zero will be returned on success, a negative errno will
+ * be returned in error cases.
+ */
 
-On Tue, Jun 13, 2023 at 02:12:30PM -0600, Rob Herring wrote:
-> The "linux,keycode" property is non-standard. Add the common property
-> "linux,keycodes" and mark "linux,keycode" deprecated so that the mistake
-> is not propagated.
+> > +			return ret;
+> 
+> 		user = 0;
+> 
+> The rationale to avoid potential mistakes in the future in case this function
+> will be expanded and user will be re-used.
+> 
+> > +		if (val & ISL12022_SR_LBAT85)
+> > +			user |= RTC_VL_BACKUP_LOW;
+> > +
+> > +		if (val & ISL12022_SR_LBAT75)
+> > +			user |= RTC_VL_BACKUP_EMPTY;
+> > +
+> > +		return put_user(user, (u32 __user *)arg);
+> > +
+> > +	default:
+> > +		return -ENOIOCTLCMD;
+> > +	}
+> > +}
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
-This is actually used in the driver for this device, should the driver
-not also be updated to use the corrected property?
-
-
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/crypto/fsl,sec-v4.0-mon.yaml         | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0-mon.ya=
-ml b/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0-mon.yaml
-> index 6052129bf852..e879bc0be8e2 100644
-> --- a/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0-mon.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0-mon.yaml
-> @@ -105,6 +105,11 @@ properties:
->        linux,keycode:
->          $ref: /schemas/types.yaml#/definitions/uint32
->          default: 116
-> +        deprecated: true
-> +
-> +      linux,keycodes:
-> +        maxItems: 1
-> +        default: 116
-> =20
->      required:
->        - compatible
-> --=20
-> 2.39.2
->=20
-
---8vgAm8btVIL4CtSR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIjbiwAKCRB4tDGHoIJi
-0m2wAP9t3oGT06mvMemB3F2BhB+dOCmjJBOhjNU4T2WMkAb3wAEA6s+s+cgEW9Us
-hWgaZipnuLNr1D2fxEgrlj5Kx2TkXQA=
-=n/nt
------END PGP SIGNATURE-----
-
---8vgAm8btVIL4CtSR--
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
