@@ -2,224 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C616D72E4EE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:09:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD7F872E54A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:10:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242796AbjFMOFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 10:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58090 "EHLO
+        id S240128AbjFMOJj convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Jun 2023 10:09:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242869AbjFMOEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:04:46 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47AA82102
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 07:04:12 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b1a6a8e851so69469151fa.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 07:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686665032; x=1689257032;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y1FjnpanoZZQYmYBJ9Wrc8mHuIYA1a8hnLTmlpwTtJE=;
-        b=oFLLktPzbwY7C7RCQmbNSyR2M4hsG/WFad9GdBmbEu5hesxXbRxMV/tGrPtpenNXnJ
-         vgKzSd6p7qlepW7WsWChvtg7y8XVQ6DHXAuJTPTL+q704oJe5B3JLa3P7kHAsjixMxWz
-         kfNBnnzmfOtPpNxs4JCpae37bhziJkc1qc+XjDArG/Ws+CMLJEZSSnUrLGaBK8UL2AZq
-         aP72kfLBis6c0Lcy7xkNrUIyiTFLOo5Jtea6UQF8RryPooK2q8GzucjB1FxXSZJcp4+R
-         sTLW1I3PYZshDKlWnmKlkiITD+hP1BVWfvpTov/uXJC/XK8H2IeUIUvNXM0as/apVC5R
-         vbjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686665032; x=1689257032;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y1FjnpanoZZQYmYBJ9Wrc8mHuIYA1a8hnLTmlpwTtJE=;
-        b=IDwhHZpGqTmz6hZUeSFImKxkFqn8TXjwJNmzVXp2aiL3H+PsW/oZTpoLxag51U0LHq
-         vPR8B+2OozBqNInZIEB+tZscOldaqyz3Pwa/MgSqNzhqbFYoUkG+VbtarzEIVtuhKcAx
-         3Q0/qDIJErRTW2F+uHX8+xGW8ItPlIq5B2vRO8frsVNtEgVH3Nv41pfHBzItGe9gxHnp
-         e/MeieRzfNdWP8rdEXFrI9X3oQPaSzgvqA6PYYcZBjjNckoi4UfmyGbWkIxQ8nBj9G+U
-         7u6NSijRoEiiRWhQ2TncfOIZhhZaY0F0nzQAgzHDYxn610WP3RomtE6ZmcrUXMoXi1QK
-         XaKg==
-X-Gm-Message-State: AC+VfDxOH4jHrJ/I5zuVALozfDrhEWmgwssw1xixA8Ag2zsL/5o4iZAG
-        gzsMjiBXeOzdD2LffagUEVCSnw==
-X-Google-Smtp-Source: ACHHUZ6N/U0C87YgPHcLzLcVAnChDKey9edfXXYvhMP50LkxnBkbygbyVwMThPY0O3gqyVU5jfIhvQ==
-X-Received: by 2002:a2e:9bc5:0:b0:2ac:8283:b67d with SMTP id w5-20020a2e9bc5000000b002ac8283b67dmr4608092ljj.25.1686665032406;
-        Tue, 13 Jun 2023 07:03:52 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id a18-20020a05651c011200b002b32af2e9c6sm901490ljb.116.2023.06.13.07.03.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 07:03:52 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 13 Jun 2023 16:03:22 +0200
-Subject: [PATCH v4 22/22] interconnect: qcom: icc-rpm: Fix bandwidth
- calculations
+        with ESMTP id S242760AbjFMOJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:09:36 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3F58171D;
+        Tue, 13 Jun 2023 07:09:10 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35DDKQVF013107;
+        Tue, 13 Jun 2023 10:08:23 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3r4p351dqr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Jun 2023 10:08:17 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 35DE7eIM009159
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 13 Jun 2023 10:07:40 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 13 Jun
+ 2023 10:07:39 -0400
+Received: from ASHBMBX8.ad.analog.com ([fe80::30b9:230c:9621:902f]) by
+ ASHBMBX8.ad.analog.com ([fe80::30b9:230c:9621:902f%9]) with mapi id
+ 15.02.0986.014; Tue, 13 Jun 2023 10:07:39 -0400
+From:   "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: RE: [PATCH v5 1/2] dt-bindings: iio: adc: add max14001
+Thread-Topic: [PATCH v5 1/2] dt-bindings: iio: adc: add max14001
+Thread-Index: AQHZndo3coUyYXBv2Eq2tUVubImF6a+IyEuA///7LzA=
+Date:   Tue, 13 Jun 2023 14:07:39 +0000
+Message-ID: <8998c3d3f3ca4f44a5c99594dcb24cbe@analog.com>
+References: <20230613093346.60781-1-kimseer.paller@analog.com>
+ <168665154072.1311520.12958978545814613109.robh@kernel.org>
+In-Reply-To: <168665154072.1311520.12958978545814613109.robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNca3BhbGxlcjJc?=
+ =?us-ascii?Q?YXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRi?=
+ =?us-ascii?Q?YTI5ZTM1Ylxtc2dzXG1zZy1hNTkzZTI2Yi0wOWYzLTExZWUtYWU3ZC1mOGNi?=
+ =?us-ascii?Q?Njc0OWVhN2JcYW1lLXRlc3RcYTU5M2UyNmQtMDlmMy0xMWVlLWFlN2QtZjhj?=
+ =?us-ascii?Q?YjY3NDllYTdiYm9keS50eHQiIHN6PSI1MTQ0IiB0PSIxMzMzMTEzODg1NjQ5?=
+ =?us-ascii?Q?MzQ3OTgiIGg9ImJMb29YTXVtSlJZb0VSeklqUUM1TXY0ZitIaz0iIGlkPSIi?=
+ =?us-ascii?Q?IGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk5DZ1VBQUVvQ0FB?=
+ =?us-ascii?Q?Q09VTzFuQUo3WkFUMVlWYldwUER1dFBWaFZ0YWs4TzYwREFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFFQUFRQUJBQUFBUjZsVExBQUFBQUFBQUFBQUFBQUFBSjRBQUFCaEFHUUFh?=
+ =?us-ascii?Q?UUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QUc4QWFnQmxBR01BZEFCekFG?=
+ =?us-ascii?Q?OEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFhUUIwQUdrQWRnQmxBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBR0VBWkFCcEFGOEFjd0JsQUdNQWRR?=
+ =?us-ascii?Q?QnlBR1VBWHdCd0FISUFid0JxQUdVQVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURF?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FB?=
+ =?us-ascii?Q?QUFBQUNlQUFBQVlRQmtBR2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dC?=
+ =?us-ascii?Q?dkFHb0FaUUJqQUhRQWN3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21l?=
+ =?us-ascii?Q?dGE+?=
+x-dg-rorf: true
+x-originating-ip: [10.116.242.24]
+x-adiruleop-newscl: Rule Triggered
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230526-topic-smd_icc-v4-22-5ba82b6fbba2@linaro.org>
-References: <20230526-topic-smd_icc-v4-0-5ba82b6fbba2@linaro.org>
-In-Reply-To: <20230526-topic-smd_icc-v4-0-5ba82b6fbba2@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1686664985; l=5027;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=JelHWTtx6PCRAaZAaxwLHk7R0OVR9xy/H6t4bwRWePw=;
- b=JOms4nzspnmeKtzorZ7Ae7IFrfW3nClpj6OA68B0j6VkXkvovn++SpPrFWEIH6h5ptmCmWQtb
- cS5Yco93htfCCXVbO45PFVxVn9ktrK4Z8pGDpXnh+7NRxxiakC+EEYK
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Proofpoint-GUID: Xwf0LSjlfOPZiiSN3aacIDFlteynL5h1
+X-Proofpoint-ORIG-GUID: Xwf0LSjlfOPZiiSN3aacIDFlteynL5h1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-13_04,2023-06-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 suspectscore=0 spamscore=0 clxscore=1015
+ impostorscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=999
+ bulkscore=0 mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306130124
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Up until now, we've been aggregating the bandwidth values and only
-dividing them by the bus width of the source node. This was completely
-wrong, as different nodes on a given path may (and usually do) have
-varying bus widths.  That in turn, resulted in the calculated clock rates
-being completely bogus - usually they ended up being much higher, as
-NoC_A<->NoC_B links are very wide.
 
-Since we're not using the aggregate bandwidth value for anything other
-than clock rate calculations, remodel qcom_icc_bus_aggregate() to
-calculate the per-context clock rate for a given provider, taking into
-account the bus width of every individual node.
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Tuesday, June 13, 2023 6:19 PM
+> To: Paller, Kim Seer <KimSeer.Paller@analog.com>
+> Cc: devicetree@vger.kernel.org; Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org>; lgirdwood@gmail.com; broonie@kernel.org;
+> andy.shevchenko@gmail.com; linux-kernel@vger.kernel.org;
+> conor+dt@kernel.org; Hennerich, Michael <Michael.Hennerich@analog.com>;
+> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; lars@metafoo.de;
+> jic23@kernel.org; linux-iio@vger.kernel.org
+> Subject: Re: [PATCH v5 1/2] dt-bindings: iio: adc: add max14001
+> 
+> [External]
+> 
+> 
+> On Tue, 13 Jun 2023 17:33:45 +0800, Kim Seer Paller wrote:
+> > The MAX14001 is a configurable, isolated 10-bit ADC for multi-range
+> > binary inputs.
+> >
+> > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reported-by: Rob Herring <robh@kernel.org>
+> > Closes:
+> > https://urldefense.com/v3/__https://lore.kernel.org/all/168663709022.6
+> >
+> 52608.11756645774505315189.robh@kernel.org/__;!!A3Ni8CS0y2Y!5MOlRh
+> mYJL
+> >
+> qPmhR7QmgutQNBKIuJTk_FlMbFGnFd4R9dVxnXWk8rY0woqzhv5YcF58DvBLTrc
+> xVK5KdS
+> > $
+> > ---
+> > V3 -> V5: Added spaces between prefixes in subject. Fixed MAINTAINERS
+> reference.
+> >
+> >  .../bindings/iio/adc/adi,max14001.yaml        | 54 +++++++++++++++++++
+> >  MAINTAINERS                                   |  7 +++
+> >  2 files changed, 61 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> >
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-
+> ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml:
+> $defs:qcom-pmic-mpp-state:properties:qcom,paired: [{'description': 'Indicates
+> that the pin should be operating in paired mode.'}] is not of type 'object',
+> 'boolean'
+> 	from schema $id:
+> https://urldefense.com/v3/__http://devicetree.org/meta-
+> schemas/core.yaml*__;Iw!!A3Ni8CS0y2Y!5MOlRhmYJLqPmhR7QmgutQNBKIuJ
+> Tk_FlMbFGnFd4R9dVxnXWk8rY0woqzhv5YcF58DvBLTrc0FLIB-v$
+> 
+> doc reference errors (make refcheckdocs):
 
-Fixes: 30c8fa3ec61a ("interconnect: qcom: Add MSM8916 interconnect provider driver")
-Reported-by: Stephan Gerhold <stephan@gerhold.net>
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/interconnect/qcom/icc-rpm.c | 59 ++++++++++++-------------------------
- 1 file changed, 19 insertions(+), 40 deletions(-)
+Could the doc reference error also be ignored? I cannot reproduce the same error on my side.
 
-diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qcom/icc-rpm.c
-index 34e0580f1ffe..f48701a74da1 100644
---- a/drivers/interconnect/qcom/icc-rpm.c
-+++ b/drivers/interconnect/qcom/icc-rpm.c
-@@ -293,58 +293,44 @@ static int qcom_icc_bw_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
- }
- 
- /**
-- * qcom_icc_bus_aggregate - aggregate bandwidth by traversing all nodes
-+ * qcom_icc_bus_aggregate - calculate bus clock rates by traversing all nodes
-  * @provider: generic interconnect provider
-- * @agg_avg: an array for aggregated average bandwidth of buckets
-- * @agg_peak: an array for aggregated peak bandwidth of buckets
-- * @max_agg_avg: pointer to max value of aggregated average bandwidth
-+ * @agg_clk_rate: array containing the aggregated clock rates in kHz
-  */
--static void qcom_icc_bus_aggregate(struct icc_provider *provider,
--				   u64 *agg_avg, u64 *agg_peak,
--				   u64 *max_agg_avg)
-+static void qcom_icc_bus_aggregate(struct icc_provider *provider, u64 *agg_clk_rate)
- {
--	struct icc_node *node;
-+	u64 agg_avg_rate, agg_rate;
- 	struct qcom_icc_node *qn;
--	u64 sum_avg[QCOM_SMD_RPM_STATE_NUM];
-+	struct icc_node *node;
- 	int i;
- 
--	/* Initialise aggregate values */
--	for (i = 0; i < QCOM_SMD_RPM_STATE_NUM; i++) {
--		agg_avg[i] = 0;
--		agg_peak[i] = 0;
--	}
--
--	*max_agg_avg = 0;
--
- 	/*
--	 * Iterate nodes on the interconnect and aggregate bandwidth
--	 * requests for every bucket.
-+	 * Iterate nodes on the provider, aggregate bandwidth requests for
-+	 * every bucket and convert them into bus clock rates.
- 	 */
- 	list_for_each_entry(node, &provider->nodes, node_list) {
- 		qn = node->data;
- 		for (i = 0; i < QCOM_SMD_RPM_STATE_NUM; i++) {
- 			if (qn->channels)
--				sum_avg[i] = div_u64(qn->sum_avg[i], qn->channels);
-+				agg_avg_rate = div_u64(qn->sum_avg[i], qn->channels);
- 			else
--				sum_avg[i] = qn->sum_avg[i];
--			agg_avg[i] += sum_avg[i];
--			agg_peak[i] = max_t(u64, agg_peak[i], qn->max_peak[i]);
-+				agg_avg_rate = qn->sum_avg[i];
-+
-+			agg_rate = max_t(u64, agg_avg_rate, qn->max_peak[i]);
-+			do_div(agg_rate, qn->buswidth);
-+
-+			agg_clk_rate[i] = max_t(u64, agg_clk_rate[i], agg_rate);
- 		}
- 	}
--
--	/* Find maximum values across all buckets */
--	for (i = 0; i < QCOM_SMD_RPM_STATE_NUM; i++)
--		*max_agg_avg = max_t(u64, *max_agg_avg, agg_avg[i]);
- }
- 
- static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- {
--	struct qcom_icc_provider *qp;
- 	struct qcom_icc_node *src_qn = NULL, *dst_qn = NULL;
-+	u64 agg_clk_rate[QCOM_SMD_RPM_STATE_NUM] = { 0 };
- 	struct icc_provider *provider;
-+	struct qcom_icc_provider *qp;
- 	u64 active_rate, sleep_rate;
--	u64 agg_avg[QCOM_SMD_RPM_STATE_NUM], agg_peak[QCOM_SMD_RPM_STATE_NUM];
--	u64 max_agg_avg;
- 	int ret;
- 
- 	src_qn = src->data;
-@@ -353,7 +339,9 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- 	provider = src->provider;
- 	qp = to_qcom_provider(provider);
- 
--	qcom_icc_bus_aggregate(provider, agg_avg, agg_peak, &max_agg_avg);
-+	qcom_icc_bus_aggregate(provider, agg_clk_rate);
-+	active_rate = agg_clk_rate[QCOM_SMD_RPM_ACTIVE_STATE];
-+	sleep_rate = agg_clk_rate[QCOM_SMD_RPM_SLEEP_STATE];
- 
- 	ret = qcom_icc_rpm_set(src_qn, src_qn->sum_avg);
- 	if (ret)
-@@ -369,15 +357,6 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- 	if (!qp->bus_clk_desc && !qp->bus_clk)
- 		return 0;
- 
--	/* Intentionally keep the rates in kHz as that's what RPM accepts */
--	active_rate = max(agg_avg[QCOM_SMD_RPM_ACTIVE_STATE],
--			  agg_peak[QCOM_SMD_RPM_ACTIVE_STATE]);
--	do_div(active_rate, src_qn->buswidth);
--
--	sleep_rate = max(agg_avg[QCOM_SMD_RPM_SLEEP_STATE],
--			 agg_peak[QCOM_SMD_RPM_SLEEP_STATE]);
--	do_div(sleep_rate, src_qn->buswidth);
--
- 	/*
- 	 * Downstream checks whether the requested rate is zero, but it makes little sense
- 	 * to vote for a value that's below the lower threshold, so let's not do so.
-
--- 
-2.41.0
+Best regards,
+Kim
 
