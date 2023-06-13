@@ -2,166 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FCDD72E42E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 938BF72E439
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242034AbjFMNeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:34:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41208 "EHLO
+        id S236373AbjFMNfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:35:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239539AbjFMNeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:34:09 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54F710E6
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 06:34:06 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 81638AA;
-        Tue, 13 Jun 2023 15:34:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1686663244;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zHKhzcOQ8tFIGhrtNvSHC9GWqp3iM7TKR3E2bRkoKNA=;
-        b=aEwXmJUxdVFrVMXQnClCeiGe7DcDNJW7AzoE6xE9WXnfYsHVxYyq/Rku69Iq1T1n1i/GCV
-        ivE6RESWDcUt9zSrstcxlFrWZu4f06rS9fl0H7Nv1Mj8zClsL4+gbHWddjCCjjj5t6V4f3
-        nzT4XPlzZSHD4kveOJjSRgKwUOMDg28oM0C18+EegxQex7eDLnsWTNs3/5db3dT6GYBqTe
-        fhckS4DeDar7TVdcqzGl9YJl054hi4IlytAafuMsG0Zq9jTI7oqqMDfpwgCu4+Ywplmmk7
-        mekHhPOa4Ot7Bx+s7H9F+e0kdqKX9L9d+Fg4lEjPACjVMy/k83QsS9AYVsRVMQ==
-MIME-Version: 1.0
-Date:   Tue, 13 Jun 2023 15:34:04 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/2] mtd: spi-nor: Add support for sst26vf032b flash
-In-Reply-To: <20230609144324.850617-3-miquel.raynal@bootlin.com>
-References: <20230609144324.850617-1-miquel.raynal@bootlin.com>
- <20230609144324.850617-3-miquel.raynal@bootlin.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <b3267c392523277bf15fe8d24679add3@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        with ESMTP id S236188AbjFMNfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:35:46 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1EEBE5;
+        Tue, 13 Jun 2023 06:35:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1686663344;
+  x=1718199344;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=9X1LVPKSkMPZErlcbEMfy+2TuN44oV6pjzZe524RYJ4=;
+  b=Hb2d3stU48lYY58hcgrsN0RCaNyCWJeDqMaqkm0K/x2+mEprMV7Vv0gG
+   c9bxmQMYTtEEtglqHWl+jxHtISSAAnIo5RdYyZ4NOEBLRFKgi+yLJmMC1
+   MKJZVkNkBEQz3mkqUnXaJnv3kQod4q/xSVlaTIWd8DRVCgHl0+fIZw67u
+   Xn3kMcNq1YDXUn5oLfW+MBE9ntk1rFPXSMlxwwO7QQ3TCpx8N5CB7nTNO
+   w4OXLWwGI+iP2q4IFgpe8XnPwkhYiifyXnPvVHmrtUoT+4E//JPM/lXmA
+   Y7WaB/H/NilNT/7v34YV/afqaegLzMOmq38auFIevMASt5qEXv/QX9wQp
+   w==;
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=buk7TJmMgFjVbKc5Dk02YWPhorP0hf9o0AtP3x8o9e3unENWwjAwji15iuHDR0f6thMW9wpqS7g1WbQUJ5OEctnkYLEQxV/7D5cSLEK7YlbnsB7Kkhw1lUawiGf5f6wvIg51mB3n0oQWOQqpTLkhqVxDKZ3nzGVCQUgWXtpdgzx4PXXrUYbnGn0me8576wgOpvXgeOA2ePDIj77apIpGLcpWp4DwJbtrVgUEhrDyw2M285MX/cOZp5U0Qqrvjm9rL+CxTSZ+RtzTeGZztKlKoo+H9UgLIA1jaUR5NuijKtvpkUYfeti+pC/PJzNhyT5kYtGJovyh05ENsF6OkoPmIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9X1LVPKSkMPZErlcbEMfy+2TuN44oV6pjzZe524RYJ4=;
+ b=bxO2Fh2uT2ilWbKXWA4FW+Gh9VYnwbod0VZPu/HAMZC8UTmJIvjlehXAKGnKRo3lbogyjzWoBDdU3nHAj8rPfDheU7qCZWDFPGQQeECGvnyrVONUKRwgiDfRNc34hlrJAfDPQa+XFITb5bK3tHVSdBqUS+TYr9Fhbq+R8l99eFuRip5z53qLyqzOZiBiPh90NCmR+zuggalq52dkR2T2pA6vs4hdK65pCZQmbOMikgRS79uapf6IHwnl6UTZINHPQJkNh6iw/eLTqZf5cJ8ZpZGWUs01fLAwyDCp7tQNafu9+QMyKWeOYzrHlc3f0d7SWq9Iiv6JqEm8MM7DZeVZSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=2n.com; dmarc=pass action=none header.from=axis.com; dkim=pass
+ header.d=axis.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=axis365.onmicrosoft.com; s=selector2-axis365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9X1LVPKSkMPZErlcbEMfy+2TuN44oV6pjzZe524RYJ4=;
+ b=Rg2HxKDkTaphTAddP2d1EhYvWbAPOBQyIrbr/u40quUnAA11a3O6oYlKUEyajvW6JfAIQ7Wd60hMlIuoMZ8Z8AiZQQOtTvWs82jC9pY97wyEeEqx8B0Wmfbk7+D8QFErzDaGhCofjyZ/ujag+qifxwkc5qvu6ht7Tqnq71iyGyc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axis.com;
+Message-ID: <99582640-7486-7771-9fd0-c417e283051e@axis.com>
+Date:   Tue, 13 Jun 2023 15:35:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] Input: cap11xx - add advanced sensitivity settings
+Content-Language: en-US
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>
+References: <20230414233815.4004526-1-jiriv@axis.com>
+ <20230414233815.4004526-3-jiriv@axis.com> <ZF2A/STY66sqoOLX@google.com>
+From:   Jiri Valek - 2N <jiriv@axis.com>
+In-Reply-To: <ZF2A/STY66sqoOLX@google.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-ClientProxiedBy: VI1P194CA0043.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:803:3c::32) To PAXPR02MB7263.eurprd02.prod.outlook.com
+ (2603:10a6:102:1c5::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR02MB7263:EE_|AM7PR02MB6386:EE_
+X-MS-Office365-Filtering-Correlation-Id: daba78ea-c6c3-44a2-520b-08db6c13147e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ccLaw5PN9OsNgMfQQQamWyr7nS2+Tyl/eZJgmhNQBUmq82IhraQc6GtCAjPxeYrzlS1OPaLLBNoQmBo+xKslvlf4wOr3kB6bFbp2B8d2jtdLUdFkSouh5gr18ljc50PBFXHXyLGmLgkxZQhSg2doJ/89ra0uIZK4QaLk++E5jI5oeSdZQMnI9Qjc6JGoA9uoYBv4piw51BdGJGFOmQE4M84U9R3N8cEua/ltICVUE5EbNo6EicXNPSuHXLrUYEwWukxSD2JSWcn/U/UMrVtq5tjIs8fqI7MsmEoP8r41ZV+SJNBtEliPWrrKbN4GE1d5eF+f6XG6xuof5AbwuVif9w5qzYKOPGMEUu72HUZKGBSe7EILxDKdrcYCEYWHVImYUOAUKe/D0fodYRv56gVlsgyVy7LkaR9WLSu0m2bDhlcZmE8sKfTPcBzZM1u1L9ZTOfocv/FavLPNbgorMYxHcucu/i5siU4f3QKLtXqECrv/cJdZgXRl0seB4zvOOc3G0QyEBgVSBJEqikk8ZdiEy3VY+ybiE90L3CHEpgGOykP7FQUqawZ5mldf75LMEsLFaotrmHqE1NYKi58YBmEWpeerI5WEKhH9iEOpgGwazWDGuXfB9IV8ceJJP1e2K9O7xpJeNPRMlFrTuswS8Y4Zumsklj9qADK258GToUGQZtNs0m1yzMNW4JR1whYyipKpJHkHBtYemJf9cEYjUryXtw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR02MB7263.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(366004)(346002)(39850400004)(136003)(396003)(451199021)(66476007)(66556008)(2906002)(6916009)(38100700002)(36756003)(41300700001)(4326008)(66946007)(4744005)(5660300002)(31696002)(316002)(8676002)(8936002)(6486002)(83170400001)(26005)(6512007)(53546011)(6506007)(186003)(478600001)(83380400001)(2616005)(42882007)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZjVKdlBMT1d2d3UxYlhmKzBKemxxOWtBY0RUZFdwUlBMWkRUcStuM09Cekh3?=
+ =?utf-8?B?cXpqVUhqalpkT0p0d0JtMTFNOTJQczJBc205d291VDJMZUNpVHhXdlk2bGZG?=
+ =?utf-8?B?Ly9zNnRPRnlyQXhvSnloRG5zU0lzTytub0w1T2h5VVZ5dXZkVWVhUlZkSE4z?=
+ =?utf-8?B?ZnR5ZjcxNytpNjIyem0wcHJxQTlYNUdMMDRxQlJ5SW1XNU1OQm5udG1uL0pQ?=
+ =?utf-8?B?ZDE2QTVFU3BmbHdIZjNXK1dkT05UanhuSVRJU2dIUCttRGNoSGVVdUtycWhp?=
+ =?utf-8?B?UkVPTUkvUGIwQi9oai8zbUhXSG5mT210bEJLdTJpb3hVV05MVVRVVEQ3V2Ju?=
+ =?utf-8?B?a1ZWS1ZFTGQvS3doaWM1RTYyTjFJbXpGNVRsTlk5N2pxMUlhaTlLQUNWVVFW?=
+ =?utf-8?B?REVMcnpTWFpMSG5jOHV3bG1ST1lZT3BmRnFiVW5yVjAwLy9VVWlXMnFFWVN6?=
+ =?utf-8?B?VUV0WHhIbXpCU1V1ellIejdHYnhQWXdUdGdZb0xtd3hLc2tQRnZIcnhpUDln?=
+ =?utf-8?B?ZnpITFJCVjlnY1FaRWYvaCs1WUt1Yk5WNnE1ZDUrejRhcmFvTU1GbkJpczJI?=
+ =?utf-8?B?MUk0U2Y4Q1dORndzNkx4ZkdDU3h6QmQxWTd0UUpoMHdwYkRNRGhUWFRNWHQ5?=
+ =?utf-8?B?YTFOcStWaW9xMm9VUDhlNVV4bXRNcFpBcmFIamJMYVhhVHBIVEZGenF4YVdw?=
+ =?utf-8?B?Vzd2bktzanhibyt3WTBHVXJhOGwrSndYSmVKQVdCbzlQNWI2UUY4UG9JbTVF?=
+ =?utf-8?B?ZkM5c0JKNnRYaExiazN2MDRYc0g2WlpWaEtKZlVEdXVjSVJ3Yy9Sa1FxV0tV?=
+ =?utf-8?B?d000MEl4cW8wTytLc2JlOGNFSEM2NFJUYkhxSUx4TkYzbUUvRFJMd0pXQlNJ?=
+ =?utf-8?B?bmVlV3JEbm4raWU4bjBhUVhkS1Bxa2h6UmFlTGlCckhwaWIvOTFEZW5mY0Mx?=
+ =?utf-8?B?OEJ5bFE1bU5IZkdTVU0rK1RuYTVNbEtTSXg4SmczcXFmMzlIZzUwMG9Ccngv?=
+ =?utf-8?B?c1d0S1QzeFNPUkM2eHhiT3ZCNzMxUENWdVRxWUJIaXp5djdxbjJBc3VHOUJu?=
+ =?utf-8?B?WEJ6Rk9qeUxlWTNiSnhGdUlnOWlrY2RRdTN5M21Pc2pVNUFJTEFWc0JmNW9C?=
+ =?utf-8?B?MTdCVjRkZk9OZS9pMVB3ZzdDSU9QS0RkaHFNM2JmMXJLbjZHN2FZaHRWY0t1?=
+ =?utf-8?B?djVlUkpBYk9OV09odFZTQWNpQlFubkRVQ0RXTjBFOHpPZUlJU2hxN0dGRnI4?=
+ =?utf-8?B?VEIzekpWdHpLV00rOTVkZnhiSFg4T295UDZqSVdLaW11UmF1V2pTVnI1MFRh?=
+ =?utf-8?B?L04xbFVPK0JtRkFWajNuYVczT2ErbENneFJLZFhKdmsyQ1BhZmZNVlYrYnJV?=
+ =?utf-8?B?dDdyWnFxUExqWVZaSjlmUy9nSE1ERzF0VEJOTURNQWt1OWpOT0h0RHpKS2Vm?=
+ =?utf-8?B?ZTJoaGltMDgzMkwrU0xGcnI5bERDbVVjRzB1eUVTN2lBcXBtK3VSbE9BdVF1?=
+ =?utf-8?B?akQ3T1dJY2ZFcllJMlJNdnovNjZlL3pxcmhrMXNJL0JqS1lPd1dLR0c3ZVRr?=
+ =?utf-8?B?THIxVnRpanR3MTdtM0xmUktOWDJsMGFCcHJJMm9XVjB5V3lGZ0VtWmtSQ0Vo?=
+ =?utf-8?B?NHUwZU1uZDk5L1VDZTYvcGExSDlMNWdnNlZtVVRFQ0pBYjFXRDBwZUcrcWVS?=
+ =?utf-8?B?cisrdStsOW1JbUVhSWMvcWQ4bU45b2k3eUFJaWFhb0hhUVRQeldteDMvSitR?=
+ =?utf-8?B?YnNUdGxqZTNCSllqazZndEttRS9lcHl6cjNTdm1CTTJ6RER0em10UXNlNFpq?=
+ =?utf-8?B?c0dkd1RNLzcrQ3JSSTJjR0dkM2NrSFBWOXdSM2xQSUtDY2puUllwOVJja1di?=
+ =?utf-8?B?WDRCZGhiRjkwQXVpMlh3N1g1ZWFBTkxEazZONDRkVEtBNjJ3UXo1VzVFVmty?=
+ =?utf-8?B?ZXZMd1hBV3l4OUZlSUNQeGlkeUVVWkZER3YyMXBiZGJOU2tLcjYvdlVpdkZF?=
+ =?utf-8?B?NW0wTzdWSDFNTG9VaWpRZE1Hd0NOTVQ5QTFteWFjK0lpQ1FXTDZOZGlCeWt0?=
+ =?utf-8?B?cDFaL2cyWEllazJWY3hGVGh6WU1sWDJvTmZOaFlZRnQ1OXEzbEdxZW50NWpa?=
+ =?utf-8?Q?JuFEg/SOfhCgkF3QKUjmfUoXv?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: daba78ea-c6c3-44a2-520b-08db6c13147e
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR02MB7263.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2023 13:35:40.8519
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dx3e/x10F20HEziKjdfB+q21VsXXp3UdNIojv5gTdvnuc9m1rV116lNcxj7AgDZi
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR02MB6386
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Dmitry,
 
-Am 2023-06-09 16:43, schrieb Miquel Raynal:
-> Describe this new part. I simply copy/pasted the entry for its cousins
-> with twice more/less storage capacity. The datasheet is public:
-> https://ww1.microchip.com/downloads/aemDocuments/documents/MPD/ProductDocuments/DataSheets/SST26VF032B-SST26VF032BA-2.5V-3.0V-32-Mbit-Serial-Quad-IO-%28SQI%29-Flash-Memory-20005218K.pdf
-
-As Link: tag please
-
-> Without the NO_SFDP_FLAGs only partial erasures happen so I believe the
-> 4K sector flag is needed. I cannot test dual/quad reads, so I kept 
-> these
-> to mimic the other entries, just in case.
-
-I'd prefer to have proper SFDP parsing, even if you cannot confirm that
-dual/quad reads are working. That could always be a fixup later.
-
-> Here are the sfdp tables plus base testing to show it works.
+On 5/12/23 01:57, Dmitry Torokhov wrote:
+> Hi Jiri,
 > 
-> $ cat /sys/bus/spi/devices/spi0.0/spi-nor/partname
-> sst26vf032b
-> $ cat /sys/bus/spi/devices/spi0.0/spi-nor/jedec_id
-> bf2642
-> $ cat /sys/bus/spi/devices/spi0.0/spi-nor/manufacturer
-> sst
-> $ xxd -p /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-> 53464450060102ff00060110300000ff81000106000100ffbf0001180002
-> 0001fffffffffffffffffffffffffffffffffd20f1ffffffff0144eb086b
-> 083b80bbfeffffffffff00ffffff440b0c200dd80fd810d820914824806f
-> 1d81ed0f773830b030b0f7ffffff29c25cfff030c080ffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffff0004fff37f0000f57f0000f9ff
-> 3d00f57f0000f37f0000ffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-> ffffbf2642ffb95ffdff30f260f332ff0a122346ff0f19320f1919ffffff
-> ffffffff00669938ff05013506040232b03072428de89888a585c09faf5a
-> ffff06ec060c0003080bffffffffff07ffff0202ff060300fdfd040600fc
-> 0300fefe0202070e
-> $ md5sum /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-> e7efddddb3d5ee89ca37bf6b6e789645  
-> /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-
-Thanks!
-
-> $ dd if=/dev/urandom of=./qspi_test bs=1M count=1
-> 1+0 records in
-> 1+0 records out
-> $ mtd_debug write /dev/mtd0 0 1048576 qspi_test
-> Copied 1048576 bytes from qspi_test to address 0x00000000 in flash
-> $ mtd_debug erase /dev/mtd0 0 1048576
-> Erased 1048576 bytes from address 0x00000000 in flash
-> $ mtd_debug read /dev/mtd0 0 1048576 qspi_read
-> Copied 1048576 bytes from address 0x00000000 in flash to qspi_read
-> $ hexdump qspi_read
-> 0000000 ffff ffff ffff ffff ffff ffff ffff ffff
-> *
-> 0100000
-> $ mtd_debug write /dev/mtd0 0 1048576 qspi_test
-> Copied 1048576 bytes from qspi_test to address 0x00000000 in flash
-> $ mtd_debug read /dev/mtd0 0 1048576 qspi_read
-> Copied 1048576 bytes from address 0x00000000 in flash to qspi_read
-> $ sha1sum qspi_test qspi_read
-> 2f2f191c7a937eca5db21a1c39e79e7327587cc1  qspi_test
-> 2f2f191c7a937eca5db21a1c39e79e7327587cc1  qspi_read
+> On Sat, Apr 15, 2023 at 01:38:15AM +0200, Jiri Valek - 2N wrote:
+>> @@ -474,7 +645,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
+>>  	if (error)
+>>  		return error;
+>>  
+>> -	irq = irq_of_parse_and_map(node, 0);
+>> +	irq = irq_of_parse_and_map(dev->of_node, 0);
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  drivers/mtd/spi-nor/sst.c | 4 ++++
->  1 file changed, 4 insertions(+)
+> Do you know if this is actually needed or we can rely on I2C core to
+> figure out the interrupt for us?
+
+Agree and verified that's really not needed. I2C core do the job.
+I will remove it.
+
 > 
-> diff --git a/drivers/mtd/spi-nor/sst.c b/drivers/mtd/spi-nor/sst.c
-> index 99c8a19493f5..43f37d66f73a 100644
-> --- a/drivers/mtd/spi-nor/sst.c
-> +++ b/drivers/mtd/spi-nor/sst.c
-> @@ -113,6 +113,10 @@ static const struct flash_info sst_nor_parts[] = {
->  		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_SWP_IS_VOLATILE)
->  		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ)
->  		.fixups = &sst26vf_nor_fixups },
-> +	{ "sst26vf032b", INFO(0xbf2642, 0, 64 * 1024, 64)
+> Also, could I ask you to move the driver from of_property_*() to
+> device_property_*() API?
 
-Please try with INFO(0xbf2642, 0, 0, 0). You can also have a look
-at the debugfs and compare it to your current flags to check that
-nothing has changed.
+And yes. I can move it to device_property API.
 
--michael
+I prepare the changes as separate commits after I solve issues
+with my "add advanced sensitivity settings" patch.
 
-> +		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_SWP_IS_VOLATILE)
-> +		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ)
-> +		.fixups = &sst26vf_nor_fixups },
->  	{ "sst26vf064b", INFO(0xbf2643, 0, 64 * 1024, 128)
->  		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_SWP_IS_VOLATILE)
->  		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ)
+> 
+> Thanks.
+> 
+
+BR,
+Jiri Valek
