@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5238972E477
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0551B72E488
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242558AbjFMNn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:43:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47444 "EHLO
+        id S240290AbjFMNqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:46:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242557AbjFMNn5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:43:57 -0400
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF84E6;
-        Tue, 13 Jun 2023 06:43:39 -0700 (PDT)
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-33e75ca0a8bso24590845ab.0;
-        Tue, 13 Jun 2023 06:43:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686663819; x=1689255819;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Nmua7iGyrNHd+POWyUwRwRVOKzPbU1axH5KsFnA/6xU=;
-        b=hitn1Jb3ubnKZgMDIzLdQzZe+2gfnfnJ7Qf5+7KmnOiw/vYodxeyHUmBrbTTKit/z9
-         O2kN8YXi4l7FRgyJVovPE3g8Ge7Tup2A/IjpY+c8qrMT1km+iEgKkUki33x7yD7UEjtV
-         eaH1Ppq7yZfwZXvgcQioDzJbT9MHRqQeemxjd6+fBl/ZbTEWW2aIdpAmfFRnigBUrT/e
-         TKfJ7XU/NLAgc2pxvIlvWmpzf/sOGshqLcYVIYiT3NaMDaolhbUeck0Ix+CNIMlhgTbw
-         /GUNtFlfX44i8fAahEuABxL4QIaXsYoI7xJHeqBIF0W7s92Gk8Sf7wdax10/2/BxSjGB
-         cwbg==
-X-Gm-Message-State: AC+VfDw5dzTfmSQZ/yiZzkGbmatN0P3uDJCuViL62Ggqoa8o0srW1Xrs
-        qBIik2hMAQw9wGqWLQif3w==
-X-Google-Smtp-Source: ACHHUZ4N5LxEwQghbyZ0mVuAkfOFHBheqmu8DGwgun+YnzbyznQW+Hrq6vho8Zw5x6oO0ynuI43ghA==
-X-Received: by 2002:a92:d692:0:b0:33b:16e9:bba5 with SMTP id p18-20020a92d692000000b0033b16e9bba5mr10434067iln.28.1686663818733;
-        Tue, 13 Jun 2023 06:43:38 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id j18-20020a926e12000000b00326bd11f5d1sm2190658ilc.11.2023.06.13.06.43.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 06:43:38 -0700 (PDT)
-Received: (nullmailer pid 1780603 invoked by uid 1000);
-        Tue, 13 Jun 2023 13:43:36 -0000
-Date:   Tue, 13 Jun 2023 07:43:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Piyush Mehta <piyush.mehta@amd.com>
-Cc:     michal.simek@xilinx.com, git@amd.com, nava.manne@xilinx.com,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-usb@vger.kernel.org, michal.simek@amd.com,
-        conor+dt@kernel.org, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, siva.durga.prasad.paladugu@amd.com
-Subject: Re: [PATCH V3] dt-bindings: reset: convert the xlnx,zynqmp-reset.txt
- to yaml
-Message-ID: <20230613134336.GA1780229-robh@kernel.org>
-References: <20230613123048.2935502-1-piyush.mehta@amd.com>
- <168666237486.1671584.5832429615873674500.robh@kernel.org>
+        with ESMTP id S240124AbjFMNqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:46:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CCBAC;
+        Tue, 13 Jun 2023 06:46:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 43DEC62E96;
+        Tue, 13 Jun 2023 13:46:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A59D1C433F0;
+        Tue, 13 Jun 2023 13:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686663978;
+        bh=0rLyJ7Um8xHPNMu03OwaG3r7b8np6OjbkMb9kt0aihQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iM+rcbROLB5JB/ybOayIqTBFWRea5VRToEaYbL7v/gTfVtFBx+lzMIaSVUSe/fcml
+         mDgb6VM1iRjtbcjMLqXsnSVO9LkEZmDlmiC3YZ2W05mijUgwOCvovA4SjuQHwFKM3Y
+         Jv9yrcViXVcndpEEH8y2D5oByRKcU1Qju4ILu1rOw/dePVRdDfb0fj6QfIMzsQJMG+
+         xLrGpqTC2Zz2kFpnNFbAniPV6W8fqPA6q6c5gDMBsR5wV+Qh6MYLQxSQp6GKhBta8C
+         i2XbGrCRBn0+WJIDynCpUNjIZtsrhfTHUkUKePbADlUAsC1phPYqi/JHHe1Xq+5Xc2
+         Hhs2pnXa8zStA==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2b2f9f47256so42792081fa.1;
+        Tue, 13 Jun 2023 06:46:18 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxicfrVknVkrozVwQvQvYdGmSruaz8wmpjRgpFK7ANpqeEw5jcK
+        VxBzbu23sz9f3nBEkVNubc7sBstWHpMl5OoXYg==
+X-Google-Smtp-Source: ACHHUZ6WmyAIhsvQmsDE0BVCAxrCpRVVRL5HwS87Mu9fv5OxAQFMDCIxNRznw/fOYZNggQvJaqHC522pRJwlOweV5/A=
+X-Received: by 2002:a2e:3c0c:0:b0:2af:25cf:92ae with SMTP id
+ j12-20020a2e3c0c000000b002af25cf92aemr5357006lja.22.1686663976708; Tue, 13
+ Jun 2023 06:46:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <168666237486.1671584.5832429615873674500.robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+References: <20230418150606.1528107-1-robh@kernel.org> <b8a062a0-10e9-bf17-c109-f6986f9dd02c@linaro.org>
+In-Reply-To: <b8a062a0-10e9-bf17-c109-f6986f9dd02c@linaro.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 13 Jun 2023 07:46:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJvmN7824Q0vnWpnO3a_Fdo5Ybc2tcGnJZAfDLM=-1Apg@mail.gmail.com>
+Message-ID: <CAL_JsqJvmN7824Q0vnWpnO3a_Fdo5Ybc2tcGnJZAfDLM=-1Apg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,pmic-mpp: Fix schema for "qcom,paired"
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,50 +67,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 07:19:34AM -0600, Rob Herring wrote:
-> 
-> On Tue, 13 Jun 2023 18:00:48 +0530, Piyush Mehta wrote:
-> > Convert the binding to DT schema format. It also updates the
-> > reset-controller description.
-> > 
-> > Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+On Tue, Jun 13, 2023 at 12:50=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 18/04/2023 17:06, Rob Herring wrote:
+> > The "qcom,paired" schema is all wrong. First, it's a list rather than a=
+n
+> > object(dictionary). Second, it is missing a required type. The meta-sch=
+ema
+> > normally catches this, but schemas under "$defs" was not getting checke=
+d.
+> > A fix for that is pending.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
 > > ---
-> > Changes in V2:
-> > - Addressed the Krzysztof review comment:
-> >  - Update DT binding to fix the dt_binding_check warning.
-> >  - Removed 2/2 - xlnx,zynqmp-firmware.yaml binding patch: Will send after
-> >    xlnx,zynqmp-reset.yaml binding merge.
-> > 
-> > Link: https://lore.kernel.org/lkml/168612336438.2153757.6000360498539992409.robh@kernel.org/T/#m4abfe6287177d5fd09f781d298dd19d56aae5e27
-> > 
-> > Changes in V3:
-> > - Addressed the Krzysztof review comment:
-> >  - Removed 2/2 - xlnx,zynqmp-firmware.yaml binding patch: Will send after
-> >    xlnx,zynqmp-reset.yaml binding merge.
-> >  - Update title: Removed "binding".
-> >  - Update Example:
-> >   - Removed header file.
-> >   - Dropped three levels of indentations: firmware and zynqmp_firmware.
-> >   - Removed the sata example.
-> > 
-> > Link: https://lore.kernel.org/all/22e3c25e-487b-c02f-46f3-6d2ab2be8813@linaro.org/
-> > ---
-> >  .../bindings/reset/xlnx,zynqmp-reset.txt      | 55 -------------------
-> >  .../bindings/reset/xlnx,zynqmp-reset.yaml     | 52 ++++++++++++++++++
-> >  2 files changed, 52 insertions(+), 55 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.txt
-> >  create mode 100644 Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml: $defs:qcom-pmic-mpp-state:properties:qcom,paired: [{'description': 'Indicates that the pin should be operating in paired mode.'}] is not of type 'object', 'boolean'
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+>
+> Linus,
+> Could you take it for current fixes? The code was wrong and dtschema is
+> warning now about this.
 
-Unrelated. This can be ignored.
+I have other things ready for 6.4, so I'll add this one.
 
+Thanks,
 Rob
+
+>
+> Fixes: f9a06b810951 ("dt-bindings: pinctrl: qcom,pmic-mpp: Convert qcom
+> pmic mpp bindings to YAML")
+>
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+>
+> Best regards,
+> Krzysztof
+>
