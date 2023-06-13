@@ -2,56 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD0D572D6D7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 03:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A5372D700
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 03:35:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237191AbjFMBYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jun 2023 21:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53072 "EHLO
+        id S230353AbjFMBfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jun 2023 21:35:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjFMBYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 21:24:00 -0400
+        with ESMTP id S230039AbjFMBfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jun 2023 21:35:46 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F6810FF;
-        Mon, 12 Jun 2023 18:23:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE6F1711;
+        Mon, 12 Jun 2023 18:35:45 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5501462F8E;
-        Tue, 13 Jun 2023 01:23:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD579C433EF;
-        Tue, 13 Jun 2023 01:23:57 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ACF7862F37;
+        Tue, 13 Jun 2023 01:35:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07FA1C433D2;
+        Tue, 13 Jun 2023 01:35:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686619437;
-        bh=a7KC+mT8DCW37njz6sjR2A/VlZgTuxVuVorJVWQu4TU=;
+        s=k20201202; t=1686620144;
+        bh=EyKtx/gDko9LOVZRYx0rrPp+HzWImhwqZmdgxYsGfHk=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=XvCeOG4ObZ3pLzxWArmlLsejcKf0vl1en2EJAmX/xtCUYBwsfjnHpnAqHM281EmzT
-         Sx0x8siNHfVJVBuErjQILtsoLwxtLB4QHXAVoZCxSQGK5QkKyeRq0/gKLwJaqNifvQ
-         3pfg+pFekn2W2RzulbElj3FrCEPi73WLun1EJwo3HifCzjCxn5aj+Lbu6jKR6T4itr
-         siRN0yTfO+Yfmsf4pS2a0+3w/lyg8ItWmCHNvpOjlnyGeioolce9wjyqnWoHf0FOEK
-         5nj3YZHGfDcovrOzMsRDcOrnJP6oyNGn916InSL0DASeLZFhqSpOmPcP7I3UEiSZF5
-         z8eCGFBgzlVpw==
-Message-ID: <432db59b24e7cb15d7c6e67f4976d543.sboyd@kernel.org>
+        b=IEhIJZftAkwCaFLqvA0d1c++2oY5umfjfor9LtyRx62u1UWPdZZBm5XGLUHcjPPy1
+         GyG9oEw0h5y8N3HQ2UEA7sn5v4esxtoY+91sp0Iacil8GHN3ix6n4ngDlQlEf6kU/4
+         HRmEj3r6PqD2jzc3qbC8AqX0ncT7xhXTlDH0lCK0r8c2vrjkJhDTQBsS0W7Awh3vJc
+         RwyC3y+QrdshoIpWu38ckKmwmicaDm+ORMSH6fl3Hw1VD7Dek4mEkCzJewLOoZ0uk9
+         FbULImDyIUgeDrex8Imf5Bbd5hh0KKZRD+RdWrfadP4QFPYxmvYbhSm05jlh86udiK
+         3ZbRyN3zOaFQw==
+Message-ID: <91c3373b5b00afc1910b704a16c1ac89.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230525075011.7032-3-runyang.chen@mediatek.com>
-References: <20230525075011.7032-1-runyang.chen@mediatek.com> <20230525075011.7032-3-runyang.chen@mediatek.com>
-Subject: Re: [PATCH v4 2/2] clk: mediatek: reset: add infra_ao reset support for MT8188
+In-Reply-To: <20230515054402.27633-3-frank.li@vivo.com>
+References: <20230515054402.27633-1-frank.li@vivo.com> <20230515054402.27633-3-frank.li@vivo.com>
+Subject: Re: [PATCH 2/3] clk: thead: add support for the T-HEAD TH1520 CCU
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        Runyang Chen <runyang.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Icenowy Zheng <uwu@icenowy.me>
+To:     Conor Dooley <conor+dt@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Runyang Chen <runyang.chen@mediatek.com>
-Date:   Mon, 12 Jun 2023 18:23:55 -0700
+        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
+        Yangtao Li <frank.li@vivo.com>, mturquette@baylibre.com
+Date:   Mon, 12 Jun 2023 18:35:41 -0700
 User-Agent: alot/0.10
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -63,16 +59,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Runyang Chen (2023-05-25 00:50:11)
-> The infra_ao reset is needed for MT8188.
-> - Add mtk_clk_rst_desc for MT8188.
-> - Add register reset controller function for MT8188 infra_ao.
-> - Add infra_ao_idx_map for MT8188.
->=20
-> Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202305242320.AZzmINEa-lkp@i=
-ntel.com/
-> ---
+Quoting Yangtao Li (2023-05-14 22:44:00)
+> diff --git a/drivers/clk/clk-th1520.c b/drivers/clk/clk-th1520.c
+> new file mode 100644
+> index 000000000000..5dfa9e5207e2
+> --- /dev/null
+> +++ b/drivers/clk/clk-th1520.c
+> @@ -0,0 +1,999 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Vivo Communication Technology Co. Ltd.
+> + * Authors: Yangtao Li <frank.li@vivo.com>
+> + */
+> +
+[....]
+> +
+> +
+> +static CLK_FIXED_FACTOR_HW(pll_gmac_100m_clk, "pll-gmac-100m",
+> +                          &pll_gmac_clk.common.hw,
+> +                          10, 1, 0);
+> +
+> +static const char * const uart_parents[] =3D { "pll-gmac-100m", "osc24m"=
+ };
+> +struct ccu_mux uart_clk =3D {
+> +       .mux    =3D TH_CCU_ARG(0, 1),
+> +       .common =3D {
+> +               .reg            =3D 0x210,
+> +               .hw.init        =3D CLK_HW_INIT_PARENTS("uart",
 
-Applied to clk-next
+Don't use strings for clk tree topology. Instead use clk_parent_data or
+clk_hw pointers directly.
+
+> +                                             uart_parents,
+> +                                             &ccu_mux_ops,
+> +                                             0),
+> +       }
+> +};
+> +};
+> +
+> +static const struct regmap_config config =3D {
+
+Namespace this, th1520_clk_regmap_config[]
+
+> +       .reg_bits =3D 32,
+> +       .val_bits =3D 32,
+> +       .reg_stride =3D 4,
+> +       .fast_io =3D true,
+> +};
+> +
+> +static int th1520_clock_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct regmap *map;
+> +       void __iomem *regs;
+> +       int ret, i;
+> +
+> +       regs =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(regs))
+> +               return PTR_ERR(regs);
+> +
+> +       map =3D devm_regmap_init_mmio(dev, regs, &config);
+> +       if (IS_ERR(map))
+> +               return PTR_ERR(map);
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(th1520_clks); i++)
+> +               th1520_clks[i]->map =3D map;
+> +
+> +       for (i =3D 0; i < th1520_hw_clks.num; i++) {
+> +               ret =3D devm_clk_hw_register(dev, th1520_hw_clks.hws[i]);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +                                       &th1520_hw_clks);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id clk_match_table[] =3D {
+
+Namespace this, th1520_clk_match_table[]
+
+> +       {
+> +               .compatible =3D "thead,th1520-ccu",
+> +       },
+> +       { /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, clk_match_table);
+> +
