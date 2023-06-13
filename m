@@ -2,87 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC39872EF9D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 00:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D4D72EFC1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 01:03:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234675AbjFMWmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 18:42:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42928 "EHLO
+        id S231487AbjFMXDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 19:03:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232949AbjFMWmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 18:42:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2EDB5;
-        Tue, 13 Jun 2023 15:42:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AE14761AB8;
-        Tue, 13 Jun 2023 22:42:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F1DCC433C8;
-        Tue, 13 Jun 2023 22:42:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686696126;
-        bh=hgVl9+hfPmZasEUjo8oYYCUiF0sszv1GsSSKJ1soKOw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=B2bj7jig0XLABqq364lDt39uWPcobhzsP0QeUBw8nQ/5Ic1mhrn15J5Smd0L5+g9n
-         qhbRu1sr2B3DuZAKm/GGME3EvP4A/1ryfkaIGaVS4MmnFO3Htl41UlaQuqHgNIrSKB
-         O5r5eVfkolEDLLg+mMWWI90Imh5Gzsf+1124MeutgfthmjIjfXSVSdt15BD5bT+3hh
-         w21B+rL6cMWnGUEFxIj3Bdh+nxmlAxHjNsL2D1A+Y4jX2MrVVRJwhF6pDZozj0HCAY
-         BTOqRTidYRhdUqavB0bCGxEn22CFJHipUxusE8W3GdkDO11+4JkMNPINjXU9yOGH4F
-         T8ZcpI6QdgsHg==
-Date:   Wed, 14 Jun 2023 00:42:01 +0200
-From:   Andi Shyti <andi.shyti@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Carlos Song <carlos.song@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Anson.Huang@nxp.com" <Anson.Huang@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Bough Chen <haibo.chen@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH 2/2] dt-bindings: i2c: imx-lpi2c: Add bus
- recovery example
-Message-ID: <20230613224201.jyvodavmww43h4pi@intel.intel>
-References: <20230529074302.3612294-1-carlos.song@nxp.com>
- <20230529074302.3612294-2-carlos.song@nxp.com>
- <ed004607-5a23-564a-3185-a63af87783e5@linaro.org>
- <VI1PR04MB5005E43373DB10A9FD726AD7E8489@VI1PR04MB5005.eurprd04.prod.outlook.com>
- <5b537617-a9cb-609b-790d-3dda4b3933ec@linaro.org>
+        with ESMTP id S230179AbjFMXDI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 19:03:08 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F48B92;
+        Tue, 13 Jun 2023 16:03:07 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35DN0FTC009891;
+        Tue, 13 Jun 2023 23:02:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=JTfzK7S8mdVGYUr4XV81z94QYAI7a8mH2QpQq9pzvvc=;
+ b=PJ2M/zUnSa+6eTGliFALCRvxWvZ8Yp4/Pri06aVPmB6Sytb7ACpMaEND8nOldN0cG2As
+ FnsqYzWEQ4u4fVq6e8Pd3NiAYynO4md1PjYaBYceC//EhcjPt1K4i/dh5WIc/pBsEG/i
+ filO9QeCqOTyHUaoinI5zM80XgeKYCczu387DoVmBNeb+FU1nrzCnF3oZ0q7Eg9g3Azx
+ scQakFmreFvp+zxIlrY7dgoDDLNY8H1K0vwe/Zcjx0C2HEd7vjIyBjRiR8tUrgwqvliA
+ zNHtjF9vJhgVBcZe2KAiNm7nKIafnTzp0QTc7yqfsLB+Aj9v23h4LovhGDSTqVjQQMUP wQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r6t0bs4eh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Jun 2023 23:02:50 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35DN2nip023532
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Jun 2023 23:02:49 GMT
+Received: from [10.71.108.253] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 13 Jun
+ 2023 16:02:48 -0700
+Message-ID: <660807fe-d97c-cb7b-852e-7ad0eb93e0b4@quicinc.com>
+Date:   Tue, 13 Jun 2023 16:02:48 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5b537617-a9cb-609b-790d-3dda4b3933ec@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v13 00/24] Drivers for Gunyah hypervisor
+Content-Language: en-US
+To:     =?UTF-8?Q?Alex_Benn=c3=a9e?= <alex.bennee@linaro.org>
+CC:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+ <87cz2pveam.fsf@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <87cz2pveam.fsf@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: GfQNPEhEcubL0UND4S72NOH9iL4Fgu1S
+X-Proofpoint-ORIG-GUID: GfQNPEhEcubL0UND4S72NOH9iL4Fgu1S
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-13_22,2023-06-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 clxscore=1011 mlxlogscore=350 spamscore=0
+ lowpriorityscore=0 suspectscore=0 adultscore=0 impostorscore=0
+ phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306130202
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-> > We also find the sci-gpio and sda-gpio have been defined in the ref: /schemas/i2c/i2c-controller.yaml. 
-> > So is this the root cause of no need to add these properties?
+
+On 5/24/2023 10:13 AM, Alex Bennée wrote:
 > 
-> Yes.
+> Elliot Berman <quic_eberman@quicinc.com> writes:
+> 
 
-is some cleanup needed also in i2c-imx.yaml?
 
-Andi
+snip
+
+>    Applying: mailbox: pcc: Use mbox_bind_client
+> 
+> 
+> <snip>
+>>
+>> Elliot Berman (24):
+> <snip>
+> 
+>>    mailbox: Add Gunyah message queue mailbox
+> 
+> This patch touches a file that isn't in mainline which makes me wonder
+> if I've missed another pre-requisite patch?
+> 
+
+The v13 series had missed out on this patch: 
+https://lore.kernel.org/all/20230613172054.3959700-2-quic_eberman@quicinc.com/ 
+(which was present in every recent series). Apologies about that!
+
+The v14 series applies cleanly on v6.4-rc6 (and should also apply on 
+other recent tags, too).
+
+b4 am 
+https://lore.kernel.org/all/20230613172054.3959700-1-quic_eberman@quicinc.com/
+
+
+> <snip>
+>>   Documentation/virt/gunyah/message-queue.rst   |   8 +
+> <snip>
+> 
