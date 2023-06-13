@@ -2,51 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A5A72DE24
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:47:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C28072DE59
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240847AbjFMJrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 05:47:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60204 "EHLO
+        id S240828AbjFMJzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 05:55:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241430AbjFMJqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:46:55 -0400
-Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3BB1BE9;
-        Tue, 13 Jun 2023 02:46:32 -0700 (PDT)
-Received: from tp8.. (mdns.lwn.net [45.79.72.68])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ms.lwn.net (Postfix) with ESMTPSA id 95F6F77D;
-        Tue, 13 Jun 2023 09:46:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 95F6F77D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
-        t=1686649589; bh=3D+PguzS4TXh42c031J2y3Uw3/ednR923UHurOmvS98=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qZK1PnYZqJpWnDb1BSqQeus2JOzvGlw0lv0mFoOldcSwZ2HlRxG2iVmKzOv7B8rJO
-         Frfx5gDenDIsj4z499uG9oZBqNKntl9huHJpAG5UE3jY32YW25adiDJ3Utx77Tudp7
-         KG9jSVWctMFERne2ze86WUfNPep0OwOdbpsNJwact6FCyweg+d98yyuLLD5csR4q5m
-         GOpcDJOLU8W3sdmjcsuO9XaGsYhxTp7qanblBFINo55O3VxTybgFVtqKZBnOv+7Zgs
-         86GnXk8mLmPNZlqlePoUQasPnbTwc7RoCEHDLqjjYIyH4OOWF9ypifi0jcjKMFcgCQ
-         Ik+GvOcEj35dg==
-From:   Jonathan Corbet <corbet@lwn.net>
-To:     linux-doc@vger.kernel.org
-Cc:     linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/5] dt-bindings: fix dangling Documentation/arm64 reference
-Date:   Tue, 13 Jun 2023 03:46:03 -0600
-Message-Id: <20230613094606.334687-3-corbet@lwn.net>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230613094606.334687-1-corbet@lwn.net>
-References: <20230613094606.334687-1-corbet@lwn.net>
+        with ESMTP id S239267AbjFMJzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:55:40 -0400
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC3AE3;
+        Tue, 13 Jun 2023 02:55:39 -0700 (PDT)
+Received: by mail-ua1-x92e.google.com with SMTP id a1e0cc1a2514c-78a3e1ed1deso342144241.1;
+        Tue, 13 Jun 2023 02:55:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686650139; x=1689242139;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fwWyCUDuegx+tvkvTGStT67ElUFA4N+9n715czI5oMM=;
+        b=EFOAAGfykMNiEdEIHAfYE+irtvjkVom+OCnYLYU3kU0Rke9e1gCAxYxpvkxgFfDTLq
+         /IGjpl7MZuDj83JotVbsEk/YqixsvEiYQi9bAp5n+JdxO9Gan3tNXKEjF8mziH+PnJOn
+         BmpvoPMpX+6oz9ORNEtky4ww3U8A5SZcXqmNrrEhtttLMzWwv0QhxCEZ7OgZ+ev2oBvi
+         kOCmX5nZHqiY1dNRMiAX0ahKpTUrN9Mw65Wz8vfmCnilGw1vLLBSlw8MUU4u2JlMWwAP
+         sivKbPprB2Nuk9rdmuuNeg6dQhUREKl2Kq59cBj7z1/ZpHtczZGoI8qP4L72MB6/b7wd
+         z8XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686650139; x=1689242139;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fwWyCUDuegx+tvkvTGStT67ElUFA4N+9n715czI5oMM=;
+        b=aefybr+O8DXwHvJpRXR8mZoZsLw5YfRYVleiW+Vn3LNs8rE5awNXi1+IMTuJx2HUE3
+         V726KFdmIVT96pr6DEBXBi21YAhlCpJyy5F1PLAxZAFlMiWCNecKd39j5t98BIMhJWaz
+         7nzEhmn6+VBSi0mgmM8hl+EvajQA5mPAS3bEyy7X2+Wjr9Ari5yBtTrUwcbxXF3/6pJq
+         kJ95oSljMbJfNe4bOPht5qhGivCXvEsuSazMLvQRAQK3H5bk9EAM14WEQr4XQES55jVu
+         GdR7eKmY3yPgmPWqJ8931Gx8GdYAtRPAiVLMefFV8cERPx8gUSzTJIqLm/jl5q6b4un5
+         26mA==
+X-Gm-Message-State: AC+VfDyjZWrkw64HiOnkeZDb6p89qRzMy0kRbbFsAUDVZBcB/0iQ4VQR
+        jrjoEFTutNYbc0GDI5kNmHOPeapyTTrPYmZqjpOlNFqxFRg=
+X-Google-Smtp-Source: ACHHUZ7e9IsqIAz0PgLSkxZe5wg7yRy8uMMFUo1OILtylLbe/RXl7LMH2ceasVjVOwYCrnYhfuIfG6I7+3mrqQZSYJg=
+X-Received: by 2002:a67:b904:0:b0:43b:3978:2434 with SMTP id
+ q4-20020a67b904000000b0043b39782434mr4872625vsn.22.1686650138870; Tue, 13 Jun
+ 2023 02:55:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230111093245.318745-1-milkfafa@gmail.com> <20230111093245.318745-2-milkfafa@gmail.com>
+ <20230612110401.GPZIb7oZPdsPGFzSDc@fat_crate.local> <38c30778-9526-cba6-4ddb-00bcefeb5647@linaro.org>
+ <20230612120107.GFZIcJA3zktkiyTS2+@fat_crate.local> <99795947-0584-df42-a28a-aa89d7e21c7e@linaro.org>
+ <20230612123925.GGZIcR/dUrcu03z6V+@fat_crate.local> <e0171cb6-54e7-41bd-4b08-fa667fe58ff4@linaro.org>
+ <20230612131649.GHZIcawTKBMIQpFD6I@fat_crate.local>
+In-Reply-To: <20230612131649.GHZIcawTKBMIQpFD6I@fat_crate.local>
+From:   Kun-Fa Lin <milkfafa@gmail.com>
+Date:   Tue, 13 Jun 2023 17:55:27 +0800
+Message-ID: <CADnNmFqhNKoV5EfaiMSo9yz-hTaTm+0pGUJyFNH_V8pNVEU36w@mail.gmail.com>
+Subject: Re: [PATCH v18 1/3] ARM: dts: nuvoton: Add node for NPCM memory controller
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, tony.luck@intel.com,
+        James Morse <james.morse@arm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>, rric@kernel.org,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        CS20 KWLiu <KWLIU@nuvoton.com>, YSCHU@nuvoton.com,
+        ctcchien@nuvoton.com, Marvin Lin <kflin@nuvoton.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,31 +84,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The arm64 documentation has move under Documentation/arch/ fix a reference
-to match.
+> Marvin,
+> Please route the DTS (1/3) via Nuvoton SoC tree.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Jonathan Corbet <corbet@lwn.net>
----
- Documentation/devicetree/bindings/cpu/idle-states.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+OK, will route the DTS via Nuvoton SoC tree.
+Thanks, Krzysztof!
 
-diff --git a/Documentation/devicetree/bindings/cpu/idle-states.yaml b/Documentation/devicetree/bindings/cpu/idle-states.yaml
-index b8cc826c9501..b3a5356f9916 100644
---- a/Documentation/devicetree/bindings/cpu/idle-states.yaml
-+++ b/Documentation/devicetree/bindings/cpu/idle-states.yaml
-@@ -259,7 +259,7 @@ description: |+
-       http://infocenter.arm.com/help/index.jsp
- 
-   [5] ARM Linux Kernel documentation - Booting AArch64 Linux
--      Documentation/arm64/booting.rst
-+      Documentation/arch/arm64/booting.rst
- 
-   [6] RISC-V Linux Kernel documentation - CPUs bindings
-       Documentation/devicetree/bindings/riscv/cpus.yaml
--- 
-2.40.1
-
+> Patches 2 and 3 queued for 6.5.
+Thanks, Boris!
