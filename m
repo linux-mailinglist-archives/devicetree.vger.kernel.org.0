@@ -2,121 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7AD672E4AD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C4172E4B2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 15:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239265AbjFMNzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 09:55:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54264 "EHLO
+        id S233859AbjFMN45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 09:56:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233859AbjFMNzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:55:51 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F68B5;
-        Tue, 13 Jun 2023 06:55:49 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686664546;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=RInDDoo3F9fiMPBADCTZLN5rnGkLVd2Za/vXzH5dQ/c=;
-        b=QftuhZpBqsP2B3CLtbE+wTeYh7Ogb7O3ewjH04cfBt5faJ/2C8x9gR0fuovseLhV3B/PDv
-        DKpPbwBXTC+TbwcGQAHA26J2W0Vw8N9x8r1MHClpBAdzHAbVHEQuMnHznYF9/7ZOLSSVjX
-        lhbelEMGkjLCZyKrjKlCGVyaV9HEL0G1HGOM+QCIubSlqCF9t0w9K105iVk6FKH28bXUOu
-        7tDDfVQMuPE9ZtJLoE0CHP2zvQgrE5tEYFnG3EYNbqsDnp4XIjjpnbVqD1RMTK7/BOCv2t
-        ckKTpXK24XRaJX2Wvf58rEtLKsMEDUo+A9lNzZpsNp49wfS5V6B+NyWSSy/1lA==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D0A751BF219;
-        Tue, 13 Jun 2023 13:55:41 +0000 (UTC)
-Date:   Tue, 13 Jun 2023 15:55:36 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 11/12] ASoC: codecs: Add support for the generic IIO
- auxiliary devices
-Message-ID: <20230613155536.7ce2d1db@bootlin.com>
-In-Reply-To: <CAHp75Vd0SNY6XgKwS5j74VftY46MDQ9=Zc3wXwGLOiMc_ZX8Ow@mail.gmail.com>
-References: <20230612122926.107333-1-herve.codina@bootlin.com>
-        <20230612122926.107333-12-herve.codina@bootlin.com>
-        <CAHp75Vfz+vSJ7rQ4sxb0R+zRbrjipXUX3VpaHyvOWWePdPxejQ@mail.gmail.com>
-        <20230613113707.0b5d9648@bootlin.com>
-        <CAHp75Vd0SNY6XgKwS5j74VftY46MDQ9=Zc3wXwGLOiMc_ZX8Ow@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S239868AbjFMN44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 09:56:56 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CF1CA;
+        Tue, 13 Jun 2023 06:56:54 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DDucch028956;
+        Tue, 13 Jun 2023 08:56:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686664598;
+        bh=AisEUQFN6qXK+ZgbfXrx9CrTIJoeUeeHyqEZJKH9pKM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=PsJvvz5XS41tAsGYDTqgIlugg1p3do7L3bGivru8HYzOGi4LLcdSbaNU3oi5jDpTl
+         L+pNu0JZn7Ov2KQDK+OWZ3MYDiXiUfQKkCaLLdN/cJfVNkea3afwdYmEh8koGE6bvJ
+         ExP7htS3QjYq3ilWqDiysNwxkF7t9tSvwmQLECsw=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DDucY1033792
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 13 Jun 2023 08:56:38 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ Jun 2023 08:56:38 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 Jun 2023 08:56:38 -0500
+Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DDuZbr051552;
+        Tue, 13 Jun 2023 08:56:35 -0500
+Message-ID: <22b67e80-1f5f-d8e0-3c85-c69d97ea0d39@ti.com>
+Date:   Tue, 13 Jun 2023 19:26:34 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 6/9] arm64: dts: ti: k3-j721e-beagleboneai64: Add
+ wakeup_uart pinmux
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Neha Malcom Francis <n-francis@ti.com>
+References: <20230601183151.1000157-1-nm@ti.com>
+ <20230601183151.1000157-7-nm@ti.com>
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230601183151.1000157-7-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Jun 2023 16:24:58 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+Hi Nishanth,
 
-> On Tue, Jun 13, 2023 at 12:37 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> > On Mon, 12 Jun 2023 17:37:00 +0300
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
-> 
-> ...
-> 
-> > > > +       struct snd_kcontrol_new control = {0};  
-> > >
-> > > 0 is not needed.  
-> >
-> > Not for this one.
-> >
-> > The variable is in stack.
-> > Some of the structure members will be set in the code but we need to ensure
-> > that all others are set to 0.  
-> 
-> Yes, and as I said, 0 is not needed. Compiler assumes that if you just
-> use plain {}.
-> 
+On 6/2/2023 12:01 AM, Nishanth Menon wrote:
+> Define the wakeup uart pin-mux for completeness. This allows the
+> device tree usage in bootloader and firmwares that can configure the
+> same appropriately.
+>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> index c13246a9ed8f..bc53ca566a68 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> @@ -531,6 +531,13 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+>   		>;
+>   	};
+>   
+> +	wkup_uart0_pins_default: wkup-uart0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_WKUP_IOPAD(0xa0, PIN_INPUT, 0) /* (J29) WKUP_UART0_RXD */
+> +			J721E_WKUP_IOPAD(0xa4, PIN_OUTPUT, 0) /* (J28) WKUP_UART0_TXD */
+> +		>;
+> +	};
+> +
+>   	mcu_usbss1_pins_default: mcu-usbss1-pins-default {
+>   		pinctrl-single,pins = <
+>   			J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO0_30 */
+> @@ -541,6 +548,8 @@ J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO
+>   &wkup_uart0 {
+>   	/* Wakeup UART is used by TIFS firmware. */
+>   	status = "reserved";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&wkup_uart0_pins_default>;
+>   };
 
-My bad, sorry, I misunderstood.
-Will be update to an empty {} in the next iteration.
 
-Thanks,
-Hervé
+If you like to consider alias for wkup_uart0 for this board ,
+
+Just to align with other boards for this SOC family.  I understand 
+wkup_uart0 is not being used.
 
 
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>   
+>   &main_uart0 {
