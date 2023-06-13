@@ -2,196 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82BC972E8EA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D32972E904
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:09:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232792AbjFMRAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 13:00:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38734 "EHLO
+        id S235668AbjFMRIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 13:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231691AbjFMRAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:00:38 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAA01BC6
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 09:59:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1686675590;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=j04GnjVnV6VhU15tbBAUt5ncRnXCPvNX2dvFYsA/gBk=;
-        b=iHw6EAIePH85NMkgoWE0GEqFT7RjDlWvkKcgh0VkANARIlCsC/L06u542yBsECCVHHKrQ1
-        d56rSxi3Pv8HLM27+BnwFvs1lT66NBQxlYp+Gnk78lcR0tp82vltrCeyAh54Lh2BQHbr+T
-        85hD0/7E1JfvVe3B7dBqOUcyXw6vm/8=
-Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com
- [209.85.128.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-81-e4gwT5bYNsqHRnIXP65I8w-1; Tue, 13 Jun 2023 12:59:48 -0400
-X-MC-Unique: e4gwT5bYNsqHRnIXP65I8w-1
-Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-56ff81be091so5272057b3.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 09:59:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686675587; x=1689267587;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S235279AbjFMRIq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:08:46 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE7D187;
+        Tue, 13 Jun 2023 10:08:45 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id 6a1803df08f44-62de508705dso9507116d6.1;
+        Tue, 13 Jun 2023 10:08:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686676124; x=1689268124;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=j04GnjVnV6VhU15tbBAUt5ncRnXCPvNX2dvFYsA/gBk=;
-        b=eujmx5r46attQT9QmNwkLJ/aWxyWr8aIU3VdlPOMXAzv1iAhtFaFG2HpHZKVLvqWP0
-         UrcK/9slfNB08NdCuzTREoFxe/LoBnZPMbGtcnrqyss2TfS534Y2e5QKprg+Qv61V3Vq
-         GgRyPkqJUYjoWFhzLg0sSFfV2Kh0E1LdRUArzOqqGmNWEO7gp8POfVsFJn+16UOoqI4R
-         FGShQ7W67QE0WGM4mXbj1bayLrv3fYPIUWj1iF3EXiR52qoVhbucpgyJH9Fw3u2ftXaX
-         zRSTogKnz7bNnyhqu1Tp7xqvJhvdU8pWH0p6OYWX/h6RlCIYfmUBRa7Zk+5Vl5Bk/E3e
-         McXw==
-X-Gm-Message-State: AC+VfDwfmeW4OV5C9Y2DANWHhbfRg5ZQfmBFUIkRVKPXP0uip5jeTFv8
-        OAf3tZIEsxSfNipVH80mhuE7Igpvx6K827mik2MX+J7X9CP+ELG0yyDXNf0axrkdeGiLUmVZH4O
-        HGkmFxqLx2gwnfHeYhD8q0w==
-X-Received: by 2002:a81:738b:0:b0:565:e48d:32cf with SMTP id o133-20020a81738b000000b00565e48d32cfmr2533632ywc.7.1686675587351;
-        Tue, 13 Jun 2023 09:59:47 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7O9u46bkmq9uCzDtwjiCxY77/JvONfFU/2txtnkFyT64oc8V6fa+eQ8cwyObh374VppqoV4w==
-X-Received: by 2002:a81:738b:0:b0:565:e48d:32cf with SMTP id o133-20020a81738b000000b00565e48d32cfmr2533610ywc.7.1686675587072;
-        Tue, 13 Jun 2023 09:59:47 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
-        by smtp.gmail.com with ESMTPSA id s7-20020a0de907000000b005688f7596ccsm1699074ywe.78.2023.06.13.09.59.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 09:59:46 -0700 (PDT)
-Date:   Tue, 13 Jun 2023 11:59:43 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        bh=IEOxPjyq7cbAhN04VkJQjCBC+cXkSTNShgxgFc1N+zA=;
+        b=A7iJAOhzjDARsMdLXql0k2OXLHNTpaLZtqbaTeS51zwUgfBoKoHEAdgUwftZtXPkrr
+         yoch6gF7JjAlWDOjG9dCbPyLz8wl0KVf9c+xRea0NqOAttdciVtvu9j6oDNptpSoLsj9
+         Zy2SsuRT8B3s9C49maijvvGSEb+p2wwuiM3MOY4xvubIKWPb7NMQiueXnt/hLkbjK0Qb
+         3LtbtFYpKySGZMPmCO9Y9boRNazVRe3Uc/G0fFHOUGSADUajXULr45dvsJlbVNfhFBg9
+         p8NL/UmHMg3bEGWslK4cFSxYbVrEFwIk7cpDgWfblmckcgIaWKaQUoTTNxaMLSZLEVhL
+         2Abw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686676124; x=1689268124;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IEOxPjyq7cbAhN04VkJQjCBC+cXkSTNShgxgFc1N+zA=;
+        b=lyqlni2rvUohdkJB9n4KzzyagmodFprDp1YSRawrsyYfbllXLDfwKpqG6N5itiN0oq
+         2B92kMLfzahdIHkygFE5jAjdp/klqOXES00/6sYDHHZ+BSvyPXfWMXcLjvTUZue6ZEOc
+         CndOoFdgu02lbd93G75USlPwS665ZNPR8QU8mHN8ZUQ8RTwQHJj0IBSZdGyagkqnmUqr
+         y3ZD7EMQm3wPmGJdCQB4RnEhYa0Hcf3rfy1pCY84dC+l9qT9UdSiDYXJMyJRCeUt7DGr
+         A8tmCPEr+01vZkc1bjbfN65nzvcLmuDvRWvadhfe3RuNrmZNZnsTwsjfbuuMQTixZ9v5
+         f4Hg==
+X-Gm-Message-State: AC+VfDy9+CibQtYeLv1QfTKKHe7qiPL20pXyPIeHMLdYQUfX3NDDwVzK
+        iOLkGaww3Wd+MpWAfMpvMYARvQeyy1QGV9aCwZA=
+X-Google-Smtp-Source: ACHHUZ6IVHYtr6EhQ8zxzJ7cZgPX29yPpTxMs+tJlNote6SRNod+g3s8Q+j1rgTEV1/Gp9V+uz2mkZmDpuA7/u9qgnM=
+X-Received: by 2002:a05:6214:2468:b0:626:1e6b:4785 with SMTP id
+ im8-20020a056214246800b006261e6b4785mr15074240qvb.6.1686676124471; Tue, 13
+ Jun 2023 10:08:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230612122926.107333-1-herve.codina@bootlin.com>
+ <20230612122926.107333-7-herve.codina@bootlin.com> <CAHp75Vf2dmAS9VD-pgyZwVopVCFy8yFjhPWEj8sym=pfE7uxSA@mail.gmail.com>
+ <20230613100000.6bd9e690@bootlin.com>
+In-Reply-To: <20230613100000.6bd9e690@bootlin.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 13 Jun 2023 20:08:08 +0300
+Message-ID: <CAHp75Vcr5Owjn0HK-+D0mpPJAkAxG7F8bEO=sqvhT8w=_xnF7w@mail.gmail.com>
+Subject: Re: [PATCH v3 06/12] minmax: Introduce {min,max}_array()
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 16/26] net: stmmac: dwmac-qcom-ethqos: prepare the driver
- for more PHY modes
-Message-ID: <20230613165943.zjr4b4p44jhl2dtx@halaney-x13s>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-17-brgl@bgdev.pl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230612092355.87937-17-brgl@bgdev.pl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:23:45AM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> In preparation for supporting SGMII, let's make the code a bit more
-> generic. Add a new callback for MAC configuration so that we can assign
-> a different variant of it in the future.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Tue, Jun 13, 2023 at 11:00=E2=80=AFAM Herve Codina <herve.codina@bootlin=
+.com> wrote:
+> On Mon, 12 Jun 2023 17:10:40 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Mon, Jun 12, 2023 at 3:30=E2=80=AFPM Herve Codina <herve.codina@boot=
+lin.com> wrote:
+> > >
+> > > Introduce min_array() (resp max_array()) in order to get the
+> > > minimal (resp maximum) of values present in an array.
+> >
+> > Some comments below, after addressing them,
+> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+...
 
-> ---
->  .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 31 ++++++++++++++++---
->  1 file changed, 26 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 21f329d2f7eb..2f96f2c11278 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -92,12 +92,14 @@ struct ethqos_emac_driver_data {
->  struct qcom_ethqos {
->  	struct platform_device *pdev;
->  	void __iomem *rgmii_base;
-> +	int (*configure_func)(struct qcom_ethqos *ethqos);
->  
->  	unsigned int rgmii_clk_rate;
->  	struct clk *rgmii_clk;
->  	struct clk *phyaux_clk;
->  	struct phy *serdes_phy;
->  	unsigned int speed;
-> +	int phy_mode;
->  
->  	const struct ethqos_emac_por *por;
->  	unsigned int num_por;
-> @@ -332,13 +334,11 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
->  {
->  	struct device *dev = &ethqos->pdev->dev;
->  	int phase_shift;
-> -	int phy_mode;
->  	int loopback;
->  
->  	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
-> -	phy_mode = device_get_phy_mode(dev);
-> -	if (phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
-> -	    phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
-> +	if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
-> +	    ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
->  		phase_shift = 0;
->  	else
->  		phase_shift = RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN;
-> @@ -485,7 +485,7 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
->  	return 0;
->  }
->  
-> -static int ethqos_configure(struct qcom_ethqos *ethqos)
-> +static int ethqos_configure_rgmii(struct qcom_ethqos *ethqos)
->  {
->  	struct device *dev = &ethqos->pdev->dev;
->  	volatile unsigned int dll_lock;
-> @@ -561,6 +561,11 @@ static int ethqos_configure(struct qcom_ethqos *ethqos)
->  	return 0;
->  }
->  
-> +static int ethqos_configure(struct qcom_ethqos *ethqos)
-> +{
-> +	return ethqos->configure_func(ethqos);
-> +}
-> +
->  static void ethqos_fix_mac_speed(void *priv, unsigned int speed)
->  {
->  	struct qcom_ethqos *ethqos = priv;
-> @@ -660,6 +665,22 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  		goto out_config_dt;
->  	}
->  
-> +	ethqos->phy_mode = device_get_phy_mode(dev);
-> +	switch (ethqos->phy_mode) {
-> +	case PHY_INTERFACE_MODE_RGMII:
-> +	case PHY_INTERFACE_MODE_RGMII_ID:
-> +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> +		ethqos->configure_func = ethqos_configure_rgmii;
-> +		break;
-> +	case -ENODEV:
-> +		ret = -ENODEV;
-> +		goto out_config_dt;
-> +	default:
-> +		ret = -EINVAL;
-> +		goto out_config_dt;
-> +	}
-> +
->  	ethqos->pdev = pdev;
->  	ethqos->rgmii_base = devm_platform_ioremap_resource_byname(pdev, "rgmii");
->  	if (IS_ERR(ethqos->rgmii_base)) {
-> -- 
-> 2.39.2
-> 
+> > > +       typeof(array) __array =3D (array);                        \
+> >
+> > We have __must_be_array()
+>
+> Using __must_be_array() will lead to some failure.
+> Indeed, we can have:
+>   --- 8< ---
+>   int *buff
+>   ...
+>   min =3D min_array(buff, nb_item);
+>   --- 8< ---
+>
+> In this case, __must_be_array() will report that buff is not an array.
 
+Oh, I missed that.
+
+> To avoid any confusion, what do you think if I renamed {min,max}_array()
+> to {min,max}_buffer() and replace __array by __buff and use *(__buff + xx=
+x)
+> instead of array[xxx] in the macro.
+
+But functionally it's still against an array.
+
+I would stick with "array" in the name, but add a comment why
+__must_be_array() is not used. If we need a stricter variant, we may
+add a new wrapper with that check. That said, I think we can use
+__array[0] and similar indexed accesses.
+
+
+--
+With Best Regards,
+Andy Shevchenko
