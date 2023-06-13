@@ -2,74 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB5C72EB94
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C450A72EBA7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233036AbjFMTGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 15:06:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51700 "EHLO
+        id S230498AbjFMTIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 15:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbjFMTGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:06:48 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37078198D
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:06:47 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9788554a8c9so1017640166b.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:06:47 -0700 (PDT)
+        with ESMTP id S232764AbjFMTIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:08:22 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC7D199E
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:08:19 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f6283d0d84so7400893e87.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:08:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686683205; x=1689275205;
+        d=linaro.org; s=google; t=1686683298; x=1689275298;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SSQ2Ofm/5XwGv6mSESlDU0Nj2cG4DNgNPbhJQeoIQpY=;
-        b=QSiA3oWxQopV30s9esmyHII8qfyptsy4AJ77FmiljXjuMB+0bljKoCZOckLJ5XFNq5
-         2H8GC2BdnKMUUU6vddQuN5mLZnpgeDwQ7vDBRu2hEEwvmTwFVL3qHucJ2YRJ7BI/qXku
-         A9t/uMT8TPCRFrnGAUqA1a94Nxz9hwBspi3yqDAUAb9TBk0m6D/gyKGN7hJcld8gVqkR
-         /E1dAJGQAGczRh7++GsflHxD6eHgZNnVmywiBKaqV22yAMD7Twy13+JdUTzyeMOBS0WN
-         HbOu4DgKNf4oA2YaCcmJvX5FWYt6HTrswBfo8/ykrCK533CHFxjBP1lT83O5HjamNoFJ
-         qvBA==
+        bh=F+tm3+Pdm0PaXfiZEzyRYLx0bL/2PcssnIDcJqEcG00=;
+        b=pXvtSrfvSZFtqXr7gBQNbwO93crNLRG5kDvQKUb9i07WRGV8cuKSZdeN2AHPfkSYEV
+         s9Kj4TDyZ6xACpGIQJynV4qJHfQP8x2u9sRicGgoFESj5RceIKeBfElicevTTgiNi7RL
+         9QVYc+lVnCKM1rsbq+3A8n10G22u07GDwcLiscU3lmCZ6y7WPLfCyTgRAVZA4pyyw5Yn
+         JKU8Q+vKxm0IHBX04DCwxktI6OGATGIu3ihwztTO+oNXjo8vTM8yorfcSd8ysJEEaPSj
+         +opeKcUuZUOr+FiHdS+JpkxNfEiaACOn71VVmdwpa4d0A54Sj9plaNCeEqJ1uAKxPOTX
+         1XpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686683205; x=1689275205;
+        d=1e100.net; s=20221208; t=1686683298; x=1689275298;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SSQ2Ofm/5XwGv6mSESlDU0Nj2cG4DNgNPbhJQeoIQpY=;
-        b=I4vVSJruzTHcDFkrekQDAc5jY21qJ4G1aEzWJB5Ffe1Y1RyXCnKo34emGsjh2LIAVE
-         xIbxUjSjjZUxSy7W+L3R8FiOcAeEKcG1ypR1BMJk7BRYZt1g0qEAcRasoJ+xq8/xyziF
-         iyf21OQrlmlAZn+C/D/Xb/SRy2ihSml3iZzIwSexBf5L28eobEWlcw3VJezPUSnhWBM8
-         czAam/FtI7LNLJpQmmLNF4QyepFdB/HU/IWqOaSM6BEqj3taeRMic7FiXgfqAJYkfsnm
-         CHyBHMu8p4uGFfS2NmVsLu6Vdt1PS5Y+rXWroIVNzTKOGH7/ASWmxFj8gKU1efSNpbFM
-         uZ2w==
-X-Gm-Message-State: AC+VfDyrRJ4Ej2YhtIsG9RADdeC97aOOh9SKteWNGTq+wpTJfn59jN88
-        Ed0eMtQCqGwEzjAm/rtXbbuhxLBa5F+glCBBJ6Y=
-X-Google-Smtp-Source: ACHHUZ4cw2V0nsGESs9QYxJaXsXNVZS7vmLLuxbygQj5JAHQqeGBOQrgl1IoPhdeGZBViBjevxGozQ==
-X-Received: by 2002:a17:907:86a4:b0:970:1a68:bacc with SMTP id qa36-20020a17090786a400b009701a68baccmr15992858ejc.67.1686683205725;
-        Tue, 13 Jun 2023 12:06:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id rs15-20020a170907036f00b009823e62ca91sm1130002ejb.189.2023.06.13.12.06.44
+        bh=F+tm3+Pdm0PaXfiZEzyRYLx0bL/2PcssnIDcJqEcG00=;
+        b=B4DaVmIYv3MOHdr1ngB2KuOtXRelpXBHs0d6Pi2xcXYQhDDHFxJuqt5r+CPsu8kvHJ
+         Fdhf5yAnaxz8WtooNdOYlKcpg/VPdvUbZzzyjF1IhAWmQBuXP059ugN6J8ndOfUqe261
+         DDWZxCjHILU4nC87ZNNQWNrED6FjCP4ayxOfqCP5Z0Ay4cEawwtt9iy61Y/LcZRwI2Et
+         JJ5K81g7E0bmdnlx8ipQT/4aOY+H+VE2WKT6NBglV0cJb2HDV7RO+Yfe4wmPi3XHwu9f
+         7V/+pzqm16/zrNtAJ5Yq63ZgdpEryftZxRKymh8//caMaoE+h5KmD4uUcQacG/TfsOJz
+         j/Xg==
+X-Gm-Message-State: AC+VfDymkTsXOgDhKJvqstJA2jbRASkmBaOQITwlIOyy3upJDxkechqo
+        Mu7sCOeI/uCF0qBJNBTNB5Rhtw==
+X-Google-Smtp-Source: ACHHUZ5hlHejaHU5jlNuZeMW5cevHnRvyHVwiIHOuhObHOVK4r0Ifh+Y4UFnRCtLYlUAMdVar7JMhg==
+X-Received: by 2002:a19:e059:0:b0:4d5:8306:4e9a with SMTP id g25-20020a19e059000000b004d583064e9amr6458878lfj.46.1686683298079;
+        Tue, 13 Jun 2023 12:08:18 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id m5-20020a056512014500b004f73eac0308sm1148576lfo.183.2023.06.13.12.08.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 12:06:45 -0700 (PDT)
-Message-ID: <89fb41d1-9cf8-cdab-e4ae-d5eef480242e@linaro.org>
-Date:   Tue, 13 Jun 2023 21:06:43 +0200
+        Tue, 13 Jun 2023 12:08:17 -0700 (PDT)
+Message-ID: <cf515539-9a60-c3ae-18af-463651651a27@linaro.org>
+Date:   Tue, 13 Jun 2023 21:08:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 2/8] dt-bindings: rtc: Move isil,isl12022 from
- trivial-rtc.yaml into own schema file
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 26/26] arm64: dts: qcom: sa8775p-ride: enable ethernet0
 Content-Language: en-US
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Bartosz Golaszewski <brgl@bgdev.pl>, Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-3-linux@rasmusvillemoes.dk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230613130011.305589-3-linux@rasmusvillemoes.dk>
+        Conor Dooley <conor+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>
+Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-27-brgl@bgdev.pl>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230612092355.87937-27-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,20 +93,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 15:00, Rasmus Villemoes wrote:
-> Move the isil,isl12022 RTC bindings from trivial-rtc.yaml into its own
-> intersil,isl12022.yaml file, in preparation for adding more bindings.
+
+
+On 12.06.2023 11:23, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> Enable the first 1Gb ethernet port on sa8775p-ride development board.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  .../bindings/rtc/intersil,isl12022.yaml       | 45 +++++++++++++++++++
->  .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
->  2 files changed, 45 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+I don't know a whole lot about this, but it passes bindings checks
+and looks good overall, so:
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 89 +++++++++++++++++++++++
+>  1 file changed, 89 insertions(+)
 > 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> index dbd9553aa5c7..13508271bca8 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> @@ -261,6 +261,95 @@ vreg_l8e: ldo8 {
+>  	};
+>  };
+>  
+> +&ethernet0 {
+> +	phy-mode = "sgmii";
+> +	phy-handle = <&sgmii_phy>;
+> +	phy-supply = <&vreg_l5a>;
+> +
+> +	pinctrl-0 = <&ethernet0_default>;
+> +	pinctrl-names = "default";
+> +
+> +	snps,mtl-rx-config = <&mtl_rx_setup>;
+> +	snps,mtl-tx-config = <&mtl_tx_setup>;
+> +	snps,ps-speed = <1000>;
+> +
+> +	status = "okay";
+> +
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+> +		reset-delay-us = <11000>;
+> +		reset-post-delay-us = <70000>;
+> +
+> +		sgmii_phy: phy@8 {
+> +			reg = <0x8>;
+> +			device_type = "ethernet-phy";
+> +		};
+> +	};
+> +
+> +	mtl_rx_setup: rx-queues-config {
+> +		snps,rx-queues-to-use = <4>;
+> +		snps,rx-sched-sp;
+> +
+> +		queue0 {
+> +			snps,dcb-algorithm;
+> +			snps,map-to-dma-channel = <0x0>;
+> +			snps,route-up;
+> +			snps,priority = <0x1>;
+> +		};
+> +
+> +		queue1 {
+> +			snps,dcb-algorithm;
+> +			snps,map-to-dma-channel = <0x1>;
+> +			snps,route-ptp;
+> +		};
+> +
+> +		queue2 {
+> +			snps,avb-algorithm;
+> +			snps,map-to-dma-channel = <0x2>;
+> +			snps,route-avcp;
+> +		};
+> +
+> +		queue3 {
+> +			snps,avb-algorithm;
+> +			snps,map-to-dma-channel = <0x3>;
+> +			snps,priority = <0xc>;
+> +		};
+> +	};
+> +
+> +	mtl_tx_setup: tx-queues-config {
+> +		snps,tx-queues-to-use = <4>;
+> +		snps,tx-sched-sp;
+> +
+> +		queue0 {
+> +			snps,dcb-algorithm;
+> +		};
+> +
+> +		queue1 {
+> +			snps,dcb-algorithm;
+> +		};
+> +
+> +		queue2 {
+> +			snps,avb-algorithm;
+> +			snps,send_slope = <0x1000>;
+> +			snps,idle_slope = <0x1000>;
+> +			snps,high_credit = <0x3e800>;
+> +			snps,low_credit = <0xffc18000>;
+> +		};
+> +
+> +		queue3 {
+> +			snps,avb-algorithm;
+> +			snps,send_slope = <0x1000>;
+> +			snps,idle_slope = <0x1000>;
+> +			snps,high_credit = <0x3e800>;
+> +			snps,low_credit = <0xffc18000>;
+> +		};
+> +	};
+> +};
+> +
+>  &i2c11 {
+>  	clock-frequency = <400000>;
+>  	pinctrl-0 = <&qup_i2c11_default>;
