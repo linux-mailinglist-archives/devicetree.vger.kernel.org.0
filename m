@@ -2,107 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD7F872E54A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A58E72E55C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 16:16:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240128AbjFMOJj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Jun 2023 10:09:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
+        id S240225AbjFMOMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 10:12:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242760AbjFMOJg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:09:36 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3F58171D;
-        Tue, 13 Jun 2023 07:09:10 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35DDKQVF013107;
-        Tue, 13 Jun 2023 10:08:23 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3r4p351dqr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Jun 2023 10:08:17 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 35DE7eIM009159
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Jun 2023 10:07:40 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 13 Jun
- 2023 10:07:39 -0400
-Received: from ASHBMBX8.ad.analog.com ([fe80::30b9:230c:9621:902f]) by
- ASHBMBX8.ad.analog.com ([fe80::30b9:230c:9621:902f%9]) with mapi id
- 15.02.0986.014; Tue, 13 Jun 2023 10:07:39 -0400
-From:   "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+        with ESMTP id S242476AbjFMOMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 10:12:37 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6171FC3;
+        Tue, 13 Jun 2023 07:12:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686665539; x=1718201539;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hfxBhUgx7NXJ6JdXeA8drLUkBlBlA9y7CgQi6V3xvlI=;
+  b=EfEg4FtnU2mG8JkGKEDWTqrEJM0477zu4izGtRHurccl+bBA05ahCQLN
+   k/EF/6GiNV438uLZtTKiFuv2/ZH7LxLPxxpOIPTThcN52FBu0uOkEfqAl
+   v2RGiXoWak1sblb3kmWreTUQspSHpaBFonepm075DJLo2EvjfOWeMKq01
+   QF/4GGkRAlApWJP/Ia0z9OWhAk/6aqr5rYV4SbENQ6U0EI75cQvgboSoK
+   /mUusOnskX3j/GKWaDGuxigEh6+RVZOCb6xIEoyJlFwGhdR/h4nF0EPrN
+   vg0Ybic4hluEOGvQhs0DKAWZKPuxN/+gKQz5crXDD8ydIT2aJF9XVtlFL
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,239,1681196400"; 
+   d="asc'?scan'208";a="218264434"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jun 2023 07:12:17 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 13 Jun 2023 07:12:16 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 13 Jun 2023 07:12:13 -0700
+Date:   Tue, 13 Jun 2023 15:11:47 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
 To:     Rob Herring <robh@kernel.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: RE: [PATCH v5 1/2] dt-bindings: iio: adc: add max14001
-Thread-Topic: [PATCH v5 1/2] dt-bindings: iio: adc: add max14001
-Thread-Index: AQHZndo3coUyYXBv2Eq2tUVubImF6a+IyEuA///7LzA=
-Date:   Tue, 13 Jun 2023 14:07:39 +0000
-Message-ID: <8998c3d3f3ca4f44a5c99594dcb24cbe@analog.com>
-References: <20230613093346.60781-1-kimseer.paller@analog.com>
- <168665154072.1311520.12958978545814613109.robh@kernel.org>
-In-Reply-To: <168665154072.1311520.12958978545814613109.robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNca3BhbGxlcjJc?=
- =?us-ascii?Q?YXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRi?=
- =?us-ascii?Q?YTI5ZTM1Ylxtc2dzXG1zZy1hNTkzZTI2Yi0wOWYzLTExZWUtYWU3ZC1mOGNi?=
- =?us-ascii?Q?Njc0OWVhN2JcYW1lLXRlc3RcYTU5M2UyNmQtMDlmMy0xMWVlLWFlN2QtZjhj?=
- =?us-ascii?Q?YjY3NDllYTdiYm9keS50eHQiIHN6PSI1MTQ0IiB0PSIxMzMzMTEzODg1NjQ5?=
- =?us-ascii?Q?MzQ3OTgiIGg9ImJMb29YTXVtSlJZb0VSeklqUUM1TXY0ZitIaz0iIGlkPSIi?=
- =?us-ascii?Q?IGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk5DZ1VBQUVvQ0FB?=
- =?us-ascii?Q?Q09VTzFuQUo3WkFUMVlWYldwUER1dFBWaFZ0YWs4TzYwREFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFFQUFRQUJBQUFBUjZsVExBQUFBQUFBQUFBQUFBQUFBSjRBQUFCaEFHUUFh?=
- =?us-ascii?Q?UUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QUc4QWFnQmxBR01BZEFCekFG?=
- =?us-ascii?Q?OEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFhUUIwQUdrQWRnQmxBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBR0VBWkFCcEFGOEFjd0JsQUdNQWRR?=
- =?us-ascii?Q?QnlBR1VBWHdCd0FISUFid0JxQUdVQVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURF?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FB?=
- =?us-ascii?Q?QUFBQUNlQUFBQVlRQmtBR2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dC?=
- =?us-ascii?Q?dkFHb0FaUUJqQUhRQWN3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21l?=
- =?us-ascii?Q?dGE+?=
-x-dg-rorf: true
-x-originating-ip: [10.116.242.24]
-x-adiruleop-newscl: Rule Triggered
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+CC:     Conor Dooley <conor@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>, <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        <linux-riscv@lists.infradead.org>, <qemu-riscv@nongnu.org>,
+        <u-boot@lists.denx.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230613-outbound-exchange-cf48ad61d31c@wendy>
+References: <20230518-4050231ca8dbe93c08cf9c9a@orel>
+ <CAAhSdy07Mg_JBF+4ucGFiWdBKh-Ass5G_aUWqBqTnDSFp7S=0A@mail.gmail.com>
+ <20230518-hammock-doornail-478e8ea8e6a7@wendy>
+ <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+ <20230518-monkhood-dispersal-6749b1228b0d@spud>
+ <20230530-duller-reset-a34ae111f207@wendy>
+ <20230608191537.GA3233857-robh@kernel.org>
+ <20230608-cobbler-giving-e0fac2185e11@spud>
+ <20230612-relic-fetal-1beeae3455aa@spud>
+ <CAL_Jsq+CJ-mEcEujd5Sk4SLvgTfUX1A7NRXYcMDqkoViDYxTXw@mail.gmail.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: Xwf0LSjlfOPZiiSN3aacIDFlteynL5h1
-X-Proofpoint-ORIG-GUID: Xwf0LSjlfOPZiiSN3aacIDFlteynL5h1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-13_04,2023-06-12_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- priorityscore=1501 suspectscore=0 spamscore=0 clxscore=1015
- impostorscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=999
- bulkscore=0 mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2306130124
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="X3sgJjRgCn4CtUIw"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+CJ-mEcEujd5Sk4SLvgTfUX1A7NRXYcMDqkoViDYxTXw@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -110,69 +85,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--X3sgJjRgCn4CtUIw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Tuesday, June 13, 2023 6:19 PM
-> To: Paller, Kim Seer <KimSeer.Paller@analog.com>
-> Cc: devicetree@vger.kernel.org; Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org>; lgirdwood@gmail.com; broonie@kernel.org;
-> andy.shevchenko@gmail.com; linux-kernel@vger.kernel.org;
-> conor+dt@kernel.org; Hennerich, Michael <Michael.Hennerich@analog.com>;
-> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; lars@metafoo.de;
-> jic23@kernel.org; linux-iio@vger.kernel.org
-> Subject: Re: [PATCH v5 1/2] dt-bindings: iio: adc: add max14001
-> 
-> [External]
-> 
-> 
-> On Tue, 13 Jun 2023 17:33:45 +0800, Kim Seer Paller wrote:
-> > The MAX14001 is a configurable, isolated 10-bit ADC for multi-range
-> > binary inputs.
+On Tue, Jun 13, 2023 at 07:28:34AM -0600, Rob Herring wrote:
+> On Mon, Jun 12, 2023 at 3:23=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> > On Thu, Jun 08, 2023 at 08:30:28PM +0100, Conor Dooley wrote:
+> > > On Thu, Jun 08, 2023 at 01:15:37PM -0600, Rob Herring wrote:
+> > > > On Tue, May 30, 2023 at 03:12:12PM +0100, Conor Dooley wrote:
+> > > > > On Thu, May 18, 2023 at 10:42:34PM +0100, Conor Dooley wrote:
+> > > > > > On Thu, May 18, 2023 at 02:30:53PM -0400, Sean Anderson wrote:
+> > > > >
+> > > > > > >
+> > > > > > > Why not just have something like
+> > > > > > >
+> > > > > > > mycpu {
+> > > > > > >       ...
+> > > > > > >       riscv,isa {
+> > > > > > >               i;
+> > > > > > >               m;
+> > > > > > >               a;
+> > > > > > >               zicsr;
+> > > > > > >               ...
+> > > >
+> > > > I prefer property names be globally unique. The tools are geared to=
+wards
+> > > > that too. That's largely a symptom of having 0 type information in =
+the
+> > > > DT.
+> > > >
+> > > > For example if you had an extension called 'reg', it would be a pro=
+blem.
+> > >
+> > > Per the current ISA rules, that'd not be valid. But then again, I do
+> > > have trust issues & it's not like "reg" is the only property name in =
+DT
+> > > land.
 > >
-> > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Reported-by: Rob Herring <robh@kernel.org>
-> > Closes:
-> > https://urldefense.com/v3/__https://lore.kernel.org/all/168663709022.6
-> >
-> 52608.11756645774505315189.robh@kernel.org/__;!!A3Ni8CS0y2Y!5MOlRh
-> mYJL
-> >
-> qPmhR7QmgutQNBKIuJTk_FlMbFGnFd4R9dVxnXWk8rY0woqzhv5YcF58DvBLTrc
-> xVK5KdS
-> > $
-> > ---
-> > V3 -> V5: Added spaces between prefixes in subject. Fixed MAINTAINERS
-> reference.
-> >
-> >  .../bindings/iio/adc/adi,max14001.yaml        | 54 +++++++++++++++++++
-> >  MAINTAINERS                                   |  7 +++
-> >  2 files changed, 61 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
-> >
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-
-> ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml:
-> $defs:qcom-pmic-mpp-state:properties:qcom,paired: [{'description': 'Indicates
-> that the pin should be operating in paired mode.'}] is not of type 'object',
-> 'boolean'
-> 	from schema $id:
-> https://urldefense.com/v3/__http://devicetree.org/meta-
-> schemas/core.yaml*__;Iw!!A3Ni8CS0y2Y!5MOlRhmYJLqPmhR7QmgutQNBKIuJ
-> Tk_FlMbFGnFd4R9dVxnXWk8rY0woqzhv5YcF58DvBLTrc0FLIB-v$
-> 
-> doc reference errors (make refcheckdocs):
+> > ...you say "prefer" here. Is that a NAK, or a "you keep the pieces"?
+>=20
+> Don't do the above node.
 
-Could the doc reference error also be ignored? I cannot reproduce the same error on my side.
+Yeah, that's more helpful wording than "prefer" for sure!
 
-Best regards,
-Kim
+If that's a no-go & so are the booleans prefixed with "riscv,whatever-",
+since people have size concerns, I guess that leaves your string
+suggestion (there is a helper in Linux at least, haven't checked
+elsewhere yet).
 
+I guess that means something like:
+
+  riscv,isa-extensions:
+    $ref: /schemas/types.yaml#/definitions/string-array
+    minItems: 1
+    description: Extensions supported by the hart.
+    items:
+      anyOf:
+        - const: i
+          description: foo
+        - const: m
+          description: foo
+        - const: a
+          description: foo
+        - const: f
+          description: foo
+        - const: d
+          description: foo
+        - const: c
+          description: foo
+        - const: zifencei
+          description: foo
+        - etc
+
+Obviously with "foo" replaced by the existing descriptions in this
+patch.
+
+
+--X3sgJjRgCn4CtUIw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIh5IwAKCRB4tDGHoIJi
+0qHeAP4vJ0QRi7YJAoUUY9FMywRtOb4MKioKJLodiR5tQ3sA3gEA/oOKmdPiwKIP
+32NtYdVYP78YjeI+omupwDOZZfgQEQw=
+=td6r
+-----END PGP SIGNATURE-----
+
+--X3sgJjRgCn4CtUIw--
