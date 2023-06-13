@@ -2,122 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2FF72DDDD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A5A72DE24
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:47:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239821AbjFMJhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 05:37:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54926 "EHLO
+        id S240847AbjFMJrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 05:47:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241430AbjFMJhU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:37:20 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715841BD8;
-        Tue, 13 Jun 2023 02:37:11 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686649030;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=eEwfBJFCHzxYRQZi7kEFO2bxAicvTJZZs7UatO3IpJY=;
-        b=cI4E+0KOLchkY75M01qJZk03RB9OYLGMIknmHlekjZAFP9rMQm4qdF0plxkJvW4o0wQb3V
-        aeOKu0+VWSa+XUy0hxzF17L3AyuurA1xLK/8403rCjD34EdOaVFxFBuQvaoGKhfT+sU63P
-        8VpipIM3aay0z2B77mUXpat210sCtstH5/ByVej4cne+lLryxekrqE9YtnGoHCkfJT++U4
-        j32ezAkUWMdd4ILDfcxzg+8fI0CcCMTB5bVwNzI2mAYfMyHvynBFzTYu6avs8GGNEzTdtz
-        UXB3+Crd46nY2Qsey6k71iqGnlTyj5iGRVCQH/sTtqBREr1QCPP6SeOKDt9EZw==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 76FB11C0005;
-        Tue, 13 Jun 2023 09:37:08 +0000 (UTC)
-Date:   Tue, 13 Jun 2023 11:37:07 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S241430AbjFMJqz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:46:55 -0400
+Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3BB1BE9;
+        Tue, 13 Jun 2023 02:46:32 -0700 (PDT)
+Received: from tp8.. (mdns.lwn.net [45.79.72.68])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 95F6F77D;
+        Tue, 13 Jun 2023 09:46:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 95F6F77D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+        t=1686649589; bh=3D+PguzS4TXh42c031J2y3Uw3/ednR923UHurOmvS98=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=qZK1PnYZqJpWnDb1BSqQeus2JOzvGlw0lv0mFoOldcSwZ2HlRxG2iVmKzOv7B8rJO
+         Frfx5gDenDIsj4z499uG9oZBqNKntl9huHJpAG5UE3jY32YW25adiDJ3Utx77Tudp7
+         KG9jSVWctMFERne2ze86WUfNPep0OwOdbpsNJwact6FCyweg+d98yyuLLD5csR4q5m
+         GOpcDJOLU8W3sdmjcsuO9XaGsYhxTp7qanblBFINo55O3VxTybgFVtqKZBnOv+7Zgs
+         86GnXk8mLmPNZlqlePoUQasPnbTwc7RoCEHDLqjjYIyH4OOWF9ypifi0jcjKMFcgCQ
+         Ik+GvOcEj35dg==
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     linux-doc@vger.kernel.org
+Cc:     linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 11/12] ASoC: codecs: Add support for the generic IIO
- auxiliary devices
-Message-ID: <20230613113707.0b5d9648@bootlin.com>
-In-Reply-To: <CAHp75Vfz+vSJ7rQ4sxb0R+zRbrjipXUX3VpaHyvOWWePdPxejQ@mail.gmail.com>
-References: <20230612122926.107333-1-herve.codina@bootlin.com>
-        <20230612122926.107333-12-herve.codina@bootlin.com>
-        <CAHp75Vfz+vSJ7rQ4sxb0R+zRbrjipXUX3VpaHyvOWWePdPxejQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 2/5] dt-bindings: fix dangling Documentation/arm64 reference
+Date:   Tue, 13 Jun 2023 03:46:03 -0600
+Message-Id: <20230613094606.334687-3-corbet@lwn.net>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230613094606.334687-1-corbet@lwn.net>
+References: <20230613094606.334687-1-corbet@lwn.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+The arm64 documentation has move under Documentation/arch/ fix a reference
+to match.
 
-On Mon, 12 Jun 2023 17:37:00 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Jonathan Corbet <corbet@lwn.net>
+---
+ Documentation/devicetree/bindings/cpu/idle-states.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> ...
-> 
-> > +       struct snd_kcontrol_new control = {0};  
-> 
-> 0 is not needed.
+diff --git a/Documentation/devicetree/bindings/cpu/idle-states.yaml b/Documentation/devicetree/bindings/cpu/idle-states.yaml
+index b8cc826c9501..b3a5356f9916 100644
+--- a/Documentation/devicetree/bindings/cpu/idle-states.yaml
++++ b/Documentation/devicetree/bindings/cpu/idle-states.yaml
+@@ -259,7 +259,7 @@ description: |+
+       http://infocenter.arm.com/help/index.jsp
+ 
+   [5] ARM Linux Kernel documentation - Booting AArch64 Linux
+-      Documentation/arm64/booting.rst
++      Documentation/arch/arm64/booting.rst
+ 
+   [6] RISC-V Linux Kernel documentation - CPUs bindings
+       Documentation/devicetree/bindings/riscv/cpus.yaml
+-- 
+2.40.1
 
-Not for this one.
-
-The variable is in stack.
-Some of the structure members will be set in the code but we need to ensure
-that all others are set to 0.
-
-The full context:
---- 8< ---
-static int audio_iio_aux_add_controls(struct snd_soc_component *component,
-				      struct audio_iio_aux_chan *chan)
-{
-	struct snd_kcontrol_new control = {0};
-
-	control.iface = SNDRV_CTL_ELEM_IFACE_MIXER;
-	control.name = chan->name;
-	control.info = audio_iio_aux_info_volsw;
-	control.get = audio_iio_aux_get_volsw;
-	control.put = audio_iio_aux_put_volsw;
-	control.private_value = (unsigned long)chan;
-
-	return snd_soc_add_component_controls(component, &control, 1);
-}
---- 8< ---
-
-Thanks for the review,
-Hervé
