@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E735372DBFE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0070B72DC19
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:13:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238412AbjFMIGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 04:06:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57502 "EHLO
+        id S233854AbjFMINp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 04:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233870AbjFMIGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:06:09 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E78119
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:06:06 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-561b7729a12so91655427b3.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:06:06 -0700 (PDT)
+        with ESMTP id S231517AbjFMINm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:13:42 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7361AE4E
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:13:41 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f611ac39c5so6550344e87.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:13:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1686643565; x=1689235565;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1k/4HquP2HeWTu3gqyEqAfIouxpypkLo7uElSrv6hWc=;
-        b=awkBk+howhXC9J91GGN+gEhLJqzy4lI2+Nm2ME0HsBbRSUGNzB9llZL0mmuInqWVYv
-         goSHwsqToUzZst/eUhuADOvGa79vijbWRbT4TcdQ2JmJleqsoTRcCvxuusNEuv6phnbg
-         RcFVy5pFpePMCFA0meViSbb2mb42Bx5rqvMemzvomS6qHphXqCA6RmLGATsD2HzrkCA1
-         BkLuRJCoQE77Ziur1z4yQgYkJD1IJuA9j7kkcYm63Qc/WQZ672nsx8jaG3lyN5ld0Qc/
-         D3GNmDLwiLZE+jQJmHUTQzfaOhAFnuIcRdTgLn9/Ia/jM4+weREaTvv8hYftc1NWFSLr
-         EJGA==
+        d=rasmusvillemoes.dk; s=google; t=1686644020; x=1689236020;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=G10YWCyOXabdWRYrOwBriUlnbhUfH57ylNZgr18R1i4=;
+        b=WaoszjIxIcGdErpo/Ws3J6wu8H+teKwGjsY58ggTyi1j4OcLyuRrGUMRcqvMev4Yu3
+         Gcdrpltlbm7z9BpRmG7Tjvu37/1Wy6xjnCA7JA0RJP3tngEozD9g35oPR6CavE5vmgVC
+         Y0gC2bi+CJNJZxoB6m4lzpdn0lqQDRZhI6OZ8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686643565; x=1689235565;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1k/4HquP2HeWTu3gqyEqAfIouxpypkLo7uElSrv6hWc=;
-        b=OYCuLdIfquD9uFn0Jg3u6Z8499NsYDYUndpp/auPXjPm/CG+qtrUVP+nLTY/3yUAl/
-         Qyw61rEXkO0GNvyBgfLWeqGVJv4LJg4tgNQTVvXqzFzJgcM3qPxlVBb0MGh/8RomQj8+
-         vMQwUF7e7iLJ+RUPNZUNF2lBrhAx8E46aOjzX+7/n/4j0M9t9yfid/vG12zBg9m/jYOm
-         eydj3ckPMEXq68kq5ENzv8j7cz+ZLBN9pRsp/gq72AjigHbIfRr4wk3pS1EH/z7ZvsLt
-         BsOCgWuVw1znhByT2TQgzt/aLKLdHpkIAUSIRaKu5obgNBK6+4db8gw+ZM/Zk6VABTOC
-         EFDg==
-X-Gm-Message-State: AC+VfDy/x3skoeZU9MvNYOV3mPhQIm1ZdsqljUXRhDba2EY449uLNklm
-        k4ZSX/H9eoGMHn0L3KZNUTRpKJi8OdH5UmVsDkcaCQ==
-X-Google-Smtp-Source: ACHHUZ6duDMZEOxgSlCrtpBwenRyzgNSxW6ESMhkrTlkPUSo6LUwj8CSY7DYsQmwkus4eMXqhFWEsLczZTipIuenZig=
-X-Received: by 2002:a25:a423:0:b0:bc4:77a:22a0 with SMTP id
- f32-20020a25a423000000b00bc4077a22a0mr878350ybi.15.1686643565505; Tue, 13 Jun
- 2023 01:06:05 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686644020; x=1689236020;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=G10YWCyOXabdWRYrOwBriUlnbhUfH57ylNZgr18R1i4=;
+        b=VZYep50gbh4KBaRYMERspX964FVd6pANRx7TsQta/ucGHPrmbZD4923Kj9b7g6vmXv
+         pXBDerLCpMM5UNi9h8AS1H9B55eYWZr8kalCznFmenlQurFfPF9UpNw0t4IesJhyiO38
+         6Qnp5IHB0fZozinwMzjFDns/7nsVhEHfsbf7k9vukpbCSBLy8aS2qD6JXCpM33FEbSC2
+         pW2dQ+dHPlW+0q0mnYZT6MDxQL2iSKG4qgG/YzJD0zf1yiHv0AMOBsic9onzp7Vb9Avl
+         5iLWoFU7pYgfUsx8MkA7NsbCIlfYU9Ec2ZaKvJ1zvKgnt/9HDJT7hvlkJmA9KGOAYUku
+         0vmA==
+X-Gm-Message-State: AC+VfDxrLEBKN/yT/GLu/mKgQo9BQmsJoo7EeNtzhe2R7H4jbiXS12xE
+        xfR3OvhPS08OX4U/KGsNkct0Dg==
+X-Google-Smtp-Source: ACHHUZ4stTV1xejNy4ucGu7g3RAB7hefsykZ9PbdkJLhcOA51SZsZnhuEoz3CIus7pfquxbux2huzg==
+X-Received: by 2002:ac2:5b9a:0:b0:4f6:47a2:7bb4 with SMTP id o26-20020ac25b9a000000b004f647a27bb4mr5456456lfn.60.1686644019733;
+        Tue, 13 Jun 2023 01:13:39 -0700 (PDT)
+Received: from [172.16.11.116] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id w12-20020ac254ac000000b004ec6252aa37sm1704686lfk.116.2023.06.13.01.13.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 01:13:39 -0700 (PDT)
+Message-ID: <8a5e693f-3024-900a-5f00-ba4fe994e710@rasmusvillemoes.dk>
+Date:   Tue, 13 Jun 2023 10:13:38 +0200
 MIME-Version: 1.0
-References: <20230508142842.854564-1-apatel@ventanamicro.com>
- <20230508142842.854564-2-apatel@ventanamicro.com> <20230510-squealing-pruning-2c94b85785b0@wendy>
-In-Reply-To: <20230510-squealing-pruning-2c94b85785b0@wendy>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Tue, 13 Jun 2023 13:35:54 +0530
-Message-ID: <CAK9=C2VqAX+xGH0oPhda1ygMu4umhNAXbPAQ+Z4q+fGR0R54ug@mail.gmail.com>
-Subject: Re: [PATCH v3 01/11] RISC-V: Add riscv_fw_parent_hartid() function
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/8] dt-bindings: rtc: Move isil,isl12022 from
+ trivial-rtc.yaml into own schema file
+Content-Language: en-US, da
+To:     Rob Herring <robh@kernel.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        linux-kernel@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230612113059.247275-3-linux@rasmusvillemoes.dk>
+ <168657279982.4044345.9896354759743085279.robh@kernel.org>
+ <2a2fa3c5-739c-6bcf-3c41-3db1aac5ccca@rasmusvillemoes.dk>
+ <20230612142027.GA4185135-robh@kernel.org>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <20230612142027.GA4185135-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,80 +81,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 6:15=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> On Mon, May 08, 2023 at 07:58:32PM +0530, Anup Patel wrote:
-> > We add common riscv_fw_parent_hartid() which help device drivers
-> > to get parent hartid of the INTC (i.e. local interrupt controller)
-> > fwnode. Currently, this new function only supports device tree
-> > but it can be extended to support ACPI as well.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  arch/riscv/include/asm/processor.h |  3 +++
-> >  arch/riscv/kernel/cpu.c            | 12 ++++++++++++
-> >  2 files changed, 15 insertions(+)
-> >
-> > diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/as=
-m/processor.h
-> > index 94a0590c6971..6fb8bbec8459 100644
-> > --- a/arch/riscv/include/asm/processor.h
-> > +++ b/arch/riscv/include/asm/processor.h
-> > @@ -77,6 +77,9 @@ struct device_node;
-> >  int riscv_of_processor_hartid(struct device_node *node, unsigned long =
-*hartid);
-> >  int riscv_of_parent_hartid(struct device_node *node, unsigned long *ha=
-rtid);
-> >
-> > +struct fwnode_handle;
-> > +int riscv_fw_parent_hartid(struct fwnode_handle *node, unsigned long *=
-hartid);
-> > +
-> >  extern void riscv_fill_hwcap(void);
-> >  extern int arch_dup_task_struct(struct task_struct *dst, struct task_s=
-truct *src);
-> >
-> > diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> > index 5de6fb703cc2..1adbe48b2b58 100644
-> > --- a/arch/riscv/kernel/cpu.c
-> > +++ b/arch/riscv/kernel/cpu.c
-> > @@ -73,6 +73,18 @@ int riscv_of_parent_hartid(struct device_node *node,=
- unsigned long *hartid)
-> >       return -1;
-> >  }
-> >
-> > +/* Find hart ID of the CPU fwnode under which given fwnode falls. */
-> > +int riscv_fw_parent_hartid(struct fwnode_handle *node, unsigned long *=
-hartid)
-> > +{
-> > +     /*
-> > +      * Currently, this function only supports DT but it can be
-> > +      * extended to support ACPI as well.
-> > +      */
->
-> Statement of the obvious here, no?
-> Although, it seems a little odd to read this comment & the corresponding
-> statement in the commit message, when the series appears to have been
-> based on the ACPI?
->
-> Perhaps by the time v4 comes around, ACPI support will have been merged
-> & that'll be moot.
+On 12/06/2023 16.20, Rob Herring wrote:
+> On Mon, Jun 12, 2023 at 02:36:03PM +0200, Rasmus Villemoes wrote:
+>> On 12/06/2023 14.26, Rob Herring wrote:
+>>>
+>>> On Mon, 12 Jun 2023 13:30:52 +0200, Rasmus Villemoes wrote:
+>>>> Move the isil,isl12022 RTC bindings from trivial-rtc.yaml into its own
+>>>> intersil,isl12022.yaml file, in preparation for adding more bindings.
+>>>>
+>>>> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+>>>> ---
+>>>>  .../bindings/rtc/intersil,isl12022.yaml       | 42 +++++++++++++++++++
+>>>>  .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
+>>>>  2 files changed, 42 insertions(+), 2 deletions(-)
+>>>>  create mode 100644 Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+>>>>
+>>>
+>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>>
+>>> yamllint warnings/errors:
+>>>
+>>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml: 'maintainers' is a required property
+>>> 	hint: Metaschema for devicetree binding documentation
+>>> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>>
+>> Hm ok. Can/should I copy the value from the trivial-rtc.yaml? Alexandre,
+>> would that be ok with you?
+> 
+> Alexandre agreed, but in general the maintainer here should be someone 
+> that has the h/w and/or cares about it, not subsystem maintainers.
 
-Yes, I was anyway going to update this in v4 to support both DT and ACPI.
+OK. Right now I have the hardware and care about it because I've been
+hired to work on it.
 
->
-> > +     if (!is_of_node(node))
-> > +             return -EINVAL;
-> > +     return riscv_of_parent_hartid(to_of_node(node), hartid);
->
-> nit: blank line before the return here please.
+Incidentally, my backlog for this project/product also contains
+upstreaming of a new gpiochip driver and DT bindings. I assume I should
+just list myself as maintainer in that new .yaml file, even if I can't
+promise to have time to review changes and/or even hardware to test on
+12 months from now.
 
-Okay, I will update.
+Rasmus
 
->
-> Thanks,
-> Conor.
-
-Regards,
-Anup
