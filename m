@@ -2,59 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5A1A72F008
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 01:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E9D972F07A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 01:47:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236001AbjFMXhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 19:37:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33430 "EHLO
+        id S241393AbjFMXri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 19:47:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231341AbjFMXhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 19:37:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF731727;
-        Tue, 13 Jun 2023 16:37:52 -0700 (PDT)
+        with ESMTP id S240275AbjFMXrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 19:47:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6FC0296B;
+        Tue, 13 Jun 2023 16:46:27 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3F62A617D6;
-        Tue, 13 Jun 2023 23:37:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B39B3C433C8;
-        Tue, 13 Jun 2023 23:37:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5EAE163C7B;
+        Tue, 13 Jun 2023 23:45:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073E0C433C8;
+        Tue, 13 Jun 2023 23:45:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686699470;
-        bh=/vTpNtYTVMrmNhEt3E4HPuxmQCh3bGs/cYI8jwBQ0eE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gtMwib4h0SuyJv2eAMAZqUOvdZeeNOiaPtusyCIFcBO2oOS+9NOQ4YcUCI9dM4s9o
-         coVtGDFdIc126eERDssztiF+LQhhYT6EwzZOM8LS4mQAqKcenxV1299RoNcZTd8Opo
-         Hkyke9+tUfHiqUmZ6LvnTiS/5kPLsFAh6JsOMS/KL4Wf/Jlkc9Kncjepjuo0xAHAZg
-         t1i/N8j3yi6qt0KZcNwpY0uVWPTbAI/qQzI3C/uyp4gb/o93Gh7DeLeOgaF8Ae/HdZ
-         b/cNuLqKDuX20Cu/fgLfbwSZVGsNghLNWXR+/Gv2RPK2OXd70HbiuVDOnxL23kpVSa
-         Qj9kL18fv+7PA==
-Date:   Tue, 13 Jun 2023 16:41:13 -0700
+        s=k20201202; t=1686699936;
+        bh=AMsd3sxADqpJqD+mB8eeW0S3cwb3hDi/Y81Gt8oCQVQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=LEBNMkY4MFiHfRwdaH0CIEVLuyHoWZU/F6mI/YsWNtktWHu+U1APZEvo5D0kCm8uD
+         pBv+W7ipUjXbPB1baW6s3IXhFpM9jDks5bCItq28KV0H5Uh79Dq9Ky1zjGG1FVINne
+         d6D/IB3D8dfzKhcfYEjC/3SUzxUW7WGXsyER1kN4U90PLYEZ/FiH8vm2kfARoxrpv4
+         jS5QV4TVY6w/OngD5aKcCezE59mvAhDGJiOH14WN5MsnBC8GLNCU/fyE+3l12IEHBY
+         20kD7ur+N7PVH6hSTEfmm0MGjtk473SdPscazyJd7Ug97H7jDVtunNTZ3MoZWdw2vH
+         5iT38VQqK3LVQ==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 08/10] clk: qcom: gcc-mdm9615: drop the cxo clock
-Message-ID: <20230613234113.tnzjgfbyhj5zokgl@ripper>
-References: <20230512211727.3445575-1-dmitry.baryshkov@linaro.org>
- <20230512211727.3445575-9-dmitry.baryshkov@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Add missing interconnect path to USB HC
+Date:   Tue, 13 Jun 2023 16:48:40 -0700
+Message-Id: <168670013502.1400697.13657615350747337280.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230601103817.4066446-1-abel.vesa@linaro.org>
+References: <20230601103817.4066446-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230512211727.3445575-9-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,66 +60,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 13, 2023 at 12:17:25AM +0300, Dmitry Baryshkov wrote:
-> The gcc and lcc devices have been switched to the DT-defined cxo_board
-> clock. Now we can drop the manually defined cxo clock.
+On Thu, 1 Jun 2023 13:38:17 +0300, Abel Vesa wrote:
+> The USB HC node is missing the interconnect paths, so add them.
+> 
 > 
 
-Perhaps I'm reading this incorrectly, but don't you introduce that clock
-in DT in the next commit? It would be nice to allow for at least some
-overlap between existing dtb and the new scheme.
+Applied, thanks!
 
-Regards,
-Bjorn
+[1/1] arm64: dts: qcom: sm8550: Add missing interconnect path to USB HC
+      commit: 11a1397bbf69e408223bb691858a0fcd295a8f76
 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/clk/qcom/gcc-mdm9615.c | 17 -----------------
->  1 file changed, 17 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/gcc-mdm9615.c b/drivers/clk/qcom/gcc-mdm9615.c
-> index 458c18b639db..64d4f508e43a 100644
-> --- a/drivers/clk/qcom/gcc-mdm9615.c
-> +++ b/drivers/clk/qcom/gcc-mdm9615.c
-> @@ -26,17 +26,6 @@
->  #include "clk-branch.h"
->  #include "reset.h"
->  
-> -static struct clk_fixed_factor cxo = {
-> -	.mult = 1,
-> -	.div = 1,
-> -	.hw.init = &(struct clk_init_data){
-> -		.name = "cxo",
-> -		.parent_names = (const char *[]){ "cxo_board" },
-> -		.num_parents = 1,
-> -		.ops = &clk_fixed_factor_ops,
-> -	},
-> -};
-> -
->  enum {
->  	DT_CXO,
->  	DT_PLL4,
-> @@ -1623,10 +1612,6 @@ static struct clk_branch ebi2_aon_clk = {
->  	},
->  };
->  
-> -static struct clk_hw *gcc_mdm9615_hws[] = {
-> -	&cxo.hw,
-> -};
-> -
->  static struct clk_regmap *gcc_mdm9615_clks[] = {
->  	[PLL0] = &pll0.clkr,
->  	[PLL0_VOTE] = &pll0_vote,
-> @@ -1736,8 +1721,6 @@ static const struct qcom_cc_desc gcc_mdm9615_desc = {
->  	.num_clks = ARRAY_SIZE(gcc_mdm9615_clks),
->  	.resets = gcc_mdm9615_resets,
->  	.num_resets = ARRAY_SIZE(gcc_mdm9615_resets),
-> -	.clk_hws = gcc_mdm9615_hws,
-> -	.num_clk_hws = ARRAY_SIZE(gcc_mdm9615_hws),
->  };
->  
->  static const struct of_device_id gcc_mdm9615_match_table[] = {
-> -- 
-> 2.39.2
-> 
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
