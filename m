@@ -2,147 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A02AA72E8CE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 18:49:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82BC972E8EA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 19:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234891AbjFMQsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 12:48:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34508 "EHLO
+        id S232792AbjFMRAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 13:00:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234601AbjFMQsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 12:48:40 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8A81BC9;
-        Tue, 13 Jun 2023 09:48:39 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-189-170.ewe-ip-backbone.de [91.248.189.170])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0DB0D6601F5E;
-        Tue, 13 Jun 2023 17:48:38 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686674918;
-        bh=UM8nq6DIfeVXzuGe8Mu+HR6x/D6bXctg1tCfl1Vqr4A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=odAMs67/mgBUzTAqe1jgEJzn3GTduzjfDe+MIbE5KkkWyTxaJ8X8WlLpiIcaAEQKm
-         CT3h3rXtGJ1SGFfQlF8u+KEO+nEtumZ5YoyUU97+1vxIRwT3SprEJ/66pS7FmwEYDE
-         x6LdaOlY8Rsed9JW3lVH9o0oNXUy67raaxiF25FkHGBjlUxYmkFtS76F6b0JxO3OQz
-         XZkmkqe0f7RyAmN2Vmyb2quynNwznjDhn3676ynbGLvJTWXifp70dYkEzmt48qpvvD
-         Uv/wjva2Nc5CH+qVS13rI6zGA1jztIh8PiDivILm0TvdLv68Gu0InEgcLrFgz14Pfj
-         3aK+J+K1XC2Yw==
-Received: by mercury (Postfix, from userid 1000)
-        id 89FF51066FBA; Tue, 13 Jun 2023 18:48:35 +0200 (CEST)
-Date:   Tue, 13 Jun 2023 18:48:35 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vincent Legoll <vincent.legoll@gmail.com>,
+        with ESMTP id S231691AbjFMRAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 13:00:38 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAA01BC6
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 09:59:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1686675590;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=j04GnjVnV6VhU15tbBAUt5ncRnXCPvNX2dvFYsA/gBk=;
+        b=iHw6EAIePH85NMkgoWE0GEqFT7RjDlWvkKcgh0VkANARIlCsC/L06u542yBsECCVHHKrQ1
+        d56rSxi3Pv8HLM27+BnwFvs1lT66NBQxlYp+Gnk78lcR0tp82vltrCeyAh54Lh2BQHbr+T
+        85hD0/7E1JfvVe3B7dBqOUcyXw6vm/8=
+Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com
+ [209.85.128.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-81-e4gwT5bYNsqHRnIXP65I8w-1; Tue, 13 Jun 2023 12:59:48 -0400
+X-MC-Unique: e4gwT5bYNsqHRnIXP65I8w-1
+Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-56ff81be091so5272057b3.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 09:59:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686675587; x=1689267587;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j04GnjVnV6VhU15tbBAUt5ncRnXCPvNX2dvFYsA/gBk=;
+        b=eujmx5r46attQT9QmNwkLJ/aWxyWr8aIU3VdlPOMXAzv1iAhtFaFG2HpHZKVLvqWP0
+         UrcK/9slfNB08NdCuzTREoFxe/LoBnZPMbGtcnrqyss2TfS534Y2e5QKprg+Qv61V3Vq
+         GgRyPkqJUYjoWFhzLg0sSFfV2Kh0E1LdRUArzOqqGmNWEO7gp8POfVsFJn+16UOoqI4R
+         FGShQ7W67QE0WGM4mXbj1bayLrv3fYPIUWj1iF3EXiR52qoVhbucpgyJH9Fw3u2ftXaX
+         zRSTogKnz7bNnyhqu1Tp7xqvJhvdU8pWH0p6OYWX/h6RlCIYfmUBRa7Zk+5Vl5Bk/E3e
+         McXw==
+X-Gm-Message-State: AC+VfDwfmeW4OV5C9Y2DANWHhbfRg5ZQfmBFUIkRVKPXP0uip5jeTFv8
+        OAf3tZIEsxSfNipVH80mhuE7Igpvx6K827mik2MX+J7X9CP+ELG0yyDXNf0axrkdeGiLUmVZH4O
+        HGkmFxqLx2gwnfHeYhD8q0w==
+X-Received: by 2002:a81:738b:0:b0:565:e48d:32cf with SMTP id o133-20020a81738b000000b00565e48d32cfmr2533632ywc.7.1686675587351;
+        Tue, 13 Jun 2023 09:59:47 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7O9u46bkmq9uCzDtwjiCxY77/JvONfFU/2txtnkFyT64oc8V6fa+eQ8cwyObh374VppqoV4w==
+X-Received: by 2002:a81:738b:0:b0:565:e48d:32cf with SMTP id o133-20020a81738b000000b00565e48d32cfmr2533610ywc.7.1686675587072;
+        Tue, 13 Jun 2023 09:59:47 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::45])
+        by smtp.gmail.com with ESMTPSA id s7-20020a0de907000000b005688f7596ccsm1699074ywe.78.2023.06.13.09.59.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 09:59:46 -0700 (PDT)
+Date:   Tue, 13 Jun 2023 11:59:43 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v5 12/25] PM / devfreq: rockchip-dfi: Handle LPDDR4X
-Message-ID: <20230613164835.ok477e5igrj36xka@mercury.elektranox.org>
-References: <20230524083153.2046084-1-s.hauer@pengutronix.de>
- <20230524083153.2046084-13-s.hauer@pengutronix.de>
+        Conor Dooley <conor+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 16/26] net: stmmac: dwmac-qcom-ethqos: prepare the driver
+ for more PHY modes
+Message-ID: <20230613165943.zjr4b4p44jhl2dtx@halaney-x13s>
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-17-brgl@bgdev.pl>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uvrpf3lezyyj6znr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230524083153.2046084-13-s.hauer@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230612092355.87937-17-brgl@bgdev.pl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 12, 2023 at 11:23:45AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> In preparation for supporting SGMII, let's make the code a bit more
+> generic. Add a new callback for MAC configuration so that we can assign
+> a different variant of it in the future.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
---uvrpf3lezyyj6znr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
-hi,
-
-On Wed, May 24, 2023 at 10:31:40AM +0200, Sascha Hauer wrote:
-> In the DFI driver LPDDR4X can be handled in the same way as LPDDR4. Add
-> the missing case.
->=20
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > ---
-
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
--- Sebastian
-
->  drivers/devfreq/event/rockchip-dfi.c | 1 +
->  include/soc/rockchip/rockchip_grf.h  | 1 +
->  2 files changed, 2 insertions(+)
->=20
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event=
-/rockchip-dfi.c
-> index 16cd5365671f7..0a568c5551699 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -89,6 +89,7 @@ static void rockchip_dfi_start_hardware_counter(struct =
-devfreq_event_dev *edev)
->  			       dfi_regs + DDRMON_CTRL);
->  		break;
->  	case ROCKCHIP_DDRTYPE_LPDDR4:
-> +	case ROCKCHIP_DDRTYPE_LPDDR4X:
->  		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_=
-MASK),
->  			       dfi_regs + DDRMON_CTRL);
->  		break;
-> diff --git a/include/soc/rockchip/rockchip_grf.h b/include/soc/rockchip/r=
-ockchip_grf.h
-> index dde1a9796ccb5..e46fd72aea8d1 100644
-> --- a/include/soc/rockchip/rockchip_grf.h
-> +++ b/include/soc/rockchip/rockchip_grf.h
-> @@ -12,6 +12,7 @@ enum {
->  	ROCKCHIP_DDRTYPE_LPDDR2	=3D 5,
->  	ROCKCHIP_DDRTYPE_LPDDR3	=3D 6,
->  	ROCKCHIP_DDRTYPE_LPDDR4	=3D 7,
-> +	ROCKCHIP_DDRTYPE_LPDDR4X =3D 8,
->  };
-> =20
->  #endif /* __SOC_ROCKCHIP_GRF_H */
-> --=20
+>  .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 31 ++++++++++++++++---
+>  1 file changed, 26 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> index 21f329d2f7eb..2f96f2c11278 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> @@ -92,12 +92,14 @@ struct ethqos_emac_driver_data {
+>  struct qcom_ethqos {
+>  	struct platform_device *pdev;
+>  	void __iomem *rgmii_base;
+> +	int (*configure_func)(struct qcom_ethqos *ethqos);
+>  
+>  	unsigned int rgmii_clk_rate;
+>  	struct clk *rgmii_clk;
+>  	struct clk *phyaux_clk;
+>  	struct phy *serdes_phy;
+>  	unsigned int speed;
+> +	int phy_mode;
+>  
+>  	const struct ethqos_emac_por *por;
+>  	unsigned int num_por;
+> @@ -332,13 +334,11 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+>  {
+>  	struct device *dev = &ethqos->pdev->dev;
+>  	int phase_shift;
+> -	int phy_mode;
+>  	int loopback;
+>  
+>  	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
+> -	phy_mode = device_get_phy_mode(dev);
+> -	if (phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
+> -	    phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
+> +	if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
+> +	    ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
+>  		phase_shift = 0;
+>  	else
+>  		phase_shift = RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN;
+> @@ -485,7 +485,7 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+>  	return 0;
+>  }
+>  
+> -static int ethqos_configure(struct qcom_ethqos *ethqos)
+> +static int ethqos_configure_rgmii(struct qcom_ethqos *ethqos)
+>  {
+>  	struct device *dev = &ethqos->pdev->dev;
+>  	volatile unsigned int dll_lock;
+> @@ -561,6 +561,11 @@ static int ethqos_configure(struct qcom_ethqos *ethqos)
+>  	return 0;
+>  }
+>  
+> +static int ethqos_configure(struct qcom_ethqos *ethqos)
+> +{
+> +	return ethqos->configure_func(ethqos);
+> +}
+> +
+>  static void ethqos_fix_mac_speed(void *priv, unsigned int speed)
+>  {
+>  	struct qcom_ethqos *ethqos = priv;
+> @@ -660,6 +665,22 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>  		goto out_config_dt;
+>  	}
+>  
+> +	ethqos->phy_mode = device_get_phy_mode(dev);
+> +	switch (ethqos->phy_mode) {
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		ethqos->configure_func = ethqos_configure_rgmii;
+> +		break;
+> +	case -ENODEV:
+> +		ret = -ENODEV;
+> +		goto out_config_dt;
+> +	default:
+> +		ret = -EINVAL;
+> +		goto out_config_dt;
+> +	}
+> +
+>  	ethqos->pdev = pdev;
+>  	ethqos->rgmii_base = devm_platform_ioremap_resource_byname(pdev, "rgmii");
+>  	if (IS_ERR(ethqos->rgmii_base)) {
+> -- 
 > 2.39.2
->=20
+> 
 
---uvrpf3lezyyj6znr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSIneMACgkQ2O7X88g7
-+prvgg//asxiF9OnaP2bITXrgtEsRhV8k04A5U+WXJ0d/fjI+EoTUe5aB9T/gZOy
-6Mh/d1RGqMZKe5CgE+PFjvBf9ig1x7Ux13tNjg9QUQSRfgAuCGbgflRwMIfeU2pS
-12SGUoOaF/PR55Ep5+tqwtAQIF5hoet8eYd3aJKI5J+1YokC23q0oydcgDWNTtiB
-m48p5D6uqG+S4ZcGrhQU8lvUCA5nG6+JvzGBfc8LWQjyA1Qtj8ve2XQ6wTt62fsT
-8OWwX2YGucFnLjBPYSLyR9p1wG87V86/SPgxILP7jB778LlslxkV4axNlv7XcGcx
-VbyFw5VcWL96WSm7aDcHB3QCYULxr4WFfo+gtnb3LIQaRPRVJfAImnQ3aw9QMUIk
-3gq1ZLP5TSDw/++TDSAO5dS+YHp9RrcwXPxje8IOnRM6QcvwJsZ3Rxugp2ch0AaG
-SycBzttpIIaC1c1vccLHgM8p+MSnpJ7l+/oR6UmhdmxyLZsgHZUIGjsAWFGwD6z+
-wkZvzn+ay+WsweuhJ+vPDtuS/O0I7t22l2AaX9GWB+9OzzpIfUWlHJ9ZnqYhLWRO
-VsryDlDT7pD8AN1KAUmSWQisa1hHPXOj4/OTRLFFPXKrmxYnRmbXdVjfZZGebUUJ
-ZQUTBzfJPBiqsOefhtaL0Ek5nbBE0Y8Ze0gZixaB+p6D9GgLDqk=
-=UVoD
------END PGP SIGNATURE-----
-
---uvrpf3lezyyj6znr--
