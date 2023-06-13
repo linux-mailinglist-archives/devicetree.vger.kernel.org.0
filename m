@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC76D72F07E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 01:47:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6A4D72F086
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 01:47:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241589AbjFMXrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 19:47:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
+        id S233355AbjFMXro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 19:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230496AbjFMXrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 19:47:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB42B2D43;
-        Tue, 13 Jun 2023 16:46:27 -0700 (PDT)
+        with ESMTP id S231926AbjFMXrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 19:47:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4742A2D46;
+        Tue, 13 Jun 2023 16:46:28 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 35C7063C78;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 30DF863C80;
+        Tue, 13 Jun 2023 23:45:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9921C433C8;
         Tue, 13 Jun 2023 23:45:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED664C433C9;
-        Tue, 13 Jun 2023 23:45:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686699937;
-        bh=80n6STQGwe3VacUdMoV3b3A1GNugjIvglGHInKBpxhA=;
+        s=k20201202; t=1686699939;
+        bh=gi9VwfohvAu8uIbRR1YC83biv422tk7wrtlzmAaldZo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jW2clGq38o4mjZgLZ0FHqVa+ssWNdLj5WdenRdw9K6ZzqUYQfaSeO41WsWpjggPzc
-         v0tNxekD9wbpGg9z95fdIZYy3vk/0VZbqH3kheEH0tM/h3D9J/ai+gheC2WFTgLVrv
-         XacJ2QorhlDB48aTWyUVZkh6+a8d5A5B4f9knHdYZpXKPITrrH3JO96OuuA7qf29ru
-         ihFTJHMWavLLNmCgLqs/bf2Bn22IXvAaxGUzTkcVZ+tTedjDk2mAUxhEf9u7j7aaYT
-         krDLpVAxPh7LX4Zy72a4kD8PDfJLF5orxauFxSlkZYnvZ2/rMefzsHUoomR7rPBlxk
-         oJtdNnEX6CG7w==
+        b=FHqqWp9uQ0SqOJtd9G+9kc4DBpO+4qbDjwEcpg4mshKzl1atsfaX7T9unA9AXboqU
+         STOVtYK7NL6r/psgt25GPXsFFYl06hqvfjXICeOh/fKv1Ao84Gn9/SNP/slqOdDrqY
+         K//fE0Aa3B2NN7bxMMIIVLqwl6X0Y/zxY8OxDXY++U+SKRLYoFclKRzNbLZe2ykUPo
+         43Q1GS9wbr6wiJ8UZaWN34FhEYSaohPRzIHP7z6r3+XvrIjf1cD2g+y7yVPI4BnBPl
+         pnPW4Je8WjLzOJoN2o5dSwPN3tNgBbwPpjdzmt5RGFeCR02NpLhkgb+7QUdHOVkwr3
+         Kn78R4Do3hqTw==
 From:   Bjorn Andersson <andersson@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: (subset) [PATCH v2 1/6] arm64: dts: qcom: sm8150: Use 2 interconnect cells
-Date:   Tue, 13 Jun 2023 16:48:41 -0700
-Message-Id: <168670013501.1400697.8845873820910388817.b4-ty@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH 00/14] arm/arm64: dts: qcom: MDSS nodes cleanup
+Date:   Tue, 13 Jun 2023 16:48:43 -0700
+Message-Id: <168670013503.1400697.5591337352533649379.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230602062016.1883171-1-abel.vesa@linaro.org>
-References: <20230602062016.1883171-1-abel.vesa@linaro.org>
+In-Reply-To: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
+References: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,25 +59,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2 Jun 2023 09:20:11 +0300, Abel Vesa wrote:
-> Use two interconnect cells in order to optionally support a path tag.
+On Wed, 31 May 2023 04:16:09 +0300, Dmitry Baryshkov wrote:
+> Conclude several ongoing cleanups of display-related nodes for Qualcomm
+> platforms:
 > 
+> - Don't disable MDP/DPU node, it is enough to disable MDSS device itself
+> - Remove useless mdss_mdp enablements
+> - Change labels for DSI and HDMI nodes to start with mdss_ prefix
 > 
+> [...]
 
 Applied, thanks!
 
-[1/6] arm64: dts: qcom: sm8150: Use 2 interconnect cells
-      commit: 97c289026c62f80933b44353904b919572175f61
-[2/6] arm64: dts: qcom: sm8150: Add missing interconnect paths to USB HCs
-      commit: c2998e9a42637cdab699a21aa75a8cb5a7cbce72
-[3/6] arm64: dts: qcom: sm8250: Use 2 interconnect cells
-      commit: b5a12438325b9c0207ae4374a797368070cfb945
-[4/6] arm64: dts: qcom: sm8250: Add missing interconnect paths to USB HCs
-      commit: fd62fd1cf9e7fb7ef761e411d37cb5d06769954b
-[5/6] arm64: dts: qcom: sm8350: Add missing interconnect paths to USB HCs
-      commit: 8b51dc863baf1447e9ab52411c5bed7ef9a56d80
-[6/6] arm64: dts: qcom: sm8450: Add missing interconnect paths to USB HC
-      commit: b5b0649d5be4c82d09489492c121a7823323fc4a
+[14/14] ARM: dts: qcom: msm8974: rename labels for DSI nodes
+        commit: d59b294874c7f51317dc7edfc12ff950260ed2b9
 
 Best regards,
 -- 
