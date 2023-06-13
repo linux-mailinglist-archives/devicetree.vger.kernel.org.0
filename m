@@ -2,108 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C5F72EA91
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6999B72EAA4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:16:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230498AbjFMSKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 14:10:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50998 "EHLO
+        id S232506AbjFMSQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 14:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235288AbjFMSJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:09:53 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31DE1BD2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:09:52 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-56cfce8862aso40557007b3.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:09:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686679791; x=1689271791;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TESX54vILo0n1pvOdyskuCPzlhG1Qnfeg9SAHlfLO0E=;
-        b=WqJQlDbj84qhqbJnTBjCD2q/ecrppE1AqGXhimErpGbEh6NQ4LNx9h+LXHzDXOSDOp
-         eYRJ/2bJlMnUYfVXwgGBN5ZgYfHrsaiXB/unauuYqhMXIC0uySbiymEoN6UbPq/0n7+U
-         wMnOyVgVrLjfDxJvY9/rZ9/G55dmLMrlIEAMhITPF7m6LaEPMFwld+1w1BfdUuugBUkD
-         7BZjKuZTDTS04g45c35eZn7WpBD9rJWwXCXCvjtJiA43I8y2112fuIqkdG7OAWo7K6MD
-         C3PwaDBZQmq9/0lzViUGKKraZvkamF7LYDAFj9oJS1yUyK4OKXR4YGhkROgLlVvZf0sF
-         7xTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686679792; x=1689271792;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TESX54vILo0n1pvOdyskuCPzlhG1Qnfeg9SAHlfLO0E=;
-        b=TtSw8Aiwxdqe+NvRn8+hStxDq9ijUYYAgLB2AvlrO0o9jScPEZHP36VSaKc+G7r/jh
-         5ZyD10Mv+HJUvwEdu9lG2Uv0/Guu3cBis7PIPUMMTy8s/j6EQR+9L8jgcDucGdz9zWu+
-         Z1iVWsl7vr627oAisApU98xBB5BSBkaNfhHYAuerAzfv389vxnV28MkgPjwCQcerv2rz
-         49g3hRk9kSn4sIkUq6Xpr5AMegWk8s9qn4eoUXAHe1XoVeLiVxrUYbpJBHAalQkwEP8S
-         CYmkhSBjIdnT8hwlJRoArD3RER6gUhaqgPQ5sZNatL3U5I7I6B86wnhrVK681BS1CQ6J
-         aAwA==
-X-Gm-Message-State: AC+VfDwsVzZT0re4tPjzLVAFCyvg409bHvaz/cjL4li/ndIGcSRmSNJX
-        0im/h36L3NgRAGaAVtQnyIAY2OPn6vFDpqJ+QfcbUw==
-X-Google-Smtp-Source: ACHHUZ4gbDPGd/3NVLS7j+rLPJi4AjmZ5nwQ+/jbPcc7n0nq76nZz+kSiGmAsCXrZAwPPSZBCVIp3TDFsllfdqAmOZE=
-X-Received: by 2002:a25:a506:0:b0:ba8:3613:76a8 with SMTP id
- h6-20020a25a506000000b00ba8361376a8mr2590951ybi.41.1686679791771; Tue, 13 Jun
- 2023 11:09:51 -0700 (PDT)
+        with ESMTP id S232056AbjFMSQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:16:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5731AA;
+        Tue, 13 Jun 2023 11:16:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 011D3633B7;
+        Tue, 13 Jun 2023 18:16:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22B2FC433D9;
+        Tue, 13 Jun 2023 18:16:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686680173;
+        bh=3nta5h6vskHXP6e963+cgsjeVqvnWSz8FUDMtyHszeQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KZdjtdg681LkZlBV7iFB/NhtWhAMuqITDTNRQi77W2BPa6bg1tPBeFiTxFyWlF46E
+         wIYEd39GRCYxSweANY3G68LRRkBPwubGORUWW+zj6gPTQDvbICIQ7kmyegmFZFwY3J
+         fCBU/ty9NQsoVYzjmUzQi0UYgSFWIxdPE5j6FXl+QIhiXWN8zBhdEKlx2hylIsImJr
+         cudRsJ79SvaB3b68gUreZXFcQarSbC5Xuv9YP4sre8xT/9WdwBBPNlhc6RNDelpzvm
+         jgAOU1yOL9739iL2AM2FcsbL9+TmZ8j2eL9/uO09p8Gdfae7VJ+CXjduDK9/wu9xwz
+         xnI9W7uvUA9Qw==
+Date:   Tue, 13 Jun 2023 19:16:06 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, sam@ravnborg.org,
+        bbrezillon@kernel.org, airlied@gmail.com, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Hari.PrasathGE@microchip.com,
+        Balamanikandan.Gunasundar@microchip.com,
+        Durai.ManickamKR@microchip.com, Nayabbasha.Sayed@microchip.com,
+        Dharma.B@microchip.com, Varshini.Rajendran@microchip.com,
+        Balakrishnan.S@microchip.com
+Subject: Re: [PATCH 5/9] drm: atmel-hlcdc: add compatible string check for
+ XLCDC and HLCDC
+Message-ID: <20230613-unvocal-employed-aff3cf92d60a@spud>
+References: <20230613070426.467389-1-manikandan.m@microchip.com>
+ <20230613070426.467389-6-manikandan.m@microchip.com>
 MIME-Version: 1.0
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230601054549.10843-15-nikita.shubin@maquefel.me> <cacd8ea8-f834-4983-20ff-a875fee8011a@linaro.org>
- <CACRpkdZVhwsoHg3jOWuXtdL5kqbnbHjEYJOGsBCTcfLrVKbX3w@mail.gmail.com> <CAMRc=MfgBAnSwLTKuCZ9WgbX_oWoB2xLk=J86QCo9YkcfWaq_Q@mail.gmail.com>
-In-Reply-To: <CAMRc=MfgBAnSwLTKuCZ9WgbX_oWoB2xLk=J86QCo9YkcfWaq_Q@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 13 Jun 2023 20:09:40 +0200
-Message-ID: <CACRpkdab48ag5jbACrN-z4CSV=Vnd5kbni=yK6crzK6GsE4iTA@mail.gmail.com>
-Subject: Re: [PATCH v1 33/43] dt-bindings: gpio: Add Cirrus EP93xx
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nikita Shubin <nikita.shubin@maquefel.me>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Peters <mpeters@embeddedts.com>,
-        Kris Bahnsen <kris@embeddedts.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nLQwW+t8SA8oYufo"
+Content-Disposition: inline
+In-Reply-To: <20230613070426.467389-6-manikandan.m@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 4:55=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
-> On Fri, Jun 2, 2023 at 9:41=E2=80=AFAM Linus Walleij <linus.walleij@linar=
-o.org> wrote:
-> > On Thu, Jun 1, 2023 at 10:20=E2=80=AFAM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
 
-> > > Did you choose correct maintainers? Bartosz, Linus, do you take care
-> > > about EP93xx platform?
-> >
-> > I'm fine with it (I have a platform).
->
-> I don't but I'm actually not sure how DT bindings maintainership works
-> - do GPIO bindings all fall under the GPIO jurisdiction automatically?
+--nLQwW+t8SA8oYufo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Not really, more on the people selected by the person writing the
-bindings, confirmed by them being merged.
+On Tue, Jun 13, 2023 at 12:34:22PM +0530, Manikandan Muralidharan wrote:
+> From: Durai Manickam KR <durai.manickamkr@microchip.com>
+>=20
+> Add compatible string check to differentiate XLCDC and HLCDC code
+> within the atmel-hlcdc driver files.
+>=20
+> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+>  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 7 +++++++
+>  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h | 1 +
+>  2 files changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/d=
+rm/atmel-hlcdc/atmel_hlcdc_dc.c
+> index d7ad828e9e8c..fbbd2592efc7 100644
+> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+> @@ -761,6 +761,13 @@ static int atmel_hlcdc_dc_load(struct drm_device *de=
+v)
+>  	if (!dc)
+>  		return -ENOMEM;
+> =20
+> +	/* SAM9X7 supports XLCDC */
+> +	if (!strcmp(match->compatible, "microchip,sam9x7-xlcdc"))
+> +		dc->is_xlcdc =3D true;
+> +	else
+> +		/* Other SoC's that supports HLCDC IP */
 
-Traditionally, Linux as the biggest software project with the most
-active subsystem maintainers do the reviewing and take the
-responsibility for them.
+Should this be "Other SoCs that do not support HLCDC IP"?
 
-Technically, e.g. BSD people could appear
-on the devicetree mailinglist and review patches and suggest
-maintainership from their side, but I haven't seen them much
-around. Neither Apple Computer or anyone else who ought
-to be there but isn't.
+> +		dc->is_xlcdc =3D false;
+> +
+>  	dc->desc =3D match->data;
+>  	dc->hlcdc =3D dev_get_drvdata(dev->dev->parent);
+>  	dev->dev_private =3D dc;
+> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h b/drivers/gpu/d=
+rm/atmel-hlcdc/atmel_hlcdc_dc.h
+> index aed1742b3665..804e4d476f2b 100644
+> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+> @@ -451,6 +451,7 @@ struct atmel_hlcdc_dc {
+>  		u32 imr;
+>  		struct drm_atomic_state *state;
+>  	} suspend;
+> +	bool is_xlcdc;
+>  };
+> =20
+>  extern struct atmel_hlcdc_formats atmel_hlcdc_plane_rgb_formats;
+> --=20
+> 2.25.1
+>=20
 
-Yours,
-Linus Walleij
+--nLQwW+t8SA8oYufo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIiyZgAKCRB4tDGHoIJi
+0uODAP9H+hIVPJhxyu0rBvxNfNf8xPG/zVLhpX+gT6U3ob1cmAEAlAT79psmRyV5
+QEhTZmaMUl3xGZF/7M2oLmN1ke+UlwE=
+=MOtr
+-----END PGP SIGNATURE-----
+
+--nLQwW+t8SA8oYufo--
