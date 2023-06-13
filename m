@@ -2,97 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4FFC72EACF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:24:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A114172EB02
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:31:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239035AbjFMSXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 14:23:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57358 "EHLO
+        id S239369AbjFMSbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 14:31:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238949AbjFMSXO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:23:14 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C768F1BC9
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:23:09 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-977d02931d1so851723266b.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:23:09 -0700 (PDT)
+        with ESMTP id S231774AbjFMSbd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:31:33 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AFC319BC
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:31:31 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9788faaca2dso960879966b.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:31:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686680588; x=1689272588;
+        d=linaro.org; s=google; t=1686681089; x=1689273089;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2ZJW1DeQPT9YPPiVm1IXSKe/Dm77TXuyqrPz1vnbabQ=;
-        b=CPmH9WAfzRMcoS8+g9AfTE++ftq90raXp+7LBnACMlD8ZH2sv0ZNx1y4WFudFtSzRs
-         AVllW7I4lrcgSN/wBrAjNWDqyeELDqAI4VtzQY+BLhPBKXNl3fb4q5Tr63iBgkYMhx4+
-         z3gOuwSbGQ+weVEZ7B4WqJWLFMFijR8tUnFWco+ttPQzJli8c0OWu7BJrxDhX5nV1D0j
-         8P7+KQTZOar2OA4RgcPOJbVXvrMVW18LLtaj8U62L/ubylclkDqX3StPfSIJ6Mzg8Hfg
-         aPmCJ2J2AcsCstwEtPjoj287p0KYLHG0IuyTraMe5/O00+xUxsn2n//hBz63Cl3m63ai
-         SKiA==
+        bh=H5thdLVYeuJeTUk/dZICHlBR7keQEdx+TmjFnb0n07Q=;
+        b=lWqpp6puRrFsbAwShsKqSraSDgQObj9USYvpffkItesvmaDcgsXF/WGZZ5Y5f921Ff
+         1vHZcEY8552gz4V+6UU3jg6GebW8ykbiW2RwL8pH2ZJQUbkiNMWCBGAJhCCwXCtpj4Mn
+         UHeXizNVq0XyD/uQKq3JcfuEjqiDsSX+pYgCWoEouDox+C7KP1cjEseLgNgULKtWAAAQ
+         qta1fFgpPxUmeLzv8WOaWGA6vxxwrZbM8+JNjwNfYjFbPgVrgdUI+4Xm/bhyl3xszcOe
+         37erSN21JN0piPgVvYcQ62/OfHBGc5JX/OR2qWu+4J4fUZxN6VGAKB2gYIRf6QFaWYjE
+         DrmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686680588; x=1689272588;
+        d=1e100.net; s=20221208; t=1686681090; x=1689273090;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2ZJW1DeQPT9YPPiVm1IXSKe/Dm77TXuyqrPz1vnbabQ=;
-        b=Bm145VRx975MW4E1bTRZUoeUUdPfFjCBntnBj3WSqat4Ts2y3XYwD1Gxy7F+f1jsGu
-         7BEGylx/mB1um0NteInYgzt+TdHaCX1nczxvMt/cnMFqvo5IY3TAUw3u/vaGkzQO2sAa
-         qvDEXa0jbKYVezDTEaS2FQrZPt5jJu4qXuRKCnaFoTkEgF7waGJgrL1tNHVBespmtAcf
-         f6uSwB5bit1EBKloBFzToYFB7ckjoPiOKetjHdaSYz6Qubu+oyy4J1AambsBI2YfaoM7
-         xJ8nUWgX2lq7e2nynKh0qGGChHOH/uNganwqwFNJpoPGcvwucVkiwiQ7HjgEsRu3JUcv
-         aNvg==
-X-Gm-Message-State: AC+VfDzMGJ9WC1CG/X07/8jD5SKIP1VtMH8sDke5oKTVwOh/D0wDKAvU
-        BaQ9bIYvg0XodKtM28MyQwEdPw==
-X-Google-Smtp-Source: ACHHUZ4vbuaPKh0MKiVRYDJOeZpGiJI7K3xMIzJTlI5eXenj6RlbBuSnhdQ1w7tmyRp11ZXHxELj4Q==
-X-Received: by 2002:a17:907:c09:b0:96b:48d2:1997 with SMTP id ga9-20020a1709070c0900b0096b48d21997mr14447425ejc.65.1686680588091;
-        Tue, 13 Jun 2023 11:23:08 -0700 (PDT)
+        bh=H5thdLVYeuJeTUk/dZICHlBR7keQEdx+TmjFnb0n07Q=;
+        b=Hnj6rpWms2JmZ9bbRXa3lyn7mQRfXSJ9wa8KOSKwsIhPzwwcfMJh3I7KUlirZ0wdaa
+         VvIKr/BYv5DwMYvpA9gkiQubfO2Vfu98iBDJKy1HklzPnxzef1j/kFLrc8ope45YyTmb
+         CRaStWYoFyqghrcGSGemYFVX9LXX7Q1Y4vNHkzEXZB3v/9ehJuvhbrLPHbHj3I6TZCoP
+         rXeghfYtcHemKwbve+IaUWCp0NdZwUaPkwpgp9jhqkENYgkbz+9lehb5gfbtRrOYYxkK
+         K9eJf6Vm8Gr9eu1QCsb8yo1fXLr0uhIG4kPdl646v58BziGmCeteAutAHDwcUMI1Mieu
+         Q95g==
+X-Gm-Message-State: AC+VfDygnLi6Hamf+Z55u/cJ701x/uBgh4YvZ7UPuWNKKFglhddM4qOT
+        aQn5f1EPsOPZLuZHT0vZvFN8Jg==
+X-Google-Smtp-Source: ACHHUZ7FW4zcNCHYDLc8YmIToBwJQq9MRqn3NydANM5LTgdwq836BPniBmMoR6EXg/p91D8iAKdAqw==
+X-Received: by 2002:a17:907:3fa4:b0:977:da9d:b842 with SMTP id hr36-20020a1709073fa400b00977da9db842mr13680418ejc.74.1686681089686;
+        Tue, 13 Jun 2023 11:31:29 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id n3-20020a170906840300b0097456b4085fsm6931491ejx.190.2023.06.13.11.23.06
+        by smtp.gmail.com with ESMTPSA id oq19-20020a170906cc9300b00977e0bcff1esm7071095ejb.10.2023.06.13.11.31.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 11:23:07 -0700 (PDT)
-Message-ID: <b7cd6f93-1118-1498-d245-a5b8e4a21c96@linaro.org>
-Date:   Tue, 13 Jun 2023 20:23:05 +0200
+        Tue, 13 Jun 2023 11:31:29 -0700 (PDT)
+Message-ID: <7e2d6bfe-5687-97c5-778b-c02e9c0894af@linaro.org>
+Date:   Tue, 13 Jun 2023 20:31:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: add ON Semiconductor nb7vpq904m
- Type-C Linear Redriver bindings
+Subject: Re: [PATCH v5 2/7] dt-bindings: soc: starfive: Add StarFive syscon
+ module
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230601-topic-sm8x50-upstream-redriver-v3-0-988c560e2195@linaro.org>
- <20230601-topic-sm8x50-upstream-redriver-v3-1-988c560e2195@linaro.org>
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20230613125852.211636-1-xingyu.wu@starfivetech.com>
+ <20230613125852.211636-3-xingyu.wu@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230601-topic-sm8x50-upstream-redriver-v3-1-988c560e2195@linaro.org>
+In-Reply-To: <20230613125852.211636-3-xingyu.wu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 16:50, Neil Armstrong wrote:
-> Document bindings for this ON Semiconductor Type-C USB SuperSpeed
-> and DisplayPort ALT Mode Linear Redriver.
+On 13/06/2023 14:58, Xingyu Wu wrote:
+> From: William Qiu <william.qiu@starfivetech.com>
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Add documentation to describe StarFive System Controller Registers.
+> 
+> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 > ---
+>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 62 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> new file mode 100644
+> index 000000000000..a81190f8a54d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH7110 SoC system controller
+> +
+> +maintainers:
+> +  - William Qiu <william.qiu@starfivetech.com>
+> +
+> +description: |
+> +  The StarFive JH7110 SoC system controller provides register information such
+> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: starfive,jh7110-sys-syscon
+> +          - const: syscon
+> +          - const: simple-mfd
+> +      - items:
+> +          - enum:
+> +              - starfive,jh7110-aon-syscon
+> +              - starfive,jh7110-stg-syscon
+> +          - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clock-controller:
+> +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
+> +    type: object
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-aon-syscon
+> +    then:
+> +      required:
+> +        - "#power-domain-cells"
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where did you implement the results of the discussion that only some
+devices can have power and clock controller?
+
+According to your code all of above - sys, aon and stg - have clock and
+power controllers. If not, then the code is not correct, so please do
+not respond with what is where (like you did last time) but actually
+implement what you say.
 
 Best regards,
 Krzysztof
