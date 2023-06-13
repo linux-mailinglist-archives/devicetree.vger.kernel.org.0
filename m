@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEAFA72EB26
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9DE372EB30
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 20:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbjFMSmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 14:42:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40312 "EHLO
+        id S239026AbjFMSoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 14:44:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232005AbjFMSmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:42:07 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2CD0106
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:42:05 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5147e8972a1so10051842a12.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:42:05 -0700 (PDT)
+        with ESMTP id S237109AbjFMSoA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 14:44:00 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E637C1BDC
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:43:58 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-97881a996a0so1027800666b.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 11:43:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686681724; x=1689273724;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1686681837; x=1689273837;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=E9J/4CK07txoWvpRkuIct5M/3DR+A6hR9YqitxGo9vo=;
-        b=xHwJevKZzycIwLN/4ZqriOCeYi5DJ96nxJzDAAZ0N+jJnd0V8WmUNr1RxOMEoPvxX5
-         09gskRLCGdXoN7u+104ZDtC4DDYiAEuSSs872rlQ378IODj4EVgWt2E/TRwO+JtHxWo7
-         ZXWfdEcvIcEO9yfqWr2CyFnXkIsbCe35lgFDe+te0ybeiw/zDv3o7MUGybqRjTGZoOSI
-         5gPVdO2zDfg/WHFWksLTpUkHgxD9zgziIFzZaL/6awMT8kqkFKO/7NWOg/mGF4FuYW5b
-         pSkCTLzmmwX46aPrAlddBGryxTYcHXZZGJtcQ1ZTOVzCG2AJEfmeg5/Hox4XK3XrGe+y
-         vHpA==
+        bh=qQ8iVB7gobTZ8BQruGLcdSEO5h1oBHrdRGDjmhAOvCM=;
+        b=zU3Xo3HozTeKE1o40JuVJuq9vYtZ4EkEKet/l8SVVT5g1OrQjBJkUebse3tG6s7SDX
+         PLVlkEXNkN/CNLyi4Ty9X4SUF4GA5pcxpmgzLJWPad7r/CpidbwM8AX4rCcNr09m863o
+         oSgb7VCFnE1cOOrUF37Awdfwk25oNyxuHUMdacnLvA6BfA7s4Ww/xyuApzMqvorZgcvH
+         hIh0pZFMFb4Ls8TW744q8m/gwrEdxVgwYkF7T1kE26OKfKxrEYxm5mmyoNVXFJaBvgY1
+         uWHTzuNVeKISJjBaYC492ykbUs6NvEupl8oglBsB4R7/maa1ohnGu/sjDIyqBeJGLzk+
+         A3IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686681724; x=1689273724;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1686681837; x=1689273837;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E9J/4CK07txoWvpRkuIct5M/3DR+A6hR9YqitxGo9vo=;
-        b=h8S1ZkUszXVnosVu0fgIv+DZaiauBNpSkwvFdzERATsYwdxveOZPJLNXM6pI6f6ZbS
-         kVqvG3bFxO6+4BaCmIMF9N/DL6aIxLjIfBzWXwuyJmOXzX2a2GdZXDEJRYpaHDz/rjvY
-         hjGzBJpKdT389kN8Wm9bOzzPDuSNYQ9Uniex4Dj1hEwUwapL4RRo81hagm962gkfP0lW
-         KLVdEspnN4AyPd+ufEnjRbwTK4z0LSiHra+ClUKox8UMcfVGyMeFajF0Q0LNx4iB/FBY
-         0Yv/EDvhIMN7p36LTeuC+SEzF5ngEJXcEwdBMa9TdG2z7NQebtYef30FMlZDEQLmll66
-         Om4A==
-X-Gm-Message-State: AC+VfDxpyLovONzckK4p5nQr7YVcjv9ayOyR0Fa2IWaipSuamZsWZiWR
-        gA+chLfAa5aKkjBbMkHPC078Pw==
-X-Google-Smtp-Source: ACHHUZ4f5uJfXxJ457q4UknWNqD0gfSHRZjl8xS4OTPNrTEg99TpXgpzNXgzXCMlipTdb7eHArGrXQ==
-X-Received: by 2002:a17:907:807:b0:977:d027:eeb9 with SMTP id wv7-20020a170907080700b00977d027eeb9mr12854684ejb.35.1686681724047;
-        Tue, 13 Jun 2023 11:42:04 -0700 (PDT)
+        bh=qQ8iVB7gobTZ8BQruGLcdSEO5h1oBHrdRGDjmhAOvCM=;
+        b=gsCHR13sqz0YkFUsCU9J4u5LYtIVhtWi1f0fwuXe9WSAieCb+EfrRGNQFZF83w4Xia
+         As7SPzWqycEQOHUbSt4rpWkCbrxgjrTUsrO0+J4lq0HUPykxSkSGTRK9ifEz929KKFP8
+         NwfqwzPZulIol/lf9Tp3VaSYKdluIi5WBB2lcodGYj4pDVmRbpqkpGXWxm28Hbooberq
+         +lArwngjwxXbuZaXgjwem5MtND2zV7gF1jtRxCrDYoAIttLbTosCKCa/QBLCnGWx2Q/k
+         yxB1SqwrRFWtGpxdlAyvdEuG6a5tTU9X+5aRCpewkQp5HdJdN1BLSGRNH4qABmAvrx5L
+         o+mg==
+X-Gm-Message-State: AC+VfDysedVs9YvJRkpgJAd39Qfn2Pq/NVqFvms11SWOZU1H+o2fic0C
+        jrbzsxHUtMnqcuCiNnMn2Dlfag==
+X-Google-Smtp-Source: ACHHUZ5TllWLsWtFnI+oG6zhMaKQWMv660yQOdw0v+qvTp4pkYq7CNN5Dieh3DdpBDIUsqEoNo8X+g==
+X-Received: by 2002:a17:907:7f1e:b0:974:76:dcdd with SMTP id qf30-20020a1709077f1e00b009740076dcddmr16204308ejc.55.1686681837374;
+        Tue, 13 Jun 2023 11:43:57 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b0096a6bf89259sm6961056ejc.167.2023.06.13.11.42.01
+        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b0096a6bf89259sm6962660ejc.167.2023.06.13.11.43.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 11:42:03 -0700 (PDT)
-Message-ID: <22dadcf6-9879-efb2-9987-7f286b38b93b@linaro.org>
-Date:   Tue, 13 Jun 2023 20:42:00 +0200
+        Tue, 13 Jun 2023 11:43:56 -0700 (PDT)
+Message-ID: <37ef78ee-b290-ecfb-504d-cef5653d23f2@linaro.org>
+Date:   Tue, 13 Jun 2023 20:43:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: ROHM BU27010 RGBC + flickering sensor
+Subject: Re: [PATCH v7 0/2] dt-bindings: omap: Convert omap.txt to yaml
 Content-Language: en-US
-To:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1686650184.git.mazziesaccount@gmail.com>
- <98e0b6fba7ff7515b541a517296d5b89dc73ce5b.1686651445.git.mazziesaccount@gmail.com>
+To:     Andreas Kemnade <andreas@kemnade.info>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        tony@atomide.com, afd@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20230515074512.66226-1-andreas@kemnade.info>
+ <20230613193257.267ad763@aktux>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <98e0b6fba7ff7515b541a517296d5b89dc73ce5b.1686651445.git.mazziesaccount@gmail.com>
+In-Reply-To: <20230613193257.267ad763@aktux>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,90 +76,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 12:19, Matti Vaittinen wrote:
-> The ROHM BU27010 is a sensor with 6 photodiodes (red, green, blue, clear,
-> IR and flickering detection) with five configurable channels. Red, green
-> and flickering detection being always available and two out of the rest
-> three (blue, clear, IR) can be selected to be simultaneously measured.
-> Typical application is adjusting LCD/OLED backlight of TVs, mobile phones
-> and tablet PCs.
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-e.g.: "dt-bindings: iio:"
-
-
+On 13/06/2023 19:32, Andreas Kemnade wrote:
+> Hi,
 > 
-> Add binding document for ROHM BU27010.
+> any action still expected from my side?
+> people gave R-bys...
+> So looks like it is ready for the dt-folks to pick it up.
 > 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> ---
->  .../bindings/iio/light/rohm,bu27010.yaml      | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml
-> new file mode 100644
-> index 000000000000..2bde9d2f1def
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/rohm,bu27010.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROHM BU27010 color sensor
-> +
-> +maintainers:
-> +  - Matti Vaittinen <mazziesaccount@gmail.com>
-> +
-> +description: |
-> +  The ROHM BU27010 is a sensor with 6 photodiodes (red, green, blue, clear,
-> +  IR and flickering detection) with five configurable channels. Red, green
-> +  and flickering detection being always available and two out of the rest
-> +  three (blue, clear, IR) can be selected to be simultaneously measured.
-> +  Typical application is adjusting LCD/OLED backlight of TVs, mobile phones
-> +  and tablet PCs.
-> +
-> +properties:
-> +  compatible:
-> +    const: rohm,bu27010
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
 
-Isn't vdd-supply required for the hardware to work? How does it get the
-power otherwise?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      light-sensor@38 {
-> +        compatible = "rohm,bu27010";
-> +        reg = <0x38>;
-> +      };
-> +    };
-> +
-
-Trailing blank line.
+It's SoC file, isn't it? Then goes via SoC tree.
 
 Best regards,
 Krzysztof
