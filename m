@@ -2,129 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F84B72DD95
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:25:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7C872DDAF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 11:30:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242009AbjFMJZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 05:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48536 "EHLO
+        id S239913AbjFMJar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 05:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239876AbjFMJYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:24:51 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B46FD18E
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:24:45 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-30fbf6603d2so2058124f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:24:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686648284; x=1689240284;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pXZ4aijj1pbGg+3aoennLfPzwPG0hMvQp5jgoTVxVm8=;
-        b=GZA9yI5bwW4oCmT4IZAkYKgpuay7dbOmcoOpQ7W/6x4Y5hg97080ZzsiYso50gGdds
-         RZVnCyTiL62fr18WkB3y2+DYnLJuuKvblwA0wczGmYyboB3AHOHYXB5FnB+MSxKhbT13
-         iuvvq0cYySFYrLTDn5jnNSMntKeNNRkW9tJV3f+xQrPDBUfbCm1K19QHSlDUTHdEYZrJ
-         Ncqdt5nwZZlQZFOZb3IvmM2ArE+r3GSK2RrjnUddUO+mNeCMeJkA5mNmzUaOxolhXkx3
-         wb1WlbZIuzusH9H6oZEwwRyQFdYOp1lp9jpv1h9RGzXXLrII5l6qLCZx0dbFul+vx9Va
-         /zuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686648284; x=1689240284;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pXZ4aijj1pbGg+3aoennLfPzwPG0hMvQp5jgoTVxVm8=;
-        b=QkXUB1/utdo/eVRHH0QMn1fRBba0dZeU+FLRUaMCZJ9miDwaYaiBgYrT8m0tO52mHu
-         Cv9+WCAc03x2t3KFMzP6MJxk7jkb7TqCWy8Xp9fWw6VKsv+LVAG2zqU96IVnzgevxzFR
-         0bfjINW7lmQ0ZeDetXb5a0sIYmlAuFAm/nQ7+ww3XKGCQfUIYmGM3fKFkcTrM62QLNpb
-         5pOxPZJgJQSz2Bgq8PIMrpZSZQbPcUkuJNY1LqRq5LIRofYMcyJ29yWaMpf2x/PszcMF
-         6R1OQwI1JHl0ClYzfXBmcWm0UCbMPqIt4tIa/NuUCQdSPcLQEEm11SH1CUdjreVdpBIV
-         AhLw==
-X-Gm-Message-State: AC+VfDw3D1pohDqSN7729Psq4/cJKVkikToGvMBwA+aLNLw0yNW0rUhZ
-        RlCVaMJShfPdQpyXLEz1wRfFsA==
-X-Google-Smtp-Source: ACHHUZ7PO/tsm9IXmJ7pb3uNDlot07rQqXgOCkR7DPpvfhLhNFDPFPOxgXcEUTv86r3jFpDeqkvMPg==
-X-Received: by 2002:a5d:614b:0:b0:30d:f75c:4a68 with SMTP id y11-20020a5d614b000000b0030df75c4a68mr6243782wrt.34.1686648284132;
-        Tue, 13 Jun 2023 02:24:44 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:48b:b939:c60e:e1ba? ([2a01:e0a:982:cbb0:48b:b939:c60e:e1ba])
-        by smtp.gmail.com with ESMTPSA id t18-20020adfeb92000000b003093a412310sm14770863wrn.92.2023.06.13.02.24.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 02:24:43 -0700 (PDT)
-Message-ID: <f708a6d3-321e-c425-8048-1c0d2ac7a6f0@linaro.org>
-Date:   Tue, 13 Jun 2023 11:24:42 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/8] dt-bindings: connector: usb-connector: add a gpio
- used to determine the Type-C port plug orientation
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239769AbjFMJap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 05:30:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D3613E
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 02:30:43 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q90Lx-0003DC-Vz; Tue, 13 Jun 2023 11:30:18 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q90Lw-0075fp-Ff; Tue, 13 Jun 2023 11:30:16 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q90Lv-00DpVq-G7; Tue, 13 Jun 2023 11:30:15 +0200
+Date:   Tue, 13 Jun 2023 11:30:14 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230601-topic-sm8550-upstream-type-c-v3-0-22c9973012b6@linaro.org>
- <20230601-topic-sm8550-upstream-type-c-v3-1-22c9973012b6@linaro.org>
- <e26878e5-fedc-b2fb-2213-5afd8479de4f@linaro.org>
- <cfa788c3-be57-5109-73df-b82099dd17a0@linaro.org>
- <9abec6ec-1995-8e20-8926-f57969341932@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <9abec6ec-1995-8e20-8926-f57969341932@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-pm@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH 05/10] dt-bindings: pwm: convert pwm-bcm2835 bindings to
+ YAML
+Message-ID: <20230613093014.sot4l2kihnkkx3o5@pengutronix.de>
+References: <20230604121223.9625-1-stefan.wahren@i2se.com>
+ <20230604121223.9625-6-stefan.wahren@i2se.com>
+ <20230607075602.s2pfs7dl7fwkyevm@pengutronix.de>
+ <20230609215932.GA2531610-robh@kernel.org>
+ <3b868924-9d9c-ae0a-a7b8-0afbd01c4a4b@i2se.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="q34rb5xucwxwl2gk"
+Content-Disposition: inline
+In-Reply-To: <3b868924-9d9c-ae0a-a7b8-0afbd01c4a4b@i2se.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 11:02, Krzysztof Kozlowski wrote:
-> On 13/06/2023 10:54, Neil Armstrong wrote:
->> On 13/06/2023 10:13, Krzysztof Kozlowski wrote:
->>> On 13/06/2023 09:55, Neil Armstrong wrote:
->>>> On some platforms, the Type-C plug orientation is given on a GPIO line.
->>>>
->>>> Document this optional Type-C connector property, and take the
->>>> assumption an active level represents an inverted/flipped orientation.
->>>>
->>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> Rob had here objections as these are bindings for the connector, not
->>> PMIC glink/altmode. I still doubt that Qualcomm USB Type-C connectors
->>> have such pin exposed. If you open the schematics, the GPIO is actually
->>> coming out from PMIC and is nowhere around the connector. Please drop my
->>> Ack.
->>>
->>> This however could be a pin of the PMIC because it clearly is on the
->>> schematics.
->>
->> Yes it comes from the PMIC, but this part of the PMIC is handled by
->> the PMIC_GLINK firmware service, so the logical place would be into
->> the pmic_glink node with a gpio array in order to handle multi-ports.
-> 
-> I think all PMICs have only one CC_OUT pin, so this would be now
-> maxItems: 1, but there will be no problem in growing this later.
 
-Yep, I'll only allow for sm8550-pmic-glink and set maxItems: 1 for now
-since it's the first occurence.
+--q34rb5xucwxwl2gk
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Neil
+On Tue, Jun 13, 2023 at 11:02:40AM +0200, Stefan Wahren wrote:
+> Hi,
+>=20
+> Am 09.06.23 um 23:59 schrieb Rob Herring:
+> > On Wed, Jun 07, 2023 at 09:56:02AM +0200, Uwe Kleine-K=F6nig wrote:
+> > > Hello,
+> > >=20
+> > > On Sun, Jun 04, 2023 at 02:12:18PM +0200, Stefan Wahren wrote:
+> > > > Convert the DT binding document for pwm-bcm2835 from .txt to YAML.
+> > >=20
+> > > Both dt_binding_check and dtbs_check (for ARCH=3Darm) are happy, apart
+> > > from errors like:
+> > >=20
+> > > arch/arm/boot/dts/bcm2711-rpi-4-b.dtb: pwm@7e20c000: #pwm-cells:0:0: =
+3 was expected
+> > >          From schema: Documentation/devicetree/bindings/pwm/pwm-bcm28=
+35.yaml
+> > >=20
+> > > which is fixed in patch #6. So:
+> > >=20
+> > > Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > >=20
+> > > Who will pick up this patch? Is it supposed to go in via pwm or
+> > > arm/broadcom? (I suggest the latter.)
+> >=20
+> > The default is the subsystem (pwm). Why not here?
+>=20
+> i think Uwe's concern is about the fact, that the series is late in cycle.
+> So the chance that the fixing DTS patch 6 miss Linux 6.5 is very high.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+My concern is only that nobody might feel responsible and think the
+other party will pick up. Thierry didn't pick up patches yet for the
+next merge window (or I missed it), so I guess it's not yet to late for
+going in via pwm.
 
+I suggest to let it go in via the arm/broadcom tree, to have the whole
+series together.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--q34rb5xucwxwl2gk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSINyUACgkQj4D7WH0S
+/k7ZDQf/cfElfv6yePm9EHQQdztYHh3IO4c1+a3mYiV4paMsOf7dNK8samM5rkwG
+qR+VEGxcdHYUgNLhqwu4KLj8WqQrk9myA9/WKZIAlL8fOhfuFYwEBTbunRG12ocC
+8zMfwPNwLa/15vEcQjYNcJqUOxxt3LTIfJwQI/rbycLrjUy7uhx/zz1nL0vhR4PN
+75KD5ihTsHVxDRQM7RSNjZ/GjXl/9AC+amWFKoUJ9DGGmrx8/eQDkipqAtgPHeGu
+DxsSWmBqlodiGo6mr8BdLJFaGqYGGIJBAhvXgfFOqpObxy6xS6S1YSUzeMY/ztm7
+DaJyM4EnXxL2LWbTGlBz4IrAf49BNA==
+=jtkA
+-----END PGP SIGNATURE-----
+
+--q34rb5xucwxwl2gk--
