@@ -2,404 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A5B872DC2A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:18:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB8272DC30
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 10:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235163AbjFMISF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 04:18:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35026 "EHLO
+        id S241088AbjFMISr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 04:18:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234523AbjFMISF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:18:05 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636AAE7D
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:18:03 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-30fba11b1ceso2422099f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:18:03 -0700 (PDT)
+        with ESMTP id S241067AbjFMISp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 04:18:45 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A0410E2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:18:44 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-56d0776f668so21194287b3.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 01:18:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686644282; x=1689236282;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=d04lTw0RyHU2Svhld9gHRzSf0zx1jARdodHI6pzVf5A=;
-        b=HwvyYrV1S79hQoeu5NZY0dIQ1+encNyiqK3+UKYCAnf64n8ERZgTgqhsHdf4ybMk2K
-         P4b1e7gU/LiDlgQC06OMpbMmi5LZ97y/CfnRfY2PEJTvwjAaVJt5tR3edBa6vMF30fZn
-         lScVWUXPv4q2QmpaO/ef3HMAEgaJr7+Ih63VC2ffc+EZUXYsO4qq+no0FL1UYU/lkTjY
-         I4tygpMizCO0DKL7cFIqNOeToZK5fv0Ca0lBF5PS6PfVtxgjWJV4fQFDnq9Mklg4udoD
-         FMUVxRqT3TFm2m5TxGID2/UZNJELmyW0T0j0TMfcg5anKKT5cjPa8Fp0hwl+f42ygdmM
-         Un0A==
+        d=ventanamicro.com; s=google; t=1686644323; x=1689236323;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PYxWtgxnVnQZT9lz0RWbMniZzWsCGe2zGgB4ImcCjC4=;
+        b=GgyUEUJj5KK554oYZvhgbbJrR358zHeS4y5kle8dSCpk/vbud0V99z6i78bSS0+HjB
+         wPQuQEsvnimA3yQMOa98H9f/Ah/79VdGiWNjpBFkm259urnCphWmeHoe6HJB3umHuQYg
+         wYrBs2AVa4wLSZSm4MDX8k6RX+mRwdmhivyg7icKiEPKvoQ0qIBwn85mhcjPlXazaph/
+         TEH5n8j3358u64bZx6a1Ine85RjxRMSGn2N0SP9GYI0hi3xeXeRmqf27/ELwjVhzG9oz
+         0/PeGBznoWlnd7+j0FyjVZ6jCZ15eFhQIwMf302ESJ4gxGomVNvWd+c9ycJpDNTc/Ti/
+         odSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686644282; x=1689236282;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d04lTw0RyHU2Svhld9gHRzSf0zx1jARdodHI6pzVf5A=;
-        b=L9oXlk5/Yonv7C0rWC++DNfJjScKleHBYluoDaCjLCS9/UjMyWeK+T6CfuNfKiNB1W
-         hymxi+PgksHaDr6GsiB9AqiCPmiSyWg77g6I7oBJsD2qAIQKIF4g0SjAjDGUhA9oMd4W
-         gejLF9582e5XLIYD7yZOwVu/EVK+AAF4xlbTbIVYHMPdl75APObTGbW9knl6m+LTXYBA
-         CxQJBS4+WNEMFZYQ8wMFqEDMEqfNz4KSMQp+bp3tQeiS2cIqhF5Kek93m53AnNb7MS0v
-         USFPVm9g/+2Kdvv1UlJoq8hd1N75u4rS0GTYOoUFAgTmsC3eDgnIsQeesNwlbHIsoHP2
-         5iTw==
-X-Gm-Message-State: AC+VfDwBAqmUj8+5X2Wn2nJVc7UspG0hEmOUQreg+DJTemheJ0R30QYo
-        wigbdlugUbtsX487TBXhWjM=
-X-Google-Smtp-Source: ACHHUZ6yRhXjVvpNkRvRURxJ/nUPNaQ7B1OowcJzssnukRF585i5oJ44IVi/hifdpdtW7y0N/KwIvw==
-X-Received: by 2002:a5d:4441:0:b0:307:8651:258e with SMTP id x1-20020a5d4441000000b003078651258emr7127273wrr.21.1686644281308;
-        Tue, 13 Jun 2023 01:18:01 -0700 (PDT)
-Received: from ?IPv6:2001:a61:35be:1401:2331:c532:1717:d48c? ([2001:a61:35be:1401:2331:c532:1717:d48c])
-        by smtp.gmail.com with ESMTPSA id e7-20020a056000120700b0030af8da022dsm14610524wrx.44.2023.06.13.01.18.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 01:18:00 -0700 (PDT)
-Message-ID: <3de6fe560c996d8044beb42e0a4576b7957d205b.camel@gmail.com>
-Subject: Re: [RFC PATCH 0/1] of: dynamic: allow freeing of_nodes after the
- overlay changeset
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Nuno Sa <nuno.sa@analog.com>, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        GregKroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Tue, 13 Jun 2023 10:17:59 +0200
-In-Reply-To: <09aa65f606fb122add78833d18a75019c02852cc.camel@gmail.com>
-References: <20230511151047.1779841-1-nuno.sa@analog.com>
-         <32553632-d8c8-f110-ebc0-78f7bbb66f91@gmail.com>
-         <09aa65f606fb122add78833d18a75019c02852cc.camel@gmail.com>
+        d=1e100.net; s=20221208; t=1686644323; x=1689236323;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PYxWtgxnVnQZT9lz0RWbMniZzWsCGe2zGgB4ImcCjC4=;
+        b=Htiwq1WkjoR0ggbKolq8uALXkPXf5bbC2q6m8i7147+CjFVXq2AkRwq+h8eIxORTTX
+         /fYgHSEYFiioNxdb1WLyhM5wRerm52GF8YQZrl8Tbxvv/fMUJuT16aVnMtZ7uo/Lqm58
+         oRTlGa4Qab7KfgqbxAAn1/Wv/txFGSyJxulomGp6VqN9sSrnQ/YtUs9NSHyBe3pBZ+W3
+         99++OrgVRv2lvnp7OQAYWEyOOKvMixcUmgldXBI/PAowM3On+jWH8/AjplId8pu2WeeN
+         Xn3ZFZNhcL/lr9/z/IgW4vCd3k/yZxwrTrH9IzWhxNOTLsxbttO7VbfZGc+cboFx4AUJ
+         PQCg==
+X-Gm-Message-State: AC+VfDywPekMoiM8r/wwXuFFQTg3RNEEaT4qH747taNenPFsDq4u4cg+
+        StFWjUr268m1rKXSIy+wZlEXb15U7Wl2LWbk7qFCpA==
+X-Google-Smtp-Source: ACHHUZ51qjjDXrZayB2WH1y5kXtJRQFZ9MOkA7yujtKYZ2TlvtYJj6qaB0h189GnS8dsYUZpmgsJKqrU1/zglYmy+zQ=
+X-Received: by 2002:a25:f504:0:b0:bac:12e1:1d68 with SMTP id
+ a4-20020a25f504000000b00bac12e11d68mr770859ybe.11.1686644323651; Tue, 13 Jun
+ 2023 01:18:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230508142842.854564-1-apatel@ventanamicro.com>
+ <20230508142842.854564-5-apatel@ventanamicro.com> <20230510-untried-duvet-7e3c230fcefd@wendy>
+In-Reply-To: <20230510-untried-duvet-7e3c230fcefd@wendy>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Tue, 13 Jun 2023 13:48:32 +0530
+Message-ID: <CAK9=C2WR+1ZGp+db7axszzthT=G8M0134+frxBNq1YS0FnF7jg@mail.gmail.com>
+Subject: Re: [PATCH v3 04/11] dt-bindings: interrupt-controller: Add RISC-V
+ incoming MSI controller
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.2 (3.48.2-1.fc38) 
-MIME-Version: 1.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2023-05-15 at 08:57 +0200, Nuno S=C3=A1 wrote:
-> On Sun, 2023-05-14 at 16:20 -0500, Frank Rowand wrote:
-> > On 5/11/23 10:10, Nuno Sa wrote:
-> > > There are valid cases where we might get in here with an unexpected
-> > > refcount. One example are devlinks between suppliers <-> consumers.
-> > > When a link is created, it will grab a reference to both the supplier=
- and
-> > > the consumer devices (which can, potentially, hold a reference to it'=
-s
-> > > of_node) and this reference is not synchronously dropped when unbindi=
-ng the
-> > > device from the driver. Instead, a work item is queued (see
-> > > devlink_dev_release()). This async nature will make that
-> > > __of_changeset_entry_destroy() is reached with a refcount > 1. But,
-> > > eventually, all the refcounts are released and of_node_release() is
-> > > reached.
-> > >=20
-> > > All the above will lead to leaks and the following dumps:
-> > >=20
-> > > [ 1297.035424] OF: ERROR: memory leak, expected refcount 1 instead of=
- 2,
-> > > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach o=
-verlay
-> > > node /fpga-axi/dummy_dev
-> > > [ 1297.050763] OF: ERROR: memory leak, expected refcount 1 instead of=
- 3,
-> > > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach o=
-verlay
-> > > node /regulator-vio
-> > > [ 1297.065654] OF: ERROR: memory leak, expected refcount 1 instead of=
- 3,
-> > > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach o=
-verlay
-> > > node /regulator-vdd-1-8
-> > > [ 1297.080885] OF: ERROR: memory leak, expected refcount 1 instead of=
- 3,
-> > > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach o=
-verlay
-> > > node /regulator-vref
-> > >=20
-> > > =C2=A01297.168367] ------------[ cut here ]------------
-> > > [ 1297.173000] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:25
-> > > kobject_get+0x9c/0xa0
-> > > [ 1297.180514] refcount_t: addition on 0; use-after-free.
-> > > [ 1297.185661] Modules linked in:
-> > > [ 1297.188727] CPU: 0 PID: 15340 Comm: kworker/0:2 Not tainted 6.3.1-=
-dirty
-> > > #5
-> > > [ 1297.195617] Hardware name: Xilinx Zynq Platform
-> > > [ 1297.200158] Workqueue: events_long device_link_release_fn
-> > > [ 1297.205600]=C2=A0 unwind_backtrace from show_stack+0x10/0x14
-> > > [ 1297.210880]=C2=A0 show_stack from dump_stack_lvl+0x40/0x4c
-> > > [ 1297.215983]=C2=A0 dump_stack_lvl from __warn+0x78/0x124
-> > > [ 1297.220816]=C2=A0 __warn from warn_slowpath_fmt+0x134/0x18c
-> > > [ 1297.220857]=C2=A0 warn_slowpath_fmt from kobject_get+0x9c/0xa0
-> > > [ 1297.220892]=C2=A0 kobject_get from of_node_get+0x14/0x1c
-> > > [ 1297.236279]=C2=A0 of_node_get from of_fwnode_get+0x34/0x40
-> > > [ 1297.236324]=C2=A0 of_fwnode_get from fwnode_full_name_string+0x34/=
-0xa0
-> > > [ 1297.247455]=C2=A0 fwnode_full_name_string from device_node_string+=
-0x5a8/0x750
-> > > [ 1297.247488]=C2=A0 device_node_string from pointer+0x3d0/0x67c
-> > > [ 1297.259497]=C2=A0 pointer from vsnprintf+0x20c/0x410
-> > > [ 1297.264063]=C2=A0 vsnprintf from vprintk_store+0x12c/0x430
-> > > [ 1297.269176]=C2=A0 vprintk_store from vprintk_emit+0xe0/0x23c
-> > > [ 1297.274454]=C2=A0 vprintk_emit from vprintk_default+0x20/0x28
-> > > [ 1297.274503]=C2=A0 vprintk_default from _printk+0x2c/0x58
-> > > [ 1297.274534]=C2=A0 _printk from kobject_put+0x8c/0x130
-> > > [ 1297.289299]=C2=A0 kobject_put from platform_device_release+0x10/0x=
-3c
-> > > [ 1297.295245]=C2=A0 platform_device_release from device_release+0x30=
-/0xa0
-> > > [ 1297.301458]=C2=A0 device_release from kobject_put+0x8c/0x130
-> > > [ 1297.306718]=C2=A0 kobject_put from device_link_release_fn+0x54/0xa=
-8
-> > > [ 1297.312588]=C2=A0 device_link_release_fn from process_one_work+0x1=
-fc/0x4c8
-> > > [ 1297.319079]=C2=A0 process_one_work from worker_thread+0x50/0x54c
-> > > [ 1297.324684]=C2=A0 worker_thread from kthread+0xd0/0xec
-> > > [ 1297.329421]=C2=A0 kthread from ret_from_fork+0x14/0x2c
-> > > [ 1297.334153] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
-> > > [ 1297.339200] 5fa0:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 00000000 00000000
-> > > 00000000 00000000
-> > > [ 1297.347386] 5fc0: 00000000 00000000 00000000 00000000 00000000 000=
-00000
-> > > 00000000 00000000
-> > > [ 1297.355577] 5fe0: 00000000 00000000 00000000 00000000 00000013 000=
-00000
-> > > [ 1297.362192] ---[ end trace 0000000000000000 ]---
-> > > [ 1297.366805] ------------[ cut here ]------------
-> > > [ 1297.371416] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:28
-> > > fwnode_full_name_string+0x8c/0xa0
-> > > [ 1297.379957] refcount_t: underflow; use-after-free.
-> > > [ 1297.384739] Modules linked in:
-> > > [ 1297.387789] CPU: 0 PID: 15340 Comm: kworker/0:2 Tainted: G=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > W=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.3.1-dirty #=
-5
-> > > [ 1297.396136] Hardware name: Xilinx Zynq Platform
-> > > [ 1297.400660] Workqueue: events_long device_link_release_fn
-> > > [ 1297.406079]=C2=A0 unwind_backtrace from show_stack+0x10/0x14
-> > > [ 1297.411319]=C2=A0 show_stack from dump_stack_lvl+0x40/0x4c
-> > > [ 1297.416389]=C2=A0 dump_stack_lvl from __warn+0x78/0x124
-> > > [ 1297.421206]=C2=A0 __warn from warn_slowpath_fmt+0x134/0x18c
-> > > [ 1297.426361]=C2=A0 warn_slowpath_fmt from fwnode_full_name_string+0=
-x8c/0xa0
-> > > [ 1297.432820]=C2=A0 fwnode_full_name_string from device_node_string+=
-0x5a8/0x750
-> > > [ 1297.439537]=C2=A0 device_node_string from pointer+0x3d0/0x67c
-> > > [ 1297.444867]=C2=A0 pointer from vsnprintf+0x20c/0x410
-> > > [ 1297.449406]=C2=A0 vsnprintf from vprintk_store+0x12c/0x430
-> > > [ 1297.454484]=C2=A0 vprintk_store from vprintk_emit+0xe0/0x23c
-> > > [ 1297.459727]=C2=A0 vprintk_emit from vprintk_default+0x20/0x28
-> > > [ 1297.465056]=C2=A0 vprintk_default from _printk+0x2c/0x58
-> > > [ 1297.469944]=C2=A0 _printk from kobject_put+0x8c/0x130
-> > > [ 1297.474570]=C2=A0 kobject_put from platform_device_release+0x10/0x=
-3c
-> > > [ 1297.480507]=C2=A0 platform_device_release from device_release+0x30=
-/0xa0
-> > > [ 1297.486705]=C2=A0 device_release from kobject_put+0x8c/0x130
-> > > [ 1297.491947]=C2=A0 kobject_put from device_link_release_fn+0x54/0xa=
-8
-> > > [ 1297.497798]=C2=A0 device_link_release_fn from process_one_work+0x1=
-fc/0x4c8
-> > > [ 1297.504256]=C2=A0 process_one_work from worker_thread+0x50/0x54c
-> > > [ 1297.509828]=C2=A0 worker_thread from kthread+0xd0/0xec
-> > > [ 1297.514550]=C2=A0 kthread from ret_from_fork+0x14/0x2c
-> > > [ 1297.519263] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
-> > > [ 1297.524308] 5fa0:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 00000000 00000000
-> > > 00000000 00000000
-> > > [ 1297.532478] 5fc0: 00000000 00000000 00000000 00000000 00000000 000=
-00000
-> > > 00000000 00000000
-> > > [ 1297.540653] 5fe0: 00000000 00000000 00000000 00000000 00000013 000=
-00000
-> > > [ 1297.547256] ---[ end trace 0000000000000000 ]---
-> > > [ 1297.168353] OF: ERROR: memory leak before free overlay changeset,=
-=C2=A0
-> > > /regulator-vref
-> > > [ 1297.551874] ------------[ cut here ]------------
-> > > [ 1297.551880] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:22
-> > > kobject_get+0x88/0xa0
-> > > [ 1297.551903] refcount_t: saturated; leaking memory.
-> > > [ 1297.551908] Modules linked in:
-> > > [ 1297.551918] CPU: 0 PID: 15340 Comm: kworker/0:2 Tainted: G=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > W=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.3.1-dirty #=
-5
-> > > [ 1297.551931] Hardware name: Xilinx Zynq Platform
-> > > [ 1297.551938] Workqueue: events_long device_link_release_fn
-> > > [ 1297.551965]=C2=A0 unwind_backtrace from show_stack+0x10/0x14
-> > > [ 1297.551994]=C2=A0 show_stack from dump_stack_lvl+0x40/0x4c
-> > > [ 1297.552023]=C2=A0 dump_stack_lvl from __warn+0x78/0x124
-> > > [ 1297.552059]=C2=A0 __warn from warn_slowpath_fmt+0x134/0x18c
-> > > [ 1297.552092]=C2=A0 warn_slowpath_fmt from kobject_get+0x88/0xa0
-> > > [ 1297.552123]=C2=A0 kobject_get from of_node_get+0x14/0x1c
-> > > [ 1297.552146]=C2=A0 of_node_get from of_fwnode_get+0x34/0x40
-> > > [ 1297.552173]=C2=A0 of_fwnode_get from fwnode_full_name_string+0x34/=
-0xa0
-> > > [ 1297.552204]=C2=A0 fwnode_full_name_string from device_node_string+=
-0x5a8/0x750
-> > > [ 1297.552234]=C2=A0 device_node_string from pointer+0x3d0/0x67c
-> > > [ 1297.552262]=C2=A0 pointer from vsnprintf+0x20c/0x410
-> > > [ 1297.552289]=C2=A0 vsnprintf from vscnprintf+0x10/0x24
-> > > [ 1297.552317]=C2=A0 vscnprintf from printk_sprint+0x18/0xf4
-> > > [ 1297.552353]=C2=A0 printk_sprint from vprintk_store+0x2d0/0x430
-> > > [ 1297.552388]=C2=A0 vprintk_store from vprintk_emit+0xe0/0x23c
-> > > [ 1297.552422]=C2=A0 vprintk_emit from vprintk_default+0x20/0x28
-> > > [ 1297.552457]=C2=A0 vprintk_default from _printk+0x2c/0x58
-> > > [ 1297.552483]=C2=A0 _printk from kobject_put+0x8c/0x130
-> > > [ 1297.552507]=C2=A0 kobject_put from platform_device_release+0x10/0x=
-3c
-> > > [ 1297.552539]=C2=A0 platform_device_release from device_release+0x30=
-/0xa0
-> > > [ 1297.552571]=C2=A0 device_release from kobject_put+0x8c/0x130
-> > > [ 1297.552599]=C2=A0 kobject_put from device_link_release_fn+0x54/0xa=
-8
-> > > [ 1297.552630]=C2=A0 device_link_release_fn from process_one_work+0x1=
-fc/0x4c8
-> > > [ 1297.552657]=C2=A0 process_one_work from worker_thread+0x50/0x54c
-> > > [ 1297.552674]=C2=A0 worker_thread from kthread+0xd0/0xec
-> > > [ 1297.552701]=C2=A0 kthread from ret_from_fork+0x14/0x2c
-> > > [ 1297.552724] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
-> > > [ 1297.552736] 5fa0:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 00000000 00000000
-> > > 00000000 00000000
-> > > [ 1297.552749] 5fc0: 00000000 00000000 00000000 00000000 00000000 000=
-00000
-> > > 00000000 00000000
-> > > [ 1297.552760] 5fe0: 00000000 00000000 00000000 00000000 00000013 000=
-00000
-> > > [ 1297.552768] ---[ end trace 0000000000000000 ]---
-> > > [ 1297.769464] OF: ERROR: memory leak before free overlay changeset,=
-=C2=A0
-> > > /regulator-vdd-1-8
-> > > [ 1297.777337] OF: ERROR: memory leak before free overlay changeset,=
-=C2=A0 /fpga-
-> > > axi/dummy_dev
-> > > [ 1297.777360] OF: ERROR: memory leak before free overlay changeset,=
-=C2=A0
-> > > /regulator-vio
-> > >=20
-> > > the above is easily reproducible with a dummy platform device that ju=
-st
-> > > gets some regulators (devlinks are created at that point).
-> > >=20
-> > > The culprit of the above is actually this line:
-> > >=20
-> > > https://elixir.bootlin.com/linux/v6.4-rc1/source/drivers/of/dynamic.c=
-#L366
-> > >=20
-> > > This also makes me wonder if we should not have an extra patch just p=
-rinting
-> > > 'node->full_name' instead of '%pOF'. As seen, we should not make any
-> > > assumptions
-> > > (like parent's being around :)) at this stage.
-> > >=20
-> > > To fix the issue, I'm adding a new OVERLAY flag to inform that the ch=
-angeset
-> > > is already gone so if we ever reach of_node_release() we can proceed
-> > > normally. Obviously, I'm not really sure about this and that's the wh=
-ole
-> > > reason
-> > > why I'm bringing this as an RFC. This looks like a nasty corner case =
-and I
-> > > know
-> > > that adding/removing devices dynamically is far from being easy to ha=
-ndle...
-> > >=20
-> > > Also not sure if the driver core folks should be aware of this...
-> > >=20
-> > > Lastly, one of workarounding this issue is by manually unbiding the d=
-evice
-> > > from the driver before removing the overlay which would (potentially)=
- give
-> > > time for the workers to run.
-> > >=20
-> > > Nuno Sa (1):
-> > > =C2=A0 of: dynamic: allow freeing of_nodes after the overlay changese=
-t
-> > >=20
-> > > =C2=A0drivers/of/dynamic.c | 31 +++++++++++++++++++++++++++----
-> > > =C2=A0include/linux/of.h=C2=A0=C2=A0 |=C2=A0 1 +
-> > > =C2=A02 files changed, 28 insertions(+), 4 deletions(-)
-> > >=20
-> >=20
-> > Very nice problem description, thanks.
-> >=20
-> > You have found a real problem of how the devlink implementation did not
-> > consider
-> > the impact on overlays.=C2=A0 The overlay removal process does not expe=
-ct any node
-> > created by an overlay apply to exist at the moment that the overlay rem=
-oval
-> > completes (to be a little more pedantic, the removal process of deletes=
- nodes
-> > and
-> > properties occurs in the exact opposite order that they were created.=
-=C2=A0 Thus
-> > even
-> > partly through the overlay removal, a node is deleted before its parent=
- is
-> > deleted.=C2=A0 Also, all of the properties for any node deleted during =
-the removal
-> > are deleted (even if the node refcount does not reach zero).
-> >=20
-> > The RFC patch does not attempt to fix the actual problem, it merely sup=
-presses
-> > reporting the symptom.
-> >=20
-> > -Frank
-> >=20
->=20
-> Hi Frank,
->=20
-> Thanks for taking a look into this. I was afraid that this was to
-> straightforward indeed. So I guess you're saying this is something that n=
-eeds to
-> be fixed at the devlink level?
->=20
-> +cc Greg and Rafael for some help and advice :)
->=20
-> So, I'd very much try to give this a proper fix but this is messing with =
-very
-> core components so any help would be welcome. The only think that comes t=
-o my
-> mind is to have some kind of syncing between the moment (or even before) =
-the
-> work is queued and the moment the node is deleted. I guess this would hav=
-e to
-> happen at the kobject level...
->=20
-> Another piece of information is that this is an issue for platform device=
-s and
-> pretty much for any device that releases the node during it's .dev.releas=
-e
-> callback (which BTW, sound correct to me). For example, spi and i2c devic=
-es are
-> releasing the node during the driver - device unbind and not when the dev=
-ice
-> gets released. This actually gives time for things to settle before reach=
-ing the
-> point of deleting the node (not saying this correct or should be the solu=
-tion
-> for this case).
->=20
-> - Nuno S=C3=A1
+On Wed, May 10, 2023 at 5:46=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
+>
+> Hey Anup,
+>
+> On Mon, May 08, 2023 at 07:58:35PM +0530, Anup Patel wrote:
+> > +  interrupts-extended:
+> > +    minItems: 1
+> > +    maxItems: 16384
+> > +    description:
+> > +      This property represents the set of CPUs (or HARTs) for which gi=
+ven
+> > +      device tree node describes the IMSIC interrupt files. Each node =
+pointed
+> > +      to should be a riscv,cpu-intc node, which has a riscv node (i.e.=
+ RISC-V
+> > +      HART) as parent.
+>
+> One minor nit here about wording - "riscv node" doesn't seem
+> particularly clear to me, should it be s/riscv node/cpu node/?
 
-Pinging this one just to understand if this is something that we wanna fix =
-at the
-driver core level...
+Okay, I will update.
 
-I'll wait a bit more to see if anyone has some comments that might already =
-help me in
-going in the right direction.
+>
+> My only thing last time around was my misunderstanding, and you also
+> appear to have resolved Rob's complaints, so:
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Just to note, it'd be great if you could CC me on series that I've
+> already reviewed when you resubmit them?
+> Although in this case, if you ran get_maintainer.pl on v6.4-rc1 it'd have
+> told you to CC me anyway ;)
+>
+> Thanks,
+> Conor.
 
-
-- Nuno S=C3=A1
+Regards,
+Anup
