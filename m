@@ -2,189 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67DC172E021
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 12:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C86FB72E03B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 12:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240582AbjFMKxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 06:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42386 "EHLO
+        id S242050AbjFMK6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 06:58:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233941AbjFMKxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 06:53:48 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E6E1B4
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 03:53:46 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b1b3836392so66126541fa.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 03:53:46 -0700 (PDT)
+        with ESMTP id S239026AbjFMK6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 06:58:39 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA17310D4;
+        Tue, 13 Jun 2023 03:58:38 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-662f0feafb2so3927995b3a.1;
+        Tue, 13 Jun 2023 03:58:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686653624; x=1689245624;
+        d=gmail.com; s=20221208; t=1686653918; x=1689245918;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7/ZCLAeCcfQ3eJIRINpsKqGfmpkFlfxkpCbtPVXG0hM=;
-        b=SRe6PcgilZzJ8XMwydFMBJuZRq1Nxti3V2V7ii10Hl2Ze/ycLRjuWGqaZAhO7pk9OR
-         Yar79XLKLpX476NlndJETikJTMThoX1Zs4EuzGlLFZkYA+TQO7wN3OZzXJKsM3qt66KL
-         Cf8Pk3PcGrNsnuQ8IRkN73Q9AdB6X6Xdaa+StFHB+J/145KqV/vsbc5u298Urua0BVCg
-         TzSwOwG94q0Xvmf9xswOS+1ee8GXq4kBqKBjmx5D01mSkmqGEU0sgQT4uEEGPuiljiIy
-         uAniXpRzJE41PTq2hR+aK5qPwlKyI5EjqRuxYLDH7XfdbNG2n+fZ77qgEChfevDizg0O
-         O8kw==
+        bh=g816wKmTzjGrsMqAUO96nczc9ajLi9Tce0NGl/fCFGM=;
+        b=Nu8qTTKGvJQqvV1LFAeRfPJhXuBfvDyjaBCqv6/J8ihQx4ErFwpT+047weYG2+iFYa
+         lHUm9xjeseq1+ysAJl/Y8C0Vl11j3LrsdANbT9H4oHxCpUhBNggO2orPCLMQgy9/VuKg
+         6+gt+nIuugGRZjCmr+fJNT+UmzsOk0YQ2ZpRWZE/ZtbM+6SnH82QRO81oaSRSKXkNzYC
+         7Wc0u4omCGYmr12liRAxIqVvNpV9Fm53sn1hSUpaYV/t25MPsE2SqZj1bruTYodjVou+
+         l/hINNGMkv6ba6ui+DaBcZXCYlXHJPzfON9UDqdSZ2nBjnS+4dAGuh+61my3+yK6QBN/
+         mPxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686653624; x=1689245624;
+        d=1e100.net; s=20221208; t=1686653918; x=1689245918;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7/ZCLAeCcfQ3eJIRINpsKqGfmpkFlfxkpCbtPVXG0hM=;
-        b=XVot+dsP9oEYg5sjkZHOZXzwauigllTBIZQAPKxIOClWC0UoEl7RyYUW7d8KNFik5L
-         tw8zg8vGbD6IYs/Xmv/Rwaxyfh2MPtW1QE3dVPMeirsXFCqqVFe9bYLtBksbLzqa1nA0
-         5nlzBxggTJJcXkxJG7JA6uljM7cwr/mt3SyKOko2BnGLo6Cj2Jvd0L73mWokp0mf9BvY
-         LRCUSJIv6GYu5lgH9ivG0LscgpmsHhIK+0PY83ocnRpSGFJFMm8Gru2SzybkV96w+t2h
-         +8Vlf/on6Xb0tq1N6I1XeospQyeo/vyxFdmaSK1jxJCQQuUyBSTg1lVJE3fAKOFoyL6G
-         CJxQ==
-X-Gm-Message-State: AC+VfDzqU5kOkor+6sQr7FhRzg7At5e7mHDz3zrIbxGgRxgnCJowpaz9
-        lc4DIjf50rBH91lgGfaBEkEgZQ==
-X-Google-Smtp-Source: ACHHUZ6uqHRBmuiaAjNwO4VItTgi9nDeWav7bqGdckColPNj3KXQMh0quW3KrJxlXIfZqAQuxdoPAQ==
-X-Received: by 2002:a2e:7306:0:b0:2b2:4e86:57f2 with SMTP id o6-20020a2e7306000000b002b24e8657f2mr4150861ljc.19.1686653624441;
-        Tue, 13 Jun 2023 03:53:44 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id a12-20020a2e830c000000b002b22a1a21easm1731993ljh.110.2023.06.13.03.53.43
+        bh=g816wKmTzjGrsMqAUO96nczc9ajLi9Tce0NGl/fCFGM=;
+        b=fG4BiZ1m0igxTxRtyEbQoqOmIx5q6URIJXpHzqX/8afv6LG8YGWwE6EpGUeftmEbHH
+         G05JQvl9jfGcODS7HmQbb25S75HyueOueVsVb90ifangYOjbh9TBDQaQlhWevuSWcNMn
+         1eG6RXlCYkd7YdxruTihd1FseujHL5oNGVn0iCu1SSPGoyW0+2emdYBspBzOslueNCdf
+         RwxrwPadQlfdTFfk6wJfje3dvDhQY47acTd6Q4TQCP9sPxBEjGd0tsjl9o1sf4FXCFYb
+         MCTuh68NAhRgqrV8JQf+gUe30WY1YcfqPH6tEVfXNFr8ruVND4OcKy9yBqAw5NjnfUgi
+         ylXQ==
+X-Gm-Message-State: AC+VfDzyuR+V7M7fVRa4FOmdpAfVp7YCf11Q8h4Cl6qC/a8+MK1Vbsaq
+        A/NUscQuL1a16UrkhQ3u3VPzszvSi4I=
+X-Google-Smtp-Source: ACHHUZ7I0b/NZGw98SSO8yJUQN29EI2VL52PVwFx8ph3ohep3LgKkFRLoYXYQg4146/Vf2KJ3gceJQ==
+X-Received: by 2002:a05:6a20:3c8d:b0:101:1e75:78e with SMTP id b13-20020a056a203c8d00b001011e75078emr17197706pzj.14.1686653918142;
+        Tue, 13 Jun 2023 03:58:38 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id s15-20020a65644f000000b00543bfe33fedsm8349191pgv.20.2023.06.13.03.58.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 03:53:44 -0700 (PDT)
-Message-ID: <e9bf9658-216f-a882-c699-858c41892451@linaro.org>
-Date:   Tue, 13 Jun 2023 12:53:43 +0200
+        Tue, 13 Jun 2023 03:58:37 -0700 (PDT)
+Message-ID: <f8eb6114-8248-8886-b301-c2886e50e016@gmail.com>
+Date:   Tue, 13 Jun 2023 18:58:32 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8180x: Add USB Type-C of_graph
- anchors
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v14 1/1] tty: serial: Add Nuvoton ma35d1 serial driver
+ support
 Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230612221456.1887533-1-quic_bjorande@quicinc.com>
- <20230612221456.1887533-2-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230612221456.1887533-2-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, jirislaby@kernel.org, tmaimon77@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, arnd@arndb.de, soc@kernel.org,
+        schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230612025355.547871-1-ychuang570808@gmail.com>
+ <20230612025355.547871-2-ychuang570808@gmail.com>
+ <2023061338-lunchbox-snorkel-e6a9@gregkh>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <2023061338-lunchbox-snorkel-e6a9@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear Greg,
 
 
-On 13.06.2023 00:14, Bjorn Andersson wrote:
-> Define anchors for wiring up the USB Type-C graph in the board files.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On 2023/6/13 下午 06:28, Greg KH wrote:
+> On Mon, Jun 12, 2023 at 02:53:55AM +0000, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>
+>> This adds UART and console driver for Nuvoton ma35d1 Soc.
+>> It supports full-duplex communication, FIFO control, and
+>> hardware flow control.
+> You get a full 72 columns for your changelog :)
+>
+>> --- a/include/uapi/linux/serial_core.h
+>> +++ b/include/uapi/linux/serial_core.h
+>> @@ -279,4 +279,7 @@
+>>   /* Sunplus UART */
+>>   #define PORT_SUNPLUS	123
+>>   
+>> +/* Nuvoton MA35 SoC */
+>> +#define PORT_MA35	124
+>> +
+> Why is this change needed?  What userspace code is going to rely on it?
+>
+> thanks,
+>
+> greg k-h
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc8180x.dtsi | 48 +++++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> index a7668f9e68d6..4144beb70cb4 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> @@ -2464,6 +2464,23 @@ usb_prim_qmpphy: phy@88e9000 {
->  
->  			status = "disabled";
->  
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					usb_prim_qmpphy_out: endpoint {};
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +
-> +					usb_prim_qmpphy_dp_in: endpoint {};
-> +				};
-> +			};
-> +
->  			usb_prim_ssphy: usb3-phy@88e9200 {
->  				reg = <0 0x088e9200 0 0x200>,
->  				      <0 0x088e9400 0 0x200>,
-> @@ -2513,6 +2530,23 @@ usb_sec_qmpphy: phy@88ee000 {
->  
->  			status = "disabled";
->  
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					usb_sec_qmpphy_out: endpoint {};
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +
-> +					usb_sec_qmpphy_dp_in: endpoint {};
-> +				};
-> +			};
-> +
->  			usb_sec_ssphy: usb3-phy@88e9200 {
->  				reg = <0 0x088ee200 0 0x200>,
->  				      <0 0x088ee400 0 0x200>,
-> @@ -2607,6 +2641,11 @@ usb_prim_dwc3: usb@a600000 {
->  				snps,dis_enblslpm_quirk;
->  				phys = <&usb_prim_hsphy>, <&usb_prim_ssphy>;
->  				phy-names = "usb2-phy", "usb3-phy";
-> +
-> +				port {
-> +					usb_prim_role_switch: endpoint {
-> +					};
-> +				};
->  			};
->  		};
->  
-> @@ -2659,6 +2698,11 @@ usb_sec_dwc3: usb@a800000 {
->  				snps,dis_enblslpm_quirk;
->  				phys = <&usb_sec_hsphy>, <&usb_sec_ssphy>;
->  				phy-names = "usb2-phy", "usb3-phy";
-> +
-> +				port {
-> +					usb_sec_role_switch: endpoint {
-> +					};
-> +				};
->  			};
->  		};
->  
-> @@ -2986,6 +3030,8 @@ dp0_in: endpoint {
->  
->  					port@1 {
->  						reg = <1>;
-> +						mdss_dp0_out: endpoint {
-> +						};
->  					};
->  				};
->  
-> @@ -3060,6 +3106,8 @@ dp1_in: endpoint {
->  
->  					port@1 {
->  						reg = <1>;
-> +						mdss_dp1_out: endpoint {
-> +						};
->  					};
->  				};
->  
+Because the serial driver requires a port->type, and almost all serial
+drivers defined their port type here. We follow the practice of most serial
+drivers here.
+If we don't do it this way, we would have to directly assign a value to
+port->type. However, such modifications were questioned in the past,
+which is why we changed it back to defining the port type in serial_core.h.
+
+
+Best regards,
+Jacky Huang
+
+
+
+
