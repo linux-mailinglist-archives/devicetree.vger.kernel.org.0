@@ -2,126 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE90672EBFD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:31:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47D7072EC4C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jun 2023 21:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231675AbjFMTbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 15:31:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37250 "EHLO
+        id S235301AbjFMTvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 15:51:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230038AbjFMTbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:31:40 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90CB519F;
-        Tue, 13 Jun 2023 12:31:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686684696; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=i9NAex8IvHcO+Eks0UF5tXhjlxeGE8bPgyUjgiHvQBQ6UJGJxB1VU826az3nw2xCFx
-    A2Ywk+ImPvGJNOD7qp8SWVR4iGUzpXXgefSmJumCzPpz3hCsb4kFhv2SKzAdP+MHNskm
-    lG+LWN13eA2A8qWjklGCgN4QckGPVQqdli8i2OQRXRAXjhldFkhylkTwuB8R4b6msSKD
-    YmOv1xSaXb3J2Sker8bgQVb4QsiTWxDcCAfbOBd4ZLYng8YLApc3AZ+k11/zsKo01XFH
-    aocIK+ZSmAgMC4pIFQRgMBR8SzYD84S4Kt+3bxfaDSn9GT3AN0GBNOvNxNkiTIWIECGl
-    642w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686684696;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=TIYmApHrHDmwJcN1MBgG4zROT88X79OMyiaDJD5wJqU=;
-    b=PM71sj5oymrBrxiCzkEiRjQ6rF0QNhN0Cn9odJ409rQbU3+aTpOZMTDUMljL2XyIU0
-    yYjfbWZyHfLkhJrTqsG8D/+AZyPwdZrWtKOmbPQx6QvMe0MZlWTFUbODIFhAbCtwb9Qd
-    TDR1vwPOjrNw9C8jK29INzhMAIlBqR2GkneONSQpBAp61XUtm7Zvm9e3hkChLG5qlqZ4
-    M2cnWPLmgKozp3NG0kTNO0KV7O+mJCbWGfJozh42Y3i7I03Y+Sp5l1njK8VA4yDFTTMv
-    UoSNTgvjqAtd1QKwWtmJsMgTUff3pEOx0pWg/G2WTKjYyACCZVYbEpKoZREFny6KDJKf
-    jVPg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686684696;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=TIYmApHrHDmwJcN1MBgG4zROT88X79OMyiaDJD5wJqU=;
-    b=c7apPiucD4QhROFfl3ZDexA6Jitw5diOPnCsAJc+04+LDnCMFhnt9okpm5Qh3Pvhxg
-    Y1hQLS13pFxxa0pukBpeV2KaHZtja1AO2kQ4e8hvYvb7qPlWzPI99uQLZppsidU9p8YD
-    uTmIyiyhVpvCR37ohzJ9qA4/tNMaId6vg6de8f5dfeNiroQUEm4PD4UWVg66RzkTgmEU
-    amOZSzNbzVX1qYtnbQUlJrIwg9ljG9bxBf959AKACJywvxdqNRFP3RlmqjSdYCsKa2o2
-    A28oUAG/aMpiHzmHMoZitQsYz3OEiQpA7nQWueDJwLcy6yIoHgBNVkH9iL5vb181i8kz
-    ca4g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686684696;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=TIYmApHrHDmwJcN1MBgG4zROT88X79OMyiaDJD5wJqU=;
-    b=Sk2D34KD1mkzYoLdFku+AsWhCGedIcYmUcSz/MUglekMldKe3sHaKUTPvKabkJt2ZI
-    pzr/gLM0mrQ0k9nkBBCw==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z3h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.5.3 DYNA|AUTH)
-    with ESMTPSA id Z82ec2z5DJVaa4J
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 13 Jun 2023 21:31:36 +0200 (CEST)
-Date:   Tue, 13 Jun 2023 21:31:29 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Fix up cluster idle states
-Message-ID: <ZIjEEarBM93g8beB@gerhold.net>
-References: <20230613-topic-6115idlestates-v1-1-fa017052319d@linaro.org>
+        with ESMTP id S234699AbjFMTvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 15:51:20 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B74E170E
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:51:18 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5187a752745so1105398a12.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 12:51:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google; t=1686685876; x=1689277876;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9XrzWEILW2x+ufSnQTLs9RCR/ifbXpqGYfzmWq4Xzfw=;
+        b=HxJgIZnokPQC4w4n/ljElh/G9CPMr7jFKAuQJSUbriAhV0lpH4aj/mKWzIIaQdPVdI
+         61MCXTxiS1Gykye1NeSq90p5131JuvWrwsjBYvfLLZdGnV8/yL8yUcRtuuorlvapgKIn
+         2JiRDarpT5JKkBFCsRX4AIed6dswnteP7qUJw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686685876; x=1689277876;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9XrzWEILW2x+ufSnQTLs9RCR/ifbXpqGYfzmWq4Xzfw=;
+        b=gEqt1UQln3wX4nS1rH0+LKifDAKDkvi9QYOX4UFlLXRLr8bd0yRC3n2YnJlHP/98Uy
+         1Zu5qonNrqlc1clx5HbaOUBXMiYECcxu8L11Jo/dnPpIuGBeNZlKXP/bedTXTeq8nMrA
+         Hb1Yk2FlLz92MkhqzDXF4s8nui7CvcjGVgI9ndPmYsw7xgoNc9pRsB6w6Mdl4RvJuFmh
+         CMBpjGkQBRMfkbp7y0uanF/dT2KJli3/EG9ZXpoMgy8TWQgYvlMeTarOgsyIykmuFn51
+         TxE93h9uyOjNH7J8/H2mq1RVPbfw9L/V8bO4LXNNRd4G5WFESYSTwgk2uHU28yHQLqMT
+         mtcw==
+X-Gm-Message-State: AC+VfDz6mCDiXriQSjqm+CN98CM8s2Kbli4xm3VEsDFlEIy62EW3V+eW
+        lr7RNvPedoy+RZmqlXz9Ru6lSA==
+X-Google-Smtp-Source: ACHHUZ65S6x3wUe+xgz7Fe5682XAiDKrg9U4eu/Kbphk/SgJjL/tWAenrGrQqtahtTZh0ltgZ4pGpw==
+X-Received: by 2002:aa7:c58a:0:b0:514:9e2d:bfd8 with SMTP id g10-20020aa7c58a000000b005149e2dbfd8mr8346139edq.34.1686685876516;
+        Tue, 13 Jun 2023 12:51:16 -0700 (PDT)
+Received: from [192.168.1.128] ([80.208.70.1])
+        by smtp.gmail.com with ESMTPSA id p4-20020aa7d304000000b005169ffc81absm6842027edq.51.2023.06.13.12.51.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 12:51:16 -0700 (PDT)
+Message-ID: <dd15aaeb-04ff-126b-b524-44e30c60426b@rasmusvillemoes.dk>
+Date:   Tue, 13 Jun 2023 21:51:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230613-topic-6115idlestates-v1-1-fa017052319d@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 3/8] dt-bindings: rtc: isl12022: add bindings for
+ battery alarm trip levels
+Content-Language: en-US, da
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-4-linux@rasmusvillemoes.dk>
+ <0600a505-d1bf-f4be-57ef-51d34c77501e@linaro.org>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <0600a505-d1bf-f4be-57ef-51d34c77501e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 09:13:47PM +0200, Konrad Dybcio wrote:
-> The lowest nibble of the PSCI suspend param denotes the CPU state.
-> It was mistakenly set to mimic the cluster state, resulting in poking
-> PSCI with undocumented 0x2 and 0x4 states (both of which seem to be
-> implemented and undocumented). Also, GDHS cluster param was wrong for C1.
+On 13/06/2023 21.09, Krzysztof Kozlowski wrote:
+> On 13/06/2023 15:00, Rasmus Villemoes wrote:
+>> The isl12022 has a built-in support for monitoring the voltage of the
+>> backup battery, and setting bits in the status register when that
+>> voltage drops below two predetermined levels (usually 85% and 75% of
+>> the nominal voltage). However, since it can operate at wide range of
+>> battery voltages (2.5V - 5.5V), one must configure those trip levels
+>> according to which battery is used on a given board.
+>>
+>> Add bindings for defining these two trip levels. While the register
+>> and bit names suggest that they should correspond to 85% and 75% of
+>> the nominal battery voltage, the data sheet also says
+>>
+>>   There are total of 7 levels that could be selected for the first
+>>   alarm. Any of the of levels could be selected as the first alarm
+>>   with no reference as to nominal Battery voltage level.
+>>
+>> Hence this provides the hardware designer the ability to choose values
+>> based on the discharge characteristics of the battery chosen for the
+>> given product, rather than just having one battery-microvolt property
+>> and having the driver choose levels close to 0.85/0.75 times that.
+>>
+>> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+>> ---
+>>  .../devicetree/bindings/rtc/intersil,isl12022.yaml | 14 ++++++++++++++
+>>  1 file changed, 14 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+>> index 7c1e638d657a..d5d3a687a34d 100644
+>> --- a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+>> +++ b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+>> @@ -22,6 +22,18 @@ properties:
+>>    interrupts:
+>>      maxItems: 1
+>>  
+>> +  isil,trip-level85-microvolt:
 > 
-> Fix that.
+> Why encoding level85 in the property name? Your commit msg (datasheet)
+> suggests this is quite flexible, so why it cannot be just list of two
+> trip levels - for first and second interrupt?
+
+Yeah, so I did consider just making it a two-element array
+isil,trip-levels-microvolt. But then I didn't know how to express the
+enum constraint, i.e. that the first must be one of the 2125000, ...,
+4675000 values and the second one of the 1875000, ..., 4125000 ones. Is
+that possible, without providing a list of 49 possible pairs? Or is it
+sufficient to just write this out in prose?
+
+I'm also happy to use other names for these. I just chose to use the 85
+and 75 nomenclature because that matches the field names.
+
+>> +    description: |
 > 
-> Fixes: b5de1a9ff1f2 ("arm64: dts: qcom: sm6115: Add CPU idle-states")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 55118577bf92..07d8b842d7be 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -225,7 +225,7 @@ domain-idle-states {
->  			CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
->  				/* GDHS */
->  				compatible = "domain-idle-state";
-> -				arm,psci-suspend-param = <0x40000022>;
-> +				arm,psci-suspend-param = <0x40000023>;
+> Do not need '|' unless you need to preserve formatting.
 
-I think entering GDHS is also "Core is last in power level" "1=Cluster"
-so (1 << 24) should be set here as well (i.e. 0x41...).
+OK.
 
-Otherwise the fixes look good, thanks for taking a look!
+Rasmus
 
-Thanks,
-Stephan
