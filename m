@@ -2,52 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81765730465
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 18:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED70730467
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 18:00:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245242AbjFNQAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 12:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52858 "EHLO
+        id S245129AbjFNQAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 12:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245105AbjFNQAX (ORCPT
+        with ESMTP id S245076AbjFNQAX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 12:00:23 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897E61FCA;
-        Wed, 14 Jun 2023 09:00:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D69F2117;
+        Wed, 14 Jun 2023 09:00:21 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 223E663FDB;
-        Wed, 14 Jun 2023 16:00:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC4D1C433CC;
-        Wed, 14 Jun 2023 16:00:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7E9AB6441C;
+        Wed, 14 Jun 2023 16:00:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6511EC433C8;
+        Wed, 14 Jun 2023 16:00:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686758418;
-        bh=axFekjr54sw0KjPsVIliju7NLE77XPWr8/EwmApJkHo=;
+        s=k20201202; t=1686758420;
+        bh=+GDOie9Y5yo7+W/LNlvEMtAgRoYKTZPL6eQTFkYQEAw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=u3ARJp6AhqbxM6n8ZkLdxu+ktlppWCY3gmEMGT0LVOxgLVKrw7dMJI3zSfLWv9b7R
-         NxdTSE8RucHckQ/1EHJeEeN4OwOfq8aFBAv9AqJAnGIMYyWPbMkzfgiGVk9BmX4nL/
-         2PL2Hk+8cu3Ej5hSiTeuYKSNSGNIrRYGbHRPUqv+IbteH30t7B7gTFQnmAysidySoe
-         7UozY4W85+3z7eSO12VYAWZSc1PSO8ofpSiHm+LfAu3sWHcddQkgq3ji+dlVNPKQ9E
-         ew0jvfsrFhKNWv0h/jHOSA6HXTCUKWw9gKKweQ6HwHdvouxqQ64tuBFKoyNVuSa0kH
-         ObPpEbtRlCPkw==
+        b=hzNHgCdTS6xkNGZHZecn8oCQ1hnOBMRgccEZuL1K56JWjWlhOBAa6PQSaJiIOHuXl
+         zLQ8eg+V85K52AvN+CRMz7YU1nxDE+zHBpm48PxZjT10O5RYnEkUvlC2F8eK2e2BJ9
+         RwAOUl/FH69+GPYOQYBlqJGMKZWI1a7Rt8U2FRDbW7tdAUNg05VuLQgi1vdBsfgF7k
+         8x2R/j3DnJmMKy3PGOgnxlymj5QPRduu0NMlG5g3q3xTqplImswMwU+t2GRpqKpIpi
+         pSSIFhNzMtvrRYyS+5i9CZlqBwUOu+oEs+bH9PLR+fYIyHOteP8tzElNrIGVpK8A+z
+         j4xzrV5Uq9bYA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     freedreno@lists.freedesktop.org, johan@kernel.org,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        devicetree@vger.kernel.org,
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     devicetree@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        mani@kernel.org, dri-devel@lists.freedesktop.org,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] drm/msm/adreno: GPU support on SC8280XP
-Date:   Wed, 14 Jun 2023 09:03:35 -0700
-Message-Id: <168675861183.1453524.15760956769812748282.b4-ty@kernel.org>
+Subject: Re: [PATCH 0/8] arm64: dts: qcom: msm8939: Rework regulator constraints
+Date:   Wed, 14 Jun 2023 09:03:38 -0700
+Message-Id: <168675861182.1453524.2927753257641993379.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230614142204.2675653-1-quic_bjorande@quicinc.com>
-References: <20230614142204.2675653-1-quic_bjorande@quicinc.com>
+In-Reply-To: <20230530-msm8939-regulators-v1-0-a3c3ac833567@gerhold.net>
+References: <20230530-msm8939-regulators-v1-0-a3c3ac833567@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -61,22 +58,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jun 2023 07:22:02 -0700, Bjorn Andersson wrote:
-> With the A690 support merged in the drm/msm driver, this series adds the
-> DeviceTree pieces to make it go on sc8280xp.
-> 
-> Note that in order for the GPU driver to probe, the last change
-> requires (which is now in linux-next):
-> https://lore.kernel.org/linux-arm-msm/20230410185226.3240336-1-dmitry.baryshkov@linaro.org/
+On Wed, 14 Jun 2023 09:15:58 +0200, Stephan Gerhold wrote:
+> Rework the regulator constraints for the MSM8939 device trees to be
+> closer to reality. There are several mistakes in there, some of them
+> taken over directly from Qualcomm's vendor kernel. Fortunately, none of
+> the mistakes is absolutely critical because it turns out that the RPM
+> firmware also validates the voltages and silently clamps the requests
+> to a proper range. Still, this behavior should be clearly represented
+> in the device tree rather than pretending to apply the wrong voltages.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: sc8280xp: Add GPU related nodes
-      commit: eec51ab2fd6f447a993c502364704d0cb5bc8cae
-[2/2] arm64: dts: qcom: sc8280xp: Enable GPU related nodes
-      commit: 598a06afca5a2ab4850ce9ff8146ec728cca570c
+[1/8] arm64: dts: qcom: msm8939-pm8916: Add missing pm8916_codec supplies
+      commit: dce9254511d6c9ea0d5ed7e4f21e6206e2ca35ce
+[2/8] arm64: dts: qcom: msm8939: Disable lpass_codec by default
+      commit: 6002a78023cded6f02eac7c812b076046cab8060
+[3/8] arm64: dts: qcom: msm8939-sony-tulip: Fix l10-l12 regulator voltages
+      commit: 209aea1ad505519faf018b596e4fdca0d0569469
+[4/8] arm64: dts: qcom: msm8939-sony-tulip: Allow disabling pm8916_l6
+      commit: 8771308c91cefc072f36415cec0b802ee55b1d96
+[5/8] arm64: dts: qcom: msm8939: Fix regulator constraints
+      commit: 9187d555c4ba9544c7f117062d241aa085f59a06
+[6/8] arm64: dts: qcom: msm8939-pm8916: Clarify purpose
+      commit: 88028fa047fb72826dd206b51550be780777718c
+[7/8] arm64: dts: qcom: msm8939: Define regulator constraints next to usage
+      commit: 5cdab9a8c70c4d979909dd1bb6d1f3eacd9fa270
+[8/8] arm64: dts: qcom: msm8939-pm8916: Mark always-on regulators
+      commit: ecbfba694b5baf2b854689c63ef011e905810c59
 
 Best regards,
 -- 
