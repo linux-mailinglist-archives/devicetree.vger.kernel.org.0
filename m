@@ -2,157 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 792E972FFB9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 15:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DA0572FFFF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 15:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244917AbjFNNOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 09:14:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35230 "EHLO
+        id S236686AbjFNN1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 09:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240303AbjFNNOM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 09:14:12 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC22269A;
-        Wed, 14 Jun 2023 06:13:50 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BF9966606F20;
-        Wed, 14 Jun 2023 14:13:47 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1686748428;
-        bh=K4WTi0JZ7NzreJtn6e/6oeiwkA8ObHQNkqYaWXGPEjc=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=moJB43tmRR3Wb0jBxt3y3HdKfsoko9VHoMjH60aEQvKudl12WyStjZImqLkSqXX36
-         Kucm92qM5YMyKkS+JCQWgZuqLLM1kMw+mLwhWjFC5F59O0nsSNLudU4jkdtWMeBojj
-         2sU91HWKD9B3oVkm1weJOVKwt+nk9IvfN+nLzKrutyCZan3cGkFwxCkf31aKRwGMCL
-         0SDZcyq33ssyOrywTKM8LRT1XMloROjmM3G4nCL301Y/V9V2KdmnEZ0wYF/aaJbLcM
-         cM0gFX90gzQVJzFh44XbnV9xSxkp3SiE8IxD2Lw3Km/hBB+DpaaDK7zAPH97WnnpRs
-         WDOx5dAy2H5WQ==
-Message-ID: <057386c7-a7cf-14cb-d564-1b30e79806f6@collabora.com>
-Date:   Wed, 14 Jun 2023 15:13:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8250-edo: Panel framebuffer is
- 2.5k instead of 4k
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S240617AbjFNN1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 09:27:46 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BF6F1981;
+        Wed, 14 Jun 2023 06:27:44 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-30aebe2602fso4750163f8f.3;
+        Wed, 14 Jun 2023 06:27:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686749263; x=1689341263;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0JybOUC/usbiCh45KPFPiAH4HAFzWlMk/CzyDoXTHvw=;
+        b=CG5wzZzFulGLaWBywnh8vLcrY5OVo7hkm5vSWNCEWtnOD85u9HtIENjHgSX00MLAsH
+         qa1qB3iNLBrezxUoLMEdmxxjmvmTlHXnEeQfYsfR83kLYB2+oCUgJg2Z2BIgmtCG0h7S
+         1M0jGBwIjGFly8IEGPyYxAdpHVZKtKkZToP1z1C7o/2wJsWtA+elysJk6qCbeFMDGq4X
+         +XNPjuFC4FIKWTLS3ssWD0VM+EX5hsnxHB2aMBTPgXZkFccBUFr6hQqEIoXgmqDIHQC/
+         LPrDBYesH7bx47sKqMk6NTLxytV0TYoMEi36NLiH4w+xUkQewjU/2VuXYRo2vaEdmPXh
+         x1BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686749263; x=1689341263;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0JybOUC/usbiCh45KPFPiAH4HAFzWlMk/CzyDoXTHvw=;
+        b=Bl4jbcpeplPgomDiGNxhzCLGlyd5S1NuczZ20nLjaKv6Np6wnlbMP8H6n/afHvnJSc
+         N7S827PNsnm72UYiLelaTI9j4hdcb9m7ozr1LpEl5bbXXQ6GRZSiX5WRDtabISZVIW4/
+         02XuuWtsyA6ua98FRLH/GrHbAiwtsXVrOxkJn7siV2k7attv/ZwlN05/2UOiT5o6EqUo
+         XBVGGURW4Ha8E8YP44tgIT/KyMEQevApAO30Qo8Bnuu/eJQW13YhU22KtwrnbUY+Gb9g
+         z4yGFILOULkclN0b/aWL6tHavnADd4el1MLhyCM0mTAv6ftGxTjAVTuSrn5sl1U/2310
+         XATA==
+X-Gm-Message-State: AC+VfDyP5MPC+ADe7v5XF3ghepPgJxI/Bg+htTyGC24S4/+93ptV7x8O
+        07uHIH5tk3Vrn/n/PrAuixs0GqOUXFqxI4G+
+X-Google-Smtp-Source: ACHHUZ6B95mYcyIWglkX2AJPo2Edd/kEP1c2r0xHxgEWg3TfS9jBQwDsg+SwBmR7NaedLam4ntbNUw==
+X-Received: by 2002:a05:6000:51:b0:30a:f3ca:17bb with SMTP id k17-20020a056000005100b0030af3ca17bbmr7486540wrx.35.1686749262663;
+        Wed, 14 Jun 2023 06:27:42 -0700 (PDT)
+Received: from user-PC.. ([92.51.95.194])
+        by smtp.gmail.com with ESMTPSA id l6-20020a5d4bc6000000b003047ae72b14sm18295017wrt.82.2023.06.14.06.27.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 06:27:42 -0700 (PDT)
+From:   Maksim Kiselev <bigunclemax@gmail.com>
+To:     linux-iio@vger.kernel.org
+Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230606211418.587676-1-marijn.suijten@somainline.org>
- <974f68dc-b667-c9a7-94c4-1023ef271fab@linaro.org>
- <a69ddadd-8d59-e784-ddce-16c83a7f13a6@collabora.com>
- <kdu6apwgp7nu6mwqatufhxvnbunwodr4iu2uaqjacbjgbmmy5y@zh53imtpqfgs>
- <8d91dfc0-f6c0-813f-de9c-1befdd0ccfdf@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <8d91dfc0-f6c0-813f-de9c-1befdd0ccfdf@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v6 0/3] Add support for Allwinner GPADC on D1/T113s/R329/T507 SoCs
+Date:   Wed, 14 Jun 2023 16:26:24 +0300
+Message-Id: <20230614132644.699425-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/06/23 14:43, Konrad Dybcio ha scritto:
-> On 14.06.2023 14:40, Marijn Suijten wrote:
->> On 2023-06-07 09:15:08, AngeloGioacchino Del Regno wrote:
->>> Il 07/06/23 00:52, Konrad Dybcio ha scritto:
->>>>
->>>>
->>>> On 6.06.2023 23:14, Marijn Suijten wrote:
->>>>> The framebuffer configuration for edo pdx203, written in edo dtsi (which
->>>>> is overwritten in pdx206 dts for its smaller panel) has to use a
->>>>> 1096x2560 configuration as this is what the panel (and framebuffer area)
->>>>> has been initialized to.  Downstream userspace also has access to (and
->>>>> uses) this 2.5k mode by default, and only switches the panel to 4k when
->>>>> requested.
->>>>>
->>>>> This is similar to commit be8de06dc397 ("arm64: dts: qcom:
->>>>> sm8150-kumano: Panel framebuffer is 2.5k instead of 4k") which fixed the
->>>>> same for the previous generation Sony platform.
->>>>>
->>>>> Fixes: 69cdb97ef652 ("arm64: dts: qcom: sm8250: Add support for SONY Xperia 1 II / 5 II (Edo platform)")
->>>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
->>>>> ---
->>>> And so I derped again.
->>>>
->>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>
->>> I would've liked more to see a commit saying "replace simple-framebuffer with xxxx"
->>> (where xxxx is DSI panel, etc) but that will as well do for now... :-)
->>
->> Fwiw we could keep it around as MDSS "gracefully" takes over when it
->> probes a little bit later with fbcon over DRM/KMS, and it sometimes
->> helps reading what is up when something fails before or during MDSS
->> probe.
-> I believe we should do this. Perhaps even add some early code to drm/msm
-> that'd read out the address (and other configuration) from the mdp hw and
-> set it up automagically.
-> 
+This series adds support for general purpose ADC (GPADC) on new
+Allwinner's SoCs, such as D1, T113s, T507 and R329. The implemented driver
+provides basic functionality for getting ADC channels data.
 
-As far as I remember, some bootloaders are reading devicetrees to setup the display
-at boot with "continuous splash", that's why I would be for *replacing* the simple
-framebuffer with the mdss-dsi.
+Change History:
+v6:
+- Fixed DT bindings regexp for channel properties
+- Dropped checking the max number of channels from the drivers code
+  (This is redundant as we raly on DT bindings check)
 
-Adding early code to drm/msm to read out the address and check the state of the HW
-before pushing an early framebuffer would be a definitive solution for that corner
-case. Good call, Konrad.
+v5:
+- Fixed DT bindings properties for child nodes
 
-Cheers,
-Angelo
+v4:
+- Fixed DT bindings warnings
+- Used GENMASK to clear the irq register
+- Minor formatting fixes
 
-> Konrad
->>
->> - Marijn
->>
->>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>
->>>>
->>>> Konrad
->>>>>
->>>>> Changes since v2:
->>>>> - Rename griffin (copy-paste from related patch) to pdx203 in comment.
->>>>>
->>>>>    arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 7 ++++---
->>>>>    1 file changed, 4 insertions(+), 3 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
->>>>> index 3d22be747f042..8f867f841cb83 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
->>>>> @@ -54,9 +54,10 @@ chosen {
->>>>>    		framebuffer: framebuffer@9c000000 {
->>>>>    			compatible = "simple-framebuffer";
->>>>>    			reg = <0 0x9c000000 0 0x2300000>;
->>>>> -			width = <1644>;
->>>>> -			height = <3840>;
->>>>> -			stride = <(1644 * 4)>;
->>>>> +			/* pdx203 BL initializes in 2.5k mode, not 4k */
->>>>> +			width = <1096>;
->>>>> +			height = <2560>;
->>>>> +			stride = <(1096 * 4)>;
->>>>>    			format = "a8r8g8b8";
->>>>>    		};
->>>>>    	};
->>>
+v3:
+- Added DT bindings dual license, fixed property order and example formatting
+- Added explanations comments for timeout and mutex
+- Dropped unnecessary regmap and used readl/writel instead
+- Added error message about getting channel number
+- Renamed labels and variables to make them self-explanatory
+
+v2:
+- Added lastch flag to avoid addition work for already selected channel
+- Added reset assertion on module remove
+- Added dynamic channel allocation and dropped iio_chan_spec arrays
+- Changed IIO_CHAN_INFO_SCALE type to FRACTIONAL_LOG2
+- Dropped separate compatible strings and configs for T113s and R329
+- Fixed includes
+- Fixed Kconfig description
+- Removed duplicate probe error messages
+- Used FIELD_PREP for bit setup
+
+v1:
+- Initial version
 
 
+Maksim Kiselev (3):
+  iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
+  dt-bindings: iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
+  riscv: dts: allwinner: d1: Add GPADC node
+
+ .../iio/adc/allwinner,sun20i-d1-gpadc.yaml    |  91 ++++++
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  10 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/sun20i-gpadc-iio.c            | 276 ++++++++++++++++++
+ 5 files changed, 388 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
+ create mode 100644 drivers/iio/adc/sun20i-gpadc-iio.c
+
+-- 
+2.39.2
 
