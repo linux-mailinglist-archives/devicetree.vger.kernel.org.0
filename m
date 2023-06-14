@@ -2,375 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5949372FAF1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 12:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED2A72FB14
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 12:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243751AbjFNKay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 06:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
+        id S229971AbjFNKfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 06:35:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244340AbjFNKaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 06:30:11 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D44A26B5;
-        Wed, 14 Jun 2023 03:28:52 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35E7mpw6028680;
-        Wed, 14 Jun 2023 12:27:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=NOFrlQ5Me3hzStdXEAgB1aazavyz618BJAIRDuOKyNE=;
- b=0bR/IGmgPJgeQONbC/L42DXmHd/fwAWdu7ogJvPdDmy2KURS9vvWvec3zGBR6wch3/Li
- aTSnpw3CsqH/hScD9xTzTZNDUadM2CBCTb2Cyd52pjDsN1LF0HQzPakXJCCnPL7jqGHO
- ZMOi7U2uxJ94TwY7ViNRSTF6qzsEH8V7IlTM6MU4whZ9Z+rpU+bepdMXojhsOBQ/IIhB
- jWC6sB9nSVFoaIdb/pvkbNyh5LnaumPPCGfmZyZpJWwZHay0yVztgQ7C3R2bAXctY/3A
- CqvEo6p4Lu3b93onJG2BBdWdYRQjOSdAieOEEXx0QJrvwktH3tZ5LxZXbNCpCUW6I7F1 ig== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r79g59760-1
+        with ESMTP id S234070AbjFNKep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 06:34:45 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA0BD2116;
+        Wed, 14 Jun 2023 03:34:36 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35E9M5D1014210;
+        Wed, 14 Jun 2023 10:34:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=4p5rvgkIAjJA/XixhCrlrbWaTQx6zhjnxIkgPoWjSA0=;
+ b=pyFHimqjuWqNg/UHlYkMZtBwxNT10buV+mWUNPdUEicypK5YGmieVInGUhYBclw01+0M
+ kM2Me26RiWmoc6HuVhtkAmVqKIx3ChwtSRIF55/l1IKFZ0DqFmAwHWJRFfDOwuOTs/l3
+ hEpIWnG31ubk57dha8ya+khwdB2tloIfXAvRJAoMvQybhxakk/GO886K8IovLzLyaCOj
+ Os/CEQcUk931p4CyEdWrDBXGDpkVyj3VQ7R+KKaahK+LXz0CareAlwoywOP9Cs22J8zK
+ u0LfAt7SmdMN32LHdce86rthFVF6GVIwiGrAI5VqvKYJ4dEEfjK6+3vi8yEqZlyBdNnh VA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7auy09kx-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 12:27:50 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3839B10002A;
-        Wed, 14 Jun 2023 12:27:50 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2F0192278AE;
-        Wed, 14 Jun 2023 12:27:50 +0200 (CEST)
-Received: from localhost (10.252.29.239) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 14 Jun
- 2023 12:27:49 +0200
-From:   Valentin Caron <valentin.caron@foss.st.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Wed, 14 Jun 2023 10:34:32 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35EAYV3r031159
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Jun 2023 10:34:31 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 14 Jun
+ 2023 03:34:28 -0700
+Message-ID: <1957b1cf-28b7-dbfc-1675-ee4534e5571b@quicinc.com>
+Date:   Wed, 14 Jun 2023 16:04:25 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: enable the SPI NOR support in
+ RDP433
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>
-CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Valentin Caron <valentin.caron@foss.st.com>
-Subject: [PATCH v2 4/4] spi: stm32: introduction of stm32h7 SPI slave support
-Date:   Wed, 14 Jun 2023 12:26:27 +0200
-Message-ID: <20230614102628.202936-5-valentin.caron@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230614102628.202936-1-valentin.caron@foss.st.com>
-References: <20230614102628.202936-1-valentin.caron@foss.st.com>
-MIME-Version: 1.0
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230609081508.30982-1-quic_kathirav@quicinc.com>
+ <c1c34aa4-ac7d-2c07-bf92-05d887aed3d2@linaro.org>
+ <ed9d11cc-7ab4-b6c8-737b-bd89d3973e80@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <ed9d11cc-7ab4-b6c8-737b-bd89d3973e80@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.252.29.239]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tr-EuPqlMoOiDfElvDPbS9l8kGcOjPJi
+X-Proofpoint-GUID: tr-EuPqlMoOiDfElvDPbS9l8kGcOjPJi
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-14_06,2023-06-14_01,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-14_06,2023-06-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 spamscore=0 impostorscore=0 mlxlogscore=999
+ adultscore=0 phishscore=0 suspectscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306140089
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for stm32h7 to use SPI controller in slave role.
-In such case, the spi instance should have the spi-slave property
-defined.
 
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
----
- drivers/spi/Kconfig     |   1 +
- drivers/spi/spi-stm32.c | 112 ++++++++++++++++++++++++++++------------
- 2 files changed, 79 insertions(+), 34 deletions(-)
+On 6/14/2023 12:02 PM, Kathiravan T wrote:
+>
+> On 6/9/2023 2:37 PM, Konrad Dybcio wrote:
+>>
+>> On 9.06.2023 10:15, Kathiravan T wrote:
+>>> RDP433 has the support for SPI NOR, add the support for it.
+>>>
+>>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>>> ---
+>>> Note: This patch was part of initial submission
+>>> https://lore.kernel.org/linux-arm-msm/20230329053726.14860-1-quic_kathirav@quicinc.com/ 
+>>>
+>>> however this got missed in between, so sending it across again.
+>>>
+>>>   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 21 
+>>> +++++++++++++++++++++
+>>>   1 file changed, 21 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts 
+>>> b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+>>> index 2b3ed8d351f7..31ee19112157 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+>>> @@ -48,6 +48,20 @@
+>>>       };
+>>>   };
+>>>   +&blsp1_spi0 {
+>>> +    pinctrl-0 = <&spi_0_pins>;
+>>> +    pinctrl-names = "default";
+>>> +    status = "okay";
+>>> +
+>>> +    flash@0 {
+>>> +        compatible = "micron,n25q128a11", "jedec,spi-nor";
+>>> +        reg = <0>;
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>> If you're not adding a partition table, you can drop the address-
+>> and size-cells properties, as they determine what the reg value of
+>> the child looks like.
+>
+>
+> Sorry, somehow I missed this query. Will check and update it.
 
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 3de2ebe8294a..14810d24733b 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -936,6 +936,7 @@ config SPI_SPRD_ADI
- config SPI_STM32
- 	tristate "STMicroelectronics STM32 SPI controller"
- 	depends on ARCH_STM32 || COMPILE_TEST
-+	select SPI_SLAVE
- 	help
- 	  SPI driver for STMicroelectronics STM32 SoCs.
- 
-diff --git a/drivers/spi/spi-stm32.c b/drivers/spi/spi-stm32.c
-index 82fbd20e8a96..2db6f93654d7 100644
---- a/drivers/spi/spi-stm32.c
-+++ b/drivers/spi/spi-stm32.c
-@@ -117,6 +117,7 @@
- #define STM32H7_SPI_CFG2_CPHA		BIT(24)
- #define STM32H7_SPI_CFG2_CPOL		BIT(25)
- #define STM32H7_SPI_CFG2_SSM		BIT(26)
-+#define STM32H7_SPI_CFG2_SSIOP		BIT(28)
- #define STM32H7_SPI_CFG2_AFCNTR		BIT(31)
- 
- /* STM32H7_SPI_IER bit fields */
-@@ -170,6 +171,10 @@
-  */
- #define SPI_DMA_MIN_BYTES	16
- 
-+/* STM32 SPI driver helpers */
-+#define STM32_SPI_MASTER_MODE(stm32_spi) (!(stm32_spi)->slave_mode)
-+#define STM32_SPI_SLAVE_MODE(stm32_spi) ((stm32_spi)->slave_mode)
-+
- /**
-  * struct stm32_spi_reg - stm32 SPI register & bitfield desc
-  * @reg:		register offset
-@@ -190,6 +195,7 @@ struct stm32_spi_reg {
-  * @cpol: clock polarity register and polarity bit
-  * @cpha: clock phase register and phase bit
-  * @lsb_first: LSB transmitted first register and bit
-+ * @cs_high: chips select active value
-  * @br: baud rate register and bitfields
-  * @rx: SPI RX data register
-  * @tx: SPI TX data register
-@@ -201,6 +207,7 @@ struct stm32_spi_regspec {
- 	const struct stm32_spi_reg cpol;
- 	const struct stm32_spi_reg cpha;
- 	const struct stm32_spi_reg lsb_first;
-+	const struct stm32_spi_reg cs_high;
- 	const struct stm32_spi_reg br;
- 	const struct stm32_spi_reg rx;
- 	const struct stm32_spi_reg tx;
-@@ -280,6 +287,7 @@ struct stm32_spi_cfg {
-  * @dma_tx: dma channel for TX transfer
-  * @dma_rx: dma channel for RX transfer
-  * @phys_addr: SPI registers physical base address
-+ * @slave_mode: the controller is configured as SPI slave
-  */
- struct stm32_spi {
- 	struct device *dev;
-@@ -307,6 +315,8 @@ struct stm32_spi {
- 	struct dma_chan *dma_tx;
- 	struct dma_chan *dma_rx;
- 	dma_addr_t phys_addr;
-+
-+	bool slave_mode;
- };
- 
- static const struct stm32_spi_regspec stm32f4_spi_regspec = {
-@@ -318,6 +328,7 @@ static const struct stm32_spi_regspec stm32f4_spi_regspec = {
- 	.cpol = { STM32F4_SPI_CR1, STM32F4_SPI_CR1_CPOL },
- 	.cpha = { STM32F4_SPI_CR1, STM32F4_SPI_CR1_CPHA },
- 	.lsb_first = { STM32F4_SPI_CR1, STM32F4_SPI_CR1_LSBFRST },
-+	.cs_high = {},
- 	.br = { STM32F4_SPI_CR1, STM32F4_SPI_CR1_BR, STM32F4_SPI_CR1_BR_SHIFT },
- 
- 	.rx = { STM32F4_SPI_DR },
-@@ -336,6 +347,7 @@ static const struct stm32_spi_regspec stm32h7_spi_regspec = {
- 	.cpol = { STM32H7_SPI_CFG2, STM32H7_SPI_CFG2_CPOL },
- 	.cpha = { STM32H7_SPI_CFG2, STM32H7_SPI_CFG2_CPHA },
- 	.lsb_first = { STM32H7_SPI_CFG2, STM32H7_SPI_CFG2_LSBFRST },
-+	.cs_high = { STM32H7_SPI_CFG2, STM32H7_SPI_CFG2_SSIOP },
- 	.br = { STM32H7_SPI_CFG1, STM32H7_SPI_CFG1_MBR,
- 		STM32H7_SPI_CFG1_MBR_SHIFT },
- 
-@@ -971,6 +983,11 @@ static int stm32_spi_prepare_msg(struct spi_controller *ctrl,
- 	else
- 		clrb |= spi->cfg->regs->lsb_first.mask;
- 
-+	if (STM32_SPI_SLAVE_MODE(spi) && spi_dev->mode & SPI_CS_HIGH)
-+		setb |= spi->cfg->regs->cs_high.mask;
-+	else
-+		clrb |= spi->cfg->regs->cs_high.mask;
-+
- 	dev_dbg(spi->dev, "cpol=%d cpha=%d lsb_first=%d cs_high=%d\n",
- 		!!(spi_dev->mode & SPI_CPOL),
- 		!!(spi_dev->mode & SPI_CPHA),
-@@ -1161,7 +1178,8 @@ static int stm32h7_spi_transfer_one_irq(struct stm32_spi *spi)
- 	if (spi->tx_buf)
- 		stm32h7_spi_write_txfifo(spi);
- 
--	stm32_spi_set_bits(spi, STM32H7_SPI_CR1, STM32H7_SPI_CR1_CSTART);
-+	if (STM32_SPI_MASTER_MODE(spi))
-+		stm32_spi_set_bits(spi, STM32H7_SPI_CR1, STM32H7_SPI_CR1_CSTART);
- 
- 	writel_relaxed(ier, spi->base + STM32H7_SPI_IER);
- 
-@@ -1208,7 +1226,8 @@ static void stm32h7_spi_transfer_one_dma_start(struct stm32_spi *spi)
- 
- 	stm32_spi_enable(spi);
- 
--	stm32_spi_set_bits(spi, STM32H7_SPI_CR1, STM32H7_SPI_CR1_CSTART);
-+	if (STM32_SPI_MASTER_MODE(spi))
-+		stm32_spi_set_bits(spi, STM32H7_SPI_CR1, STM32H7_SPI_CR1_CSTART);
- }
- 
- /**
-@@ -1536,16 +1555,18 @@ static int stm32_spi_transfer_one_setup(struct stm32_spi *spi,
- 	spi->cfg->set_bpw(spi);
- 
- 	/* Update spi->cur_speed with real clock speed */
--	mbr = stm32_spi_prepare_mbr(spi, transfer->speed_hz,
--				    spi->cfg->baud_rate_div_min,
--				    spi->cfg->baud_rate_div_max);
--	if (mbr < 0) {
--		ret = mbr;
--		goto out;
--	}
-+	if (STM32_SPI_MASTER_MODE(spi)) {
-+		mbr = stm32_spi_prepare_mbr(spi, transfer->speed_hz,
-+					    spi->cfg->baud_rate_div_min,
-+					    spi->cfg->baud_rate_div_max);
-+		if (mbr < 0) {
-+			ret = mbr;
-+			goto out;
-+		}
- 
--	transfer->speed_hz = spi->cur_speed;
--	stm32_spi_set_mbr(spi, mbr);
-+		transfer->speed_hz = spi->cur_speed;
-+		stm32_spi_set_mbr(spi, mbr);
-+	}
- 
- 	comm_type = stm32_spi_communication_type(spi_dev, transfer);
- 	ret = spi->cfg->set_mode(spi, comm_type);
-@@ -1554,7 +1575,7 @@ static int stm32_spi_transfer_one_setup(struct stm32_spi *spi,
- 
- 	spi->cur_comm = comm_type;
- 
--	if (spi->cfg->set_data_idleness)
-+	if (STM32_SPI_MASTER_MODE(spi) && spi->cfg->set_data_idleness)
- 		spi->cfg->set_data_idleness(spi, transfer->len);
- 
- 	if (spi->cur_bpw <= 8)
-@@ -1575,7 +1596,8 @@ static int stm32_spi_transfer_one_setup(struct stm32_spi *spi,
- 	dev_dbg(spi->dev,
- 		"data frame of %d-bit, data packet of %d data frames\n",
- 		spi->cur_bpw, spi->cur_fthlv);
--	dev_dbg(spi->dev, "speed set to %dHz\n", spi->cur_speed);
-+	if (STM32_SPI_MASTER_MODE(spi))
-+		dev_dbg(spi->dev, "speed set to %dHz\n", spi->cur_speed);
- 	dev_dbg(spi->dev, "transfer of %d bytes (%d data frames)\n",
- 		spi->cur_xferlen, nb_words);
- 	dev_dbg(spi->dev, "dma %s\n",
-@@ -1670,12 +1692,13 @@ static int stm32f4_spi_config(struct stm32_spi *spi)
- }
- 
- /**
-- * stm32h7_spi_config - Configure SPI controller as SPI master
-+ * stm32h7_spi_config - Configure SPI controller
-  * @spi: pointer to the spi controller data structure
-  */
- static int stm32h7_spi_config(struct stm32_spi *spi)
- {
- 	unsigned long flags;
-+	u32 cr1 = 0, cfg2 = 0;
- 
- 	spin_lock_irqsave(&spi->lock, flags);
- 
-@@ -1683,24 +1706,28 @@ static int stm32h7_spi_config(struct stm32_spi *spi)
- 	stm32_spi_clr_bits(spi, STM32H7_SPI_I2SCFGR,
- 			   STM32H7_SPI_I2SCFGR_I2SMOD);
- 
--	/*
--	 * - SS input value high
--	 * - transmitter half duplex direction
--	 * - automatic communication suspend when RX-Fifo is full
--	 */
--	stm32_spi_set_bits(spi, STM32H7_SPI_CR1, STM32H7_SPI_CR1_SSI |
--						 STM32H7_SPI_CR1_HDDIR |
--						 STM32H7_SPI_CR1_MASRX);
-+	if (STM32_SPI_SLAVE_MODE(spi)) {
-+		/* Use native slave select */
-+		cfg2 &= ~STM32H7_SPI_CFG2_SSM;
-+	} else {
-+		/*
-+		 * - Transmitter half duplex direction
-+		 * - Automatic communication suspend when RX-Fifo is full
-+		 * - SS input value high
-+		 */
-+		cr1 |= STM32H7_SPI_CR1_HDDIR | STM32H7_SPI_CR1_MASRX | STM32H7_SPI_CR1_SSI;
- 
--	/*
--	 * - Set the master mode (default Motorola mode)
--	 * - Consider 1 master/n slaves configuration and
--	 *   SS input value is determined by the SSI bit
--	 * - keep control of all associated GPIOs
--	 */
--	stm32_spi_set_bits(spi, STM32H7_SPI_CFG2, STM32H7_SPI_CFG2_MASTER |
--						  STM32H7_SPI_CFG2_SSM |
--						  STM32H7_SPI_CFG2_AFCNTR);
-+		/*
-+		 * - Set the master mode (default Motorola mode)
-+		 * - Consider 1 master/n slaves configuration and
-+		 *   SS input value is determined by the SSI bit
-+		 * - keep control of all associated GPIOs
-+		 */
-+		cfg2 |= STM32H7_SPI_CFG2_MASTER | STM32H7_SPI_CFG2_SSM | STM32H7_SPI_CFG2_AFCNTR;
-+	}
-+
-+	stm32_spi_set_bits(spi, STM32H7_SPI_CR1, cr1);
-+	stm32_spi_set_bits(spi, STM32H7_SPI_CFG2, cfg2);
- 
- 	spin_unlock_irqrestore(&spi->lock, flags);
- 
-@@ -1756,17 +1783,30 @@ static const struct of_device_id stm32_spi_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, stm32_spi_of_match);
- 
-+static int stm32h7_spi_slave_abort(struct spi_controller *ctrl)
-+{
-+	spi_finalize_current_transfer(ctrl);
-+	return 0;
-+}
-+
- static int stm32_spi_probe(struct platform_device *pdev)
- {
- 	struct spi_controller *ctrl;
- 	struct stm32_spi *spi;
- 	struct resource *res;
- 	struct reset_control *rst;
-+	struct device_node *np = pdev->dev.of_node;
-+	bool slave_mode;
- 	int ret;
- 
--	ctrl = devm_spi_alloc_master(&pdev->dev, sizeof(struct stm32_spi));
-+	slave_mode = of_property_read_bool(np, "spi-slave");
-+
-+	if (slave_mode)
-+		ctrl = devm_spi_alloc_slave(&pdev->dev, sizeof(struct stm32_spi));
-+	else
-+		ctrl = devm_spi_alloc_master(&pdev->dev, sizeof(struct stm32_spi));
- 	if (!ctrl) {
--		dev_err(&pdev->dev, "spi master allocation failed\n");
-+		dev_err(&pdev->dev, "spi controller allocation failed\n");
- 		return -ENOMEM;
- 	}
- 	platform_set_drvdata(pdev, ctrl);
-@@ -1774,6 +1814,7 @@ static int stm32_spi_probe(struct platform_device *pdev)
- 	spi = spi_controller_get_devdata(ctrl);
- 	spi->dev = &pdev->dev;
- 	spi->ctrl = ctrl;
-+	spi->slave_mode = slave_mode;
- 	spin_lock_init(&spi->lock);
- 
- 	spi->cfg = (const struct stm32_spi_cfg *)
-@@ -1856,6 +1897,8 @@ static int stm32_spi_probe(struct platform_device *pdev)
- 	ctrl->transfer_one = stm32_spi_transfer_one;
- 	ctrl->unprepare_message = stm32_spi_unprepare_msg;
- 	ctrl->flags = spi->cfg->flags;
-+	if (STM32_SPI_SLAVE_MODE(spi))
-+		ctrl->slave_abort = stm32h7_spi_slave_abort;
- 
- 	spi->dma_tx = dma_request_chan(spi->dev, "tx");
- 	if (IS_ERR(spi->dma_tx)) {
-@@ -1901,7 +1944,8 @@ static int stm32_spi_probe(struct platform_device *pdev)
- 	pm_runtime_mark_last_busy(&pdev->dev);
- 	pm_runtime_put_autosuspend(&pdev->dev);
- 
--	dev_info(&pdev->dev, "driver initialized\n");
-+	dev_info(&pdev->dev, "driver initialized (%s mode)\n",
-+		 STM32_SPI_MASTER_MODE(spi) ? "master" : "slave");
- 
- 	return 0;
- 
--- 
-2.25.1
 
+Currently IPQ boot loaders patches the partition information into the 
+SPI node. To parse that, we need the address-cells and size-cells 
+properties.
+
+Also, this patch is now integrated into the below series
+
+https://lore.kernel.org/linux-arm-msm/20230614085040.22071-1-quic_anusha@quicinc.com/T/#t
+
+
+Thanks,
+
+
+>
+>
+>>
+>> Konrad
+>>> +        spi-max-frequency = <50000000>;
+>>> +    };
+>>> +};
+>>> +
+>>>   &sdhc_1 {
+>>>       pinctrl-0 = <&sdc_default_state>;
+>>>       pinctrl-names = "default";
+>>> @@ -96,6 +110,13 @@
+>>>               bias-pull-down;
+>>>           };
+>>>       };
+>>> +
+>>> +    spi_0_pins: spi-0-state {
+>>> +        pins = "gpio11", "gpio12", "gpio13", "gpio14";
+>>> +        function = "blsp0_spi";
+>>> +        drive-strength = <8>;
+>>> +        bias-disable;
+>>> +    };
+>>>   };
+>>>     &xo_board_clk {
