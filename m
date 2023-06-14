@@ -2,188 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC937304C1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 18:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FD587304AA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 18:15:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231788AbjFNQRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 12:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35660 "EHLO
+        id S232362AbjFNQPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 12:15:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233011AbjFNQQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 12:16:44 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74945ED;
-        Wed, 14 Jun 2023 09:16:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686759402; x=1718295402;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hNRyqUyJwPRgDx83ggrfVP33lL+susjiOlT7HtsU1sA=;
-  b=WwXr4o3Hz1i2SnMajN0ScyfGNVrgQMKypOWre+O+McnM1KHzxeo3/DDi
-   C5o2GPH69fZYeKMHDcnIqvITgZfttyGQhKTEkoYCWyoRujt5s5buGvaPw
-   W6Bn8Ru1m1UrTcOVoffbvcFQ8DTZiBISWdviJZJNlvhEnb3JRIPvIkkd+
-   OnPo1/givaIiuUDKAuFNQ4eEupLg/MdHNQiv77mx/4pwdhgEqpupSmlYr
-   gVY6Fc352RIBgZPEcSSGL7/f4m9OztpwcnacJm7q36EAohk7C8GlrDchi
-   +ejDDxNWxlpmt9BgN6faXl52pY8T3xjjDzn4c6Eq2DBWe4AiNQ0RLcREJ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="424546801"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; 
-   d="scan'208";a="424546801"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2023 09:14:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="824872060"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; 
-   d="scan'208";a="824872060"
-Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 14 Jun 2023 09:14:36 -0700
-Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q9T8l-0000qX-10;
-        Wed, 14 Jun 2023 16:14:35 +0000
-Date:   Thu, 15 Jun 2023 00:13:21 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Stanley Chang <stanley_chang@realtek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S232288AbjFNQPC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 12:15:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4B52101;
+        Wed, 14 Jun 2023 09:15:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DE013641FA;
+        Wed, 14 Jun 2023 16:15:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D78FBC433C0;
+        Wed, 14 Jun 2023 16:14:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686759300;
+        bh=osSAHvFKMIO/cCPOuijjFPZuIw7zTc4XSarO6SeGtKM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lOZXkpqughP+6yDHDr/iXuYUQQVJN3FV81lEUSxOLXPgZr7XkgKHHFKmFC6h5hPbD
+         +stzTnoz+dtAuXrVeNO69NJyimoBs9NwtQfmOvfSOpZGi5Tpz1RHXSeLp5sTwOX5CL
+         UHEb5HYyLr5+iWPros+latdXJOEtb3kPyf9YkF8WS6rIpGviBS8f9HB/gdRBqkPaLa
+         Ol0w7bPpAbVl8IqcAQTymTp2/hiVSzUTVIRVDcVRFX7nY7Gkc3sg8kgtNbCervw3JH
+         AUjZm/1v/l5uuIc1m+wbQ7se7ZDg4ELVWsu9fjrz2i5ryUkepRCIUpo1RmDZ+tpNNk
+         dzz017m2frKFA==
+Date:   Wed, 14 Jun 2023 17:14:54 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Ray Chi <raychi@google.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] phy: realtek: usb: Add driver for the Realtek SoC
- USB 3.0 PHY
-Message-ID: <202306142340.nvui81i4-lkp@intel.com>
-References: <20230614092850.21460-3-stanley_chang@realtek.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/9] regulator: mt6358: Add output voltage fine tuning to
+ fixed regulators
+Message-ID: <a5c00706-dc23-4561-8bcf-729fd10e74ef@sirena.org.uk>
+References: <20230609083009.2822259-1-wenst@chromium.org>
+ <20230609083009.2822259-8-wenst@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="FVyTKi8Xrk+toeDA"
 Content-Disposition: inline
-In-Reply-To: <20230614092850.21460-3-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230609083009.2822259-8-wenst@chromium.org>
+X-Cookie: MS-DOS must die!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stanley,
 
-kernel test robot noticed the following build warnings:
+--FVyTKi8Xrk+toeDA
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on usb/usb-testing]
-[also build test WARNING on usb/usb-next usb/usb-linus robh/for-next linus/master v6.4-rc6 next-20230614]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Fri, Jun 09, 2023 at 04:30:04PM +0800, Chen-Yu Tsai wrote:
+> The "fixed" LDO regulators found on the MT6358 and MT6366 PMICs have
+> either no voltage selection register, or only one valid setting.
+> However these do have a fine voltage calibration setting that can
+> slightly boost the output voltage from 0 mV to 100 mV, in 10 mV
+> increments.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Stanley-Chang/phy-realtek-usb-Add-driver-for-the-Realtek-SoC-USB-2-0-PHY/20230614-173349
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-patch link:    https://lore.kernel.org/r/20230614092850.21460-3-stanley_chang%40realtek.com
-patch subject: [PATCH v4 3/5] phy: realtek: usb: Add driver for the Realtek SoC USB 3.0 PHY
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230614/202306142340.nvui81i4-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.3.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git remote add usb https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
-        git fetch usb usb-testing
-        git checkout usb/usb-testing
-        b4 shazam https://lore.kernel.org/r/20230614092850.21460-3-stanley_chang@realtek.com
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/phy/realtek/
+This and the followup patch break the build on both arm64 and x86_64:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306142340.nvui81i4-lkp@intel.com/
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =E2=
+=80=98MT6358_VFE28_ANA_CON0=E2=80=99 undeclared here (not in a function); d=
+id you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
+  127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+      |                             ^~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:525:9: note: in exp=
+ansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+  525 |         MT6358_REG_FIXED("ldo_vfe28", VFE28, MT6358_LDO_VFE28_CON0,=
+ 0, 2800000),
+      |         ^~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =E2=
+=80=98MT6358_VCN28_ANA_CON0=E2=80=99 undeclared here (not in a function); d=
+id you mean =E2=80=98MT6358_VCN18_ANA_CON0=E2=80=99?
+  127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+      |                             ^~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:526:9: note: in exp=
+ansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+  526 |         MT6358_REG_FIXED("ldo_vcn28", VCN28, MT6358_LDO_VCN28_CON0,=
+ 0, 2800000),
+      |         ^~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =E2=
+=80=98MT6358_VXO22_ANA_CON0=E2=80=99 undeclared here (not in a function); d=
+id you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
+  127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+      |                             ^~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:527:9: note: in exp=
+ansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+  527 |         MT6358_REG_FIXED("ldo_vxo22", VXO22, MT6358_LDO_VXO22_CON0,=
+ 0, 2200000),
+      |         ^~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =E2=
+=80=98MT6358_VAUX18_ANA_CON0=E2=80=99 undeclared here (not in a function); =
+did you mean =E2=80=98MT6358_VRF18_ANA_CON0=E2=80=99?
+  127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+      |                             ^~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:528:9: note: in exp=
+ansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+  528 |         MT6358_REG_FIXED("ldo_vaux18", VAUX18,
+      |         ^~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =E2=
+=80=98MT6358_VBIF28_ANA_CON0=E2=80=99 undeclared here (not in a function); =
+did you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
+  127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+      |                             ^~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:530:9: note: in exp=
+ansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+  530 |         MT6358_REG_FIXED("ldo_vbif28", VBIF28,
+      |         ^~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =E2=
+=80=98MT6358_VAUD28_ANA_CON0=E2=80=99 undeclared here (not in a function); =
+did you mean =E2=80=98MT6358_VA12_ANA_CON0=E2=80=99?
+  127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+      |                             ^~~~~~~
+/build/stage/linux/drivers/regulator/mt6358-regulator.c:535:9: note: in exp=
+ansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+  535 |         MT6358_REG_FIXED("ldo_vaud28", VAUD28,
+      |         ^~~~~~~~~~~~~~~~
 
-All warnings (new ones prefixed by >>):
+--FVyTKi8Xrk+toeDA
+Content-Type: application/pgp-signature; name="signature.asc"
 
-   drivers/phy/realtek/phy-rtk-usb3.c: In function 'rtk_usb3phy_probe':
->> drivers/phy/realtek/phy-rtk-usb3.c:779:29: warning: variable 'node' set but not used [-Wunused-but-set-variable]
-     779 |         struct device_node *node;
-         |                             ^~~~
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSJ530ACgkQJNaLcl1U
+h9DhkAf9EVYQutfKyk5zzsMdyzKxxy1jBQx4nck+rXG0YrNyCWLNpIvxcyZNwDfP
+GTkol0LepOtpOfVQVKnL3keDcs/vaP+q9Wy3++ZQHszZJWn6RapeZwNNfPQh03Ah
+hS0U8RTVbgfQ2fNSdw9he638sRwNQ5nX7WOT6EcW5EIPa1hy2tIiXryQ0MX+0T0I
+g7x2RANQx+Bbo1paDbHiF/38ZpR+RcfFhi/ZuLDCmhBTzenNht40NKGPbP8ZBrR1
+xwyr1BMOyi++ISZ37nwUjpDL5o7PHdwLFYnEcXqNp2DsmeebwqbP3WXHA63dYB8r
+RXqDQFtdb7J4Dvh0ErXLr/Oj/+8bWQ==
+=w5A8
+-----END PGP SIGNATURE-----
 
-vim +/node +779 drivers/phy/realtek/phy-rtk-usb3.c
-
-   774	
-   775	static int rtk_usb3phy_probe(struct platform_device *pdev)
-   776	{
-   777		struct rtk_phy *rtk_phy;
-   778		struct device *dev = &pdev->dev;
- > 779		struct device_node *node;
-   780		struct phy *generic_phy;
-   781		struct phy_provider *phy_provider;
-   782		const struct phy_cfg *phy_cfg;
-   783		int ret;
-   784	
-   785		phy_cfg = of_device_get_match_data(dev);
-   786		if (!phy_cfg) {
-   787			dev_err(dev, "phy config are not assigned!\n");
-   788			return -EINVAL;
-   789		}
-   790	
-   791		rtk_phy = devm_kzalloc(dev, sizeof(*rtk_phy), GFP_KERNEL);
-   792		if (!rtk_phy)
-   793			return -ENOMEM;
-   794	
-   795		rtk_phy->dev			= &pdev->dev;
-   796		rtk_phy->phy.dev		= rtk_phy->dev;
-   797		rtk_phy->phy.label		= "rtk-usb3phy";
-   798		rtk_phy->phy.notify_port_status = rtk_phy_notify_port_status;
-   799	
-   800		rtk_phy->phy_cfg = devm_kzalloc(dev, sizeof(*phy_cfg), GFP_KERNEL);
-   801	
-   802		memcpy(rtk_phy->phy_cfg, phy_cfg, sizeof(*phy_cfg));
-   803	
-   804		node = dev->of_node;
-   805	
-   806		rtk_phy->num_phy = 1;
-   807	
-   808		ret = parse_phy_data(rtk_phy);
-   809		if (ret)
-   810			goto err;
-   811	
-   812		platform_set_drvdata(pdev, rtk_phy);
-   813	
-   814		generic_phy = devm_phy_create(rtk_phy->dev, NULL, &ops);
-   815		if (IS_ERR(generic_phy))
-   816			return PTR_ERR(generic_phy);
-   817	
-   818		phy_set_drvdata(generic_phy, rtk_phy);
-   819	
-   820		phy_provider = devm_of_phy_provider_register(rtk_phy->dev, of_phy_simple_xlate);
-   821		if (IS_ERR(phy_provider))
-   822			return PTR_ERR(phy_provider);
-   823	
-   824		ret = usb_add_phy_dev(&rtk_phy->phy);
-   825		if (ret)
-   826			goto err;
-   827	
-   828		create_debug_files(rtk_phy);
-   829	
-   830	err:
-   831		return ret;
-   832	}
-   833	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--FVyTKi8Xrk+toeDA--
