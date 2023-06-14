@@ -2,158 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F07E073091A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 22:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91445730937
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 22:34:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231814AbjFNUTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 16:19:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49420 "EHLO
+        id S236611AbjFNUec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 16:34:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230186AbjFNUTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 16:19:32 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B342101;
-        Wed, 14 Jun 2023 13:19:31 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35EKBJPG015758;
-        Wed, 14 Jun 2023 20:19:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=yPMyKREnlqdFDB9iGvYRFdtvqWofTa7Oea+u4TQq7RM=;
- b=O51AlbJ2nUps96FvZIp+J50aU+Z8hnLlRMkDuKfRqYOfwgeEG2FP5eFyKCy6BxR1HT91
- nUXyB94CiLKYODzlpeTqY9m/6e4sFdFfHlmslkPLRumg8pAOcBv50X6riF4APBUddDJ3
- ClkJguMI3TL3ARQoxaZKA0fLV7JczOlws38dwn3YjXXorarx3PpTZRIoKVQlsGQsDsAI
- 6ZkzHzjm6EgXjOYs1qCtolX/hFcNfv7U7yZjzUTZYEh4vJYEHBN4xYxes62AkKR2oVGx
- Be7v137y0a6GbcL3StBr5HJLG8yc1x0ylLtl02lvVb3Cv8ChMqllyUUEQlN3eniTpY3w hQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7cka15xr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 20:19:21 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35EKJK8l008634
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 20:19:20 GMT
-Received: from akhilpo-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 14 Jun 2023 13:18:43 -0700
-Date:   Thu, 15 Jun 2023 01:48:40 +0530
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S236739AbjFNUe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 16:34:29 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 724C02684;
+        Wed, 14 Jun 2023 13:34:23 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686774861;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yZm6YcC6DcFVvhOCrWE7tXXzeBzGgryfSQmR/S4llfA=;
+        b=nQ7IcnTL8O0E6kwDyNu6kT3yKmiODt5kIbcs4yQzM21QJqc0CQKBJIc3UrH/URxks21i4Q
+        9JDF6iwAmNyudNKKRcD0kHBCsZ3QewttgXr+j9xOz+MIl9aAXdhVsdLtpuij47spr3wHhP
+        oiFNRk5+jJKlfQrXTBEqUn2ZGP6BHOFo5zPXwmIznrIvw5LV4kJRgivyTBcLIKcP2G1I4C
+        g6EaUm43GYdJ7VH+I5IkZJw/S6qTZq51RC8aJ0SDC8Iwzr16gbEqI2w17H8ooobPKogxQ8
+        eXkxHWcDGFL7R9vQx9kUmhtAykgtUQX3buafDqQ0A5OKsiSwUBLg0djxY9Hn3g==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9A02040005;
+        Wed, 14 Jun 2023 20:34:19 +0000 (UTC)
+Date:   Wed, 14 Jun 2023 22:34:18 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Rob Clark <robdclark@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH v8 18/18] drm/msm/a6xx: Add A610 speedbin support
-Message-ID: <ab2yzsjp65t53wp5nytjuc7eb74zklkb6i342bc5edhm45j3qm@kpyq52is7tde>
-References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
- <20230223-topic-gmuwrapper-v8-18-69c68206609e@linaro.org>
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
+Message-ID: <20230614223418.0d7e355d@bootlin.com>
+In-Reply-To: <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
+References: <20230614074904.29085-1-herve.codina@bootlin.com>
+        <20230614074904.29085-8-herve.codina@bootlin.com>
+        <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
+        <20230614114214.1371485e@bootlin.com>
+        <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230223-topic-gmuwrapper-v8-18-69c68206609e@linaro.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TCG2ArjwSVxKVDwtz6tEoOotRt9OEspn
-X-Proofpoint-ORIG-GUID: TCG2ArjwSVxKVDwtz6tEoOotRt9OEspn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-14_14,2023-06-14_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- malwarescore=0 suspectscore=0 priorityscore=1501 lowpriorityscore=0
- mlxlogscore=999 adultscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306140178
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 29, 2023 at 03:52:37PM +0200, Konrad Dybcio wrote:
-> 
-> A610 is implemented on at least three SoCs: SM6115 (bengal), SM6125
-> (trinket) and SM6225 (khaje). Trinket does not support speed binning
-> (only a single SKU exists) and we don't yet support khaje upstream.
-> Hence, add a fuse mapping table for bengal to allow for per-chip
-> frequency limiting.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> index d046af5f6de2..c304fa118cff 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> @@ -2098,6 +2098,30 @@ static bool a6xx_progress(struct msm_gpu *gpu, struct msm_ringbuffer *ring)
->  	return progress;
->  }
->  
-> +static u32 a610_get_speed_bin(u32 fuse)
-> +{
-> +	/*
-> +	 * There are (at least) three SoCs implementing A610: SM6125 (trinket),
-> +	 * SM6115 (bengal) and SM6225 (khaje). Trinket does not have speedbinning,
-> +	 * as only a single SKU exists and we don't support khaje upstream yet.
-> +	 * Hence, this matching table is only valid for bengal and can be easily
-> +	 * expanded if need be.
-> +	 */
-> +
-> +	if (fuse == 0)
-> +		return 0;
-> +	else if (fuse == 206)
-> +		return 1;
-> +	else if (fuse == 200)
-> +		return 2;
-> +	else if (fuse == 157)
-> +		return 3;
-> +	else if (fuse == 127)
-> +		return 4;
-> +
-> +	return UINT_MAX;
-> +}
-> +
->  static u32 a618_get_speed_bin(u32 fuse)
->  {
->  	if (fuse == 0)
-> @@ -2195,6 +2219,9 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_gpu *adreno_gpu, u3
->  {
->  	u32 val = UINT_MAX;
->  
-> +	if (adreno_is_a610(adreno_gpu))
-> +		val = a610_get_speed_bin(fuse);
-> +
+Hi Andy,
 
-Didn't you update here to convert to 'else if' in one of the earlier
-patches??
+On Wed, 14 Jun 2023 14:51:43 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> On Wed, Jun 14, 2023 at 12:42 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> > On Wed, 14 Jun 2023 12:02:57 +0300
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
+> > > On Wed, Jun 14, 2023 at 10:49 AM Herve Codina <herve.codina@bootlin.com> wrote:  
+> 
+> ...
+> 
+> > > > +       typeof(__array[0] + 0) __element = __array[--__len];    \  
+> > >
+> > > Do we need the ' + 0' part?  
+> >
+> > Yes.
+> >
+> > __array can be an array of const items and it is legitimate to get the
+> > minimum value from const items.
+> >
+> > typeof(__array[0]) keeps the const qualifier but we need to assign __element
+> > in the loop.
+> > One way to drop the const qualifier is to get the type from a rvalue computed
+> > from __array[0]. This rvalue has to have the exact same type with only the const
+> > dropped.
+> > '__array[0] + 0' was a perfect canditate.  
+> 
+> Seems like this also deserves a comment. But if the series is accepted
+> as is, it may be done as a follow up.
+> 
 
--Akhil.
->  	if (adreno_is_a618(adreno_gpu))
->  		val = a618_get_speed_bin(fuse);
->  
-> 
-> -- 
-> 2.40.1
-> 
+Finally not so simple ...
+I did some deeper tests and the macros need to be fixed.
+
+I hope this one (with comments added) is correct:
+--- 8 ---
+/*
+ * Do not check the array parameter using __must_be_array().
+ * In the following legit use-case where the "array" passed is a simple pointer,
+ * __must_be_array() will return a failure.
+ * --- 8< ---
+ * int *buff
+ * ...
+ * min = min_array(buff, nb_items);
+ * --- 8< ---
+ *
+ * The first typeof(&(array)[0]) is needed in order to support arrays of both
+ * 'int *buff' and 'int buf[N]' types.
+ *
+ * typeof(__array[0] + 0) used for __element is needed as the array can be an
+ * array of const items.
+ * In order to discard the const qualifier use an arithmetic operation (rvalue).
+ * This arithmetic operation discard the const but also can lead to an integer
+ * promotion. For instance, a const s8 __array[0] lead to an int __element due
+ * to the promotion.
+ * In this case, simple min() or max() operation fails (type mismatch).
+ * Use min_t() or max_t() (op_t parameter) enforcing the type in order to avoid
+ * the min() or max() failure.
+ */
+#define __minmax_array(op_t, array, len) ({			\
+	typeof(&(array)[0]) __array = (array);			\
+	typeof(len) __len = (len);				\
+	typeof(__array[0] + 0) __element = __array[--__len];	\
+	while (__len--)						\
+		__element = op_t(typeof(__array[0]), __element, __array[__len]); \
+	__element; })
+
+/**
+ * min_array - return minimum of values present in an array
+ * @array: array
+ * @len: array length
+ *
+ * Note that @len must not be zero (empty array).
+ */
+#define min_array(array, len) __minmax_array(min_t, array, len)
+
+/**
+ * max_array - return maximum of values present in an array
+ * @array: array
+ * @len: array length
+ *
+ * Note that @len must not be zero (empty array).
+ */
+#define max_array(array, len) __minmax_array(max_t, array, len)
+
+--- 8< ---
+
+Tested ok from user-space on my x86_64 using the following types for *buff
+and buff[N]:
+- signed/unsigned char
+- signed/unsigned short
+- signed/unsigned int
+- signed/unsigned long
+- signed/unsigned long long
+- float, double, long double (even if not used in the kernel)
+
+Can you give me your feedback on this last version ?
+
+If you are ok, it will be present in the next iteration of the series.
+Otherwise, as a last ressort, I will drop the {min,max}_array() and switch
+back to the specific min/max computation in IIO inkern.c
+
+Sorry for this back and forth and this last minute detected bug.
+
+Best regards,
+Hervé
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
