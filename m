@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 682437308CA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E48077308E5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 22:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232233AbjFNTvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 15:51:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38302 "EHLO
+        id S229775AbjFNUAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 16:00:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229944AbjFNTve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:51:34 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA2E1B2;
-        Wed, 14 Jun 2023 12:51:33 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-54fd171cedcso593303a12.3;
-        Wed, 14 Jun 2023 12:51:33 -0700 (PDT)
+        with ESMTP id S236829AbjFNT77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:59:59 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC412103
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 12:59:57 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-bdd069e96b5so163177276.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 12:59:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686772293; x=1689364293;
+        d=linaro.org; s=google; t=1686772797; x=1689364797;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Md9lJKmlQJvh1OZaUzX4DgJIrqm76TL4au4CTghcG/E=;
-        b=V9thkchiKXb6KvcRpmH/5tE9tuUGZmrVmTfS7pyVleoqsTeSmhRR9IvR8QY1biyoPp
-         U6YrtENufunf28NM775x4KZRl6ucdZDoAnzir4SoqIPQ5Nmo9EBxgxoeAJ+1R/NK0v+a
-         vOwGkkeHoPP6liCkXMt23SYxJTvokHgy0wrZjYChsit6Q019r0jGZl/BCgg7vVgcP6lQ
-         JqqyFDqfGs0ITwi5atzwRNShjy4YoybKD/k3w//ENXiFJENvXT+oBUq5QrX497nejLyD
-         QksrO3itaCMlV6msn2LA6oCa7xLMYc8Rxx0gkyR+OV0SJIBO2shoPD4wcAgva43SLzjs
-         bYSA==
+        bh=JAeqM73hQTib+qIo+x85lSlZb1TEjjCMGiaiVcecPps=;
+        b=TcXc37K8Z8nWxkcBaLdjZynn9z931IfFafYdBwOstUFBYX+kC1xE0ZkfRcfJ7a8tWj
+         lQxec/GGX9PgEBt5lE2jmUE9j0TQqrirZO3lbXU8yeE9tRsZZRAKF6tF6VYqQ2zb6dfy
+         T3nvJ2kG3R1kFpX6YCreF2lx11QCe8UHP6lxt/VGHIpq4JS1J9SljjopydnjfaVlXYzY
+         2kNBz43+oOkB40p5zq8FxB9osp8D8hylbcA5dlbsjK7+FaCxKDWUIEZ92bQsNDzMrXK0
+         fp4FZ9uyhcEfBOPIZ+/2xYMM6CZGNVkIX2F1ajL/gFEj0/v8j4+qYfQqs2ugKXMoBGqs
+         3sPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686772293; x=1689364293;
+        d=1e100.net; s=20221208; t=1686772797; x=1689364797;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Md9lJKmlQJvh1OZaUzX4DgJIrqm76TL4au4CTghcG/E=;
-        b=gKVSo6a86cgMG8XZyajvVNUF6mRzNneHhL/iOS/Y3g+fydrqxuq7pDmwWTUz+TZPYY
-         2jD1FDHLpUdPIlkIHDkx/Srw/NrBnjlKtp+6SpnOudnfxG0ebWIyZn4IsSU5xw4gBNkY
-         fD/NzSv6/sl8ozbJPa4H5jTRswjMy8kFyk4YqKzx1Mrlw7I0KpfBIo4nzriA0R4Bjv1h
-         P97Fmws2UgpASyn92uk1/0lF+zB/9zIYWo24g6xm1jtzQYsLJmV4s4EQFtsXSAu1euO3
-         2HW2cC4JZ6eh/LDTjixFs/8ft4qBpVvoP1vOC3hk3RvJX7j+sfGzQQk0Ed9rdoMltnq/
-         CQnw==
-X-Gm-Message-State: AC+VfDy2HkDNerwitGGaVVf4tWqWNNlXKpiqHjJPQcw5W9t9ylRVfyj4
-        0Z7+dRst0qhpgc0Y9u3XYWMdbFqnezuLhyGEe2g=
-X-Google-Smtp-Source: ACHHUZ4VBmluG6ODSEiZ+YZ6cKjQzEkNwgG2Jx/k+1Wq+rcowseSsrI8mlOimnJNxswGpbk4W/FFajCTW8uIUS7z47c=
-X-Received: by 2002:a17:90b:4b8f:b0:256:2fd4:e238 with SMTP id
- lr15-20020a17090b4b8f00b002562fd4e238mr2401011pjb.38.1686772292745; Wed, 14
- Jun 2023 12:51:32 -0700 (PDT)
+        bh=JAeqM73hQTib+qIo+x85lSlZb1TEjjCMGiaiVcecPps=;
+        b=ZuSi9iBhHc9z5CNABojsFYZ7dtP7h0JDdm6OvV+IE114jrAEi34629JBEhd4peXfWt
+         /hTYEINsBEfR5Ixu0fM1u7cF0Spsd1Zwx/SXOJ3rUqpBj5Ni0hWm8ZAYJrqvPaLHEuWo
+         ychSmvgRetY3TP8X6Z4s1RTLqFuUup1VFZQqVwwG7xLYBrd4NXl0kaNMkRi+vqOvEQxi
+         u2NlOTmyu217QWYKpI9Bk72EyHWbqjmG1ER84kpJayXQmU7PlooVw/6419OPpCDfCCNt
+         HU0ScrAO9JZfBQ7Dbp1Ey6KDwSz7KCCDDZ7yYW8u/UEbueaJOikGH/LQjjeLMgiF1Iwz
+         w1gw==
+X-Gm-Message-State: AC+VfDyQO4Sju7LDq7PmkL455HL4jsmTseomZXuRAquEkBLr4hvpRldU
+        xUQ5kafo+D/lR4jzLkF8qY+wP2gfgx4QuuiwwMzPaQ==
+X-Google-Smtp-Source: ACHHUZ6rg4Fc07moo8jNCEDxHPGsN3cmxKzyaD0Btrl7EQZiIZkg2yi8CHlM9ZCeCxFjFv42Ypvx9qXZ22mAI7q5eH8=
+X-Received: by 2002:a25:aa85:0:b0:b8e:cb88:1b69 with SMTP id
+ t5-20020a25aa85000000b00b8ecb881b69mr2923225ybi.34.1686772796831; Wed, 14 Jun
+ 2023 12:59:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230524083153.2046084-1-s.hauer@pengutronix.de>
- <20230614134034.3p3p75a3jophi2eu@mercury.elektranox.org> <20230614152721.eep5ip726ump2kpe@mercury.elektranox.org>
-In-Reply-To: <20230614152721.eep5ip726ump2kpe@mercury.elektranox.org>
-From:   Vincent Legoll <vincent.legoll@gmail.com>
-Date:   Wed, 14 Jun 2023 19:51:21 +0000
-Message-ID: <CAEwRq=qufx6Y6JCD3pzA31y7mfXUxFeMLtwthE_N7rYY7k9+-A@mail.gmail.com>
-Subject: Re: [PATCH v5 00/25] Add perf support to the rockchip-dfi driver
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230602115201.415718-1-matthias.schiffer@ew.tq-group.com>
+ <628b7411-7d12-4915-80c8-cabb74ac6590@sirena.org.uk> <CACRpkdYhFmG-Cb-5+dt1Huktnm+tkOjSGO5ZFPjGeOXRott6Dw@mail.gmail.com>
+ <20230614193044.GA2595668-robh@kernel.org>
+In-Reply-To: <20230614193044.GA2595668-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 14 Jun 2023 21:59:45 +0200
+Message-ID: <CACRpkdaBtM8zzcdnXZH0pNFwTVOUPkUjfuahSJxgFRjcyDJ25A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] spi: dt-bindings: introduce linux,use-rt-queue flag
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+        Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
+        Wolfram Sang <wsa@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,40 +75,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Jun 14, 2023 at 9:30=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Tue, Jun 06, 2023 at 04:37:08PM +0200, Linus Walleij wrote:
 
-On Wed, Jun 14, 2023 at 3:27=E2=80=AFPM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
-> On Wed, Jun 14, 2023 at 03:40:34PM +0200, Sebastian Reichel wrote:
-> > I tested the series on RK3588 EVB1. The read/write byts looks
-> > sensible. Sometimes cycles reads unrealistic values, though:
-> >
-> > 18446744070475110400      rockchip_ddr/cycles/
+> > On the other hand I think the DT maintainers said it is basically fine
+> > to use undocumented DT properties for this kind of thing. Having
+> > completely undocumented DT properties might seem evil in another
+> > sense, but I think Apple does nothing but...
 >
-> I have seen this going off a few times with and without memory
-> pressure. If it's way off, it always seems to follow the same
-> pattern: The upper 32 bits are 0xffffffff instead of 0x00000000
-> with the lower 32 bits containing sensible data.
+> I don't don't know where you got that impression. I'm fine with them in
+> the sense that I don't look at downstream and anything goes there.
 
-How often is that happening ?
+No I was mistaken.
 
-I have been running this in a loop with varying sleep duration for
-the last few hours without hitting it, with and without memtester.
+This was me misremembering that the "sloppy logic analyzer" from
+Wolfram Sang was OK to merge without any proper bindings, but the
+reason there was that this is for debugging only, but I don't know if
+someone told him that or it's his own claim.
 
-REPEATS=3D1000
-MAX_DURATION=3D100
+This is not for debugging only so it doesn't apply anyway.
 
-OUT=3D"/tmp/perf-dfi-rk3588-${REPEATS}x${MAX_DURATION}s.txt"
-echo -n > $OUT
-
-for i in $(seq $REPEATS) ; do
-  DURATION=3D$(shuf -i "0-${MAX_DURATION}" -n 1)
-  echo -n "${DURATION} : " >> $OUT
-  perf stat -a -e rockchip_ddr/cycles/ sleep $DURATION 2>&1 | awk
-'/rockchip_ddr/ {printf("%X\n", int($1))}' >> $OUT
-done
-
-BTW, it's on a musl-libc arm64 void linux userspace.
-
---=20
-Vincent Legoll
+Yours,
+Linus Walleij
