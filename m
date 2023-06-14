@@ -2,108 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E23DE730625
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 19:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E42A73062F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 19:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237598AbjFNRiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 13:38:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53362 "EHLO
+        id S238476AbjFNRkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 13:40:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237525AbjFNRix (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 13:38:53 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 326E610FE
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 10:38:52 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5187a752745so2772151a12.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 10:38:52 -0700 (PDT)
+        with ESMTP id S234236AbjFNRkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 13:40:13 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D04119
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 10:40:11 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f619c2ba18so8607024e87.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 10:40:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686764330; x=1689356330;
+        d=linaro.org; s=google; t=1686764410; x=1689356410;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1RYu2iCbQcXep64qKrAtV4kz0X66L7+L4NssZgaqsN8=;
-        b=rA0UWiUR/msjCVz6PB3wcJPHClCmuEi7z67ygf5j/FdKbMIEasIoj3zuMQMUeJOcNT
-         XeBsp55cxo2mGRucHvDFaV648MbIJBwduKd98KFFBBxYpMatu9NpMAXD2K0QGknmGXvU
-         rBAra9u5CzGUsPSpfrL59dz0LrvcY0NL1DI6c80ylI2Nv1ZipG6s1IRYLQl7YrF0psjZ
-         BMMOSr4Eyc7E+jdEz7AHxAP8r9bvQxsdWdL2ECgloaeBeRK8QEtBoRQhDPIVDVqCllnn
-         gjIFE+6KtuuB3ODtxMw/NWjDZ0v3gKAoU0tWJ/+9d0poayvmKzoFGLxNjGCqwg/Ue52O
-         EyZA==
+        bh=M7ewiUSnCS3rNCPsoJCYT5f68i4M3iIUicklGo7JmxE=;
+        b=cxKWNJzbvcvHplxwGHO9tu2JAcUmf8AMQCehGwFdhHLi0QYmM951++Im7lizzvQoXR
+         lvJgfLkVO6Y1LfS4dVQotxYgdCoXpx8YFRSZCN+tCLdjjK5gMQSXZ113Yh0Lx3Pgf9jh
+         bFGM01yBa3oisci3WDjbkrJKIzh0dQquhEg2tv0SaIC6jTsFR3BjWSwTWCqr1YKozVIm
+         V2DjrHSn/p/IeW9yWsGjfgRnoWvNmwE6Q0hvWpWJ1S7CoP7Jw2a4Kzbw+bxQimGiDD0M
+         MGzTqC5GcO3PwY4xbNLLRf8NLAvjzGLCXEzZD9Y0aTZIh1YRt8ZioqGq8SdldALq9ofP
+         ubfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686764330; x=1689356330;
+        d=1e100.net; s=20221208; t=1686764410; x=1689356410;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1RYu2iCbQcXep64qKrAtV4kz0X66L7+L4NssZgaqsN8=;
-        b=f/OE+6sKHBP73MXVJBDRGrq/opLkkv8HSlXDQ6G182+5MFDbmnL9VsoqF19VP60QvZ
-         oPgOWX2Zn9kxc+ro4RmJBk+9xLCaSJD1onD7/EXyaRAQvb3Q/V3Px/IKVHdqtGpqIHqp
-         eoel9GJnYqsnGTq1zb8languAoBBbtjrwSQ+BgD3hxZFSiYkiSOl3pWz+CKq0oglXbhL
-         wU+8p10NDLl0LB0LXV2SWkIg4ao9c84Cbz8o0lZzJYtnXSAFTEs5hWweznjW+wLyJgL5
-         H6s9+r3gzdwGSsaOF9p4MZP3CDsQQ8PuBRzbeQ9ZJTCwNpLbsXE8cAGVGlShXgTgXsd3
-         GzuA==
-X-Gm-Message-State: AC+VfDx0fw/QDuyQdwt8/I2B+erKKolB1CiL2OiotNDkoJbM/cHJSxFe
-        lKdp0mfAslU1oFrNLLOXpHXXcw==
-X-Google-Smtp-Source: ACHHUZ6P00V2TK9K/5IeFykjHz275i2jIyxJNsA7hSD7TGWTC7AGSpaWyQa+rkL2Ep9UzXTrz87o+Q==
-X-Received: by 2002:aa7:d756:0:b0:51a:1ff9:750 with SMTP id a22-20020aa7d756000000b0051a1ff90750mr392972eds.1.1686764330729;
-        Wed, 14 Jun 2023 10:38:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id c7-20020a056402120700b00514b99afa57sm7938813edw.44.2023.06.14.10.38.48
+        bh=M7ewiUSnCS3rNCPsoJCYT5f68i4M3iIUicklGo7JmxE=;
+        b=HqnQIFF0CCin9DxojeJWG+RxYXF33KQBzB3Fkqnh8jMFUWSZFj3Gd3zwaf647UAWjO
+         e1A2WsTj4sh2nefKuJ0ud8IUm4o3waIEvz8WoNC2+ExoQocy7XjXabsUAd7yVrnndKb7
+         YUSGVNNJt22UP/7X/t83LR/yv3BRFwF4IF9sp6KTyY2l2uqQZIDygAiJMzTx9oiasWsS
+         Fd7sYOzuLi6qTADjp4w8sEtmX2+r8keS9hSv2Cv6QSHOlV9ZeOgpbacCwDUS7LHgGr7R
+         vhadYRhSmBzsMqKXEEy7e/hPs0hK++Rlsl60Dy0BqOZtSKXdU+/jY4DnauwrWtYrcap9
+         nrsQ==
+X-Gm-Message-State: AC+VfDxQXorHWi35pX4V+MCmIlHwBKkpfm/5RB79L8XDmBgDy22u/8tH
+        ksbv4HQSbAZ8L7nW8LvaeYMfRg==
+X-Google-Smtp-Source: ACHHUZ42uaXU6+8DZVhsw4tg5ChgANQZ7OV1TTRlzA7XRCTwEtkTBTBAp0iTmvbHQcrQ5C1tdujs/g==
+X-Received: by 2002:a19:9113:0:b0:4f7:68c6:e352 with SMTP id t19-20020a199113000000b004f768c6e352mr1218978lfd.38.1686764409711;
+        Wed, 14 Jun 2023 10:40:09 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id a8-20020a19f808000000b004f14ecc03f1sm2205264lff.100.2023.06.14.10.40.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 10:38:50 -0700 (PDT)
-Message-ID: <695204de-601b-8e3f-d7f3-ac3bcd09e6e3@linaro.org>
-Date:   Wed, 14 Jun 2023 19:38:48 +0200
+        Wed, 14 Jun 2023 10:40:09 -0700 (PDT)
+Message-ID: <eb39cef0-7e1c-f0dc-12fa-6a5a746d17d1@linaro.org>
+Date:   Wed, 14 Jun 2023 19:40:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v6 2/3] dt-bindings: iio: adc: Add Allwinner
- D1/T113s/R329/T507 SoCs GPADC
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v5 08/22] interconnect: qcom: smd-rpm: Add rpmcc handling
+ skeleton code
 Content-Language: en-US
-To:     Maksim Kiselev <bigunclemax@gmail.com>, linux-iio@vger.kernel.org
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20230614132644.699425-3-bigunclemax@gmail.com>
- <20230614145826.777870-1-bigunclemax@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230614145826.777870-1-bigunclemax@gmail.com>
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230526-topic-smd_icc-v5-0-eeaa09d0082e@linaro.org>
+ <20230526-topic-smd_icc-v5-8-eeaa09d0082e@linaro.org>
+ <ZInS7WZ_-02iZiKp@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZInS7WZ_-02iZiKp@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 16:58, Maksim Kiselev wrote:
-> Allwinner's D1/T113s/R329/T507 SoCs have a new general purpose ADC.
-> This ADC is the same for all of this SoCs. The only difference is
-> the number of available channels.
+On 14.06.2023 16:47, Stephan Gerhold wrote:
+> On Wed, Jun 14, 2023 at 12:22:19PM +0200, Konrad Dybcio wrote:
+>> Introduce qcom_icc_rpm_set_bus_rate() in preparation for handling RPM
+>> clock resources within the interconnect framework. This lets us greatly
+>> simplify all of the code handling, as setting the rate comes down to:
+>>
+>> u32 rate_khz = max(clk.sleep_rate, clk.active_rate, clk_a.active_rate)
+>> write_to_rpm(clock.description, rate_khz);
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  drivers/interconnect/qcom/icc-rpm.h | 15 +++++++++++++++
+>>  drivers/interconnect/qcom/smd-rpm.c | 21 +++++++++++++++++++++
+>>  2 files changed, 36 insertions(+)
+>>
+>> diff --git a/drivers/interconnect/qcom/icc-rpm.h b/drivers/interconnect/qcom/icc-rpm.h
+>> index 9ec90e13bfbd..d857fb1efb75 100644
+>> --- a/drivers/interconnect/qcom/icc-rpm.h
+>> +++ b/drivers/interconnect/qcom/icc-rpm.h
+>> @@ -22,6 +22,18 @@ enum qcom_icc_type {
+>>  	QCOM_ICC_QNOC,
+>>  };
+>>  
+>> +/**
+>> + * struct rpm_clk_resource - RPM bus clock resource
+>> + * @resource_type: RPM resource type of the clock resource
+>> + * @clock_id: index of the clock resource of a specific resource type
+>> + * @branch: whether the resource represents a branch clock
+>> +*/
+>> +struct rpm_clk_resource {
+>> +	u32 resource_type;
+>> +	u32 clock_id;
+>> +	bool branch;
+>> +};
+>> +
+>>  #define NUM_BUS_CLKS	2
+>>  
+>>  /**
+>> @@ -47,6 +59,7 @@ struct qcom_icc_provider {
+>>  	unsigned int qos_offset;
+>>  	u64 bus_clk_rate[NUM_BUS_CLKS];
+>>  	struct clk_bulk_data bus_clks[NUM_BUS_CLKS];
+>> +	const struct rpm_clk_resource *bus_clk_desc;
+>>  	struct clk_bulk_data *intf_clks;
+>>  	bool keep_alive;
+>>  	bool is_on;
+>> @@ -104,6 +117,7 @@ struct qcom_icc_desc {
+>>  	struct qcom_icc_node * const *nodes;
+>>  	size_t num_nodes;
+>>  	const char * const *bus_clocks;
+>> +	const struct rpm_clk_resource *bus_clk_desc;
+>>  	const char * const *intf_clocks;
+>>  	size_t num_intf_clocks;
+>>  	bool keep_alive;
+>> @@ -125,5 +139,6 @@ int qnoc_remove(struct platform_device *pdev);
+>>  
+>>  bool qcom_icc_rpm_smd_available(void);
+>>  int qcom_icc_rpm_smd_send(int ctx, int rsc_type, int id, u32 val);
+>> +int qcom_icc_rpm_set_bus_rate(const struct rpm_clk_resource *clk, int rsc_type, u32 rate);
+>>  
+>>  #endif
+>> diff --git a/drivers/interconnect/qcom/smd-rpm.c b/drivers/interconnect/qcom/smd-rpm.c
+>> index b0183262ba66..b06374340eeb 100644
+>> --- a/drivers/interconnect/qcom/smd-rpm.c
+>> +++ b/drivers/interconnect/qcom/smd-rpm.c
+>> @@ -16,6 +16,7 @@
+>>  #include "icc-rpm.h"
+>>  
+>>  #define RPM_KEY_BW		0x00007762
+>> +#define QCOM_RPM_SMD_KEY_RATE	0x007a484b
+>>  
+>>  static struct qcom_smd_rpm *icc_smd_rpm;
+>>  
+>> @@ -44,6 +45,26 @@ int qcom_icc_rpm_smd_send(int ctx, int rsc_type, int id, u32 val)
+>>  }
+>>  EXPORT_SYMBOL_GPL(qcom_icc_rpm_smd_send);
+>>  
+>> +int qcom_icc_rpm_set_bus_rate(const struct rpm_clk_resource *clk, int rsc_type, u32 rate)
+>> +{
+>> +	struct clk_smd_rpm_req req = {
+>> +		.key = cpu_to_le32(QCOM_RPM_SMD_KEY_RATE),
+>> +		.nbytes = cpu_to_le32(sizeof(u32)),
+>> +	};
+>> +
+>> +	/* Branch clocks are only on/off */
+>> +	if (clk->branch)
+>> +		rate = !!rate;
+>> +
+>> +	req.value = cpu_to_le32(rate);
+>> +	return qcom_rpm_smd_write(icc_smd_rpm,
+>> +				  rsc_type,
+>> +				  clk->resource_type,
 > 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+> Sorry to have more minor comments but as you can see here the resource
+> type is taken from the rpm_clk_resource. The parameter that you are
+> describing as "rsc_type" is actually the "ctx" in the other function. :')
+Meh I fixed it too fast.. thanks
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
-
-Don't send the same patches twice. This is v6 or was v6 or is what?
-
-Wait for feedback and send corrected patchset next day. If you tested
-your patches before sending, which actually *is a requirement*, all mess
-could be avoided. Sending same version twice is not a solution for
-missing testing.
-
-Best regards,
-Krzysztof
-
+Konrad
+> 
+> If you fix this feel free to add my:
+> 
+> Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+> 
+> Thanks,
+> Stephan
