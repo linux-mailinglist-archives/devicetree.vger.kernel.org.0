@@ -2,178 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC98D73058F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 18:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A5CE7305C7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 19:15:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236549AbjFNQ6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 12:58:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34860 "EHLO
+        id S235820AbjFNRPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 13:15:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233267AbjFNQ6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 12:58:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8620268E;
-        Wed, 14 Jun 2023 09:58:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 75C3F60E8D;
-        Wed, 14 Jun 2023 16:58:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A2AC433C8;
-        Wed, 14 Jun 2023 16:58:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686761924;
-        bh=JawmiSBEKOC8TDqGTdeR7nW44hRx2G/VByajxDBcYoo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u5irh81u/2jEaKr5V3wSgBXtD+6gwCmlrtZmd3qUH6b4HWNwVrzjUMgAFGgwjnQYf
-         UtmsVlLzyqJigA7QvNHeMiFHFX2uQsAMc2buiXNNJ7dChvtK/cWF8p9UrbtjZ9RwLv
-         2Ti++JsfAKvEuqkqeSwwwHDzLJo+yeWezMis/NnVjYZEOnmIGb7w6/P9nq3CCJ8IcV
-         5KkYiuFu73y27hsf6zvWM4aXh4W9epUP8KxUoU7TWCgGJhLFQI5q2kaQIeBZT9Aqqf
-         QrSw7yqkMaXR2g7li8La6FlkyKu7AuASGdjz/b4zUyb2kvtYPqVNKocAIrSiK5T+iy
-         Y3BG/0p7K199g==
-Date:   Wed, 14 Jun 2023 17:58:38 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org,
-        Christoph Hellwig <hch@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235423AbjFNRPF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 13:15:05 -0400
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952DFE69;
+        Wed, 14 Jun 2023 10:15:03 -0700 (PDT)
+Received: from [167.98.27.226] (helo=rainbowdash)
+        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1q9U5D-00Exj5-EM; Wed, 14 Jun 2023 18:14:59 +0100
+Received: from ben by rainbowdash with local (Exim 4.96)
+        (envelope-from <ben@rainbowdash>)
+        id 1q9U5C-000I0h-0j;
+        Wed, 14 Jun 2023 18:14:58 +0100
+From:   Ben Dooks <ben.dooks@sifive.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ben.dooks@codethink.co.uk, u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v9 0/6] Add non-coherent DMA support for AX45MP
-Message-ID: <20230614-oncoming-suspense-4104f43912ab@spud>
-References: <20230614104759.228372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>
+Subject: [PATCH v8 0/5] DesignWare PWM driver updates
+Date:   Wed, 14 Jun 2023 18:14:52 +0100
+Message-Id: <20230614171457.69191-1-ben.dooks@sifive.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dWz4qVr6/YdX432b"
-Content-Disposition: inline
-In-Reply-To: <20230614104759.228372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is an update for the DesignWare PWM driver to add support for
+OF (and split the PCI bits out if aynone else wants them). This is mostly
+the same as the v7 series, but with code moved around and module-namespace
+added, plus review comments processed.
 
---dWz4qVr6/YdX432b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Since we no longer have the hardware, the clock code hasn't been changed to
+either lock the rate whilst the PWM is running, or to deal with any sort
+of change callback. This is left to future work (and I would rather get
+something in that does currently work) (second note, the hardware we did
+use had a fixed clock tree anyway)
 
-On Wed, Jun 14, 2023 at 11:47:53AM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Hi All,
->=20
-> non-coherent DMA support for AX45MP
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> On the Andes AX45MP core, cache coherency is a specification option so it
-> may not be supported. In this case DMA will fail. To get around with this
-> issue this patch series does the below:
->=20
-> 1] Andes alternative ports is implemented as errata which checks if the I=
-OCP
-> is missing and only then applies to CMO errata. One vendor specific SBI E=
-XT
-> (ANDES_SBI_EXT_IOCP_SW_WORKAROUND) is implemented as part of errata.
->=20
-> Below are the configs which Andes port provides (and are selected by RZ/F=
-ive):
->       - ERRATA_ANDES
->       - ERRATA_ANDES_CMO
->=20
-> OpenSBI patch supporting ANDES_SBI_EXT_IOCP_SW_WORKAROUND SBI can be foun=
-d here,
-> https://patchwork.ozlabs.org/project/opensbi/patch/20230317140357.14819-1=
--prabhakar.mahadev-lad.rj@bp.renesas.com/
->=20
-> 2] Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
-> block that allows dynamic adjustment of memory attributes in the runtime.
-> It contains a configurable amount of PMA entries implemented as CSR
-> registers to control the attributes of memory locations in interest.
-> OpenSBI configures the PMA regions as required and creates a reserve memo=
-ry
-> node and propagates it to the higher boot stack.
->=20
-> Currently OpenSBI (upstream) configures the required PMA region and passes
-> this a shared DMA pool to Linux.
->=20
->     reserved-memory {
->         #address-cells =3D <2>;
->         #size-cells =3D <2>;
->         ranges;
->=20
->         pma_resv0@58000000 {
->             compatible =3D "shared-dma-pool";
->             reg =3D <0x0 0x58000000 0x0 0x08000000>;
->             no-map;
->             linux,dma-default;
->         };
->     };
->=20
-> The above shared DMA pool gets appended to Linux DTB so the DMA memory
-> requests go through this region.
->=20
-> 3] We provide callbacks to synchronize specific content between memory and
-> cache.
->=20
-> 4] RZ/Five SoC selects the below configs
->         - AX45MP_L2_CACHE
->         - DMA_GLOBAL_POOL
->         - ERRATA_ANDES
->         - ERRATA_ANDES_CMO
->=20
-> ----------x---------------------x--------------------x---------------x---=
------------
->=20
-> Note,
-> - Ive used GCC 12.2.0 for compilation
-> - Tested all the IP blocks on RZ/Five which use DMA
-> - Patch series is dependent on the series from Arnd,
->   https://patchwork.kernel.org/project/linux-riscv/cover/20230327121317.4=
-081816-1-arnd@kernel.org/.
->   (Ive rebased Arnd's series on v6.4-rc-1)
-> - Patches applies on top of palmer/for-next (255b34d799dd)
-> - Ive pushed the complete tree here https://github.com/prabhakarlad/linux=
-/tree/rzfive-cmo-v9
-> - Previously the function pointer approach was NAKed by Christoph Hellwig=
- but based on the discussion
->   on #riscv Ive implemented this approach.
+This account is probably going away soon, I have cc'd my main work
+email to catch any responses.
 
-Last time around you wanted someone to try this on a d1. I have done &
-seems to work just as well as it did before. For where it is relevant:
-Tested-by: Conor Dooley <conor.dooley@microchip.com> # tyre-kicking on a d1
+Thank you all for the reviews.
 
-Cheers,
-Conor.
+The lengthy changelog:
 
---dWz4qVr6/YdX432b
-Content-Type: application/pgp-signature; name="signature.asc"
+v8:
+ - updated reviewed tags
+ - fix module name for pci version
+ - fix config symbol bug in makefile
+ - remove pci compile-test (mostly not used for pci)
+ - push the compile-test into the platform/of driver
+v7:
+ - fixup kconfig from previous pcie changes
+ - re-order kconfig to make dwc core be selected by PCI driver
+ - move clk variable to patch it is used in
+v6:
+ - fix removal ordering of DWC_PERIOD_NS
+v5:
+ - fixed kconfig string error
+ - merged pwm-nr into main of code
+ - split of code from pci code
+ - updated pwm-nr capping
+ - fix duplicate error reporting in of-code
+ - fix return in of-probe
+ - remove unecessary remove function as devm_ functions sort this
+ - fixed ordering of properties
+ - added missing reg item
+ - fixed missing split of the two clock sources.
+ - get bus clock in of code
+v4:
+ - split pci and of into new modules
+ - fixup review comments
+ - fix typos in dt-bindings
+v3:
+- change the compatible name
+- squash down pwm count patch
+- fixup patch naming
+v2:
+- fix #pwm-cells count to be 3
+- fix indetation 
+- merge the two clock patches
+- add HAS_IOMEM as a config dependency
 
------BEGIN PGP SIGNATURE-----
+Ben Dooks (5):
+  pwm: dwc: split pci out of core driver
+  pwm: dwc: make timer clock configurable
+  pwm: dwc: add PWM bit unset in get_state call
+  pwm: dwc: use clock rate in hz to avoid rounding issues
+  pwm: dwc: add of/platform support
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZInxvgAKCRB4tDGHoIJi
-0sfzAQCEjbnkO/PstIi3QY0iVd1H9kr/2JAlhfErqEE/L8IxCgEAzAvEFiNamjsn
-G75ooY9CoNzd0FPcZl23hphkNQ24xwk=
-=GlJW
------END PGP SIGNATURE-----
+ drivers/pwm/Kconfig        |  24 ++++-
+ drivers/pwm/Makefile       |   2 +
+ drivers/pwm/pwm-dwc-core.c | 196 ++++++++++++++++++++++++++++++++++++
+ drivers/pwm/pwm-dwc-of.c   |  78 +++++++++++++++
+ drivers/pwm/pwm-dwc.c      | 198 +------------------------------------
+ drivers/pwm/pwm-dwc.h      |  61 ++++++++++++
+ 6 files changed, 364 insertions(+), 195 deletions(-)
+ create mode 100644 drivers/pwm/pwm-dwc-core.c
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+ create mode 100644 drivers/pwm/pwm-dwc.h
 
---dWz4qVr6/YdX432b--
+-- 
+2.39.2
+
