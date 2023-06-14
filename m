@@ -2,98 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB2D87305D8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 19:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A86437305E0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 19:18:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236170AbjFNRRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 13:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44042 "EHLO
+        id S236933AbjFNRS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 13:18:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235423AbjFNRRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 13:17:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFBF5132;
-        Wed, 14 Jun 2023 10:17:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 61822644E1;
-        Wed, 14 Jun 2023 17:17:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF752C433C0;
-        Wed, 14 Jun 2023 17:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686763041;
-        bh=Zbb5hoog/Puebf5TpE0Zp/30wehyw5cRswSRzy0cnzw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UMAgsPU2w/Os3tuheNEwgrsYVzF0KDntSZDWhpoaIkJvdKEfreq7VkqNhB8klzELL
-         fUAty8wopY432ZG3xnDQwR7kAhMYJsfUVZbz6lJgv9AvcgtJHikfplJzltZor4P6xC
-         sf9n4FaIJe2SC0T1DOdDP8keigWyFsz/v8tTzBAMvl1F6Ov8f/dsL5uLHBYA372lx4
-         6qNiKj+BfbeMyjCqnGNszlZArKH6r8oowoDEwXW4rYoc+Z7eWW/2X3t5ef5aIAocrd
-         16AEQflZJgU7RONo4Nwi0bfbNxLNIM9R14ZipnssKpOCBoSTTLDiZCz1t01HhPZM78
-         CfGBJpzkgUBmQ==
-Date:   Wed, 14 Jun 2023 18:17:15 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>
-Cc:     Rob Herring <robh@kernel.org>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Marek Vasut <marex@denx.de>,
-        kernel@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: net: dsa: microchip: add interrupts
- property for ksz switches
-Message-ID: <20230614-pessimism-celibate-bcd0a624b1c4@spud>
-References: <20230614123222.4167460-1-l.goehrs@pengutronix.de>
- <20230614123222.4167460-6-l.goehrs@pengutronix.de>
+        with ESMTP id S236786AbjFNRSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 13:18:16 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B27D2715
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 10:18:13 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-97454836448so133560866b.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 10:18:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686763091; x=1689355091;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8E7alXFnYsjNnpR3eeRhfbBudzEGWslVHCnpWP7s+Ps=;
+        b=KCw9rCdMRs4kJjHk8mRBUZdS42UXu+0EDm58vQmdK8+4FSUI7VIPjUh5+p721T9S0c
+         wYy1GIWwJXJ+kJTz4JfBR4iSBmWH+Jcc0cJsYS3Xwx9LOynHq8yIyHr9klHtl8F+4ASo
+         zURXuMf5IvpRb1njMo1OFhjf9yWyUz75QLQga5iRH1Ow78VjlBXu0y0fAm2XA800KUVF
+         m71MHUlFOCaR+hZW3Y6H/4g761u6643fjYN7Z+vFVpH8k7HTIBNAC2jgUaNIzHdZDs5S
+         npKpR4a0K4yksS18cbcPampxntv8dpt/xBTD0UwZwOp+OfNx/pHfLURf5U6ECrkgN5xf
+         SgGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686763091; x=1689355091;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8E7alXFnYsjNnpR3eeRhfbBudzEGWslVHCnpWP7s+Ps=;
+        b=aZY7Qickvuwm10bb+YTSYDZwFrAUnxo/m7FZv0K10MnK3ksi7kvcWPWpKzMPjftYTJ
+         2dozMufMLT9R7qgp9PDiz4ovYspMNmDxJkMPg9sDEbIsUiHCwez4kj01bp5HyDtSuvGF
+         dkiMJ+QQFUVaz7t/wC3OTmPZa+IRDfQniv1QfFw60OQtKxEbjAjODzat/7WORE2EDR3L
+         VE53pNCLG+9FySX3dC8oEysjyz1fZzFd9nO4S+W/ngpvkHIcgiIYjFEXaXAz6eI1HJ/0
+         jUzxAVJ20/4rQAyQoOpSjIX+j2xhXB9vpXHVxR8Y/GEV/T6LORVXrgamZ6ujI4fCMT7j
+         7guQ==
+X-Gm-Message-State: AC+VfDwrmSEEkqceJSRLj41DIqug1XMJDY9tFI6WNhG32bRIUfWc3QWt
+        H23vNTcRLoAaqObkihCdof35lQ==
+X-Google-Smtp-Source: ACHHUZ75e4yY8YF/k+wmJTVdekC0yLpMAEC0vuUyrJXPr0t0Ni9R0Ob8GwayNhixL4qkK6ErxbLDAg==
+X-Received: by 2002:a17:907:94ca:b0:96a:52e:5379 with SMTP id dn10-20020a17090794ca00b0096a052e5379mr14942952ejc.63.1686763091507;
+        Wed, 14 Jun 2023 10:18:11 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id r2-20020a170906548200b0096f5b48fe43sm8149752ejo.47.2023.06.14.10.18.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jun 2023 10:18:11 -0700 (PDT)
+Message-ID: <8fdcd38e-7b4b-6016-2014-5d5de05c2267@linaro.org>
+Date:   Wed, 14 Jun 2023 19:18:07 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Pdz20o4oV1AIZJKV"
-Content-Disposition: inline
-In-Reply-To: <20230614123222.4167460-6-l.goehrs@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 2/2] usb: phy: mxs: add DT bindings to hold data line
+Content-Language: en-US
+To:     Xu Yang <xu.yang_2@nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, jun.li@nxp.com
+Cc:     Frank.Li@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org
+References: <20230614111548.1815146-1-xu.yang_2@nxp.com>
+ <20230614111548.1815146-2-xu.yang_2@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230614111548.1815146-2-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/06/2023 13:15, Xu Yang wrote:
+> Whether the data line is disconnected when vbus is not present is related
+> to whether the platform data set MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS
+> flag. This will provide a override from dts node if the user want to hold
+> the data line when vbus is not present.
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> ---
+>  drivers/usb/phy/phy-mxs-usb.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
+> index e1a2b2ea098b..036bb58a3a71 100644
+> --- a/drivers/usb/phy/phy-mxs-usb.c
+> +++ b/drivers/usb/phy/phy-mxs-usb.c
+> @@ -199,7 +199,7 @@ MODULE_DEVICE_TABLE(of, mxs_phy_dt_ids);
+>  struct mxs_phy {
+>  	struct usb_phy phy;
+>  	struct clk *clk;
+> -	const struct mxs_phy_data *data;
+> +	struct mxs_phy_data *data;
+>  	struct regmap *regmap_anatop;
+>  	int port_id;
+>  	u32 tx_reg_set;
+> @@ -774,6 +774,11 @@ static int mxs_phy_probe(struct platform_device *pdev)
+>  		mxs_phy->tx_reg_set  |= GM_USBPHY_TX_D_CAL(val);
+>  	}
+>  
+> +	mxs_phy->data = (struct mxs_phy_data *)of_device_get_match_data(&pdev->dev);
+> +
+> +	if (of_property_present(np, "fsl,hold-line-without-vbus"))
+> +		mxs_phy->data->flags &= ~MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS;
 
---Pdz20o4oV1AIZJKV
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+How did you test it? What type of memory are you modifying?
 
-On Wed, Jun 14, 2023 at 02:32:19PM +0200, Leonard G=F6hrs wrote:
-> The ksz switch driver allows specifying an interrupt line to prevent
-> having to periodically poll the switch for link ups/downs and other
-> asynchronous events.
->=20
-> Signed-off-by: Leonard G=F6hrs <l.goehrs@pengutronix.de>
+Best regards,
+Krzysztof
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---Pdz20o4oV1AIZJKV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIn2GwAKCRB4tDGHoIJi
-0nSKAQCaRAF7G/E8L+4Tdad/M48ZtCCFwHTCF2KLVFSi85SwCAD/eEV8HMRTM4ez
-KGL/OAwHa27KLQ06AeWPKj1QNwQMCAc=
-=DQ6b
------END PGP SIGNATURE-----
-
---Pdz20o4oV1AIZJKV--
