@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4882B72FDCA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FF5F72FE04
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:12:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244258AbjFNMDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 08:03:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42292 "EHLO
+        id S244522AbjFNMMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 08:12:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243772AbjFNMDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:03:14 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFA019AC;
-        Wed, 14 Jun 2023 05:03:13 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35EC34AG008072;
-        Wed, 14 Jun 2023 07:03:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686744184;
-        bh=exqtvFT+nbVlmhGeLa2rPoTuLDjsI9iSTt+Gq8Txzx8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=aHW27taJwCJ6cZFhwtkfywFTp0n/jEmo9crO3vw8m9wu6H/U1pUnOooHf/QX1kEMU
-         9htAe+vLEb4L19+cakByG09e/bDKLgDoyFNUQ2hr0/UcSP9dclR51pnfgxwJSD4d9K
-         o5XqfOoWhbj6hY8y8Z0dth488Hb+EMfgEDrppXHQ=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35EC34rG003402
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 14 Jun 2023 07:03:04 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Jun 2023 07:03:03 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Jun 2023 07:03:03 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35EC33wD050419;
-        Wed, 14 Jun 2023 07:03:03 -0500
-Date:   Wed, 14 Jun 2023 07:03:03 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     "Kumar, Udit" <u-kumar1@ti.com>
-CC:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Neha Malcom Francis <n-francis@ti.com>
-Subject: Re: [PATCH 6/9] arm64: dts: ti: k3-j721e-beagleboneai64: Add
- wakeup_uart pinmux
-Message-ID: <20230614120303.5ievpixlpjb3wtdz@elective>
-References: <20230601183151.1000157-1-nm@ti.com>
- <20230601183151.1000157-7-nm@ti.com>
- <22b67e80-1f5f-d8e0-3c85-c69d97ea0d39@ti.com>
+        with ESMTP id S244301AbjFNMMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:12:06 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707D32686
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:11:55 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f62b512fe2so8793325e87.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:11:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686744713; x=1689336713;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tYyaAYoAiZPPWXaf4R2hKtCfO4zLm4oKoUYKWZFRm4I=;
+        b=hKiVZuklWK+NqGpONCdITyK0/G4UuFam+X7VxpnSUQOb0cSzVtuweZOSizin1aXpu5
+         YXqo3aoe5kakwvMHgsFLFOyznaBNV043AFcNXlw6/hfoI1oJysj+7Ru0908vxA7hVRb6
+         CwWV1MeCQlICGJAsHGEDk+6evbQsVJ8eTx/LNjxwRx7wYXJploSbcDecoKlZ8BzLlBSX
+         EdB5kHUro5ckRocl9aC1TDOo9pclvKc5s+Hd5wk3qgC8gDbQq70Hc1LMwr7jxoUQBVOI
+         OXQ/sNZYv4P922CHV4LvAdpnregUcbgz5HJjvsqEnscv85bfBfhBlntxlftMgdl+KYtQ
+         Fqhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686744713; x=1689336713;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tYyaAYoAiZPPWXaf4R2hKtCfO4zLm4oKoUYKWZFRm4I=;
+        b=FX27bJBoT6bKXf2yThJgCgi3Kqb6NmFkodgrZURIiaQmXXmR/FoycEODarJHSVlcEl
+         DDZIX7O2CqEBcmHeGWUAsc0HxSYKjzfAy2lR1Wq/c60HHEhLiLjJRryEYzEkcsZVIRE/
+         CryLhj0J6tdWWwEgAMImKxL4/4hmSbG5aSB6TFRQRWEt3yjwYfN+nYR314AFPLyhLCPe
+         pL7wcxg8OrEmCPMRwTzmh0mI8dWs8lFkpMO3/foPWwj+T3vASaWSbMJZ2pd+vYEqlaU2
+         CDvQcpte7QUY0UxJLk3pqYNDccQ3VU8pkRHAPhGQ2iC+X0vMFY6CDPIUxjCnIlupcHa5
+         dYog==
+X-Gm-Message-State: AC+VfDwptzRLHJOk0En6ICnWbP+CvgPgSeE7arfHQoYC3dw0vZp1qgQg
+        cJzILKyqgJy6gvHzfo7r9lyJyQ==
+X-Google-Smtp-Source: ACHHUZ5TJdH3ECSdMnlEzGFBheGVPe5ivU0D9N7rCttk2fTtA4W6zd7X4XTxVOxmzIVng9ufTPlKdA==
+X-Received: by 2002:a19:3814:0:b0:4f7:66cc:6c91 with SMTP id f20-20020a193814000000b004f766cc6c91mr788222lfa.51.1686744713522;
+        Wed, 14 Jun 2023 05:11:53 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id d2-20020ac25ec2000000b004f24e797c55sm2109793lfq.25.2023.06.14.05.11.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 05:11:53 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/4] SM8250 Edo pins, keys & pmic
+Date:   Wed, 14 Jun 2023 14:11:45 +0200
+Message-Id: <20230614-topic-edo_pinsgpiopmic-v1-0-cf88a0bac26c@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <22b67e80-1f5f-d8e0-3c85-c69d97ea0d39@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIGuiWQC/x2N0QrCMAwAf2Xk2cI6pYi/IiJtk26BmYZ2ijD27
+ wYf7+C4HTo1pg63YYdGH+5cxcCfBshLlJkcozFM43Qeg7+4rSpnR1ifytJn5aovE1iuCUPxKWA
+ Ci1Ps5FKLkhfL5b2uJrVR4e//dn8cxw+CUXvRfQAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1686744712; l=924;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=i3s4AcQganFr5wJlg7d766aH6boKY+DUBCJzoCXf1wg=;
+ b=1eImbmQaN2fHFTLcnkmQCuifUuo822YJVIJvXrrG5+Z1vqkQCWWPHUxgDQMKbM6wZtRiGpqNu
+ yU4lBeB0+DLB3+OmSZyfOvZTVHnKNJQ9Fd7xfuy43j+qIHY+o3JoDRD
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,67 +86,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:26-20230613, Kumar, Udit wrote:
-> Hi Nishanth,
-> 
-> On 6/2/2023 12:01 AM, Nishanth Menon wrote:
-> > Define the wakeup uart pin-mux for completeness. This allows the
-> > device tree usage in bootloader and firmwares that can configure the
-> > same appropriately.
-> > 
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > ---
-> >   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 9 +++++++++
-> >   1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> > index c13246a9ed8f..bc53ca566a68 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> > @@ -531,6 +531,13 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
-> >   		>;
-> >   	};
-> > +	wkup_uart0_pins_default: wkup-uart0-pins-default {
-> > +		pinctrl-single,pins = <
-> > +			J721E_WKUP_IOPAD(0xa0, PIN_INPUT, 0) /* (J29) WKUP_UART0_RXD */
-> > +			J721E_WKUP_IOPAD(0xa4, PIN_OUTPUT, 0) /* (J28) WKUP_UART0_TXD */
-> > +		>;
-> > +	};
-> > +
-> >   	mcu_usbss1_pins_default: mcu-usbss1-pins-default {
-> >   		pinctrl-single,pins = <
-> >   			J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO0_30 */
-> > @@ -541,6 +548,8 @@ J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO
-> >   &wkup_uart0 {
-> >   	/* Wakeup UART is used by TIFS firmware. */
-> >   	status = "reserved";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&wkup_uart0_pins_default>;
-> >   };
-> 
-> 
-> If you like to consider alias for wkup_uart0 for this board ,
-> 
-> Just to align with other boards for this SOC family.  I understand
-> wkup_uart0 is not being used.
+This series brings fixes to the GPIO buttons, adds gpio-line-names and
+introduces the SLG51000 camera on Xperia Edo devices.
 
-Vignesh,
-could you squash this locally OR if you like, I can post a v2:
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (4):
+      arm64: dts: qcom: sm8250-edo: Add gpio line names for TLMM
+      arm64: dts: qcom: sm8250-edo: Add GPIO line names for PMIC GPIOs
+      arm64: dts: qcom: sm8250-pdx203: Configure SLG51000 PMIC
+      arm64: dts: qcom: sm8250-edo: Rectify gpio-keys
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-index 3304460f6a0b..9922d7bb061f 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-@@ -20,6 +20,7 @@ / {
- 	model = "BeagleBoard.org BeagleBone AI-64";
- 
- 	aliases {
-+		serial0 = &wkup_uart0;
- 		serial2 = &main_uart0;
- 		mmc0 = &main_sdhci0;
- 		mmc1 = &main_sdhci1;
+ .../dts/qcom/sm8250-sony-xperia-edo-pdx203.dts     | 364 +++++++++++++++++++++
+ .../dts/qcom/sm8250-sony-xperia-edo-pdx206.dts     | 243 ++++++++++++++
+ .../boot/dts/qcom/sm8250-sony-xperia-edo.dtsi      |  61 +++-
+ 3 files changed, 655 insertions(+), 13 deletions(-)
+---
+base-commit: b16049b21162bb649cdd8519642a35972b7910fe
+change-id: 20230614-topic-edo_pinsgpiopmic-df8bd6f1b6db
 
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
