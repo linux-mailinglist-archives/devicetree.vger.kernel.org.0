@@ -2,183 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A08672FD3C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 13:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D92872FD5F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 13:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244180AbjFNLny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 07:43:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56694 "EHLO
+        id S234906AbjFNLu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 07:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244193AbjFNLnv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 07:43:51 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF641BE9;
-        Wed, 14 Jun 2023 04:43:47 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35E71JWv014819;
-        Wed, 14 Jun 2023 11:43:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=yV71osPptkCiJoMYF+jrbVqBdhkNFdN5n92WzBBjbGk=;
- b=o6VQiCRmMKaQefDL9YHdfRd429d3e/COJFZ2aE6BjsPmfhy6MT9AXUeIR9MRB8xmXoJQ
- sef7/Mg3tEqnTdzVu7uTiwjvU5o6sNmqcK6M5krgciRHXqj0rvLzETPQbFRZRepby5d7
- CPyCv+qW+IHJ0agwt7lGCD+Oiif2CiRFudkoWsOMbrBBjtxpMUzu5pJolCIdoG7o932J
- KX00EfupeC90QFXWMoOWkIV8KvmeUnwk1uMsLEH2p1RpfjMexpd+QqayqaeIrF+fVe/T
- au2JGqRvRiBQfczPLrEz4IF/BH8yR9WGBo6sZfGiuMw2vtjSxXn4fR4AF+JYgKXAACFx mA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r6nqh3810-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 11:43:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35EBhfjI031430
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 11:43:41 GMT
-Received: from [10.201.206.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 14 Jun
- 2023 04:43:32 -0700
-Message-ID: <04f5e3cb-d2f5-747c-1fd0-4b61d845e2c5@quicinc.com>
-Date:   Wed, 14 Jun 2023 17:13:27 +0530
+        with ESMTP id S231313AbjFNLuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 07:50:25 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E999BA2;
+        Wed, 14 Jun 2023 04:50:23 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C7D1E6606ED1;
+        Wed, 14 Jun 2023 12:50:21 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686743422;
+        bh=9DNBrynI+HiRfRvrWhvvvBpQCTBoLpIz0X4Xq8IQ6sI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ICb+jwxKt+INPGpAuktKxr8rwW5NNORpaVS8MosEyn3MqXNglbRHCSSdVhUv87RL7
+         MSFu/OGJDqR+8DTBIKWhm2p8j/bCOQMXKriA3lC5OBBTQUdWbv3LRv6fqLUwJT/njd
+         cXoXzSqPk+ts5b3eebntXZpJRnrAsTFD5T4KHhs32zj4NOAkOuBJ6PPFfK+aFQCJ7s
+         nJg46uNkDlzTijh4uMj3uOHuUCIflkpYxebVIUZ2zzQzHDszV4Kdb2vGKGQkVbcRU/
+         JTwE46qD677bIJ1tnf4WT57Qv+9WC1/DjZcz+lCFmvyMgCEaccIDh8gNp80B4Rg7Ye
+         V7uYccUG9IlAg==
+Message-ID: <b89035bf-cbdd-e99a-1332-a11885ae8f8b@collabora.com>
+Date:   Wed, 14 Jun 2023 13:50:19 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH V2 01/13] dt-bindings: remoteproc: qcom: Add support for
- multipd model
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2,04/10] media: mediatek: vcodec: remove the dependency
+ of debug log
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Kalle Valo <kvalo@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <jassisinghbrar@gmail.com>, <mathieu.poirier@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_eberman@quicinc.com>, <quic_mojha@quicinc.com>,
-        <loic.poulain@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_devipriy@quicinc.com>
-References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
- <20230521222852.5740-2-quic_mmanikan@quicinc.com>
- <7940c743-815f-f864-d015-43d7e916ecfa@linaro.org>
- <a1456f62-d0a7-d5ec-b379-db1b6035c89c@quicinc.com>
- <d187eafb-4a80-9479-d063-3a01b47d8efa@linaro.org>
- <feb0d11d-0930-d0b8-ab6e-cf477bbf114b@quicinc.com>
- <87edmoitu3.fsf@kernel.org>
- <0555c089-9d0d-7d19-9646-f0f9b8630d12@quicinc.com>
- <5f9cc367-eaa5-4c19-4e5e-7052b0259ccf@linaro.org>
-From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <5f9cc367-eaa5-4c19-4e5e-7052b0259ccf@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _njWu8l0VgoINk7ifDFZCof0oFFQDArf
-X-Proofpoint-ORIG-GUID: _njWu8l0VgoINk7ifDFZCof0oFFQDArf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-14_07,2023-06-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 malwarescore=0 mlxlogscore=711 bulkscore=0
- suspectscore=0 mlxscore=0 priorityscore=1501 impostorscore=0 spamscore=0
- phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306140100
+To:     =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
+        <Yunfei.Dong@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+        "nfraprado@collabora.com" <nfraprado@collabora.com>,
+        "nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
+        "nhebert@chromium.org" <nhebert@chromium.org>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "frkoenig@chromium.org" <frkoenig@chromium.org>,
+        "stevecho@chromium.org" <stevecho@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230607084901.28021-1-yunfei.dong@mediatek.com>
+ <20230607084901.28021-5-yunfei.dong@mediatek.com>
+ <ad28c125d9efca1f7e422fffe42dd56cef66b349.camel@collabora.com>
+ <6bb7e4b283332f1b76c1550347cb245a57eee90b.camel@mediatek.com>
+ <ac3f4becf89d909503caeb8a05883fc38afccd41.camel@collabora.com>
+ <925956db-9001-7a4f-700e-c84220103201@collabora.com>
+ <e1e00e3207784f48b6adc9c3b6ec48f57795228d.camel@collabora.com>
+ <1ea03faee8da26e17690c707464ab1cda405a313.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <1ea03faee8da26e17690c707464ab1cda405a313.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 14/06/23 11:17, Yunfei Dong (董云飞) ha scritto:
+> Hi AngeloGioacchino,
+> 
+> How do you think about Nicolas's suggestion?
+> 
+
+Please don't top-post!
+
+Nicolas' suggestion looks good. Please go on.
+
+P.S.: Sorry for the late reply.
+
+Cheers,
+Angelo
 
 
-On 6/7/2023 1:57 PM, Krzysztof Kozlowski wrote:
-> On 07/06/2023 10:10, Manikanta Mylavarapu wrote:
->>
->>
->> On 6/6/2023 7:19 PM, Kalle Valo wrote:
->>> Manikanta Mylavarapu <quic_mmanikan@quicinc.com> writes:
->>>
->>>>>>>> +
->>>>>>>> +    properties:
->>>>>>>> +      compatible:
->>>>>>>> +        enum:
->>>>>>>> +          - qcom,ipq5018-wcss-ahb-mpd
->>>>>>>> +          - qcom,ipq9574-wcss-ahb-mpd
->>>>>>>> +          - qcom,ipq5018-wcss-pcie-mpd
->>>>>>>
->>>>>>> Keep rather alphabetical order (so both 5018 together).
->>>>>>>
->>>>>>> I also do not understand these at all. Why adding bus type to
->>>>>>> compatible? This rarely is allowed (unless it is PCIe controller within
->>>>>>> soc).
->>>>>>>
->>>>>> IPQ5018 SOC has in-built PCIE controller. Here QDSP6 will bring up
->>>>>> external(PCIE) and internal (AHB) wifi radio's. To separate AHB, PCIE
->>>>>> radio's properties, i have added bus type to compatible.
+> On Thu, 2023-06-08 at 11:17 -0400, Nicolas Dufresne wrote:
+>>   	
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>   Le jeudi 08 juin 2023 à 16:06 +0200, AngeloGioacchino Del Regno a
+>> écrit :
+>>> Il 08/06/23 15:11, Nicolas Dufresne ha scritto:
+>>>> Le jeudi 08 juin 2023 à 07:27 +0000, Yunfei Dong (董云飞) a écrit :
+>>>>> Hi Nicolas,
 >>>>>
->>>>> It's the same device - WCSS - right? We do not create multiple nodes and
->>>>> compatibles for the same devices. Bus suffixes are almost never parts of
->>>>> compatibles.
+>>>>> Thanks for your review.
+>>>>> On Wed, 2023-06-07 at 21:41 -0400, Nicolas Dufresne wrote:
+>>>>>>    
+>>>>>> External email : Please do not click links or open
+>> attachments until
+>>>>>> you have verified the sender or the content.
+>>>>>>    Hi Yunfei,
+>>>>>>
+>>>>>> Le mercredi 07 juin 2023 à 16:48 +0800, Yunfei Dong a écrit :
+>>>>>>> 'mtk_vcodec_debug' and 'mtk_vcodec_err' depends on
+>> 'mtk_vcodec_ctx'
+>>>>>>> to get the index of each instance, using the index directly
+>> instead
+>>>>>>> of with 'mtk_vcodec_ctx'.
+>>>>>>>
+>>>>>>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>>>>>>> ---
+>>>>>>>    .../mediatek/vcodec/mtk_vcodec_util.h         |  26 ++-
+>>>>>>>    .../vcodec/vdec/vdec_av1_req_lat_if.c         | 105
+>> +++++++-----
+>>>>>>>    .../mediatek/vcodec/vdec/vdec_h264_if.c       |  62 ++++-
+>> --
+>>>>>>>    .../mediatek/vcodec/vdec/vdec_h264_req_if.c   |  39 +++--
+>>>>>>>    .../vcodec/vdec/vdec_h264_req_multi_if.c      |  80
+>> +++++----
+>>>>>>>    .../vcodec/vdec/vdec_hevc_req_multi_if.c      |  67 ++++-
+>> ---
+>>>>>>>    .../mediatek/vcodec/vdec/vdec_vp8_if.c        |  54 ++++-
+>> --
+>>>>>>>    .../mediatek/vcodec/vdec/vdec_vp8_req_if.c    |  46 +++
+>> ---
+>>>>>>>    .../mediatek/vcodec/vdec/vdec_vp9_if.c        | 152
+>> ++++++++++--
+>>>>>> ------
+>>>>>>>    .../vcodec/vdec/vdec_vp9_req_lat_if.c         |  84
+>> ++++++----
+>>>>>>>    .../platform/mediatek/vcodec/vdec_vpu_if.c    |  59 ++++-
+>> --
+>>>>>>>    .../mediatek/vcodec/venc/venc_h264_if.c       |  86
+>> +++++-----
+>>>>>>>    .../mediatek/vcodec/venc/venc_vp8_if.c        |  48 +++
+>> ---
+>>>>>>>    .../platform/mediatek/vcodec/venc_vpu_if.c    |  64 ++++-
+>> ---
+>>>>>>>    14 files changed, 565 insertions(+), 407 deletions(-)
+>>>>>>>
+>>>>>>> diff --git
+>>>>>> a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+>>>>>> b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+>>>>>>> index ecb0bdf3a4f4..ddc12c3e2983 100644
+>>>>>>> ---
+>> a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+>>>>>>> +++
+>> b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+>>>>>>> @@ -31,9 +31,8 @@ struct mtk_vcodec_dev;
+>>>>>>>    #define mtk_v4l2_err(fmt, args...)                \
+>>>>>>>    pr_err("[MTK_V4L2][ERROR] " fmt "\n", ##args)
+>>>>>>>    
+>>>>>>> -#define mtk_vcodec_err(h, fmt, args...)\
+>>>>>>> -pr_err("[MTK_VCODEC][ERROR][%d]: " fmt "\n",\
+>>>>>>> -       ((struct mtk_vcodec_ctx *)(h)->ctx)->id, ##args)
+>>>>>>> +#define mtk_vcodec_err(plat_dev, inst_id, fmt,
+>>>>>> args...)                                 \
+>>>>>>> +dev_err(&(plat_dev)->dev, "[MTK_VCODEC][ERROR][%d]: " fmt
+>> "\n",
+>>>>>> inst_id, ##args)
+>>>>>>>    
+>>>>>>>    #if defined(CONFIG_DEBUG_FS)
+>>>>>>>    extern int mtk_v4l2_dbg_level;
+>>>>>>> @@ -46,27 +45,24 @@ extern int mtk_vcodec_dbg;
+>>>>>>>     __func__, __LINE__, ##args);        \
+>>>>>>>    } while (0)
+>>>>>>>    
+>>>>>>> -#define mtk_vcodec_debug(h, fmt,
+>> args...)                      \
+>>>>>>> -do {                      \
+>>>>>>> -if (mtk_vcodec_dbg)                      \
+>>>>>>> -dev_dbg(&(((struct mtk_vcodec_ctx *)(h)->ctx)->dev-
+>>> plat_dev-
+>>>>>>> dev),   \
+>>>>>>> -"[MTK_VCODEC][%d]: %s, %d " fmt
+>> "\n",                         \
+>>>>>>> -((struct mtk_vcodec_ctx *)(h)->ctx)-
+>>> id,                      \
+>>>>>>> -__func__, __LINE__,
+>> ##args);                                  \
+>>>>>>> +#define mtk_vcodec_debug(plat_dev, inst_id, fmt,
+>>>>>> args...)                               \
+>>>>>>> +do
+>>>>>> {
+>>>>>>           \
+>>>>>>> +if
+>>>>>> (mtk_vcodec_dbg)
+>>>>>> \
+>>>>>>> +dev_dbg(&(plat_dev)->dev, "[MTK_VCODEC][%d]: %s, %d " fmt
+>> "\n", \
+>>>>>>
+>>>>>> At least in this patch, you systematically pass plat_dev as
+>>>>>> <something>->ctx->dev->plat_dev, which is quite long and
+>> verbose, any
+>>>>>> reason we
+>>>>>> can't just pass that <something> here ? We can follow the
+>> same
+>>>>>> structure path
+>>>>>> for both encoder/decoder ?
+>>>>>>
+>>>>>
+>>>>> In order to separate encode and decoder, need to define two
+>> different
+>>>>> struct mtk_vcodec_dec_ctx and struct mtk_vcodec_enc_ctx.
+>>>>>
+>>>>> struct mtk_vcodec_ctx won't be used again, need to use platform
+>> device
+>>>>> to print dev_dbg and dev_err.
+>>>>>
+>>>>> encoder and decoder using the same interface to print log
+>> message.
 >>>>
+>>>> Just a reminder, I'm just making suggestions, there is no strict
+>> action required
+>>>> here other then a discussion to try and make the logging a bit
+>> more light.
 >>>>
->>>> No it's not the same device. WCSS on inside IPQ5018 and WCSS attached
->>>> via pcie to IPQ5018. Here QDSP6 managing both WCSS's.
+>>>> My points was that C macros don't care about types, so if you
+>> keep the path to
+>>>> the platform device the same (ctx->dev->plat_dev), you could just
+>> pass the ctx
+>>>> as argument. What I don't know though myself, is if this is
+>> actually feasible in
+>>>> all code path, but considering you had access to the instance
+>> previously, I
+>>>> thought it should.
 >>>>
->>>> So for better clarity i will use attached SOC ID in compatible.
->>>> Below are the new compatible's.
->>>>
->>>> - qcom,ipq5018-wcss-mpd //IPQ5018 internal radio
->>>> - qcom,ipq9574-wcss-mpd	//IPQ9574 internal radio
->>>> - qcom,qcn6122-wcss-mpd //IPQ5018 attached radio
 >>>
->>> What mandates that there's just one QCN6122 device attached to PCI?
->>> Assuming fixed PCI configurations like that makes me worried.
+>>> One macro used to access two different structures?
+>>>
+>>> Please, no.
+>>
+>> Its up to you. I do think this is an empty statement. Still believe
+>> we avoid
+>> this code "deterioration". One can always be creative to workaround
+>> your
+>> concerns.
+>>
+>> struct base_ctx {
+>> struct dev dev;
+>> }
+>>
+>> struct enc_ctx {
+>> struct base_ctx;
+>> ...
+>> }
+>>
+>> struct src_ctx {
+>> ...
+>> }
+>>
+>> But this is in no way more safe then a naming convention, this is
+>> macro calls,
+>> its not typed.
+>>
+>> Nicolas
+>>
+> 
+> In order to speed up the upstream progress, maybe we can discuss it in
+> chat.
+> 
+> Best Reagrds,
+> Yunfei Dong
+>>>
+>>> Regards,
+>>> Angelo
+>>>
+>>>> regards,
+>>>> Nicolas
+>>>>
+>>>>>
+>>>>> Best Regards,
+>>>>> Yunfei Dong
+>>>>>>> +inst_id, __func__, __LINE__, ##args);                   \
+>>>>>>>    } while (0)
+>>>>>>>    #else
+>>>>>>>    #define mtk_v4l2_debug(level, fmt, args...) pr_debug(fmt,
+>> ##args)
+>>>>>>>    
+>>>>>>> -#define mtk_vcodec_debug(h, fmt, args...)\
+>>>>>>> -pr_debug("[MTK_VCODEC][%d]: " fmt "\n",\
+>>>>>>
+>>>>> ...snip...
+>>>>
 >>>
 >>
->> IPQ5018 always has one internal radio, attached pcie radio's depends on
->> no of pcie ports. IPQ5018 has 2 pcie ports, so it supports max two
->> qcn6122 devices. One compatible (qcom,qcn6122-wcss-mpd) itself support's
->> number of pcie devices controlled by QDSP6.
-> 
-> So this is hot-pluggable (or at least board-pluggable), then should not
-> be a part of static DTS.
-> 
-> Some concepts of virtual-processes is anyway far away from hardware
-> description, thus does not fit into DTS. Adding now to the equation PCIe
-> with variable number of such processes, brings us even further.
-> 
-> This is not a DT property. Remember - DT describes hardware.
-> 
-> Best regards,
-> Krzysztof
-> 
 
-In the multipd architecture based Socs, There is one Q6 DSP which runs 
-the OS/kernel and there are one or more instances of WCSS radios
-(It can be either internal or pcie attached).
-These WCSS cores are controlled by the Q6 (Q6 DSP brings wcss radios out 
-of reset/ shuts it down etc). Q6 forms the 'root Protection domain' and 
-the wcss radios are termed as the 'user protection domain'.
-The compatible's that is being added here are to manage the 'root 
-domain' and 'user domain'.
-Not sure if using the words 'pcie'/'ahb' made it confusing.
-So, 'qcom,ipq5018-q6-mpd' and 'qcom,ipq5018-wcss-mpd'.
 
-There will be multiple instances of 'qcom,ipq5018-wcss-mpd' in DT based 
-on number of wcss radios connected on that board and only one instance 
-of 'qcom,ipq5018-q6-mpd'.
-
-Is this approach ok ?
-
-Thanks & Regards,
-Manikanta.
