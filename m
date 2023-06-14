@@ -2,348 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF4672F294
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 04:30:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F78772F2F9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 05:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231937AbjFNCaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jun 2023 22:30:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33608 "EHLO
+        id S232504AbjFNDSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jun 2023 23:18:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231388AbjFNCaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 22:30:19 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2099.outbound.protection.outlook.com [40.107.113.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F59183;
-        Tue, 13 Jun 2023 19:30:16 -0700 (PDT)
+        with ESMTP id S237892AbjFNDSl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jun 2023 23:18:41 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 368B1198;
+        Tue, 13 Jun 2023 20:18:35 -0700 (PDT)
+X-UUID: 2215ca2e0a6211eeb20a276fd37b9834-20230614
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:To:From; bh=B8mW9jmqtSp7e9EVL1vLsoaXX1wvIbs/k15jZBqk/tc=;
+        b=FndiNauh1ERvVy+uyRcQ8fkJ8weuSX3Yl7Rm9VTNRjxlwMy0IwM2Xq765Y4K7TVZdEIptJWxmc9m79dFVRdN1SaC9J+Ttd7TlAjqX6/TWwLUuqXie7nx6m3JIod/2L8Fdii28BM3YUjCpmXJlKrpA9RLbVJSm3B3wMZ02pwV65g=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.26,REQID:9e3dbada-2c80-4e73-9258-a44a88caf809,IP:0,U
+        RL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:25
+X-CID-META: VersionHash:cb9a4e1,CLOUDID:01b05a3e-de1e-4348-bc35-c96f92f1dcbb,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+        NO
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 2215ca2e0a6211eeb20a276fd37b9834-20230614
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+        (envelope-from <maso.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 776880965; Wed, 14 Jun 2023 11:18:28 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 14 Jun 2023 11:18:27 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 14 Jun 2023 11:18:27 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eILoTNjdPHIsVVaHUYiXiHLBUaH++8V7YA3iR8xrjUvXQ18bwYb323ZkIr9guZ7lc/M+9uQJOifT/5UQWriiViuDpLEQRdATo3/aY9f7GMjWg5bcsyVpS3Ry/tClrIxfV0GT4LoeQYdJEN/Rt2fWl5g4Kw1sITS0hg9Ef0dIlQtnPZxMkdSjR17kpEJdEjMWhXJqWkKMtoHqj+HJb/3cIm5CIrRCUYQH9Ml8+AMz4g3SwNoEs55u4ACkP1WrhcQs/6ke8rtiBBeQ5fFCdwkZcbgJxXAImXNW5tIREkl/hXvJB79e2rmoJ5SOkswugtzD4lTmShZClDfs9nXg5byVLQ==
+ b=DZjBxAAH+HIxk61ZyE8ilGQzUVmTYn/qXYQkcIeLRD8XNy8xTURW6ULJsTyFgqFYlsnzu2BXwAZcobKzDFdMn4fLz8H1oKUCD4ZrSG7yK64F7MHGo9NR0B7F4mEPit3Y0nf5JOW6YPbfDveMiLRdp6AfcDps8FPqmVP42A9CVGW4I+DtxdMzlnEpyevKZ6CTzrkKiupWIauRH0ERYs2ABOPoa7zbiLV9ia3xYjEzKveYH1exhP7XhLE1ytQiF1UevK2xxmNxz6awJgLuP+Pt2NhGwcFzkt5ZgqDAlL45+C4lh6MNxFuKAscjell7Itc0mjKZSPnNdvclPRVUME1KOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6v3L4Rffm1b4qULj8Qle3NOAK00qMdIq3IBtM6cB3v4=;
- b=gAhCK3quKQY+czcpZQIdJro2AuQstRX+kNEHZLL7WVk51ispMCZvN4lhTQWQ2LMcrjkyvSysW9POrpMTyhKqwNXD9aEVbrlmvclkoFdFYqm2a56Id3ngnchcmO2fuRdpH0mXJQ+a2NGwdMmyVXqg+3pYYd1os9tilavsvTwZdcvlroafiKnHcLW4h5Km64KPFOrlAckjEliNyww3pctUc+WPMywdAkHEUeg+PLFdQTv2Wc8n87qKX5Pwcve7ka7QhPvuqSLulTGuJbpvyXGu/Lrx8jR4hnYVsg1rw++zxHEFohMd8OiE/23N9GtKfaiA0jfhyBcCgMRLj5oz5FLUfQ==
+ bh=B8mW9jmqtSp7e9EVL1vLsoaXX1wvIbs/k15jZBqk/tc=;
+ b=WmwvRgDpjH5VIYqqAz9xXxA80tu/TZcCGrsPiPoHQmXaH5JJWG8NZAe+cPkGyfxKq474L+tHQHrvdygAgYC1QnLPPY32Ecr0Wo6I86zSwg5xsdr/nlLczWeqiNVAw3gNsYGQeRmfsbj+L8ghDewLW86NmujK7ASisf92GcLzYg5gVnUPYGquDtfM+orsyaUg3s7mdteivj7zSYKB7RQLgJ1jhMr3slTVVmfn3GLVlTNvhLYmVWVtnQrnOuTAzOyuWDmn71cG5ZDMI/Sg10o3vKygSKsP/OGYW1fooIFMATpNQBNQiikT5bBMJeOj2ZyHxyNae9DUHNyaWwq9HYZ68w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6v3L4Rffm1b4qULj8Qle3NOAK00qMdIq3IBtM6cB3v4=;
- b=lwx9z230sAxkopGogNF3hmOBZ/9NN/9fFATxiDfZSYxhs7gBpAeoGhw9BlxfSZfuEzYzrliDRP6eEIuo+UZqflwFiiQUIxbOgiAf5PFxPisU0Vlxri5H9zz7vGp2JlPNmNDz0b4dFrQfFfLQ9ZDuJ5gUi5FeUkPo0UxUAbtHQd8=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYWPR01MB10647.jpnprd01.prod.outlook.com
- (2603:1096:400:2a3::11) with Microsoft SMTP Server (version=TLS1_2,
+ bh=B8mW9jmqtSp7e9EVL1vLsoaXX1wvIbs/k15jZBqk/tc=;
+ b=rfBvjMbaUEAcEScYATD8/FKOHJANVO7qZN35OtXZcXdQpE9tNiKpk+SzcFjijervqU7ZuvdoFAdusIvLV5gM5ky9OU2S9GoPD4UBNt9OIfeg49jv/XFnq5pZHb00rjwVgQmtXgVbFiwX7CEpjZKbBPV+EUhJpvU6c4D9/r4wTB8=
+Received: from KL1PR03MB6389.apcprd03.prod.outlook.com (2603:1096:820:94::13)
+ by PSAPR03MB5496.apcprd03.prod.outlook.com (2603:1096:301:68::12) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Wed, 14 Jun
- 2023 02:30:13 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::711d:f870:2e08:b6e1]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::711d:f870:2e08:b6e1%3]) with mapi id 15.20.6455.047; Wed, 14 Jun 2023
- 02:30:13 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Serge Semin <fancer.lancer@gmail.com>
-CC:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ 2023 03:17:24 +0000
+Received: from KL1PR03MB6389.apcprd03.prod.outlook.com
+ ([fe80::cf4d:1ca0:d375:a32d]) by KL1PR03MB6389.apcprd03.prod.outlook.com
+ ([fe80::cf4d:1ca0:d375:a32d%3]) with mapi id 15.20.6455.043; Wed, 14 Jun 2023
+ 03:17:24 +0000
+From:   =?utf-8?B?TWFzbyBIdWFuZyAo6buD5Yqg56u5KQ==?= 
+        <Maso.Huang@mediatek.com>
+To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?utf-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
+        "krzk@kernel.org" <krzk@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v16 19/22] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Thread-Topic: [PATCH v16 19/22] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Thread-Index: AQHZgwfSD1pv8+kZFEalYK7OljPo8698cOgAgAEOU0CAAe45gIABPKpggABUd4CAANbBAIAApgeAgATdZkCAAG/UgIAB+7ug
-Date:   Wed, 14 Jun 2023 02:30:13 +0000
-Message-ID: <TYBPR01MB534161A79DFF1830B65D303FD85AA@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
- <20230510062234.201499-20-yoshihiro.shimoda.uh@renesas.com>
- <20230605143908.fcgqzedp7oiarbyu@mobilestation>
- <TYBPR01MB5341A67CF6DFFCB396F13195D853A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230607121533.cxvidvdqat5h2tqu@mobilestation>
- <TYBPR01MB53417E55F5F9E667D679901CD850A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230608121115.qnilmougdfd6fdyq@mobilestation>
- <TYBPR01MB5341AD39983D6B39034AF01BD851A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230609105407.c4olqepv7vuoqktz@mobilestation>
- <TYBPR01MB53411835ACCD884FCA9ECBE2D854A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230612195149.hdnttkcabynmf4kx@mobilestation>
-In-Reply-To: <20230612195149.hdnttkcabynmf4kx@mobilestation>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
+        =?utf-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
+        <Allen-KH.Cheng@mediatek.com>,
+        "renzhijie2@huawei.com" <renzhijie2@huawei.com>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "arnd@arndb.de" <arnd@arndb.de>, "perex@perex.cz" <perex@perex.cz>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        =?utf-8?B?SmlheGluIFl1ICjkv57lrrbpkasp?= <Jiaxin.Yu@mediatek.com>
+Subject: Re: [PATCH 7/7] ASoC: dt-bindings: mediatek,mt79xx-afe: add audio afe
+ document
+Thread-Topic: [PATCH 7/7] ASoC: dt-bindings: mediatek,mt79xx-afe: add audio
+ afe document
+Thread-Index: AQHZnRwwFFXmmj8e60u4F1KEKx4v7q+IblCAgAE08IA=
+Date:   Wed, 14 Jun 2023 03:17:24 +0000
+Message-ID: <14913cbb87981eed6f8b72f9e659ed3e25958320.camel@mediatek.com>
+References: <20230612105250.15441-1-maso.huang@mediatek.com>
+         <20230612105250.15441-8-maso.huang@mediatek.com>
+         <d9cd1ff3-b537-1481-9453-5b3683d30fed@kernel.org>
+In-Reply-To: <d9cd1ff3-b537-1481-9453-5b3683d30fed@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYWPR01MB10647:EE_
-x-ms-office365-filtering-correlation-id: 05df7e5b-29fe-495e-3c14-08db6c7f488d
+x-ms-traffictypediagnostic: KL1PR03MB6389:EE_|PSAPR03MB5496:EE_
+x-ms-office365-filtering-correlation-id: 7fd04551-c198-4ea7-48f0-08db6c85dfc5
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: c1NHvGNkyWCkbgPefZE3Evs5fOm/K+WD7DnI+eYrhMOYS/JiZb54tg/uroOYpuhKfiukdRdWkSKk3HcuxghzsiGnPXb/wL26gZvjVgwmipNxLo8HnNDs0IpMUmJDkJeeZU11hzH9M+JwfeG17lIkwdduUZ5VWFAAvyukgPcpQar7v1wMtJiEJi46BHQHzGLsNSuV2I6TdBD7lxB7rG3H/xPSbI/0layvFCGh6E04w6eaZ+rU3oYyNyswY8zKishL2JbiIhwCISU6dHuRAp2Ujx1I3mjslis7ctKEoPZBXGYbWqTlOLxix0LHHotEavvPbmFc4lAmAmP1HyNII2o+Sp/rVYc/ZKUo76BfJNRDDZRVcpE87KWyD/5jnY+1ZSJ6dIiR1dR5kU82YFatnxqCVnpHoBSZjuK4/ZCXsCJH1A0JZEVNyujUTKvCBKcYz/W8eiP8hESBm48bxSjcvUOHFtH5tIIDv/fF7eruntiJiVFd/57+vi/nql+ERH67TZ47UWIlkGEKpduK+tpdD1Y8/qjApzNt/qyDAbl5ZhHeMRkypk8ixuAkFyQozl/J9ZiVwMrMcKpEF5VEvnLRGHav8giA5a07WwWVYUR80iuAiop+0WCHS5CXNbHi5tnDxMNh
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(39860400002)(136003)(346002)(376002)(396003)(451199021)(33656002)(478600001)(71200400001)(2906002)(7696005)(55016003)(8936002)(8676002)(316002)(38100700002)(41300700001)(83380400001)(9686003)(86362001)(186003)(52536014)(38070700005)(7416002)(6506007)(5660300002)(54906003)(66476007)(4326008)(6916009)(66446008)(66556008)(64756008)(66946007)(122000001)(76116006);DIR:OUT;SFP:1102;
+x-microsoft-antispam-message-info: 7EiIBZhyBSFE5RZteXrsro6YxIANg8o4kv0GtwtYBtE8kikYzsLGP3SnJ9AsPViU0WBMnhhgBs1ZO5/6D70loN/pvuS0ltL8B60A11OQ58DpM5GNnv/gDOw2QvPV50bTfJrafWPS8KSzpVEw84zO0xy3AMnSeP7KiPOfnVvB8wFsDYo86pht3BrOcauiJWsQz6jdcZYzKHjCVAe6v/q8hTW3RQDHa+GgCZzdBYYMryucAn640arwJPklnYm4cd1j3Gxnvy60FRGBqby8Ek8uGxzAgTA5VYXfYURZXTrh32YV/IYaQ/ezBfnfpqAdgnLqd9qggucNJpxCKTXCM4zidlxSFlmZ1aKGuo2bEc4GELPFt5MyZBWGWGKo2Zjw4oFHeorKeWO7jxlwRPuac4gLfVScf7W+rce0B2Vo6k9BnWbmWYaSYQgzXvWlBRwxM3V9Qr77fmFevtP3YANeiIXk14HCzH22CIl0rKdlYbRKsU5caeccc+cKtAEcQrme2JDn95O+4ZuWhCS5IrlpGGdIn6muO1DNuE+HbHvoMxYJtV3W/v0k0hRppRBXe+ierGh6AywzPh4QUV5rgKEUO2DsyC3uJ/XW/F+Jyb73vSsL1bsU+vop2stCEhWe1Sq4mVP9CSaZoE0oC9xhVjoc/ggwhGufcfcTKzeBLWH+as9MrV8xJP8WTBFseYMuqCF9peVEqUQQTT0uwGJX9WksWUscig==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB6389.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(136003)(346002)(396003)(376002)(39860400002)(451199021)(83380400001)(7416002)(85182001)(64756008)(6636002)(91956017)(76116006)(66446008)(66946007)(110136005)(36756003)(316002)(5660300002)(6506007)(53546011)(26005)(6512007)(41300700001)(8676002)(8936002)(66476007)(86362001)(122000001)(38100700002)(66556008)(2906002)(921005)(38070700005)(478600001)(71200400001)(186003)(2616005)(966005)(6486002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AdYCir7r20VHHosY871R4hGNXg5xcgUBY52cWoMrQon5vMEP2CJuA6vHtNrw?=
- =?us-ascii?Q?4uLZsajNsbRvQjr34r4n4LfjCDQvwxEob/pJaTWm1c+zNjinnp16/hJikfWv?=
- =?us-ascii?Q?hJTOlygbUxtu504cjloScDNzgAv1cd1+eP2V7ivxX63SyEwjfSb0AjG/vf62?=
- =?us-ascii?Q?hScZrvjab4QBkFd4oW/qhDgdjSWCO4cR/ByX8bGrl086pqNDTrAt19cGks7j?=
- =?us-ascii?Q?554y7/HntEM9l9aBKUXtzflv8v9HJwDdhxjkgbTC0CIF67EFQAzw/rRWsa40?=
- =?us-ascii?Q?513RLX44/y9fCWs1Jv5lzivfWwZAPJgZqj6Rnd8mkfuiiIIXvcmGWiExRQ4/?=
- =?us-ascii?Q?X7zb3Hao88bPDrFuueIGbx5XTZXtH1oLOS98/jWmT8cd6eYxCqwHeaJ/tq7w?=
- =?us-ascii?Q?SOclKAOrQZNNWCdPwwW5SVdh+2yP3OFwyEhXYU9GHwsxxL1PClxqu+VtgJOS?=
- =?us-ascii?Q?DO4gzJgTSomRxDnDVe5Xr3LcSKvlNf5zAkeLCWYmUmLmV4uPWWVKmSWWe7sY?=
- =?us-ascii?Q?oWvz4ep4rBNn3Whl6Y0fiJ9yvJRXWRMfTyWYZZVaBBFmIxKkhTFq+Rmn5c7P?=
- =?us-ascii?Q?fnBaJT4V1l15CwbjDjLGBRjPdBhicnJv70pn7W2L5b6DRODw/sC0J6nDBA9J?=
- =?us-ascii?Q?6UzouCOqK6Gajeqrwdun18NnZFIiCiD5/Qn4JrzTmnXedsfG24L/Zf2MJve+?=
- =?us-ascii?Q?dtdOlFFjL345KgiaSjA0t3AqtQGLsNELdA1vsOUL9hRHrUF9vr+Oq9icVI5S?=
- =?us-ascii?Q?TXW9g/UOcC537SjxZkMixsgeFuTnz2P+leXVmxXDXKEVNA9rXPhpAhPCU0KH?=
- =?us-ascii?Q?PZeh4TXKJh2V5KR3KkDBIr6xyOBLwLlIQ5oIiVWOeElgJPmneNVp8wuQQwpW?=
- =?us-ascii?Q?PNCr4iDgjAW/o3UL0yKqfCoilh6AjrSkDSkq7vHmyU+MeS/bZuhWOdWgLBUl?=
- =?us-ascii?Q?1b/6kWNW6UwPzK/Y1ofnIvbJi8oRFFsn2DHPGWnbQt8JGKHdUYRH2GdG7buS?=
- =?us-ascii?Q?k3o2Z4AtmHTsEH9o399E7vTCp6Re9ouSmuWcLId/88podJ2ToecDKqNsUM8s?=
- =?us-ascii?Q?8oxmh/p2DWgtQIxJxTiumbuwghQ4EHZa9zg5DlkJNYPJiL8c7U028dCyaXYA?=
- =?us-ascii?Q?WBlb0eWzmr5+sIq+76CfT81yt5OEz39U9dQimV9UZ1i31tAZL1kkuQK/fkEq?=
- =?us-ascii?Q?EFCHk5rLn2JPQXUqXchiSkI9Obb5rSMSeLeBRNDrXtsS9EBZMQEL2KD77MF9?=
- =?us-ascii?Q?getf0sB8JBL7PkzTqo14A3MH0c2NdmxEusOLWcTXQnZN3SmPcwpWqt5kfolP?=
- =?us-ascii?Q?Evw45mNTQ38JSLV+Jw4hIbP2QATuvt7lYHRRdHgjPx2w8DkUK+BFwx3Bc/qp?=
- =?us-ascii?Q?X2YvwrvEwu9hlzYMgekqm1tRbkN8XJiPyVY8QgBaPJzgDz5Fh1vhMBJKGTxI?=
- =?us-ascii?Q?ZbySTguL04fejwpfkgRk47p4qoCvsC57jAB4v7rz+WpX23vnvihb4Xg9BA8o?=
- =?us-ascii?Q?BeaRM1mgG5cLUqBsFBTjtUCaenDb5+OZASk0UBBwArYrKST71Lcf7vHwaXwX?=
- =?us-ascii?Q?I3Tdy56LGLPEkZigjTZiHpDmQLejwpr6QWpB3Tp2jY53397PlnwL5cObDxUA?=
- =?us-ascii?Q?EoImFeJBkYUIUwykTb3WbCAAVMziqJpsdI1coIOEvLPcikEXUGUzmsNmlR9c?=
- =?us-ascii?Q?176yNg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bG5WSTg0dXB2Vm04S3JtUTdaYm15eGxFSTNZUXl2eWlDMjRJZkxRVEpIWW9j?=
+ =?utf-8?B?WmVSa1IyS2ZTZ3BobXlGTEJ3bUgwMzVYWXZqU2FSTmJmL09WMWh5R1M5aGFP?=
+ =?utf-8?B?Q1NYWUgrc3ZhZG9LMzhjejMwYnNiK3R3QUE0d3RiOWJMZktUVE80cmw4QkZi?=
+ =?utf-8?B?QmE5OWdYY2ltZ2VKREMzT2JMcVRLcWY5Rm9Qd1JNaWNRMm5IT21Qd0dOR2hj?=
+ =?utf-8?B?M09QVXBSV3hLZldPV3pkNzdMZXMybUZLVEhMWVdrSmg4VzFLY3dUNWtRcys2?=
+ =?utf-8?B?Ky9sMEpwdEsyZityN0JiNTdNT0FYbTdRbWd2S0taVzZ2QTZoR3BhSWtLZ3Zn?=
+ =?utf-8?B?cy91VE5NellxM2VDNUxFdEo1VnM0WG9YKzJ1MjRpOHRZVitzbkRubUhtTnBS?=
+ =?utf-8?B?TmpkUEREbldhOCtFVHAveWRDcEk3SzdmbXVzems2ZWpnZWtoM3Y1M0NmQnFX?=
+ =?utf-8?B?eHkzQTROaUZoelZMRm8vZUZnQnBNa0JLSGlRWU00bWxJODM0aHJYN3E3aVZm?=
+ =?utf-8?B?SWh3R05tdFpJUmJreXAyTld5SlVaTTA5NHBvZ0cvbHFHdTN5Y0NKa3N0dldp?=
+ =?utf-8?B?STZDOWV5eVZMT3ovb3BuZXp4UVJJYUdIMjBweHJNY1R2Yk9sWlgyQnB1S0Uw?=
+ =?utf-8?B?M0NpMnVxRFZCbW11RzFKY3EyK1kxUFFqM2daYzFPekQ5b1Z1YWIweFltVmRp?=
+ =?utf-8?B?Vmtwckhld0UrRWlmai9CUU1wTGZscHVaYkZGTS85Rlp1QVVLOVBZcFVhdy9r?=
+ =?utf-8?B?MjFiK09HT2ZtSnQrWURzbElueTlnbFR5RXpHYytJemJRbjZCcFVkdS9GeU92?=
+ =?utf-8?B?dTkwUDFSdG9yQk5JODQ1aWMvMHl2c0YyUVF3WGVxaWM2OHc5bGMwTDM1QWNh?=
+ =?utf-8?B?cUdzVk1UcEJnZU5LMTB6Y3FXckF4KzlwcFZtaWtEeE5vU1pzUzJ3N28yZk5n?=
+ =?utf-8?B?SUJseW9ETDZzbm5kb2FJdXZLbXFxUFVzQ1VKUGltL2wwVWNGSWVyZE1sUy9v?=
+ =?utf-8?B?TU94bml4TXFmOXR0T2JGZVlWMVpIdHoxdUhYdWpRZHQranh3MFk3eU1tYnd4?=
+ =?utf-8?B?RVM4bnVHcWlTUkM2dWYxR1R0d2lGdGhwaklIOHR5c0lLSlo0RFhNdFNjUkUz?=
+ =?utf-8?B?dTVocm8xTWMrTXdOU0FJRE5yZzhBWFpSYnpweVdzNnhUZXcvL0RnR0ZkaUxQ?=
+ =?utf-8?B?dGQ4UFNLbjJyZU5CYmdtNW5MZC9VWjIySUpDUEIveDB4N29ZZldGUWdrL0NJ?=
+ =?utf-8?B?djZkYXpqcWw4bHZhekhZRDlCbGRxSmFkTmdsdVNsT0R2bStHRGQ5Wk0wT2dk?=
+ =?utf-8?B?YmFnNnMzMFZKaDdZYWdWVnZrb0pQdktiazNDQm5oYjVyR3V3eitKMGdaMDVv?=
+ =?utf-8?B?V05OT3BnUEpIb1hvem9Sb0Y2ZWZmZUptb1l0SmU0U2xJc2Z0QUJEcE02WG1k?=
+ =?utf-8?B?VnoxQXJPTmRnRlFQU2N3enNEelJZSlZHMnpabllXQU5ZeElzL0cvaWQyejdy?=
+ =?utf-8?B?SEFIZUdoelBobUdKeTJXL0ZBTDlDdFlyeURNVXEyeHl2V294bkFEVnRxWkY0?=
+ =?utf-8?B?UEZ2SWM3aTB1TWt6T2haVVRKSmZ3STJlUCt5RFFRU3hXYTNVcWdobXpEVDhP?=
+ =?utf-8?B?UXphVng2eHliS2htYzVBdzA3ZjVDaU1LRUF3NXFJTjl6aGozQ2RuZGNrbUxo?=
+ =?utf-8?B?QThva0hBbzMzeDFHRCtxZXlkZ1FmTmlaVTJ6c1FwZytncnk2cHgyakJjTUww?=
+ =?utf-8?B?Y2R5QTVKTUxjQ040dTRIMDVhQVRhYS9qZXNxNlJYWnA5Wkw0MlFtTVhZY2RY?=
+ =?utf-8?B?LzMzQ3h5eFNYeEplWWhmK3QwSVoybDljeGtpaEtTQ2k0YTRkOTVnSmlGS1N6?=
+ =?utf-8?B?MmF5QWFkSjM1N3Q1Y3hSaWJodU1KWnRZOWt0c0diTkM0QTQ4dlZLZG9HZ0RQ?=
+ =?utf-8?B?R3Q3S2plSkgraXhCdExaSnoyZTdVR3Y2bXRUbE15QXhUQ1ZTUngyRGZ0ajVD?=
+ =?utf-8?B?aUF3VXVXb01TQk9sLzZrc082ZWFQWFFpdXUyWXdpbSt6eG92STZKV2FJVkFh?=
+ =?utf-8?B?NEJUa2tRZmY3WHdrUndBc2dHOHJVa2tQeStlL3NGNWlveTNkL3ZjYW1uWFZo?=
+ =?utf-8?B?QTlhVjZkVEYzQ21VSEx0dXdhT0haS1hyZm9sUm9NeUovQlBtTlY1UW1Cak9r?=
+ =?utf-8?B?OWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1839820A5E9B2043924A868FAF5B8ED3@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05df7e5b-29fe-495e-3c14-08db6c7f488d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2023 02:30:13.6530
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB6389.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7fd04551-c198-4ea7-48f0-08db6c85dfc5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2023 03:17:24.3587
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tV/RJ1+RStCPUVDmrKJm2zAkgptmT+izPO7JyRuX6HDfX4WHdOHRhdZtmoxBoerPm2T347EmeBFuncjmLSmmghpfj/vpuUKinifEJcOZmni724yz5gcbR95WeHjUExPT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10647
+X-MS-Exchange-CrossTenant-userprincipalname: RXu7TPYpqVbirYgkinT9qJACojYLZXFku9B1A/SVCpsao4ZIIHn7QjtDRFCvSKkHqoLjFnG32r9I9JXIEoOTTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSAPR03MB5496
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Serge,
-
- From: Serge Semin, Sent: Tuesday, June 13, 2023 4:52 AM
->=20
-> On Mon, Jun 12, 2023 at 01:19:02PM +0000, Yoshihiro Shimoda wrote:
-> > Hello Serge,
-> >
-> > > From: Serge Semin, Sent: Friday, June 9, 2023 7:54 PM
-> > <snip>
-> > > > > > static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
-> > > > > > {
-> > > > > >         struct rcar_gen4_pcie *rcar =3D to_rcar_gen4_pcie(dw);
-> > > > > >         int i;
-> > > > > >
-> > > > > >         rcar_gen4_pcie_ltssm_enable(rcar, true);
-> > > > > >
-> > > > > >         /*
-> > > > > >          * Require direct speed change here. Otherwise RDLH_LIN=
-K_UP of
-> > > > > >          * PCIEINTSTS0 which is this controller specific regist=
-er may not
-> > > > > >          * be set.
-> > > > > >          */
-> > > > >
-> > > > > >         if (rcar->needs_speed_change) {
-> > > > >
-> > > > > Seeing this is specified for the root port only what about
-> > > > > replacing the statement with just test whether the rcar_gen4_pcie=
-.mode =3D=3D
-> > > > > DW_PCIE_RC_TYPE? Thus you'll be ablt to drop the needs_speed_chan=
-ge field.
-> > > >
-> > > > Thank you for the comment. I'll fix it.
-> > > >
-> > > > > BTW Just curious. Why is the loop below enabled for the Root Port
-> > > > > only? What about the end-point controller? It's the same hardware
-> > > > > after all..
-> > > >
-> > > > This is reused from v16 and then it used "link retraining" which is=
- only for
-> > > > the Root Port. As you mentioned, it seems endpoint controller is al=
-so needed
-> > > > if we use direct speed change.
-> > > >
-> > > > > >                 for (i =3D 0; i < SPEED_CHANGE_MAX_RETRIES; i++=
-) {
-> > > > > >                         rcar_gen4_pcie_speed_change(dw);
-> > > > > >                         msleep(100);
-> > > > > >                         if (rcar_gen4_pcie_check_current_link(d=
-w))
-> > > > > >                                 return 0;
-> > > > > >                 }
-> > > > >
-> > > > > Did you trace how many iterations this loop normally takes?
-> > > >
-> > > > i =3D 0 or 1 (if the max-link-speed is suitable for a connected dev=
-ice.)
-> > > >
-> > > > > Is it
-> > > > > constant or varies for the same platform setup and a connected li=
-nk
-> > > > > partner? Does the number of iterations depend on the target link =
-speed
-> > > > > specified via the "max-link-speed" property?
-> > > >
-> > >
-> > > > This is not related to the "max-link-speed". It seems to related to
-> > > > a link partner.
-> > > > 		LinkCap	max-link-speed	loop
-> > > > Device A		4	4		1
-> > > > Device A		4	3		1
-> > > > Device B		3	3		0
-> > >
-> > > Great! If so I would have just left a single unconditional
-> > > rcar_gen4_pcie_speed_change() call placed right after the
-> > > rcar_gen4_pcie_ltssm_enable() method with no delays afterwards. These
-> > > methods would have been invoked in the framework of
-> > > dw_pcie_start_link() after which the dw_pcie_wait_for_link() method i=
-s
-> > > called with several checks parted with the ~100ms delay. It will make
-> > > sure that at least some link is up with the link state printed to the
-> > > system log. If for some reason the performance degradation happens
-> > > then it will be up to the system administrator to investigate what wa=
-s
-> > > wrong. Your driver did as much is it could to reach the best link gen=
-.
-> >
-> > IIUC, is your suggestion like the following code?
-> > ---
-> > 	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> > 	if (!dw_pcie_wait_for_link(dw)) {
-> > 		rcar_gen4_pcie_speed_change(dw);
-> > 		return 0;
-> > 	}
-> > ---
-> >
-> > Unfortunately, it doesn't work correctly...
-> > The following code can work correctly. The value of i is still 1 on the=
- device A.
-> > What do you think that the following code is acceptable?
-> > ---
-> > 	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> > 	for (i =3D 0; i < SPEED_CHANGE_MAX_RETRIES; i++) {
-> > 		msleep(100);
-> > 		rcar_gen4_pcie_speed_change(dw);
-> > 		if (dw_pcie_link_up(dw)) {
-> > 			printk("%s:%d\n", __func__, i);
-> > 			return 0;
-> > 		}
-> > 	}
-> > ---
->=20
-> My idea was to implement something like this:
->=20
-> +static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
-> +{
-> +	struct rcar_gen4_pcie *rcar =3D to_rcar_gen4_pcie(dw);
-> +
-> +	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> +
-> +	rcar_gen4_pcie_speed_change(dw);
-> +
-> +	return 0;
-> +}
->=20
-> and retain the rcar_gen4_pcie_link_up() method as is.
-
-Unfortunately, such a code doesn't work on my environment...
-
-> * Note: originally your loop used to have the msleep() call performed
-> after the first rcar_gen4_pcie_speed_change() invocation. Thus the
-> delay can be dropped if there is only one iteration implemented (see
-> further to understand why).
-
-Calling rcar_gen4_pcie_speed_change() multiple times is required on
-my environment. I thought msleep(100) was quite long so that I tried
-other wait interval like below:
-
- msleep(1) : about 5 loops is needed for link. (about 5 msec.)
- usleep_range(100, 110) : about 400 loops is needed for link. (about 40 mse=
-c.)
- usleep_range(500, 600) : about 80 loops is needed for link. (about 40 msec=
-.)
-
-The delay timing doesn't seems important. Both cases below can work correct=
-ly.
---- case 1 ---
-	for (i =3D 0; i < SPEED_CHANGE_MAX_RETRIES; i++) {
-		rcar_gen4_pcie_speed_change(dw);
-		if (dw_pcie_link_up(dw)) {
-			printk("%s:%d\n", __func__, i); // will be removed
-			return 0;
-		}
-		msleep(1);
-	}
----
---- case 2 ---
-	for (i =3D 0; i < SPEED_CHANGE_MAX_RETRIES; i++) {
-		rcar_gen4_pcie_speed_change(dw);
-		msleep(1);
-		if (dw_pcie_link_up(dw)) {
-			printk("%s:%d\n", __func__, i); // will be removed
-			return 0;
-		}
-	}
----
-
-So, I'll use case 1 for it.
-
-> You don't need to wait for the link to actually get up in the
-> start_link() callback because there is the link_up() callback, which
-> is called from the dw_pcie_wait_for_link() method during the generic
-> DWC PCIe setup procedure. See:
-
-Since the procedure will call rcar_gen4_pcie_speed_change() from
-->start_link() once, my environment cannot work correctly...
-
-Best regards,
-Yoshihiro Shimoda
-
-> dw_pcie_host_init():
-> +-> ops->host_init()
-> +-> ...
-> +-> dw_pcie_setup_rc()
-> |   +-> ...
-> |   +-> dw_pcie_setup()
-> |   +-> ...
-> +-> if !dw_pcie_link_up()
-> |   |   +-> ops->link_up()
-> |   +-> dw_pcie_start_link()
-> |       +-> ops->start_link()
-> +-> dw_pcie_wait_for_link();   // See, wait-procedure is already performe=
-d
-> |   +-> loop 10 times          // for you in the core driver together
-> |       +-> dw_pcie_link_up()  // with the delays between the checks
-> |           +-> ops->link_up()
-> |       +-> msleep(~100)
-> +-> ...
->=20
-> -Serge(y)
->=20
-> >
-> > Best regards,
-> > Yoshihiro Shimoda
-> >
-> > > -Serge(y)
-> >
+T24gVHVlLCAyMDIzLTA2LTEzIGF0IDEwOjUxICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiAgCSANCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8gbm90IGNsaWNrIGxpbmtz
+IG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwNCj4geW91IGhhdmUgdmVyaWZpZWQgdGhlIHNlbmRl
+ciBvciB0aGUgY29udGVudC4NCj4gIA0KPiBPbiAxMi8wNi8yMDIzIDEyOjUyLCBNYXNvIEh1bmFn
+IHdyb3RlOg0KPiA+IEZyb206IE1hc28gSHVhbmcgPG1hc28uaHVhbmdAbWVkaWF0ZWsuY29tPg0K
+PiA+IA0KPiA+IEFkZCBtdDc5eHggYXVkaW8gYWZlIGRvY3VtZW50Lg0KPiANCj4gUGxlYXNlIHVz
+ZSBzY3JpcHRzL2dldF9tYWludGFpbmVycy5wbCB0byBnZXQgYSBsaXN0IG9mIG5lY2Vzc2FyeQ0K
+PiBwZW9wbGUNCj4gYW5kIGxpc3RzIHRvIENDLiAgSXQgbWlnaHQgaGFwcGVuLCB0aGF0IGNvbW1h
+bmQgd2hlbiBydW4gb24gYW4gb2xkZXINCj4ga2VybmVsLCBnaXZlcyB5b3Ugb3V0ZGF0ZWQgZW50
+cmllcy4gIFRoZXJlZm9yZSBwbGVhc2UgYmUgc3VyZSB5b3UNCj4gYmFzZQ0KPiB5b3VyIHBhdGNo
+ZXMgb24gcmVjZW50IExpbnV4IGtlcm5lbC4NCj4gDQoNCkhpIEtyenlzenRpZiwgDQoNClRoYW5r
+cyBmb3IgeW91ciByZXZpZXcuIEFuZCBzb3JyeSBmb3IgbWlzc2luZyBzb21lIG5lY2Vzc2FyeQ0K
+bWFpbnRhaW5lcnMuDQpXaGF0J3MgeW91ciBzdWdnZXN0aW9uLCByZXNlbmQgdGhlc2UgcGF0Y2hl
+cyBhZ2FpbiB3aXRoIHRoZW0sIG9yIGFkZA0KdGhlbSBiYWNrIGluIHYyIHBhdGNoPw0KDQo+ID4g
+DQo+ID4gU2lnbmVkLW9mZi1ieTogTWFzbyBIdWFuZyA8bWFzby5odWFuZ0BtZWRpYXRlay5jb20+
+DQo+ID4gLS0tDQo+ID4gIC4uLi9iaW5kaW5ncy9zb3VuZC9tZWRpYXRlayxtdDc5eHgtYWZlLnlh
+bWwgICB8IDEwMg0KPiArKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEw
+MiBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiBEb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvbWVkaWF0ZWssbXQ3OXh4LWFmZS55YW1sDQo+ID4g
+DQo+ID4gZGlmZiAtLWdpdA0KPiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9z
+b3VuZC9tZWRpYXRlayxtdDc5eHgtYWZlLnlhbWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3Mvc291bmQvbWVkaWF0ZWssbXQ3OXh4LWFmZS55YW1sDQo+ID4gbmV3IGZpbGUg
+bW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjExZWYxY2ZkZjQ5Yg0KPiA+IC0t
+LSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+c291bmQvbWVkaWF0ZWssbXQ3OXh4LQ0KPiBhZmUueWFtbA0KPiA+IEBAIC0wLDAgKzEsMTAyIEBA
+DQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTIt
+Q2xhdXNlKQ0KPiA+ICslWUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2Rldmlj
+ZXRyZWUub3JnL3NjaGVtYXMvc291bmQvbWVkaWF0ZWssbXQ3OXh4LWFmZS55YW1sIw0KPiA+ICsk
+c2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4g
+PiArDQo+ID4gK3RpdGxlOiBNZWRpYVRlayBBRkUgUENNIGNvbnRyb2xsZXIgZm9yIE1UNzl4eA0K
+PiANCj4gNzlYWCBzb3VuZHMgd2VpcmQuIEFyZSB5b3Ugc3VyZSB5b3UgYXJlIG5vdCB1c2luZyB3
+aWxkY2FyZHMgKHdoaWNoDQo+IGFyZQ0KPiBub3QgYWxsb3dlZCk/DQo+IA0KDQpXZSB3b3VsZCBs
+aWtlIHRvIHVzZSBtdDc5eHggZm9yIG10Nzk4Ni9tdDc5ODEvbXQ3OTg4IHNlcmllcy4NCk9yIGlz
+IGl0IGJldHRlciB0byBqdXN0IHVzZSBtdDc5ODYgZm9yIHRoaXMgc2VyaWVzPw0KDQo+ID4gKw0K
+PiA+ICttYWludGFpbmVyczoNCj4gPiArICAtIE1hc28gSHVhbmcgPG1hc28uaHVhbmdAbWVkaWF0
+ZWsuY29tPg0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+
+ICsgICAgb25lT2Y6DQo+ID4gKyAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10Nzl4eC1hZmUNCj4g
+PiArICAgICAgLSBpdGVtczoNCj4gPiArICAgICAgICAgIC0gZW51bToNCj4gPiArICAgICAgICAg
+ICAgICAtIG1lZGlhdGVrLG10Nzk4MS1hZmUNCj4gPiArICAgICAgICAgICAgICAtIG1lZGlhdGVr
+LG10Nzk4Ni1hZmUNCj4gPiArICAgICAgICAgICAgICAtIG1lZGlhdGVrLG10Nzk4OC1hZmUNCj4g
+PiArICAgICAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10Nzl4eC1hZmUNCj4gDQo+IEkgYWxyZWFk
+eSBzYXcgQUZFLCB3aHkgaXQgY2Fubm90IGJlIHBhcnQgb2YgZXhpc3RpbmcgYmluZGluZ3M/DQo+
+IA0KPiBUaGlzIGxpc3QgaXMgb2RkLiA3OXh4LCA3OTgxPyBTbyBpdCBpcyB3aWxkY2FyZD8NCj4g
+DQoNClllcywgaXQgaXMgd2lsZGNhcmQgZm9yIG10Nzk4Ni9tdDc5ODEvbXQ3OTg4IHNlcmllcy4N
+CklzIGl0IGJldHRlciB0byBqdXN0IHVzZSBtdDc5ODYgZm9yIHRoaXMgc2VyaWVzPyANCg0KPiA+
+ICsNCj4gPiArICByZWc6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICBpbnRl
+cnJ1cHRzOg0KPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgY2xvY2tzOg0KPiA+
+ICsgICAgbWluSXRlbXM6IDUNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0
+aW9uOiBhdWRpbyBidXMgY2xvY2sNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogYXVkaW8gMjZN
+IGNsb2NrDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IGF1ZGlvIGludGJ1cyBjbG9jaw0KPiA+
+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBhdWRpbyBob3BwaW5nIGNsb2NrDQo+ID4gKyAgICAgIC0g
+ZGVzY3JpcHRpb246IGF1ZGlvIHBsbCBjbG9jaw0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBt
+dXggZm9yIHBjbV9tY2sNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogYXVkaW8gaTJzL3BjbSBt
+Y2sNCj4gPiArDQo+ID4gKyAgY2xvY2stbmFtZXM6DQo+ID4gKyAgICBtaW5JdGVtczogNQ0KPiA+
+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gY29uc3Q6IGF1ZF9idXNfY2sNCj4gPiArICAgICAg
+LSBjb25zdDogYXVkXzI2bV9jaw0KPiA+ICsgICAgICAtIGNvbnN0OiBhdWRfbF9jaw0KPiA+ICsg
+ICAgICAtIGNvbnN0OiBhdWRfYXVkX2NrDQo+ID4gKyAgICAgIC0gY29uc3Q6IGF1ZF9lZzJfY2sN
+Cj4gPiArICAgICAgLSBjb25zdDogYXVkX3NlbA0KPiA+ICsgICAgICAtIGNvbnN0OiBhdWRfaTJz
+X20NCj4gDQo+IFdoeSB0aGlzIGlzIHZhcmlhYmxlPw0KPiANCg0KbXQ3OTg2L210Nzk4MS9tdDc5
+ODggbmVlZCBkaWZmZXJlbnQgbnVtYmVycyBvZiBjbG9jay4NCm10Nzk4NiBuZWVkcyBmaXJzdCBm
+aXZlIGNsb2Nrcy4NCm10Nzk4MSBuZWVkcyBmaXJzdCBzaXggY2xvY2tzLg0KbXQ3OTg4IG5lZWRz
+IGFsbCBzZXZlbiBjbG9ja3MuDQoNCg0KPiA+ICsNCj4gPiArICBhc3NpZ25lZC1jbG9ja3M6DQo+
+ID4gKyAgICBtaW5JdGVtczogMw0KPiA+ICsgICAgbWF4SXRlbXM6IDQNCj4gDQo+IERyb3AgYXNz
+aWduZWQtY2xvY2tzDQo+IA0KPiANCg0KT0ssIEknbGwgZHJvcCBpdCBpbiBuZXh0IHBhdGNoLg0K
+DQo+ID4gKw0KPiA+ICsgIGFzc2lnbmVkLWNsb2NrLXBhcmVudHM6DQo+ID4gKyAgICBtaW5JdGVt
+czogMw0KPiA+ICsgICAgbWF4SXRlbXM6IDQNCj4gDQo+IERyb3ANCj4gDQo+IA0KDQpPSywgSSds
+bCBkcm9wIGl0IGluIG5leHQgcGF0Y2guDQoNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6
+dG9mDQo+IA0KDQpCZXN0IHJlZ2FyZHMsDQpNYXNvDQoNCg==
