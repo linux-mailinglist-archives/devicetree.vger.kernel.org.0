@@ -2,64 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 275597303DA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 17:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78247730446
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 17:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244798AbjFNP1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 11:27:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34684 "EHLO
+        id S245019AbjFNPz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 11:55:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233272AbjFNP1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 11:27:30 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F71C3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 08:27:28 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f642a24568so8888638e87.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 08:27:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686756447; x=1689348447;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XaodULpx93bhaMgasCg20jVwTzInKVTrlrTMvfuinVI=;
-        b=nFwS5B0lhBgtFdQVs7vOetdeXczFg68Koa9owmCGc1U4FHRTK4fATvLChYhFoFJU+r
-         1NZpXR147c3UtQZQwteqzx9aHzsgJNefC/4G5myLggcstfvPQLCkwfp6hU0mzQINCEq+
-         HWrJReOwEfcSUZwsuVo6PID/H/o+he/zGhDBXb2XGwnlMH8uPsB5o9S+HWXBzsM4wRdN
-         nNgoOCIZxpJolG43LW5yhjncFO8PypumIrn8LrkL0SjjCvsXKBzH+fvR1QmWn2CZ/r83
-         t+NEX0lYATbH5ONiaH5t3NDcw/yj9LJEkXEwsnWS9RBBuFx/ETSFi641JGjZwRkTjASB
-         60Lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686756447; x=1689348447;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XaodULpx93bhaMgasCg20jVwTzInKVTrlrTMvfuinVI=;
-        b=N4IoDc9Wd27qKCDJHU9hZ4lHQHGKx2FEcUmpMeMcsyT7jxTptxvgxkLe2n8MOxAavc
-         Rtn/aTCpzwdWEXOEcOpUD2Gr0IxFEd9An5JjYZimvb8vP19Tznw/N5QklVda+eWzzljW
-         Cx3QSG+PGwJ27KWk0wKeou6f1yHwrIwhXro0NIz1iMfm1jlZoquSn0dm+jQYZFHBFR+J
-         sY6KtQqvKwSk9YhKKTxEZlFqIfQa2yMdER51wFIDFiTDJ8x8yUX5ms36C3KzcOd/oGQA
-         oMT5lBDItHpfUoh85opAsO9tjZ8cVWCvkiisb7MCNZA2/RGhjz8Nik5rW3783/gDWrp9
-         Lg8g==
-X-Gm-Message-State: AC+VfDwpCVle54Rhvnf+W8U76wF+WPdGNqQ/k2+KPtb5fG5Q25Aen/Pn
-        PbA6iLua3/LkG2KoNEpqR9Wemw==
-X-Google-Smtp-Source: ACHHUZ5qHZ0XHSvNY5Er+5xVDd9+YbHVFL6nwRBwyo0osPEjAoRpp2Lu4p+OVeu3z9RoDZuVR1cJeg==
-X-Received: by 2002:a19:6419:0:b0:4f6:1916:4170 with SMTP id y25-20020a196419000000b004f619164170mr7342197lfb.5.1686756446884;
-        Wed, 14 Jun 2023 08:27:26 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id d2-20020ac25ec2000000b004f24e797c55sm2173748lfq.25.2023.06.14.08.27.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 08:27:26 -0700 (PDT)
-Message-ID: <8f8d5e09-50a6-a83f-d4bb-3d7bc8c07162@linaro.org>
-Date:   Wed, 14 Jun 2023 17:27:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sc8280xp: Enable GPU related
- nodes
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
+        with ESMTP id S245202AbjFNPzD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 11:55:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F0B193;
+        Wed, 14 Jun 2023 08:55:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1EBD9615D1;
+        Wed, 14 Jun 2023 15:55:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76027C433C0;
+        Wed, 14 Jun 2023 15:55:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686758101;
+        bh=iI6igqMT60w7P/l0QhFqDEyNg7+YVbD5N8OO3TanF+w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e48oeFwLHdIUlSFKmZpuhvaZIc6XX120LrcMPSpyEqB7BWuDFDEx67h7VG5wuG+/V
+         MZ55YvNovcv/mJkjYdv4qw/Fg9V8aUml9KglqAzDpQnFQJj6WBmgLjZINSWGrPOFKW
+         A4UJyJrm6EZnGRqzlethKgCNm6OmbCct4vFCZC3ztZhnngSbp8pzXo4cyHdNGZkwXz
+         gmGqY4U4493FBCFLe1W+p6/yZ9AorFfR4Az6A8Ax6LKC06sOmpk/gWKymf+QLeQbmI
+         v+58d1tk96zhctkcv00QPrklqa/1YQT9XY3e8vW+P2TBoD2h3BSqXYCgybGS7H+ljv
+         vnyDkW6WNMmCA==
+Date:   Wed, 14 Jun 2023 08:58:23 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Akhil P Oommen <quic_akhilpo@quicinc.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
@@ -67,105 +44,119 @@ Cc:     Rob Clark <robdclark@gmail.com>,
         johan@kernel.org, mani@kernel.org,
         Steev Klimaszewski <steev@kali.org>,
         Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sc8280xp: Enable GPU related
+ nodes
+Message-ID: <20230614155823.g7xfgxff3eopukwh@ripper>
 References: <20230614142204.2675653-1-quic_bjorande@quicinc.com>
  <20230614142204.2675653-3-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230614142204.2675653-3-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+ <8f8d5e09-50a6-a83f-d4bb-3d7bc8c07162@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8f8d5e09-50a6-a83f-d4bb-3d7bc8c07162@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14.06.2023 16:22, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Wed, Jun 14, 2023 at 05:27:24PM +0200, Konrad Dybcio wrote:
+> On 14.06.2023 16:22, Bjorn Andersson wrote:
+> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > 
+> > Add memory reservation for the zap-shader and enable the Adreno SMMU,
+> > GPU clock controller, GMU and the GPU nodes for the SC8280XP CRD and the
+> > Lenovo ThinkPad X13s.
+> > 
+> > Tested-by: Steev Klimaszewski <steev@kali.org>
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > ---
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> Add memory reservation for the zap-shader and enable the Adreno SMMU,
-> GPU clock controller, GMU and the GPU nodes for the SC8280XP CRD and the
-> Lenovo ThinkPad X13s.
-> 
-> Tested-by: Steev Klimaszewski <steev@kali.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-one question below
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          | 14 ++++++++++++++
->  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     | 14 ++++++++++++++
->  2 files changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index cd7e0097d8bc..b566e403d1db 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -210,6 +210,11 @@ vreg_wwan: regulator-wwan {
->  	};
->  
->  	reserved-memory {
-> +		gpu_mem: gpu-mem@8bf00000 {
-Is it ever going to differ on other platforms, including the automotive ones?
+Thanks.
 
-Konrad
-> +			reg = <0 0x8bf00000 0 0x2000>;
-> +			no-map;
-> +		};
-> +
->  		linux,cma {
->  			compatible = "shared-dma-pool";
->  			size = <0x0 0x8000000>;
-> @@ -390,6 +395,15 @@ &dispcc0 {
->  	status = "okay";
->  };
->  
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sc8280xp/qcdxkmsuc8280.mbn";
-> +	};
-> +};
-> +
->  &mdss0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 5ae057ad6438..7cc3028440b6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -264,6 +264,11 @@ vreg_wwan: regulator-wwan {
->  	};
->  
->  	reserved-memory {
-> +		gpu_mem: gpu-mem@8bf00000 {
-> +			reg = <0 0x8bf00000 0 0x2000>;
-> +			no-map;
-> +		};
-> +
->  		linux,cma {
->  			compatible = "shared-dma-pool";
->  			size = <0x0 0x8000000>;
-> @@ -518,6 +523,15 @@ &dispcc0 {
->  	status = "okay";
->  };
->  
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
-> +	};
-> +};
-> +
->  &mdss0 {
->  	status = "okay";
->  };
+> one question below
+> >  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          | 14 ++++++++++++++
+> >  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     | 14 ++++++++++++++
+> >  2 files changed, 28 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > index cd7e0097d8bc..b566e403d1db 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > @@ -210,6 +210,11 @@ vreg_wwan: regulator-wwan {
+> >  	};
+> >  
+> >  	reserved-memory {
+> > +		gpu_mem: gpu-mem@8bf00000 {
+> Is it ever going to differ on other platforms, including the automotive ones?
+> 
+
+The memory maps for the two live different lives.
+
+Regards,
+Bjorn
+
+> Konrad
+> > +			reg = <0 0x8bf00000 0 0x2000>;
+> > +			no-map;
+> > +		};
+> > +
+> >  		linux,cma {
+> >  			compatible = "shared-dma-pool";
+> >  			size = <0x0 0x8000000>;
+> > @@ -390,6 +395,15 @@ &dispcc0 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&gpu {
+> > +	status = "okay";
+> > +
+> > +	zap-shader {
+> > +		memory-region = <&gpu_mem>;
+> > +		firmware-name = "qcom/sc8280xp/qcdxkmsuc8280.mbn";
+> > +	};
+> > +};
+> > +
+> >  &mdss0 {
+> >  	status = "okay";
+> >  };
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > index 5ae057ad6438..7cc3028440b6 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > @@ -264,6 +264,11 @@ vreg_wwan: regulator-wwan {
+> >  	};
+> >  
+> >  	reserved-memory {
+> > +		gpu_mem: gpu-mem@8bf00000 {
+> > +			reg = <0 0x8bf00000 0 0x2000>;
+> > +			no-map;
+> > +		};
+> > +
+> >  		linux,cma {
+> >  			compatible = "shared-dma-pool";
+> >  			size = <0x0 0x8000000>;
+> > @@ -518,6 +523,15 @@ &dispcc0 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&gpu {
+> > +	status = "okay";
+> > +
+> > +	zap-shader {
+> > +		memory-region = <&gpu_mem>;
+> > +		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
+> > +	};
+> > +};
+> > +
+> >  &mdss0 {
+> >  	status = "okay";
+> >  };
