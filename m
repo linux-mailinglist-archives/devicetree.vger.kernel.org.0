@@ -2,70 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC1672FBDC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 13:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85B1072FC1E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 13:13:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231715AbjFNLCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 07:02:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60876 "EHLO
+        id S235505AbjFNLNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 07:13:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235592AbjFNLCm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 07:02:42 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CA81BC9
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 04:02:40 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-38dec65ab50so3836372b6e.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 04:02:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1686740560; x=1689332560;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B7n28fOV0ec1Tw2+qWmFSFZwMwZ5UkpPV/M6nrRgIrY=;
-        b=O9WNazqTO3lUTcjFKo+mMX+lO0KaH4Aqp7PfLKjDds3HB/ihZVzbxLLVm2FzxtQLuZ
-         m2xMT/YfYgoCbkOWJsn/C7kyrrqbveOnMXPRv3kAevimACTJiFUvqdRQ5VVYvBLff+pB
-         TepOU554ykwGt3AeiFAczf0bctpG/p+qPDulZgMTdc6Kqko3T100yrT2YYFHlBvL451y
-         e0Xw//XQPT+xQa5mubCNROIHsU83LmYAxVKB9iNUZS2SFbg0Qcbc3mUoXmkEDKD9YAbv
-         laPt/AUt/FWBIoOvOUH1T1mbHCHVw5xMDnontfdwuw2PoCPi/mrGVWuHLA+TlwYlxXGu
-         A1rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686740560; x=1689332560;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B7n28fOV0ec1Tw2+qWmFSFZwMwZ5UkpPV/M6nrRgIrY=;
-        b=dcdli79y/DKK9cJz7dovWZf3hkeFJN60bfX/Y0aAddxmGrGYoCGlcm2M91AqZW6eQX
-         KeVpPZuVRfiMsgdbRhG6hBbx+B1lrQLvaVAO45QIPT37gdi6TpLLIqGHkAsmZdmXyr4J
-         mFH3gUNhmdjLTuzv6GziNk/0trRYZzEqBMbHHJU3kOBKdULVX65VcgRAHBsUnAtXlX+/
-         8XBg69p+38gvUT+AxvMU4/eHXIM+umki8HrcyhYnduEg7IkkOdA/a0d6G9cBLOHt0r1c
-         7NC57a/hoT7jZC0nTJ6eLkzMjbCUwaX+pZ5DfsaPpmULx+60MqiucAWofda1PWAyhKLc
-         povw==
-X-Gm-Message-State: AC+VfDxpcQa7eoS9PCvR2WPFc9JaIr5prDmfhrNxEe2PLLjcONdDRrhI
-        eibzqHIOkitU1cS+SRRAMbhwMrTyu/pR5wwc5TFM3g==
-X-Google-Smtp-Source: ACHHUZ4mY8nx43hAFWe4CQB5v7vGWAlyy4P6dhWyMk8YiOo/gBQVm0YzK2YgRY0RdDIQ76ozPyVPQPVUCxL6RL2PR/M=
-X-Received: by 2002:a05:6808:284:b0:397:f82f:90a4 with SMTP id
- z4-20020a056808028400b00397f82f90a4mr9759150oic.3.1686740558467; Wed, 14 Jun
- 2023 04:02:38 -0700 (PDT)
+        with ESMTP id S242750AbjFNLNL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 07:13:11 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6F48A26B6;
+        Wed, 14 Jun 2023 04:12:47 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.124])
+        by gateway (Coremail) with SMTP id _____8Cx_equoIlk+hkFAA--.11006S3;
+        Wed, 14 Jun 2023 19:12:46 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.180.13.124])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxNeSsoIlklIkaAA--.10308S4;
+        Wed, 14 Jun 2023 19:12:44 +0800 (CST)
+From:   YingKun Meng <mengyingkun@loongson.cn>
+To:     krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, loongarch@lists.linux.dev,
+        loongson-kernel@lists.loongnix.cn,
+        Yingkun Meng <mengyingkun@loongson.cn>
+Subject: [ PATCH RESEND v2 3/3] ASoC: dt-bindings: Add support for Loongson audio card
+Date:   Wed, 14 Jun 2023 19:11:39 +0800
+Message-Id: <20230614111139.3399284-1-mengyingkun@loongson.cn>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20230609063615.758676-1-yangcong5@huaqin.corp-partner.google.com>
- <20230609063615.758676-2-yangcong5@huaqin.corp-partner.google.com> <949a2d21-eb14-3ef8-a7be-9c12152cd15a@linaro.org>
-In-Reply-To: <949a2d21-eb14-3ef8-a7be-9c12152cd15a@linaro.org>
-From:   cong yang <yangcong5@huaqin.corp-partner.google.com>
-Date:   Wed, 14 Jun 2023 19:02:27 +0800
-Message-ID: <CAHwB_NKQuxBBCHrHs24CZ=r2HS9U=4BYu9gJQnkqLRYQGu1uzQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: HID: i2c-hid: ilitek: Introduce
- bindings for Ilitek ili9882t
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, dianders@chromium.org,
-        hsinyi@google.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxNeSsoIlklIkaAA--.10308S4
+X-CM-SenderInfo: 5phqw55lqjy33q6o00pqjv00gofq/1tbiAQACDGSIXIIYSwAFsr
+X-Coremail-Antispam: 1Uk129KBj93XoW7tF4DXF4xJF1DArW5ArW3XFc_yoW5Jr15pw
+        s3C34UGrW8t3W7Cas5ZFyxAw4fZasayFsrXr42qw1UCFZ8K3WFqw4ak3WUu3W2kF1kJay7
+        uFyFkw18Gas3CwcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+        0xBIdaVrnRJUUUBYb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+        0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
+        6rxl6s0DM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
+        kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWU
+        twAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
+        8JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+        6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
+        AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
+        0xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4
+        v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AK
+        xVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8HKZJUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,53 +62,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,Krzysztof
+From: Yingkun Meng <mengyingkun@loongson.cn>
 
-On Sat, Jun 10, 2023 at 12:01=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 09/06/2023 08:36, Cong Yang wrote:
-> > The ili9882t touch screen chip same as Elan eKTH6915 controller
-> > has a reset gpio. The difference is that ili9882t needs to use
-> > vccio-supply instead of vcc33-supply. Doug's series[1] allows panels
-> > and touchscreens to power on/off together, let's add a phandle for this=
-.
-> >
-> > [1]: https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromi=
-um.org
-> >
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
->
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> If there is going to be new version, then:
-> A nit, subject: drop second/last, redundant "bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
+The audio card uses loongson I2S controller present in
+7axxx/2kxxx chips to transfer audio data.
 
-As Doug  said,makes sense to land if the panel follower patch series [1] la=
-nds.
-If  Doug's series[1] land,  i will update this and commit message link in V=
-6.
+On loongson platform, the chip has only one I2S controller.
 
-Thank you.
->
->
-> ---
->
-> This is an automated instruction, just in case, because many review tags
-> are being ignored. If you do not know the process, here is a short
-> explanation:
->
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tools like b4 can help
-> here. However, there's no need to repost patches *only* to add the tags.
-> The upstream maintainer will do that for acks received on the version
-> they apply.
->
-> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submi=
-tting-patches.rst#L540
->
-> Best regards,
-> Krzysztof
->
+Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
+---
+v1 -> v2:
+* Add chip model restriction for title and description.
+* Add 'required' restriction for sound-dai property.
+
+ .../sound/loongson,ls-audio-card.yaml         | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+new file mode 100644
+index 000000000000..61e8babed402
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/loongson,ls-audio-card.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Loongson 7axxx/2kxxx ASoC audio sound card driver
++
++maintainers:
++  - Yingkun Meng <mengyingkun@loongson.cn>
++
++description:
++  The binding describes the sound card present in loongson
++  7axxx/2kxxx platform. The sound card is an ASoC component
++  which uses Loongson I2S controller to transfer the audio data.
++
++properties:
++  compatible:
++    const: loongson,ls-audio-card
++
++  model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: User specified audio sound card name
++
++  mclk-fs:
++    $ref: simple-card.yaml#/definitions/mclk-fs
++
++  cpu:
++    description: Holds subnode which indicates cpu dai.
++    type: object
++    additionalProperties: false
++    properties:
++      sound-dai:
++        maxItems: 1
++    required:
++      - sound-dai
++
++  codec:
++    description: Holds subnode which indicates codec dai.
++    type: object
++    additionalProperties: false
++    properties:
++      sound-dai:
++        maxItems: 1
++    required:
++      - sound-dai
++
++required:
++  - compatible
++  - model
++  - mclk-fs
++  - cpu
++  - codec
++
++additionalProperties: false
++
++examples:
++  - |
++    sound {
++        compatible = "loongson,ls-audio-card";
++        model = "loongson-audio";
++        mclk-fs = <512>;
++
++        cpu {
++            sound-dai = <&i2s>;
++        };
++        codec {
++             sound-dai = <&es8323>;
++        };
++    };
+-- 
+2.33.0
+
