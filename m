@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8330972F5F1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 09:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E198A72F640
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 09:26:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243215AbjFNHTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 03:19:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39456 "EHLO
+        id S235199AbjFNH0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 03:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243088AbjFNHS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 03:18:58 -0400
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5BE12128
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 00:18:22 -0700 (PDT)
-Received: by mail-ua1-x932.google.com with SMTP id a1e0cc1a2514c-76d846a4b85so750101241.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 00:18:22 -0700 (PDT)
+        with ESMTP id S243481AbjFNHYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 03:24:24 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423462126
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 00:23:58 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-97668583210so58376266b.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 00:23:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686727098; x=1689319098;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xWqp8+3MZcT/Qp4VzgeJFqfoJNX477ShUvbIsRioGOw=;
-        b=MiCweefJaq2Rs0ySFI2YdvxxsjV+Tz+OX0tIhBr/LjFZitS74y2nNqvs6OlVYfv2jN
-         8TF3c2dxnGSXewEgziDxxbGNEAnZHZn17Mpg64TaHDAiU1cGkGg4iqGJxKPkx4PfEDz7
-         KgL1Ar+uP+3WBeEroqFl9aFVrIg3ymtIz/BO8L5owGvjmGkDYaxmc/a4rm+TAAJ2rnMN
-         QI8mHooJ381PRQHeI+j+kss74OjpD5qy4bTJOiYXPctm9TY6m94Sf9fKLUVN5zq4rxGW
-         lLNG1Osegk5tDnCL6bDzlbg/Gw9QfrZ4AJGg2r5xjkl/OWBmXvF9U9VG53qDFVbRGx+Q
-         SOLg==
+        d=linaro.org; s=google; t=1686727437; x=1689319437;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X48c7AoEOD3TxiGjzZ730W7QuuocGN40Ji4sYGrasgI=;
+        b=AtHampU+XnfOFRa3UiWqVTavPvWwSBDwj08vushK74etxW/+TzPgltr6/zw/btuhFE
+         HzLAnfpiZuJqMPGBNjXFL1l+linJmw/NYyucs8WLnrQr2cYmFkO1+3WzazC+i7blSpBk
+         jkYn3pmPeNGEhPaOntF/JU2Fe75Jw6cI1XmkL1gvZ6LZKhjlFRP7d2oQXwKyuPFVaiWD
+         uGdfIbDACla6yu6/RIttUUMDBNBLoF9L7naUE6zMDq1imfFT1kwowe7iCF5X+YV5neGV
+         MY0dSU0/H/nJLVNelsqd6dhVZKpxTbbmZZoevFNWK0EQbl4Loe+N8K5jUi975+y3mfLl
+         tIdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686727098; x=1689319098;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xWqp8+3MZcT/Qp4VzgeJFqfoJNX477ShUvbIsRioGOw=;
-        b=kFoEPiMX/Pwb+m90crD0pZQQ+S0SY9kjDpRLXGYI8FjCIxYqpZKlbjTJYI8zFsDTy6
-         FHN+SM+f9JvV+uhVO4iFmAZilX04ZXohF71/F9zag3PW5LEjjLCjji1hDGJNRmO5camK
-         1qnF0GbPVeQ8QKiOU+le0uAGrHetQ1f0NImHn8aDBqQkvnzazVuAf5QphZLM1JhbLc4W
-         6RvXigq0fyWWdX5hc1tilKM1ysiWlOSwrfN0Ad42wpm92QoEeWx/yoMWwmfQ5fC2aNuO
-         xLEYt7Bs8uYdRl8ENh7OTFhWSGHimBHuwKmLuA+A2kbFwISuO+60r0NXuAjYacUGIKro
-         egMA==
-X-Gm-Message-State: AC+VfDwyV2wVErpjoWePeZ9ovKFBWYQ/uvs+7LlJpBKYqpmVTs7jI2E9
-        L4Pha6dQveEvSSqFszZKp2KvQrfkhFe93RFvYTjw4Q==
-X-Google-Smtp-Source: ACHHUZ5/lIGOUl/l3ycPBA6fbzQyMwAzSP8rc7XBTn1VRb2W3EotcDSLMNZEqinAXiE/Za/C+5sDlrb/IA4v9qkeWCA=
-X-Received: by 2002:a67:b401:0:b0:434:7856:bf9f with SMTP id
- x1-20020a67b401000000b004347856bf9fmr6830203vsl.12.1686727097789; Wed, 14 Jun
- 2023 00:18:17 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686727437; x=1689319437;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X48c7AoEOD3TxiGjzZ730W7QuuocGN40Ji4sYGrasgI=;
+        b=Z8vMfsIlN/YrbhPMuXEwRPzBx1DxUGkR83Gc0QOaBI2s+AoAVH/CKDqL40YPWz1DkF
+         XsiMpezKCrGN99ksvihbVal6MxNFFoLjD0ULm5E/LmpN+1uY3VwgINJpUymHK4rFRJE2
+         /A+YP9+ATpgk9lr1m806Y1edB6k9fSugkmOWuvYgOIB9UZO7aPRkWwoA5pRBAz3BkCt8
+         ZCnmmP6j1DMlTrR5hr9KsHCTz1GD/Cs7iNzO7GE4ptch79f75dGzmPQ4V9Enuubz3BWC
+         dQiKi/JTXKaRKNARF3qThPqom9RmW7adV2W2ikPpcjqectyvacL5fq/Xs//TkR5Ii/aj
+         fJzg==
+X-Gm-Message-State: AC+VfDxqi6IpO3KI2FkFU3x9D1kL5gFdiEtU9YEiod1RDLihbIPZZVG4
+        ExLbRViHEYZA6MossTr5U3j3WA==
+X-Google-Smtp-Source: ACHHUZ7HprcUbY4Np2NnM2SRFCO1cDvQEs1A8ynQEvGZx3Dh5Jm8HUXXavnivFzBkFvto59qd1FDyw==
+X-Received: by 2002:a17:907:2da4:b0:981:a949:2807 with SMTP id gt36-20020a1709072da400b00981a9492807mr9406993ejc.1.1686727436730;
+        Wed, 14 Jun 2023 00:23:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id ce14-20020a170906b24e00b00977cc3d37a2sm7598052ejb.133.2023.06.14.00.23.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jun 2023 00:23:56 -0700 (PDT)
+Message-ID: <30d50e3d-b501-273a-66b8-6d38d63842b4@linaro.org>
+Date:   Wed, 14 Jun 2023 09:23:52 +0200
 MIME-Version: 1.0
-References: <20230612092355.87937-1-brgl@bgdev.pl> <20230612092355.87937-4-brgl@bgdev.pl>
- <7fe7078e-404d-28e5-0dd1-53b7f9cd7626@linaro.org>
-In-Reply-To: <7fe7078e-404d-28e5-0dd1-53b7f9cd7626@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 14 Jun 2023 09:18:06 +0200
-Message-ID: <CAMRc=MdwqF9_LM2BeVOtx+DaKv8Cv8Bp-cP=sE-RBO=UoosSLg@mail.gmail.com>
-Subject: Re: [PATCH 03/26] phy: qcom: add the SGMII SerDes PHY driver
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 19/26] dt-bindings: net: snps,dwmac: add compatible for
+ sa8775p ethqos
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>, Vinod Koul <vkoul@kernel.org>,
         Bhupesh Sharma <bhupesh.sharma@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
@@ -69,114 +72,40 @@ Cc:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Jose Abreu <joabreu@synopsys.com>
+Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230612092355.87937-1-brgl@bgdev.pl>
+ <20230612092355.87937-20-brgl@bgdev.pl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230612092355.87937-20-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:45=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linar=
-o.org> wrote:
->
->
->
-> On 12.06.2023 11:23, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Implement support for the SGMII/SerDes PHY present on various Qualcomm
-> > platforms.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> > +static const struct regmap_config qcom_dwmac_sgmii_phy_regmap_cfg =3D =
-{
-> > +     .reg_bits               =3D 32,
-> > +     .val_bits               =3D 32,
-> > +     .reg_stride             =3D 4,
-> > +     .use_relaxed_mmio       =3D true,
-> > +     .disable_locking        =3D true,
-> The last two are rather brave, no?
->
+On 12/06/2023 11:23, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Add the compatible string for the MAC controller on sa8775p platforms.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
 
-We don't need locking because all callbacks are already protected by
-the phy subsystem with a mutex and I don't really see anything that
-would make it dangerous to use relaxed semantics in this driver. It's
-just basic configuration.
 
-Bart
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Konrad
-> > +};
-> > +
-> > +static int qcom_dwmac_sgmii_phy_probe(struct platform_device *pdev)
-> > +{
-> > +     struct qcom_dwmac_sgmii_phy_data *data;
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct phy_provider *provider;
-> > +     struct clk *refclk;
-> > +     void __iomem *base;
-> > +     struct phy *phy;
-> > +
-> > +     data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> > +     if (!data)
-> > +             return -ENOMEM;
-> > +
-> > +     base =3D devm_platform_ioremap_resource(pdev, 0);
-> > +     if (IS_ERR(base))
-> > +             return PTR_ERR(base);
-> > +
-> > +     data->regmap =3D devm_regmap_init_mmio(dev, base,
-> > +                                          &qcom_dwmac_sgmii_phy_regmap=
-_cfg);
-> > +     if (IS_ERR(data->regmap))
-> > +             return PTR_ERR(data->regmap);
-> > +
-> > +     phy =3D devm_phy_create(dev, NULL, &qcom_dwmac_sgmii_phy_ops);
-> > +     if (IS_ERR(phy))
-> > +             return PTR_ERR(phy);
-> > +
-> > +     refclk =3D devm_clk_get_enabled(dev, "sgmi_ref");
-> > +     if (IS_ERR(refclk))
-> > +             return PTR_ERR(refclk);
-> > +
-> > +     provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xla=
-te);
-> > +     if (IS_ERR(provider))
-> > +             return PTR_ERR(provider);
-> > +
-> > +     phy_set_drvdata(phy, data);
-> > +     platform_set_drvdata(pdev, data);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct of_device_id qcom_dwmac_sgmii_phy_of_match[] =3D {
-> > +     { .compatible =3D "qcom,sa8775p-dwmac-sgmii-phy" },
-> > +     { },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, qcom_dwmac_sgmii_phy_of_match);
-> > +
-> > +static struct platform_driver qcom_dwmac_sgmii_phy_driver =3D {
-> > +     .probe  =3D qcom_dwmac_sgmii_phy_probe,
-> > +     .driver =3D {
-> > +             .name   =3D "qcom-dwmac-sgmii-phy",
-> > +             .of_match_table =3D qcom_dwmac_sgmii_phy_of_match,
-> > +     }
-> > +};
-> > +
-> > +module_platform_driver(qcom_dwmac_sgmii_phy_driver);
-> > +
-> > +MODULE_DESCRIPTION("Qualcomm DWMAC SGMII PHY driver");
-> > +MODULE_LICENSE("GPL");
+Best regards,
+Krzysztof
+
