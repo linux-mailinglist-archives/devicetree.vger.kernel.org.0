@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F6772FEBE
+	by mail.lfdr.de (Postfix) with ESMTP id E32AB72FEBF
 	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244598AbjFNMdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S244607AbjFNMdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 14 Jun 2023 08:33:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38564 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244533AbjFNMdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:33:21 -0400
+        with ESMTP id S244592AbjFNMdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:33:23 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 125DEE52
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:33:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE471BDB
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:33:05 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <lgo@pengutronix.de>)
-        id 1q9Pg8-00017G-2F; Wed, 14 Jun 2023 14:32:48 +0200
+        id 1q9Pg8-00017H-2H; Wed, 14 Jun 2023 14:32:48 +0200
 Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <lgo@pengutronix.de>)
-        id 1q9Pg6-007LpO-DZ; Wed, 14 Jun 2023 14:32:46 +0200
+        id 1q9Pg6-007LpS-Qa; Wed, 14 Jun 2023 14:32:46 +0200
 Received: from lgo by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <lgo@pengutronix.de>)
-        id 1q9Pg5-00HUJe-Iv; Wed, 14 Jun 2023 14:32:45 +0200
+        id 1q9Pg5-00HUJu-Vn; Wed, 14 Jun 2023 14:32:46 +0200
 From:   =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>
 To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
         Alexandre TORGUE <alexandre.torgue@foss.st.com>,
@@ -43,9 +43,9 @@ Cc:     kernel@pengutronix.de,
         Conor Dooley <conor+dt@kernel.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/8] dt-bindings: display: panel: mipi-dbi-spi: add shineworld lh133k compatible
-Date:   Wed, 14 Jun 2023 14:32:16 +0200
-Message-Id: <20230614123222.4167460-3-l.goehrs@pengutronix.de>
+Subject: [PATCH v2 3/8] dt-bindings: display: panel: mipi-dbi-spi: add spi-3wire property
+Date:   Wed, 14 Jun 2023 14:32:17 +0200
+Message-Id: <20230614123222.4167460-4-l.goehrs@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230614123222.4167460-1-l.goehrs@pengutronix.de>
 References: <20230614123222.4167460-1-l.goehrs@pengutronix.de>
@@ -65,46 +65,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Shineworld LH133K is a 1.3" 240x240px RGB LCD with a MIPI DBI
-compatible SPI interface.
-The initialization procedure is quite basic with the exception of
-requiring inverted colors.
-A basic mipi-dbi-cmd[1] script to get the display running thus looks
-like this:
-
-    $ cat shineworld,lh133k.txt
-    command 0x11 # exit sleep mode
-    delay 120
-
-    # The display seems to require display color inversion, so enable it.
-    command 0x21 # INVON
-
-    # Enable normal display mode (in contrast to partial display mode).
-    command 0x13 # NORON
-    command 0x29 # MIPI_DCS_SET_DISPLAY_ON
-
-    $ mipi-dbi-cmd shineworld,lh133k.bin shineworld,lh133k.txt
-
-[1]: https://github.com/notro/panel-mipi-dbi
+Some MIPI DBI panels support a three wire mode (clock, chip select,
+bidirectional data) that can be used to ask the panel if it is already set
+up by e.g. the bootloader and can thus skip the initialization.
+This enables a flicker-free boot.
 
 Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml    | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-index 9b701df5e9d28..c07da1a9e6288 100644
+index c07da1a9e6288..2f0238b770eba 100644
 --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
 +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-@@ -67,6 +67,7 @@ properties:
-     items:
-       - enum:
-           - sainsmart18
-+          - shineworld,lh133k
-       - const: panel-mipi-dbi-spi
+@@ -87,6 +87,8 @@ properties:
+       Logic level supply for interface signals (Vddi).
+       No need to set if this is the same as power-supply.
  
-   write-only:
++  spi-3wire: true
++
+ required:
+   - compatible
+   - reg
 -- 
 2.39.2
 
