@@ -2,157 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 360BB72F3D7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 06:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EDB372F421
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 07:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233669AbjFNE6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 00:58:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
+        id S234074AbjFNF25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 01:28:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233929AbjFNE6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 00:58:02 -0400
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54FEB122;
-        Tue, 13 Jun 2023 21:58:01 -0700 (PDT)
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5183101690cso7278085a12.0;
-        Tue, 13 Jun 2023 21:58:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686718680; x=1689310680;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dVqjech6rehqYVc76kP00nVY02sE+W+4Mbw+HMfqJs0=;
-        b=Thcyv3QWdwJGWETB8lfAa9kBrJ2ZtyTVrc5Z3F2XFS3cUpRlDwhB2OHvV7SiHvJEVY
-         7MchZaXrA6LAjxrbNxHVkiwkjtHIRvacz1T+B/oZG/cho15ieM7JB/Ir0ltE7kfxZ4/r
-         UTSX61aGJVkEiuQZXLsg3t0qB/iCf+dZy9IywZgDUMQYeWEdFZImf2Fw7wgaQxeEB9IM
-         bs8OuoS37p3cxajagnkHE8U44ivtj0TLB7n8Rv5cRF1LeyAUByf2xlvUIsZB3Y/WfJuZ
-         YPcKhi010xcvAx3rryM7uBeKbDfqCBkYmOgffWAzWnleDIJzaiJbTTHbAVyukdnjMiVh
-         BAxQ==
-X-Gm-Message-State: AC+VfDxr90wYI4swRG3UP4ukMr8J01MofnjS9BPcPY2/SoIZonD/yuwI
-        D4QzHFRf/dNmHRYqtDGqwcw=
-X-Google-Smtp-Source: ACHHUZ66MPHDLCxi4nWcCRjbBaPXVXW2hh68IAC/e+uTnvNGyZwoL0gPajf4l9a7mqMeV31MsL6ocQ==
-X-Received: by 2002:a17:907:7e9a:b0:977:d468:827 with SMTP id qb26-20020a1709077e9a00b00977d4680827mr453941ejc.17.1686718679529;
-        Tue, 13 Jun 2023 21:57:59 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::aaaa:59? ([2a0b:e7c0:0:107::aaaa:59])
-        by smtp.gmail.com with ESMTPSA id ha19-20020a170906a89300b0097d77a5f033sm5974327ejb.24.2023.06.13.21.57.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 21:57:58 -0700 (PDT)
-Message-ID: <11b0f59e-7cca-1b50-9c34-f38e6b6fc0f9@kernel.org>
-Date:   Wed, 14 Jun 2023 06:57:57 +0200
+        with ESMTP id S232250AbjFNF24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 01:28:56 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD878198D;
+        Tue, 13 Jun 2023 22:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686720535; x=1718256535;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kFYvEOf4qnpF1L29yohf4l+qA/2M0cadu9gIeKSADAc=;
+  b=QBR/C1AYeLJv92JDTEgkkoPtj6ulDRGcoQJ1PwcR3KsOTB6MWy4m2L0Z
+   ec58+Ctz0APRqbT02L1I37QvM3PPS9hf3Z3i8bbjeyom3JRP4Fx9+3sOU
+   9OPehQjUOoL7AOv+9hfps4J3HwY23Gy1fGt0dedXvbbq5+8HrJfMH2Hp9
+   vpR3obcGRYzp8HVlTu5dpwqnTJxJqCxhionqfw1Qmfutg2SWIiRGdSPSE
+   xgrJF49maBGqc8oB+yFqxD0Q0SoYCQp/7cSYNabeZcOUWMVyel4deILcI
+   Ers/LHn45TycOguCVPWiOwnRNBFYapWrtaFLYTcwiqjlBtVvvW0mjbRiw
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="424409605"
+X-IronPort-AV: E=Sophos;i="6.00,241,1681196400"; 
+   d="scan'208";a="424409605"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2023 22:28:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="886081786"
+X-IronPort-AV: E=Sophos;i="6.00,241,1681196400"; 
+   d="scan'208";a="886081786"
+Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
+  by orsmga005.jf.intel.com with ESMTP; 13 Jun 2023 22:28:52 -0700
+Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q9J2k-0000Dh-1K;
+        Wed, 14 Jun 2023 05:28:01 +0000
+Date:   Wed, 14 Jun 2023 13:27:03 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 8/8] rtc: isl12022: implement support for the
+ #clock-cells DT property
+Message-ID: <202306141318.xPzubJXo-lkp@intel.com>
+References: <20230613130011.305589-9-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v14 1/1] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jacky Huang <ychuang570808@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        soc@kernel.org, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230612025355.547871-1-ychuang570808@gmail.com>
- <20230612025355.547871-2-ychuang570808@gmail.com>
- <2023061338-lunchbox-snorkel-e6a9@gregkh>
- <f8eb6114-8248-8886-b301-c2886e50e016@gmail.com>
- <2023061356-matchbook-footwear-d142@gregkh>
- <35e768ad-7f15-48a4-9c38-09570026cf71@app.fastmail.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <35e768ad-7f15-48a4-9c38-09570026cf71@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230613130011.305589-9-linux@rasmusvillemoes.dk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13. 06. 23, 17:44, Arnd Bergmann wrote:
-> On Tue, Jun 13, 2023, at 16:49, Greg KH wrote:
->> On Tue, Jun 13, 2023 at 06:58:32PM +0800, Jacky Huang wrote:
->>>
->>> On 2023/6/13 下午 06:28, Greg KH wrote:
->>>> On Mon, Jun 12, 2023 at 02:53:55AM +0000, Jacky Huang wrote:
->>>>> From: Jacky Huang <ychuang3@nuvoton.com>
->>>>>
->>>>> This adds UART and console driver for Nuvoton ma35d1 Soc.
->>>>> It supports full-duplex communication, FIFO control, and
->>>>> hardware flow control.
->>>> You get a full 72 columns for your changelog :)
->>>>
->>>>> --- a/include/uapi/linux/serial_core.h
->>>>> +++ b/include/uapi/linux/serial_core.h
->>>>> @@ -279,4 +279,7 @@
->>>>>    /* Sunplus UART */
->>>>>    #define PORT_SUNPLUS	123
->>>>> +/* Nuvoton MA35 SoC */
->>>>> +#define PORT_MA35	124
->>>>> +
->>>> Why is this change needed?  What userspace code is going to rely on it?
->>>>
->>>> thanks,
->>>>
->>>> greg k-h
->>>
->>> Because the serial driver requires a port->type, and almost all serial
->>> drivers defined their port type here. We follow the practice of most serial
->>> drivers here.
->>> If we don't do it this way, we would have to directly assign a value to
->>> port->type. However, such modifications were questioned in the past,
->>> which is why we changed it back to defining the port type in serial_core.h.
->>
->> I really really want to get rid of this list, as it's a UAPI that no one
->> uses.  So please don't use it, it doesn't help anything, and while the
->> serial driver might require it, it doesn't actually do anything with
->> that field, right?  So why don't we just set all of the values to the
->> same one?
-> 
-> I don't see how Jacky can come up with a patch to do this correctly
-> without more specific guidance to what exactly you are looking for,
-> after the last 123 people that added support for a new port got
-> that merged.
-> 
-> I checked debian codesearch and found only three obscure packages that
-> accidentally include this header instead of including linux/serial.h,
-> a couple of lists of all kernel headers, and none that include it on
-> purpose. I agree that this header should really not exist in uapi,
-> but the question is what exactly to do about it.
-> 
-> Possible changes would be:
-> 
-> - add a special value PORT_* constant other than PORT_UNKNOWN that
->    can be used by serial drivers instead of a unique value, and
->    ensure that the serial core can handle drivers using it.
-> 
-> - move all values used by the 8250 driver from serial_core.h
->    to serial.h, as this driver actually uses the constants.
-> 
-> - Move the remaining contents of uapi/linux/serial.h into the
->    non-uapi version.
-> 
-> - Change all drivers that only reference a single PORT_*
->    value to use the generic one.
+Hi Rasmus,
 
-Hmm, we are looping :).
+kernel test robot noticed the following build errors:
 
-https://lore.kernel.org/all/75375f8d-e157-a364-3da5-9c8d5b832927@kernel.org/
+[auto build test ERROR on abelloni/rtc-next]
+[also build test ERROR on robh/for-next linus/master v6.4-rc6 next-20230613]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-regards,
+url:    https://github.com/intel-lab-lkp/linux/commits/Rasmus-Villemoes/rtc-isl12022-remove-wrong-warning-for-low-battery-level/20230613-210308
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20230613130011.305589-9-linux%40rasmusvillemoes.dk
+patch subject: [PATCH v2 8/8] rtc: isl12022: implement support for the #clock-cells DT property
+config: i386-randconfig-i012-20230612 (https://download.01.org/0day-ci/archive/20230614/202306141318.xPzubJXo-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build):
+        git remote add abelloni https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git
+        git fetch abelloni rtc-next
+        git checkout abelloni/rtc-next
+        b4 shazam https://lore.kernel.org/r/20230613130011.305589-9-linux@rasmusvillemoes.dk
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306141318.xPzubJXo-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "__clk_hw_register_fixed_rate" [drivers/rtc/rtc-isl12022.ko] undefined!
+>> ERROR: modpost: "of_clk_hw_simple_get" [drivers/rtc/rtc-isl12022.ko] undefined!
+>> ERROR: modpost: "devm_of_clk_add_hw_provider" [drivers/rtc/rtc-isl12022.ko] undefined!
+
 -- 
-js
-suse labs
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
