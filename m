@@ -2,149 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEB067307F3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC547730800
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:20:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235826AbjFNTSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 15:18:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45830 "EHLO
+        id S235955AbjFNTU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 15:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbjFNTSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:18:13 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F4DF2682;
-        Wed, 14 Jun 2023 12:18:12 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-777a78739ccso387408039f.3;
-        Wed, 14 Jun 2023 12:18:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686770292; x=1689362292;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YBpMMsjcbe1wo6wOZhJlr/oSYFVntydqWqDrNGep1l0=;
-        b=BqhS7xA7T6RbrmqgQMKjBoqmWZ1RQwQxUcJ1HwbrBIQpo7J1Ech+GIvw3+nrmKux5x
-         b2sWZ0FLaTadYyaKIC/J74/XRpuABvGw09cQ5gCzKp1P132FBzjblYON6ZBSa9l4rQNn
-         qCHRO3oe3fjXsYxs7yI6Jtwh7ZxkTsjrbCstJybrhFYYHMNOlinL9VN+iRWJ8kq6HLZ1
-         /Qa3DAhtPWA0pDV7E0LE5Zy6Sy7LcN3oC1U9rCUJwn+Pot7LiF18d4v/RsJ4cODUznkv
-         3g3ZzIHgGA5MuboJ/DhHQRrniU01/bcVmdO9hf5AUcoCwgDc17ccvtzOFr5oA82o8Qu8
-         8w1g==
-X-Gm-Message-State: AC+VfDzlPpeV70SVe2a8G2hR976hUdWxw3Mx7as+UNOaFLR25cHIPJv0
-        Bgw1mSnTZ0GQAExvwttTFQ==
-X-Google-Smtp-Source: ACHHUZ5c57N/o0GzC8aXwuQsvNktRZIXbCA+u83AThjFLnR3buYrBFGMs/uzsSp0OtJJ2l8Rq3rG3w==
-X-Received: by 2002:a05:6602:299a:b0:776:cfd8:b44a with SMTP id o26-20020a056602299a00b00776cfd8b44amr16111912ior.8.1686770291867;
-        Wed, 14 Jun 2023 12:18:11 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id b8-20020a02c988000000b0041f5ff08660sm5160476jap.141.2023.06.14.12.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jun 2023 12:18:11 -0700 (PDT)
-Received: (nullmailer pid 2587113 invoked by uid 1000);
-        Wed, 14 Jun 2023 19:18:08 -0000
-Date:   Wed, 14 Jun 2023 13:18:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S233446AbjFNTUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:20:55 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A6B213B;
+        Wed, 14 Jun 2023 12:20:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686770450; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=EFbXxSUGekfWR6MwUXGRZhWs4rlgAgD8D5gszALsI6y00wMZCgsTV0Dz7GSQ+1WShE
+    40YOQ7Jg6JWrraKBICxQWLtVUU3K0rvhQg1w7qdh6oj5YPxuDZyJQ2U4tptHkqzqsSXN
+    jX1Rq2qHJj6UxlFJLHN2gDAKJLmNHuiZr1DeSK366R7fUfxdXTOrNWO9b4N9sEMBhgC4
+    zXFOa7bFM/eF5GLOjRttKzMPL7eCFgZUHDoiRsd86u5UvYgJDJuZ1r0ljIq5p2D5Mh+o
+    ri7Q4KgJgfj+2mlv/0MCg6ayvRIPzINnKbtqhwqEROcKyZxm3BY6uk5AiNlEfuVhBuOj
+    C63g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686770450;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=neT+DUbNGXFd7YKRPRpjpjhGQIXjCgnsy9pZLG/vLm4=;
+    b=pu8vsnwXkTh2BO6lEqh3oG6pTN3QG1Euntxh9R0Rr3fUELZutOVRKq6Y292xrjZS6w
+    CGU2J8HpJ5M+Wq0sesI3MakJCr6tg6hNGFVIRBBsSKoUgc326CdF9VoOlkOG0UxvBmql
+    W6+2ds5VNwcmqoU34euNgpCgZMIC3cfpjIKMWllYAhleeP1g+L2LsZrXlw3/VXTGCgKj
+    pivjceAdoqODpj1h/W28lbWaOfztW5xM3O/sQZJup5LPCDFMyY0JOC6MP49KufIMS5ya
+    EGxRWy8ekVqbA1moSJfit0lUr8xsXbKukdXpkyjMgOCfZ7e4Za/L3prkV4gHrJmcIkZG
+    YKSQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686770450;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=neT+DUbNGXFd7YKRPRpjpjhGQIXjCgnsy9pZLG/vLm4=;
+    b=X7KvdbOmhGO+0OOTZWBq8HzMelMX9FHmfXUKM6CfQ3t5F/J/VndmrOSTAGVYMgIqe6
+    xUO4SrOnM9Ky1QpPmhosywor8AgUWa0F0H/aCkB8CVzyk0o9uf2Csp7KsGcWB3RZAFIH
+    fX3PbDJRotywZpqrlvFJMUmqJLVuu3C/y6OHQKl5TLC3IN7HW67uhQQIjF9fEDmubRyS
+    DOLUY4U+Hh79fkxCF4eRsW0miUOC6aAOO2ms6vrvWXGmSDMhiL2gHrKBMO+Xexl8CRYW
+    81pfuxYTX/ycWKW15I6Nb2rWeZj0UR/0jvGAAYTUfA6FE4nXvgraH9fG9S4oZMi33jJf
+    r05w==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686770450;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=neT+DUbNGXFd7YKRPRpjpjhGQIXjCgnsy9pZLG/vLm4=;
+    b=EXiQ/bZ71kQlrQ1nP9Wlb1U+xaTpZLk10kg7vn6/CPmKDd7sflwoq70S0zKMiYgwg1
+    rzIfypzsPp7K0ZYIYHAA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4xxmw=="
+Received: from [192.168.244.3]
+    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
+    with ESMTPSA id D0d0a8z5EJKn0hr
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 14 Jun 2023 21:20:49 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH v2 0/2] of: reserved_mem: Improve range allocations
+Date:   Wed, 14 Jun 2023 21:20:41 +0200
+Message-Id: <20230510-dt-resv-bottom-up-v2-0-aeb2afc8ac25@gerhold.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAkTimQC/32NQQrDIBQFrxJc9xc11EhXvUfJQuM3Co0GtdISc
+ veaHKDLeY9hNpIxeczk3m0kYfXZx9CAXzoyORVmBG8aE055T2+MgimQMFfQsZS4wHsFIc3ArBW
+ CS0uap1VG0EmFyR3monLBdBxrQus/Z+w5NnY+l5i+Z7uyY/2XqQwo9NoKKYfeaDSPGZOLL3MNW
+ Mi47/sP/7X0dM0AAAA=
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, kernel@pengutronix.de,
-        Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Anson Huang <Anson.Huang@nxp.com>, Marek Vasut <marex@denx.de>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v1 6/7] dt-bindings: clock: imx6q: Allow single optional
- clock and add enet_ref_pad
-Message-ID: <20230614191808.GA2581397-robh@kernel.org>
-References: <20230601101451.357662-1-o.rempel@pengutronix.de>
- <20230601101451.357662-7-o.rempel@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230601101451.357662-7-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 01, 2023 at 12:14:50PM +0200, Oleksij Rempel wrote:
-> All clocks for this driver are optional, so this change allows the
+Try to allocate dynamic reserved memory regions with "alloc-ranges" 
+close to other static regions by choosing between allocating them 
+bottom-up or top-down. This keeps the reserved memory regions closer 
+together rather than potentially having them spread all over the RAM.
 
-It's not about what the driver supports, but the h/w. You are saying 
-this SoC can operate with only 1 of any of the clock inputs?
+Also make the allocation order of dynamic reserved memory regions 
+deterministic so it doesn't change randomly when adding unrelated 
+reserved memory regions.
 
-> 'clocks' and 'clock-names' properties to accept a single clock.
-> Additionally, 'enet_ref_pad' clock is added. This resolves the following
-> dtbs_check warning:
->   imx6dl-alti6p.dtb: clock-controller@20c4000: clocks: [[24]] is too short
->   From schema: Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> 
->   imx6dl-alti6p.dtb: clock-controller@20c4000: clock-names:0: 'osc' was
->     expected
->   From schema: Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> 
->   imx6dl-alti6p.dtb: clock-controller@20c4000: clock-names:
->     ['enet_ref_pad'] is too short
->   From schema: Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  .../devicetree/bindings/clock/imx6q-clock.yaml    | 15 +++++++++------
->  1 file changed, 9 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/imx6q-clock.yaml b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> index bae4fcb3aacc..ed65d19c2e0e 100644
-> --- a/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> @@ -28,20 +28,23 @@ properties:
->      const: 1
->  
->    clocks:
-> +    minItems: 1
->      items:
->        - description: 24m osc
->        - description: 32k osc
->        - description: ckih1 clock input
->        - description: anaclk1 clock input
->        - description: anaclk2 clock input
-> +      - description: enet_ref_pad
->  
->    clock-names:
-> -    items:
-> -      - const: osc
-> -      - const: ckil
-> -      - const: ckih1
-> -      - const: anaclk1
-> -      - const: anaclk2
-> +    enum:
-> +      - osc
-> +      - ckil
-> +      - ckih1
-> +      - anaclk1
-> +      - anaclk2
-> +      - enet_ref_pad
->  
->    fsl,pmic-stby-poweroff:
->      $ref: /schemas/types.yaml#/definitions/flag
-> -- 
-> 2.39.2
-> 
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+Changes in v2:
+- Drop explicit "allocate-bottom-up"/"allocate-top-down" properties
+  Instead, try to guess in the implementation based on the already 
+  available information in the DT. (Rob)
+- Drop examples that were just included to show the motivation.
+  They are still available on v1 if needed.
+- Link to v1: https://lore.kernel.org/r/20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net
+
+---
+Stephan Gerhold (2):
+      of: reserved_mem: Try to keep range allocations contiguous
+      of: reserved_mem: Use stable allocation order
+
+ drivers/of/of_reserved_mem.c | 60 ++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 58 insertions(+), 2 deletions(-)
+---
+base-commit: b16049b21162bb649cdd8519642a35972b7910fe
+change-id: 20230510-dt-resv-bottom-up-68d71ff6628f
+
+Best regards,
+-- 
+Stephan Gerhold <stephan@gerhold.net>
+
