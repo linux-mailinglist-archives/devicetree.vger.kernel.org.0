@@ -2,122 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E99730542
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 18:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC2D73054D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 18:44:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234041AbjFNQnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 12:43:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54116 "EHLO
+        id S235592AbjFNQoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 12:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235224AbjFNQnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 12:43:11 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37165268C
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 09:43:08 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5196a728d90so916593a12.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 09:43:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686760986; x=1689352986;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LYxZyCq/Gi1HReykhrZJhQ1TogVgVoGsHy6LMM70L8w=;
-        b=FIuBtH75LaI9ryaFI5mUy3gYiBMBakvXdP6X6Ekvml1P4vgJTz7YdUbY4a/Wp7SiNA
-         noNFfrZK3LCbd1LaxblbkvU3S9quAs5U4u2L7zkXZG9CVwMc2kDitIe6X70OfAaAanov
-         77cEY6ZLUsFYpJgredh1jHzjZZxI9oJ44pOMZ+1xieFMGyqvTK6Ah20uqTIEIEYuztUL
-         w3nfY7ZUSXK1vB25NHQC4oLNm+fuDmTD6c03R44iH32aosVgHZoB+xohijBHPneBMlrF
-         kIFNXCtRkWV0e/7LnBiXEin0WYCS961zBIns0D8x/m1zg5+t7l0/I01ZFPxOea8sLePQ
-         28yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686760986; x=1689352986;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LYxZyCq/Gi1HReykhrZJhQ1TogVgVoGsHy6LMM70L8w=;
-        b=GqUq4Mj0LO0SkoaUa9enWV+kScS4uWCgnMuiqI9Sl0WNeLIY9q3DGFozDZcVJ9tPvE
-         c5UQEfYipAjHo0InXs52969i2E0VH1vQ8tejWukNSBI4gcGNyssNEqbFjMTA2ak0s/fQ
-         Nlq7BcxeBTo72quVoXtuE5Q8wb0xkhmeSM6YE7wK+Go9KjeoEU4wh1K1P+AjBwjCEQf4
-         s7hMVDyGJkYKnZ2FXdMdrl50ODQTrjC42/09sLauiOb+aYCOFMwvbXqsnbOwO8nSjnPH
-         xT6mWOhkCRg605RPcK0y6aYNtOsyOEFC0iOVX0k5zObYqJpvj9n83YuXxSqsU6+XN2FD
-         yn2g==
-X-Gm-Message-State: AC+VfDyt69X9IWRLB8UxN+1Z7fMc98roqR10FaNa8coziu8aoZMYX5vr
-        gERjMelSYxFwSAYUj/hI8wSQqw==
-X-Google-Smtp-Source: ACHHUZ42yJBCaEfV+oEONTiEyCMpQDPxB+8Mz3jsy4GV3UBDckUu0IrqOZ2cT1BdD0r/sqSYm5xdGw==
-X-Received: by 2002:a17:907:3e9f:b0:976:c9a6:4857 with SMTP id hs31-20020a1709073e9f00b00976c9a64857mr20032169ejc.57.1686760986667;
-        Wed, 14 Jun 2023 09:43:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u16-20020a1709064ad000b009828e26e519sm255352ejt.122.2023.06.14.09.43.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 09:43:06 -0700 (PDT)
-Message-ID: <c8573d08-d4e2-41a8-f0b1-e1d7a0c9ce17@linaro.org>
-Date:   Wed, 14 Jun 2023 18:43:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5 01/22] dt-bindings: interconnect: Add Qcom RPM ICC
- bindings
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
+        with ESMTP id S235298AbjFNQoF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 12:44:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38FFE62;
+        Wed, 14 Jun 2023 09:44:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7BC94638D6;
+        Wed, 14 Jun 2023 16:44:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52EFBC433C8;
+        Wed, 14 Jun 2023 16:43:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686761042;
+        bh=AbksTDj0Cr11HjVk9ndl4fxdbz4KeyrvhEW07BZm7RE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fzMgfRjaZkDQ+FOJ6dtazBXiBUyBQCh5OuId0BfGCJL6lwjfCnuwyySZ6oF/kRRVj
+         bC28i264sOrYpVyv9CDTbe+Tj+Fb2J3UomvZo3csfGfI4QJ62D2+rxExs8Fy1WECG0
+         tK2DLmgufO1pwcMdXBcFfkQFFxYpm9Bbuv+ZU3HgyRyQuleaZb+ZKvk8kjgwp+rJ78
+         e00zb1dnuGAj3/nE4JH7iE2JEo4SfF5MPjrJ1h+KYTI83kIWY+yf61KwTDXOvo+dhd
+         gNVCTNWO0yQaHeW3KBkDeW0/IG/rw03pvu5HAdbaINuqwnNlQ4afRKvPrAvlZeW9dX
+         76SQ9ok++D/vA==
+Date:   Wed, 14 Jun 2023 17:43:57 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org,
+        Christoph Hellwig <hch@infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230526-topic-smd_icc-v5-0-eeaa09d0082e@linaro.org>
- <20230526-topic-smd_icc-v5-1-eeaa09d0082e@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230526-topic-smd_icc-v5-1-eeaa09d0082e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v9 3/6] riscv: mm: dma-noncoherent: nonstandard cache
+ operations support
+Message-ID: <20230614-bundle-greedless-91581fdbdce8@spud>
+References: <20230614104759.228372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230614104759.228372-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWApGKsS8DU7-=6j6WaRBDZ8Amig2NtA8f8=PbGKoFQjQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="l7qMsMb3x+g0a+Wz"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWApGKsS8DU7-=6j6WaRBDZ8Amig2NtA8f8=PbGKoFQjQ@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 12:22, Konrad Dybcio wrote:
-> The SMD RPM interconnect driver requires different icc tags to the
-> RPMh driver. Add bindings to reflect that.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  include/dt-bindings/interconnect/qcom,rpm-icc.h | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/include/dt-bindings/interconnect/qcom,rpm-icc.h b/include/dt-bindings/interconnect/qcom,rpm-icc.h
-> new file mode 100644
-> index 000000000000..2cd56f91e5c5
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,rpm-icc.h
-> @@ -0,0 +1,13 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2023, Linaro Limited
-> + */
-> +
-> +#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_RPM_ICC_H
-> +#define __DT_BINDINGS_INTERCONNECT_QCOM_RPM_ICC_H
-> +
-> +#define RPM_ACTIVE_TAG		(1 << 0)
-> +#define RPM_SLEEP_TAG		(1 << 1)
-> +#define RPM_ALWAYS_TAG		(RPM_ACTIVE_TAG | RPM_SLEEP_TAG)
 
-Where are these used? I don't see any DTS in your patchset. Did you send
-it separately?
+--l7qMsMb3x+g0a+Wz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Wed, Jun 14, 2023 at 02:53:26PM +0200, Geert Uytterhoeven wrote:
+> Hi Prabhakar,
+>=20
+> On Wed, Jun 14, 2023 at 12:48=E2=80=AFPM Prabhakar <prabhakar.csengg@gmai=
+l.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Introduce support for nonstandard noncoherent systems in the RISC-V
+> > architecture. It enables function pointer support to handle cache
+> > management in such systems.
+> >
+> > This patch adds a new configuration option called
+> > "RISCV_NONSTANDARD_CACHE_OPS." This option is a boolean flag that
+> > depends on "RISCV_DMA_NONCOHERENT" and enables the function pointer
+> > support for cache management in nonstandard noncoherent systems.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v8 -> v9
+> > * New patch
+>=20
+> Thanks for your patch!
+>=20
+> > --- /dev/null
+> > +++ b/arch/riscv/include/asm/dma-noncoherent.h
+> > @@ -0,0 +1,28 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/*
+> > + * Copyright (C) 2023 Renesas Electronics Corp.
+> > + */
+> > +
+> > +#ifndef __ASM_DMA_NONCOHERENT_H
+> > +#define __ASM_DMA_NONCOHERENT_H
+> > +
+> > +#include <linux/dma-direct.h>
+> > +
+> > +/*
+> > + * struct riscv_cache_ops - Structure for CMO function pointers
+> > + *
+> > + * @clean: Function pointer for clean cache
+> > + * @inval: Function pointer for invalidate cache
+> > + * @flush: Function pointer for flushing the cache
+> > + */
+> > +struct riscv_cache_ops {
+> > +       void (*clean)(phys_addr_t paddr, unsigned long size);
+> > +       void (*inval)(phys_addr_t paddr, unsigned long size);
+> > +       void (*flush)(phys_addr_t paddr, unsigned long size);
+> > +};
+>=20
+> I guess the naming can be improved?
+>=20
+> .clean() is used by arch_dma_cache_wback() / arch_wb_cache_pmem(),
+> .inval() is used by arch_dma_cache_inv() / arch_invalidate_pmem(),
+> .flush() is used by arch_dma_cache_wback_inv() / arch_dma_prep_coherent().
+>=20
+> Perhaps .wback(), .inv(), .wback_inv() are more clear?
+>=20
+> I understand this is subject to bikeshedding...
+> But hey, how many innocent bits of data have already been lost due
+> to cache semantic mismatches?
 
+Given this is based on Arnd's stuff, +1 on the bikeshed. The names have
+been chosen I guess to match the CBOM extensions naming.
+
+Otherwise, I had it in my head that the next revision of this was going
+to take patches 8 & 9 from Arnd's series, to align the semantics. Not
+that it really bothers me, just means this will have to wait for the
+cross-arch series, when pretty sure Arnd suggested not depending on that
+any more... Am I missing something Prabhakar?
+
+Other than the bikeshedding, no objections.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+--l7qMsMb3x+g0a+Wz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZInuTAAKCRB4tDGHoIJi
+0mehAP0QJVAWl4QlY0rgtJuCCW2wWXiwHW7Opw7NAhq2tdzsMwD9FPKY2ISdjIAj
+wLfm2XMMYQuqT1og8iUEnl0XhGDPGgA=
+=FBZR
+-----END PGP SIGNATURE-----
+
+--l7qMsMb3x+g0a+Wz--
