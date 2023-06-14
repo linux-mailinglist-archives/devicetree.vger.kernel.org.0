@@ -2,161 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A21C72FC1C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 13:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E679E72FC3D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 13:18:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241089AbjFNLNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 07:13:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34824 "EHLO
+        id S235189AbjFNLSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 07:18:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235923AbjFNLNJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 07:13:09 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2047.outbound.protection.outlook.com [40.107.7.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F1F226A9;
-        Wed, 14 Jun 2023 04:12:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hPnqOiTcRWWGMnn7s+waeyknu8IUAXJ/s/Yhy1Rugkh3GYSrtlrmAD/3bFngP7nRGp9bloTSUIhBbUW86NcE0LZcpbhIbvmY3O4EiZjeURxwl+0ta/Pk+d1kPVbZODArvU4z4xBA6zXnVsMEQpVokK6FFmRMjpCVYf77rMi3si07WCj7Kk55RYbxxibkrjNXfE/r+V8xwTxs++SgjERf9aKz87cuat1ZYYlycbvcGLNWKimlmFP/8g2pPgWIMtsm8ScYpcbY0W2raS44bP3qyOTVRO6I3fApoRWUDgqauVMRX0q8qkEPpAC76JwaZOzJ+DfigMbPksw79D+SCtRAGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zBhHKi+NEzxvZ2IrN631cPnzpjhv5qbU2Ik+e5AGJJI=;
- b=gUJufkF1tNzWX9e5ZwWqawtEFWn09gKiwncHERu3H7aOUhqSRsvZdGESgE+a3hPrDNZux3rhHaVOcd2TPgUja04cUVBeA0T/GUxA1awShdisKhYFl73ACPpeKp5RHX99JTeuOyT3hlfLF7jc8uJfAevdh4pc6vMu4JjFl/ag4quudDY3iK0rRp9o4sCKWnZx9PSiGTxviykc8mjTOavjURDri4OiBLc7VhbWxQDgwWpSsjUnf2whsivlE54QtnvHqSppyXH0k29P2G19m0IQ4xAqWioSWi8GnU9gwaRNOdFivH0TNC6g/gQD90f91zswjEuog0L3wrAbauA8Ur6yqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zBhHKi+NEzxvZ2IrN631cPnzpjhv5qbU2Ik+e5AGJJI=;
- b=JNU9enDCQkKAf5X7CdJBBN4b31yTdCOrzRzMoP54bvq78yo0QdKXQf0f9QvdeeUGvhqNQ/z4OjGkQJsHJ0OBCDNR0gMCQvrFvImujh7w1adQ8/cm+pd+hniGddQE6qi6dst6Q3m8xUS+GSlPQ4+a2pwVCj/qG3P8OwO6XwHmp8Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
- DU2PR04MB8647.eurprd04.prod.outlook.com (2603:10a6:10:2de::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6455.46; Wed, 14 Jun 2023 11:12:36 +0000
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4]) by DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4%7]) with mapi id 15.20.6455.045; Wed, 14 Jun 2023
- 11:12:36 +0000
-From:   Xu Yang <xu.yang_2@nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, jun.li@nxp.com
-Cc:     Frank.Li@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org, xu.yang_2@nxp.com
-Subject: [PATCH 2/2] usb: phy: mxs: add DT bindings to hold data line
-Date:   Wed, 14 Jun 2023 19:15:48 +0800
-Message-Id: <20230614111548.1815146-2-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230614111548.1815146-1-xu.yang_2@nxp.com>
-References: <20230614111548.1815146-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR06CA0191.apcprd06.prod.outlook.com (2603:1096:4:1::23)
- To DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26)
+        with ESMTP id S235751AbjFNLR7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 07:17:59 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E9D1FD0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 04:17:38 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f7378a75c0so5234215e9.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 04:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1686741457; x=1689333457;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZqM7S8NVl5TgVH/SCkBnKovDNoLn6CHQRP6NUvEVbFA=;
+        b=QOBvNJ4SK+SNbyk8XDYPoIiRQQGEReadorv2ByIf2r/Pgn2pEZzITLNMrdIZW4Uja1
+         FrPl+kL8JMgwnFvefo4gM4ADtDjXYBkoOJsodiAp/P4NWHr47LelPoqg5Z5eIZPbl5ed
+         W+A/T2K2m6EepXPnoOFsFcNjYboMPE6S5vb039RIEtYnbJEHi+qcmJOuHNQ9Z4kyLIDn
+         h3yI9XWwjJpwSdLsfp4+8K7SkLOYf7q8jLrVDRDO5cnHRdpbQS4PxIclh/2KWezLs+Pp
+         AEPdwu44Gi7WPkNp8s+L3l6mY+YlZ+dvDnubAgTdRxAOQJHTLNoCdo+HmjJBvjqPeCYE
+         jZmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686741457; x=1689333457;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZqM7S8NVl5TgVH/SCkBnKovDNoLn6CHQRP6NUvEVbFA=;
+        b=mFGsLJ0wPKt0ystFtUKvpecIaoKFGEptmAZh54dArDfJj9R0jYywsFnHeHwl9o0kiL
+         TcEsN4Els/l97Pccj8Np+UkOqAh8etm+lSlN8lkdAmivw8DL7au+i2Or7gk75kVplqyn
+         tcDWymhvbv7fWN3Rkamm44XuAIKB4WQnHNI0zeco8CUUz3mseANh+tKR6r24HObPYE8z
+         L9L7Oe2gVqFzcCpUGGfGk9266ECMM0i2xQqS1TfMh8ephsgU3d2zJf6I9m9Y798TBshq
+         YEfHvawWyJi4iuFP114bRPyMRy5UtUQcWxOcVFsAN0sxIxmxbg6N6gf2v35ZP2dlSoSp
+         j9pA==
+X-Gm-Message-State: AC+VfDzA8ZfvjDMYKFwXf8fu6RAst3PN6NfmXEFfwvHfRWtDdJLmlArm
+        UZLKX333y0292QTm1Tg84KieGA==
+X-Google-Smtp-Source: ACHHUZ4VV/u+wNY65vkMGqcqRpOJrnrIRBctK0IPefzUqdfJtG2Faq8wP4fbJml7xLdM6nEjARrruQ==
+X-Received: by 2002:a05:600c:2212:b0:3f7:865d:ce63 with SMTP id z18-20020a05600c221200b003f7865dce63mr10498832wml.21.1686741456811;
+        Wed, 14 Jun 2023 04:17:36 -0700 (PDT)
+Received: from [10.35.6.111] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id x25-20020a05600c21d900b003f60faa4612sm17154520wmj.22.2023.06.14.04.17.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jun 2023 04:17:36 -0700 (PDT)
+Message-ID: <f993a71b-69ff-3047-9a56-d04fd583431a@sifive.com>
+Date:   Wed, 14 Jun 2023 12:17:35 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4505:EE_|DU2PR04MB8647:EE_
-X-MS-Office365-Filtering-Correlation-Id: 899731ca-7e2c-481a-159b-08db6cc841f7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cMBrb391Bbmn8GurrAFa8E9mnsyPVOAuh3KtMSoXtwW9HTAn/BOkmQZazuqu+uMHQiVHh/YhUcxkvzHTPhxXXRpX9BFexfo+O0/5Nat8UsQwOPQdA0iaUxW1LH/GhCQYIPbv0fNCVlVLaZCZVUn7FwX9qDqDBlLC3Lebmf9cPr0s/vTsLgJQwwiWDGWQo7ie3Dz+PwPjfd8OcY+cKnAAizL+tVXOehUWRm4U1/+vNhSogr5X2TBzcRsU9NBoH2tOUmC/SCWrkL0U37sNjqUyI0mVeGx2V54xAKNh75jIyr2glEECG0wOJfWv6jSY3gsOSsSZfXb887L4Bao/DkK/HyVCBqDrfp/wb/LOROCifyslmD+P/tOt9YgNJrZSLXL5gZ4T3eZhm2w0sgVdXCTvLh++aV3sog81r8emBatStTyvktUWLfgBHZSLoOLyG4PQu7gujQXUzJZL3lvr+1veeqyiOc1A2LGGqzCzxHIBu8C4/E+zWlIjAz7IoCBVDpDAM7yPxikKp9zYjkG0N3y4xRCsAzPrMqJ1xG5pz5tWoJUb60gYVfJbVJv5HHS1DMWsp6HFJpfZb3mC+sPCUTInK62bI6863tpniRb+xPkbFbGAHhVJyWNoQAsQudyscN9y
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(376002)(136003)(366004)(39860400002)(451199021)(83380400001)(66476007)(7416002)(4326008)(66946007)(6636002)(36756003)(316002)(5660300002)(26005)(6512007)(2906002)(6506007)(1076003)(41300700001)(8676002)(8936002)(86362001)(38100700002)(38350700002)(66556008)(478600001)(2616005)(186003)(6666004)(52116002)(6486002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+3S7DCqX04elGKJXBr72gHcLTgecwT9hlmtYdokrKPv42rctoKtysRa8qJpV?=
- =?us-ascii?Q?gq0T0wxMQZBSQhYfFiNZgOI88sy4st4ij9zOpjdfD1vHQLUg4YKP4eiVaux2?=
- =?us-ascii?Q?gv+zPAe9TTZjdDFajfwmAEC5BPC7amc+DJcCR5Q/OkLMR2OQ1E+jLX8Tcgn/?=
- =?us-ascii?Q?7bfIO9ChZeYiTRBhGSF9fziKhe86pfVtXsaviOL7rrhpohdxaar+jVrBIAG2?=
- =?us-ascii?Q?Mfun5QOpPTOliUr1VrIuGCQmSevXyHFxknVRiyllSherQ1uEkNfwOLEz8BA8?=
- =?us-ascii?Q?FbUH5CMvcpGPw3Hcoa5YN6qRVfOYUgNxobRAdhG0MCm1T1lsn3X8bFIFB5A9?=
- =?us-ascii?Q?mSRKUGbqN2VPT5flF8P8+WFGdE4TQJBqeRwRXf3uuN1noCny1H9MusUR1mFb?=
- =?us-ascii?Q?L2H6q5rGvCxAVOD0hMG0wn4f9C3wjY61sXN4hAfC+wnBBVZSwl8zGPQeq4oZ?=
- =?us-ascii?Q?IOdSU3JwpfQ9s7c5691XsiJw17tHEh0uu7sp0gjff40kHzuP+dEOVrCAhpHo?=
- =?us-ascii?Q?aX3RMjfRygJ4jegdp9dZSbXqh97zEbiz2Fei3o5iazmZtdSxFGbCkVwKGTq9?=
- =?us-ascii?Q?n06SRwGmaEiRUprSQG9Mv7eAIBslpArhRsvxNteBux6JC5uMn69+Wd6/puuY?=
- =?us-ascii?Q?1w1DiFbMZk6Oipxm3KqlXcIj3TA+k8SwT/1VoY84WEOgliZitTmdI/+c9gTQ?=
- =?us-ascii?Q?XOGlU8HQd6e0ONIEpMRouw6zYK6C1vidKASVRTdaOTDmPif8wU5y/QuvW0dX?=
- =?us-ascii?Q?6eQ24b6WqLmW2Ve38eOBJ8ocI6G1919OVIvtywARaO/AbqXHwTM11vaJqgtX?=
- =?us-ascii?Q?pP1/orlLGLJWl3pm719R8aNdkRjhi2kJG6/yazrc926sYMoBn6ixG3Uu+7Sf?=
- =?us-ascii?Q?vrIgcv4fs8YMxjOKL5FBWkz4QUsMz+ZkLKlMQOoZA6R6P9MGWiGzdHVofibW?=
- =?us-ascii?Q?pEyE6BuZiYl713DmT2wpfl3nC9RyM7/8/V6Gg4ol9RC7XdDKlQOb8J0j13SK?=
- =?us-ascii?Q?Wi9CL3o6v2833is9row0ib94GDiaWDxVx5j9DffMqZXzFFQI8PONSmONg6Ph?=
- =?us-ascii?Q?+wa2Z7ogm00QG13Zedf/KRlS1ew6K6C2VnME1Bp8DbdwxMiVlXzPVDclO+ml?=
- =?us-ascii?Q?9bh8uodlAO4VVkoGGo/jpJ0l/w7qEC8cDQWRo3XZCVQ8PVE5TajbeYcC9F4L?=
- =?us-ascii?Q?ux1O68FvJJ6JRZQwxu2oxMES0XzxZ+MAghiMtTluLuiYTjqT/o149Z3i8JJy?=
- =?us-ascii?Q?tQ6TBmCjWTW/pBhNE41w7CZLfNvQuo8HIWEH9AiBSJDkeIFgxTW3YKDxAp0O?=
- =?us-ascii?Q?OZuUF5PUAbN6hHNTJ8E6GPbV9o3if0NvOEtQntmFOTH0e+AwSdg6AmDguLQP?=
- =?us-ascii?Q?VQWmhQu+Hh92lPbTABRjEAdRey45HFwQRAnBbmKhxStle8FgAvkERcFKcHc9?=
- =?us-ascii?Q?snfO1h1iHDyJrkwbww+hSLQ+cVRKWwYB5yBXNO+VhpyFlIt0HJ/YtxMe7k77?=
- =?us-ascii?Q?+51JToiYt6VIad9tPMa47+8BZZ5ZrSArR1vbwuGoVUgYEQZTn5gnzL/ISNSD?=
- =?us-ascii?Q?89RCSnXuikIPRpWaOGps/VUFiaNWsVcII3TeLIjC?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 899731ca-7e2c-481a-159b-08db6cc841f7
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2023 11:12:36.0780
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: clBpXC3YrwSO88qRkT9LgKLeoA8UTpdZpFnYBy8bl1VzlvYhzRAqkC6IlMTLOcm9bLHnvQTAaWvFsSsGispCbA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8647
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v7 10/10] pwm: dwc: use clock rate in hz to avoid rounding
+ issues
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20221223153820.404565-1-ben.dooks@sifive.com>
+ <20221223153820.404565-11-ben.dooks@sifive.com>
+ <20230216213927.r3lvjz6u7d62y4pb@pengutronix.de>
+Content-Language: en-GB
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20230216213927.r3lvjz6u7d62y4pb@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Whether the data line is disconnected when vbus is not present is related
-to whether the platform data set MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS
-flag. This will provide a override from dts node if the user want to hold
-the data line when vbus is not present.
+On 16/02/2023 21:39, Uwe Kleine-König wrote:
+> On Fri, Dec 23, 2022 at 03:38:20PM +0000, Ben Dooks wrote:
+>> As noted, the clock-rate when not a nice multiple of ns is probably
+>> going to end up with inacurate caculations, as well as on a non pci
+> 
+> Given that such a non-nice ca*l*culation only happens in the of case
+> that is introduced here, it would be nice to move this patch before the
+> introduction of the of-support.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
----
- drivers/usb/phy/phy-mxs-usb.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+I've moved of support to the end of the series
+you
+>> system the rate may change (although we've not put a clock rate
+>> change notifier in this code yet) so we also add some quick checks
+>> of the rate when we do any calculations with it.
+> 
+> If the clk rate changes while the PWM is on, this modifies the output.
+> This is unfortunate and so it justifies adding a call to
+> clk_rate_exclusive_get() when the PWM is on.
 
-diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
-index e1a2b2ea098b..036bb58a3a71 100644
---- a/drivers/usb/phy/phy-mxs-usb.c
-+++ b/drivers/usb/phy/phy-mxs-usb.c
-@@ -199,7 +199,7 @@ MODULE_DEVICE_TABLE(of, mxs_phy_dt_ids);
- struct mxs_phy {
- 	struct usb_phy phy;
- 	struct clk *clk;
--	const struct mxs_phy_data *data;
-+	struct mxs_phy_data *data;
- 	struct regmap *regmap_anatop;
- 	int port_id;
- 	u32 tx_reg_set;
-@@ -774,6 +774,11 @@ static int mxs_phy_probe(struct platform_device *pdev)
- 		mxs_phy->tx_reg_set  |= GM_USBPHY_TX_D_CAL(val);
- 	}
- 
-+	mxs_phy->data = (struct mxs_phy_data *)of_device_get_match_data(&pdev->dev);
-+
-+	if (of_property_present(np, "fsl,hold-line-without-vbus"))
-+		mxs_phy->data->flags &= ~MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS;
-+
- 	ret = of_alias_get_id(np, "usbphy");
- 	if (ret < 0)
- 		dev_dbg(&pdev->dev, "failed to get alias id, errno %d\n", ret);
-@@ -792,7 +797,6 @@ static int mxs_phy_probe(struct platform_device *pdev)
- 	mxs_phy->phy.charger_detect	= mxs_phy_charger_detect;
- 
- 	mxs_phy->clk = clk;
--	mxs_phy->data = of_device_get_match_data(&pdev->dev);
- 
- 	platform_set_drvdata(pdev, mxs_phy);
- 
--- 
-2.34.1
+I can't really test things any more as the hardware has been returned
+to the client and I'm technically off the project (and awaiting this
+email address to be closed down).
+
+Could this either be solved by the clk_rate_exclusive_get() or adding
+a clock change notifier? Either way I would prefer this to be work for
+another patch.
+
+I'll send v8 out later as it has had some re-works due to moving
+things around.
+
+Thank you for the review.
+
+--
+Ben
 
