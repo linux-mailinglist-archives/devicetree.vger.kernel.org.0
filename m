@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23E9473032A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 17:14:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3AD2730330
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 17:14:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343610AbjFNPOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 11:14:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53046 "EHLO
+        id S1343627AbjFNPOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 11:14:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343599AbjFNPN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 11:13:59 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B241FE3;
-        Wed, 14 Jun 2023 08:13:57 -0700 (PDT)
+        with ESMTP id S1343616AbjFNPOC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 11:14:02 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DCDF2107;
+        Wed, 14 Jun 2023 08:13:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686755637; x=1718291637;
+  t=1686755639; x=1718291639;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YX4y7lBqNFFJ0PedIid4kUnTJJmVgsFKsE3ZJAbPjMQ=;
-  b=BryI6iYUlmpIaRG/PcPx/MlPS/APd8R/Gusli0ar1jTNgsQ4zPPq+U8e
-   F274GKm93y69qgnFdGhfsHPq6OBbCmXuciPqbd/MhfqKcMcwXSoQtZY13
-   n4iuvKibJn5sX+7F+02S/jJ2ttImLuJXx9UydB5v+Hi9LcRy1jpWhHY/P
-   VO/6PPtUIWbA0nhabynZImS8tqZhdGJ7+f3YNCuAA6KJb8HwZQJBQQVJc
-   9XyiKd9JYqX71OwlT/XVla8SBz9BQq0MWV7lGRMVRP6z754azAW3Vtf07
-   /Z1fvfgXWhhlP2r4rSHMvwyzrON36Zq6PdPWguIrDTat0L5pWC76lFhq7
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="361117398"
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=MmppHhausc57QaDzWWA+gNGrwmT8VwlTPcsgP+wDNds=;
+  b=EPB4Qf9H6YZ4tk+JgNNcrXqVDzjY7JF91kF67YLUKuF0CQfR8bse0e+d
+   mJMPrvxkr6/nR6hjp8fNPbQSBtmhpiJ/JK2uOCrze/Jivkd1JCPvBoCey
+   xqneGYZkyOptC+ggRmO+NiWPmuGPgLWwtmz4jKWyWUCxEK+Ax4gp66FIN
+   2OyVBSvqGMW76+IBQ/riZp7hT8pF+MQDa6OngVmi6mge4vUtS3b4wB499
+   Y2+9/WyHRc6qV32BjVeb56rwUy1TpdY7y3Ls1zJKOf7qMCuvGkPUa7kRe
+   uQR/FdcE/b7Pq0NPALutYr/2hTp00NWHZSdS0CyZQu6YHRy73GbzUyT4M
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="348301625"
 X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; 
-   d="scan'208";a="361117398"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2023 08:13:57 -0700
+   d="scan'208";a="348301625"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2023 08:13:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="745115832"
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="886272995"
 X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; 
-   d="scan'208";a="745115832"
-Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 14 Jun 2023 08:13:52 -0700
-Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q9SBz-0000n5-2J;
-        Wed, 14 Jun 2023 15:13:51 +0000
-Date:   Wed, 14 Jun 2023 23:10:51 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Stanley Chang <stanley_chang@realtek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ray Chi <raychi@google.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] phy: realtek: usb: Add driver for the Realtek SoC
- USB 2.0 PHY
-Message-ID: <202306142352.e4eBd3HX-lkp@intel.com>
-References: <20230614092850.21460-2-stanley_chang@realtek.com>
+   d="scan'208";a="886272995"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga005.jf.intel.com with ESMTP; 14 Jun 2023 08:13:54 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1q9SC0-003j7Z-2q;
+        Wed, 14 Jun 2023 18:13:52 +0300
+Date:   Wed, 14 Jun 2023 18:13:52 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/8] rtc: isl12022: implement RTC_VL_READ ioctl
+Message-ID: <ZInZMEZBZ8Dm2jem@smile.fi.intel.com>
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-6-linux@rasmusvillemoes.dk>
+ <ZIiJWKBFojAcNCkA@smile.fi.intel.com>
+ <20230613212651c8770218@mail.local>
+ <ZImvjj34YILrNJU5@smile.fi.intel.com>
+ <20230614135036a3e049c4@mail.local>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230614092850.21460-2-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230614135036a3e049c4@mail.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
@@ -80,103 +77,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stanley,
+On Wed, Jun 14, 2023 at 03:50:36PM +0200, Alexandre Belloni wrote:
+> On 14/06/2023 15:16:14+0300, Andy Shevchenko wrote:
+> > On Tue, Jun 13, 2023 at 11:26:51PM +0200, Alexandre Belloni wrote:
+> > > On 13/06/2023 18:20:56+0300, Andy Shevchenko wrote:
+> > > > On Tue, Jun 13, 2023 at 03:00:07PM +0200, Rasmus Villemoes wrote:
 
-kernel test robot noticed the following build warnings:
+...
 
-[auto build test WARNING on usb/usb-testing]
-[also build test WARNING on usb/usb-next usb/usb-linus robh/for-next linus/master v6.4-rc6 next-20230614]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > > > > +		ret = regmap_read(regmap, ISL12022_REG_SR, &val);
+> > > > > +		if (ret < 0)
+> > > > 
+> > > > I always feel uneasy with ' < 0' — Does positive error makes sense?
+> > > > Is it even possible? OTOH if the entire driver uses this idiom...
+> > > > oh well, let's make it consistent.
+> > > 
+> > > /**
+> > >  * regmap_read() - Read a value from a single register
+> > >  *
+> > >  * @map: Register map to read from
+> > >  * @reg: Register to be read from
+> > >  * @val: Pointer to store read value
+> > >  *
+> > >  * A value of zero will be returned on success, a negative errno will
+> > >  * be returned in error cases.
+> > >  */
+> > 
+> > I'm not sure what you meant by this. Yes, I know that there is no
+> > possibility that regmap API returns positive value. Do you mean that
+> > regmap API documentation is unclear?
+> 
+> No, I mean that you'd have to be clearer as to why you are uneasy with a
+> test for a negative value when the function returns 0 for success and a
+> negative value for an error. Else, this is pure bullying.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Stanley-Chang/phy-realtek-usb-Add-driver-for-the-Realtek-SoC-USB-2-0-PHY/20230614-173349
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-patch link:    https://lore.kernel.org/r/20230614092850.21460-2-stanley_chang%40realtek.com
-patch subject: [PATCH v4 2/5] phy: realtek: usb: Add driver for the Realtek SoC USB 2.0 PHY
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230614/202306142352.e4eBd3HX-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.3.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git remote add usb https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
-        git fetch usb usb-testing
-        git checkout usb/usb-testing
-        b4 shazam https://lore.kernel.org/r/20230614092850.21460-2-stanley_chang@realtek.com
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/phy/realtek/
+From the perspective of the code reader, a person, who might have not known all
+the implementation details of the calls this kind of check will always puzzle
+about positive value.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306142352.e4eBd3HX-lkp@intel.com/
+When reading such a code the following questions are arisen:
+1) Can the positive return value be the case?
+2) If so, what is the meaning of a such?
+3) Why do we not care about it?
 
-All warnings (new ones prefixed by >>):
+All this can simply gone if we use
 
-   drivers/phy/realtek/phy-rtk-usb2.c: In function 'parse_phy_data':
->> drivers/phy/realtek/phy-rtk-usb2.c:1229:25: warning: variable 'phy_cfg' set but not used [-Wunused-but-set-variable]
-    1229 |         struct phy_cfg *phy_cfg;
-         |                         ^~~~~~~
+	ret = foo(...);
+	if (ret)
+		return ret;
 
+As it's clear that whatever is non-zero we accept as something to be promoted
+to the upper layer. I hope this explains my position.
 
-vim +/phy_cfg +1229 drivers/phy/realtek/phy-rtk-usb2.c
-
-  1224	
-  1225	static int parse_phy_data(struct rtk_phy *rtk_phy)
-  1226	{
-  1227		struct device *dev = rtk_phy->dev;
-  1228		struct device_node *node;
-> 1229		struct phy_cfg *phy_cfg;
-  1230		struct phy_parameter *phy_parameter;
-  1231		int ret = 0;
-  1232		int index;
-  1233	
-  1234		node = dev->of_node;
-  1235		phy_cfg = rtk_phy->phy_cfg;
-  1236	
-  1237		rtk_phy->phy_parameter = devm_kzalloc(dev, sizeof(struct phy_parameter) *
-  1238							rtk_phy->num_phy, GFP_KERNEL);
-  1239		if (!rtk_phy->phy_parameter)
-  1240			return -ENOMEM;
-  1241	
-  1242		for (index = 0; index < rtk_phy->num_phy; index++) {
-  1243			phy_parameter = &((struct phy_parameter *)rtk_phy->phy_parameter)[index];
-  1244	
-  1245			phy_parameter->phy_reg.reg_wrap_vstatus = of_iomap(dev->of_node, 0);
-  1246			phy_parameter->phy_reg.reg_gusb2phyacc0 = of_iomap(dev->of_node, 1) + index;
-  1247			phy_parameter->phy_reg.vstatus_index = index;
-  1248	
-  1249			if (of_property_read_bool(node, "realtek,inverse-hstx-sync-clock"))
-  1250				phy_parameter->inverse_hstx_sync_clock = true;
-  1251			else
-  1252				phy_parameter->inverse_hstx_sync_clock = false;
-  1253	
-  1254			if (of_property_read_u32_index(node, "realtek,driving-level",
-  1255						       index, &phy_parameter->driving_level))
-  1256				phy_parameter->driving_level = DEFAULT_DC_DRIVING_VALUE;
-  1257	
-  1258			if (of_property_read_u32_index(node, "realtek,driving-compensate",
-  1259						       index, &phy_parameter->driving_compensate))
-  1260				phy_parameter->driving_compensate = 0;
-  1261	
-  1262			if (of_property_read_u32_index(node, "realtek,disconnection-compensate",
-  1263						       index, &phy_parameter->disconnection_compensate))
-  1264				phy_parameter->disconnection_compensate = 0;
-  1265	
-  1266			get_phy_data_by_efuse(rtk_phy, phy_parameter, index);
-  1267	
-  1268			update_dc_driving_level(rtk_phy, phy_parameter);
-  1269	
-  1270			update_hs_clk_select(rtk_phy, phy_parameter);
-  1271		}
-  1272	
-  1273		return ret;
-  1274	}
-  1275	
+> > > > > +			return ret;
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With Best Regards,
+Andy Shevchenko
+
+
