@@ -2,141 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5AD730793
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 20:47:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44AB47307A0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 20:51:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232053AbjFNSrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 14:47:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32802 "EHLO
+        id S235075AbjFNSvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 14:51:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbjFNSrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 14:47:07 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2318189
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 11:47:04 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-977d55ac17bso162891066b.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 11:47:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686768423; x=1689360423;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/2dmijlndEPPYs5IElMJtslUllIfqF2D+1pCU/iVRps=;
-        b=RYB/dfvGhjvnwSjdBgId9QXaGPAml67loM9d/fKuSNJGk/pke4Id3mL8bttl7LJ2rt
-         asd0STpv2pxsQmmhLRwvoESTFQd7HCS+WFQgrpYwtGBFJ98SH9ZWb5Fv/IgZ0ftmT0+3
-         QNCxGhNExMqqLfP8mfkRrNO1FR0Yd+4NVi1vm20ADoOhpAhPOb4PHocDWTOyHfYsHWQS
-         UC7GFLZLZKx92SOiJ34UMAiRyGt8Iwras9MOBKmDaDC0PXHXkJXg9Ds68St81OIwN+DR
-         /0PFa/IO5ubVynX/tfN9DjCcbYX11n5s5tnyQGRR7kvEgOSTLynq7j+80zPDkTi91iNr
-         C2Ag==
+        with ESMTP id S229529AbjFNSvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 14:51:15 -0400
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3BEAED;
+        Wed, 14 Jun 2023 11:51:13 -0700 (PDT)
+Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-34078ce751dso7432785ab.0;
+        Wed, 14 Jun 2023 11:51:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686768423; x=1689360423;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/2dmijlndEPPYs5IElMJtslUllIfqF2D+1pCU/iVRps=;
-        b=LJJJpYiRYPo7SdY8XT6qeyNAFeCRw4TgDiC26XbsAtt1YsVj9qQN/aNKXDxj8oeMID
-         tsUIPvZ+zuWt8WWa8TZAUT/aMZGPKq/8wxvlz/Dz2vW7Ycuu5mIA4Jm+ytwJIvaEDHAn
-         TACm6ZaOzR2r8p83MpIH/fHSH1pe8nid6VMiGosxSL73Miq5R8x/2IcxKWZfhFN8CnIg
-         5tSPx0R7opWDbjSEe8kbXfPpAfUIT//E/OyTYDDM9zZxJwKA2ZInOB1MiCjwcWo84/Ne
-         32lZhF7jqZREoNOvogPeuC+u9vT2tKiQ79jKofoa6Rajjh7+bi2tdfWrHHaWZx0OXd6S
-         r9zg==
-X-Gm-Message-State: AC+VfDxVdO+I2S9r8qkXRA9MKAJmzvfWUh4+UA7j8gckDkRDkswwZkTq
-        LGZefnghW80t6lMjKFs96PFbVw==
-X-Google-Smtp-Source: ACHHUZ6QGzBwXZPm7LGg97zkIBeIUyBNwZ3vpxzJcuCyRyUliDdiMyVINRNKkhdi4RE0ju7HAKTnSw==
-X-Received: by 2002:a17:907:6e10:b0:974:5ce6:f9ff with SMTP id sd16-20020a1709076e1000b009745ce6f9ffmr17870176ejc.32.1686768423459;
-        Wed, 14 Jun 2023 11:47:03 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id e26-20020a170906045a00b0096fc35ca733sm8258831eja.41.2023.06.14.11.47.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 11:47:02 -0700 (PDT)
-Message-ID: <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
-Date:   Wed, 14 Jun 2023 20:47:00 +0200
+        d=1e100.net; s=20221208; t=1686768673; x=1689360673;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lVA+IzrsLI7gIWGUpjJR28BuOP2Zxhu8AmoN5ruDpG0=;
+        b=Ebj7//GRd+kdxpPDTiW2UVl5v/7NFMZAZ6C72tLoFdC3n1hD7p6oZgrvO4XcwLQbBo
+         +W9c9JJZqEeQ+ogqOhbPaEmA3+5G4HUllcdy9gIpWPJDtgwyRg4GAdEhceQGX2EgDoCL
+         M8I75+b422YWDQoL/T61NnTCQg7w//aBADmXVZ3v0vCeLWH6nLQmfOzw94wUhdORfrrc
+         HENRURBmPn74X2iNiGl/anF6dq1Ubbyos2auKkFNsnpE3nFZ3Pd8HGInSeCVAzIEpVLG
+         qzy29ek7eJYMqRZS4GzAXAgvU+u8/IqBoq4uhtDxm9jrEvAisHPEJkLJNWtAV66INb5f
+         boLQ==
+X-Gm-Message-State: AC+VfDwtv6NLfwVkzgJkQnOTQOlR+kzAOX6eEZYTf1THeZVBArm01s3t
+        6Esci20jYFMbxfChXgbpuVxVH/+WJA==
+X-Google-Smtp-Source: ACHHUZ4JCkKMdidGG3UVc7bPuwiaUSQkEZChMbMwuidbnU0Zik0qfT3e9jYdXL0+Mny5bzJy/KFxOg==
+X-Received: by 2002:a92:ce48:0:b0:340:67df:56ea with SMTP id a8-20020a92ce48000000b0034067df56eamr5220951ilr.9.1686768672922;
+        Wed, 14 Jun 2023 11:51:12 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id t10-20020a92c0ca000000b00335c6e914dcsm5546216ilf.78.2023.06.14.11.51.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 11:51:12 -0700 (PDT)
+Received: (nullmailer pid 2540730 invoked by uid 1000);
+        Wed, 14 Jun 2023 18:51:10 -0000
+Date:   Wed, 14 Jun 2023 12:51:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add bindings for Azoteq
+ IQS7210A/7211A/E
+Message-ID: <20230614185110.GA2530944-robh@kernel.org>
+References: <ZHVD/9OgRTAwBhqx@nixie71>
+ <ZHVEa0yM1LLUJEfO@nixie71>
+ <20230609142538.GA878396-robh@kernel.org>
+ <ZIZvkGqr4a0kOGnR@nixie71>
+ <20230612152925.GA65549-robh@kernel.org>
+ <ZIe/Ti7u+2VHlahA@nixie71>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes
- up
-Content-Language: en-US
-To:     Linux regressions mailing list <regressions@lists.linux.dev>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230602161246.1855448-1-amit.pundir@linaro.org>
- <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZIe/Ti7u+2VHlahA@nixie71>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 20:18, Linux regression tracking (Thorsten Leemhuis) wrote:
-> On 02.06.23 18:12, Amit Pundir wrote:
->> Move lvs1 and lvs2 regulator nodes up in the rpmh-regulators
->> list to workaround a boot regression uncovered by the upstream
->> commit ad44ac082fdf ("regulator: qcom-rpmh: Revert "regulator:
->> qcom-rpmh: Use PROBE_FORCE_SYNCHRONOUS"").
->>
->> Without this fix DB845c fail to boot at times because one of the
->> lvs1 or lvs2 regulators fail to turn ON in time.
+On Mon, Jun 12, 2023 at 07:58:54PM -0500, Jeff LaBundy wrote:
+> Hi Rob,
 > 
-> /me waves friendly
+> On Mon, Jun 12, 2023 at 09:29:25AM -0600, Rob Herring wrote:
+> > On Sun, Jun 11, 2023 at 08:06:24PM -0500, Jeff LaBundy wrote:
+> > > Hi Rob,
+> > > 
+> > > On Fri, Jun 09, 2023 at 08:25:38AM -0600, Rob Herring wrote:
+> > > > On Mon, May 29, 2023 at 07:33:47PM -0500, Jeff LaBundy wrote:
+> > > > > Add bindings for the Azoteq IQS7210A/7211A/E family of trackpad/
+> > > > > touchscreen controllers.
+> > > > > 
+> > > > > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> > > > > ---
+> > > > > Changes in v2:
+> > > > >  - Renamed 'azoteq,default-comms' to 'azoteq,forced-comms-default' and redefined
+> > > > >    0, 1 and 2 as unspecified, 0 and 1, respectively
+> > > > >  - Defined ATI upon its first occurrence
+> > > > >  - Redefined 'azoteq,gesture-angle' in units of degrees
+> > > > >  - Declared 'azoteq,rx-enable' to depend upon 'azoteq,tx-enable' within the
+> > > > >    'trackpad' node
+> > > > > 
+> > > > > Hi Rob,
+> > > > > 
+> > > > > I attempted to reference existing properties from a common binding [1] as per
+> > > > > your feedback in [2], however 'make DT_CHECKER_FLAGS=-m dt_binding_check' fails
+> > > > > with the message 'Vendor specific properties must have a type and description
+> > > > > unless they have a defined, common suffix.'
+> > > > 
+> > > > Is that because you have differing constraints in each case?
+> > > 
+> > > In the failing example [2], I have started with a simple boolean that carries
+> > > nothing but a type and description. From the new azoteq,common.yaml:
+> > > 
+> > > properties:
+> > >   [...]
+> > > 
+> > >   azoteq,use-prox:
+> > >     type: boolean
+> > >     description: foo
+> > > 
+> > > And from the first consumer:
+> > > 
+> > > patternProperties:
+> > >   "^hall-switch-(north|south)$":
+> > >     type: object
+> > >     allOf:
+> > >       - $ref: input.yaml#
+> > >       - $ref: azoteq,common.yaml#
+> > >     description: bar
+> > > 
+> > >     properties:
+> > >       linux,code: true
+> > >       azoteq,use-prox: true
+> > > 
+> > > However, the tooling presents the following:
+> > > 
+> > >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> > > /home/jlabundy/work/linux/Documentation/devicetree/bindings/input/iqs62x-keys.yaml: patternProperties:^hall-switch-(north|south)$:properties:azoteq,use-prox: True is not of type 'object'
+> > > 	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+> > > 	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> > > 
+> > > [...]
+> > > 
+> > > I am committed to addressing your feedback; to help me do so, can you help me
+> > > identify what I've done wrong, and/or point me to an example that successfully
+> > > passes dt_binding_check?
+> > 
+> > You're not doing anything wrong. There's 2 options here. The first is we 
+> > could just relax the check to allow boolean schema for vendor 
+> > properties. The main issue with that is we then have to look for that 
+> > improperly used and it doesn't help if you do have additional 
+> > constraints to add on top of the common definition. The former can 
+> > mostly be addressed by checking there is a type associated with the 
+> > property. I'm going to look into adding that.
 > 
-> FWIW, as it's not obvious: this...
+> Thank you for your feedback. I started with a boolean property at first to
+> simply test the idea before moving too far forward. In reality however, the
+> common binding has many uint32's and uint32-arrays as well, often with
+> different constraints among consumers. For this option to be effective, it
+> would need to be extended to all types IMO.
 > 
->> Link: https://lore.kernel.org/all/CAMi1Hd1avQDcDQf137m2auz2znov4XL8YGrLZsw5edb-NtRJRw@mail.gmail.com/
+> > 
+> > Alternatively, you could drop listing the properties and 
+> > use 'unevaluatedProperties'. That's not quite equal to what you have. 
+> > Presumably, you have 'additionalProperties' in this case, so listing 
+> > them serves the purpose of defining what subset of properties each node 
+> > uses from the referenced schema. We frequently don't worry if there are 
+> > common properties not used by a specific schema. This also wouldn't work 
+> > if you have additional constraints to add.
 > 
-> ...is a report about a regression. One that we could still solve before
-> 6.4 is out. One I'll likely will point Linus to, unless a fix comes into
-> sight.
+> Because of varying constraints among each consumer, I do not believe this
+> option is viable either.
 > 
-> When I noticed the reluctant replies to this patch I earlier today asked
-> in the thread with the report what the plan forward was:
-> https://lore.kernel.org/all/CAD%3DFV%3DV-h4EUKHCM9UivsFHRsJPY5sAiwXV3a1hUX9DUMkkxdg@mail.gmail.com/
+> I also think adopting 'unevaluatedProperties' here would be confusing from
+> a customer perspective in this case. The new common binding has dozens of
+> properties for which some are shared between devices A and B but not C, or
+> devices B and C but not A.
 > 
-> Dough there replied:
+> Without each device's binding explicitly opting in for supported properties,
+> it's difficult for customers to know what is supported for a given device.
+> These particular devices are highly configurable yet void of nonvolatile
+> memory, so there is simply no way around having so many properties. Most are
+> touched in some way throughout various downstream applications.
 > 
-> ```
-> Of the two proposals made (the revert vs. the reordering of the dts),
-> the reordering of the dts seems better. It only affects the one buggy
-> board (rather than preventing us to move to async probe for everyone)
-> and it also has a chance of actually fixing something (changing the
-> order that regulators probe in rpmh-regulator might legitimately work
-> around the problem). That being said, just like the revert the dts
-> reordering is still just papering over the problem and is fragile /
-> not guaranteed to work forever.
-> ```
+> Therefore I'd like to propose option (3), which is to move forward with patch
+> [1/2] as-is and decouple the merging of this driver from future enhancements
+> to the tooling. While patch [1/2] is admittedly a big binding with some repeat
+> descriptions, none of the duplicate properties introduce a conflicting type.
 > 
-> Papering over obviously is not good, but has anyone a better idea to fix
-> this? Or is "not fixing" for some reason an viable option here?
-> 
+> If in the future option (1) can support all property types and handle varying
+> constraints among consumers, I would be happy to be one of the first guinea
+> pigs. Does this path seem like a reasonable compromise?
 
-I understand there is a regression, although kernel is not mainline
-(hash df7443a96851 is unknown) and the only solutions were papering the
-problem. Reverting commit is a temporary workaround. Moving nodes in DTS
-is not acceptable because it hides actual problem and only solves this
-one particular observed problem, while actual issue is still there. It
-would be nice to be able to reproduce it on real mainline with normal
-operating system (not AOSP) - with ramdiks/without/whatever. So far no
-one did it, right?
+Yes, that's fine.
 
-Best regards,
-Krzysztof
-
+Rob
