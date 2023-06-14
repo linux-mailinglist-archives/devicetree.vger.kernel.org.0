@@ -2,60 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 068677307AD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 20:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23FCE7307B4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbjFNS64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 14:58:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37570 "EHLO
+        id S231906AbjFNTAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 15:00:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbjFNS6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 14:58:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDAF61A2;
-        Wed, 14 Jun 2023 11:58:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 836F563F97;
-        Wed, 14 Jun 2023 18:58:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B349AC433C0;
-        Wed, 14 Jun 2023 18:58:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686769133;
-        bh=MfSKiNLW05mGERHuhnhNQwVvkL/xDekK9aIDFT1YmyY=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=gITfLP0cyNOegD3RzZ0W7wpNlcNkVWbeldroFc5bQitzS9v2ZpRSYmczk4VLjIySf
-         8d4mheEHIEn2A65saVCWeacvuCvPy0nmh9Y5GhzG5buCLw9TFB4k7DwAi3uvpALylt
-         PrXUMK5fC3ygWc7BhxrkBsJILcMfRtwqChmYzy/JgJNnQWPnLZOHH7kMR9o2yYRAoY
-         +q3BW2ADxDP+XsPxReKhoFdL4+GAUQbsw6NRXi0ZL5Ppojmc0kM1go7PxV3quzdGN9
-         dJOhpep16rF6oPFN6YsJgXhz+wUMkaVs11q7BqmKgT/urfFaoBhLr3cA3omK3ANIFu
-         2U6ZT43SBeK6g==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231823AbjFNTAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:00:35 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697D71A2;
+        Wed, 14 Jun 2023 12:00:34 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-77aec3ce39aso195554939f.0;
+        Wed, 14 Jun 2023 12:00:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686769233; x=1689361233;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fD8D25wPikGFFd99Ol9Rb+Ax0oXPcCmfRQUqnue5Bko=;
+        b=Xq+Cd/zTrE8zAbeHUTFuv5niMIBTzyghjMqGyiUFDZ7w5YZWnIGvbO2+K59GTpQEGY
+         u5zo96Wq1WpNXX+lXWh1YY0Pdvp3eE4mzeHj6xwACtQCF3NOSyHKACFAbhgzUnfu7d2a
+         y4wAPcvOtiE0mkpfA6LZkuZm7opa2PofPUOY1pfNUkszQckYqCN0/ndUtnvL7V025bKz
+         dkY2ua8Rd5dskWtHftx78lLXqTMk0QpztTM6F8TZmzM9OZNWxXIadqFpvHzBdMJvT72x
+         3+Ilxj4b8/RIP+ZWMIyI3Q0lyQ0YOA6iTRYK/fBvcI4aNEs5ortJldEx36VcxgObYRS5
+         8Ryg==
+X-Gm-Message-State: AC+VfDycCqz4yy3JcS6fw6Q73My9mcCdw5AMdo6BfVNZqbI/1vWbwYDv
+        J3snjbFXozFDP7y1CkUZvw==
+X-Google-Smtp-Source: ACHHUZ7dbwBc/2HjqzWfNYoD7dXSx0RVKX9Vkrhyz2da6vQ90zJUsp0Wzy6CF0asX1oG1VJ65XmHeQ==
+X-Received: by 2002:a6b:f915:0:b0:776:fc02:184e with SMTP id j21-20020a6bf915000000b00776fc02184emr13520209iog.14.1686769233561;
+        Wed, 14 Jun 2023 12:00:33 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id w12-20020a02968c000000b0041d7ad74b36sm5191797jai.17.2023.06.14.12.00.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 12:00:32 -0700 (PDT)
+Received: (nullmailer pid 2553777 invoked by uid 1000);
+        Wed, 14 Jun 2023 19:00:30 -0000
+Date:   Wed, 14 Jun 2023 13:00:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Damien Le Moal <dlemoal@kernel.org>
+Cc:     Nikita Shubin <nikita.shubin@maquefel.me>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230609083009.2822259-1-wenst@chromium.org>
-References: <20230609083009.2822259-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH 0/9] regulator: mt6358: Remove bogus
- regulators and improvements
-Message-Id: <168676913142.240711.16106112357976617882.b4-ty@kernel.org>
-Date:   Wed, 14 Jun 2023 19:58:51 +0100
+        Michael Peters <mpeters@embeddedts.com>,
+        Kris Bahnsen <kris@embeddedts.com>, linux-ide@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 25/43] dt-bindings: ata: Add Cirrus EP93xx
+Message-ID: <20230614190030.GA2547354-robh@kernel.org>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+ <20230601054549.10843-7-nikita.shubin@maquefel.me>
+ <fe8bfbfc-0ce5-d4ea-a2a8-8608fe4e2f97@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-c6835
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fe8bfbfc-0ce5-d4ea-a2a8-8608fe4e2f97@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,57 +70,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Jun 2023 16:29:57 +0800, Chen-Yu Tsai wrote:
-> This series is a cleanup and improvement of the MT6358 regulator driver.
-> Various discrepancies were found while preparing to upstream MT8186
-> device trees, which utilize the MT6366 PMIC, that is also covered by
-> this driver.
+On Fri, Jun 02, 2023 at 08:57:37AM +0900, Damien Le Moal wrote:
+> On 6/1/23 14:45, Nikita Shubin wrote:
+> > Add YAML bindings for ep93xx SoC PATA.
+> > 
+> > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> > ---
+> > 
+> > Notes:
+> >     v0 -> v1:
+> >     
+> >     - renamed file to ep9312-pata
 > 
-> Patches 1~8 should go through the regulator tree, and patch 9 through
-> the soc tree. This series (patches 7 and 8) depends on "regulator: Use
-> bitfield values for range selectors" [1] I sent out earlier.
+> Looks OK to me but given that this is both for the cirrus,ep9315-pata and
+> cirrus,ep9312-pata, wouldn't it be better to name the file
+> cirrus,ep931x-pata.yaml ?
+
+cirrus,ep9312-pata makes sense given that is the common fallback.
+
+Wildcards are okay in filenames (only) when there's not a common 
+fallback.
+
+> >     - changed email to dlemoal@kernel.org
+> >     - dropped label
+> >     - fixed ident
+> > 
+> >  .../bindings/ata/cirrus,ep9312-pata.yaml      | 44 +++++++++++++++++++
+> >  1 file changed, 44 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+> > new file mode 100644
+> > index 000000000000..3489be55a6fe
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+> > @@ -0,0 +1,44 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/ata/cirrus,ep9312-pata.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Cirrus Logic EP9312 PATA controller
+> > +
+> > +maintainers:
+> > +  - Damien Le Moal <dlemoal@kernel.org>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: cirrus,ep9312-pata
 > 
-> [...]
+> I am not a DT specialist, but isn't this line superfluous since it is listed in
+> the items ?
 
-Applied to
+No, this entry is for ep9312. The next entry is for ep9315 which is 
+compatible with ep9312 version. The cirrus,ep9315-pata is there in case 
+a distinction (e.g. quirk/errata) needs to be made by the driver 
+without having to change the DT.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Rob
 
-Thanks!
-
-[1/9] regulator: dt-bindings: mt6358: Merge ldo_vcn33_* regulators
-      commit: a74d4c577c60b27fc57ea734ef8275921ae8dcb2
-[2/9] regulator: dt-bindings: mt6358: Drop *_sshub regulators
-      commit: 82f305b18eb0505444eab8ac86bfa134b67cb38e
-[3/9] regulator: mt6358: Merge VCN33_* regulators
-      commit: 65bae54e08c109ddbbf121bb00058cf3b3fb7b8e
-[4/9] regulator: mt6358: Drop *_SSHUB regulators
-      commit: 04ba665248ed91576d326041108e5fc2ec2254eb
-[5/9] regulator: mt6358: Const-ify mt6358_regulator_info data structures
-      commit: 1ff35e66cae53f7090a671afddaee45d4ccd9396
-[6/9] regulator: mt6358: Use linear voltage helpers for single range regulators
-      commit: ea861df772fd8cca715d43f62fe13c09c975f7a2
-[7/9] regulator: mt6358: Add output voltage fine tuning to fixed regulators
-      (no commit info)
-[8/9] regulator: mt6358: Add output voltage fine tuning to variable LDOs
-      (no commit info)
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> 
+> > +      - items:
+> > +          - const: cirrus,ep9315-pata
+> > +          - const: cirrus,ep9312-pata
