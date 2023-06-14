@@ -2,81 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62B1372FB38
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 12:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B94F872FB4E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 12:40:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232606AbjFNKic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 06:38:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47838 "EHLO
+        id S230301AbjFNKkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 06:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233697AbjFNKib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 06:38:31 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189831996
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 03:38:29 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f5f728c4aaso7622985e87.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 03:38:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686739107; x=1689331107;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yjCyUOjKHvqSiAPvi5lvMeFvTbESRkFpyQF2eUzcXcU=;
-        b=PVF87715a76Oul6uJPquKGj3PrzNdvZEqPM3VSXWCsSd2wwxdPh3GOp0Krq17RHQVB
-         JvqVbACkW/9yPq/o/eHTwoL8IxOYJpPD0DM2XG+WuaCE2LcNCMQKO14WOuEFhX7Gwvox
-         84qngorhvtNifC+ZcWMnKS1t+7Wp+rvBognn2lGXWJHGDjUTzq13H0saJSQJXIZmYQ96
-         6PvFoY8GK2za7ZSCNFjG7eiZSA/gvHctvY78G/JwXd/1hP7yHTcf5m7iO/iZ/H+YGBfH
-         W2lOKiZg/gzTCaaw4wJUTeCuIuuEuWRfSqwDpQVwoEU4secMO1CRYsqpDEDpiDf7lKvN
-         bx/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686739107; x=1689331107;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yjCyUOjKHvqSiAPvi5lvMeFvTbESRkFpyQF2eUzcXcU=;
-        b=VpREN2OBwjOXymg9vwM+iQV+RaHaVGNFKEAGLm66vzzojn8dYswO6kouMFE5+OzTiH
-         fHGpaqGiXxrusBvAtzdEJHIxDp8ckPR6tUacwzBoscfpq6o+7ChexSACkyjdvjXm3vfQ
-         KqZiVgTUAlPr6c5t3besM1uFt/thkLY9EkvK5UBbnYu4abSlLEt9thTaHm3lopTE3X2c
-         VeTOlOBko1QUfvCWAlYRf2OZoRl1HC4k0dSZ8AKuRDefQuUttg+9C8oMwQ7i2NDlMvHG
-         opofWI3+wwJhbrYBg3y0XsbHtKJasxW7h3iLd9OYcNkQ9xfClbcRaPbsvkDD1AWuMU9a
-         g0jA==
-X-Gm-Message-State: AC+VfDxJTuig6Raq3uOi+mzy1CRzEaioaUGgn1CU0L+8wCvQTLqtL5wb
-        XAVCwv+cQd+AahkPL3SVLotzZA==
-X-Google-Smtp-Source: ACHHUZ7qQnH+ebopeL/sAhczQKmmtGiDj2cBOZLvaV9abds/FUpO9nMFHuIzElJlA/ILOOrAao0Gfg==
-X-Received: by 2002:a05:6512:b0e:b0:4f4:b10f:d521 with SMTP id w14-20020a0565120b0e00b004f4b10fd521mr374666lfu.13.1686739107249;
-        Wed, 14 Jun 2023 03:38:27 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id a8-20020a19f808000000b004f14ecc03f1sm2069876lff.100.2023.06.14.03.38.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 03:38:26 -0700 (PDT)
-Message-ID: <a35f039a-98a7-a4c0-ccd2-a18ef4def147@linaro.org>
-Date:   Wed, 14 Jun 2023 12:38:25 +0200
+        with ESMTP id S243839AbjFNKkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 06:40:18 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E201732;
+        Wed, 14 Jun 2023 03:40:17 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35E8p7AH025738;
+        Wed, 14 Jun 2023 10:40:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=aSPEPhkL26kQnMN/deYraUMcKA9Wk7cPOyOJMBveEbU=;
+ b=kCDn3krUfF9JJZeKIsXOucce5OeQFT2RUiysGUSfLI1omJ555HF3XJLXCfsG1g81cgqD
+ aIeIbwUmGUAiMXcKeU73lwGllHjE2QEhc8e7suNxyxpgdLWoS38x5LVh8kQ8Q8L2D8PK
+ YPjYjHykbggtTconQO/cQGufzvBeC3rHNmjqUIRWxqWcT+rYfl79lBctDd2LavEj3FtP
+ bRJtApF5DLoaRoPutluAssdYnfulKWOS9Acje2zjnPJFDDDcH/yDDU1W7UFxUn2YJ18A
+ 2nXOLtFiSGPc3LlwaIfGkF/MjyJYgZKKLyoR+3Mk6GEyXYk5m9R5gm+osq8N2hFbM95A FQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r79dfrepk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Jun 2023 10:40:13 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35EAeCGa032389
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Jun 2023 10:40:12 GMT
+Received: from [10.201.197.30] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 14 Jun
+ 2023 03:40:04 -0700
+Message-ID: <9b13814e-fa3a-9e81-e444-93b566b3cb53@quicinc.com>
+Date:   Wed, 14 Jun 2023 16:10:00 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: enable the SPI NOR support in
- RDP433
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: document MI04.1 board based
+ on IPQ5332 family
 Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230609081508.30982-1-quic_kathirav@quicinc.com>
- <c1c34aa4-ac7d-2c07-bf92-05d887aed3d2@linaro.org>
- <ed9d11cc-7ab4-b6c8-737b-bd89d3973e80@quicinc.com>
- <1957b1cf-28b7-dbfc-1675-ee4534e5571b@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1957b1cf-28b7-dbfc-1675-ee4534e5571b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>
+References: <20230606095732.12884-1-quic_harihk@quicinc.com>
+ <20230606095732.12884-2-quic_harihk@quicinc.com>
+ <d4970017-86b5-884f-fe67-6fede30469b4@linaro.org>
+ <20230613230416.flhnzaiuy4imzs2z@ripper>
+From:   Hariharan K <quic_harihk@quicinc.com>
+In-Reply-To: <20230613230416.flhnzaiuy4imzs2z@ripper>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 84drULy0wyvL2KWpXrHMLQl1eKDZpSDU
+X-Proofpoint-ORIG-GUID: 84drULy0wyvL2KWpXrHMLQl1eKDZpSDU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-14_06,2023-06-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ mlxscore=0 suspectscore=0 mlxlogscore=999 priorityscore=1501
+ lowpriorityscore=0 spamscore=0 bulkscore=0 impostorscore=0 clxscore=1011
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306140091
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,88 +90,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 14.06.2023 12:34, Kathiravan T wrote:
-> 
-> On 6/14/2023 12:02 PM, Kathiravan T wrote:
->>
->> On 6/9/2023 2:37 PM, Konrad Dybcio wrote:
+On 6/14/2023 4:34 AM, Bjorn Andersson wrote:
+> On Tue, Jun 06, 2023 at 01:28:27PM +0200, Krzysztof Kozlowski wrote:
+>> On 06/06/2023 11:57, Hariharan K wrote:
+>>> Document the MI04.1 (Reference Design Platform 446) board based on IPQ5332
+>>> family of SoCs.
 >>>
->>> On 9.06.2023 10:15, Kathiravan T wrote:
->>>> RDP433 has the support for SPI NOR, add the support for it.
->>>>
->>>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->>>> ---
->>>> Note: This patch was part of initial submission
->>>> https://lore.kernel.org/linux-arm-msm/20230329053726.14860-1-quic_kathirav@quicinc.com/
->>>> however this got missed in between, so sending it across again.
->>>>
->>>>   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 21 +++++++++++++++++++++
->>>>   1 file changed, 21 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->>>> index 2b3ed8d351f7..31ee19112157 100644
->>>> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->>>> @@ -48,6 +48,20 @@
->>>>       };
->>>>   };
->>>>   +&blsp1_spi0 {
->>>> +    pinctrl-0 = <&spi_0_pins>;
->>>> +    pinctrl-names = "default";
->>>> +    status = "okay";
->>>> +
->>>> +    flash@0 {
->>>> +        compatible = "micron,n25q128a11", "jedec,spi-nor";
->>>> +        reg = <0>;
->>>> +        #address-cells = <1>;
->>>> +        #size-cells = <1>;
->>> If you're not adding a partition table, you can drop the address-
->>> and size-cells properties, as they determine what the reg value of
->>> the child looks like.
->>
->>
->> Sorry, somehow I missed this query. Will check and update it.
-> 
-> 
-> Currently IPQ boot loaders patches the partition information into the SPI node. To parse that, we need the address-cells and size-cells properties.
-Please consult adding these properties if they're not found with the
-bootloader team using libfdt calls from there. All bl changes should
-be self-contained.
-
-I understand it won't be possible for released products, but hopefully
-this could change for the next ones.
-
-Konrad
-> 
-> Also, this patch is now integrated into the below series
-> 
-> https://lore.kernel.org/linux-arm-msm/20230614085040.22071-1-quic_anusha@quicinc.com/T/#t
-> 
-> 
-> Thanks,
-> 
-> 
->>
->>
+>>> Signed-off-by: Hariharan K <quic_harihk@quicinc.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>>>   1 file changed, 2 insertions(+)
 >>>
->>> Konrad
->>>> +        spi-max-frequency = <50000000>;
->>>> +    };
->>>> +};
->>>> +
->>>>   &sdhc_1 {
->>>>       pinctrl-0 = <&sdc_default_state>;
->>>>       pinctrl-names = "default";
->>>> @@ -96,6 +110,13 @@
->>>>               bias-pull-down;
->>>>           };
->>>>       };
->>>> +
->>>> +    spi_0_pins: spi-0-state {
->>>> +        pins = "gpio11", "gpio12", "gpio13", "gpio14";
->>>> +        function = "blsp0_spi";
->>>> +        drive-strength = <8>;
->>>> +        bias-disable;
->>>> +    };
->>>>   };
->>>>     &xo_board_clk {
+>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> index 8302d1ee280d..165a815337f7 100644
+>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> @@ -93,6 +93,7 @@ description: |
+>>>           ap-mi01.2
+>>>           ap-mi01.3
+>>>           ap-mi01.6
+>>> +        ap-mi04.1
+>>
+>> I think we need to stop adding them here... This was supposed to be
+>> limited list for Qualcomm bootloader. Are you sure Qualcomm bootloader
+>> requires such names with versions?
+>>
+> 
+> Hariharan, can you please elaborate on what these numbers mean? Is this
+> just a version of ap-mi04? Or do we have 5 different reference boards on
+> IPQ5332, just with "cryptic" names?
+> 
+> Regards,
+> Bjorn
+
+Yes. These are different reference board designs based on IPQ5332.
+
+Thanks,
+Hariharan K
