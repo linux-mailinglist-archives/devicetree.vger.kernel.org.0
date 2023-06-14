@@ -2,110 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42B2C72F945
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 11:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23F7F72F98E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 11:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240486AbjFNJau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 05:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35568 "EHLO
+        id S244229AbjFNJod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 05:44:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbjFNJ3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 05:29:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA7D8268A
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 02:29:25 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q9Mod-0006Hu-CW; Wed, 14 Jun 2023 11:29:23 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q9Moa-007K2O-V4; Wed, 14 Jun 2023 11:29:20 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q9Moa-00EAN5-62; Wed, 14 Jun 2023 11:29:20 +0200
-Date:   Wed, 14 Jun 2023 11:29:20 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Shuijing Li <shuijing.li@mediatek.com>
-Cc:     thierry.reding@gmail.com, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        jitao.shi@mediatek.com, Fei Shao <fshao@chromium.org>
-Subject: Re: [PATCH v3] pwm: mtk_disp: Fix the disable flow of disp_pwm
-Message-ID: <20230614092920.sl2qjdx3wbf7xtcm@pengutronix.de>
-References: <20230531031001.7440-1-shuijing.li@mediatek.com>
+        with ESMTP id S235980AbjFNJoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 05:44:16 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11E349C8;
+        Wed, 14 Jun 2023 02:42:19 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686735738;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+REmpcLHUL4BTOxA1dlLHsmBL+e+FBYJaTaqB02G6NY=;
+        b=d+AXI1g8Y06cHn5FQ9HHfYpUkbPNIKBON81J0yuXI5c9++a6TK2xsCzbdQ8XJXKjFG0Ks2
+        IlS6uGDcORffGChF4976ahuklePO8PU76h62Q9MZtlVuydhY/lUSXXJIrMvanEK0VvcCIS
+        K7bdwjIGwjy/ZcYCKTMQSyJLmycpDiEgwWvrzcoPoEtqVH0QyxVrTlSD0rpZ2JL8KtuiqD
+        wqEZQiJlji6q9zYJBnNnorhUyaGiJcnkwZA375KbgVR26OSg2D0hrHNBQUHCzhd55ZePmM
+        OTYg0eqK2ss1oCOt/DkCC2gsZZALpLj+rNIViYo2eFFQrNDSZtshDR9MMEM/EA==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6813C60004;
+        Wed, 14 Jun 2023 09:42:15 +0000 (UTC)
+Date:   Wed, 14 Jun 2023 11:42:14 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
+Message-ID: <20230614114214.1371485e@bootlin.com>
+In-Reply-To: <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
+References: <20230614074904.29085-1-herve.codina@bootlin.com>
+        <20230614074904.29085-8-herve.codina@bootlin.com>
+        <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7wrtscz2pppnkeoz"
-Content-Disposition: inline
-In-Reply-To: <20230531031001.7440-1-shuijing.li@mediatek.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andy,
 
---7wrtscz2pppnkeoz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 14 Jun 2023 12:02:57 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-On Wed, May 31, 2023 at 11:10:01AM +0800, Shuijing Li wrote:
-> There is a flow error in the original mtk_disp_pwm_apply() function.
-> If this function is called when the clock is disabled, there will be a
-> chance to operate the disp_pwm register, resulting in disp_pwm exception.
-> Fix this accordingly.
->=20
-> Fixes: 888a623db5d0 ("pwm: mtk-disp: Implement atomic API .apply()")
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Tested-by: Fei Shao <fshao@chromium.org>
+> On Wed, Jun 14, 2023 at 10:49 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > Introduce min_array() (resp max_array()) in order to get the
+> > minimal (resp maximum) of values present in an array.  
+> 
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> See a remark below.
+> 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  include/linux/minmax.h | 36 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 36 insertions(+)
+> >
+> > diff --git a/include/linux/minmax.h b/include/linux/minmax.h
+> > index 396df1121bff..2cd0d34ce921 100644
+> > --- a/include/linux/minmax.h
+> > +++ b/include/linux/minmax.h
+> > @@ -133,6 +133,42 @@
+> >   */
+> >  #define max_t(type, x, y)      __careful_cmp((type)(x), (type)(y), >)
+> >
+> > +/*
+> > + * Do not check the array parameter using __must_be_array().
+> > + * In the following legit use-case where the "array" passed is a simple pointer,
+> > + * __must_be_array() will return a failure.
+> > + * --- 8< ---
+> > + * int *buff
+> > + * ...
+> > + * min = min_array(buff, nb_items);
+> > + * --- 8< ---
+> > + */
+> > +#define __minmax_array(op, array, len) ({                      \
+> > +       typeof(array) __array = (array);                        \
+> > +       typeof(len) __len = (len);                              \
+> > +       typeof(__array[0] + 0) __element = __array[--__len];    \  
+> 
+> Do we need the ' + 0' part?
 
-When I sent my ack for v2, I missed there was already a v3, so here
-again for the sake of easier maintenance:
+Yes.
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+__array can be an array of const items and it is legitimate to get the
+minimum value from const items.
 
-> ---
-> Changes in v3:
-> Add Fixes per suggestion from the previous thread:
+typeof(__array[0]) keeps the const qualifier but we need to assign __element
+in the loop.
+One way to drop the const qualifier is to get the type from a rvalue computed
+from __array[0]. This rvalue has to have the exact same type with only the const
+dropped.
+'__array[0] + 0' was a perfect canditate.
 
-Note that for that a new version isn't necessary, patchwork (and I think
-also b4) pick up a fixes line from replies.
+Regards,
+Hervé
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---7wrtscz2pppnkeoz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSJiG8ACgkQj4D7WH0S
-/k7apQf/QaFjN2bcdxDG3XjvUNxRfD7RzMDbbOJEbaqKBdj4v2M9frLXUojcBuu4
-OEXHdWb10Ubr4+XXAFxEf/DEhL8ejeD+RCp3qGCThjEnjEpv1X9XuaUR4WdcplVJ
-Aw1XlXDBIKULr/Mhmq9cvPQ7zJ0UYvLYDyKdK56QoItIoA60xHi37SSzWXWEzMCJ
-Eiyav50MyLXNBzx8UciAX8xGnN/C58csjV+kcckEAhuG7bF+ge5h6CjZzcxbTI1v
-hlzmQiRWt2NJsCd28aS4+7ibCtXW5GkYhGW1Gbxip8m/qlUw+CAelkrOBMK6ZQRL
-86cczXryeWLJGY7qC8lzocKjBZdt1w==
-=SoWt
------END PGP SIGNATURE-----
-
---7wrtscz2pppnkeoz--
+> 
+> > +       while (__len--)                                         \
+> > +               __element = op(__element, __array[__len]);      \
+> > +       __element; })
+> > +
+> > +/**
+> > + * min_array - return minimum of values present in an array
+> > + * @array: array
+> > + * @len: array length
+> > + *
+> > + * Note that @len must not be zero (empty array).
+> > + */
+> > +#define min_array(array, len) __minmax_array(min, array, len)
+> > +
+> > +/**
+> > + * max_array - return maximum of values present in an array
+> > + * @array: array
+> > + * @len: array length
+> > + *
+> > + * Note that @len must not be zero (empty array).
+> > + */
+> > +#define max_array(array, len) __minmax_array(max, array, len)
+> > +
+> >  /**
+> >   * clamp_t - return a value clamped to a given range using a given type
+> >   * @type: the type of variable to use
+> > --
+> > 2.40.1
+> >  
+> 
+> 
