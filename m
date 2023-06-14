@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 398B2730ACF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 00:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A7A2730ADE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 00:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235420AbjFNWgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 18:36:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
+        id S230516AbjFNWno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 18:43:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbjFNWgp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 18:36:45 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E24F1715;
-        Wed, 14 Jun 2023 15:36:44 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-33dae9244a1so554985ab.0;
-        Wed, 14 Jun 2023 15:36:44 -0700 (PDT)
+        with ESMTP id S229516AbjFNWnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 18:43:43 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A9A71BF9;
+        Wed, 14 Jun 2023 15:43:42 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-77ac14ff51bso286770439f.3;
+        Wed, 14 Jun 2023 15:43:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686782203; x=1689374203;
+        d=1e100.net; s=20221208; t=1686782621; x=1689374621;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=a8Zf94E7WQ/9wcsLl9Q+QIwfy+59Ul0REJcdYnckuKU=;
-        b=LKSRwJHFNOgKNBLdmm73cfTAN9FPD7FFI9hTl1mew1ZcgrXR6W6GWcefVTSUNzCSHO
-         NVMPj6vWJk/ytRC1uKLbXoq0KQQt0U01rLZJouLZNfniWcBz5SySU/l+4shsYyb9Ivh0
-         LigYNZW2CVgmnwmLnEDnmeDThEvpNLA/O/0OepMpxFPXQ9jUe/oInj3vL/I4ZsO0gSdB
-         JyzpbTFuBlPj3qP/40xGzlvnx+uQLnkomXCoBNSjq80L2ZZIb+wetxSqpcyYxUb8t2OQ
-         byAp8VPBY8GD34HckaikPaAF4XpDKY7AN4KqOBgInyPzijkX7HXijYCWrv6FhQPPI4Xh
-         K6CQ==
-X-Gm-Message-State: AC+VfDxDKpeXh3w5X1hD28p0tVizyNc2Qr1rOECGyax3G+GE3V+Y5lWX
-        yfTTT9QoPmD7c4vuUnW/hhzMH1GkKw==
-X-Google-Smtp-Source: ACHHUZ6JU7DCDYGAQ8/JWSyyuSrxrSNxeLDGbGaZcPHrcCorHY6KxNRpZMeRV9tKTmRrIK4JA7KNIg==
-X-Received: by 2002:a92:d6c8:0:b0:33f:c2f8:e503 with SMTP id z8-20020a92d6c8000000b0033fc2f8e503mr2224864ilp.5.1686782203533;
-        Wed, 14 Jun 2023 15:36:43 -0700 (PDT)
+        bh=OKGcfzr/p/3/4KMXU7XbxZ/xW3lQr6BAlDHKWT9Oujc=;
+        b=Ub7jSme0+gA/G+1N4r9U8cVaA14leDdBE2l+WRCuAYc34O0LAoeuPXzliZ7QI/y3LJ
+         y3nZXb4nO8RyabdaL0Dd2ui5HFyBEQIaniss9A/fLnXh0KI13zeDnXRmV4jAuGdPCrRJ
+         O2ati0j71rY4qkfFDcg94KJWvUJw0S7vHTcNqwbA8K9uUyrB78EBkap4nJu0PNZD9gtI
+         tP2qYw7UV7AI06cWPZnwOtszrK4r9MFI65alcoS4aG7CRs9X7Zia2zYSJNhPkQf4PuD8
+         T1TWraD0z/nGZ1c5u913TPtMq3dOOL5OVgxuSpZP2tKZDVBSO/sHqFRh2+tPIwpeXLIi
+         YbjQ==
+X-Gm-Message-State: AC+VfDyXt0Johj2hnwNxKxGSHcZUfadXOjJwpAxdtG4jqiTZ2x+OF5/Z
+        wCC48bCI6k8snV/IBMFOjBbETD80Vw==
+X-Google-Smtp-Source: ACHHUZ6lygdrz16O6hhXp1oh6hsk1t75L5t3R45RyVE304fcKg+/x7h2K9VVCD3aevb1eYFkGvcjyQ==
+X-Received: by 2002:a6b:4401:0:b0:760:f795:ccdf with SMTP id r1-20020a6b4401000000b00760f795ccdfmr14226968ioa.8.1686782621260;
+        Wed, 14 Jun 2023 15:43:41 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id o27-20020a02c6bb000000b004186badba5esm5136264jan.36.2023.06.14.15.36.41
+        by smtp.gmail.com with ESMTPSA id u19-20020a02c953000000b0041672c963b3sm5286814jao.50.2023.06.14.15.43.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jun 2023 15:36:42 -0700 (PDT)
-Received: (nullmailer pid 2990560 invoked by uid 1000);
-        Wed, 14 Jun 2023 22:36:40 -0000
-Date:   Wed, 14 Jun 2023 16:36:40 -0600
+        Wed, 14 Jun 2023 15:43:40 -0700 (PDT)
+Received: (nullmailer pid 2999712 invoked by uid 1000);
+        Wed, 14 Jun 2023 22:43:38 -0000
+Date:   Wed, 14 Jun 2023 16:43:38 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc:     "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        Linux MTD List <linux-mtd@lists.infradead.org>,
+        f.fainelli@gmail.com, rafal@milecki.pl, kursad.oney@broadcom.com,
+        joel.peshkin@broadcom.com, computersforpeace@gmail.com,
+        anand.gore@broadcom.com, dregan@mail.com, kamal.dasu@broadcom.com,
+        tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 4/4] dt-bindings: firmware: arm,scmi: Add support for
- pinctrl protocol
-Message-ID: <20230614223640.GA2980828-robh@kernel.org>
-References: <cover.1686063941.git.oleksii_moisieiev@epam.com>
- <a2be28c0aec04fdc3684f56801c78bcc498c3471.1686063941.git.oleksii_moisieiev@epam.com>
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Kamal Dasu <kdasu.kdev@gmail.com>
+Subject: Re: [PATCH 05/12] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
+Message-ID: <20230614224338.GA2990941-robh@kernel.org>
+References: <20230606231252.94838-1-william.zhang@broadcom.com>
+ <20230606231252.94838-6-william.zhang@broadcom.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a2be28c0aec04fdc3684f56801c78bcc498c3471.1686063941.git.oleksii_moisieiev@epam.com>
+In-Reply-To: <20230606231252.94838-6-william.zhang@broadcom.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -72,98 +73,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 04:22:28PM +0000, Oleksii Moisieiev wrote:
-> Add new SCMI v3.2 pinctrl protocol bindings definitions and example.
+On Tue, Jun 06, 2023 at 04:12:45PM -0700, William Zhang wrote:
+> Use new compatiable brcm,nand-bcmbca to support BCMBCA broadband
+> product. The old compatible string is still kept in the driver so old
+> dtb can still work.
+
+I don't understand why you need to change this. 
+
+
+> Add brcm,nand-use-wp property to have an option for disabling this
+> feature on broadband board design that does not use write protection.
+> Add brcm,nand-ecc-use-strap to get ecc setting from board strap for
+> broadband board designs because they do not specify ecc setting in dts
+> but rather using the strap setting.
 > 
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> Remove the requirement of interrupts and interrupt-names properties to
+> reflect the driver code.
+> 
+> This patch also includes a few minor fixes to the BCM63xx compatibles
+> and add myself to the list of maintainers.
+> 
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
 > ---
->  .../bindings/firmware/arm,scmi.yaml           | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 5824c43e9893..a19aa184bbd1 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -233,6 +233,39 @@ properties:
->        reg:
->          const: 0x18
+>  .../bindings/mtd/brcm,brcmnand.yaml           | 64 +++++++++++++------
+>  1 file changed, 43 insertions(+), 21 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> index 1571024aa119..1fe1c166a9db 100644
+> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> @@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
+>  maintainers:
+>    - Brian Norris <computersforpeace@gmail.com>
+>    - Kamal Dasu <kdasu.kdev@gmail.com>
+> +  - William Zhang <william.zhang@broadcom.com>
 >  
-> +  protocol@19:
-> +    $ref: '#/$defs/protocol-node'
-
-       unevaluatedProperties: false
-
-> +
-> +    properties:
-> +      reg:
-> +        const: 0x19
-> +
-> +      '#pinctrl-cells':
-> +        const: 0
-> +
-> +    allOf:
-> +      - $ref: /schemas/pinctrl/pinctrl.yaml#
-
-Group this and the '#/$defs/protocol-node' $ref under allOf.
-
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties:
-> +      anyOf:
-
-Don't need anyOf with only 1 entry.
-
-But the use of additionalProperties is usually for existing cases where 
-the pin config nodes had no naming convention. For new bindings, define 
-a node name pattern (under patternProperties). I'd suggest '-pins$' as 
-used elsewhere.
-
-> +        - type: object
-> +          allOf:
-> +            - $ref: /schemas/pinctrl/pincfg-node.yaml#
-> +            - $ref: /schemas/pinctrl/pinmux-node.yaml#
-> +
-> +          description:
-> +            A pin multiplexing sub-node describe how to configure a
-> +            set of pins is some desired function.
-> +            A single sub-node may define several pin configurations.
-> +            This sub-node is using default pinctrl bindings to configure
-> +            pin multiplexing and using SCMI protocol to apply specified
-> +            configuration using SCMI protocol.
-> +
-> +          unevaluatedProperties: false
-> +
->  additionalProperties: false
+>  description: |
+>    The Broadcom Set-Top Box NAND controller supports low-level access to raw NAND
+> @@ -18,9 +19,10 @@ description: |
+>    supports basic PROGRAM and READ functions, among other features.
 >  
->  $defs:
-> @@ -384,6 +417,26 @@ examples:
->              scmi_powercap: protocol@18 {
->                  reg = <0x18>;
->              };
-> +
-> +            scmi_pinctrl: protocol@19 {
-> +                reg = <0x19>;
-> +                #pinctrl-cells = <0>;
-> +
-> +                i2c2 {
-> +                    groups = "i2c2_a", "i2c2_b";
-> +                    function = "i2c2";
-> +                };
-> +
-> +                pins_mdio {
-> +                    groups = "avb_mdio";
-> +                    drive-strength = <24>;
-> +                };
-> +
-> +                keys_pins: keys {
-> +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
-> +                    bias-pull-up;
-> +                };
-> +            };
->          };
->      };
+>    This controller was originally designed for STB SoCs (BCM7xxx) but is now
+> -  available on a variety of Broadcom SoCs, including some BCM3xxx, BCM63xx, and
+> -  iProc/Cygnus. Its history includes several similar (but not fully register
+> -  compatible) versions.
+> +  available on a variety of Broadcom SoCs, including some BCM3xxx, MIPS based
+> +  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc/Cygnus.
+> +  Its history includes several similar (but not fully register compatible)
+> +  versions.
 >  
-> -- 
-> 2.25.1
+>    -- Additional SoC-specific NAND controller properties --
+>  
+> @@ -53,9 +55,9 @@ properties:
+>                - brcm,brcmnand-v7.2
+>                - brcm,brcmnand-v7.3
+>            - const: brcm,brcmnand
+> -      - description: BCM63138 SoC-specific NAND controller
+> +      - description: BCMBCA SoC-specific NAND controller
+>          items:
+> -          - const: brcm,nand-bcm63138
+> +          - const: brcm,nand-bcmbca
+>            - enum:
+>                - brcm,brcmnand-v7.0
+>                - brcm,brcmnand-v7.1
+> @@ -65,11 +67,15 @@ properties:
+>            - const: brcm,nand-iproc
+>            - const: brcm,brcmnand-v6.1
+>            - const: brcm,brcmnand
+> -      - description: BCM63168 SoC-specific NAND controller
+> +      - description: BCM63xx SoC-specific NAND controller
+>          items:
+> -          - const: brcm,nand-bcm63168
+> -          - const: brcm,nand-bcm6368
+> -          - const: brcm,brcmnand-v4.0
+> +          - enum:
+> +              - brcm,nand-bcm63168
+> +              - brcm,nand-bcm6368
+> +          - enum:
+> +              - brcm,brcmnand-v2.1
+> +              - brcm,brcmnand-v2.2
+> +              - brcm,brcmnand-v4.0
+>            - const: brcm,brcmnand
+
+Completely changing what's valid here too. You're breaking the ABI.
+
+Rob
