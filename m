@@ -2,260 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 267F87305C6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 19:15:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EA27305CF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 19:16:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236570AbjFNRPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 13:15:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42008 "EHLO
+        id S229584AbjFNRQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 13:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235820AbjFNRPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 13:15:06 -0400
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0839F213A
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 10:15:03 -0700 (PDT)
-Received: from [167.98.27.226] (helo=rainbowdash)
-        by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1q9U5B-008GBC-Va; Wed, 14 Jun 2023 18:14:58 +0100
-Received: from ben by rainbowdash with local (Exim 4.96)
-        (envelope-from <ben@rainbowdash>)
-        id 1q9U5C-000I11-16;
-        Wed, 14 Jun 2023 18:14:58 +0100
-From:   Ben Dooks <ben.dooks@sifive.com>
-To:     linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ben.dooks@codethink.co.uk, u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S230108AbjFNRQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 13:16:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED35ABA;
+        Wed, 14 Jun 2023 10:16:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8958F644D9;
+        Wed, 14 Jun 2023 17:16:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 539F2C433C8;
+        Wed, 14 Jun 2023 17:16:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686763014;
+        bh=NHe088c1o+Jq210BxHdiVxxRFtRSMBshsrQJ+SPLxbI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bWtgCU+6ufuU6Xdic33eWjkskELBMGTngTkrUEGc2GDt6cLDaNKiK2DCjtdr8rjuz
+         qkQ6ZI5OCnHqXWXmefvVWT++3kK5iYtLBPRMtGU2vgWztYuteLXv1C2zGDFYm28QUL
+         mKzhiSG4Jr0ve0wpMHL6KU+jSWgUWdJrkWnwpl86SV8lPoBDV7ay4pAzanQuaGXv54
+         LrF/JUgxDKJhYUJyYlpWEmLL6PnpykkHdHuLGXxiObMmO3bL55CeqvwXjYLsMOgVhD
+         QiiOvZFwOLKzoofqXFj/0a8TrXCSQNFnmqGCjZKC0gy3sYAzNrTFvr6Vjl1rJQc+a3
+         /an1uiIrjBY8g==
+Date:   Wed, 14 Jun 2023 18:16:49 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, kernel@pengutronix.de,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>
-Subject: [PATCH v8 5/5] pwm: dwc: add of/platform support
-Date:   Wed, 14 Jun 2023 18:14:57 +0100
-Message-Id: <20230614171457.69191-6-ben.dooks@sifive.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230614171457.69191-1-ben.dooks@sifive.com>
-References: <20230614171457.69191-1-ben.dooks@sifive.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/8] dt-bindings: can: m_can: change from additional-
+ to unevaluatedProperties
+Message-ID: <20230614-chomp-surfer-6866386bfa9b@spud>
+References: <20230614123222.4167460-1-l.goehrs@pengutronix.de>
+ <20230614123222.4167460-5-l.goehrs@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="NyTjScBlhm/mrubF"
+Content-Disposition: inline
+In-Reply-To: <20230614123222.4167460-5-l.goehrs@pengutronix.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dwc pwm controller can be used in non-PCI systems, so allow
-either platform or OF based probing.
 
-Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
----
-v8:
- - add compile test for of-case
- - add module namespace
- - move later in the series
-v7:
- - fixup kconfig from previous pcie changes
-v5:
- - fix missing " in kconfig
- - remove .remove method, devm already sorts this.
- - merge pwm-number code
- - split the of code out of the core
- - get bus clock
-v4:
- - moved the compile test code earlier
- - fixed review comments
- - used NS_PER_SEC
- - use devm_clk_get_enabled
- - ensure we get the bus clock
-v3:
- - changed compatible name
----
- drivers/pwm/Kconfig        | 10 +++++
- drivers/pwm/Makefile       |  1 +
- drivers/pwm/pwm-dwc-core.c |  6 +++
- drivers/pwm/pwm-dwc-of.c   | 78 ++++++++++++++++++++++++++++++++++++++
- drivers/pwm/pwm-dwc.c      |  1 +
- drivers/pwm/pwm-dwc.h      |  1 +
- 6 files changed, 97 insertions(+)
- create mode 100644 drivers/pwm/pwm-dwc-of.c
+--NyTjScBlhm/mrubF
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 7c54cdcb97a0..61f5d3f30fd7 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -205,6 +205,16 @@ config PWM_DWC
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-dwc.
- 
-+config PWM_DWC_OF
-+	tristate "DesignWare PWM Controller (OF bus)"
-+	depends on HAS_IOMEM && (OF || COMPILE_TEST)
-+	select PWM_DWC_CORE
-+	help
-+	  PWM driver for Synopsys DWC PWM Controller on an OF bus.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-dwc-of.
-+
- config PWM_EP93XX
- 	tristate "Cirrus Logic EP93xx PWM support"
- 	depends on ARCH_EP93XX || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index de3ed77e8d7c..d27dfbb850b7 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
- obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
- obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
- obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
-+obj-$(CONFIG_PWM_DWC_OF)	+= pwm-dwc-of.o
- obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
- obj-$(CONFIG_PWM_FSL_FTM)	+= pwm-fsl-ftm.o
- obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
-diff --git a/drivers/pwm/pwm-dwc-core.c b/drivers/pwm/pwm-dwc-core.c
-index 0f07e26e6c30..ed102fc4b30a 100644
---- a/drivers/pwm/pwm-dwc-core.c
-+++ b/drivers/pwm/pwm-dwc-core.c
-@@ -16,6 +16,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/clk.h>
- #include <linux/pm_runtime.h>
- #include <linux/pwm.h>
- 
-@@ -44,6 +45,9 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
- 	u32 high;
- 	u32 low;
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
-+
- 	/*
- 	 * Calculate width of low and high period in terms of input clock
- 	 * periods and check are the result within HW limits between 1 and
-@@ -128,6 +132,8 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 	pm_runtime_get_sync(chip->dev);
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
- 	clk_rate = dwc->clk_rate;
- 
- 	ctrl = dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
-diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
-new file mode 100644
-index 000000000000..13a0b534b383
---- /dev/null
-+++ b/drivers/pwm/pwm-dwc-of.c
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * DesignWare PWM Controller driver OF
-+ *
-+ * Copyright (C) 2022 SiFive, Inc.
-+ */
-+
-+#define DEFAULT_MODULE_NAMESACE dwc_pwm
-+
-+#include <linux/bitops.h>
-+#include <linux/export.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/clk.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/pwm.h>
-+#include <linux/io.h>
-+
-+#include "pwm-dwc.h"
-+
-+static int dwc_pwm_plat_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct dwc_pwm *dwc;
-+	struct clk *bus;
-+	u32 nr_pwm;
-+
-+	dwc = dwc_pwm_alloc(dev);
-+	if (!dwc)
-+		return -ENOMEM;
-+
-+	if (!device_property_read_u32(dev, "snps,pwm-number", &nr_pwm)) {
-+		if (nr_pwm > DWC_TIMERS_TOTAL)
-+			dev_err(dev, "too many PWMs (%d) specified, capping at %d\n",
-+				nr_pwm, dwc->chip.npwm);
-+		else
-+			dwc->chip.npwm = nr_pwm;
-+	}
-+
-+	dwc->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(dwc->base))
-+		return PTR_ERR(dwc->base);
-+
-+	bus = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(bus))
-+		return dev_err_probe(dev, PTR_ERR(bus),
-+				     "failed to get clock\n");
-+
-+	dwc->clk = devm_clk_get_enabled(dev, "timer");
-+	if (IS_ERR(dwc->clk))
-+		return dev_err_probe(dev, PTR_ERR(dwc->clk),
-+				     "failed to get timer clock\n");
-+
-+	dwc->clk_rate = clk_get_rate(dwc->clk);
-+	return devm_pwmchip_add(dev, &dwc->chip);
-+}
-+
-+static const struct of_device_id dwc_pwm_dt_ids[] = {
-+	{ .compatible = "snps,dw-apb-timers-pwm2" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, dwc_pwm_dt_ids);
-+
-+static struct platform_driver dwc_pwm_plat_driver = {
-+	.driver = {
-+		.name		= "dwc-pwm",
-+		.of_match_table  = dwc_pwm_dt_ids,
-+	},
-+	.probe	= dwc_pwm_plat_probe,
-+};
-+
-+module_platform_driver(dwc_pwm_plat_driver);
-+
-+MODULE_ALIAS("platform:dwc-pwm-of");
-+MODULE_AUTHOR("Ben Dooks <ben.dooks@sifive.com>");
-+MODULE_DESCRIPTION("DesignWare PWM Controller");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
-index bd9cadb497d7..7c32bd06ed33 100644
---- a/drivers/pwm/pwm-dwc.c
-+++ b/drivers/pwm/pwm-dwc.c
-@@ -20,6 +20,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/clk.h>
- #include <linux/pm_runtime.h>
- #include <linux/pwm.h>
- 
-diff --git a/drivers/pwm/pwm-dwc.h b/drivers/pwm/pwm-dwc.h
-index e0a940fd6e87..18e98c2c07d7 100644
---- a/drivers/pwm/pwm-dwc.h
-+++ b/drivers/pwm/pwm-dwc.h
-@@ -42,6 +42,7 @@ struct dwc_pwm_ctx {
- struct dwc_pwm {
- 	struct pwm_chip chip;
- 	void __iomem *base;
-+	struct clk *clk;
- 	unsigned long clk_rate;
- 	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
- };
--- 
-2.39.2
+On Wed, Jun 14, 2023 at 02:32:18PM +0200, Leonard G=F6hrs wrote:
+> This allows the usage of properties like termination-gpios and
+> termination-ohms, which are specified in can-controller.yaml
+> but were previously not usable due to additionalProperties: false.
+>=20
+> Signed-off-by: Leonard G=F6hrs <l.goehrs@pengutronix.de>
+> Suggested-by: Rob Herring <robh@kernel.org>
 
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--NyTjScBlhm/mrubF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIn2AAAKCRB4tDGHoIJi
+0oSnAP9t/ky4bUHtrdCYyGTGf+rlOh9PaoIb1M2yCjvlHffP4QEA8GHfeb9pYWCG
+B95yVv/Jd4LlGTcac4lxeVqws9djzgw=
+=OjL8
+-----END PGP SIGNATURE-----
+
+--NyTjScBlhm/mrubF--
