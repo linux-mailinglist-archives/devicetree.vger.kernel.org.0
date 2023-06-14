@@ -2,67 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D696B730836
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2789730840
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235493AbjFNT2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 15:28:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51660 "EHLO
+        id S236156AbjFNTas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 15:30:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236890AbjFNT2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:28:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1D02726;
-        Wed, 14 Jun 2023 12:27:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0185D63DB3;
-        Wed, 14 Jun 2023 19:27:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4C2FC433C0;
-        Wed, 14 Jun 2023 19:27:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686770849;
-        bh=T2ORHO5yFSlNbPCHm8exnTbQMAiovym6Yw8Agz5UFng=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mTMCil+hklnlF1wdBdgexpCOuFi7k1H8k1v4rWagRqV3dxUorHBVWLvou82XCQT8/
-         jGgNlk8Ejwuimir91p35ihiH6bHZUUrwQqRDeRZgQL1tDYxS/Ig7Y28b2KpoP74PQP
-         kjFwt2HNJmkbJL06LaIx9f95tFxmKDQAkPlvRt0PTrDM/HhW3/Bm1lH46mPgZ2kYA3
-         AkRZ7zBaMSKFK5ptaSPTUDDg+omBNLLOKpL41HRYpqsUsDS37laN3QtBlcz1E3dMGk
-         JXhBGHlC+rn9z6ohcuooizlA1WQTPc5Jc1eq9JeNUTEIu7fvwCZjNQBV1UBO6JP6Ck
-         2bTCSnLKgL2KQ==
-Date:   Wed, 14 Jun 2023 20:27:23 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232195AbjFNTar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:30:47 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F065106;
+        Wed, 14 Jun 2023 12:30:47 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3408899f855so6920745ab.0;
+        Wed, 14 Jun 2023 12:30:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686771046; x=1689363046;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AxMpoSEu3CVACFktb2udXJ4LI58KTtzAHuG2GDyeBD8=;
+        b=T18gxPb/sX0WdH5sAzE2GqYJ3MJ4I7LPFi6Et6djYof6phaBKsYnABXWXKzDp0EcUy
+         VinC81ZbjKFhnzc8+v+6zrXB5GGeTy45AIxlCgP9jOuoyvyT3P7cA4VraGbBmUP9miMP
+         zlG31MJBclGVs7n8dAf/rQLNXCoWW04uR9Eo6lu3hAytpXMNqLbcPAzn4OY+Sh70wWO/
+         v8UiGDVVEFTnvcfUoYLdcZaV7G4OI74UBAcYhdm7rAvGNKokbdNXQT9+pMMEOo01PtLt
+         nz/ByItvHfC4MOIjbgJPzk6/acSnR4mNyA74urypauXuvsPuvA4/vbdnig7fvf2Dilqd
+         w7bA==
+X-Gm-Message-State: AC+VfDwlSXc5eyEnk7QsQsfPN0KczsEIsK1iaWKXoEcSQv/Wqhk3/Izy
+        Q+p1rDP26TWU5Hd6YixDvw==
+X-Google-Smtp-Source: ACHHUZ7+3kuvwn5Kyo1f8vSMpErUCx9TJdaZKlDVLtLNnmOoUeV4N0K+ebUQnEgk/TYccK1/dLrO1Q==
+X-Received: by 2002:a92:ce0b:0:b0:33f:dfd1:fe4a with SMTP id b11-20020a92ce0b000000b0033fdfd1fe4amr12573037ilo.8.1686771046401;
+        Wed, 14 Jun 2023 12:30:46 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id g24-20020a056638061800b004166c24e30dsm5053594jar.32.2023.06.14.12.30.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 12:30:45 -0700 (PDT)
+Received: (nullmailer pid 2604138 invoked by uid 1000);
+        Wed, 14 Jun 2023 19:30:44 -0000
+Date:   Wed, 14 Jun 2023 13:30:44 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v4 07/10] dt-bindings: interrupt-controller: Add RISC-V
- advanced PLIC
-Message-ID: <20230614-devotee-repave-37d670dbfb7c@spud>
-References: <20230613153415.350528-1-apatel@ventanamicro.com>
- <20230613153415.350528-8-apatel@ventanamicro.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+Subject: Re: [PATCH 1/2] spi: dt-bindings: introduce linux,use-rt-queue flag
+Message-ID: <20230614193044.GA2595668-robh@kernel.org>
+References: <20230602115201.415718-1-matthias.schiffer@ew.tq-group.com>
+ <628b7411-7d12-4915-80c8-cabb74ac6590@sirena.org.uk>
+ <CACRpkdYhFmG-Cb-5+dt1Huktnm+tkOjSGO5ZFPjGeOXRott6Dw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5BjMorMatJMI/kO2"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230613153415.350528-8-apatel@ventanamicro.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdYhFmG-Cb-5+dt1Huktnm+tkOjSGO5ZFPjGeOXRott6Dw@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,82 +69,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 06, 2023 at 04:37:08PM +0200, Linus Walleij wrote:
+> On Fri, Jun 2, 2023 at 2:22 PM Mark Brown <broonie@kernel.org> wrote:
+> > On Fri, Jun 02, 2023 at 01:52:00PM +0200, Matthias Schiffer wrote:
+> 
+> > > We have seen a number of downstream patches that allow enabling the
+> > > realtime feature of the SPI subsystem to reduce latency. These were
+> > > usually implemented for a specific SPI driver, even though the actual
+> > > handling of the rt flag is happening in the generic SPI controller code.
+> > >
+> > > Introduce a generic linux,use-rt-queue flag that can be used with any
+> > > controller driver. The now redundant driver-specific pl022,rt flag is
+> > > marked as deprecated.
+> >
+> > This is clearly OS specific tuning so out of scope for DT...
+> 
+> In a sense, but to be fair anything prefixed linux,* is out of scope for DT,
+> Documentation/devicetree/bindings/input/matrix-keymap.yaml being
+> the most obvious offender.
+> 
+> On the other hand I think the DT maintainers said it is basically fine
+> to use undocumented DT properties for this kind of thing. Having
+> completely undocumented DT properties might seem evil in another
+> sense, but I think Apple does nothing but...
 
---5BjMorMatJMI/kO2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I don't don't know where you got that impression. I'm fine with them in 
+the sense that I don't look at downstream and anything goes there.
 
-Hey Anup,
-
-Mostly looks good, once minor comment.
-
-On Tue, Jun 13, 2023 at 09:04:12PM +0530, Anup Patel wrote:
-
-> +  riscv,children:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    minItems: 1
-> +    maxItems: 1024
-> +    items:
-> +      maxItems: 1
-> +    description:
-> +      A list of child APLIC domains for the given APLIC domain. Each child
-> +      APLIC domain is assigned a child index in increasing order, with the
-> +      first child APLIC domain assigned child index 0. The APLIC domain child
-> +      index is used by firmware to delegate interrupts from the given APLIC
-> +      domain to a particular child APLIC domain.
-> +
-> +  riscv,delegation:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    minItems: 1
-> +    maxItems: 1024
-> +    items:
-> +      items:
-> +        - description: child APLIC domain phandle
-> +        - description: first interrupt number of the parent APLIC domain (inclusive)
-> +        - description: last interrupt number of the parent APLIC domain (inclusive)
-> +    description:
-> +      A interrupt delegation list where each entry is a triple consisting
-> +      of child APLIC domain phandle, first interrupt number of the parent
-> +      APLIC domain, and last interrupt number of the parent APLIC domain.
-> +      Firmware must configure interrupt delegation registers based on
-> +      interrupt delegation list.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - riscv,num-sources
-> +
-> +anyOf:
-> +  - required:
-> +      - interrupts-extended
-> +  - required:
-> +      - msi-parent
-
-Not sure if you missed this from the last version, but I asked if we
-needed a
-	dependencies:
-	  riscv,delegate: [ riscv,children ]
-
-IOW, I don't think it is valid to have a delegation without having
-children?
-
-Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---5BjMorMatJMI/kO2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIoUmwAKCRB4tDGHoIJi
-0s8OAQC9Z5JXorm19qiau/8bfDQbErjoln46aJVOZhOB61Zs4AEAldzBD4e5sVZx
-BB4EhiqD4OULcq1ms+OtgVW6TW7zIgE=
-=hrI0
------END PGP SIGNATURE-----
-
---5BjMorMatJMI/kO2--
+Rob
