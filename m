@@ -2,165 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8592372FF1E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1D772FF24
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238697AbjFNMxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 08:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50852 "EHLO
+        id S244761AbjFNMxo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 14 Jun 2023 08:53:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241026AbjFNMxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:53:03 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 69FB71BF0;
-        Wed, 14 Jun 2023 05:53:01 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3331F1FB;
-        Wed, 14 Jun 2023 05:53:45 -0700 (PDT)
-Received: from [10.57.25.82] (unknown [10.57.25.82])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 405CE3F663;
-        Wed, 14 Jun 2023 05:52:57 -0700 (PDT)
-Message-ID: <394d0129-e3a5-5b16-6e18-b4a3102aa50c@arm.com>
-Date:   Wed, 14 Jun 2023 14:52:55 +0200
+        with ESMTP id S244757AbjFNMxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:53:43 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD15110EC;
+        Wed, 14 Jun 2023 05:53:42 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1a6bd78fd14so1675515fac.2;
+        Wed, 14 Jun 2023 05:53:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686747221; x=1689339221;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3XWEKvAMOuR1l+m/B+1m8slMbaOUqRu1ZrBY3HpAHis=;
+        b=G+OasIuVzyG3o+cQ0PchHEXjMA0q7mNHLgSeyOzYlxFwQRkFZ1UR+kNOyI3tc8rS7/
+         VA6t6Jh789Aqiiw/5TbpVde2InRlEXBolmloPm/zbZ+HRUDjz0uUCJAfpms/iSzKyyKS
+         mGtfx3cDGnwkxac6lrHzMG2/BcbPP7kxeIMB7O3VLGSWDhS59tkVjqmm8QJ0RHmoOZ21
+         /QBOAapg3uah51yABW/Rz3xLtnMaZqZ1fMk/jU/8OX/Jb8VKwfmVaKhJ8kTcNtmrYM3x
+         TPfGPgdnUA7UuZdu3f49w4d0ylV1ZtnJATJ5sgp3uF5eDnSWTTMTzNg6gM93Ob/fGDdk
+         BBbw==
+X-Gm-Message-State: AC+VfDwxpRiQi94vWhOeKYk6S4ZJURYJ8pzpQZju2xU2+LeohMT4gllx
+        lF0njQlCl7VyOYACOji3SyrVKppLomEwvA==
+X-Google-Smtp-Source: ACHHUZ5hrll0i2MDXIkPOW4ZPUZghO1IsYfpdiPJaLb8RA3iekMg9kAqz236/pPcQYCizVWFr4xm0Q==
+X-Received: by 2002:a05:6870:5142:b0:177:ad57:cb36 with SMTP id z2-20020a056870514200b00177ad57cb36mr12505202oak.27.1686747221690;
+        Wed, 14 Jun 2023 05:53:41 -0700 (PDT)
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com. [209.85.161.45])
+        by smtp.gmail.com with ESMTPSA id na1-20020a0568706c0100b0019a291d1672sm4962145oab.26.2023.06.14.05.53.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jun 2023 05:53:40 -0700 (PDT)
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-55b171c06dcso546464eaf.2;
+        Wed, 14 Jun 2023 05:53:39 -0700 (PDT)
+X-Received: by 2002:a05:6359:a26:b0:129:c25e:1cb0 with SMTP id
+ el38-20020a0563590a2600b00129c25e1cb0mr8260221rwb.30.1686747219592; Wed, 14
+ Jun 2023 05:53:39 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.1
-Subject: Re: [PATCH V5 6/6] coresight: etm4x: Add ACPI support in platform
- driver
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, rafael.j.wysocki@intel.com
-Cc:     scclevenger@os.amperecomputing.com,
-        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+References: <20230614104759.228372-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230614104759.228372-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230614104759.228372-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 14 Jun 2023 14:53:26 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWApGKsS8DU7-=6j6WaRBDZ8Amig2NtA8f8=PbGKoFQjQ@mail.gmail.com>
+Message-ID: <CAMuHMdWApGKsS8DU7-=6j6WaRBDZ8Amig2NtA8f8=PbGKoFQjQ@mail.gmail.com>
+Subject: Re: [PATCH v9 3/6] riscv: mm: dma-noncoherent: nonstandard cache
+ operations support
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org,
+        Christoph Hellwig <hch@infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "anshuman.khandual@arm.com" <anshuman.khandual@arm.com>
-References: <20230529062511.52016-1-anshuman.khandual@arm.com>
- <20230529062511.52016-7-anshuman.khandual@arm.com>
- <4c3572f8-9710-0955-72c6-a9907ce6ce8b@arm.com>
- <49c9e20a-f020-0dc5-8601-06b5f0ab8c5c@arm.com>
-In-Reply-To: <49c9e20a-f020-0dc5-8601-06b5f0ab8c5c@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2023 10:36, Suzuki K Poulose wrote:
-> Hi Rafael,
-> 
-> Gentle ping.
+Hi Prabhakar,
 
-Gentle ping..
+On Wed, Jun 14, 2023 at 12:48 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Introduce support for nonstandard noncoherent systems in the RISC-V
+> architecture. It enables function pointer support to handle cache
+> management in such systems.
+>
+> This patch adds a new configuration option called
+> "RISCV_NONSTANDARD_CACHE_OPS." This option is a boolean flag that
+> depends on "RISCV_DMA_NONCOHERENT" and enables the function pointer
+> support for cache management in nonstandard noncoherent systems.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v8 -> v9
+> * New patch
 
-> 
-> On 30/05/2023 10:57, Suzuki K Poulose wrote:
->> Hi Rafael
->>
->> On 29/05/2023 07:25, Anshuman Khandual wrote:
->>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>>
->>> Drop ETM4X ACPI ID from the AMBA ACPI device list, and instead just 
->>> move it
->>> inside the new ACPI devices list detected and used via platform driver.
->>>
->>> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
->>> Cc: Len Brown <lenb@kernel.org>
->>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
->>> Cc: Mike Leach <mike.leach@linaro.org>
->>> Cc: Leo Yan <leo.yan@linaro.org>
->>> Cc: Sudeep Holla <sudeep.holla@arm.com>
->>> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
->>> Cc: linux-acpi@vger.kernel.org
->>> Cc: coresight@lists.linaro.org
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: linux-kernel@vger.kernel.org
->>> Reviewed-by: Sudeep Holla <sudeep.holla@arm.com> (for ACPI specific 
->>> changes)
->>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->>> ---
->>>   drivers/acpi/acpi_amba.c                           |  1 -
->>
->> We would like to push this via the coresight tree. Please could you 
->> Ack this change if you are happy with the proposal and the change ?
->>
-> 
-> 
-> Suzuki
-> 
+Thanks for your patch!
 
-Suzuki
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/dma-noncoherent.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2023 Renesas Electronics Corp.
+> + */
+> +
+> +#ifndef __ASM_DMA_NONCOHERENT_H
+> +#define __ASM_DMA_NONCOHERENT_H
+> +
+> +#include <linux/dma-direct.h>
+> +
+> +/*
+> + * struct riscv_cache_ops - Structure for CMO function pointers
+> + *
+> + * @clean: Function pointer for clean cache
+> + * @inval: Function pointer for invalidate cache
+> + * @flush: Function pointer for flushing the cache
+> + */
+> +struct riscv_cache_ops {
+> +       void (*clean)(phys_addr_t paddr, unsigned long size);
+> +       void (*inval)(phys_addr_t paddr, unsigned long size);
+> +       void (*flush)(phys_addr_t paddr, unsigned long size);
+> +};
+
+I guess the naming can be improved?
+
+.clean() is used by arch_dma_cache_wback() / arch_wb_cache_pmem(),
+.inval() is used by arch_dma_cache_inv() / arch_invalidate_pmem(),
+.flush() is used by arch_dma_cache_wback_inv() / arch_dma_prep_coherent().
+
+Perhaps .wback(), .inv(), .wback_inv() are more clear?
+
+I understand this is subject to bikeshedding...
+But hey, how many innocent bits of data have already been lost due
+to cache semantic mismatches?
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-> 
->> Suzuki
->>
->>
->>>   drivers/hwtracing/coresight/coresight-etm4x-core.c | 10 ++++++++++
->>>   2 files changed, 10 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/acpi/acpi_amba.c b/drivers/acpi/acpi_amba.c
->>> index f5b443ab01c2..099966cbac5a 100644
->>> --- a/drivers/acpi/acpi_amba.c
->>> +++ b/drivers/acpi/acpi_amba.c
->>> @@ -22,7 +22,6 @@
->>>   static const struct acpi_device_id amba_id_list[] = {
->>>       {"ARMH0061", 0}, /* PL061 GPIO Device */
->>>       {"ARMH0330", 0}, /* ARM DMA Controller DMA-330 */
->>> -    {"ARMHC500", 0}, /* ARM CoreSight ETM4x */
->>>       {"ARMHC501", 0}, /* ARM CoreSight ETR */
->>>       {"ARMHC502", 0}, /* ARM CoreSight STM */
->>>       {"ARMHC503", 0}, /* ARM CoreSight Debug */
->>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c 
->>> b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>> index e10f6676dd9b..fd6f9dff5881 100644
->>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>> @@ -3,6 +3,7 @@
->>>    * Copyright (c) 2014, The Linux Foundation. All rights reserved.
->>>    */
->>> +#include <linux/acpi.h>
->>>   #include <linux/bitops.h>
->>>   #include <linux/kernel.h>
->>>   #include <linux/moduleparam.h>
->>> @@ -2344,12 +2345,21 @@ static const struct of_device_id 
->>> etm4_sysreg_match[] = {
->>>       {}
->>>   };
->>> +#ifdef CONFIG_ACPI
->>> +static const struct acpi_device_id etm4x_acpi_ids[] = {
->>> +    {"ARMHC500", 0}, /* ARM CoreSight ETM4x */
->>> +    {}
->>> +};
->>> +MODULE_DEVICE_TABLE(acpi, etm4x_acpi_ids);
->>> +#endif
->>> +
->>>   static struct platform_driver etm4_platform_driver = {
->>>       .probe        = etm4_probe_platform_dev,
->>>       .remove        = etm4_remove_platform_dev,
->>>       .driver            = {
->>>           .name            = "coresight-etm4x",
->>>           .of_match_table        = etm4_sysreg_match,
->>> +        .acpi_match_table    = ACPI_PTR(etm4x_acpi_ids),
->>>           .suppress_bind_attrs    = true,
->>>           .pm            = &etm4_dev_pm_ops,
->>>       },
->>
-> 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
