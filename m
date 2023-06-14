@@ -2,69 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A07F9730B1D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 01:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D456730B57
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 01:17:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234524AbjFNXCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 19:02:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
+        id S234282AbjFNXRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 19:17:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233912AbjFNXCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 19:02:21 -0400
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949B92688
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 16:02:20 -0700 (PDT)
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-77797beb42dso259713939f.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 16:02:20 -0700 (PDT)
+        with ESMTP id S233697AbjFNXQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 19:16:59 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F342295D;
+        Wed, 14 Jun 2023 16:16:18 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-777a78739ccso395088839f.3;
+        Wed, 14 Jun 2023 16:16:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686783740; x=1689375740;
+        d=1e100.net; s=20221208; t=1686784543; x=1689376543;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i+oJArc8uAvSjYWuHWPF0atumRybtBa7bAhsBTMg56c=;
-        b=U5RIoFrDpt6I2pF5NMJkjifBLmhBX/18/bQ+xkkm+WvME4B8a0em4Kf2J/btG8O4ak
-         aCvYfA61BSSsbINFPxZBtDS2d1mOxO+RkFuKQKkO6deA+q6vYb59Rxy99yO36jCKVehk
-         RQNv3UqyCABZ/ZUnJPFC4iz5ufPZ/moFIV1spwxHTOPCg21sCJwMNsE8WwtzpMI3GHZ4
-         lsPeUseq+LqiqzEKv0oC1DYGO4vCkNqQQSDiFcmvAeJtMURDNbSVvNBsNC+Ej+maUlnf
-         JnyRQnWyJR9C0k5TFmhGrYoQs9x9ye8bwzGV/DTjVMviwVVPmClZqHDCCkksCN0mL5oA
-         JYHw==
-X-Gm-Message-State: AC+VfDyjI5RRAv3NQxH3UCDtwpAMPXAXuyCgZmXtKz2Tss/hFfAm0pGU
-        8u4wGi/X3oZGhf4ZDF5nYA==
-X-Google-Smtp-Source: ACHHUZ727/hpgCodL36K3eU8j5Yekr14/ouFU0Ez4UR3lmvKKtDazpT2aDUicH0AkvAs2EUoL4W/ZA==
-X-Received: by 2002:a92:c806:0:b0:33b:f0a0:8dea with SMTP id v6-20020a92c806000000b0033bf0a08deamr13206590iln.26.1686783739818;
-        Wed, 14 Jun 2023 16:02:19 -0700 (PDT)
+        bh=W6h1SH+KPupH0y0aqvJqt12V2TdAsnl1nbLJ9iHmf7o=;
+        b=c9mO3cZc9HIdEEAwryrFM3HCOSlQl9hsjiX6xewL8ai2zO153ZPR0gc1RHCMBs3gVj
+         Kz/Zjk0xZymBn5As4Pc8ITrjXtasO/t9zAVPmkbhMCTOTvhobKaSVCzWJw2KMDDZaHlt
+         0y8DaP7sv1MBMsdXbJUJaLf56Jn3ycg01kRfRmaniM/Jjsl8SXLHMXnOs6malf6uVpwN
+         L0FFkf9e86a2U0i6TnyH8K6Ws1CgvNecHySjlItBCe74UVXuSluLBTlcxavFpXxdVk4i
+         oYn0kMKmHPJbOSeKEdQRN1kUVYSZuvlJkSA9ICVL4zQJCWs6ooIjvQJcATwRY/dxbxdd
+         BKnw==
+X-Gm-Message-State: AC+VfDzvOKS3TPP4lTJMvLfryR00Rckq/pwHUDuCdNAadJ+yzN/SZnO4
+        46vwnklClq6OLNYB5tIarJfNkhlySw==
+X-Google-Smtp-Source: ACHHUZ7wQeyYnIwDBLnmBdri7Vyhsn6rPMIrim2mugZblLdL62WV8QD9wkuKJT5uzWp1PU2osL8HPA==
+X-Received: by 2002:a05:6602:196:b0:777:b7f9:18f1 with SMTP id m22-20020a056602019600b00777b7f918f1mr16682656ioo.17.1686784542761;
+        Wed, 14 Jun 2023 16:15:42 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id l12-20020a92d94c000000b00340ccdac682sm226266ilq.84.2023.06.14.16.02.18
+        by smtp.gmail.com with ESMTPSA id f13-20020a5ec60d000000b007749b74ab18sm5680520iok.15.2023.06.14.16.15.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jun 2023 16:02:19 -0700 (PDT)
-Received: (nullmailer pid 3026833 invoked by uid 1000);
-        Wed, 14 Jun 2023 23:02:17 -0000
-Date:   Wed, 14 Jun 2023 17:02:17 -0600
+        Wed, 14 Jun 2023 16:15:41 -0700 (PDT)
+Received: (nullmailer pid 3103614 invoked by uid 1000);
+        Wed, 14 Jun 2023 23:15:39 -0000
+Date:   Wed, 14 Jun 2023 17:15:38 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Yangyu Chen <cyy@cyyself.name>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-riscv@lists.infradead.org, palmer@dabbelt.com,
-        devicetree@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH v3 6/7] dt-bindings: riscv: explicitly mention assumption
- of Zicntr & Zihpm support
-Message-ID: <168678373679.3026773.4984572337017783163.robh@kernel.org>
-References: <20230607-audacity-overhaul-82bb867a825f@spud>
- <20230607-rerun-retinal-5e8ba89e98f1@spud>
+        Conor Dooley <conor+dt@kernel.org>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: extcon-usb-gpio: convert to DT schema
+ format
+Message-ID: <20230614231538.GA3075226-robh@kernel.org>
+References: <20230608081153.441455-1-alexander.stein@ew.tq-group.com>
+ <5217a54e-353b-bd48-68fa-d2104accfeb9@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230607-rerun-retinal-5e8ba89e98f1@spud>
+In-Reply-To: <5217a54e-353b-bd48-68fa-d2104accfeb9@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,22 +85,123 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 12, 2023 at 10:29:16AM +0200, Krzysztof Kozlowski wrote:
+> On 08/06/2023 10:11, Alexander Stein wrote:
+> > Convert the binding to DT schema format. Change the GPIO properties to new
+> > naming convention using -gpios as well.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> >  .../bindings/extcon/extcon-usb-gpio.txt       | 21 --------
+> >  .../bindings/extcon/extcon-usb-gpio.yaml      | 52 +++++++++++++++++++
+> >  2 files changed, 52 insertions(+), 21 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> >  create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> > deleted file mode 100644
+> > index dfc14f71e81fb..0000000000000
+> > --- a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> > +++ /dev/null
+> > @@ -1,21 +0,0 @@
+> > -USB GPIO Extcon device
+> > -
+> > -This is a virtual device used to generate USB cable states from the USB ID pin
+> > -connected to a GPIO pin.
+> > -
+> > -Required properties:
+> > -- compatible: Should be "linux,extcon-usb-gpio"
+> > -
+> > -Either one of id-gpio or vbus-gpio must be present. Both can be present as well.
+> > -- id-gpio: gpio for USB ID pin. See gpio binding.
+> > -- vbus-gpio: gpio for USB VBUS pin.
+> > -
+> > -Example: Examples of extcon-usb-gpio node in dra7-evm.dts as listed below:
+> > -	extcon_usb1 {
+> > -		compatible = "linux,extcon-usb-gpio";
+> > -		id-gpio = <&gpio6 1 GPIO_ACTIVE_HIGH>;
+> > -	}
+> > -
+> > -	&omap_dwc3_1 {
+> > -		extcon = <&extcon_usb1>;
+> > -	};
+> > diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
+> > new file mode 100644
+> > index 0000000000000..3a71d848dc7a8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/extcon/extcon-usb-gpio.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: USB GPIO Extcon device
+> > +
+> > +maintainers:
+> > +  - Alexander Stein <alexander.stein@ew.tq-group.com>
+> > +
+> > +description: |
 
-On Wed, 07 Jun 2023 21:28:30 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Similar to commit 41ebfc91f785 ("dt-bindings: riscv: explicitly mention
-> assumption of Zicsr & Zifencei support"), the Zicntr and Zihpm
-> extensions also used to be part of the base ISA but were removed after
-> the bindings were merged. Document the assumption of their presence in
-> the base ISA.
-> 
-> Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+Don't need '|'
 
-Acked-by: Rob Herring <robh@kernel.org>
+> > +  This is a virtual device used to generate USB cable states from the
+> > +  USB ID pin connected to a GPIO pin.
 
+Please add 'deprecated: true' here. New designs should use a USB 
+connector node binding.
+
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: linux,extcon-usb-gpio
+> > +
+> > +  id-gpios:
+> > +    description: An input gpio for USB ID pin.
+> > +    maxItems: 1
+> > +
+> > +  vbus-gpios:
+> > +    description: An input gpio for USB VBus pin, used to detect presence of
+> > +      VBUS 5V.
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +anyOf:
+> 
+> oneOf instead
+
+anyOf is correct. Both can be present.
+
+> 
+> > +  - required:
+> > +      - id-gpios
+> > +  - required:
+> > +      - vbus-gpios
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    extcon_usb1 {
+> 
+> No underscores, generic node names, so just "extcon-usb"
+> 
+> > +      compatible = "linux,extcon-usb-gpio";
+> > +      id-gpios = <&gpio6 1 GPIO_ACTIVE_HIGH>;
+> > +      vbus-gpios = <&gpio6 2 GPIO_ACTIVE_HIGH>;
+> > +    };
+> > +
+> > +    usb-controller {
+> > +      extcon = <&extcon_usb1>;
+> > +    };
+> 
+> Drop controller, no need to add consumers in a provider's binding.
+> 
+> Best regards,
+> Krzysztof
+> 
