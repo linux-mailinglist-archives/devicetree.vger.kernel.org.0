@@ -2,152 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F1D772FF24
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B588672FF2A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244761AbjFNMxo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 14 Jun 2023 08:53:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51076 "EHLO
+        id S236456AbjFNMzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 08:55:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244757AbjFNMxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:53:43 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD15110EC;
-        Wed, 14 Jun 2023 05:53:42 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1a6bd78fd14so1675515fac.2;
-        Wed, 14 Jun 2023 05:53:42 -0700 (PDT)
+        with ESMTP id S236378AbjFNMzo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:55:44 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2ED10EC;
+        Wed, 14 Jun 2023 05:55:42 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-30aea656e36so4807054f8f.1;
+        Wed, 14 Jun 2023 05:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686747341; x=1689339341;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f4a+nqynai93p3DslnYapWoLBaBt6oixAJaqzvjoA2A=;
+        b=O7bqwRo9lqTLd0GymqyDJ/F7I5npZ3EjGhqdc8H3z76pJF+lG6ctgHpTwrGS13GdeJ
+         7/+hPgUpA7T81p6dBhiwsmDmSLI6YRtANIy5njh4PLpnZFxoVlEtMM2jCZpGI4ULOpws
+         lbZy49S4H5M104U/AMIj/GdKhxXCOX2/DYD03RarZYLu2D2saslnN2zqChnZIGpUUCr/
+         5laFVT1VMh6J2ECV7iqvALDhM6ApBsXH3ElHD4cuypHY2tURBT8rcE7Fe7vtBeDT6G9u
+         aByQdm+gWh963O0oAxOTS97kALwPMyubxCNNW7EGWRpz2OlqLbaNogz987Mvkv3xkHDn
+         1uag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686747221; x=1689339221;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3XWEKvAMOuR1l+m/B+1m8slMbaOUqRu1ZrBY3HpAHis=;
-        b=G+OasIuVzyG3o+cQ0PchHEXjMA0q7mNHLgSeyOzYlxFwQRkFZ1UR+kNOyI3tc8rS7/
-         VA6t6Jh789Aqiiw/5TbpVde2InRlEXBolmloPm/zbZ+HRUDjz0uUCJAfpms/iSzKyyKS
-         mGtfx3cDGnwkxac6lrHzMG2/BcbPP7kxeIMB7O3VLGSWDhS59tkVjqmm8QJ0RHmoOZ21
-         /QBOAapg3uah51yABW/Rz3xLtnMaZqZ1fMk/jU/8OX/Jb8VKwfmVaKhJ8kTcNtmrYM3x
-         TPfGPgdnUA7UuZdu3f49w4d0ylV1ZtnJATJ5sgp3uF5eDnSWTTMTzNg6gM93Ob/fGDdk
-         BBbw==
-X-Gm-Message-State: AC+VfDwxpRiQi94vWhOeKYk6S4ZJURYJ8pzpQZju2xU2+LeohMT4gllx
-        lF0njQlCl7VyOYACOji3SyrVKppLomEwvA==
-X-Google-Smtp-Source: ACHHUZ5hrll0i2MDXIkPOW4ZPUZghO1IsYfpdiPJaLb8RA3iekMg9kAqz236/pPcQYCizVWFr4xm0Q==
-X-Received: by 2002:a05:6870:5142:b0:177:ad57:cb36 with SMTP id z2-20020a056870514200b00177ad57cb36mr12505202oak.27.1686747221690;
-        Wed, 14 Jun 2023 05:53:41 -0700 (PDT)
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com. [209.85.161.45])
-        by smtp.gmail.com with ESMTPSA id na1-20020a0568706c0100b0019a291d1672sm4962145oab.26.2023.06.14.05.53.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 05:53:40 -0700 (PDT)
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-55b171c06dcso546464eaf.2;
-        Wed, 14 Jun 2023 05:53:39 -0700 (PDT)
-X-Received: by 2002:a05:6359:a26:b0:129:c25e:1cb0 with SMTP id
- el38-20020a0563590a2600b00129c25e1cb0mr8260221rwb.30.1686747219592; Wed, 14
- Jun 2023 05:53:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230614104759.228372-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230614104759.228372-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230614104759.228372-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 14 Jun 2023 14:53:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWApGKsS8DU7-=6j6WaRBDZ8Amig2NtA8f8=PbGKoFQjQ@mail.gmail.com>
-Message-ID: <CAMuHMdWApGKsS8DU7-=6j6WaRBDZ8Amig2NtA8f8=PbGKoFQjQ@mail.gmail.com>
-Subject: Re: [PATCH v9 3/6] riscv: mm: dma-noncoherent: nonstandard cache
- operations support
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
+        d=1e100.net; s=20221208; t=1686747341; x=1689339341;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f4a+nqynai93p3DslnYapWoLBaBt6oixAJaqzvjoA2A=;
+        b=SpZEK14VY/hXcpE9m5lL3pZnIISay3U8nNvsDS+wz8LbByOZH7qzwrtqGvUMGwIZxH
+         mMQNb7/7+3n4dYfB0QfDDp/Urs6o1kw1Y6L9xWUVVCPA5ejJDFNjDe4/AutahOQIcwSI
+         At4c/en3uoqWqIk6ce3QJueeukfjt5lHNOFlTrACdxtNvvY316+vT1R9XSqOMZK6C5Mp
+         GMexZv38qpAnRu9oPTgazzusny6FOJKn0GhCxqTcqYGkDyqufnJrWXcsxyvKMpNjLFz6
+         Dgl+IQKqYyYKo7apdSTEAhsC1BS4Nh5sGs6550hkZ2OpZ+x0JnuaIR5pkri+NrCquC8G
+         DC7Q==
+X-Gm-Message-State: AC+VfDyqq5WxZnYeJKfAg/lxVVJDOW9gXz6k50TCMTKsKIGMrFqE6VTc
+        SSmXy+KKvhY86hZ50G13g/TMgJEzCWD6iRGD
+X-Google-Smtp-Source: ACHHUZ5CgQtLa5Ylyn328rgorrSA/Y3m894rHJvNMi4kR8Twg1Hc7ZqF2fyloHx8zTEu2k8bZ90qfw==
+X-Received: by 2002:adf:dc42:0:b0:306:28f4:963c with SMTP id m2-20020adfdc42000000b0030628f4963cmr9087095wrj.23.1686747340807;
+        Wed, 14 Jun 2023 05:55:40 -0700 (PDT)
+Received: from user-PC.. ([92.51.95.194])
+        by smtp.gmail.com with ESMTPSA id c21-20020a05600c0ad500b003f7310a3ffasm17402522wmr.2.2023.06.14.05.55.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 05:55:40 -0700 (PDT)
+From:   Maksim Kiselev <bigunclemax@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org,
-        Christoph Hellwig <hch@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v5 0/3] Add D1/T113s thermal sensor controller support
+Date:   Wed, 14 Jun 2023 15:55:18 +0300
+Message-Id: <20230614125530.660597-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+This series adds support for Allwinner D1/T113s thermal sensor controller.
+THIS controller is similar to the one on H6, but with only one sensor and
+uses a different scale and offset values.
 
-On Wed, Jun 14, 2023 at 12:48 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Introduce support for nonstandard noncoherent systems in the RISC-V
-> architecture. It enables function pointer support to handle cache
-> management in such systems.
->
-> This patch adds a new configuration option called
-> "RISCV_NONSTANDARD_CACHE_OPS." This option is a boolean flag that
-> depends on "RISCV_DMA_NONCOHERENT" and enables the function pointer
-> support for cache management in nonstandard noncoherent systems.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v8 -> v9
-> * New patch
+v5:
+- Dropeed 'thermal-zones' node from sunxi-d1s-t113.dtsi
 
-Thanks for your patch!
+v4:
+- Dropeed DT bindings example
 
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/dma-noncoherent.h
-> @@ -0,0 +1,28 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2023 Renesas Electronics Corp.
-> + */
-> +
-> +#ifndef __ASM_DMA_NONCOHERENT_H
-> +#define __ASM_DMA_NONCOHERENT_H
-> +
-> +#include <linux/dma-direct.h>
-> +
-> +/*
-> + * struct riscv_cache_ops - Structure for CMO function pointers
-> + *
-> + * @clean: Function pointer for clean cache
-> + * @inval: Function pointer for invalidate cache
-> + * @flush: Function pointer for flushing the cache
-> + */
-> +struct riscv_cache_ops {
-> +       void (*clean)(phys_addr_t paddr, unsigned long size);
-> +       void (*inval)(phys_addr_t paddr, unsigned long size);
-> +       void (*flush)(phys_addr_t paddr, unsigned long size);
-> +};
+v3:
+- Fixed SoB tag again
 
-I guess the naming can be improved?
+v2:
+- Fixed SoB tag
+- Moved binding patch before driver changes
 
-.clean() is used by arch_dma_cache_wback() / arch_wb_cache_pmem(),
-.inval() is used by arch_dma_cache_inv() / arch_invalidate_pmem(),
-.flush() is used by arch_dma_cache_wback_inv() / arch_dma_prep_coherent().
+v1:
+- Initial version
 
-Perhaps .wback(), .inv(), .wback_inv() are more clear?
+Maxim Kiselev (3):
+  dt-bindings: thermal: sun8i: Add binding for D1/T113s THS controller
+  thermal: sun8i: Add D1/T113s THS controller support
+  riscv: dts: allwinner: d1: Add thermal sensor
 
-I understand this is subject to bikeshedding...
-But hey, how many innocent bits of data have already been lost due
-to cache semantic mismatches?
+ .../thermal/allwinner,sun8i-a83t-ths.yaml       |  7 ++++++-
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi      | 17 +++++++++++++++++
+ drivers/thermal/sun8i_thermal.c                 | 13 +++++++++++++
+ 3 files changed, 36 insertions(+), 1 deletion(-)
 
-Gr{oetje,eeting}s,
+-- 
+2.39.2
 
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
