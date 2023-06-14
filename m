@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 826BF72FE71
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:24:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C33072FE88
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:26:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244281AbjFNMXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 08:23:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
+        id S243967AbjFNMZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 08:25:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244558AbjFNMXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:23:24 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02CE71FCE
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:23:21 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f8c74af64fso5367915e9.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:23:20 -0700 (PDT)
+        with ESMTP id S244575AbjFNMZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:25:29 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F041FD5
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:25:28 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-30fca48b473so2275589f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:25:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686745399; x=1689337399;
+        d=linaro.org; s=google; t=1686745526; x=1689337526;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f9oDPuE6X9bPnN1e0nqNdnPmYq9OB1FqNsoaKy+XGXc=;
-        b=Gv0WbtgPmUm4pg2adHOLFwmHIaPmtsehPuX+4o4pEcdzuzQ82LxmbxzBuogD9bDPW7
-         vOdxQUZM9LGgmBAPqvbygvsBk07w4lEl3S7MoIGVyFcuB/AcNztG/I8aidqcdB13X3bv
-         7V12kqk0tor8nVpfM624cm/ZwfyC/tfoMIB8NQLPbxOR7p/LIdZ0njICyVahwktuW55J
-         6OXNe4g/X4M1QXzS7kpL+4RPMKIQqELKmQM9ZelmgbcieJ/m4lmDnksT9Rm+HWi23wXX
-         b+ltkypWFo90RtEP+6v2c31jYgI0EsZzfWQRbnNtbLpwlXkBLVucI/ljIzb9XWgwVUqI
-         AUfg==
+        bh=6iG5vTOdWzF2uLO8FkovF7ShHOsamQjYeEGdvdvyCPc=;
+        b=D5VWS3vk0HgW8LDAcGE7BQZKTJtIFTU2fyJhZFJzB2fyCfLBt1e7mvFizFfdPvkjuA
+         sYkB86TEHdehY5mu38+NmNxcWnjtEHUU3bA5VB1sVl8iiAV3ETpl4mk1kOrLq1yrBKW/
+         QQYqOfV7ULhEGyk90oNvgan6ePjNzLPa+gax189cAGgjHe6LAky2ajemkNFgaZXJemd7
+         1O3HlJ0fTzXGMdrJjxGVqN+vb/V3ZHrauj3SDBmFi9IU4e5fvI6YhoVc4rBajLFl8QdN
+         G0OOu1SYxNkAnsGgBTEuXVfKmZnBvt9VDkpFapWcHn8UZOxuUQS5MVefYywfxOpxtEhm
+         RJbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686745399; x=1689337399;
+        d=1e100.net; s=20221208; t=1686745526; x=1689337526;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f9oDPuE6X9bPnN1e0nqNdnPmYq9OB1FqNsoaKy+XGXc=;
-        b=Vmp4tlKv0dTvYal1SsT7TmI2lumU+nAY/xbnRbKFakj9QeBZ7SLd5MfpylSx/zLr3P
-         QBQ6WBGyyZUL6gp7TzGBjlncUZocKVZzTjUiLwhm2r5VIKJ5SkUW4Y/bIjisV/1sAm/1
-         3RzlDyb4+4ijY3mcvAvK1ji9BF4Ayk2bCHebnIuzHNH/xmSR04F8IEFFU8Qmj96/T8qo
-         C194vdSoIPrZ325aBg+GMqGyz1gWB0ggIOu8vMsxdhjdgNhIiqHYhC4/FOk4DVcULhfe
-         pn/EzIQ+g8b86i6q1tTGXphOYfoKKLD1Vxm5gwSeJK7W64zf0XbHnkcrxY0eYP0QOb9O
-         oNlg==
-X-Gm-Message-State: AC+VfDxiVmIrfGO9NZzYAS/ufi7KNaAZP7Bbzug7g+t8fZScSg3fHTGR
-        3bSBDjQeImk6t54mKyIDAbxwfg==
-X-Google-Smtp-Source: ACHHUZ55QXptvhOkcLACCLddQxPeYa4V0RaI78djcZf54s/WGu+g8iZBG3/s1BYA1nbve5tFROs9/Q==
-X-Received: by 2002:a5d:62ca:0:b0:30f:c009:cfa1 with SMTP id o10-20020a5d62ca000000b0030fc009cfa1mr6055137wrv.8.1686745399335;
-        Wed, 14 Jun 2023 05:23:19 -0700 (PDT)
+        bh=6iG5vTOdWzF2uLO8FkovF7ShHOsamQjYeEGdvdvyCPc=;
+        b=SwRYsYa2jxpaDjey87JS9uZQxEU/5h19rhCPiGdcsV0VO69Fuo/nVdCEFCPE5vEP0Z
+         1/5zPxJt9+bCJNe7bd98fqAUjWjbUUAlA03jfn8O9gevrfDETPQTEmqOMtjToPraRDIR
+         /633bAWF0IAbQiozs0Vp/Ac6a78hlRAbh7yPWqD37NmuM8/mczyT4QCcsEHrQM2vH6f4
+         lSEW7y6LCfnBr/lSNCsNRMRjsIngalPWpc7Or+VlsNKvqUh+F9H0/vLM9LQ/n5UaPO2T
+         po9TzAdbLcSr6vUQV17ziOzxLXSf9wP8jSuTkkYresivhenZfvFAwc5KFgTvKonqjZZI
+         m/pw==
+X-Gm-Message-State: AC+VfDx3MyG3mo8KfsB9yOLZgoMTnaCrWXl7qBmnI709A51fK/iwIr1s
+        ACJffmQLEbLYFsK36JKG++5AAQ==
+X-Google-Smtp-Source: ACHHUZ4b1hlq4+ngmHH2dYvVKpDzL+96FL9kDu7anUXdRx9Z9DD4wc+TS6V9DMBamdmIZyFXLQWJlw==
+X-Received: by 2002:adf:e406:0:b0:307:9702:dfc8 with SMTP id g6-20020adfe406000000b003079702dfc8mr8934737wrm.48.1686745526648;
+        Wed, 14 Jun 2023 05:25:26 -0700 (PDT)
 Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id p10-20020a5d48ca000000b0030e56a9ff25sm18065891wrs.31.2023.06.14.05.23.18
+        by smtp.gmail.com with ESMTPSA id i4-20020a5d5584000000b0030fc576633dsm7421237wrv.16.2023.06.14.05.25.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 05:23:18 -0700 (PDT)
-Message-ID: <b6a1e11a-dac2-e7eb-8419-abe123b04e8a@linaro.org>
-Date:   Wed, 14 Jun 2023 13:23:17 +0100
+        Wed, 14 Jun 2023 05:25:26 -0700 (PDT)
+Message-ID: <ce4a3201-3d42-b6fe-9e1a-63ea74588531@linaro.org>
+Date:   Wed, 14 Jun 2023 13:25:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/8] arm64: dts: qcom: msm8939-pm8916: Add missing
- pm8916_codec supplies
+Subject: Re: [PATCH 2/8] arm64: dts: qcom: msm8939: Disable lpass_codec by
+ default
 Content-Language: en-US
 To:     Stephan Gerhold <stephan@gerhold.net>,
         Bjorn Andersson <andersson@kernel.org>
@@ -64,9 +64,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230530-msm8939-regulators-v1-0-a3c3ac833567@gerhold.net>
- <20230530-msm8939-regulators-v1-1-a3c3ac833567@gerhold.net>
+ <20230530-msm8939-regulators-v1-2-a3c3ac833567@gerhold.net>
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230530-msm8939-regulators-v1-1-a3c3ac833567@gerhold.net>
+In-Reply-To: <20230530-msm8939-regulators-v1-2-a3c3ac833567@gerhold.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,34 +79,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 08:15, Stephan Gerhold wrote:
-> Update for recent changes to pm8916.dtsi in commit 38218822a72f
-> ("arm64: dts: qcom: pm8916: Move default regulator "-supply"s")
-> and add the now missing pm8916_codec supplies to msm8939-pm8916.dtsi
-> as well.
+On 14/06/2023 08:16, Stephan Gerhold wrote:
+> Update for recent changes to msm8916.dtsi in commit a5cf21b14666
+> ("arm64: dts: qcom: msm8916: Disable audio codecs by default") and
+> make lpass_codec disabled by default for devices that are not using
+> the audio codec functionality inside MSM8939.
 > 
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->   arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi | 6 ++++++
->   1 file changed, 6 insertions(+)
+>   arch/arm64/boot/dts/qcom/apq8039-t2.dts | 4 ++++
+>   arch/arm64/boot/dts/qcom/msm8939.dtsi   | 1 +
+>   2 files changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
-> index 33e02f42f5e4..503c2dd5fe47 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
-> @@ -25,6 +25,12 @@ &mpss {
->   	pll-supply = <&pm8916_l7>;
+> diff --git a/arch/arm64/boot/dts/qcom/apq8039-t2.dts b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
+> index 2a39216ceef5..c8442242137a 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8039-t2.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
+> @@ -135,6 +135,10 @@ &lpass {
+>   	status = "okay";
 >   };
 >   
-> +&pm8916_codec {
-> +	vdd-cdc-io-supply = <&pm8916_l5>;
-> +	vdd-cdc-tx-rx-cx-supply = <&pm8916_l5>;
-> +	vdd-micbias-supply = <&pm8916_l13>;
+> +&lpass_codec {
+> +	status = "okay";
 > +};
 > +
->   &rpm_requests {
->   	smd_rpm_regulators: regulators {
->   		compatible = "qcom,rpm-pm8916-regulators";
+>   &mdss {
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+> index 3c1505b69a6b..895cafc11480 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+> @@ -1608,6 +1608,7 @@ lpass_codec: audio-codec@771c000 {
+>   				 <&gcc GCC_CODEC_DIGCODEC_CLK>;
+>   			clock-names = "ahbix-clk", "mclk";
+>   			#sound-dai-cells = <1>;
+> +			status = "disabled";
+>   		};
+>   
+>   		sdhc_1: mmc@7824900 {
 > 
 
 Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
