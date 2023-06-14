@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C33072FE88
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5910A72FE8F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 14:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243967AbjFNMZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 08:25:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
+        id S244565AbjFNM0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 08:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244575AbjFNMZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:25:29 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F041FD5
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:25:28 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-30fca48b473so2275589f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:25:28 -0700 (PDT)
+        with ESMTP id S244494AbjFNM0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 08:26:23 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ECAC1FD6
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:26:21 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f736e0c9a8so4646805e9.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 05:26:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686745526; x=1689337526;
+        d=linaro.org; s=google; t=1686745580; x=1689337580;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6iG5vTOdWzF2uLO8FkovF7ShHOsamQjYeEGdvdvyCPc=;
-        b=D5VWS3vk0HgW8LDAcGE7BQZKTJtIFTU2fyJhZFJzB2fyCfLBt1e7mvFizFfdPvkjuA
-         sYkB86TEHdehY5mu38+NmNxcWnjtEHUU3bA5VB1sVl8iiAV3ETpl4mk1kOrLq1yrBKW/
-         QQYqOfV7ULhEGyk90oNvgan6ePjNzLPa+gax189cAGgjHe6LAky2ajemkNFgaZXJemd7
-         1O3HlJ0fTzXGMdrJjxGVqN+vb/V3ZHrauj3SDBmFi9IU4e5fvI6YhoVc4rBajLFl8QdN
-         G0OOu1SYxNkAnsGgBTEuXVfKmZnBvt9VDkpFapWcHn8UZOxuUQS5MVefYywfxOpxtEhm
-         RJbw==
+        bh=rCGZgPTN0ui8g7pQQlxPZJI9/q3booqlqt8bk21UjiA=;
+        b=WU1cNnrrs1fxkHbmtMjC7MfeuyTXL3wGtNJmCdw6cwLRDDbaxnfch1c0GcwZ6p5wNR
+         UoV4l2Ozl9Y9HPHt3m5EKygp1HYHe9eODxI0oqM/BDFMamoevIkDt2Rcsd7kHxaaqw4X
+         t5ZN/QgmbTrh2BAZYmMRNCHoiAPZZO+EVfiZh1HwqA4Gq/mm+CuNNKsbaxaJ1bXbF6p7
+         pykJIw7WcQ/K2z0mAWjq0Y/ftovr9itnPnf/S35M5aUzURT/1E7H++7yEOYx/wlfzskH
+         Ro3RLM+hqyGxVyuWKpxObUVsM2Nfd9vrtGbwYFPrkZ75H2Z5bowl/bsTjMD7+JZrWch6
+         3fmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686745526; x=1689337526;
+        d=1e100.net; s=20221208; t=1686745580; x=1689337580;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6iG5vTOdWzF2uLO8FkovF7ShHOsamQjYeEGdvdvyCPc=;
-        b=SwRYsYa2jxpaDjey87JS9uZQxEU/5h19rhCPiGdcsV0VO69Fuo/nVdCEFCPE5vEP0Z
-         1/5zPxJt9+bCJNe7bd98fqAUjWjbUUAlA03jfn8O9gevrfDETPQTEmqOMtjToPraRDIR
-         /633bAWF0IAbQiozs0Vp/Ac6a78hlRAbh7yPWqD37NmuM8/mczyT4QCcsEHrQM2vH6f4
-         lSEW7y6LCfnBr/lSNCsNRMRjsIngalPWpc7Or+VlsNKvqUh+F9H0/vLM9LQ/n5UaPO2T
-         po9TzAdbLcSr6vUQV17ziOzxLXSf9wP8jSuTkkYresivhenZfvFAwc5KFgTvKonqjZZI
-         m/pw==
-X-Gm-Message-State: AC+VfDx3MyG3mo8KfsB9yOLZgoMTnaCrWXl7qBmnI709A51fK/iwIr1s
-        ACJffmQLEbLYFsK36JKG++5AAQ==
-X-Google-Smtp-Source: ACHHUZ4b1hlq4+ngmHH2dYvVKpDzL+96FL9kDu7anUXdRx9Z9DD4wc+TS6V9DMBamdmIZyFXLQWJlw==
-X-Received: by 2002:adf:e406:0:b0:307:9702:dfc8 with SMTP id g6-20020adfe406000000b003079702dfc8mr8934737wrm.48.1686745526648;
-        Wed, 14 Jun 2023 05:25:26 -0700 (PDT)
+        bh=rCGZgPTN0ui8g7pQQlxPZJI9/q3booqlqt8bk21UjiA=;
+        b=O/wsFXK98jT6uCughqG2liksogm9oUIy3rgdBnYeQu3MCtwu+u/wSLhGBoTndm52zQ
+         DZcz021N4U+IYaBSl165ZRHXlIlHPMUHBesjm1/2LyJ75rDaAH2HUg2WRDFPQsHiF7FO
+         itosyPk+o7t1tt8W8ab3Fe+w9hsfCX+tljiNlc18U50jWQxxqCVtRdjBGPmyXHhlD9FG
+         9OxYXocQsfqW0ZaugWj4BpYiysgA/MbZxkl3H2nP4PBfzBR7WVkefnq0iJT7qF9WRDb7
+         q2APhz+KXuBRW/7YzQICl/TfofRNWtizWCs6khQD2Zlm4052Ydde5s021j/QR9FVEk05
+         IbLA==
+X-Gm-Message-State: AC+VfDzfUZCUgrtJzFwMBKzHO6k/cTDP7uCTtEStXdAW9Ap0EazAYC0b
+        qpVxATjQ1d0uL4xMckIXIgA6Ug==
+X-Google-Smtp-Source: ACHHUZ5R4OIibcUus+EsC3XM4mzWHxrF1vkfSX14Dposly4TshGA87vyxhkTEVBXrb2sCP+j5GY16g==
+X-Received: by 2002:a05:600c:3792:b0:3f7:e548:6611 with SMTP id o18-20020a05600c379200b003f7e5486611mr9165673wmr.40.1686745580440;
+        Wed, 14 Jun 2023 05:26:20 -0700 (PDT)
 Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id i4-20020a5d5584000000b0030fc576633dsm7421237wrv.16.2023.06.14.05.25.25
+        by smtp.gmail.com with ESMTPSA id l8-20020a1c7908000000b003f7f4dc6d14sm17114217wme.14.2023.06.14.05.26.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 05:25:26 -0700 (PDT)
-Message-ID: <ce4a3201-3d42-b6fe-9e1a-63ea74588531@linaro.org>
-Date:   Wed, 14 Jun 2023 13:25:25 +0100
+        Wed, 14 Jun 2023 05:26:19 -0700 (PDT)
+Message-ID: <2f9675b8-da1d-05b7-4f8d-6751ab7f89f8@linaro.org>
+Date:   Wed, 14 Jun 2023 13:26:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/8] arm64: dts: qcom: msm8939: Disable lpass_codec by
- default
+Subject: Re: [PATCH 3/8] arm64: dts: qcom: msm8939-sony-tulip: Fix l10-l12
+ regulator voltages
 Content-Language: en-US
 To:     Stephan Gerhold <stephan@gerhold.net>,
         Bjorn Andersson <andersson@kernel.org>
@@ -64,9 +64,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230530-msm8939-regulators-v1-0-a3c3ac833567@gerhold.net>
- <20230530-msm8939-regulators-v1-2-a3c3ac833567@gerhold.net>
+ <20230530-msm8939-regulators-v1-3-a3c3ac833567@gerhold.net>
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230530-msm8939-regulators-v1-2-a3c3ac833567@gerhold.net>
+In-Reply-To: <20230530-msm8939-regulators-v1-3-a3c3ac833567@gerhold.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,44 +80,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/06/2023 08:16, Stephan Gerhold wrote:
-> Update for recent changes to msm8916.dtsi in commit a5cf21b14666
-> ("arm64: dts: qcom: msm8916: Disable audio codecs by default") and
-> make lpass_codec disabled by default for devices that are not using
-> the audio codec functionality inside MSM8939.
+> msm8939-sony-xperia-kanuti-tulip.dts has several regulator voltages
+> that do not quite seem to match what is used in the vendor kernel.
+> In particular:
 > 
+>   - l10 is fixed at 2.8V [1, 2]
+>   - l11/l12 are 2.95V max [1]
+> 
+> [1]: https://github.com/sonyxperiadev/kernel/blob/aosp/LA.BR.1.3.3_rb2.14/arch/arm/boot/dts/qcom/msm8939-regulator.dtsi
+> [2]: https://github.com/sonyxperiadev/kernel/blob/aosp/LA.BR.1.3.3_rb2.14/arch/arm/boot/dts/qcom/msm8939-kanuti_tulip.dtsi#L671C1-L673
+> 
+> Fixes: f1134f738fad ("arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua")
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->   arch/arm64/boot/dts/qcom/apq8039-t2.dts | 4 ++++
->   arch/arm64/boot/dts/qcom/msm8939.dtsi   | 1 +
->   2 files changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8039-t2.dts b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
-> index 2a39216ceef5..c8442242137a 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8039-t2.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
-> @@ -135,6 +135,10 @@ &lpass {
->   	status = "okay";
->   };
->   
-> +&lpass_codec {
-> +	status = "okay";
-> +};
-> +
->   &mdss {
->   	status = "okay";
->   };
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> index 3c1505b69a6b..895cafc11480 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> @@ -1608,6 +1608,7 @@ lpass_codec: audio-codec@771c000 {
->   				 <&gcc GCC_CODEC_DIGCODEC_CLK>;
->   			clock-names = "ahbix-clk", "mclk";
->   			#sound-dai-cells = <1>;
-> +			status = "disabled";
->   		};
->   
->   		sdhc_1: mmc@7824900 {
-> 
+
+I think I probably just copied the Square regulator setup here, so 
+thanks for doing this extra work.
 
 Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
