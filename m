@@ -2,173 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F7F72F98E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 11:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2834A72F9BA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 11:49:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244229AbjFNJod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 05:44:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45364 "EHLO
+        id S243498AbjFNJtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 05:49:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235980AbjFNJoQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 05:44:16 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11E349C8;
-        Wed, 14 Jun 2023 02:42:19 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686735738;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=+REmpcLHUL4BTOxA1dlLHsmBL+e+FBYJaTaqB02G6NY=;
-        b=d+AXI1g8Y06cHn5FQ9HHfYpUkbPNIKBON81J0yuXI5c9++a6TK2xsCzbdQ8XJXKjFG0Ks2
-        IlS6uGDcORffGChF4976ahuklePO8PU76h62Q9MZtlVuydhY/lUSXXJIrMvanEK0VvcCIS
-        K7bdwjIGwjy/ZcYCKTMQSyJLmycpDiEgwWvrzcoPoEtqVH0QyxVrTlSD0rpZ2JL8KtuiqD
-        wqEZQiJlji6q9zYJBnNnorhUyaGiJcnkwZA375KbgVR26OSg2D0hrHNBQUHCzhd55ZePmM
-        OTYg0eqK2ss1oCOt/DkCC2gsZZALpLj+rNIViYo2eFFQrNDSZtshDR9MMEM/EA==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6813C60004;
-        Wed, 14 Jun 2023 09:42:15 +0000 (UTC)
-Date:   Wed, 14 Jun 2023 11:42:14 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S243461AbjFNJs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 05:48:58 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFAF32127;
+        Wed, 14 Jun 2023 02:48:29 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35E9lPfE108113;
+        Wed, 14 Jun 2023 04:47:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686736045;
+        bh=QRGK/l0B6hsumWBFXxBYbdnIT7AJCivqxdHFN1d+CMw=;
+        h=From:Date:Subject:To:CC;
+        b=dB0PIvecIRJVObzdNmjBxVvCKiv2bdX4guJSl4z1IKu5CgkbQWrCPaAEeftC6bs1p
+         gCpYQSDAmSKMjHVbmIxSH0dp7/IBuJV5yjC9b5zZ5PoCLRagDahZIiRfZ67DX2weZS
+         C8t+plbcq5x0gpHi2gVwzUHOkgjl20X/TznePps4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35E9lPqI017877
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 14 Jun 2023 04:47:25 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
+ Jun 2023 04:47:25 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 14 Jun 2023 04:47:24 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35E9lOgS008848;
+        Wed, 14 Jun 2023 04:47:24 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+Date:   Wed, 14 Jun 2023 15:16:56 +0530
+Subject: [PATCH v2] arm64: dts: ti: k3-am62-main: Remove power-domains from
+ crypto node
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20230614-sa3ul-v2-1-3a832b82339c@ti.com>
+X-B4-Tracking: v=1; b=H4sIAI+MiWQC/x2N0QrCMAwAf2XkeYWuLSL+iviQtNkW0CqJymDs3
+ 9ft8biDW8FYhQ1u3QrKfzF51wah7yDPWCd2UhpD8CH6y5CcYfw9XaZEZSBKxV+htYTGjhRrno/
+ 6hfZlPcRHeZTlHNwf27YDnWyJXnAAAAA=
+To:     kamlesh <kamlesh@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
-Message-ID: <20230614114214.1371485e@bootlin.com>
-In-Reply-To: <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
-References: <20230614074904.29085-1-herve.codina@bootlin.com>
-        <20230614074904.29085-8-herve.codina@bootlin.com>
-        <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Jayesh Choudhary <j-choudhary@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1686736043; l=1274;
+ i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
+ bh=E/J6WsSEaN6BRpocHKGuz8QWaNU9pO7nxprAGwZE4bA=;
+ b=cyXcaX8mN8CMapm5bqNXpQqoI4v6tJenKqnu6x3xAh6Ur0L0ePFia4K4TXk8GmQ2OY46P5vf5
+ oh1EwH9CkuYCRt5r5tic3qVUb7mTc/dQ/T/i2zlqDXEjnIS9jTdgB6I
+X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
+ pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,TVD_SUBJ_WIPE_DEBT,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Only SYSFW has control of SA3UL power.
+From SYSFW 08.04.00.002, for security reasons, device ID for power
+management of SA3UL has been removed.
 
-On Wed, 14 Jun 2023 12:02:57 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+"power-domains" property in crypto node tries to access
+the SA3UL, for which it gets NACK and hence, SA3UL driver doesn't
+probe properly.
 
-> On Wed, Jun 14, 2023 at 10:49 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> >
-> > Introduce min_array() (resp max_array()) in order to get the
-> > minimal (resp maximum) of values present in an array.  
-> 
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> See a remark below.
-> 
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  include/linux/minmax.h | 36 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 36 insertions(+)
-> >
-> > diff --git a/include/linux/minmax.h b/include/linux/minmax.h
-> > index 396df1121bff..2cd0d34ce921 100644
-> > --- a/include/linux/minmax.h
-> > +++ b/include/linux/minmax.h
-> > @@ -133,6 +133,42 @@
-> >   */
-> >  #define max_t(type, x, y)      __careful_cmp((type)(x), (type)(y), >)
-> >
-> > +/*
-> > + * Do not check the array parameter using __must_be_array().
-> > + * In the following legit use-case where the "array" passed is a simple pointer,
-> > + * __must_be_array() will return a failure.
-> > + * --- 8< ---
-> > + * int *buff
-> > + * ...
-> > + * min = min_array(buff, nb_items);
-> > + * --- 8< ---
-> > + */
-> > +#define __minmax_array(op, array, len) ({                      \
-> > +       typeof(array) __array = (array);                        \
-> > +       typeof(len) __len = (len);                              \
-> > +       typeof(__array[0] + 0) __element = __array[--__len];    \  
-> 
-> Do we need the ' + 0' part?
+Fixes: 8af893654c02 ("arm64: dts: ti: k3-am62-main: Enable crypto accelerator")
 
-Yes.
+Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+---
+v2 changes:
+-make commit message clearer
+---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-__array can be an array of const items and it is legitimate to get the
-minimum value from const items.
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index b3e4857bbbe4..18a6e9ffaf58 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -174,7 +174,6 @@ k3_reset: reset-controller {
+ 	crypto: crypto@40900000 {
+ 		compatible = "ti,am62-sa3ul";
+ 		reg = <0x00 0x40900000 0x00 0x1200>;
+-		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
 
-typeof(__array[0]) keeps the const qualifier but we need to assign __element
-in the loop.
-One way to drop the const qualifier is to get the type from a rvalue computed
-from __array[0]. This rvalue has to have the exact same type with only the const
-dropped.
-'__array[0] + 0' was a perfect canditate.
+---
+base-commit: 53ab6975c12d1ad86c599a8927e8c698b144d669
+change-id: 20230614-sa3ul-cb4bd1bb4d08
 
-Regards,
-Hervé
+Best regards,
+-- 
+Kamlesh Gurudasani <kamlesh@ti.com>
 
-> 
-> > +       while (__len--)                                         \
-> > +               __element = op(__element, __array[__len]);      \
-> > +       __element; })
-> > +
-> > +/**
-> > + * min_array - return minimum of values present in an array
-> > + * @array: array
-> > + * @len: array length
-> > + *
-> > + * Note that @len must not be zero (empty array).
-> > + */
-> > +#define min_array(array, len) __minmax_array(min, array, len)
-> > +
-> > +/**
-> > + * max_array - return maximum of values present in an array
-> > + * @array: array
-> > + * @len: array length
-> > + *
-> > + * Note that @len must not be zero (empty array).
-> > + */
-> > +#define max_array(array, len) __minmax_array(max, array, len)
-> > +
-> >  /**
-> >   * clamp_t - return a value clamped to a given range using a given type
-> >   * @type: the type of variable to use
-> > --
-> > 2.40.1
-> >  
-> 
-> 
