@@ -2,164 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB7F72F83E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 10:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AE8C72F714
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 09:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243794AbjFNItE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 04:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40004 "EHLO
+        id S232960AbjFNH5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 03:57:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243743AbjFNIsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 04:48:36 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA2C1BC9;
-        Wed, 14 Jun 2023 01:48:34 -0700 (PDT)
-X-UUID: 9042533e0a8811ee9cb5633481061a41-20230614
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:To:From; bh=2cQl4e72FJ5oH+bPzUD0NJi6h7vYecoIWWHrsLXKoks=;
-        b=Wm89kBow04xYCL0JvE8wcpgQ7OgkpNOMZ7SDloY22U/9aGQLZ9Z883YYQhZ5qiNYu6oLZILq65sBl0OFpWejqtGhZ9XCK9jdy1EHvv7jLTVnTr35pZ16lVclSJZGV9ErYUzld1K7CaSNmxeFJledi6CuNfjEO6edJoXdnJ9ILLg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.26,REQID:2abd8ed4-427d-40f2-84c8-dcf2f619f70a,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:cb9a4e1,CLOUDID:92ba076f-2f20-4998-991c-3b78627e4938,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 9042533e0a8811ee9cb5633481061a41-20230614
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-        (envelope-from <maso.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1770364599; Wed, 14 Jun 2023 15:53:34 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 14 Jun 2023 15:53:32 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 14 Jun 2023 15:53:32 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZttGCrugBtvcMNCPa+xmDewNxc+3ZxYiGK8za8V6GS/YAdSq5PuLerIa2PLFa/ZgsmW9WzI+ajm3ET7xw3JHhNXxbIDrU7V+mBAKOcql0mFOMMvEYtkXhQpbZA/ce7Azuian1XIbwzKedr9LiGKom/y3Q8JbcpcXbS55JQ6zY/V3r1qQPFvIzM1aduwSBpjJEMmP+BfUAcfN29/wPypDFJwP8JeTgUGeqwt6/ESYn5QTFhghSlpVNXfO+wd4g043bWgilPKKNazorkvLs0PHk1cnQjvJ1/G1i9OkKm65n/8Q1O0CkgP11sR894z7JKbANaQrML6qu08a7tZvFdCJFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2cQl4e72FJ5oH+bPzUD0NJi6h7vYecoIWWHrsLXKoks=;
- b=izdnn0VQfN7LkdcokIf5K4VdMUd0clGS7qqGOB9319R3o8Fjdtf6aWYfUtHaVLg05u3iQzo/Dro2VBSOg2hfPSOh/LIxOy+Isk8e3s5ZX283igiWZQiK/5Jh0/V3i0ZaDgwMRZDafMpS782hhRc21sIVx8T3jOKjqgjwKFAYCTMI59qNUlZgJbkz+OKaTky1z64o9AKI8M7LWPGIdMmtndbHm2sV0/qtMPwwayJuRjO2GcREFyayd6brHhZoHVOZVhL7Vx/a8u51OHQ6yKB4qRjlxNqhrdeCGt9JIGIQ0zLPFECSFpDx14PP9zlvphe+4xomlmQcr0lROmXZvVWs+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2cQl4e72FJ5oH+bPzUD0NJi6h7vYecoIWWHrsLXKoks=;
- b=SSoj31r+No7W8JOHIW9opcsuc2SLG4gKADNZI8+0mrbXdxnvLdFmRb4JpV3FWMm53CpXCSqEgSgz24tohBNQQyqZ4S+6psYUCpJ0y/gPG+yML6rtFKs1XWu3GpcmfHELvI1VPX7sdAko1vVo3xk9rQuTVdqhIGmRLV6GwdxkJFs=
-Received: from KL1PR03MB6389.apcprd03.prod.outlook.com (2603:1096:820:94::13)
- by TYZPR03MB5390.apcprd03.prod.outlook.com (2603:1096:400:35::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.46; Wed, 14 Jun
- 2023 07:52:10 +0000
-Received: from KL1PR03MB6389.apcprd03.prod.outlook.com
- ([fe80::cf4d:1ca0:d375:a32d]) by KL1PR03MB6389.apcprd03.prod.outlook.com
- ([fe80::cf4d:1ca0:d375:a32d%3]) with mapi id 15.20.6455.043; Wed, 14 Jun 2023
- 07:52:09 +0000
-From:   =?utf-8?B?TWFzbyBIdWFuZyAo6buD5Yqg56u5KQ==?= 
-        <Maso.Huang@mediatek.com>
-To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?utf-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?utf-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        "renzhijie2@huawei.com" <renzhijie2@huawei.com>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "arnd@arndb.de" <arnd@arndb.de>, "perex@perex.cz" <perex@perex.cz>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        =?utf-8?B?SmlheGluIFl1ICjkv57lrrbpkasp?= <Jiaxin.Yu@mediatek.com>
-Subject: Re: [PATCH 1/7] ASoC: mediatek: mt79xx: add common header
-Thread-Topic: [PATCH 1/7] ASoC: mediatek: mt79xx: add common header
-Thread-Index: AQHZnRwjudjTPsHoSk2l2wv7D1tHHq+J7fcAgAACDoA=
-Date:   Wed, 14 Jun 2023 07:52:09 +0000
-Message-ID: <78663818b4cae0e6c94058eafd6937a25c728660.camel@mediatek.com>
-References: <20230612105250.15441-1-maso.huang@mediatek.com>
-         <20230612105250.15441-2-maso.huang@mediatek.com>
-         <2ad87d4a-3068-61c1-2192-bcd80dfa46d0@collabora.com>
-In-Reply-To: <2ad87d4a-3068-61c1-2192-bcd80dfa46d0@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: KL1PR03MB6389:EE_|TYZPR03MB5390:EE_
-x-ms-office365-filtering-correlation-id: 1dbd6332-2005-48bd-e43d-08db6cac41c7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PIpq6Q324af6PqxHzC3R8E3vMq31iIs3mpiuNeDNDhrYYFC+GTpYsgzLA3gVkz1r+qsnsk+w/gpoCn8e5IwThMTvdWe0MJzDgy4iMy7rbUL+aKQgkZhY5IgWtPx0SQIH5l5FRw6P5xyA3+iziWY1m+51iLO1l5oRPMBXZNkGxkOFiCGV39FrarWVd4Ber75uzcnSWw8wj3jhCgIfRkQcNSArvGUSy3urXu+6Y0F2BKBT//AveimQoQbB+bwnX1qVRnjY49tXGiqLdoTlDSAdYcWTwJ+tkDIY8GrPK6o/Deh9CnXL9rhgzUzMKNqlrcvGBCdCkBlFvYBKUSLB+5imyIaiNvw2+P8drObwctzfndFRySq1H2k2lciVsCN+D3Gysc0o0ySIVwP2nSx64y8FITYZCxm3whiJQOVPHtL4EAuxbwPqjqjl/tzXzO1uGmMDOSxQJLKvtk2miCrAQd740DQAk9hThS/iidnCPFbhL341yWj6fmUQ7oTSbzZsJsWjyqlOKESuKoMyeGUK19HhvUOcDNYNrW6lNACnW/jmaMJbIR6psyJM4pAK/qgdtQOGGQsSQbkUzoXvdFM5EkdwTuTgMh1gG7qRoLxgd4dwvpW595CNX1nmP9qYad213XA7
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB6389.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(346002)(136003)(366004)(39860400002)(451199021)(86362001)(7416002)(6486002)(316002)(8676002)(41300700001)(38070700005)(83380400001)(26005)(5660300002)(6512007)(38100700002)(85182001)(921005)(6506007)(8936002)(122000001)(71200400001)(66556008)(66446008)(64756008)(36756003)(66946007)(91956017)(76116006)(478600001)(186003)(6636002)(2906002)(66476007)(110136005)(2616005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bHJtdVdWR0daSEtOTTk1ZnVacEVMbWZmd0ZIMXVhbWNRcHYrOC82WUhlUmdi?=
- =?utf-8?B?SFFZNjdtTVVxTy9pZ05TeStCRUJPUG5iVkNpdVVpajJIWlFzQ1VHUENKZFBj?=
- =?utf-8?B?blBHMTI4K0w4VUx6UkJnRXlCVTk0cXlmUG9iZjM1d1RZWEk2enowOTA2cXZB?=
- =?utf-8?B?NlltK0txczdEcWRDczFWSEpyZGo5M21NQWZiSjAyeDlPaGdLNmQvWmhHVHZN?=
- =?utf-8?B?emU5Vnc3UHNaRFRWNHRmUmNPcC9mQU0wSHBsdjNmUCtCSDBaMVptVThtdnNX?=
- =?utf-8?B?Yk5QTFN3bjgzQTdleklLcG82WHVEVTVEQXBITkc0SWVOdjc3WGNwWWFZV29v?=
- =?utf-8?B?dFdYcEhzdDNaa3ZDZHZmSUtkMlRtM0p0azluSzBHK3hQSWM2dHRkTU03QUZv?=
- =?utf-8?B?S2d0Tkk4b1AwNXkwZk1GaWhKcnIzZVJ1THpTU3JDVEFqVG9VL1BYMkxRTVo2?=
- =?utf-8?B?VWplY05pMUh0ZE5iTXhBQ1hvWlArZkVyanJjeEJ3c0FrYUthSWJOWGpHcDEr?=
- =?utf-8?B?RWxnRHFoNVNWWjdsZXFHclRCbmNKZThWSGNMTjJJaStjQkJJbkhaVkowYjhF?=
- =?utf-8?B?aTYzR2J2R3dtTXpiM2xjd3BSU0Z6dEI1WlJIUjNoRTNka2xiR0Q0T05Bck5v?=
- =?utf-8?B?VGFjVTJNK1VkeTY5b1V4cm1Rc1V3OGo2WmRLM0VjY3RCMWNOMWtXOFBzRXRz?=
- =?utf-8?B?MklENVJrSUdRSjJRUk9hT05SdWxNTmlzWTdTMHAyOE1Sa2N4Ull4bDM5anhG?=
- =?utf-8?B?Nzk2Rzc2cFdWR0FjS3pwNUVVY3B5dkEyYTE0dzJLTVMwK3JMYklxZ0x5K3Ez?=
- =?utf-8?B?aWFpeXcyb09GRWFPREpJei9JUDVhdGJzQ2lmRm81M3dxV1Q0QVJ0N0pYNFZT?=
- =?utf-8?B?SFR0a1VIa0RobDMrRWd5aGV6Ny9zNzJWQkVLaGJtcWlLR1lrY0RqdHhiSm5P?=
- =?utf-8?B?MlFMSm1ueDNuVTdOZm5FTEtvNkVtNG1kb2tlSGlHWXlzbXNDKzlkNnJNZDFn?=
- =?utf-8?B?ZUJNNWNnUkdqTDZ4U0hXSkprSXlCQ3o1cFBEazdIdURJV2xJTjhxcTBKbXVG?=
- =?utf-8?B?K3ZhbEdVaXZqM1kySkQ5eEoydEwxNW8wb0orSUZ1cHh3MHRnQXlwOURUVWYr?=
- =?utf-8?B?T3ZjV0VKOEk3R2ZNVzRqTDFEd2E1MDYzdGFZMHJXbURlaUg4SklXYVN0UHM1?=
- =?utf-8?B?TTZmOFh4dERGRks2U0VtNTBpYWhxeFJvdkhOVXFxTHJRY3AvY3FUZkE3Y2Qr?=
- =?utf-8?B?K3NIb2tUTmVkNEpKM3MyM1hBekVwR2VIbW9QQndkUXFzYkZvSEpCdzNoT1Nu?=
- =?utf-8?B?dm1qRUJDVlNndVZPZFJVQ25mQXhqOEJaL0kzaDNZaTcyMVhnMk5Jb05VZVR0?=
- =?utf-8?B?bk42aEJ4aEVTMjhzcVdYVGNpcUxJaWcvN1I1VHpUUTVsYlpjVXduNkI2TWtD?=
- =?utf-8?B?U0kraFQ5RDVDUjgvUjZGQ3BVRzlzREZxRnY0MDV3UTgwVEdNbTl3MDVseFJI?=
- =?utf-8?B?MTJQUFRQZS9IOEhnQXg0UXZLYmVnZGUvY2hYTzdzREw2S21ZWk01c0NQTGtk?=
- =?utf-8?B?bUZlWDVHekRNU2lWaDNSdkxwaXB0YktrbDduS3pTQlVrZHFiVE1tTVVnTWUx?=
- =?utf-8?B?WXpqdFZOVjM1SW9tSXZ4aXRIME10dWdIVk9JRjFFZXN4YlZHY21qbVlxUUow?=
- =?utf-8?B?VTlwV2U1ZC9QVG9XSUxIc1JyRHNka0lDajdzQVJrb1hqNXN4enRFblNGUUFq?=
- =?utf-8?B?b0dFUk04REVic2s5bUl3YmdSVktBVVpMQ2VuSC9ERGtTOGhzYXVhYlVEWm1s?=
- =?utf-8?B?QmRaUnUydzYrTGltOE9nQkRNMCtmem5xTVFib2JyZWsybGUzRE9hVGJaMWZz?=
- =?utf-8?B?VmR4bUNmRjE1UXJ4NkIxWmhwLytibFE4WS9NYldDWitCRmtBL2dWdlB5TVRn?=
- =?utf-8?B?VWpKNWU1NktidVVkTm54ZnA0ZE1heThYRmFORjg2MEtkQkFKdmlMWFU5bEZu?=
- =?utf-8?B?QkVpdUJEcFpJM290bmZXUzYycHYxczdEWmJVODJremxNdnBQT0VLTHRCUXdJ?=
- =?utf-8?B?U3pFZS81ZkVseGtQSlFNd0c4Zk10L28yUjRJSUcyR2lMN0JTRGJrN0c1V2dh?=
- =?utf-8?B?YzlHV09CRkdEUDM1a3R3eXdiMWpOVUU0dmMzcWpjaUx2WDNDV0NZRFZhUENp?=
- =?utf-8?B?M0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <49F65A1DDC531149AFD1C0F65AA7FA8D@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S230343AbjFNH5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 03:57:10 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E336E4;
+        Wed, 14 Jun 2023 00:57:08 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3884E6601F25;
+        Wed, 14 Jun 2023 08:57:06 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1686729427;
+        bh=6ySxmPCc6AxO/C5yZ5OIgfP5VTP41Tr+ut5Qsh5zXeI=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=nB/IrrlGZORnLI47DXowLHS3S2oicW/iPPMAItzzwlYN3rOaJWJV170v5KqMJrN95
+         zmBrokvx/KtvbJGx4hg6hSf62+MZW/1CaMPxYZ7Jz/Z61wq5v8/SHR6y1K3cua+Yyx
+         ijdp40IEnC3eLT5PYS+9LL/AFFkk7MEsubJTqVwQo3Kgb8XIYfkPYBWTUiT8wIMAr4
+         MWRVqcykE7RJWg6T+Z/WorV79lzukfT3Gkp7YtjLahmvQCGAkOwafQf1aURYHtff4S
+         m0a7lmPUBeNDrOeQbpTtqVgnnSe27n9oIfbjz2AkK5peHPOR15slACaBJCduuEXPkn
+         UgsADVM09ceEg==
+Message-ID: <1135e329-4d4c-5977-0cc4-932702951b5d@collabora.com>
+Date:   Wed, 14 Jun 2023 09:57:03 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB6389.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dbd6332-2005-48bd-e43d-08db6cac41c7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2023 07:52:09.6597
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RkrtBUJ6tFvte+PxYiyJcvjBxeGBEHRQninzsKCWkn2xXLqulZ5xLZ2dg+0BpPblHWPOdhWu0cez2Rm51p33Iw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5390
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 3/7] ASoC: mediatek: mt79xx: add platform driver
+Content-Language: en-US
+To:     Maso Hunag <maso.huang@mediatek.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Ren Zhijie <renzhijie2@huawei.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230612105250.15441-1-maso.huang@mediatek.com>
+ <20230612105250.15441-4-maso.huang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230612105250.15441-4-maso.huang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -167,65 +66,496 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIzLTA2LTE0IGF0IDA5OjQ0ICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gIAkgDQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGlj
-ayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVkIHRo
-ZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+ICBJbCAxMi8wNi8yMyAxMjo1MiwgTWFzbyBIdW5h
-ZyBoYSBzY3JpdHRvOg0KPiA+IEZyb206IE1hc28gSHVhbmcgPG1hc28uaHVhbmdAbWVkaWF0ZWsu
-Y29tPg0KPiA+IA0KPiA+IEFkZCBoZWFkZXIgZmlsZXMgZm9yIHJlZ2lzdGVyIGRlZmluaXRpb24g
-YW5kIHN0cnVjdHVyZS4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBNYXNvIEh1YW5nIDxtYXNv
-Lmh1YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgIHNvdW5kL3NvYy9tZWRpYXRlay9t
-dDc5eHgvbXQ3OXh4LWFmZS1jb21tb24uaCB8ICA0OSArKysrKw0KPiA+ICAgc291bmQvc29jL21l
-ZGlhdGVrL210Nzl4eC9tdDc5eHgtcmVnLmggICAgICAgIHwgMjA2DQo+ICsrKysrKysrKysrKysr
-KysrKw0KPiANCj4gUGxlYXNlLCBzL210Nzl4eC9tdDc5ODEvZy4gV2lsZGNhcmRzIGFyZSBub3Qg
-cGVybWl0dGVkLg0KPiANCg0KSGkgQW5nZWxvLA0KVGhhbmtzIGZvciB5b3VyIHJldmlldy4NClRo
-ZSBvbGRlc3QgaXMgbXQ3OTg2LCBzbyBJJ2xsIHVzZSBtdDc5ODYgaW5zdGVhZCBvZiBtdDc5eHgg
-aW4gdjIgcGF0Y2guDQoNCj4gPiAgIDIgZmlsZXMgY2hhbmdlZCwgMjU1IGluc2VydGlvbnMoKykN
-Cj4gPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2MvbWVkaWF0ZWsvbXQ3OXh4L210Nzl4
-eC1hZmUtY29tbW9uLmgNCj4gPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2MvbWVkaWF0
-ZWsvbXQ3OXh4L210Nzl4eC1yZWcuaA0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9zb3VuZC9zb2Mv
-bWVkaWF0ZWsvbXQ3OXh4L210Nzl4eC1hZmUtY29tbW9uLmgNCj4gYi9zb3VuZC9zb2MvbWVkaWF0
-ZWsvbXQ3OXh4L210Nzl4eC1hZmUtY29tbW9uLmgNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0K
-PiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uMTNjOWU1MWQ3YjM4DQo+ID4gLS0tIC9kZXYvbnVsbA0K
-PiA+ICsrKyBiL3NvdW5kL3NvYy9tZWRpYXRlay9tdDc5eHgvbXQ3OXh4LWFmZS1jb21tb24uaA0K
-PiA+IEBAIC0wLDAgKzEsNDkgQEANCj4gPiArLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQ
-TC0yLjAgKi8NCj4gPiArLyoNCj4gPiArICogbXQ3OXh4LWFmZS1jb21tb24uaCAgLS0gIE1lZGlh
-VGVrIDc5eHggYXVkaW8gZHJpdmVyIGRlZmluaXRpb25zDQo+ID4gKyAqDQo+ID4gKyAqIENvcHly
-aWdodCAoYykgMjAyMSBNZWRpYVRlayBJbmMuDQo+ID4gKyAqIEF1dGhvcjogVmljIFd1IDx2aWMu
-d3VAbWVkaWF0ZWsuY29tPg0KPiA+ICsgKiAgICAgICAgIE1hc28gSHVhbmcgPG1hc28uaHVhbmdA
-bWVkaWF0ZWsuY29tPg0KPiA+ICsgKi8NCj4gPiArDQo+ID4gKyNpZm5kZWYgX01UXzc5WFhfQUZF
-X0NPTU1PTl9IXw0KPiA+ICsjZGVmaW5lIF9NVF83OVhYX0FGRV9DT01NT05fSF8NCj4gPiArDQo+
-ID4gKyNpbmNsdWRlIDxzb3VuZC9zb2MuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2xpc3QuaD4N
-Cj4gPiArI2luY2x1ZGUgPGxpbnV4L3JlZ21hcC5oPg0KPiA+ICsjaW5jbHVkZSAiLi4vY29tbW9u
-L210ay1iYXNlLWFmZS5oIg0KPiA+ICsNCj4gPiArZW51bSB7DQo+ID4gK01UNzlYWF9NRU1JRl9E
-TDEsDQo+ID4gK01UNzlYWF9NRU1JRl9WVUwxMiwNCj4gPiArTVQ3OVhYX01FTUlGX05VTSwNCj4g
-PiArTVQ3OVhYX0RBSV9FVERNID0gTVQ3OVhYX01FTUlGX05VTSwNCj4gPiArTVQ3OVhYX0RBSV9O
-VU0sDQo+ID4gK307DQo+IA0KPiBTYW1lIGZvciB0aGUgZW51bWVyYXRpb24gZW50cmllcywgYW5k
-IHRoZSBkZWZpbml0aW9ucyBhbmQgdGhlDQo+IGZ1bmN0aW9uIG5hbWVzLg0KPiBQbGVhc2UgY2hh
-bmdlIGV2ZXJ5dGhpbmcgdG8gYG10Nzk4MWAgKHN0cmF0ZWd5IGlzIHRvIHVzZSB0aGUgbmFtZSBv
-Zg0KPiB0aGUgb2xkZXN0DQo+IFNvQzogaWYgdGhlIG9sZGVzdCBpcyBub3QgNzk4MSwgY2hhbmdl
-IGFjY29yZGluZ2x5KS4NCj4gDQoNClRoZSBvbGRlc3QgaXMgbXQ3OTg2LCBzbyBJJ2xsIHVzZSBt
-dDc5ODYgaW5zdGVhZCBvZiBtdDc5eHggaW4gdjIgcGF0Y2guDQoNCj4gPiArDQo+ID4gK2VudW0g
-ew0KPiA+ICtNVDc5WFhfSVJRXzAsDQo+ID4gK01UNzlYWF9JUlFfMSwNCj4gPiArTVQ3OVhYX0lS
-UV8yLA0KPiA+ICtNVDc5WFhfSVJRX05VTSwNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0cnVjdCBj
-bGs7DQo+ID4gKw0KPiA+ICtzdHJ1Y3QgbXQ3OXh4X2FmZV9wcml2YXRlIHsNCj4gPiArc3RydWN0
-IGNsayAqKmNsazsNCj4gPiArDQo+ID4gK2ludCBwbV9ydW50aW1lX2J5cGFzc19yZWdfY3RsOw0K
-PiA+ICsNCj4gPiArLyogZGFpICovDQo+ID4gK3ZvaWQgKmRhaV9wcml2W01UNzlYWF9EQUlfTlVN
-XTsNCj4gPiArfTsNCj4gPiArDQo+ID4gK3Vuc2lnbmVkIGludCBtdDc5eHhfYWZlX3JhdGVfdHJh
-bnNmb3JtKHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gPiArICAgICAgIHVuc2lnbmVkIGludCByYXRl
-KTsNCj4gPiArDQo+ID4gKy8qIGRhaSByZWdpc3RlciAqLw0KPiA+ICtpbnQgbXQ3OXh4X2RhaV9l
-dGRtX3JlZ2lzdGVyKHN0cnVjdCBtdGtfYmFzZV9hZmUgKmFmZSk7DQo+ID4gKyNlbmRpZg0KPiA+
-IGRpZmYgLS1naXQgYS9zb3VuZC9zb2MvbWVkaWF0ZWsvbXQ3OXh4L210Nzl4eC1yZWcuaA0KPiBi
-L3NvdW5kL3NvYy9tZWRpYXRlay9tdDc5eHgvbXQ3OXh4LXJlZy5oDQo+ID4gbmV3IGZpbGUgbW9k
-ZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjI4YzBhZWJhOWJkZg0KPiA+IC0tLSAv
-ZGV2L251bGwNCj4gPiArKysgYi9zb3VuZC9zb2MvbWVkaWF0ZWsvbXQ3OXh4L210Nzl4eC1yZWcu
-aA0KPiA+IEBAIC0wLDAgKzEsMjA2IEBADQo+ID4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
-OiBHUEwtMi4wICovDQo+ID4gKy8qDQo+ID4gKyAqIG10Nzl4eC1yZWcuaCAgLS0gIE1lZGlhVGVr
-IDc5eHggYXVkaW8gZHJpdmVyIHJlZyBkZWZpbml0aW9uDQo+ID4gKyAqDQo+ID4gKyAqIENvcHly
-aWdodCAoYykgMjAyMSBNZWRpYVRlayBJbmMuDQo+ID4gKyAqIEF1dGhvcjogVmljIFd1IDx2aWMu
-d3VAbWVkaWF0ZWsuY29tPg0KPiA+ICsgKiAgICAgICAgIE1hc28gSHVhbmcgPG1hc28uaHVhbmdA
-bWVkaWF0ZWsuY29tPg0KPiA+ICsgKi8NCj4gPiArDQo+ID4gKyNpZm5kZWYgX01UNzlYWF9SRUdf
-SF8NCj4gPiArI2RlZmluZSBfTVQ3OVhYX1JFR19IXw0KPiANCj4gX01UNzk4MV9SRUdfSF8NCj4g
-DQo+IEV2ZXJ5dGhpbmcgZWxzZSBsb29rcyBvay4NCj4gDQoNClRoZSBvbGRlc3QgaXMgbXQ3OTg2
-LCBzbyBJJ2xsIHVzZSBtdDc5ODYgaW5zdGVhZCBvZiBtdDc5eHggaW4gdjIgcGF0Y2guDQoNCj4g
-VGhhbmtzLA0KPiBBbmdlbG8NCj4gDQoNCkJlc3QgcmVnYXJkcywNCk1hc28NCg==
+Il 12/06/23 12:52, Maso Hunag ha scritto:
+> From: Maso Huang <maso.huang@mediatek.com>
+> 
+> Add mt79xx platform driver.
+> 
+> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
+> ---
+>   sound/soc/mediatek/Kconfig                 |  10 +
+>   sound/soc/mediatek/Makefile                |   1 +
+>   sound/soc/mediatek/mt79xx/Makefile         |   9 +
+>   sound/soc/mediatek/mt79xx/mt79xx-afe-pcm.c | 608 +++++++++++++++++++++
+>   4 files changed, 628 insertions(+)
+>   create mode 100644 sound/soc/mediatek/mt79xx/Makefile
+>   create mode 100644 sound/soc/mediatek/mt79xx/mt79xx-afe-pcm.c
+> 
+
+..snip..
+
+> diff --git a/sound/soc/mediatek/mt79xx/mt79xx-afe-pcm.c b/sound/soc/mediatek/mt79xx/mt79xx-afe-pcm.c
+> new file mode 100644
+> index 000000000000..69c5f3f3f84b
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt79xx/mt79xx-afe-pcm.c
+> @@ -0,0 +1,608 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * MediaTek ALSA SoC AFE platform driver for MT79xx
+> + *
+> + * Copyright (c) 2021 MediaTek Inc.
+> + * Author: Vic Wu <vic.wu@mediatek.com>
+> + *         Maso Huang <maso.huang@mediatek.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include "mt79xx-afe-common.h"
+> +#include "mt79xx-afe-clk.h"
+> +#include "mt79xx-reg.h"
+> +#include "../common/mtk-afe-platform-driver.h"
+> +#include "../common/mtk-afe-fe-dai.h"
+> +
+> +enum {
+> +	MTK_AFE_RATE_8K = 0,
+> +	MTK_AFE_RATE_11K = 1,
+> +	MTK_AFE_RATE_12K = 2,
+> +	MTK_AFE_RATE_16K = 4,
+> +	MTK_AFE_RATE_22K = 5,
+> +	MTK_AFE_RATE_24K = 6,
+> +	MTK_AFE_RATE_32K = 8,
+> +	MTK_AFE_RATE_44K = 9,
+> +	MTK_AFE_RATE_48K = 10,
+> +	MTK_AFE_RATE_88K = 13,
+> +	MTK_AFE_RATE_96K = 14,
+> +	MTK_AFE_RATE_176K = 17,
+> +	MTK_AFE_RATE_192K = 18,
+> +};
+> +
+> +unsigned int mt79xx_afe_rate_transform(struct device *dev,
+> +				       unsigned int rate)
+> +{
+> +	switch (rate) {
+> +	case 8000:
+> +		return MTK_AFE_RATE_8K;
+> +	case 11025:
+> +		return MTK_AFE_RATE_11K;
+> +	case 12000:
+> +		return MTK_AFE_RATE_12K;
+> +	case 16000:
+> +		return MTK_AFE_RATE_16K;
+> +	case 22050:
+> +		return MTK_AFE_RATE_22K;
+> +	case 24000:
+> +		return MTK_AFE_RATE_24K;
+> +	case 32000:
+> +		return MTK_AFE_RATE_32K;
+> +	case 44100:
+> +		return MTK_AFE_RATE_44K;
+> +	case 48000:
+> +		return MTK_AFE_RATE_48K;
+> +	case 88200:
+> +		return MTK_AFE_RATE_88K;
+> +	case 96000:
+> +		return MTK_AFE_RATE_96K;
+> +	case 176400:
+> +		return MTK_AFE_RATE_176K;
+> +	case 192000:
+> +		return MTK_AFE_RATE_192K;
+> +	default:
+> +		dev_warn(dev, "%s(), rate %u invalid, use %d!!!\n",
+> +			 __func__, rate, MTK_AFE_RATE_48K);
+> +		return MTK_AFE_RATE_48K;
+> +	}
+> +}
+> +
+> +static const struct snd_pcm_hardware mt79xx_afe_hardware = {
+> +	.info = SNDRV_PCM_INFO_MMAP |
+> +		SNDRV_PCM_INFO_INTERLEAVED |
+> +		SNDRV_PCM_INFO_MMAP_VALID,
+> +	.formats = SNDRV_PCM_FMTBIT_S16_LE |
+> +		   SNDRV_PCM_FMTBIT_S24_LE |
+> +		   SNDRV_PCM_FMTBIT_S32_LE,
+> +	.period_bytes_min = 256,
+> +	.period_bytes_max = 4 * 48 * 1024,
+> +	.periods_min = 2,
+> +	.periods_max = 256,
+> +	.buffer_bytes_max = 8 * 48 * 1024,
+> +	.fifo_size = 0,
+> +};
+> +
+> +static int mt79xx_memif_fs(struct snd_pcm_substream *substream,
+> +			   unsigned int rate)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> +	struct snd_soc_component *component =
+> +		snd_soc_rtdcom_lookup(rtd, AFE_PCM_NAME);
+
+Fits in one line.
+
+> +	struct mtk_base_afe *afe = snd_soc_component_get_drvdata(component);
+> +
+> +	return mt79xx_afe_rate_transform(afe->dev, rate);
+> +}
+> +
+> +static int mt79xx_irq_fs(struct snd_pcm_substream *substream,
+> +			 unsigned int rate)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> +	struct snd_soc_component *component =
+> +		snd_soc_rtdcom_lookup(rtd, AFE_PCM_NAME);
+
+Fits in one line.
+
+> +	struct mtk_base_afe *afe = snd_soc_component_get_drvdata(component);
+> +
+> +	return mt79xx_afe_rate_transform(afe->dev, rate);
+> +}
+> +
+
+..snip..
+
+> +
+> +static irqreturn_t mt79xx_afe_irq_handler(int irq_id, void *dev)
+> +{
+> +	struct mtk_base_afe *afe = dev;
+> +	struct mtk_base_afe_irq *irq;
+> +	unsigned int status;
+> +	unsigned int status_mcu;
+> +	unsigned int mcu_en;
+
+u32 mcu_en, status, status_mcu;
+int i, ret;
+irqreturn_t irq_ret = IRQ_HANDLED;
+
+> +	int ret;
+> +	int i;
+> +	irqreturn_t irq_ret = IRQ_HANDLED;
+
+
+
+> +
+> +	/* get irq that is sent to MCU */
+> +	regmap_read(afe->regmap, AFE_IRQ_MCU_EN, &mcu_en);
+> +
+> +	ret = regmap_read(afe->regmap, AFE_IRQ_MCU_STATUS, &status);
+> +	/* only care IRQ which is sent to MCU */
+> +	status_mcu = status & mcu_en & AFE_IRQ_STATUS_BITS;
+> +
+> +	if (ret || status_mcu == 0) {
+> +		dev_err(afe->dev, "%s(), irq status err, ret %d, status 0x%x,
+> +			mcu_en 0x%x\n", __func__, ret, status, mcu_en);
+> +
+> +		irq_ret = IRQ_NONE;
+> +		goto err_irq;
+> +	}
+> +
+> +	for (i = 0; i < MT79XX_MEMIF_NUM; i++) {
+> +		struct mtk_base_afe_memif *memif = &afe->memif[i];
+> +
+> +		if (!memif->substream)
+> +			continue;
+> +
+> +		if (memif->irq_usage < 0)
+> +			continue;
+> +
+> +		irq = &afe->irqs[memif->irq_usage];
+> +
+> +		if (status_mcu & (1 << irq->irq_data->irq_en_shift))
+> +			snd_pcm_period_elapsed(memif->substream);
+> +	}
+> +
+> +err_irq:
+> +	/* clear irq */
+> +	regmap_write(afe->regmap, AFE_IRQ_MCU_CLR, status_mcu);
+> +
+> +	return irq_ret;
+> +}
+> +
+> +static int mt79xx_afe_runtime_suspend(struct device *dev)
+> +{
+> +	struct mtk_base_afe *afe = dev_get_drvdata(dev);
+> +	struct mt79xx_afe_private *afe_priv = afe->platform_priv;
+> +
+> +	if (!afe->regmap || afe_priv->pm_runtime_bypass_reg_ctl)
+> +		goto skip_regmap;
+> +
+> +	/* disable clk*/
+> +	regmap_update_bits(afe->regmap, AUDIO_TOP_CON4, 0x3fff, 0x3fff);
+> +	regmap_update_bits(afe->regmap, AUDIO_ENGEN_CON0, AUD_APLL2_EN_MASK,
+> +			   0);
+> +	regmap_update_bits(afe->regmap, AUDIO_ENGEN_CON0, AUD_26M_EN_MASK,
+> +			   0);
+
+Each regmap_update_bits() call fits in one line.
+
+> +
+> +	/* make sure all irq status are cleared, twice intended */
+> +	regmap_update_bits(afe->regmap, AFE_IRQ_MCU_CLR, 0xffff, 0xffff);
+> +
+> +skip_regmap:
+> +	return mt79xx_afe_disable_clock(afe);
+> +}
+> +
+> +static int mt79xx_afe_runtime_resume(struct device *dev)
+> +{
+> +	struct mtk_base_afe *afe = dev_get_drvdata(dev);
+> +	struct mt79xx_afe_private *afe_priv = afe->platform_priv;
+> +	int ret;
+> +
+> +	ret = mt79xx_afe_enable_clock(afe);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!afe->regmap || afe_priv->pm_runtime_bypass_reg_ctl)
+> +		goto skip_regmap;
+
+Just return 0 here instead of jumping.
+
+> +
+> +	/* enable clk*/
+> +	regmap_update_bits(afe->regmap, AUDIO_TOP_CON4, 0x3fff, 0);
+> +	regmap_update_bits(afe->regmap, AUDIO_ENGEN_CON0, AUD_APLL2_EN_MASK,
+> +			   AUD_APLL2_EN);
+> +	regmap_update_bits(afe->regmap, AUDIO_ENGEN_CON0, AUD_26M_EN_MASK,
+> +			   AUD_26M_EN);
+> +
+> +skip_regmap:
+> +	return 0;
+> +}
+> +
+> +static int mt79xx_afe_component_probe(struct snd_soc_component *component)
+> +{
+> +	return mtk_afe_add_sub_dai_control(component);
+> +}
+> +
+> +static const struct snd_soc_component_driver mt79xx_afe_component = {
+> +	.name = AFE_PCM_NAME,
+> +	.probe = mt79xx_afe_component_probe,
+> +	.pointer	= mtk_afe_pcm_pointer,
+> +	.pcm_construct	= mtk_afe_pcm_new,
+> +};
+> +
+> +static int mt79xx_dai_memif_register(struct mtk_base_afe *afe)
+> +{
+> +	struct mtk_base_afe_dai *dai;
+> +
+> +	dai = devm_kzalloc(afe->dev, sizeof(*dai), GFP_KERNEL);
+> +	if (!dai)
+> +		return -ENOMEM;
+> +
+> +	list_add(&dai->list, &afe->sub_dais);
+> +
+> +	dai->dai_drivers = mt79xx_memif_dai_driver;
+> +	dai->num_dai_drivers = ARRAY_SIZE(mt79xx_memif_dai_driver);
+> +
+> +	dai->dapm_widgets = mt79xx_memif_widgets;
+> +	dai->num_dapm_widgets = ARRAY_SIZE(mt79xx_memif_widgets);
+> +	dai->dapm_routes = mt79xx_memif_routes;
+> +	dai->num_dapm_routes = ARRAY_SIZE(mt79xx_memif_routes);
+> +
+> +	return 0;
+> +}
+> +
+> +typedef int (*dai_register_cb)(struct mtk_base_afe *);
+> +static const dai_register_cb dai_register_cbs[] = {
+> +	mt79xx_dai_etdm_register,
+> +	mt79xx_dai_memif_register,
+> +};
+> +
+> +static int mt79xx_afe_pcm_dev_probe(struct platform_device *pdev)
+> +{
+> +	struct mtk_base_afe *afe;
+> +	struct mt79xx_afe_private *afe_priv;
+> +	struct device *dev;
+> +	int i, irq_id, ret;
+> +
+> +	afe = devm_kzalloc(&pdev->dev, sizeof(*afe), GFP_KERNEL);
+> +	if (!afe)
+> +		return -ENOMEM;
+> +	platform_set_drvdata(pdev, afe);
+> +
+> +	afe->platform_priv = devm_kzalloc(&pdev->dev, sizeof(*afe_priv),
+> +					  GFP_KERNEL);
+> +	if (!afe->platform_priv)
+> +		return -ENOMEM;
+> +
+> +	afe_priv = afe->platform_priv;
+> +	afe->dev = &pdev->dev;
+> +	dev = afe->dev;
+> +
+> +	afe->base_addr = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(afe->base_addr))
+> +		return PTR_ERR(afe->base_addr);
+> +
+> +	/* initial audio related clock */
+> +	ret = mt79xx_init_clock(afe);
+> +	if (ret) {
+> +		dev_err(dev, "init clock error\n");
+> +		return ret;
+
+return dev_err_probe(dev, ret, "Cannot initialize clocks\n");
+
+> +	}
+> +
+> +	pm_runtime_enable(dev);
+
+ret = devm_pm_runtime_enable(dev);
+if (ret)
+	return ret;
+
+> +
+> +	/* enable clock for regcache get default value from hw */
+> +	afe_priv->pm_runtime_bypass_reg_ctl = true;
+> +	pm_runtime_get_sync(&pdev->dev);
+> +
+> +	afe->regmap = devm_regmap_init_mmio(&pdev->dev, afe->base_addr,
+> +		      &mt79xx_afe_regmap_config);
+> +	if (IS_ERR(afe->regmap)) {
+> +		ret = PTR_ERR(afe->regmap);
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	pm_runtime_put_sync(&pdev->dev);
+> +	afe_priv->pm_runtime_bypass_reg_ctl = false;
+> +
+> +	/* init memif */
+> +	afe->memif_size = MT79XX_MEMIF_NUM;
+> +	afe->memif = devm_kcalloc(dev, afe->memif_size, sizeof(*afe->memif),
+> +				  GFP_KERNEL);
+> +	if (!afe->memif)
+> +		goto err_pm_disable;
+> +
+> +	for (i = 0; i < afe->memif_size; i++) {
+> +		afe->memif[i].data = &memif_data[i];
+> +		afe->memif[i].irq_usage = -1;
+> +	}
+> +
+> +	mutex_init(&afe->irq_alloc_lock);
+> +
+> +	/* irq initialize */
+> +	afe->irqs_size = MT79XX_IRQ_NUM;
+> +	afe->irqs = devm_kcalloc(dev, afe->irqs_size, sizeof(*afe->irqs),
+> +				 GFP_KERNEL);
+> +	if (!afe->irqs)
+> +		goto err_pm_disable;
+> +
+> +	for (i = 0; i < afe->irqs_size; i++)
+> +		afe->irqs[i].irq_data = &irq_data[i];
+> +
+> +	/* request irq */
+> +	irq_id = platform_get_irq(pdev, 0);
+> +	if (!irq_id) {
+> +		dev_err(dev, "%pOFn no irq found\n", dev->of_node);
+
+You're not setting any `ret` value to return an error: this will return 0!!!
+
+
+> +		goto err_pm_disable;
+> +	}
+> +	ret = devm_request_irq(dev, irq_id, mt79xx_afe_irq_handler,
+> +			       IRQF_TRIGGER_NONE, "asys-isr", (void *)afe);
+> +	if (ret) {
+> +		dev_err(dev, "could not request_irq for asys-isr\n");
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	/* init sub_dais */
+> +	INIT_LIST_HEAD(&afe->sub_dais);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(dai_register_cbs); i++) {
+> +		ret = dai_register_cbs[i](afe);
+> +		if (ret) {
+> +			dev_warn(afe->dev, "dai register i %d fail, ret %d\n",
+> +				 i, ret);
+
+Please change this dev_warn() to dev_err().
+
+> +			goto err_pm_disable;
+> +		}
+> +	}
+> +
+> +	/* init dai_driver and component_driver */
+> +	ret = mtk_afe_combine_sub_dai(afe);
+> +	if (ret) {
+> +		dev_warn(afe->dev, "mtk_afe_combine_sub_dai fail, ret %d\n",
+> +			 ret);
+
+dev_err()
+
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	afe->mtk_afe_hardware = &mt79xx_afe_hardware;
+> +	afe->memif_fs = mt79xx_memif_fs;
+> +	afe->irq_fs = mt79xx_irq_fs;
+> +
+> +	afe->runtime_resume = mt79xx_afe_runtime_resume;
+> +	afe->runtime_suspend = mt79xx_afe_runtime_suspend;
+> +
+> +	/* register component */
+> +	ret = devm_snd_soc_register_component(&pdev->dev,
+> +					      &mt79xx_afe_component,
+> +					      NULL, 0);
+> +	if (ret) {
+> +		dev_warn(dev, "err_platform\n");
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	ret = devm_snd_soc_register_component(afe->dev,
+> +					      &mt79xx_afe_pcm_dai_component,
+> +					      afe->dai_drivers,
+> +					      afe->num_dai_drivers);
+> +	if (ret) {
+> +		dev_warn(dev, "err_dai_component\n");
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	return ret;
+> +
+> +err_pm_disable:
+> +	pm_runtime_put_sync(&pdev->dev);
+> +	pm_runtime_disable(&pdev->dev);
+> +	return ret;
+> +}
+> +
+> +static int mt79xx_afe_pcm_dev_remove(struct platform_device *pdev)
+> +{
+> +	pm_runtime_disable(&pdev->dev);
+> +	if (!pm_runtime_status_suspended(&pdev->dev))
+> +		mt79xx_afe_runtime_suspend(&pdev->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id mt79xx_afe_pcm_dt_match[] = {
+> +	{ .compatible = "mediatek,mt79xx-afe", },
+> +	{},
+
+Last entry is always { /* sentinel */ }
+
+> +};
+> +MODULE_DEVICE_TABLE(of, mt79xx_afe_pcm_dt_match);
+> +
+> +static const struct dev_pm_ops mt79xx_afe_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(mt79xx_afe_runtime_suspend,
+> +			   mt79xx_afe_runtime_resume, NULL)
+> +};
+> +
+> +static struct platform_driver mt79xx_afe_pcm_driver = {
+> +	.driver = {
+> +		   .name = "mt79xx-audio",
+> +		   .of_match_table = mt79xx_afe_pcm_dt_match,
+> +		   .pm = &mt79xx_afe_pm_ops,
+> +	},
+> +	.probe = mt79xx_afe_pcm_dev_probe,
+> +	.remove = mt79xx_afe_pcm_dev_remove,
+> +};
+> +
+
+Remove this extra blank line.
+
+> +module_platform_driver(mt79xx_afe_pcm_driver);
+> +
+> +MODULE_DESCRIPTION("Mediatek SoC AFE platform driver for ALSA MT79xx");
+> +MODULE_AUTHOR("Vic Wu <vic.wu@mediatek.com>");
+> +MODULE_LICENSE("GPL");
+
+Thanks,
+Angelo
+
