@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8D972F7F0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 10:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C8672F801
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 10:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243629AbjFNId4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 04:33:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58986 "EHLO
+        id S243214AbjFNIkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 04:40:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243564AbjFNIdz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 04:33:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9246019A5;
-        Wed, 14 Jun 2023 01:33:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 285F563EFF;
-        Wed, 14 Jun 2023 08:33:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7D7AC433C8;
-        Wed, 14 Jun 2023 08:33:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686731633;
-        bh=0rZ8RWY+x96dvex3Xf8bOyg3oVtLNa1ds5FJhH40Hfg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fMMneEOvp1Z3C0JGsSjn1GBvFcdhMz5kvaCbD66tQWVpUvUd1Zb/Oh0gEw+Qj/gFB
-         boIjowFuIEoewwLqnHSEtPXLdLuM7Tm0wa9z32xDhB3jVbbOkMp551e52o0ZILXXLx
-         3rAoPpvuFeZSzYl9Iy4zi86f5T8I5qnBB4s2CSZcdnyrZHDtwP0cw2KRcpPDqxZdzf
-         qh0kzzWEecqTnTXcPTkGF1yT9KK6Sa5HeqPYEF856x/AuQnzAWMT4nMxHRQtV7M3rO
-         EpmEij/vWxR/ieKpuMBpwVL+DlHy/LiklrAkwLYRaM83tqbHAJcNva0zpRDMSwqwE6
-         GPIKRvT8BtGIw==
-Date:   Wed, 14 Jun 2023 10:33:49 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Peter Korsgaard <peter@korsgaard.com>,
-        Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S233158AbjFNIkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 04:40:17 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C04E186
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 01:40:16 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q9M2n-0006Xo-A7; Wed, 14 Jun 2023 10:39:57 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q9M2l-007JTu-5z; Wed, 14 Jun 2023 10:39:55 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q9M2j-00E9QN-TW; Wed, 14 Jun 2023 10:39:53 +0200
+Date:   Wed, 14 Jun 2023 10:39:53 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Artur Weber <aweber.kernel@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: opencores: Add missing type for
- "regstep"
-Message-ID: <ZIl7bcQ/cldwd2O/@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Peter Korsgaard <peter@korsgaard.com>, Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230613201105.2824399-1-robh@kernel.org>
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Helge Deller <deller@gmx.de>, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-pwm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/4] video: backlight: lp855x: get PWM for PWM mode
+ during probe
+Message-ID: <20230614083953.e4kkweddjz7wztby@pengutronix.de>
+References: <20230429104534.28943-1-aweber.kernel@gmail.com>
+ <20230429104534.28943-3-aweber.kernel@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="iCgwqCn6iatDu4+P"
+        protocol="application/pgp-signature"; boundary="ek7wuekooig4rg5c"
 Content-Disposition: inline
-In-Reply-To: <20230613201105.2824399-1-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230429104534.28943-3-aweber.kernel@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,37 +67,141 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---iCgwqCn6iatDu4+P
-Content-Type: text/plain; charset=us-ascii
+--ek7wuekooig4rg5c
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 13, 2023 at 02:11:04PM -0600, Rob Herring wrote:
-> "regstep" may be deprecated, but it still needs a type.
+On Sat, Apr 29, 2023 at 12:45:32PM +0200, Artur Weber wrote:
+> Also deprecate the pwm-period DT property, as it is now redundant
+> (pwms property already contains period value).
 >=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
+>  drivers/video/backlight/lp855x_bl.c | 48 ++++++++++++++++-------------
+>  1 file changed, 26 insertions(+), 22 deletions(-)
+>=20
+> diff --git a/drivers/video/backlight/lp855x_bl.c b/drivers/video/backligh=
+t/lp855x_bl.c
+> index 81012bf29baf..21eb4943ed56 100644
+> --- a/drivers/video/backlight/lp855x_bl.c
+> +++ b/drivers/video/backlight/lp855x_bl.c
+> @@ -218,23 +218,10 @@ static int lp855x_configure(struct lp855x *lp)
+> =20
+>  static void lp855x_pwm_ctrl(struct lp855x *lp, int br, int max_br)
+>  {
+> -	struct pwm_device *pwm;
+>  	struct pwm_state state;
+> =20
+> -	/* request pwm device with the consumer name */
+> -	if (!lp->pwm) {
+> -		pwm =3D devm_pwm_get(lp->dev, lp->chipname);
+> -		if (IS_ERR(pwm))
+> -			return;
+> -
+> -		lp->pwm =3D pwm;
+> -
+> -		pwm_init_state(lp->pwm, &state);
+> -	} else {
+> -		pwm_get_state(lp->pwm, &state);
+> -	}
+> +	pwm_get_state(lp->pwm, &state);
 
-Added fixes tag and applied to for-current, thanks!
+pwm_get_state returns an error code. Do you care if it fails? (You
+probably should.)
+> =20
+> -	state.period =3D lp->pdata->period_ns;
+>  	state.duty_cycle =3D div_u64(br * state.period, max_br);
+>  	state.enabled =3D state.duty_cycle;
+> =20
+> @@ -339,6 +326,7 @@ static int lp855x_parse_dt(struct lp855x *lp)
+>  	of_property_read_string(node, "bl-name", &pdata->name);
+>  	of_property_read_u8(node, "dev-ctrl", &pdata->device_control);
+>  	of_property_read_u8(node, "init-brt", &pdata->initial_brightness);
+> +	/* Deprecated, specify period in pwms property instead */
+>  	of_property_read_u32(node, "pwm-period", &pdata->period_ns);
+> =20
+>  	/* Fill ROM platform data if defined */
+> @@ -399,6 +387,7 @@ static int lp855x_probe(struct i2c_client *cl)
+>  	const struct i2c_device_id *id =3D i2c_client_get_device_id(cl);
+>  	const struct acpi_device_id *acpi_id =3D NULL;
+>  	struct device *dev =3D &cl->dev;
+> +	struct pwm_state pwmstate;
+>  	struct lp855x *lp;
+>  	int ret;
+> =20
+> @@ -457,11 +446,6 @@ static int lp855x_probe(struct i2c_client *cl)
+>  		}
+>  	}
+> =20
+> -	if (lp->pdata->period_ns > 0)
+> -		lp->mode =3D PWM_BASED;
+> -	else
+> -		lp->mode =3D REGISTER_BASED;
+> -
+>  	lp->supply =3D devm_regulator_get(dev, "power");
+>  	if (IS_ERR(lp->supply)) {
+>  		if (PTR_ERR(lp->supply) =3D=3D -EPROBE_DEFER)
+> @@ -472,11 +456,31 @@ static int lp855x_probe(struct i2c_client *cl)
+>  	lp->enable =3D devm_regulator_get_optional(dev, "enable");
+>  	if (IS_ERR(lp->enable)) {
+>  		ret =3D PTR_ERR(lp->enable);
+> -		if (ret =3D=3D -ENODEV) {
+> +		if (ret =3D=3D -ENODEV)
+>  			lp->enable =3D NULL;
+> -		} else {
+> +		else
+>  			return dev_err_probe(dev, ret, "getting enable regulator\n");
+> -		}
+> +	}
+> +
+> +	lp->pwm =3D devm_pwm_get(lp->dev, lp->chipname);
+> +	if (IS_ERR(lp->pwm)) {
+> +		ret =3D PTR_ERR(lp->pwm);
+> +		if (ret =3D=3D -ENODEV || ret =3D=3D -EINVAL)
 
+Why would you ignore EINVAL?
 
---iCgwqCn6iatDu4+P
+> +			lp->pwm =3D NULL;
+> +		else
+> +			return dev_err_probe(dev, ret, "getting PWM\n");
+> +
+> +		lp->mode =3D REGISTER_BASED;
+> +		dev_dbg(dev, "mode: register based\n");
+> +	} else {
+
+pwmstate could be declared here.
+
+> +		pwm_init_state(lp->pwm, &pwmstate);
+> +		/* Legacy platform data compatibility */
+> +		if (lp->pdata->period_ns > 0)
+> +			pwmstate.period =3D lp->pdata->period_ns;
+> +		pwm_apply_state(lp->pwm, &pwmstate);
+
+This is a change in behaviour. Before lp855x_probe() didn't modify the
+state the bootloader left the backlight in. Now you're disabling it (I
+think). Is this intended?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ek7wuekooig4rg5c
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmSJe20ACgkQFA3kzBSg
-KbbfkA//anGUwFbI7yfPlKq9xDKxmk6CVk/CrxQAwUpWKP/upFsgHsUV9WXMAKJ1
-mJOrXtfWovOBlvj3PZo80JuymI3k+/VOlqYOcfxLZ50XvrRA2ttqnC7LrCbzOltW
-wEOO9pHRCMJbeulr9+WN+vA78XAxVYVrCjTEXB3rkpApxqd9GV45H5VJ+J3tDMep
-62XqwqDB0fO/aqHPCJ4AinPzlnr+9y0ng7HgxEYcV0aW7mgmyGns1f6u1R+CgPjt
-TSQfJes6s28YhpZePh84QjIoyRZ02AjcetYJxyzU3ZumM4zbScf83uYjtW8MhmiQ
-iBFeoWeab7cqwG1nbdq2SElI2eqciXD7b+vF7mtmdMIkQ0AHXf2xPYZZSMuL+WUn
-Mkbx7jLj/vFoiTU5SQa34fcJwDtEXhfyMzv5xlg5/ebSsRgpvczg0nhZiVyIND+X
-vpOFuo6hgbCw18aWuIaq2cu9FLofTdYQHpUm6xRCYfq77DfXo99/FsDKfB9bIgS5
-Yc/hFZavXUG6i+wh7mI55tpZTlKh6jIAMXJdqgFgJBF3pD0wd41aaLaBBeQ9y3BE
-n3Fy8u8NjwJHTNw5CFmAlJvbCyQsLEtiEQc0nrxT8cyWmKI8M18F1BgEES3s9jM1
-LtSlVKTPHb5oataiWhfShUBzVSCFMAj2GRsye356+TS5ZEbV5iw=
-=HbBV
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSJfNkACgkQj4D7WH0S
+/k5BdAgAs/Rb0sNvnazKhyxx1/2B+8B8l05A3se8y+qIfYwQkuhUfSSbRq80AX6G
+E3LMnbhe/ZeJSNWsxC27KTQfq0549+UgOrKjn6C4XgHk2hXOHTddWHmYDdwXu2WP
+Xioakfi2oNQxtyyGpx/moi+RLXGkiENoMqdoVdoXv/s4xY9vYHGOh1y6wf24yODH
+qSmd4fhumjKaqhl60wyH8n9JJJP2RFf3qIvH1Y4f421I8mZNriOjdPoou4b8ra5t
+o/MjffWe9Jx6h4IWGnl3YWM2t2c9jNnFcEnEtQKnSRBnCtFJC30WfKdGQPuxYYvh
+LF47pzLCWDJQBbJYpKZ6u02A8AOQog==
+=ZFS9
 -----END PGP SIGNATURE-----
 
---iCgwqCn6iatDu4+P--
+--ek7wuekooig4rg5c--
