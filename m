@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5288472FBAF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 12:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A31872FBC8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 12:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232060AbjFNKv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 06:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57270 "EHLO
+        id S234692AbjFNK7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 06:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243446AbjFNKvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 06:51:52 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B17AC172A
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 03:51:50 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f5f728c4aaso7636420e87.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 03:51:50 -0700 (PDT)
+        with ESMTP id S229727AbjFNK7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 06:59:12 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8AFC196
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 03:59:10 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-30adc51b65cso6146465f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 03:59:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1686739909; x=1689331909;
+        d=linaro.org; s=google; t=1686740349; x=1689332349;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7HcQg/AyzdVW/+cUds8z7t+ww39/I3wQ1QMKuN6hW7c=;
-        b=eqJzCvAgKola/j0t6fDI2UoVrzCQWl6xXkX2ivMDkt0FIqOrrU2DriXnqa9JMp25wh
-         o++aeyGPZmUdjZv8FvudL8c71k64fOKwLgAeiohuq/AVqJOv+0OrJ55Mk6/WKwFs87ju
-         YiYFKUq1gOZP/tXEHZJBHg+hcb3qGqNuWPLfo=
+        bh=X76GkVQmm233Ef9CD45/5gbsHuJzJYm1L85f82G9R4o=;
+        b=YC6D/9YorHI2DGemUAj/35LGIrIk1d7W7kFw5L0NFtynGJLSkwhdHBHTSkjoAWF6Hw
+         pId1fTQQnxrw3IOIqwOPq4EYitLlCm4eclIXFwsCwdUT42yWTcdUPCNPSqVSLogvk1iU
+         xduZ2AUrOfBKMsWgPwR20HTGWegtCwfw5LRXu0ASMVU6Gl/0ltjm7D9BezzW72ukdkUj
+         vMiMK+9R2Qry+vuJ+0zUaYnKowG7HXx3jvRvpsXxISRg5C6jmrZ+zK0qBpdjVpM33kY0
+         fqFpfi058mntucNZ7KuAVG+aRmJWOKJxK2XdB2gecXB08r68rF+/Y/Rfxr6iVsBI6grQ
+         zhXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686739909; x=1689331909;
+        d=1e100.net; s=20221208; t=1686740349; x=1689332349;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7HcQg/AyzdVW/+cUds8z7t+ww39/I3wQ1QMKuN6hW7c=;
-        b=JNfWjIHBNhyOx6GGV5AwKnmWCU8VIT4x7GZFwrRPv2x89ZVUpWnyrAy5oh1H3wFwhq
-         8v+G2Mm6DZafzKayAaJsbxwGt0tENRzRNiq4U2fLmG2z19VYX++nqapDYf3dvFnJrJxf
-         4YrG/YwG3EUvzRgQyWf70n8N+lB2sKsfiEVfTB9leGGNznvSLbx/2xMeeOpn4gvGw+Wz
-         fxACTOun6HB2J/+dhO6+kgYp+b4PO4VKjXJ1w3RIWGoPyqkafi5fj8Fg0Vyu0ugM1Hii
-         ES65XeU6MBs/S0VmZXUMS2bEL1pALuPwSqYYUScg0SBgEnxwycjLyHfEc6NkNFwo7QJc
-         1aQw==
-X-Gm-Message-State: AC+VfDxasxWtdxyu0yUvMsOleiz2zk68SbityJstwLWO4kcbzx+ViVTK
-        nwYI4mrNfZNvXWsoftkYVh7rNw==
-X-Google-Smtp-Source: ACHHUZ7+GAjiixypdk6QSEB77KRqd/GHKCl/WEudnKALKQynyI5F1qT0/pxh7mXd9YRJpYXe7zM8rg==
-X-Received: by 2002:a19:2d5a:0:b0:4f7:3ee8:eeda with SMTP id t26-20020a192d5a000000b004f73ee8eedamr465097lft.34.1686739908831;
-        Wed, 14 Jun 2023 03:51:48 -0700 (PDT)
-Received: from [172.16.11.116] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id q19-20020ac246f3000000b004f60d26e1d2sm2056057lfo.80.2023.06.14.03.51.47
+        bh=X76GkVQmm233Ef9CD45/5gbsHuJzJYm1L85f82G9R4o=;
+        b=R9D34bzEzQB4eX6Hsy9/7BFibZ1qS+ZyIQzjNUZ0xaMtV1D8AjG8NaEi8AEpbTOBjz
+         X0ICHGYkLf/kwwwgSutKUaUOudrT3UXQlzKwXmCg0gRRNGovEfM+YcYigBWqMett8Zoi
+         gPFKvqL95LuGXox1XzjVKo6lkhjpI42SeQxblUxR1KdD26m5jdMig+lNRofa/hnkxj75
+         N2duS55j138WMg9zUK1mt41jiFphKV+bj9/bkHbfGOVh5w0GVLl+ZmJ6HezljzSf35Eh
+         VGUs59ARWlHbBkt7IsE4yhsp3iw1MzsbZ8uRzjyKbykW7EhWDh8Hobq8fwDXcWtnkI0G
+         6Nfg==
+X-Gm-Message-State: AC+VfDzSpAerTMQ5CuUPjGw4oGWrBDCixBbVRK6y7ngNZNPHaRPSmHvC
+        LfliXbsZAORYT24c3z/gczkY5Q==
+X-Google-Smtp-Source: ACHHUZ4osks2idP8nFHnF77UpFY2nhvaTzkrwZUVtXTupb7ex/nT+3I5JfmY4knyoi0MhzfpCxOZhg==
+X-Received: by 2002:adf:e4c8:0:b0:30f:c9bf:de69 with SMTP id v8-20020adfe4c8000000b0030fc9bfde69mr4851063wrm.46.1686740349081;
+        Wed, 14 Jun 2023 03:59:09 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:d8c4:17ec:c49d:215e? ([2a05:6e02:1041:c10:d8c4:17ec:c49d:215e])
+        by smtp.googlemail.com with ESMTPSA id n7-20020adff087000000b0030ae5a0516csm17816540wro.17.2023.06.14.03.59.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 03:51:48 -0700 (PDT)
-Message-ID: <c826b8a9-ed12-a6cc-d089-47adbc200f37@rasmusvillemoes.dk>
-Date:   Wed, 14 Jun 2023 12:51:47 +0200
+        Wed, 14 Jun 2023 03:59:08 -0700 (PDT)
+Message-ID: <d652acef-ab25-7d5e-6af0-584dacfbbd8d@linaro.org>
+Date:   Wed, 14 Jun 2023 12:59:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 8/8] rtc: isl12022: implement support for the
- #clock-cells DT property
-Content-Language: en-US, da
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v14 1/2] thermal: loongson-2: add thermal management
+ support
+Content-Language: en-US
+To:     zhuyinbo <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-1-linux@rasmusvillemoes.dk>
- <20230613130011.305589-9-linux@rasmusvillemoes.dk>
- <ZIiKTXmrxBHw+gkG@smile.fi.intel.com>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <ZIiKTXmrxBHw+gkG@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>
+References: <20230426062018.19755-1-zhuyinbo@loongson.cn>
+ <af4d1e00-76d6-b71a-2ed1-562e6405306b@linaro.org>
+ <ac5b3982-a658-e05b-1b5c-3aeeda1585ed@loongson.cn>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <ac5b3982-a658-e05b-1b5c-3aeeda1585ed@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -79,47 +86,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 17.25, Andy Shevchenko wrote:
-> On Tue, Jun 13, 2023 at 03:00:10PM +0200, Rasmus Villemoes wrote:
->> If device tree implies that the chip's IRQ/F_OUT pin is used as a
->> clock, expose that in the driver. For now, pretend it is a
->> fixed-rate (32kHz) clock; if other use cases appear the driver can be
->> updated to provide its own clk_ops etc.
+
+Hi Yinbo,
+
+
+On 14/06/2023 10:03, zhuyinbo wrote:
+> 
+> Hi Daniel,
+> 
+> Thank you very much for your feedback and suggestions. Below, I have
+> some comments, please review.
+
+[ ... ]
+
+>>> +
+>>> +    low += 100;
+>>> +    high += 100;
+
+Literals -> macros
+
+>>> +    reg_ctrl = low;
+>>> +    reg_ctrl |= enable ? 0x100 : 0;
+>>> +    writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
+>>> +
+>>> +    reg_ctrl = high;
+>>> +    reg_ctrl |= enable ? 0x100 : 0;
+>>> +    writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
 >>
->> When the clock output is not used on a given board, one can prolong
->> the battery life by ensuring that the FOx bits are 0. For the hardware
->> I'm currently working on, the RTC draws 1.2uA with the FOx bits at
->> their default 0001 value, dropping to 0.88uA when those bits are
->> cleared.
+>> Is the 'enable' boolean really useful?
 > 
-> ...
 > 
->> +#define ISL12022_INT_FO_MASK	GENMASK(3, 0)
->> +#define ISL12022_INT_FO_OFF	0x0
->> +#define ISL12022_INT_FO_32K	0x1
+> Yes, this 'enable' was to enable thermal irq.
 > 
-> A nit-pick. Are they decimal or bit fields? 
-
--ENOPARSE. A number is a number. Its representation in C code may be
-decimal or hexadecimal (or...). And sure, 0 and 0x0 are different
-spellings of the same thing. The data sheet lists the possible values in
-terms of individual bits, so I suppose I could even do 0b0000 and
-0b0001, but that's too unusual (even if perfectly acceptable by gcc).
-
-> To me seems like the 0x can be dropped.
-
-Can, but won't, a single hex digit is more natural way to represent a
-four-bit field.
-
->> +	ret = regmap_update_bits(regmap, ISL12022_REG_INT, ISL12022_INT_FO_MASK, ISL12022_INT_FO_32K);
+>>
+>> Wouldn't be the sensor trip points disabled by default at reset time?
+>>
 > 
-> Seems too long even for 100 limit.
-> Maybe:
 > 
-> 	ret = regmap_update_bits(regmap, ISL12022_REG_INT,
-> 				 ISL12022_INT_FO_MASK, ISL12022_INT_FO_32K);
+> Only here will thermal irq be enabled throughout the entire driver, and
+> actual testing has shown that interrupts are valid, so this is
+> meaningful.
 
-Sure.
+Ok.
 
-Rasmus
+>> If it is the case then we can get ride of this variable and make the 
+>> routine simpler
+>>
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static int loongson2_thermal_get_temp(struct thermal_zone_device 
+>>> *tz, int *temp)
+>>> +{
+>>> +    u32 reg_val;
+>>> +    struct loongson2_thermal_data *data = tz->devdata;
+>>> +
+>>> +    reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
+>>
+>> Seems like there is no offset for the sensor id here ?
+> 
+> 
+> There is no need for a sensor ID here.
+> 
+> There are some things that I didn't describe clearly, which made you
+> misunderstand. Actually, the temperature sensor of 2K1000 is like this:
+> 
+> There are 4 sets of temperature interrupt controllers, only one set of
+> temperature sampling registers. a sets of temperature interrupt
+> controllers was considered a sensor, which sensor include 3 register as
+> follows, where "SEL" represents which sensor is referenced, In 2k1000
+> datasheet, which "SEL" must be 0.
+
+I'm not sure to understand. Let me rephrase it and know what is wrong.
+
+1. The thermal controller has 4 sensors. The interrupt can be set for 
+these 4 sensors.
+
+2. When reading a temperature, we have to select the sensor via the 
+'SEL' register.
+
+3. The 2k1000 has one sensor with an id = 0.
+
+4. In the future, more Loongson platform can be submitted with more than 
+one sensor
+
+If this is correct, then my comments are about the inconsistency of the 
+proposed changes. Guessing in the future Loongson board there will be 
+more than one sensor, the existing code mixes support for one and 
+multiple sensors as well as assuming id is 0.
+
+So if you add in the of_loongson2_thermal_match table a new platform 
+with several sensors, the current code will be broken because:
+
+  - the initialization loop does exit when the first thermal zone 
+registration succeed
+
+  - the interrupt handler does not figure out which sensor crossed the 
+low/high limit
+
+  - the get_temp is not selecting the right sensor
+
+
+That is my point:
+
+  - write the code to support one sensor with id=0 only
+
+    *or*
+
+  - write the code to support multiple sensors
+
+If I'm not wrong the code is closer to support multiple sensors ;)
+
+Let me know if these deductions are correct
+
+   -- Daniel
+
+ps : is there an English translation for the 2k1000 datasheet ?
+
+
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
