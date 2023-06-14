@@ -2,143 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C5947307BF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D9A7307C8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:08:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234966AbjFNTEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 15:04:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39864 "EHLO
+        id S234245AbjFNTIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 15:08:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234140AbjFNTDy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:03:54 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADEEE2130;
-        Wed, 14 Jun 2023 12:03:40 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-33b3f2f7989so28720555ab.0;
-        Wed, 14 Jun 2023 12:03:40 -0700 (PDT)
+        with ESMTP id S231901AbjFNTIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:08:51 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B291FCC
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 12:08:50 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-6b2d9ea4901so3994991a34.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 12:08:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686769730; x=1689361730;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ErPDVCSBpPJlYZGqC1SD/e+jlrE1qnWfALaiFCF/cEk=;
+        b=jmbi/A02sAgtAEjnexDwofutI7SYsNKZb9DJ0918C84hfbYX6Kv2CnynHp7r9XGnlN
+         Cp8ZWWLwUdRTJFukEXwkeDOBMoNk3CTaEhN7ljsU9elXqeq1Z3RUSKYBM6GZo/WiI8KT
+         oPOMyym6zWHkxmTB3MQ07oxWD7PeJrvq0kvWw8aGJL8XSPf+dk5f+gFT67il+bzXfAN2
+         6dyi2TlnIq0Le4Z+DiAPf+P/T4s3RoflN+csQzJAHSNigY1Vh+g2sdvQ9cTB2g73o86y
+         dEVSMHa3qXDAuMKstEcmSUZb/SA6tSztZN0LSg42YapskHGdFXw2quO5rHkKRaWjd8nV
+         v5JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686769420; x=1689361420;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jU8Y2sdZDfv7N4GPggg1x+Z5N7QIIfRO7/8zpUyBMd0=;
-        b=R9APLsWUtJoyBwF+/0/3+XIN5R1sTRxHm0tMm4e9/R7DjjUut7ujFumjCXdgO2XXuX
-         LZa2cRHWH+Pm0rvOcb70TXao9HjRRxCT6yxzr9biII8Qae2hBDEICyp2n+TZ9DzDI3Yz
-         JSGSSMUhsIPLFqdVCxp+RkVgF+s1o1KXiLRmFfz1/vg/55gXE3GIETmnXcdSQaQk0Kue
-         Ig0/iCi0C1xzYGtwHc/3r7wmnhLWIP/dFXX/fXRHKbFQ/e3pTSnzIVycYfed6FcDs30q
-         BwurtrgTWbaTC69kcnCliQKaLklsv88iPB2r0SCrt5qiDFXjMV0O9crC4zIIas829/uM
-         5GcQ==
-X-Gm-Message-State: AC+VfDwL8uRhbTdEtUI3eLz5WviEkY2u0x3aWdwiKvZ9+L11Sx8Zqwlk
-        sv8cQm2AJk/dkrbIYVsvO9nz3/n8Qw==
-X-Google-Smtp-Source: ACHHUZ6IWp2IJvLymrUkZkP3sUZu5ZIgw/yQewsjouigJZKA4GqPN7z8wafo9EKvyTFUOwtRoMrY8g==
-X-Received: by 2002:a92:7302:0:b0:33d:3b69:2d28 with SMTP id o2-20020a927302000000b0033d3b692d28mr12644439ilc.29.1686769419870;
-        Wed, 14 Jun 2023 12:03:39 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id o11-20020a92dacb000000b0033af84e6321sm5551778ilq.64.2023.06.14.12.03.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jun 2023 12:03:39 -0700 (PDT)
-Received: (nullmailer pid 2565014 invoked by uid 1000);
-        Wed, 14 Jun 2023 19:03:36 -0000
-Date:   Wed, 14 Jun 2023 13:03:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, kernel@pengutronix.de,
-        Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Anson Huang <Anson.Huang@nxp.com>, Marek Vasut <marex@denx.de>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v1 3/7] dt-bindings: timer: gpt: Support 3rd clock for
- i.MX6DL
-Message-ID: <20230614190336.GA2561906-robh@kernel.org>
-References: <20230601101451.357662-1-o.rempel@pengutronix.de>
- <20230601101451.357662-4-o.rempel@pengutronix.de>
+        d=1e100.net; s=20221208; t=1686769730; x=1689361730;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ErPDVCSBpPJlYZGqC1SD/e+jlrE1qnWfALaiFCF/cEk=;
+        b=YIBAKc32uHS7Es2RpPm4L7BmHZZbbrFvbOiRFVWe9Xwvb20caVsNWJjcSFRQ4yrHqZ
+         PFE0g5q8RZzDR8cacaTXugLJqqSMH+a1vQRlQ42b5psPxaSM0p8HpIXjaHqHh2Fm2HrQ
+         Wo4irpR21De9aTtIHrbLJaVyKub9lkFNQGF7/hgqOvW1WqOb+EKdfHGRuN5pdcppFhya
+         f31HZmFzhBWQ+14H7UX/rgivD97h+jVR/phoExdeslT7u0WWAEL3T9ufnfWJfx0Vu63u
+         CjVXZnmrpyWnwSVSVS9qt/YOjlsMlq7jtZQ66E9TUumXKQ16p11ycAhytNr1AxOlL8zD
+         hpew==
+X-Gm-Message-State: AC+VfDxVkw5sgk/TtLZc1c242B6Q3u2RgAmnV0TBsSnU4rrJqjyTVd4f
+        gnlPT1TVlPYkJQ2CFRowAWXVxT5ZbrZQrb1xcF+MKA==
+X-Google-Smtp-Source: ACHHUZ7Jlx1MnAmIR2pE8OVZOOzZ43InmF1UHvxki4FXW/lgM0L0ew4VCWjHbEtlNlYpJ3qLkwuOtXyLLHY4KD09mf4=
+X-Received: by 2002:a05:6870:8447:b0:19a:ce25:6d06 with SMTP id
+ n7-20020a056870844700b0019ace256d06mr10445359oak.56.1686769729782; Wed, 14
+ Jun 2023 12:08:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230601101451.357662-4-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20230602161246.1855448-1-amit.pundir@linaro.org>
+ <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info> <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
+In-Reply-To: <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Thu, 15 Jun 2023 00:38:13 +0530
+Message-ID: <CAMi1Hd3Cv1i06NhpY6Jqu7OvMpOdzTj6nTEMJNWLrMwMLsugZA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes up
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux regressions mailing list <regressions@lists.linux.dev>,
+        Mark Brown <broonie@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 01, 2023 at 12:14:47PM +0200, Oleksij Rempel wrote:
-> Add support for a 3rd clock, 'osc_per', for i.MX6DL to the 'fsl,imxgpt'
-> binding to resolve the following dtbs_check warning:
->   imx6dl-alti6p.dtb: timer@2098000: clocks: [[2, 119], [2, 120], [2, 237]]
->     is too long
->   From schema: Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
->   imx6dl-alti6p.dtb: timer@2098000: clock-names: ['ipg', 'per', 'osc_per']
->     is too long
->   From schema: Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  .../devicetree/bindings/timer/fsl,imxgpt.yaml | 22 ++++++++++++++-----
->  1 file changed, 16 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> index adf617b8f353..21ff51c3f38f 100644
-> --- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> +++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> @@ -46,14 +46,24 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    items:
-> -      - description: SoC GPT ipg clock
-> -      - description: SoC GPT per clock
-> +    anyOf:
+On Thu, 15 Jun 2023 at 00:17, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 14/06/2023 20:18, Linux regression tracking (Thorsten Leemhuis) wrote:
+> > On 02.06.23 18:12, Amit Pundir wrote:
+> >> Move lvs1 and lvs2 regulator nodes up in the rpmh-regulators
+> >> list to workaround a boot regression uncovered by the upstream
+> >> commit ad44ac082fdf ("regulator: qcom-rpmh: Revert "regulator:
+> >> qcom-rpmh: Use PROBE_FORCE_SYNCHRONOUS"").
+> >>
+> >> Without this fix DB845c fail to boot at times because one of the
+> >> lvs1 or lvs2 regulators fail to turn ON in time.
+> >
+> > /me waves friendly
+> >
+> > FWIW, as it's not obvious: this...
+> >
+> >> Link: https://lore.kernel.org/all/CAMi1Hd1avQDcDQf137m2auz2znov4XL8YGrLZsw5edb-NtRJRw@mail.gmail.com/
+> >
+> > ...is a report about a regression. One that we could still solve before
+> > 6.4 is out. One I'll likely will point Linus to, unless a fix comes into
+> > sight.
+> >
+> > When I noticed the reluctant replies to this patch I earlier today asked
+> > in the thread with the report what the plan forward was:
+> > https://lore.kernel.org/all/CAD%3DFV%3DV-h4EUKHCM9UivsFHRsJPY5sAiwXV3a1hUX9DUMkkxdg@mail.gmail.com/
+> >
+> > Dough there replied:
+> >
+> > ```
+> > Of the two proposals made (the revert vs. the reordering of the dts),
+> > the reordering of the dts seems better. It only affects the one buggy
+> > board (rather than preventing us to move to async probe for everyone)
+> > and it also has a chance of actually fixing something (changing the
+> > order that regulators probe in rpmh-regulator might legitimately work
+> > around the problem). That being said, just like the revert the dts
+> > reordering is still just papering over the problem and is fragile /
+> > not guaranteed to work forever.
+> > ```
+> >
+> > Papering over obviously is not good, but has anyone a better idea to fix
+> > this? Or is "not fixing" for some reason an viable option here?
+> >
+>
+> I understand there is a regression, although kernel is not mainline
+> (hash df7443a96851 is unknown) and the only solutions were papering the
+> problem. Reverting commit is a temporary workaround. Moving nodes in DTS
+> is not acceptable because it hides actual problem and only solves this
+> one particular observed problem, while actual issue is still there. It
+> would be nice to be able to reproduce it on real mainline with normal
+> operating system (not AOSP) - with ramdiks/without/whatever. So far no
+> one did it, right?
 
-No need for anyOf. Just add the 3rd entry and 'minItems: 2'.
+No, I did not try non-AOSP system yet. I'll try it tomorrow, if that
+helps. With mainline hash.
 
-> +      - items:
-> +          - description: SoC GPT ipg clock
-> +          - description: SoC GPT per clock
-> +      - items:
-> +          - description: SoC GPT ipg clock
-> +          - description: SoC GPT per clock
-> +          - description: SoC GPT osc_per clock
->  
->    clock-names:
-> -    items:
-> -      - const: ipg
-> -      - const: per
-> +    anyOf:
-> +      - items:
-> +          - const: ipg
-> +          - const: per
-> +      - items:
-> +          - const: ipg
-> +          - const: per
-> +          - const: osc_per
->  
->  required:
->    - compatible
-> -- 
-> 2.39.2
-> 
+Regards,
+Amit Pundir
