@@ -2,122 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27EAA730AF5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 00:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 436A7730B0C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 00:58:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235770AbjFNWtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 18:49:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42756 "EHLO
+        id S233444AbjFNW6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 18:58:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231233AbjFNWtu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 18:49:50 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2321FCC
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 15:49:48 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b34e133f5aso14059351fa.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 15:49:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686782987; x=1689374987;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SLDzJSxQZskr0Cl4XkH1ZSWbdavJeb1yjH9huK60JGU=;
-        b=iFNpS9TkjHbDcvpZX8+Kh6A/ZKdU0v8OccZXmYrctkpTbWirXpm74PxldYCTNEf79q
-         uBI/OPJQjWU+k6qvYvOEaAuWfmX+8h2K5+mJgxmVqXlT0oWB++ZgFmSU92hg6z708TDD
-         fRpAvQErMSVxFiED7s2t3lVr1jd/y3Je4i7GrLmBmqpzH5AOyvwaJX3mA+2IdMxq/+D0
-         Gpz7t/6DsFpARW3dGvjihmwJUGxkuZwwYIzhzUB6USvtbyjoSzRU11XuN5QNB6VJl+SB
-         t3PM0Cdbq3yAHMcMrXFucWy4yjAyPI1lvlGmKR5fJJ+PmyHvSH0US8YV+Cy0YH+PkLMh
-         taOw==
+        with ESMTP id S229453AbjFNW6D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 18:58:03 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1B8211D;
+        Wed, 14 Jun 2023 15:58:02 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-340b48c180bso3445365ab.0;
+        Wed, 14 Jun 2023 15:58:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686782987; x=1689374987;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SLDzJSxQZskr0Cl4XkH1ZSWbdavJeb1yjH9huK60JGU=;
-        b=IfZ2c4JUa3QPPI8omA7F9Np6iYFZL7mppUNp553LfVtF4oooINnTU6cAmoMFaQuPnt
-         1i+IhhZWEJg6hPr5w3aMJYjASxRvFrBPIpnaPd0ROwpsvVDYpZ+AK49LeDUaY3j46fcP
-         mM8j4p5KWZYJmv343na8njc307TGVx4nTQM0qK77LZsFgNxiGcdT4hevC5EOfH1FBHkA
-         R6OYsnjAHK6T+U5n/wx4BFqNvKOVYZX3yZJF1LOkLnpq64c5xi6vWaRt7mQdHGrYiEAj
-         VhtKWAKZlwWCLABLyKDg1FKx+4F6mNTU6fk79cVMx4wLTzscGPbCF2a9ApJPLG8RJ2Vu
-         oo5A==
-X-Gm-Message-State: AC+VfDx2ot9mhHThLrNfvjzP03KwtUxC7YQmHvPCLX4FQiH4O920poYy
-        NFRoK2oZ95g0kP16O0pQwnSURg==
-X-Google-Smtp-Source: ACHHUZ4+0MirKpPxCOYertoARVhJCSV5Rvf1vp9RpZH7q+j92Tud1zhaLDAPPNMsAEIXsHfR0m5mcw==
-X-Received: by 2002:a2e:3305:0:b0:2af:2466:1c18 with SMTP id d5-20020a2e3305000000b002af24661c18mr7682604ljc.18.1686782986787;
-        Wed, 14 Jun 2023 15:49:46 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id j14-20020a2e824e000000b002b1a4238c96sm2765969ljh.128.2023.06.14.15.49.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jun 2023 15:49:45 -0700 (PDT)
-Message-ID: <e70520a9-6c97-07b3-326a-6fa80aad0d6a@linaro.org>
-Date:   Thu, 15 Jun 2023 01:49:45 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 03/18] dt-bindings: soc: qcom: qcom,saw2: define optional
- regulator node
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1686783482; x=1689375482;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BLGM39FLWeHazKbyQ5qG1ef0mVobIExKkf/G6dZDYYk=;
+        b=H8Lzr+iFAzjw5EJ/iz3jIAx3KTj+IG/VB9DMmsQdsp/9fGtS/FnE53FRVRol3xZseG
+         6u/OwzNEwBXtKGEQMJuJduGvLanZB/WrSwBBI62/Cx6ZDGwZZjxyMlR1nEIt87p992AZ
+         Ovf9SdhUYqvGWE5U3YyrDDOVgdcWde+ep+svGMc6vafzsjPckiaw09ghvC19Ye7bCGj1
+         cn9h1I6EbOPcoQhM2xxbeUNi9z/mTt43jEd4xWBUaR+zAyrdt/ySeSRUb6VVm7hNGcFA
+         gHsUC1aAYVzvicYvuUlBmWeuEiijLb6XawBpRdINtNKyu6nPlxYSDs8MIqCkD/7M3D4g
+         tf1g==
+X-Gm-Message-State: AC+VfDyV+WUxQHX05SYc3sJz4dABAIThkqQZYEhAUrTPj7L+Xb6h2yUM
+        jTVUH4UnimzQGxBiLgjQ6Q==
+X-Google-Smtp-Source: ACHHUZ4k17CCU/Cdgkvy8zZd1iBM9okPT7i/UNDIJhF1Nh6e59EfqO7f9Vf5PDbEGaNZhJDBaJyQ1w==
+X-Received: by 2002:a92:c992:0:b0:337:a0d8:cdf9 with SMTP id y18-20020a92c992000000b00337a0d8cdf9mr16280943iln.28.1686783482112;
+        Wed, 14 Jun 2023 15:58:02 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id k11-20020a02cccb000000b004065707eb2bsm5292604jaq.42.2023.06.14.15.58.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 15:58:01 -0700 (PDT)
+Received: (nullmailer pid 3018539 invoked by uid 1000);
+        Wed, 14 Jun 2023 22:57:59 -0000
+Date:   Wed, 14 Jun 2023 16:57:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>
-References: <20230612053922.3284394-1-dmitry.baryshkov@linaro.org>
- <20230612053922.3284394-4-dmitry.baryshkov@linaro.org>
- <e48f6153-0485-9fb9-5fe0-145251a8b367@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <e48f6153-0485-9fb9-5fe0-145251a8b367@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add Nuvoton NCT7362Y binding
+Message-ID: <20230614225759.GA3003701-robh@kernel.org>
+References: <20230607101827.8544-4-zev@bewilderbeest.net>
+ <20230607101827.8544-5-zev@bewilderbeest.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230607101827.8544-5-zev@bewilderbeest.net>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 19:05, Krzysztof Kozlowski wrote:
-> On 12/06/2023 07:39, Dmitry Baryshkov wrote:
->> The SAW2 device can optionally provide a voltage regulator supplying the
->> CPU core, cluster or L2 cache. Describe it in the device bindings.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../devicetree/bindings/soc/qcom/qcom,saw2.yaml | 17 +++++++++++++++++
->>   1 file changed, 17 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml
->> index a016242367b9..b809a9cc0916 100644
->> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml
->> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml
->> @@ -47,6 +47,10 @@ properties:
->>         - description: Base address and size of the alias register region
->>       minItems: 1
->>   
->> +  regulator:
->> +    $ref: /schemas/regulator/regulator.yaml#
+On Wed, Jun 07, 2023 at 03:18:29AM -0700, Zev Weiss wrote:
+> This binding describes the NCT7362Y, a 16-channel fan/GPIO controller.
 > 
-> There was such property in the binding (and DTS!) but a bool. Previous
-> patch silently dropped it, so re-introducing it with different type is
-> confusing.
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> ---
+>  .../bindings/hwmon/nuvoton,nct7362.yaml       | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml
+> new file mode 100644
+> index 000000000000..630dcce7a14c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7362.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7362.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NCT7362Y fan controller
+> +
+> +maintainers:
+> +  - Zev Weiss <zev@bewilderbeest.net>
+> +
+> +description: |
+> +  The Nuvoton NCT7362Y is an I2C fan controller with 16 pins that can
+> +  be independently configured for PWM, fan tach, or GPIO
+> +  functionality.  Each pin's functionality is represented by a child
+> +  node.
+> +
+> +  The datasheet is not publicly available but can be requested from
+> +  Nuvoton via their web site.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,nct7362
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  gpio-line-names:
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +patternProperties:
+> +  "^tach@([1-8]|1[0-7])$":
 
-Could you please propose a better name here? saw-regulator? Or maybe 
-regulator-saw? (as we might get regulator-avs at some point).
+Unit-addresses are hex typically.
 
--- 
-With best wishes
-Dmitry
+Why do you need a child node for tach. Is that a separate h/w block.
 
+> +    type: object
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +        description: The pin number.
+> +
+> +      nuvoton,pulses-per-revolution:
+
+This is a property of the fan attached and belongs in a fan node 
+describing the fan(s) properties. Until a common binding exists, further 
+fan controller bindings are going to be rejected.
+
+The furthest attempt was here[1]. And there's the Aspeed effort[2] which 
+keeps ignoring our feedback. Please work together on these.
+
+Rob
+
+[1] https://lore.kernel.org/all/20221121122932.2493174-2-Naresh.Solanki@9elements.com/ 
+[2] https://lore.kernel.org/all/20230608021839.12769-1-billy_tsai@aspeedtech.com/
