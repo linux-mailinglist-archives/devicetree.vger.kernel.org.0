@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F28F730ABF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 00:31:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 398B2730ACF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 00:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237595AbjFNWbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 18:31:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33768 "EHLO
+        id S235420AbjFNWgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 18:36:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237525AbjFNWbb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 18:31:31 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620B7296B
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 15:30:58 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-3f9d8aa9025so22523441cf.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 15:30:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1686781857; x=1689373857;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+aO4uhrS3vu5vrm4GK53m8MWSqBA/wpZvjrNFJZMmhc=;
-        b=NJhUa9J4fXuIf9/oleWUw/BNkniDmbm11XYLlrPziniJBHFaUeEg13HDIpmtLhJY/+
-         Iaty01xC8c149gz5w0CQfEjLmLAoK6gSN6A3eclbsIkkPJVOKXuCFlfunWWGIx6JhOX9
-         tnCRZ8Cz+ytvFyk4fczD3ua8/Y8HJj9LvCXXU=
+        with ESMTP id S229864AbjFNWgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 18:36:45 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E24F1715;
+        Wed, 14 Jun 2023 15:36:44 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-33dae9244a1so554985ab.0;
+        Wed, 14 Jun 2023 15:36:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686781857; x=1689373857;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+aO4uhrS3vu5vrm4GK53m8MWSqBA/wpZvjrNFJZMmhc=;
-        b=gDZVqXwxl0X3gBE7BYVfhIftDmhdB+qu/8iM0K18Laf/nIGA+JosNvP3liB+TY6Jhl
-         Ke12VPhx0IxXcFHN5fy5aYHC9eK87N7xD0vNvxe5KAz0cWP7WMk0HQOfoMIkQ0h2cbhO
-         ADN+3w2VqoyA+XcqjP+6r+swZjCTGQYAz5HSlbpT9hy2A8JH7UI+41zJh03P46+w7ryX
-         a1G8mLqI3oqbBidmrO8OVA4FwNRqSSf9p3K6EFqekWr9IvLPi46zz6anLhkURHqMbo9E
-         7h7KOyUFNuF5Ea3SekDW092Wd8VJZqJEACmvq5QE63R+OJCk2LuvBjM8MLmjzUgLQroN
-         gfLQ==
-X-Gm-Message-State: AC+VfDyFcNPqK30ZrPbFyynvHgmHSvOilxtmtIXt2y+0XEOAlSTmeME+
-        Em3VJtpi/19MSJ00gXHt94N3hQ==
-X-Google-Smtp-Source: ACHHUZ4hDEZa4s5L6tyUv/T4Q/e4vMlLGqKdLeH1bVtrJ5x6RsR39zgR7NkEUM08x4ACsBq0LB1Jvw==
-X-Received: by 2002:a05:622a:1895:b0:3f6:84ac:659f with SMTP id v21-20020a05622a189500b003f684ac659fmr4190507qtc.29.1686781857096;
-        Wed, 14 Jun 2023 15:30:57 -0700 (PDT)
-Received: from stbirv-lnx-2.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d3-20020ac85443000000b003ef2db16e72sm5419360qtq.94.2023.06.14.15.30.54
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Jun 2023 15:30:56 -0700 (PDT)
-From:   Justin Chen <justin.chen@broadcom.com>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     florian.fainelli@broadcom.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, opendmb@gmail.com, andrew@lunn.ch,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, simon.horman@corigine.com,
-        Justin Chen <justin.chen@broadcom.com>
-Subject: [PATCH net-next v7 11/11] MAINTAINERS: ASP 2.0 Ethernet driver maintainers
-Date:   Wed, 14 Jun 2023 15:30:20 -0700
-Message-Id: <1686781820-832-12-git-send-email-justin.chen@broadcom.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1686781820-832-1-git-send-email-justin.chen@broadcom.com>
-References: <1686781820-832-1-git-send-email-justin.chen@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000006c33f305fe1e814d"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        MIME_HEADER_CTYPE_ONLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS,URIBL_BLOCKED autolearn=ham
+        d=1e100.net; s=20221208; t=1686782203; x=1689374203;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a8Zf94E7WQ/9wcsLl9Q+QIwfy+59Ul0REJcdYnckuKU=;
+        b=LKSRwJHFNOgKNBLdmm73cfTAN9FPD7FFI9hTl1mew1ZcgrXR6W6GWcefVTSUNzCSHO
+         NVMPj6vWJk/ytRC1uKLbXoq0KQQt0U01rLZJouLZNfniWcBz5SySU/l+4shsYyb9Ivh0
+         LigYNZW2CVgmnwmLnEDnmeDThEvpNLA/O/0OepMpxFPXQ9jUe/oInj3vL/I4ZsO0gSdB
+         JyzpbTFuBlPj3qP/40xGzlvnx+uQLnkomXCoBNSjq80L2ZZIb+wetxSqpcyYxUb8t2OQ
+         byAp8VPBY8GD34HckaikPaAF4XpDKY7AN4KqOBgInyPzijkX7HXijYCWrv6FhQPPI4Xh
+         K6CQ==
+X-Gm-Message-State: AC+VfDxDKpeXh3w5X1hD28p0tVizyNc2Qr1rOECGyax3G+GE3V+Y5lWX
+        yfTTT9QoPmD7c4vuUnW/hhzMH1GkKw==
+X-Google-Smtp-Source: ACHHUZ6JU7DCDYGAQ8/JWSyyuSrxrSNxeLDGbGaZcPHrcCorHY6KxNRpZMeRV9tKTmRrIK4JA7KNIg==
+X-Received: by 2002:a92:d6c8:0:b0:33f:c2f8:e503 with SMTP id z8-20020a92d6c8000000b0033fc2f8e503mr2224864ilp.5.1686782203533;
+        Wed, 14 Jun 2023 15:36:43 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id o27-20020a02c6bb000000b004186badba5esm5136264jan.36.2023.06.14.15.36.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 15:36:42 -0700 (PDT)
+Received: (nullmailer pid 2990560 invoked by uid 1000);
+        Wed, 14 Jun 2023 22:36:40 -0000
+Date:   Wed, 14 Jun 2023 16:36:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+Cc:     "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 4/4] dt-bindings: firmware: arm,scmi: Add support for
+ pinctrl protocol
+Message-ID: <20230614223640.GA2980828-robh@kernel.org>
+References: <cover.1686063941.git.oleksii_moisieiev@epam.com>
+ <a2be28c0aec04fdc3684f56801c78bcc498c3471.1686063941.git.oleksii_moisieiev@epam.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a2be28c0aec04fdc3684f56801c78bcc498c3471.1686063941.git.oleksii_moisieiev@epam.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,122 +72,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000006c33f305fe1e814d
+On Tue, Jun 06, 2023 at 04:22:28PM +0000, Oleksii Moisieiev wrote:
+> Add new SCMI v3.2 pinctrl protocol bindings definitions and example.
+> 
+> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> ---
+>  .../bindings/firmware/arm,scmi.yaml           | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 5824c43e9893..a19aa184bbd1 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -233,6 +233,39 @@ properties:
+>        reg:
+>          const: 0x18
+>  
+> +  protocol@19:
+> +    $ref: '#/$defs/protocol-node'
 
-Add maintainers entry for ASP 2.0 Ethernet driver.
+       unevaluatedProperties: false
 
-Reviewed-by: Simon Horman <simon.horman@corigine.com>
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Signed-off-by: Justin Chen <justin.chen@broadcom.com>
----
-v3
-	- Change from gmail to broadcom emails
+> +
+> +    properties:
+> +      reg:
+> +        const: 0x19
+> +
+> +      '#pinctrl-cells':
+> +        const: 0
+> +
+> +    allOf:
+> +      - $ref: /schemas/pinctrl/pinctrl.yaml#
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Group this and the '#/$defs/protocol-node' $ref under allOf.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd9752472d77..d6b37b45c7fd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4195,6 +4195,15 @@ F:	drivers/net/mdio/mdio-bcm-unimac.c
- F:	include/linux/platform_data/bcmgenet.h
- F:	include/linux/platform_data/mdio-bcm-unimac.h
- 
-+BROADCOM ASP 2.0 ETHERNET DRIVER
-+M:	Justin Chen <justin.chen@broadcom.com>
-+M:	Florian Fainelli <florian.fainelli@broadcom.com>
-+L:	bcm-kernel-feedback-list@broadcom.com
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-+F:	drivers/net/ethernet/broadcom/asp2/
-+
- BROADCOM IPROC ARM ARCHITECTURE
- M:	Ray Jui <rjui@broadcom.com>
- M:	Scott Branden <sbranden@broadcom.com>
--- 
-2.7.4
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties:
+> +      anyOf:
 
+Don't need anyOf with only 1 entry.
 
---0000000000006c33f305fe1e814d
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+But the use of additionalProperties is usually for existing cases where 
+the pin config nodes had no naming convention. For new bindings, define 
+a node name pattern (under patternProperties). I'd suggest '-pins$' as 
+used elsewhere.
 
-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
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIAYSD1aKjl3NbxB7rgMw5KJY8Gb4gqYkQurt
-hrcXOL16MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMDYxNDIy
-MzA1N1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQBbSnc5C3CRhh/AjXrQYANVgAQ4S/MkYrfcjPLJf9lbG1Ajqv8NiWot
-tyWkBzCHcS5TPgJuuh7e6hP/qH2a5x1FRRRwjtlc+LjXb7pTk3/+9xd4e9l3Yv5jy2VLXqZZOpPB
-JWVdrWJeWViQA2a2WidzNKo+9gb+mr+Lcd8wRlRUdtZqMRgZMD9AL+NqWGyGBDuVk/2rXrOVSO47
-PDfk9DX8exQwo4Ud/3/NY1gHeKhKXbso1MWVs7z7hVdOtmtmPnjQgldVTOT82LtEp0wl63xXU9a1
-hctKWIJCr5kc4CLhWws5QkWNOGQvaEyI2/jFiIbsGSCn2NOSuwmfKQmtbPOj
---0000000000006c33f305fe1e814d--
+> +        - type: object
+> +          allOf:
+> +            - $ref: /schemas/pinctrl/pincfg-node.yaml#
+> +            - $ref: /schemas/pinctrl/pinmux-node.yaml#
+> +
+> +          description:
+> +            A pin multiplexing sub-node describe how to configure a
+> +            set of pins is some desired function.
+> +            A single sub-node may define several pin configurations.
+> +            This sub-node is using default pinctrl bindings to configure
+> +            pin multiplexing and using SCMI protocol to apply specified
+> +            configuration using SCMI protocol.
+> +
+> +          unevaluatedProperties: false
+> +
+>  additionalProperties: false
+>  
+>  $defs:
+> @@ -384,6 +417,26 @@ examples:
+>              scmi_powercap: protocol@18 {
+>                  reg = <0x18>;
+>              };
+> +
+> +            scmi_pinctrl: protocol@19 {
+> +                reg = <0x19>;
+> +                #pinctrl-cells = <0>;
+> +
+> +                i2c2 {
+> +                    groups = "i2c2_a", "i2c2_b";
+> +                    function = "i2c2";
+> +                };
+> +
+> +                pins_mdio {
+> +                    groups = "avb_mdio";
+> +                    drive-strength = <24>;
+> +                };
+> +
+> +                keys_pins: keys {
+> +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
+> +                    bias-pull-up;
+> +                };
+> +            };
+>          };
+>      };
+>  
+> -- 
+> 2.25.1
