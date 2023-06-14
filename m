@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F70E730244
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 16:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA8BF730263
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 16:53:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234906AbjFNOr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 10:47:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
+        id S235505AbjFNOxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 10:53:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245275AbjFNOrl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 10:47:41 -0400
+        with ESMTP id S236546AbjFNOxh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 10:53:37 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 863A3107;
-        Wed, 14 Jun 2023 07:47:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D46B5;
+        Wed, 14 Jun 2023 07:53:36 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 18FEF6431E;
-        Wed, 14 Jun 2023 14:47:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB20DC433C9;
-        Wed, 14 Jun 2023 14:47:37 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D40726431E;
+        Wed, 14 Jun 2023 14:53:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EDA4C433C8;
+        Wed, 14 Jun 2023 14:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686754059;
-        bh=YBvoPI/IEVtbY5FNxrgQvaHMUweYY58AfZfxW/FUfzs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e3LNvXuGGMNQtEoM1FFIbIMA86EOKQwXEt+3tALeKxbJwddDvByyh87z716lOdEGC
-         ay6V6UsAWKdIpfQeOHUTj6uRCRuxoBSQ/ETGAidKLmmAZaEKJNYu7cWBppubt22OZZ
-         qs7CsgD6eYxPn/6tp8A8zc/IMx9Wwqni4eq6r2HIflQzfEAn2bw6+gBVmE50N1J2VT
-         xdtONfXgAZr/MN4pOsv/pIk3cO5LxiMXaxi73cLALIFbTrJFx3D++N+lWZ75xNd4yO
-         zo3zVf4keiHIC1Lp+4V1UkRY9UGYRsboF0z0HH6nx3D0gBBtowUDJNQ1wU4JmuqIAX
-         iiI/VHltBNFtQ==
-Date:   Wed, 14 Jun 2023 07:51:00 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>, Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        s=k20201202; t=1686754415;
+        bh=elELjTb5CnmTM2XaxI5ZmqLsRLHJSh0zLpyqDqLqeo4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iTzA02CnNktI4jteOUeJAOBEh97nLdnvqQ0t4r6fLZx494kfNYI98Fgcg9MGcfjjb
+         V5YeSym8TiiZVP7kVWEJ3TzeWS+SvyO4ASrq9m01PHUnfo4Wneu1spNNx11ibG1yRK
+         PzBJYZaYi1emlmEKM5I2jh1I6A7MRo2ubdb+fetsHShXAvDpcI/IM5DBFU6bZlzsjA
+         KhJF4NlnseDCqmQYFk6eWxpd5i7mS0cTP+a/qkZviHmfYTDibA6FYXcoJM6Te0Y8B9
+         1YnijUlDt327FmyRnlXnJcQutNuQOgc/RUCSxkYiSgVUHJqAREUCQ8e+eFK/l0iWfJ
+         Ok1HNPkHUadZw==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2b1a66e71f9so10741731fa.2;
+        Wed, 14 Jun 2023 07:53:35 -0700 (PDT)
+X-Gm-Message-State: AC+VfDzgsQuPzSqgCWpJzuqcG//uWIXfau1zCo5I2cW1ZlXVJ4lhAfyD
+        s6X0CnHBqUbzhLZhx47VN3blct6Gq/RWUzyi9Q==
+X-Google-Smtp-Source: ACHHUZ5aR+XP7RGKR8+NYMzGzPjE2EL3zthsqJqokval211gOAcriEHJNBqyqtqLG+07Dr56T7OrilwKEd3Dp2vZQ4g=
+X-Received: by 2002:a2e:9d15:0:b0:2b3:43e6:4335 with SMTP id
+ t21-20020a2e9d15000000b002b343e64335mr2222354lji.11.1686754413281; Wed, 14
+ Jun 2023 07:53:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230613201231.2826352-1-robh@kernel.org> <20230613201231.2826352-2-robh@kernel.org>
+ <20230613-sculptor-prepaid-9dc5afcc2dcc@spud>
+In-Reply-To: <20230613-sculptor-prepaid-9dc5afcc2dcc@spud>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 14 Jun 2023 08:53:20 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJFT630XJ8xOrz47w5bMbGv12koCHc1NdhQQANdTrE4ow@mail.gmail.com>
+Message-ID: <CAL_JsqJFT630XJ8xOrz47w5bMbGv12koCHc1NdhQQANdTrE4ow@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: crypto: fsl,sec-v4.0-mon: Add
+ "linux,keycodes" and deprecate "linux,keycode"
+To:     Conor Dooley <conor@kernel.org>
+Cc:     =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>,
+        Pankaj Gupta <pankaj.gupta@nxp.com>,
+        Gaurav Jain <gaurav.jain@nxp.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 24/26] arm64: dts: qcom: sa8775p-ride: enable the SerDes
- PHY
-Message-ID: <20230614145100.xgkme7or7k2i552d@ripper>
-References: <20230612092355.87937-1-brgl@bgdev.pl>
- <20230612092355.87937-25-brgl@bgdev.pl>
- <0a57a9ad-67ab-cf1a-9bb7-c645de833450@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0a57a9ad-67ab-cf1a-9bb7-c645de833450@linaro.org>
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -74,59 +72,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 09:02:23PM +0200, Konrad Dybcio wrote:
-> 
-> 
-> On 12.06.2023 11:23, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > 
-> > Enable the internal PHY on sa8775p-ride.
-> > 
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> ---
-> 
-> Bjorn, Krzysztof.. I was thinking whether we should even be disabling
-> such hardware by default..
-> 
+On Tue, Jun 13, 2023 at 3:11=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Tue, Jun 13, 2023 at 02:12:30PM -0600, Rob Herring wrote:
+> > The "linux,keycode" property is non-standard. Add the common property
+> > "linux,keycodes" and mark "linux,keycode" deprecated so that the mistak=
+e
+> > is not propagated.
+>
+> This is actually used in the driver for this device, should the driver
+> not also be updated to use the corrected property?
 
-I'm in favor of keeping the configuration as generic/common/simple as
-possible. So I like your suggestion.
+Yes, but that doesn't have to be in sync with the binding change. I
+mainly want to add this so it doesn't get propagated to new users
+rather than move this case off of linux,keycode. Also, the input
+subsystem should probably have a common function to read
+linux,keycodes as right now every driver does it.
 
-Regards,
-Bjorn
-
-> Things that reside on the SoC and have no external dependencies could
-> be left enabled:
-> 
-> pros:
-> - less fluff
-> - we'd probably very quickly fix the missing PM calls
-> - possibly less fw_devlink woes if we fail to get rid of references to
->   the disabled component?
-> 
-> cons:
-> - boot times
-> - slightly more memory usage
-> 
-> Konrad
-> >  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> > index ab767cfa51ff..7754788ea775 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> > @@ -355,6 +355,10 @@ &qupv3_id_2 {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&serdes_phy {
-> > +	status = "okay";
-> > +};
-> > +
-> >  &sleep_clk {
-> >  	clock-frequency = <32764>;
-> >  };
+Rob
