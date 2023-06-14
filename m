@@ -2,213 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8BBA7308C6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 682437308CA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233511AbjFNTuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 15:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38196 "EHLO
+        id S232233AbjFNTvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 15:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230301AbjFNTux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:50:53 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5973E1B2;
-        Wed, 14 Jun 2023 12:50:52 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35EJohhn008327;
-        Wed, 14 Jun 2023 19:50:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=5QQGspG3g+2JaPYjv9lq5YgPV0Br5XZHNqjGJ39Hy7Y=;
- b=Bah/WaBSozLpgoUjzq94YAyWiLOSKiN4RPl1XHAsf7zLDBmqd8tPYrhig8TCeCT4QgDU
- Z9URQUkbPvXA54fk/4z0MQEiUJgPyNYg/ZLl4zAFb4L/VgSeU893YpnyGuJLQWNthXqP
- E3ihQ8m5LGdERBQhZQarCxxrRyvl5Drf/rU7V3cix9Ww+8R3mZQXHwPo4Xpj9Lqmcv1M
- I3/Uli9OkWQHIAzBNB+4ea6bMu+dqjSYbH+zSq6ToSBqJ42PI/2A1R57mHoJ8XStSifI
- zMVT0o85TfaIJLA+fA5B+Q/R8RLbD7gGG9ZOS6hHGaWDW1pncU9SNJz7pmecY3K/Rtp1 Gg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7ks680st-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 19:50:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35EJoHqA002831
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 19:50:17 GMT
-Received: from akhilpo-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 14 Jun 2023 12:50:12 -0700
-Date:   Thu, 15 Jun 2023 01:20:09 +0530
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229944AbjFNTve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:51:34 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA2E1B2;
+        Wed, 14 Jun 2023 12:51:33 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-54fd171cedcso593303a12.3;
+        Wed, 14 Jun 2023 12:51:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686772293; x=1689364293;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Md9lJKmlQJvh1OZaUzX4DgJIrqm76TL4au4CTghcG/E=;
+        b=V9thkchiKXb6KvcRpmH/5tE9tuUGZmrVmTfS7pyVleoqsTeSmhRR9IvR8QY1biyoPp
+         U6YrtENufunf28NM775x4KZRl6ucdZDoAnzir4SoqIPQ5Nmo9EBxgxoeAJ+1R/NK0v+a
+         vOwGkkeHoPP6liCkXMt23SYxJTvokHgy0wrZjYChsit6Q019r0jGZl/BCgg7vVgcP6lQ
+         JqqyFDqfGs0ITwi5atzwRNShjy4YoybKD/k3w//ENXiFJENvXT+oBUq5QrX497nejLyD
+         QksrO3itaCMlV6msn2LA6oCa7xLMYc8Rxx0gkyR+OV0SJIBO2shoPD4wcAgva43SLzjs
+         bYSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686772293; x=1689364293;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Md9lJKmlQJvh1OZaUzX4DgJIrqm76TL4au4CTghcG/E=;
+        b=gKVSo6a86cgMG8XZyajvVNUF6mRzNneHhL/iOS/Y3g+fydrqxuq7pDmwWTUz+TZPYY
+         2jD1FDHLpUdPIlkIHDkx/Srw/NrBnjlKtp+6SpnOudnfxG0ebWIyZn4IsSU5xw4gBNkY
+         fD/NzSv6/sl8ozbJPa4H5jTRswjMy8kFyk4YqKzx1Mrlw7I0KpfBIo4nzriA0R4Bjv1h
+         P97Fmws2UgpASyn92uk1/0lF+zB/9zIYWo24g6xm1jtzQYsLJmV4s4EQFtsXSAu1euO3
+         2HW2cC4JZ6eh/LDTjixFs/8ft4qBpVvoP1vOC3hk3RvJX7j+sfGzQQk0Ed9rdoMltnq/
+         CQnw==
+X-Gm-Message-State: AC+VfDy2HkDNerwitGGaVVf4tWqWNNlXKpiqHjJPQcw5W9t9ylRVfyj4
+        0Z7+dRst0qhpgc0Y9u3XYWMdbFqnezuLhyGEe2g=
+X-Google-Smtp-Source: ACHHUZ4VBmluG6ODSEiZ+YZ6cKjQzEkNwgG2Jx/k+1Wq+rcowseSsrI8mlOimnJNxswGpbk4W/FFajCTW8uIUS7z47c=
+X-Received: by 2002:a17:90b:4b8f:b0:256:2fd4:e238 with SMTP id
+ lr15-20020a17090b4b8f00b002562fd4e238mr2401011pjb.38.1686772292745; Wed, 14
+ Jun 2023 12:51:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230524083153.2046084-1-s.hauer@pengutronix.de>
+ <20230614134034.3p3p75a3jophi2eu@mercury.elektranox.org> <20230614152721.eep5ip726ump2kpe@mercury.elektranox.org>
+In-Reply-To: <20230614152721.eep5ip726ump2kpe@mercury.elektranox.org>
+From:   Vincent Legoll <vincent.legoll@gmail.com>
+Date:   Wed, 14 Jun 2023 19:51:21 +0000
+Message-ID: <CAEwRq=qufx6Y6JCD3pzA31y7mfXUxFeMLtwthE_N7rYY7k9+-A@mail.gmail.com>
+Subject: Re: [PATCH v5 00/25] Add perf support to the rockchip-dfi driver
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Rob Clark <robdclark@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH v8 16/18] drm/msm/a6xx: Use adreno_is_aXYZ macros in
- speedbin matching
-Message-ID: <u74y24z3jmklfyx7zvmiw3oakejm3t253tcs2kmrupl6l3qqpa@3rsubk6pkz5b>
-References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
- <20230223-topic-gmuwrapper-v8-16-69c68206609e@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230223-topic-gmuwrapper-v8-16-69c68206609e@linaro.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 75qc-1zx_NpXC3zHzMSNdYL5rpXtTRQE
-X-Proofpoint-GUID: 75qc-1zx_NpXC3zHzMSNdYL5rpXtTRQE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-14_14,2023-06-14_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=878 bulkscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 priorityscore=1501 adultscore=0
- spamscore=0 malwarescore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306140174
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 29, 2023 at 03:52:35PM +0200, Konrad Dybcio wrote:
-> 
-> Before transitioning to using per-SoC and not per-Adreno speedbin
-> fuse values (need another patchset to land elsewhere), a good
-> improvement/stopgap solution is to use adreno_is_aXYZ macros in
-> place of explicit revision matching. Do so to allow differentiating
-> between A619 and A619_holi.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi,
 
-Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+On Wed, Jun 14, 2023 at 3:27=E2=80=AFPM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+> On Wed, Jun 14, 2023 at 03:40:34PM +0200, Sebastian Reichel wrote:
+> > I tested the series on RK3588 EVB1. The read/write byts looks
+> > sensible. Sometimes cycles reads unrealistic values, though:
+> >
+> > 18446744070475110400      rockchip_ddr/cycles/
+>
+> I have seen this going off a few times with and without memory
+> pressure. If it's way off, it always seems to follow the same
+> pattern: The upper 32 bits are 0xffffffff instead of 0x00000000
+> with the lower 32 bits containing sensible data.
 
--Akhil
-> ---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 18 +++++++++---------
->  drivers/gpu/drm/msm/adreno/adreno_gpu.h | 14 ++++++++++++--
->  2 files changed, 21 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> index 5faa85543428..ca4ffa44097e 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> @@ -2163,23 +2163,23 @@ static u32 adreno_7c3_get_speed_bin(u32 fuse)
->  	return UINT_MAX;
->  }
->  
-> -static u32 fuse_to_supp_hw(struct device *dev, struct adreno_rev rev, u32 fuse)
-> +static u32 fuse_to_supp_hw(struct device *dev, struct adreno_gpu *adreno_gpu, u32 fuse)
->  {
->  	u32 val = UINT_MAX;
->  
-> -	if (adreno_cmp_rev(ADRENO_REV(6, 1, 8, ANY_ID), rev))
-> +	if (adreno_is_a618(adreno_gpu))
->  		val = a618_get_speed_bin(fuse);
->  
-> -	else if (adreno_cmp_rev(ADRENO_REV(6, 1, 9, ANY_ID), rev))
-> +	else if (adreno_is_a619(adreno_gpu))
->  		val = a619_get_speed_bin(fuse);
->  
-> -	else if (adreno_cmp_rev(ADRENO_REV(6, 3, 5, ANY_ID), rev))
-> +	else if (adreno_is_7c3(adreno_gpu))
->  		val = adreno_7c3_get_speed_bin(fuse);
->  
-> -	else if (adreno_cmp_rev(ADRENO_REV(6, 4, 0, ANY_ID), rev))
-> +	else if (adreno_is_a640(adreno_gpu))
->  		val = a640_get_speed_bin(fuse);
->  
-> -	else if (adreno_cmp_rev(ADRENO_REV(6, 5, 0, ANY_ID), rev))
-> +	else if (adreno_is_a650(adreno_gpu))
->  		val = a650_get_speed_bin(fuse);
->  
->  	if (val == UINT_MAX) {
-> @@ -2192,7 +2192,7 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_rev rev, u32 fuse)
->  	return (1 << val);
->  }
->  
-> -static int a6xx_set_supported_hw(struct device *dev, struct adreno_rev rev)
-> +static int a6xx_set_supported_hw(struct device *dev, struct adreno_gpu *adreno_gpu)
->  {
->  	u32 supp_hw;
->  	u32 speedbin;
-> @@ -2211,7 +2211,7 @@ static int a6xx_set_supported_hw(struct device *dev, struct adreno_rev rev)
->  		return ret;
->  	}
->  
-> -	supp_hw = fuse_to_supp_hw(dev, rev, speedbin);
-> +	supp_hw = fuse_to_supp_hw(dev, adreno_gpu, speedbin);
->  
->  	ret = devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
->  	if (ret)
-> @@ -2330,7 +2330,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
->  
->  	a6xx_llc_slices_init(pdev, a6xx_gpu);
->  
-> -	ret = a6xx_set_supported_hw(&pdev->dev, config->rev);
-> +	ret = a6xx_set_supported_hw(&pdev->dev, adreno_gpu);
->  	if (ret) {
->  		a6xx_destroy(&(a6xx_gpu->base.base));
->  		return ERR_PTR(ret);
-> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> index 7a5d595d4b99..21513cec038f 100644
-> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> @@ -268,9 +268,9 @@ static inline int adreno_is_a630(struct adreno_gpu *gpu)
->  	return gpu->revn == 630;
->  }
->  
-> -static inline int adreno_is_a640_family(struct adreno_gpu *gpu)
-> +static inline int adreno_is_a640(struct adreno_gpu *gpu)
->  {
-> -	return (gpu->revn == 640) || (gpu->revn == 680);
-> +	return gpu->revn == 640;
->  }
->  
->  static inline int adreno_is_a650(struct adreno_gpu *gpu)
-> @@ -289,6 +289,11 @@ static inline int adreno_is_a660(struct adreno_gpu *gpu)
->  	return gpu->revn == 660;
->  }
->  
-> +static inline int adreno_is_a680(struct adreno_gpu *gpu)
-> +{
-> +	return gpu->revn == 680;
-> +}
-> +
->  /* check for a615, a616, a618, a619 or any derivatives */
->  static inline int adreno_is_a615_family(struct adreno_gpu *gpu)
->  {
-> @@ -306,6 +311,11 @@ static inline int adreno_is_a650_family(struct adreno_gpu *gpu)
->  	return gpu->revn == 650 || gpu->revn == 620 || adreno_is_a660_family(gpu);
->  }
->  
-> +static inline int adreno_is_a640_family(struct adreno_gpu *gpu)
-> +{
-> +	return adreno_is_a640(gpu) || adreno_is_a680(gpu);
-> +}
-> +
->  u64 adreno_private_address_space_size(struct msm_gpu *gpu);
->  int adreno_get_param(struct msm_gpu *gpu, struct msm_file_private *ctx,
->  		     uint32_t param, uint64_t *value, uint32_t *len);
-> 
-> -- 
-> 2.40.1
-> 
+How often is that happening ?
+
+I have been running this in a loop with varying sleep duration for
+the last few hours without hitting it, with and without memtester.
+
+REPEATS=3D1000
+MAX_DURATION=3D100
+
+OUT=3D"/tmp/perf-dfi-rk3588-${REPEATS}x${MAX_DURATION}s.txt"
+echo -n > $OUT
+
+for i in $(seq $REPEATS) ; do
+  DURATION=3D$(shuf -i "0-${MAX_DURATION}" -n 1)
+  echo -n "${DURATION} : " >> $OUT
+  perf stat -a -e rockchip_ddr/cycles/ sleep $DURATION 2>&1 | awk
+'/rockchip_ddr/ {printf("%X\n", int($1))}' >> $OUT
+done
+
+BTW, it's on a musl-libc arm64 void linux userspace.
+
+--=20
+Vincent Legoll
