@@ -2,118 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2834A72F9BA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 11:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56DCD72FA2B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 12:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243498AbjFNJtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 05:49:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        id S235339AbjFNKME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 06:12:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243461AbjFNJs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 05:48:58 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFAF32127;
-        Wed, 14 Jun 2023 02:48:29 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35E9lPfE108113;
-        Wed, 14 Jun 2023 04:47:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686736045;
-        bh=QRGK/l0B6hsumWBFXxBYbdnIT7AJCivqxdHFN1d+CMw=;
-        h=From:Date:Subject:To:CC;
-        b=dB0PIvecIRJVObzdNmjBxVvCKiv2bdX4guJSl4z1IKu5CgkbQWrCPaAEeftC6bs1p
-         gCpYQSDAmSKMjHVbmIxSH0dp7/IBuJV5yjC9b5zZ5PoCLRagDahZIiRfZ67DX2weZS
-         C8t+plbcq5x0gpHi2gVwzUHOkgjl20X/TznePps4=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35E9lPqI017877
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 14 Jun 2023 04:47:25 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Jun 2023 04:47:25 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Jun 2023 04:47:24 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35E9lOgS008848;
-        Wed, 14 Jun 2023 04:47:24 -0500
-From:   Kamlesh Gurudasani <kamlesh@ti.com>
-Date:   Wed, 14 Jun 2023 15:16:56 +0530
-Subject: [PATCH v2] arm64: dts: ti: k3-am62-main: Remove power-domains from
- crypto node
+        with ESMTP id S235298AbjFNKMD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 06:12:03 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB53EE4A;
+        Wed, 14 Jun 2023 03:12:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686737522; x=1718273522;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=uD8/gYwMDSCsMRFNcUWFBwbUbtR8k/3vS7WndAmhn9w=;
+  b=Udac43X5jGVAfoW0ahH0WictImDDGpY5mEppdbL7bYMHOIYGIdLrMGyP
+   VvLDWojtdwQKsvYmhveS8Po+yrIm/hFd36HCKmcKnFwgsO2U4t9jcanUZ
+   jee1DQ7J8CLeHKpr6iL8pZSFfqqjZxEsNs1T8A7xC9QY7uHV/T2N1tDtr
+   fSeQG3M7jiVqJ9tPKAa4enysdpstQ/LkW7q8liQtUDPzCuT+oVLaK4eUy
+   /7/kHyTQsinKQFC1myVSEP5mkTED0t3CJayF9jX7Tac5+luEaoRmZDuw9
+   XGddwSUDzPfW/VClKX8NI2WilZHmJFd4AfXrPilAlN1TDjEarsA5uv8xR
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; 
+   d="asc'?scan'208";a="218425827"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jun 2023 03:12:01 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 14 Jun 2023 03:12:00 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 14 Jun 2023 03:11:56 -0700
+Date:   Wed, 14 Jun 2023 11:11:31 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Manikandan Muralidharan <manikandan.m@microchip.com>,
+        <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <claudiu.beznea@microchip.com>, <sam@ravnborg.org>,
+        <bbrezillon@kernel.org>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Hari.PrasathGE@microchip.com>,
+        <Balamanikandan.Gunasundar@microchip.com>,
+        <Durai.ManickamKR@microchip.com>, <Nayabbasha.Sayed@microchip.com>,
+        <Dharma.B@microchip.com>, <Varshini.Rajendran@microchip.com>,
+        <Balakrishnan.S@microchip.com>
+Subject: Re: [PATCH 1/9] dt-bindings: mfd: Add bindings for SAM9X7 LCD
+ controller
+Message-ID: <20230614-sterling-staff-5c9c03392a2c@wendy>
+References: <20230613070426.467389-1-manikandan.m@microchip.com>
+ <20230613070426.467389-2-manikandan.m@microchip.com>
+ <20230613-scouting-barricade-56cadb14657c@spud>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230614-sa3ul-v2-1-3a832b82339c@ti.com>
-X-B4-Tracking: v=1; b=H4sIAI+MiWQC/x2N0QrCMAwAf2XkeYWuLSL+iviQtNkW0CqJymDs3
- 9ft8biDW8FYhQ1u3QrKfzF51wah7yDPWCd2UhpD8CH6y5CcYfw9XaZEZSBKxV+htYTGjhRrno/
- 6hfZlPcRHeZTlHNwf27YDnWyJXnAAAAA=
-To:     kamlesh <kamlesh@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1686736043; l=1274;
- i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
- bh=E/J6WsSEaN6BRpocHKGuz8QWaNU9pO7nxprAGwZE4bA=;
- b=cyXcaX8mN8CMapm5bqNXpQqoI4v6tJenKqnu6x3xAh6Ur0L0ePFia4K4TXk8GmQ2OY46P5vf5
- oh1EwH9CkuYCRt5r5tic3qVUb7mTc/dQ/T/i2zlqDXEjnIS9jTdgB6I
-X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
- pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="MxL6TWAcPPWIl+0J"
+Content-Disposition: inline
+In-Reply-To: <20230613-scouting-barricade-56cadb14657c@spud>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,TVD_SUBJ_WIPE_DEBT,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Only SYSFW has control of SA3UL power.
-From SYSFW 08.04.00.002, for security reasons, device ID for power
-management of SA3UL has been removed.
+--MxL6TWAcPPWIl+0J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-"power-domains" property in crypto node tries to access
-the SA3UL, for which it gets NACK and hence, SA3UL driver doesn't
-probe properly.
+On Tue, Jun 13, 2023 at 07:18:25PM +0100, Conor Dooley wrote:
+> On Tue, Jun 13, 2023 at 12:34:18PM +0530, Manikandan Muralidharan wrote:
+> > Add new compatible string for the XLCD controller on SAM9X7 SoC.
+>=20
+> You should probably indicate here why this is not compatible with the
+> existing SoCs that are supported. To hazard a guess, it is the HLCDC IP
+> (I forget the exact letters!)?
 
-Fixes: 8af893654c02 ("arm64: dts: ti: k3-am62-main: Enable crypto accelerator")
+Manikandan pointed out off list that this was not clear.
+Looking at it again, I think I actually truncated my sentence - it
+should've been something like "it is the HLCDC IP ... is not a subset of
+the XLCDC IP." Sorry for that Manikandan.
 
-Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
----
-v2 changes:
--make commit message clearer
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+> If so,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Cheers,
+> Conor.
+>=20
+> >=20
+> > Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt b/Do=
+cumentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> > index 5f8880cc757e..7c77b6bf4adb 100644
+> > --- a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> > +++ b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> > @@ -8,6 +8,7 @@ Required properties:
+> >     "atmel,sama5d3-hlcdc"
+> >     "atmel,sama5d4-hlcdc"
+> >     "microchip,sam9x60-hlcdc"
+> > +   "microchip,sam9x7-xlcdc"
+> >   - reg: base address and size of the HLCDC device registers.
+> >   - clock-names: the name of the 3 clocks requested by the HLCDC device.
+> >     Should contain "periph_clk", "sys_clk" and "slow_clk".
+> > --=20
+> > 2.25.1
+> >=20
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index b3e4857bbbe4..18a6e9ffaf58 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -174,7 +174,6 @@ k3_reset: reset-controller {
- 	crypto: crypto@40900000 {
- 		compatible = "ti,am62-sa3ul";
- 		reg = <0x00 0x40900000 0x00 0x1200>;
--		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
 
----
-base-commit: 53ab6975c12d1ad86c599a8927e8c698b144d669
-change-id: 20230614-sa3ul-cb4bd1bb4d08
 
-Best regards,
--- 
-Kamlesh Gurudasani <kamlesh@ti.com>
+--MxL6TWAcPPWIl+0J
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZImSUwAKCRB4tDGHoIJi
+0nVyAQDnv7lrFojIn1tU/unzTD77IuY5h3hrvcCGgDe30HmP4QD8D+26ukUo6Woe
+6Krnu+i2ZCkcn7QoUXiR9c179UNQ6w8=
+=TYyE
+-----END PGP SIGNATURE-----
+
+--MxL6TWAcPPWIl+0J--
