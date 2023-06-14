@@ -2,102 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19659730827
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2FB273082E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 21:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236547AbjFNTYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 15:24:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50466 "EHLO
+        id S234360AbjFNT0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 15:26:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236328AbjFNTYR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:24:17 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47EA26AB;
-        Wed, 14 Jun 2023 12:24:09 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-33b1e83e204so30488785ab.1;
-        Wed, 14 Jun 2023 12:24:09 -0700 (PDT)
+        with ESMTP id S233833AbjFNTZS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 15:25:18 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42AE8184
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 12:25:16 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b1c30a1653so15669061fa.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 12:25:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google; t=1686770714; x=1689362714;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xlx36jZmWtlb1erKTGin5MoZTXEskRXNa44H+85CF9o=;
+        b=aR+nWH8JD8bkRswCJOyVPg1veCPQRZ3PrDplyOQ0rWAdrde/kltUtsaLW8zJ1BZjgN
+         V/PbwUiXBqJsNh0xyZROi+/ezJkQjaTtzHK4uyGLULT/VVLFsnimHdnfJXfr7B+jPnQ1
+         yr4McbRCoOI9lcSFOh3zhc2Ys4W0ofj+bm+mg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686770649; x=1689362649;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DZTazYirMY9xGAVePk9FhtRz7wWuYlRcAUZCeAbC9vM=;
-        b=V4Du2XlEXxqJXbqcxdDfZg7JKnmWO3HgTUggowAyxLOoeLuO2g5yt5srAi+iA0trRE
-         RJ+25BDOQYqRJnWz54O++YbaIBqsaDtOEqUSZXWSO1clQVjORrhRvSamiQm5Ws1Ml5tw
-         s3CfZf0TF2POyArtmCw4b3sL6hVSOOjedVR6slWHfdG8gARTer5cFnudvaZbha2LQiQU
-         kpunzt8bhVDkfGHWMmiWXsudVF7QddakV36qLHVc3VF3mWdrseSbAjBsVl08fB1LU2Sa
-         p/XshgPKGz1A/YbbG8ddYNOY7yl6j7Tt+qMs/5CzktHwRh/iZsKdky3mPTSuJxnAxmZ9
-         Z4KQ==
-X-Gm-Message-State: AC+VfDx9nPCs4ATI158RGZ8QFacQ/zwi5CclVIoL+EOM/8jIGlhMRuFi
-        nIYL2iS0gGHwsijq8D+FeA==
-X-Google-Smtp-Source: ACHHUZ5qOw6B5GUbYi7IAQDYex7KX0oMJM7SrRshnZTuUButMPrybEqPW52kwr6pvCOjJmrasMv72w==
-X-Received: by 2002:a92:d692:0:b0:33b:16e9:bba5 with SMTP id p18-20020a92d692000000b0033b16e9bba5mr13950251iln.28.1686770649080;
-        Wed, 14 Jun 2023 12:24:09 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h17-20020a92c091000000b00340a1e616e9sm1425065ile.16.2023.06.14.12.24.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jun 2023 12:24:08 -0700 (PDT)
-Received: (nullmailer pid 2595490 invoked by uid 1000);
-        Wed, 14 Jun 2023 19:24:05 -0000
-Date:   Wed, 14 Jun 2023 13:24:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Hao Zhang <quic_hazha@quicinc.com>
-Cc:     Konrad Dybcio <konradybcio@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-doc@vger.kernel.org, coresight@lists.linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-kernel@vger.kernel.org, James Clark <james.clark@arm.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v6 2/3] dt-bindings: arm: Add support for Coresight dummy
- trace
-Message-ID: <168677064517.2595428.2508485047061221881.robh@kernel.org>
-References: <20230602084149.40031-1-quic_hazha@quicinc.com>
- <20230602084149.40031-3-quic_hazha@quicinc.com>
+        d=1e100.net; s=20221208; t=1686770714; x=1689362714;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xlx36jZmWtlb1erKTGin5MoZTXEskRXNa44H+85CF9o=;
+        b=O0liJgZmuZLewwkBasTPrOpZfTu0t9jhb11N+PkI1l93dKetg0JpizpOsBLkSIJG/h
+         pKvoIoPOlReeRmTOmH7MxM2R1DGIEaUjUWTk3DYn4YIDvZf4jGDMDaYbHukFaIzOM4eC
+         N9r1dvChHiFxeugrWNEWxRUQa2Q1hRJpMSz6JZOenJGYwljgfFt7Vco1tRPjp0nh+S8f
+         JJ8FFuWADG8gWNQUHiPhIE1BOfBVw/g9p4A6XsmI0DMyrplRwUr7WlCQW8vx3LRCv85K
+         GZw6ZLuUg8gw2o56ACc2CzaxhiKIf2sxEy/BhCq11Q2NIEOkDFtXk+OELoVKAIoq7cZw
+         aY6w==
+X-Gm-Message-State: AC+VfDwd0iAh6lelRvchzRRGjbsMjxoNv8ll/iZWBJEnj5ReB6E27qdA
+        ApW0dxvxYeOUBDzfhlV36IX6og==
+X-Google-Smtp-Source: ACHHUZ6M40gmMoCv/5AcV2iEYCshha0B/q7xkC1RmAgGFw58zKoc4sHncOWtEp+3UoFyrAwNPfr+zQ==
+X-Received: by 2002:a2e:2416:0:b0:2af:23c2:5dce with SMTP id k22-20020a2e2416000000b002af23c25dcemr6861472ljk.25.1686770714247;
+        Wed, 14 Jun 2023 12:25:14 -0700 (PDT)
+Received: from [192.168.1.128] ([80.208.70.1])
+        by smtp.gmail.com with ESMTPSA id ca15-20020aa7cd6f000000b00514a5f7a145sm7958814edb.37.2023.06.14.12.25.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jun 2023 12:25:13 -0700 (PDT)
+Message-ID: <a65003fb-4557-a1ab-bee3-103ec5e6de6e@rasmusvillemoes.dk>
+Date:   Wed, 14 Jun 2023 21:25:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230602084149.40031-3-quic_hazha@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: timer: fsl,imxgpt: Add imx8mp-gpt compatible
+Content-Language: en-US, da
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        Jesse Taube <Mr.Bossman075@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>
+References: <20230614113612.365199-1-linux@rasmusvillemoes.dk>
+ <8f2d0993-4b19-18f3-1261-01c7149672e2@linaro.org>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <8f2d0993-4b19-18f3-1261-01c7149672e2@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 02 Jun 2023 16:41:48 +0800, Hao Zhang wrote:
-> This patch add support for Coresight dummy source and dummy sink trace.
+On 14/06/2023 19.19, Krzysztof Kozlowski wrote:
+> On 14/06/2023 13:36, Rasmus Villemoes wrote:
+>> The imx8mp has the same GPT as imx6dl. Add fsl,imx8mp-gpt to the set
+>> of values that can be used together with fsl,imx6dl-gpt.
+>>
+>> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+>> ---
+>> This allows what imx8mp.dtsi already does, namely
+>>
+>> 	compatible = "fsl,imx8mp-gpt", "fsl,imx6dl-gpt";
+>>
 > 
-> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
-> ---
->  .../arm/arm,coresight-dummy-sink.yaml         | 73 +++++++++++++++++++
->  .../arm/arm,coresight-dummy-source.yaml       | 71 ++++++++++++++++++
->  2 files changed, 144 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-> 
+> https://lore.kernel.org/all/20230327173526.851734-2-u.kleine-koenig@pengutronix.de/
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks, I looked in -next and didn't find anything, but didn't think to
+check lore.
+
+So could somebody please pick that up? Shawn?
+
+Rasmus
 
