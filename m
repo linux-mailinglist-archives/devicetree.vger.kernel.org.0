@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EDB372F421
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 07:29:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E34572F429
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 07:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234074AbjFNF25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 01:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52050 "EHLO
+        id S242889AbjFNFce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 01:32:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232250AbjFNF24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 01:28:56 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD878198D;
-        Tue, 13 Jun 2023 22:28:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686720535; x=1718256535;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kFYvEOf4qnpF1L29yohf4l+qA/2M0cadu9gIeKSADAc=;
-  b=QBR/C1AYeLJv92JDTEgkkoPtj6ulDRGcoQJ1PwcR3KsOTB6MWy4m2L0Z
-   ec58+Ctz0APRqbT02L1I37QvM3PPS9hf3Z3i8bbjeyom3JRP4Fx9+3sOU
-   9OPehQjUOoL7AOv+9hfps4J3HwY23Gy1fGt0dedXvbbq5+8HrJfMH2Hp9
-   vpR3obcGRYzp8HVlTu5dpwqnTJxJqCxhionqfw1Qmfutg2SWIiRGdSPSE
-   xgrJF49maBGqc8oB+yFqxD0Q0SoYCQp/7cSYNabeZcOUWMVyel4deILcI
-   Ers/LHn45TycOguCVPWiOwnRNBFYapWrtaFLYTcwiqjlBtVvvW0mjbRiw
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="424409605"
-X-IronPort-AV: E=Sophos;i="6.00,241,1681196400"; 
-   d="scan'208";a="424409605"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2023 22:28:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="886081786"
-X-IronPort-AV: E=Sophos;i="6.00,241,1681196400"; 
-   d="scan'208";a="886081786"
-Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
-  by orsmga005.jf.intel.com with ESMTP; 13 Jun 2023 22:28:52 -0700
-Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q9J2k-0000Dh-1K;
-        Wed, 14 Jun 2023 05:28:01 +0000
-Date:   Wed, 14 Jun 2023 13:27:03 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] rtc: isl12022: implement support for the
- #clock-cells DT property
-Message-ID: <202306141318.xPzubJXo-lkp@intel.com>
-References: <20230613130011.305589-9-linux@rasmusvillemoes.dk>
+        with ESMTP id S234327AbjFNFcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 01:32:33 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8AE3198D;
+        Tue, 13 Jun 2023 22:32:31 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b1b72dc2feso2916541fa.3;
+        Tue, 13 Jun 2023 22:32:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686720750; x=1689312750;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g+qH04ox/9SD7VXix3RPkQb/VsDtH0DaySagYZUq/B4=;
+        b=VYxsw7luRgE4KyyGUu3p8JPYSAvnNE82w32YWzIKxFYDlkM+ed26p6NCOfm77az836
+         gYkv0bAAxwOsfoa5dOL99T2sV7tndqha9bepcF4DBz+W/wDOXspEEo0glz2TOMtgSsk1
+         p8ekb16fdUJR6Y7Zh0zn6A0oAjDqdgrtRHg/58MYdwoCQ9rFZP4N5chLFKOq+xMcgEc4
+         2K/4sDmaim89aORrmQnajWutAHsCZiseFH2J+zNO2IYGgMLM5j2TXnZxnUnnSjdhFdIO
+         9Y8MlFwN9qJbvwO1lOdY9zBcungpEXvnq3i+dMEezTwcwaXLUR9/FxlOA3t2IIDZtMTo
+         pOLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686720750; x=1689312750;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g+qH04ox/9SD7VXix3RPkQb/VsDtH0DaySagYZUq/B4=;
+        b=bBBL+mVjdIkH2Dg7dY8WG1HA/inRoX0XRRUM/a/chYdL1LZNT53KPFT60fIUZ2vph4
+         lwSQV2pC35cc5DEQYOSfTyDIsnsL1IXlTofhzf7/ngcWzOIHB9PR7JfjajzSc0+gSKU9
+         BEF5j0tDhCBf0jGo1OqnHx8zwmXG1dkhv1r0gW5b8COGug79kUFcLn0LoDji+Db4klSr
+         NEj4YHc/UWZbj0V0UrTI1P+rv9CWJ4ZCaRTfPRY2BdVqCmSnUUSLYi+dJA/jIjFWTAkC
+         jRkVwdixzpjGnaIkPM64ceIwIhwhukJx9u8r5jrOQEMb9YfTL749Y9D77TywR10F3bbs
+         sKkA==
+X-Gm-Message-State: AC+VfDyP0vY1XaREr5QO6VgVAdUoipNVIOr9dLcOi/EMvknm0dApK394
+        v1qkqPxKj6G0N8tU2vMvzKlrhRNXs5Y=
+X-Google-Smtp-Source: ACHHUZ6f0/qoB5+qg+dWtoPRZABLaQPDJ64eb8rT3Qr5lcNQOi0DwHSzDRDR1JWPGCaDHIQe63QIqg==
+X-Received: by 2002:a05:651c:83:b0:2b3:429f:2b96 with SMTP id 3-20020a05651c008300b002b3429f2b96mr1300888ljq.37.1686720749511;
+        Tue, 13 Jun 2023 22:32:29 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id j9-20020a2e8249000000b002a7746800d0sm2433403ljh.130.2023.06.13.22.32.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 22:32:29 -0700 (PDT)
+Message-ID: <fac025f6-6187-2258-9d49-61799754294f@gmail.com>
+Date:   Wed, 14 Jun 2023 08:32:27 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230613130011.305589-9-linux@rasmusvillemoes.dk>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 1/3] dt-bindings: ROHM BU27010 RGBC + flickering sensor
+Content-Language: en-US, en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1686650184.git.mazziesaccount@gmail.com>
+ <98e0b6fba7ff7515b541a517296d5b89dc73ce5b.1686651445.git.mazziesaccount@gmail.com>
+ <22dadcf6-9879-efb2-9987-7f286b38b93b@linaro.org>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <22dadcf6-9879-efb2-9987-7f286b38b93b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,43 +81,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rasmus,
+On 6/13/23 21:42, Krzysztof Kozlowski wrote:
+> On 13/06/2023 12:19, Matti Vaittinen wrote:
+>> The ROHM BU27010 is a sensor with 6 photodiodes (red, green, blue, clear,
+>> IR and flickering detection) with five configurable channels. Red, green
+>> and flickering detection being always available and two out of the rest
+>> three (blue, clear, IR) can be selected to be simultaneously measured.
+>> Typical application is adjusting LCD/OLED backlight of TVs, mobile phones
+>> and tablet PCs.
+> 
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
+> e.g.: "dt-bindings: iio:"
+> 
 
-kernel test robot noticed the following build errors:
+Right, thanks!
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on robh/for-next linus/master v6.4-rc6 next-20230613]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+>>
+>> Add binding document for ROHM BU27010.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> ---
+>>   .../bindings/iio/light/rohm,bu27010.yaml      | 49 +++++++++++++++++++
+>>   1 file changed, 49 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml
+>> new file mode 100644
+>> index 000000000000..2bde9d2f1def
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml
+>> @@ -0,0 +1,49 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/light/rohm,bu27010.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: ROHM BU27010 color sensor
+>> +
+>> +maintainers:
+>> +  - Matti Vaittinen <mazziesaccount@gmail.com>
+>> +
+>> +description: |
+>> +  The ROHM BU27010 is a sensor with 6 photodiodes (red, green, blue, clear,
+>> +  IR and flickering detection) with five configurable channels. Red, green
+>> +  and flickering detection being always available and two out of the rest
+>> +  three (blue, clear, IR) can be selected to be simultaneously measured.
+>> +  Typical application is adjusting LCD/OLED backlight of TVs, mobile phones
+>> +  and tablet PCs.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: rohm,bu27010
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  vdd-supply: true
+> 
+> Isn't vdd-supply required for the hardware to work? How does it get the
+> power otherwise?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rasmus-Villemoes/rtc-isl12022-remove-wrong-warning-for-low-battery-level/20230613-210308
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20230613130011.305589-9-linux%40rasmusvillemoes.dk
-patch subject: [PATCH v2 8/8] rtc: isl12022: implement support for the #clock-cells DT property
-config: i386-randconfig-i012-20230612 (https://download.01.org/0day-ci/archive/20230614/202306141318.xPzubJXo-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build):
-        git remote add abelloni https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git
-        git fetch abelloni rtc-next
-        git checkout abelloni/rtc-next
-        b4 shazam https://lore.kernel.org/r/20230613130011.305589-9-linux@rasmusvillemoes.dk
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+The BU27010 works by magic smoke. When smoke leaks out the sensor no 
+longer works.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306141318.xPzubJXo-lkp@intel.com/
+Ehh, I think you are right. My thinking was that it is not uncommon for 
+people to not have all fixed regulators present in device-tree. But I 
+agree, this does not mean we should encourage that. I'll add supply to 
+the list of the required properties.
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      light-sensor@38 {
+>> +        compatible = "rohm,bu27010";
+>> +        reg = <0x38>;
+>> +      };
+>> +    };
+>> +
+> 
+> Trailing blank line.
 
->> ERROR: modpost: "__clk_hw_register_fixed_rate" [drivers/rtc/rtc-isl12022.ko] undefined!
->> ERROR: modpost: "of_clk_hw_simple_get" [drivers/rtc/rtc-isl12022.ko] undefined!
->> ERROR: modpost: "devm_of_clk_add_hw_provider" [drivers/rtc/rtc-isl12022.ko] undefined!
+Indeed. Thanks.
+
+Yours,
+	-- Matti
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
