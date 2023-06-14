@@ -2,61 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09326730B84
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 01:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4BE3730B9B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 01:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbjFNX1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 19:27:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59514 "EHLO
+        id S230343AbjFNXe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 19:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjFNX13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 19:27:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C211BC9
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 16:27:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ED10862E08
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 23:27:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BF22C433C8;
-        Wed, 14 Jun 2023 23:27:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686785247;
-        bh=AnIjgimwx2S1m0gzqmHATBFa/i6g3s8a4ydJ5r3x/Rs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RRus5YFDCL9SBthaNPHPSJyQs1Frer+fvQ3o1R3eoz/7oAIuUi+3Vdgp/tiygFdXa
-         bcpQW2ikqU6UZ5kLELUdUUayjm18KOFuIEQrcepca2H8AgcQx0irECzR9E8Gp9T7M/
-         Pn+SNEG5AqdLiftHxqJLJp641dI2BZRefy0yVuVcB9O3IbaC2KYgrPTsFJnpx+KWJt
-         5XFaEv8p+7e1DRUJ7VhN9L/e1uBxTplOQNt4w27tatzoGIFgFjIhEkO4Q1KCzlW5Sm
-         d0LfkCvWDerWS8ktrAPLFfcWA+i5VfmPMzOmX2PY3L086hU9+wScUfkip7UlKw82F2
-         JbZj08ELHrF8g==
-Received: by mercury (Postfix, from userid 1000)
-        id 57EE41060A05; Thu, 15 Jun 2023 01:27:24 +0200 (CEST)
-Date:   Thu, 15 Jun 2023 01:27:24 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        with ESMTP id S236658AbjFNXez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 19:34:55 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047311BE3;
+        Wed, 14 Jun 2023 16:34:55 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-77797beb42dso260419739f.2;
+        Wed, 14 Jun 2023 16:34:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686785694; x=1689377694;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IUtSSGVFN/yztXgk7QCaXH/KHJwVxtAYPWqGRDI7ZjQ=;
+        b=gBJ9b+dVILlOBn0T4+GXCac6NNXBMDzg/MV8nvblNx+Kr4G4lVoM2eiDVyfc+xxTEf
+         vyco+GNcVdZjh3+L+/bCRAiUyW4ZFnAfDfl7LQdRneyGlS73bv+Vwn921o6OmB+T89vm
+         fkSd1r8wTkhOJTws/3H29Z4gjbfJLOK+OMc2jtDF3jl2SLu4svJnPP0arYFemLmr5j7E
+         zcBT0llYsBrN4O7Vn40BBu4/jZJRecmU4yDLfJCrJAgaMwuL25JFNi9AkwpU3JoxDqKJ
+         GYenMlupJ8FJGJjMTAVofATuPC+jObmslkT3QlaS7F5s9yz0lGwXKhMC0MiRmpK1NdCt
+         ClPw==
+X-Gm-Message-State: AC+VfDzf1WzamNi47JPOz4e5OayfqXiJS2RosE1qJPHBT5RfvVwg4wBv
+        TlSU+kQmyOGeKQvnm+5kUQ==
+X-Google-Smtp-Source: ACHHUZ6oXhegu7bEeIdTFjl2xc570z5mqCu0pw4FCI2MAW8eGDOpi2PDgUNBv3rpLuUD1XQFGvZAAg==
+X-Received: by 2002:a5e:df43:0:b0:777:8e86:7702 with SMTP id g3-20020a5edf43000000b007778e867702mr15365097ioq.16.1686785694195;
+        Wed, 14 Jun 2023 16:34:54 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id r23-20020a056638101700b0041cd626ea0csm5364731jab.147.2023.06.14.16.34.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 16:34:53 -0700 (PDT)
+Received: (nullmailer pid 3202829 invoked by uid 1000);
+        Wed, 14 Jun 2023 23:34:51 -0000
+Date:   Wed, 14 Jun 2023 17:34:51 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        dri-devel@lists.freedesktop.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         devicetree@vger.kernel.org,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 7/7] drm/panel: sitronix-st7789v: Check display ID
-Message-ID: <20230614232724.yer2ikvfzmaiejrd@mercury.elektranox.org>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
- <20230609145951.853533-8-miquel.raynal@bootlin.com>
- <20230610204525.GA1042549@ravnborg.org>
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] of: module: Export of_device_uevent()
+Message-ID: <20230614233451.GA3201131-robh@kernel.org>
+References: <20230609155634.1495338-1-miquel.raynal@bootlin.com>
+ <20230609155634.1495338-2-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wqcgzxp4uzinylbl"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230610204525.GA1042549@ravnborg.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230609155634.1495338-2-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,177 +70,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 09, 2023 at 05:56:33PM +0200, Miquel Raynal wrote:
+> The content of of_device_uevent() is currently hardcoded in a driver
+> that can be compiled as a module. Nothing prevents of_device_uevent() to
+> be exported to modules, most of the other helpers in of/device.c
+> actually are. The reason why this helper was not exported is because it
+> has been so far only useful in drivers/base, which is built-in anyway.
+> 
+> With the idea of getting rid of the hardcoded implementation of
+> of_device_uevent() in other places in the kernel, let's export it to GPL
+> modules (very much like its cousins in the same file).
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  drivers/of/device.c | 1 +
+>  1 file changed, 1 insertion(+)
 
---wqcgzxp4uzinylbl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Assuming Thierry will pick this series up.
 
-Hi,
+Acked-by: Rob Herring <robh@kernel.org>
 
-On Sat, Jun 10, 2023 at 10:45:25PM +0200, Sam Ravnborg wrote:
-> Hi Miquel,
->=20
-> On Fri, Jun 09, 2023 at 04:59:51PM +0200, Miquel Raynal wrote:
-> > A very basic debugging rule when a device is connected for the first
-> > time is to access a read-only register which contains known data in
-> > order to ensure the communication protocol is properly working. This
-> > driver lacked any read helper which is often a critical peace for
-> > fastening bring-ups.
-> >=20
-> > Add a read helper and use it to verify the communication with the panel
-> > is working as soon as possible in order to fail early if this is not the
-> > case.
->=20
-> The read helper seems like a log of general boiler plate code.
-> I briefly looked into the use of regmap for the spi communication,
-> but it did not look like it supported the bit9 stuff.
->=20
-> I did not stare enough to add a reviewd by, but the approach is fine
-> and it is good to detech issues early.
-
-The st7789v datasheet describes a setup where SPI is connected
-unidirectional (i.e. without MISO). In that case the ID check
-will fail.
-
--- Sebastian
-
->=20
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> >=20
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../gpu/drm/panel/panel-sitronix-st7789v.c    | 78 +++++++++++++++++++
-> >  1 file changed, 78 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/g=
-pu/drm/panel/panel-sitronix-st7789v.c
-> > index 7de192a3a8aa..fb21d52a7a63 100644
-> > --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> > +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> > @@ -113,6 +113,9 @@
-> >  			return val;		\
-> >  	} while (0)
-> > =20
-> > +#define ST7789V_IDS { 0x85, 0x85, 0x52 }
-> > +#define ST7789V_IDS_SIZE 3
-> > +
-> >  struct st7789v_panel_info {
-> >  	const struct drm_display_mode *display_mode;
-> >  	u16 width_mm;
-> > @@ -165,6 +168,77 @@ static int st7789v_write_data(struct st7789v *ctx,=
- u8 cmd)
-> >  	return st7789v_spi_write(ctx, ST7789V_DATA, cmd);
-> >  }
-> > =20
-> > +static int st7789v_read_data(struct st7789v *ctx, u8 cmd, u8 *buf,
-> > +			     unsigned int len)
-> > +{
-> > +	struct spi_transfer xfer[2] =3D { };
-> > +	struct spi_message msg;
-> > +	u16 txbuf =3D ((ST7789V_COMMAND & 1) << 8) | cmd;
-> > +	u16 rxbuf[4] =3D {};
-> > +	u8 bit9 =3D 0;
-> > +	int ret, i;
-> > +
-> > +	switch (len) {
-> > +	case 1:
-> > +	case 3:
-> > +	case 4:
-> > +		break;
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> > +	}
-> > +
-> > +	spi_message_init(&msg);
-> > +
-> > +	xfer[0].tx_buf =3D &txbuf;
-> > +	xfer[0].len =3D sizeof(txbuf);
-> > +	spi_message_add_tail(&xfer[0], &msg);
-> > +
-> > +	xfer[1].rx_buf =3D rxbuf;
-> > +	xfer[1].len =3D len * 2;
-> > +	spi_message_add_tail(&xfer[1], &msg);
-> > +
-> > +	ret =3D spi_sync(ctx->spi, &msg);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	for (i =3D 0; i < len; i++) {
-> > +		buf[i] =3D rxbuf[i] >> i | (bit9 << (9 - i));
-> > +		if (i)
-> > +			bit9 =3D rxbuf[i] & GENMASK(i - 1, 0);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int st7789v_check_id(struct drm_panel *panel)
-> > +{
-> > +	const u8 st7789v_ids[ST7789V_IDS_SIZE] =3D ST7789V_IDS;
-> > +	struct st7789v *ctx =3D panel_to_st7789v(panel);
-> > +	bool invalid_ids =3D false;
-> > +	int ret, i;
-> > +	u8 ids[3];
-> > +
-> > +	ret =3D st7789v_read_data(ctx, MIPI_DCS_GET_DISPLAY_ID, ids, ST7789V_=
-IDS_SIZE);
-> > +	if (ret) {
-> > +		dev_err(panel->dev, "Failed to read IDs\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	for (i =3D 0; i < ST7789V_IDS_SIZE; i++) {
-> > +		if (ids[i] !=3D st7789v_ids[i]) {
-> > +			invalid_ids =3D true;
-> > +			break;
-> > +		}
-> > +	}
-> > +
-> > +	if (invalid_ids) {
-> > +		dev_err(panel->dev, "Unrecognized panel IDs");
-> > +		return -EIO;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static const struct drm_display_mode default_mode =3D {
-> >  	.clock =3D 7000,
-> >  	.hdisplay =3D 240,
-> > @@ -237,6 +311,10 @@ static int st7789v_prepare(struct drm_panel *panel)
-> >  	gpiod_set_value(ctx->reset, 0);
-> >  	msleep(120);
-> > =20
-> > +	ret =3D st7789v_check_id(panel);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >  	ST7789V_TEST(ret, st7789v_write_command(ctx, MIPI_DCS_EXIT_SLEEP_MODE=
-));
-> > =20
-> >  	/* We need to wait 120ms after a sleep out command */
-> > --=20
-> > 2.34.1
-
---wqcgzxp4uzinylbl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSKTNsACgkQ2O7X88g7
-+povkxAAjqfzwQSIeCS1XA4AzXKg72Xqtfg/G7cSamo0UHX0oeHKWe0CChKUgbgO
-o9dvRoTRTCon5U8sKNIoqOeLtI4dkaTl3fdzirPpLaNggN8gZJ9KAhABboENZCDA
-ACAqE18Vfe0YmAAVBiFUXvN03eWpMIr4yacafEDlUV6Emh6qwPzjh8huTym9RjQy
-AFLoI+Or6efi7MoDW6DSOiDcuImUgqxLVwHGN1lexgkrFhxMfzEsdYkYTUUFyIe4
-tVibibTm0gTi6o5Cy9+VD1mHgb2XEINRa2Ra3o6vK1HbdGhJ6MWgEGOSRbKNTTdl
-8ScBiGwWC4y33hlb1ageAyJUdvkDFrZILlhjk0c+jdtGDzvlqIIAAjKNCuAZI9l+
-oQ4NmN2slv78OetIgk5SADLY4P3z2vuZmdoKC778rNVDXxuPX3quOkHycN6akQzE
-gV/tL5W6Mdfo4gbeHG0A4LuJtcSjV3+ETAYE3BRm9ULg0EK2o/U1a2YedN/4WWG0
-xj769g1DJ7x6PRCPjHp0Pk2bFqwpwuoCwAFiBQYANnvTJbf68ToiF6SebHRkJvYm
-oVsqZsGPVl7SQAIe/ldMwwI3O0PznIPTJxi34nTFZPEY/k+GJ+eZE59gooHrS+wg
-jRN5/57OFpKpIFvmdurhHZSe9D7T8mCUzI9xEzYultADUc02fpo=
-=hNAn
------END PGP SIGNATURE-----
-
---wqcgzxp4uzinylbl--
+> 
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index 0f00f1b80708..90131de6d75b 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -312,6 +312,7 @@ void of_device_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  	}
+>  	mutex_unlock(&of_mutex);
+>  }
+> +EXPORT_SYMBOL_GPL(of_device_uevent);
+>  
+>  int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -- 
+> 2.34.1
+> 
