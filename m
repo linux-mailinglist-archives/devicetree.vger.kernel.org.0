@@ -2,141 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63F957301E3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 16:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6546A730221
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 16:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245614AbjFNO2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 10:28:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51764 "EHLO
+        id S236113AbjFNOlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 10:41:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232831AbjFNO2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 10:28:10 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412C21BEC;
-        Wed, 14 Jun 2023 07:28:04 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35ECuAqQ016379;
-        Wed, 14 Jun 2023 14:27:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=7egZ/xDr+6s6Ab/jtW/skQRX649b2mJpNoO9csEkpJw=;
- b=ieuJrTa2RNmfEmeirBU0urOTi9fJ+y21IhMGvoBPgoeW/lG6V1pHpLpWrg/NDjD2kpxR
- EvBDYru7bA4QiHbC/KW9ZC8iDOe01X3uSjuqRiLipgKzyA2TjgunWIE9F+KUJyAqd2Ut
- MR6S4DSbWFioXd1K75qfdgDrsJJehizgguW17veGQF0NxR3d0vegcrApV+trJ3BAACKC
- xkK2ZUo0cqbP6U3Hed8/dV46Vjd19gNJXRa0Gq1JCkvTULrFLKPvsFpK6P1F3oj70E6C
- /LIh+Mv6KNR7m+/8+27s7fYJdvWUurJ9yP8GFVsNZ/oWQiV9gbsN8u/nnph8rxd1S5JP Eg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7auy0rn6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 14:27:54 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35EERr4d009262
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Jun 2023 14:27:53 GMT
-Received: from [10.216.59.137] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 14 Jun
- 2023 07:27:47 -0700
-Message-ID: <b39ce1c6-d134-c1b8-4764-fd824c2a2470@quicinc.com>
-Date:   Wed, 14 Jun 2023 19:57:44 +0530
+        with ESMTP id S231331AbjFNOlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 10:41:09 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C4FE4D;
+        Wed, 14 Jun 2023 07:41:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686753666; x=1718289666;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=2H0918Rqgl2h0POEbvxjKrAOS5koy+0gr8134epCcvI=;
+  b=0kT+tcBjqqDhaYUYfgWt9Rto7mN4yWrLgrNiBMHL28DSv/3E2K1xvpza
+   ++sLApWSRfBX/F1GAwYy5niylm14ZDWqCl+Zidtmy5PfeHD1RZ3vn7GgZ
+   SlAXy6sE7pNKTNdPedHo+JYCnpOgcUxwV7KO0Eo9JV0PJcGByxvKIxEzz
+   BWFTtLAv+oOpSPyBSegLBuv3J+hRxu64bQ65GrNejTwW56YVZESFABw1z
+   vAZ35syPnO6qQlCo1wiWBARTse+/lD7/e/vgkD2BGHpOi1PS0rQ9ew4YA
+   XRmeV7zJMjuMeL10jsJOcaf4fZKowuf4aBqAztJtXoU//8a3pFJbNbIJh
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; 
+   d="scan'208";a="220274370"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jun 2023 07:41:05 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 14 Jun 2023 07:41:05 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Wed, 14 Jun 2023 07:41:00 -0700
+Message-ID: <423eef3c-54f0-5c88-9bc9-82c0198b6da6@microchip.com>
+Date:   Wed, 14 Jun 2023 16:40:50 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: qcom: ep: Add interconnects path
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/9] dt-bindings: mfd: Add bindings for SAM9X7 LCD
+ controller
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <manivannan.sadhasivam@linaro.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <1686311249-6857-1-git-send-email-quic_krichai@quicinc.com>
- <1686311249-6857-2-git-send-email-quic_krichai@quicinc.com>
- <168631638078.662811.2470035951687478762.robh@kernel.org>
-From:   Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <168631638078.662811.2470035951687478762.robh@kernel.org>
+To:     Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Manikandan Muralidharan <manikandan.m@microchip.com>,
+        <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        <sam@ravnborg.org>, <bbrezillon@kernel.org>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Hari.PrasathGE@microchip.com>,
+        <Balamanikandan.Gunasundar@microchip.com>,
+        <Durai.ManickamKR@microchip.com>, <Nayabbasha.Sayed@microchip.com>,
+        <Dharma.B@microchip.com>, <Varshini.Rajendran@microchip.com>,
+        <Balakrishnan.S@microchip.com>
+References: <20230613070426.467389-1-manikandan.m@microchip.com>
+ <20230613070426.467389-2-manikandan.m@microchip.com>
+ <a0b059d1-df4d-10ce-fb7c-7acea0a20793@linaro.org>
+ <20230613-slider-coherent-d508d67afc91@spud>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230613-slider-coherent-d508d67afc91@spud>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: C9N1FKMECrTIFhkYK7rT5sWzZRyR2LRp
-X-Proofpoint-GUID: C9N1FKMECrTIFhkYK7rT5sWzZRyR2LRp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-14_10,2023-06-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 spamscore=0 impostorscore=0 mlxlogscore=945
- adultscore=0 phishscore=0 suspectscore=0 bulkscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306140125
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/06/2023 at 20:21, Conor Dooley wrote:
+> On Tue, Jun 13, 2023 at 08:17:13PM +0200, Krzysztof Kozlowski wrote:
+>> On 13/06/2023 09:04, Manikandan Muralidharan wrote:
+>>> Add new compatible string for the XLCD controller on SAM9X7 SoC.
+>>>
+>>> Signed-off-by: Manikandan Muralidharan<manikandan.m@microchip.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+>>> index 5f8880cc757e..7c77b6bf4adb 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+>>> +++ b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+>>> @@ -8,6 +8,7 @@ Required properties:
+>>>      "atmel,sama5d3-hlcdc"
+>>>      "atmel,sama5d4-hlcdc"
+>>>      "microchip,sam9x60-hlcdc"
+>>> +   "microchip,sam9x7-xlcdc"
+>> Google says sam9x7 is a series, not a SoC. Please add compatibles for
+>> specific SoCs, not for series.
+> We had this one a few weeks ago, see
+> https://lore.kernel.org/all/add5e49e-8416-ba9f-819a-da944938c05f@microchip.com/
+> and its parents. Outcome of that seemed to be that using "sam9x7" was fine.
 
-On 6/9/2023 6:43 PM, Rob Herring wrote:
-> On Fri, 09 Jun 2023 17:17:26 +0530, Krishna chaitanya chundru wrote:
->> Some platforms may not boot if a device driver doesn't initialize
->> the interconnect path. Mostly it is handled by the bootloader but
->> we have starting to see cases where bootloader simply ignores them.
->>
->> Add the "pcie-mem" interconnect path as a required property to the
->> bindings.
->>
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
->>
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml:206:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
->
-> dtschema/dtc warnings/errors:
-> make[1]: *** Deleting file 'Documentation/devicetree/bindings/pci/qcom,pcie-ep.example.dts'
-> Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml:206:1: found a tab character where an indentation space is expected
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/pci/qcom,pcie-ep.example.dts] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> ./Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml:206:1: found a tab character where an indentation space is expected
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml: ignoring, error parsing file
-> make: *** [Makefile:1512: dt_binding_check] Error 2
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1686311249-6857-2-git-send-email-quic_krichai@quicinc.com
->
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
->
-Sorry for sending patch without checking for errors, I fixed the errors 
-in the new patch.
+And it's where it begins to be funny, as the LCD is precisely one aspect 
+where we differentiate between sam9x75, sam9x72 and sam9x70...
+So please Manikandan sort this out if difference between these chips 
+will be better handled with different compatibility string, in 
+particular about //, LVDS and MIPI-DSI variants!
+
+Regards,
+   Nicolas
+
+-- 
+Nicolas Ferre
+
