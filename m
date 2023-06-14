@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8A872F4FC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 08:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC4BE72F509
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 08:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243270AbjFNGhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 02:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47818 "EHLO
+        id S242515AbjFNGkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 02:40:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243191AbjFNGg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 02:36:56 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF2EF1FD7
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 23:36:51 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9823de726c3so64897066b.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 23:36:51 -0700 (PDT)
+        with ESMTP id S242729AbjFNGjq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 02:39:46 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA571BC9
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 23:39:45 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f6283d0d84so8007989e87.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 23:39:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686724610; x=1689316610;
+        d=linaro.org; s=google; t=1686724783; x=1689316783;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XElC6rJY+nGGxGJnZgLE09h9gOSS2v7GKSOK1qVdyVI=;
-        b=fuAfEz2EgreON8JdOjjBrnjF7OA2dMgDAfL5ynlmQeA/mwKnHTuxrooKd6fGZhUAqp
-         B6mMgA9b3lFbHLucy7PJiRP5QWK//A5kX1FTr/SSHuHEPDGMAWcHQMFZT6K5MSVyairJ
-         TvjkPlEvPsMYYMygo//Bl8ZHXeGwVQfkkyWZBleJ/7GH2CIUJgEhb5wQK8IHyU7d1lLg
-         Pi/ubGy0dOacMObD0O1eKxBCXzwObmzooCr9o/L032KqR5zdQrxvE75a4WfwwnqYvyR9
-         4mnaoWJXVOY00p7l6KZZ6rNQDw08opKOS5HMnKx3R7Kkzpx6zrSJXzThwsWNskSIul80
-         Lo2g==
+        bh=7Q8Ite1Y2wooAZNS/2RrLNMbn3Ax42VQdzwJmVMSBFY=;
+        b=lfk7ZaXsqgxVJ2Go/4Vk4ajvcbFYZlHMDvkZO9hw8UNxtHawnH/CViSGFam+265v6T
+         Pwohy158+Dy8W8vDlkz8lRfR+fqkdu9dr9ZscDNbySYAumEffLLsVI3fd9AptFOFCERV
+         fF/7tDTj83x+tlIm6318ki75AFwjLEW2E+Lic14eQfk7im2xaPgzW41CONpN+enlPNj8
+         Yt3t2GaNBYhqyusLRyyCcslZks6C89BQIZjfpSnc7120bAhElHMIcsFA87VAR3bH8ZV1
+         He6cEe+gtHU+IpyIJHb/9nSGtsUmU1dKbOmTbrnlI5m9YbEs3Kz7GhkNZxUpmxsdSJcR
+         ZP8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686724610; x=1689316610;
+        d=1e100.net; s=20221208; t=1686724783; x=1689316783;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XElC6rJY+nGGxGJnZgLE09h9gOSS2v7GKSOK1qVdyVI=;
-        b=ltBz6yQflKx3x8EepxkiV/R8SBfTYBjCLJEeF8cVw4xWMW4zmevRlL2Zb8tmTzTTya
-         6EHomDBZWlZ4YOPpVb5Aatzi++790CpKvm7oba7vIbEMFp/I64RKF6Gwdi7vT8DsWUJT
-         x68uYM2pLMe+EA9fRymEdxngni0SgSxLygeSONTci8o1hwpYuvPfTHoHZBa5hhNKpFex
-         G2HkJTBV+BiQAcICai83CPhAkagd6iOAeI1Bighws57N72PgzbDpGXIUjwpWZ3GsQ/p3
-         xlHg6sCCC/irJpcjqFfDvZOTjKlxhiZUTOCrA2XTuEEwrwsjJcvB6vemZs2utSon2zGR
-         HDmg==
-X-Gm-Message-State: AC+VfDzTLv3D+BnWATBkvmyYVQO69rLD9XsnfHFUNHn8Dya2i3jiSLle
-        5Elwc6uDtA2kPu80AbKkkD+r+g==
-X-Google-Smtp-Source: ACHHUZ6MVTaz0VOwHMtzsEIlG4WyydULbVPqO89wCd+1+ZrO53ZwmsoyGzTwRRX1Zvb/wR/3lvCaZg==
-X-Received: by 2002:a17:907:2d07:b0:982:6bba:79c5 with SMTP id gs7-20020a1709072d0700b009826bba79c5mr802844ejc.72.1686724610122;
-        Tue, 13 Jun 2023 23:36:50 -0700 (PDT)
+        bh=7Q8Ite1Y2wooAZNS/2RrLNMbn3Ax42VQdzwJmVMSBFY=;
+        b=IWg2zfnVlGzbf9bVBYi20lWAJ1lT1S3RUs2mDFUk0HuiXOlSVQFp77Wb60SAiZCeSh
+         PHsWn89Ug8OwSycXcFKxTOsuVWkpCvcv5OvC4Eo9SD20CeK5hg7aIHP5JODQInpxDSEG
+         ryoKy9XyHOIrGqC1T7FAS4p8AQohz9U7uil43S2W3r/xypbWry489GzOfdKGVAaWsJo9
+         wr2X9A+O+kxsqmeomgbuopolxUCei0HZSfPp7tP5M9dhUAmCOvNYHJgujysld8Tlq1pZ
+         CDYZeA1mtRNmSMkb4+vU/wp7T/wwUJFngqK3Z3P+dlGgwMEEFyz9CWl2JBNwtWkbALFA
+         MixA==
+X-Gm-Message-State: AC+VfDyWgEHwpXuQuYkALZYzzRao9ptp67ZNqLyeqI4KVIMo/hQRMUth
+        7U7DeOg6DSUoKlWs8b4hOKImVg==
+X-Google-Smtp-Source: ACHHUZ6OLlLpfxP5/b76GWeAGDJQ++2yHCREYPo2cXWux82fNIjP/1qeMBe9cGMnVm76aZG3s1I8MA==
+X-Received: by 2002:a19:da12:0:b0:4f7:4098:9905 with SMTP id r18-20020a19da12000000b004f740989905mr5251736lfg.65.1686724783462;
+        Tue, 13 Jun 2023 23:39:43 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id j15-20020a1709064b4f00b0096f738bc2f7sm7647403ejv.60.2023.06.13.23.36.48
+        by smtp.gmail.com with ESMTPSA id m12-20020a50ef0c000000b0051891fc318dsm387145eds.23.2023.06.13.23.39.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 23:36:49 -0700 (PDT)
-Message-ID: <28cba091-48d0-846d-4996-64e71be275f2@linaro.org>
-Date:   Wed, 14 Jun 2023 08:36:47 +0200
+        Tue, 13 Jun 2023 23:39:42 -0700 (PDT)
+Message-ID: <95bd381d-0851-dca7-031d-0da5060237fe@linaro.org>
+Date:   Wed, 14 Jun 2023 08:39:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: ROHM BU27010 RGBC + flickering sensor
+Subject: Re: [PATCH v5 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
+ compatible string
 Content-Language: en-US
-To:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1686650184.git.mazziesaccount@gmail.com>
- <98e0b6fba7ff7515b541a517296d5b89dc73ce5b.1686651445.git.mazziesaccount@gmail.com>
- <22dadcf6-9879-efb2-9987-7f286b38b93b@linaro.org>
- <fac025f6-6187-2258-9d49-61799754294f@gmail.com>
+To:     Frank Li <Frank.li@nxp.com>
+Cc:     vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
+        imx@lists.linux.dev
+References: <20230613213149.2076358-1-Frank.Li@nxp.com>
+ <20230613213149.2076358-13-Frank.Li@nxp.com>
+ <b3a25a5a-d39a-81bd-0593-7a4b76aeb9bf@linaro.org>
+ <ZIjnNzemHm17MNzV@lizhi-Precision-Tower-5810>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fac025f6-6187-2258-9d49-61799754294f@gmail.com>
+In-Reply-To: <ZIjnNzemHm17MNzV@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,33 +81,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 07:32, Matti Vaittinen wrote:
->>> +properties:
->>> +  compatible:
->>> +    const: rohm,bu27010
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  vdd-supply: true
+On 14/06/2023 00:01, Frank Li wrote:
+> On Tue, Jun 13, 2023 at 11:43:31PM +0200, Krzysztof Kozlowski wrote:
+>> On 13/06/2023 23:31, Frank Li wrote:
+>>> Extend Freescale eDMA driver bindings to support eDMA3 IP blocks in
+>>> i.MX8QM and i.MX8QXP SoCs. In i.MX93, both eDMA3 and eDMA4 are now.
+>>>
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>>  .../devicetree/bindings/dma/fsl,edma.yaml     | 118 +++++++++++++++---
+>>>  1 file changed, 100 insertions(+), 18 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> index 5fd8fc604261..2f79492fb332 100644
+>>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> @@ -21,32 +21,20 @@ properties:
+>>>        - enum:
+>>>            - fsl,vf610-edma
+>>>            - fsl,imx7ulp-edma
+>>> +          - fsl,imx8qm-adma
+>>> +          - fsl,imx8qm-edma
+>>> +          - fsl,imx93-edma3
+>>> +          - fsl,imx93-edma4
+>>>        - items:
+>>>            - const: fsl,ls1028a-edma
+>>>            - const: fsl,vf610-edma
+>>>  
+>>> -  reg:
+>>> -    minItems: 2
+>>> -    maxItems: 3
+>>> -
+>>> -  interrupts:
+>>> -    minItems: 2
+>>> -    maxItems: 17
 >>
->> Isn't vdd-supply required for the hardware to work? How does it get the
->> power otherwise?
+>> What is happening here?
 > 
-> The BU27010 works by magic smoke. When smoke leaks out the sensor no 
-> longer works.
+> I found dt_check always check this part firstly, then check allOf.
 > 
-> Ehh, I think you are right. My thinking was that it is not uncommon for 
-> people to not have all fixed regulators present in device-tree. But I 
-> agree, this does not mean we should encourage that. I'll add supply to 
-> the list of the required properties.
+>>
+>>> -
+>>> -  interrupt-names:
+>>> -    minItems: 2
+>>> -    maxItems: 17
+>>> -
+>>> -  "#dma-cells":
+>>> -    const: 2
+>>> -
+>>> -  dma-channels:
+>>> -    const: 32
+>>
+>> No, why all these are being removed?
 > 
-If the device actually requires a regulator, it should be required by
-the bindings, even if it leads to dummies or fixed regulators on the
-board DTS.
+> I move common part ahead of if-then-else branch to read early.
+> 
+>>
+>>> -
+>>>    clocks:
+>>> +    minItems: 1
+>>>      maxItems: 2
+>>>  
+>>>    clock-names:
+>>> +    minItems: 1
+>>>      maxItems: 2
+>>>  
+>>>    big-endian:
+>>> @@ -55,6 +43,43 @@ properties:
+>>>        eDMA are implemented in big endian mode, otherwise in little mode.
+>>>      type: boolean
+>>>  
+>>> +if:
+>>
+>> This should not be outside of your allOf. This patch looks entirely
+>> different than your v4 and I don't really understand why.
+>>
+> 
+> allOf looks like addtional constraints addition to previous define.
+> for example: 
+>     if previous interrupts is 17, I can't overwrite to bigger value 64
+> in this sesson. 
+
+Yes, because the top-level had wrong constraint. Fix top-level, don't
+remove it.
+
+> 
+> previous version: dts check report two error, 
+> first: interrupt is too long. (look like check top one)
+> then: interrupt is too short. (look like check allOf part)
+> 
+>>
+>>> +  properties:
+>>> +    compatible:
+>>> +      contains:
+>>> +        enum:
+>>> +          - fsl,imx8qm-adma
+>>> +          - fsl,imx8qm-edma
+>>> +          - fsl,imx93-edma3
+>>> +          - fsl,imx93-edma4
+>>> +then:
+>>> +  properties:
+>>> +    reg:
+>>> +      maxItems: 1
+>>> +    interrupts:
+>>> +      minItems: 1
+>>> +      maxItems: 64
+>>
+>> What's more, you don't have these properties defined in top-level.
+>> Sorry, they should not be moved. I did not ask for this.
+> 
+> It is there. 
+> if-then-else before "required"
+
+It's in if, not in top-level properties.
+
 
 Best regards,
 Krzysztof
