@@ -2,200 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC4BE72F509
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 08:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E71572F515
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 08:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242515AbjFNGkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 02:40:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50078 "EHLO
+        id S233996AbjFNGpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 02:45:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242729AbjFNGjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 02:39:46 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA571BC9
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 23:39:45 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f6283d0d84so8007989e87.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jun 2023 23:39:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686724783; x=1689316783;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Q8Ite1Y2wooAZNS/2RrLNMbn3Ax42VQdzwJmVMSBFY=;
-        b=lfk7ZaXsqgxVJ2Go/4Vk4ajvcbFYZlHMDvkZO9hw8UNxtHawnH/CViSGFam+265v6T
-         Pwohy158+Dy8W8vDlkz8lRfR+fqkdu9dr9ZscDNbySYAumEffLLsVI3fd9AptFOFCERV
-         fF/7tDTj83x+tlIm6318ki75AFwjLEW2E+Lic14eQfk7im2xaPgzW41CONpN+enlPNj8
-         Yt3t2GaNBYhqyusLRyyCcslZks6C89BQIZjfpSnc7120bAhElHMIcsFA87VAR3bH8ZV1
-         He6cEe+gtHU+IpyIJHb/9nSGtsUmU1dKbOmTbrnlI5m9YbEs3Kz7GhkNZxUpmxsdSJcR
-         ZP8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686724783; x=1689316783;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Q8Ite1Y2wooAZNS/2RrLNMbn3Ax42VQdzwJmVMSBFY=;
-        b=IWg2zfnVlGzbf9bVBYi20lWAJ1lT1S3RUs2mDFUk0HuiXOlSVQFp77Wb60SAiZCeSh
-         PHsWn89Ug8OwSycXcFKxTOsuVWkpCvcv5OvC4Eo9SD20CeK5hg7aIHP5JODQInpxDSEG
-         ryoKy9XyHOIrGqC1T7FAS4p8AQohz9U7uil43S2W3r/xypbWry489GzOfdKGVAaWsJo9
-         wr2X9A+O+kxsqmeomgbuopolxUCei0HZSfPp7tP5M9dhUAmCOvNYHJgujysld8Tlq1pZ
-         CDYZeA1mtRNmSMkb4+vU/wp7T/wwUJFngqK3Z3P+dlGgwMEEFyz9CWl2JBNwtWkbALFA
-         MixA==
-X-Gm-Message-State: AC+VfDyWgEHwpXuQuYkALZYzzRao9ptp67ZNqLyeqI4KVIMo/hQRMUth
-        7U7DeOg6DSUoKlWs8b4hOKImVg==
-X-Google-Smtp-Source: ACHHUZ6OLlLpfxP5/b76GWeAGDJQ++2yHCREYPo2cXWux82fNIjP/1qeMBe9cGMnVm76aZG3s1I8MA==
-X-Received: by 2002:a19:da12:0:b0:4f7:4098:9905 with SMTP id r18-20020a19da12000000b004f740989905mr5251736lfg.65.1686724783462;
-        Tue, 13 Jun 2023 23:39:43 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id m12-20020a50ef0c000000b0051891fc318dsm387145eds.23.2023.06.13.23.39.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 23:39:42 -0700 (PDT)
-Message-ID: <95bd381d-0851-dca7-031d-0da5060237fe@linaro.org>
-Date:   Wed, 14 Jun 2023 08:39:40 +0200
+        with ESMTP id S233721AbjFNGpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 02:45:12 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012B91A3;
+        Tue, 13 Jun 2023 23:45:10 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35E4GfjX011094;
+        Wed, 14 Jun 2023 06:45:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Jr5jIEmZwqk5/vqIbzjrfUS9+c47/9L9q13IlgbuhxI=;
+ b=QDuJKcQvEg3++mOt83KenN3UHuvhVZ1+jxwRcN8/GRRDZ/d7yUFP1MLP+Nk2eG4iwp0A
+ Tq4jLXOm96J5MOAKEpqmt+oXO1EF/Gy6Rt6e6ic5fHT/69O54FONmzlEwLIymrJ2+tkm
+ LnAiFJQzwgBO+UC7zOGobxhWJtO3nY7be13VazhrlM0/5WVxIO2XOQRh+UmF5FFVUEJW
+ XVZP+tdpZMzc6rZbP+w8RnRTbo/UbwsK1rr/RFe2gXg7TE7RKIiANQZGyPdUrxEdkVly
+ EcsQ46N6eeat14vpyYyO6VhvQhYvlDRRpL75GTlrPfRV0A91eE8Ve4XcD9bdUrG/iC29 NQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r6t0bst3p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Jun 2023 06:45:07 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35E6j71O020146
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Jun 2023 06:45:07 GMT
+Received: from [10.217.198.86] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 13 Jun
+ 2023 23:45:04 -0700
+Message-ID: <0b66dc99-7c88-f980-b91c-ac5d1f1301b3@quicinc.com>
+Date:   Wed, 14 Jun 2023 12:15:01 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v5 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
- compatible string
+From:   Tushar Nimkar <quic_tnimkar@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: idle-states: Add
+ idle-state-disabled property
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC:     <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_lsrao@quicinc.com>,
+        <quic_mkshah@quicinc.com>, <devicetree@vger.kernel.org>
+References: <20230608085544.16211-1-quic_tnimkar@quicinc.com>
+ <20230608085544.16211-2-quic_tnimkar@quicinc.com>
+ <9ae34dcc-0022-8097-7c86-8b11811ac2e1@kernel.org>
 Content-Language: en-US
-To:     Frank Li <Frank.li@nxp.com>
-Cc:     vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
-        imx@lists.linux.dev
-References: <20230613213149.2076358-1-Frank.Li@nxp.com>
- <20230613213149.2076358-13-Frank.Li@nxp.com>
- <b3a25a5a-d39a-81bd-0593-7a4b76aeb9bf@linaro.org>
- <ZIjnNzemHm17MNzV@lizhi-Precision-Tower-5810>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZIjnNzemHm17MNzV@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <9ae34dcc-0022-8097-7c86-8b11811ac2e1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7Wvuk5GCLUBVFRb4f7y2Olehcr3iZHwi
+X-Proofpoint-ORIG-GUID: 7Wvuk5GCLUBVFRb4f7y2Olehcr3iZHwi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-14_02,2023-06-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 clxscore=1011 mlxlogscore=892 spamscore=0
+ lowpriorityscore=0 suspectscore=0 adultscore=0 impostorscore=0
+ phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306140057
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 00:01, Frank Li wrote:
-> On Tue, Jun 13, 2023 at 11:43:31PM +0200, Krzysztof Kozlowski wrote:
->> On 13/06/2023 23:31, Frank Li wrote:
->>> Extend Freescale eDMA driver bindings to support eDMA3 IP blocks in
->>> i.MX8QM and i.MX8QXP SoCs. In i.MX93, both eDMA3 and eDMA4 are now.
->>>
->>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>> ---
->>>  .../devicetree/bindings/dma/fsl,edma.yaml     | 118 +++++++++++++++---
->>>  1 file changed, 100 insertions(+), 18 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> index 5fd8fc604261..2f79492fb332 100644
->>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> @@ -21,32 +21,20 @@ properties:
->>>        - enum:
->>>            - fsl,vf610-edma
->>>            - fsl,imx7ulp-edma
->>> +          - fsl,imx8qm-adma
->>> +          - fsl,imx8qm-edma
->>> +          - fsl,imx93-edma3
->>> +          - fsl,imx93-edma4
->>>        - items:
->>>            - const: fsl,ls1028a-edma
->>>            - const: fsl,vf610-edma
->>>  
->>> -  reg:
->>> -    minItems: 2
->>> -    maxItems: 3
->>> -
->>> -  interrupts:
->>> -    minItems: 2
->>> -    maxItems: 17
->>
->> What is happening here?
-> 
-> I found dt_check always check this part firstly, then check allOf.
-> 
->>
->>> -
->>> -  interrupt-names:
->>> -    minItems: 2
->>> -    maxItems: 17
->>> -
->>> -  "#dma-cells":
->>> -    const: 2
->>> -
->>> -  dma-channels:
->>> -    const: 32
->>
->> No, why all these are being removed?
-> 
-> I move common part ahead of if-then-else branch to read early.
-> 
->>
->>> -
->>>    clocks:
->>> +    minItems: 1
->>>      maxItems: 2
->>>  
->>>    clock-names:
->>> +    minItems: 1
->>>      maxItems: 2
->>>  
->>>    big-endian:
->>> @@ -55,6 +43,43 @@ properties:
->>>        eDMA are implemented in big endian mode, otherwise in little mode.
->>>      type: boolean
->>>  
->>> +if:
->>
->> This should not be outside of your allOf. This patch looks entirely
->> different than your v4 and I don't really understand why.
->>
-> 
-> allOf looks like addtional constraints addition to previous define.
-> for example: 
->     if previous interrupts is 17, I can't overwrite to bigger value 64
-> in this sesson. 
+Thanks Krzysztof for reviewing,
 
-Yes, because the top-level had wrong constraint. Fix top-level, don't
-remove it.
-
+On 6/9/2023 6:44 PM, Krzysztof Kozlowski wrote:
+> On 08/06/2023 10:55, Tushar Nimkar wrote:
+>> This change adds idle-state-disabled property using which certain or all
 > 
-> previous version: dts check report two error, 
-> first: interrupt is too long. (look like check top one)
-> then: interrupt is too short. (look like check allOf part)
+> Please do not use "This commit/patch", but imperative mood. See longer
+> explanation here:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+Sure, will update in next version.
+>> idle-states can be kept disabled during boot-up. Once boot-up is completed
+>> same can be enabled using below command.
+>>
+> 
+> I don't understand and you did not explain here, why this is useful and
+> why this is needed.
+> 
+I will update commit text to why this is useful in new version.
+>> echo N > /sys/devices/system/cpu/cpuX/cpuidle/stateX/disable
+> 
 > 
 >>
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        enum:
->>> +          - fsl,imx8qm-adma
->>> +          - fsl,imx8qm-edma
->>> +          - fsl,imx93-edma3
->>> +          - fsl,imx93-edma4
->>> +then:
->>> +  properties:
->>> +    reg:
->>> +      maxItems: 1
->>> +    interrupts:
->>> +      minItems: 1
->>> +      maxItems: 64
->>
->> What's more, you don't have these properties defined in top-level.
->> Sorry, they should not be moved. I did not ask for this.
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Tushar Nimkar <quic_tnimkar@quicinc.com>
 > 
-> It is there. 
-> if-then-else before "required"
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC.  It might happen, that command when run on an older
+> kernel, gives you outdated entries.  Therefore please be sure you base
+> your patches on recent Linux kernel.
+> 
+Yes, In new version will take care.
+>> ---
 
-It's in if, not in top-level properties.
+>> +          echo N > /sys/devices/system/cpu/cpuX/cpuidle/stateX/disable
+> 
+> This is Linux specific command, so does not fit the bindings.
+Will remove in new version.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-
-Best regards,
-Krzysztof
-
+Thanks,
+Tushar
