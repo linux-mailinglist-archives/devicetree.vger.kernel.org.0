@@ -2,94 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C24C730773
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 20:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5AD730793
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jun 2023 20:47:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbjFNSlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 14:41:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57194 "EHLO
+        id S232053AbjFNSrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 14:47:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235477AbjFNSky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 14:40:54 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB732137;
-        Wed, 14 Jun 2023 11:40:51 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-777a78739ccso385800539f.3;
-        Wed, 14 Jun 2023 11:40:51 -0700 (PDT)
+        with ESMTP id S231384AbjFNSrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 14:47:07 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2318189
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 11:47:04 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-977d55ac17bso162891066b.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 11:47:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686768423; x=1689360423;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/2dmijlndEPPYs5IElMJtslUllIfqF2D+1pCU/iVRps=;
+        b=RYB/dfvGhjvnwSjdBgId9QXaGPAml67loM9d/fKuSNJGk/pke4Id3mL8bttl7LJ2rt
+         asd0STpv2pxsQmmhLRwvoESTFQd7HCS+WFQgrpYwtGBFJ98SH9ZWb5Fv/IgZ0ftmT0+3
+         QNCxGhNExMqqLfP8mfkRrNO1FR0Yd+4NVi1vm20ADoOhpAhPOb4PHocDWTOyHfYsHWQS
+         UC7GFLZLZKx92SOiJ34UMAiRyGt8Iwras9MOBKmDaDC0PXHXkJXg9Ds68St81OIwN+DR
+         /0PFa/IO5ubVynX/tfN9DjCcbYX11n5s5tnyQGRR7kvEgOSTLynq7j+80zPDkTi91iNr
+         C2Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686768051; x=1689360051;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20221208; t=1686768423; x=1689360423;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T9bkX1K24HhQtKumvGXLdDfYBuEzGgLYupOfZPyAl6Y=;
-        b=KuAsC7O2HanOH2kOAWp8ySa2VPeZzB8L8Qhhy1OkP5hihGclMilqCEqSr3xuIKGZda
-         b/ra30iqzdsLBepzqUtl+p2WUP6QIZ5ZfFOBbTpsQqaoW7tAKcJlThuNkJ77+jEXXEmf
-         K4YMBwhHXBpm7lIbrDZ+lPqkSQp5+NgQ2GO1eDK857mL7+8xNJ8LEUVGtdRND8TNbAef
-         F//rZEMUF9ISM+yMY7pCjUwgvUzyrg2kRC5VxITKbx4Cgq9Fq+nUHaRn8+aChLOvlLFB
-         V3ShVvDBlVycgZKsmBRsZwlTqSGsImqhyGrD2GtJGP3tXgNT+muoAr94MuhI83tanzt+
-         81gw==
-X-Gm-Message-State: AC+VfDymdriyRCk9XY59WSNrTKS1evpS+Os0ly+NF0S8DKw1An/z1c1i
-        rzqx02C1IPruG6//gU5vBg==
-X-Google-Smtp-Source: ACHHUZ79MrwRGKHIQnJ8LRcxJbjX5Yql+A6VplX9d0CEwLBnl2HrKPc91lQln9L3TOQdVAQZJrtVAQ==
-X-Received: by 2002:a5e:db07:0:b0:777:8e86:7636 with SMTP id q7-20020a5edb07000000b007778e867636mr15939318iop.15.1686768050943;
-        Wed, 14 Jun 2023 11:40:50 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id g14-20020a02b70e000000b00418ae2206b1sm5236807jam.107.2023.06.14.11.40.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jun 2023 11:40:50 -0700 (PDT)
-Received: (nullmailer pid 2524554 invoked by uid 1000);
-        Wed, 14 Jun 2023 18:40:48 -0000
-Date:   Wed, 14 Jun 2023 12:40:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, linux-can@vger.kernel.org,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/8] dt-bindings: can: m_can: change from additional-
- to unevaluatedProperties
-Message-ID: <168676804750.2524488.14056388147398744360.robh@kernel.org>
-References: <20230614123222.4167460-1-l.goehrs@pengutronix.de>
- <20230614123222.4167460-5-l.goehrs@pengutronix.de>
+        bh=/2dmijlndEPPYs5IElMJtslUllIfqF2D+1pCU/iVRps=;
+        b=LJJJpYiRYPo7SdY8XT6qeyNAFeCRw4TgDiC26XbsAtt1YsVj9qQN/aNKXDxj8oeMID
+         tsUIPvZ+zuWt8WWa8TZAUT/aMZGPKq/8wxvlz/Dz2vW7Ycuu5mIA4Jm+ytwJIvaEDHAn
+         TACm6ZaOzR2r8p83MpIH/fHSH1pe8nid6VMiGosxSL73Miq5R8x/2IcxKWZfhFN8CnIg
+         5tSPx0R7opWDbjSEe8kbXfPpAfUIT//E/OyTYDDM9zZxJwKA2ZInOB1MiCjwcWo84/Ne
+         32lZhF7jqZREoNOvogPeuC+u9vT2tKiQ79jKofoa6Rajjh7+bi2tdfWrHHaWZx0OXd6S
+         r9zg==
+X-Gm-Message-State: AC+VfDxVdO+I2S9r8qkXRA9MKAJmzvfWUh4+UA7j8gckDkRDkswwZkTq
+        LGZefnghW80t6lMjKFs96PFbVw==
+X-Google-Smtp-Source: ACHHUZ6QGzBwXZPm7LGg97zkIBeIUyBNwZ3vpxzJcuCyRyUliDdiMyVINRNKkhdi4RE0ju7HAKTnSw==
+X-Received: by 2002:a17:907:6e10:b0:974:5ce6:f9ff with SMTP id sd16-20020a1709076e1000b009745ce6f9ffmr17870176ejc.32.1686768423459;
+        Wed, 14 Jun 2023 11:47:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e26-20020a170906045a00b0096fc35ca733sm8258831eja.41.2023.06.14.11.47.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jun 2023 11:47:02 -0700 (PDT)
+Message-ID: <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
+Date:   Wed, 14 Jun 2023 20:47:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230614123222.4167460-5-l.goehrs@pengutronix.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes
+ up
+Content-Language: en-US
+To:     Linux regressions mailing list <regressions@lists.linux.dev>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230602161246.1855448-1-amit.pundir@linaro.org>
+ <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 14 Jun 2023 14:32:18 +0200, Leonard Göhrs wrote:
-> This allows the usage of properties like termination-gpios and
-> termination-ohms, which are specified in can-controller.yaml
-> but were previously not usable due to additionalProperties: false.
+On 14/06/2023 20:18, Linux regression tracking (Thorsten Leemhuis) wrote:
+> On 02.06.23 18:12, Amit Pundir wrote:
+>> Move lvs1 and lvs2 regulator nodes up in the rpmh-regulators
+>> list to workaround a boot regression uncovered by the upstream
+>> commit ad44ac082fdf ("regulator: qcom-rpmh: Revert "regulator:
+>> qcom-rpmh: Use PROBE_FORCE_SYNCHRONOUS"").
+>>
+>> Without this fix DB845c fail to boot at times because one of the
+>> lvs1 or lvs2 regulators fail to turn ON in time.
 > 
-> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
-> Suggested-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> /me waves friendly
+> 
+> FWIW, as it's not obvious: this...
+> 
+>> Link: https://lore.kernel.org/all/CAMi1Hd1avQDcDQf137m2auz2znov4XL8YGrLZsw5edb-NtRJRw@mail.gmail.com/
+> 
+> ...is a report about a regression. One that we could still solve before
+> 6.4 is out. One I'll likely will point Linus to, unless a fix comes into
+> sight.
+> 
+> When I noticed the reluctant replies to this patch I earlier today asked
+> in the thread with the report what the plan forward was:
+> https://lore.kernel.org/all/CAD%3DFV%3DV-h4EUKHCM9UivsFHRsJPY5sAiwXV3a1hUX9DUMkkxdg@mail.gmail.com/
+> 
+> Dough there replied:
+> 
+> ```
+> Of the two proposals made (the revert vs. the reordering of the dts),
+> the reordering of the dts seems better. It only affects the one buggy
+> board (rather than preventing us to move to async probe for everyone)
+> and it also has a chance of actually fixing something (changing the
+> order that regulators probe in rpmh-regulator might legitimately work
+> around the problem). That being said, just like the revert the dts
+> reordering is still just papering over the problem and is fragile /
+> not guaranteed to work forever.
+> ```
+> 
+> Papering over obviously is not good, but has anyone a better idea to fix
+> this? Or is "not fixing" for some reason an viable option here?
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+I understand there is a regression, although kernel is not mainline
+(hash df7443a96851 is unknown) and the only solutions were papering the
+problem. Reverting commit is a temporary workaround. Moving nodes in DTS
+is not acceptable because it hides actual problem and only solves this
+one particular observed problem, while actual issue is still there. It
+would be nice to be able to reproduce it on real mainline with normal
+operating system (not AOSP) - with ramdiks/without/whatever. So far no
+one did it, right?
+
+Best regards,
+Krzysztof
 
