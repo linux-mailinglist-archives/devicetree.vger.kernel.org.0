@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7CF07312AB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FEC87312B3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234950AbjFOIuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:50:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37762 "EHLO
+        id S239155AbjFOIuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241053AbjFOIt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:49:27 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19EF92D4A
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:48:53 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f7deee339dso1300643e87.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:48:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686818931; x=1689410931;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i9RJcABEiqajm9VBwozxve8SX5lbpsVso0TV0ojwUBo=;
-        b=SxbBKTBRtao5kvylhzMo4LLcFiyJBC8GGFvggpw8pZ9KYa7Z2291haSPLTtnBcPgb/
-         uI2gcUDRC2SHPHmP4mb+IsLSo8xZnCn8lFiCAgsn+xtadcxHg7R9ZhgQhv1Z3AMkA3KX
-         Vg2FNxvB/nCkwO6NpB/4tp/lVZsl9lumeMX7zP+rOIB7NTQPnYhwHmnVpisAoskHf5Jz
-         Aux4NeNG3NoKltD6nVuTXIpHlAoTGg7pp4rxRi47nh4jsOo6sI0mQc5KodJU12LrHiiZ
-         KmLbfA2CS7UmkcB5PXqArHozH146jUEa9OWbmxxidRVaug/jXYwJ4l322R/GyfXoiO7A
-         RGKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686818931; x=1689410931;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i9RJcABEiqajm9VBwozxve8SX5lbpsVso0TV0ojwUBo=;
-        b=YLsVc3b041cbP2VWNupzqJ0kJzeyy5FOCsdHOI6MFSwEXjW5eKcYqMYWT5cauTONBk
-         3Bg8jQiE00pyadSJVIamQlXw41kyJdre1MO+MH0WY//EhGR5UbY3emLNydjB4IisFhAi
-         a0KHy5PpTqGItvvB6uwCNi76liV9AAXV44DRHvd8bM5CCr75sSOrrospruEwIZdBhDUk
-         QM/RagF93jQb8MKbbyoOIInTWwO+uBwQll3gVxeP1Sv9Qt+LBEbzrROz7aj3Me9a3vuB
-         BxGWx5FHUY683Xd5LV85BunaI+cQYXJPxpf3Ndadq97vJT/Z+XuCQMBu8nklIWWAdrKV
-         LXQA==
-X-Gm-Message-State: AC+VfDyb2u/izqAMKPz37SQAY+oD2hizSmFvciqs2XRluf86b/MnzYYq
-        ZOEr4ZQBkpHJwKAS4WretXaKKg==
-X-Google-Smtp-Source: ACHHUZ7VDdM4Xjh/drtknXKeZ53Z7X7RZ+yBhHDUNKAVGxGX3ZDAgHBLH/FRg7s/emy5325fRv30kA==
-X-Received: by 2002:a19:e04a:0:b0:4f3:ab1b:f765 with SMTP id g10-20020a19e04a000000b004f3ab1bf765mr8901693lfj.18.1686818930950;
-        Thu, 15 Jun 2023 01:48:50 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id p9-20020ac246c9000000b004f3880f900dsm2466499lfo.196.2023.06.15.01.48.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 01:48:50 -0700 (PDT)
-Message-ID: <823af258-81a2-266b-010a-afdaddffb7e3@linaro.org>
-Date:   Thu, 15 Jun 2023 10:48:49 +0200
+        with ESMTP id S245626AbjFOIuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:50:05 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21BAC2967;
+        Thu, 15 Jun 2023 01:49:56 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35F8nmKn039794;
+        Thu, 15 Jun 2023 03:49:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686818988;
+        bh=3wcwsJ/V1odDLw6p+p7BMZNxVQakzirBJfJHtCzG0k0=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=agjvPUs5xkzf/PIvRJ1h2PtqYqlfs7JR+63mwBG6huYbYixHIYmHfjKBaOtIkXgdp
+         fz0czsqZ//BCDdOvooE/Bq6bJHfTeSyW2y4DSFSTQR5Itrl0uc8e72LzffwWCfL2R/
+         YMNH5ysrGJ9qNMBO0lvqS0mxSZafY9ndi3BqHnXY=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35F8nmTF100618
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 03:49:48 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 03:49:48 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 03:49:48 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35F8nk7x028622;
+        Thu, 15 Jun 2023 03:49:46 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     <nm@ti.com>, Roger Quadros <rogerq@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, <r-gunasekaran@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4] arm64: dts: ti: k3-am625: Enable Type-C port for USB0
+Date:   Thu, 15 Jun 2023 14:19:32 +0530
+Message-ID: <168681888539.2100501.7989391250218171520.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230523123348.52850-1-rogerq@kernel.org>
+References: <20230523123348.52850-1-rogerq@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] Revert "arm64: dts: qcom: msm8996: rename labels for
- HDMI nodes"
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
- <20230615083422.350297-2-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230615083422.350297-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,231 +64,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.06.2023 10:34, Dmitry Baryshkov wrote:
-> The commit f43b6dc7d56e ("arm64: dts: qcom: msm8996: rename labels for
-> HDMI nodes") is broken, it changes all the HDMI node names,
-> compatible strings instead of changing just node aliases. Revert the
-> commit in order to land a proper clean version.
-> 
-> Reported-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Fixes: f43b6dc7d56e ("arm64: dts: qcom: msm8996: rename labels for HDMI nodes")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi Roger Quadros,
 
-Konrad
->  arch/arm64/boot/dts/qcom/apq8096-db820c.dts  | 50 ++++++++++----------
->  arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts |  6 +--
->  arch/arm64/boot/dts/qcom/msm8996-mtp.dts     |  4 +-
->  arch/arm64/boot/dts/qcom/msm8996.dtsi        | 16 +++----
->  4 files changed, 38 insertions(+), 38 deletions(-)
+On Tue, 23 May 2023 15:33:48 +0300, Roger Quadros wrote:
+> USB0 is a Type-C port with dual data role and power sink.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> index 537547b97459..b599909c4463 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> @@ -208,6 +208,25 @@ &gpu {
->  	status = "okay";
->  };
->  
-> +&hdmi {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&hdmi_hpd_active &hdmi_ddc_active>;
-> +	pinctrl-1 = <&hdmi_hpd_suspend &hdmi_ddc_suspend>;
-> +
-> +	core-vdda-supply = <&vreg_l12a_1p8>;
-> +	core-vcc-supply = <&vreg_s4a_1p8>;
-> +};
-> +
-> +&hdmi_phy {
-> +	status = "okay";
-> +
-> +	vddio-supply = <&vreg_l12a_1p8>;
-> +	vcca-supply = <&vreg_l28a_0p925>;
-> +	#phy-cells = <0>;
-> +};
-> +
->  &hsusb_phy1 {
->  	status = "okay";
->  
-> @@ -232,25 +251,6 @@ &mdss {
->  	status = "okay";
->  };
->  
-> -&mdss_hdmi {
-> -	status = "okay";
-> -
-> -	pinctrl-names = "default", "sleep";
-> -	pinctrl-0 = <&mdss_hdmi_hpd_active &mdss_hdmi_ddc_active>;
-> -	pinctrl-1 = <&mdss_hdmi_hpd_suspend &mdss_hdmi_ddc_suspend>;
-> -
-> -	core-vdda-supply = <&vreg_l12a_1p8>;
-> -	core-vcc-supply = <&vreg_s4a_1p8>;
-> -};
-> -
-> -&mdss_hdmi_phy {
-> -	status = "okay";
-> -
-> -	vddio-supply = <&vreg_l12a_1p8>;
-> -	vcca-supply = <&vreg_l28a_0p925>;
-> -	#phy-cells = <0>;
-> -};
-> -
->  &mmcc {
->  	vdd-gfx-supply = <&vdd_gfx>;
->  };
-> @@ -433,28 +433,28 @@ sdc2_cd_off: sdc2-cd-off-state {
->  		drive-strength = <2>;
->  	};
->  
-> -	mdss_hdmi_hpd_active: mdss_hdmi-hpd-active-state {
-> +	hdmi_hpd_active: hdmi-hpd-active-state {
->  		pins = "gpio34";
->  		function = "hdmi_hot";
->  		bias-pull-down;
->  		drive-strength = <16>;
->  	};
->  
-> -	mdss_hdmi_hpd_suspend: mdss_hdmi-hpd-suspend-state {
-> +	hdmi_hpd_suspend: hdmi-hpd-suspend-state {
->  		pins = "gpio34";
->  		function = "hdmi_hot";
->  		bias-pull-down;
->  		drive-strength = <2>;
->  	};
->  
-> -	mdss_hdmi_ddc_active: mdss_hdmi-ddc-active-state {
-> +	hdmi_ddc_active: hdmi-ddc-active-state {
->  		pins = "gpio32", "gpio33";
->  		function = "hdmi_ddc";
->  		drive-strength = <2>;
->  		bias-pull-up;
->  	};
->  
-> -	mdss_hdmi_ddc_suspend: mdss_hdmi-ddc-suspend-state {
-> +	hdmi_ddc_suspend: hdmi-ddc-suspend-state {
->  		pins = "gpio32", "gpio33";
->  		function = "hdmi_ddc";
->  		drive-strength = <2>;
-> @@ -1043,7 +1043,7 @@ cpu {
->  		};
->  	};
->  
-> -	mdss_hdmi-dai-link {
-> +	hdmi-dai-link {
->  		link-name = "HDMI";
->  		cpu {
->  			sound-dai = <&q6afedai HDMI_RX>;
-> @@ -1054,7 +1054,7 @@ platform {
->  		};
->  
->  		codec {
-> -			sound-dai = <&mdss_hdmi 0>;
-> +			sound-dai = <&hdmi 0>;
->  		};
->  	};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-> index ac6471d1db1f..ed2e2f6c6775 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-> @@ -92,15 +92,15 @@ &gpu {
->  	status = "okay";
->  };
->  
-> -&mdss {
-> +&hdmi {
->  	status = "okay";
->  };
->  
-> -&mdss_hdmi {
-> +&hdmi_phy {
->  	status = "okay";
->  };
->  
-> -&mdss_hdmi_phy {
-> +&mdss {
->  	status = "okay";
->  };
->  
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
-> index 495d45a16e63..596ad4c896f5 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
-> @@ -24,10 +24,10 @@ &blsp2_uart2 {
->  	status = "okay";
->  };
->  
-> -&mdss_hdmi {
-> +&hdmi {
->  	status = "okay";
->  };
->  
-> -&mdss_hdmi_phy {
-> +&hdmi_phy {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 0cb2d4f08c3a..3855366ca89f 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -895,7 +895,7 @@ mmcc: clock-controller@8c0000 {
->  				 <&mdss_dsi0_phy 0>,
->  				 <&mdss_dsi1_phy 1>,
->  				 <&mdss_dsi1_phy 0>,
-> -				 <&mdss_hdmi_phy>;
-> +				 <&hdmi_phy>;
->  			clock-names = "xo",
->  				      "gpll0",
->  				      "gcc_mmss_noc_cfg_ahb_clk",
-> @@ -980,7 +980,7 @@ ports {
->  					port@0 {
->  						reg = <0>;
->  						mdp5_intf3_out: endpoint {
-> -							remote-endpoint = <&mdss_hdmi_in>;
-> +							remote-endpoint = <&hdmi_in>;
->  						};
->  					};
->  
-> @@ -1136,8 +1136,8 @@ mdss_dsi1_phy: phy@996400 {
->  				status = "disabled";
->  			};
->  
-> -			mdss_hdmi: mdss_hdmi-tx@9a0000 {
-> -				compatible = "qcom,mdss_hdmi-tx-8996";
-> +			hdmi: hdmi-tx@9a0000 {
-> +				compatible = "qcom,hdmi-tx-8996";
->  				reg =	<0x009a0000 0x50c>,
->  					<0x00070000 0x6158>,
->  					<0x009e0000 0xfff>;
-> @@ -1160,7 +1160,7 @@ mdss_hdmi: mdss_hdmi-tx@9a0000 {
->  					"alt_iface",
->  					"extp";
->  
-> -				phys = <&mdss_hdmi_phy>;
-> +				phys = <&hdmi_phy>;
->  				#sound-dai-cells = <1>;
->  
->  				status = "disabled";
-> @@ -1171,16 +1171,16 @@ ports {
->  
->  					port@0 {
->  						reg = <0>;
-> -						mdss_hdmi_in: endpoint {
-> +						hdmi_in: endpoint {
->  							remote-endpoint = <&mdp5_intf3_out>;
->  						};
->  					};
->  				};
->  			};
->  
-> -			mdss_hdmi_phy: phy@9a0600 {
-> +			hdmi_phy: phy@9a0600 {
->  				#phy-cells = <0>;
-> -				compatible = "qcom,mdss_hdmi-phy-8996";
-> +				compatible = "qcom,hdmi-phy-8996";
->  				reg = <0x009a0600 0x1c4>,
->  				      <0x009a0a00 0x124>,
->  				      <0x009a0c00 0x124>,
+> 
+
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/1] arm64: dts: ti: k3-am625: Enable Type-C port for USB0
+      commit: 2c213d19515caf880e6c8266fbeda4145894c10e
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
