@@ -2,84 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5970B731155
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 09:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32177731152
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 09:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245185AbjFOHub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 03:50:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
+        id S244284AbjFOHu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 03:50:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245345AbjFOHuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 03:50:06 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1922703
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 00:50:03 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f5f728c4aaso619973e87.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 00:50:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686815402; x=1689407402;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J2qg/OhTZMxFrneoAf57EQq0qnVlyXa5i01t43MlX9w=;
-        b=e4u3NTu/pqU31uuPTG/eKpW/QMItHv1uBLmHN+OELfnX1s9Mil6RX5ENuCEd+YZnhG
-         7OUhGO22mHvfSKxtVEmzTjhrKYa2shwfgLFcP1F1bsr57fY9WXdGpU8PEa1qmV+/UOso
-         rmHHLXWa5BrPA+jFwFbHBl9kFvdSv6dsJlBQlBRHU5F/6UNHerM+drMF9Bn8JUFM6n8n
-         d88djVnlSmR10vM+lao15yr875PzITrl+A8BRXhuhvPs/ko0IXtMGODa7qTaaMkjRSEM
-         utKbYzRpfW42pN4JgTL7b4NDD/62ayF+SVwxOQrq4dNQFDCEldZ2/Wf7Z2pkHZgSLy5e
-         WoyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686815402; x=1689407402;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J2qg/OhTZMxFrneoAf57EQq0qnVlyXa5i01t43MlX9w=;
-        b=Ii3fw8+P6vmixYFLLPwWrYnMk07CiFk62pNNTJFc8qARiltFFAoqHYJXta0FdzN42X
-         f5OGBKnTrUjJloHkOJ4XMufLd2p5D9cCx1nPoItnWX3MRH3Zik0WHL+HXAo/+lEkEppg
-         Fdg5qS0njfUhTvnZ31wdGu7uIhBiW7J61KP4UIukORdQG1l4pfcCMrwtcmDjr7PV0eu2
-         zlLDHA48BA1FD+bS8oBuGXcMzgbE+h1mU03jofUtSjgcaXEM88A1m8a7STNJu/oe95YP
-         mSZhHOqUucAm89E9DZpiJBYcaDu+Csjl0J1FH8EcNR+7BBBcaO0cE3wGx8u7fE8fSvI1
-         s63Q==
-X-Gm-Message-State: AC+VfDwFpiwar22X7r4tb2QCoVpOgVC82PaP/wYoOF3SKn6HDejNfJOh
-        sEHU9/xwKxRgcldwd8mDFbgAZw==
-X-Google-Smtp-Source: ACHHUZ7U+ZUkuF8q6VsyYsmqbxyJo+bKxv0x5R1kei09Xwyk3EU60144Jc9nNsH0GhPbxK3PfwyqiQ==
-X-Received: by 2002:a19:9118:0:b0:4f2:147b:7ee with SMTP id t24-20020a199118000000b004f2147b07eemr1305042lfd.20.1686815401899;
-        Thu, 15 Jun 2023 00:50:01 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id p20-20020a19f014000000b004f749b64bbcsm1243348lfc.69.2023.06.15.00.50.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 00:50:01 -0700 (PDT)
-Message-ID: <825f06c1-cf87-c0e3-a9fc-f4ec0edaa0f8@linaro.org>
-Date:   Thu, 15 Jun 2023 09:49:59 +0200
+        with ESMTP id S245424AbjFOHuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 03:50:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A725C5;
+        Thu, 15 Jun 2023 00:50:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6F658611D1;
+        Thu, 15 Jun 2023 07:50:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C3D3EC433C8;
+        Thu, 15 Jun 2023 07:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686815420;
+        bh=zun/Pp2HfNTP0g+oW4guAz8PIZ3oIfm+vw18roGseO8=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=UgBEUPJ9KKTaDkr6fhn2t0DbW7xtLhXwKn/LtT811TPANzY+N5CiZpd2v5giowQSx
+         q/mteKWSgBURD0vL+xlvlCeNGXZZhbdq+AZpMXXzREgwLrKSsY/VDAx+LXUOTHsYMC
+         iVWbkmENptppcaxsrvxco0eZaxsmU6I3jvOU1qbLQOHtjljT7SQIE7WI6mRaPgWGQZ
+         3BKdTupcY0XXi6wRAO99Q8JztQl8tjer3xP4KwXMFhoYBvoiBOFY3uCcmqVgrIhMds
+         vC5cG/nOM3h+jqW8SS7cP5N2GhOD3BvjTGDDyXSfaOlCQ0ABurD6LChkoqOuGVymrm
+         txhmoMFSDYw8Q==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id AD071E21EEA;
+        Thu, 15 Jun 2023 07:50:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH next-next v4 0/2] Add support for partial store and forward
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168681542070.22382.18369277791311849849.git-patchwork-notify@kernel.org>
+Date:   Thu, 15 Jun 2023 07:50:20 +0000
+References: <20230613054340.12837-1-pranavi.somisetty@amd.com>
+In-Reply-To: <20230613054340.12837-1-pranavi.somisetty@amd.com>
+To:     Pranavi Somisetty <pranavi.somisetty@amd.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
+        claudiu.beznea@microchip.com, git@amd.com, michal.simek@amd.com,
+        harini.katakam@amd.com, radhey.shyam.pandey@amd.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-References: <20230526-topic-smd_icc-v6-0-263283111e66@linaro.org>
- <20230526-topic-smd_icc-v6-18-263283111e66@linaro.org>
- <e2afd4bde3e85db358d50553a60a744f.sboyd@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH v6 18/22] clk: qcom: smd-rpm: Separate out interconnect
- bus clocks
-In-Reply-To: <e2afd4bde3e85db358d50553a60a744f.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,56 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.06.2023 02:48, Stephen Boyd wrote:
-> Quoting Konrad Dybcio (2023-06-14 11:04:37)
->> The interconnect bus clocks are now handled within the ICC framework.
->> They still however need to get a kickstart *before* we call
->> clk_smd_rpm_enable_scaling(), or RPM will assume that they should all
->> be running at 0 kHz and the system will inevitably die.
->>
->> Separate them out to ensure such a kickstart can still take place.
->>
->> As a happy accident, the file got smaller:
->>
->> Total: Before=41951, After=41555, chg -0.94%
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/clk/qcom/clk-smd-rpm.c | 278 +++++++++++++++++------------------------
->>  1 file changed, 115 insertions(+), 163 deletions(-)
->>
->> diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
->> index 6e7f0438e8b8..0d1d97659d59 100644
->> --- a/drivers/clk/qcom/clk-smd-rpm.c
->> +++ b/drivers/clk/qcom/clk-smd-rpm.c
->> @@ -498,13 +506,69 @@ DEFINE_CLK_SMD_RPM_XO_BUFFER(div_clk1, 11, 19200000);
->>  DEFINE_CLK_SMD_RPM_XO_BUFFER(div_clk2, 12, 19200000);
->>  DEFINE_CLK_SMD_RPM_XO_BUFFER(div_clk3, 13, 19200000);
->>  
->> +static struct clk_smd_rpm *bimc_pcnoc_icc_clks[] = {
-> 
-> Can these be const arrays?
-Sorta, look below.
+Hello:
 
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
+
+On Mon, 12 Jun 2023 23:43:38 -0600 you wrote:
+> Add support for partial store and forward mode in Cadence MACB.
 > 
->> +       &clk_smd_rpm_bimc_clk,
->> +       &clk_smd_rpm_bus_0_pcnoc_clk,
->> +};
->> +
+> Link for v1:
+> https://lore.kernel.org/all/20221213121245.13981-1-pranavi.somisetty@amd.com/
+> 
+> Changes v2:
+> 1. Removed all the changes related to validating FCS when Rx checksum
+> offload is disabled.
+> 2. Instead of using a platform dependent number (0xFFF) for the reset
+> value of rx watermark, derive it from designcfg_debug2 register.
+> 3. Added a check to see if partial s/f is supported, by reading the
+> designcfg_debug6 register.
+> 4. Added devicetree bindings for "rx-watermark" property.
+> Link for v2:
+> https://lore.kernel.org/all/20230511071214.18611-1-pranavi.somisetty@amd.com/
+> 
 > [...]
->> @@ -1332,6 +1275,15 @@ static int rpm_smd_clk_probe(struct platform_device *pdev)
->>                         goto err;
->>         }
->>  
->> +       for (i = 0; i < desc->num_icc_clks; i++) {
->> +               if (!desc->icc_clks[i])
->> +                       continue;
->> +
->> +               ret = clk_smd_rpm_handoff(desc->icc_clks[i]);
-> 
-> This API can probably take a const struct clk_smd_rpm pointer as well.
-It would be great, but ideally we want to set r->enabled in that func
-for !bus clocks (for unused clk cleanup). I could probably introduce a
-separate function for the icc clocks that takes const.
 
-Konrad
+Here is the summary with links:
+  - [net-next,v4,1/2] dt-bindings: net: cdns,macb: Add rx-watermark property
+    https://git.kernel.org/netdev/net-next/c/5b32c61a2dac
+  - [net-next,v4,2/2] net: macb: Add support for partial store and forward
+    https://git.kernel.org/netdev/net-next/c/cae4bc06b3e4
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
