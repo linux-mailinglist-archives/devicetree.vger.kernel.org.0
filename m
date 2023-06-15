@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D8F731580
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7AF731596
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343563AbjFOKgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:36:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45556 "EHLO
+        id S1343547AbjFOKjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343514AbjFOKgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:36:19 -0400
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3006::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1314D2735;
-        Thu, 15 Jun 2023 03:35:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202212; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=tG5feDrl2Mw6hEmR2hb46eHTTsEGlzKg28JrQ4NlezE=; b=WJWgjqmxVqTfDmbHE1yLpH20s5
-        Tmnb0LR3PAcKmq0Kp++HDR5UnXFXFeS27wcsqYUnzE/xMUnvVE+se6Q+AAR/HzLUgppANR1oI2CQU
-        +KvYjAz/eetICRUuoIAKbqzPviYLRjbrKlVOewOSf1YiNgyX0O8LUMqyRkznrPluEUU0oZc584RPZ
-        JZUo1ow4WRtl11LY7OR/ee+MRb+uZDkazT9ISJV/OHmL9mocjaQF9m4LV/xXxhsDdXYe/t0dZKFXO
-        +joVo25gB+GwQMke3qd89L10xraKkAQB11RiniQHHmS4/1xX8WuF/7j97Z3R0CY9rGgXq+dI4eXiK
-        nmEA3Lnw==;
-Received: from [2a01:799:961:2c00:5fc6:a9a5:c042:d1cd] (port=49824)
-        by smtp.domeneshop.no with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <noralf@tronnes.org>)
-        id 1q9kKW-0071lE-JM;
-        Thu, 15 Jun 2023 12:35:52 +0200
-Message-ID: <0ece62a0-2e77-190d-942e-e4fb69ef8d62@tronnes.org>
-Date:   Thu, 15 Jun 2023 12:35:52 +0200
+        with ESMTP id S239999AbjFOKjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:39:39 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB331BC;
+        Thu, 15 Jun 2023 03:39:38 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAdVqL066298;
+        Thu, 15 Jun 2023 05:39:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686825571;
+        bh=FIvNdUpkNDtat2d1zB9D48Rb3xDNQ64bKjJr8fg37tk=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=xT5nkV16wJwN1BNZJdgKtsxYE+cH19J2c5EbZfkEyUoVspmmZTQHT8OFKLmF7lZZF
+         PwviOjDxzcQRBI5M4BaPE99Tc7VQ5nwiI0g2cZEFDM55dn6p7/zKrlOgQ7rPIuDzxm
+         sLOZ2ii3T29oaRYhRz+SNLLuDbLoTQ2GKhtLr/8A=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAdVSs088309
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 05:39:31 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 05:39:31 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 05:39:31 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAdS8l055707;
+        Thu, 15 Jun 2023 05:39:29 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bhavya Kapoor <b-kapoor@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <nm@ti.com>
+Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-j784s4: Add support for ADC nodes
+Date:   Thu, 15 Jun 2023 16:09:27 +0530
+Message-ID: <168682555626.2264847.7193857222855659588.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230502081117.21431-1-b-kapoor@ti.com>
+References: <20230502081117.21431-1-b-kapoor@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 3/8] dt-bindings: display: panel: mipi-dbi-spi: add
- spi-3wire property
-Content-Language: en-US
-To:     =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     kernel@pengutronix.de, Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, noralf@tronnes.org
-References: <20230614123222.4167460-1-l.goehrs@pengutronix.de>
- <20230614123222.4167460-4-l.goehrs@pengutronix.de>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20230614123222.4167460-4-l.goehrs@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Bhavya Kapoor,
 
-
-On 6/14/23 14:32, Leonard Göhrs wrote:
-> Some MIPI DBI panels support a three wire mode (clock, chip select,
-> bidirectional data) that can be used to ask the panel if it is already set
-> up by e.g. the bootloader and can thus skip the initialization.
-> This enables a flicker-free boot.
+On Tue, 02 May 2023 13:41:15 +0530, Bhavya Kapoor wrote:
+> J784S4 has two instances of 8 channel ADCs in MCU domain. Add support
+> for both ADC nodes in dtsi file. Add pinmux information for both
+> instances of ADC in board dts file.
 > 
-> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-
-Reviewed-by: Noralf Trønnes <noralf@tronnes.org>
-
->  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
+> Link to v1 -> https://lore.kernel.org/all/0f553758-c2cc-ce70-47e0-99e08c2d94a1@ti.com/
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> index c07da1a9e6288..2f0238b770eba 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> @@ -87,6 +87,8 @@ properties:
->        Logic level supply for interface signals (Vddi).
->        No need to set if this is the same as power-supply.
->  
-> +  spi-3wire: true
-> +
->  required:
->    - compatible
->    - reg
+> Changelog v1->v2 :
+> - Modified indentation according to Vignesh's Comments
+> 
+> [...]
+
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/2] arm64: dts: ti: k3-j784s4-mcu-wakeup: Add support for ADC nodes
+      commit: ad5f7c514442a5eb29a415f75b3ea2744933e274
+[2/2] arm64: dts: ti: k3-j784s4-evm: Add pinmux information for ADC
+      commit: e99913ad58af3172343e3b22fa7a2a794d78b8c1
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
