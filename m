@@ -2,80 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 562B8732186
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 23:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E40B7321A1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 23:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232469AbjFOVVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 17:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33686 "EHLO
+        id S236818AbjFOVZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 17:25:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235249AbjFOVVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 17:21:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3921B2;
-        Thu, 15 Jun 2023 14:21:44 -0700 (PDT)
+        with ESMTP id S229700AbjFOVZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 17:25:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656782D54;
+        Thu, 15 Jun 2023 14:25:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C12E7621CA;
-        Thu, 15 Jun 2023 21:21:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01CADC433C8;
-        Thu, 15 Jun 2023 21:21:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 29820620E7;
+        Thu, 15 Jun 2023 21:25:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0E29C433C0;
+        Thu, 15 Jun 2023 21:25:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686864103;
-        bh=yEJ1sVebWOjpqJF7Ce+024H12ihDLGhFejIzI51dkA4=;
+        s=k20201202; t=1686864315;
+        bh=K6X6+yGOr0u4jtpNY3QmWXJpnuR1wcGYkKplOkZdv6o=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YcNKYEcjPsJehqtPbRYFE7N6WFFHDMEvvgaGYe8BzpaM6VEOC3gEI4D6Gu/SwZ+jS
-         /BYZOukFZbbSfEbJ83MVuvNp8GX98Hl/VGofHWdrHVJr9vtDH+dEzHz46eCjddmWfv
-         b1v4X5qNsw8uDY9Q8atCZChuFzAEpFloEdaWMAe6lZ9maHFlgIEmJW4n5gUCOvgV2T
-         VqnKUk0BXJp7LMDvsMgchb5+jte3Z2EprOdxpcAHUXCMhEKKYgDVJFi0tqGOyu+K8o
-         ffZ6N0+GwAjpdWYh4Gd3s045VTooAy6DhjGmPEbclSSPt1yDyCBY0Epum6vZocMxd0
-         g8pj/Wy5Ir1NQ==
-Date:   Thu, 15 Jun 2023 22:21:34 +0100
+        b=Cc+cTxEe5oICYytKicVq9pzda7yeU4KddYdS8fSb2Oi1XhZc2cGaXcscQEP4VA0jd
+         jUUeNFXN21SnexMeqLy+oVfYCAwqfjSWM6nfq60VTvpl/FCjipcKBFc1+ZTP3neWbE
+         fat+4QMusVTAJW9eBVn7NryEUHl+lZIU8YGybvWMjG44U1y5DD2aZyw7HRkh+5xA2w
+         QNocs42p9GQ/4O3Ry3gIOg4lwC6A6ax4u7+rOhLBo0q/4hKYimcX7OQN4/n+J/4CFf
+         f/sTAHSFmECPhs3KKsBjkIbsO3g5sPAV9/0erYlm4XphWBlpbWxS8a6+uogMjEqhVX
+         NFAzMnHBWqTgQ==
+Date:   Thu, 15 Jun 2023 22:25:09 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Lucas Tanure <tanure@linux.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v7 3/3] riscv: dts: allwinner: d1: Add GPADC node
-Message-ID: <20230615-overact-lard-9402836697f5@spud>
-References: <20230615205540.1803975-1-bigunclemax@gmail.com>
- <20230615205540.1803975-4-bigunclemax@gmail.com>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Nick <nick@khadas.com>, Artem <art@khadas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH 4/6] dt-bindings: serial: amlogic, meson-uart: support T7
+Message-ID: <20230615-mushroom-numeric-3a4c03f2204b@spud>
+References: <20230615182938.18487-1-tanure@linux.com>
+ <20230615182938.18487-5-tanure@linux.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NWC+jNAdJ4jwAH42"
+        protocol="application/pgp-signature"; boundary="9PPwfx0Ri3V89v+e"
 Content-Disposition: inline
-In-Reply-To: <20230615205540.1803975-4-bigunclemax@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230615182938.18487-5-tanure@linux.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,31 +68,72 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---NWC+jNAdJ4jwAH42
+--9PPwfx0Ri3V89v+e
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 15, 2023 at 11:55:22PM +0300, Maksim Kiselev wrote:
-> This patch adds declaration of the general purpose ADC for D1
-> and T113s SoCs.
+On Thu, Jun 15, 2023 at 07:29:36PM +0100, Lucas Tanure wrote:
+> Add serial bindings support menson T7 SoC family.
 >=20
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+>  Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.=
+yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> index 01ec45b3b406..01b01f8840ea 100644
+> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> @@ -46,6 +46,7 @@ properties:
+>            - amlogic,meson8b-uart
+>            - amlogic,meson-gx-uart
+>            - amlogic,meson-s4-uart
+> +          - amlogic,meson-t7-uart
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+| diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_u=
+art.c
+| index 2501db5a7aaf..0208f9a6ba7e 100644
+| --- a/drivers/tty/serial/meson_uart.c
+| +++ b/drivers/tty/serial/meson_uart.c
+| @@ -796,6 +796,10 @@ static const struct of_device_id meson_uart_dt_match=
+[] =3D {
+|                 .compatible =3D "amlogic,meson-s4-uart",
+|                 .data =3D (void *)&meson_g12a_uart_data,
+|         },
+| +       {
+| +               .compatible =3D "amlogic,meson-t7-uart",
+| +               .data =3D (void *)&meson_g12a_uart_data,
+| +       },
+|         { /* sentinel */ },
+|  };
+|  MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
+
+You're adding another element to this enum, but the driver change
+implies compatibility with the s4 uart. Should you not set this up with
+fallback compatibles?
 
 Cheers,
 Conor.
 
---NWC+jNAdJ4jwAH42
+>        - description: Everything-Else power domain UART controller on G12=
+A SoCs
+>          items:
+>            - const: amlogic,meson-g12a-uart
+> --
+> 2.41.0
+>=20
+
+--9PPwfx0Ri3V89v+e
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIuA3gAKCRB4tDGHoIJi
-0hhUAP9/W2wEpDsdB/Sc22oil+LX2XhuR7HCsY8W1oqAguqBagD/T8gxH24r/hy1
-AaVKYORuvL5Bv/c/MlUxLX7izpr1rg8=
-=Y/s0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIuBtQAKCRB4tDGHoIJi
+0sHiAQDxClAxWU17Rv+IGrk8hN8JM+3GVl4CnDAYfxMkZkygFwD+PxzMGG5D/hOb
+Zr3S3egxrhFO4FzDUeuZrAUorATL1wc=
+=B/NH
 -----END PGP SIGNATURE-----
 
---NWC+jNAdJ4jwAH42--
+--9PPwfx0Ri3V89v+e--
