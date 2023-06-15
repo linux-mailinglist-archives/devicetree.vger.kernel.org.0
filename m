@@ -2,66 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E52297315BB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB8737315C9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:52:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239156AbjFOKsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:48:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53960 "EHLO
+        id S239130AbjFOKw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:52:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240905AbjFOKsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:48:11 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA581FC7;
-        Thu, 15 Jun 2023 03:48:10 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAm4Dn078370;
-        Thu, 15 Jun 2023 05:48:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686826084;
-        bh=ZTwnmyq57fNfahfoTZSZG4Z5uSs4RrRwPyAA4yhelgQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=YDptHJ9Fh/CMoTETDkt0tPjoDmTE56VuHeuBQVZ/jMDzSNybyXIwtBvJEgP/NBJGA
-         aDcEw8h7fnQLF+47rocnYc85Jiat5+lZA4pi7OGcGgu+fJ7Up0B8vZjGJe21ZcGngn
-         6NPuv2/bH+Ok67GKIF9Udu/B5YffbeQ6KOXaIcBk=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAm4fV092952
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 05:48:04 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 05:48:04 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 05:48:04 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAm085084939;
-        Thu, 15 Jun 2023 05:48:01 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Apurva Nandan <a-nandan@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Dhruva Gole <d-gole@ti.com>,
-        Udit Kumar <u-kumar1@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>
-Subject: Re: [PATCH v3 0/2] arm64: dts: ti: k3-j784s4-evm: Add support for OSPI and QSPI flashes
-Date:   Thu, 15 Jun 2023 16:17:56 +0530
-Message-ID: <168682606306.2285484.2419811801756393008.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230504080305.38986-1-a-nandan@ti.com>
-References: <20230504080305.38986-1-a-nandan@ti.com>
+        with ESMTP id S245489AbjFOKwY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:52:24 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C642121
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:52:23 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-982b1a18daeso49292966b.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:52:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686826341; x=1689418341;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=utjDDOKSdywXvqy83VTqNIGTgbsgC3M+2PZw+Kce6sM=;
+        b=jMxmfFyWyjWPG1BBJFqu7ITbVdSbOJc+kZnPxcrFjMnrqW8CgSpUNKKRq3Lh6lYBDC
+         wfLpqvqyxwHwoRJnmanXLhx7/widM7u7ZK3BKxD585LF/e1rgRj6Xwpi0/bPvj16Iyk7
+         erZDOdKqgdkP7RtKevIGVqVn+/fCntNyDzKi265xL+yZzYybJvuuttWdWdkHiGH5NDmr
+         4cuY/Iag1OgJ6uY7Gspjh7hoI76PzCkh0ftku3A81zogEi06szELcSSdacIGCNE420JL
+         /Wh9OakOZG3sWBhKKKEYDAx/PHxNQvcSU7tYzEj9EOv651PmEsv86w0WoRn6VW71DUXp
+         ZmwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686826341; x=1689418341;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=utjDDOKSdywXvqy83VTqNIGTgbsgC3M+2PZw+Kce6sM=;
+        b=DTKDs8cjZN5WgIab+mtpnvXtcI0JFaM2CIaoef2UqvXE+ojsvTZ5zPs3Zn0l2y7JRc
+         eJt11Qogq9qCoHcwH0C2OetGXb89x9WVwmco6RIxOO9ErpZyAWGC/whyokT7fk3xdZ2T
+         aCiuITIvBURaz2kg1o2+acolrAf2nSzF/ZXxXSVn2y/MVz9+ROeBi1Cxl7aP1wBtr0Hl
+         3K9WLeLPsiYnpnz2FRRioV4nuxJTvR1UMInC0rfw7h1t7S3qJ7titN1OXq7qnTbDjscj
+         YRHc9Gft5NEEPThKK7/IZ9qUaImk/RRPfLVooFTnIcIu9VJ/oet1emiCapsLUuaV6JHN
+         TB8Q==
+X-Gm-Message-State: AC+VfDz4ZGbbInDcojfrhgHrv/gtmzz7bnYPNT/DPMG3bBZfROzVlBJF
+        gg2PVTx+UQvYB7CO0OLWqc+4lA4f+Uj33XjpFoo=
+X-Google-Smtp-Source: ACHHUZ4Zd7QenZN7bznsbb9rzk810MzuMCf4/T0SCZwLsNuT+24Ngk0O8vLf6fuM3CBh7UAmyym6KQ==
+X-Received: by 2002:a17:906:d54b:b0:978:94b1:25ac with SMTP id cr11-20020a170906d54b00b0097894b125acmr21518784ejc.40.1686826341146;
+        Thu, 15 Jun 2023 03:52:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id jt18-20020a170906ca1200b009823e0bfb05sm3396417ejb.162.2023.06.15.03.52.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 03:52:20 -0700 (PDT)
+Message-ID: <0cddd5e8-3de1-1b6a-b4b8-6304e4c674cf@linaro.org>
+Date:   Thu, 15 Jun 2023 12:52:18 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v6 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
+ compatible string
+Content-Language: en-US
+To:     Frank Li <Frank.Li@nxp.com>, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
+        imx@lists.linux.dev
+References: <20230614193544.2114603-1-Frank.Li@nxp.com>
+ <20230614193544.2114603-13-Frank.Li@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230614193544.2114603-13-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,45 +78,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Apurva Nandan,
-
-On Thu, 04 May 2023 13:33:03 +0530, Apurva Nandan wrote:
-> J784S4 has S28HS512T OSPI flash connected to OSPI0 and MT25QU512A QSPI
-> flash connected to OSPI1, enable support for the same.
+On 14/06/2023 21:35, Frank Li wrote:
+> Extend Freescale eDMA driver bindings to support eDMA3 IP blocks in
+> i.MX8QM and i.MX8QXP SoCs. In i.MX93, both eDMA3 and eDMA4 are now.
 > 
-> Changes in v3:
-> - Split the SoC dtsi changes and EVM dts changes into separate patches
-> - Added QSPI flash node and partition information in EVM dts
-> - Removed address-cells = <1>; and size-cells = <1>; in OSPI0 flash node
-> - Add flash partition information for OSPI flash.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../devicetree/bindings/dma/fsl,edma.yaml     | 99 +++++++++++++++++--
+>  1 file changed, 92 insertions(+), 7 deletions(-)
 > 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> index 5fd8fc604261..de8c44bd8a89 100644
+> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> @@ -21,32 +21,41 @@ properties:
+>        - enum:
+>            - fsl,vf610-edma
+>            - fsl,imx7ulp-edma
+> +          - fsl,imx8qm-adma
+> +          - fsl,imx8qm-edma
+> +          - fsl,imx93-edma3
+> +          - fsl,imx93-edma4
+>        - items:
+>            - const: fsl,ls1028a-edma
+>            - const: fsl,vf610-edma
+>  
+>    reg:
+> -    minItems: 2
+> +    minItems: 1
+>      maxItems: 3
+>  
+>    interrupts:
+> -    minItems: 2
+> -    maxItems: 17
+> +    minItems: 1
+> +    maxItems: 64
+>  
+>    interrupt-names:
+> -    minItems: 2
+> -    maxItems: 17
+> +    minItems: 1
+> +    maxItems: 64
+>  
+>    "#dma-cells":
+> -    const: 2
+> +    enum:
+> +      - 2
+> +      - 3
+>  
+>    dma-channels:
+> -    const: 32
+> +    minItems: 1
+> +    maxItems: 64
+>  
+>    clocks:
+> +    minItems: 1
+>      maxItems: 2
+>  
+>    clock-names:
+> +    minItems: 1
+>      maxItems: 2
+>  
+>    big-endian:
+> @@ -65,6 +74,38 @@ required:
+>  
+>  allOf:
+>    - $ref: dma-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8qm-adma
+> +              - fsl,imx8qm-edma
+> +              - fsl,imx93-edma3
+> +              - fsl,imx93-edma4
+> +    then:
+> +      properties:
+> +        "#dma-cells":
+> +          const: 3
+> +        # It is not necessary to write the interrupt name for each channel.
+> +        # instead, you can simply maintain the sequential IRQ numbers as
+> +        # defined for the DMA channels.
+> +        interrupt-names: false
+> +        clock-names:
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+items:
+  - const: dma
 
-[1/2] arm64: dts: ti: k3-j784s4-mcu-wakeup: Add FSS OSPI0 and FSS OSPI1
-      commit: 8758109d135401c8afea0d0e3c51e7a52c843b7b
-[2/2] arm64: dts: ti: k3-j784s4-evm: Add support for OSPI and QSPI flashes
-      commit: 150ce1b10740c10f87e90e485bc279c205e3f731
+clocks:
+  maxItems: 1
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+You do not allow more than one clock, right?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> +          const: dma
+> +    else:
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+You already have two ifs, so you should not have else here, but rather
+make each if clause proper for your setup.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+BTW, the amount of differences point to very complicated schema, so you
+should think whether it makes sense to keep binding growing in the first
+place.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +          maxItems: 3
+> +        interrupts:
+> +          minItems: 2
+> +          maxItems: 17
+
+missing clocks restriction to minItems: 2
+
+
+> +        "#dma-cells":
+> +          const: 2
+> +        dma-channels:
+> +          const: 32
+> +
+
+
+
+Best regards,
+Krzysztof
 
