@@ -2,91 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB9FC731952
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:57:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5DA73195F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238460AbjFOM5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:57:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52100 "EHLO
+        id S245623AbjFOM7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 08:59:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240731AbjFOM4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:56:55 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75F6269D
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:56:53 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f64fb05a8aso10538023e87.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:56:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686833812; x=1689425812;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v1CbTBRn8vQDvPf6Z2biUED1bJGUXq/a80Hy0PH+rSA=;
-        b=pIzCccIMIRGK2q25DpBRdjMSE9rF2EraF12WiZ8h6N7uHRGusZ2WBw7HdRHqX2CeL5
-         EKul/KBbvQJkKxXtT093+Wj1U/LHPnCAmqvmia0QrGEdbHfA+Zss1Abfir1yj56IH/9o
-         uOGSulxNPYsuDFKg+RHzEHMoS48IYece+jmC5VW4+cnXP4VxKmfwBOr++lmyPuey5vXe
-         Pq6ZGehysyoWw4MAO8BKFLiDiFqbT/PklBljqRPuA896y5RlHwx4Tm5/0eWdIxhu0TtZ
-         ubzHiTGNXQ4XpK81GBliesQcRh1r6v4SjeNXQbHNPM0IOGA+tRleTV9kXy14TroVf1Lt
-         d4gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686833812; x=1689425812;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v1CbTBRn8vQDvPf6Z2biUED1bJGUXq/a80Hy0PH+rSA=;
-        b=PSe7a5PBL9lBv/6PqkbkSXTEDihY8NH0W4vbbwKRqYxKD/W2FOmlSZPdHaa3/9lU1q
-         +WlY/gvFbp9zOPrzpm0DXVbFqKNpSKKAx6dcysAL7gTTrK3vqowc2o6o/Nh11iYO8onc
-         yow2hY++VMqw8DJ9UH5u1QuLrrIt0wGQH/XfuoJ1M+Z5TfjNRaJq+pB1jw6wI68ERU6V
-         2IG3/oQxxAoRjNlVEpvZfRiAMnf7ujZPLh+BxltA8S3FKl57jeddZIcmB0rxsEQoSb4c
-         H1BNXwu0RWMwqNdIo9xU1hMJaZsTxb22gusPJ+QvWm3ewyAnJcxgmaafbSeRxp+rzTGP
-         Gi5g==
-X-Gm-Message-State: AC+VfDzrOlCAsNMcrJF7OM/QXz3qLJ1tH8J8QPAfWxE1ybgptg3I9xr1
-        cP63+P+gKws7r56eSd1bDRKwZg==
-X-Google-Smtp-Source: ACHHUZ4idKi9MKj9dACNe9eMwOfmRi1oqlCWD4/JIb33nDqyZCNa4kpiBxTMJ7GeUtyUjAUAiC/Yng==
-X-Received: by 2002:a05:6512:48b:b0:4ef:ed49:fcc2 with SMTP id v11-20020a056512048b00b004efed49fcc2mr11392533lfq.26.1686833811790;
-        Thu, 15 Jun 2023 05:56:51 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id l9-20020ac25549000000b004f63739e2f1sm2559845lfk.255.2023.06.15.05.56.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 05:56:51 -0700 (PDT)
-Message-ID: <18103637-c191-9b8f-7983-d0b1591f9024@linaro.org>
-Date:   Thu, 15 Jun 2023 14:56:49 +0200
+        with ESMTP id S245638AbjFOM7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:59:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878E826B8
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:58:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D8F962BAD
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 12:58:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF66C433C0;
+        Thu, 15 Jun 2023 12:58:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686833933;
+        bh=ccxDZt57UBSH1sxdXOV0n93Dnuc15sNkgcTBE5CdvzE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TnMpG/53UVxwOXp8PCOuqXRMf6dMLbwFvlOVbowGBa9wEizJ0u7DceWbsPe8CaPrk
+         Ikoo7o4VeU6TJTbLYBtw9F62/7c2LJqKB0axFAqZEsQzeplsOCigbfUZtCvI64W2aw
+         f26KZ6doZ4qliKCmn6/44JnHWuhArDsXXaTDCgv2hed633Vtqx0pSEig6v6GFQak/o
+         /k7q/1KU7pQ4QqKR6hh4LB8cepK1zhCqGs0fWRUvmQSSx/evpjekRaxP8oArQJ+V0S
+         xNgyG3vcK81UbNqw6aL6l4JqlE2E8kAJN/+XiSIxswD96xIeidublOwgGWvlCERWSt
+         8CAOZIkkiYz9A==
+Received: by mercury (Postfix, from userid 1000)
+        id A9D4610609DA; Thu, 15 Jun 2023 14:58:50 +0200 (CEST)
+Date:   Thu, 15 Jun 2023 14:58:50 +0200
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 1/7] drm/panel: sitronix-st7789v: Prevent core spi
+ warnings
+Message-ID: <20230615125850.cbqsmilwnpnabkta@mercury.elektranox.org>
+References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
+ <20230609145951.853533-2-miquel.raynal@bootlin.com>
+ <b4ae6e9c-b548-b1e3-42f9-e24aacaf2b38@wolfvision.net>
+ <20230613085630.4a48fa8b@xps-13>
+ <20230614232217.d7lf4l3y7oqmjisy@mercury.elektranox.org>
+ <20230615054346.GA1537028@ravnborg.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 19/23] arm64: dts: qcom: sa8775p: add the SGMII PHY
- node
-Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>, Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230615121419.175862-1-brgl@bgdev.pl>
- <20230615121419.175862-20-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230615121419.175862-20-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="w5ch2vgmwtmjx2xk"
+Content-Disposition: inline
+In-Reply-To: <20230615054346.GA1537028@ravnborg.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,36 +69,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.06.2023 14:14, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Add the internal SGMII/SerDes PHY node for sa8775p platforms.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index b130136acffe..b6d95813c98c 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -1837,6 +1837,15 @@ adreno_smmu: iommu@3da0000 {
->  				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		serdes0: phy@8901000 {
-> +			compatible = "qcom,sa8775p-dwmac-sgmii-phy";
-> +			reg = <0x0 0x08901000 0x0 0xe10>;
-> +			clocks = <&gcc GCC_SGMI_CLKREF_EN>;
-> +			clock-names = "sgmi_ref";
-> +			#phy-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->  		pdc: interrupt-controller@b220000 {
->  			compatible = "qcom,sa8775p-pdc", "qcom,pdc";
->  			reg = <0x0 0x0b220000 0x0 0x30000>,
+--w5ch2vgmwtmjx2xk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+On Thu, Jun 15, 2023 at 07:43:46AM +0200, Sam Ravnborg wrote:
+> On Thu, Jun 15, 2023 at 01:22:17AM +0200, Sebastian Reichel wrote:
+> > > > May I point to you Sebastian Reichel's series that features a parti=
+al
+> > > > overlap with your work? [0]
+> > >=20
+> > > Woow. That driver has been untouched for years and now two
+> > > contributions at the same time.
+> >=20
+> > Three actually. Michael also submitted a series :)
+> >=20
+> > > Sebastian, what is the current state of your series?
+> >=20
+> > The DT changes got Ack'd by Rob and I have the R-B from Michael
+> > (minus a minor comment to make the panel struct 'static const').
+> > It's mainly waiting for a review from Sam.
+> >=20
+> > I was a bit distracted by a boot regression on the devices and
+> > some other projects. The boot regression got solved, so I can
+> > prepare a new version if that makes things easier.
+> >=20
+> > > Shall I base my work on top of yours? Or is it still too
+> > > premature and we shall instead try to merge both and contribute a new
+> > > version of the series bringing support for the two panels?
+> >=20
+> > I suppose whatever is easier for Sam to review.
+>=20
+> Hi Sebastian.
+>=20
+> Too much panel stuff going on, so I miss the most and I am happy
+> to see other people do a lot of good work here. Can i get a
+> pointer to lore or so, then I will try to take a look.
+
+Sure,=20
+
+Michael Riesch already referenced it earlier in this thread:
+
+[0] https://lore.kernel.org/dri-devel/20230422205012.2464933-1-sre@kernel.o=
+rg/
+
+Thanks for taking a look,
+
+-- Sebastian
+
+--w5ch2vgmwtmjx2xk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSLCwMACgkQ2O7X88g7
++prCFA/+NhuQowxKUGtxGxCe/TCI7qwL3TxYz/Wg3ETAderx1cFkGoWk1M543V4n
+vQJasNms5VPUBJFvTsp9n++02X1uY+Kk1Ps7XKvKSrjV24n/ORutcYZrhLKYX9oz
+qOgmES22rQonRORkR0rRCg5IUTm4gOZBquciswvgaEalmi6yFimPorUrroJzTi7d
+tTZ3TmKGsj4OLKS0BkiSi4uj9adYf+j3yvnJHJzg64NIWyjio90kDJpqr3sFRmMA
+Slu9EDYoZfQvq5rv/AFxGvKf7X3FswN3YD7c+z7/pl3qRDxuiiGxWoUVOEhHhwNE
+pauc8xOB8thOr5G6oICTvBiELG0+5ptSSxRRMTg1dZCT6PvwJMKtzG73s46winvZ
+Fy4TlCjiLKfkJYz+OE0y8rxY+bsBy/cXoEorMHKj5ih/S1Z5IeCHybnwwMScibcb
+KuaHSjNNAnOQrKIjbSWZJa5j+0Qjj9w/6+DkIm2DyePl6N4QarIDDgjCvf3zpTjH
+NJ6lyp0/3p6KMEerEEaadxM+gRNyAZBwj+el8KTqsomDlXarmoCuqvGDXmUJE6HX
+/WyKetCXWZoGLWJ1csj0Gxg54DoHF2aQiGCd6s/rQR7jq8scl4tZWJffQsnVNkzO
+r5EKeVdrotlHZzuViu4TP7iyPUyG7W2+xgtlQs0i4SKVGrNqPlo=
+=98k+
+-----END PGP SIGNATURE-----
+
+--w5ch2vgmwtmjx2xk--
