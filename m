@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F7AF731596
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E5207315A4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:43:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343547AbjFOKjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:39:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48748 "EHLO
+        id S240671AbjFOKnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239999AbjFOKjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:39:39 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB331BC;
-        Thu, 15 Jun 2023 03:39:38 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAdVqL066298;
-        Thu, 15 Jun 2023 05:39:31 -0500
+        with ESMTP id S241017AbjFOKnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:43:21 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3826B1BF3;
+        Thu, 15 Jun 2023 03:43:20 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAhEH9077500;
+        Thu, 15 Jun 2023 05:43:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686825571;
-        bh=FIvNdUpkNDtat2d1zB9D48Rb3xDNQ64bKjJr8fg37tk=;
+        s=ti-com-17Q1; t=1686825794;
+        bh=NZwHMOeBiurjrCW0mAE5ZQbWmc48c0ebjVbZDJOCMgU=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=xT5nkV16wJwN1BNZJdgKtsxYE+cH19J2c5EbZfkEyUoVspmmZTQHT8OFKLmF7lZZF
-         PwviOjDxzcQRBI5M4BaPE99Tc7VQ5nwiI0g2cZEFDM55dn6p7/zKrlOgQ7rPIuDzxm
-         sLOZ2ii3T29oaRYhRz+SNLLuDbLoTQ2GKhtLr/8A=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAdVSs088309
+        b=edFwT1SjTAFN6Z4U5WNu16QOZu7jTa4tbN8ABeVY7p2r0dA1nsRDk92irlsPNYgO8
+         TSdOn10JiqeyioEXg38AGmK2ek/3OMaYSt4RowkU+QwsSKX/OlDC0rH+WiH8OdlPyk
+         uu+O7wQxHvr91SPoY3IFTyjN7UhIwarU4Uk5R/cY=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAhEBg005653
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 05:39:31 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 15 Jun 2023 05:43:14 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 05:39:31 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 05:43:14 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 05:39:31 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAdS8l055707;
-        Thu, 15 Jun 2023 05:39:29 -0500
+ Frontend Transport; Thu, 15 Jun 2023 05:43:13 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAhAGR081052;
+        Thu, 15 Jun 2023 05:43:10 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bhavya Kapoor <b-kapoor@ti.com>
+To:     <nm@ti.com>, <kristo@kernel.org>, <conor+dt@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <afd@ti.com>, Vaishnav Achath <vaishnav.a@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <nm@ti.com>
-Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-j784s4: Add support for ADC nodes
-Date:   Thu, 15 Jun 2023 16:09:27 +0530
-Message-ID: <168682555626.2264847.7193857222855659588.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+Subject: Re: [PATCH v2 0/4] arm64: dts: ti: j721e: Add HyperFlash support
+Date:   Thu, 15 Jun 2023 16:13:08 +0530
+Message-ID: <168682577717.2266254.12712212456915723597.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230502081117.21431-1-b-kapoor@ti.com>
-References: <20230502081117.21431-1-b-kapoor@ti.com>
+In-Reply-To: <20230513123313.11462-1-vaishnav.a@ti.com>
+References: <20230513123313.11462-1-vaishnav.a@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -66,27 +67,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhavya Kapoor,
+Hi Vaishnav Achath,
 
-On Tue, 02 May 2023 13:41:15 +0530, Bhavya Kapoor wrote:
-> J784S4 has two instances of 8 channel ADCs in MCU domain. Add support
-> for both ADC nodes in dtsi file. Add pinmux information for both
-> instances of ADC in board dts file.
+On Sat, 13 May 2023 18:03:09 +0530, Vaishnav Achath wrote:
+> This series adds hyperflash support for J721E. J721E SoC has HyperBus
+> and OSPI controller muxed within the FSS subsystem and the J721E SoM
+> has a 64 MiB S28 OSPI flash and a 64 MiB Hyperflash present which is
+> muxed externally also.
 > 
-> Link to v1 -> https://lore.kernel.org/all/0f553758-c2cc-ce70-47e0-99e08c2d94a1@ti.com/
-> 
-> Changelog v1->v2 :
-> - Modified indentation according to Vignesh's Comments
+> Changelog:
+> V1->V2:
+>  * Address feedback in similar series:
+>  https://lore.kernel.org/all/feddcd03-1848-b667-6a38-ae7c0f6ff160@ti.com/
+>  * Add partitions information in Hyperflash node.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/2] arm64: dts: ti: k3-j784s4-mcu-wakeup: Add support for ADC nodes
-      commit: ad5f7c514442a5eb29a415f75b3ea2744933e274
-[2/2] arm64: dts: ti: k3-j784s4-evm: Add pinmux information for ADC
-      commit: e99913ad58af3172343e3b22fa7a2a794d78b8c1
+[1/4] arm64: dts: ti: k3-j721e-mcu-wakeup: Add HyperBus node
+      commit: d93036b47f354b7acb95aad5c91e9becbe4e9f61
+[2/4] arm64: dts: ti: k3-j721e-som-p0: Add HyperFlash node
+      commit: 0979c0069cb669528d13818410de9f0dd41585f3
+[3/4] arm64: dts: ti: k3-j7200-common-proc-board: Add OSPI/Hyperflash select pinmux
+      commit: be8be0d036b2fed1f705931ac3901077039b7496
+[4/4] arm64: dts: ti: k3-j721e-common-proc-board: Add OSPI/Hyperflash select pinmux
+      commit: 58cd171af4d7e27525b1924b72100cba98d88d2a
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
