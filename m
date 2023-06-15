@@ -2,64 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2B7C731F68
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2ECC731F7B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230424AbjFORkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 13:40:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49438 "EHLO
+        id S235826AbjFORrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 13:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbjFORkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:40:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADB8271E;
-        Thu, 15 Jun 2023 10:40:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A812161699;
-        Thu, 15 Jun 2023 17:40:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47A11C433C0;
-        Thu, 15 Jun 2023 17:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686850835;
-        bh=vqU6dirgEC8/IAf15RrIFka6wBf5PWMJGHsHVuhG1i0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QRJwE12qPoIbZk/MdTsvAkT23bwzOBP63RT4WjdWZVAQP9sUeRlMJw3JrJ5DjyPqx
-         SCy+zvs1/Ovc+CtizzMuNkWp09RW9wYgApxu7B3bK+GYV6kPKsc/4lfaxJa5HVcgr1
-         uoxSLaTcvWtzXFesIgY4rQ+6Mhvl5vYE9UYHKU2mjoPkS9HA07+I/zdwP1Q86CXk3F
-         QZfkjURlR1k/oxD5nWT6z4t/K+omYNrsldwUcCat6vvGVfsfg3oZHwRsTzjO350F/z
-         La+NP4tiGhJxbEXDAAfaywliR0YnN25XRjxhPg5Oa8BU8T0Q9Z0gHfVjHGmFRsd2qy
-         dOlm5sAKels1A==
-Date:   Thu, 15 Jun 2023 18:40:28 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Valentin CARON <valentin.caron@foss.st.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234708AbjFORrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:47:31 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544082721;
+        Thu, 15 Jun 2023 10:47:29 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-77ac14ff51bso330005539f.3;
+        Thu, 15 Jun 2023 10:47:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686851248; x=1689443248;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eOMHF+PAvYNj6z27LafaLYMbvuVFemfqC8gfypuerIw=;
+        b=jrns6R9jDZYO1QHJ7OmXo03ywWp3WwNKoeUHG2ncdDHexiwTw+LYEM7N4Hgj6lxWPw
+         K8N7gVMMCab5bzo4zshQL4ny9Mr55oHtL3ZE6XK+ZAr5Yyg7XIfKSSdYD+73EDiXG6iR
+         EWn6KSLFTDqGCfOZNYjXt47ec2bw5GyvMESSYQZ90Wcgspmhmijc6zuuuAfOcXqOdgZ9
+         AGjyJbCASP0fB/7BQfX+Xwvruia23b79a2dNz11H+A76icEr0F8i7rxywx1ERUPn13Gg
+         6GRl/RCAvF7VRJ3ms8e1FHABAEE5smhrD9uO0sTqHa4xYyLvGpoMYGN74BeRRh7OCGTB
+         uxkg==
+X-Gm-Message-State: AC+VfDwfN1IZPw5hWY9F7Tc9OuQR/6+phme/oxTqni4xQlDTYtcBXZnQ
+        9FTerlZD0/FK16igae7Tbgc0iLd3EA==
+X-Google-Smtp-Source: ACHHUZ46wBJxsKz51zlhelfDLrhVjW9R4d9vgt4Ap+liLjVoK6rQ9zl9E6L5p1auH+YynCFoQWNxYQ==
+X-Received: by 2002:a5e:8d0e:0:b0:77a:ec0c:5907 with SMTP id m14-20020a5e8d0e000000b0077aec0c5907mr121504ioj.13.1686851248522;
+        Thu, 15 Jun 2023 10:47:28 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id t5-20020a028785000000b0040fa5258658sm5684715jai.77.2023.06.15.10.47.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jun 2023 10:47:27 -0700 (PDT)
+Received: (nullmailer pid 1252771 invoked by uid 1000);
+        Thu, 15 Jun 2023 17:47:26 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: spi: stm32: disable spi-slave
- property for stm32f4-f7
-Message-ID: <1e831d7c-cb38-4ac3-ba53-1fbb20423202@sirena.org.uk>
-References: <20230615075815.310261-1-valentin.caron@foss.st.com>
- <20230615075815.310261-4-valentin.caron@foss.st.com>
- <479bf05e-342d-f94b-87f3-4cc0a95fb01a@linaro.org>
- <b25d30de-8a22-b5ea-e58c-78b3d55b3cac@foss.st.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="s0RwalaAUfUSjMSq"
-Content-Disposition: inline
-In-Reply-To: <b25d30de-8a22-b5ea-e58c-78b3d55b3cac@foss.st.com>
-X-Cookie: You are false data.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Bjorn Andersson <andersson@kernel.org>
+In-Reply-To: <20230531-rpm-rproc-v3-6-a07dcdefd918@gerhold.net>
+References: <20230531-rpm-rproc-v3-0-a07dcdefd918@gerhold.net>
+ <20230531-rpm-rproc-v3-6-a07dcdefd918@gerhold.net>
+Message-Id: <168685124601.1252742.10827614978463684778.robh@kernel.org>
+Subject: Re: [PATCH v3 06/13] dt-bindings: remoteproc: Add Qualcomm RPM
+ processor/subsystem
+Date:   Thu, 15 Jun 2023 11:47:26 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,37 +72,67 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---s0RwalaAUfUSjMSq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Thu, 15 Jun 2023 18:50:39 +0200, Stephan Gerhold wrote:
+> On Qualcomm platforms, most subsystems (e.g. audio/modem DSP) are
+> described as remote processors in the device tree, with a dedicated
+> node where properties and services related to them can be described.
+> 
+> The Resource Power Manager (RPM) is also such a subsystem, with a
+> remote processor that is running a special firmware. Unfortunately,
+> the RPM never got a dedicated node representing it properly in the
+> device tree. Most of the RPM services are described below a top-level
+> /smd or /rpm-glink node.
+> 
+> However, SMD/GLINK is just one of the communication channels to the RPM
+> firmware. For example, the MPM interrupt functionality provided by the
+> RPM does not use SMD/GLINK but writes directly to a special memory
+> region allocated by the RPM firmware in combination with a mailbox.
+> Currently there is no good place in the device tree to describe this
+> functionality. It doesn't belong below SMD/GLINK but it's not an
+> independent top-level device either.
+> 
+> Introduce a new "qcom,rpm-proc" compatible that allows describing the
+> RPM as a remote processor/subsystem like all others. The SMD/GLINK node
+> is moved to a "smd-edge"/"glink-edge" subnode consistent with other
+> existing bindings. Additional subnodes (e.g. interrupt-controller for
+> MPM, rpm-master-stats) can be also added there.
+> 
+> Deprecate using the old top-level /smd node since all SMD edges
+> are now specified as subnodes of the remote processor.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> This patch is based on qcom/for-next, since it needs the new
+> qcom,rpm-master-stats.yaml schema that is only applied there.
+> ---
+>  .../bindings/remoteproc/qcom,rpm-proc.yaml         | 171 +++++++++++++++++++++
+>  .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml |   6 +-
+>  .../devicetree/bindings/soc/qcom/qcom,smd.yaml     |   7 +
+>  3 files changed, 181 insertions(+), 3 deletions(-)
+> 
 
-On Thu, Jun 15, 2023 at 07:38:36PM +0200, Valentin CARON wrote:
-> On 6/15/23 15:36, Krzysztof Kozlowski wrote:
-> > On 15/06/2023 09:58, Valentin Caron wrote:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> > > STM32F4 and STM32F7 can't switch to spi device mode.
-> > > Forbid this property with compatible "st,stm32f4-spi".
+yamllint warnings/errors:
 
-> > Just to clarify - driver cannot switch or hardware does not support it?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/remoteproc/qcom,rpm-proc.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/soc/qcom/qcom,rpm-master-stats.yaml
 
-> Driver can't support it right now but hardware can.
+doc reference errors (make refcheckdocs):
 
-That shouldn't be a restriction in the DT then, please send a patch
-dropping this.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230531-rpm-rproc-v3-6-a07dcdefd918@gerhold.net
 
---s0RwalaAUfUSjMSq
-Content-Type: application/pgp-signature; name="signature.asc"
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSLTQsACgkQJNaLcl1U
-h9CKjAf/WPDS/CcbstHeaOr6BdtAydD//XXBQyx+pfD0IPD95FHAUwMB6zSldA2z
-0J7gV535K/RlxZ+S93Tz3zSkV4lEM6K/1ytKXT1ZS7Nv/McWwey6ByuP9uHTlDWX
-thCjOJIQOFr6SwbmYsCA9loj6j1NAVuPei4t6RO7lWW3GGz93KoxexyqE9IsnEmz
-+uZZ/2Ut3PgkFoduYs3LCwuwYcRWO5/xutqVE9WAXQXduZbpiHJuRb2P4AcDx6t2
-qcuRGnZ5O+1xO+eV0r0U6GfuDb3T6vK52p/W1pkVWVQlUdC/IbBIsERAK+gfyy6j
-W1scy4S6HNlIbra4E+lhnQIQ9KH2Og==
-=URnM
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---s0RwalaAUfUSjMSq--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
