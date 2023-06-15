@@ -2,120 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B977320E1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 22:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1CA73210A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 22:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236672AbjFOUXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 16:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44198 "EHLO
+        id S230083AbjFOUmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 16:42:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbjFOUXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 16:23:01 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0602702
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 13:22:58 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f845060481so1475891e87.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 13:22:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686860576; x=1689452576;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v5XF5uBTAtvpA1VpsYCm6GR0NoRPfJg3tqa6HE9KDYc=;
-        b=qQeXF0M9mYOpIGCFaQrnDXB6VjUyo5AZ6UnieBJxkirV3cmRJGjiBy5rDQNkwGB3ll
-         0EHZfrsRTKeqS8PacfxmGyOzW77SjxLwIWKJetTYltCg+kSB8lDY705/zz3vwM7lYzN9
-         WFeXYa9CjORYvg1borCu7hQF8Fb0LXdEndF+b2nRPU0zFEn4LuSVVNOaHKXUTDmlcSFU
-         GbMrM2vs6Ys7hPSYXl1uzbecK8XqIqJsDkXEPopL+S4pWh7dQCc344JTSn4cbLF8cjuG
-         rIyM75DHZoqJcC0YvX+pnLPwDndEP8XkBaZHu7MyInAJhL0fJo/Njfr8vsQpraPAnFJ3
-         7R8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686860576; x=1689452576;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v5XF5uBTAtvpA1VpsYCm6GR0NoRPfJg3tqa6HE9KDYc=;
-        b=h5Ry9C4HRONYUgREHzwYNXFiuZLevDx6pAHl7B3V8n9IW7Hb1bstW4ZNE2ovOYhVnN
-         0KSF71yV3VPMZKKCOxqssGOhG5Jjx+++6+VGDBTdOpZmlH9xvZ+019jGVLfMWjZbYMVu
-         NM9QdxGHusalWWOm/0zg33QL31H2LsrqFexxNeJy/pQYgn6yhksV2T1lqS3c+/QZVhgw
-         rxkV94ijx4D5i9s6ZFYur/1nF314OFM7nYLtJNPdQmJdxfpjMV5NDpFNJR+Br3SzxdOR
-         k1o/HPt4Klw34mC2Yp4QliKG5aVaYlIi33QCnLEW1IyMYopJTDzuQxqUdhAZqOOOe09J
-         gnUQ==
-X-Gm-Message-State: AC+VfDxhnODRT0F5q42nOEun7T7kkt/DIYFHZ7ah1zIPO6KhytabwO6J
-        LbNjsG1/KD9aRxYC4u/SBt+g7A==
-X-Google-Smtp-Source: ACHHUZ5LK8BVUiva08mB2RInbokbmOiWQwVTxSdEpd/3VaWxCMhhigdcH1ZyVPotOEMA/yQzEu1THQ==
-X-Received: by 2002:a05:6512:521:b0:4f3:bbe1:34fc with SMTP id o1-20020a056512052100b004f3bbe134fcmr12330272lfc.38.1686860576556;
-        Thu, 15 Jun 2023 13:22:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h22-20020a170906111600b009828bb40444sm1907718eja.51.2023.06.15.13.22.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 13:22:56 -0700 (PDT)
-Message-ID: <e3a83137-d125-4d0f-2eb4-4731159d0c7d@linaro.org>
-Date:   Thu, 15 Jun 2023 22:22:53 +0200
+        with ESMTP id S229510AbjFOUmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 16:42:42 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698AB26AA;
+        Thu, 15 Jun 2023 13:42:41 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 3EDE01C0E6E; Thu, 15 Jun 2023 22:42:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1686861760;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=sjDjIO+xVPdB2U4CUF59ZcGqZm415CEp3vEdF4Dd6AA=;
+        b=To1hFLR68iHFCiNEJuVjWt1QN2HSG9YhX9UaZczrDUhp01iFANyJG64cTxUgWPjoiWLgWs
+        7q1KVqJUh5dk+oBlbivldybAH0KFiw8rdW3Ctp0FCp/gw19lV/zzNLv1FEEh70abrWuRDD
+        0DZ8+kfE6KhM5RXjLZFkJDy1eBhT9yY=
+Date:   Thu, 15 Jun 2023 22:42:30 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, benl@squareup.com,
+        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
+        dmitry.baryshkov@linaro.org, stephan@gerhold.net
+Subject: Re: [PATCH v7 5/5] arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
+Message-ID: <20230615204230.GB1119@bug>
+References: <20230223153655.262783-1-bryan.odonoghue@linaro.org>
+ <20230223153655.262783-6-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] dt: bindings: add bindings for TQMa93xxLA SOM
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>
-Cc:     Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-References: <20230609132915.634338-1-alexander.stein@ew.tq-group.com>
- <20230609132915.634338-2-alexander.stein@ew.tq-group.com>
- <1bf1890f-d24c-12a1-217d-27579a2464a6@linaro.org>
- <6315067.GXAFRqVoOG@steina-w>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6315067.GXAFRqVoOG@steina-w>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230223153655.262783-6-bryan.odonoghue@linaro.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2023 16:46, Alexander Stein wrote:
->>> +          TQMa93xxLA and TQMa93xxCA are two series of feature compatible
->>> SOM +          using NXP i.MX93 SOC in 11x11 mm package.
->>> +          TQMa93xxLA is designed to be soldered on different carrier
->>> boards. +          TQMa93xxCA is a compatible variant using board to
->>> board connectors. +          All SOM and CPU variants use the same device
->>> tree hence only one +          compatible is needed. Bootloader disables
->>> all features not present +          in the assembled SOC.
->>> +          MBa93xxCA mainboard can be used as starterkit for the SOM
->>> +          soldered on an adapter board or for the connector variant
->>> +          MBa93xxLA mainboard is a single board computer using the
->>> solderable +          SOM variant
->>> +        items:
->>> +          - enum:
->>> +              - tq,imx93-tqma9352-mba93xxca # TQ-Systems GmbH i.MX93
->>> TQMa93xxCA/LA SOM on MBa93xxCA +              -
->>> tq,imx93-tqma9352-mba93xxla # TQ-Systems GmbH i.MX93 TQMa93xxLA SOM on
->>> MBa93xxLA SBC
->> xx sound like wildcard which you should not use. If you open the product
->> page, it also suggests that.
+On Thu 2023-02-23 15:36:55, Bryan O'Donoghue wrote:
+> Add a basic booting DTS for the Sony Xperia M4 Aqua aka "tulip".
 > 
-> xx is a wildcard only for modules TQMa93xx, depending on the soldered SoC, but 
-> not for the mainboard MBa93xx.
-> You are right that there is the ordering number MBa9352LA-AA, so the 
-> compatible would be "tq,imx93-tqma9352-mba9352la". But the actual values for 
-> the wildcards is copied from the soldered module. So using a TQMa9351LA would 
-> result in MBa9351LA-AA, although the mainboard is identical.
+> Tulip is paired with:
+> 
+> - wcn3660
+> - smb1360 battery charger
+> - 720p Truly NT35521 Panel
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-OK
+Congrats on getting this to work. Please Cc: phone-devel@vger for phone related stuff.
 
-Best regards,
-Krzysztof
-
+Thanks,
+									Pavel
