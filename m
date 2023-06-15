@@ -2,164 +2,385 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B63073164D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 13:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 324F9731661
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 13:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343509AbjFOLRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 07:17:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41568 "EHLO
+        id S1343794AbjFOLVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 07:21:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343654AbjFOLRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 07:17:10 -0400
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2054.outbound.protection.outlook.com [40.107.212.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF982947;
-        Thu, 15 Jun 2023 04:17:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RmorYjQyipi/fHroXiCpmy4YOP3Xim5Jqe1OEDWni3kGhFPvM1eYOSmVjViXRDiPY/zOApbGQGFqNtNy+J3gxAQFrXmBYAmdsRQvnFkdH9o8+UZB+QISQoWgKfN6uDHjbsbO6snul0cNDPT+a5KL3r65v/A49xzZYPd1Qh3SMhW1ZWWgW/u/OZgnXxEUvE/s+1DLKXQKgd5ZImhM8s7rivcrTVqilaQ1OQpBhA8PFvZuSJnK1ruFQ1YLRu9BysUiHr7Aa5CnyVG4ek/d3dCvnCokt5SVmhuvahO0bRtrRL2vgABuLZJAeY9ECpmChjBlS7/6tUjXbaA21gLbleISjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zr1+zYjtepEiq7UlcHy7vwzAYrAfxjUoBXuNizs+2r0=;
- b=jQ8PdOuBaq/vKFL3nGYYaHrKQlgXBqTyYQELFjGWbnxEafKIAX/i+K5CMKu1kEZkn2nP3Fw1VYNqhyONlVINbBZbOOFRS2/bkXXOXsrCqkSG+RUek9vzqRX2bf5Lqh9MkVgkxN7NkVbD75sjyDVnL+FmUtIkKyBsjU8mtyTvXGqtY4HeKSW5WCFfEgVmMaiAvFxcQ/ZSCyfHOihDMEqW1S6fhaR+5j9ASVO37qJxccxhlHBHpmzpb6WrDrqYnvCkXbBcJR+RgNSbrbP/6LGBYznfyW0y/1QHafgmc5ulc3tV+f9w6NrKz6Rx5Lng22SQNS+E3GKUXAY5sF0XuD+Q2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zr1+zYjtepEiq7UlcHy7vwzAYrAfxjUoBXuNizs+2r0=;
- b=ejScmY6cReE4MfJGi0GwMMytziCyoEMElCQhsEN2TT2Mdo6v2Ik6iu+WlqFhAgOWxjEoitBjHS86Pua0eZIT5BPEoBCypQuY94Fi2ot46nJgtIjDxm//fj1L5nq39UZXdLuIFHdwFNDlm7SIs9cRFF/bwZ5nXpp97hIs/jk0H4I=
-Received: from DS7PR03CA0088.namprd03.prod.outlook.com (2603:10b6:5:3bb::33)
- by SA3PR12MB8802.namprd12.prod.outlook.com (2603:10b6:806:312::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.25; Thu, 15 Jun
- 2023 11:17:05 +0000
-Received: from DM6NAM11FT103.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3bb:cafe::d4) by DS7PR03CA0088.outlook.office365.com
- (2603:10b6:5:3bb::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37 via Frontend
- Transport; Thu, 15 Jun 2023 11:17:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT103.mail.protection.outlook.com (10.13.172.75) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.26 via Frontend Transport; Thu, 15 Jun 2023 11:17:05 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Thu, 15 Jun
- 2023 06:17:04 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 15 Jun
- 2023 04:17:04 -0700
-Received: from xhdakumarma40u.xilinx.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23
- via Frontend Transport; Thu, 15 Jun 2023 06:17:00 -0500
-From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To:     <tudor.ambarus@linaro.org>, <pratyush@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <git@amd.com>, <michael@walle.cc>, <linux-mtd@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <amitrkcian2002@gmail.com>,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP signal not connected
-Date:   Thu, 15 Jun 2023 16:46:49 +0530
-Message-ID: <20230615111649.36344-3-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230615111649.36344-1-amit.kumar-mahapatra@amd.com>
-References: <20230615111649.36344-1-amit.kumar-mahapatra@amd.com>
+        with ESMTP id S239118AbjFOLVg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 07:21:36 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F20D270C
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 04:21:33 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-98281bed6d8so211230766b.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 04:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686828092; x=1689420092;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pV+y4rT5kQxU13ZWSN4RWCUCARBYQF07f0m1RJyvFAA=;
+        b=IYrdVZiFOin/Wd7Rq+fWzaFW8RkZmF77MVOWUyexrf5yAWVi/4t3qWhafp4WvJ7bBW
+         SNevCE1Y3tT2+0BhvmNfKlzPDUjiL5rN1hxXFId7zs+QYeEpEiWDM/jK/U4G7nV1AOHd
+         yd5ENhr7xtnUQ4IXHcEFL9/yKj1CEyJGmHHm99eRQiUXBbj//q0iubqSg2yyduYiHJPH
+         V6bN0ywpis86GsfdZBD9NPEQmI6yNj6cgnJar0cGlFh3PLbngNcIxld7j3lSL9zgrTEy
+         SaZSDRGZ28HdP5U//Il3ob3mhcmNqfiJR363hb3LyF468QnC778+uqWB0G+JjbPTW+Zw
+         Kpzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686828092; x=1689420092;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pV+y4rT5kQxU13ZWSN4RWCUCARBYQF07f0m1RJyvFAA=;
+        b=jDaHW4JGpqiYbQsXoc7brM+rOm6nHHN7YH+MLAkmtKEm4MJbv6vUoDgvQSF4fS5KI0
+         lAHbRzSgmGKzFRKBuF0J9DOLdUP2oseSWbuBkhjb0swrAojqEis71/D/eJRAhBs8sg0b
+         Jt9qsy9uGPexUvTDuFMVnb7ODtxM8dCczDW7ebPPKidvQgV68vlLVDB/ngfwrr/WrX3p
+         c/jsZ5x7qszQKl52ICPhWKEkTW6SO9l6tWs2/H0w7cMvgn7AkE6vLtXQA6lVdJhP0ZP0
+         Q/GQ9sIna5A4z3u5pG4tIEG44izUxmsPV8uhyg8V68pqL9ezVNZ6TLSQWSBe087MUTmv
+         y5CA==
+X-Gm-Message-State: AC+VfDwr3z+rVzf1B4NrkB3Z8jbAbriCbKzQILJwH7kOFqkSrWoUZ/B9
+        Zh4bPz9Oaz/LGik4j3vjjlvrKg==
+X-Google-Smtp-Source: ACHHUZ59wFGqjNj2za4uofAV4ZCkscTF4ivQVEtbL+YESxcp9a2mKdimrRkPO/jFfPGpw/lip2Ym5A==
+X-Received: by 2002:a17:906:7943:b0:982:4df6:6017 with SMTP id l3-20020a170906794300b009824df66017mr5926980ejo.77.1686828092062;
+        Thu, 15 Jun 2023 04:21:32 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a13-20020a170906684d00b009828dac8425sm1286289ejs.105.2023.06.15.04.21.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 04:21:31 -0700 (PDT)
+Message-ID: <8e9b62f3-d8c6-fea4-738b-c502f7167131@linaro.org>
+Date:   Thu, 15 Jun 2023 13:21:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT103:EE_|SA3PR12MB8802:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ae19120-460b-40a2-1693-08db6d920ce0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IyROXzdFB7BFYv71BvpiNkbF+DktKPNbimxweM94UZDypIWScPY3QhwpPdbGm+8MlgSnatyIwDHKczs9T3FjRaMr0SNanGNMp5ycB5QuqhjWcusO84kxRDq3lrbGdR/BuZb9tvHD6BH7YamO3E/ayhgLWiwgjebDwt4mbqfr5j0vXQdEwqlzZKmGerO4SH7LcRifRWYWuauCJ2E/kfDJzLb1DxK7dbsNlFH2iU0OhvPCEPhTe9HobMPt/2QaLVcFs/FGH9aYQL10+dVKk+hF1jlcOQKSXCjejrFXEATHQbiMKgw9NpudRMO06iSGAsipwo4ZKXg1U5DsUEooWBp23DSnslp47yHVXLa2zflwnFWZcUlhzJIL4t9b7bL9flHhE6iAb5Gx7VFelRaJKmqR0DshMI3/iJGM5VVKik8Qb0Mg1q8v3hZSANJ1/jVcw1db0F9t6GpLRsW/p0mtBnwMc5GD8O7MDA3b/XPkKzA1jq4iJ7IhmSfg2DlB44CRazKfiOHyZvrOW10d3M/tzsTEuHa70dxXsjv8XygU2FntprVE/eR5/GE1kAU+LOXV85Jm2cbHSSGfcNIXCTfka6SZEhnmRCnp4QEnTwUiEV4pXX5sBtvYFIp6nxc57GHu9QEZx01O5vKCrmeFzhzN4+ONS7azky1hBkFA3RZfLhxb8290092YjJfONqvubfF9Rx2ROG1fEmPzaxC4mjYKkiDJdv9nK9Xk9r7v7Dkuuw4nanaY7FDwjiMa4ed0Pl2cCBTN6raOayraDLBCXroV7ynlhA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(376002)(39860400002)(136003)(451199021)(36840700001)(46966006)(40470700004)(5660300002)(478600001)(54906003)(40480700001)(8936002)(41300700001)(316002)(8676002)(1076003)(7416002)(186003)(4326008)(70206006)(70586007)(110136005)(6666004)(26005)(2616005)(47076005)(40460700003)(36860700001)(336012)(426003)(2906002)(83380400001)(356005)(82740400003)(81166007)(82310400005)(86362001)(36756003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 11:17:05.0784
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ae19120-460b-40a2-1693-08db6d920ce0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT103.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8802
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 2/2] ASoC: codecs: wsa884x: Add WSA884x family of
+ speakers
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Patrick Lai <quic_plai@quicinc.com>
+References: <20230612095716.118631-1-krzysztof.kozlowski@linaro.org>
+ <20230612095716.118631-2-krzysztof.kozlowski@linaro.org>
+ <493895cc-378a-d908-372b-0a873cc0800e@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <493895cc-378a-d908-372b-0a873cc0800e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setting the status register write disable (SRWD) bit in the status
-register (SR) with WP signal of the flash not connected will configure the
-SR permanently as read-only. If WP signal is not connected, avoid setting
-SRWD bit while writing the SR during flash protection.
+On 12/06/2023 12:18, Srinivas Kandagatla wrote:
+> Thanks Krzyztof,
+> 
+> few minor nits below.
 
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
- drivers/mtd/spi-nor/core.c | 3 +++
- drivers/mtd/spi-nor/core.h | 1 +
- drivers/mtd/spi-nor/swp.c  | 5 +++--
- 3 files changed, 7 insertions(+), 2 deletions(-)
+Please trim unrelated context - it's easy to miss a comment between huge
+quoted text.
 
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index 0bb0ad14a2fc..81b57c51f41c 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor *nor)
- 	if (flags & NO_CHIP_ERASE)
- 		nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
- 
-+	if (of_property_read_bool(np, "broken-wp"))
-+		nor->flags |= SNOR_F_BROKEN_WP;
-+
- 	if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
- 	    !nor->controller_ops)
- 		nor->flags |= SNOR_F_RWW;
-diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
-index 4fb5ff09c63a..6ac932eba913 100644
---- a/drivers/mtd/spi-nor/core.h
-+++ b/drivers/mtd/spi-nor/core.h
-@@ -132,6 +132,7 @@ enum spi_nor_option_flags {
- 	SNOR_F_SWP_IS_VOLATILE	= BIT(13),
- 	SNOR_F_RWW		= BIT(14),
- 	SNOR_F_ECC		= BIT(15),
-+	SNOR_F_BROKEN_WP	= BIT(16),
- };
- 
- struct spi_nor_read_command {
-diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
-index 0ba716e84377..074f3bce2034 100644
---- a/drivers/mtd/spi-nor/swp.c
-+++ b/drivers/mtd/spi-nor/swp.c
-@@ -214,8 +214,9 @@ static int spi_nor_sr_lock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- 
- 	status_new = (status_old & ~mask & ~tb_mask) | val;
- 
--	/* Disallow further writes if WP pin is asserted */
--	status_new |= SR_SRWD;
-+	/* Disallow further writes if WP pin is connected */
-+	if (!(nor->flags & SNOR_F_BROKEN_WP))
-+		status_new |= SR_SRWD;
- 
- 	if (!use_top)
- 		status_new |= tb_mask;
--- 
-2.17.1
+>> +
+>> +static const char * const wsa884x_dev_mode_text[] = {
+>> +	"Speaker", "Receiver"
+>> +};
+>> +
+>> +enum wsa884x_variant {
+>> +	WSA8840 = 0x0,
+>> +	WSA8845 = 0x5,
+>> +	WSA8845H = 0xc,
+> A proper defines for this makes more sense than a enum.
+
+OK. I will also put the define next to respective register define.
+
+> 
+
+
+O_REG(2000), },
+>> +	{ WSA884X_ANA_WO_CTL_1, 0x00 },
+>> +	{ WSA884X_OTP_REG_38, 0x00 },
+>> +	{ WSA884X_OTP_REG_40, 0x8 << WSA884X_OTP_REG_40_ISENSE_RESCAL_SHIFT },
+> 
+> FIELD macros?
+
+Ack.
+
+>> +};
+>> +
+>> +static void wsa884x_set_gain_parameters(struct wsa884x_priv *wsa884x)
+>> +{
+>> +	struct regmap *regmap = wsa884x->regmap;
+>> +	unsigned int min_gain, igain, vgain, comp_offset;
+>> +
+>> +	/*
+>> +	 * Downstream sets gain parameters customized per boards per use-case.
+>> +	 * Choose here some sane values matching knowon users, like QRD8550
+>> +	 * board:.
+>> +	 *
+>> +	 * Values match here downstream:
+>> +	 * For WSA884X_RECEIVER - G_7P5_DB system gain
+>> +	 * For WSA884X_SPEAKER - G_21_DB system gain
+>> +	 */
+>> +	if (wsa884x->dev_mode == WSA884X_RECEIVER) {
+>> +		comp_offset = COMP_OFFSET4;
+>> +		min_gain = G_M6_DB;
+>> +		igain = ISENSE_18_DB;
+>> +		vgain = VSENSE_M12_DB;
+>> +	} else {
+>> +		/* WSA884X_SPEAKER */
+>> +		comp_offset = COMP_OFFSET0;
+>> +		min_gain = G_0_DB;
+>> +		igain = ISENSE_12_DB;
+>> +		vgain = VSENSE_M24_DB;
+>> +	}
+>> +
+>> +	regmap_update_bits(regmap, WSA884X_ISENSE2,
+>> +			   WSA884X_ISENSE2_ISENSE_GAIN_CTL_MASK,
+>> +			   igain << WSA884X_ISENSE2_ISENSE_GAIN_CTL_SHIFT);
+>> +	regmap_update_bits(regmap, WSA884X_VSENSE1,
+>> +			   WSA884X_VSENSE1_GAIN_VSENSE_FE_MASK,
+>> +			   vgain << WSA884X_VSENSE1_GAIN_VSENSE_FE_SHIFT);
+>> +	regmap_update_bits(regmap, WSA884X_GAIN_RAMPING_MIN,
+>> +			   WSA884X_GAIN_RAMPING_MIN_MIN_GAIN_MASK,
+>> +			   min_gain << WSA884X_GAIN_RAMPING_MIN_MIN_GAIN_SHIFT);
+>> +
+>> +	if (wsa884x->port_enable[WSA884X_PORT_COMP]) {
+>> +		regmap_update_bits(regmap, WSA884X_DRE_CTL_0,
+>> +				   WSA884X_DRE_CTL_0_OFFSET_MASK,
+>> +				   comp_offset);
+>> +
+>> +		regmap_update_bits(regmap, WSA884X_DRE_CTL_1,
+>> +				   WSA884X_DRE_CTL_1_CSR_GAIN_EN_MASK,
+>> +				   0x0);
+>> +	} else {
+>> +		regmap_update_bits(regmap, WSA884X_DRE_CTL_1,
+>> +				   WSA884X_DRE_CTL_1_CSR_GAIN_EN_MASK,
+>> +				   0x1);
+>> +	}
+>> +}
+>> +
+>> +static void wsa884x_init(struct wsa884x_priv *wsa884x)
+>> +{
+>> +	unsigned int wo_ctl_0;
+>> +	unsigned int variant = 0;
+>> +
+>> +	if (!regmap_read(wsa884x->regmap, WSA884X_OTP_REG_0, &variant))
+>> +		wsa884x->variant = variant & WSA884X_OTP_REG_0_ID_MASK;
+>> +
+>> +	regmap_multi_reg_write(wsa884x->regmap, wsa884x_reg_init,
+>> +			       ARRAY_SIZE(wsa884x_reg_init));
+>> +
+>> +	wo_ctl_0 = 0xc;
+>> +	wo_ctl_0 |= WSA884X_ANA_WO_CTL_0_MODE_SPEAKER << WSA884X_ANA_WO_CTL_0_MODE_SHIFT;
+> FIELD helpers?
+> 
+
+ack
+
+>> +	/* Assume that compander is enabled by default unless it is haptics sku */
+>> +	if (wsa884x->variant == WSA8845H)
+>> +		wo_ctl_0 |= WSA884X_ANA_WO_CTL_0_PA_AUX_18_DB << WSA884X_ANA_WO_CTL_0_PA_AUX_SHIFT;
+>> +	else
+>> +		wo_ctl_0 |= WSA884X_ANA_WO_CTL_0_PA_AUX_0_DB << WSA884X_ANA_WO_CTL_0_PA_AUX_SHIFT;
+> new line
+
+It's write of previous created/computed value, so it's unusual to split
+these with new line.
+
+> 
+>> +	regmap_write(wsa884x->regmap, WSA884X_ANA_WO_CTL_0, wo_ctl_0);
+>> +
+>> +	wsa884x_set_gain_parameters(wsa884x);
+>> +
+>> +	wsa884x->hw_init = false;
+>> +}
+>> +
+>> +static int wsa884x_update_status(struct sdw_slave *slave,
+>> +				 enum sdw_slave_status status)
+>> +{
+>> +	struct wsa884x_priv *wsa884x = dev_get_drvdata(&slave->dev);
+>> +	int ret;
+>> +
+>> +	if (status == SDW_SLAVE_UNATTACHED)
+> 
+> should we not put the regmap in to cache state when device is un-attached?
+
+Makes sense. I checked few other drivers and I did not see such pattern,
+but it seems reasonable.
+
+> 
+>> +		wsa884x->hw_init = false;
+>> +
+>> +	if (wsa884x->hw_init || status != SDW_SLAVE_ATTACHED)
+>> +		return 0;
+>> +
+>> +	regcache_cache_only(wsa884x->regmap, false);
+>> +	ret = regcache_sync(wsa884x->regmap);
+>> +	if (ret < 0) {
+>> +		dev_err(&slave->dev, "Cannot sync regmap cache\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	wsa884x_init(wsa884x);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int wsa884x_port_prep(struct sdw_slave *slave,
+>> +			     struct sdw_prepare_ch *prepare_ch,
+>> +			     enum sdw_port_prep_ops state)
+>> +{
+>> +	struct wsa884x_priv *wsa884x = dev_get_drvdata(&slave->dev);
+>> +
+>> +	if (state == SDW_OPS_PORT_POST_PREP)
+>> +		wsa884x->port_prepared[prepare_ch->num - 1] = true;
+>> +	else
+>> +		wsa884x->port_prepared[prepare_ch->num - 1] = false;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct sdw_slave_ops wsa884x_slave_ops = {
+>> +	.update_status = wsa884x_update_status,
+>> +	.port_prep = wsa884x_port_prep,
+>> +};
+>> +
+>> +static int wsa884x_dev_mode_get(struct snd_kcontrol *kcontrol,
+>> +				struct snd_ctl_elem_value *ucontrol)
+>> +{
+>> +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
+>> +	struct wsa884x_priv *wsa884x = snd_soc_component_get_drvdata(component);
+>> +
+>> +	ucontrol->value.enumerated.item[0] = wsa884x->dev_mode;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int wsa884x_dev_mode_put(struct snd_kcontrol *kcontrol,
+>> +				struct snd_ctl_elem_value *ucontrol)
+>> +{
+>> +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
+>> +	struct wsa884x_priv *wsa884x = snd_soc_component_get_drvdata(component);
+>> +
+>> +	if (wsa884x->dev_mode == ucontrol->value.enumerated.item[0])
+>> +		return 0;
+>> +
+>> +	wsa884x->dev_mode = ucontrol->value.enumerated.item[0];
+>> +
+>> +	return 1;
+>> +}
+>> +
+>> +static int wsa884x_get_swr_port(struct snd_kcontrol *kcontrol,
+>> +				struct snd_ctl_elem_value *ucontrol)
+>> +{
+>> +	struct snd_soc_component *comp = snd_soc_kcontrol_component(kcontrol);
+>> +	struct wsa884x_priv *wsa884x = snd_soc_component_get_drvdata(comp);
+>> +	struct soc_mixer_control *mixer = (struct soc_mixer_control *)kcontrol->private_value;
+>> +	int portidx = mixer->reg;
+>> +
+>> +	ucontrol->value.integer.value[0] = wsa884x->port_enable[portidx];
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int wsa884x_set_swr_port(struct snd_kcontrol *kcontrol,
+>> +				struct snd_ctl_elem_value *ucontrol)
+>> +{
+>> +	struct snd_soc_component *comp = snd_soc_kcontrol_component(kcontrol);
+>> +	struct wsa884x_priv *wsa884x = snd_soc_component_get_drvdata(comp);
+>> +	struct soc_mixer_control *mixer = (struct soc_mixer_control *)kcontrol->private_value;
+>> +	int portidx = mixer->reg;
+>> +
+>> +	if (ucontrol->value.integer.value[0]) {
+>> +		if (wsa884x->port_enable[portidx])
+>> +			return 0;
+>> +
+>> +		wsa884x->port_enable[portidx] = true;
+>> +	} else {
+>> +		if (!wsa884x->port_enable[portidx])
+>> +			return 0;
+>> +
+>> +		wsa884x->port_enable[portidx] = false;
+>> +	}
+>> +
+>> +	return 1;
+>> +}
+>> +
+>> +static int wsa884x_codec_probe(struct snd_soc_component *comp)
+>> +{
+>> +	struct wsa884x_priv *wsa884x = snd_soc_component_get_drvdata(comp);
+>> +
+>> +	snd_soc_component_init_regmap(comp, wsa884x->regmap);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void wsa884x_spkr_post_pmu(struct snd_soc_component *component,
+>> +				  struct wsa884x_priv *wsa884x)
+>> +{
+>> +	unsigned int curr_limit, curr_ovrd_en;
+>> +
+>> +	wsa884x_set_gain_parameters(wsa884x);
+>> +	if (wsa884x->dev_mode == WSA884X_RECEIVER) {
+>> +		snd_soc_component_write_field(component, WSA884X_DRE_CTL_0,
+>> +					      WSA884X_DRE_CTL_0_PROG_DELAY_MASK, 0x3);
+>> +		snd_soc_component_write_field(component, WSA884X_CDC_PATH_MODE,
+>> +					      WSA884X_CDC_PATH_MODE_RXD_MODE_MASK,
+>> +					      0x1);
+>> +		snd_soc_component_write_field(component, WSA884X_PWM_CLK_CTL,
+>> +					      WSA884X_PWM_CLK_CTL_PWM_CLK_FREQ_SEL_MASK,
+>> +					      0x1);
+>> +	} else {
+>> +		/* WSA884X_SPEAKER */
+>> +		snd_soc_component_write_field(component, WSA884X_DRE_CTL_0,
+>> +					      WSA884X_DRE_CTL_0_PROG_DELAY_MASK, 0xf);
+>> +	}
+>> +
+>> +	if (wsa884x->port_enable[WSA884X_PORT_PBR]) {
+>> +		curr_ovrd_en = 0x0;
+>> +		curr_limit = 0x15;
+> 
+> Can we define these hardcoded values?
+
+I don't know their meaning.
+
+> 
+>> +	} else {
+>> +		curr_ovrd_en = 0x1;
+>> +		if (wsa884x->dev_mode == WSA884X_RECEIVER)
+>> +			curr_limit = 0x9;
+>> +		else
+>> +			curr_limit = 0x15;
+>> +	}
+>> +	snd_soc_component_update_bits(component, WSA884X_CURRENT_LIMIT,
+>> +				      WSA884X_CURRENT_LIMIT_CURRENT_LIMIT_OVRD_EN_MASK,
+>> +				      curr_ovrd_en);
+>> +	snd_soc_component_update_bits(component, WSA884X_CURRENT_LIMIT,
+>> +				      WSA884X_CURRENT_LIMIT_CURRENT_LIMIT_MASK,
+>> +				      curr_limit << WSA884X_CURRENT_LIMIT_CURRENT_LIMIT_SHIFT);
+> 
+> field apis should make this bit cleaner.
+
+ack
+
+
+Best regards,
+Krzysztof
 
