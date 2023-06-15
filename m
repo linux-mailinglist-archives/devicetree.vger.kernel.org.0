@@ -2,133 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1877A732130
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 22:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74651732135
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 22:58:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230133AbjFOU5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 16:57:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53858 "EHLO
+        id S229649AbjFOU64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 16:58:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230392AbjFOU5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 16:57:41 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC0926AA;
-        Thu, 15 Jun 2023 13:57:35 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f7378a75c0so22689505e9.3;
-        Thu, 15 Jun 2023 13:57:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686862653; x=1689454653;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dPsNG/FZ1k4UaDSBhJRqncRzudNFaZG2hOicOFjuDg0=;
-        b=Lq6c3nOqJ/m4ocMF35gRFAvHKZHsdT0ZTfnmTKDlRj81mkl4S2DzbrY01Dd3MHb2vD
-         LKJ97u3S6t32HPcaIzJTkSnBRFtCIckL8AlSf8FvbbsFpSZmJsjxR8HjSQ5Ne87RfOeg
-         ZPKNUTpsUwA4zB0uxL2nCVlzZNtepLrIrCT8WU/S/4fcFEKFsG9CGji4LGTeLM8aiv6A
-         r65sVgWOecbSgMOoDwgg4nJgtOopirkHV9raIkZOrpcLVGCHAHskpEkwBp0oChLBhBCI
-         ubn5vE6xVLuNZqiEBJBRzmyDsGs5llJ/gj52BduyjC6lr5TwlGH/x/NSYa6gR3IJSosG
-         PbRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686862653; x=1689454653;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dPsNG/FZ1k4UaDSBhJRqncRzudNFaZG2hOicOFjuDg0=;
-        b=GhxW6cHAst8VNW/EMOowaGaSTKrayMLcrgTYqu2otBS9Z4duu2FWGjhJzTv1vGKyXJ
-         VHbCu4zJTpMednaxhdrWbQbbzyUgtbp0IyIabqsBwkVEGFKuENBA4CwK7ENg9mO4CKcy
-         Q8vCnUJIwmO8lQcLQvGqRrTJEgI2U133yZPbOoIM0imJTm6FVtinQ9QW1Gwyd8k3zpXE
-         cUSTaa2Om+iqsmtTaKq88FUIY0TKVbEP5Fof+8Epp3XQHLqG5/GD2zErzmqxzVEYJFWM
-         zBXVR0jLaRgP+OAx4N/r5AA5xYnkIlRWt/sgcRSkDOWc8c6mfTsRYip5CNflvkdXj9jY
-         t2rg==
-X-Gm-Message-State: AC+VfDzpqPpvNCdC3iwADQ9rooD18+Qa8JsdNOG56n0ehmqzu1veUJ2T
-        +20M3DvTEko+lIbqXnTVkzXwspZtYC5KX8qf
-X-Google-Smtp-Source: ACHHUZ6G6BjLZPo9OOrHMIFog94EWcKf0LkdquMRmMdpIg/KVI+L1MZrvO92xcPAZ8zBJyiX2LWPlQ==
-X-Received: by 2002:a1c:7907:0:b0:3f6:2a6:e2c with SMTP id l7-20020a1c7907000000b003f602a60e2cmr288223wme.9.1686862653373;
-        Thu, 15 Jun 2023 13:57:33 -0700 (PDT)
-Received: from user-PC.. ([92.51.95.194])
-        by smtp.gmail.com with ESMTPSA id k24-20020a7bc318000000b003f733c1129fsm176372wmj.33.2023.06.15.13.57.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 13:57:33 -0700 (PDT)
-From:   Maksim Kiselev <bigunclemax@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH v7 3/3] riscv: dts: allwinner: d1: Add GPADC node
-Date:   Thu, 15 Jun 2023 23:55:22 +0300
-Message-Id: <20230615205540.1803975-4-bigunclemax@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230615205540.1803975-1-bigunclemax@gmail.com>
-References: <20230615205540.1803975-1-bigunclemax@gmail.com>
+        with ESMTP id S229711AbjFOU6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 16:58:55 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B296726AA;
+        Thu, 15 Jun 2023 13:58:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686862733; x=1718398733;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u/yF5q/mKuNIIasnmFpVP4NTwMSDM4yMAcvhwIuO2kk=;
+  b=bCZEc/ycpijCdo006at7d0IXwdTvXZpgaQBXMKV7mEdLL9iKnkuBvWeu
+   b/BaAYd2gd5wD4EzzQrCI0Rl4gV9qJcMGj5Zf/Jso0g+tGZKqxulxJmyT
+   XCcSqZFAyG570Wf4aQCpUVqCAVV4NR6bvTLI0SsSxwKNknhUkV4otC7Gq
+   kOOWNOMWeSgB+aWONzAtMStILgrWomDo/nBLFwrakyK74/sr4adh9eHVy
+   ArM/HqBdyEzdCczGOKF+sXiXmhWAhxFYAxs1UUXDYCPzwA6evQt76eAXr
+   Y4JY6FkqcighU9hqVGSVK0SRBw/WzMGtRr45+xo+j5N4MMw5eRHSdNwSP
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="422682380"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; 
+   d="scan'208";a="422682380"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2023 13:58:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="1042833189"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; 
+   d="scan'208";a="1042833189"
+Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 15 Jun 2023 13:58:50 -0700
+Received: from kbuild by 783282924a45 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q9u3N-0000NB-1D;
+        Thu, 15 Jun 2023 20:58:49 +0000
+Date:   Fri, 16 Jun 2023 04:58:15 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Lizhi Hou <lizhi.hou@amd.com>,
+        max.zhen@amd.com, sonal.santan@amd.com,
+        stefano.stabellini@xilinx.com
+Subject: Re: [PATCH V9 6/6] of: unittest: Add pci_dt_testdrv pci driver
+Message-ID: <202306160410.HTDpoLQa-lkp@intel.com>
+References: <1686847842-33780-7-git-send-email-lizhi.hou@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1686847842-33780-7-git-send-email-lizhi.hou@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds declaration of the general purpose ADC for D1
-and T113s SoCs.
+Hi Lizhi,
 
-Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
----
- arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-index 922e8e0e2c09..90c79041cfba 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-@@ -138,6 +138,16 @@ ccu: clock-controller@2001000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		gpadc: adc@2009000 {
-+			compatible = "allwinner,sun20i-d1-gpadc";
-+			reg = <0x2009000 0x1000>;
-+			clocks = <&ccu CLK_BUS_GPADC>;
-+			resets = <&ccu RST_BUS_GPADC>;
-+			interrupts = <SOC_PERIPHERAL_IRQ(57) IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+			#io-channel-cells = <1>;
-+		};
-+
- 		dmic: dmic@2031000 {
- 			compatible = "allwinner,sun20i-d1-dmic",
- 				     "allwinner,sun50i-h6-dmic";
+[auto build test WARNING on pci/next]
+[also build test WARNING on pci/for-linus robh/for-next linus/master v6.4-rc6 next-20230615]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Lizhi-Hou/of-dynamic-Add-interfaces-for-creating-device-node-dynamically/20230616-005610
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/1686847842-33780-7-git-send-email-lizhi.hou%40amd.com
+patch subject: [PATCH V9 6/6] of: unittest: Add pci_dt_testdrv pci driver
+config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20230616/202306160410.HTDpoLQa-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        git remote add pci https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git
+        git fetch pci next
+        git checkout pci/next
+        b4 shazam https://lore.kernel.org/r/1686847842-33780-7-git-send-email-lizhi.hou@amd.com
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=mips olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306160410.HTDpoLQa-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/asm-generic/bug.h:22,
+                    from arch/mips/include/asm/bug.h:42,
+                    from include/linux/bug.h:5,
+                    from include/linux/mmdebug.h:5,
+                    from include/linux/mm.h:6,
+                    from include/linux/memblock.h:12,
+                    from drivers/of/unittest.c:8:
+   drivers/of/unittest.c: In function 'unittest_pci_probe':
+>> include/linux/kern_levels.h:5:25: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 4 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
+       5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+         |                         ^~~~~~
+   include/linux/printk.h:427:25: note: in definition of macro 'printk_index_wrap'
+     427 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+         |                         ^~~~
+   include/linux/printk.h:498:9: note: in expansion of macro 'printk'
+     498 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
+         |         ^~~~~~
+   include/linux/kern_levels.h:11:25: note: in expansion of macro 'KERN_SOH'
+      11 | #define KERN_ERR        KERN_SOH "3"    /* error conditions */
+         |                         ^~~~~~~~
+   include/linux/printk.h:498:16: note: in expansion of macro 'KERN_ERR'
+     498 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
+         |                ^~~~~~~~
+   drivers/of/unittest.c:45:17: note: in expansion of macro 'pr_err'
+      45 |                 pr_err("FAIL %s():%i " fmt, __func__, __LINE__, ##__VA_ARGS__); \
+         |                 ^~~~~~
+   drivers/of/unittest.c:3844:9: note: in expansion of macro 'unittest'
+    3844 |         unittest(res->start == exp_addr, "Incorrect translated address %llx, expected %llx\n",
+         |         ^~~~~~~~
+
+
+vim +5 include/linux/kern_levels.h
+
+314ba3520e513a Joe Perches 2012-07-30  4  
+04d2c8c83d0e3a Joe Perches 2012-07-30 @5  #define KERN_SOH	"\001"		/* ASCII Start Of Header */
+04d2c8c83d0e3a Joe Perches 2012-07-30  6  #define KERN_SOH_ASCII	'\001'
+04d2c8c83d0e3a Joe Perches 2012-07-30  7  
+
 -- 
-2.39.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
