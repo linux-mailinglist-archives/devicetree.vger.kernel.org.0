@@ -2,61 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08CE8730FF7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 08:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 139CD731053
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 09:16:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243772AbjFOG5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 02:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60398 "EHLO
+        id S244380AbjFOHQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 03:16:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243947AbjFOG5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 02:57:18 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723AF26B1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 23:57:14 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1q9guZ-0008L7-GC; Thu, 15 Jun 2023 08:56:51 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1q9guW-0005ja-Or; Thu, 15 Jun 2023 08:56:48 +0200
-Date:   Thu, 15 Jun 2023 08:56:48 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vincent Legoll <vincent.legoll@gmail.com>,
+        with ESMTP id S230167AbjFOHPa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 03:15:30 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77749469F
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 00:12:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686812405; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Z35I2ILvsAtMs15ceNif3qPbMYlr9+pGP81/YwLBPz8zQAx94Al2rX4l3/Uyh0QzNk
+    bun7FoUp8ze8VZXrTgld1hQemvSJCK2D2MV/+gnDTXf8u3HtyvVFgX8oF4PaNh1TSeVL
+    P8wF/kT8dpTxM2nuGHMDRNhWjuljiYCHwuegX0TIdeBRl0XFBa22g7WVzcspVBNVDx1a
+    3UsaTq03l8Jk0rjl0PgvhSis/IiWUQfUOdiHfVYkqAdVNJG13LxEMQD79e3PsZ5eLb24
+    BRS274G2FGuELmWOPcbj1fVCHbDzdoXTLOZzSIv62+4Bc6UW19yab9+FcvlosI7DREFc
+    b9pQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686812405;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=PR8fPbKAkvCQXQuKhuTQR1jC8AjzI+6SrbHUYHsdhaE=;
+    b=N3ZE09vECa+E+wvfMbvRqCFFu5VYO+BrHy/3u/FjmD9klS/EHOz8rGA/OYE55Dk3eW
+    29uMtUncNNgfkwqRnr+HxIQEuLEQGTm5Qc460+pqMtYB3rS32OCOurO1vaGl+kMxEBwQ
+    aW5CQu0aznTx6rBAlLhdZDnHu4U9AiN9rEj9TG1ar+H9mlwIFZDC0vf8wxOZvRLwU+HG
+    4znnaHW2K6zMJ+uufZtuYsauKlrIXqosh4Y1tGOfxuGpAgHDGgFVplguGrE0gyEqvhYh
+    9+NWMa3yPOEfILysel8fgcFE2ogtX3CGw1zPWim13rN9vnZR710hjpSXjtbvF2Iz2UyB
+    BsEw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686812405;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=PR8fPbKAkvCQXQuKhuTQR1jC8AjzI+6SrbHUYHsdhaE=;
+    b=sd1dxISYgWPvhsPy/qC2wIsJpMDNWuOMJwmw+UWt1PmAsr+lI4fK/fc5rkh+qxQUZ9
+    HpqxesUnlc4U8unaKBnPwTrgMW72KIlnWVi4Au5Wjsm4XiKuPZ3B97WzKeSwfrZ4ENx5
+    47TNRs9FVcn5y9Zc+TRP3kp6fjEEmkC/3AuWWrY1BIGT4LODuz5q5RBM6kF9O/VXxFlt
+    FRZVMsMOSvsYFxeF+eIaNF04ab4KmE7MojQQ9POsOHbijIs8kCJvPItU6D72TVyyulpw
+    SVP8EM7QCu+siyOcBMmYWi1P3xU54U7ezmoE3vYBExvP+lITKgqDm+Yxmbg7Ig9CIx3f
+    7qMw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686812405;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=PR8fPbKAkvCQXQuKhuTQR1jC8AjzI+6SrbHUYHsdhaE=;
+    b=/NADSkDnAPDpJLU4WbmP/wScrDis4D8+PjYUB+aP1VNUIzIVtzD7yqeiP1E+5n8mss
+    splNcmbLHmb+g5FGd7Ag==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGeonQ="
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
+    with ESMTPSA id jaf17fz5F705233
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Thu, 15 Jun 2023 09:00:05 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH 0/9] MIPS: CI20: Add WiFi / Bluetooth support
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20230604145642.200577-1-paul@crapouillou.net>
+Date:   Thu, 15 Jun 2023 09:00:04 +0200
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 00/25] Add perf support to the rockchip-dfi driver
-Message-ID: <20230615065648.GD18491@pengutronix.de>
-References: <20230524083153.2046084-1-s.hauer@pengutronix.de>
- <20230614134034.3p3p75a3jophi2eu@mercury.elektranox.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230614134034.3p3p75a3jophi2eu@mercury.elektranox.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        list@opendingux.net
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <93490647-A0F1-41A0-8B3E-41A0C915B372@goldelico.com>
+References: <20230604145642.200577-1-paul@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,51 +90,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+Hi Paul,
+I was in holidays and could not review this series earlier.
 
-On Wed, Jun 14, 2023 at 03:40:34PM +0200, Sebastian Reichel wrote:
+
+> Am 04.06.2023 um 16:56 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
 > Hi,
-> 
-> On Wed, May 24, 2023 at 10:31:28AM +0200, Sascha Hauer wrote:
-> > This is v5 of the series adding perf support to the rockchip DFI driver.
-> > 
-> > A lot has changed in the perf driver since v4. First of all the review
-> > feedback from Robin and Jonathan has been integrated. The perf driver
-> > now not only supports monitoring the total DDR utilization, but also the
-> > individual channels. I also reworked the way the raw 32bit counter
-> > values are summed up to 64bit perf values, so hopefully the code is
-> > easier to follow now.
-> > 
-> > lockdep found out that that locking in the perf driver was broken, so I
-> > reworked that as well. None of the perf hooks allows locking with
-> > mutexes or spinlocks, so in perf it's not possible to enable the DFI
-> > controller when needed. Instead I now unconditionally enable the DFI
-> > controller during probe when perf is enabled.
-> > 
-> > Furthermore the hrtimer I use for reading out the hardware counter
-> > values before they overflow race with perf. Now a seqlock is used to
-> > prevent that.
-> > 
-> > The RK3588 device tree changes for the DFI were not part of v4. As
-> > Vincent Legoll showed interest in testing this series the necessary
-> > device tree changes are now part of this series.
-> 
-> I tested the series on RK3588 EVB1. The read/write byts looks
-> sensible. Sometimes cycles reads unrealistic values, though:
-> 
->  Performance counter stats for 'system wide':
-> 
-> 18446744070475110400      rockchip_ddr/cycles/
+>=20
+> Here's a set of patches to add support for the WiFi / Bluetooth chip =
+on
+> the CI20.
+>=20
+> WiFi works pretty well, provided it is used with the latest firmware
+> provided by linux-firmware. Bluetooth does not work very well here, as
+> I cannot get my wireless keyboard to pair; but it does detect it, and =
+it
+> does see they key presses when I type the pairing code.
+>=20
+> I only tested with a somewhat recent (~2022) Buildroot-based =
+userspace.
+> I enabled WEXT compatibility because the CI20 is typically used with a
+> very old userspace, but I did not try to use it with old tools like
+> ifconfig/iwconfig.
 
-I'll have a look later this day. I remember seeing this, but I thought
-this had been resolved already.
+^^^ great since not everyone is using memory hungry latest user-space =
+and
+ifconfig/iwconfig is also available on some other OS so users like me
+can share scripts.
 
-Thanks for your feedback so far.
 
-Sascha
+But I had quite some issues with this series.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+1. I could not boot my CI20 V2a board after applying the full series to =
+v6.4-rc6
+2. bisecting failed because vcc_33v is used in a patch preceding its =
+definition
+   leading to DTC compile abort
+3. after fixing I could bisect that "MIPS: DTS: CI20: Fix ACT8600 =
+regulator node names"
+   is the first bad commit - although I don't see immediately why
+
+So this series seems to be severely broken and I could not even come to
+a test of WiFi and/or Bluetooth which the series claims to support.
+
+Comments to some individual patches follow.
+
+Best regards and looking forward to a v2 for testing,
+Nikolaus
+
+
+>=20
+> Cheers,
+> -Paul
+>=20
+> Paul Cercueil (9):
+>  MIPS: DTS: CI20: Fix regulators
+>  MIPS: DTS: CI20: Fix ACT8600 regulator node names
+>  MIPS: DTS: CI20: Add parent supplies to ACT8600 regulators
+
+^^^ should IMHO be a separate series since it is not directly related to =
+WiFi / Bluetooth
+
+>  MIPS: DTS: CI20: Do not force-enable CIM and WiFi regulators
+>  MIPS: DTS: CI20: Misc. cleanups
+
+^^^ these two do not compile
+The Misc. cleanups do not belong to this topic.
+
+>  MIPS: DTS: CI20: Parent MSCMUX clock to MPLL
+
+^^^ this is only loosely related to Wifi / Bluetooth
+
+>  MIPS: DTS: CI20: Enable support for WiFi / Bluetooth
+>  MIPS: configs: CI20: Regenerate defconfig
+>  MIPS: configs: CI20: Enable WiFi / Bluetooth
+>=20
+> arch/mips/boot/dts/ingenic/ci20.dts | 148 +++++++++++++++++++---------
+> arch/mips/configs/ci20_defconfig    |  47 ++++++---
+> 2 files changed, 133 insertions(+), 62 deletions(-)
+>=20
+> --=20
+> 2.39.2
+>=20
+
