@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E16731224
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81AB73122F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240466AbjFOI2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:28:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53582 "EHLO
+        id S244197AbjFOIcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:32:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238441AbjFOI2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:28:21 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD03C1BF9
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:28:19 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9745d99cfccso249876666b.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:28:19 -0700 (PDT)
+        with ESMTP id S238456AbjFOIcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:32:12 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C6F1BDA
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:32:08 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9786fc23505so222205866b.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:32:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686817698; x=1689409698;
+        d=linaro.org; s=google; t=1686817927; x=1689409927;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=btRiVH3HebqEvJU/ceqOGLLApwkh3MSRyqi6Oy1tTjg=;
-        b=stKocO0YX+Zgeaq+WdnYnCHS7qmHwHuW6GtGZ8PwDWi6+4QUY7Md8ZSHHKlin3RFPC
-         0RCyb3NucHMQc7Wb+add/fubhkSeuqEV+9No8l4P5Rxl8Ugj56I8cjhEnEHv29B1yM4p
-         82PRMIZVUKaKeWDdvtZuYYuFfq/czdnj3I06B0+V2i394zaF1ZEcs4CSJFgeu16WQveF
-         Vf3i+D/XCCCRE+/b/fBt+X7GdH2brhO80Ny3uK773pLUtmCCLWp/mO1GAaFX9x5Sgd2O
-         oaduNSrcAV/bAO/CXwjYCqlwqLDoYwTC9NK7eVrFEwyynY9qupZIScJYI5ecTVstEW27
-         52Yw==
+        bh=eDGmVxB8ASkcq8azv8Ho011acSqd10uZsawAwMEXTTE=;
+        b=mDrCFUQW1a+IavKmw8gUmHekrqVIwlFTW2T/5uhutBiENJCG9EN1/sNI1we3RSPXcl
+         GYUOQItrKEVF4T3xjM9CcoMuyZ+E9dHHx2Mkdn5O1UCdmabow894FhOOlYhubYdIGllg
+         bWl8gqs4ytdJ79kVKIgXPEHxVrBkC+lqd2CcWABMOHZmqEgqQ9keqtYIo2jC3jHhcc5v
+         XNGaPyvm9jLOJvlOWV1ljSUHcGZJBkNC9jiW2xr8cq6HJLFBG7rm40f7iSRe6OZ3UQPZ
+         vMSvI55TPe3HtdtF2ncnVC0JVhU+ZXoS/Vhwy2F4/L4o89ik7a9sEtvLGDdN5WRZbuF+
+         YBeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686817698; x=1689409698;
+        d=1e100.net; s=20221208; t=1686817927; x=1689409927;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=btRiVH3HebqEvJU/ceqOGLLApwkh3MSRyqi6Oy1tTjg=;
-        b=LK52r7P7dew0+B1fKxlWZGq7NhkS0boN4tAKRI8rG6Yjcw739XqhLVgUgMRy+7cKv6
-         XyjYkC/gpxr7tgQBZy5hu3P0A+H7LnNfYiyqxknqu+cqHwdoRl/6Eht6K9GO5BCLHCta
-         30Ky6vF5Ug31NIXm8kd6w9o869zrFEkDNRqJWCPJ5J77mWeKQmvitxPbeUkxgsqZKxWd
-         HYXwJ9cIoKKszmhQ0NIDnqCqpJSFXrXu6BXEGfVIn1RdDMlxhR7mbsjMWbNlgAfD6Bqp
-         AQuzgf6N5jWIu/4BOb5EjRRD9jZDa8Cb0YlYHeUOU2zXKXAgNHUptbuWfkt5if6cXMV3
-         Cx0A==
-X-Gm-Message-State: AC+VfDziMOAoUVyXzy9ciTQ0VQhm6q0r71UaBrfKqvaEvGl31hJ7xE6T
-        SSvIHJxY5UYfZqexLdvxELIqJQ==
-X-Google-Smtp-Source: ACHHUZ4EEL5QsRnHbC0CalmjqF6e/AkURCXs6uIPydVvSbl/YzUPPaYHlmpuxXeiS3STXVtQu7VQBA==
-X-Received: by 2002:a17:907:748:b0:978:acec:36b1 with SMTP id xc8-20020a170907074800b00978acec36b1mr19685758ejb.17.1686817698328;
-        Thu, 15 Jun 2023 01:28:18 -0700 (PDT)
+        bh=eDGmVxB8ASkcq8azv8Ho011acSqd10uZsawAwMEXTTE=;
+        b=WF4/HrYDwFx3q7KBSsL2xyYqseSineWINUL6tzDhSTTOqU9IWgMHVzF0NRV6uyve+R
+         RAe0hzOJTybm21TXVQKY98XTl7mv4LXmyTJseSLDtmAMUgjN8IG1rjVUUDOgGceuP90b
+         WY1TO955NokgOqYWs8xVe9v6qJwuvMSxSw/sQRQebwEADB0ssNDbS8upTrff+TQ5g65D
+         qWmtXrfLsY9KyCj2mWxi+XzFyXtheGrC3PgDwW1fyvWf6YYz8vmqrP0FJ8c4BJYMyHhf
+         0keKOUe8BmxtByhks5JrkedI+3YWSrKwOd+NRET9MLrWXJQHWYebSN0Tx9T0QlKHEbZ/
+         LSjw==
+X-Gm-Message-State: AC+VfDzPZeM8zTlupWxrfL0GhmaS6681AcEIow5VP6Vh0LsZLntlnTJZ
+        tPnHF4SFCu48BwTW3fYaytlfSQ==
+X-Google-Smtp-Source: ACHHUZ4CnizjcMXS8vu1oEAcv4W+CtwoOpFPcgzhdSqsZp0IDi7udHa8ciqtKXNib3pXkplHYbDnNA==
+X-Received: by 2002:a17:906:9b92:b0:973:e349:43c9 with SMTP id dd18-20020a1709069b9200b00973e34943c9mr17034760ejc.77.1686817926723;
+        Thu, 15 Jun 2023 01:32:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id s20-20020a170906169400b0096650f46004sm8982763ejd.56.2023.06.15.01.28.16
+        by smtp.gmail.com with ESMTPSA id d18-20020a170906371200b0098282bb8effsm1446763ejc.196.2023.06.15.01.32.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 01:28:17 -0700 (PDT)
-Message-ID: <25816ad5-339c-e52f-adbb-686aa7977e9e@linaro.org>
-Date:   Thu, 15 Jun 2023 10:28:15 +0200
+        Thu, 15 Jun 2023 01:32:06 -0700 (PDT)
+Message-ID: <e720dd96-c77e-6914-873c-6e5b6b5c1ca7@linaro.org>
+Date:   Thu, 15 Jun 2023 10:32:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 03/15] dt-bindings: display: mediatek: merge: Add
- compatible for MT8188
+Subject: Re: [PATCH v2 04/15] dt-bindings: display: mediatek: padding: Add
+ documentation for MT8188
 Content-Language: en-US
 To:     Hsiao Chien Sung <shawn.sung@mediatek.com>,
         Chun-Kuang Hu <chunkuang.hu@kernel.org>,
@@ -72,9 +72,9 @@ Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Nancy Lin <nancy.lin@mediatek.com>,
         Jason-JH Lin <jason-jh.lin@mediatek.com>
 References: <20230614073125.17958-1-shawn.sung@mediatek.com>
- <20230614073125.17958-4-shawn.sung@mediatek.com>
+ <20230614073125.17958-5-shawn.sung@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230614073125.17958-4-shawn.sung@mediatek.com>
+In-Reply-To: <20230614073125.17958-5-shawn.sung@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,28 +88,92 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/06/2023 09:31, Hsiao Chien Sung wrote:
-> Add compatible name for MediaTek MT8188 MERGE.
+> PADDING is a new hardware module on MediaTek MT8188,
+> Add device tree bindings documentation for it.
 > 
+
+A nit, subject: drop second/last, redundant "documentation for". The
+"dt-bindings" prefix is already stating that these are bindings and
+documentation.
+
 > Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
 > ---
->  .../devicetree/bindings/display/mediatek/mediatek,merge.yaml   | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../display/mediatek/mediatek,padding.yaml    | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
-> index eead5cb8636e..5c678695162e 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
-> @@ -27,6 +27,9 @@ properties:
->        - items:
->            - const: mediatek,mt6795-disp-merge
->            - const: mediatek,mt8173-disp-merge
-> +      - items:
-> +          - const: mediatek,mt8188-disp-merge
-> +          - const: mediatek,mt8195-disp-merge
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+> new file mode 100644
+> index 000000000000..390a518fa2cf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,padding.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek PADDING
 
-Linux next has something entirely different. I don't know the base here,
-but it's really, really different and it suggests you should add mt8188
-to an enum with mt8173.
+MediaTek Foo Bar Padding
+
+Please explain what is this. PADDING does not look like acronym. If it
+is, expand it.
+
+> +
+> +maintainers:
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +description:
+> +  MediaTek PADDING provides ability to VDOSYS1 to add pixels to width and height
+
+Expand the acronym.
+
+> +  of a layer with a specified color.
+> +  Since MIXER in VDOSYS1 requires the width of a layer to be 2-pixel-align, or
+> +  4-pixel-align when ETHDR is enabled, we need PADDING to deal with odd width.
+> +  Please notice that even if the PADDING is in bypass mode, settings in the
+> +  registers must be cleared to 0, or undefined behaviors could happen.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8188-padding
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: RDMA Clock
+> +
+> +  mediatek,gce-client-reg:
+> +    description:
+> +      GCE (Global Command Engine) is a multi-core micro processor that helps
+> +      its clients to execute commands without interrupting CPU. This property
+> +      describes GCE client's information that is composed by 4 fields.
+> +      1. pHandle of the GCE (there may be several GCE processors)
+> +      2. Sub-system ID defined in the dt-binding like a user ID
+> +         (Please refer to include/dt-bindings/gce/<chip>-gce.h)
+> +      3. Offset from base address of the subsys you are at
+> +      4. Size of the register the client needs
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: pHandle of the GCE
+
+Phandle (if first in sentence) or phandle. It's not a pH unit. Fix it in
+other places as well.
+
+
+> +        - description: Subsys ID defined in the dt-binding
+> +        - description: Offset from base address of the subsys
+> +        - description: Size of register
+
 
 Best regards,
 Krzysztof
