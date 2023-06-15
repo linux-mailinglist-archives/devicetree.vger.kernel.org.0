@@ -2,130 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EFA6731BDC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CAE0731BE4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240557AbjFOOyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 10:54:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36574 "EHLO
+        id S239270AbjFOOzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 10:55:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345126AbjFOOxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:53:51 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23387273C;
-        Thu, 15 Jun 2023 07:53:50 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35FAvqqM030971;
-        Thu, 15 Jun 2023 14:53:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=kCtA+c++7tfU0UUlQUbV6gFvPeFsi/KIdKzcQid6f1o=;
- b=PdmjqSF8lvl3SG/FFybte5Afwrt+LABmHiz/qWUkLIjrEnWZhHhUNzmU1rlaLeCmgVPJ
- t1Jo7L3lDFreeiiwCI/HD3mnsDYTe53xANLiVHvYYpiHQ1p4LY8zQhwQzqMqXY1Zvvnw
- rJt/uGghsdQwNUci3qWzGdjx2J6pShNlAZBL+ZVaN+bLWVeoyLjKYDNJuxl78Nsww6p4
- qn9F+Qw6p4ClEbciIOhVN9yA3VUc7pNkfaYdb6FY1EgYdx47lhO7NBsa8r9uCr0b94G5
- 3pVYK59yG9uilMYtdnIwfik9Oa8XKT1KPz30Cp+OJhbfKkiLsE05A4jXClOPdEoP5zUK 2g== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7va2hc5x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 14:53:47 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35FErilB011485
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 14:53:45 GMT
-Received: from sridsn-linux.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 15 Jun 2023 07:53:40 -0700
-From:   Sridharan S N <quic_sridsn@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Sridharan S N <quic_sridsn@quicinc.com>
-Subject: [PATCH V2 2/2] arm64: dts: qcom: ipq9574: enable GPIO based LEDs
-Date:   Thu, 15 Jun 2023 20:23:11 +0530
-Message-ID: <20230615145311.2776-3-quic_sridsn@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230615145311.2776-1-quic_sridsn@quicinc.com>
-References: <20230615145311.2776-1-quic_sridsn@quicinc.com>
+        with ESMTP id S241574AbjFOOzf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:55:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325C310D8;
+        Thu, 15 Jun 2023 07:55:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C399D6235D;
+        Thu, 15 Jun 2023 14:55:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E24C433C0;
+        Thu, 15 Jun 2023 14:55:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686840933;
+        bh=bUL58XYoK6yPyhLBsa6BWypAniON+5g+bccvn2i9aC8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bQD6RuCrnVVHIbWa3jaqi3jVPzgpE1xv6KS0vmB9DW1UYwAksZ6IejbHo6CBkxceh
+         /IaoTvK17kr+ER7Z6OBmW9CPAilQYOi8ajUvjbfjvtRGzNzZKSiaujl+7K08hy56UO
+         RJtu7jf1jxn04/qp3d1h9epp/OYLnPEtVUOGH27YCJOCJXqBJYATw8mfpQ25rzq2A5
+         guQhXx+rRQDOTwhh3NfAVWQQjxL3KCPGOIFZtEJSr8JxfbB3bjgW42TnLBUUEBSAN9
+         UL9ztrmpcaDpf7/uinYRwzvdpsI0xUiZNTOH12gnA1IDyk6/FgjFltmp6H4UqCLTMu
+         Pris7uNfyYVKg==
+Date:   Thu, 15 Jun 2023 15:55:28 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: brcm: drop unneeded quotes and use
+ absolute /schemas path
+Message-ID: <20230615145528.GJ3635807@google.com>
+References: <20230609140747.65074-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: b4K8jHSn5QvyP9Wv2_d6QcrTH34lNB4A
-X-Proofpoint-ORIG-GUID: b4K8jHSn5QvyP9Wv2_d6QcrTH34lNB4A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-15_11,2023-06-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=923
- priorityscore=1501 mlxscore=0 impostorscore=0 bulkscore=0 suspectscore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 malwarescore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306150129
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230609140747.65074-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for wlan-2g LED on GPIO 64.
+On Fri, 09 Jun 2023, Krzysztof Kozlowski wrote:
 
-Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
----
-Changes in V2:
-	- Updated commit message 
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.  Also absolute path
+> starting with /schemas is preferred.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml     | 4 ++--
+>  .../devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml    | 4 ++--
+>  .../devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml     | 4 ++--
+>  .../devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml     | 4 ++--
+>  .../devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml     | 4 ++--
+>  .../devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml     | 4 ++--
+>  6 files changed, 12 insertions(+), 12 deletions(-)
 
- .../boot/dts/qcom/ipq9574-rdp-common.dtsi     | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Doesn't apply.  Please rebase and resubmit.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-index fd5326dc1773..25424cecd834 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-@@ -34,6 +34,18 @@
- 			debounce-interval = <60>;
- 		};
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&gpio_leds_default>;
-+		pinctrl-names = "default";
-+
-+		led-0 {
-+			gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
-+	};
- };
- 
- &blsp1_spi0 {
-@@ -137,6 +149,14 @@
- 		drive-strength = <8>;
- 		bias-pull-up;
- 	};
-+
-+	gpio_leds_default: gpio-leds-default-state {
-+		pins = "gpio64";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
- };
- 
- &xo_board_clk {
 -- 
-2.17.1
-
+Lee Jones [李琼斯]
