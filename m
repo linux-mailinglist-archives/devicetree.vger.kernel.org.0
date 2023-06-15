@@ -2,67 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8001731A56
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC804731A62
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238906AbjFONoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:44:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53468 "EHLO
+        id S1343965AbjFONrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:47:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239015AbjFONoL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:44:11 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A614F2960;
-        Thu, 15 Jun 2023 06:43:45 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDhWKB037099;
-        Thu, 15 Jun 2023 08:43:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686836612;
-        bh=Bj+Rekil4v8yGfX1T6mCuaTeS7qw5TKYNvMHmAcBRt0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yQzq6VEzAXCncN1NwRJwsphfjMtJTbHT/2yCnYtxNco+F88NU5xGVltTzt8ozpodj
-         INjNqM0vTpGKeUVU5xHLvLewHappvpkGMU1xWoQAihEBGIsma2EfCjBdxpDJUIClA8
-         9Dhp0hQ3h2XMhU7XER7mPKjC3XetaeDEKvSt/I4E=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDhWvO015495
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 08:43:32 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 08:43:32 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 08:43:32 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDhTUv080873;
-        Thu, 15 Jun 2023 08:43:29 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>,
-        Francesco Dolcini <francesco@dolcini.it>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: (subset) [PATCH v3 0/5] Add Toradex Verdin AM62
-Date:   Thu, 15 Jun 2023 19:13:21 +0530
-Message-ID: <168683657577.2369525.17052124681359259079.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230615095058.33890-1-francesco@dolcini.it>
-References: <20230615095058.33890-1-francesco@dolcini.it>
+        with ESMTP id S230443AbjFONrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:47:40 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615ED1BDB
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 06:47:39 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-762215a64e6so12919885a.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 06:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686836858; x=1689428858;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HlZJFQHGnnGtL9UMgugLsRODzWb3kDKPZVxr84A3G1U=;
+        b=lNWXFDzCR59VgJ5LNZpPBjWbbMoVrpWdSpFbIsODbhVv7+mFtpIr/PQw7VIabqJlPD
+         saQI0qmGe3TReDc1TlRpqcR4kiOxQtNqPv9CDsms4JRnWSuAtgFTx+grFiQ1gs8KKLPg
+         0h/DgmqrMInZfe/+UXFQSHCktjo7q1PoheThf2rKMvG9RmI+O1SoDhyj6r8EAqF/rrev
+         VTw10YDPpzkYISVW4MvqoDv4XFSt8LuJSq5YStzNj8eROq/R56ocLe/8fhfdgQaMHotq
+         4W2jvDQ60qXxq28pXPyMgnzllgufXTpZvCDn8rdLqKOq4vm2g4BaTunNxfHi1mn3KO2y
+         gEPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686836858; x=1689428858;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HlZJFQHGnnGtL9UMgugLsRODzWb3kDKPZVxr84A3G1U=;
+        b=i/RsWccivYL6qgUHYMP/CTfIzdzoXC87wsfsOEnvq95dTLkWmRfnkynItnf8L+BRrJ
+         dAD+2G/Fe0vmKj3kwbVSRIoXrSk/cGG0ofTt5YaoW/jst373Ox9xbuaKYyG2Knq5hJNe
+         q0Hx3o2Wo27qmzwo/QW1tAjn7ZEVlhUXrINURzw4E1AoyxHAvLUqq/cE0ilH91Bfpi1l
+         p8NqLjRjXGUy0DwHA6oKhtlemiohspG/BJDcNw8WLcpTLFmtpdIMnKp8XkkYF6qIvjhX
+         GBtfza/QJgttndEZGfVnkd9KrY3zPs/tCbO3kIY9PR0heuWdX3Uu3KHjT/4V03t0qaI0
+         pDhA==
+X-Gm-Message-State: AC+VfDzgGQXZ97rU9xgwiwxHxjZc2dXemaWzq4tcHYg7a/wPRyb04TN/
+        9E/KO3P4AOAxP7V47DGYE/BUPmjfnht4//vBrqzaxg==
+X-Google-Smtp-Source: ACHHUZ5L3ZNI4mtuSiaC2uTD2gKYjnuz0pHO5+/2rAu1ZpYEpHnOveGpH3JaKWLKXP+kxxIm8tsTcJtzy0kuRZKwMTM=
+X-Received: by 2002:ad4:5d63:0:b0:62f:edd7:3155 with SMTP id
+ fn3-20020ad45d63000000b0062fedd73155mr3161258qvb.45.1686836858413; Thu, 15
+ Jun 2023 06:47:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20230602161246.1855448-1-amit.pundir@linaro.org>
+ <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info> <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
+ <CAMi1Hd3Cv1i06NhpY6Jqu7OvMpOdzTj6nTEMJNWLrMwMLsugZA@mail.gmail.com>
+In-Reply-To: <CAMi1Hd3Cv1i06NhpY6Jqu7OvMpOdzTj6nTEMJNWLrMwMLsugZA@mail.gmail.com>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Thu, 15 Jun 2023 19:17:02 +0530
+Message-ID: <CAMi1Hd0=KV7k82ARadF45nqX+Cv6zPLCxfDvOyAPeXiFd8jpVA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes up
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux regressions mailing list <regressions@lists.linux.dev>,
+        Mark Brown <broonie@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,42 +79,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Francesco Dolcini,
+On Thu, 15 Jun 2023 at 00:38, Amit Pundir <amit.pundir@linaro.org> wrote:
+>
+> On Thu, 15 Jun 2023 at 00:17, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 14/06/2023 20:18, Linux regression tracking (Thorsten Leemhuis) wrote:
+> > > On 02.06.23 18:12, Amit Pundir wrote:
+> > >> Move lvs1 and lvs2 regulator nodes up in the rpmh-regulators
+> > >> list to workaround a boot regression uncovered by the upstream
+> > >> commit ad44ac082fdf ("regulator: qcom-rpmh: Revert "regulator:
+> > >> qcom-rpmh: Use PROBE_FORCE_SYNCHRONOUS"").
+> > >>
+> > >> Without this fix DB845c fail to boot at times because one of the
+> > >> lvs1 or lvs2 regulators fail to turn ON in time.
+> > >
+> > > /me waves friendly
+> > >
+> > > FWIW, as it's not obvious: this...
+> > >
+> > >> Link: https://lore.kernel.org/all/CAMi1Hd1avQDcDQf137m2auz2znov4XL8YGrLZsw5edb-NtRJRw@mail.gmail.com/
+> > >
+> > > ...is a report about a regression. One that we could still solve before
+> > > 6.4 is out. One I'll likely will point Linus to, unless a fix comes into
+> > > sight.
+> > >
+> > > When I noticed the reluctant replies to this patch I earlier today asked
+> > > in the thread with the report what the plan forward was:
+> > > https://lore.kernel.org/all/CAD%3DFV%3DV-h4EUKHCM9UivsFHRsJPY5sAiwXV3a1hUX9DUMkkxdg@mail.gmail.com/
+> > >
+> > > Dough there replied:
+> > >
+> > > ```
+> > > Of the two proposals made (the revert vs. the reordering of the dts),
+> > > the reordering of the dts seems better. It only affects the one buggy
+> > > board (rather than preventing us to move to async probe for everyone)
+> > > and it also has a chance of actually fixing something (changing the
+> > > order that regulators probe in rpmh-regulator might legitimately work
+> > > around the problem). That being said, just like the revert the dts
+> > > reordering is still just papering over the problem and is fragile /
+> > > not guaranteed to work forever.
+> > > ```
+> > >
+> > > Papering over obviously is not good, but has anyone a better idea to fix
+> > > this? Or is "not fixing" for some reason an viable option here?
+> > >
+> >
+> > I understand there is a regression, although kernel is not mainline
+> > (hash df7443a96851 is unknown) and the only solutions were papering the
+> > problem. Reverting commit is a temporary workaround. Moving nodes in DTS
+> > is not acceptable because it hides actual problem and only solves this
+> > one particular observed problem, while actual issue is still there. It
+> > would be nice to be able to reproduce it on real mainline with normal
+> > operating system (not AOSP) - with ramdiks/without/whatever. So far no
+> > one did it, right?
+>
+> No, I did not try non-AOSP system yet. I'll try it tomorrow, if that
+> helps. With mainline hash.
 
-On Thu, 15 Jun 2023 11:50:53 +0200, Francesco Dolcini wrote:
-> This series adds support for the Toradex Verdin AM62 SoM which can be used on
-> different carrier boards (Verdin Development Board, Dahlia and Yavia).
-> 
-> The module consists of an TI AM62 family SoC (either AM623 or AM625), a
-> TPS65219 PMIC, a Gigabit Ethernet PHY, 512MB to 2GB of LPDDR4 RAM, an eMMC, a
-> TLA2024 ADC, an I2C EEPROM, an RX8130 RTC, and optional Parallel RGB to MIPI
-> DSI bridge plus an optional Bluetooth/Wi-Fi module.
-> 
-> [...]
+Hi, here is the crash report on db845c running vanilla v6.4-rc6 with a
+debian build https://bugs.linaro.org/attachment.cgi?id=1142
 
-I have applied the following to branch ti-k3-config-next on [1].
-Thank you!
+And fwiw here is the db845c crash log with AOSP running vanilla
+v6.4-rc6 https://bugs.linaro.org/attachment.cgi?id=1141
 
-[2/5] arm64: defconfig: enable drivers for Verdin AM62
-      commit: c3c53dcacd1c7e4c9127a84b40fd632fedb2a0e8
+Regards,
+Amit Pundir
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+PS: rootfs in this bug report doesn't matter much because I'm loading
+all the kernel modules from a ramdisk and in the case of a crash the
+UFS doesn't probe anyway.
