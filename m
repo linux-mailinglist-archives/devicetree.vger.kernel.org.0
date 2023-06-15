@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32377731877
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB32731885
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:15:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344717AbjFOMPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:15:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57230 "EHLO
+        id S1344759AbjFOMPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 08:15:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344146AbjFOMOm (ORCPT
+        with ESMTP id S1344558AbjFOMOm (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:14:42 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7EF1FD4
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:39 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-30fc42fcbc7so3557918f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:39 -0700 (PDT)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38EB71FE2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:41 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f8cc04c287so17456865e9.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686831278; x=1689423278;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686831279; x=1689423279;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OjSnZtkEy2IHx9Z27pUOaut+Sqq7rTJg4leWlg3+sMA=;
-        b=S3YuiYt1Tfk1dMOaH73iWIfI+zw24VugLD4OFmltkoaIXxDVTBcvacK+BkGHrwwN6Z
-         2JMuXzxGkeeUEoPJPvhP70KHvqVEqbzdzllismuE9aPXdAi+uNMU6zgfWH0QO2jEBh3M
-         RMrkkrENIQC2TmFX6lzDLWiEF8bBfBq4Vr9EmnicHbRBMTA9o/Z3c8KFge9yqtuOqDiQ
-         2MEv9U1UPJjtW9Up6YxgNPaDMRvzdwyTmhc2FthAUIazjeo9kO3e9vlAkRvpYdHv2w6C
-         64TCDxbbHVcmQoWAaMnM5riagf25/qYKMqPXI9Oq0yCczWQfGQ5ABk47bK3S2oppIbbm
-         rrRA==
+        bh=Fg9HPnaQs4uw+/BUPOC0tDtzoyUDTGe4TgouVRsxWgE=;
+        b=uTY+xgtBs8To4v9GTEN+G7yekk2CqT/3OfaDsJwmVgqkQPcVz7HnQLkldua9jW9pQn
+         s5ghUQQ9iwBaJDt4M+PuOIloRdWa754NBFaTnwgjQT9x9NniSfGwuOeuV0hwCz4kWNEN
+         d2nsFzZPs0ZUd4babHrA8gBfkI5uIuKp5U8foazQM5HkEd4OoSFMYfi6Z4SKuj4ABDbt
+         027bJqZixgL8R9QZNF+XeHUMpcYm9qpbmaNB+Ftmd/2c8up1hpJojsAi92t9RBgBzPRZ
+         CVuE/7PT/vT3S9l/cDmTlQj05vBrKb87Lq36F1ISxs8cN7b50TTt1QXU7WTLIzW8QB9K
+         oRwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686831278; x=1689423278;
+        d=1e100.net; s=20221208; t=1686831279; x=1689423279;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OjSnZtkEy2IHx9Z27pUOaut+Sqq7rTJg4leWlg3+sMA=;
-        b=MJB9Vkcl599TZjymQmTCFbvUeSBlQhoS+rJ8gZ5+1mV0BZv92+ky6RNtCGwGpQ0d2Y
-         RFJMKAd+Q4Vpko243db+7cm/DcOJkQQeOILacksAbrUQImVHVOXo8pp2/8wm4JEafxJR
-         LLHazBbuqNGM9NcqkewaY7du7c5qFHDLgL4nPL2SuqObP8eUNwp73P3tUltdITGrGpNg
-         fRaT9WhspwAqFk2pvVQUsOYINnIZ1Gsy+trUdzsD6N38yIrvvcVwCBpYzq0ebPlGLbwc
-         fsD6L9o+cuLBnnQVqXGVmqr5Lm9Rhh/ZXgfrgb1av0tp/h8PggG+ECS9WBOU684jyaaQ
-         A0bQ==
-X-Gm-Message-State: AC+VfDw1Ud8H+y05KSVK3XWEO6oHtgnKTZ0Od//3SsxumZGaGUm63LSb
-        LaMquFjGQETJE91bTUaDtAGpfw==
-X-Google-Smtp-Source: ACHHUZ64Ssgd1dkMFf7XZYJAcYYDG+P3e8rnIbYJ4voDDjcbv3TWkFYEyv+berE0V8xHHIdSkZYuAw==
-X-Received: by 2002:adf:e60b:0:b0:30f:c805:5f07 with SMTP id p11-20020adfe60b000000b0030fc8055f07mr6772956wrm.17.1686831278035;
-        Thu, 15 Jun 2023 05:14:38 -0700 (PDT)
+        bh=Fg9HPnaQs4uw+/BUPOC0tDtzoyUDTGe4TgouVRsxWgE=;
+        b=MdfjNee+I+ZYzWboVvuM7ao6JZAfvBA/yNaxDYawEMAliAB9/D0PRFHfTEjYPn43t+
+         vdOQhKHjSCDE0XPjHfVk3Qdl7PRG3Rb8WdID7EoDJXVaGAZUaE1vx7DCPXeH52jbAMEo
+         KAC9QqSXCh8QIE6JysafyXKgNbsV1/cKBB9Gf79m3CY62e4JMXMn1GP/QR/Jc2xhYKaF
+         Jpoi02lHSK71800G0HORcwn7LsLuNWM3hInKNWkqhtYPeGLModFhc5mSHVQVAVPr4Nwj
+         8d+cDrvW5c8E+f4hQpmYNwiwqCpBE0nVqDTsKNjZthYdhJPfSZARIzvxkeu6ETxPoAab
+         r1nQ==
+X-Gm-Message-State: AC+VfDzaZv2e/lV2eSIGkTUoE0aYzeE2gwH7xXvaU8azfTKENXE3tGQZ
+        G0bJTcGZOA6CENLRXFsgdr73SQ==
+X-Google-Smtp-Source: ACHHUZ6Uk6asHy55RemUww5ML8r7mU3nmTyGBsumX9attMu4qXc0CRCwbJ3KGESKakbxKbjqWZ6FPw==
+X-Received: by 2002:a5d:4208:0:b0:2f8:e190:e719 with SMTP id n8-20020a5d4208000000b002f8e190e719mr10993391wrq.65.1686831279396;
+        Thu, 15 Jun 2023 05:14:39 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:2ad4:65a7:d9f3:a64e])
-        by smtp.gmail.com with ESMTPSA id k17-20020a5d4291000000b003047ea78b42sm20918012wrq.43.2023.06.15.05.14.36
+        by smtp.gmail.com with ESMTPSA id k17-20020a5d4291000000b003047ea78b42sm20918012wrq.43.2023.06.15.05.14.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 05:14:37 -0700 (PDT)
+        Thu, 15 Jun 2023 05:14:38 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Vinod Koul <vkoul@kernel.org>,
         Bhupesh Sharma <bhupesh.sharma@linaro.org>,
@@ -72,13 +72,10 @@ Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 04/23] arm64: defconfig: enable the SerDes PHY for Qualcomm DWMAC
-Date:   Thu, 15 Jun 2023 14:14:00 +0200
-Message-Id: <20230615121419.175862-5-brgl@bgdev.pl>
+        Andrew Halaney <ahalaney@redhat.com>
+Subject: [PATCH v2 05/23] net: stmmac: dwmac-qcom-ethqos: shrink clock code with devres
+Date:   Thu, 15 Jun 2023 14:14:01 +0200
+Message-Id: <20230615121419.175862-6-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230615121419.175862-1-brgl@bgdev.pl>
 References: <20230615121419.175862-1-brgl@bgdev.pl>
@@ -86,8 +83,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,27 +92,81 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Enable the SGMII/SerDes PHY driver. This module is required to enable
-ethernet on sa8775p platforms.
+We can use a devm action to completely drop the remove callback and use
+stmmac_pltfr_remove() directly for remove. We can also drop one of the
+goto labels.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 24 +++++++++----------
+ 1 file changed, 11 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8d850be05835..f62c96fd4335 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1367,6 +1367,7 @@ CONFIG_PHY_QCOM_USB_HS=m
- CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
- CONFIG_PHY_QCOM_USB_HS_28NM=m
- CONFIG_PHY_QCOM_USB_SS=m
-+CONFIG_PHY_QCOM_SGMII_ETH=m
- CONFIG_PHY_R8A779F0_ETHERNET_SERDES=y
- CONFIG_PHY_RCAR_GEN3_PCIE=y
- CONFIG_PHY_RCAR_GEN3_USB2=y
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+index c801838fae2a..2da0738eed24 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+@@ -586,6 +586,11 @@ static int ethqos_clks_config(void *priv, bool enabled)
+ 	return ret;
+ }
+ 
++static void ethqos_clks_disable(void *data)
++{
++	ethqos_clks_config(data, false);
++}
++
+ static int qcom_ethqos_probe(struct platform_device *pdev)
+ {
+ 	struct device_node *np = pdev->dev.of_node;
+@@ -636,6 +641,10 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_mem;
+ 
++	ret = devm_add_action_or_reset(&pdev->dev, ethqos_clks_disable, ethqos);
++	if (ret)
++		goto err_mem;
++
+ 	ethqos->speed = SPEED_1000;
+ 	ethqos_update_rgmii_clk(ethqos, SPEED_1000);
+ 	ethqos_set_func_clk_en(ethqos);
+@@ -653,27 +662,16 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+ 
+ 	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+ 	if (ret)
+-		goto err_clk;
++		goto err_mem;
+ 
+ 	return ret;
+ 
+-err_clk:
+-	ethqos_clks_config(ethqos, false);
+-
+ err_mem:
+ 	stmmac_remove_config_dt(pdev, plat_dat);
+ 
+ 	return ret;
+ }
+ 
+-static void qcom_ethqos_remove(struct platform_device *pdev)
+-{
+-	struct qcom_ethqos *ethqos = get_stmmac_bsp_priv(&pdev->dev);
+-
+-	stmmac_pltfr_remove(pdev);
+-	ethqos_clks_config(ethqos, false);
+-}
+-
+ static const struct of_device_id qcom_ethqos_match[] = {
+ 	{ .compatible = "qcom,qcs404-ethqos", .data = &emac_v2_3_0_data},
+ 	{ .compatible = "qcom,sc8280xp-ethqos", .data = &emac_v3_0_0_data},
+@@ -684,7 +682,7 @@ MODULE_DEVICE_TABLE(of, qcom_ethqos_match);
+ 
+ static struct platform_driver qcom_ethqos_driver = {
+ 	.probe  = qcom_ethqos_probe,
+-	.remove_new = qcom_ethqos_remove,
++	.remove_new = stmmac_pltfr_remove,
+ 	.driver = {
+ 		.name           = "qcom-ethqos",
+ 		.pm		= &stmmac_pltfr_pm_ops,
 -- 
 2.39.2
 
