@@ -2,99 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6C4731462
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13E7731477
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245112AbjFOJrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46396 "EHLO
+        id S241318AbjFOJvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:51:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238604AbjFOJrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:47:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA541FDB;
-        Thu, 15 Jun 2023 02:47:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 222DC62D0F;
-        Thu, 15 Jun 2023 09:47:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1046BC433C0;
-        Thu, 15 Jun 2023 09:47:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1686822468;
-        bh=dq78Mpvl25tYI9hMZp9HS6PZVswp2rMHbFOPamCyiDs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=v/LosNBtIuUZHTTGv6QPPVczkMmlTJ6O2pB1K6x6sqqG7xEDBamku+iQU5wLuRzPs
-         CTDmPkpZUxzwkBKR0ziMgoQ4Xg9BWFnENd23M+GG5056lh7lve20ZNKCLo3XTptvov
-         HO7QJbEWXHH2gitPjei+I6keyXRFuyGOGrsZFYnk=
-Date:   Thu, 15 Jun 2023 11:47:46 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     neil.armstrong@linaro.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S245580AbjFOJvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:51:12 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05AA42710;
+        Thu, 15 Jun 2023 02:51:07 -0700 (PDT)
+Received: from francesco-nb.toradex.int (31-10-206-125.static.upc.ch [31.10.206.125])
+        by mail11.truemail.it (Postfix) with ESMTPA id 74CD22146F;
+        Thu, 15 Jun 2023 11:51:04 +0200 (CEST)
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] usb: typec: add support for the nb7vpq904m Type-C
- Linear Redriver
-Message-ID: <2023061514-wager-iphone-cf71@gregkh>
-References: <20230601-topic-sm8x50-upstream-redriver-v3-0-988c560e2195@linaro.org>
- <20230601-topic-sm8x50-upstream-redriver-v3-2-988c560e2195@linaro.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] Add Toradex Verdin AM62
+Date:   Thu, 15 Jun 2023 11:50:53 +0200
+Message-Id: <20230615095058.33890-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230601-topic-sm8x50-upstream-redriver-v3-2-988c560e2195@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 04:50:08PM +0200, neil.armstrong@linaro.org wrote:
-> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> Add support for the ON Semiconductor NB7VPQ904M Type-C USB SuperSpeed
-> and DisplayPort ALT Mode Linear Redriver chip found on some devices
-> with a Type-C port.
-> 
-> The redriver compensates ultra High-Speeed DisplayPort and USB
-> Super Speed signal integrity losses mainly due to PCB & transmission
-> cables.
-> 
-> The redriver doesn't support SuperSpeed lines swapping, but
-> can support Type-C SBU lines swapping.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/usb/typec/mux/Kconfig      |   8 +
->  drivers/usb/typec/mux/Makefile     |   1 +
->  drivers/usb/typec/mux/nb7vpq904m.c | 529 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 538 insertions(+)
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-I get the following build error on my system with this applied:
+This series adds support for the Toradex Verdin AM62 SoM which can be used on
+different carrier boards (Verdin Development Board, Dahlia and Yavia).
 
-  CC [M]  drivers/usb/typec/mux/nb7vpq904m.o
-drivers/usb/typec/mux/nb7vpq904m.c: In function ‘nb7vpq904m_register_bridge’:
-drivers/usb/typec/mux/nb7vpq904m.c:327:20: error: ‘struct drm_bridge’ has no member named ‘of_node’
-  327 |         nb7->bridge.of_node = nb7->client->dev.of_node;
-      |                    ^
+The module consists of an TI AM62 family SoC (either AM623 or AM625), a
+TPS65219 PMIC, a Gigabit Ethernet PHY, 512MB to 2GB of LPDDR4 RAM, an eMMC, a
+TLA2024 ADC, an I2C EEPROM, an RX8130 RTC, and optional Parallel RGB to MIPI
+DSI bridge plus an optional Bluetooth/Wi-Fi module.
 
+Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
 
-What went wrong?
+v3:
+ - removed audio codec and sound card from dev and dahlia board,
+   we'll have a separate patch to add those back once the DT binding
+   check can pass
 
-thanks,
+v2: 
+ - removed spurious new lines
+ - removed TODO comment
+ - fixed pinctrl format
+ - added link to products in dts/dtsi
+ - removed useless rs485-rts-active-high property
 
-greg k-h
+Francesco Dolcini (5):
+  dt-bindings: arm: ti: add toradex,verdin-am62 et al.
+  arm64: defconfig: enable drivers for Verdin AM62
+  arm64: dts: ti: add verdin am62
+  arm64: dts: ti: add verdin am62 dahlia
+  arm64: dts: ti: add verdin am62 yavia
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   20 +
+ arch/arm64/boot/dts/ti/Makefile               |    6 +
+ .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    |  161 ++
+ .../arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi |  190 +++
+ .../boot/dts/ti/k3-am62-verdin-nonwifi.dtsi   |   20 +
+ .../boot/dts/ti/k3-am62-verdin-wifi.dtsi      |   39 +
+ .../boot/dts/ti/k3-am62-verdin-yavia.dtsi     |  207 +++
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    | 1401 +++++++++++++++++
+ .../dts/ti/k3-am625-verdin-nonwifi-dahlia.dts |   22 +
+ .../dts/ti/k3-am625-verdin-nonwifi-dev.dts    |   22 +
+ .../dts/ti/k3-am625-verdin-nonwifi-yavia.dts  |   22 +
+ .../dts/ti/k3-am625-verdin-wifi-dahlia.dts    |   22 +
+ .../boot/dts/ti/k3-am625-verdin-wifi-dev.dts  |   22 +
+ .../dts/ti/k3-am625-verdin-wifi-yavia.dts     |   22 +
+ arch/arm64/configs/defconfig                  |    3 +
+ 15 files changed, 2179 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-nonwifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-yavia.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-yavia.dts
+
+-- 
+2.25.1
+
