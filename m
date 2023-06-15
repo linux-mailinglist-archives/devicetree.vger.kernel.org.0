@@ -2,77 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE897320D5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 22:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B977320E1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 22:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbjFOUUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 16:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42470 "EHLO
+        id S236672AbjFOUXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 16:23:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231479AbjFOUUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 16:20:30 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE3B2117
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 13:20:29 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-982a1b92d55so160286466b.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 13:20:29 -0700 (PDT)
+        with ESMTP id S229941AbjFOUXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 16:23:01 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0602702
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 13:22:58 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f845060481so1475891e87.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 13:22:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686860428; x=1689452428;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1686860576; x=1689452576;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PheO5hW175jjKSK37vk+49jVV02xT5gnJ8XioudxE24=;
-        b=jJ1Yre5AYXwepAMacg3jhvKTHmzpMIh+WgtkpxRVxOr09dqTzMF7jp6K7qcoty8g7e
-         iJ6wdMaGMHt5tg/K5QAh8NtzNcNt+aLaC1oyZ1HxxiZvKA3MIY8/q61xrbgsvNuUOf0w
-         pVAJHpFRgr+iV+YA2UFKQlYk7ACJehZdfhglFSfCjEp/Ut2ohj5B+JbjmxP4fk6NOi8i
-         0B1B1vLpZU2doFhOgOsxbxY5011fFf14lWlNaDPeeD+yZc4mHM5uo5KsHzzmYs4/eXR+
-         7Re81CHd66YhxGm9kasxDV0yK7YJrPElZmCFx7hWR9burlrPrOz73VbqNIAkcEH/ynwL
-         30bg==
+        bh=v5XF5uBTAtvpA1VpsYCm6GR0NoRPfJg3tqa6HE9KDYc=;
+        b=qQeXF0M9mYOpIGCFaQrnDXB6VjUyo5AZ6UnieBJxkirV3cmRJGjiBy5rDQNkwGB3ll
+         0EHZfrsRTKeqS8PacfxmGyOzW77SjxLwIWKJetTYltCg+kSB8lDY705/zz3vwM7lYzN9
+         WFeXYa9CjORYvg1borCu7hQF8Fb0LXdEndF+b2nRPU0zFEn4LuSVVNOaHKXUTDmlcSFU
+         GbMrM2vs6Ys7hPSYXl1uzbecK8XqIqJsDkXEPopL+S4pWh7dQCc344JTSn4cbLF8cjuG
+         rIyM75DHZoqJcC0YvX+pnLPwDndEP8XkBaZHu7MyInAJhL0fJo/Njfr8vsQpraPAnFJ3
+         7R8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686860428; x=1689452428;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1686860576; x=1689452576;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PheO5hW175jjKSK37vk+49jVV02xT5gnJ8XioudxE24=;
-        b=IpiqiM4WOWcDfTc8JQ4lw00M6KFVJuPFDs0LJBQ9PyvM0swtgyprOFAh8/DnTrhp02
-         UscuZhPFihIsoDqgUrAg9bqJ1pwBu3nNUW3c5U5SWUN48deJj5L1+usOWSHUYXLVkZ+J
-         6xdXbuZ2XM8FLiqwOYlZJ4TAqL8ALqPkR+oEFfvKikghnhw/G7aLex6s9ZRfYkquZKIu
-         fX5t6vquqOfoOtnMkdfl6hSdZu/GyTmEVlyfZbjq2rrRQI810G7grF8Vpi+il+IbKHQB
-         rginpSlhhRJK3ufOs4OeXwd88fXTBgLIX+FXK79pLnponyap3L1Nc+JI/N/C8lvathj+
-         MD4w==
-X-Gm-Message-State: AC+VfDzzaAtzbnT8Xey01HMCCzKBLnoCtwIsfVDrS9n6OU+beijiWDs9
-        JuPkaXjr1cszIctpXgbc0PiX950Sy/DRS8L60aE=
-X-Google-Smtp-Source: ACHHUZ5o8zCpuaorGfbrYqyO1FXI2LXPqdCPH/jO8rGp25VgkKZhHn6c43x02tQ8XqtH/xIB860/uA==
-X-Received: by 2002:a17:906:db0b:b0:982:25d1:bfd3 with SMTP id xj11-20020a170906db0b00b0098225d1bfd3mr116904ejb.15.1686860427808;
-        Thu, 15 Jun 2023 13:20:27 -0700 (PDT)
+        bh=v5XF5uBTAtvpA1VpsYCm6GR0NoRPfJg3tqa6HE9KDYc=;
+        b=h5Ry9C4HRONYUgREHzwYNXFiuZLevDx6pAHl7B3V8n9IW7Hb1bstW4ZNE2ovOYhVnN
+         0KSF71yV3VPMZKKCOxqssGOhG5Jjx+++6+VGDBTdOpZmlH9xvZ+019jGVLfMWjZbYMVu
+         NM9QdxGHusalWWOm/0zg33QL31H2LsrqFexxNeJy/pQYgn6yhksV2T1lqS3c+/QZVhgw
+         rxkV94ijx4D5i9s6ZFYur/1nF314OFM7nYLtJNPdQmJdxfpjMV5NDpFNJR+Br3SzxdOR
+         k1o/HPt4Klw34mC2Yp4QliKG5aVaYlIi33QCnLEW1IyMYopJTDzuQxqUdhAZqOOOe09J
+         gnUQ==
+X-Gm-Message-State: AC+VfDxhnODRT0F5q42nOEun7T7kkt/DIYFHZ7ah1zIPO6KhytabwO6J
+        LbNjsG1/KD9aRxYC4u/SBt+g7A==
+X-Google-Smtp-Source: ACHHUZ5LK8BVUiva08mB2RInbokbmOiWQwVTxSdEpd/3VaWxCMhhigdcH1ZyVPotOEMA/yQzEu1THQ==
+X-Received: by 2002:a05:6512:521:b0:4f3:bbe1:34fc with SMTP id o1-20020a056512052100b004f3bbe134fcmr12330272lfc.38.1686860576556;
+        Thu, 15 Jun 2023 13:22:56 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id a9-20020a17090680c900b0096f782f727esm9989482ejx.140.2023.06.15.13.20.26
+        by smtp.gmail.com with ESMTPSA id h22-20020a170906111600b009828bb40444sm1907718eja.51.2023.06.15.13.22.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 13:20:27 -0700 (PDT)
-Message-ID: <ba63e07f-69db-c54f-08eb-7adb635a68fb@linaro.org>
-Date:   Thu, 15 Jun 2023 22:20:25 +0200
+        Thu, 15 Jun 2023 13:22:56 -0700 (PDT)
+Message-ID: <e3a83137-d125-4d0f-2eb4-4731159d0c7d@linaro.org>
+Date:   Thu, 15 Jun 2023 22:22:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: spi: stm32: disable spi-slave
- property for stm32f4-f7
-To:     Valentin CARON <valentin.caron@foss.st.com>,
-        Mark Brown <broonie@kernel.org>,
+Subject: Re: [PATCH 1/3] dt: bindings: add bindings for TQMa93xxLA SOM
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230615075815.310261-1-valentin.caron@foss.st.com>
- <20230615075815.310261-4-valentin.caron@foss.st.com>
- <479bf05e-342d-f94b-87f3-4cc0a95fb01a@linaro.org>
- <b25d30de-8a22-b5ea-e58c-78b3d55b3cac@foss.st.com>
-Content-Language: en-US
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>
+Cc:     Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+References: <20230609132915.634338-1-alexander.stein@ew.tq-group.com>
+ <20230609132915.634338-2-alexander.stein@ew.tq-group.com>
+ <1bf1890f-d24c-12a1-217d-27579a2464a6@linaro.org>
+ <6315067.GXAFRqVoOG@steina-w>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b25d30de-8a22-b5ea-e58c-78b3d55b3cac@foss.st.com>
+In-Reply-To: <6315067.GXAFRqVoOG@steina-w>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,24 +86,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2023 19:38, Valentin CARON wrote:
-> Hi Krzysztof,
+On 15/06/2023 16:46, Alexander Stein wrote:
+>>> +          TQMa93xxLA and TQMa93xxCA are two series of feature compatible
+>>> SOM +          using NXP i.MX93 SOC in 11x11 mm package.
+>>> +          TQMa93xxLA is designed to be soldered on different carrier
+>>> boards. +          TQMa93xxCA is a compatible variant using board to
+>>> board connectors. +          All SOM and CPU variants use the same device
+>>> tree hence only one +          compatible is needed. Bootloader disables
+>>> all features not present +          in the assembled SOC.
+>>> +          MBa93xxCA mainboard can be used as starterkit for the SOM
+>>> +          soldered on an adapter board or for the connector variant
+>>> +          MBa93xxLA mainboard is a single board computer using the
+>>> solderable +          SOM variant
+>>> +        items:
+>>> +          - enum:
+>>> +              - tq,imx93-tqma9352-mba93xxca # TQ-Systems GmbH i.MX93
+>>> TQMa93xxCA/LA SOM on MBa93xxCA +              -
+>>> tq,imx93-tqma9352-mba93xxla # TQ-Systems GmbH i.MX93 TQMa93xxLA SOM on
+>>> MBa93xxLA SBC
+>> xx sound like wildcard which you should not use. If you open the product
+>> page, it also suggests that.
 > 
-> On 6/15/23 15:36, Krzysztof Kozlowski wrote:
->> On 15/06/2023 09:58, Valentin Caron wrote:
->>> From: Alain Volmat <alain.volmat@foss.st.com>
->>>
->>> STM32F4 and STM32F7 can't switch to spi device mode.
->>> Forbid this property with compatible "st,stm32f4-spi".
->> Just to clarify - driver cannot switch or hardware does not support it?
-> 
-> Driver can't support it right now but hardware can.
-> 
+> xx is a wildcard only for modules TQMa93xx, depending on the soldered SoC, but 
+> not for the mainboard MBa93xx.
+> You are right that there is the ordering number MBa9352LA-AA, so the 
+> compatible would be "tq,imx93-tqma9352-mba9352la". But the actual values for 
+> the wildcards is copied from the soldered module. So using a TQMa9351LA would 
+> result in MBa9351LA-AA, although the mainboard is identical.
 
-DT is independent of some chosen (or current) Linux drivers. Imagine
-Linux cannot support it but OpenBSD does.
-
-As Mark pointed out, this needs a follow up commit.
+OK
 
 Best regards,
 Krzysztof
