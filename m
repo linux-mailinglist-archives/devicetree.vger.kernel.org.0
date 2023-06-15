@@ -2,59 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDC77731930
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:50:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAD5F731948
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240000AbjFOMuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:50:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48434 "EHLO
+        id S241056AbjFOM4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 08:56:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239033AbjFOMug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:50:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D40A2126;
-        Thu, 15 Jun 2023 05:50:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CCA23625F0;
-        Thu, 15 Jun 2023 12:50:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA46C433C8;
-        Thu, 15 Jun 2023 12:50:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1686833434;
-        bh=9C0lIysBzhK2NDkLZ8zuWOZP34c6lCF4sNn1JWvzNkc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Yh4oUiVoqClwbgiExl0clwXIAhBdc+EGfyc1pP8k5YyWihS/NjiHOyXPKOW1APa+0
-         jO7L1bcu4ev6Hr9gPCVFxpMPK0L2ECM7+HUo1gVyMTWF669az9mbhAE+ACBvJochTz
-         zhZVopAKEqBqa96MZ0tFFhKfstjFskNC9/t1nZQU=
-Date:   Thu, 15 Jun 2023 14:50:31 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH V23 2/3] misc: dcc: Add driver support for Data Capture
- and Compare unit(DCC)
-Message-ID: <2023061515-unbuckled-consonant-e207@gregkh>
-References: <cover.1683265984.git.quic_schowdhu@quicinc.com>
- <2259ab0348282349e88905ea99bcb4aa815d941f.1683265984.git.quic_schowdhu@quicinc.com>
- <2023061542-reformed-unholy-10a3@gregkh>
- <cc9750f3-c85c-be7f-e63c-0fcf4eb160f0@quicinc.com>
+        with ESMTP id S239743AbjFOMzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:55:54 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 078752135
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:55:53 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f7deee339dso1660225e87.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:55:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686833751; x=1689425751;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hr+C4HV3ypYhMAH5p+tz4TJXh2rByBSODsfmyqqfM3o=;
+        b=Ix+HXY8lKizE+F/v9G5aOrSdAwCUUPO3rC5F22k4R8aUIph0mG19vve1xPug+9DdRb
+         EhVfImlBBTz3KHcBCs/FVDcF4s18euAZMEXNNGWJaZdTYVPo7GAwKezYf000qbO4P5IJ
+         /nIpu0ZHAqYiqYbsKwbtR1R3OpX8r0Hth+2c2RSA/sepTHT+LABrrk3FFL44W/CEquEs
+         nZTyeZSTdy9PoWlYB5PUWppt0pgx/iXJvPhOW4+8eqBEcjjCHqX4++5PsCFOo3G2FxLp
+         PamKcUhhjm8AhIUuMqpr+gyCFZlqkl3SmIQr2lI2eG5mEH4oqpnltkTtHCuyStR4sRVU
+         A7+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686833751; x=1689425751;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hr+C4HV3ypYhMAH5p+tz4TJXh2rByBSODsfmyqqfM3o=;
+        b=MArvH/vpeqJj1PpQwwXBNYzJmVUIL2kD/m2DMhb0uA7ebNq4H9ZXnWdDFnXbSk+b6d
+         a+hqAeGtGVfonh1ELC/b2DMjyXAoBK0sgGtE5EksDGJhmjBBIR+M3n4tB1ak2K4yRgrI
+         mkWUuiS5RJrTtAPsU+xPXuG/bB997Rsu+j7LlPzCkh65zh0RxHWGf3Mgak2s9TINJ7+W
+         aHqxPhgUy1iE8QnT8nMkmiP89eNO5rENs1TBOBhqHKKkmIGuldrpJKZ2EDEG8vAYZHgw
+         jXoHXY7OJjKYdQr15tk0AqvLpK0ugsWPVQMI22fOYIfyiw1PyIx8U8zTJ7oOhxcdMlqi
+         N6Mw==
+X-Gm-Message-State: AC+VfDx+yj6+FQx4YmnHxLPrM10Q7382F2N0KxBgjMamXYh7EiIrLr3F
+        Da1ptQYPJKvUR7UEiTm1tf79XQ==
+X-Google-Smtp-Source: ACHHUZ5r5g0/EdaBgh3ItbXCv7EHaR9YYHxAHfFr/UG529fhS2cSFA7JJ0Qe09gXlXkN1fN/RsAUhg==
+X-Received: by 2002:a19:da12:0:b0:4f7:669f:7da8 with SMTP id r18-20020a19da12000000b004f7669f7da8mr3474493lfg.7.1686833751155;
+        Thu, 15 Jun 2023 05:55:51 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id c26-20020a19761a000000b004f14ea05895sm2550319lff.213.2023.06.15.05.55.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 05:55:50 -0700 (PDT)
+Message-ID: <1d1756c6-b79f-7f8f-2f00-6fcb3657295a@linaro.org>
+Date:   Thu, 15 Jun 2023 14:55:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cc9750f3-c85c-be7f-e63c-0fcf4eb160f0@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [v10 2/6] clk: qcom: Add Global Clock controller (GCC) driver for
+ IPQ5018
+Content-Language: en-US
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, ulf.hansson@linaro.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robimarko@gmail.com, krzysztof.kozlowski@linaro.org,
+        andy.shevchenko@gmail.com
+References: <20230615090638.1771245-1-quic_srichara@quicinc.com>
+ <20230615090638.1771245-3-quic_srichara@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230615090638.1771245-3-quic_srichara@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,82 +83,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 06:13:53PM +0530, Souradeep Chowdhury wrote:
+On 15.06.2023 11:06, Sricharan Ramabadhran wrote:
+> Add support for the global clock controller found on IPQ5018
+> based devices.
 > 
-> 
-> On 6/15/2023 4:03 PM, Greg Kroah-Hartman wrote:
-> > On Thu, May 04, 2023 at 11:36:22PM -0700, Souradeep Chowdhury wrote:
-> > > +/**
-> > > + * struct dcc_config_entry - configuration information related to each dcc instruction
-> > > + * @base:                    Base address of the register to be configured in dcc
-> > 
-> > Why is this a u32 and not a bigger size?
-> 
-> Currently only 32 bit register addresses are supported for DCC
-> configuration.
-> 
-> > 
-> > > + * @offset:                  Offset to the base address to be configured in dcc
-> > > + * @len:                     Length of the address in words to be configured in dcc
-> > 
-> > What is a "word" here, 16 bits?
-> 
-> Each word is 4 bytes(32 bits)
+> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Co-developed-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
 
-See, I guess wrong, you should say what this is :)
+> +
+> +static const struct freq_tbl ftbl_apss_axi_clk_src[] = {
+> +	F(400000000, P_GPLL0, 2, 0, 0),
+> +	{ }
+> +};
+This is weirdly far away from its use.
 
-> > > + * @loop_cnt:                The number of times to loop on the register address in case
-> > > +				of loop instructions
-> > > + * @write_val:               The value to be written on the register address in case of
-> > > +				write instructions
-> > > + * @mask:                    Mask corresponding to the value to be written in case of
-> > > +				write instructions
-> > > + * @apb_bus:                 Type of bus to be used for the instruction, can be either
-> > > +				'apb' or 'ahb'
-> > 
-> > How can a bool be either "apb" or "ahb"?
-> 
-> 1 stands for apb and 0 for ahb. Will update the same here.
+With that fixed:
 
-Why not have an enum?  Will there ever be another "bus"?
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> > > +static ssize_t ready_read(struct file *filp, char __user *userbuf,
-> > > +			  size_t count, loff_t *ppos)
-> > > +{
-> > > +	int ret = 0;
-> > > +	char *buf;
-> > > +	struct dcc_drvdata *drvdata = filp->private_data;
-> > > +
-> > > +	mutex_lock(&drvdata->mutex);
-> > > +
-> > > +	if (!is_dcc_enabled(drvdata)) {
-> > > +		ret = -EINVAL;
-> > > +		goto out_unlock;
-> > > +	}
-> > > +
-> > > +	if (!FIELD_GET(BIT(1), readl(drvdata->base + dcc_status(drvdata->mem_map_ver))))
-> > > +		buf = "Y\n";
-> > > +	else
-> > > +		buf = "N\n";
-> > > +out_unlock:
-> > > +	mutex_unlock(&drvdata->mutex);
-> > > +
-> > > +	if (ret < 0)
-> > > +		return -EINVAL;
-> > > +	else
-> > 
-> > You do the "lock, get a value, unlock, do something with the value"
-> > thing a bunch, but what prevents the value from changing after the lock
-> > happens?  So why is the lock needed at all?
-> 
-> The lock is used to prevent concurrent accesses of the drv_data when
-> scripts are being run from userspace.
-
-How would that matter?  The state can change instantly after the lock is
-given up, and then the returned value is now incorrect.  So no need for
-a lock at all as you really aren't "protecting" anything, or am I
-missing something else?
-
-thanks,
-
-greg k-h
+Konrad
