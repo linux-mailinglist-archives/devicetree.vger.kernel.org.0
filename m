@@ -2,108 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80260731149
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 09:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5970B731155
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 09:50:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232920AbjFOHti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 03:49:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33168 "EHLO
+        id S245185AbjFOHub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 03:50:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245293AbjFOHtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 03:49:13 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C819358B;
-        Thu, 15 Jun 2023 00:48:51 -0700 (PDT)
-Received: from francesco-nb.int.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-        by mail11.truemail.it (Postfix) with ESMTPA id 1F9D1207A7;
-        Thu, 15 Jun 2023 09:48:49 +0200 (CEST)
-Date:   Thu, 15 Jun 2023 09:48:44 +0200
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        Nishanth Menon <nm@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] arm64: dts: ti: add verdin am62
-Message-ID: <ZIrCXA6kp2Z1Je6A@francesco-nb.int.toradex.com>
-References: <20230601131332.26877-1-francesco@dolcini.it>
- <20230601131332.26877-4-francesco@dolcini.it>
- <62ca6112-0aca-788e-fc9b-8a2c3ce9ba1f@ti.com>
- <ZIq02whTEce8C1P8@francesco-nb.int.toradex.com>
- <bf392830-c157-b819-2de3-8db952adf39b@ti.com>
+        with ESMTP id S245345AbjFOHuG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 03:50:06 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1922703
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 00:50:03 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f5f728c4aaso619973e87.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 00:50:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686815402; x=1689407402;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J2qg/OhTZMxFrneoAf57EQq0qnVlyXa5i01t43MlX9w=;
+        b=e4u3NTu/pqU31uuPTG/eKpW/QMItHv1uBLmHN+OELfnX1s9Mil6RX5ENuCEd+YZnhG
+         7OUhGO22mHvfSKxtVEmzTjhrKYa2shwfgLFcP1F1bsr57fY9WXdGpU8PEa1qmV+/UOso
+         rmHHLXWa5BrPA+jFwFbHBl9kFvdSv6dsJlBQlBRHU5F/6UNHerM+drMF9Bn8JUFM6n8n
+         d88djVnlSmR10vM+lao15yr875PzITrl+A8BRXhuhvPs/ko0IXtMGODa7qTaaMkjRSEM
+         utKbYzRpfW42pN4JgTL7b4NDD/62ayF+SVwxOQrq4dNQFDCEldZ2/Wf7Z2pkHZgSLy5e
+         WoyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686815402; x=1689407402;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J2qg/OhTZMxFrneoAf57EQq0qnVlyXa5i01t43MlX9w=;
+        b=Ii3fw8+P6vmixYFLLPwWrYnMk07CiFk62pNNTJFc8qARiltFFAoqHYJXta0FdzN42X
+         f5OGBKnTrUjJloHkOJ4XMufLd2p5D9cCx1nPoItnWX3MRH3Zik0WHL+HXAo/+lEkEppg
+         Fdg5qS0njfUhTvnZ31wdGu7uIhBiW7J61KP4UIukORdQG1l4pfcCMrwtcmDjr7PV0eu2
+         zlLDHA48BA1FD+bS8oBuGXcMzgbE+h1mU03jofUtSjgcaXEM88A1m8a7STNJu/oe95YP
+         mSZhHOqUucAm89E9DZpiJBYcaDu+Csjl0J1FH8EcNR+7BBBcaO0cE3wGx8u7fE8fSvI1
+         s63Q==
+X-Gm-Message-State: AC+VfDwFpiwar22X7r4tb2QCoVpOgVC82PaP/wYoOF3SKn6HDejNfJOh
+        sEHU9/xwKxRgcldwd8mDFbgAZw==
+X-Google-Smtp-Source: ACHHUZ7U+ZUkuF8q6VsyYsmqbxyJo+bKxv0x5R1kei09Xwyk3EU60144Jc9nNsH0GhPbxK3PfwyqiQ==
+X-Received: by 2002:a19:9118:0:b0:4f2:147b:7ee with SMTP id t24-20020a199118000000b004f2147b07eemr1305042lfd.20.1686815401899;
+        Thu, 15 Jun 2023 00:50:01 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id p20-20020a19f014000000b004f749b64bbcsm1243348lfc.69.2023.06.15.00.50.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 00:50:01 -0700 (PDT)
+Message-ID: <825f06c1-cf87-c0e3-a9fc-f4ec0edaa0f8@linaro.org>
+Date:   Thu, 15 Jun 2023 09:49:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bf392830-c157-b819-2de3-8db952adf39b@ti.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230526-topic-smd_icc-v6-0-263283111e66@linaro.org>
+ <20230526-topic-smd_icc-v6-18-263283111e66@linaro.org>
+ <e2afd4bde3e85db358d50553a60a744f.sboyd@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v6 18/22] clk: qcom: smd-rpm: Separate out interconnect
+ bus clocks
+In-Reply-To: <e2afd4bde3e85db358d50553a60a744f.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 01:08:11PM +0530, Vignesh Raghavendra wrote:
+On 15.06.2023 02:48, Stephen Boyd wrote:
+> Quoting Konrad Dybcio (2023-06-14 11:04:37)
+>> The interconnect bus clocks are now handled within the ICC framework.
+>> They still however need to get a kickstart *before* we call
+>> clk_smd_rpm_enable_scaling(), or RPM will assume that they should all
+>> be running at 0 kHz and the system will inevitably die.
+>>
+>> Separate them out to ensure such a kickstart can still take place.
+>>
+>> As a happy accident, the file got smaller:
+>>
+>> Total: Before=41951, After=41555, chg -0.94%
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  drivers/clk/qcom/clk-smd-rpm.c | 278 +++++++++++++++++------------------------
+>>  1 file changed, 115 insertions(+), 163 deletions(-)
+>>
+>> diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
+>> index 6e7f0438e8b8..0d1d97659d59 100644
+>> --- a/drivers/clk/qcom/clk-smd-rpm.c
+>> +++ b/drivers/clk/qcom/clk-smd-rpm.c
+>> @@ -498,13 +506,69 @@ DEFINE_CLK_SMD_RPM_XO_BUFFER(div_clk1, 11, 19200000);
+>>  DEFINE_CLK_SMD_RPM_XO_BUFFER(div_clk2, 12, 19200000);
+>>  DEFINE_CLK_SMD_RPM_XO_BUFFER(div_clk3, 13, 19200000);
+>>  
+>> +static struct clk_smd_rpm *bimc_pcnoc_icc_clks[] = {
 > 
+> Can these be const arrays?
+Sorta, look below.
+
 > 
-> On 15/06/23 12:21, Francesco Dolcini wrote:
-> > On Thu, Jun 15, 2023 at 11:38:00AM +0530, Vignesh Raghavendra wrote:
-> >>
-> >>
-> >> On 01/06/23 18:43, Francesco Dolcini wrote:
-> >>
-> >> [...]
-> >>
-> >>> +/* Verdin I2C_1 */
-> >>> +&main_i2c1 {
-> >>> +	status = "okay";
-> >>> +
-> >>> +	/* Audio Codec */
-> >>> +	nau8822_1a: audio-codec@1a {
-> >>> +		compatible = "nuvoton,nau8822";
-> >>> +		reg = <0x1a>;
-> >>> +		pinctrl-names = "default";
-> >>> +		pinctrl-0 = <&pinctrl_i2s1_mclk>; /* Configure AUDIO_EXT_REFCLK1 pin as output */
-> >>> +		#sound-dai-cells = <0>;
-> >>> +
-> >>> +		/* POSTDIV4_16FF_MAIN_2_HSDIVOUT8_CLK -> AUDIO_EXT_REFCLK1 */
-> >>> +		assigned-clocks = <&k3_clks 157 10>;
-> >>> +		assigned-clock-parents = <&k3_clks 157 18>;
-> >>> +		assigned-clock-rates = <25000000>; /* for 48KHz ± 1.7% */
-> >>> +	};
-> >>> +
-> >>
-> >> Oops, this node fails dtbs_check
-> >>
-> >> make ARCH=arm64 CROSS_COMPILE=$V8_CROSS CHECK_DTBS=y ti/k3-am625-verdin-nonwifi-dev.dtb
-> >>
-> >> /work/linux/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-dev.dtb: audio-codec@1a: '#sound-dai-cells', 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-> >> 	From schema: /home/a0132425/workspace/k3-next/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
-> >> /work/linux/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-dev.dtb: audio-codec@1a: 'anyOf' conditional failed, one must be fixed:
-> >> 	'clocks' is a required property
-> >> 	'#clock-cells' is a required property
-> >> 	From schema: /work/.local/lib/python3.10/site-packages/dtschema/schemas/clock/clock.yaml
-> > 
-> > This properties are needed here, it will not work without.
+>> +       &clk_smd_rpm_bimc_clk,
+>> +       &clk_smd_rpm_bus_0_pcnoc_clk,
+>> +};
+>> +
+> [...]
+>> @@ -1332,6 +1275,15 @@ static int rpm_smd_clk_probe(struct platform_device *pdev)
+>>                         goto err;
+>>         }
+>>  
+>> +       for (i = 0; i < desc->num_icc_clks; i++) {
+>> +               if (!desc->icc_clks[i])
+>> +                       continue;
+>> +
+>> +               ret = clk_smd_rpm_handoff(desc->icc_clks[i]);
 > 
-> Agree on the need. But, I cannot take the patch w/o binding update. We
-> will end up with messy dts files that would have deviated from bindings.
+> This API can probably take a const struct clk_smd_rpm pointer as well.
+It would be great, but ideally we want to set r->enabled in that func
+for !bus clocks (for unused clk cleanup). I could probably introduce a
+separate function for the icc clocks that takes const.
 
-Fine, however, one question, is this a new policy? Or a specific TI
-branch policy? From what I can tell so far there was nothing mandatory
-while the DT binding conversion from txt to yaml is in progress. 
-
-> Could you please post an update to bindings yaml? I suggest to drop
-> audio codec support and add it back once bindings are updated/fixed.
-I will proceed like that, thanks. I would be happy to see the
-verdin-am62 added in the next merge window.
-
-Thanks for the review,
-Francesco
+Konrad
