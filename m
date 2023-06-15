@@ -2,65 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA76A731ADD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:10:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D95731B31
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240418AbjFOOKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 10:10:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41242 "EHLO
+        id S1345028AbjFOOWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 10:22:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbjFOOKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:10:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B7A171C;
-        Thu, 15 Jun 2023 07:10:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EE5B86208A;
-        Thu, 15 Jun 2023 14:10:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C07DC433C0;
-        Thu, 15 Jun 2023 14:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686838239;
-        bh=8FbUCp9ZN3V8nlIJvTpnnVtxiR20eH47E6H/M2tQXMQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ASgQIRayntAdT97tBYFV9Ia7GNoIxKYG1PmGtj1z29/XtQ1cFGks3JP6Gc1QuA8ZW
-         jqh4SEPBCCnBi13+uima4zmtEXPLeXG16Pu/BYmnu2fBl8IyvgcNDPxfnp+ZVOsEuj
-         PrYR40AjuV571ldWvTe27VbZ0AUPxNU0BLMf4URYRzdbPVyMFWMk4qNtzLTkO70/kw
-         cjhJhkEDVx7R0p8s7LA4vsbFFmzq+7rreZV93cVBMBI/TuzCbO1nTm9Dt1y/6aKwII
-         REpbMHZiVdLnG7cH12EXCg4fyvBe0frVGsMuNKiP3LoxsUpwsNzcP+92tN2DFM2O9a
-         bclXr1gEv3t+g==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2b3451b3ea9so29594721fa.1;
-        Thu, 15 Jun 2023 07:10:39 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxr03xU8bwlboPRXgqEjzsU1vnJLPAWJR/9QlvxGR6Bam19n05P
-        m813F5mpGNYNunELvT1umMqXTN9HMcwfgP8IHw==
-X-Google-Smtp-Source: ACHHUZ5l1G1VXSMGnsvMpM+q5vZFcFP4B+j6zelO+XbNie7OI/xbiGaNMzhkpNcb442P88SlAscXmNvERfy9/U37uAE=
-X-Received: by 2002:a2e:9846:0:b0:2b1:ac82:296 with SMTP id
- e6-20020a2e9846000000b002b1ac820296mr9302682ljj.34.1686838237226; Thu, 15 Jun
- 2023 07:10:37 -0700 (PDT)
+        with ESMTP id S1345006AbjFOOWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:22:32 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A2B0123;
+        Thu, 15 Jun 2023 07:22:31 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-77acb04309dso423962439f.2;
+        Thu, 15 Jun 2023 07:22:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686838950; x=1689430950;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sEg7EMnZMdlmWEdktxYKcuRJOAL//1Mi4Xx1RXCqPB0=;
+        b=hOShtZhqyyPN66ZNDTaiyMzTQwoKebC5vtseDl7uVEreMLy+BgTd12VhEKrc8TVjR9
+         ioVXfedZsKeXVWXZl0aUfGDBThIJkoUI5x1C77jfnutZMQANXp92ql7bwx18ZQGmz5Fk
+         TzU+d7de8ELM4enAPWe3rvpRTIuQzcaenBnbIKQYnu2YuRJH2ibE2oPIF+/FXXG8hiBC
+         wHAGMY/pd/0CfeGKR/tiNDTqQw9wYeQ6i6OmWwS1dJCLTMCYl/lY7TnLIbQh1GoX4mhs
+         G9Sj6Eg6TlsJ9irrtZ5UUFfl3sK7CWnNgNxqIXLytiag+pa6boW/fvbQb1Y/mDiDjCe5
+         6rzA==
+X-Gm-Message-State: AC+VfDw0/fwSn65LW4eMgW/OW4FrS80LaiObg2yd1KmE3MzUyktK6Zu6
+        wDSQVp8Nc4BOYl43pf0fYA==
+X-Google-Smtp-Source: ACHHUZ6aX1hhzd2Y+OJphgLbAizbNGQb2xNYZnIgqpLsSCCWvmaouRkQgwloJd6hWqIOThDQYZEvlg==
+X-Received: by 2002:a5e:aa07:0:b0:763:5cf8:65eb with SMTP id s7-20020a5eaa07000000b007635cf865ebmr19694779ioe.9.1686838949064;
+        Thu, 15 Jun 2023 07:22:29 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id z3-20020a5ec903000000b0077ac811b20dsm6054431iol.38.2023.06.15.07.22.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jun 2023 07:22:28 -0700 (PDT)
+Received: (nullmailer pid 821661 invoked by uid 1000);
+        Thu, 15 Jun 2023 14:22:26 -0000
+Date:   Thu, 15 Jun 2023 08:22:26 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Christian Eggers <ceggers@arri.de>,
+        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] dt-bindings: eeprom: at25: add st,m95640 compatible
+Message-ID: <168683894540.821593.10823616752943009880.robh@kernel.org>
+References: <20230614201056.379080-1-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
-References: <20230609143609.209373-1-brgl@bgdev.pl> <CAL_JsqK77OW3n0PW6zP3FNdmuQHnDp9=wfX4E3ga-VW0_LRHHA@mail.gmail.com>
- <CAMRc=Mc7bbaDA1g3gn79XJZL6bTPGf9xZsB3=A4oiMUggzb4kA@mail.gmail.com>
-In-Reply-To: <CAMRc=Mc7bbaDA1g3gn79XJZL6bTPGf9xZsB3=A4oiMUggzb4kA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 15 Jun 2023 08:10:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLAC8oLLyNKMCOcMDjVpuMGK9E3zoYBejwuGGu4p9SDEA@mail.gmail.com>
-Message-ID: <CAL_JsqLAC8oLLyNKMCOcMDjVpuMGK9E3zoYBejwuGGu4p9SDEA@mail.gmail.com>
-Subject: Re: [PATCH] of: unittest: drop assertions for GPIO hog messages
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230614201056.379080-1-linux@rasmusvillemoes.dk>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,36 +64,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 9, 2023 at 2:15=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
-wrote:
->
-> On Fri, Jun 9, 2023 at 7:01=E2=80=AFPM Rob Herring <robh+dt@kernel.org> w=
-rote:
-> >
-> > On Fri, Jun 9, 2023 at 8:36=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.=
-pl> wrote:
-> > >
-> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >
-> > > These have now been demoted to debug and are normally hidden. Drop th=
-e
-> > > assertions entirely.
-> > >
-> > > Suggested-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > ---
-> > >  drivers/of/unittest.c | 28 ----------------------------
-> > >  1 file changed, 28 deletions(-)
-> >
-> > Why is this a separate patch? Don't I get at least 5 days to
-> > review/ack changes in drivers/of/?
-> >
->
-> Sorry, my bad, I queued the previous one through the GPIO tree after
-> it was reviewed here thinking the unittests bits are trivial. I can
-> back it out if you insist or you can ack this one and the end effect
-> is the same? I will pay attention in the future.
 
-I'd prefer it to be squashed, but either way:
+On Wed, 14 Jun 2023 22:10:56 +0200, Rasmus Villemoes wrote:
+> The st,m95640 is a 64 Kbit SPI eeprom in the same family as the two
+> existing st,m95* compatibles.
+> 
+> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> ---
+> 
+> In case its relevant the data sheet is easily available from
+> https://www.st.com/en/memories/m95640-w.html . It seems odd they chose
+> right-pad with a 0, 640 instead of 064 (m02 means 2 Mbit, 256 means
+> 256 Kbit, so there's some logic to that), but here we are.
+> 
+>  Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
+
