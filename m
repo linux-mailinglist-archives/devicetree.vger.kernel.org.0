@@ -2,124 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 819E273162F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 13:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6C0731642
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 13:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236230AbjFOLLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 07:11:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39104 "EHLO
+        id S1343678AbjFOLPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 07:15:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230181AbjFOLLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 07:11:44 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 787F695;
-        Thu, 15 Jun 2023 04:11:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686827503; x=1718363503;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7suixzcMP7z6n1FaI3b9pArrUtwogDAwwgTIMBuyRlc=;
-  b=Z97/zAOuvhRTqEc0uQfs2JT+8ABvlXB5p+yDIjbmZs/5lf1GTZQv/XIA
-   67aO+ue5HJPYPJOxPu3oaOLbgWkKP+qMO3PT4M+arf0Vw1twRnX2d5cDk
-   l67AJUl3Dpco3qoWObmc5ttlFM+WY+qyZAoDXGzNTblWOHTMr8sesvPLG
-   aJfuxjHT5P4mummhdfIgzz39B80sv+ZYN30nOMpZswiho19weTzR7qFkz
-   zkzQQkxOt5eTnFuyn8j/mGNaGfNyrE8GpQGH+uZQdQdLY4u5ndxTJ+22Q
-   jmuGj5clBxxPoj1WlRA+pviZDChULH8tTabr0DfGLscBu27r+T5AZ18DP
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="356371636"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; 
-   d="scan'208";a="356371636"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2023 04:11:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="782480892"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; 
-   d="scan'208";a="782480892"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 15 Jun 2023 04:11:40 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1q9kt9-003vR1-0c;
-        Thu, 15 Jun 2023 14:11:39 +0300
-Date:   Thu, 15 Jun 2023 14:11:38 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S241646AbjFOLPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 07:15:37 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8809B2705;
+        Thu, 15 Jun 2023 04:15:33 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8DxTuvU8opkf4kFAA--.11776S3;
+        Thu, 15 Jun 2023 19:15:32 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxG8rT8opkwuobAA--.4915S3;
+        Thu, 15 Jun 2023 19:15:31 +0800 (CST)
+Subject: Re: [PATCH v3 3/3] soc: loongson2_pm: add power management support
+To:     Huacai Chen <chenhuacai@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/8] rtc: isl12022: add support for trip level DT
- binding
-Message-ID: <ZIrx6lZfsYnM7TnQ@smile.fi.intel.com>
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230615105826.411953-1-linux@rasmusvillemoes.dk>
- <20230615105826.411953-5-linux@rasmusvillemoes.dk>
+        Conor Dooley <conor+dt@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230615091757.24686-1-zhuyinbo@loongson.cn>
+ <968b7c81-a24e-1e0d-31a4-f633a82d17b0@loongson.cn>
+ <CAAhV-H4Z13wpOsj5GxkuwMK1D6N6=sArQ52yHjcdiEen=dUpjg@mail.gmail.com>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <9edfe58a-7901-c2d1-8e01-5f10b3a51287@loongson.cn>
+Date:   Thu, 15 Jun 2023 19:15:31 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230615105826.411953-5-linux@rasmusvillemoes.dk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAAhV-H4Z13wpOsj5GxkuwMK1D6N6=sArQ52yHjcdiEen=dUpjg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxG8rT8opkwuobAA--.4915S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 12:58:22PM +0200, Rasmus Villemoes wrote:
-> Implement support for using the values given in the
-> isil,battery-trip-levels-microvolt property to set appropriate values
-> in the VB85TP/VB75TP bits in the PWR_VBAT register.
 
-A few nit-picks below.
+
+在 2023/6/15 下午6:00, Huacai Chen 写道:
+
+>> +static void loongson2_pm_status_clear(void)
+>> +{
+>> +       u16 value;
+>> +
+>> +       value = loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
+>> +       value |= (LOONGSON2_PM1_PWRBTN_STS | LOONGSON2_PM1_PCIEXP_WAKE_STS |
+>> +                 LOONGSON2_PM1_WAKE_STS);
+>> +       loongson2_pm_writew(value, LOONGSON2_PM1_STS_REG);
+>> +       loongson2_pm_writel(loongson2_pm_readl(LOONGSON2_GPE0_STS_REG),
+>> +                           LOONGSON2_GPE0_STS_REG);
+> Long-line warnings is removed in latest kernel, so you don't need to split here.
+
+
+okay, I got it.
+
+> 
+>> +}
+>> +
+>> +static void loongson2_power_button_irq_enable(void)
+> 
+> Using loongson2_pm_irq_enable is a little better.
+
+
+Indeed, this looks better!  I will use it.
 
 ...
 
-> +static void isl12022_set_trip_levels(struct device *dev)
-> +{
-> +	struct regmap *regmap = dev_get_drvdata(dev);
-> +	u32 levels[2] = {0, 0};
+>> +static int loongson2_suspend_valid_state(suspend_state_t state)
+>> +{
+>> +       if (state == PM_SUSPEND_MEM)
+>> +               return 1;
+>> +
+>> +       return 0;
+> "return (state == PM_SUSPEND_MEM)" is enough.
 
-A nit, 0, 0 is not needed, {} will do the job.
 
-> +	int ret, i, j, x[2];
-> +	u8 val, mask;
+okay, I got it.
 
-BUILD_BUG_ON(ARRAY_SIZE(x) != ARRAY_SIZE(levels)) ?
 
-> +	device_property_read_u32_array(dev, "isil,battery-trip-levels-microvolt",
-> +				       levels, 2);
-
-A nit, ARRAY_SIZE(levels) ?
-
-> +	for (i = 0; i < 2; i++) {
-
-ARRAY_SIZE(x) ?
-
-> +		for (j = 0; j < ARRAY_SIZE(trip_levels[i]) - 1; j++) {
-> +			if (levels[i] <= trip_levels[i][j])
-> +				break;
-> +		}
-> +		x[i] = j;
-> +	}
-> +
-> +	val = FIELD_PREP(ISL12022_REG_VB85_MASK, x[0]) |
-> +		FIELD_PREP(ISL12022_REG_VB75_MASK, x[1]);
-> +	mask = ISL12022_REG_VB85_MASK | ISL12022_REG_VB75_MASK;
-> +
-> +	ret = regmap_update_bits(regmap, ISL12022_REG_PWR_VBAT, mask, val);
-> +	if (ret)
-> +		dev_warn(dev, "unable to set battery alarm levels: %d\n", ret);
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Thanks,
+Yinbo
 
