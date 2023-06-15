@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E26573123F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E332731245
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:35:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244873AbjFOIei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:34:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56454 "EHLO
+        id S244790AbjFOIem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:34:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238877AbjFOIe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:34:27 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DAD42683
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:26 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b1badb8f9bso23317541fa.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:25 -0700 (PDT)
+        with ESMTP id S240647AbjFOIe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:34:29 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F372952
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:27 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b3424edd5fso23290181fa.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686818064; x=1689410064;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VJFKJAYqrSeLSn08BaS5NCXpSvtm/VGCV0MO7zrEdus=;
-        b=kQm9HBXBLCWqWWjmqAGTx+9KXTmzZ58a91bfYXpKqg5WmESYO+ouRIY+hi4+0Wi24m
-         PnFz7OODuz1W297flc+XyyzgqHX3AU7jT8tY34k1DCpiEjcO4RNStrB+o+NIe31joO+V
-         HS4t9W2DgjbhBhDSJzBI0IGRQSvfpA3KePL4c8xF/XWpCT2bc4wqOOf1jyiBVB2deYlk
-         PHOZBi91VB3qPxyNK1XC6/Q5jZgCZJH4Ppj6HH6JSGPsXkuuMnCMDA3AIGrnlPqccOSu
-         qa9jOlDvBZ6CantvPcSfH9LnOGL2IhT1hCmZAlTMWF4KrXdzV6nxw9TMcE00LZKsDQDR
-         hjsA==
+        d=linaro.org; s=google; t=1686818065; x=1689410065;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yWnphssxeGoP05vchmR/+BuaOayMwxPZ7IU9KpS7tUE=;
+        b=W6eL/9vK6XbhFbeqOTqUOdQUmQsnx/SASVsNYTq49d6JDMLpy95SLOzNWEr27yCRY9
+         8P0bhx8KapZi4PDBc1wYOfKnLiK1pfKXmjl9lT0KqYH03x97JCVUZfU4TfdlAKvmhs3v
+         g+YpZuCEbmxrPIEFl9OTCmJX+jd7P6Fh3pugtofTIretXdFMmYTuE5Mlf3MV2zWesKWT
+         upg8KQbu+V8LcjVTRbXG40q3zYU7DtTWj+u5KrQDUj7tGenOpwdvmGqhsUuZqS7W0daY
+         Rq83IeIXsXfo/G7PLQPo24OzRDy0rvZSnY3qk3Gvih6hdNQsJPLXFAh0KKbv5k++ybZ9
+         KOVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686818064; x=1689410064;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VJFKJAYqrSeLSn08BaS5NCXpSvtm/VGCV0MO7zrEdus=;
-        b=MJL7bZhjSUPwZsmbW8lIUl6BeH9OUymN9IcjnEsp0OehyC2Mjui89F89PKVgMwqrfW
-         pom280qdbuyjDTaLL6TUSmh4Kp1jaZ4oq6l+I+eiMGkTVpb6ljftNJyyeYWLvUeKkiNg
-         QzSRFZcOGCi1A6KMxy2xzu2fjkcAKBNgrAJcPKLM5/Q6QG8u4/tyD/XwySfdlYnboZKV
-         SgI0lU1MC/Dop234qk/wXgpaqFekeKSc61ipnGkdkJaREKPCw5hiKslgAK/0++uP/MY2
-         BzA+ngwiCwEZgHED2uteerCHoOxnk/ZfbbcMCZ21poa9Kxl9UVlclO9p3Pn8JtpSTSDp
-         yTEw==
-X-Gm-Message-State: AC+VfDzVwfzjEmMrmp1ddE4wDT93E+5kqsQINoFfaum5LfRV87GCCABO
-        TJvS5KKP1iAZDkj4H7pf14V3zidAYN9DKgHBGFw=
-X-Google-Smtp-Source: ACHHUZ4gX6dkU216Y8KtfPpymyv9rbbUOWqovitEDtnowQoj+Jae1TkQ8CzY3CmYaZwl+nqSy9UpNg==
-X-Received: by 2002:a2e:b04e:0:b0:2ad:b01b:d458 with SMTP id d14-20020a2eb04e000000b002adb01bd458mr8628954ljl.30.1686818064225;
-        Thu, 15 Jun 2023 01:34:24 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686818065; x=1689410065;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yWnphssxeGoP05vchmR/+BuaOayMwxPZ7IU9KpS7tUE=;
+        b=CxFWtQEyQ+1EmKKP0gQXY+v0WEXBaYs6il+zjBs0VARgETSCoGlc8oeWlRlhgpcKV6
+         +DoXlb1PlV19UwEEIseD6Azm1Hs643SHJ4c7tINYjIvUBkP0lti2KZ3RGGiopOjWX3Vm
+         h9UmAUSjJD9LGGunuE8XX64u8D9O/LeuKZ2mA5dbMrYXV/+h7kQd4tFrTBLAGdJSY0cA
+         TVBoeKxF1Q//MVPxbdOzlMR6hO0pYonOgCZkgjNS/1bdBSFlk3z80UeFUEpPvfP+H8HD
+         RAFAu8iTnC0AQKTZbE5Vf+788WOJxrvwOPyOrBTjyRaasYQFRAUAS2pXdKagVTs60c0L
+         1V7A==
+X-Gm-Message-State: AC+VfDwXa/fHafCTURd5xUU1pU1SYP7kJxwkx2v5MUN/qSjhvtBQihme
+        Grj2HpeaHaSrYUBcYC7TuS9E4w==
+X-Google-Smtp-Source: ACHHUZ61OcPoEliV7EOGtkD1/Q7l8MK4BUtGOM5hfxZAhH/rUfdzgEvOdDMF+caXRwZkQPYmezQc5Q==
+X-Received: by 2002:a2e:2c0e:0:b0:2ad:1ba2:eff9 with SMTP id s14-20020a2e2c0e000000b002ad1ba2eff9mr7705562ljs.20.1686818065240;
+        Thu, 15 Jun 2023 01:34:25 -0700 (PDT)
 Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id a19-20020a2eb173000000b002ad92dff470sm2971209ljm.134.2023.06.15.01.34.23
+        by smtp.gmail.com with ESMTPSA id a19-20020a2eb173000000b002ad92dff470sm2971209ljm.134.2023.06.15.01.34.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 01:34:23 -0700 (PDT)
+        Thu, 15 Jun 2023 01:34:24 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,15 +56,17 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 0/2] arm64: dts: qcom: rename HDMI labels in a correct way
-Date:   Thu, 15 Jun 2023 11:34:20 +0300
-Message-Id: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 1/2] Revert "arm64: dts: qcom: msm8996: rename labels for HDMI nodes"
+Date:   Thu, 15 Jun 2023 11:34:21 +0300
+Message-Id: <20230615083422.350297-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
+References: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,21 +74,230 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In [1] Konrad noticed that the commit f43b6dc7d56e ("arm64: dts: qcom:
-msm8996: rename labels for HDMI nodes") is a mess, it changes all HDMI
-entries, which is plain incorrect. Rather than landing a fix, revert the
-offending commit and land a clean version.
+The commit f43b6dc7d56e ("arm64: dts: qcom: msm8996: rename labels for
+HDMI nodes") is broken, it changes all the HDMI node names,
+compatible strings instead of changing just node aliases. Revert the
+commit in order to land a proper clean version.
 
-[1] https://lore.kernel.org/linux-arm-msm/ZIrJ86IsLOm_Scbc@gerhold.net/
+Reported-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Fixes: f43b6dc7d56e ("arm64: dts: qcom: msm8996: rename labels for HDMI nodes")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts  | 50 ++++++++++----------
+ arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts |  6 +--
+ arch/arm64/boot/dts/qcom/msm8996-mtp.dts     |  4 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi        | 16 +++----
+ 4 files changed, 38 insertions(+), 38 deletions(-)
 
-Dmitry Baryshkov (2):
-  Revert "arm64: dts: qcom: msm8996: rename labels for HDMI nodes"
-  arm64: dts: qcom: msm8996: rename labels for HDMI nodes
-
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 14 +++++++-------
- arch/arm64/boot/dts/qcom/msm8996.dtsi       |  6 +++---
- 2 files changed, 10 insertions(+), 10 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+index 537547b97459..b599909c4463 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+@@ -208,6 +208,25 @@ &gpu {
+ 	status = "okay";
+ };
+ 
++&hdmi {
++	status = "okay";
++
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&hdmi_hpd_active &hdmi_ddc_active>;
++	pinctrl-1 = <&hdmi_hpd_suspend &hdmi_ddc_suspend>;
++
++	core-vdda-supply = <&vreg_l12a_1p8>;
++	core-vcc-supply = <&vreg_s4a_1p8>;
++};
++
++&hdmi_phy {
++	status = "okay";
++
++	vddio-supply = <&vreg_l12a_1p8>;
++	vcca-supply = <&vreg_l28a_0p925>;
++	#phy-cells = <0>;
++};
++
+ &hsusb_phy1 {
+ 	status = "okay";
+ 
+@@ -232,25 +251,6 @@ &mdss {
+ 	status = "okay";
+ };
+ 
+-&mdss_hdmi {
+-	status = "okay";
+-
+-	pinctrl-names = "default", "sleep";
+-	pinctrl-0 = <&mdss_hdmi_hpd_active &mdss_hdmi_ddc_active>;
+-	pinctrl-1 = <&mdss_hdmi_hpd_suspend &mdss_hdmi_ddc_suspend>;
+-
+-	core-vdda-supply = <&vreg_l12a_1p8>;
+-	core-vcc-supply = <&vreg_s4a_1p8>;
+-};
+-
+-&mdss_hdmi_phy {
+-	status = "okay";
+-
+-	vddio-supply = <&vreg_l12a_1p8>;
+-	vcca-supply = <&vreg_l28a_0p925>;
+-	#phy-cells = <0>;
+-};
+-
+ &mmcc {
+ 	vdd-gfx-supply = <&vdd_gfx>;
+ };
+@@ -433,28 +433,28 @@ sdc2_cd_off: sdc2-cd-off-state {
+ 		drive-strength = <2>;
+ 	};
+ 
+-	mdss_hdmi_hpd_active: mdss_hdmi-hpd-active-state {
++	hdmi_hpd_active: hdmi-hpd-active-state {
+ 		pins = "gpio34";
+ 		function = "hdmi_hot";
+ 		bias-pull-down;
+ 		drive-strength = <16>;
+ 	};
+ 
+-	mdss_hdmi_hpd_suspend: mdss_hdmi-hpd-suspend-state {
++	hdmi_hpd_suspend: hdmi-hpd-suspend-state {
+ 		pins = "gpio34";
+ 		function = "hdmi_hot";
+ 		bias-pull-down;
+ 		drive-strength = <2>;
+ 	};
+ 
+-	mdss_hdmi_ddc_active: mdss_hdmi-ddc-active-state {
++	hdmi_ddc_active: hdmi-ddc-active-state {
+ 		pins = "gpio32", "gpio33";
+ 		function = "hdmi_ddc";
+ 		drive-strength = <2>;
+ 		bias-pull-up;
+ 	};
+ 
+-	mdss_hdmi_ddc_suspend: mdss_hdmi-ddc-suspend-state {
++	hdmi_ddc_suspend: hdmi-ddc-suspend-state {
+ 		pins = "gpio32", "gpio33";
+ 		function = "hdmi_ddc";
+ 		drive-strength = <2>;
+@@ -1043,7 +1043,7 @@ cpu {
+ 		};
+ 	};
+ 
+-	mdss_hdmi-dai-link {
++	hdmi-dai-link {
+ 		link-name = "HDMI";
+ 		cpu {
+ 			sound-dai = <&q6afedai HDMI_RX>;
+@@ -1054,7 +1054,7 @@ platform {
+ 		};
+ 
+ 		codec {
+-			sound-dai = <&mdss_hdmi 0>;
++			sound-dai = <&hdmi 0>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
+index ac6471d1db1f..ed2e2f6c6775 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
++++ b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
+@@ -92,15 +92,15 @@ &gpu {
+ 	status = "okay";
+ };
+ 
+-&mdss {
++&hdmi {
+ 	status = "okay";
+ };
+ 
+-&mdss_hdmi {
++&hdmi_phy {
+ 	status = "okay";
+ };
+ 
+-&mdss_hdmi_phy {
++&mdss {
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+index 495d45a16e63..596ad4c896f5 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+@@ -24,10 +24,10 @@ &blsp2_uart2 {
+ 	status = "okay";
+ };
+ 
+-&mdss_hdmi {
++&hdmi {
+ 	status = "okay";
+ };
+ 
+-&mdss_hdmi_phy {
++&hdmi_phy {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 0cb2d4f08c3a..3855366ca89f 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -895,7 +895,7 @@ mmcc: clock-controller@8c0000 {
+ 				 <&mdss_dsi0_phy 0>,
+ 				 <&mdss_dsi1_phy 1>,
+ 				 <&mdss_dsi1_phy 0>,
+-				 <&mdss_hdmi_phy>;
++				 <&hdmi_phy>;
+ 			clock-names = "xo",
+ 				      "gpll0",
+ 				      "gcc_mmss_noc_cfg_ahb_clk",
+@@ -980,7 +980,7 @@ ports {
+ 					port@0 {
+ 						reg = <0>;
+ 						mdp5_intf3_out: endpoint {
+-							remote-endpoint = <&mdss_hdmi_in>;
++							remote-endpoint = <&hdmi_in>;
+ 						};
+ 					};
+ 
+@@ -1136,8 +1136,8 @@ mdss_dsi1_phy: phy@996400 {
+ 				status = "disabled";
+ 			};
+ 
+-			mdss_hdmi: mdss_hdmi-tx@9a0000 {
+-				compatible = "qcom,mdss_hdmi-tx-8996";
++			hdmi: hdmi-tx@9a0000 {
++				compatible = "qcom,hdmi-tx-8996";
+ 				reg =	<0x009a0000 0x50c>,
+ 					<0x00070000 0x6158>,
+ 					<0x009e0000 0xfff>;
+@@ -1160,7 +1160,7 @@ mdss_hdmi: mdss_hdmi-tx@9a0000 {
+ 					"alt_iface",
+ 					"extp";
+ 
+-				phys = <&mdss_hdmi_phy>;
++				phys = <&hdmi_phy>;
+ 				#sound-dai-cells = <1>;
+ 
+ 				status = "disabled";
+@@ -1171,16 +1171,16 @@ ports {
+ 
+ 					port@0 {
+ 						reg = <0>;
+-						mdss_hdmi_in: endpoint {
++						hdmi_in: endpoint {
+ 							remote-endpoint = <&mdp5_intf3_out>;
+ 						};
+ 					};
+ 				};
+ 			};
+ 
+-			mdss_hdmi_phy: phy@9a0600 {
++			hdmi_phy: phy@9a0600 {
+ 				#phy-cells = <0>;
+-				compatible = "qcom,mdss_hdmi-phy-8996";
++				compatible = "qcom,hdmi-phy-8996";
+ 				reg = <0x009a0600 0x1c4>,
+ 				      <0x009a0a00 0x124>,
+ 				      <0x009a0c00 0x124>,
 -- 
 2.39.2
 
