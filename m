@@ -2,65 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E217319A9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAA27319B7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240082AbjFONN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:13:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33466 "EHLO
+        id S234656AbjFONQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:16:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231159AbjFONNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:13:47 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C15B52949;
-        Thu, 15 Jun 2023 06:13:31 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDDPfT010754;
-        Thu, 15 Jun 2023 08:13:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686834805;
-        bh=M7CeXsp0hI8eJl4yv7H32Sa2Shs0XQoJyWaQVxvyiA0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ybkxGjP0ipsCC8AF00VLoCDEe7Im+x3N88dnHtMOoLWKUzUjPaYn0VL/PBSxpYoLK
-         dWeNVHkFVhM/hFSG5p4w/0H8y99ZAivGQD5gWN9aNDnbBkH8OfaJTuILXcG7FYKT1x
-         gr6fpsIUvxcCeJo+HoYgP/3puFEpMKoK0A23SWIw=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDDP0H128431
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 08:13:25 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 08:13:25 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 08:13:25 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDDLIM055309;
-        Thu, 15 Jun 2023 08:13:22 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S230055AbjFONQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:16:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E4B270C;
+        Thu, 15 Jun 2023 06:16:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E07260BB1;
+        Thu, 15 Jun 2023 13:16:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BB8C433C8;
+        Thu, 15 Jun 2023 13:15:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686834962;
+        bh=BZz7VgE7FZsHyhQC20/TP0fYQCt9kxxbS+7BpFxp0Qg=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=ONIbZw9nFYdVAI8RzqPvNfyDIkAQ1WIVTIL3GcbFQ6BxtBYOxrwysYJuk22+zeGMN
+         Sga/nSXVvexeb2lhSdEwomGBeq6VwBBGKlHopueeoFrWZ15yqzeSIHAi4cNtdTdUxt
+         UwVS7TTNYCQhDUHMTmX8qwX21OdbY2sDggdiUcY+t2Rb8jPFCv/jptT5V+zWN9xWi5
+         bV6ol0zgnOl0HKUOUBgw0n4mtsQ20IQ8jXwoyIHOuIhwuOhACpr/6UtOp5W/RtDWLo
+         BgGT5FQbzSxJ5em79FWybn+N5Qfm+M2X0c464X6tyrQ1+BMTcyI/37IcCM9S6WbIes
+         dDYoVTAKJmJyg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, Udit Kumar <u-kumar1@ti.com>,
-        Nitin Yadav <n-yadav@ti.com>, Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH 0/7] arm64: dts: ti: Add additional secproxy instances
-Date:   Thu, 15 Jun 2023 18:43:20 +0530
-Message-ID: <168681817155.2098323.11372041300861131434.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230530165900.47502-1-nm@ti.com>
-References: <20230530165900.47502-1-nm@ti.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230615075815.310261-1-valentin.caron@foss.st.com>
+References: <20230615075815.310261-1-valentin.caron@foss.st.com>
+Subject: Re: [PATCH v3 0/4] spi: stm32: add spi device mode
+Message-Id: <168683495795.547441.10667645380315680455.b4-ty@kernel.org>
+Date:   Thu, 15 Jun 2023 14:15:57 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-c6835
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,41 +61,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth Menon,
-
-On Tue, 30 May 2023 11:58:53 -0500, Nishanth Menon wrote:
-> This series introduces secure proxies meant for usage with bootloaders
-> and firmware components in the SoC for all K3 SoCs. AM64x SoC is an odd
-> case here as the single instance of secure proxy is dual use for both
-> ROM and general purpose. All other SoCs have independent instances that
-> is used for firmware and bootloader communication.
+On Thu, 15 Jun 2023 09:58:11 +0200, Valentin Caron wrote:
+> STM32 SPI can operate in device mode.
+> This series adds this functionnality in spi-stm32 driver.
 > 
-> Nitin had posted [1] to address one of the SoCs (AM62), I am cleaning
-> that patch a bit in this series.
+> Since v2:
+>  - Rename this series: spi device mode
+> 
+> Since v1:
+>  - Do not add #address-cells and #size-cells in st,stm32-spi.yaml
+>  - Do not add cs-gpio description in st,stm32-spi.yaml
+>  - Do not add st,spi-slave-underrun property to handle spi slave underrun
 > 
 > [...]
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Applied to
 
-[1/7] arm64: dts: ti: k3-am62-main: Add sa3_secproxy
-      commit: 7450aa5153af55a0c63785a6917e35a989a4fdf5
-[2/7] arm64: dts: ti: k3-am62a-main: Add sa3_secproxy
-      commit: f7d3b11cacd1fc9596444e89209b80800d20ea22
-[3/7] arm64: dts: ti: k3-am65-mcu: Add mcu_secproxy
-      commit: 84debc33b529cae428f29b1eb21ccc05c8b47a16
-[4/7] arm64: dts: ti: k3-j7200-mcu: Add mcu_secproxy
-      commit: c4e43f5aef9731c480789dcb044d261f894a102e
-[5/7] arm64: dts: ti: k3-j721e-mcu: Add mcu_secproxy
-      commit: 753904da7072646666fa17a5030ef2be871a385a
-[6/7] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add sa3_secproxy and mcu_sec_proxy
-      commit: 77f622cb8633c020a78cfb8b7d3d73ba3eaf0a44
-[7/7] arm64: dts: ti: k3-j784s4-mcu-wakeup: Add sa3_secproxy and mcu_sec_proxy
-      commit: 389ad7111ddd99a05c75bc7d4f480a0526761d06
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/4] spi: stm32: renaming of spi_master into spi_controller
+      commit: 6f486556abe35f2e6684f95241acbc463342d3eb
+[2/4] spi: stm32: use dmaengine_terminate_{a}sync instead of _all
+      commit: 4f2b39dc2d14d4fc55d7a3a140ac07eaa761b701
+[3/4] dt-bindings: spi: stm32: disable spi-slave property for stm32f4-f7
+      commit: e6afe03351ac81fbc4f2b93bf3b356f7b662939d
+[4/4] spi: stm32: introduction of stm32h7 SPI device mode support
+      commit: e40335fcb89acb274d05deffad9225e973278ec9
 
 All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
 problems are discovered then the patch may be dropped or reverted.
 
 You may get further e-mails resulting from automated or manual testing
@@ -116,7 +106,6 @@ patches will not be replaced.
 Please add any relevant lists and maintainers to the CCs when replying
 to this mail.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+Thanks,
+Mark
 
