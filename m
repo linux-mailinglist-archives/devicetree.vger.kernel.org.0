@@ -2,67 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21861731EDF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65AD5731EE8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231366AbjFOR0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 13:26:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39866 "EHLO
+        id S237826AbjFOR0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 13:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230255AbjFOR0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:26:06 -0400
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C00A2719;
-        Thu, 15 Jun 2023 10:26:02 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-33b3f2f7989so33644285ab.0;
-        Thu, 15 Jun 2023 10:26:02 -0700 (PDT)
+        with ESMTP id S238703AbjFOR0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:26:21 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 863232710
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 10:26:18 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f7deee339dso2154606e87.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 10:26:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686849976; x=1689441976;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9OD9CfNGG0ljVkHjUXzx71k7VdGMyNrkhpyVNqChErc=;
+        b=h1U7GUovXKBg8zOEwjAYNdcM+iamFEnF2AyGLYAtv4n1zNv+cXvGW4SnGRRNtqB5Dd
+         Mzpx/Z5vt/uZMY9kzIpw4tAAjqv3yDu7ohjM5GPCBy6Bn0BCJmgB4ytYJW9GxzZajY9t
+         +6kzNwwnYWMbOo1fkF3HDFp/e+s21JbsafUQ1uBkIkT6LBc9ZCqNHax6mAwtlba0WANj
+         CepmoZvfbLDiPiDRm3AhY/iZkpGSrDx3QInDHk3e2U0CCJc72ryVN7mjoNPde3aKTIQi
+         j9BpvivNlZ52lnTTWCsQ/MHiCBVsdUFBe3SJLJeCrhi168MnZAaFhQJLGQniG/tYye44
+         SZEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686849961; x=1689441961;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=exG2p6jfHrkVt3gD9cpzVxY9zfQ5o6txkxlgxOC4V5s=;
-        b=D+jxxCwXpAbQBBTy5p+KsDA/ixkNvO1I3crka9hMw9xVJnvVKLHW/rtjm9qp09eh1I
-         QJrsf8K17f52B5Xq6oTfuJNG3hM1I+DTkZElL25O/wWOwF7VpyBBrNtMUswQqS5G5I6L
-         8Nk/qtKAKbCU0Sc6KoVF5WuQByF7U05nX0Xvh7BYx4Ve0LHsJlsM5kB7izmS/BcKBaAJ
-         sCPCywjX79hoZmDqPzwxITfFYwZiDYVLmzi/2jTyxxdF7MFx4kkLGRU6J0SAZJHf2e7N
-         NJqXD8+f/F0eZ4ePiu9ZgUks2QUJK6G1JdveZd3gseEKBvMl3CoeeBcGt903P65O9D4A
-         m7Yw==
-X-Gm-Message-State: AC+VfDz171NRnztsVEF98MpZmPi6WQEd505bqh/fMGeE5RXyqcC9Ay6Z
-        wQ6991IpCc1hzSQ99Pqk6A==
-X-Google-Smtp-Source: ACHHUZ5OY/78Q9+EkXUtW7QfRE97v9U6izCvlVvD/gTXPhcjQEVg8gjTo1ksk34UZZ7sQlobY0qPWw==
-X-Received: by 2002:a92:d686:0:b0:341:d9e7:9d94 with SMTP id p6-20020a92d686000000b00341d9e79d94mr31146iln.25.1686849961169;
-        Thu, 15 Jun 2023 10:26:01 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id v24-20020a02b918000000b0041a9022c3dasm5730248jan.118.2023.06.15.10.25.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 10:26:00 -0700 (PDT)
-Received: (nullmailer pid 1229216 invoked by uid 1000);
-        Thu, 15 Jun 2023 17:25:58 -0000
-Date:   Thu, 15 Jun 2023 11:25:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-        Neeraj Kale <neeraj.sanjaykale@nxp.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: net: bluetooth: nxp: Add missing type for
- "fw-init-baudrate"
-Message-ID: <168684995787.1229168.16425251556673819198.robh@kernel.org>
-References: <20230613200929.2822137-1-robh@kernel.org>
+        d=1e100.net; s=20221208; t=1686849976; x=1689441976;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9OD9CfNGG0ljVkHjUXzx71k7VdGMyNrkhpyVNqChErc=;
+        b=BHC6xGWnzduVp07gForiiX+bkh7FXqVvVbwBwdQNkf8/bja/UYqQHidcj7FxCgB98x
+         ZQNw+iSkFHzvvRUICfo1f5/CIP/ZHc21HLX5SuQnOB4v5PAM6Kesp0e6cChnG8PCEYk8
+         v7X/VHiXsQrjlvCDG1orhxh2pTcL2gg9P013GCCGOj1d5hgM4PXprvni97j7jR4iqkWU
+         Dp7G3hqjvZoyW2mYWsKbAr5+7Drgt4pJgjzObsi0dC5oqz37KWmgBbHg61f/kBSVQAKB
+         GjoRrVuQmJEOrq/Xe+YetMJd9u3OjDTQszlmiIQ6Dr0Bl2RaeOAH7+XEAFSdbg8SGF/K
+         cbhw==
+X-Gm-Message-State: AC+VfDzDb6BcERDpsdXfTCTWgtRz7AAyZ5Lvm/6HRJRrumrWq6jYIu9j
+        u7oBJ2rpRqQqWC4MkRD5adO7ow==
+X-Google-Smtp-Source: ACHHUZ6FWxB2G5sI0gRE4Ywc1DSB6zpSrGXY6CITo1W5RCOByENa7dVFWNEcmGMX7f/bgXCe2Er8nw==
+X-Received: by 2002:a05:6512:54e:b0:4f7:69c8:44ff with SMTP id h14-20020a056512054e00b004f769c844ffmr3217394lfl.2.1686849976301;
+        Thu, 15 Jun 2023 10:26:16 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id q28-20020ac25a1c000000b004f3b4d17114sm2645328lfn.144.2023.06.15.10.26.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 10:26:15 -0700 (PDT)
+Message-ID: <5377c938-10df-20ce-2bdb-dad41e472041@linaro.org>
+Date:   Thu, 15 Jun 2023 19:26:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230613200929.2822137-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-db845c: Mark cont splash
+ memory region as reserved
+Content-Language: en-US
+To:     Amit Pundir <amit.pundir@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230615142711.2994811-1-amit.pundir@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230615142711.2994811-1-amit.pundir@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,16 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 13 Jun 2023 14:09:29 -0600, Rob Herring wrote:
-> "fw-init-baudrate" is missing a type, add it. While we're here, define the
-> default value with a schema rather than freeform text.
+On 15.06.2023 16:27, Amit Pundir wrote:
+> Adding a reserved memory region for the framebuffer memory
+> (the splash memory region set up by the bootloader).
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 > ---
->  .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml    | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> v2: Updated commit message.
 > 
+> There was some dicussion on v1 but it didn't go anywhere,
+> https://lore.kernel.org/linux-kernel/20230124182857.1524912-1-amit.pundir@linaro.org/T/#u.
+> The general consensus is that this memory should be freed and be
+> made resuable but that (releasing this piece of memory) has been
+> tried before and it is not trivial to return the reserved memory
+> node to the system RAM pool in this case.
+> 
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> index e14fe9bbb386..10a06ee8e262 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -101,6 +101,14 @@ hdmi_con: endpoint {
+>  		};
+>  	};
+>  
+> +	reserved-memory {
+> +		/* Cont splash region set up by the bootloader */
+> +		cont_splash_mem: framebuffer@9d400000 {
+> +			reg = <0x0 0x9d400000 0x0 0x2400000>;
+> +			no-map;
+> +		};
+> +	};
+&mdss {
+	memory-region = <&cont_splash_mem>;
+};
 
-Applied, thanks!
+?
 
+Konrad
+> +
+>  	lt9611_1v8: lt9611-vdd18-regulator {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "LT9611_1V8";
