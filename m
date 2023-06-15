@@ -2,93 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3104731356
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA7A731340
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:11:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239759AbjFOJPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:15:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48784 "EHLO
+        id S240654AbjFOJLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:11:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245424AbjFOJKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:10:42 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E2C42963;
-        Thu, 15 Jun 2023 02:10:14 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35F8Pf9d012594;
-        Thu, 15 Jun 2023 09:09:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=B2xzt2fYv6iBrKDEpmdYGZv251NM8aRo0nVRMALINBE=;
- b=m/9XJXhdARJZ3cVyklW1HdPgghF6vOMtfM3Pd5sGr1cmyNUQWJ1i83tMJ3Z/QNpsseL9
- 99xVPDxDFFPa4JKeQAIIBBmZFEaM8DKJBa2Pa8iqzGUPpniBa3Uc1STrwsmeEs6BFSok
- wgsq5mYVJtHsb7iR831TgflnM1p8QitWLwgkmdt25T2tJVLfzMXWNwn68MM6Yxesu/D+
- Hc1j5i9seuIidFp/s0QrmjIC76TFWV50z00lk5fGUxxLa++oBVx6f7x6xoEjzTl3QDon
- gIZXUjF0D4X0zvQWsLjboWpcQ6HpKNQvBYi+cuQpgTNXGOCLqrD1EWZkiTxO+2Ln1uYB qQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7cka2b8s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 09:09:43 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35F99g6M013747
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 09:09:42 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 15 Jun
- 2023 02:09:37 -0700
-Message-ID: <3f9be7c4-a691-3e00-fc32-6861e5cecd77@quicinc.com>
-Date:   Thu, 15 Jun 2023 17:09:35 +0800
+        with ESMTP id S239224AbjFOJLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:11:17 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1536F2130
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 02:11:16 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-bc405d9682cso1531513276.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 02:11:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686820275; x=1689412275;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TQPLMyR4pKq4IPm2+bhCecPp0fIioHDXW0A5vWxMnNM=;
+        b=TDChaGtQXK3DyxbLvJwl+OZ2YXx05CLUWvVyLhBHVuLJjFRwfdmfwm4PbibuKEQzVI
+         zU3zmqorXPXshAUJgPSCw4aHTGOOzUcnIzdde8QAEt4TLbiJFPOxrUu15gEXigLiEep3
+         qx8aHB6PgkcxelOgcGOR3yWfYJ6cpftV4Rk6rFvJPkeGOH6h+SZbUUhFWCJ4OpicHkuS
+         RYR4oGsX0NxdpoXSz/gOWj/lFezgtAPCLTwp1IvOskQuu0ugNK7XpFJkfj+rYKQUYaA9
+         tZwiyuPilGQJNkFbMAWXn1DdlxFuXKysvmrG6zvX0zLJQsY7IVBL3E+047etzA+4pjQi
+         SMmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686820275; x=1689412275;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TQPLMyR4pKq4IPm2+bhCecPp0fIioHDXW0A5vWxMnNM=;
+        b=VwWWQ25gBglpfq4o4yNBJ6YOhGkfm3GrAyonkQ5Ma8vR/Ad1YAYJZ0bwgTJc83O3DM
+         2WThNAqZiMwqvSsRmtLPEXSILFmXQMxTVAi5elkYiV+JKWijRa/61wWEW4rGvhVWDXU9
+         TSaPnE7d1BpcdvtycSm+L6qc4vE/Kb5nB9IRh/2DgD9bRn1aCy5xMzsamzaiCb6EVZuR
+         gU0qRVpR87ck/aPUA2FjpcrgNKph63NWXnepmxhSEOqmEK68WzP0iIOS0YZWmeVzaC5L
+         k7oueeLfvuCZX0AA05AF2lbyJ05I8LGITWbvkkd5Ft49eETLAX5SWGia2THX4t57wCxI
+         lRFA==
+X-Gm-Message-State: AC+VfDyd6vC1f1jNcVwT7rwjqxpLh3nBKWxfIcUasCF1EgetFylZdruc
+        wLaavLv2+JOPOe8rkgH8CrAwOShQyU6SvMVaiod8cg==
+X-Google-Smtp-Source: ACHHUZ7f5dssORqprATgmGMqMIzMYmVOhRrynA3S5iWIDXdxas0J0q2dH8bKuTq5gk5bBg+8ARmaLAGavyy7fvNeYNk=
+X-Received: by 2002:a25:ae10:0:b0:ba7:99dc:908f with SMTP id
+ a16-20020a25ae10000000b00ba799dc908fmr4095705ybj.27.1686820275299; Thu, 15
+ Jun 2023 02:11:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v5 03/13] coresight-tpdm: Introduce TPDM subtype to TPDM
- driver
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
-References: <1686553666-5811-1-git-send-email-quic_taozha@quicinc.com>
- <1686553666-5811-4-git-send-email-quic_taozha@quicinc.com>
- <16b08ba8-f23e-af24-881c-61fe4e4c92e1@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <16b08ba8-f23e-af24-881c-61fe4e4c92e1@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OwDaHX1JQ-kqjP8_6cb5N8ckgBepKa4b
-X-Proofpoint-ORIG-GUID: OwDaHX1JQ-kqjP8_6cb5N8ckgBepKa4b
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-15_05,2023-06-14_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- malwarescore=0 suspectscore=0 priorityscore=1501 lowpriorityscore=0
- mlxlogscore=986 adultscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306150077
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20230607124628.157465-1-ulf.hansson@linaro.org>
+ <20230607124628.157465-10-ulf.hansson@linaro.org> <20230614230044.GA3019052-robh@kernel.org>
+In-Reply-To: <20230614230044.GA3019052-robh@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 15 Jun 2023 11:10:38 +0200
+Message-ID: <CAPDyKFoDQ12yUB-3f_V222kcUivP_NUcvcM+8s7CraLaBy7tBQ@mail.gmail.com>
+Subject: Re: [PATCH 09/16] dt-bindings: firmware: arm,scmi: Extend bindings
+ for protocol@13
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nikunj Kela <nkela@quicinc.com>,
+        Prasad Sodagudi <psodagud@quicinc.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,44 +77,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 6/12/2023 11:35 PM, Suzuki K Poulose wrote:
-> On 12/06/2023 08:07, Tao Zhang wrote:
->> Introduce the new subtype of "CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM"
->> for TPDM components in driver.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-core.c | 1 +
->>   drivers/hwtracing/coresight/coresight-tpdm.c | 2 +-
->>   include/linux/coresight.h                    | 1 +
->>   3 files changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-core.c 
->> b/drivers/hwtracing/coresight/coresight-core.c
->> index 118fcf2..23b18c2 100644
->> --- a/drivers/hwtracing/coresight/coresight-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-core.c
->> @@ -1093,6 +1093,7 @@ static int coresight_validate_source(struct 
->> coresight_device *csdev,
->>         if (subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_PROC &&
->>           subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE &&
->> +        subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM &&
+On Thu, 15 Jun 2023 at 01:00, Rob Herring <robh@kernel.org> wrote:
 >
-> minor nit: Alignment. Please always double check your patch for
-> styling issues.
+> On Wed, Jun 07, 2023 at 02:46:21PM +0200, Ulf Hansson wrote:
+> > The protocol@13 node is describing the performance scaling option for the
+> > ARM SCMI interface, as a clock provider. This is unnecessary limiting, as
+> > performance scaling is in many cases not limited to switching a clock's
+> > frequency.
+> >
+> > Therefore, let's extend the binding so the interface can be modelled as a
+> > generic "performance domain" too. The common way to describe this, is to
+> > use the "power-domain" bindings, so let's use that.
 >
->
-> Otherwise looks good to me
+> What's wrong with the performance-domain binding?
 
-Sure, I will check all the patches and update to the next patch series soon.
+In my opinion I think the performance-domain binding is superfluous.
+We already have plenty of power-domains that do performance scaling
+too - and they stick with the power-domain binding, as it's
+sufficient.
 
-Do you have more review comments on other patches?
+That said, I would rather follow the defacto standard that has been
+used for many years in the kernel. Do you have a preference that we
+should stick to?
 
-
-Best,
-
-Tao
+Kind regards
+Uffe
 
 >
-> Suzuki
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > index 5824c43e9893..cff9d1e4cea1 100644
+> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > @@ -145,8 +145,8 @@ properties:
+> >        '#clock-cells':
+> >          const: 1
+> >
+> > -    required:
+> > -      - '#clock-cells'
+> > +      '#power-domain-cells':
+> > +        const: 1
+> >
+> >    protocol@14:
+> >      $ref: '#/$defs/protocol-node'
+> > --
+> > 2.34.1
+> >
