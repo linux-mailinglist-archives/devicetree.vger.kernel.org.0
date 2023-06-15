@@ -2,102 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCF1C73181A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0892D731829
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:09:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238762AbjFOMFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:05:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50904 "EHLO
+        id S243249AbjFOMIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 08:08:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344768AbjFOMEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:04:53 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6563B2976;
-        Thu, 15 Jun 2023 05:02:51 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6658b869cf2so523696b3a.1;
-        Thu, 15 Jun 2023 05:02:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686830571; x=1689422571;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gtR5yyjqqOCcg96T40YDoUHPwlla3NqWVuy2D+ZwTIk=;
-        b=PhKz+v5RhdIZi9p3VwAdDvXQV5oRpln5h3H1OahPU9aPdUTrEDtHRZrQWyeNYkXDhQ
-         FW+GtnP5O4PQNfU7c2r1RSfrUsxyPAFnXmWW+HL0psVqM9niZcIAYtfP5rNoVRk4TNtA
-         1NnBSz0msntQ5g15c8mgesTGUDLTiopufKHo2jgbtnZjCRPcD+iOvpo8B+0YrVBPdzWj
-         V6etC3SrridTxb50fjzgznPI1RZxiKP3A1hIX+EKYTB6Bt9/Y3G7ccRoUuVtM96MUFXV
-         6fVkLBvdMEcOMh5w/qxg0mEj74/3VJSzLpmSzJwEZRtZMgrRkG82ll5H7pqgycrPVgbi
-         FGqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686830571; x=1689422571;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gtR5yyjqqOCcg96T40YDoUHPwlla3NqWVuy2D+ZwTIk=;
-        b=F28zpCSHpiY2uM3giO6LZc8uI6Cd4+EaLF8P/M6IgbYHQNk5DBMTXqVp+Cu6Kwwg0d
-         eObX21EWKLvJaSvDTrXb1JdPqjaqwQ8kS4M6iTM4QIWyk9CnNXPUKNC9FBP+pSP13lQL
-         BZ2lWXp9wGPnsRrPF8J4j+WelmV04zFDXQpBPnMzRnFtSMLt+MGHuHhnMnm6IGJpFeH1
-         5p2QADfOvG7A22LSGb0KZtfBsCsSL4KLghI6yUmeI006XC8t6QmIkeSIphL1gfnkDRfE
-         pYr6GtUOhbdSJFyYe4vX08inlxDrjDbih/gWjGuM1k2A2DzFFjvQXi5I8hzaQZDac/QL
-         C0VQ==
-X-Gm-Message-State: AC+VfDzm1jJhc6RtJC8bZQjyWBNJ5FDqPD1SIR02vRa+hDOfWNyNeXkM
-        z7Q4AW2yN9HUUVXzCxVSzbfy4eljVX9E16hXfR0=
-X-Google-Smtp-Source: ACHHUZ6+VxPro345cAyYns3wxBIQ8MkoqAQ7K0joSqII6JtVpNSXaEzuVfrY/vlsvBIaTx3vOplxpbmmOMkf991aJKQ=
-X-Received: by 2002:a17:90b:3614:b0:253:25c3:7a95 with SMTP id
- ml20-20020a17090b361400b0025325c37a95mr5822610pjb.14.1686830570764; Thu, 15
- Jun 2023 05:02:50 -0700 (PDT)
+        with ESMTP id S241398AbjFOMIy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:08:54 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64473184;
+        Thu, 15 Jun 2023 05:08:53 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 7A8299F4;
+        Thu, 15 Jun 2023 14:08:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1686830929;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ByiMuKGszO/RULKL4xEPKNdqXuS6jdAajX52qRjoh/M=;
+        b=z1xaFEBkLnxAYp4GTvNn4sIiMexPl6yL+tZeEf4oFbAD9M/vTcQYJ/aBHzCqECIZy9qNZs
+        gH3af8xsGNtbSR7m/ntvDk4bRgcDKl4ZfuLWxLJWO9anWnQsyGU/Kk4ydt7JBYDljsVOyV
+        fJSk5mLwGMNzog9JHJJzcjcQsLd9Fr9JabOoAyapDw16xocJWlb58PQyL3j0It0twNibOs
+        pVDs7mETUwrDSYRRpRQ4kULF4je8bVInj7feUdYZG+bjJVXnvw7eUEn49cPLvN0KC3ArCG
+        zcnjkT4NjGvurohIYeNXNx9InB+RaeqDVLPMQkg3aCEoHt6Xd8gWHRsBUBJGLw==
 MIME-Version: 1.0
-References: <20230530224820.303619-1-jm@ti.com> <20230530224820.303619-3-jm@ti.com>
-In-Reply-To: <20230530224820.303619-3-jm@ti.com>
-From:   Hiago Franco <hiagofranco@gmail.com>
-Date:   Thu, 15 Jun 2023 14:02:39 +0200
-Message-ID: <CAK4Znzk_9-nsEW16-ue4sSapixTn3UCPqKkj7iBX+Q_GKLUjoQ@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] can: m_can: Add hrtimer to generate software interrupt
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        linux-can@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>,
-        Conor Dooley <conor+dt@linaro.org>,
-        Tony Lindgren <tony@atomide.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date:   Thu, 15 Jun 2023 14:08:49 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, git@amd.com, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        amitrkcian2002@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: jedec, spi-nor: Add DT property to
+ avoid setting SRWD bit in status register
+In-Reply-To: <20230615111649.36344-2-amit.kumar-mahapatra@amd.com>
+References: <20230615111649.36344-1-amit.kumar-mahapatra@amd.com>
+ <20230615111649.36344-2-amit.kumar-mahapatra@amd.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <54a22a94be29786f055924714a1ffce4@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 12:51=E2=80=AFAM Judith Mendez <jm@ti.com> wrote:
->
-> Introduce timer polling method to MCAN since some SoCs may not
-> have M_CAN interrupt routed to A53 Linux and do not have
-> interrupt property in device tree M_CAN node.
->
-> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
-> routed to A53 Linux, instead they will use timer polling method.
->
-> Add an hrtimer to MCAN class device. Each MCAN will have its own
-> hrtimer instantiated if there is no hardware interrupt found in
-> device tree M_CAN node. The timer will generate a software
-> interrupt every 1 ms. In hrtimer callback, we check if there is
-> a transaction pending by reading a register, then process by
-> calling the isr if there is.
->
-> Signed-off-by: Judith Mendez <jm@ti.com>
+Am 2023-06-15 13:16, schrieb Amit Kumar Mahapatra:
+> If the WP signal of the flash device is not connected and the software 
+> sets
+> the status register write disable (SRWD) bit in the status register 
+> then
+> thestatus register permanently becomes read-only. To avoid this added a 
+> new
+> boolean DT property "broken-wp". If WP signal is not connected, then 
+> this
+> property should be set in the DT to avoid setting the SRWD during 
+> status
+> register write operation.
+> 
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> ---
+>  .../devicetree/bindings/mtd/jedec,spi-nor.yaml      | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 89959e5c47ba..a509d34f14b2 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -70,6 +70,19 @@ properties:
+>        be used on such systems, to denote the absence of a reliable 
+> reset
+>        mechanism.
+> 
+> +  broken-wp:
+> +    type: boolean
+> +    description:
+> +      The SRWD bit in status register, combined with the WP signal 
+> provides
+> +      hardware data protection for the device. When the SRWD bit is 
+> set to 1,
+> +      and the WP signal is driven LOW, the status register nonvolatile 
+> bits
+> +      become read-only and the WRITE STATUS REGISTER operation will
+> not execute.
+> +      The only way to exit this hardware-protected mode is to drive
+> WP HIGH. But
+> +      if the WP signal of the flash device is not connected then
+> status register
+> +      permanently becomes read-only as the SRWD bit cannot be reset.
+> This boolean
+> +      flag can be used on such systems in which WP signal is not 
+> connected, to
+> +      avoid setting the SRWD bit while writing the status register.
 
-Tested-by: Hiago De Franco <hiago.franco@toradex.com> # Toradex Verdin AM62
+FWIW, this is also a valid use case: have the WP# pin tied to low, the
+OEM will program the flash and then enable locking making the flash
+permanently write protected. IWO, if the pin is hard strapped to low,
+it is not always broken. You might add that to the description.
+
+-michael
