@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB8737315C9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEAC17315CD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239130AbjFOKw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:52:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
+        id S245649AbjFOKxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245489AbjFOKwY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:52:24 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C642121
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:52:23 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-982b1a18daeso49292966b.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:52:22 -0700 (PDT)
+        with ESMTP id S239823AbjFOKxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:53:31 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3BFD1FF9
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:53:29 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b34969e65fso25177461fa.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:53:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686826341; x=1689418341;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=rasmusvillemoes.dk; s=google; t=1686826408; x=1689418408;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=utjDDOKSdywXvqy83VTqNIGTgbsgC3M+2PZw+Kce6sM=;
-        b=jMxmfFyWyjWPG1BBJFqu7ITbVdSbOJc+kZnPxcrFjMnrqW8CgSpUNKKRq3Lh6lYBDC
-         wfLpqvqyxwHwoRJnmanXLhx7/widM7u7ZK3BKxD585LF/e1rgRj6Xwpi0/bPvj16Iyk7
-         erZDOdKqgdkP7RtKevIGVqVn+/fCntNyDzKi265xL+yZzYybJvuuttWdWdkHiGH5NDmr
-         4cuY/Iag1OgJ6uY7Gspjh7hoI76PzCkh0ftku3A81zogEi06szELcSSdacIGCNE420JL
-         /Wh9OakOZG3sWBhKKKEYDAx/PHxNQvcSU7tYzEj9EOv651PmEsv86w0WoRn6VW71DUXp
-         ZmwQ==
+        bh=12noQGaXaCio4xE7tY2PTj55pZiPVzsZBBs1ILnt2BY=;
+        b=SvvtytZ1UIzmZ0doON8IzZxdgdCcEQNIoRw/yDFpUxow5PC3BRn+faXkaFkmZo7XMy
+         zhK58k2zZnBYvNq+VUZ1DurzV2mjhIxoUi5cJBhf3GLiQZ7BpyA2rWMXNl7x9FcP3BR6
+         Ok/4NvqHyfYw8wb2pf/m88GpjrHyWc/8UYXG8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686826341; x=1689418341;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1686826408; x=1689418408;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=utjDDOKSdywXvqy83VTqNIGTgbsgC3M+2PZw+Kce6sM=;
-        b=DTKDs8cjZN5WgIab+mtpnvXtcI0JFaM2CIaoef2UqvXE+ojsvTZ5zPs3Zn0l2y7JRc
-         eJt11Qogq9qCoHcwH0C2OetGXb89x9WVwmco6RIxOO9ErpZyAWGC/whyokT7fk3xdZ2T
-         aCiuITIvBURaz2kg1o2+acolrAf2nSzF/ZXxXSVn2y/MVz9+ROeBi1Cxl7aP1wBtr0Hl
-         3K9WLeLPsiYnpnz2FRRioV4nuxJTvR1UMInC0rfw7h1t7S3qJ7titN1OXq7qnTbDjscj
-         YRHc9Gft5NEEPThKK7/IZ9qUaImk/RRPfLVooFTnIcIu9VJ/oet1emiCapsLUuaV6JHN
-         TB8Q==
-X-Gm-Message-State: AC+VfDz4ZGbbInDcojfrhgHrv/gtmzz7bnYPNT/DPMG3bBZfROzVlBJF
-        gg2PVTx+UQvYB7CO0OLWqc+4lA4f+Uj33XjpFoo=
-X-Google-Smtp-Source: ACHHUZ4Zd7QenZN7bznsbb9rzk810MzuMCf4/T0SCZwLsNuT+24Ngk0O8vLf6fuM3CBh7UAmyym6KQ==
-X-Received: by 2002:a17:906:d54b:b0:978:94b1:25ac with SMTP id cr11-20020a170906d54b00b0097894b125acmr21518784ejc.40.1686826341146;
-        Thu, 15 Jun 2023 03:52:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id jt18-20020a170906ca1200b009823e0bfb05sm3396417ejb.162.2023.06.15.03.52.19
+        bh=12noQGaXaCio4xE7tY2PTj55pZiPVzsZBBs1ILnt2BY=;
+        b=fnK76nSrNwFjBDxMcMBWA/Uv0PC7JlJwgZHWJa8F2L4+nY9aj7SqbzqB+xq++h5U1G
+         YrGFE2Ka34eCMXtoe3sgIUZpuyXseV+R+eOT7823nJIKs8xA65iezbUv0Vdc5YyXjkIF
+         behRoKJ77p3VFCFjD7va4umxQ7fHOeqzr68MOskWTfBnzqv4/M3a+5jGgrPYDEO++yJk
+         W+pW1uDogG6EJfQQzwkeSscMbCy32ZUwzzQQ+RTlfqgSWqJUPBULj5rC+qDQ9eo+bfOs
+         P1LCw7mKsGIVzMiRwrUnQ169/Qm8JdgaBLNo0/X39fX6QEQXgL8jgdiKcqozwVR5Go3+
+         +iEg==
+X-Gm-Message-State: AC+VfDyooAicTlPo/MJXBkpG22h/hHOsU7IsUrjJwqj3nAxeuoglSpL7
+        bMnzYl5X2RbforO6xVS9pDFo2A==
+X-Google-Smtp-Source: ACHHUZ7LDb8n/Y3cXJ9Vpe9EVhKZPEAH3iI+mHFz6R7sMvp0xiUM+8je8H0Zmw/6wUXe+y6+PHNcGg==
+X-Received: by 2002:a2e:8719:0:b0:2ad:a9c0:1236 with SMTP id m25-20020a2e8719000000b002ada9c01236mr8598104lji.6.1686826407909;
+        Thu, 15 Jun 2023 03:53:27 -0700 (PDT)
+Received: from [172.16.11.116] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id ba7-20020a0564021ac700b0050bc6983041sm8727751edb.96.2023.06.15.03.53.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 03:52:20 -0700 (PDT)
-Message-ID: <0cddd5e8-3de1-1b6a-b4b8-6304e4c674cf@linaro.org>
-Date:   Thu, 15 Jun 2023 12:52:18 +0200
+        Thu, 15 Jun 2023 03:53:27 -0700 (PDT)
+Message-ID: <bd17c1a4-6102-3d93-5494-89fdb0a346e5@rasmusvillemoes.dk>
+Date:   Thu, 15 Jun 2023 12:53:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v6 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
- compatible string
-Content-Language: en-US
-To:     Frank Li <Frank.Li@nxp.com>, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
-        imx@lists.linux.dev
-References: <20230614193544.2114603-1-Frank.Li@nxp.com>
- <20230614193544.2114603-13-Frank.Li@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230614193544.2114603-13-Frank.Li@nxp.com>
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 5/8] rtc: isl12022: implement RTC_VL_READ ioctl
+Content-Language: en-US, da
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-1-linux@rasmusvillemoes.dk>
+ <20230613130011.305589-6-linux@rasmusvillemoes.dk>
+ <ZIiJWKBFojAcNCkA@smile.fi.intel.com> <20230613212651c8770218@mail.local>
+ <ZImvjj34YILrNJU5@smile.fi.intel.com> <20230614135036a3e049c4@mail.local>
+ <ZInZMEZBZ8Dm2jem@smile.fi.intel.com>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <ZInZMEZBZ8Dm2jem@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,128 +80,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 21:35, Frank Li wrote:
-> Extend Freescale eDMA driver bindings to support eDMA3 IP blocks in
-> i.MX8QM and i.MX8QXP SoCs. In i.MX93, both eDMA3 and eDMA4 are now.
+On 14/06/2023 17.13, Andy Shevchenko wrote:
+
+> When reading such a code the following questions are arisen:
+> 1) Can the positive return value be the case?
+> 2) If so, what is the meaning of a such?
+> 3) Why do we not care about it?
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/dma/fsl,edma.yaml     | 99 +++++++++++++++++--
->  1 file changed, 92 insertions(+), 7 deletions(-)
+> All this can simply gone if we use
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> index 5fd8fc604261..de8c44bd8a89 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> @@ -21,32 +21,41 @@ properties:
->        - enum:
->            - fsl,vf610-edma
->            - fsl,imx7ulp-edma
-> +          - fsl,imx8qm-adma
-> +          - fsl,imx8qm-edma
-> +          - fsl,imx93-edma3
-> +          - fsl,imx93-edma4
->        - items:
->            - const: fsl,ls1028a-edma
->            - const: fsl,vf610-edma
->  
->    reg:
-> -    minItems: 2
-> +    minItems: 1
->      maxItems: 3
->  
->    interrupts:
-> -    minItems: 2
-> -    maxItems: 17
-> +    minItems: 1
-> +    maxItems: 64
->  
->    interrupt-names:
-> -    minItems: 2
-> -    maxItems: 17
-> +    minItems: 1
-> +    maxItems: 64
->  
->    "#dma-cells":
-> -    const: 2
-> +    enum:
-> +      - 2
-> +      - 3
->  
->    dma-channels:
-> -    const: 32
-> +    minItems: 1
-> +    maxItems: 64
->  
->    clocks:
-> +    minItems: 1
->      maxItems: 2
->  
->    clock-names:
-> +    minItems: 1
->      maxItems: 2
->  
->    big-endian:
-> @@ -65,6 +74,38 @@ required:
->  
->  allOf:
->    - $ref: dma-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8qm-adma
-> +              - fsl,imx8qm-edma
-> +              - fsl,imx93-edma3
-> +              - fsl,imx93-edma4
-> +    then:
-> +      properties:
-> +        "#dma-cells":
-> +          const: 3
-> +        # It is not necessary to write the interrupt name for each channel.
-> +        # instead, you can simply maintain the sequential IRQ numbers as
-> +        # defined for the DMA channels.
-> +        interrupt-names: false
-> +        clock-names:
+> 	ret = foo(...);
+> 	if (ret)
+> 		return ret;
+> 
+> As it's clear that whatever is non-zero we accept as something to be promoted
+> to the upper layer. I hope this explains my position.
 
-items:
-  - const: dma
+But we're in a context (in this case an ->ioctl method) where _our_
+caller expects 0/-ESOMETHING, so returning something positive would be a
+bug - i.e., either way of spelling that if(), the reader must know that
+foo() also has those 0/-ESOMETHING semantics.
 
-clocks:
-  maxItems: 1
+I honestly didn't think much about it, but looking at the existing code
+and the stuff I add, all other places actually do 'if (ret)', so I've
+updated this site for consistency.
 
-You do not allow more than one clock, right?
-
-> +          const: dma
-> +    else:
-
-You already have two ifs, so you should not have else here, but rather
-make each if clause proper for your setup.
-
-BTW, the amount of differences point to very complicated schema, so you
-should think whether it makes sense to keep binding growing in the first
-place.
-
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +          maxItems: 3
-> +        interrupts:
-> +          minItems: 2
-> +          maxItems: 17
-
-missing clocks restriction to minItems: 2
-
-
-> +        "#dma-cells":
-> +          const: 2
-> +        dma-channels:
-> +          const: 32
-> +
-
-
-
-Best regards,
-Krzysztof
+Rasmus
 
