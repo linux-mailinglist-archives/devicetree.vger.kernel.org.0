@@ -2,69 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4C87314B7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2398A7314C0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240791AbjFOKAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54434 "EHLO
+        id S244035AbjFOKCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:02:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238766AbjFOKAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:00:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B490426A8;
-        Thu, 15 Jun 2023 03:00:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D67761031;
-        Thu, 15 Jun 2023 10:00:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C601C433D9;
-        Thu, 15 Jun 2023 10:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686823214;
-        bh=sgaQTjMumcDntF1+Rw8qMCOdQ78re8DXY7PV6swIiBE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lL2jn3Au7wkj+GPGZfZHI0hvj3WXWXV1BdbZJvO8gkBDLaNaCXir5n0ngtSDKHLH6
-         5jlgD9PgYx8foBPTisXuAvOhI2HOq/Y6Un7v2VePrUe07MZdwP9VVx4lnW2LS1/R4l
-         mmZN+yg2EiJ8vB/gRnymrmsdApxReF5RGm0ZCWyq0XWDaLvSahS7IbcXD+AoQjk3Bv
-         3PN4O4lCr4Y4lLZIPpc9m3jsaP8vYFSEoMhutq6p/gMiXned88RAl7PsS/GUxKA411
-         /oENPeizAKoyjDxDfMa6ErdNZPkmJnVrxpN5bFxEXf5zLKfVafVIltE6nNJuXYwi4n
-         En05SrJL8l7EA==
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5147e40bbbbso11374565a12.3;
-        Thu, 15 Jun 2023 03:00:14 -0700 (PDT)
-X-Gm-Message-State: AC+VfDwwgrJ6gSvbOe8y7OauX2bbzTJWXIXXJ7uZvr/kLxuwL5CSzBWZ
-        qaKSJ1nRSq4LdMk8wwM31Q2ONVSdVpBsyGCawZM=
-X-Google-Smtp-Source: ACHHUZ4g5SZt9F+fFnfXd0o3pCw+8JYiLgE6DdlVHtXfxCF4jj1z54KwCpr1lZeskAOQRjjoWGVWomtADuMZTNxwFbU=
-X-Received: by 2002:aa7:d703:0:b0:514:95e8:566c with SMTP id
- t3-20020aa7d703000000b0051495e8566cmr8524050edq.42.1686823212731; Thu, 15 Jun
- 2023 03:00:12 -0700 (PDT)
+        with ESMTP id S239156AbjFOKCR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:02:17 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1304F2713
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:02:15 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f63006b4e3so10269413e87.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:02:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686823333; x=1689415333;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=241/LCI0tJnJrhN7t+2MKXz8CDBrwuKWaGtpTG19kxQ=;
+        b=XLGeS1zDWw09I5qUtyPSdRR9UuGGJRM17OsL2QA00oqMmvfUSsqQhbR7WXT1+ZQuRs
+         0j3Y8pBtMVt50+q6owajUGE1ozWu1oWeFY1ltdfFoRcky9BA9cAjMdre6JqOadvp1w3I
+         2nIARVUHEeYv7PdtslSOLpgEuIAiBGCtH9lIeLmkPGLwMVkumWvLJ0Et7DOsrE+zrHnv
+         vm5Yq5BmjngYssHK/CZk9a/zKmGrCnOOFHHtjxBt0Lh/YpB4tIxYstOeYDkrL8pkxE0A
+         6UR+wujYTV5JO4VSHaCrcJ+Lr1gE/Oyp2I21z1luFPsbT3WkB/tO7eLo+GQI912McAKe
+         3n2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686823333; x=1689415333;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=241/LCI0tJnJrhN7t+2MKXz8CDBrwuKWaGtpTG19kxQ=;
+        b=aq+FQeLEL0xQS8zVA18+IgYfCH0ZKbUPHf1P1x6F/HALtAQKl5fSRYQ7ZgHuIkWCw2
+         nkXbnxm/srzdMIG76AB7IfHXnPkyaBKf4PlJavSqufCIpTgF8YrMyHqGLaXaPqNqPNzw
+         IOO5G7df5CbBvQrOtJCFfev45JFiv6HB+1818k2SQcisJW1XuVsRphoEG+yjtinh8s0Z
+         cRq+U32lyZIy9iw4ETUVgpDrx84QiK2x6y7JpZzvi+A11Y4pSf+shfr+PYbt7e54WgSp
+         +DKDaV9Suu+RaDg0xgjLl61ZrHvyNX5CYMXsNRVsMIFe4/ior7VHEc0u+dt3WWRTfhLk
+         /O5A==
+X-Gm-Message-State: AC+VfDyBK7RX0s+CCyCynd7O1UDs3ZOk/dewSIKlqiqa6xg2vd284pAK
+        nXwGutpBUQEImZJrT3Yhq2Rnww==
+X-Google-Smtp-Source: ACHHUZ53Inb1s5Pri+XMSWq3WfKiizBfV2gWuzOuf2FxAeLvuBJX5PVbpvqFNEGHwD2nF3yQKRsZMQ==
+X-Received: by 2002:ac2:4d96:0:b0:4ec:7b87:931a with SMTP id g22-20020ac24d96000000b004ec7b87931amr9712886lfe.13.1686823332999;
+        Thu, 15 Jun 2023 03:02:12 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id y13-20020ac255ad000000b004f842478f9asm230834lfg.88.2023.06.15.03.02.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 03:02:12 -0700 (PDT)
+Message-ID: <5139ceac-085e-1e41-d709-210942ddede6@linaro.org>
+Date:   Thu, 15 Jun 2023 12:02:10 +0200
 MIME-Version: 1.0
-References: <20230615091757.24686-1-zhuyinbo@loongson.cn> <968b7c81-a24e-1e0d-31a4-f633a82d17b0@loongson.cn>
-In-Reply-To: <968b7c81-a24e-1e0d-31a4-f633a82d17b0@loongson.cn>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Thu, 15 Jun 2023 18:00:00 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H4Z13wpOsj5GxkuwMK1D6N6=sArQ52yHjcdiEen=dUpjg@mail.gmail.com>
-Message-ID: <CAAhV-H4Z13wpOsj5GxkuwMK1D6N6=sArQ52yHjcdiEen=dUpjg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] soc: loongson2_pm: add power management support
-To:     zhuyinbo <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Content-Language: en-US
+To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
+ <20230223-topic-gmuwrapper-v8-13-69c68206609e@linaro.org>
+ <c23tj7vsumzpggo3qbzbf4oiwpx3v2sfdu64znqzifod5q4ngh@o7g75qt4tjm5>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v8 13/18] drm/msm/a6xx: Add A610 support
+In-Reply-To: <c23tj7vsumzpggo3qbzbf4oiwpx3v2sfdu64znqzifod5q4ngh@o7g75qt4tjm5>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,327 +88,296 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yinbo,
+On 14.06.2023 21:41, Akhil P Oommen wrote:
+> On Mon, May 29, 2023 at 03:52:32PM +0200, Konrad Dybcio wrote:
+>>
+>> A610 is one of (if not the) lowest-tier SKUs in the A6XX family. It
+>> features no GMU, as it's implemented solely on SoCs with SMD_RPM.
+>> What's more interesting is that it does not feature a VDDGX line
+>> either, being powered solely by VDDCX and has an unfortunate hardware
+>> quirk that makes its reset line broken - after a couple of assert/
+>> deassert cycles, it will hang for good and will not wake up again.
+>>
+>> This GPU requires mesa changes for proper rendering, and lots of them
+>> at that. The command streams are quite far away from any other A6XX
+>> GPU and hence it needs special care. This patch was validated both
+>> by running an (incomplete) downstream mesa with some hacks (frames
+>> rendered correctly, though some instructions made the GPU hangcheck
+>> which is expected - garbage in, garbage out) and by replaying RD
+>> traces captured with the downstream KGSL driver - no crashes there,
+>> ever.
+>>
+>> Add support for this GPU on the kernel side, which comes down to
+>> pretty simply adding A612 HWCG tables, altering a few values and
+>> adding a special case for handling the reset line.
+>>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c      | 101 +++++++++++++++++++++++++----
+>>  drivers/gpu/drm/msm/adreno/adreno_device.c |  12 ++++
+>>  drivers/gpu/drm/msm/adreno/adreno_gpu.h    |   8 ++-
+>>  3 files changed, 108 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>> index bb04f65e6f68..c0d5973320d9 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>> @@ -252,6 +252,56 @@ static void a6xx_submit(struct msm_gpu *gpu, struct msm_gem_submit *submit)
+>>  	a6xx_flush(gpu, ring);
+>>  }
+>>  
+>> +const struct adreno_reglist a612_hwcg[] = {
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_SP0, 0x22222222},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL2_SP0, 0x02222220},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_SP0, 0x00000081},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_SP0, 0x0000f3cf},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_TP0, 0x22222222},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL2_TP0, 0x22222222},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL3_TP0, 0x22222222},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL4_TP0, 0x00022222},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_TP0, 0x11111111},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY2_TP0, 0x11111111},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY3_TP0, 0x11111111},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY4_TP0, 0x00011111},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_TP0, 0x77777777},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST2_TP0, 0x77777777},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST3_TP0, 0x77777777},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST4_TP0, 0x00077777},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_RB0, 0x22222222},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL2_RB0, 0x01202222},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_CCU0, 0x00002220},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_RB_CCU0, 0x00040f00},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_RAC, 0x05522022},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL2_RAC, 0x00005555},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_RAC, 0x00000011},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_RAC, 0x00445044},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_TSE_RAS_RBBM, 0x04222222},
+>> +	{REG_A6XX_RBBM_CLOCK_MODE_VFD, 0x00002222},
+>> +	{REG_A6XX_RBBM_CLOCK_MODE_GPC, 0x02222222},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_HLSQ_2, 0x00000002},
+>> +	{REG_A6XX_RBBM_CLOCK_MODE_HLSQ, 0x00002222},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_TSE_RAS_RBBM, 0x00004000},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_VFD, 0x00002222},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_GPC, 0x00000200},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_HLSQ, 0x00000000},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_TSE_RAS_RBBM, 0x00000000},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_VFD, 0x00000000},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_GPC, 0x04104004},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_HLSQ, 0x00000000},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_UCHE, 0x22222222},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_UCHE, 0x00000004},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_UCHE, 0x00000002},
+>> +	{REG_A6XX_RBBM_ISDB_CNT, 0x00000182},
+>> +	{REG_A6XX_RBBM_RAC_THRESHOLD_CNT, 0x00000000},
+>> +	{REG_A6XX_RBBM_SP_HYST_CNT, 0x00000000},
+>> +	{REG_A6XX_RBBM_CLOCK_CNTL_GMU_GX, 0x00000222},
+>> +	{REG_A6XX_RBBM_CLOCK_DELAY_GMU_GX, 0x00000111},
+>> +	{REG_A6XX_RBBM_CLOCK_HYST_GMU_GX, 0x00000555},
+>> +	{},
+>> +};
+>> +
+>>  /* For a615 family (a615, a616, a618 and a619) */
+>>  const struct adreno_reglist a615_hwcg[] = {
+>>  	{REG_A6XX_RBBM_CLOCK_CNTL_SP0,  0x02222222},
+>> @@ -602,6 +652,8 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>  
+>>  	if (adreno_is_a630(adreno_gpu))
+>>  		clock_cntl_on = 0x8aa8aa02;
+>> +	else if (adreno_is_a610(adreno_gpu))
+>> +		clock_cntl_on = 0xaaa8aa82;
+>>  	else
+>>  		clock_cntl_on = 0x8aa8aa82;
+>>  
+>> @@ -612,13 +664,15 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>  		return;
+>>  
+>>  	/* Disable SP clock before programming HWCG registers */
+>> -	gmu_rmw(gmu, REG_A6XX_GPU_GMU_GX_SPTPRAC_CLOCK_CONTROL, 1, 0);
+>> +	if (!adreno_is_a610(adreno_gpu))
+>> +		gmu_rmw(gmu, REG_A6XX_GPU_GMU_GX_SPTPRAC_CLOCK_CONTROL, 1, 0);
+>>  
+>>  	for (i = 0; (reg = &adreno_gpu->info->hwcg[i], reg->offset); i++)
+>>  		gpu_write(gpu, reg->offset, state ? reg->value : 0);
+>>  
+>>  	/* Enable SP clock */
+>> -	gmu_rmw(gmu, REG_A6XX_GPU_GMU_GX_SPTPRAC_CLOCK_CONTROL, 0, 1);
+>> +	if (!adreno_is_a610(adreno_gpu))
+>> +		gmu_rmw(gmu, REG_A6XX_GPU_GMU_GX_SPTPRAC_CLOCK_CONTROL, 0, 1);
+>>  
+>>  	gpu_write(gpu, REG_A6XX_RBBM_CLOCK_CNTL, state ? clock_cntl_on : 0);
+>>  }
+>> @@ -806,6 +860,13 @@ static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
+>>  	/* Unknown, introduced with A640/680 */
+>>  	u32 amsbc = 0;
+>>  
+>> +	if (adreno_is_a610(adreno_gpu)) {
+>> +		/* HBB = 14 */
+>> +		hbb_lo = 1;
+>> +		min_acc_len = 1;
+>> +		ubwc_mode = 1;
+>> +	}
+>> +
+>>  	/* a618 is using the hw default values */
+>>  	if (adreno_is_a618(adreno_gpu))
+>>  		return;
+>> @@ -1073,13 +1134,13 @@ static int hw_init(struct msm_gpu *gpu)
+>>  	a6xx_set_hwcg(gpu, true);
+>>  
+>>  	/* VBIF/GBIF start*/
+>> -	if (adreno_is_a640_family(adreno_gpu) ||
+>> +	if (adreno_is_a610(adreno_gpu) ||
+>> +	    adreno_is_a640_family(adreno_gpu) ||
+>>  	    adreno_is_a650_family(adreno_gpu)) {
+>>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE0, 0x00071620);
+>>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE1, 0x00071620);
+>>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE2, 0x00071620);
+>>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE3, 0x00071620);
+>> -		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE3, 0x00071620);
+>>  		gpu_write(gpu, REG_A6XX_RBBM_GBIF_CLIENT_QOS_CNTL, 0x3);
+>>  	} else {
+>>  		gpu_write(gpu, REG_A6XX_RBBM_VBIF_CLIENT_QOS_CNTL, 0x3);
+>> @@ -1107,18 +1168,26 @@ static int hw_init(struct msm_gpu *gpu)
+>>  	gpu_write(gpu, REG_A6XX_UCHE_FILTER_CNTL, 0x804);
+>>  	gpu_write(gpu, REG_A6XX_UCHE_CACHE_WAYS, 0x4);
+>>  
+>> -	if (adreno_is_a640_family(adreno_gpu) ||
+>> -	    adreno_is_a650_family(adreno_gpu))
+>> +	if (adreno_is_a640_family(adreno_gpu) || adreno_is_a650_family(adreno_gpu)) {
+>>  		gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_2, 0x02000140);
+>> -	else
+>> +		gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_1, 0x8040362c);
+>> +	} else if (adreno_is_a610(adreno_gpu)) {
+>> +		gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_2, 0x00800060);
+>> +		gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_1, 0x40201b16);
+>> +	} else {
+>>  		gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_2, 0x010000c0);
+>> -	gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_1, 0x8040362c);
+>> +		gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_1, 0x8040362c);
+>> +	}
+>>  
+>>  	if (adreno_is_a660_family(adreno_gpu))
+>>  		gpu_write(gpu, REG_A6XX_CP_LPAC_PROG_FIFO_SIZE, 0x00000020);
+>>  
+>>  	/* Setting the mem pool size */
+>> -	gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, 128);
+>> +	if (adreno_is_a610(adreno_gpu)) {
+>> +		gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, 48);
+>> +		gpu_write(gpu, REG_A6XX_CP_MEM_POOL_DBG_ADDR, 47);
+>> +	} else
+>> +		gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, 128);
+>>  
+>>  	/* Setting the primFifo thresholds default values,
+>>  	 * and vccCacheSkipDis=1 bit (0x200) for A640 and newer
+>> @@ -1129,6 +1198,8 @@ static int hw_init(struct msm_gpu *gpu)
+>>  		gpu_write(gpu, REG_A6XX_PC_DBG_ECO_CNTL, 0x00200200);
+>>  	else if (adreno_is_a650(adreno_gpu) || adreno_is_a660(adreno_gpu))
+>>  		gpu_write(gpu, REG_A6XX_PC_DBG_ECO_CNTL, 0x00300200);
+>> +	else if (adreno_is_a610(adreno_gpu))
+>> +		gpu_write(gpu, REG_A6XX_PC_DBG_ECO_CNTL, 0x00080000);
+>>  	else
+>>  		gpu_write(gpu, REG_A6XX_PC_DBG_ECO_CNTL, 0x00180000);
+>>  
+>> @@ -1144,8 +1215,10 @@ static int hw_init(struct msm_gpu *gpu)
+>>  	a6xx_set_ubwc_config(gpu);
+>>  
+>>  	/* Enable fault detection */
+>> -	gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL,
+>> -		(1 << 30) | 0x1fffff);
+>> +	if (adreno_is_a610(adreno_gpu))
+>> +		gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL, (1 << 30) | 0x3ffff);
+>> +	else
+>> +		gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL, (1 << 30) | 0x1fffff);
+>>  
+>>  	gpu_write(gpu, REG_A6XX_UCHE_CLIENT_PF, 1);
+>>  
+>> @@ -1675,7 +1748,7 @@ void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_
+>>  	struct msm_gpu *gpu = &adreno_gpu->base;
+>>  
+>>  	if (adreno_is_a619_holi(adreno_gpu)) {
+>> -		gpu_write(gpu, 0x18, GPR0_GBIF_HALT_REQUEST);
+>> +		gpu_write(gpu, REG_A6XX_RBBM_GPR0_CNTL, GPR0_GBIF_HALT_REQUEST);
+> 
+> This looks like an unrelated change.
+Right, wrong commit.
 
-I'm sorry I still have some comments.
+> 
+>>  		spin_until((gpu_read(gpu, REG_A6XX_RBBM_VBIF_GX_RESET_STATUS) &
+>>  				(VBIF_RESET_ACK_MASK)) == VBIF_RESET_ACK_MASK);
+>>  	} else if (!a6xx_has_gbif(adreno_gpu)) {
+>> @@ -1709,6 +1782,10 @@ void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_
+>>  
+>>  void a6xx_gpu_sw_reset(struct msm_gpu *gpu, bool assert)
+>>  {
+>> +	/* 11nm chips (e.g. ones with A610) have hw issues with the reset line! */
+>> +	if (adreno_is_a610(to_adreno_gpu(gpu)))
+>> +		return;
+>> +
+>>  	gpu_write(gpu, REG_A6XX_RBBM_SW_RESET_CMD, assert);
+>>  	/* Add a barrier to avoid bad surprises */
+>>  	mb();
+>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>> index b133755a56c4..2c2cdbdada4d 100644
+>> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
+>> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>> @@ -253,6 +253,18 @@ static const struct adreno_info gpulist[] = {
+>>  		.quirks = ADRENO_QUIRK_LMLOADKILL_DISABLE,
+>>  		.init = a5xx_gpu_init,
+>>  		.zapfw = "a540_zap.mdt",
+>> +	}, {
+>> +		.rev = ADRENO_REV(6, 1, 0, ANY_ID),
+>> +		.revn = 610,
+>> +		.name = "A610",
+>> +		.fw = {
+>> +			[ADRENO_FW_SQE] = "a630_sqe.fw",
+>> +		},
+>> +		.gmem = (SZ_128K + SZ_4K),
+>> +		.inactive_period = 500,
+> 
+> You really want such a long inactive period?
+Whoooooops! I confused this with gdsc timeout.. Thanks for spotting
+this!
 
-On Thu, Jun 15, 2023 at 5:37=E2=80=AFPM zhuyinbo <zhuyinbo@loongson.cn> wro=
-te:
->
->  From 6edcb9d6a1b18ccbecaf283b4f543afc9e7126d6 Mon Sep 17 00:00:00 2001
-> From: Yinbo Zhu <zhuyinbo@loongson.cn>
-> Date: Tue, 18 Apr 2023 14:18:00 +0800
-> Subject: [PATCH v3 3/3] soc: loongson2_pm: add power management support
->
-> The Loongson-2's power management controller was ACPI, supports ACPI
-> S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
-> Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
-> (USB, GMAC, PWRBTN, etc.). This driver was to add power management
-> controller support that base on dts for Loongson-2 series SoCs.
->
-> Signed-off-by: Liu Yun <liuyun@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
->   MAINTAINERS                         |   1 +
->   drivers/soc/loongson/Kconfig        |  10 ++
->   drivers/soc/loongson/Makefile       |   1 +
->   drivers/soc/loongson/loongson2_pm.c | 218 ++++++++++++++++++++++++++++
->   4 files changed, 230 insertions(+)
->   create mode 100644 drivers/soc/loongson/loongson2_pm.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index bcd05f1fa5c1..7c4ad0cbaeff 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12195,6 +12195,7 @@ M:      Yinbo Zhu <zhuyinbo@loongson.cn>
->   L:    linux-pm@vger.kernel.org
->   S:    Maintained
->   F:    Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.=
-yaml
-> +F:     drivers/soc/loongson/loongson2_pm.c
->
->   LOONGSON-2 SOC SERIES PINCTRL DRIVER
->   M:    zhanghongchen <zhanghongchen@loongson.cn>
-> diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
-> index 707f56358dc4..4f3ce9eb7520 100644
-> --- a/drivers/soc/loongson/Kconfig
-> +++ b/drivers/soc/loongson/Kconfig
-> @@ -16,3 +16,13 @@ config LOONGSON2_GUTS
->          SoCs. Initially only reading SVR and registering soc device are
->          supported. Other guts accesses, such as reading firmware configu=
-ration
->          by default, should eventually be added into this driver as well.
-> +
-> +config LOONGSON2_PM
-> +       bool "Loongson-2 SoC Power Management Controller Driver"
-> +       depends on LOONGARCH && OF
-> +       help
-> +        The Loongson-2's power management controller was ACPI, supports =
-ACPI
-> +        S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Sus=
-pend To
-> +        Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up met=
-hods
-> +        (USB, GMAC, PWRBTN, etc.). This driver was to add power manageme=
-nt
-> +        controller support that base on dts for Loongson-2 series SoCs.
-> diff --git a/drivers/soc/loongson/Makefile b/drivers/soc/loongson/Makefil=
-e
-> index 263c486df638..4118f50f55e2 100644
-> --- a/drivers/soc/loongson/Makefile
-> +++ b/drivers/soc/loongson/Makefile
-> @@ -4,3 +4,4 @@
->   #
->
->   obj-$(CONFIG_LOONGSON2_GUTS)          +=3D loongson2_guts.o
-> +obj-$(CONFIG_LOONGSON2_PM)             +=3D loongson2_pm.o
-> diff --git a/drivers/soc/loongson/loongson2_pm.c
-> b/drivers/soc/loongson/loongson2_pm.c
-> new file mode 100644
-> index 000000000000..287828413d72
-> --- /dev/null
-> +++ b/drivers/soc/loongson/loongson2_pm.c
-> @@ -0,0 +1,218 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Loongson-2 PM Support
-> + *
-> + * Copyright (C) 2023 Loongson Technology Corporation Limited
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/of.h>
-> +#include <linux/init.h>
-> +#include <linux/input.h>
-> +#include <linux/suspend.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/pm_wakeirq.h>
-> +#include <linux/platform_device.h>
-> +#include <asm/bootinfo.h>
-> +#include <asm/suspend.h>
-> +
-> +#define LOONGSON2_PM1_CNT_REG          0x14
-> +#define LOONGSON2_PM1_STS_REG          0x0c
-> +#define LOONGSON2_PM1_ENA_REG          0x10
-> +#define LOONGSON2_GPE0_STS_REG         0x28
-> +#define LOONGSON2_GPE0_ENA_REG         0x2c
-> +
-> +#define LOONGSON2_PM1_PWRBTN_STS       BIT(8)
-> +#define LOONGSON2_PM1_PCIEXP_WAKE_STS  BIT(14)
-> +#define LOONGSON2_PM1_WAKE_STS         BIT(15)
-> +#define LOONGSON2_PM1_CNT_INT_EN       BIT(0)
-> +#define LOONGSON2_PM1_PWRBTN_EN                LOONGSON2_PM1_PWRBTN_STS
-> +
-> +static struct loongson2_pm {
-> +       void __iomem                    *base;
-> +       struct input_dev                *dev;
-> +       bool                            suspended;
-> +} loongson2_pm;
-> +
-> +#define loongson2_pm_readw(reg)                readw(loongson2_pm.base +=
- reg)
-> +#define loongson2_pm_readl(reg)                readl(loongson2_pm.base +=
- reg)
-> +#define loongson2_pm_writew(val, reg)  writew(val, loongson2_pm.base + r=
-eg)
-> +#define loongson2_pm_writel(val, reg)  writel(val, loongson2_pm.base + r=
-eg)
-> +
-> +static void loongson2_pm_status_clear(void)
-> +{
-> +       u16 value;
-> +
-> +       value =3D loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
-> +       value |=3D (LOONGSON2_PM1_PWRBTN_STS | LOONGSON2_PM1_PCIEXP_WAKE_=
-STS |
-> +                 LOONGSON2_PM1_WAKE_STS);
-> +       loongson2_pm_writew(value, LOONGSON2_PM1_STS_REG);
-> +       loongson2_pm_writel(loongson2_pm_readl(LOONGSON2_GPE0_STS_REG),
-> +                           LOONGSON2_GPE0_STS_REG);
-Long-line warnings is removed in latest kernel, so you don't need to split =
-here.
+Konrad
 
-> +}
-> +
-> +static void loongson2_power_button_irq_enable(void)
-
-Using loongson2_pm_irq_enable is a little better.
-
-> +{
-> +       u16 value;
-> +
-> +       value =3D loongson2_pm_readw(LOONGSON2_PM1_CNT_REG);
-> +       value |=3D LOONGSON2_PM1_CNT_INT_EN;
-> +       loongson2_pm_writew(value, LOONGSON2_PM1_CNT_REG);
-> +
-> +       value =3D loongson2_pm_readw(LOONGSON2_PM1_ENA_REG);
-> +       value |=3D LOONGSON2_PM1_PWRBTN_EN;
-> +       loongson2_pm_writew(value, LOONGSON2_PM1_ENA_REG);
-> +}
-> +
-> +static int loongson2_suspend_enter(suspend_state_t state)
-> +{
-> +       loongson2_pm_status_clear();
-> +       loongarch_common_suspend();
-> +       loongarch_suspend_enter();
-> +       loongarch_common_resume();
-> +       loongson2_power_button_irq_enable();
-> +       pm_set_resume_via_firmware();
-> +
-> +       return 0;
-> +}
-> +
-> +static int loongson2_suspend_begin(suspend_state_t state)
-> +{
-> +       pm_set_suspend_via_firmware();
-> +
-> +       return 0;
-> +}
-> +
-> +static int loongson2_suspend_valid_state(suspend_state_t state)
-> +{
-> +       if (state =3D=3D PM_SUSPEND_MEM)
-> +               return 1;
-> +
-> +       return 0;
-"return (state =3D=3D PM_SUSPEND_MEM)" is enough.
-
-Huacai
-> +}
-> +
-> +static const struct platform_suspend_ops loongson2_suspend_ops =3D {
-> +       .valid  =3D loongson2_suspend_valid_state,
-> +       .begin  =3D loongson2_suspend_begin,
-> +       .enter  =3D loongson2_suspend_enter,
-> +};
-> +
-> +static int loongson2_power_button_init(struct device *dev, int irq)
-> +{
-> +       int ret;
-> +       struct input_dev *button;
-> +
-> +       button =3D input_allocate_device();
-> +       if (!dev)
-> +               return -ENOMEM;
-> +
-> +       button->name =3D "Power Button";
-> +       button->phys =3D "pm/button/input0";
-> +       button->id.bustype =3D BUS_HOST;
-> +       button->dev.parent =3D NULL;
-> +       input_set_capability(button, EV_KEY, KEY_POWER);
-> +
-> +       ret =3D input_register_device(button);
-> +       if (ret)
-> +               goto free_dev;
-> +
-> +       dev_pm_set_wake_irq(&button->dev, irq);
-> +       device_set_wakeup_capable(&button->dev, true);
-> +       device_set_wakeup_enable(&button->dev, true);
-> +
-> +       loongson2_pm.dev =3D button;
-> +       dev_info(dev, "Power Button: Init successful!\n");
-> +
-> +       return 0;
-> +
-> +free_dev:
-> +       input_free_device(button);
-> +
-> +       return ret;
-> +}
-> +
-> +static irqreturn_t loongson2_pm_irq_handler(int irq, void *dev_id)
-> +{
-> +       u16 status =3D loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
-> +
-> +       if (!loongson2_pm.suspended && (status & LOONGSON2_PM1_PWRBTN_STS=
-)) {
-> +               pr_info("Power Button pressed...\n");
-> +               input_report_key(loongson2_pm.dev, KEY_POWER, 1);
-> +               input_sync(loongson2_pm.dev);
-> +               input_report_key(loongson2_pm.dev, KEY_POWER, 0);
-> +               input_sync(loongson2_pm.dev);
-> +       }
-> +
-> +       loongson2_pm_status_clear();
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static int __maybe_unused loongson2_pm_suspend(struct device *dev)
-> +{
-> +       loongson2_pm.suspended =3D true;
-> +
-> +       return 0;
-> +}
-> +
-> +static int __maybe_unused loongson2_pm_resume(struct device *dev)
-> +{
-> +       loongson2_pm.suspended =3D false;
-> +
-> +       return 0;
-> +}
-> +static SIMPLE_DEV_PM_OPS(loongson2_pm_ops, loongson2_pm_suspend,
-> loongson2_pm_resume);
-> +
-> +static int loongson2_pm_probe(struct platform_device *pdev)
-> +{
-> +       int irq, retval;
-> +       u32 suspend_addr;
-> +       struct device *dev =3D &pdev->dev;
-> +
-> +       loongson2_pm.base =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(loongson2_pm.base))
-> +               return PTR_ERR(loongson2_pm.base);
-> +
-> +       irq =3D platform_get_irq(pdev, 0);
-> +       if (irq < 0)
-> +               return irq;
-> +
-> +       if (!device_property_read_u32(dev, "suspend-address", &suspend_ad=
-dr))
-> +               loongson_sysconf.suspend_addr =3D (u64)phys_to_virt(suspe=
-nd_addr);
-> +       else
-> +               dev_err(dev, "No suspend-address, could not support S3!\n=
-");
-> +
-> +       if (loongson2_power_button_init(dev, irq))
-> +               return -EINVAL;
-> +
-> +       retval =3D devm_request_irq(&pdev->dev, irq, loongson2_pm_irq_han=
-dler,
-> +                                 IRQF_SHARED, "pm_irq", &loongson2_pm);
-> +       if (retval)
-> +               return retval;
-> +
-> +       loongson2_power_button_irq_enable();
-> +       loongson2_pm_status_clear();
-> +
-> +       if (loongson_sysconf.suspend_addr)
-> +               suspend_set_ops(&loongson2_suspend_ops);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id loongson2_pm_match[] =3D {
-> +       { .compatible =3D "loongson,ls2k1000-pmc", },
-> +       {},
-> +};
-> +
-> +static struct platform_driver loongson2_pm_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "ls2k-pm",
-> +               .pm =3D &loongson2_pm_ops,
-> +               .of_match_table =3D loongson2_pm_match,
-> +       },
-> +       .probe =3D loongson2_pm_probe,
-> +};
-> +module_platform_driver(loongson2_pm_driver);
-> +
-> +MODULE_DESCRIPTION("Loongson-2 PM driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.20.1
->
->
+> 
+>> +		.init = a6xx_gpu_init,
+>> +		.zapfw = "a610_zap.mdt",
+>> +		.hwcg = a612_hwcg,
+>>  	}, {
+>>  		.rev = ADRENO_REV(6, 1, 8, ANY_ID),
+>>  		.revn = 618,
+>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> index 432fee5c1516..7a5d595d4b99 100644
+>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> @@ -55,7 +55,8 @@ struct adreno_reglist {
+>>  	u32 value;
+>>  };
+>>  
+>> -extern const struct adreno_reglist a615_hwcg[], a630_hwcg[], a640_hwcg[], a650_hwcg[], a660_hwcg[];
+>> +extern const struct adreno_reglist a612_hwcg[], a615_hwcg[], a630_hwcg[], a640_hwcg[], a650_hwcg[];
+>> +extern const struct adreno_reglist a660_hwcg[];
+>>  
+>>  struct adreno_info {
+>>  	struct adreno_rev rev;
+>> @@ -242,6 +243,11 @@ static inline int adreno_is_a540(struct adreno_gpu *gpu)
+>>  	return gpu->revn == 540;
+>>  }
+>>  
+>> +static inline int adreno_is_a610(struct adreno_gpu *gpu)
+>> +{
+>> +	return gpu->revn == 610;
+>> +}
+>> +
+>>  static inline int adreno_is_a618(struct adreno_gpu *gpu)
+>>  {
+>>  	return gpu->revn == 618;
+>>
+>> -- 
+>> 2.40.1
+>>
+> 
+> Minor nits, but looks good to me.
+> 
+> -Akhil.
