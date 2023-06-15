@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0466E731A4F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8001731A56
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344446AbjFONmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:42:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49432 "EHLO
+        id S238906AbjFONoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:44:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344451AbjFONmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:42:18 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D864C2D4B;
-        Thu, 15 Jun 2023 06:41:39 -0700 (PDT)
+        with ESMTP id S239015AbjFONoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:44:11 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A614F2960;
+        Thu, 15 Jun 2023 06:43:45 -0700 (PDT)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDfPBh017065;
-        Thu, 15 Jun 2023 08:41:25 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDhWKB037099;
+        Thu, 15 Jun 2023 08:43:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686836485;
-        bh=7Jg/lJHMvQJ7MX1B2FUaeJ+bIZCApwe5zycq3lyBS8I=;
+        s=ti-com-17Q1; t=1686836612;
+        bh=Bj+Rekil4v8yGfX1T6mCuaTeS7qw5TKYNvMHmAcBRt0=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=aPvii9De6iaEY7lQWDBqaOr8/hMRtdyimohRV1lGEFiU/ZusR5j2RankGthZvktR8
-         +KWneRBVMeqEjUZhWoeN/cM+UqYJgXuYgBFNtUVB4Bv/LzvP5NaLlitxydDtrRxQN/
-         MyAjqQ+WQAlaSRTttlXaBnTaC8F0SaUifouWKELI=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDfPpQ014323
+        b=yQzq6VEzAXCncN1NwRJwsphfjMtJTbHT/2yCnYtxNco+F88NU5xGVltTzt8ozpodj
+         INjNqM0vTpGKeUVU5xHLvLewHappvpkGMU1xWoQAihEBGIsma2EfCjBdxpDJUIClA8
+         9Dhp0hQ3h2XMhU7XER7mPKjC3XetaeDEKvSt/I4E=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDhWvO015495
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 08:41:25 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 15 Jun 2023 08:43:32 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 08:41:25 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 08:43:32 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 08:41:25 -0500
+ Frontend Transport; Thu, 15 Jun 2023 08:43:32 -0500
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDfMIL079470;
-        Thu, 15 Jun 2023 08:41:22 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDhTUv080873;
+        Thu, 15 Jun 2023 08:43:29 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
 To:     Nishanth Menon <nm@ti.com>,
         Francesco Dolcini <francesco@dolcini.it>
@@ -50,9 +50,9 @@ CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         Conor Dooley <conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/5] Add Toradex Verdin AM62
-Date:   Thu, 15 Jun 2023 19:11:20 +0530
-Message-ID: <168683646819.2367452.1758333747967197723.b4-ty@ti.com>
+Subject: Re: (subset) [PATCH v3 0/5] Add Toradex Verdin AM62
+Date:   Thu, 15 Jun 2023 19:13:21 +0530
+Message-ID: <168683657577.2369525.17052124681359259079.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230615095058.33890-1-francesco@dolcini.it>
 References: <20230615095058.33890-1-francesco@dolcini.it>
@@ -60,8 +60,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,19 +83,11 @@ On Thu, 15 Jun 2023 11:50:53 +0200, Francesco Dolcini wrote:
 > 
 > [...]
 
-I have applied the following to branch ti-k3-dts-next on [1].
+I have applied the following to branch ti-k3-config-next on [1].
 Thank you!
 
-[1/5] dt-bindings: arm: ti: add toradex,verdin-am62 et al.
-      commit: d93dc2c99868334660bc474e35d2714102942382
 [2/5] arm64: defconfig: enable drivers for Verdin AM62
-      (no commit info)
-[3/5] arm64: dts: ti: add verdin am62
-      commit: 0e2486a5ebf4865862902a489151fb717bd09b2d
-[4/5] arm64: dts: ti: add verdin am62 dahlia
-      commit: 3a81b82997094d6119882ae72c3a4fddd88726fa
-[5/5] arm64: dts: ti: add verdin am62 yavia
-      commit: ad7c1ada8b851ff390bde7a959492fa13e0cfccc
+      commit: c3c53dcacd1c7e4c9127a84b40fd632fedb2a0e8
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
