@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3531A7319E9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C55C7319F0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241274AbjFON1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:27:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39824 "EHLO
+        id S1343660AbjFON2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241282AbjFON1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:27:40 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E48B2721
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 06:27:39 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1q9n0Q-0006nm-HG; Thu, 15 Jun 2023 15:27:18 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1q9n0N-0002KD-VC; Thu, 15 Jun 2023 15:27:15 +0200
-Date:   Thu, 15 Jun 2023 15:27:15 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vincent Legoll <vincent.legoll@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 00/25] Add perf support to the rockchip-dfi driver
-Message-ID: <20230615132715.GF18491@pengutronix.de>
-References: <20230524083153.2046084-1-s.hauer@pengutronix.de>
- <20230614134034.3p3p75a3jophi2eu@mercury.elektranox.org>
+        with ESMTP id S1343691AbjFON2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:28:38 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64EE02943;
+        Thu, 15 Jun 2023 06:28:16 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDS8WF014159;
+        Thu, 15 Jun 2023 08:28:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686835688;
+        bh=8u8uth6tieU9Gek2L8GJbwuaGpg1fY3gSc6lVEKmYsw=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=eP4IVLwqxkQtvnfX5SflPV/wmbhEnVotYoWP4BCgMqFW8xaOHoTQ+mfMgF0ezcR3Q
+         7ngpUkdm9CobQuYrw7UeIh+Wqs1MkWbbfCECR02h7mXCj0RgxLP9zMWcKpa9IKrZ6y
+         F0xmqBaVmyBu8wIE8AAkAvyXUVgMhDn128oaS+zE=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDS874117364
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 08:28:08 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 08:28:08 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 08:28:08 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDS4xq020634;
+        Thu, 15 Jun 2023 08:28:05 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>,
+        <sabiya.d@mistralsolutions.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Dasnavis Sabiya <sabiya.d@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add eMMC mmc0 support
+Date:   Thu, 15 Jun 2023 18:58:03 +0530
+Message-ID: <168682622741.2286657.12915674886458713945.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230605174551.160262-1-sabiya.d@ti.com>
+References: <20230605174551.160262-1-sabiya.d@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230614134034.3p3p75a3jophi2eu@mercury.elektranox.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,47 +67,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 14, 2023 at 03:40:34PM +0200, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Wed, May 24, 2023 at 10:31:28AM +0200, Sascha Hauer wrote:
-> > This is v5 of the series adding perf support to the rockchip DFI driver.
-> > 
-> > A lot has changed in the perf driver since v4. First of all the review
-> > feedback from Robin and Jonathan has been integrated. The perf driver
-> > now not only supports monitoring the total DDR utilization, but also the
-> > individual channels. I also reworked the way the raw 32bit counter
-> > values are summed up to 64bit perf values, so hopefully the code is
-> > easier to follow now.
-> > 
-> > lockdep found out that that locking in the perf driver was broken, so I
-> > reworked that as well. None of the perf hooks allows locking with
-> > mutexes or spinlocks, so in perf it's not possible to enable the DFI
-> > controller when needed. Instead I now unconditionally enable the DFI
-> > controller during probe when perf is enabled.
-> > 
-> > Furthermore the hrtimer I use for reading out the hardware counter
-> > values before they overflow race with perf. Now a seqlock is used to
-> > prevent that.
-> > 
-> > The RK3588 device tree changes for the DFI were not part of v4. As
-> > Vincent Legoll showed interest in testing this series the necessary
-> > device tree changes are now part of this series.
-> 
-> I tested the series on RK3588 EVB1. The read/write byts looks
-> sensible. Sometimes cycles reads unrealistic values, though:
-> 
->  Performance counter stats for 'system wide':
-> 
-> 18446744070475110400      rockchip_ddr/cycles/
+Hi sabiya.d@mistralsolutions.com,
 
-This goes down to missing initialization of &dfi->last_perf_count, see
-my other mail. Will fix this in the next round.
+On Mon, 05 Jun 2023 23:15:51 +0530, sabiya.d@mistralsolutions.com wrote:
+> Add support for eMMC card connected to main sdhci0 instance.
+> 
+> 
 
-Sascha
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+[1/1] arm64: dts: ti: k3-am69-sk: Add eMMC mmc0 support
+      commit: 74428680d71a37e6ee458b6eccf085114e0e4167
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
