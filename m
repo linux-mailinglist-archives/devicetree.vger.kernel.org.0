@@ -2,58 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A6C0731642
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 13:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E84731646
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 13:16:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343678AbjFOLPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 07:15:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40304 "EHLO
+        id S244213AbjFOLQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 07:16:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241646AbjFOLPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 07:15:37 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8809B2705;
-        Thu, 15 Jun 2023 04:15:33 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8DxTuvU8opkf4kFAA--.11776S3;
-        Thu, 15 Jun 2023 19:15:32 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxG8rT8opkwuobAA--.4915S3;
-        Thu, 15 Jun 2023 19:15:31 +0800 (CST)
-Subject: Re: [PATCH v3 3/3] soc: loongson2_pm: add power management support
-To:     Huacai Chen <chenhuacai@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230615091757.24686-1-zhuyinbo@loongson.cn>
- <968b7c81-a24e-1e0d-31a4-f633a82d17b0@loongson.cn>
- <CAAhV-H4Z13wpOsj5GxkuwMK1D6N6=sArQ52yHjcdiEen=dUpjg@mail.gmail.com>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <9edfe58a-7901-c2d1-8e01-5f10b3a51287@loongson.cn>
-Date:   Thu, 15 Jun 2023 19:15:31 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S240331AbjFOLQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 07:16:32 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AED642729;
+        Thu, 15 Jun 2023 04:16:31 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-311167ba376so405683f8f.1;
+        Thu, 15 Jun 2023 04:16:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686827790; x=1689419790;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8EfD6orI9tZacMH+Y+bAGm4LXkubDI4YrZBV8+HS7CA=;
+        b=avf9pDAktpHHxJcKQ2ir0jkDwnxPjCwfwswv0+4DeowZi4bhUl4KOQJ6LZvLf0jSU8
+         Oeh/7dt4Z/CaTxRRbL2TIRFQhsR6olV5Rvm8/DIcDjYWWc7YpeAs0mJ2Xa3Vfjx3ddeh
+         qlKAySr1KWlGOfu0clFQT5IKPK/07WXr3fWNQo5nIMYXv7IyJI0FXBU8ttTC2B6oajKz
+         cN2E7lc7TTBYrsv8AEDqt9jwlMOoITqsi61NvckmSmVXoLS0yduvpr3FhLdwWqbvhB+p
+         qheVvuNmYqm+GKc2qg9kJPAlKwAqJZA7IC228un0OeufiAVtWcZb+GhS1QFgIddnT/lw
+         3qQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686827790; x=1689419790;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8EfD6orI9tZacMH+Y+bAGm4LXkubDI4YrZBV8+HS7CA=;
+        b=XpYYAocB84hFcPsB5fdiBfKqQReL04hivr+xMtc/cEIuUnxHpMK7K01D0Se8Srw7PH
+         xuylM1qQFD49h/ai5vSv3QC9iQSilJNeWw44c29crk1csR0TaUXqgK1XOD+Fg5Sw/Iga
+         LAuys73KNRSRQqTSwcMnXtSzmZBNPKtdm4pzyceA4zwjZhXKR1v0tW8lt1OsTXsBDGZ9
+         CTXS+DTp12YtJaWlDB3kk0LYkpjqDJsU7Cf3M0KYwBsWk8fPnd3JaMal5u5+cVTUhHip
+         6yOJhWfjF49vTLNrZzLRZzGq6Nm28hIlPCPIUfv5X+X0jTM+lKM16SnCF4ki0IA/Vsgy
+         LmDQ==
+X-Gm-Message-State: AC+VfDyg3b0pI0lq/CXOVFRUSmzjEYSJ/gWqCQ8EgM0YokBDrCOifPyo
+        i0iaPqv+7BaeZJ6si2mfU5g=
+X-Google-Smtp-Source: ACHHUZ7Ocn9TprFkQn3UXzhn8Yq5hR3GmWL+S8uaXLt6brEYaoql2zp0U+60tEKRQPqMW5CIbaiJRw==
+X-Received: by 2002:a5d:5112:0:b0:30e:52de:9ccf with SMTP id s18-20020a5d5112000000b0030e52de9ccfmr11671451wrt.68.1686827789849;
+        Thu, 15 Jun 2023 04:16:29 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id m6-20020adfdc46000000b0030e5bd253aasm20822974wrj.39.2023.06.15.04.16.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 04:16:28 -0700 (PDT)
+Message-ID: <519c6d38-bdea-3881-00e3-9bc3dee0f70d@gmail.com>
+Date:   Thu, 15 Jun 2023 13:16:20 +0200
 MIME-Version: 1.0
-In-Reply-To: <CAAhV-H4Z13wpOsj5GxkuwMK1D6N6=sArQ52yHjcdiEen=dUpjg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt8192: Make sure MSDCPLL's
+ rate is 400MHz
+Content-Language: en-US, ca-ES, es-ES
+To:     =?UTF-8?B?VGluZ0hhbiBTaGVuICjmsojlu7fnv7Ap?= 
+        <TingHan.Shen@mediatek.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= 
+        <Wenbin.Mei@mediatek.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@collabora.com" <kernel@collabora.com>,
+        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
+        <seiya.wang@mediatek.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
+        <Chun-Jie.Chen@mediatek.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?V2VpeWkgTHUgKOWRguWogeWEgCk=?= <Weiyi.Lu@mediatek.com>,
+        "ikjn@chromium.org" <ikjn@chromium.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230522093002.75137-1-angelogioacchino.delregno@collabora.com>
+ <20230522093002.75137-2-angelogioacchino.delregno@collabora.com>
+ <45cba46f9fb34acf393ec2743206403bc6a5e137.camel@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <45cba46f9fb34acf393ec2743206403bc6a5e137.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxG8rT8opkwuobAA--.4915S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,47 +99,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-在 2023/6/15 下午6:00, Huacai Chen 写道:
-
->> +static void loongson2_pm_status_clear(void)
->> +{
->> +       u16 value;
->> +
->> +       value = loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
->> +       value |= (LOONGSON2_PM1_PWRBTN_STS | LOONGSON2_PM1_PCIEXP_WAKE_STS |
->> +                 LOONGSON2_PM1_WAKE_STS);
->> +       loongson2_pm_writew(value, LOONGSON2_PM1_STS_REG);
->> +       loongson2_pm_writel(loongson2_pm_readl(LOONGSON2_GPE0_STS_REG),
->> +                           LOONGSON2_GPE0_STS_REG);
-> Long-line warnings is removed in latest kernel, so you don't need to split here.
-
-
-okay, I got it.
-
+On 15/06/2023 11:51, TingHan Shen (沈廷翰) wrote:
+> Hi AngeloGioacchino,
 > 
->> +}
->> +
->> +static void loongson2_power_button_irq_enable(void)
+> On Mon, 2023-05-22 at 11:30 +0200, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>
+>>
+>> Some bootloaders will set MSDCPLL's rate lower than 400MHz: what I have
+>> seen is this clock being set at around 384MHz.
+>> This is a performance concern (and possibly a stability one, for picky
+>> eMMC/SD cards) as the MSDC controller's internal divier will choose a
+>> frequency that is lower than expected, in the end causing a difference
+>> in the expected mmc/sd device's timings.
+>>
+>> Make sure that the MSDCPLL frequency is always set to 400MHz to both
+>> improve performance and reliability of the sd/mmc storage.
+>>
+>> Fixes: 5d2b897bc6f5 ("arm64: dts: mediatek: Add mt8192 clock controllers")
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+>> index 5c30caf74026..6fc14004f6fd 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+>> @@ -677,6 +677,8 @@ apmixedsys: syscon@1000c000 {
+>>                          compatible = "mediatek,mt8192-apmixedsys", "syscon";
+>>                          reg = <0 0x1000c000 0 0x1000>;
+>>                          #clock-cells = <1>;
+>> +                       assigned-clocks = <&apmixedsys CLK_APMIXED_MSDCPLL>;
+>> +                       assigned-clock-rates = <400000000>;
+>>                  };
+>>
+>>                  systimer: timer@10017000 {
+>> --
+>> 2.40.1
+>>
 > 
-> Using loongson2_pm_irq_enable is a little better.
+> Comment from mtk emmc owner,
+> 
+> "As we all know, the clock has some jitter, when we set MSDCPLL to 400M,
+> but the actual measurement is not exactly 200M.
+> For eMMC, the spec stipulates that clock cannot exceed 200M.
+> If MSDCPLL is set to 400M, the actual measurement may exceed the spec.
+> So we set MSDCPLL to 384M in the bootloader stage to avoid exceeding the spec."
+> 
 
+Thanks for the feedback. Given that I'm not aware of any regressions that got 
+fixed by this commits I will drop this series for now. We can keep on the 
+discussion and if needed add them in a later stage.
 
-Indeed, this looks better!  I will use it.
-
-...
-
->> +static int loongson2_suspend_valid_state(suspend_state_t state)
->> +{
->> +       if (state == PM_SUSPEND_MEM)
->> +               return 1;
->> +
->> +       return 0;
-> "return (state == PM_SUSPEND_MEM)" is enough.
-
-
-okay, I got it.
-
-
-Thanks,
-Yinbo
-
+Regards,
+Matthias
