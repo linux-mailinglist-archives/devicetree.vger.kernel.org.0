@@ -2,106 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 739D7731F0D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 031C6731EDB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:25:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbjFORbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 13:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
+        id S229762AbjFORZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 13:25:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbjFORbO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:31:14 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15611171F;
-        Thu, 15 Jun 2023 10:31:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686850274; x=1718386274;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=83wWVQfLz1m9xirpCsvcg65m3Ddj7atESArkTnfXNKI=;
-  b=hkCxQoPvIGQZcd5WnmQsXbZHvQ615Q4Uu6Q6exLAbCWvfOh9XrbByB84
-   A6C5+PtZ6oa0Q0w6swehVtHRkKSNkf1yuM59jigAG7ihQ8E5xnZA6WSlB
-   HYqgaNrxgUD3ivWtC0xgXAlUsr+KL/h5ifxM2ypQYXsMAMsPdL6VSHZ1z
-   fh2Td1ByHDtpjQTBvMCDueHj4hU9FSoeO6nbtysqCD8L2q62M0SIbD+F6
-   LNzwp5O0ovh50JUafhwZnQHhG3YOIrUYjW7VnEXJeLjkVKzOi8Tz9h3gB
-   2rY1aM6+k/kTzvUd0bBXKFV4euIRktYBPN4Nxru3MSumm7/3XhdboYWc1
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="362402335"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; 
-   d="scan'208";a="362402335"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2023 10:20:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="662864086"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; 
-   d="scan'208";a="662864086"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003.jf.intel.com with ESMTP; 15 Jun 2023 10:20:37 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1q9qeC-003zpu-1p;
-        Thu, 15 Jun 2023 20:20:36 +0300
-Date:   Thu, 15 Jun 2023 20:20:36 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v1 1/1] of/platform: Propagate firmware node by calling
- device_set_node()
-Message-ID: <ZItIZHfCji4EhfXk@smile.fi.intel.com>
-References: <20230615145243.37095-1-andriy.shevchenko@linux.intel.com>
- <ZIsnaE95qIJ2DVzK@smile.fi.intel.com>
- <ZIsnvXztBQvtYw9b@smile.fi.intel.com>
- <ZIsoWBxb8aGdJ4ja@smile.fi.intel.com>
- <20230615164452.GA1166619-robh@kernel.org>
- <ZItGzw5HO/GFoRAD@smile.fi.intel.com>
+        with ESMTP id S229628AbjFORZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:25:50 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58EA0270C;
+        Thu, 15 Jun 2023 10:25:49 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-77acb04309dso443072539f.2;
+        Thu, 15 Jun 2023 10:25:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686849948; x=1689441948;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sC933hKpQF5JdEINIqEGLBBb4JoET4B1krk6QuWZQ8E=;
+        b=HHIJWlwoV4jlzMm27F+jYRkJkVVXkugLl/28qxpwO9ZcZB5UXYUpQMJ7y6R8ZZCykN
+         vlggdqPFGj2x04BX3cFTzqETNoYrejwts6S70iOji6+q+TuOp4vC1qT86Rvej8A0Ogfb
+         r9+JT0MIWgsSVtem0wZKFF+zGiI78kNGcqvhTmlXwKs6nEYD7W69bNOrAwXgmJ8qwPsm
+         R6XaxyHzMApam/12Hsq9GWtwOX1SipgsYggx/iJ6DOKQRVNPAWOxxFqBDykq00mW1OXN
+         eagLIIQVnG690bs1z/1gZYqe3V4tEVGNEtrTr0mLOKWTrGp+7GPiGYAy0PCsizHYSJgy
+         gd2Q==
+X-Gm-Message-State: AC+VfDzgfIObM1ZJ6WvmyykBRNdSf5seSjHGEqSfUWjCuc5ZAP5vrNpk
+        v6Y7RJyhGD24NzWkl3x7oA==
+X-Google-Smtp-Source: ACHHUZ6vs7uk1ULtYa9QZ49T2/R1dqPfF8wGisKxyfr+XOX8cDo1AmtTtASS3XLY03uvk3cJHKySXw==
+X-Received: by 2002:a92:c989:0:b0:335:9303:4345 with SMTP id y9-20020a92c989000000b0033593034345mr30929iln.25.1686849948572;
+        Thu, 15 Jun 2023 10:25:48 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id y9-20020a926409000000b0033a9ba8747dsm6129695ilb.30.2023.06.15.10.25.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jun 2023 10:25:47 -0700 (PDT)
+Received: (nullmailer pid 1228844 invoked by uid 1000);
+        Thu, 15 Jun 2023 17:25:46 -0000
+Date:   Thu, 15 Jun 2023 11:25:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: example-schema: don't use enum as fallback,
+ explain clock-names
+Message-ID: <168684994509.1228771.14931709897823421899.robh@kernel.org>
+References: <20230612092611.12385-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZItGzw5HO/GFoRAD@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230612092611.12385-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 08:13:52PM +0300, Andy Shevchenko wrote:
-> On Thu, Jun 15, 2023 at 10:44:52AM -0600, Rob Herring wrote:
-> > On Thu, Jun 15, 2023 at 06:03:52PM +0300, Andy Shevchenko wrote:
-> > > On Thu, Jun 15, 2023 at 06:01:17PM +0300, Andy Shevchenko wrote:
-> > > > On Thu, Jun 15, 2023 at 05:59:52PM +0300, Andy Shevchenko wrote:
-> > > > > On Thu, Jun 15, 2023 at 05:52:43PM +0300, Andy Shevchenko wrote:
 
-...
-
-> > > > > in the code which seems to me problematic in two ways:
-> > > > > 1) (minor) the dev_set_name() may fail, no checks are there;
-> > 
-> > Is there anything besides a memory alloc failure? What will print a
-> > message already. Wouldn't we fail a bit later on when adding the
-> > device anyways?
+On Mon, 12 Jun 2023 11:26:11 +0200, Krzysztof Kozlowski wrote:
+> Compatibles with multiple entries should have usually only one fallback
+> compatible thus enum followed by enum is not a common case.  Use 'const'
+> as second compatible to show the recommended approach.
 > 
-> I don't see how we fail. Any pointers?
+> Explain also when clock-names are not really necessary.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/example-schema.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
 
-Okay, code in question:
-
-        /* subsystems can specify simple device enumeration */
-        if (!dev_name(dev) && dev->bus && dev->bus->dev_name)
-                dev_set_name(dev, "%s%u", dev->bus->dev_name, dev->id);
-
-        if (!dev_name(dev)) {
-                error = -EINVAL;
-                goto name_error;
-        }
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Applied, thanks!
 
