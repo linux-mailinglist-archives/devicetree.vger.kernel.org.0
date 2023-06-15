@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94059732053
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 21:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AD873207B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 21:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbjFOTcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 15:32:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53910 "EHLO
+        id S231976AbjFOTrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 15:47:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjFOTcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 15:32:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B7D26B6;
-        Thu, 15 Jun 2023 12:31:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C3F0261C81;
-        Thu, 15 Jun 2023 19:31:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75D75C433C0;
-        Thu, 15 Jun 2023 19:31:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686857518;
-        bh=kictF58Z8Tqb0WvcwXz864a+VzNXEgr7VntV2dSR0Ds=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SAQXO2dJSrFg0f7YL7VcbzpYm4NMOqoMCluGrUsiuBb/sYLbvRvCKQNy3+y6UC1V5
-         MAzUteY4hiAJgKHUKzjNyF6cvlI8IUk+zNcocFrBGx6kVflU2ByUfCsfs4UEWF80R3
-         HvozHMkAJI1Fc9OpDUeuJeP4gP8BOkVIxcuYEQFQuqFw8rKmIZgDFXSDjFKPdPOlqP
-         POS32emQCSwXLahcm4DCUXdxz03D3zYA9qOrcvn++MR7C4G6M7lXgQF5mCXlrYuRGP
-         xe9TsgRC0uixNb8646kL1YcV+jsx1bqtgrt0WvK9T8I0ooL+FYt8XD2Z0ts7pVCNbm
-         ss7WSwUV6+zow==
-Date:   Thu, 15 Jun 2023 20:31:51 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v4 08/10] irqchip: Add RISC-V advanced PLIC driver
-Message-ID: <20230615-thyself-doornail-f0545ada9176@spud>
-References: <20230613153415.350528-1-apatel@ventanamicro.com>
- <20230613153415.350528-9-apatel@ventanamicro.com>
- <CAGETcx-hoPNanAwe4++6roqBXwSdc7z6Ei=-r9z6qFG1U7xVXg@mail.gmail.com>
+        with ESMTP id S229530AbjFOTrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 15:47:45 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF7A268A;
+        Thu, 15 Jun 2023 12:47:44 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-777a4926555so2387839f.0;
+        Thu, 15 Jun 2023 12:47:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686858463; x=1689450463;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BoanQllugvdpQeDJKzQh2Vhxrm51worbUy3JNVYOXfY=;
+        b=ldF/f6BJFxCS/Mh+fLs64v8zZt0onz0uCfOfvutSckHvCs3iojFmemoey6gNmqFET0
+         NrtYFucudXjQ2mdcFk4TChHsotHNTkC5wDOxePBOZmjVqklz67lxrhcFzgsnM5zrPoIE
+         uREdh7B44dCeFCkVCVF+cObImydM2MUuhnMoQl9ymBIOBKAO25Hr1HLo76hROQmpARO5
+         VSoBHgE0jhHxoVk2OUYjdJoTFnq5HRA2eBOlWITGauxFus9T2249qu8JjkgxKllI7pug
+         C+y8P0VFU12xwSpwArXE6Un++p5JqvTfWXcBi54SUkbURsaAbOlHbCvVtZJyWI0Zigby
+         K6/g==
+X-Gm-Message-State: AC+VfDxSp9BANQYs3t63xDILrn+CMkUyYVg3lXw78ZA+EQU27zNKYmfz
+        Hy3CNbtZLWwAOwHUu7jKcQ==
+X-Google-Smtp-Source: ACHHUZ7d3DvP7l3zfWutNtmjbI34IfXHzMgmlTEjZRNw9Rnk5sVkcDsBlAlRpDu33vLwLk+wRDNwjQ==
+X-Received: by 2002:a05:6602:2d87:b0:774:9415:bed8 with SMTP id k7-20020a0566022d8700b007749415bed8mr4195831iow.10.1686858463454;
+        Thu, 15 Jun 2023 12:47:43 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id l17-20020a056638221100b0041f4da30787sm5696946jas.167.2023.06.15.12.47.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jun 2023 12:47:42 -0700 (PDT)
+Received: (nullmailer pid 1560576 invoked by uid 1000);
+        Thu, 15 Jun 2023 19:47:40 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SvxDNUXYoM4it6RY"
-Content-Disposition: inline
-In-Reply-To: <CAGETcx-hoPNanAwe4++6roqBXwSdc7z6Ei=-r9z6qFG1U7xVXg@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+From:   Rob Herring <robh@kernel.org>
+To:     Lucas Tanure <tanure@linux.com>
+Cc:     linux-amlogic@lists.infradead.org, Artem <art@khadas.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-serial@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nick <nick@khadas.com>, Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20230615182938.18487-3-tanure@linux.com>
+References: <20230615182938.18487-1-tanure@linux.com>
+ <20230615182938.18487-3-tanure@linux.com>
+Message-Id: <168685846058.1560559.10275388482372807124.robh@kernel.org>
+Subject: Re: [PATCH 2/6] dt-bindings: clock: Bindings for Meson T7 clock
+ controller
+Date:   Thu, 15 Jun 2023 13:47:40 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,85 +76,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---SvxDNUXYoM4it6RY
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 15 Jun 2023 19:29:34 +0100, Lucas Tanure wrote:
+> Add documentation for T7 the clock controller.
+> 
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+>  .../bindings/clock/amlogic,mesont7.yaml       |  69 +++
+>  include/dt-bindings/clock/mesont7-clkc.h      | 487 ++++++++++++++++++
+>  2 files changed, 556 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mesont7.yaml
+>  create mode 100644 include/dt-bindings/clock/mesont7-clkc.h
+> 
 
-Hey Saravana,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-On Thu, Jun 15, 2023 at 12:17:08PM -0700, Saravana Kannan wrote:
-> On Tue, Jun 13, 2023 at 8:35=E2=80=AFAM Anup Patel <apatel@ventanamicro.c=
-om> wrote:
+yamllint warnings/errors:
 
-btw, please try to delete the 100s of lines of unrelated context when
-replying
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,mesont7.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/clock/amlogic,mesont7-clk.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,mesont7.yaml
+Documentation/devicetree/bindings/clock/amlogic,mesont7.example.dts:18.32-28.11: Warning (unit_address_vs_reg): /example-0/clock-controller: node has a reg or ranges property, but no unit name
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,mesont7.example.dtb: clock-controller: reg: [[0, 0], [0, 1180], [0, 32768], [0, 800], [0, 57408], [0, 188]] is too long
+	from schema $id: http://devicetree.org/schemas/clock/amlogic,mesont7-clk.yaml#
 
-> > +static int __init aplic_dt_init(struct device_node *node,
-> > +                               struct device_node *parent)
-> > +{
-> > +       /*
-> > +        * The APLIC platform driver needs to be probed early
-> > +        * so for device tree:
-> > +        *
-> > +        * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnode which
-> > +        *    provides a hint to the device driver core to probe the
-> > +        *    platform driver early.
-> > +        * 2) Clear the OF_POPULATED flag in device_node because
-> > +        *    of_irq_init() sets it which prevents creation of
-> > +        *    platform device.
-> > +        */
-> > +       node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
->=20
-> NACK. You are blindly plastering flags without trying to understand
-> the real issue and fixing this correctly.
->=20
-> > +       of_node_clear_flag(node, OF_POPULATED);
-> > +       return 0;
-> > +}
-> > +IRQCHIP_DECLARE(riscv_aplic, "riscv,aplic", aplic_dt_init);
->=20
-> This macro pretty much skips the entire driver core framework to probe
-> and calls init and you are supposed to initialize the device when the
-> init function is called.
->=20
-> If you want your device/driver to follow the proper platform driver
-> path (which is recommended), then you need to use the
-> IRQCHIP_PLATFORM_DRIVER_BEGIN() and related macros. Grep for plenty of ex=
-amples.
->=20
-> I offered to help you debug this issue and I asked for a dts file that
-> corresponds to a board you are testing this on and seeing an issue.
+doc reference errors (make refcheckdocs):
 
-There isn't a dts file for this because there's no publicly available
-hardware that actually has an APLIC. Maybe Ventana have pre-production
-silicon that has it, but otherwise it's a QEMU job.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230615182938.18487-3-tanure@linux.com
 
-Cheers,
-Conor.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> But you haven't answered my question [1] and are pointing to some
-> random commit and blaming it. That commit has no impact on any
-> existing devices/drivers.
->=20
-> Hi Marc,
->=20
-> Please consider this patch Nacked as long as FWNODE_FLAG_BEST_EFFORT
-> is used or until Anup actually works with us to debug the real issue.
->=20
-> -Saravana
-> [1] - https://lore.kernel.org/lkml/CAAhSdy2p6K70fc2yZLPdVGqEq61Y8F7WVT2J8=
-st5mQrzBi4WHg@mail.gmail.com/
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---SvxDNUXYoM4it6RY
-Content-Type: application/pgp-signature; name="signature.asc"
+pip3 install dtschema --upgrade
 
------BEGIN PGP SIGNATURE-----
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZItnJwAKCRB4tDGHoIJi
-0oNdAP9y41MDXvHACoZ/dwEG8Hy5OZRNoJvZmNm6Lx2BVfvqWgD+L4A6erWOa4eW
-QmND+OPAsLKLIP9O9/cMGnzZJ/jvLQs=
-=UPBa
------END PGP SIGNATURE-----
-
---SvxDNUXYoM4it6RY--
