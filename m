@@ -2,57 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D44731A4A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0466E731A4F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344037AbjFONla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:41:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49564 "EHLO
+        id S1344446AbjFONmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:42:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238823AbjFONlG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:41:06 -0400
+        with ESMTP id S1344451AbjFONmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:42:18 -0400
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFC7B2D49;
-        Thu, 15 Jun 2023 06:40:37 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDeXTf016932;
-        Thu, 15 Jun 2023 08:40:33 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D864C2D4B;
+        Thu, 15 Jun 2023 06:41:39 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDfPBh017065;
+        Thu, 15 Jun 2023 08:41:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686836433;
-        bh=uHLcCzVHIEFkUgZbxEL9EAV3LiC/LMck/W3AA/tZngk=;
+        s=ti-com-17Q1; t=1686836485;
+        bh=7Jg/lJHMvQJ7MX1B2FUaeJ+bIZCApwe5zycq3lyBS8I=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=O6QIfzMzj6X6Gqr0s9NDj3fSTYNMN5+yquZGDCiOPph+UfFfRo2T/kZFc8SxvgNks
-         RUksbAS3fltQiVjFu6s0kv1QX/W+nXdcB9Ly2buWrRl6CL3DVCFvRfdaI3eQO72G5l
-         WEFj7KIkSuo6TgfBxo+TOR5YEATSmtexXQdQXH2w=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDeXIh062978
+        b=aPvii9De6iaEY7lQWDBqaOr8/hMRtdyimohRV1lGEFiU/ZusR5j2RankGthZvktR8
+         +KWneRBVMeqEjUZhWoeN/cM+UqYJgXuYgBFNtUVB4Bv/LzvP5NaLlitxydDtrRxQN/
+         MyAjqQ+WQAlaSRTttlXaBnTaC8F0SaUifouWKELI=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDfPpQ014323
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 08:40:33 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 15 Jun 2023 08:41:25 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 08:40:32 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 08:41:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 08:40:32 -0500
+ Frontend Transport; Thu, 15 Jun 2023 08:41:25 -0500
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDeSCJ102483;
-        Thu, 15 Jun 2023 08:40:29 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDfMIL079470;
+        Thu, 15 Jun 2023 08:41:22 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
+To:     Nishanth Menon <nm@ti.com>,
+        Francesco Dolcini <francesco@dolcini.it>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <vaishnav.a@ti.com>,
-        <afd@ti.com>, <u-kumar1@ti.com>
-Subject: Re: (subset) [PATCH 0/3] arm64: dts: ti: k3-j7200: Fixes for various dtbs_checks warnings
-Date:   Thu, 15 Jun 2023 19:10:27 +0530
-Message-ID: <168681817160.2098323.13159910495290581719.b4-ty@ti.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/5] Add Toradex Verdin AM62
+Date:   Thu, 15 Jun 2023 19:11:20 +0530
+Message-ID: <168683646819.2367452.1758333747967197723.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230424173623.477577-1-nm@ti.com>
-References: <20230424173623.477577-1-nm@ti.com>
+In-Reply-To: <20230615095058.33890-1-francesco@dolcini.it>
+References: <20230615095058.33890-1-francesco@dolcini.it>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -67,23 +70,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth Menon,
+Hi Francesco Dolcini,
 
-On Mon, 24 Apr 2023 12:36:20 -0500, Nishanth Menon wrote:
-> Few fixups for j7200 dtbs_check warnings.
+On Thu, 15 Jun 2023 11:50:53 +0200, Francesco Dolcini wrote:
+> This series adds support for the Toradex Verdin AM62 SoM which can be used on
+> different carrier boards (Verdin Development Board, Dahlia and Yavia).
 > 
-> Bootlog: https://gist.github.com/nmenon/6a37fca2f05633b7153e661d2516deab
-> 
-> NOTE: lets see the discussion summary of [1] to see where to take this
-> series, but, I will put it out here in the list for discussion anyways.
+> The module consists of an TI AM62 family SoC (either AM623 or AM625), a
+> TPS65219 PMIC, a Gigabit Ethernet PHY, 512MB to 2GB of LPDDR4 RAM, an eMMC, a
+> TLA2024 ADC, an I2C EEPROM, an RX8130 RTC, and optional Parallel RGB to MIPI
+> DSI bridge plus an optional Bluetooth/Wi-Fi module.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/3] arm64: dts: ti: k3-j7200-mcu-wakeup: Remove 0x unit address prefix from nodename
-      commit: 4c3cdac1955a5274a42d915e98827ba0f136c286
+[1/5] dt-bindings: arm: ti: add toradex,verdin-am62 et al.
+      commit: d93dc2c99868334660bc474e35d2714102942382
+[2/5] arm64: defconfig: enable drivers for Verdin AM62
+      (no commit info)
+[3/5] arm64: dts: ti: add verdin am62
+      commit: 0e2486a5ebf4865862902a489151fb717bd09b2d
+[4/5] arm64: dts: ti: add verdin am62 dahlia
+      commit: 3a81b82997094d6119882ae72c3a4fddd88726fa
+[5/5] arm64: dts: ti: add verdin am62 yavia
+      commit: ad7c1ada8b851ff390bde7a959492fa13e0cfccc
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
