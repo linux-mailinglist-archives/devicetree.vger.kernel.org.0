@@ -2,70 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C71731246
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77695731249
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243977AbjFOIel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:34:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56648 "EHLO
+        id S238285AbjFOIfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:35:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244638AbjFOIea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:34:30 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CC32954
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:28 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b1ac373c9eso22906901fa.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:27 -0700 (PDT)
+        with ESMTP id S244924AbjFOIep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:34:45 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33B7294E
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:43 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-518b69d5b5dso2082527a12.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686818066; x=1689410066;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nf2LhhVsoVo8G/Q+39tVp5ZYmVz8VwbPVAt1Vy+crpk=;
-        b=OESo0GBOKbdnIkneHjQMHRkwskNYusAWooXNfVOQapJOx0VzKOqrA0qvdZVf5WZb2L
-         9t0USv+KzaROc4uX39mOh+6Pv/cv3pmtfXmVER8v4s70ANZZny36JC9QFqfgTNNtS+Pq
-         bayvnrCQYvgbzKakud07/llkkuJv075mtZ7YbfPK/X+0XKwavF59vLwI6SPgKiq6Wov1
-         rPFeRwf+DEIg9NhSnWBta2MurvsCX33WgRV5FjeSC2FQuO1y0KH+AIYbj0hihtO4k1mt
-         PjfRvNfWqmj6AlFjulzcx2AyarzyhaHM/Zz3QoKdNGBeNMuYnkWtCQug/+eY8HCxyePb
-         YNcA==
+        d=linaro.org; s=google; t=1686818082; x=1689410082;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4Iup8VQNhl0stIDF+NtcLsVwne6Lkml2Ei0ct6/cSec=;
+        b=b+zjG3JFTQ7EwjgMRqIAIxDAWGf8Mtgj47ozpBUTfjEN+ShwZ896y0vx68UDc/U6xS
+         fyiuO6f7lGaTT2Cijt9kQijua6uW9P8fh675h53fv5FaoO/JcxVYDgarxgM740lXy7BS
+         QrQZ/j4tmgICJcjDhearcMV/DiaKjdAoQHfCcUTYBJpId5Z2e23hZzdOK7CXVVZGiGX0
+         X9Ngw/Mmr2NUbhZp8uLbCn/d+UOqiNTHL+6+VETkjNqjdu8jTiT/qfdydLR5bs820sEM
+         6ehlRaBivKLseRk8QNkEl60vKBCvAe3Gmk5Pjc6F3bfSaLDMxvUQOUqVW5ekBP1c00w6
+         tdvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686818066; x=1689410066;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nf2LhhVsoVo8G/Q+39tVp5ZYmVz8VwbPVAt1Vy+crpk=;
-        b=YzitFGPQlDd+zOqF4BgBPdK99rxev64xH8UnuLNlyFsS0G8nn7rXFfPxkpPOcwKawR
-         deZyEF3MfTIGT3YRQ2ftRpa98Of50F7R74ccMkaKg+56O35QaB2dZAAlfGIb61fO+jgW
-         2OeNwEVkd2wZU3Y4SSDYadeI0ROt4I7a0fUsA0aS1hoDwzL1cbbEWdN8h8Sn/jNlL6fc
-         gHhRoVbrOfgA7QyKOWtTVpPYAUNiQH+E6g+Tcbzyq4PDJj9ovQDN3C1LB1K5sRT50iJb
-         ycg2KCEMn1UOB+ntrrWyU8BHQlObZhte30bnaTZlxKaejYRMR9P+2cgcmgcZKYrN4sc2
-         CVlQ==
-X-Gm-Message-State: AC+VfDyeLiTIOcsoaejnmgtd4SP8hA7N2sbc+bmTy0e/9rjmAr2lKTtU
-        xBZIGUJ8vrEmZM00mbXgxO6k6A==
-X-Google-Smtp-Source: ACHHUZ7WUAsy7QYAEnK/mZq/FceTzpINri+7JBkZwG5PZV3Kr8seauwAt9jjcLyg4fE9Zu2z00foaw==
-X-Received: by 2002:a2e:3a05:0:b0:2ad:8c4c:4459 with SMTP id h5-20020a2e3a05000000b002ad8c4c4459mr7952216lja.50.1686818066372;
-        Thu, 15 Jun 2023 01:34:26 -0700 (PDT)
-Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id a19-20020a2eb173000000b002ad92dff470sm2971209ljm.134.2023.06.15.01.34.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 01:34:25 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20221208; t=1686818082; x=1689410082;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Iup8VQNhl0stIDF+NtcLsVwne6Lkml2Ei0ct6/cSec=;
+        b=jpvNAxohq//Essw/AdvP3SaBx28Fv3WhYBYNIUkaJdGahz7rEsxZohWEYVmAOYwt7D
+         w6wIEVuoI6LDAJggGHJJ+R5IwdBAcYJj5tUZMQoNOpxLuWLL2H1cQv2koDp3+7oH5xhV
+         Qu6GBq3GACuQJI/RbqcM6avC8zBDz74Bd2H/A2NAND0AJg50cpB9Xky3LAtl5K8Jgek/
+         kU9MP0MqZFvyPhqC5yor3nnvV3L/ftridl0ct/bWMb35y/dKVx6p9tKdn0C3/D3NVwdt
+         4NcWyltxlkpMRgbrBdpbVAWRJxiN8ycK4g8y5DnpgosjUSnw9uX9HHl1AQG97LUvBT2r
+         qu3g==
+X-Gm-Message-State: AC+VfDw9LxbMHYoVXzltxNg+lRQwQpGcGk8OuET85YKmvPTAF5cwIf/Y
+        hvCDmtli5872FCb3l6FTChdTrA==
+X-Google-Smtp-Source: ACHHUZ49mdKDX4D1IVd2EIxLIsTaIb1/nyceVdoyxS1eb2z7KL+iBlG2flpGnrAmQkcXmzH8v9sucw==
+X-Received: by 2002:a17:907:3f83:b0:94f:704d:a486 with SMTP id hr3-20020a1709073f8300b0094f704da486mr17808684ejc.32.1686818082440;
+        Thu, 15 Jun 2023 01:34:42 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id z6-20020a1709060ac600b009745ecf5438sm9000371ejf.193.2023.06.15.01.34.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 01:34:42 -0700 (PDT)
+Message-ID: <2e5b85cb-018f-d912-629f-8204ffdbf12c@linaro.org>
+Date:   Thu, 15 Jun 2023 10:34:39 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 07/15] dt-bindings: reset: mt8188: Add VDOSYS1 reset
+ control bits
+Content-Language: en-US
+To:     Hsiao Chien Sung <shawn.sung@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8996: rename labels for HDMI nodes
-Date:   Thu, 15 Jun 2023 11:34:22 +0300
-Message-Id: <20230615083422.350297-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
-References: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Singo Chang <singo.chang@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        Jason-JH Lin <jason-jh.lin@mediatek.com>
+References: <20230614073125.17958-1-shawn.sung@mediatek.com>
+ <20230614073125.17958-8-shawn.sung@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230614073125.17958-8-shawn.sung@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,182 +87,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In board files MDSS and HDMI nodes do not come next to each other,
-because labels for HDMI nodes do not have the common mdss_ prefix.
+On 14/06/2023 09:31, Hsiao Chien Sung wrote:
+> Add MT8188 VDOSYS1 reset control bits.
+> 
+> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+> ---
 
-Follow the DSI example and enable such grouping by changing the prefix
-for HDMI labels to mdss_hdmi_*.
+Squash it with previous. You are touch the same file adding almost the
+same bits...
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts  | 40 ++++++++++----------
- arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts |  6 +--
- arch/arm64/boot/dts/qcom/msm8996-mtp.dts     |  4 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi        | 12 +++---
- 4 files changed, 31 insertions(+), 31 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index b599909c4463..39170c18c693 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -208,25 +208,6 @@ &gpu {
- 	status = "okay";
- };
- 
--&hdmi {
--	status = "okay";
--
--	pinctrl-names = "default", "sleep";
--	pinctrl-0 = <&hdmi_hpd_active &hdmi_ddc_active>;
--	pinctrl-1 = <&hdmi_hpd_suspend &hdmi_ddc_suspend>;
--
--	core-vdda-supply = <&vreg_l12a_1p8>;
--	core-vcc-supply = <&vreg_s4a_1p8>;
--};
--
--&hdmi_phy {
--	status = "okay";
--
--	vddio-supply = <&vreg_l12a_1p8>;
--	vcca-supply = <&vreg_l28a_0p925>;
--	#phy-cells = <0>;
--};
--
- &hsusb_phy1 {
- 	status = "okay";
- 
-@@ -251,6 +232,25 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_hdmi {
-+	status = "okay";
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&hdmi_hpd_active &hdmi_ddc_active>;
-+	pinctrl-1 = <&hdmi_hpd_suspend &hdmi_ddc_suspend>;
-+
-+	core-vdda-supply = <&vreg_l12a_1p8>;
-+	core-vcc-supply = <&vreg_s4a_1p8>;
-+};
-+
-+&mdss_hdmi_phy {
-+	status = "okay";
-+
-+	vddio-supply = <&vreg_l12a_1p8>;
-+	vcca-supply = <&vreg_l28a_0p925>;
-+	#phy-cells = <0>;
-+};
-+
- &mmcc {
- 	vdd-gfx-supply = <&vdd_gfx>;
- };
-@@ -1054,7 +1054,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&hdmi 0>;
-+			sound-dai = <&mdss_hdmi 0>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-index ed2e2f6c6775..ac6471d1db1f 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-@@ -92,15 +92,15 @@ &gpu {
- 	status = "okay";
- };
- 
--&hdmi {
-+&mdss {
- 	status = "okay";
- };
- 
--&hdmi_phy {
-+&mdss_hdmi {
- 	status = "okay";
- };
- 
--&mdss {
-+&mdss_hdmi_phy {
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
-index 596ad4c896f5..495d45a16e63 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
-@@ -24,10 +24,10 @@ &blsp2_uart2 {
- 	status = "okay";
- };
- 
--&hdmi {
-+&mdss_hdmi {
- 	status = "okay";
- };
- 
--&hdmi_phy {
-+&mdss_hdmi_phy {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 3855366ca89f..40ac0a784a4a 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -895,7 +895,7 @@ mmcc: clock-controller@8c0000 {
- 				 <&mdss_dsi0_phy 0>,
- 				 <&mdss_dsi1_phy 1>,
- 				 <&mdss_dsi1_phy 0>,
--				 <&hdmi_phy>;
-+				 <&mdss_hdmi_phy>;
- 			clock-names = "xo",
- 				      "gpll0",
- 				      "gcc_mmss_noc_cfg_ahb_clk",
-@@ -980,7 +980,7 @@ ports {
- 					port@0 {
- 						reg = <0>;
- 						mdp5_intf3_out: endpoint {
--							remote-endpoint = <&hdmi_in>;
-+							remote-endpoint = <&mdss_hdmi_in>;
- 						};
- 					};
- 
-@@ -1136,7 +1136,7 @@ mdss_dsi1_phy: phy@996400 {
- 				status = "disabled";
- 			};
- 
--			hdmi: hdmi-tx@9a0000 {
-+			mdss_hdmi: hdmi-tx@9a0000 {
- 				compatible = "qcom,hdmi-tx-8996";
- 				reg =	<0x009a0000 0x50c>,
- 					<0x00070000 0x6158>,
-@@ -1160,7 +1160,7 @@ hdmi: hdmi-tx@9a0000 {
- 					"alt_iface",
- 					"extp";
- 
--				phys = <&hdmi_phy>;
-+				phys = <&mdss_hdmi_phy>;
- 				#sound-dai-cells = <1>;
- 
- 				status = "disabled";
-@@ -1171,14 +1171,14 @@ ports {
- 
- 					port@0 {
- 						reg = <0>;
--						hdmi_in: endpoint {
-+						mdss_hdmi_in: endpoint {
- 							remote-endpoint = <&mdp5_intf3_out>;
- 						};
- 					};
- 				};
- 			};
- 
--			hdmi_phy: phy@9a0600 {
-+			mdss_hdmi_phy: phy@9a0600 {
- 				#phy-cells = <0>;
- 				compatible = "qcom,hdmi-phy-8996";
- 				reg = <0x009a0600 0x1c4>,
--- 
-2.39.2
+Best regards,
+Krzysztof
 
