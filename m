@@ -2,113 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA5D731A37
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:40:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 780F9731A38
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:40:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239055AbjFONkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:40:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49246 "EHLO
+        id S1344180AbjFONkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343904AbjFONjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:39:33 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F323AA9
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 06:38:14 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9827109c6e9so243813666b.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 06:38:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686836253; x=1689428253;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mYo4mo9LxJ5Bb1u21M6AxJhHfaaBpi4Yfj8oS2RZGik=;
-        b=gwnpCAL+9XD9YTcrhW22JHHze+0ln59G79fG0PbzPCPkUume7cpPMe9N1MpVazB8T0
-         1VNcvHhrMsDbjcPaCwwELzdmSj2CInEWwxUmLYNOwRUXECqbkD21NOCA6zL0LkId1xTe
-         Jmz5KNhEGQlTF8AQJe7uUwDQ4+pi/99NutlpmFMGKD3/SppKORWaGtI+PmV14ZbcTUXg
-         SQ/xFGrRUrJug8frUn3FxCFoHdEvGjOv0zxfZtED6wTv76W+YYbrOe0XjczsTNc6FnX6
-         BTbrSi6sWw9Hr8PLExxfqiIVT6LsvR3Q/5vN6OlV0JnK2Yv0FbMnNpMYEzZJu4bCBpMD
-         RaPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686836253; x=1689428253;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mYo4mo9LxJ5Bb1u21M6AxJhHfaaBpi4Yfj8oS2RZGik=;
-        b=bJr/dlEv578WHWJuHsSWCsjOaVLt/zId6RgjDAqyYge0Mu9GZyf2x/ox6DD2A2PaxN
-         07ps38Yi+jMasvEa3/LjiQGzJfZyby2Gxs/UrLAG3oAVEVA1XawICoIjz4oXGIWsSw37
-         2ThD41aQo/l+/7nZvEiG71TW3QTmhK/LHgyCH6y+ZY1cXmKBL36yuanUSCrFmT1n4IOh
-         UcBYXk6r2i/s7KayIkUgEymXbX8nRTFV6gY2jOjKJg7n6bggw2LIgbsZvkaLrHs2xZlq
-         afwvrd1iUEyZ3QqJNWmJb3Kagehhn5YpYzfa0mcm6+R+p/7m82nFFGglQV5WcVKHw2d5
-         S1Rg==
-X-Gm-Message-State: AC+VfDxCuls7AOUjSK21rWItrC1Mtdq9Yruq0Ylz6HN8IE0RoGXCevoX
-        hvVjAUKglan6sT1PC5ODzF3W9g==
-X-Google-Smtp-Source: ACHHUZ4+n13L4jhgYrrrc4ptTI3RmwMq1dwvCZV4MDbjtdu4sLMN7fnVBOOcDFGxP2/w6+shDoBlfg==
-X-Received: by 2002:a17:906:6a07:b0:982:a376:1d3f with SMTP id qw7-20020a1709066a0700b00982a3761d3fmr1542823ejc.41.1686836253221;
-        Thu, 15 Jun 2023 06:37:33 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id d23-20020a17090648d700b00982c84e5dadsm196414ejt.170.2023.06.15.06.37.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 06:37:32 -0700 (PDT)
-Message-ID: <b326151c-24ed-e603-d1c7-3ebe8dbaa6c4@linaro.org>
-Date:   Thu, 15 Jun 2023 15:37:30 +0200
+        with ESMTP id S1344038AbjFONka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:40:30 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68F3359F;
+        Thu, 15 Jun 2023 06:39:25 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDctqp035586;
+        Thu, 15 Jun 2023 08:38:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686836335;
+        bh=W03GDBtsx/euIwZmFpeRvYj1DNjPr/Db4E/jxNQJQJw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=geNB8XiLWWx0vmNoSY1KeK512Fd1z3+PRHsSRCIDMjdO0MQPREH7StixbYwKnyNk1
+         c1vrQHYmG4WMYC/OrC6beFkXIMVwGCNlpIYfPotPdBFFFguj8RNCkDHAFzyf0zuPgD
+         Do3k7w9Kulux28Djd4PguNM8sMGM3frwj0P9u8yI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDctFw062056
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 08:38:55 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 08:38:55 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 08:38:55 -0500
+Received: from [172.24.145.182] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDcpZg030599;
+        Thu, 15 Jun 2023 08:38:52 -0500
+Message-ID: <b1a278fd-4c34-4c6c-aef6-441c22a7aa41@ti.com>
+Date:   Thu, 15 Jun 2023 19:08:51 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 17/23] dt-bindings: net: qcom,ethqos: add description
- for sa8775p
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 6/9] arm64: dts: ti: k3-j721e-beagleboneai64: Add
+ wakeup_uart pinmux
 Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>, Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>, "Kumar, Udit" <u-kumar1@ti.com>
+CC:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230615121419.175862-1-brgl@bgdev.pl>
- <20230615121419.175862-18-brgl@bgdev.pl>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230615121419.175862-18-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Neha Malcom Francis <n-francis@ti.com>
+References: <20230601183151.1000157-1-nm@ti.com>
+ <20230601183151.1000157-7-nm@ti.com>
+ <22b67e80-1f5f-d8e0-3c85-c69d97ea0d39@ti.com>
+ <20230614120303.5ievpixlpjb3wtdz@elective>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20230614120303.5ievpixlpjb3wtdz@elective>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2023 14:14, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+
+On 14/06/23 17:33, Nishanth Menon wrote:
+> On 19:26-20230613, Kumar, Udit wrote:
+>> Hi Nishanth,
+>>
+>> On 6/2/2023 12:01 AM, Nishanth Menon wrote:
+>>> Define the wakeup uart pin-mux for completeness. This allows the
+>>> device tree usage in bootloader and firmwares that can configure the
+>>> same appropriately.
+>>>
+>>> Signed-off-by: Nishanth Menon <nm@ti.com>
+>>> ---
+>>>   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 9 +++++++++
+>>>   1 file changed, 9 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+>>> index c13246a9ed8f..bc53ca566a68 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+>>> @@ -531,6 +531,13 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+>>>   		>;
+>>>   	};
+>>> +	wkup_uart0_pins_default: wkup-uart0-pins-default {
+>>> +		pinctrl-single,pins = <
+>>> +			J721E_WKUP_IOPAD(0xa0, PIN_INPUT, 0) /* (J29) WKUP_UART0_RXD */
+>>> +			J721E_WKUP_IOPAD(0xa4, PIN_OUTPUT, 0) /* (J28) WKUP_UART0_TXD */
+>>> +		>;
+>>> +	};
+>>> +
+>>>   	mcu_usbss1_pins_default: mcu-usbss1-pins-default {
+>>>   		pinctrl-single,pins = <
+>>>   			J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO0_30 */
+>>> @@ -541,6 +548,8 @@ J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO
+>>>   &wkup_uart0 {
+>>>   	/* Wakeup UART is used by TIFS firmware. */
+>>>   	status = "reserved";
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&wkup_uart0_pins_default>;
+>>>   };
+>>
+>>
+>> If you like to consider alias for wkup_uart0 for this board ,
+>>
+>> Just to align with other boards for this SOC family.  I understand
+>> wkup_uart0 is not being used.
 > 
-> Add the compatible for the MAC controller on sa8775p platforms. This MAC
-> works with a single interrupt so add minItems to the interrupts property.
-> The fourth clock's name is different here so change it. Enable relevant
-> PHY properties. Add the relevant compatibles to the binding document for
-> snps,dwmac as well.
+> Vignesh,
+> could you squash this locally OR if you like, I can post a v2:
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> index 3304460f6a0b..9922d7bb061f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> @@ -20,6 +20,7 @@ / {
+>  	model = "BeagleBoard.org BeagleBone AI-64";
+>  
+>  	aliases {
+> +		serial0 = &wkup_uart0;
+>  		serial2 = &main_uart0;
+>  		mmc0 = &main_sdhci0;
+>  		mmc1 = &main_sdhci1;
+> 
 
+Squashed locally before queuing, no need to resend
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+-- 
+Regards
+Vignesh
