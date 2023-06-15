@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2631573236F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 01:22:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEA2F732374
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 01:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239240AbjFOXWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 19:22:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45624 "EHLO
+        id S240254AbjFOXWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 19:22:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbjFOXVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 19:21:43 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669682D5F
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 16:21:35 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f84d70bf96so225626e87.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 16:21:35 -0700 (PDT)
+        with ESMTP id S239978AbjFOXVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 19:21:44 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC8802D6B
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 16:21:36 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f122ff663eso11401066e87.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 16:21:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686871293; x=1689463293;
+        d=linaro.org; s=google; t=1686871295; x=1689463295;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=FArdX5TBaRtyEgFmzlEIkawN60f/9KNXaxifqatEN80=;
-        b=lgRI1pKr7OarGe1fyPxQD0FW/7BbLSCbjw99ajPlQ4AXC/8BKH4fzG3NyVWIGZmaCp
-         ouvndgXpA3RoP4J35SA7lq8gq3jKIZy2F2SdDwuazvjtJxFZBHLVoogJpo5Y5RHMuO7r
-         Rk//O+izXJp8RAATO1TtwsQgJqEVXpftFhoS8SDOUljc07DbtrYtP+sTJaYeHrKY29SQ
-         rqkn7cKJhmgJL/Jmlywa1Iyoq+YT7vX2JTEJ9zWSuhSRSkm/XIhRxPX37vych/Xe9jJx
-         yqE17KEk0mIKYsdDWT42uc2UufLr21nh5sb7mUtFdqh7wApv4GOcYa1pO78zjyyq4qjA
-         k8/A==
+        bh=FsmM0RVmGhdEwe/rih/x+k+rX6jJFYBfre/lrv7PkUc=;
+        b=QxK4BzIR8IUBhOCy5aUHkaSxQ1FVwiCX9v8TWjmIKZxrM6iQhdZS075YcYr0T6/T5V
+         cG3qCIAwYyWo5MXlUMb5/8OW+ZeInwEOo99SAvLMzeYqssas7QAY+7QsXkuCVT2GUg0x
+         vv3hy70lsqmtHVCgnxKEbTuZppbJaCyn7xkPigVOR+HIwnmdcfsy0bgOOnzxSet0LOPf
+         jB7qnjWq6y9G/vicSJr7Y51S4eW14hqGyROb4C6jziViqEei+zgrtAfGdLKswE4zVeqq
+         04QDyy5jkZKfaMMa5dF5qLgKrhh3ZU6BVqL6idgqv5Dt4QaoICXLmi2QjKRs/S4pwuum
+         lo0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686871293; x=1689463293;
+        d=1e100.net; s=20221208; t=1686871295; x=1689463295;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FArdX5TBaRtyEgFmzlEIkawN60f/9KNXaxifqatEN80=;
-        b=Wfdbj1d8248MEVCSv36s6rPPtYTAplj7dgWr0/d5iTxj7v7pgGJ9oNoJCchzOGowF3
-         eFTEePEdjjXlaob+qnke+ft5AujUvZxE4rNe6z/w8eJBiu2raqcSYn06RXYhHYob3Bq6
-         BpIYdgDnkFtFvFydudy8xVKmwKfu5zx7cxfDsSrEohQZ5+y6xGV5CNEg1dpy3SQSZRGs
-         gAFpUpDH+6yMZBYQWOQ8kRri56GVkC3EjiTGC2oDs0XKGTj2XW7dZqvzWTL3cRMlXuPM
-         EAjDvT4B08jmnkiiPCGq2FBN22XNmzfs5ftArQkchgnQ47LHQB6FoS6lPiYYFlIceEmy
-         TH+w==
-X-Gm-Message-State: AC+VfDzHeQZYijIjc6zY4BvmrmOmL1pnpFWETFRmJ7toSesOImIN7q/1
-        0vZMb69hiziknMZwoV9XqjBayw==
-X-Google-Smtp-Source: ACHHUZ4dZM/nJyPupye1DNgW/MA8+4mZrVcoghmRv+dVbxkAZa1IW4UGF3Gqp7gSh/z3n0tUy4+cjw==
-X-Received: by 2002:a05:6512:3052:b0:4f7:47bb:2ce0 with SMTP id b18-20020a056512305200b004f747bb2ce0mr2000501lfb.4.1686871293575;
-        Thu, 15 Jun 2023 16:21:33 -0700 (PDT)
+        bh=FsmM0RVmGhdEwe/rih/x+k+rX6jJFYBfre/lrv7PkUc=;
+        b=VX3xCr3/fzPIURFqw1pB9hO9yLohQgMzzxCXd24Jj9wwJLjkrdIK1qqErAWIYMZRUj
+         SRYwU1/l6IEm30lxWLvN5i87P2wA1s8isJApP2DSWfE0CzhWC2aX34WHEaIrT3ya/MmT
+         2AvfVARDXfqJ2xyWDIVk81Esn3rEV2xRlnrwzqfj5HjnKYG+89LVZ0Gcf7Lo6OI/PjrS
+         Lq3a+D2JZHbQ2aSM/i0VZgka3pqDOmtjDHw2crHl/dpKxdEUZjqOR6lgff1euH7PrQOK
+         DEUb4dDFxZS/JuCutRikZiyE0beGSlcmayX46LwGlfFDCxW2udf8oHFC2Yu7xu0inNa7
+         RQfQ==
+X-Gm-Message-State: AC+VfDwB4LFqjcaJwM+f7n2rf8+Inys4rCCsUEuZ/y1NZBL+XKeQ26vZ
+        WzOiPLmDYrep1uCpslAbUdebjQ==
+X-Google-Smtp-Source: ACHHUZ57bxPcpLH/W26TQt+WKOvyGY/VYKwN0jb23n3AXd24tArYBiB8EX6js3HDzk6cTEl/2S6N3g==
+X-Received: by 2002:a19:675a:0:b0:4f1:4468:ee65 with SMTP id e26-20020a19675a000000b004f14468ee65mr96060lfj.30.1686871295061;
+        Thu, 15 Jun 2023 16:21:35 -0700 (PDT)
 Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id u25-20020a056512041900b004f24ee39661sm2744852lfk.137.2023.06.15.16.21.32
+        by smtp.gmail.com with ESMTPSA id u25-20020a056512041900b004f24ee39661sm2744852lfk.137.2023.06.15.16.21.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 16:21:33 -0700 (PDT)
+        Thu, 15 Jun 2023 16:21:34 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 16 Jun 2023 01:20:51 +0200
-Subject: [PATCH v9 10/20] drm/msm/a6xx: Extend and explain UBWC config
+Date:   Fri, 16 Jun 2023 01:20:52 +0200
+Subject: [PATCH v9 11/20] drm/msm/a6xx: Move CX GMU power counter
+ enablement to hw_init
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v9-10-890d8f470c8b@linaro.org>
+Message-Id: <20230223-topic-gmuwrapper-v9-11-890d8f470c8b@linaro.org>
 References: <20230223-topic-gmuwrapper-v9-0-890d8f470c8b@linaro.org>
 In-Reply-To: <20230223-topic-gmuwrapper-v9-0-890d8f470c8b@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -75,16 +76,16 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1686871277; l=3228;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1686871277; l=1883;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=qlz+dGbiTZkptUzjat5pbZCHt/vo5Ur5/uPhfZn2V7s=;
- b=F1kYVr/t6oi6U8zbpCNcQjOjoB6OhCkl7GfCz02Qa7F0iJcMHIr+3a3NSu5+1zF22s+gNPZLr
- rNwBjx94vy/Aal7zsS65zU1L0BwciT12/lSgCuhtJRxhMSfuR++Q+B5
+ bh=NcBNg698ol/YkEOdeY7ojQoggNClubg5869lLN304Tc=;
+ b=8sFX06msZKeW+kwKP3ZOXVdyHN22k+stTfTspDXSv/V6MFiUsi8VyYOuJztXYN7vAuhXvhy9v
+ lEKWJf1OyO/AMgeFZYi9GWfzVwOr97iNrKw9rNMga9ujWibv7/jc7wo
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,97 +93,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename lower_bit to hbb_lo and explain what it signifies.
-Add explanations (wherever possible to other tunables).
+Since the introduction of A6xx support, we've been enabling the CX GMU
+power counter 0 in a bit of a weird spot. Move it to hw_init so that
+GMU wrapper GPUs can reuse the same code paths. As a bonus, this order
+makes it easier to compare mainline and downstream register access traces.
 
-Port setting min_access_length, ubwc_mode and hbb_hi from downstream.
-
-Reviewed-by: Rob Clark <robdclark@gmail.com>
-Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 41 ++++++++++++++++++++++++++---------
- 1 file changed, 31 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 6 ------
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 7 +++++++
+ 2 files changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index 7e0d1dfcd993..8aa4670b4308 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -887,10 +887,25 @@ static void a6xx_set_cp_protect(struct msm_gpu *gpu)
- static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
- {
- 	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
--	u32 lower_bit = 2;
--	u32 amsbc = 0;
-+	/* Unknown, introduced with A650 family, related to UBWC mode/ver 4 */
- 	u32 rgb565_predicator = 0;
-+	/* Unknown, introduced with A650 family */
- 	u32 uavflagprd_inv = 0;
-+	/* Whether the minimum access length is 64 bits */
-+	u32 min_acc_len = 0;
-+	/* Entirely magic, per-GPU-gen value */
-+	u32 ubwc_mode = 0;
-+	/*
-+	 * The Highest Bank Bit value represents the bit of the highest DDR bank.
-+	 * We then subtract 13 from it (13 is the minimum value allowed by hw) and
-+	 * write the lowest two bits of the remaining value as hbb_lo and the
-+	 * one above it as hbb_hi to the hardware. This should ideally use DRAM
-+	 * type detection.
-+	 */
-+	u32 hbb_hi = 0;
-+	u32 hbb_lo = 2;
-+	/* Unknown, introduced with A640/680 */
-+	u32 amsbc = 0;
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+index 906bed49f27d..aae7ea651607 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+@@ -479,12 +479,6 @@ static int a6xx_rpmh_start(struct a6xx_gmu *gmu)
  
- 	/* a618 is using the hw default values */
- 	if (adreno_is_a618(adreno_gpu))
-@@ -901,32 +916,38 @@ static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
+ 	gmu_write(gmu, REG_A6XX_GMU_RSCC_CONTROL_REQ, 0);
  
- 	if (adreno_is_a650(adreno_gpu) || adreno_is_a660(adreno_gpu)) {
- 		/* TODO: get ddr type from bootloader and use 2 for LPDDR4 */
--		lower_bit = 3;
-+		hbb_lo = 3;
- 		amsbc = 1;
- 		rgb565_predicator = 1;
- 		uavflagprd_inv = 2;
- 	}
- 
- 	if (adreno_is_a690(adreno_gpu)) {
--		lower_bit = 2;
-+		hbb_lo = 2;
- 		amsbc = 1;
- 		rgb565_predicator = 1;
- 		uavflagprd_inv = 2;
- 	}
- 
- 	if (adreno_is_7c3(adreno_gpu)) {
--		lower_bit = 1;
-+		hbb_lo = 1;
- 		amsbc = 1;
- 		rgb565_predicator = 1;
- 		uavflagprd_inv = 2;
- 	}
- 
- 	gpu_write(gpu, REG_A6XX_RB_NC_MODE_CNTL,
--		rgb565_predicator << 11 | amsbc << 4 | lower_bit << 1);
--	gpu_write(gpu, REG_A6XX_TPL1_NC_MODE_CNTL, lower_bit << 1);
--	gpu_write(gpu, REG_A6XX_SP_NC_MODE_CNTL,
--		uavflagprd_inv << 4 | lower_bit << 1);
--	gpu_write(gpu, REG_A6XX_UCHE_MODE_CNTL, lower_bit << 21);
-+		  rgb565_predicator << 11 | hbb_hi << 10 | amsbc << 4 |
-+		  min_acc_len << 3 | hbb_lo << 1 | ubwc_mode);
-+
-+	gpu_write(gpu, REG_A6XX_TPL1_NC_MODE_CNTL, hbb_hi << 4 |
-+		  min_acc_len << 3 | hbb_lo << 1 | ubwc_mode);
-+
-+	gpu_write(gpu, REG_A6XX_SP_NC_MODE_CNTL, hbb_hi << 10 |
-+		  uavflagprd_inv << 4 | min_acc_len << 3 |
-+		  hbb_lo << 1 | ubwc_mode);
-+
-+	gpu_write(gpu, REG_A6XX_UCHE_MODE_CNTL, min_acc_len << 23 | hbb_lo << 21);
+-	/* Set up CX GMU counter 0 to count busy ticks */
+-	gmu_write(gmu, REG_A6XX_GPU_GMU_AO_GPU_CX_BUSY_MASK, 0xff000000);
+-	gmu_rmw(gmu, REG_A6XX_GMU_CX_GMU_POWER_COUNTER_SELECT_0, 0xff, 0x20);
+-
+-	/* Enable the power counter */
+-	gmu_write(gmu, REG_A6XX_GMU_CX_GMU_POWER_COUNTER_ENABLE, 1);
+ 	return 0;
  }
  
- static int a6xx_cp_init(struct msm_gpu *gpu)
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+index 8aa4670b4308..0efecde2af1a 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+@@ -1256,6 +1256,13 @@ static int hw_init(struct msm_gpu *gpu)
+ 			0x3f0243f0);
+ 	}
+ 
++	/* Set up the CX GMU counter 0 to count busy ticks */
++	gmu_write(gmu, REG_A6XX_GPU_GMU_AO_GPU_CX_BUSY_MASK, 0xff000000);
++
++	/* Enable the power counter */
++	gmu_rmw(gmu, REG_A6XX_GMU_CX_GMU_POWER_COUNTER_SELECT_0, 0xff, BIT(5));
++	gmu_write(gmu, REG_A6XX_GMU_CX_GMU_POWER_COUNTER_ENABLE, 1);
++
+ 	/* Protect registers from the CP */
+ 	a6xx_set_cp_protect(gpu);
+ 
 
 -- 
 2.41.0
