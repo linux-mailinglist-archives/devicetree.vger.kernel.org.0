@@ -2,56 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 987987322E5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 00:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A367C73230E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 01:07:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232355AbjFOWy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 18:54:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37896 "EHLO
+        id S230000AbjFOXHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 19:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232234AbjFOWy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 18:54:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49559270E;
-        Thu, 15 Jun 2023 15:54:56 -0700 (PDT)
+        with ESMTP id S229534AbjFOXHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 19:07:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54B9273D;
+        Thu, 15 Jun 2023 16:07:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C8EFE61F12;
-        Thu, 15 Jun 2023 22:54:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F26B3C433CA;
-        Thu, 15 Jun 2023 22:54:52 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3874461F82;
+        Thu, 15 Jun 2023 23:07:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EDCAC433C0;
+        Thu, 15 Jun 2023 23:07:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686869695;
-        bh=uOdg4scVwQQzL8UZnROnPCCRu7Nfdm5eCRa5kHL1u3w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=E7dnoqhMqsNpKE8pAOzKNBWZs2o3jqvpczL4+qj/AnHRAbA+aMbrugl5xHi0SGH8p
-         3QYW/NRiH3p1pwIvE0NvC5eh8etZ52ICkyfNOYgbr8KrpW772LN1+zxnN+Eo9bA0Ga
-         Q9upHj2X2cnQhgXHBZpU5AB5u8MiwoxTXmTB7zsNL2O+hEWZW07vQdpsnWDulbEme3
-         EqlDOvJGX3X1Cf7tTaSBdH+Jet1qUPYP86nbYEMLxP1KrMutgAL3sKbgmfn4hA+sGv
-         e4yiroGQHTlUV2ClVw69H4osMbp5083FmA45b+9n2lfWrh1IobvSzbBEs3fK0+rSLs
-         Y21RKq4cMVWrA==
+        s=k20201202; t=1686870433;
+        bh=1PjAQXC6EO6kyUJubG5wMVdHRFYZIFiLVImaErWPjBI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pMgHW0sLFNHkyTREetfSgwDQToYlSsp1sZ8YAWd7yGIa/Ull2kkuyCsUXtTtXl3eV
+         vcA+Qx8wNvwW/rlbmyy2notXaHBgobRx7d/1MPrjj251Hg2zJW3g8YPtsgOAnkHpcb
+         D+i2nuJqImqv+PV47OVKG4mhnPegQ27xvuOc1Fyw8whi8af3rE+27PXqKXuc/G1qH5
+         yLqyWD6+toB//A4PP0y+O3Rf/9d1MvbO+H89bWERcJHXm474jBIIMNaykvQd4uLt3s
+         RKHGhA8L+DzFTNibj0HBGi6fy4zvjjZmaqvalrDF6aDABFNLBtQO77OtXZOeaB9W/H
+         f1atP3ctfAeyQ==
+Date:   Fri, 16 Jun 2023 00:07:05 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     palmer@dabbelt.com
-Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: riscv: cpus: switch to unevaluatedProperties: false
-Date:   Thu, 15 Jun 2023 23:50:15 +0100
-Message-Id: <20230615-viper-stoic-1ff8efd7d51d@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230615-creamer-emu-ade0fa0bdb68@spud>
-References: <20230615-creamer-emu-ade0fa0bdb68@spud>
+        Conor Dooley <conor+dt@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Marek Vasut <marex@denx.de>, Suman Anna <s-anna@ti.com>,
+        - <devicetree-spec@vger.kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Remove last usage of "binding" or "schema"
+ in titles
+Message-ID: <20230616-skydiver-unwritten-5cc47e04bf07@spud>
+References: <20230615213154.1753313-1-robh@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=729; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=u/qrBFnL9e9PAex6e6NvnAWTZV+52ZOaw3F8Q/zOFMA=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCndUxdfseKvjwla7JCU5jYp+vURlY9nUq7/K9Hpfz5/1 v5sm8Z7HaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZjI8ysMf4WPBhXM3/362eI7 DlOZuQsNDnz3a7r51NT3r8yktv6Xhy4x/E84uNkwqIsh666IkITAudpLDw9Ov2TN+aiVfedRdq6 MDnYA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="UYzgGdFRAKyKvt7y"
+Content-Disposition: inline
+In-Reply-To: <20230615213154.1753313-1-robh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,29 +73,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-To permit validation of cpu nodes, swap "additionalProperties: true"
-out for "unevaluatedProperties: false".
+--UYzgGdFRAKyKvt7y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, Jun 15, 2023 at 03:31:54PM -0600, Rob Herring wrote:
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index e89a10d9c06b..144da86718c1 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -143,7 +143,7 @@ required:
-   - riscv,isa
-   - interrupt-controller
- 
--additionalProperties: true
-+unevaluatedProperties: false
- 
- examples:
-   - |
--- 
-2.39.2
+> -title: Restart and shutdown handler generic binding
+> +title: Restart and shutdown handler Common Properties
 
+With the new caps for Common Properties, the title here looks a bit odd.
+Should probably be s/shutdown handler/Shutdown Handler/ for title case,
+but w/e...
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+
+--UYzgGdFRAKyKvt7y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIuZmQAKCRB4tDGHoIJi
+0vaOAQCvuB+Vy9A841viHe6D4DHohHomPDJhhehcVREBQDS3/wD/W6WhHVSt6J46
+5pM/kAhmxxmkyTHVvMdH2/sXzNDawgM=
+=Uxoq
+-----END PGP SIGNATURE-----
+
+--UYzgGdFRAKyKvt7y--
