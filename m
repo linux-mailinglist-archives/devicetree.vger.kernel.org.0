@@ -2,59 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E28C0730D60
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 04:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA89730D7A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 05:25:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234207AbjFOC5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 22:57:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40992 "EHLO
+        id S238219AbjFODZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 23:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbjFOC5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 22:57:10 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 208B0122;
-        Wed, 14 Jun 2023 19:57:07 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxnOoCfopkVGQFAA--.11424S3;
-        Thu, 15 Jun 2023 10:57:06 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxPMr_fYpkxVobAA--.3349S3;
-        Thu, 15 Jun 2023 10:57:06 +0800 (CST)
-Subject: Re: [PATCH v14 1/2] thermal: loongson-2: add thermal management
- support
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn,
-        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
-References: <20230426062018.19755-1-zhuyinbo@loongson.cn>
- <af4d1e00-76d6-b71a-2ed1-562e6405306b@linaro.org>
- <ac5b3982-a658-e05b-1b5c-3aeeda1585ed@loongson.cn>
- <d652acef-ab25-7d5e-6af0-584dacfbbd8d@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <8ca44091-35fd-cc24-9896-0317772c5620@loongson.cn>
-Date:   Thu, 15 Jun 2023 10:57:03 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S238324AbjFODY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 23:24:56 -0400
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA58A26AD
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 20:24:54 -0700 (PDT)
+Received: by mail-ua1-x92f.google.com with SMTP id a1e0cc1a2514c-78775a5a84eso1273986241.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 20:24:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1686799494; x=1689391494;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2nSVGPPWBRzpCGCRYannX5iA+YMKGtqta1nbYF5t7UA=;
+        b=naLregnKKESEIb9Rj4ReayoHQGn78YEhwBRimP5/yR9tSsvy3UnvX3tgU6szoMUip+
+         50ISCvWu8EGTn6cEtxA8lCi74gdoa6k4GEUGC4DPGc8khHfUVK6cYsepluZ6DLtvbk9J
+         4rBhaNm+eUswtHkMKiCYQ9Mk3w8qGCAPY8ggo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686799494; x=1689391494;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2nSVGPPWBRzpCGCRYannX5iA+YMKGtqta1nbYF5t7UA=;
+        b=abgnrcQgYw5EBznNMx57EKfx9Snfvcz9nWcHAK/06tIXLVBsJGWiBnS+tphZS8Te6Y
+         xXOZ4fjL1BHMtHbNlW3bMob38lYAsZ7AMdLJTTSe64KnlNwuor2o9Ch+gzbs2h3E76ZR
+         t92Yc5GkHfAonvy0qjN0LruttLeaLqFRkPS+8x96lj5athMpYgct4e49ZfG1JT9h29MJ
+         lAySL1a91gI+Qp+CEe4DleXPuo2n68OMd2QlTfdxFxOZZgNjjKz+1gzsJvxBnyP/9QP6
+         wJxQiQ8l11oIwH5GM9u7Bkoy3doTQ9HvnIlrEXeH97LW26y3Orb9R87jeCt3vpfyk4gh
+         +dvA==
+X-Gm-Message-State: AC+VfDxl/d/ONcEOT6SP2H4fLX3GCFhr6xb7et86JFsURNBX5UWiS+yx
+        g8kzz/4lL8xoFjwtmQ+N+C+JTUMwkvsEwYdf9dYZCw==
+X-Google-Smtp-Source: ACHHUZ7yKjRDJ1WlW1Oput8L54g88VDOjieJMDdfRPhL25+Te/RHk2aWjxgB6vrI6XWEfF2SBrmyef0xPxvHJ45yXOg=
+X-Received: by 2002:a05:6102:503:b0:43f:5c7e:d5db with SMTP id
+ l3-20020a056102050300b0043f5c7ed5dbmr135418vsa.2.1686799493855; Wed, 14 Jun
+ 2023 20:24:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <d652acef-ab25-7d5e-6af0-584dacfbbd8d@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxPMr_fYpkxVobAA--.3349S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20230609083009.2822259-1-wenst@chromium.org> <20230609083009.2822259-8-wenst@chromium.org>
+ <a5c00706-dc23-4561-8bcf-729fd10e74ef@sirena.org.uk>
+In-Reply-To: <a5c00706-dc23-4561-8bcf-729fd10e74ef@sirena.org.uk>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 15 Jun 2023 11:24:42 +0800
+Message-ID: <CAGXv+5HWM_mfKp-o8kOyZ7W8yqZwBwPF3QNwo5sBfuv4quc-vQ@mail.gmail.com>
+Subject: Re: [PATCH 7/9] regulator: mt6358: Add output voltage fine tuning to
+ fixed regulators
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,173 +74,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 15, 2023 at 12:15=E2=80=AFAM Mark Brown <broonie@kernel.org> wr=
+ote:
+>
+> On Fri, Jun 09, 2023 at 04:30:04PM +0800, Chen-Yu Tsai wrote:
+> > The "fixed" LDO regulators found on the MT6358 and MT6366 PMICs have
+> > either no voltage selection register, or only one valid setting.
+> > However these do have a fine voltage calibration setting that can
+> > slightly boost the output voltage from 0 mV to 100 mV, in 10 mV
+> > increments.
+>
+> This and the followup patch break the build on both arm64 and x86_64:
+>
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
+=E2=80=98MT6358_VFE28_ANA_CON0=E2=80=99 undeclared here (not in a function)=
+; did you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
+>   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+>       |                             ^~~~~~~
 
-Hi Daniel,
+Argh, I sequenced the patches in my tree incorrectly. I see you already
+merged the first six patches. I'll send a new version including a header
+change that this patch needs, and other fixups that reviewers suggested.
 
-在 2023/6/14 下午6:59, Daniel Lezcano 写道:
-> 
-> Hi Yinbo,
-> 
-> 
-> On 14/06/2023 10:03, zhuyinbo wrote:
->>
->> Hi Daniel,
->>
->> Thank you very much for your feedback and suggestions. Below, I have
->> some comments, please review.
-> 
-> [ ... ]
-> 
->>>> +
->>>> +    low += 100;
->>>> +    high += 100;
-> 
-> Literals -> macros
-
-
-okay, I got it.
-
-> 
->>>> +    reg_ctrl = low;
->>>> +    reg_ctrl |= enable ? 0x100 : 0;
->>>> +    writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_LO + 
->>>> reg_off);
->>>> +
->>>> +    reg_ctrl = high;
->>>> +    reg_ctrl |= enable ? 0x100 : 0;
->>>> +    writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_HI + 
->>>> reg_off);
->>>
->>> Is the 'enable' boolean really useful?
->>
->>
->> Yes, this 'enable' was to enable thermal irq.
->>
->>>
->>> Wouldn't be the sensor trip points disabled by default at reset time?
->>>
->>
->>
->> Only here will thermal irq be enabled throughout the entire driver, and
->> actual testing has shown that interrupts are valid, so this is
->> meaningful.
-> 
-> Ok.
-> 
->>> If it is the case then we can get ride of this variable and make the 
->>> routine simpler
->>>
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static int loongson2_thermal_get_temp(struct thermal_zone_device 
->>>> *tz, int *temp)
->>>> +{
->>>> +    u32 reg_val;
->>>> +    struct loongson2_thermal_data *data = tz->devdata;
->>>> +
->>>> +    reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
->>>
->>> Seems like there is no offset for the sensor id here ?
->>
->>
->> There is no need for a sensor ID here.
->>
->> There are some things that I didn't describe clearly, which made you
->> misunderstand. Actually, the temperature sensor of 2K1000 is like this:
->>
->> There are 4 sets of temperature interrupt controllers, only one set of
->> temperature sampling registers. a sets of temperature interrupt
->> controllers was considered a sensor, which sensor include 3 register as
->> follows, where "SEL" represents which sensor is referenced, In 2k1000
->> datasheet, which "SEL" must be 0.
-> 
-> I'm not sure to understand. Let me rephrase it and know what is wrong.
-> 
-> 1. The thermal controller has 4 sensors. The interrupt can be set for 
-> these 4 sensors.
+ChenYu
 
 
-You can think it's actually a sensor, but the thermal sensor include a
-set of status register and four sets of control register in loongson-2k
-series (2k1000 /2k2000), but the control register only select a group
-register by set "SEL".
-
-> 
-> 2. When reading a temperature, we have to select the sensor via the 
-> 'SEL' register.
-
-
-The 'SEL' was to select thermal control register set, that reading a
-tempearure was to thermal status register set. thermal status register
-set only one and no no other choice. The function of 'SEL' is actually
-to select which temperature sensor collects the temperature as input.
-
-> 
-> 3. The 2k1000 has one sensor with an id = 0.
-
-
-Yes, the future 2k series product may still be a sensor, but the ID may
-not be 0, it may be 1 or 2 or 3.
-
-> 
-> 4. In the future, more Loongson platform can be submitted with more than 
-> one sensor
-
-
- From the current situation of the 2k series (2k1000/2k2000), it seems
-that there will always be only one sensor, but 'SEL' can be used to
-select which sensor. (0th, 1th, 2th, 3th).  If there are really special
-circumstances in the future, add appropriate modifications at that time.
-
-> 
-> If this is correct, then my comments are about the inconsistency of the 
-> proposed changes. Guessing in the future Loongson board there will be 
-> more than one sensor, the existing code mixes support for one and 
-> multiple sensors as well as assuming id is 0.
-> 
-> So if you add in the of_loongson2_thermal_match table a new platform 
-> with several sensors, the current code will be broken because:
-> 
->   - the initialization loop does exit when the first thermal zone 
-> registration succeed
-> 
->   - the interrupt handler does not figure out which sensor crossed the 
-> low/high limit
-> 
->   - the get_temp is not selecting the right sensor
-
-
-Yes,  but currently this code does not support the requirement for 
-multiple sensors.
-
-> 
-> 
-> That is my point:
-> 
->   - write the code to support one sensor with id=0 only
-> 
->     *or*
-> 
->   - write the code to support multiple sensors
-> 
-> If I'm not wrong the code is closer to support multiple sensors ;)
-
-
-In fact, my code is more inclined to support one sensor, but it can
-determine which sensor to use based on the ID. (id = 0, 1, 2, 3)
-
-> 
-> Let me know if these deductions are correct
-> 
->    -- Daniel
-> 
-> ps : is there an English translation for the 2k1000 datasheet ?
-
-
-Sorry, there seems to be no English version available at the moment.
-
-
-Thanks,
-Yinbo.
-
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:525:9: note: in e=
+xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+>   525 |         MT6358_REG_FIXED("ldo_vfe28", VFE28, MT6358_LDO_VFE28_CON=
+0, 0, 2800000),
+>       |         ^~~~~~~~~~~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
+=E2=80=98MT6358_VCN28_ANA_CON0=E2=80=99 undeclared here (not in a function)=
+; did you mean =E2=80=98MT6358_VCN18_ANA_CON0=E2=80=99?
+>   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+>       |                             ^~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:526:9: note: in e=
+xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+>   526 |         MT6358_REG_FIXED("ldo_vcn28", VCN28, MT6358_LDO_VCN28_CON=
+0, 0, 2800000),
+>       |         ^~~~~~~~~~~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
+=E2=80=98MT6358_VXO22_ANA_CON0=E2=80=99 undeclared here (not in a function)=
+; did you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
+>   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+>       |                             ^~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:527:9: note: in e=
+xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+>   527 |         MT6358_REG_FIXED("ldo_vxo22", VXO22, MT6358_LDO_VXO22_CON=
+0, 0, 2200000),
+>       |         ^~~~~~~~~~~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
+=E2=80=98MT6358_VAUX18_ANA_CON0=E2=80=99 undeclared here (not in a function=
+); did you mean =E2=80=98MT6358_VRF18_ANA_CON0=E2=80=99?
+>   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+>       |                             ^~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:528:9: note: in e=
+xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+>   528 |         MT6358_REG_FIXED("ldo_vaux18", VAUX18,
+>       |         ^~~~~~~~~~~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
+=E2=80=98MT6358_VBIF28_ANA_CON0=E2=80=99 undeclared here (not in a function=
+); did you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
+>   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+>       |                             ^~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:530:9: note: in e=
+xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+>   530 |         MT6358_REG_FIXED("ldo_vbif28", VBIF28,
+>       |         ^~~~~~~~~~~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
+=E2=80=98MT6358_VAUD28_ANA_CON0=E2=80=99 undeclared here (not in a function=
+); did you mean =E2=80=98MT6358_VA12_ANA_CON0=E2=80=99?
+>   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
+>       |                             ^~~~~~~
+> /build/stage/linux/drivers/regulator/mt6358-regulator.c:535:9: note: in e=
+xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
+>   535 |         MT6358_REG_FIXED("ldo_vaud28", VAUD28,
+>       |         ^~~~~~~~~~~~~~~~
