@@ -2,66 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 926097311B1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30E287311B6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239537AbjFOID6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43094 "EHLO
+        id S236728AbjFOIFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:05:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239155AbjFOID4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:03:56 -0400
-Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C7D1AA
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:03:53 -0700 (PDT)
-Received: by mail.tryweryn.pl (Postfix, from userid 1002)
-        id 7F893A5DB3; Thu, 15 Jun 2023 08:01:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
-        t=1686816138; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
-        h=Date:From:To:Subject:From;
-        b=G4Pjsiab3yGBZEd2PSUcmdy9ye2g4vL56YYaSkuhDTjfWdqcmxdc1Jr2HsXEb2DoH
-         qfrAj/CLFZSSqtpbgFHo502To+UliDYZ+UcYh8sdHsv4L/Fr53DHNLFDCDrV/BpA+z
-         tgjIpSrBdhikZejb9yt+7tG2xHkue8LIP2YpJo8HdwRYTgpyJahf7QYtg9DuTAwK/w
-         Sud3T6gpCQMMSDjqhp+FZ9NePg83o7sRuQT5CHaL7388cUbEkukUFPGohontOQl5e3
-         BakI2DyQZfAwritA3n7ALcouXvfiTYNFV0L4DYSr8Q9YbZqOdARxJmHt3+uUGtTAYP
-         Q8I8eGqVQFc6A==
-Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 08:01:08 GMT
-Message-ID: <20230615064500-0.1.ah.3okfi.0.zhhlajd90e@tryweryn.pl>
-Date:   Thu, 15 Jun 2023 08:01:08 GMT
-From:   "Karol Michun" <karol.michun@tryweryn.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Prezentacja
-X-Mailer: mail.tryweryn.pl
+        with ESMTP id S233955AbjFOIFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:05:50 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 039541AA;
+        Thu, 15 Jun 2023 01:05:48 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35F6XFam007602;
+        Thu, 15 Jun 2023 10:05:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=rWAsqAnk1NOFfSrch2LiFEFQGq9N0Hnm6C4sCs+M3D4=;
+ b=31hrIaUG+w5OmHV87NzjL1XMuVANMHUndDS+geuV4yaGOSRyXOQRfrlPlvbdn+erMk7E
+ seB4ccjWnvillD/+0LWQqybK3wYbzQ0F/izSPJp+NRdgSK5DI4Mr6gWxIxcgZOdLuUzr
+ 2z9XHUE5ln/oMt3V24fhGcdbX0kC8U7nfGLX0K+IVs6YJZ39NXk2UAkJOWVsNjk5I516
+ GYI+lm/SOr36nXOntV77sX9+UlnVpI66N0ucc9sf7C+sNe/62ElSfEJZfQT+6cUrnIeH
+ 1FHYqTd3vTsl4+AfGLyhqFH6jw9P74Qbr16A05ZXcAY0wxa/4m5aDyF744wdhOqMPmSA KA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r7s1maacb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Jun 2023 10:05:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 343B010002A;
+        Thu, 15 Jun 2023 10:05:39 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 27FA2216EC2;
+        Thu, 15 Jun 2023 10:05:39 +0200 (CEST)
+Received: from [10.252.8.64] (10.252.8.64) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 15 Jun
+ 2023 10:05:38 +0200
+Message-ID: <2785de74-69b2-8ebc-09c9-f834adb870c0@foss.st.com>
+Date:   Thu, 15 Jun 2023 10:05:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 0/4] spi: stm32: add spi slave mode
+To:     Mark Brown <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230614102628.202936-1-valentin.caron@foss.st.com>
+ <d0b62ef2-5355-4c00-9ff6-4ea9995ec0e1@sirena.org.uk>
+Content-Language: en-US
+From:   Valentin CARON <valentin.caron@foss.st.com>
+In-Reply-To: <d0b62ef2-5355-4c00-9ff6-4ea9995ec0e1@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.252.8.64]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-15_04,2023-06-14_02,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry!
 
-Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
-=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
-zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
+On 6/14/23 14:16, Mark Brown wrote:
+> On Wed, Jun 14, 2023 at 12:26:23PM +0200, Valentin Caron wrote:
+>> STM32 SPI can operate in slave mode.
+>> This series add this functionnality in spi-stm32 driver.
+> The more modern terminology here is device mode.
 
-Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
-=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
-dostaw.
+Hi Mark,
 
-Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
-nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
- co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
+Thanks for your review. I have resent a "v3" with this improvement.
 
-Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
-=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
-zania w Pa=C5=84stwa firmie.
+Regards,
+Valentin
 
-
-Pozdrawiam
-Karol Michun
