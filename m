@@ -2,179 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B00007311BE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A78697311D5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:12:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239185AbjFOIHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
+        id S239397AbjFOIMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237555AbjFOIHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:07:39 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2099.outbound.protection.outlook.com [40.107.101.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 456231A1;
-        Thu, 15 Jun 2023 01:07:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C2PaaVEZq6+ZfXPouZCUN0rvvTCnpTIJeZDNJTdleb/QjhWVKqSlBegFHTdOPLEKh/V4b4pCrRdmjr6cDQmNHcoBMjF8Za9WAvS4r/++RZk+mkoaixwpNbruRSVTtu3B9Jf293Qzuc7NFLKy6YN2gDDWOg52drbDYdtMsLGq8+6uoXJb4zFcoD0R8SEcEFgzpvHh0MVlyKAWa586AOwKIMyL2TdyxF1mduLMCLDZ5oFsF3Qy+kyTbwGGb2YJnIC+NQlLQ/sTcN15OtecelLq1nuvIdiuziYqwCgF4ILpuevZG9bZbEe3grmvVmnXDhgKMkPTkURuVQUbioTr7xgKzQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XkfC+Dyj23qdD+fs5BlA8PbuTB+ohE3p+fZORXQhTtw=;
- b=A4LmxOlJ5z5zfVF0TR/qaI0krIWidf7RNlJywh7Cykx/ngrZ+NI4G3J3RMloZbfv3L6Zf2a5s0SuIYIsx5MRtOzPBcYNEnGO/JAaGEDk1fIXIsOiCxKay7ELSnDCxEfpOybQvT2WcedhSTBW00Oal3Cd4qSrzks4wCLqd3KgJcZXpMr2+Pbvttw+O+c6ri/YrLG6ieiRHhLZLg1BtOWvPbOLD01oHRuS8ewLKADpK5DT/7h+uPmAAJec8Jmj+xMOEELjV869mrJA+PLDkHkquD6NflAYthh5f+C4GJ8AnhgQ9yGmUsczITNzIJEu2sQHDXH94Pe4wsiDNipoCqs/YQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S239577AbjFOIMm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:12:42 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FC826AA
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:12:35 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b1acd41ad2so22850161fa.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:12:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XkfC+Dyj23qdD+fs5BlA8PbuTB+ohE3p+fZORXQhTtw=;
- b=nd/GBMA8tKTFKfCefgr5Ms+LDqvZIutM2BrsTImi0mu149AT+G1i4zU6QmgjdHTDzqLhzh0Ao878aGNhcZEO5wxo1pqgcHgNjaAypPm1ahA5z2/LTPletd1oS66jQkPDVn4i+koHcUm7Pta9W8CxamEJrXteWn2KUQmorln0/JI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by PH7PR13MB6113.namprd13.prod.outlook.com (2603:10b6:510:2ba::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.25; Thu, 15 Jun
- 2023 08:07:34 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb8f:e482:76e0:fe6e]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb8f:e482:76e0:fe6e%5]) with mapi id 15.20.6500.025; Thu, 15 Jun 2023
- 08:07:34 +0000
-Date:   Thu, 15 Jun 2023 10:07:26 +0200
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Justin Chen <justin.chen@broadcom.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        florian.fainelli@broadcom.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, opendmb@gmail.com, andrew@lunn.ch,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com
-Subject: Re: [PATCH net-next v7 08/11] net: bcmasp: Add support for ethtool
- driver stats
-Message-ID: <ZIrGvsesltAc+izQ@corigine.com>
-References: <1686781820-832-1-git-send-email-justin.chen@broadcom.com>
- <1686781820-832-9-git-send-email-justin.chen@broadcom.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1686781820-832-9-git-send-email-justin.chen@broadcom.com>
-X-ClientProxiedBy: AM3PR07CA0131.eurprd07.prod.outlook.com
- (2603:10a6:207:8::17) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        d=linaro.org; s=google; t=1686816753; x=1689408753;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jXHAHxT0fSFKwPz8USPdRUjyOKNtgSSj4cu2Ek48kiU=;
+        b=FsXr00BzaUu6FoM8vbXU5zz6kDx18Gl1FZnk/y2K3UL0Ns6x8g4tHH0hhK8XjlnQ2G
+         1IjWRyb4ugk0KhL9Vk3Yo+HFuxQxeIsid42oNzFh6Sa+WJZQKsWUoyna/MB977DRbfS5
+         zb2x4L7w/uM4Gf1UK6DwBu1cjWHSMhvwZnshKeWdiRcdyvKlZPki0DBxFbnkZp8Vc5et
+         Swgm8deIcJp+vtuknr/AR7bm34gdyEjTBMo27Cjc6SKlckTPBC5lPfprgYnMlnW0HwJO
+         0IDxSYZUMf/boygaehaTpHoifhS8wYzkReMqmh6nFZZgPXTujJqdHTkyDjlppuJsk1dB
+         wGMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686816753; x=1689408753;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jXHAHxT0fSFKwPz8USPdRUjyOKNtgSSj4cu2Ek48kiU=;
+        b=gQ3rHBxnyQa1je++LwiyuefQqmK+ThKEpym3sPNwVzcUrJvCxTR9qM+RJ7nCenKcky
+         PGrFRdRe+h+Qn/vkoczsItJtRIBrWx0+7HSTwo6oXCxpkH5OwlF9+aXFjKS20OjWt1xS
+         tAc+TZaB93pGqYu/cYjm3XE1SL4sV81iArePffi/wYTARBtLnKljOKcCmM6GSjNVcQKB
+         0QXLXsqEKK/FU5i7qG3O+N1lycOzxTaxsSnDlwK9N5p6UAoEx6/Z7yHt1+aJgppB5cUR
+         o8yE/mMXU3oguYtpN/5K0bW/KtfY3zSmgsWjdPk1JQrr0rggafWu0rA7UkeVFNJDMEzL
+         aj0A==
+X-Gm-Message-State: AC+VfDwxhftsDPMOrr0TzM4oVKD0PG8p+NuPaDUmV5l4zxMIvitOU7Kd
+        PCazmvS8EpbQUWKcPjENtA96og==
+X-Google-Smtp-Source: ACHHUZ7JViREJp0GaNcUM5T5EotUUtT5SqOTBmGhByu0POE2CgRtnw6zT8PSXaWmbQ5btWJS4KuQug==
+X-Received: by 2002:a2e:98c7:0:b0:2b3:3791:da84 with SMTP id s7-20020a2e98c7000000b002b33791da84mr4624975ljj.18.1686816753585;
+        Thu, 15 Jun 2023 01:12:33 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id n23-20020a2e86d7000000b002ac78893a9csm2967788ljj.72.2023.06.15.01.12.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jun 2023 01:12:33 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Date:   Thu, 15 Jun 2023 10:12:32 +0200
+Subject: [PATCH] arm64: dts: qcom: msm8996: Fix HDMI node
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|PH7PR13MB6113:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8369c2e8-f5ac-42bd-bf0c-08db6d77932a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DJRyRqD+tk8bYDAxbrIjZhZ+Gd12noxWcyAV9yPFR+Y/5RfEhXkWnxLK07re8k+VdjVfP+lve0XdnS8O1WXqtxeyn8s8ZKrjm+CqAvHsik+WY6gpway2a7nmGWdziP5XreXbLaQJND2gbWXHha6yUP/OdhJZCUw/6uehc7o3KMgqIP9IwjcvhrbdAfVXtpbmsT6UdHoulnSYeXiRbuN5SJlfEvtabOvXYBZQaPEBb/sDjNFK1JoHIILXa+MUYpCGPqI5dCyWOEb9JeF10BG6AYGE1sYa2kTUm7ElPZI0+sgCPzR63gqT3q3KHA0N+6LEp+sWqlCWxDxz6uxgX9nt49IwUC/CZkycB7i1+YhafgGLMdo1b4o9BVrinMgks/5ZfiZRTM2GJlRJeqUXjreoRaVDlDT55iC4tGfzKTewh0MhxDfPSX3fnh9P3hAsL2nRey3hKfeBX0yCMmNG+RBySzmKU2dOKt6wD8F0kvfel9kzIda9bLG7JeDMlBFKioxPIFQpB6wzhtfQTO2rwdN45rsMlKO2h63aPLEGcui3tXn8jJ2si9Fl3KneD23tUGLz3Y2lTqwqH82VHDr8B9VflxNWs41JMetMVQGlqThj9nZO51wtiGvXzYd4BpL3j6xi9CF65tOokU6fTFIVvGmsUpgOYrRloMRwIQKLvmNm5ZQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(366004)(136003)(346002)(376002)(39840400004)(451199021)(8676002)(41300700001)(86362001)(8936002)(6486002)(66556008)(6916009)(66946007)(66476007)(316002)(6666004)(36756003)(4326008)(478600001)(6512007)(44832011)(7416002)(5660300002)(6506007)(83380400001)(186003)(2906002)(38100700002)(2616005)(67856001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e1+kRkfhOflWaGsnnKvCxi2xXs56whv9D8uj9Da0Fm2OcW+YoKoh2syZrmQU?=
- =?us-ascii?Q?x1lvV27RGVdg8C/WL8c+MJq7+pvrmiw3y45FySZ6LrGJRNRbnC8W4ajd7Mwb?=
- =?us-ascii?Q?m46jePE6lscbD9BbW2g7Lk0ITL1C5bwDnth8UysdVubZZ6+w4dbTrcbJPiRp?=
- =?us-ascii?Q?czSGPmQTYN+e1b0fpTAtdFBKg1Xq4n7A/Si/9duGP20viOxjnyWQDGh1GkB4?=
- =?us-ascii?Q?kRv9U7Npj5kg6o3Ct4jbeEO2s4Ac3j1RSQsUf8Dg45RN8APdkiiR2wHuWEd1?=
- =?us-ascii?Q?Lvg3aWT14jgZ8BjvB91q0+x36wymT5q0YLgVkh1F/XBOWCTqh1UouZQm0/tw?=
- =?us-ascii?Q?ZJu79+8vfJbq4Q+iXxoIeovwGsx4jSAW6YDAEXRMsL3BO3VyPmcGDRB0+cp8?=
- =?us-ascii?Q?+wuGnnwPTi6iX9mmovCSDHhdTv+1+XvD2WI86QGUD7GNgdJi+YX5GrCkAmT2?=
- =?us-ascii?Q?bXMMDCG6BRjsDKSL1AfiUPT7tMKa08zZVlAbsB78MgrWS++x5PLMGjje77yI?=
- =?us-ascii?Q?0SwGhgr3LrO280eiRU7W5Smr0ccFClx3CzZvn9R8m2cyPsgaKCwXchQy02Ks?=
- =?us-ascii?Q?2eLLo147a4+yOSAkxS2jY9ntue7U0RZZfX2zApJdN6/FxRcfDX93dmt20U7O?=
- =?us-ascii?Q?j6kkw14ZMfzO/2ciwRM4I3KL2kBZsz/1vmAiTiZzyQo0uBmQP9rb2oQGaHse?=
- =?us-ascii?Q?4JejA3MBvs85f3AfopfhIty3xTXFlkCUZkCi7uRhKtmw4SdYLUPPich2Vrz2?=
- =?us-ascii?Q?/mfJl3gUxQvBwSlkS+2RkVe/5nOP1c1x+gGFx71uw65bjvzYw9MtU8b1BUIY?=
- =?us-ascii?Q?Emr/aWaQm9c/DpFUQ1zOwZUq5joQH0BxiHvuFJQvTFMd4hm4ovnDTte5aIVL?=
- =?us-ascii?Q?Ds211f5ztp+S5PCH6KBaT0etrajXX+qezJtA1xdMAtFEL7oonsREO6TYLnWh?=
- =?us-ascii?Q?pkKtf7+nLb58kgo5m5YGeCWHUYmLiq1a2lhLAY98FFDQJ4515AWFJuj+c0pN?=
- =?us-ascii?Q?SuC6WvjAa1uXVS434m2xDZsgNaGw9foXpZyo4+JgMjj87yDkHnU76rnNcWcJ?=
- =?us-ascii?Q?LZGWJaEd/t8gI9zswO1PkyQDT/3figzBRzMytAQtbvxIrTBWhVZuFDFGAGFZ?=
- =?us-ascii?Q?FG0lsT2BoMvEw/dhzGzQ/YllbFRVDTBjfNlKfUKI1C+J3SeiLARgbVf/YIPh?=
- =?us-ascii?Q?/qNvrDHA12cCA7IS870hR8kezhYZuk3E3i0ZiOd88k4V2lp3yAFaU/HH/9o0?=
- =?us-ascii?Q?a2CoLbKLcgUnD4S65xqwghsioWfRrvHRpQ520TmhfBpbqf6l7a/Y4ehpewq8?=
- =?us-ascii?Q?EAnjBwU8RlbBKj+ZD53r7qLtq/p3Vi/8W9X83bzAm29NBmEkCJdOHsl4kHMh?=
- =?us-ascii?Q?sgNworlEi/lJH80BOG/O22uhNp3TWYhcdNuPnvZgaDOHwGBT1CxRAtJSyLVP?=
- =?us-ascii?Q?vWLZ7kfejtmJl7Q/YR6AlxsrmJxiNsar+johvpLrzZ/oPdvyXjgtbxu4TYz5?=
- =?us-ascii?Q?RKzVREeWp2h5Hamw2F1jnwsHwDqYReuCynh2mANmT8GZU8fO/k8ch0Ey03aR?=
- =?us-ascii?Q?1RQqAjAH2kCc/lxow4i4S82d1lCQZBy5xQm1rRF4iZpayUVrapXCsw1U++gP?=
- =?us-ascii?Q?0jpwv1Vnl1Gt9Z/XWE5BVmtSGgbwiWAkOovMEYeUL2e/rZveqL7+T6FLmIaW?=
- =?us-ascii?Q?3p8ZGw=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8369c2e8-f5ac-42bd-bf0c-08db6d77932a
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 08:07:34.2351
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W9s4hJFRj4+1bqvGsxhFWEEp3G/8O6MM2qNRPiGlQ7K8b7ARbiLrxIkRDcPeLZEPc9qzLQV11bK5FHerZomOv2qto4+xk6nP+Az5T/ppWI4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR13MB6113
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230615-topic-8996hdmi-v1-1-39584bfd68d2@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAO/HimQC/x2NywqDMBAAf0X23IWYYND+Sukhj7VZ0CiJiiD+u
+ 0uPMzDMBZUKU4V3c0GhgysvWaB9NRCSyz9CjsKglTbKth1uy8oB+2GwKc6MnVajV8ZHYwNI5F0
+ l9MXlkCTL+zSJXAuNfP4vn+99P196FEF1AAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1686816752; l=1335;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=B0zAEhAOtxhBKwa6WdeY39jiC9OWe6ZFvix/v/r5+8g=;
+ b=k6zheu77ykuYvYHutzF8ykADAoZ1HN7rlbDGznP0DYTtmlQG6mnnqeugNjELuA5dXJp4ZVfyt
+ MMbRy6zr2pMCqVshRidNQOitZewId0z4YWPiu5Y8cGQFJgoxkzEYOE1
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 14, 2023 at 03:30:17PM -0700, Justin Chen wrote:
+A recent commit messed up the node name and compatibles. Fix it.
 
-...
+Fixes: f43b6dc7d56e ("arm64: dts: qcom: msm8996: rename labels for HDMI nodes")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> +static void bcmasp_update_mib_counters(struct bcmasp_intf *intf)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < BCMASP_STATS_LEN; i++) {
-> +		const struct bcmasp_stats *s;
-> +		u32 offset, val;
-> +		char *p;
-> +
-> +		s = &bcmasp_gstrings_stats[i];
-> +		offset = bcmasp_stat_fixup_offset(intf, s);
-> +		switch (s->type) {
-> +		case BCMASP_STAT_SOFT:
-> +			continue;
-> +		case BCMASP_STAT_RX_EDPKT:
-> +			val = rx_edpkt_core_rl(intf->parent, offset);
-> +			break;
-> +		case BCMASP_STAT_RX_CTRL:
-> +			val = rx_ctrl_core_rl(intf->parent, offset);
-> +			break;
-> +		case BCMASP_STAT_RX_CTRL_PER_INTF:
-> +			offset += sizeof(u32) * intf->port;
-> +			val = rx_ctrl_core_rl(intf->parent, offset);
-> +			break;
-> +		}
-> +		p = (char *)(&intf->mib) + (i * sizeof(u32));
-> +		put_unaligned(val, (u32 *)p);
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 0cb2d4f08c3a..40ac0a784a4a 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -1136,8 +1136,8 @@ mdss_dsi1_phy: phy@996400 {
+ 				status = "disabled";
+ 			};
+ 
+-			mdss_hdmi: mdss_hdmi-tx@9a0000 {
+-				compatible = "qcom,mdss_hdmi-tx-8996";
++			mdss_hdmi: hdmi-tx@9a0000 {
++				compatible = "qcom,hdmi-tx-8996";
+ 				reg =	<0x009a0000 0x50c>,
+ 					<0x00070000 0x6158>,
+ 					<0x009e0000 0xfff>;
+@@ -1180,7 +1180,7 @@ mdss_hdmi_in: endpoint {
+ 
+ 			mdss_hdmi_phy: phy@9a0600 {
+ 				#phy-cells = <0>;
+-				compatible = "qcom,mdss_hdmi-phy-8996";
++				compatible = "qcom,hdmi-phy-8996";
+ 				reg = <0x009a0600 0x1c4>,
+ 				      <0x009a0a00 0x124>,
+ 				      <0x009a0c00 0x124>,
 
-Hi Justin,
+---
+base-commit: 925294c9aa184801cc0a451b69a18dd0fe7d847d
+change-id: 20230615-topic-8996hdmi-520fb03bd36c
 
-GCC 12.2.0, in a W=1 build, warns that val may be used uninitialised here.
-
-I think that, in theory, that can occur if s->type doesn't match
-any of the case statements above. Perhaps in practice that cannot occur.
-But, perhaps it would be worth adding a default case with some suitable
-handling.
-
- In file included from drivers/net/ethernet/broadcom/asp2/bcmasp_ethtool.c:4:
- ./include/asm-generic/unaligned.h: In function 'bcmasp_get_ethtool_stats':
- ./include/asm-generic/unaligned.h:19:19: warning: 'val' may be used uninitialized [-Wmaybe-uninitialized]
-    19 |         __pptr->x = (val);                                                      \
-       |                   ^
- drivers/net/ethernet/broadcom/asp2/bcmasp_ethtool.c:125:29: note: 'val' was declared here
-   125 |                 u32 offset, val;
-       |  
-
-> +	}
-> +}
-
-...
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
