@@ -2,198 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FFA673215E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 23:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCC8E732175
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 23:18:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjFOVLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 17:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58366 "EHLO
+        id S230005AbjFOVSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 17:18:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbjFOVLY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 17:11:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2759270B;
-        Thu, 15 Jun 2023 14:11:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A481615E1;
-        Thu, 15 Jun 2023 21:11:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F257BC433C8;
-        Thu, 15 Jun 2023 21:11:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686863481;
-        bh=f6BYmxI2Iwx1LZlCng+4zSURb7GTNwhasqaqeXVlWf8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GHTCVJEIu6LhXPV9s0x+KkfdfV98v69zWe5KEpbttJysjY6GWvAWAF6/BtMXiVhfX
-         U44FXJOqjdYxW5iV2Ro3IQ7wF/+OHqPnzl0fi/WDkGXm1ZikWx8p8nmc1VpFnXsCDN
-         HHvu74jqHLEWuzsm1xpFfw/5OcRXiDGqnagBJ4jcPf/g7STSaRON70Plib3Ky+r9qh
-         G3+M04ZMHqR3zBFWlkOsDNoiwmY9RPWOWr/N4XjL+d/4Nbp/jYwzwWrgIIRPwKg2VZ
-         RCDbGs5TxMRGfEf1KMJhJmvFfOwcygPwl9al+o2/08G+MOF3fLRG+ggqec77CdnyG4
-         X3wajSCxleQ3g==
-Date:   Thu, 15 Jun 2023 22:11:15 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229843AbjFOVSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 17:18:16 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D31042960;
+        Thu, 15 Jun 2023 14:18:14 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35FKxPW5028162;
+        Thu, 15 Jun 2023 21:18:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=HcRlgerHm4BuBMUBcx/cr+KzgxacLDuQaHvFXbRGX+M=;
+ b=bVybtEwlSK5YX7+QRb1bkx9Zvx28v7NW4ZxcFQ71tmSEdQRFfarYIHSuFEdYIAqDajwK
+ SmGDdS0AHqt3kH7222v+CHw5PC16grtad6AV5xIDEbX5KH9/d/eKUM9U/suRygSLO12C
+ kT6PpU0v7WiKtdaxiCcXwzQKqxUYwHLZf837vT45rBJviGcXSzOcM5SyR9G5WZtrTbVr
+ 0baK6Pf977ptFaXYd9naE01KEgloyKEIeY6hzhWRAM2IqMH9RPspLjVBezTRqvy6K5Mk
+ pJ0tKca/gNMjT7Dad9ukoAEbnXIu93mDkFMsreIRBXX2Pj1bnD0WuY1uWxBHRnt17rSM 6g== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r89dw038r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Jun 2023 21:18:03 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35FLI1Ml019107
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Jun 2023 21:18:01 GMT
+Received: from akhilpo-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 15 Jun 2023 14:17:56 -0700
+Date:   Fri, 16 Jun 2023 02:47:53 +0530
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v4 08/10] irqchip: Add RISC-V advanced PLIC driver
-Message-ID: <20230615-contempt-crave-00d80f3cb369@spud>
-References: <20230613153415.350528-1-apatel@ventanamicro.com>
- <20230613153415.350528-9-apatel@ventanamicro.com>
- <CAGETcx-hoPNanAwe4++6roqBXwSdc7z6Ei=-r9z6qFG1U7xVXg@mail.gmail.com>
- <20230615-thyself-doornail-f0545ada9176@spud>
- <CAGETcx__Qt868abh-F_fu7ijMSWXciLjdjWiWf60e4_p78xb8w@mail.gmail.com>
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Rob Clark <robdclark@chromium.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Subject: Re: [PATCH v8 07/18] drm/msm/a6xx: Add a helper for
+ software-resetting the GPU
+Message-ID: <iayrosqwgsxw7f3fx5eoqreglnx6ckwlrtmelfc4xl4gunpmbr@46rpcgl6nkoh>
+References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
+ <20230223-topic-gmuwrapper-v8-7-69c68206609e@linaro.org>
+ <jplt5g5xuphbnci73pdtaxd63fguxtgtp4c37kc7ehavzrjbau@kamshezxnvgy>
+ <001d7571-5e9f-4f60-f6d0-35806a3e51c5@linaro.org>
+ <rd4mte26n22xlgx5umerpgr66b4wfi7mdm6ovszafyinrg3q4c@g227oj3nh2vc>
+ <e0141f93-b3d8-cc3e-7b2d-32618351ba10@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5MO7euHf3MkXTMTS"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CAGETcx__Qt868abh-F_fu7ijMSWXciLjdjWiWf60e4_p78xb8w@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <e0141f93-b3d8-cc3e-7b2d-32618351ba10@linaro.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YfWn7U_EkUMbzoF88__VQMKspnQr0ouP
+X-Proofpoint-ORIG-GUID: YfWn7U_EkUMbzoF88__VQMKspnQr0ouP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-15_16,2023-06-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 adultscore=0 mlxscore=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306150183
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 15, 2023 at 10:59:23PM +0200, Konrad Dybcio wrote:
+> 
+> On 15.06.2023 22:11, Akhil P Oommen wrote:
+> > On Thu, Jun 15, 2023 at 12:34:06PM +0200, Konrad Dybcio wrote:
+> >>
+> >> On 6.06.2023 19:18, Akhil P Oommen wrote:
+> >>> On Mon, May 29, 2023 at 03:52:26PM +0200, Konrad Dybcio wrote:
+> >>>>
+> >>>> Introduce a6xx_gpu_sw_reset() in preparation for adding GMU wrapper
+> >>>> GPUs and reuse it in a6xx_gmu_force_off().
+> >>>>
+> >>>> This helper, contrary to the original usage in GMU code paths, adds
+> >>>> a write memory barrier which together with the necessary delay should
+> >>>> ensure that the reset is never deasserted too quickly due to e.g. OoO
+> >>>> execution going crazy.
+> >>>>
+> >>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >>>> ---
+> >>>>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c |  3 +--
+> >>>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 11 +++++++++++
+> >>>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.h |  1 +
+> >>>>  3 files changed, 13 insertions(+), 2 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> >>>> index b86be123ecd0..5ba8cba69383 100644
+> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> >>>> @@ -899,8 +899,7 @@ static void a6xx_gmu_force_off(struct a6xx_gmu *gmu)
+> >>>>  	a6xx_bus_clear_pending_transactions(adreno_gpu, true);
+> >>>>  
+> >>>>  	/* Reset GPU core blocks */
+> >>>> -	gpu_write(gpu, REG_A6XX_RBBM_SW_RESET_CMD, 1);
+> >>>> -	udelay(100);
+> >>>> +	a6xx_gpu_sw_reset(gpu, true);
+> >>>>  }
+> >>>>  
+> >>>>  static void a6xx_gmu_set_initial_freq(struct msm_gpu *gpu, struct a6xx_gmu *gmu)
+> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> >>>> index e3ac3f045665..083ccb5bcb4e 100644
+> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> >>>> @@ -1634,6 +1634,17 @@ void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_
+> >>>>  	gpu_write(gpu, REG_A6XX_GBIF_HALT, 0x0);
+> >>>>  }
+> >>>>  
+> >>>> +void a6xx_gpu_sw_reset(struct msm_gpu *gpu, bool assert)
+> >>>> +{
+> >>>> +	gpu_write(gpu, REG_A6XX_RBBM_SW_RESET_CMD, assert);
+> >>>> +	/* Add a barrier to avoid bad surprises */
+> >>> Can you please make this comment a bit more clear? Highlight that we
+> >>> should ensure the register is posted at hw before polling.
+> >>>
+> >>> I think this barrier is required only during assert.
+> >> Generally it should not be strictly required at all, but I'm thinking
+> >> that it'd be good to keep it in both cases, so that:
+> >>
+> >> if (assert)
+> >> 	we don't keep writing things to the GPU if it's in reset
+> >> else
+> >> 	we don't start writing things to the GPU becomes it comes
+> >> 	out of reset
+> >>
+> >> Also, if you squint hard enough at the commit message, you'll notice
+> >> I intended for this so only be a wmb, but for some reason generalized
+> >> it.. Perhaps that's another thing I should fix!
+> >> for v9..
+> > 
+> > wmb() doesn't provide any ordering guarantee with the delay loop.
+> Hm, fair.. I'm still not as fluent with memory access knowledge as I'd
+> like to be..
+> 
+> > A common practice is to just read back the same register before
+> > the loop because a readl followed by delay() is guaranteed to be ordered.
+> So, how should I proceed? Keep the r/w barrier, or add a readback and
+> a tiiiny (perhaps even using ndelay instead of udelay?) delay on de-assert?
 
---5MO7euHf3MkXTMTS
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+readback + delay (similar value as downstream). This path is exercised
+rarely.
 
-On Thu, Jun 15, 2023 at 01:45:55PM -0700, Saravana Kannan wrote:
-> On Thu, Jun 15, 2023 at 12:31=E2=80=AFPM Conor Dooley <conor@kernel.org> =
-wrote:
-> > On Thu, Jun 15, 2023 at 12:17:08PM -0700, Saravana Kannan wrote:
-> > > On Tue, Jun 13, 2023 at 8:35=E2=80=AFAM Anup Patel <apatel@ventanamic=
-ro.com> wrote:
-> >
-> > btw, please try to delete the 100s of lines of unrelated context when
-> > replying
->=20
-> I always feel like some people like me to do this and others don't.
-> Also, at times, people might want to reference the other lines of code
-> when replying to my point. That's why I generally leave them in.
+-Akhil.
 
-Yah, perhaps I cull too aggressively but there's a middle ground ;)
-
-> > > > +static int __init aplic_dt_init(struct device_node *node,
-> > > > +                               struct device_node *parent)
-> > > > +{
-> > > > +       /*
-> > > > +        * The APLIC platform driver needs to be probed early
-> > > > +        * so for device tree:
-> > > > +        *
-> > > > +        * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnode which
-> > > > +        *    provides a hint to the device driver core to probe the
-> > > > +        *    platform driver early.
-> > > > +        * 2) Clear the OF_POPULATED flag in device_node because
-> > > > +        *    of_irq_init() sets it which prevents creation of
-> > > > +        *    platform device.
-> > > > +        */
-> > > > +       node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
-> > >
-> > > NACK. You are blindly plastering flags without trying to understand
-> > > the real issue and fixing this correctly.
-> > >
-> > > > +       of_node_clear_flag(node, OF_POPULATED);
->=20
-> Also, this part is not needed if the macros I mentioned below are used.
->=20
-> > > > +       return 0;
-> > > > +}
-> > > > +IRQCHIP_DECLARE(riscv_aplic, "riscv,aplic", aplic_dt_init);
-> > >
-> > > This macro pretty much skips the entire driver core framework to probe
-> > > and calls init and you are supposed to initialize the device when the
-> > > init function is called.
-> > >
-> > > If you want your device/driver to follow the proper platform driver
-> > > path (which is recommended), then you need to use the
-> > > IRQCHIP_PLATFORM_DRIVER_BEGIN() and related macros. Grep for plenty o=
-f examples.
-> > >
-> > > I offered to help you debug this issue and I asked for a dts file that
-> > > corresponds to a board you are testing this on and seeing an issue.
-> >
-> > There isn't a dts file for this because there's no publicly available
-> > hardware that actually has an APLIC. Maybe Ventana have pre-production
-> > silicon that has it, but otherwise it's a QEMU job.
->=20
-> 1. QEMU example is fine too if it can be reproduced. I just asked for
-> a dts file because I need the full global view of the dependencies. At
-> a minimum, I'd at least expect to see some example DT and explanation
-> of what dependency is causing the IRQ device to not be initialized on
-> time, etc. Instead I just see random uses of flags with no description
-> of the actual issue.
-
-It's Anup's responsibility to provide you with that information, I have
-not reproduced this issue, so I won't mislead you with QEMU invocations
-that may not be what's required to reproduce.
-
-> 2. If it's not a dts available upstream, why should these drivers be
-> accepted? I thought the norm was to only accept drivers that can
-> actually be used.
-
-I think it's not unusual (and desirable?) to start the upstreaming
-process for stuff before hardware is publicly available, so that once it
-is, support is already upstream, or close to. I do know that people have
-tested this series in FPGA based hardware emulation platforms etc.
-Posting patches for it also helps avoid duplication of effort between
-the various vendors in RISC-V land, who would otherwise have to write
-their own drivers. Also, the documented RISC-V policy for accepting
-support for ISA stuff says:
-	We'll only accept patches for new modules or extensions if the
-	specifications for those modules or extensions are listed as being
-	unlikely to be incompatibly changed in the future.  For
-	specifications from the RISC-V foundation this means "Frozen"
-	(Documentation/riscv/patch-acceptance.rst)
-AIA (the spec behind the APLIC/IMSIC) is frozen, and qualifies from a
-RISC-V point of view. What Marc is willing to accept, in terms of
-pre-production hardware support, is up to him obviously!
-
-Cheers,
-Conor.
-
-> > > But you haven't answered my question [1] and are pointing to some
-> > > random commit and blaming it. That commit has no impact on any
-> > > existing devices/drivers.
-> > >
-> > > Hi Marc,
-> > >
-> > > Please consider this patch Nacked as long as FWNODE_FLAG_BEST_EFFORT
-> > > is used or until Anup actually works with us to debug the real issue.
-> > >
-> > > -Saravana
-> > > [1] - https://lore.kernel.org/lkml/CAAhSdy2p6K70fc2yZLPdVGqEq61Y8F7WV=
-T2J8st5mQrzBi4WHg@mail.gmail.com/
-
---5MO7euHf3MkXTMTS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIt+cwAKCRB4tDGHoIJi
-0nnEAQDxEIRFIDNPXvGHgVa6uRz9xO4r9whJObzgPApSdQr3JQEAiDafcQs0Dg4D
-mLy/wkW8n6yrfsnZXbQAnV2HcunXtQQ=
-=/2YI
------END PGP SIGNATURE-----
-
---5MO7euHf3MkXTMTS--
+> 
+> Konrad
+> > 
+> > -Akhil.
+> >>
+> >> Konrad
+> >>>
+> >>> -Akhil.
+> >>>> +	mb();
+> >>>> +
+> >>>> +	/* The reset line needs to be asserted for at least 100 us */
+> >>>> +	if (assert)
+> >>>> +		udelay(100);
+> >>>> +}
+> >>>> +
+> >>>>  static int a6xx_pm_resume(struct msm_gpu *gpu)
+> >>>>  {
+> >>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+> >>>> index 9580def06d45..aa70390ee1c6 100644
+> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+> >>>> @@ -89,5 +89,6 @@ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu);
+> >>>>  int a6xx_gpu_state_put(struct msm_gpu_state *state);
+> >>>>  
+> >>>>  void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_off);
+> >>>> +void a6xx_gpu_sw_reset(struct msm_gpu *gpu, bool assert);
+> >>>>  
+> >>>>  #endif /* __A6XX_GPU_H__ */
+> >>>>
+> >>>> -- 
+> >>>> 2.40.1
+> >>>>
