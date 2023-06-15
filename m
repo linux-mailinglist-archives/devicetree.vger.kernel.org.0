@@ -2,79 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A9F1732035
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 20:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7B4732043
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 21:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230071AbjFOSwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 14:52:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47188 "EHLO
+        id S229572AbjFOTNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 15:13:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230010AbjFOSv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 14:51:57 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424D41FE2
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 11:51:56 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-bb167972cffso2095518276.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 11:51:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686855115; x=1689447115;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oys6po3xV1zflUTK5Q7rHSTxvD+daqTUwms8w9Gkeig=;
-        b=TZhkEOVM+6kSP3s5XIj7Ew/F2o0nsoTRE4JNLY0qV8p3htIK+2Ja/WTZsyu+9D9+xV
-         R194akxrpQUzn/5KomHtspD+WL7yzirv7m6CrYCpfgMLyk1xYpMjgMt5Rp6VBh+TyEnT
-         WFBCKtzWarwwuRgVdhyYdDRR7RFF8M7JOEWsNRLullUntoYJ0xVVsB9eUIilmnpS6PD3
-         RZTOxzGP2mmiqCEtKkhYfdT5EVK5/2l0huHhyAnCS47j2BWUUKFzoAfZ7P/B9yiW+oda
-         IYwLwOrYuiih0pZqKFC5OudEhmMh+ceJtpvU7nt0RcFWkiHWS/zuzjmvNwouOojEdFAM
-         NJ2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686855115; x=1689447115;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oys6po3xV1zflUTK5Q7rHSTxvD+daqTUwms8w9Gkeig=;
-        b=hUDmcn4islwC/GYkiFfUKYafAHFoA8RAX7fOZP7GorHwpX7+KpKFHQhJSA/eyQkOl2
-         Z7QHKHIN/I6KI/LktzKbEfAGH+4c1OVIg0kGZoNE1/Yi591XwwSw/Pcwfa8pNwsZzPKp
-         QXzHYrfV0vl6o85TRM5HvEcPWI7cNoqoy9GiRldfEyH3u4SOrw5Gse4bNOg2+QrwEOI7
-         yAhSbFfjozUT/2QpU6VHOZuzqk3l4a1bn++xTB3ah5KSy+LjO3K7yBbTzZtpGCdwbaC0
-         FMbCHFL2VCGRMCUNqQ62Mz21oHVy5BHW9XAb2e1M3q/Me+wrWrmlcxbFfv3oMzJ2yPcp
-         +X9w==
-X-Gm-Message-State: AC+VfDydUya9BeJWLuJfudhl7L1fHvdQJnJ0r8F9LH3SIhcmI2DWYxrA
-        gDh7CcNMj2HER9fDeHRMVqt1GBD0MSchtAh1YZHyqw==
-X-Google-Smtp-Source: ACHHUZ5MGUqqRHv95slcbK18Ur8RugPXouW0J3O984wR6h8VWSwkh4mWLExlNWIjg1eG8cz9Gob1bzBzu5dXlscM0yI=
-X-Received: by 2002:a25:424b:0:b0:ba8:972d:e37e with SMTP id
- p72-20020a25424b000000b00ba8972de37emr5179293yba.14.1686855114258; Thu, 15
- Jun 2023 11:51:54 -0700 (PDT)
+        with ESMTP id S229503AbjFOTNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 15:13:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FC3271E;
+        Thu, 15 Jun 2023 12:13:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4BC3461483;
+        Thu, 15 Jun 2023 19:13:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97082C433C0;
+        Thu, 15 Jun 2023 19:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686856386;
+        bh=bPY0hq3FTUjUrTnaMbnQu9NxRr6DfEwHr0iFePqWsk4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oJ8PW6eF8QHjmGWOvHtcXHk8RrraM4DJqoyxkXRQBGOqMPxjBSMrzsMiVmqnTvLC0
+         kaMSMQw5kqbrXaShP6qRk+5clbVB53UAJN/Mbcyv/pFFxJe8usimE/+WA/NOirnYIP
+         93Z04NYoL2c5HBcMKVngPS6dbHUSxEkQ926yJq3gNI/jDJCohW5Fi5jjde+MMH29N/
+         nVluf6QJbCnL3iA8LCKT4RS5Wk7bsGjkcuRlBZDZXKMs0EKUzGhQfR0gSnpgCqkEin
+         uPliW2HQAKNp6tq32cc9wzeSh6Y4BRK91S4mvjtTnuRxFnQJjn7XMCHW3qV/nLX1Cr
+         MpIIemRNouzaQ==
+Date:   Thu, 15 Jun 2023 20:13:01 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, git@amd.com, michael@walle.cc,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, amitrkcian2002@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: jedec, spi-nor: Add DT property to
+ avoid setting SRWD bit in status register
+Message-ID: <20230615-bright-divided-2eb72872d7cc@spud>
+References: <20230615111649.36344-1-amit.kumar-mahapatra@amd.com>
+ <20230615111649.36344-2-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
-References: <20230615092001.1213132-1-yann.gautier@foss.st.com>
- <20230615092001.1213132-2-yann.gautier@foss.st.com> <CAPDyKFqJsqmNzeRg8hj55yUEMSycOWsmKVKsMWk4Qu7Y8_dNzg@mail.gmail.com>
- <3b6781cb-8f59-e70a-bcf8-9fb48fa47cbf@foss.st.com> <266de9f5-826a-c1bf-be8d-11f5e27c87dc@foss.st.com>
-In-Reply-To: <266de9f5-826a-c1bf-be8d-11f5e27c87dc@foss.st.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 15 Jun 2023 20:51:42 +0200
-Message-ID: <CACRpkdZLtCwPQsPw_Lp3Ppw2ed6gOo+-82_y2WPVJ_oZUHbLoQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: mmc: mmci: Add st,stm32mp25-sdmmc2 compatible
-To:     Yann Gautier <yann.gautier@foss.st.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        Xiang wangx <wangxiang@cdjrlc.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="XOs+VD/Ifi0NGstF"
+Content-Disposition: inline
+In-Reply-To: <20230615111649.36344-2-amit.kumar-mahapatra@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,33 +61,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 5:19=E2=80=AFPM Yann Gautier <yann.gautier@foss.st.=
-com> wrote:
 
-> >        - description: Entry for STMicroelectronics variant of PL18x.
-> >            This dedicated compatible is used by bootloaders.
-(...)
-> >        - description: Entry for STMicroelectronics variant of PL18x for
-> >            STM32MP25. This dedicated compatible is used by bootloaders.
-(...)
-> > Should I remove (or adapt) both descriptions?
-> >
-> >
->
-> At the time the patch was done it was really just used by bootloaders.
-> But as it is now used in the driver for delay block, I should remove the
-> second sentence.
+--XOs+VD/Ifi0NGstF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Remove both.
+On Thu, Jun 15, 2023 at 04:46:48PM +0530, Amit Kumar Mahapatra wrote:
+> If the WP signal of the flash device is not connected and the software se=
+ts
+> the status register write disable (SRWD) bit in the status register then
+> thestatus register permanently becomes read-only. To avoid this added a n=
+ew
+> boolean DT property "broken-wp". If WP signal is not connected, then this
+> property should be set in the DT to avoid setting the SRWD during status
+> register write operation.
+>=20
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> ---
+>  .../devicetree/bindings/mtd/jedec,spi-nor.yaml      | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/D=
+ocumentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 89959e5c47ba..a509d34f14b2 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -70,6 +70,19 @@ properties:
+>        be used on such systems, to denote the absence of a reliable reset
+>        mechanism.
+> =20
+> +  broken-wp:
+> +    type: boolean
+> +    description:
+> +      The SRWD bit in status register, combined with the WP signal provi=
+des
 
-After "This dedicated compatible is used by bootloaders" there is
-an implicit "in the SDK provided by ST Microelectronics", and that
-is of no concern for DT bindings, which are (well, in theory) used by
-e.g. BSD or other operating systems and who knows what they will
-use and not, we don't put Linux specifics in there, neither Boot
-loader specifics nor ST SDK specifics.
+Should the first use of SRWD be spelt out as you did in your commit
+message?
 
-At least that is the little bureaucratic ambition we have.
+> +      The SRWD bit in status register, combined with the WP signal provi=
+des
+                                                                     ^
+nit: missing a comma here I think.
 
-Yours,
-Linus Walleij
+> +      hardware data protection for the device. When the SRWD bit is set =
+to 1,
+> +      and the WP signal is driven LOW, the status register nonvolatile b=
+its
+> +      become read-only and the WRITE STATUS REGISTER operation will not =
+execute.
+> +      The only way to exit this hardware-protected mode is to drive WP H=
+IGH. But
+> +      if the WP signal of the flash device is not connected then status =
+register
+> +      permanently becomes read-only as the SRWD bit cannot be reset. Thi=
+s boolean
+> +      flag can be used on such systems in which WP signal is not connect=
+ed, to
+
+nit: s/such//
+
+Otherwise, seems reasonable to me & the detail in the description is
+nice.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> +      avoid setting the SRWD bit while writing the status register.
+> +
+>    reset-gpios:
+>      description:
+>        A GPIO line connected to the RESET (active low) signal of the devi=
+ce.
+> --=20
+> 2.17.1
+>=20
+
+--XOs+VD/Ifi0NGstF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZItivQAKCRB4tDGHoIJi
+0n3lAQDYCPE7FzUWoRk/2NeBDx/xfJkho/o/GFZjMUnnb/0G/AEAqAmz6+IzA8ln
+bZ1D4QinLJJeMfUue9pnCokWv3csTQM=
+=O9sd
+-----END PGP SIGNATURE-----
+
+--XOs+VD/Ifi0NGstF--
