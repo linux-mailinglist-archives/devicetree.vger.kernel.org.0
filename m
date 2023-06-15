@@ -2,191 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2A0E731D75
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 18:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 507AC731D7F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 18:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbjFOQK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 12:10:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
+        id S231231AbjFOQME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 12:12:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbjFOQK1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 12:10:27 -0400
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93D4495
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 09:10:26 -0700 (PDT)
-Received: by mail-qv1-xf2b.google.com with SMTP id 6a1803df08f44-6237faa8677so27340216d6.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 09:10:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686845425; x=1689437425;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qEQOGjvtLEgX2ChKfpQ6c19qlkbG0UrnxRJ/AQu+f/Y=;
-        b=UOgtRCcgPQXVs2Hv7ksrJGuVS9PxRDds8Mz4VaeDBz6lvGw3H9y2IdorytzWGM6fI1
-         M5hEUF5EyzgWxFSnS2WRdDrD21gh35eC/+7yE4jSgz8vH5737zlAWKDuIW8j8hXy3Fmh
-         Cu/RsQ6hhmIz+R9oDeGhWzh5GeDcD+7VeUOOT2WoEFG+wn6Eo0DpxZK8CI1BnfrJ3gdV
-         WLGqMfqGD9wyDvXPqkjXdL4XrgttLUJACbG0gikJxlxslQs4u6gpGhINKAElG9wzxq4I
-         t8CSm5ohNsJ3TsnMHU/gzp260HGhlA1sj6TfErpGH+n9hsiVxdeJtylTUX+zmE8m3YyQ
-         E0og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686845425; x=1689437425;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qEQOGjvtLEgX2ChKfpQ6c19qlkbG0UrnxRJ/AQu+f/Y=;
-        b=DiDTOxoyAiAnTnvAXLGIbHRRQD+pX6E+FBPrLnAxT9e5M6wPe8CEkwT4D1b86kPJlw
-         CByI/BDbHYJdoNgEWJQvM5bRNf13hhpWaiesrrAT7lITcTt1clnLNGOtfbI5aVNjnwFE
-         mNOEf+LMLPLnDGJEmtuIPLvLkUcUWfEVoNCXNbXT4VDgKvtSg9WqD/iA5Da2qR3rdnnd
-         rxohknspFkcQgSY18EoW7LOfPYHEkPcqgVEDgSZmttcKUQ2N79CQrw8L9TGB6xC52KQp
-         PeVnWthsVHoVwYsNaD09Gf/at7ZFZibfeGlqAkzYbAZ8bGGyh0u1/BMgy2+dD9gU2azM
-         lAMw==
-X-Gm-Message-State: AC+VfDwyvYap210q/F2CMOn56g5JHpLrckbPn5gCSKyXNGbi/2ZYkL+Q
-        lBVD2v2UiqV3cPMSkS1jewKh6oT+bIiw5fjtzq7RyA==
-X-Google-Smtp-Source: ACHHUZ5oO0v2P6oftn2D5O6PLRn4KeEvcu9G53VZIM9JMbbtKiD20OhZwZ4oEdzR6hH7rl/IupYwIY0bFAq9/p1iQm0=
-X-Received: by 2002:a05:6214:1941:b0:62f:eed1:4781 with SMTP id
- q1-20020a056214194100b0062feed14781mr4050301qvk.21.1686845425624; Thu, 15 Jun
- 2023 09:10:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230602161246.1855448-1-amit.pundir@linaro.org>
- <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info> <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
- <CAMi1Hd3Cv1i06NhpY6Jqu7OvMpOdzTj6nTEMJNWLrMwMLsugZA@mail.gmail.com>
- <CAMi1Hd0=KV7k82ARadF45nqX+Cv6zPLCxfDvOyAPeXiFd8jpVA@mail.gmail.com> <0ec6c988-d678-c96c-a7a2-af38e6701404@linaro.org>
-In-Reply-To: <0ec6c988-d678-c96c-a7a2-af38e6701404@linaro.org>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Thu, 15 Jun 2023 21:39:49 +0530
-Message-ID: <CAMi1Hd33_Ccxkf9C5_QBO3tvOZcGnYh+_CKcACUtoY2qAuOzRA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes up
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linux regressions mailing list <regressions@lists.linux.dev>,
-        Mark Brown <broonie@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229977AbjFOQMD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 12:12:03 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A27219B5;
+        Thu, 15 Jun 2023 09:12:02 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 454455C00E0;
+        Thu, 15 Jun 2023 12:11:59 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 15 Jun 2023 12:11:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1686845519; x=1686931919; bh=lH
+        VIyGJZwQS/ccpsXhg4DiZBGnwWrcAVNBqEwRIBymY=; b=qx9b2YnF22o7BTBU6c
+        wPvv52FoKIQi6NZwVUQiXnBjYmPIdS6sUykEGDFA3Z2gZ7YZKqo44XZAmTBqfwQL
+        Op3nd3Nm9Hw45SMphvKjSLFXSD4gMFJbkRH6U3djb0/9YNByRtoMlxFzxDQoEoV5
+        PTMNoCgcpdJpCbmAlA6nTfRBUB0prkTGG1T1TPy37dlARa9bILaO2mgwTMk94/o7
+        m8areMmDxQRhUQH9WIXqnKfLqbEUR7OcQvcLd11I2Rdj5h0afp80iC6eQZnmAu9z
+        F69XMrnr9NiGpMWaaqumUr321hIq1yaQQcOu3R10kzTV34sAwRe0AUkbl3qlApER
+        X8EA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1686845519; x=1686931919; bh=lHVIyGJZwQS/c
+        cpsXhg4DiZBGnwWrcAVNBqEwRIBymY=; b=KwNQpUWnShH4M58lpUU6/3m+GZkTH
+        nlIe1cv/fTjc2oAdYcp8ODnc0Abrq07vQ/3Yu7CFE88TlGFY7+gak50SAM/5Zs6f
+        13aicZmcf/fah/KbUd8uLgaYz1iy8vZAY6Ko8EflGnHxu7bbIt5mf213D8OfWs54
+        CClTnHm5YLJjrUEmHXK/kbyfR7XuxkWrEcG2ugwnUDPXmNdPG7e6zns6Vbv0ogeM
+        QVzHc8pWMCY7FoCxDagWn/jPj9HxRH/InGH6m+ly6yvnLQWNlqpnEyOVOM50Q3Hj
+        DQGDblBFEkLh4OOFA6XE84QZuV75jZc+zvr9YmihYpgz76KUENuAMpWTA==
+X-ME-Sender: <xms:TTiLZJibKNQYeR_IndCVQSaXNK4rEwjSpLSiyGTR-SRtW9G_PmaEeA>
+    <xme:TTiLZODrKlnHdCNH_Qj7ervH9FZEIWa57w-jQISwUrfbYSCcEV9mvsgtNNmZrTE4Y
+    0GpquwDfGXEpfQfTH0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgedvvddgleegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:TTiLZJEGEjHlTBV_JloqUdTfC34Uo9uvwZ-QvDMULff8IugVXdnBIw>
+    <xmx:TTiLZOR9Iiclb7POQIIYA0OWA7C1rMGKxYKVCCG7YAATMJFjN2VQzA>
+    <xmx:TTiLZGw2PqlP9s94FpC254UO9Vb-YMMm6knqeVTXswTDtZsDdnRjBQ>
+    <xmx:TziLZHoqNn-s_2B_cpw36QAVcMDGTJU73T1qjGgkgc42xHqwL1xaIw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 6F379B60089; Thu, 15 Jun 2023 12:11:57 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-496-g8c46984af0-fm-20230615.001-g8c46984a
+Mime-Version: 1.0
+Message-Id: <9fecce53-fc7d-4783-9e05-509b1b418589@app.fastmail.com>
+In-Reply-To: <2023061500-tipper-tightwad-8843@gregkh>
+References: <20230612025355.547871-1-ychuang570808@gmail.com>
+ <20230612025355.547871-2-ychuang570808@gmail.com>
+ <2023061338-lunchbox-snorkel-e6a9@gregkh>
+ <f8eb6114-8248-8886-b301-c2886e50e016@gmail.com>
+ <2023061356-matchbook-footwear-d142@gregkh>
+ <35e768ad-7f15-48a4-9c38-09570026cf71@app.fastmail.com>
+ <2023061555-enlighten-worshiper-c92d@gregkh>
+ <502240f7-2cac-4fe6-9e27-f9861db3666d@app.fastmail.com>
+ <2023061500-tipper-tightwad-8843@gregkh>
+Date:   Thu, 15 Jun 2023 18:11:36 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+Cc:     "Jacky Huang" <ychuang570808@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Jiri Slaby" <jirislaby@kernel.org>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        soc@kernel.org, schung@nuvoton.com, mjchen@nuvoton.com,
+        "Jacky Huang" <ychuang3@nuvoton.com>
+Subject: Re: [PATCH v14 1/1] tty: serial: Add Nuvoton ma35d1 serial driver support
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jun 2023 at 20:33, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, Jun 15, 2023, at 17:00, Greg Kroah-Hartman wrote:
+> On Thu, Jun 15, 2023 at 04:01:55PM +0200, Arnd Bergmann wrote:
+>> Since the number is exported to userspace in serial_struct,
+>> it might be better to pick a new constant such as
+>> 
+>> #define PORT_SERIAL_GENERIC (-1)
+>> 
+>> in order to be less ambiguous. It's a signed integer, so -1
+>> would work here this would clearly be a special value, or
+>> another option might be to use 255 as something that is
+>> slightly less special but still recognizable as something
+>> that may have a special meaning.
 >
-> On 15/06/2023 15:47, Amit Pundir wrote:
-> > On Thu, 15 Jun 2023 at 00:38, Amit Pundir <amit.pundir@linaro.org> wrote:
-> >>
-> >> On Thu, 15 Jun 2023 at 00:17, Krzysztof Kozlowski
-> >> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>
-> >>> On 14/06/2023 20:18, Linux regression tracking (Thorsten Leemhuis) wrote:
-> >>>> On 02.06.23 18:12, Amit Pundir wrote:
-> >>>>> Move lvs1 and lvs2 regulator nodes up in the rpmh-regulators
-> >>>>> list to workaround a boot regression uncovered by the upstream
-> >>>>> commit ad44ac082fdf ("regulator: qcom-rpmh: Revert "regulator:
-> >>>>> qcom-rpmh: Use PROBE_FORCE_SYNCHRONOUS"").
-> >>>>>
-> >>>>> Without this fix DB845c fail to boot at times because one of the
-> >>>>> lvs1 or lvs2 regulators fail to turn ON in time.
-> >>>>
-> >>>> /me waves friendly
-> >>>>
-> >>>> FWIW, as it's not obvious: this...
-> >>>>
-> >>>>> Link: https://lore.kernel.org/all/CAMi1Hd1avQDcDQf137m2auz2znov4XL8YGrLZsw5edb-NtRJRw@mail.gmail.com/
-> >>>>
-> >>>> ...is a report about a regression. One that we could still solve before
-> >>>> 6.4 is out. One I'll likely will point Linus to, unless a fix comes into
-> >>>> sight.
-> >>>>
-> >>>> When I noticed the reluctant replies to this patch I earlier today asked
-> >>>> in the thread with the report what the plan forward was:
-> >>>> https://lore.kernel.org/all/CAD%3DFV%3DV-h4EUKHCM9UivsFHRsJPY5sAiwXV3a1hUX9DUMkkxdg@mail.gmail.com/
-> >>>>
-> >>>> Dough there replied:
-> >>>>
-> >>>> ```
-> >>>> Of the two proposals made (the revert vs. the reordering of the dts),
-> >>>> the reordering of the dts seems better. It only affects the one buggy
-> >>>> board (rather than preventing us to move to async probe for everyone)
-> >>>> and it also has a chance of actually fixing something (changing the
-> >>>> order that regulators probe in rpmh-regulator might legitimately work
-> >>>> around the problem). That being said, just like the revert the dts
-> >>>> reordering is still just papering over the problem and is fragile /
-> >>>> not guaranteed to work forever.
-> >>>> ```
-> >>>>
-> >>>> Papering over obviously is not good, but has anyone a better idea to fix
-> >>>> this? Or is "not fixing" for some reason an viable option here?
-> >>>>
-> >>>
-> >>> I understand there is a regression, although kernel is not mainline
-> >>> (hash df7443a96851 is unknown) and the only solutions were papering the
-> >>> problem. Reverting commit is a temporary workaround. Moving nodes in DTS
-> >>> is not acceptable because it hides actual problem and only solves this
-> >>> one particular observed problem, while actual issue is still there. It
-> >>> would be nice to be able to reproduce it on real mainline with normal
-> >>> operating system (not AOSP) - with ramdiks/without/whatever. So far no
-> >>> one did it, right?
-> >>
-> >> No, I did not try non-AOSP system yet. I'll try it tomorrow, if that
-> >> helps. With mainline hash.
-> >
-> > Hi, here is the crash report on db845c running vanilla v6.4-rc6 with a
-> > debian build https://bugs.linaro.org/attachment.cgi?id=1142
-> >
-> > And fwiw here is the db845c crash log with AOSP running vanilla
-> > v6.4-rc6 https://bugs.linaro.org/attachment.cgi?id=1141
-> >
-> > Regards,
-> > Amit Pundir
-> >
-> > PS: rootfs in this bug report doesn't matter much because I'm loading
-> > all the kernel modules from a ramdisk and in the case of a crash the
-> > UFS doesn't probe anyway.
+> A new constant would be good, 255 is nice, and then we can move everyone
+> to use it unless they can specifically show a reason why it will not
+> work for them.
 >
-> I just tried current next with defconfig (I could not find your config,
-> neither here, nor in your previous mail thread nor in bugzilla). Also
-> with REGULATOR_QCOM_RPMH as module.
->
-> I tried also v6.4-rc6 - also defconfig with default and module
-> REGULATOR_QCOM_RPMH.
->
-> All the cases work on my RB3 - no warnings reported.
->
-> If you do not use defconfig, then in all reports please mention the
-> differences (the best) or at least attach it.
+> I think originally this was used to do device-specific ioctls, right?
+> That shouldn't be happening anymore, hopefully...
 
-Argh.. Sorry about that. Big mistake from my side. I did want to
-upload my defconfig but forgot. Defconfig plays a key role because, as
-I mentioned in one of my previous email, it is a timing/race bug and
-if I do any much changes in my defconfig (i.e. enable ftrace for
-example or as little as add printk in qcom_rpmh_regulator code) then I
-can't reproduce this bug. So needless to say that I can't reproduce
-this bug with default arm64 defconfig.
+The only thing I could find is that you can use TIOCSSERIAL to set
+the type between the supported types within a driver, which changes
+the behavior in some cases, e.g. the exact size and layout of the
+register file or its capabilities.
 
-Please find my custom (but upstream) defconfig here
-https://bugs.linaro.org/attachment.cgi?id=1143 and prebuilt binaries
-here https://people.linaro.org/~amit.pundir/db845c-userdebug/rpmh_bug/.
-"fastboot flash boot ./boot.img-6.4-rc6 reboot" and/or a few (<5)
-reboots should be enough to trigger the crash.
+We may need a proper audit of TIOCSSERIAL anyway, I suspect there
+are worse things you can do with other settings.
 
-I have downloaded the initrd from here
-https://snapshots.linaro.org/96boards/dragonboard845c/linaro/debian/569/initrd.img-5.15.0-qcomlt-arm64
-but edited ramdisk/init to run "load_module" function early in the
-boot and ramdisk/conf/initramfs.conf has "MODULES=list" instead of
-"MODULES=most", where all the kernel modules are listed at
-/etc/initramfs-tools/modules.
-
-Regards,
-Amit Pundir
+       Arnd
