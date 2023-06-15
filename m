@@ -2,144 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D54730C5F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 02:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F68730C64
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 02:50:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231700AbjFOAtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 20:49:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59740 "EHLO
+        id S236673AbjFOAuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 20:50:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbjFOAtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 20:49:45 -0400
+        with ESMTP id S236439AbjFOAuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 20:50:03 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B939A1BE3;
-        Wed, 14 Jun 2023 17:49:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F111BE3;
+        Wed, 14 Jun 2023 17:50:02 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4534A6125A;
-        Thu, 15 Jun 2023 00:49:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89E07C433C0;
-        Thu, 15 Jun 2023 00:49:42 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 123DB63516;
+        Thu, 15 Jun 2023 00:50:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FC5FC433C0;
+        Thu, 15 Jun 2023 00:50:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686790183;
-        bh=jINt6zP8j0KPwm3QNGyIB+T36vd5weBGWcv1oySUb8g=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=fFpIjYpUsicc3z46XQMXfbVOP0rxoZ3ciubuvOafCo/l5bUinIOJA9RqQgN5V7nvo
-         T0eCcD+/NJNUNBGMBCGaZ6mKmlLKLkKgSfGXC97BrRoPDzC7TvsxPacpAs7AJRwrh7
-         e4n4DYjgSNNNF6vPg6ly9QEr1srJ5XLyomtHebBfrbrkoFYr440llKSUrnLFgFXSKz
-         M8lLZYyMgEN01ii/jJo3LsonGsqfadA+Rl6U6S8EXA8Df/PxhnIStnPAluZdxSskA7
-         jC2KbdNyvYDsO+K2qv4uW04b7Qcwf87tzy9zKmkEq6SXltvrQtC72xpXXZyxJXsBpd
-         kR2CxZaNXzbOA==
-Message-ID: <7276875c-d330-cbd4-ccfc-e7e16bedcaaa@kernel.org>
-Date:   Thu, 15 Jun 2023 09:49:41 +0900
+        s=k20201202; t=1686790201;
+        bh=OnZsw9VGDNW6KuY0k3YjEaktjmpS1FKjNJp4If98TW8=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=UDrmucUciHwXzwjWwArsQuCkffUdTOgVRhSqtnrPIRZvOFFsVLsPsD9QkFw7DKtMJ
+         SH3uIpaDkQpyhWlLAK2RaB675mcPTmkn7dP7O5yn4CTL2J1jhCEyCIu22+AsHw7zio
+         ZrHMm6dAK2VZpbPBgOicl3oWAm0CPkvF/XzCLnLxzdHgJvghqgadwheEgECf5bsasn
+         GgjLXruMqUQ0A19R6kk9ENHc25Ev8pI1dutg4emORyHtAmlOlMRnOkdqKJ2cMVbuoE
+         iCmeE+jJpz2AxkX/1W5EYBZ5y6mVSzLHMCARPpCk4vOE6Etm4+eav2huj9QtbnnmJN
+         RkgFI22hVSnCQ==
+Message-ID: <0764b5fda92acb995ffbd05c4b3d2b2f.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 25/43] dt-bindings: ata: Add Cirrus EP93xx
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Nikita Shubin <nikita.shubin@maquefel.me>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230526-topic-smd_icc-v6-0-263283111e66@linaro.org>
+References: <20230526-topic-smd_icc-v6-0-263283111e66@linaro.org>
+Subject: Re: [PATCH v6 00/22] Restructure RPM SMD ICC
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Peters <mpeters@embeddedts.com>,
-        Kris Bahnsen <kris@embeddedts.com>, linux-ide@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230601054549.10843-7-nikita.shubin@maquefel.me>
- <fe8bfbfc-0ce5-d4ea-a2a8-8608fe4e2f97@kernel.org>
- <20230614190030.GA2547354-robh@kernel.org>
-From:   Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20230614190030.GA2547354-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Leo Yan <leo.yan@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 14 Jun 2023 17:49:59 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/15/23 04:00, Rob Herring wrote:
-> On Fri, Jun 02, 2023 at 08:57:37AM +0900, Damien Le Moal wrote:
->> On 6/1/23 14:45, Nikita Shubin wrote:
->>> Add YAML bindings for ep93xx SoC PATA.
->>>
->>> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
->>> ---
->>>
->>> Notes:
->>>     v0 -> v1:
->>>     
->>>     - renamed file to ep9312-pata
->>
->> Looks OK to me but given that this is both for the cirrus,ep9315-pata and
->> cirrus,ep9312-pata, wouldn't it be better to name the file
->> cirrus,ep931x-pata.yaml ?
-> 
-> cirrus,ep9312-pata makes sense given that is the common fallback.
-> 
-> Wildcards are okay in filenames (only) when there's not a common 
-> fallback.
+Quoting Konrad Dybcio (2023-06-14 11:04:19)
+> This series reshuffles things around, moving the management of SMD RPM
+> bus clocks to the interconnect framework where they belong. This helps
+> us solve a couple of issues:
+>=20
+> 1. We can work towards unused clk cleanup of RPMCC without worrying
+>    about it killing some NoC bus, resulting in the SoC dying.
+>    Deasserting actually unused RPM clocks (among other things) will
+>    let us achieve "true SoC-wide power collapse states", also known as
+>    VDD_LOW and VDD_MIN.
+>=20
+> 2. We no longer have to keep tons of quirky bus clock ifs in the icc
+>    driver. You either have a RPM clock and call "rpm set rate" or you
+>    have a single non-RPM clock (like AHB_CLK_SRC) or you don't have any.
+>=20
+> 3. There's less overhead - instead of going through layers and layers of
+>    the CCF, ratesetting comes down to calling max() and sending a single
+>    RPM message. ICC is very very dynamic so that's a big plus.
+>=20
+> The clocks still need to be vaguely described in the clk-smd-rpm driver,
+> as it gives them an initial kickoff, before actually telling RPM to
+> enable DVFS scaling.  After RPM receives that command, all clocks that
+> have not been assigned a rate are considered unused and are shut down
+> in hardware, leading to the same issue as described in point 1.
 
-Got it.
-
-> 
->>>     - changed email to dlemoal@kernel.org
->>>     - dropped label
->>>     - fixed ident
->>>
->>>  .../bindings/ata/cirrus,ep9312-pata.yaml      | 44 +++++++++++++++++++
->>>  1 file changed, 44 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
->>> new file mode 100644
->>> index 000000000000..3489be55a6fe
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
->>> @@ -0,0 +1,44 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/ata/cirrus,ep9312-pata.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Cirrus Logic EP9312 PATA controller
->>> +
->>> +maintainers:
->>> +  - Damien Le Moal <dlemoal@kernel.org>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - const: cirrus,ep9312-pata
->>
->> I am not a DT specialist, but isn't this line superfluous since it is listed in
->> the items ?
-> 
-> No, this entry is for ep9312. The next entry is for ep9315 which is 
-> compatible with ep9312 version. The cirrus,ep9315-pata is there in case 
-> a distinction (e.g. quirk/errata) needs to be made by the driver 
-> without having to change the DT.
-
-Thanks for all the clarification.
-
-Looks good then.
-
-Acked-by: Damien Le Moal <dlemoal@kernel.org>
-
-I can take this patch through the ata tree, but it may be better to have it with
-the entire series (arm tree ?)
-
--- 
-Damien Le Moal
-Western Digital Research
-
+Why can't we move the enable of DVFS scaling call to the interconnect
+driver as well? We want the clk driver to not reference the interconnect
+resources at all.
