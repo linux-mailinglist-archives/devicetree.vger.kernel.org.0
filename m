@@ -2,203 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52FF77318B1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0327318D8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344818AbjFOMQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:16:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58890 "EHLO
+        id S1343900AbjFOMVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 08:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344831AbjFOMP4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:15:56 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9902945
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:15:05 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f841b7a697so1135137e87.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:15:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686831304; x=1689423304;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ehfVzvQExF8A0HC8WC/ILIhv/WTmHbal1y8W4TeN1es=;
-        b=KIh3E9Trrv0o8j5qc7wu9J1KSN2D6U60ApSMwOUvHp31DZYXVVO3f3FPpVd8fJQWhh
-         c37/Buv5uwHPjlwByLawGWns2DCMt8AHP4ss8+UNgMQBrUzz/bVj/wQQY9ZM3a1372de
-         EKAlTGIxVygKIr0SlJh/ki44s1QN678Am3RQITT4AYPxrx/NiGpWCdiqQeDAS2M3M+1h
-         GA8L/xz8TGLA8H7BsoBWWPlIwv3TmCN6imb9NR0/QBgDmoW9WqcN6Rwws4CWTx+YR4gV
-         /6Qas9eLTC8mFurtEk1LkGE2JpdAToYDIkAl7kjZM2TAFHgYgvmSMOv9fAXXqS12Klhv
-         0V1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686831304; x=1689423304;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ehfVzvQExF8A0HC8WC/ILIhv/WTmHbal1y8W4TeN1es=;
-        b=PagBCwO0aiELV68OCna3VtXKNLdjHuykNGefFZoEXUK0pdG3bWhr5t7MhGsZxmBvBk
-         /OKs/YmimLZJJZghuV422Lg7hNVoYYLFmzOF7TqvekzWxyHkwoE9a/UVHpciw8SXF30b
-         C/+D5WlVajCWAtK24LO2Xuzfud8T2urEj2WBLhx38WkmPMMZthvp8AhSwTmRJng59K2P
-         RxVfoywShN/YSnfgt02lHdjm0AppW56SKeJ4eAequYSUAABfBGha5/IDHn+McEEAz/9T
-         ha8S6WE4xyp0+XqQCMojeJf+xpApe882yawHby419TDZDHCCrAk8CnyhCMlmyq+6xX2A
-         /DQw==
-X-Gm-Message-State: AC+VfDwQcXqyOQtmZ129SBGfCrYdyRrH6bgwkXhXEAF9nMietbnZ9Y4N
-        27qhop4Ys9j3o0Ql5mt9E1cxfw==
-X-Google-Smtp-Source: ACHHUZ501jOXOdbI2vCoh9Z+8k50wxBJblPlQxddMcmLJtJFW3AHRsWBrNj0ZJXAqwZBC0Y5jwcrWQ==
-X-Received: by 2002:a05:6512:44b:b0:4f2:6817:2379 with SMTP id y11-20020a056512044b00b004f268172379mr9064077lfk.23.1686831303698;
-        Thu, 15 Jun 2023 05:15:03 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:2ad4:65a7:d9f3:a64e])
-        by smtp.gmail.com with ESMTPSA id k17-20020a5d4291000000b003047ea78b42sm20918012wrq.43.2023.06.15.05.15.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 05:15:03 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v2 23/23] arm64: dts: qcom: sa8775p-ride: enable ethernet0
-Date:   Thu, 15 Jun 2023 14:14:19 +0200
-Message-Id: <20230615121419.175862-24-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230615121419.175862-1-brgl@bgdev.pl>
-References: <20230615121419.175862-1-brgl@bgdev.pl>
+        with ESMTP id S1343949AbjFOMVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:21:13 -0400
+X-Greylist: delayed 635 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Jun 2023 05:19:26 PDT
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477253580;
+        Thu, 15 Jun 2023 05:19:26 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id AD4479F4;
+        Thu, 15 Jun 2023 14:18:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1686831539;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=/Caj3WcHVhXv2orGAS3eW5p0U6TifL7MgYmHT2thsXY=;
+        b=zeqVvJFr2EAj1fuB6oUIj/6PEbDQDew4ofZWxW4UM3mB8WsZlzMAr4y55a3nE8GYqd9c0Y
+        Lft6AlIGpRxl+Oio0ZWRV951mmWmXdzuRYz1SbnT7Ws+k1te97Bna5/TI4oBCVGPsyvfqN
+        OGXn34D27nvQ1gvvQwkuwItw52UYLro8d4oEhzkrkDQK+zvHz6lKsLrglo745Xbo5fwuVO
+        Kth6/H8GjAMdoltgrkr9IOXrgZVkGwNB5McisG5eATfUi5OJEsqbKyURLmobLMoJV6yZLH
+        Kr1bh2UDOwElBSnvFM+hPAIIxWTUCQW5h2JTHta2T7zu5ET2JZcKvhwWSoNKhA==
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Date:   Thu, 15 Jun 2023 14:18:59 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, git@amd.com, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        amitrkcian2002@gmail.com
+Subject: Re: [PATCH 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP
+ signal not connected
+In-Reply-To: <20230615111649.36344-3-amit.kumar-mahapatra@amd.com>
+References: <20230615111649.36344-1-amit.kumar-mahapatra@amd.com>
+ <20230615111649.36344-3-amit.kumar-mahapatra@amd.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <fe5ebc619350c378a14e88275e5dab3b@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Am 2023-06-15 13:16, schrieb Amit Kumar Mahapatra:
+> Setting the status register write disable (SRWD) bit in the status
+> register (SR) with WP signal of the flash not connected will configure 
+> the
+> SR permanently as read-only. If WP signal is not connected, avoid 
+> setting
+> SRWD bit while writing the SR during flash protection.
+> 
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> ---
+>  drivers/mtd/spi-nor/core.c | 3 +++
+>  drivers/mtd/spi-nor/core.h | 1 +
+>  drivers/mtd/spi-nor/swp.c  | 5 +++--
+>  3 files changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+> index 0bb0ad14a2fc..81b57c51f41c 100644
+> --- a/drivers/mtd/spi-nor/core.c
+> +++ b/drivers/mtd/spi-nor/core.c
+> @@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor 
+> *nor)
+>  	if (flags & NO_CHIP_ERASE)
+>  		nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
+> 
+> +	if (of_property_read_bool(np, "broken-wp"))
+> +		nor->flags |= SNOR_F_BROKEN_WP;
+> +
+>  	if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
+>  	    !nor->controller_ops)
+>  		nor->flags |= SNOR_F_RWW;
+> diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
+> index 4fb5ff09c63a..6ac932eba913 100644
+> --- a/drivers/mtd/spi-nor/core.h
+> +++ b/drivers/mtd/spi-nor/core.h
+> @@ -132,6 +132,7 @@ enum spi_nor_option_flags {
+>  	SNOR_F_SWP_IS_VOLATILE	= BIT(13),
+>  	SNOR_F_RWW		= BIT(14),
+>  	SNOR_F_ECC		= BIT(15),
+> +	SNOR_F_BROKEN_WP	= BIT(16),
+>  };
+> 
+>  struct spi_nor_read_command {
+> diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
+> index 0ba716e84377..074f3bce2034 100644
+> --- a/drivers/mtd/spi-nor/swp.c
+> +++ b/drivers/mtd/spi-nor/swp.c
+> @@ -214,8 +214,9 @@ static int spi_nor_sr_lock(struct spi_nor *nor,
+> loff_t ofs, uint64_t len)
+> 
+>  	status_new = (status_old & ~mask & ~tb_mask) | val;
+> 
+> -	/* Disallow further writes if WP pin is asserted */
+> -	status_new |= SR_SRWD;
+> +	/* Disallow further writes if WP pin is connected */
 
-Enable the first 1Gb ethernet port on sa8775p-ride development board.
+"is not broken" or similar. Maybe descibe what is broken.
+Like I said, this might also be a valid use case.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 88 +++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+Thinking more about this, maybe we should make this
+configurable. I.e. make it possible to set the
+locking region without disabling further writes. Although
+I'm not sure how. Right now, we always enable both the
+software and hardware write protection. (winbond distiguish
+between software and hardware write protection here; software
+here means not linux/kernel but just setting the protection
+bits without the locking bit). And in the case WP# is tied
+to low, one should not use the hardware write protection.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index bf90f825ff67..b2aa16037707 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -261,6 +261,94 @@ vreg_l8e: ldo8 {
- 	};
- };
- 
-+&ethernet0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&sgmii_phy>;
-+
-+	pinctrl-0 = <&ethernet0_default>;
-+	pinctrl-names = "default";
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,ps-speed = <1000>;
-+
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <11000>;
-+		reset-post-delay-us = <70000>;
-+
-+		sgmii_phy: phy@8 {
-+			reg = <0x8>;
-+			device_type = "ethernet-phy";
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
- &i2c11 {
- 	clock-frequency = <400000>;
- 	pinctrl-0 = <&qup_i2c11_default>;
--- 
-2.39.2
+Although I'm not really sure, how to do that in a backwards
+compatible way.
 
+-michael
