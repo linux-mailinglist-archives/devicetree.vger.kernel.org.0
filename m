@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6775073145D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB6C4731462
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:47:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244853AbjFOJqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45420 "EHLO
+        id S245112AbjFOJrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:47:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238768AbjFOJqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:46:15 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2F51BD2;
-        Thu, 15 Jun 2023 02:46:12 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35F9k5st064895;
-        Thu, 15 Jun 2023 04:46:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686822365;
-        bh=rNnRz5youXx1kHvPeBw8+Jb16w+qow3Fd1ysPX/76Fg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=u09Xcz91goyY0x2DmjOThQwuTZuwpGbuwOlqT3by7ubWBSaAksoiJeWBmy2nfmALA
-         CAbF5zLaOcazAPmrsuM+NdWFYyckox6PMeh7Ib9hvcIQ9J6N9roCA2SBET646xuAlL
-         EG6j9obuHfpUZW4bCeg3Yn2Qpd/HgjuRQQnaVDis=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35F9k5HA120615
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 04:46:05 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 04:46:04 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 04:46:04 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35F9k0mK033974;
-        Thu, 15 Jun 2023 04:46:01 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     <nm@ti.com>, <afd@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-vadapalli@ti.com>, <vaishnav.a@ti.com>,
-        Ravi Gunasekaran <r-gunasekaran@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v14 0/8] arm64: j721s2: Add support for additional IPs
-Date:   Thu, 15 Jun 2023 15:15:58 +0530
-Message-ID: <168682220420.2105095.2398509850243495107.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230331090028.8373-1-r-gunasekaran@ti.com>
-References: <20230331090028.8373-1-r-gunasekaran@ti.com>
+        with ESMTP id S238604AbjFOJrv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:47:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA541FDB;
+        Thu, 15 Jun 2023 02:47:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 222DC62D0F;
+        Thu, 15 Jun 2023 09:47:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1046BC433C0;
+        Thu, 15 Jun 2023 09:47:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1686822468;
+        bh=dq78Mpvl25tYI9hMZp9HS6PZVswp2rMHbFOPamCyiDs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=v/LosNBtIuUZHTTGv6QPPVczkMmlTJ6O2pB1K6x6sqqG7xEDBamku+iQU5wLuRzPs
+         CTDmPkpZUxzwkBKR0ziMgoQ4Xg9BWFnENd23M+GG5056lh7lve20ZNKCLo3XTptvov
+         HO7QJbEWXHH2gitPjei+I6keyXRFuyGOGrsZFYnk=
+Date:   Thu, 15 Jun 2023 11:47:46 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     neil.armstrong@linaro.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] usb: typec: add support for the nb7vpq904m Type-C
+ Linear Redriver
+Message-ID: <2023061514-wager-iphone-cf71@gregkh>
+References: <20230601-topic-sm8x50-upstream-redriver-v3-0-988c560e2195@linaro.org>
+ <20230601-topic-sm8x50-upstream-redriver-v3-2-988c560e2195@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20230601-topic-sm8x50-upstream-redriver-v3-2-988c560e2195@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,56 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ravi Gunasekaran,
-
-On Fri, 31 Mar 2023 14:30:20 +0530, Ravi Gunasekaran wrote:
-> The following series of patches add support for the following
-> on J721S2 common processor board,
+On Tue, Jun 13, 2023 at 04:50:08PM +0200, neil.armstrong@linaro.org wrote:
+> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
-> - USB
-> - SerDes
-> - OSPI
-> - PCIe
+> Add support for the ON Semiconductor NB7VPQ904M Type-C USB SuperSpeed
+> and DisplayPort ALT Mode Linear Redriver chip found on some devices
+> with a Type-C port.
 > 
-> [...]
+> The redriver compensates ultra High-Speeed DisplayPort and USB
+> Super Speed signal integrity losses mainly due to PCB & transmission
+> cables.
+> 
+> The redriver doesn't support SuperSpeed lines swapping, but
+> can support Type-C SBU lines swapping.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/usb/typec/mux/Kconfig      |   8 +
+>  drivers/usb/typec/mux/Makefile     |   1 +
+>  drivers/usb/typec/mux/nb7vpq904m.c | 529 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 538 insertions(+)
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+I get the following build error on my system with this applied:
 
-[1/8] arm64: dts: ti: k3-j721s2-main: Add support for USB
-      commit: 20fcf9d691ff6cde865f8486288b7babe1826b49
-[2/8] arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ device tree node
-      commit: 393eee04065d26d53e9167e3721ad9a0ff89d40f
-[3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support of OSPI
-      commit: 80cfbf2f4ac735ab8e72a3c70188c433f06810c1
-[4/8] arm64: dts: ti: k3-j721s2-common-proc-board: Enable SERDES0
-      commit: da61731dc7f5d7a676acd81124229b57e6fbe0ef
-[5/8] arm64: dts: ti: k3-j721s2-common-proc-board: Add USB support
-      commit: 7743a9d7517a6a1f3b21d32db3bc1d00d6b16983
-[6/8] arm64: dts: ti: k3-j721s2: Add support for OSPI Flashes
-      commit: bbabba4ece74c51b98e7c8dbd8fa4725d0ae9baf
-[7/8] arm64: dts: ti: k3-j721s2-main: Add PCIe device tree node
-      commit: b6f18aa80f4eee59f9292f0007c021cb7e7dbbec
-[8/8] arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-      commit: 715084ecc25adafe7f724721807b64fcc3a13e4a
+  CC [M]  drivers/usb/typec/mux/nb7vpq904m.o
+drivers/usb/typec/mux/nb7vpq904m.c: In function ‘nb7vpq904m_register_bridge’:
+drivers/usb/typec/mux/nb7vpq904m.c:327:20: error: ‘struct drm_bridge’ has no member named ‘of_node’
+  327 |         nb7->bridge.of_node = nb7->client->dev.of_node;
+      |                    ^
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+What went wrong?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+thanks,
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+greg k-h
