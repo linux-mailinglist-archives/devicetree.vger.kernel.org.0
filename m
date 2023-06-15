@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0078F731EF2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 493D9731F11
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235116AbjFOR12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 13:27:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41074 "EHLO
+        id S233922AbjFORb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 13:31:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239284AbjFOR1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:27:17 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71CAB2944;
-        Thu, 15 Jun 2023 10:27:12 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-777b1b5ff50so358246139f.3;
-        Thu, 15 Jun 2023 10:27:12 -0700 (PDT)
+        with ESMTP id S233801AbjFORb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:31:28 -0400
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56EAA1715
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 10:31:27 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-33c1fb9f2ecso35358835ab.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 10:31:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686850031; x=1689442031;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vKk+TgAjylPN5EUy5QdAn2mAooqy0Uaxj8L8e+7bg3c=;
-        b=gEDeazn+RujxgGhGlT0FLfTX2u8vAd9/62Jhs8aJWKVdXeNa3thZA88YF08L000NSb
-         EXcngv6c6L43eLQWBNrAfNjl+6eDUakveoZqAZa8lP/rIynrzO8GTx1XZiwmPAdVfdSh
-         u0egpycjgppsk5FPz8SXh3qPo/TcRFg7CZkCc9kDACBqE70Ad0UGtKsxaQOmxA8vFPxx
-         WGPNacYau8IRGixRan+pm7nos14rllRTaQkP755mAUoptp7of66aqHAM2javqBNmjL6A
-         HIgbnmsoJTdQstMutJvg1hjFsRG5hZRCtDUA2S3dt0blEz6/67CHidOfdO9LCddgLNze
-         /JIQ==
-X-Gm-Message-State: AC+VfDx0M8AkOXSvD6PcZZ0aoMogWPgyX9Tn3h47wk5tChGo8ng3E3/f
-        3+8SV2dwxm2hDEFn3TKDog==
-X-Google-Smtp-Source: ACHHUZ687Kt6K8e3YCR3HIVzkrF4r312BQJ99CW0umX1310Gm/rdPancA3e4T+8F8FLon1Scz73T4w==
-X-Received: by 2002:a6b:dc14:0:b0:76f:f54d:36ff with SMTP id s20-20020a6bdc14000000b0076ff54d36ffmr96005ioc.11.1686850031691;
-        Thu, 15 Jun 2023 10:27:11 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686850286; x=1689442286;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nsIy7eAmIBs5mJDfePZD7N007X5+nrymlFZFWwDcroc=;
+        b=fnMyxtB3H7cQdQDxN2nK6CO3Nm9pa89KQCMz5SNZ1v52YABou8/wxcGJ+j/yAPrMIt
+         O3f1R6MHJrXAcx1FpUnlBQev+SFI3ZPPz7DJzNHccC3OOqAwm2swjBKTEtH9pFYF67e6
+         +PhXDLwm+uonCLBXlUrM5dXGUnHAR/3H+aX8svogfUyze9jnxWjzArQGD99/ZFrmARlV
+         94/RN/KRexYsEtBRbjYGxts4ECF2vBWBHA+eY8KNuknsXb0ZmqhqxcN+6lom5Pn52vmC
+         ra7TliV7shXYEYvgcTosp1Hyrdf0+MrtOe8AeJpvCkX6xjMR9VJge9ZCSuloXeudIOn6
+         SlrQ==
+X-Gm-Message-State: AC+VfDz8xoNmlknhvhC3adA5PVF20P2wMicxAyRnpfYu+5gkAvwVwaSp
+        +bJTaNfBJALg/aTCutOt6w==
+X-Google-Smtp-Source: ACHHUZ6EjY4UeSSv1in+u8IjQVEKuUAh1ZwQjE+24aGiADrMC8pckmJA9DeLT2owYJEm/ALlwCEpEw==
+X-Received: by 2002:a92:d290:0:b0:341:b14f:971c with SMTP id p16-20020a92d290000000b00341b14f971cmr20974ilp.27.1686850286613;
+        Thu, 15 Jun 2023 10:31:26 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id a22-20020a5d89d6000000b007747a6d875csm6163436iot.9.2023.06.15.10.27.10
+        by smtp.gmail.com with ESMTPSA id g9-20020a926b09000000b0033d16a45a64sm2380353ilc.14.2023.06.15.10.31.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 10:27:10 -0700 (PDT)
-Received: (nullmailer pid 1230967 invoked by uid 1000);
-        Thu, 15 Jun 2023 17:27:09 -0000
-Date:   Thu, 15 Jun 2023 11:27:09 -0600
+        Thu, 15 Jun 2023 10:31:25 -0700 (PDT)
+Received: (nullmailer pid 1235388 invoked by uid 1000);
+        Thu, 15 Jun 2023 17:31:23 -0000
+Date:   Thu, 15 Jun 2023 11:31:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-crypto@vger.kernel.org,
-        Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Gaurav Jain <gaurav.jain@nxp.com>, devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Pankaj Gupta <pankaj.gupta@nxp.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: crypto: fsl,sec-v4.0-mon: Add
- "linux,keycodes" and deprecate "linux,keycode"
-Message-ID: <168685002907.1230919.13694167518227679407.robh@kernel.org>
-References: <20230613201231.2826352-1-robh@kernel.org>
- <20230613201231.2826352-2-robh@kernel.org>
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: timer: fsl,imxgpt: Add i.MX8MP variant
+Message-ID: <168685027550.1235195.1073165383076709174.robh@kernel.org>
+References: <20230327173526.851734-1-u.kleine-koenig@pengutronix.de>
+ <20230327173526.851734-2-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230613201231.2826352-2-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230327173526.851734-2-u.kleine-koenig@pengutronix.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -71,15 +74,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 13 Jun 2023 14:12:30 -0600, Rob Herring wrote:
-> The "linux,keycode" property is non-standard. Add the common property
-> "linux,keycodes" and mark "linux,keycode" deprecated so that the mistake
-> is not propagated.
+On Mon, 27 Mar 2023 19:35:25 +0200, Uwe Kleine-König wrote:
+> The i.MX8MP has the same register layout as the i.MX6DL, so add it as a
+> variant allowing to add the GPT IP blocks to the i.MX8MP's dtsi file.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 > ---
->  .../devicetree/bindings/crypto/fsl,sec-v4.0-mon.yaml         | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Applied, thanks!
