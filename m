@@ -2,199 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12DB4731C8F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 17:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1767731D05
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 17:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345210AbjFOP1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 11:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57458 "EHLO
+        id S1343944AbjFOPta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 11:49:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345196AbjFOP07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 11:26:59 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA96A1BC9;
-        Thu, 15 Jun 2023 08:26:57 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686842816;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WiCubefUJT8lqguruRQEQMdku90oEPaE9zL5TkFrvME=;
-        b=mi96fjGzH8Mu4wIWBL14eimJQeuzdBWTbb317jMDprLXgEnY7GaDRq5W67+eGeXjgEHnVf
-        f2NJ9vfOxmVmvYP5vjSLnFVPQKKR4fUvMjTkr1pWj9JTCzOqfWsvR0t9Kk2PCuIW4RXD6+
-        OGoW2Ora7ohu+I9nDvV4JAH4zNl3tSoBHuM5TbhKGW8LEt3z9VJIQcQIY7styBo9hMSQ2N
-        Xpmpob9tdU2Hs8hSmkj7DDztKepqOrhJG0r1WH/1ldvvp/YZL5/nnOzOvIjgbZVvtwED2A
-        Zi4KGPktO/gO/PRo+IgwzrIm3H2TeGs8xThW35U8ccqEaRjG+ZwEI6d1w6c36Q==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 58DD0FF805;
-        Thu, 15 Jun 2023 15:26:55 +0000 (UTC)
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v5 13/13] ASoC: simple-card: Handle additional devices
-Date:   Thu, 15 Jun 2023 17:26:31 +0200
-Message-Id: <20230615152631.224529-14-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230615152631.224529-1-herve.codina@bootlin.com>
-References: <20230615152631.224529-1-herve.codina@bootlin.com>
+        with ESMTP id S233702AbjFOPs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 11:48:59 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFAA32D47
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 08:48:57 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f642a24568so10849356e87.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 08:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686844136; x=1689436136;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PUAJ9GModBvA4BiyyqRlwTWGMClzVaAkbccnzBcQo3s=;
+        b=MAv3MustOdNWaVH6UO8Tri+zzNC5QiaRcjMYPdrOwkg1F9oLpNPh+Se9yT+bTw19yM
+         yp+3SnvrP3HaKHCpiwKlnxf9HOqrTMMAodRVIvGhiLCbwFbMfInStr+7OLvdh2I0aagU
+         bDIphpBENWQ7JOeyR9wIVFYGEIto1/CU2Pn6fYlcuRQm/4N4/ZcbM7bIRjBOYmtrvxeQ
+         XqFRL7flShjHn4VKXYwR57MWAOTacVW9A5HZ5ue5Q4MaLGXDU6dbqDhvTDUItnS7dElF
+         kJxlZ5zB+5bdVK8ZFqWH2XfFhVItlBYcddiER9Shjw9oSEvhVUnJpP2HamlKkQR7bkPY
+         XR6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686844136; x=1689436136;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PUAJ9GModBvA4BiyyqRlwTWGMClzVaAkbccnzBcQo3s=;
+        b=lu5W4BzufZH0XyT4OlwIeeO42M0/WaYUPI4xfoqWR3lKefd55Befkmegk8phMf9/rD
+         7T8bvPO5SJ/keSTLjU4Ha4MzIUqUV8N/tGn/3dDGL53f9AjHCv1xgApOtqGdjQ4Pi9mT
+         t9A148mo+wYKkZb487ZqXtItA78qaTMgZuVlvjBKUHayL4Js8WTCOM58nU6YYEW7SkRI
+         Gr3hmXfsrnboVg9psPGvkNigSRahGO0RbUze17S8XBRxLy1reqkYxmC9MmIJXh1Xr5qF
+         uc9E4IZfoR/ox1RpPi4kxX4ENwxxaQM24nSNNyBIEGJyoLjT1pszBvD2vZDNi4RFekcI
+         CmsA==
+X-Gm-Message-State: AC+VfDyTJSBNSvcTUrvBJNTOBDVMg12bB3/5lMWTileJ1H+M7ZQI7zZx
+        I0e/fVPoBe2AGU20CtnioC7aqw==
+X-Google-Smtp-Source: ACHHUZ7G/1KtQPGOmB35K5gwxpTmfOodKftc5Fr+/cmcI1X+hOOeaGnPkjyvF5SbSC55aY60zofuoA==
+X-Received: by 2002:a19:5e58:0:b0:4f6:3c00:1766 with SMTP id z24-20020a195e58000000b004f63c001766mr9696485lfi.15.1686844136084;
+        Thu, 15 Jun 2023 08:48:56 -0700 (PDT)
+Received: from vingu-book.. ([2a01:e0a:f:6020:bbac:2128:4a5:31a7])
+        by smtp.gmail.com with ESMTPSA id h8-20020a1ccc08000000b003f8d80ecc5asm5765516wmb.12.2023.06.15.08.48.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jun 2023 08:48:54 -0700 (PDT)
+From:   Vincent Guittot <vincent.guittot@linaro.org>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, danny@kdrag0n.dev,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, srinivas.kandagatla@linaro.org
+Cc:     Vincent Guittot <vincent.guittot@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8250: correct dynamic power coefficients
+Date:   Thu, 15 Jun 2023 17:48:52 +0200
+Message-Id: <20230615154852.130076-1-vincent.guittot@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-An additional-devs subnode can be present in the simple-card top node.
-This subnode is used to declared some "virtual" additional devices.
+sm8250 faces the same problem with its Energy Model as sdm845. The energy
+cost of LITTLE cores is reported to be higher than medium or big cores
 
-Create related devices from this subnode and avoid this subnode presence
-to interfere with the already supported subnodes analysis.
+EM computes the energy with formula:
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+energy = OPP's cost / maximum cpu capacity * utilization
+
+On v6.4-rc6 we have:
+max capacity of CPU0 = 284
+capacity of CPU0's OPP(1612800 Hz) = 253
+cost of CPU0's OPP(1612800 Hz) = 191704
+
+max capacity of CPU4 = 871
+capacity of CPU4's OPP(710400 Hz) = 255
+cost of CPU4's OPP(710400 Hz) = 343217
+
+Both OPPs have almost the same compute capacity but the estimated energy
+per unit of utilization will be estimated to:
+
+energy CPU0 = 191704 / 284 * 1 = 675
+energy CPU4 = 343217 / 871 * 1 = 394
+
+EM estimates that little CPU0 will consume 71% more than medium CPU4 for
+the same compute capacity. According to [1], little consumes 25% less than
+medium core for Coremark benchmark at those OPPs for the same duration.
+
+Set the dynamic-power-coefficient of CPU0-3 to 105 to fix the energy model
+for little CPUs.
+
+[1] https://github.com/kdrag0n/freqbench/tree/master/results/sm8250/k30s
+
+Fixes: 6aabed5526ee ("arm64: dts: qcom: sm8250: Add CPU capacities and energy model")
+Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
 ---
- sound/soc/generic/simple-card.c | 46 +++++++++++++++++++++++++++++++--
- 1 file changed, 44 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/generic/simple-card.c b/sound/soc/generic/simple-card.c
-index 6f044cc8357e..ae4a47018278 100644
---- a/sound/soc/generic/simple-card.c
-+++ b/sound/soc/generic/simple-card.c
-@@ -348,6 +348,7 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 	struct device *dev = simple_priv_to_dev(priv);
- 	struct device_node *top = dev->of_node;
- 	struct device_node *node;
-+	struct device_node *add_devs;
- 	uintptr_t dpcm_selectable = (uintptr_t)of_device_get_match_data(dev);
- 	bool is_top = 0;
- 	int ret = 0;
-@@ -359,6 +360,8 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 		is_top = 1;
- 	}
- 
-+	add_devs = of_get_child_by_name(top, PREFIX "additional-devs");
-+
- 	/* loop for all dai-link */
- 	do {
- 		struct asoc_simple_data adata;
-@@ -367,6 +370,12 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 		struct device_node *np;
- 		int num = of_get_child_count(node);
- 
-+		/* Skip additional-devs node */
-+		if (node == add_devs) {
-+			node = of_get_next_child(top, node);
-+			continue;
-+		}
-+
- 		/* get codec */
- 		codec = of_get_child_by_name(node, is_top ?
- 					     PREFIX "codec" : "codec");
-@@ -380,12 +389,15 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 
- 		/* get convert-xxx property */
- 		memset(&adata, 0, sizeof(adata));
--		for_each_child_of_node(node, np)
-+		for_each_child_of_node(node, np) {
-+			if (np == add_devs)
-+				continue;
- 			simple_parse_convert(dev, np, &adata);
-+		}
- 
- 		/* loop for all CPU/Codec node */
- 		for_each_child_of_node(node, np) {
--			if (plat == np)
-+			if (plat == np || add_devs == np)
- 				continue;
- 			/*
- 			 * It is DPCM
-@@ -427,6 +439,7 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 	} while (!is_top && node);
- 
-  error:
-+	of_node_put(add_devs);
- 	of_node_put(node);
- 	return ret;
- }
-@@ -464,6 +477,31 @@ static int simple_for_each_link(struct asoc_simple_priv *priv,
- 	return ret;
- }
- 
-+static void simple_depopulate_aux(void *data)
-+{
-+	struct asoc_simple_priv *priv = data;
-+
-+	of_platform_depopulate(simple_priv_to_dev(priv));
-+}
-+
-+static int simple_populate_aux(struct asoc_simple_priv *priv)
-+{
-+	struct device *dev = simple_priv_to_dev(priv);
-+	struct device_node *node;
-+	int ret;
-+
-+	node = of_get_child_by_name(dev->of_node, PREFIX "additional-devs");
-+	if (!node)
-+		return 0;
-+
-+	ret = of_platform_populate(node, NULL, NULL, dev);
-+	of_node_put(node);
-+	if (ret)
-+		return ret;
-+
-+	return devm_add_action_or_reset(dev, simple_depopulate_aux, priv);
-+}
-+
- static int simple_parse_of(struct asoc_simple_priv *priv, struct link_info *li)
- {
- 	struct snd_soc_card *card = simple_priv_to_card(priv);
-@@ -493,6 +531,10 @@ static int simple_parse_of(struct asoc_simple_priv *priv, struct link_info *li)
- 	if (ret < 0)
- 		return ret;
- 
-+	ret = simple_populate_aux(priv);
-+	if (ret < 0)
-+		return ret;
-+
- 	ret = snd_soc_of_parse_aux_devs(card, PREFIX "aux-devs");
- 
- 	return ret;
+Srini gave me access to sm8250 rb5 board so I checked the EM and found
+that it has similar problem as sdm845.
+
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 7bea916900e2..4b0835109b01 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -100,7 +100,7 @@ CPU0: cpu@0 {
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <448>;
+-			dynamic-power-coefficient = <205>;
++			dynamic-power-coefficient = <105>;
+ 			next-level-cache = <&L2_0>;
+ 			power-domains = <&CPU_PD0>;
+ 			power-domain-names = "psci";
+@@ -131,7 +131,7 @@ CPU1: cpu@100 {
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <448>;
+-			dynamic-power-coefficient = <205>;
++			dynamic-power-coefficient = <105>;
+ 			next-level-cache = <&L2_100>;
+ 			power-domains = <&CPU_PD1>;
+ 			power-domain-names = "psci";
+@@ -156,7 +156,7 @@ CPU2: cpu@200 {
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <448>;
+-			dynamic-power-coefficient = <205>;
++			dynamic-power-coefficient = <105>;
+ 			next-level-cache = <&L2_200>;
+ 			power-domains = <&CPU_PD2>;
+ 			power-domain-names = "psci";
+@@ -181,7 +181,7 @@ CPU3: cpu@300 {
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <448>;
+-			dynamic-power-coefficient = <205>;
++			dynamic-power-coefficient = <105>;
+ 			next-level-cache = <&L2_300>;
+ 			power-domains = <&CPU_PD3>;
+ 			power-domain-names = "psci";
 -- 
-2.40.1
+2.34.1
 
