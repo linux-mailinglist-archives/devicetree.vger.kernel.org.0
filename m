@@ -2,57 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CAE0731BE4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BA54731BEB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:57:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239270AbjFOOzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 10:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37942 "EHLO
+        id S241574AbjFOO4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 10:56:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241574AbjFOOzf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:55:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325C310D8;
-        Thu, 15 Jun 2023 07:55:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C399D6235D;
-        Thu, 15 Jun 2023 14:55:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E24C433C0;
-        Thu, 15 Jun 2023 14:55:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686840933;
-        bh=bUL58XYoK6yPyhLBsa6BWypAniON+5g+bccvn2i9aC8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bQD6RuCrnVVHIbWa3jaqi3jVPzgpE1xv6KS0vmB9DW1UYwAksZ6IejbHo6CBkxceh
-         /IaoTvK17kr+ER7Z6OBmW9CPAilQYOi8ajUvjbfjvtRGzNzZKSiaujl+7K08hy56UO
-         RJtu7jf1jxn04/qp3d1h9epp/OYLnPEtVUOGH27YCJOCJXqBJYATw8mfpQ25rzq2A5
-         guQhXx+rRQDOTwhh3NfAVWQQjxL3KCPGOIFZtEJSr8JxfbB3bjgW42TnLBUUEBSAN9
-         UL9ztrmpcaDpf7/uinYRwzvdpsI0xUiZNTOH12gnA1IDyk6/FgjFltmp6H4UqCLTMu
-         Pris7uNfyYVKg==
-Date:   Thu, 15 Jun 2023 15:55:28 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: brcm: drop unneeded quotes and use
- absolute /schemas path
-Message-ID: <20230615145528.GJ3635807@google.com>
-References: <20230609140747.65074-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1344302AbjFOO4V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:56:21 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F3D02959
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 07:56:18 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f845060481so941536e87.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 07:56:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686840976; x=1689432976;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=csR9aAPz4FxkrS5GoizHZQY30Kq0wuoDZfsCT7YoxRI=;
+        b=bGwN4OOTlXZmzNmKYqwuRIkotLX8Hfm3b+WpaLN5VJrIZxhyUsmGwD77SDAvlTE+65
+         iIx9QBCNy8yWBKh3RlkcDQ3MiLIef1yUH2Q52dSUArqPjsCXkkQ6x6/agefJ6OOTsy7m
+         m60FCRekV8IXEkTL8Q/UKHx2KoRPGflU0ELRN1YbB//3y2qaMq00bHdFMl3SQX0aYwct
+         ihQoHgcX2Iv6q0kvgR1XAPMzjzc3XWjANHILQR79zX/HWln7r1quE2wN4ey/ZkTJx9x5
+         CoRQ/vYprOJcaa3oBC7v+RYslihtx/jLhuuCi9a/Rn7XxQLiZZivXi1FESD5GUpfwhZz
+         NKpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686840976; x=1689432976;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=csR9aAPz4FxkrS5GoizHZQY30Kq0wuoDZfsCT7YoxRI=;
+        b=hU4uZ2KZahxQhBeGL5TuBshJeMriKG1KLCUwilRstEYBr4EDKuEZOMGCKkto2+6L+r
+         DsDgg7uZM37tNdzZPkFdz+bQRLlGRPtK7CcQWAmcl498kwU53O3b2JMhJxDQoMvhdl2M
+         HKkz4Eh0Y7Qt/krvNqBAvH37wsEMMTrPhiUqW5OqhICvZkGSvc20UVY0icqJfVPnTIqO
+         Z7xLnXvA+2b2K48F1bUGMUog1Mj+wn0NqkL+59PZNxwESrH8uZ4e7oOMGv3mfrAOe0zd
+         SbylXT6RfQhBljJcLIWck9DhEi/2MvU/E8CMAte5xZd4yvcRocFx2e3QC1GgrC22WrH7
+         oyFA==
+X-Gm-Message-State: AC+VfDyGZA4rBtr7UnQ+ndj70K2NDWlhSZH9hR6KPWDoOwPFillYOPr4
+        4Ul0b5VL5C7cRSivWmKkQ1OFIw==
+X-Google-Smtp-Source: ACHHUZ7hBxjCGZTKAwkEC373GYuu2jd0RjRmG41v9QxKfkZIW4/NAzQlHgHBYYrzdaMlft4FApbh4A==
+X-Received: by 2002:a19:2d4a:0:b0:4f8:49a7:2deb with SMTP id t10-20020a192d4a000000b004f849a72debmr135604lft.8.1686840976383;
+        Thu, 15 Jun 2023 07:56:16 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id w6-20020ac24426000000b004f755ceafb4sm1056055lfl.159.2023.06.15.07.56.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 07:56:16 -0700 (PDT)
+Message-ID: <56a04da4-310f-7995-f7a1-bb1873353201@linaro.org>
+Date:   Thu, 15 Jun 2023 16:56:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230609140747.65074-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH V2 0/2] Add support for GPIO based leds and buttons on
+ IPQ5332/9574 devices
+Content-Language: en-US
+To:     Sridharan S N <quic_sridsn@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230615145311.2776-1-quic_sridsn@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230615145311.2776-1-quic_sridsn@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,23 +77,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Jun 2023, Krzysztof Kozlowski wrote:
-
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.  Also absolute path
-> starting with /schemas is preferred.
+On 15.06.2023 16:53, Sridharan S N wrote:
+> Add support for wlan-2g led and wps button available on IPQ5332 and
+> IPQ9574
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml     | 4 ++--
->  .../devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml    | 4 ++--
->  .../devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml     | 4 ++--
->  .../devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml     | 4 ++--
->  .../devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml     | 4 ++--
->  .../devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml     | 4 ++--
->  6 files changed, 12 insertions(+), 12 deletions(-)
+> Sridharan S N (2):
+>   arm64: dts: qcom: ipq5332: enable GPIO based LEDs and Buttons
+>   arm64: dts: qcom: ipq9574: enable GPIO based LEDs
+You sent a v*3* half an hour ago. There's no signs of [RESEND] or other
+explanations and the changelog is gone.
 
-Doesn't apply.  Please rebase and resubmit.
+Please now send a v4 after you get reviews on this one (which I assume
+is the latest) so as not to confuse the patch workflow tools and explain
+each of the previous submissions.
 
--- 
-Lee Jones [李琼斯]
+Konrad
+> 
+>  .../boot/dts/qcom/ipq5332-rdp-common.dtsi     | 39 +++++++++++++++++++
+>  .../boot/dts/qcom/ipq9574-rdp-common.dtsi     | 20 ++++++++++
+>  2 files changed, 59 insertions(+)
+> 
