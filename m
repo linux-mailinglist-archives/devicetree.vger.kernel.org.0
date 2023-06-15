@@ -2,207 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC8E732175
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 23:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 562B8732186
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 23:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230005AbjFOVSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 17:18:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
+        id S232469AbjFOVVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 17:21:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbjFOVSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 17:18:16 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D31042960;
-        Thu, 15 Jun 2023 14:18:14 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35FKxPW5028162;
-        Thu, 15 Jun 2023 21:18:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=HcRlgerHm4BuBMUBcx/cr+KzgxacLDuQaHvFXbRGX+M=;
- b=bVybtEwlSK5YX7+QRb1bkx9Zvx28v7NW4ZxcFQ71tmSEdQRFfarYIHSuFEdYIAqDajwK
- SmGDdS0AHqt3kH7222v+CHw5PC16grtad6AV5xIDEbX5KH9/d/eKUM9U/suRygSLO12C
- kT6PpU0v7WiKtdaxiCcXwzQKqxUYwHLZf837vT45rBJviGcXSzOcM5SyR9G5WZtrTbVr
- 0baK6Pf977ptFaXYd9naE01KEgloyKEIeY6hzhWRAM2IqMH9RPspLjVBezTRqvy6K5Mk
- pJ0tKca/gNMjT7Dad9ukoAEbnXIu93mDkFMsreIRBXX2Pj1bnD0WuY1uWxBHRnt17rSM 6g== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r89dw038r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 21:18:03 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35FLI1Ml019107
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 21:18:01 GMT
-Received: from akhilpo-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 15 Jun 2023 14:17:56 -0700
-Date:   Fri, 16 Jun 2023 02:47:53 +0530
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S235249AbjFOVVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 17:21:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3921B2;
+        Thu, 15 Jun 2023 14:21:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C12E7621CA;
+        Thu, 15 Jun 2023 21:21:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01CADC433C8;
+        Thu, 15 Jun 2023 21:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686864103;
+        bh=yEJ1sVebWOjpqJF7Ce+024H12ihDLGhFejIzI51dkA4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YcNKYEcjPsJehqtPbRYFE7N6WFFHDMEvvgaGYe8BzpaM6VEOC3gEI4D6Gu/SwZ+jS
+         /BYZOukFZbbSfEbJ83MVuvNp8GX98Hl/VGofHWdrHVJr9vtDH+dEzHz46eCjddmWfv
+         b1v4X5qNsw8uDY9Q8atCZChuFzAEpFloEdaWMAe6lZ9maHFlgIEmJW4n5gUCOvgV2T
+         VqnKUk0BXJp7LMDvsMgchb5+jte3Z2EprOdxpcAHUXCMhEKKYgDVJFi0tqGOyu+K8o
+         ffZ6N0+GwAjpdWYh4Gd3s045VTooAy6DhjGmPEbclSSPt1yDyCBY0Epum6vZocMxd0
+         g8pj/Wy5Ir1NQ==
+Date:   Thu, 15 Jun 2023 22:21:34 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Rob Clark <robdclark@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH v8 07/18] drm/msm/a6xx: Add a helper for
- software-resetting the GPU
-Message-ID: <iayrosqwgsxw7f3fx5eoqreglnx6ckwlrtmelfc4xl4gunpmbr@46rpcgl6nkoh>
-References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
- <20230223-topic-gmuwrapper-v8-7-69c68206609e@linaro.org>
- <jplt5g5xuphbnci73pdtaxd63fguxtgtp4c37kc7ehavzrjbau@kamshezxnvgy>
- <001d7571-5e9f-4f60-f6d0-35806a3e51c5@linaro.org>
- <rd4mte26n22xlgx5umerpgr66b4wfi7mdm6ovszafyinrg3q4c@g227oj3nh2vc>
- <e0141f93-b3d8-cc3e-7b2d-32618351ba10@linaro.org>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v7 3/3] riscv: dts: allwinner: d1: Add GPADC node
+Message-ID: <20230615-overact-lard-9402836697f5@spud>
+References: <20230615205540.1803975-1-bigunclemax@gmail.com>
+ <20230615205540.1803975-4-bigunclemax@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="NWC+jNAdJ4jwAH42"
 Content-Disposition: inline
-In-Reply-To: <e0141f93-b3d8-cc3e-7b2d-32618351ba10@linaro.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YfWn7U_EkUMbzoF88__VQMKspnQr0ouP
-X-Proofpoint-ORIG-GUID: YfWn7U_EkUMbzoF88__VQMKspnQr0ouP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-15_16,2023-06-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 mlxscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306150183
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230615205540.1803975-4-bigunclemax@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 10:59:23PM +0200, Konrad Dybcio wrote:
-> 
-> On 15.06.2023 22:11, Akhil P Oommen wrote:
-> > On Thu, Jun 15, 2023 at 12:34:06PM +0200, Konrad Dybcio wrote:
-> >>
-> >> On 6.06.2023 19:18, Akhil P Oommen wrote:
-> >>> On Mon, May 29, 2023 at 03:52:26PM +0200, Konrad Dybcio wrote:
-> >>>>
-> >>>> Introduce a6xx_gpu_sw_reset() in preparation for adding GMU wrapper
-> >>>> GPUs and reuse it in a6xx_gmu_force_off().
-> >>>>
-> >>>> This helper, contrary to the original usage in GMU code paths, adds
-> >>>> a write memory barrier which together with the necessary delay should
-> >>>> ensure that the reset is never deasserted too quickly due to e.g. OoO
-> >>>> execution going crazy.
-> >>>>
-> >>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>> ---
-> >>>>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c |  3 +--
-> >>>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 11 +++++++++++
-> >>>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.h |  1 +
-> >>>>  3 files changed, 13 insertions(+), 2 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> >>>> index b86be123ecd0..5ba8cba69383 100644
-> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> >>>> @@ -899,8 +899,7 @@ static void a6xx_gmu_force_off(struct a6xx_gmu *gmu)
-> >>>>  	a6xx_bus_clear_pending_transactions(adreno_gpu, true);
-> >>>>  
-> >>>>  	/* Reset GPU core blocks */
-> >>>> -	gpu_write(gpu, REG_A6XX_RBBM_SW_RESET_CMD, 1);
-> >>>> -	udelay(100);
-> >>>> +	a6xx_gpu_sw_reset(gpu, true);
-> >>>>  }
-> >>>>  
-> >>>>  static void a6xx_gmu_set_initial_freq(struct msm_gpu *gpu, struct a6xx_gmu *gmu)
-> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> >>>> index e3ac3f045665..083ccb5bcb4e 100644
-> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> >>>> @@ -1634,6 +1634,17 @@ void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_
-> >>>>  	gpu_write(gpu, REG_A6XX_GBIF_HALT, 0x0);
-> >>>>  }
-> >>>>  
-> >>>> +void a6xx_gpu_sw_reset(struct msm_gpu *gpu, bool assert)
-> >>>> +{
-> >>>> +	gpu_write(gpu, REG_A6XX_RBBM_SW_RESET_CMD, assert);
-> >>>> +	/* Add a barrier to avoid bad surprises */
-> >>> Can you please make this comment a bit more clear? Highlight that we
-> >>> should ensure the register is posted at hw before polling.
-> >>>
-> >>> I think this barrier is required only during assert.
-> >> Generally it should not be strictly required at all, but I'm thinking
-> >> that it'd be good to keep it in both cases, so that:
-> >>
-> >> if (assert)
-> >> 	we don't keep writing things to the GPU if it's in reset
-> >> else
-> >> 	we don't start writing things to the GPU becomes it comes
-> >> 	out of reset
-> >>
-> >> Also, if you squint hard enough at the commit message, you'll notice
-> >> I intended for this so only be a wmb, but for some reason generalized
-> >> it.. Perhaps that's another thing I should fix!
-> >> for v9..
-> > 
-> > wmb() doesn't provide any ordering guarantee with the delay loop.
-> Hm, fair.. I'm still not as fluent with memory access knowledge as I'd
-> like to be..
-> 
-> > A common practice is to just read back the same register before
-> > the loop because a readl followed by delay() is guaranteed to be ordered.
-> So, how should I proceed? Keep the r/w barrier, or add a readback and
-> a tiiiny (perhaps even using ndelay instead of udelay?) delay on de-assert?
 
-readback + delay (similar value as downstream). This path is exercised
-rarely.
+--NWC+jNAdJ4jwAH42
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--Akhil.
+On Thu, Jun 15, 2023 at 11:55:22PM +0300, Maksim Kiselev wrote:
+> This patch adds declaration of the general purpose ADC for D1
+> and T113s SoCs.
+>=20
+> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
 
-> 
-> Konrad
-> > 
-> > -Akhil.
-> >>
-> >> Konrad
-> >>>
-> >>> -Akhil.
-> >>>> +	mb();
-> >>>> +
-> >>>> +	/* The reset line needs to be asserted for at least 100 us */
-> >>>> +	if (assert)
-> >>>> +		udelay(100);
-> >>>> +}
-> >>>> +
-> >>>>  static int a6xx_pm_resume(struct msm_gpu *gpu)
-> >>>>  {
-> >>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
-> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
-> >>>> index 9580def06d45..aa70390ee1c6 100644
-> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
-> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
-> >>>> @@ -89,5 +89,6 @@ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu);
-> >>>>  int a6xx_gpu_state_put(struct msm_gpu_state *state);
-> >>>>  
-> >>>>  void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_off);
-> >>>> +void a6xx_gpu_sw_reset(struct msm_gpu *gpu, bool assert);
-> >>>>  
-> >>>>  #endif /* __A6XX_GPU_H__ */
-> >>>>
-> >>>> -- 
-> >>>> 2.40.1
-> >>>>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--NWC+jNAdJ4jwAH42
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIuA3gAKCRB4tDGHoIJi
+0hhUAP9/W2wEpDsdB/Sc22oil+LX2XhuR7HCsY8W1oqAguqBagD/T8gxH24r/hy1
+AaVKYORuvL5Bv/c/MlUxLX7izpr1rg8=
+=Y/s0
+-----END PGP SIGNATURE-----
+
+--NWC+jNAdJ4jwAH42--
