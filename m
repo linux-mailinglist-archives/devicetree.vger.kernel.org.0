@@ -2,157 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C603E731BB1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73B97731BD0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 16:52:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241542AbjFOOqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 10:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60580 "EHLO
+        id S238684AbjFOOwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 10:52:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241515AbjFOOqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:46:23 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE4FA2738;
-        Thu, 15 Jun 2023 07:46:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686840382; x=1718376382;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=w2ayRntIx66c3kb7kHjkDoIbStA/FMzpLG4P7j/Q6ZY=;
-  b=kZnkhlCyi8+9FBQKUWXD8mkDUb+ZBliok5J9Rgt5atOo9K2GgwJSOIsG
-   puqlMCactx4BYnKZf39MhKvHjpDKKS7q5Zn44uhk4srSGOJVrma/nx1Xt
-   b9Nz5zqqw2UacFGsvXcAOgXZVc0FHYbP6Bzd5gZ1QUOD51Tm7DwdnpyOA
-   2ogdH6bVbwBbHTAbjVSuOA9dHsiRsdRwo6jSVl5ILkxdzleqoRINcOTMJ
-   2Om0ZO0RadLWq2dRmGcBWswcS0hnbQPO+7ZKciW01USA+vzzdRgtl+cEu
-   CL+z4p35v9MmF8JY9qRxHHaA7lM6Df/9j/ZbU80DcSGjQB4Fso9nx3klT
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,245,1681164000"; 
-   d="scan'208";a="31453480"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Jun 2023 16:46:19 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AF613280084;
-        Thu, 15 Jun 2023 16:46:18 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 1/3] dt: bindings: add bindings for TQMa93xxLA SOM
-Date:   Thu, 15 Jun 2023 16:46:20 +0200
-Message-ID: <6315067.GXAFRqVoOG@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <1bf1890f-d24c-12a1-217d-27579a2464a6@linaro.org>
-References: <20230609132915.634338-1-alexander.stein@ew.tq-group.com> <20230609132915.634338-2-alexander.stein@ew.tq-group.com> <1bf1890f-d24c-12a1-217d-27579a2464a6@linaro.org>
+        with ESMTP id S232137AbjFOOwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 10:52:40 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A032110D8;
+        Thu, 15 Jun 2023 07:52:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686840759; x=1718376759;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=kCi7DHYNcv6IoROHXZh3QF9cEVVIQC3uWI9Yr69isrA=;
+  b=QTHbk0y2cSFWbnqYp1F7tuLYIdXSusxk1TSP/EQkg4ppbOohxP/xhjci
+   ZvVvqWYxj8trUL6/e0ZQ9oKsuk8QkOYuHr67fJSkH1Db+a9Ic8Otj8LJF
+   K1pULPKjwwOCwly1SQL+lZe79Efxv2G3i7A7gCySsL+aE/i+Z2C/TLVji
+   ETSP6QDhLpO1kCj+fgPX1yPoIJF3wgugUxAWq0BxHU6kjY+AZBy9QJx3l
+   OxrA1slJehXucNXI6bibE3e4iP5UO9zLyfVh4QKojKlmEW0+XBLZvkY3A
+   Jo/lEnDUV09MEZDlQF9L9GqQ+g9+UmbKdS5hYfTtYsZbSDFy6GhpxPTTb
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="338559714"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; 
+   d="scan'208";a="338559714"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2023 07:52:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="662823914"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; 
+   d="scan'208";a="662823914"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by orsmga003.jf.intel.com with ESMTP; 15 Jun 2023 07:52:37 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+        id 1AB8B379; Thu, 15 Jun 2023 17:52:45 +0300 (EEST)
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 1/1] of/platform: Propagate firmware node by calling device_set_node()
+Date:   Thu, 15 Jun 2023 17:52:43 +0300
+Message-Id: <20230615145243.37095-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Insulate of_device_alloc() and of_amba_device_create() from possible
+changes to fwnode_handle implementation by using device_set_node()
+instead of open-coding dev->dev.fwnode assignments.
 
-Am Freitag, 9. Juni 2023, 17:58:17 CEST schrieb Krzysztof Kozlowski:
-> On 09/06/2023 15:29, Alexander Stein wrote:
-> > From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> >=20
-> > TQMa93xxLA is a SOM variant in the TQ-Systems GmbH TQMa93xx series using
-> > NXP i.MX93 CPU on an LGA type board.
-> > MBa93xxCA is a starterkit base board for TQMa93xxLA on an adapter board.
->=20
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
->=20
-> It is dt-bindings, not something else.
->=20
-> A nit, subject: drop second/last, redundant "bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings. One
-> bindings is enough.
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+---
+ drivers/of/platform.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-Thanks. I'll update that.
-
-> > Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >=20
-> >  .../devicetree/bindings/arm/fsl.yaml          | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > b/Documentation/devicetree/bindings/arm/fsl.yaml index
-> > 2510eaa8906dd..8048c7f6a299d 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> >=20
-> > @@ -1219,6 +1219,25 @@ properties:
-> >                - fsl,imxrt1170-evk         # i.MXRT1170 EVK Board
-> >           =20
-> >            - const: fsl,imxrt1170
-> >=20
-> > +      - description:
-> > +          TQMa93xxLA and TQMa93xxCA are two series of feature compatib=
-le
-> > SOM +          using NXP i.MX93 SOC in 11x11 mm package.
-> > +          TQMa93xxLA is designed to be soldered on different carrier
-> > boards. +          TQMa93xxCA is a compatible variant using board to
-> > board connectors. +          All SOM and CPU variants use the same devi=
-ce
-> > tree hence only one +          compatible is needed. Bootloader disables
-> > all features not present +          in the assembled SOC.
-> > +          MBa93xxCA mainboard can be used as starterkit for the SOM
-> > +          soldered on an adapter board or for the connector variant
-> > +          MBa93xxLA mainboard is a single board computer using the
-> > solderable +          SOM variant
-> > +        items:
-> > +          - enum:
-> > +              - tq,imx93-tqma9352-mba93xxca # TQ-Systems GmbH i.MX93
-> > TQMa93xxCA/LA SOM on MBa93xxCA +              -
-> > tq,imx93-tqma9352-mba93xxla # TQ-Systems GmbH i.MX93 TQMa93xxLA SOM on
-> > MBa93xxLA SBC
-> xx sound like wildcard which you should not use. If you open the product
-> page, it also suggests that.
-
-xx is a wildcard only for modules TQMa93xx, depending on the soldered SoC, =
-but=20
-not for the mainboard MBa93xx.
-You are right that there is the ordering number MBa9352LA-AA, so the=20
-compatible would be "tq,imx93-tqma9352-mba9352la". But the actual values fo=
-r=20
-the wildcards is copied from the soldered module. So using a TQMa9351LA wou=
-ld=20
-result in MBa9351LA-AA, although the mainboard is identical.
-
-Best regards,
-Alexander
-
-> Best regards,
-> Krzysztof
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 78ae84187449..051e29b7ad2b 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -140,8 +140,8 @@ struct platform_device *of_device_alloc(struct device_node *np,
+ 		}
+ 	}
+ 
+-	dev->dev.of_node = of_node_get(np);
+-	dev->dev.fwnode = &np->fwnode;
++	/* setup generic device info */
++	device_set_node(&dev->dev, of_fwnode_handle(np));
+ 	dev->dev.parent = parent ? : &platform_bus;
+ 
+ 	if (bus_id)
+@@ -239,8 +239,7 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
+ 	dev->dev.dma_mask = &dev->dev.coherent_dma_mask;
+ 
+ 	/* setup generic device info */
+-	dev->dev.of_node = of_node_get(node);
+-	dev->dev.fwnode = &node->fwnode;
++	device_set_node(&dev->dev, of_fwnode_handle(node));
+ 	dev->dev.parent = parent ? : &platform_bus;
+ 	dev->dev.platform_data = platform_data;
+ 	if (bus_id)
+-- 
+2.40.0.1.gaa8946217a0b
 
