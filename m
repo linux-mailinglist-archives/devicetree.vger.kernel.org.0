@@ -2,74 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA7A731340
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED48D73134D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240654AbjFOJLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:11:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48704 "EHLO
+        id S245488AbjFOJOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:14:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239224AbjFOJLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:11:17 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1536F2130
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 02:11:16 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-bc405d9682cso1531513276.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 02:11:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686820275; x=1689412275;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TQPLMyR4pKq4IPm2+bhCecPp0fIioHDXW0A5vWxMnNM=;
-        b=TDChaGtQXK3DyxbLvJwl+OZ2YXx05CLUWvVyLhBHVuLJjFRwfdmfwm4PbibuKEQzVI
-         zU3zmqorXPXshAUJgPSCw4aHTGOOzUcnIzdde8QAEt4TLbiJFPOxrUu15gEXigLiEep3
-         qx8aHB6PgkcxelOgcGOR3yWfYJ6cpftV4Rk6rFvJPkeGOH6h+SZbUUhFWCJ4OpicHkuS
-         RYR4oGsX0NxdpoXSz/gOWj/lFezgtAPCLTwp1IvOskQuu0ugNK7XpFJkfj+rYKQUYaA9
-         tZwiyuPilGQJNkFbMAWXn1DdlxFuXKysvmrG6zvX0zLJQsY7IVBL3E+047etzA+4pjQi
-         SMmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686820275; x=1689412275;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TQPLMyR4pKq4IPm2+bhCecPp0fIioHDXW0A5vWxMnNM=;
-        b=VwWWQ25gBglpfq4o4yNBJ6YOhGkfm3GrAyonkQ5Ma8vR/Ad1YAYJZ0bwgTJc83O3DM
-         2WThNAqZiMwqvSsRmtLPEXSILFmXQMxTVAi5elkYiV+JKWijRa/61wWEW4rGvhVWDXU9
-         TSaPnE7d1BpcdvtycSm+L6qc4vE/Kb5nB9IRh/2DgD9bRn1aCy5xMzsamzaiCb6EVZuR
-         gU0qRVpR87ck/aPUA2FjpcrgNKph63NWXnepmxhSEOqmEK68WzP0iIOS0YZWmeVzaC5L
-         k7oueeLfvuCZX0AA05AF2lbyJ05I8LGITWbvkkd5Ft49eETLAX5SWGia2THX4t57wCxI
-         lRFA==
-X-Gm-Message-State: AC+VfDyd6vC1f1jNcVwT7rwjqxpLh3nBKWxfIcUasCF1EgetFylZdruc
-        wLaavLv2+JOPOe8rkgH8CrAwOShQyU6SvMVaiod8cg==
-X-Google-Smtp-Source: ACHHUZ7f5dssORqprATgmGMqMIzMYmVOhRrynA3S5iWIDXdxas0J0q2dH8bKuTq5gk5bBg+8ARmaLAGavyy7fvNeYNk=
-X-Received: by 2002:a25:ae10:0:b0:ba7:99dc:908f with SMTP id
- a16-20020a25ae10000000b00ba799dc908fmr4095705ybj.27.1686820275299; Thu, 15
- Jun 2023 02:11:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230607124628.157465-1-ulf.hansson@linaro.org>
- <20230607124628.157465-10-ulf.hansson@linaro.org> <20230614230044.GA3019052-robh@kernel.org>
-In-Reply-To: <20230614230044.GA3019052-robh@kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 15 Jun 2023 11:10:38 +0200
-Message-ID: <CAPDyKFoDQ12yUB-3f_V222kcUivP_NUcvcM+8s7CraLaBy7tBQ@mail.gmail.com>
-Subject: Re: [PATCH 09/16] dt-bindings: firmware: arm,scmi: Extend bindings
- for protocol@13
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nikunj Kela <nkela@quicinc.com>,
-        Prasad Sodagudi <psodagud@quicinc.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
+        with ESMTP id S245438AbjFOJOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:14:14 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4E910EC;
+        Thu, 15 Jun 2023 02:14:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686820449; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=fefOkQqiWhmDl2H7OM6ldcwzgbu/zXFty4RgKmLCtqulw3e/Wx5z680zYJ0LJKjgcB
+    BF422e9gMoXKbOjqGHXyNAAFBYUSrZUK/QhoknB7QOcgZTjYeiWBuvDL86Ck9wJbE3PS
+    5ReoNICVH1X+CxuSvejWZPgHlbm1jysNFYzrrP4m8GbR5l9H+MkrEm+YBfEEO46GDs6j
+    +ztisFr7fyNW00UPDhqL7gYOT0ZytxbPMwRr0gv6lL1vbAswaKQmIKpt0EqIHfIX3A1u
+    SxvUwt37iLPnN3foxalh5I2uCEEjx6atUZQX518J52oiHFOaIAxLZCm5uuVJ8pnVLack
+    3ESA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686820449;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=BicazK59+OZP+1SXHwRJT95U+h5d4mA7SQ6XBE4T3QA=;
+    b=LQO/LPzEGdA9UwFC9dzDAgoeFCaCCP9SE1ueFM3jI9cbmQwnCo99Er2OfjMwExgOF2
+    yvK2ZQCvhb5HmLqiJsEqTOrJxhh1OmpNjjtnFIlcFwALraF/IHVab7Va6/LGi5P6U2RA
+    Y4tZmoEVZ/QkE+fVbaWKDnJjE1AEj/y77/0SOHF7HTDhqqNpotAv2j4Ooka4VZi1x38x
+    Dsr7BTSyDV6qjI9qpllF7TOYguusLs6ARA3ZcZl/OV2EHdPEDQPMlvdzPyZifwy0b7Co
+    lgpR+Ba5n8IjTZbACmNksQEQm5vYkTF3Pahbd9rP0D57gFOUzLnmYn4KG3HGfZ3JICo4
+    0L4Q==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686820449;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=BicazK59+OZP+1SXHwRJT95U+h5d4mA7SQ6XBE4T3QA=;
+    b=rUHyy55RxEJTXwKcWTKZA1N0yheRcdPGMOh4Xfg/RFJXgtovOpM9eaSJoPKKpLzgcy
+    MZvMfy8TrzN7xEkSfVrgtOc/JqYWtvvnt6qF1hhxx8K8pkJTpqegDOK9T6CowWzC/q+k
+    wTcP3vqq7L1bTdY6+s8RJuLjFXlgaxjG8xtFdGqk46GuH9vttUoeat+JPSBOV4T3AJXe
+    muT4beRW1+X7h9orRqbUMh+/wy61ie6nn/tck8pX1S476JAMV3psILL/5OS5O+Q5tZ2F
+    kbHlTNxO9BLVWAkc0Q9az4Z/31AWd/r5fCJP9q0xKbyti0lwsx4Q0e2TQ+IAzdS3M7fQ
+    Yrdw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686820449;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=BicazK59+OZP+1SXHwRJT95U+h5d4mA7SQ6XBE4T3QA=;
+    b=RcwLyA4OPNdhJA3wMvIyIuABeYT0baFEjP4xaCUesnWXFYeyapfAO1KjDLB8vKDvAC
+    OK8XAaj/yJnPuxqjGvCg==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGeonQ="
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
+    with ESMTPSA id jaf17fz5F9E82sB
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Thu, 15 Jun 2023 11:14:08 +0200 (CEST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH 0/9] MIPS: CI20: Add WiFi / Bluetooth support
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <C1924536-FA97-4E75-9D22-99E5AF24EE5B@goldelico.com>
+Date:   Thu, 15 Jun 2023 11:14:08 +0200
+Cc:     list@opendingux.net, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A8EBCBA4-D9BA-4C2F-9C91-38128D06EDBA@goldelico.com>
+References: <20230615084006.79194526F801@goldelico.com>
+ <C1924536-FA97-4E75-9D22-99E5AF24EE5B@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,58 +90,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jun 2023 at 01:00, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Jun 07, 2023 at 02:46:21PM +0200, Ulf Hansson wrote:
-> > The protocol@13 node is describing the performance scaling option for the
-> > ARM SCMI interface, as a clock provider. This is unnecessary limiting, as
-> > performance scaling is in many cases not limited to switching a clock's
-> > frequency.
-> >
-> > Therefore, let's extend the binding so the interface can be modelled as a
-> > generic "performance domain" too. The common way to describe this, is to
-> > use the "power-domain" bindings, so let's use that.
->
-> What's wrong with the performance-domain binding?
+Hi Pual,
 
-In my opinion I think the performance-domain binding is superfluous.
-We already have plenty of power-domains that do performance scaling
-too - and they stick with the power-domain binding, as it's
-sufficient.
 
-That said, I would rather follow the defacto standard that has been
-used for many years in the kernel. Do you have a preference that we
-should stick to?
+> Am 15.06.2023 um 10:45 schrieb H. Nikolaus Schaller =
+<hns@goldelico.com>:
+>=20
+> Hi Paul,
+>=20
+>> Am 15.06.2023 um 10:39 schrieb Paul Cercueil <paul@crapouillou.net>:
+>>=20
+>> Hi Nikolaus,
+>>=20
+>> Le 15 juin 2023 09:00, "H. Nikolaus Schaller" <hns@goldelico.com> a =
+=C3=A9crit :
+>>>=20
+>>> Hi Paul,=20
+>>> I was in holidays and could not review this series earlier.=20
+>>>=20
+>>>=20
+>>>> Am 04.06.2023 um 16:56 schrieb Paul Cercueil =
+<paul@crapouillou.net>:=20
+>>>>=20
+>>>> Hi,=20
+>>>>=20
+>>>> Here's a set of patches to add support for the WiFi / Bluetooth =
+chip on=20
+>>>> the CI20.=20
+>>>>=20
+>>>> WiFi works pretty well, provided it is used with the latest =
+firmware=20
+>>>> provided by linux-firmware. Bluetooth does not work very well here, =
+as=20
+>>>> I cannot get my wireless keyboard to pair; but it does detect it, =
+and it=20
+>>>> does see they key presses when I type the pairing code.=20
+>>>>=20
+>>>> I only tested with a somewhat recent (~2022) Buildroot-based =
+userspace.=20
+>>>> I enabled WEXT compatibility because the CI20 is typically used =
+with a=20
+>>>> very old userspace, but I did not try to use it with old tools like=20=
 
-Kind regards
-Uffe
+>>>> ifconfig/iwconfig.=20
+>>>=20
+>>> ^^^ great since not everyone is using memory hungry latest =
+user-space and=20
+>>> ifconfig/iwconfig is also available on some other OS so users like =
+me=20
+>>> can share scripts.=20
+>>>=20
+>>>=20
+>>> But I had quite some issues with this series.=20
+>>>=20
+>>> 1. I could not boot my CI20 V2a board after applying the full series =
+to v6.4-rc6=20
+>>> 2. bisecting failed because vcc_33v is used in a patch preceding its =
+definition=20
+>>>   leading to DTC compile abort=20
+>>> 3. after fixing I could bisect that "MIPS: DTS: CI20: Fix ACT8600 =
+regulator node names"=20
+>>>   is the first bad commit - although I don't see immediately why=20
+>>>=20
+>>> So this series seems to be severely broken and I could not even come =
+to=20
+>>> a test of WiFi and/or Bluetooth which the series claims to support.=20=
 
->
-> >
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > index 5824c43e9893..cff9d1e4cea1 100644
-> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > @@ -145,8 +145,8 @@ properties:
-> >        '#clock-cells':
-> >          const: 1
-> >
-> > -    required:
-> > -      - '#clock-cells'
-> > +      '#power-domain-cells':
-> > +        const: 1
-> >
-> >    protocol@14:
-> >      $ref: '#/$defs/protocol-node'
-> > --
-> > 2.34.1
-> >
+>>=20
+>> Well, that's strange. I can assure you it boots and works here.
+>>=20
+>> Maybe it is a board difference; I have a non-square green board - so =
+the earlier version.
+>=20
+> Ok, my V2a is the bordeaux one. That may indeed make a difference.
+>=20
+>>=20
+>> Since this patch will actually make the various ACT8600 regulators =
+work at their specified voltage, maybe the voltage on one of the updated =
+regulators is wrong?
+>>=20
+>> Maybe change the regulators one by one back to their old name, until =
+you find the one that is problematic? That may give us more info.
+>=20
+> That is what I also have though about but have not yet done.
+> Will try as soon as I find a time slot.
+
+I have reverted the whole patch (had only a conflict in wifi_io / LDO6) =
+and now I can boot.
+
+But do not see a WiFi or Bluetooth interface.
+
+So it looks as if the CI20 variants are indeed different. Which would =
+also explain why we
+originally came up with two different solutions to add WiFi.
+
+Next I will try to bisect the individual changes...
+
+>=20
+>>=20
+>>> Comments to some individual patches follow.=20
+>>=20
+>> Sorry about the vcc_33v. Honest mistake.
+>>=20
+>> Thomas: are you able to drop this series from mips-next, or should =
+I/we send fixup patches instead?
+>=20
+> Well, mistakes happen.
+>=20
+> Best regards,
+> Nikolaus
+>=20
+>>=20
+>> Cheers,
+>> -Paul
+>>=20
+>>> Best regards and looking forward to a v2 for testing,=20
+>>> Nikolaus=20
+>>>=20
+>>>=20
+>>>>=20
+>>>> Cheers,=20
+>>>> -Paul=20
+>>>>=20
+>>>> Paul Cercueil (9):=20
+>>>>  MIPS: DTS: CI20: Fix regulators=20
+>>>>  MIPS: DTS: CI20: Fix ACT8600 regulator node names=20
+>>>>  MIPS: DTS: CI20: Add parent supplies to ACT8600 regulators=20
+>>>=20
+>>> ^^^ should IMHO be a separate series since it is not directly =
+related to WiFi / Bluetooth=20
+>>>=20
+>>>>  MIPS: DTS: CI20: Do not force-enable CIM and WiFi regulators=20
+>>>>  MIPS: DTS: CI20: Misc. cleanups=20
+>>>=20
+>>> ^^^ these two do not compile=20
+>>> The Misc. cleanups do not belong to this topic.=20
+>>>=20
+>>>>  MIPS: DTS: CI20: Parent MSCMUX clock to MPLL=20
+>>>=20
+>>> ^^^ this is only loosely related to Wifi / Bluetooth=20
+>>>=20
+>>>>  MIPS: DTS: CI20: Enable support for WiFi / Bluetooth=20
+>>>>  MIPS: configs: CI20: Regenerate defconfig=20
+>>>>  MIPS: configs: CI20: Enable WiFi / Bluetooth=20
+>>>>=20
+>>>> arch/mips/boot/dts/ingenic/ci20.dts | 148 =
++++++++++++++++++++---------=20
+>>>> arch/mips/configs/ci20_defconfig    |  47 ++++++---=20
+>>>> 2 files changed, 133 insertions(+), 62 deletions(-)=20
+>>>>=20
+>>>> --=20
+>>>> 2.39.2=20
+>>>>=20
+>>>=20
+>=20
+
