@@ -2,146 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCACE731369
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 581E9731378
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245330AbjFOJSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:18:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52516 "EHLO
+        id S245241AbjFOJUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:20:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241335AbjFOJSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:18:16 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2F2E21BEC;
-        Thu, 15 Jun 2023 02:18:14 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8DxCepU14pkVYAFAA--.11780S3;
-        Thu, 15 Jun 2023 17:18:12 +0800 (CST)
-Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxVeRH14pkxssbAA--.13716S4;
-        Thu, 15 Jun 2023 17:18:04 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239276AbjFOJUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:20:46 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF671BC3;
+        Thu, 15 Jun 2023 02:20:44 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35F7tDqF022612;
+        Thu, 15 Jun 2023 11:20:09 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=fV+MUTfMQZ55uq32Wxz0qSm4NPFewZXzm6azDpLbunA=;
+ b=d5BrOOap237y2IVKM1DsnNHEdGbytRp34z96fcvZ1wj/lBTH2wUneTU+XxmbBnebqGxa
+ Du7fWNtpHN2orZJHljU4Ztu1HqT8uwodqf98NiDlRq+7/gTugrbUnDXPUsLENY5He6JM
+ uoTGN9AlzuttVyr/d/ocBJ5Lp+bVWdlg44UVTZH1Bs/vsdBpZip7Uv8Zp5o/CRjfwx0v
+ 8eWIvNa3WAI8qeQR/s8Ky294KDQwg2z/RlanR3WLkE7oU90LYWrKbMfF4OnhKE+KOu/b
+ lxZEM0ub8cVCYd5DIK6PqPQP7oaXdru0Q9mdH7BS9MPj54/V8dNIsuVx4Jghf9/1Vllf 3w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r7vkfsqb8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Jun 2023 11:20:09 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D7DB510004A;
+        Thu, 15 Jun 2023 11:20:07 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C8CF121A231;
+        Thu, 15 Jun 2023 11:20:07 +0200 (CEST)
+Received: from localhost (10.201.21.210) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 15 Jun
+ 2023 11:20:06 +0200
+From:   Yann Gautier <yann.gautier@foss.st.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v3 2/3] soc: dt-bindings: add loongson-2 pm
-Date:   Thu, 15 Jun 2023 17:17:56 +0800
-Message-Id: <20230615091757.24686-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230615091757.24686-1-zhuyinbo@loongson.cn>
-References: <20230615091757.24686-1-zhuyinbo@loongson.cn>
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        <linux-kernel@vger.kernel.org>, Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yang Yingliang <yangyingliang@huawei.com>,
+        Xiang wangx <wangxiang@cdjrlc.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Yann Gautier <yann.gautier@foss.st.com>
+Subject: [PATCH 0/6] Update MMCI driver for STM32MP25
+Date:   Thu, 15 Jun 2023 11:19:55 +0200
+Message-ID: <20230615092001.1213132-1-yann.gautier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxVeRH14pkxssbAA--.13716S4
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.210]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-15_06,2023-06-14_02,2023-05-22_02
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 SoC Power Management Controller binding with DT
-schema format using json-schema.
+STM32MP25 is a new SoC from STMicroelectronics. The machine was
+pushed by Alexandre [1] in his tree.
+On this new SoC, the SDMMC peripheral, using PL18x/MMCI driver
+has been updated to v3.
+The driver has been updated to manage this new version, and the new
+features it supports:
+* FIFO size increased from 64B to 1kB
+* IDMA size alignment/mask updated
+* New block gap hardware flow control
+* Delay block updated and dependent on SoC
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
- .../soc/loongson/loongson,ls2k-pmc.yaml       | 53 +++++++++++++++++++
- MAINTAINERS                                   |  6 +++
- 2 files changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
+This series was pushed on top of next branch in Ulf's mmc tree, as it
+requires feedback clock update patch [2].
 
-diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
-new file mode 100644
-index 000000000000..32499bd10f8c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-pmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 Power Manager controller
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - loongson,ls2k1000-pmc
-+              - loongson,ls2k0500-pmc
-+          - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  suspend-address:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The "suspend-address" is a deep sleep state (Suspend To RAM)
-+      firmware entry address which was jumped from kernel and it's
-+      value was dependent on specific platform firmware code. In
-+      addition, the PM need according to it to indicate that current
-+      SoC whether support Suspend To RAM.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pmc: pm@1fe27000 {
-+        compatible = "loongson,ls2k1000-pmc", "syscon";
-+        reg = <0x1fe27000 0x58>;
-+        interrupt-parent = <&liointc1>;
-+        interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+        suspend-address = <0x1c000500>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7a91f14cad2e..bcd05f1fa5c1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12190,6 +12190,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
- F:	drivers/soc/loongson/loongson2_guts.c
- 
-+LOONGSON-2 SOC SERIES PM DRIVER
-+M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-+L:	linux-pm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
-+
- LOONGSON-2 SOC SERIES PINCTRL DRIVER
- M:	zhanghongchen <zhanghongchen@loongson.cn>
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+[1] https://lore.kernel.org/lkml/59f4a900-34ee-d991-c350-265d38e7c862@foss.st.com/T/
+[2] https://lore.kernel.org/r/20230613150148.429828-1-yann.gautier@foss.st.com
+
+Yann Gautier (6):
+  dt-bindings: mmc: mmci: Add st,stm32mp25-sdmmc2 compatible
+  mmc: mmci: add stm32_idmabsize_align parameter
+  mmc: mmci: Add support for sdmmc variant revision v3.0
+  mmc: mmci: stm32: manage block gap hardware flow control
+  mmc: mmci: stm32: prepare other delay block support
+  mmc: mmci: stm32: add delay block support for STM32MP25
+
+ .../devicetree/bindings/mmc/arm,pl18x.yaml    |   6 +
+ drivers/mmc/host/mmci.c                       |  35 ++++
+ drivers/mmc/host/mmci.h                       |   8 +-
+ drivers/mmc/host/mmci_stm32_sdmmc.c           | 149 ++++++++++++++++--
+ 4 files changed, 181 insertions(+), 17 deletions(-)
+
 -- 
-2.20.1
+2.25.1
 
