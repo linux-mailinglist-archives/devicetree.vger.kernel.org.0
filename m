@@ -2,73 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D48731487
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 043F573148A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343576AbjFOJwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48980 "EHLO
+        id S244845AbjFOJwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:52:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343592AbjFOJwc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:52:32 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB05A296F;
-        Thu, 15 Jun 2023 02:52:12 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35F9pvHM117940;
-        Thu, 15 Jun 2023 04:51:57 -0500
+        with ESMTP id S1343543AbjFOJwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:52:34 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9130B30DD;
+        Thu, 15 Jun 2023 02:52:16 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35F9q7bo027217;
+        Thu, 15 Jun 2023 04:52:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686822717;
-        bh=+PXHiJxF2You09qtn+qZYU2PSNozSvPbpSZGAJseXB8=;
+        s=ti-com-17Q1; t=1686822727;
+        bh=GvfemFcOZxkJL8pt6KUpdMMQnkvr05x7vzCOOMfeRPI=;
         h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=LIehbQjF8PJUurXhQ/QZZi2iTXAkMafGJ+CQjYlorYOPYop6aQavF9y8MUnRwKKIv
-         tAghqQqjM/JaSHmoYiIra9f/Abu9pLXHETxNLL/oVYiml1CC6CCZo7gztsQHOlXJAi
-         uxPPq2J6dp789QU1O1gb30nhXTGexI6/2nQukCj4=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35F9pvfh059297
+        b=eiaFSu3WmWPwU66kYKjOL1+t924MWdRwNc4UUpMxbTdstpbPYL2kJDw9qp9cdPNuk
+         av+yR96JDBIyL56NjXqfwEVH/5UB/0luEA8iFyTyEgw7GkPkk1AbizpOtRRfoqHSbO
+         KZT83CkfpOwTYnhXehdfAvEYA/ezjx/kbwcGdc6k=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35F9q7CS012254
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 04:51:57 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 15 Jun 2023 04:52:07 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 04:51:56 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 04:52:07 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 04:51:56 -0500
-Received: from [172.24.145.182] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35F9prEv081011;
-        Thu, 15 Jun 2023 04:51:54 -0500
-Message-ID: <46380d90-02ca-fc14-d7c1-d24223e5b262@ti.com>
-Date:   Thu, 15 Jun 2023 15:21:52 +0530
+ Frontend Transport; Thu, 15 Jun 2023 04:52:07 -0500
+Received: from [10.24.69.162] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35F9q4NR038334;
+        Thu, 15 Jun 2023 04:52:05 -0500
+Message-ID: <83ea521d-0d6e-f739-5db5-a935a3e52ee0@ti.com>
+Date:   Thu, 15 Jun 2023 15:22:04 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/5] arm64: dts: ti: add verdin am62
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: Enable support for high
+ speed modes
+To:     Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
+References: <20230502090814.144791-1-b-kapoor@ti.com>
 Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>
-CC:     Nishanth Menon <nm@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230601131332.26877-1-francesco@dolcini.it>
- <20230601131332.26877-4-francesco@dolcini.it>
- <62ca6112-0aca-788e-fc9b-8a2c3ce9ba1f@ti.com>
- <ZIq02whTEce8C1P8@francesco-nb.int.toradex.com>
- <bf392830-c157-b819-2de3-8db952adf39b@ti.com>
- <ZIrCXA6kp2Z1Je6A@francesco-nb.int.toradex.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <ZIrCXA6kp2Z1Je6A@francesco-nb.int.toradex.com>
+From:   Diwakar Dhyani <d-dhyani@ti.com>
+In-Reply-To: <20230502090814.144791-1-b-kapoor@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,78 +70,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 15/06/23 13:18, Francesco Dolcini wrote:
-> On Thu, Jun 15, 2023 at 01:08:11PM +0530, Vignesh Raghavendra wrote:
->>
->>
->> On 15/06/23 12:21, Francesco Dolcini wrote:
->>> On Thu, Jun 15, 2023 at 11:38:00AM +0530, Vignesh Raghavendra wrote:
->>>>
->>>>
->>>> On 01/06/23 18:43, Francesco Dolcini wrote:
->>>>
->>>> [...]
->>>>
->>>>> +/* Verdin I2C_1 */
->>>>> +&main_i2c1 {
->>>>> +	status = "okay";
->>>>> +
->>>>> +	/* Audio Codec */
->>>>> +	nau8822_1a: audio-codec@1a {
->>>>> +		compatible = "nuvoton,nau8822";
->>>>> +		reg = <0x1a>;
->>>>> +		pinctrl-names = "default";
->>>>> +		pinctrl-0 = <&pinctrl_i2s1_mclk>; /* Configure AUDIO_EXT_REFCLK1 pin as output */
->>>>> +		#sound-dai-cells = <0>;
->>>>> +
->>>>> +		/* POSTDIV4_16FF_MAIN_2_HSDIVOUT8_CLK -> AUDIO_EXT_REFCLK1 */
->>>>> +		assigned-clocks = <&k3_clks 157 10>;
->>>>> +		assigned-clock-parents = <&k3_clks 157 18>;
->>>>> +		assigned-clock-rates = <25000000>; /* for 48KHz ± 1.7% */
->>>>> +	};
->>>>> +
->>>>
->>>> Oops, this node fails dtbs_check
->>>>
->>>> make ARCH=arm64 CROSS_COMPILE=$V8_CROSS CHECK_DTBS=y ti/k3-am625-verdin-nonwifi-dev.dtb
->>>>
->>>> /work/linux/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-dev.dtb: audio-codec@1a: '#sound-dai-cells', 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
->>>> 	From schema: /home/a0132425/workspace/k3-next/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
->>>> /work/linux/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-dev.dtb: audio-codec@1a: 'anyOf' conditional failed, one must be fixed:
->>>> 	'clocks' is a required property
->>>> 	'#clock-cells' is a required property
->>>> 	From schema: /work/.local/lib/python3.10/site-packages/dtschema/schemas/clock/clock.yaml
->>>
->>> This properties are needed here, it will not work without.
->>
->> Agree on the need. But, I cannot take the patch w/o binding update. We
->> will end up with messy dts files that would have deviated from bindings.
+On 02/05/23 14:38, Bhavya Kapoor wrote:
+> eMMC tuning was incomplete earlier, so support for high speed modes was
+> kept disabled. Remove no-1-8-v property to enable support for high
+> speed modes for eMMC in J784S4 SoC.
 > 
-> Fine, however, one question, is this a new policy? Or a specific TI
-> branch policy? 
-
-No, this isn't TI specific. In general if YAML binding exists, then the
-DT nodes need to confirm to that schema.
-
-> From what I can tell so far there was nothing mandatory
-> while the DT binding conversion from txt to yaml is in progress. 
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+Reviewed-by: Diwakar Dhyani <d-dhyani@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-
-I understand if the bindings are still in .txt format. But, in this
-case, bindings are converted to YAML and prohibit other properties
-unfortunately.
-
->> Could you please post an update to bindings yaml? I suggest to drop
->> audio codec support and add it back once bindings are updated/fixed.
-> I will proceed like that, thanks. I would be happy to see the
-> verdin-am62 added in the next merge window.
-> 
-
-Great, thanks!
-
-> Thanks for the review,
-> Francesco
-
--- 
-Regards
-Vignesh
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> index e9169eb358c1..e0c2feca9d1e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -378,7 +378,6 @@ main_sdhci0: mmc@4f80000 {
+>  		mmc-hs200-1_8v;
+>  		mmc-hs400-1_8v;
+>  		dma-coherent;
+> -		no-1-8-v;
+>  		status = "disabled";
+>  	};
+>  
