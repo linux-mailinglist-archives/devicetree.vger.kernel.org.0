@@ -2,66 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C5DA73195F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1EC5731961
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:59:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245623AbjFOM7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:59:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53432 "EHLO
+        id S238789AbjFOM7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 08:59:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245638AbjFOM7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:59:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878E826B8
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:58:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S245707AbjFOM7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:59:08 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9E221BC9
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:59:05 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D8F962BAD
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 12:58:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF66C433C0;
-        Thu, 15 Jun 2023 12:58:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686833933;
-        bh=ccxDZt57UBSH1sxdXOV0n93Dnuc15sNkgcTBE5CdvzE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TnMpG/53UVxwOXp8PCOuqXRMf6dMLbwFvlOVbowGBa9wEizJ0u7DceWbsPe8CaPrk
-         Ikoo7o4VeU6TJTbLYBtw9F62/7c2LJqKB0axFAqZEsQzeplsOCigbfUZtCvI64W2aw
-         f26KZ6doZ4qliKCmn6/44JnHWuhArDsXXaTDCgv2hed633Vtqx0pSEig6v6GFQak/o
-         /k7q/1KU7pQ4QqKR6hh4LB8cepK1zhCqGs0fWRUvmQSSx/evpjekRaxP8oArQJ+V0S
-         xNgyG3vcK81UbNqw6aL6l4JqlE2E8kAJN/+XiSIxswD96xIeidublOwgGWvlCERWSt
-         8CAOZIkkiYz9A==
-Received: by mercury (Postfix, from userid 1000)
-        id A9D4610609DA; Thu, 15 Jun 2023 14:58:50 +0200 (CEST)
-Date:   Thu, 15 Jun 2023 14:58:50 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 1/7] drm/panel: sitronix-st7789v: Prevent core spi
- warnings
-Message-ID: <20230615125850.cbqsmilwnpnabkta@mercury.elektranox.org>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
- <20230609145951.853533-2-miquel.raynal@bootlin.com>
- <b4ae6e9c-b548-b1e3-42f9-e24aacaf2b38@wolfvision.net>
- <20230613085630.4a48fa8b@xps-13>
- <20230614232217.d7lf4l3y7oqmjisy@mercury.elektranox.org>
- <20230615054346.GA1537028@ravnborg.org>
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 184CE86262;
+        Thu, 15 Jun 2023 14:58:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1686833937;
+        bh=CoPVgQejVWEK8px9zanv04a/R6+DcHZDe3wrnocLwGk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AAHpVA885KlCXOwz0Bca2C/rd5sN5PwLAUepIQ81rOIbuVSUX5T8x+Yz5N9Gv1tlp
+         oynjcSho88nicLdLLN24CqNj5asv7194aWpb4w8CXMt03EB7ZrVNr/D1xc+ZLett1v
+         DSM9GY9OjweZIKz3bBUitqVwHLWeRUYtNlsbRfRbEOdogpEV0cqxXAAD4Ow3XAm7KG
+         5jodOIHak6BS3IrFQnW6L4I2J31+I1OnV/zjrRfy/qyKDQGJnfIK7CplcWETGuFwdZ
+         ZzlnY2O1xX2eLpgy6a2Uh41/ZkRNfbJZmzUzOcj+xa0X4FyIway/sWP26vMK7hHinY
+         lXlRz5i2230Bg==
+Message-ID: <664102f3-e963-531a-5e39-b556ca132ece@denx.de>
+Date:   Thu, 15 Jun 2023 14:58:56 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="w5ch2vgmwtmjx2xk"
-Content-Disposition: inline
-In-Reply-To: <20230615054346.GA1537028@ravnborg.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH] ASoC: dt-bindings: audio-graph-card: Expand 'widgets'
+ documentation
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
+References: <20230606175951.215740-1-marex@denx.de>
+ <d40f2c63-0b8a-425e-90a9-dd8f552ba782@sirena.org.uk>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <d40f2c63-0b8a-425e-90a9-dd8f552ba782@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,76 +62,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 6/6/23 20:25, Mark Brown wrote:
+> On Tue, Jun 06, 2023 at 07:59:51PM +0200, Marek Vasut wrote:
+> 
+>> Document the encoding of 'widgets' property to avoid confusion.
+> 
+>>     widgets:
+>> -    description: User specified audio sound widgets.
+>> +    description: |
+>> +      User specified audio sound widgets.
+>> +      Each entry is a pair of strings, the first being the type of
+>> +      widget ("Microphone", "Line", "Headphone", "Speaker"), the
+>> +      second being the machine specific name for the widget.
+> 
+> This looks sensible to me, I don't know if there's a way we can get the
+> tooling to validate either the length or (ideally) the widget type
+> strings?
 
---w5ch2vgmwtmjx2xk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Sam,
-
-On Thu, Jun 15, 2023 at 07:43:46AM +0200, Sam Ravnborg wrote:
-> On Thu, Jun 15, 2023 at 01:22:17AM +0200, Sebastian Reichel wrote:
-> > > > May I point to you Sebastian Reichel's series that features a parti=
-al
-> > > > overlap with your work? [0]
-> > >=20
-> > > Woow. That driver has been untouched for years and now two
-> > > contributions at the same time.
-> >=20
-> > Three actually. Michael also submitted a series :)
-> >=20
-> > > Sebastian, what is the current state of your series?
-> >=20
-> > The DT changes got Ack'd by Rob and I have the R-B from Michael
-> > (minus a minor comment to make the panel struct 'static const').
-> > It's mainly waiting for a review from Sam.
-> >=20
-> > I was a bit distracted by a boot regression on the devices and
-> > some other projects. The boot regression got solved, so I can
-> > prepare a new version if that makes things easier.
-> >=20
-> > > Shall I base my work on top of yours? Or is it still too
-> > > premature and we shall instead try to merge both and contribute a new
-> > > version of the series bringing support for the two panels?
-> >=20
-> > I suppose whatever is easier for Sam to review.
->=20
-> Hi Sebastian.
->=20
-> Too much panel stuff going on, so I miss the most and I am happy
-> to see other people do a lot of good work here. Can i get a
-> pointer to lore or so, then I will try to take a look.
-
-Sure,=20
-
-Michael Riesch already referenced it earlier in this thread:
-
-[0] https://lore.kernel.org/dri-devel/20230422205012.2464933-1-sre@kernel.o=
-rg/
-
-Thanks for taking a look,
-
--- Sebastian
-
---w5ch2vgmwtmjx2xk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSLCwMACgkQ2O7X88g7
-+prCFA/+NhuQowxKUGtxGxCe/TCI7qwL3TxYz/Wg3ETAderx1cFkGoWk1M543V4n
-vQJasNms5VPUBJFvTsp9n++02X1uY+Kk1Ps7XKvKSrjV24n/ORutcYZrhLKYX9oz
-qOgmES22rQonRORkR0rRCg5IUTm4gOZBquciswvgaEalmi6yFimPorUrroJzTi7d
-tTZ3TmKGsj4OLKS0BkiSi4uj9adYf+j3yvnJHJzg64NIWyjio90kDJpqr3sFRmMA
-Slu9EDYoZfQvq5rv/AFxGvKf7X3FswN3YD7c+z7/pl3qRDxuiiGxWoUVOEhHhwNE
-pauc8xOB8thOr5G6oICTvBiELG0+5ptSSxRRMTg1dZCT6PvwJMKtzG73s46winvZ
-Fy4TlCjiLKfkJYz+OE0y8rxY+bsBy/cXoEorMHKj5ih/S1Z5IeCHybnwwMScibcb
-KuaHSjNNAnOQrKIjbSWZJa5j+0Qjj9w/6+DkIm2DyePl6N4QarIDDgjCvf3zpTjH
-NJ6lyp0/3p6KMEerEEaadxM+gRNyAZBwj+el8KTqsomDlXarmoCuqvGDXmUJE6HX
-/WyKetCXWZoGLWJ1csj0Gxg54DoHF2aQiGCd6s/rQR7jq8scl4tZWJffQsnVNkzO
-r5EKeVdrotlHZzuViu4TP7iyPUyG7W2+xgtlQs0i4SKVGrNqPlo=
-=98k+
------END PGP SIGNATURE-----
-
---w5ch2vgmwtmjx2xk--
+It seems there is no way to do validation of every two elements for 
+lists with variable number of elements.
