@@ -2,245 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFDF073129F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5B37312AE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:50:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240936AbjFOItN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:49:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37230 "EHLO
+        id S238281AbjFOIuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:50:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240932AbjFOIsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:48:24 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100CD3C1E;
-        Thu, 15 Jun 2023 01:47:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686818835; x=1718354835;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=QTzovRalX3ETeY4VZEKtHx2GIcZ+aGw7PXrcvk6ii2c=;
-  b=dcvIlLIOxqA/NyB8OIJZdIWNm+JDM/HXaIVOLDFAHQS7MIYzW96CNS2e
-   KQlgRlYT7wm3GsulKbWhwMoHXe4pgFLLHwkBmkvjGfBHCjfsDI1vbMdzH
-   SkxvD6HYQk/TH9SGyoKtOmC7/BCrjT0rcFXdLVmgxG9sIt3/YCeJXLCbY
-   imuiRKa8f7/N3mHjhT/VW1hJwCNptp04XeVjaXb5mxO+7mxKEIt6idomC
-   N3oCBSjblSPyP6Qufj4ztCMFeo0J7yXCvJrYmgRMVbt40D2pXnQQt4YV2
-   f66WYosf4NzRMUxHLlryZTsi8A5FIdAYiAyejRdH/vyVD/18JqL3XxVll
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; 
-   d="scan'208";a="218618754"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Jun 2023 01:47:14 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 15 Jun 2023 01:47:12 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Thu, 15 Jun 2023 01:47:09 -0700
-Message-ID: <c03077f4-93de-d1c4-0f5d-19292553e6c8@microchip.com>
-Date:   Thu, 15 Jun 2023 10:46:57 +0200
+        with ESMTP id S245219AbjFOIss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:48:48 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412262135
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:48:16 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b44200367bso9465371fa.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 01:48:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686818894; x=1689410894;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mBJWWNfx3xej/MJ3DqUPuNzPsz1tH1F7iu3ScckwPzM=;
+        b=iC/ceWUTSNdszGI7cJGxkGh8wT4APpus7ow8/++6qNhYXVgynN/3pWLN3Gt8ho+b/U
+         r11rzuow4OAW0nhOQFscgGe+aYQYtL72CluJ0sOxpfMJRS6q49XzRMGqVLaCdA7ezWuo
+         3V8CI92jbRjOg257TwXeIFLA8PAaCLuH+nHIThA8Dd89r596j1UkPiHHFUIINptMENeN
+         ft+i4++imFj4FxF+b0cCY0y6WlPF3xgsiZa7ohwU3HaLOc04A1k7o3uw61JKPB11alDw
+         RzGGkZxPgxMQk2SKbiU/+7E78GvonVSui5M8jDzXITtXvIfaRLbgeRfWqoIAdJneycpx
+         ILxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686818894; x=1689410894;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mBJWWNfx3xej/MJ3DqUPuNzPsz1tH1F7iu3ScckwPzM=;
+        b=T02H9Vgx/M7Ljll87dIpwMGAltS7Gagui6cQ4lOx21bJVgPojfLHkf6LaCvH9zGwR5
+         rEJyLNM7ldwJwjHcodDy/sB0Z2RY5WLgI8TaSJNDA/eyzfl+8S0M/jvxK/nUcfadD5Vx
+         1eE1pfq7kNF4uOifL3AMzNP5UnwXAV/QFa3gQRt8fNtt9WdXzROLtIQ/+1hlVvZYi9mC
+         7UKJJcM3lnfTFYBxmPiYI50ChR0UgGZ586C+N/hMxKIF9uUnDlP4W35dLQo1Uxq42ElO
+         kXNtN4Pd5fdHXJNH4XXWDffsHLy/VYwrREc1kW2RMcA1TOJaQDV4RCgQM6btpFciLxlT
+         HTQg==
+X-Gm-Message-State: AC+VfDz4a0IhafV7bd2td0Z8qUMEkRrAC+MRmQJVBlzr1y70zi3RcF/U
+        wUurK3FpPLEG4rhFu/RoI6NLqw==
+X-Google-Smtp-Source: ACHHUZ5JPVIhZ8cN1+ebbTISVtTjMskh1PISNVgpTsV2facOjMi7jCVYOGlRLPRc49gANtzP6wxFKA==
+X-Received: by 2002:a2e:7203:0:b0:2aa:cb6c:d0dc with SMTP id n3-20020a2e7203000000b002aacb6cd0dcmr8322293ljc.29.1686818894438;
+        Thu, 15 Jun 2023 01:48:14 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id w18-20020a2e9bd2000000b002a8a5afb87csm2990597ljj.20.2023.06.15.01.48.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 01:48:14 -0700 (PDT)
+Message-ID: <383b6e03-c8f1-09ba-b6f4-da310ce5abe0@linaro.org>
+Date:   Thu, 15 Jun 2023 10:48:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH net-next v4 2/2] net: macb: Add support for partial store
- and forward
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8996: rename labels for HDMI
+ nodes
 Content-Language: en-US
-To:     Pranavi Somisetty <pranavi.somisetty@amd.com>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <claudiu.beznea@microchip.com>
-CC:     <git@amd.com>, <michal.simek@amd.com>, <harini.katakam@amd.com>,
-        <radhey.shyam.pandey@amd.com>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230613054340.12837-1-pranavi.somisetty@amd.com>
- <20230613054340.12837-3-pranavi.somisetty@amd.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20230613054340.12837-3-pranavi.somisetty@amd.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
+ <20230615083422.350297-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230615083422.350297-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2023 at 07:43, Pranavi Somisetty wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+On 15.06.2023 10:34, Dmitry Baryshkov wrote:
+> In board files MDSS and HDMI nodes do not come next to each other,
+> because labels for HDMI nodes do not have the common mdss_ prefix.
 > 
-> From: Maulik Jodhani <maulik.jodhani@xilinx.com>
+> Follow the DSI example and enable such grouping by changing the prefix
+> for HDMI labels to mdss_hdmi_*.
 > 
-> When the receive partial store and forward mode is activated, the
-> receiver will only begin to forward the packet to the external AHB
-> or AXI slave when enough packet data is stored in the packet buffer.
-> The amount of packet data required to activate the forwarding process
-> is programmable via watermark registers which are located at the same
-> address as the partial store and forward enable bits. Adding support to
-> read this rx-watermark value from device-tree, to program the watermark
-> registers and enable partial store and forwarding.
-> 
-> Signed-off-by: Maulik Jodhani <maulik.jodhani@xilinx.com>
-> Signed-off-by: Pranavi Somisetty <pranavi.somisetty@amd.com>
-
-Looks good to me:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-Thanks for your patch and effort to address comments Pranavi.
-
-Best regards,
-   Nicolas
-
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> Changes v2:
-> 1. Removed all the changes related to validating FCS when Rx checksum offload is disabled.
-> 2. Instead of using a platform dependent number (0xFFF) for the reset value of rx watermark,
-> derive it from designcfg_debug2 register.
-> 3. Added a check to see if partial s/f is supported, by reading the
-> designcfg_debug6 register.
-> 
-> Changes v3:
-> 1. Followed reverse christmas tree pattern in declaring variables.
-> 2. Return -EINVAL when an invalid watermark value is set.
-> 3. Removed netdev_info when partial store and forward is not enabled.
-> 4. Validating the rx-watermark value in probe itself and only write to the register
-> in init.
-> 5. Writing a reset value to the pbuf_cuthru register before disabing partial store
-> and forward is redundant. So removing it.
-> 6. Removed the platform caps flag.
-> 7. Instead of reading rx-watermark from DT in macb_configure_caps,
-> reading it in probe.
-> 8. Changed Signed-Off-By and author names on this patch.
-> 
-> Changes v4:
-> 1. Removed redundant code and unused variables.
-> 2. When the rx-watermark value is invalid, instead of returning EINVAL,
-> do not enable partial store and forward.
-> 3. Change rx-watermark variable's size to u32 instead of u16.
-> ---
->   drivers/net/ethernet/cadence/macb.h      | 12 +++++++++++
->   drivers/net/ethernet/cadence/macb_main.c | 27 ++++++++++++++++++++++++
->   2 files changed, 39 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
-> index 14dfec4db8f9..39d53117a8ce 100644
-> --- a/drivers/net/ethernet/cadence/macb.h
-> +++ b/drivers/net/ethernet/cadence/macb.h
-> @@ -82,6 +82,7 @@
->   #define GEM_NCFGR              0x0004 /* Network Config */
->   #define GEM_USRIO              0x000c /* User IO */
->   #define GEM_DMACFG             0x0010 /* DMA Configuration */
-> +#define GEM_PBUFRXCUT          0x0044 /* RX Partial Store and Forward */
->   #define GEM_JML                        0x0048 /* Jumbo Max Length */
->   #define GEM_HS_MAC_CONFIG      0x0050 /* GEM high speed config */
->   #define GEM_HRB                        0x0080 /* Hash Bottom */
-> @@ -343,6 +344,10 @@
->   #define GEM_ADDR64_SIZE                1
-> 
-> 
-> +/* Bitfields in PBUFRXCUT */
-> +#define GEM_ENCUTTHRU_OFFSET   31 /* Enable RX partial store and forward */
-> +#define GEM_ENCUTTHRU_SIZE     1
-> +
->   /* Bitfields in NSR */
->   #define MACB_NSR_LINK_OFFSET   0 /* pcs_link_state */
->   #define MACB_NSR_LINK_SIZE     1
-> @@ -509,6 +514,8 @@
->   #define GEM_TX_PKT_BUFF_OFFSET                 21
->   #define GEM_TX_PKT_BUFF_SIZE                   1
-> 
-> +#define GEM_RX_PBUF_ADDR_OFFSET                        22
-> +#define GEM_RX_PBUF_ADDR_SIZE                  4
-> 
->   /* Bitfields in DCFG5. */
->   #define GEM_TSU_OFFSET                         8
-> @@ -517,6 +524,8 @@
->   /* Bitfields in DCFG6. */
->   #define GEM_PBUF_LSO_OFFSET                    27
->   #define GEM_PBUF_LSO_SIZE                      1
-> +#define GEM_PBUF_CUTTHRU_OFFSET                        25
-> +#define GEM_PBUF_CUTTHRU_SIZE                  1
->   #define GEM_DAW64_OFFSET                       23
->   #define GEM_DAW64_SIZE                         1
-> 
-> @@ -1283,6 +1292,9 @@ struct macb {
-> 
->          u32                     wol;
-> 
-> +       /* holds value of rx watermark value for pbuf_rxcutthru register */
-> +       u32                     rx_watermark;
-> +
->          struct macb_ptp_info    *ptp_info;      /* macb-ptp interface */
-> 
->          struct phy              *sgmii_phy;     /* for ZynqMP SGMII mode */
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index 41964fd02452..7d023b92b169 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -2617,6 +2617,9 @@ static void macb_reset_hw(struct macb *bp)
->          macb_writel(bp, TSR, -1);
->          macb_writel(bp, RSR, -1);
-> 
-> +       /* Disable RX partial store and forward and reset watermark value */
-> +       gem_writel(bp, PBUFRXCUT, 0);
-> +
->          /* Disable all interrupts */
->          for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
->                  queue_writel(queue, IDR, -1);
-> @@ -2770,6 +2773,10 @@ static void macb_init_hw(struct macb *bp)
->                  bp->rx_frm_len_mask = MACB_RX_JFRMLEN_MASK;
-> 
->          macb_configure_dma(bp);
-> +
-> +       /* Enable RX partial store and forward and set watermark */
-> +       if (bp->rx_watermark)
-> +               gem_writel(bp, PBUFRXCUT, (bp->rx_watermark | GEM_BIT(ENCUTTHRU)));
->   }
-> 
->   /* The hash address register is 64 bits long and takes up two
-> @@ -4923,6 +4930,7 @@ static int macb_probe(struct platform_device *pdev)
->          phy_interface_t interface;
->          struct net_device *dev;
->          struct resource *regs;
-> +       u32 wtrmrk_rst_val;
->          void __iomem *mem;
->          struct macb *bp;
->          int err, val;
-> @@ -4995,6 +5003,25 @@ static int macb_probe(struct platform_device *pdev)
-> 
->          bp->usrio = macb_config->usrio;
-> 
-> +       /* By default we set to partial store and forward mode for zynqmp.
-> +        * Disable if not set in devicetree.
-> +        */
-> +       if (GEM_BFEXT(PBUF_CUTTHRU, gem_readl(bp, DCFG6))) {
-> +               err = of_property_read_u32(bp->pdev->dev.of_node,
-> +                                          "cdns,rx-watermark",
-> +                                          &bp->rx_watermark);
-> +
-> +               if (!err) {
-> +                       /* Disable partial store and forward in case of error or
-> +                        * invalid watermark value
-> +                        */
-> +                       wtrmrk_rst_val = (1 << (GEM_BFEXT(RX_PBUF_ADDR, gem_readl(bp, DCFG2)))) - 1;
-> +                       if (bp->rx_watermark > wtrmrk_rst_val || !bp->rx_watermark) {
-> +                               dev_info(&bp->pdev->dev, "Invalid watermark value\n");
-> +                               bp->rx_watermark = 0;
-> +                       }
-> +               }
-> +       }
->          spin_lock_init(&bp->lock);
-> 
->          /* setup capabilities */
-> --
-> 2.36.1
-> 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
--- 
-Nicolas Ferre
-
+Konrad
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dts  | 40 ++++++++++----------
+>  arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts |  6 +--
+>  arch/arm64/boot/dts/qcom/msm8996-mtp.dts     |  4 +-
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi        | 12 +++---
+>  4 files changed, 31 insertions(+), 31 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> index b599909c4463..39170c18c693 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> @@ -208,25 +208,6 @@ &gpu {
+>  	status = "okay";
+>  };
+>  
+> -&hdmi {
+> -	status = "okay";
+> -
+> -	pinctrl-names = "default", "sleep";
+> -	pinctrl-0 = <&hdmi_hpd_active &hdmi_ddc_active>;
+> -	pinctrl-1 = <&hdmi_hpd_suspend &hdmi_ddc_suspend>;
+> -
+> -	core-vdda-supply = <&vreg_l12a_1p8>;
+> -	core-vcc-supply = <&vreg_s4a_1p8>;
+> -};
+> -
+> -&hdmi_phy {
+> -	status = "okay";
+> -
+> -	vddio-supply = <&vreg_l12a_1p8>;
+> -	vcca-supply = <&vreg_l28a_0p925>;
+> -	#phy-cells = <0>;
+> -};
+> -
+>  &hsusb_phy1 {
+>  	status = "okay";
+>  
+> @@ -251,6 +232,25 @@ &mdss {
+>  	status = "okay";
+>  };
+>  
+> +&mdss_hdmi {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&hdmi_hpd_active &hdmi_ddc_active>;
+> +	pinctrl-1 = <&hdmi_hpd_suspend &hdmi_ddc_suspend>;
+> +
+> +	core-vdda-supply = <&vreg_l12a_1p8>;
+> +	core-vcc-supply = <&vreg_s4a_1p8>;
+> +};
+> +
+> +&mdss_hdmi_phy {
+> +	status = "okay";
+> +
+> +	vddio-supply = <&vreg_l12a_1p8>;
+> +	vcca-supply = <&vreg_l28a_0p925>;
+> +	#phy-cells = <0>;
+> +};
+> +
+>  &mmcc {
+>  	vdd-gfx-supply = <&vdd_gfx>;
+>  };
+> @@ -1054,7 +1054,7 @@ platform {
+>  		};
+>  
+>  		codec {
+> -			sound-dai = <&hdmi 0>;
+> +			sound-dai = <&mdss_hdmi 0>;
+>  		};
+>  	};
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
+> index ed2e2f6c6775..ac6471d1db1f 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
+> @@ -92,15 +92,15 @@ &gpu {
+>  	status = "okay";
+>  };
+>  
+> -&hdmi {
+> +&mdss {
+>  	status = "okay";
+>  };
+>  
+> -&hdmi_phy {
+> +&mdss_hdmi {
+>  	status = "okay";
+>  };
+>  
+> -&mdss {
+> +&mdss_hdmi_phy {
+>  	status = "okay";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+> index 596ad4c896f5..495d45a16e63 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+> @@ -24,10 +24,10 @@ &blsp2_uart2 {
+>  	status = "okay";
+>  };
+>  
+> -&hdmi {
+> +&mdss_hdmi {
+>  	status = "okay";
+>  };
+>  
+> -&hdmi_phy {
+> +&mdss_hdmi_phy {
+>  	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 3855366ca89f..40ac0a784a4a 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -895,7 +895,7 @@ mmcc: clock-controller@8c0000 {
+>  				 <&mdss_dsi0_phy 0>,
+>  				 <&mdss_dsi1_phy 1>,
+>  				 <&mdss_dsi1_phy 0>,
+> -				 <&hdmi_phy>;
+> +				 <&mdss_hdmi_phy>;
+>  			clock-names = "xo",
+>  				      "gpll0",
+>  				      "gcc_mmss_noc_cfg_ahb_clk",
+> @@ -980,7 +980,7 @@ ports {
+>  					port@0 {
+>  						reg = <0>;
+>  						mdp5_intf3_out: endpoint {
+> -							remote-endpoint = <&hdmi_in>;
+> +							remote-endpoint = <&mdss_hdmi_in>;
+>  						};
+>  					};
+>  
+> @@ -1136,7 +1136,7 @@ mdss_dsi1_phy: phy@996400 {
+>  				status = "disabled";
+>  			};
+>  
+> -			hdmi: hdmi-tx@9a0000 {
+> +			mdss_hdmi: hdmi-tx@9a0000 {
+>  				compatible = "qcom,hdmi-tx-8996";
+>  				reg =	<0x009a0000 0x50c>,
+>  					<0x00070000 0x6158>,
+> @@ -1160,7 +1160,7 @@ hdmi: hdmi-tx@9a0000 {
+>  					"alt_iface",
+>  					"extp";
+>  
+> -				phys = <&hdmi_phy>;
+> +				phys = <&mdss_hdmi_phy>;
+>  				#sound-dai-cells = <1>;
+>  
+>  				status = "disabled";
+> @@ -1171,14 +1171,14 @@ ports {
+>  
+>  					port@0 {
+>  						reg = <0>;
+> -						hdmi_in: endpoint {
+> +						mdss_hdmi_in: endpoint {
+>  							remote-endpoint = <&mdp5_intf3_out>;
+>  						};
+>  					};
+>  				};
+>  			};
+>  
+> -			hdmi_phy: phy@9a0600 {
+> +			mdss_hdmi_phy: phy@9a0600 {
+>  				#phy-cells = <0>;
+>  				compatible = "qcom,hdmi-phy-8996";
+>  				reg = <0x009a0600 0x1c4>,
