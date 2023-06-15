@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1EC5731961
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67FD87319A7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238789AbjFOM7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
+        id S239619AbjFONNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:13:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245707AbjFOM7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:59:08 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9E221BC9
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:59:05 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 184CE86262;
-        Thu, 15 Jun 2023 14:58:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1686833937;
-        bh=CoPVgQejVWEK8px9zanv04a/R6+DcHZDe3wrnocLwGk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=AAHpVA885KlCXOwz0Bca2C/rd5sN5PwLAUepIQ81rOIbuVSUX5T8x+Yz5N9Gv1tlp
-         oynjcSho88nicLdLLN24CqNj5asv7194aWpb4w8CXMt03EB7ZrVNr/D1xc+ZLett1v
-         DSM9GY9OjweZIKz3bBUitqVwHLWeRUYtNlsbRfRbEOdogpEV0cqxXAAD4Ow3XAm7KG
-         5jodOIHak6BS3IrFQnW6L4I2J31+I1OnV/zjrRfy/qyKDQGJnfIK7CplcWETGuFwdZ
-         ZzlnY2O1xX2eLpgy6a2Uh41/ZkRNfbJZmzUzOcj+xa0X4FyIway/sWP26vMK7hHinY
-         lXlRz5i2230Bg==
-Message-ID: <664102f3-e963-531a-5e39-b556ca132ece@denx.de>
-Date:   Thu, 15 Jun 2023 14:58:56 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] ASoC: dt-bindings: audio-graph-card: Expand 'widgets'
- documentation
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org,
+        with ESMTP id S239232AbjFONNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:13:38 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 275812D54;
+        Thu, 15 Jun 2023 06:13:17 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDD6DL010718;
+        Thu, 15 Jun 2023 08:13:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686834786;
+        bh=sNdmTxJmK3YxOpTk/pRDd0l7p9KrGXXliNWMmhycsJQ=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=EN6zrr9utMZuca8y3oQihIcp3aejizo9qPhfYo2m6YXVnFGqll3QY2oRSG1peBgjv
+         nvNgM/utoGNjC0IaK8grKXceGhgiHmb5UR+lodeRzu9nLlDV7kt3Do0mAmQCd5YlIX
+         5BdonxV9nKgPdA5/m107cetUBqMUGsLb8mr4Z8Ak=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDD6kU128316
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 08:13:06 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 08:13:06 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 08:13:06 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDD3f0055103;
+        Thu, 15 Jun 2023 08:13:04 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
-References: <20230606175951.215740-1-marex@denx.de>
- <d40f2c63-0b8a-425e-90a9-dd8f552ba782@sirena.org.uk>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <d40f2c63-0b8a-425e-90a9-dd8f552ba782@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH V3 0/3] arm64: dts: ti: k3-am65: dtbs_check warnings fixups
+Date:   Thu, 15 Jun 2023 18:43:01 +0530
+Message-ID: <168681817153.2098323.15467286493524465790.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230607132043.3932726-1-nm@ti.com>
+References: <20230607132043.3932726-1-nm@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,22 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/6/23 20:25, Mark Brown wrote:
-> On Tue, Jun 06, 2023 at 07:59:51PM +0200, Marek Vasut wrote:
-> 
->> Document the encoding of 'widgets' property to avoid confusion.
-> 
->>     widgets:
->> -    description: User specified audio sound widgets.
->> +    description: |
->> +      User specified audio sound widgets.
->> +      Each entry is a pair of strings, the first being the type of
->> +      widget ("Microphone", "Line", "Headphone", "Speaker"), the
->> +      second being the machine specific name for the widget.
-> 
-> This looks sensible to me, I don't know if there's a way we can get the
-> tooling to validate either the length or (ideally) the widget type
-> strings?
+Hi Nishanth Menon,
 
-It seems there is no way to do validation of every two elements for 
-lists with variable number of elements.
+On Wed, 07 Jun 2023 08:20:40 -0500, Nishanth Menon wrote:
+> Hopefully, third time is a charm ;)
+> 
+> Series of minor fixups for AM65x device tree to cleanup some of the
+> dtbs_check warnings.
+> 
+> 
+> Changes Since V2:
+> * Dropped mux-controller fixup (should have been dropped when
+>   dependencies changed)
+> 
+> [...]
+
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/3] arm64: dts: ti: k3-am65-main: Fix mcan node name
+      commit: 498f7b0f9da9be6f6c099b4c8ffb502174623565
+[2/3] arm64: dts: ti: k3-am65-main: Drop deprecated ti,otap-del-sel property
+      commit: 2b9bb988742d1794e78d4297a99658f38477eedd
+[3/3] arm64: dts: ti: k3-am65-iot2050-common: Rename rtc8564 nodename
+      commit: 400f4953d53ccc07bb26bb6c9d425934ecab4aa8
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
