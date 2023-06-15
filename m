@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA663731558
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AFC73155B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:30:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232875AbjFOKaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:30:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41238 "EHLO
+        id S241114AbjFOKa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244331AbjFOK3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:29:52 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 202F3119;
-        Thu, 15 Jun 2023 03:29:51 -0700 (PDT)
+        with ESMTP id S241326AbjFOKaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:30:20 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BCBC2942;
+        Thu, 15 Jun 2023 03:30:15 -0700 (PDT)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAThvx125744;
-        Thu, 15 Jun 2023 05:29:43 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAU9NG035857;
+        Thu, 15 Jun 2023 05:30:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686824983;
-        bh=3ohod6aoFCzDyAlvFWkiUBGRLq11/eAI8F3oXNMVT/c=;
+        s=ti-com-17Q1; t=1686825009;
+        bh=8pVN9oNkmGnblqPTMI9HI/Zob7NSr7t4bUPavzlHqPs=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=osYSAiBaokaY5gQtWzdmMhBf453An3aABeW8ViR2WeazauykyTeN2Fn7SZR4Sl+X5
-         fl6Rk6/UX3sifBxy6uOELrNn6YXxNyA247zpZPUL3/5C2qnvWfWA3dl9X2Uz81/2bB
-         7xv4hoChS6jFsAKq3bbRoNw3kb6mJfFcQX7ZQ13k=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAThfH014875
+        b=sL4KOCd6KD0Dha/1ao7OwLHltGIHCaptS98MaANMyL46fph0U8PKuuUTqToaIVBLD
+         4Yp8mOr/TC9mXKZOUqO0fjgktgdRx6Y1/9WOY3+doto7mBwO2heCNaXdSHEKklbwdR
+         n9NgCaJoh6WQDcLk1sxiewmc9GM7blS05qM9vROA=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAU88w015512
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 05:29:43 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 15 Jun 2023 05:30:08 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 05:29:43 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ Jun 2023 05:30:08 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
  (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 05:29:43 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FATedP027880;
-        Thu, 15 Jun 2023 05:29:40 -0500
+ Frontend Transport; Thu, 15 Jun 2023 05:30:08 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAU5PN112615;
+        Thu, 15 Jun 2023 05:30:06 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Wadim Egorov <w.egorov@phytec.de>,
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
         Andrew Davis <afd@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am64: Only set UART baud for used ports
-Date:   Thu, 15 Jun 2023 15:59:38 +0530
-Message-ID: <168681817157.2098323.1694962842607075489.b4-ty@ti.com>
+Subject: Re: [PATCH 1/5] arm64: dts: ti: k3-j721e-beagleboneai64: Fix mailbox node status
+Date:   Thu, 15 Jun 2023 16:00:01 +0530
+Message-ID: <168681817152.2098323.100603307953896320.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230601184933.358731-1-afd@ti.com>
-References: <20230601184933.358731-1-afd@ti.com>
+In-Reply-To: <20230515172137.474626-1-afd@ti.com>
+References: <20230515172137.474626-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,24 +70,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Andrew Davis,
 
-On Thu, 01 Jun 2023 13:49:32 -0500, Andrew Davis wrote:
-> As the binding for "current-speed" states, this should only be used
-> when the baud rate of an attached device cannot be detected. This is
-> the case for our attached on-board USB-to-UART converter used for
-> early kernel console. For all other unconnected/disabled ports this
-> can be configured in userspace later, DT is not the place for device
-> configuration, especially when there are already standard ways to
-> set serial baud in userspace.
+On Mon, 15 May 2023 12:21:33 -0500, Andrew Davis wrote:
+> Mailbox nodes are now disabled by default. The BeagleBoard AI64 DT
+> addition went in at around the same time and must have missed that
+> change so the mailboxes are not re-enabled. Do that here.
 > 
-> [...]
+> 
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/2] arm64: dts: ti: k3-am64: Only set UART baud for used ports
-      commit: 27f98f3eca7334fec668ec637ed5e0514458bba8
-[2/2] arm64: dts: ti: k3-am64: Use phandle to stdout UART node
-      commit: 6b343136388fe1ef5837e45ab921705de76665ee
+[1/5] arm64: dts: ti: k3-j721e-beagleboneai64: Fix mailbox node status
+      commit: 155e7635ed1f3814d94d12556a3a0fed41d05b76
+[2/5] arm64: dts: ti: k3-j721e: Remove PCIe endpoint nodes
+      commit: a0cfd88d4a8a1106e9de5c3b03e68efe9e6249ec
+[3/5] arm64: dts: ti: k3-j721e: Enable PCIe nodes at the board level
+      commit: 731c6deda85ffcac3629bea757a806306e335618
+[4/5] arm64: dts: ti: k3-am64: Enable Mailbox nodes at the board level
+      commit: 91f983ff7039fa2ff8ef153e118eec6d60f55e45
+[5/5] arm64: dts: ti: k3-j721e: Enable MDIO nodes at the board level
+      commit: b0efb45d126ee914bafca37a582ae6574560dd25
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
