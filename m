@@ -2,569 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 411FF730ED1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 07:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDBA0730ED9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 07:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237236AbjFOFuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 01:50:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
+        id S234388AbjFOFvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 01:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231366AbjFOFue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 01:50:34 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B6142709;
-        Wed, 14 Jun 2023 22:50:27 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35F5MGGI003767;
-        Thu, 15 Jun 2023 05:49:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=qyRSQhyQlf/bopFtO5Wpt2EMsSFbkPBev1GV2KYJ7/A=;
- b=oXwV3TgR/f1MJR7NJba+oW2gyVoCVpUTzX5GuY4vTGVeu9KMf+5EqhjcR5gvXNbuPZW5
- rnYf/H48vtTZX64Bb7POSn51Pg3IGtdYTlqhI/k/0/otkkStcgfsRSN3FwePrEHzZQwY
- ViWP9evBeGWNL6C/sByRi11CrN3YRul0qDuHeFJUdE2sAOCGjgYTAV3yiP/wVkUXDik8
- rEOMlliCyYpgTz3xORAKsF9y9qk26EQdyPNqQfcDQ0YdZxhSZJP8MZGFGqsOCk0ayJ69
- RSAzPZsFap0WJ+rj8xGdX/6mi4T0n5mMWGH1ao5xDud74JuafogrzUmVq97WCNyheVws 3A== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7ebt9pd6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 05:49:56 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35F5ntNY021223
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 05:49:55 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+        with ESMTP id S234448AbjFOFvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 01:51:25 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1357270E;
+        Wed, 14 Jun 2023 22:51:17 -0700 (PDT)
+X-UUID: a32438560b4011eeb20a276fd37b9834-20230615
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=F19zNWHP/LFmCkU9CfWOIYzAw9jBKV50J+E21kyLQ74=;
+        b=DLqqLkIUbLzlNWPr9jd6a9AgDBNRMXsJfIw1+1x6tQXC+racVCHLvPqbdfN3FwlFdyiRPGCn5nhkUKEZbxr2FlfrjhbM/6v7c/LMZVG+XYeAp9edOGRhF8DRzEVOSXPXQKBGE1VjLU9hpL1+lFjha10o7Ss+SCUgLhZxB5P/g2U=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.26,REQID:deb0d3f3-333f-4e2f-b340-664385a1f067,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:40
+X-CID-INFO: VERSION:1.1.26,REQID:deb0d3f3-333f-4e2f-b340-664385a1f067,IP:0,URL
+        :0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:40
+X-CID-META: VersionHash:cb9a4e1,CLOUDID:24b07e3e-de1e-4348-bc35-c96f92f1dcbb,B
+        ulkID:230615135114GQF063XV,BulkQuantity:0,Recheck:0,SF:48|38|29|28|17|19|1
+        02,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,C
+        OL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_SDM,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD,
+        TF_CID_SPAM_ULS
+X-UUID: a32438560b4011eeb20a276fd37b9834-20230615
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <shawn.sung@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1911929933; Thu, 15 Jun 2023 13:51:13 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 14 Jun 2023 22:49:46 -0700
-Date:   Thu, 15 Jun 2023 11:19:36 +0530
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <p.zabel@pengutronix.de>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <rafal@milecki.pl>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH 3/9] phy: qcom-m31: Introduce qcom,m31 USB phy driver
-Message-ID: <20230615054935.GC22186@varda-linux.qualcomm.com>
-References: <cover.1686126439.git.quic_varada@quicinc.com>
- <6bb345c6a57ee27516764f36ba7d34fd1a719b87.1686126439.git.quic_varada@quicinc.com>
- <416bef68-6df3-d5c4-2aed-ef1ae7c78d7b@linaro.org>
+ 15.2.1118.26; Thu, 15 Jun 2023 13:51:12 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 15 Jun 2023 13:51:12 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j2v4mqI0DrDmtEN0GEy1wQuL0WUIDgaywcESauGIs4TvIQyzoqmSy1/i5QJwlIzC2dToDyuvVdpj1Yjqdf1BU67HnzmlIkpNsd8W75eyu6aXxaMesCXY5jXkfBjRFQbW1pe5D7HZAofy2FdAykcDxN2jlSNdMt26QFi7MFrbwoAceXNwVelUy42XWUCWrobPSuj0hI82Vo6O/iiTy8IlJdPubv8a7bKUX5uM0/od/ucSHbdLFz5rbszjxUZTqJ5x0Mgwbo2kIGlRvF65L3VDnOmOQFVlvyEl7duwi0KlKtpQWcWD62I6sexTkXS2F24XJRueA2vBI9Isp3xo+UnQGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F19zNWHP/LFmCkU9CfWOIYzAw9jBKV50J+E21kyLQ74=;
+ b=KVWTXOLVLNZGXcJAf//zJrLfyWq/8z+qALjmBV78UQFP2pG9QMRwxDW02M+V2A1HHrgbgLeBtHzP9xBSc15YCScWi1gdJ91j9feXZ7aeolNo23erI/JaTKjq9nPp/QvWHIwfVbLuQp2u4iwLK6a2wiTNxgE1kUrsWA/oIGD94XbsaupHcAVnkRfdV0mTjD0Mhzk3eX0+HJEaeN9UbAv9Zv2/iZlMz0rzhsKmdUCGrOpNp+VlZOKmee5jmeqxaRXgv8F2MjsfdvYk4NPLllYmwOSnC2uqzFSmLynYTnG0SFHXBDEvAywM82t1O0qcQ1/lQj0kAfIoik4cTqu31TcCNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F19zNWHP/LFmCkU9CfWOIYzAw9jBKV50J+E21kyLQ74=;
+ b=hrWCE1dbJdPip/IakE1KiIYvJpw0L3YCMY1e9oIAWJAlnvCBiIN8b8o+b9DJS6jLEbEz2rTF0f/n2zn2yvEtFKuveiCVau8mepQJUp5pz3+YXKqdxZPKFsY8asNwOYNbLOGeN3izceUD+573KqmTz575axV2OMFoWpgas2NVeaU=
+Received: from TYZPR03MB6623.apcprd03.prod.outlook.com (2603:1096:400:1f5::13)
+ by TYZPR03MB8091.apcprd03.prod.outlook.com (2603:1096:400:45d::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.31; Thu, 15 Jun
+ 2023 05:51:10 +0000
+Received: from TYZPR03MB6623.apcprd03.prod.outlook.com
+ ([fe80::dbf3:d56:46f:ec66]) by TYZPR03MB6623.apcprd03.prod.outlook.com
+ ([fe80::dbf3:d56:46f:ec66%5]) with mapi id 15.20.6455.039; Thu, 15 Jun 2023
+ 05:51:09 +0000
+From:   =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= 
+        <Shawn.Sung@mediatek.com>
+To:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
+        <Singo.Chang@mediatek.com>,
+        =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 01/15] dt-bindings: display: mediatek: ethdr: Add
+ compatible for MT8188
+Thread-Topic: [PATCH v2 01/15] dt-bindings: display: mediatek: ethdr: Add
+ compatible for MT8188
+Thread-Index: AQHZnpJyRuTV4lK0V0utMt58FihBmK+KLSEAgAEwfoA=
+Date:   Thu, 15 Jun 2023 05:51:09 +0000
+Message-ID: <6c24ad522f42ce35bf387bae1b8a029f58bb0e01.camel@mediatek.com>
+References: <20230614073125.17958-1-shawn.sung@mediatek.com>
+         <20230614073125.17958-2-shawn.sung@mediatek.com>
+         <1f044902-0726-34ed-3eea-7224e5750e22@collabora.com>
+In-Reply-To: <1f044902-0726-34ed-3eea-7224e5750e22@collabora.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6623:EE_|TYZPR03MB8091:EE_
+x-ms-office365-filtering-correlation-id: ed4ed0bf-9dd4-4559-5b85-08db6d64850d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jR6b4vF4ZzHTut484qA9XgyPOo1FMuj1zgXpUmLMuqEFzb/Rg/tqwZc9y39odtqhYRhmqHygov/5tl+nI6dutTNcgfNYmqki1VfsZR6ZzfjySOIDBHFvBHuVMfZ+vZ9+8B42YkLpDOn/lha6ky3nQPoeVzlDWhDkEgHa3tU7woYqCfbtvKHD+VNttQ0QFF9Lsk/qEXZEOMDp1vkHFYqv5dM60zAzciwFGky7wgFnPCDCCCGFnsJDtv1TeZRl6bTfS9S9kkwJ5J4KIoZ8R6hymwTfomWMuR/ZUfzjxO6V3jQMlQr3dt4K2b1QGaWmkW8yLpryYcAzPNmtBt2owNJOHH9SXD0Vx/jUwh3hGFZVDda0q9P2161jKZJyAKRK94baG/SJvJlpxMTvKhzyAi/3QwVP72k9PNKBSQ0oubwOfUDmUWbGpgwzoYyIpWVRyCl7DhkVXgWkUnz5tQr6c4G1vtUVg79RoYGwn9KNZFIt5ZsToj121Szf5WP5fRhyoQSToKaGHVRPyZuOCnuZa9EmQ6LBaDgXCGAIfVKNTfNDb+wLlguiSDNRXxFD5JsDN9kYY7oT2yu8oYavoZUCU9nIGLkHHV5ljFqz61aWosuTrzDDHosCNzh24n1QYZSWzlzAKssCKTFHN9NlT7jinaJtbg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6623.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(376002)(136003)(396003)(39860400002)(451199021)(83380400001)(2906002)(38070700005)(2616005)(122000001)(38100700002)(85182001)(36756003)(5660300002)(86362001)(966005)(66556008)(41300700001)(76116006)(66946007)(316002)(66446008)(64756008)(6486002)(66476007)(4326008)(8936002)(8676002)(71200400001)(478600001)(6512007)(6506007)(186003)(7416002)(26005)(54906003)(110136005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OEoxRERuVDFqblFERit1dWMrLy8xZGZ4ZkVBZng4SVhiTStUbWM4dmtiRnpq?=
+ =?utf-8?B?TUdkb3BtcGtnaWhRM3RMc2R6aXZTOTdjVXh2YWI4dzh3dkkxRmVENDN6VWw3?=
+ =?utf-8?B?bWZqRzdoT0ZxUnNPa1VxWFRKbGk2NTRrZ2dqNW8vYkQvOEs3bUEzaFZ1S2Nk?=
+ =?utf-8?B?UWhMS3QxUGxMSGgxbktDL3FMdGV3TDc5bk9oeEtlYkhxaTN3YmdOTEpPVmdW?=
+ =?utf-8?B?ZWdCemU3SEdZV3V2cGgyMTNyQ3RSK3BaK1lYZmVudUJLbUZkT3psSmVkTk5C?=
+ =?utf-8?B?ZkVuTHZEcGo1c2RyaXRGSG0zQ2pSbjhvaCtEcnE0VHNoM2RieU9vOVdqS3h5?=
+ =?utf-8?B?cUVBVnFWclA1c2YwcS9EbVBLRmpXTnFhbGhDa0IyTHZVelc2RnFtTFFZeWJj?=
+ =?utf-8?B?S2YvVWg1eVhvR2todzFmTG9xRm51MEo2WTJtQjFHdEdhRmdFT2x3aHIzQWRi?=
+ =?utf-8?B?SjA2bnJVUEdFdjJBZk9zTGpKVXJtTFA3NXBNK25hWEpFbGNRdlEzcUgyM0Zm?=
+ =?utf-8?B?VXFyQmpYMk54VS9DSWZjRmRoRXVybVc1ZE1VMWU1VUJyNWE5a091R0tEeVVs?=
+ =?utf-8?B?bGZtRU41a0MrY1pMWWRBZWR1blNDM05QY2tQQnFoWitoSlFZdC9LWXNQWVBK?=
+ =?utf-8?B?cHBMV09mNU1wTzFEbmtGNlo1ckQ2ZFFXVFc3RkFjMHNGSnFIZjRUb3dKMW9w?=
+ =?utf-8?B?QjNZcmQzeVJ3ak5sZXpuOSt2M2JHTnJ3WHRiVzRzNDVoSm5vdUZpZWd6RjZS?=
+ =?utf-8?B?L3ozaXY3RGlWRW9PZWRQTm40YXZyb1dXeHFqV0RDT01zVmcrdFl0RXhHNEh6?=
+ =?utf-8?B?eHBqOU5NeHpnenRGbFdUUGxpa2hDdVBvN0UvbUlZS2ZUQ0lqcUswSCtRK3FB?=
+ =?utf-8?B?eWFYb3pDRlp2WjF1c2NMcUNLQy9STHlFQ1Evcmtja1JLK3JadU02Nks4NlhX?=
+ =?utf-8?B?QjhLTWJBQXNrR3pTMmdLUDRhOWtGMzVWeU9IUjZtTzFRNDVGVWJTaHhtTVdx?=
+ =?utf-8?B?S29QQjIrNVhZZkNOaTVJZm5sWkFTcTBZOHA3WjlTaW1seFpjbmlqZW00UDk1?=
+ =?utf-8?B?TWpmcUdJaUhKeFBiblBrcncxNE03dDRENm8vRzIvVUpYQ0lWWmtlaDJvUk1C?=
+ =?utf-8?B?bW9YbjNLMkR1b0NndklvcWc5Y1hvVWh5TWNpRVg4eWcxMzdjR3hrWkhoQ01U?=
+ =?utf-8?B?dFdNbjl6QktxS3NFbXI2SGEwbUorUG91eTN3Nkk5YThjQ1Y0S0YwL1VCbXlR?=
+ =?utf-8?B?MVBqa09PZFBabmJydzRKUmpsdjNMRHY1RDRJaGVmbjFrYzFHV012dmRQaTlu?=
+ =?utf-8?B?OHpwTGtpYVQ0ZGhMQjAyYVo5RjNvZ3NqdnNrLzhOcUxRMk0vUVhxTGdYa3hU?=
+ =?utf-8?B?UVJDekNyQ1BESVp6dEVkbUFIcHhQbDgrcXVsSWJVMzZiTFlsOXRqMGlKdHZl?=
+ =?utf-8?B?cDhZcjNGMzlDRzBNNVNEZHNUNUxTWk4zQzlZeVQ5cklXa1ppcDFsaUlNYm45?=
+ =?utf-8?B?eEl5dzRFL3l3R2JGTjZCeHhCb1ZEWUZiVzkzMjYvQU1UNjd5VE56ai8zdGtj?=
+ =?utf-8?B?NURjT0d0N2NLY1F0V1NXcFZvYVVXVmp2SjNlR1hDYVhWbmdjWFpRTm9JQm5H?=
+ =?utf-8?B?QVVaZjJUVkorWlVuc0Y3TlZFbnZ0TjNIWWpSSk12RDViUXNJUm1SNDByMG51?=
+ =?utf-8?B?ek5xM3ZxUy9tZGR6QWhZOHp0d0M5QkhHbW1iVGZKMnp6bThSMHJ6enowWW81?=
+ =?utf-8?B?Tm9sRHZxWWNMczdleVY4Umt0emU1ME42bTdKVjBreGcxcFRBMDJNMXpGZi9a?=
+ =?utf-8?B?MjJ5YTAwV0JycjVzRzBnV1VYblRGcnZxNi9uWW9CRFNXSWJBdXN1bnZUQ2dN?=
+ =?utf-8?B?c3JaMXlMWjhMTnFTTXl4YnNnNWZXTjZ4MkxoYzBwZ1VVTHJodXQrcS95eFBr?=
+ =?utf-8?B?SWwyU2lyRmNrMnAvcmxrOTYrVkZoY2Jjenh4cXB6RFhMMHhYMHRvd1FjbUpS?=
+ =?utf-8?B?cUZ2YVpVUjJxaDZaV0dNenVSL09IWS9hQnVHdlZISjViUnQ5aTk5WjdzazFk?=
+ =?utf-8?B?YkI1a3RCeVp6SEpzT2xPRUxiQThsNTE0aXVXc0JsSjVnTmhuYlBpODlkUW43?=
+ =?utf-8?B?VmxNa2RZNFREZjRoeTdVWERMTGF3QjRIcmNLbFFMYTNla1lDcjlxVzMrTUFH?=
+ =?utf-8?B?QUE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1DBDD24A0AAF3342AA660E2F19272B5A@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <416bef68-6df3-d5c4-2aed-ef1ae7c78d7b@linaro.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PXQeWPGa55BPPaGnzfuLos0eiXN3W36p
-X-Proofpoint-ORIG-GUID: PXQeWPGa55BPPaGnzfuLos0eiXN3W36p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-15_02,2023-06-14_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
- mlxscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 impostorscore=0
- phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2306150049
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6623.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed4ed0bf-9dd4-4559-5b85-08db6d64850d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2023 05:51:09.9197
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VTqePFjBmqF1aZh+Kar17WUEefwmEhOXjP7ntHrf6NuvkSuXwsfuT93yxWpfy8p0KrFWhS1EKwfCE2MofkGbwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8091
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 07, 2023 at 01:54:23PM +0200, Konrad Dybcio wrote:
->
->
-> On 7.06.2023 12:56, Varadarajan Narayanan wrote:
-> > Add the M31 USB2 phy driver
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> >  drivers/phy/qualcomm/phy-qcom-m31.c | 360 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 360 insertions(+)
-> >  create mode 100644 drivers/phy/qualcomm/phy-qcom-m31.c
-> >
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-m31.c b/drivers/phy/qualcomm/phy-qcom-m31.c
-> > new file mode 100644
-> > index 0000000..d29a91e
-> > --- /dev/null
-> > +++ b/drivers/phy/qualcomm/phy-qcom-m31.c
-> > @@ -0,0 +1,360 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright (c) 2014-2016, 2020, The Linux Foundation. All rights reserved.
-> > + */
-> > +
-> > +#include <linux/module.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/err.h>
-> > +#include <linux/slab.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/usb/phy.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/of_device.h>
-> Please sort these
-
-Ok.
-
-> > +
-> > +enum clk_reset_action {
-> > +	CLK_RESET_DEASSERT	= 0,
-> > +	CLK_RESET_ASSERT	= 1
-> > +};
-> > +
-> > +#define USB2PHY_PORT_POWERDOWN		0xA4
-> > +#define POWER_UP			BIT(0)
-> > +#define POWER_DOWN			0
-> > +
-> > +#define USB2PHY_PORT_UTMI_CTRL1	0x40
-> > +
-> > +#define USB2PHY_PORT_UTMI_CTRL2	0x44
-> > +#define UTMI_ULPI_SEL			BIT(7)
-> > +#define UTMI_TEST_MUX_SEL		BIT(6)
-> > +
-> > +#define HS_PHY_CTRL_REG			0x10
-> > +#define UTMI_OTG_VBUS_VALID             BIT(20)
-> > +#define SW_SESSVLD_SEL                  BIT(28)
-> > +
-> > +#define USB_PHY_CFG0			0x94
-> > +#define USB_PHY_UTMI_CTRL5		0x50
-> > +#define USB_PHY_FSEL_SEL		0xB8
-> > +#define USB_PHY_HS_PHY_CTRL_COMMON0	0x54
-> > +#define USB_PHY_REFCLK_CTRL		0xA0
-> > +#define USB_PHY_HS_PHY_CTRL2		0x64
-> > +#define USB_PHY_UTMI_CTRL0		0x3c
-> > +#define USB2PHY_USB_PHY_M31_XCFGI_1	0xBC
-> > +#define USB2PHY_USB_PHY_M31_XCFGI_4	0xC8
-> > +#define USB2PHY_USB_PHY_M31_XCFGI_5	0xCC
-> > +#define USB2PHY_USB_PHY_M31_XCFGI_11	0xE4
-> Could you sort them address-wise?
-
-Ok.
-
-> > +
-> > +#define USB2_0_TX_ENABLE		BIT(2)
-> > +#define HSTX_SLEW_RATE_565PS		3
-> > +#define PLL_CHARGING_PUMP_CURRENT_35UA	(3 << 3)
-> > +#define ODT_VALUE_38_02_OHM		(3 << 6)
-> > +#define ODT_VALUE_45_02_OHM		BIT(2)
-> > +#define HSTX_PRE_EMPHASIS_LEVEL_0_55MA	(1)
-> Weird mix of values, bits, bitfields.. perhaps BIT(n) and
-> GENMASK() (+ FIELD_PREP) would be more suitable?
-
-Ok.
-
-> > +
-> > +#define UTMI_PHY_OVERRIDE_EN		BIT(1)
-> > +#define POR_EN				BIT(1)
-> Please associate these with their registers, like
-
-Ok.
-
-> #define FOO_REG		0xf00
->  #define POR_EN		BIT(1)
->
-> > +#define FREQ_SEL			BIT(0)
-> > +#define COMMONONN			BIT(7)
-> > +#define FSEL				BIT(4)
-> > +#define RETENABLEN			BIT(3)
-> > +#define USB2_SUSPEND_N_SEL		BIT(3)
-> > +#define USB2_SUSPEND_N			BIT(2)
-> > +#define USB2_UTMI_CLK_EN		BIT(1)
-> > +#define CLKCORE				BIT(1)
-> > +#define ATERESET			~BIT(0)
-> > +#define FREQ_24MHZ			(5 << 4)
-> > +#define XCFG_COARSE_TUNE_NUM		(2 << 0)
-> > +#define XCFG_FINE_TUNE_NUM		(1 << 3)
-> same comment
-
-Ok.
-
-> > +
-> > +static void m31usb_write_readback(void *base, u32 offset,
-> > +					const u32 mask, u32 val);
-> We don't need this forward-definition, just move the function up.
->
-> > +
-> > +struct m31usb_phy {
-> > +	struct usb_phy		phy;
-> > +	void __iomem		*base;
-> > +	void __iomem		*qscratch_base;
-> > +
-> > +	struct reset_control	*phy_reset;
-> > +
-> > +	bool			cable_connected;
-> > +	bool			suspended;
-> > +	bool			ulpi_mode;
-> > +};
-> > +
-> > +static void m31usb_reset(struct m31usb_phy *qphy, u32 action)
-> > +{
-> > +	if (action == CLK_RESET_ASSERT)
-> > +		reset_control_assert(qphy->phy_reset);
-> > +	else
-> > +		reset_control_deassert(qphy->phy_reset);
-> > +	wmb(); /* ensure data is written to hw register */
-> Please move the comment above the call.
-
-This is used only once. Hence, will move it to the calling location itself.
-
-> > +}
-> > +
-> > +static void m31usb_phy_enable_clock(struct m31usb_phy *qphy)
-> > +{
-> > +	/* Enable override ctrl */
-> > +	writel(UTMI_PHY_OVERRIDE_EN, qphy->base + USB_PHY_CFG0);
-> Some of the comments are missing a space before '*/'
->
-> Also, please consider adding some newlines to logically split the
-> actions.
->
-> > +	/* Enable POR*/
-> > +	writel(POR_EN, qphy->base + USB_PHY_UTMI_CTRL5);
-> > +	udelay(15);
-> > +	/* Configure frequency select value*/
-> > +	writel(FREQ_SEL, qphy->base + USB_PHY_FSEL_SEL);
-> > +	/* Configure refclk frequency */
-> > +	writel(COMMONONN | FSEL | RETENABLEN,
-> > +		qphy->base + USB_PHY_HS_PHY_CTRL_COMMON0);
-> > +	/* select refclk source */
-> > +	writel(CLKCORE, qphy->base + USB_PHY_REFCLK_CTRL);
-> > +	/* select ATERESET*/
-> > +	writel(POR_EN & ATERESET, qphy->base + USB_PHY_UTMI_CTRL5);
-> > +	writel(USB2_SUSPEND_N_SEL | USB2_SUSPEND_N | USB2_UTMI_CLK_EN,
-> > +		qphy->base + USB_PHY_HS_PHY_CTRL2);
-> > +	writel(0x0, qphy->base + USB_PHY_UTMI_CTRL5);
-> > +	writel(USB2_SUSPEND_N | USB2_UTMI_CLK_EN,
-> > +		qphy->base + USB_PHY_HS_PHY_CTRL2);
-> > +	/* Disable override ctrl */
-> > +	writel(0x0, qphy->base + USB_PHY_CFG0);
-> > +}
-> > +
-> > +static void ipq5332_m31usb_phy_enable_clock(struct m31usb_phy *qphy)
-> > +{
-> > +	/* Enable override ctrl */
-> > +	writel(UTMI_PHY_OVERRIDE_EN, qphy->base + USB_PHY_CFG0);
-> > +	/* Enable POR*/
-> ditto
->
-> > +	writel(POR_EN, qphy->base + USB_PHY_UTMI_CTRL5);
-> > +	udelay(15);
-> > +	/* Configure frequency select value*/
-> > +	writel(FREQ_SEL, qphy->base + USB_PHY_FSEL_SEL);
-> > +	/* Configure refclk frequency */
-> > +	writel(COMMONONN | FREQ_24MHZ | RETENABLEN,
-> > +		qphy->base + USB_PHY_HS_PHY_CTRL_COMMON0);
-> > +	/* select ATERESET*/
-> > +	writel(POR_EN & ATERESET, qphy->base + USB_PHY_UTMI_CTRL5);
-> > +	writel(USB2_SUSPEND_N_SEL | USB2_SUSPEND_N | USB2_UTMI_CLK_EN,
-> > +		qphy->base + USB_PHY_HS_PHY_CTRL2);
-> > +	writel(XCFG_COARSE_TUNE_NUM  | XCFG_FINE_TUNE_NUM,
-> > +				qphy->base + USB2PHY_USB_PHY_M31_XCFGI_11);
-> > +	/* Adjust HSTX slew rate to 565 ps*/
-> > +	/* Adjust PLL lock Time counter for release clock to 35uA */
-> > +	/* Adjust Manual control ODT value to 38.02 Ohm */
-> > +	writel(HSTX_SLEW_RATE_565PS | PLL_CHARGING_PUMP_CURRENT_35UA |
-> > +		ODT_VALUE_38_02_OHM, qphy->base + USB2PHY_USB_PHY_M31_XCFGI_4);
-> These functions seem very similar, with the main difference being that
-> IPQ5332 adds some more writes at the end. Perhaps some commonizing could
-> be done?
->
-> > +	/*
-> > +	 * Enable to always turn on USB 2.0 TX driver
-> > +	 * when system is in USB 2.0 HS mode
-> > +	 */
-> > +	writel(USB2_0_TX_ENABLE, qphy->base + USB2PHY_USB_PHY_M31_XCFGI_1);
-> > +	/* Adjust Manual control ODT value to 45.02 Ohm */
-> > +	/* Adjust HSTX Pre-emphasis level to 0.55mA */
-> > +	writel(ODT_VALUE_45_02_OHM | HSTX_PRE_EMPHASIS_LEVEL_0_55MA,
-> > +		qphy->base + USB2PHY_USB_PHY_M31_XCFGI_5);
-> > +	udelay(4);
-> > +	writel(0x0, qphy->base + USB_PHY_UTMI_CTRL5);
-> > +	writel(USB2_SUSPEND_N | USB2_UTMI_CLK_EN,
-> > +		qphy->base + USB_PHY_HS_PHY_CTRL2);
-> > +}
-
-Will change the above to table based register init, based on
-compatible/data.
-
-> > +
-> > +static int m31usb_phy_init(struct usb_phy *phy)
-> > +{
-> > +	struct m31usb_phy *qphy = container_of(phy, struct m31usb_phy, phy);
-> > +
-> > +	/* Perform phy reset */
-> > +	m31usb_reset(qphy, CLK_RESET_ASSERT);
-> > +	usleep_range(1, 5);
-> https://www.kernel.org/doc/Documentation/timers/timers-howto.txt
->
-> this may not work as intended
-
-Will change it to udelay(5).
-
-> > +	m31usb_reset(qphy, CLK_RESET_DEASSERT);
-> > +
-> > +	/* configure for ULPI mode if requested */
-> > +	if (qphy->ulpi_mode)
-> > +		writel_relaxed(0x0, qphy->base + USB2PHY_PORT_UTMI_CTRL2);
-> > +
-> > +	/* Enable the PHY */
-> > +	writel_relaxed(POWER_UP, qphy->base + USB2PHY_PORT_POWERDOWN);
-> > +
-> > +	/* Make sure above write completed */
-> > +	wmb();
-> As you're calling wmb in the reset func, dropping _relaxed from the
-> ULPI and PORT_POWERDOWN writes should work the same
-
-Ok.
-
-> > +
-> > +	/* Turn on phy ref clock*/
-> > +	if (of_device_is_compatible(phy->dev->of_node,
-> > +					"qcom,ipq5332-m31-usb-hsphy"))
-> > +		ipq5332_m31usb_phy_enable_clock(qphy);
-> > +	else
-> > +		m31usb_phy_enable_clock(qphy);
-> This should be done using OF match data.
-
-Ok.
-
-> > +
-> > +	/* Set OTG VBUS Valid from HSPHY to controller */
-> > +	m31usb_write_readback(qphy->qscratch_base, HS_PHY_CTRL_REG,
-> > +				UTMI_OTG_VBUS_VALID, UTMI_OTG_VBUS_VALID);
-> > +	/* Indicate value is driven by UTMI_OTG_VBUS_VALID bit */
-> > +	m31usb_write_readback(qphy->qscratch_base, HS_PHY_CTRL_REG,
-> > +				SW_SESSVLD_SEL, SW_SESSVLD_SEL);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void m31usb_phy_shutdown(struct usb_phy *phy)
-> > +{
-> > +	struct m31usb_phy *qphy = container_of(phy, struct m31usb_phy, phy);
-> > +
-> > +	/* Disable the PHY */
-> > +	writel_relaxed(POWER_DOWN, qphy->base + USB2PHY_PORT_POWERDOWN);
-> > +	/* Make sure above write completed */
-> > +	wmb();
-> > +}
-> > +
-> > +static void m31usb_write_readback(void *base, u32 offset,
-> > +					const u32 mask, u32 val)
-> The indentation here makes `const u32..` misaligned.
->
-> > +{
-> > +	u32 write_val, tmp = readl_relaxed(base + offset);
-> > +
-> > +	tmp &= ~mask; /* retain other bits */
-> > +	write_val = tmp | val;
-> > +
-> > +	writel_relaxed(write_val, base + offset);
-> > +	/* Make sure above write completed */
-> > +	wmb();
-> > +
-> > +	/* Read back to see if val was written */
-> > +	tmp = readl_relaxed(base + offset);
-> > +	tmp &= mask; /* clear other bits */
-> > +
-> > +	if (tmp != val)
-> > +		pr_err("%s: write: %x to QSCRATCH: %x FAILED\n",
-> > +			__func__, val, offset);
-> > +}
-> > +
-> > +static int m31usb_phy_notify_connect(struct usb_phy *phy,
-> > +					enum usb_device_speed speed)
-> > +{
-> > +	struct m31usb_phy *qphy = container_of(phy, struct m31usb_phy, phy);
-> > +
-> > +	qphy->cable_connected = true;
-> > +
-> > +	dev_dbg(phy->dev, " cable_connected=%d\n", qphy->cable_connected);
-> spurious space at the beginning of the string
->
-> > +
-> > +	/* Set OTG VBUS Valid from HSPHY to controller */
-> > +	m31usb_write_readback(qphy->qscratch_base, HS_PHY_CTRL_REG,
-> > +				UTMI_OTG_VBUS_VALID,
-> > +				UTMI_OTG_VBUS_VALID);
-> Please align the lines with the previous opening bracket
->
-> > +
-> > +	/* Indicate value is driven by UTMI_OTG_VBUS_VALID bit */
-> > +	m31usb_write_readback(qphy->qscratch_base, HS_PHY_CTRL_REG,
-> > +				SW_SESSVLD_SEL, SW_SESSVLD_SEL);
-> > +
-> > +	dev_dbg(phy->dev, "M31USB2 phy connect notification\n");
-> > +	return 0;
-> > +}
-> > +
-> > +static int m31usb_phy_notify_disconnect(struct usb_phy *phy,
-> > +					enum usb_device_speed speed)
-> > +{
-> > +	struct m31usb_phy *qphy = container_of(phy, struct m31usb_phy, phy);
-> > +
-> > +	qphy->cable_connected = false;
-> > +
-> > +	dev_dbg(phy->dev, " cable_connected=%d\n", qphy->cable_connected);
-> > +
-> > +	/* Set OTG VBUS Valid from HSPHY to controller */
-> > +	m31usb_write_readback(qphy->qscratch_base, HS_PHY_CTRL_REG,
-> > +				UTMI_OTG_VBUS_VALID, 0);
-> > +
-> > +	/* Indicate value is driven by UTMI_OTG_VBUS_VALID bit */
-> > +	m31usb_write_readback(qphy->qscratch_base, HS_PHY_CTRL_REG,
-> > +				SW_SESSVLD_SEL, 0);
-> > +
-> > +	dev_dbg(phy->dev, "M31USB2 phy disconnect notification\n");
-> > +	return 0;
-> > +}
-
-Will remove these functions. They are accessing 'qscratch' area that
-is part of the controller space. It doesn't belong in this driver.
-
-> > +static int m31usb_phy_probe(struct platform_device *pdev)
-> > +{
-> > +	struct m31usb_phy *qphy;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct resource *res;
-> > +	int ret;
-> > +	const char *phy_type;
-> Please sort these in a reverse-Christmas-tree order.
-
-ok.
-
-> > +
-> > +	qphy = devm_kzalloc(dev, sizeof(*qphy), GFP_KERNEL);
-> > +	if (!qphy)
-> > +		return -ENOMEM;
-> > +
-> > +	qphy->phy.dev = dev;
-> > +
-> > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> > +							"m31usb_phy_base");
-> > +	qphy->base = devm_ioremap_resource(dev, res);
-> devm_platform_get_and_ioremap_resource?
-
-ok.
-
-> > +	if (IS_ERR(qphy->base))
-> > +		return PTR_ERR(qphy->base);
-> > +
-> > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> > +							"qscratch_base");
-> > +	if (res) {
-> Do we expect platforms without this register space?
->
-> > +		qphy->qscratch_base = devm_ioremap(dev, res->start,
-> > +							resource_size(res));
-> > +		if (IS_ERR(qphy->qscratch_base)) {
-> > +			dev_dbg(dev, "couldn't ioremap qscratch_base\n");
-> > +			qphy->qscratch_base = NULL;
-> > +		}
-> > +	}
-
-Will remove this qscratch code.
-
-> > +	qphy->phy_reset = devm_reset_control_get(dev, "usb2_phy_reset");
-> not _exclusive?
-
-Ok.
-
-> > +	if (IS_ERR(qphy->phy_reset))
-> > +		return PTR_ERR(qphy->phy_reset);
-> > +
-> > +	qphy->ulpi_mode = false;
-> > +	ret = of_property_read_string(dev->of_node, "phy_type", &phy_type);
-> of_usb_get_phy_mode?
-
-Ok.
-
-> > +
-> > +	if (!ret) {
-> > +		if (!strcasecmp(phy_type, "ulpi"))
-> > +			qphy->ulpi_mode = true;
-> > +	} else {
-> > +		dev_err(dev, "error reading phy_type property\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	platform_set_drvdata(pdev, qphy);
-> > +
-> > +	qphy->phy.label			= "qcom-m31usb-phy";
-> > +	qphy->phy.init			= m31usb_phy_init;
-> > +	qphy->phy.shutdown		= m31usb_phy_shutdown;
-> > +	qphy->phy.type			= USB_PHY_TYPE_USB2;
-> > +
-> > +	if (qphy->qscratch_base) {
-> > +		qphy->phy.notify_connect        = m31usb_phy_notify_connect;
-> > +		qphy->phy.notify_disconnect     = m31usb_phy_notify_disconnect;
-> > +	}
-> > +
-> > +	ret = usb_add_phy_dev(&qphy->phy);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int m31usb_phy_remove(struct platform_device *pdev)
-> Please make this return void and pass it to .remove_new
-
-Ok.
-
-> > +{
-> > +	struct m31usb_phy *qphy = platform_get_drvdata(pdev);
-> > +
-> > +	usb_remove_phy(&qphy->phy);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct of_device_id m31usb_phy_id_table[] = {
-> > +	{ .compatible = "qcom,m31-usb-hsphy",},
-> > +	{ .compatible = "qcom,ipq5332-m31-usb-hsphy",},
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, m31usb_phy_id_table);
-> > +
-> > +static struct platform_driver m31usb_phy_driver = {
-> > +	.probe		= m31usb_phy_probe,
-> > +	.remove		= m31usb_phy_remove,
-> > +	.driver = {
-> > +		.name	= "qcom-m31usb-phy",
-> > +		.of_match_table = of_match_ptr(m31usb_phy_id_table),
-> of_match_ptr is unnecessary, this driver depends on OF.
-
-Ok.
-
-Thanks
-Varada
-
-> Konrad
-> > +	},
-> > +};
-> > +
-> > +module_platform_driver(m31usb_phy_driver);
-> > +
-> > +MODULE_DESCRIPTION("USB2 Qualcomm M31 HSPHY driver");
-> > +MODULE_LICENSE("GPL");
+SGkgQW5nZWxvLA0KIA0KWWVzLCBNVDgxODggRVRIRFIgaXMgZnVsbHkgY29tcGF0aWJsZSB3aXRo
+IE1UODE5NSwgc28gd2UgZGlkbid0IGFkZCBpdHMNCmNvbXBhdGlibGUgbmFtZSB0byB0aGUgZHJp
+dmVyIGJ1dCBqdXN0IGxpc3RlZCBpdCBpbiBkdC1iaW5kaW5ncy4NCiANCk1heSBJIGRvdWJsZSBj
+aGVjayB3aXRoIHlvdSB0aGF0DQpJIHNlZSB0aGVyZSBpcyBhIHNob3J0IGRlc2NyaXB0aW9uIHJl
+Z2FyZGluZyAiaXRlbXMiIG9iamVjdDoNCj4gIyBpdGVtcyBpcyBhIGxpc3Qgb2YgcG9zc2libGUg
+dmFsdWVzIGZvciB0aGUgcHJvcGVydHkuIFRoZSBudW1iZXIgb2YNCj4gIyB2YWx1ZXMgaXMgZGV0
+ZXJtaW5lZCBieSB0aGUgbnVtYmVyIG9mIGVsZW1lbnRzIGluIHRoZSBsaXN0Lg0KPiAjIE9yZGVy
+IGluIGxpc3RzIGlzIHNpZ25pZmljYW50LCBvcmRlciBpbiBkaWN0cyBpcyBub3QNCmluIGh0dHBz
+Oi8vZG9jcy5rZXJuZWwub3JnL2RldmljZXRyZWUvYmluZGluZ3Mvd3JpdGluZy1zY2hlbWEuaHRt
+bA0KIA0KU28gZG9lcyB0aGUgY29tcGF0aWJsZSBoYXMgdG8gYmU6DQoibWVkaWF0ZWssbXQ4MTg4
+LWRpc3AtZXRoZHIiLCAibWVkaWF0ZWssbXQ4MTk1LWRpc3AtDQpldGhkciIgcmF0aGVyIHRoYW4g
+aW4gcmV2ZXJzZWQgb3JkZXI/DQogDQpIb3dldmVyLCBJIGNvdWxkbid0IGZpbmQgYW55IGRlc2Ny
+aXB0aW9uIG1lbnRpb25zIHRoZSBvcmRlciBpbg0KRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL3dyaXRpbmctc2NoZW1hLnJzdA0KTm90IHN1cmUgaWYgdGhlIG9yZGVyIGluICJpdGVt
+cyIgb2JqZWN0IGRvZXMgbm90IG1hdHRlciBhZnRlciB0aGVuLg0KIA0KVGhhbmtzLA0KSHNpYW8g
+Q2hpZW4gU3VuZw0KDQoNCk9uIFdlZCwgMjAyMy0wNi0xNCBhdCAxMzo0MSArMDIwMCwgQW5nZWxv
+R2lvYWNjaGlubyBEZWwgUmVnbm8gd3JvdGU6DQo+ICAJIA0KPiBFeHRlcm5hbCBlbWFpbCA6IFBs
+ZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bnRpbA0KPiB5b3Ug
+aGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRoZSBjb250ZW50Lg0KPiAgSWwgMTQvMDYvMjMg
+MDk6MzEsIEhzaWFvIENoaWVuIFN1bmcgaGEgc2NyaXR0bzoNCj4gPiBBZGQgY29tcGF0aWJsZSBu
+YW1lIGZvciBNZWRpYVRlayBNVDgxODggRVRIRFIuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTog
+SHNpYW8gQ2hpZW4gU3VuZyA8c2hhd24uc3VuZ0BtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4g
+ICAuLi4vYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxldGhkci55YW1sICAgICAg
+ICAgICB8IDYNCj4gKysrKystDQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCsp
+LCAxIGRlbGV0aW9uKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdA0KPiBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGV0aGRyLnkNCj4g
+YW1sDQo+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0
+ZWsvbWVkaWF0ZWssZXRoZHIueQ0KPiBhbWwNCj4gPiBpbmRleCA4MDFmYTY2YWU2MTUuLjY3Nzg4
+MjM0OGVkZSAxMDA2NDQNCj4gPiAtLS0NCj4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxldGhkci55DQo+IGFtbA0KPiA+ICsrKw0K
+PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21l
+ZGlhdGVrLGV0aGRyLnkNCj4gYW1sDQo+ID4gQEAgLTIzLDcgKzIzLDExIEBAIGRlc2NyaXB0aW9u
+Og0KPiA+IA0KPiA+ICAgcHJvcGVydGllczoNCj4gPiAgICAgY29tcGF0aWJsZToNCj4gPiAtICAg
+IGNvbnN0OiBtZWRpYXRlayxtdDgxOTUtZGlzcC1ldGhkcg0KPiA+ICsgICAgb25lT2Y6DQo+ID4g
+KyAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10ODE5NS1kaXNwLWV0aGRyDQo+ID4gKyAgICAgIC0g
+aXRlbXM6DQo+ID4gKyAgICAgICAgICAtIGNvbnN0OiBtZWRpYXRlayxtdDgxODgtZGlzcC1ldGhk
+cg0KPiA+ICsgICAgICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTk1LWRpc3AtZXRoZHINCj4g
+PiANCj4gDQo+IElzIE1UODE4OCdzIEVUSERSIGZ1bGx5IGNvbXBhdGlibGUgd2l0aCBNVDgxOTUn
+cyBFVEhEUj8NCj4gDQo+IElmIGl0IGlzLCB5b3UncmUgbm90IGFkZGluZyBhIG10ODE4OCBzcGVj
+aWZpYyBjb21wYXRpYmxlIHN0cmluZyBpbg0KPiB0aGUgZHJpdmVyIGFuZA0KPiB0aGlzIG1lYW5z
+IHRoYXQgdGhlIGRldmljZXRyZWUgd2lsbCBsb29rIGxpa2U6DQo+IA0KPiBjb21wYXRpYmxlID0g
+Im1lZGlhdGVrLG10ODE5NS1kaXNwLWV0aGRyIiwgIm1lZGlhdGVrLG10ODE4OC1kaXNwLQ0KPiBl
+dGhkciINCj4gDQo+IC4uLnNvIHRoZSBwcm9wb3NlZCBkb2MgY2hhbmdlIHdvcmtzLg0KPiANCj4g
+UmV2aWV3ZWQtYnk6IEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIDwNCj4gYW5nZWxvZ2lvYWNj
+aGluby5kZWxyZWdub0Bjb2xsYWJvcmEuY29tPg0KPiANCj4gPiAgICAgcmVnOg0KPiA+ICAgICAg
+IG1heEl0ZW1zOiA3DQo+ID4gLS0NCj4gPiAyLjE4LjANCj4gPiANCj4gDQo+IA0K
