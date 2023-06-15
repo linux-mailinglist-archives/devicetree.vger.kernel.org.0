@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CE837315E4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6D997315E7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343692AbjFOK6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59226 "EHLO
+        id S1343804AbjFOK6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:58:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343697AbjFOK6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:58:40 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F07272E
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:58:36 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f8467e39cfso398640e87.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:58:36 -0700 (PDT)
+        with ESMTP id S1343773AbjFOK6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:58:42 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2D932121
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:58:38 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f6170b1486so832977e87.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:58:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1686826714; x=1689418714;
+        d=rasmusvillemoes.dk; s=google; t=1686826717; x=1689418717;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/O5ajNJ8bhgs1nhXgvSUBPUBne+CmT1+jmqUtcvu2LU=;
-        b=ErbZPPZXvUKlQoXhYWpKMzUgIlmgtXFL8h1xF9US85iurYsE0eidYdhkKCulFoGDNC
-         yaZXHMQdvSNUb5rErJvZNzwcMQY1Chend81fZFofkkfCs+UOz0PSM2uzq+iR+qPci9am
-         OenACAI9pG5a12e5V3H8qwYx0Ab61FVdbUbiE=
+        bh=cfopBjHrRqDySJuSAMCUvhXmj8ZxffTN4Fp5DsieY7A=;
+        b=Lz6b6vSFV436npcr01hqfn/fSPQ3iCiWMoVTbEZAZeaDjmqE5NJUwJofa1Mqm0ORzg
+         IyzgJkRfQEkALXUjUiCeKMY3E/6lAZqVq0T+ta77WY2h/GVPUdggQ6vemrz3VanJr10E
+         dAfiyEgfami0fJahzDv9md1i7sRI5xr3dysBQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686826714; x=1689418714;
+        d=1e100.net; s=20221208; t=1686826717; x=1689418717;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/O5ajNJ8bhgs1nhXgvSUBPUBne+CmT1+jmqUtcvu2LU=;
-        b=fKe7bvzz0Jmv0wNDeesh+KBdovvsmeNcq5K/kzmAbWu/RvW9X3ydhsRDoGoyqWVOvp
-         4k2zJRza/P4QjA+wgBB2rJPLeoNCThUNPtsHHQoilbf/h7K9rcewJXZ3zWJQyeX2MlCv
-         4ICUMYrAGfWQjDXt+sJIirhrC+har8KmbVDsu4jebj1iQ15tcmM4Pc8jcM9fnLN0lLv8
-         /ckWxrSW4TIp91FFi3IFSn/qtGVZMrOwk4b6baG0vSOICAuXghyfIfOm29gC0k0WI9vk
-         hJiv5ViWDUUxzLwjOtl+OpXOWUGI6VR6BFsWGFDKgn7UaOjw1HagEoQ0zkgkFSSb933W
-         Au/A==
-X-Gm-Message-State: AC+VfDwtrAnHFX8YB/hfs/cGzgV6mqXOJuq0KvUEABDK4z0rezMYOX3Y
-        H2RUfGRDyMwyhNvKudHBbia+Ug==
-X-Google-Smtp-Source: ACHHUZ67E82lkWq68LWSYGH0WEyZLC4mCttbXHLuYdkqTEasoP0CoqOEBdlvhoaiKO/uXnrlxYM/lA==
-X-Received: by 2002:a19:9212:0:b0:4f6:2ce6:124 with SMTP id u18-20020a199212000000b004f62ce60124mr8184297lfd.39.1686826714625;
-        Thu, 15 Jun 2023 03:58:34 -0700 (PDT)
+        bh=cfopBjHrRqDySJuSAMCUvhXmj8ZxffTN4Fp5DsieY7A=;
+        b=YOq0Yog9MgKAR0wGBwIUw3YMrXAOjXnK8TD4cX4z+OooTEXD+AkUzQreeqV7qzY+Aa
+         I3pJSwauI2OQZ2fY9xCcihVFN7xGgUr0b6jUNy9tESztjm/+XsrMV3sCV5s+fZxtQiS5
+         SMDpY0nIfOiM4wN8Ap0fxMAHOC49hzF5AcqdmPGXrcHNqruawZOCwdOJiOaVat/dRSlL
+         9heLDzh4JWIypcHs4Se8H3IxmaW4qOKvJ2KMzyey78v0bPnOH0dDTAVNY9T0A5GKc+BL
+         ABIj21xoxjuEx0C+0euupp8mjaIp0PSKENpFQhtAU2DjWgtOdELhHbpHF0X9Yw6dTdZf
+         TvOw==
+X-Gm-Message-State: AC+VfDypKFlWJ/wseJRyUvSRwfc1JqndhJm2Bn5nrUv0Q5gZMzPseuGj
+        gN54UjMGM14T+TPrALIEsRq9pg==
+X-Google-Smtp-Source: ACHHUZ7IkH/iPRuaojwiROlR5IplUqvPDIVOTVziRavD7wWfI4f+xvSDjHul6Uwh8je0aBQ193us0A==
+X-Received: by 2002:a05:6512:46d:b0:4f1:2ebf:536f with SMTP id x13-20020a056512046d00b004f12ebf536fmr1457824lfd.16.1686826717359;
+        Thu, 15 Jun 2023 03:58:37 -0700 (PDT)
 Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id h7-20020ac25967000000b004f13f4ec267sm165364lfp.186.2023.06.15.03.58.32
+        by smtp.gmail.com with ESMTPSA id h7-20020ac25967000000b004f13f4ec267sm165364lfp.186.2023.06.15.03.58.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 03:58:33 -0700 (PDT)
+        Thu, 15 Jun 2023 03:58:37 -0700 (PDT)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Alessandro Zummo <a.zummo@towertech.it>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>
@@ -54,11 +54,10 @@ Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
         Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/8] dt-bindings: rtc: Move isil,isl12022 from trivial-rtc.yaml into own schema file
-Date:   Thu, 15 Jun 2023 12:58:20 +0200
-Message-Id: <20230615105826.411953-3-linux@rasmusvillemoes.dk>
+Subject: [PATCH v3 3/8] dt-bindings: rtc: isl12022: add bindings for battery alarm trip levels
+Date:   Thu, 15 Jun 2023 12:58:21 +0200
+Message-Id: <20230615105826.411953-4-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230615105826.411953-1-linux@rasmusvillemoes.dk>
 References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
@@ -75,81 +74,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move the isil,isl12022 RTC bindings from trivial-rtc.yaml into its own
-intersil,isl12022.yaml file, in preparation for adding more bindings.
+The isl12022 has a built-in support for monitoring the voltage of the
+backup battery, and setting bits in the status register when that
+voltage drops below two predetermined levels (usually 85% and 75% of
+the nominal voltage). However, since it can operate at wide range of
+battery voltages (2.5V - 5.5V), one must configure those trip levels
+according to which battery is used on a given board.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add bindings for defining these two trip levels. While the register
+and bit names suggest that they should correspond to 85% and 75% of
+the nominal battery voltage, the data sheet also says
+
+  There are total of 7 levels that could be selected for the first
+  alarm. Any of the of levels could be selected as the first alarm
+  with no reference as to nominal Battery voltage level.
+
+Hence this provides the hardware designer the ability to choose values
+based on the discharge characteristics of the battery chosen for the
+given product, rather than just having one battery-microvolt property
+and having the driver choose levels close to 0.85/0.75 times that.
+
 Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 ---
- .../bindings/rtc/intersil,isl12022.yaml       | 45 +++++++++++++++++++
- .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
- 2 files changed, 45 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
+ .../devicetree/bindings/rtc/intersil,isl12022.yaml       | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
-new file mode 100644
-index 000000000000..054d3fc649ba
---- /dev/null
+index 054d3fc649ba..3c6c07aaa78f 100644
+--- a/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
 +++ b/Documentation/devicetree/bindings/rtc/intersil,isl12022.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/intersil,isl12022.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+@@ -19,6 +19,14 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  isil,battery-trip-levels-microvolt:
++    description:
++      The battery voltages at which the first alarm and second alarm
++      should trigger (normally ~85% and ~75% of nominal V_BAT).
++    items:
++      - enum: [2125000, 2295000, 2550000, 2805000, 3060000, 4250000, 4675000]
++      - enum: [1875000, 2025000, 2250000, 2475000, 2700000, 3750000, 4125000]
 +
-+title: Intersil ISL12022 Real-time Clock
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: isil,isl12022
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@6f {
-+            compatible = "isil,isl12022";
-+            reg = <0x6f>;
-+            interrupts-extended = <&gpio1 5 IRQ_TYPE_LEVEL_LOW>;
-+        };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-index a3603e638c37..b062c64266a6 100644
---- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-@@ -45,8 +45,6 @@ properties:
-       - isil,isl1208
-       # Intersil ISL1218 Low Power RTC with Battery Backed SRAM
-       - isil,isl1218
--      # Intersil ISL12022 Real-time Clock
--      - isil,isl12022
-       # Loongson-2K Socs/LS7A bridge Real-time Clock
-       - loongson,ls2x-rtc
-       # Real Time Clock Module with I2C-Bus
+ required:
+   - compatible
+   - reg
+@@ -39,6 +47,7 @@ examples:
+             compatible = "isil,isl12022";
+             reg = <0x6f>;
+             interrupts-extended = <&gpio1 5 IRQ_TYPE_LEVEL_LOW>;
++            isil,battery-trip-levels-microvolt = <2550000>, <2250000>;
+         };
+     };
+ 
 -- 
 2.37.2
 
