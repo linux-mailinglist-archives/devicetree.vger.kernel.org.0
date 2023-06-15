@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A19173188C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 260D573187E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 14:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344455AbjFOMPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 08:15:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57606 "EHLO
+        id S1344732AbjFOMPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 08:15:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344751AbjFOMOy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:14:54 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7422724
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:47 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f8c74af64fso17305675e9.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:47 -0700 (PDT)
+        with ESMTP id S1344765AbjFOMOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 08:14:55 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D8A273B
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:48 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-30e412a852dso5756685f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 05:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686831285; x=1689423285;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686831287; x=1689423287;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2s2NJclKWNK/7cl/j+crrrKprFB1owa3fhzvvYgN/iA=;
-        b=lGAO4cZ33L5Jbp2mlY4NQJspQLvhSXiQm08SD4SEX4OLoRpVmGWA61a79P1eOvagch
-         inxFGMFi3C+JKEntWs2sfLwP591k2BS7aFfwjhimGYlEoOtJKA8InvVW1H3f0CY56q05
-         q3HqoJWweDF05uYfrT1VW3K2S9shFYBKCpZgwES6T5GVZAtl8+DLIoRLcvfBGhbghnud
-         xk626rmFw4jjIkz72ospjVlFAAcmvaC6zrHz2tIyC6nDl9A1LLJmQKhqxN3yO13Nfso0
-         Eui02VQbKZtH6ko2/q9n5QAdIg7FqPdah3dcTdYIBUFWDXT+PBMUx01J7xEOIVqnnrsm
-         jg/Q==
+        bh=r1Ok1IYka1vb/vM8tvKH2bExKZHEfvi4JId7lcZB7pk=;
+        b=gAgptQQkN2VQMGqYucwCcq099iIQmqKdEKk0oI1NCGMtDGyG5stsnWMwiF+Uhnj95/
+         Q/gf8LCRofwFp0Tj02+rMuFYaXEuq/VhCDDSP2rPIuAG+BLee13gjgZuFIN/p3Aqb6MT
+         7xQyVyP+9X7Z0kFKdisFayRD1TOqPnV8I1VoUDR2cDY7464JGJg5hlI6yqGt75VunKch
+         azWuFAda8f323ROYHTHy2piFvp5aG/G6xIUk8N8+X6Hao/lwT5xiKyK7H4aTVtJHcl79
+         XMuGjxt3F3ujjQQ1oQb7+/ePdnOulMbTvYJKE3zBbW7nKK/hDYUFvFtmp1gsgxmiUPfu
+         5xTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686831285; x=1689423285;
+        d=1e100.net; s=20221208; t=1686831287; x=1689423287;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2s2NJclKWNK/7cl/j+crrrKprFB1owa3fhzvvYgN/iA=;
-        b=JeCxIZSAM5KVU+ZG6T3x2R6BvUaX5y+Z2pkyzyvzFKVJBCBVuoSIziSpxNRRbYKRvX
-         4AGuil8ij6mO6GyaLjHx8csSkjfsessmf8reyHA2Ap81dRieeKEEcCygIHs2iXLq6Rhp
-         BTAw9ptQaQuIxpD9ZKRCzWU3C3C0pETg4m/zQ1e4r6r9yS1AsAgpPaXhrgUvyMfcTJHo
-         EWqe4CNki9Abj4w0nSll95I0wy3yFxjwtKsOIaB7Jweaf8XgJBtej+nfURDARU0dFl4j
-         xRUz8HCgrhZzXSuDRHCZX5BxtlRthwR8C2WQ8wwQ81iIHrsSkVIpdGBsvlbFlq6cG/4z
-         OwOA==
-X-Gm-Message-State: AC+VfDzjeuwV2JmAEiwv1ZI0rC1A+w0X2czRu0zzAmJxoCJLhhHU8lK7
-        s/oGTudyu1jOZHbG7dBM9wuZUQ==
-X-Google-Smtp-Source: ACHHUZ4WICs2fqca+psah+Z2d7TrVZS4kdor2VF0fgiRWgR85G93s3CfhbpBS4eHOOL3RnM3K9lIAw==
-X-Received: by 2002:adf:dc42:0:b0:306:28f4:963c with SMTP id m2-20020adfdc42000000b0030628f4963cmr11134252wrj.23.1686831285209;
-        Thu, 15 Jun 2023 05:14:45 -0700 (PDT)
+        bh=r1Ok1IYka1vb/vM8tvKH2bExKZHEfvi4JId7lcZB7pk=;
+        b=B6rsZhLq6vn36fgoiWp+Vqqo3uzKpqrZb0X4moWhLPGCQdzpOKBfDFuYZnpZsaQ97h
+         ZEJyLbLLYKCP3Mt3mANOKZlIShc0eVWbn375qskC5ieZbP2yQ57KrzKHjG+S1JX+BGHZ
+         0l26mopRlUqa4RYJ3+yXEo8z0H+v9/Ygm+rC4OfLsDQn0NFdFVDTini0Wk5IKEwlLAoK
+         m8LxWQolLvlqVR7UFshxfxWYy9BrJX+0BlbLVBVseCfG3vj0LgENqO2BEO4tSzsgc3iM
+         33SmI5xlJqVYXdQ5sAmJ0MXcDumZKu1fcc3magBnPpCs9aI57SdbtkbePK7hOQdQxkO3
+         tetQ==
+X-Gm-Message-State: AC+VfDwANGFSBVxWV/X0aYNJs/AzhzgPMxmAwz3fwsTeLTKL98R2v2Wm
+        XwEY6e3B26SbgKwkTaqMAQB6Ow==
+X-Google-Smtp-Source: ACHHUZ4r1A3qaTK5WSf+N6NhTfrUIoixv+YgCS9FosZwGOvt8xYnavFbEe9tPLw5/qL92M2SWSYV4Q==
+X-Received: by 2002:adf:ec0f:0:b0:30f:cc8f:e48c with SMTP id x15-20020adfec0f000000b0030fcc8fe48cmr4937374wrn.25.1686831286752;
+        Thu, 15 Jun 2023 05:14:46 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:2ad4:65a7:d9f3:a64e])
-        by smtp.gmail.com with ESMTPSA id k17-20020a5d4291000000b003047ea78b42sm20918012wrq.43.2023.06.15.05.14.44
+        by smtp.gmail.com with ESMTPSA id k17-20020a5d4291000000b003047ea78b42sm20918012wrq.43.2023.06.15.05.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 05:14:44 -0700 (PDT)
+        Thu, 15 Jun 2023 05:14:46 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Vinod Koul <vkoul@kernel.org>,
         Bhupesh Sharma <bhupesh.sharma@linaro.org>,
@@ -73,9 +73,9 @@ Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
         Andrew Halaney <ahalaney@redhat.com>
-Subject: [PATCH v2 09/23] net: stmmac: dwmac-qcom-ethqos: add missing include
-Date:   Thu, 15 Jun 2023 14:14:05 +0200
-Message-Id: <20230615121419.175862-10-brgl@bgdev.pl>
+Subject: [PATCH v2 10/23] net: stmmac: dwmac-qcom-ethqos: add a newline between headers
+Date:   Thu, 15 Jun 2023 14:14:06 +0200
+Message-Id: <20230615121419.175862-11-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230615121419.175862-1-brgl@bgdev.pl>
 References: <20230615121419.175862-1-brgl@bgdev.pl>
@@ -83,7 +83,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -92,8 +93,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-device_get_phy_mode() is declared in linux/property.h but this header
-is not included.
+Typically we use a newline between global and local headers so add it
+here as well.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
@@ -102,14 +103,14 @@ Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index f0776ddea3ab..b66d64d138cb 100644
+index b66d64d138cb..e3a9b785334d 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -6,6 +6,7 @@
- #include <linux/of_device.h>
+@@ -7,6 +7,7 @@
  #include <linux/platform_device.h>
  #include <linux/phy.h>
-+#include <linux/property.h>
+ #include <linux/property.h>
++
  #include "stmmac.h"
  #include "stmmac_platform.h"
  
