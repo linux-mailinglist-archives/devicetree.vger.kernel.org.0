@@ -2,94 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30E287311B6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B00007311BE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 10:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236728AbjFOIFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 04:05:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43486 "EHLO
+        id S239185AbjFOIHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 04:07:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233955AbjFOIFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:05:50 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 039541AA;
-        Thu, 15 Jun 2023 01:05:48 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35F6XFam007602;
-        Thu, 15 Jun 2023 10:05:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=rWAsqAnk1NOFfSrch2LiFEFQGq9N0Hnm6C4sCs+M3D4=;
- b=31hrIaUG+w5OmHV87NzjL1XMuVANMHUndDS+geuV4yaGOSRyXOQRfrlPlvbdn+erMk7E
- seB4ccjWnvillD/+0LWQqybK3wYbzQ0F/izSPJp+NRdgSK5DI4Mr6gWxIxcgZOdLuUzr
- 2z9XHUE5ln/oMt3V24fhGcdbX0kC8U7nfGLX0K+IVs6YJZ39NXk2UAkJOWVsNjk5I516
- GYI+lm/SOr36nXOntV77sX9+UlnVpI66N0ucc9sf7C+sNe/62ElSfEJZfQT+6cUrnIeH
- 1FHYqTd3vTsl4+AfGLyhqFH6jw9P74Qbr16A05ZXcAY0wxa/4m5aDyF744wdhOqMPmSA KA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r7s1maacb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 10:05:39 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 343B010002A;
-        Thu, 15 Jun 2023 10:05:39 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 27FA2216EC2;
-        Thu, 15 Jun 2023 10:05:39 +0200 (CEST)
-Received: from [10.252.8.64] (10.252.8.64) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 15 Jun
- 2023 10:05:38 +0200
-Message-ID: <2785de74-69b2-8ebc-09c9-f834adb870c0@foss.st.com>
-Date:   Thu, 15 Jun 2023 10:05:33 +0200
+        with ESMTP id S237555AbjFOIHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 04:07:39 -0400
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2099.outbound.protection.outlook.com [40.107.101.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 456231A1;
+        Thu, 15 Jun 2023 01:07:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C2PaaVEZq6+ZfXPouZCUN0rvvTCnpTIJeZDNJTdleb/QjhWVKqSlBegFHTdOPLEKh/V4b4pCrRdmjr6cDQmNHcoBMjF8Za9WAvS4r/++RZk+mkoaixwpNbruRSVTtu3B9Jf293Qzuc7NFLKy6YN2gDDWOg52drbDYdtMsLGq8+6uoXJb4zFcoD0R8SEcEFgzpvHh0MVlyKAWa586AOwKIMyL2TdyxF1mduLMCLDZ5oFsF3Qy+kyTbwGGb2YJnIC+NQlLQ/sTcN15OtecelLq1nuvIdiuziYqwCgF4ILpuevZG9bZbEe3grmvVmnXDhgKMkPTkURuVQUbioTr7xgKzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XkfC+Dyj23qdD+fs5BlA8PbuTB+ohE3p+fZORXQhTtw=;
+ b=A4LmxOlJ5z5zfVF0TR/qaI0krIWidf7RNlJywh7Cykx/ngrZ+NI4G3J3RMloZbfv3L6Zf2a5s0SuIYIsx5MRtOzPBcYNEnGO/JAaGEDk1fIXIsOiCxKay7ELSnDCxEfpOybQvT2WcedhSTBW00Oal3Cd4qSrzks4wCLqd3KgJcZXpMr2+Pbvttw+O+c6ri/YrLG6ieiRHhLZLg1BtOWvPbOLD01oHRuS8ewLKADpK5DT/7h+uPmAAJec8Jmj+xMOEELjV869mrJA+PLDkHkquD6NflAYthh5f+C4GJ8AnhgQ9yGmUsczITNzIJEu2sQHDXH94Pe4wsiDNipoCqs/YQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
+ dkim=pass header.d=corigine.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XkfC+Dyj23qdD+fs5BlA8PbuTB+ohE3p+fZORXQhTtw=;
+ b=nd/GBMA8tKTFKfCefgr5Ms+LDqvZIutM2BrsTImi0mu149AT+G1i4zU6QmgjdHTDzqLhzh0Ao878aGNhcZEO5wxo1pqgcHgNjaAypPm1ahA5z2/LTPletd1oS66jQkPDVn4i+koHcUm7Pta9W8CxamEJrXteWn2KUQmorln0/JI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=corigine.com;
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
+ by PH7PR13MB6113.namprd13.prod.outlook.com (2603:10b6:510:2ba::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.25; Thu, 15 Jun
+ 2023 08:07:34 +0000
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::eb8f:e482:76e0:fe6e]) by PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::eb8f:e482:76e0:fe6e%5]) with mapi id 15.20.6500.025; Thu, 15 Jun 2023
+ 08:07:34 +0000
+Date:   Thu, 15 Jun 2023 10:07:26 +0200
+From:   Simon Horman <simon.horman@corigine.com>
+To:     Justin Chen <justin.chen@broadcom.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        florian.fainelli@broadcom.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, opendmb@gmail.com, andrew@lunn.ch,
+        hkallweit1@gmail.com, linux@armlinux.org.uk,
+        richardcochran@gmail.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com
+Subject: Re: [PATCH net-next v7 08/11] net: bcmasp: Add support for ethtool
+ driver stats
+Message-ID: <ZIrGvsesltAc+izQ@corigine.com>
+References: <1686781820-832-1-git-send-email-justin.chen@broadcom.com>
+ <1686781820-832-9-git-send-email-justin.chen@broadcom.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1686781820-832-9-git-send-email-justin.chen@broadcom.com>
+X-ClientProxiedBy: AM3PR07CA0131.eurprd07.prod.outlook.com
+ (2603:10a6:207:8::17) To PH0PR13MB4842.namprd13.prod.outlook.com
+ (2603:10b6:510:78::6)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 0/4] spi: stm32: add spi slave mode
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230614102628.202936-1-valentin.caron@foss.st.com>
- <d0b62ef2-5355-4c00-9ff6-4ea9995ec0e1@sirena.org.uk>
-Content-Language: en-US
-From:   Valentin CARON <valentin.caron@foss.st.com>
-In-Reply-To: <d0b62ef2-5355-4c00-9ff6-4ea9995ec0e1@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.8.64]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-15_04,2023-06-14_02,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|PH7PR13MB6113:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8369c2e8-f5ac-42bd-bf0c-08db6d77932a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DJRyRqD+tk8bYDAxbrIjZhZ+Gd12noxWcyAV9yPFR+Y/5RfEhXkWnxLK07re8k+VdjVfP+lve0XdnS8O1WXqtxeyn8s8ZKrjm+CqAvHsik+WY6gpway2a7nmGWdziP5XreXbLaQJND2gbWXHha6yUP/OdhJZCUw/6uehc7o3KMgqIP9IwjcvhrbdAfVXtpbmsT6UdHoulnSYeXiRbuN5SJlfEvtabOvXYBZQaPEBb/sDjNFK1JoHIILXa+MUYpCGPqI5dCyWOEb9JeF10BG6AYGE1sYa2kTUm7ElPZI0+sgCPzR63gqT3q3KHA0N+6LEp+sWqlCWxDxz6uxgX9nt49IwUC/CZkycB7i1+YhafgGLMdo1b4o9BVrinMgks/5ZfiZRTM2GJlRJeqUXjreoRaVDlDT55iC4tGfzKTewh0MhxDfPSX3fnh9P3hAsL2nRey3hKfeBX0yCMmNG+RBySzmKU2dOKt6wD8F0kvfel9kzIda9bLG7JeDMlBFKioxPIFQpB6wzhtfQTO2rwdN45rsMlKO2h63aPLEGcui3tXn8jJ2si9Fl3KneD23tUGLz3Y2lTqwqH82VHDr8B9VflxNWs41JMetMVQGlqThj9nZO51wtiGvXzYd4BpL3j6xi9CF65tOokU6fTFIVvGmsUpgOYrRloMRwIQKLvmNm5ZQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(366004)(136003)(346002)(376002)(39840400004)(451199021)(8676002)(41300700001)(86362001)(8936002)(6486002)(66556008)(6916009)(66946007)(66476007)(316002)(6666004)(36756003)(4326008)(478600001)(6512007)(44832011)(7416002)(5660300002)(6506007)(83380400001)(186003)(2906002)(38100700002)(2616005)(67856001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e1+kRkfhOflWaGsnnKvCxi2xXs56whv9D8uj9Da0Fm2OcW+YoKoh2syZrmQU?=
+ =?us-ascii?Q?x1lvV27RGVdg8C/WL8c+MJq7+pvrmiw3y45FySZ6LrGJRNRbnC8W4ajd7Mwb?=
+ =?us-ascii?Q?m46jePE6lscbD9BbW2g7Lk0ITL1C5bwDnth8UysdVubZZ6+w4dbTrcbJPiRp?=
+ =?us-ascii?Q?czSGPmQTYN+e1b0fpTAtdFBKg1Xq4n7A/Si/9duGP20viOxjnyWQDGh1GkB4?=
+ =?us-ascii?Q?kRv9U7Npj5kg6o3Ct4jbeEO2s4Ac3j1RSQsUf8Dg45RN8APdkiiR2wHuWEd1?=
+ =?us-ascii?Q?Lvg3aWT14jgZ8BjvB91q0+x36wymT5q0YLgVkh1F/XBOWCTqh1UouZQm0/tw?=
+ =?us-ascii?Q?ZJu79+8vfJbq4Q+iXxoIeovwGsx4jSAW6YDAEXRMsL3BO3VyPmcGDRB0+cp8?=
+ =?us-ascii?Q?+wuGnnwPTi6iX9mmovCSDHhdTv+1+XvD2WI86QGUD7GNgdJi+YX5GrCkAmT2?=
+ =?us-ascii?Q?bXMMDCG6BRjsDKSL1AfiUPT7tMKa08zZVlAbsB78MgrWS++x5PLMGjje77yI?=
+ =?us-ascii?Q?0SwGhgr3LrO280eiRU7W5Smr0ccFClx3CzZvn9R8m2cyPsgaKCwXchQy02Ks?=
+ =?us-ascii?Q?2eLLo147a4+yOSAkxS2jY9ntue7U0RZZfX2zApJdN6/FxRcfDX93dmt20U7O?=
+ =?us-ascii?Q?j6kkw14ZMfzO/2ciwRM4I3KL2kBZsz/1vmAiTiZzyQo0uBmQP9rb2oQGaHse?=
+ =?us-ascii?Q?4JejA3MBvs85f3AfopfhIty3xTXFlkCUZkCi7uRhKtmw4SdYLUPPich2Vrz2?=
+ =?us-ascii?Q?/mfJl3gUxQvBwSlkS+2RkVe/5nOP1c1x+gGFx71uw65bjvzYw9MtU8b1BUIY?=
+ =?us-ascii?Q?Emr/aWaQm9c/DpFUQ1zOwZUq5joQH0BxiHvuFJQvTFMd4hm4ovnDTte5aIVL?=
+ =?us-ascii?Q?Ds211f5ztp+S5PCH6KBaT0etrajXX+qezJtA1xdMAtFEL7oonsREO6TYLnWh?=
+ =?us-ascii?Q?pkKtf7+nLb58kgo5m5YGeCWHUYmLiq1a2lhLAY98FFDQJ4515AWFJuj+c0pN?=
+ =?us-ascii?Q?SuC6WvjAa1uXVS434m2xDZsgNaGw9foXpZyo4+JgMjj87yDkHnU76rnNcWcJ?=
+ =?us-ascii?Q?LZGWJaEd/t8gI9zswO1PkyQDT/3figzBRzMytAQtbvxIrTBWhVZuFDFGAGFZ?=
+ =?us-ascii?Q?FG0lsT2BoMvEw/dhzGzQ/YllbFRVDTBjfNlKfUKI1C+J3SeiLARgbVf/YIPh?=
+ =?us-ascii?Q?/qNvrDHA12cCA7IS870hR8kezhYZuk3E3i0ZiOd88k4V2lp3yAFaU/HH/9o0?=
+ =?us-ascii?Q?a2CoLbKLcgUnD4S65xqwghsioWfRrvHRpQ520TmhfBpbqf6l7a/Y4ehpewq8?=
+ =?us-ascii?Q?EAnjBwU8RlbBKj+ZD53r7qLtq/p3Vi/8W9X83bzAm29NBmEkCJdOHsl4kHMh?=
+ =?us-ascii?Q?sgNworlEi/lJH80BOG/O22uhNp3TWYhcdNuPnvZgaDOHwGBT1CxRAtJSyLVP?=
+ =?us-ascii?Q?vWLZ7kfejtmJl7Q/YR6AlxsrmJxiNsar+johvpLrzZ/oPdvyXjgtbxu4TYz5?=
+ =?us-ascii?Q?RKzVREeWp2h5Hamw2F1jnwsHwDqYReuCynh2mANmT8GZU8fO/k8ch0Ey03aR?=
+ =?us-ascii?Q?1RQqAjAH2kCc/lxow4i4S82d1lCQZBy5xQm1rRF4iZpayUVrapXCsw1U++gP?=
+ =?us-ascii?Q?0jpwv1Vnl1Gt9Z/XWE5BVmtSGgbwiWAkOovMEYeUL2e/rZveqL7+T6FLmIaW?=
+ =?us-ascii?Q?3p8ZGw=3D=3D?=
+X-OriginatorOrg: corigine.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8369c2e8-f5ac-42bd-bf0c-08db6d77932a
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 08:07:34.2351
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: W9s4hJFRj4+1bqvGsxhFWEEp3G/8O6MM2qNRPiGlQ7K8b7ARbiLrxIkRDcPeLZEPc9qzLQV11bK5FHerZomOv2qto4+xk6nP+Az5T/ppWI4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR13MB6113
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 14, 2023 at 03:30:17PM -0700, Justin Chen wrote:
 
-On 6/14/23 14:16, Mark Brown wrote:
-> On Wed, Jun 14, 2023 at 12:26:23PM +0200, Valentin Caron wrote:
->> STM32 SPI can operate in slave mode.
->> This series add this functionnality in spi-stm32 driver.
-> The more modern terminology here is device mode.
+...
 
-Hi Mark,
+> +static void bcmasp_update_mib_counters(struct bcmasp_intf *intf)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < BCMASP_STATS_LEN; i++) {
+> +		const struct bcmasp_stats *s;
+> +		u32 offset, val;
+> +		char *p;
+> +
+> +		s = &bcmasp_gstrings_stats[i];
+> +		offset = bcmasp_stat_fixup_offset(intf, s);
+> +		switch (s->type) {
+> +		case BCMASP_STAT_SOFT:
+> +			continue;
+> +		case BCMASP_STAT_RX_EDPKT:
+> +			val = rx_edpkt_core_rl(intf->parent, offset);
+> +			break;
+> +		case BCMASP_STAT_RX_CTRL:
+> +			val = rx_ctrl_core_rl(intf->parent, offset);
+> +			break;
+> +		case BCMASP_STAT_RX_CTRL_PER_INTF:
+> +			offset += sizeof(u32) * intf->port;
+> +			val = rx_ctrl_core_rl(intf->parent, offset);
+> +			break;
+> +		}
+> +		p = (char *)(&intf->mib) + (i * sizeof(u32));
+> +		put_unaligned(val, (u32 *)p);
 
-Thanks for your review. I have resent a "v3" with this improvement.
+Hi Justin,
 
-Regards,
-Valentin
+GCC 12.2.0, in a W=1 build, warns that val may be used uninitialised here.
+
+I think that, in theory, that can occur if s->type doesn't match
+any of the case statements above. Perhaps in practice that cannot occur.
+But, perhaps it would be worth adding a default case with some suitable
+handling.
+
+ In file included from drivers/net/ethernet/broadcom/asp2/bcmasp_ethtool.c:4:
+ ./include/asm-generic/unaligned.h: In function 'bcmasp_get_ethtool_stats':
+ ./include/asm-generic/unaligned.h:19:19: warning: 'val' may be used uninitialized [-Wmaybe-uninitialized]
+    19 |         __pptr->x = (val);                                                      \
+       |                   ^
+ drivers/net/ethernet/broadcom/asp2/bcmasp_ethtool.c:125:29: note: 'val' was declared here
+   125 |                 u32 offset, val;
+       |  
+
+> +	}
+> +}
+
+...
 
