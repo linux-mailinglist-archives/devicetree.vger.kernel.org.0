@@ -2,178 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC30730CA1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 03:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D715730CAD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 03:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236787AbjFOBcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 21:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40160 "EHLO
+        id S237257AbjFOBlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jun 2023 21:41:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236211AbjFOBcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 21:32:12 -0400
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0732125;
-        Wed, 14 Jun 2023 18:32:11 -0700 (PDT)
-Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35EK0BQO015413;
-        Thu, 15 Jun 2023 01:31:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=to : cc : subject :
- from : message-id : references : date : in-reply-to : content-type :
- mime-version; s=corp-2023-03-30;
- bh=AD5V3/tAb1vFAD5VwMEEcgbrDas9iHFdRWguyOp3Agw=;
- b=u9RCuFPzgK5TWbdYauZwZ2K7NdeMhVlJXLeueilIRlBa2dwdlAay3Zq5P9Kb+hBoNZ5K
- cGqxymggemVxyXYnCHwF0dFA7Se87SGB549hcXG6LMmw6zZAnmCoIHJQPid3YqEmWFIr
- CKX2t/OtRgQVLliyrhkzw9GnSZpwYoOkE+CpHuOMdU2PLmjRjKy4p0kGALYZlxPVX8wi
- uj5dw/hAVnP3EILxuedf45LesR3VH/g719PeR/lvhO5ey61Jo+VtCBDqv4sBgr+6s4Md
- MMO9hkA9P49KOlSJO8rU1RlZ4tf1Nlxm6fYVWxMPMhPzgr2M6J+x1c4PnGkyrDB6mQsu yg== 
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
-        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3r4h2aru32-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 15 Jun 2023 01:31:54 +0000
-Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19) with ESMTP id 35F0b87t008307;
-        Thu, 15 Jun 2023 01:31:53 GMT
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2174.outbound.protection.outlook.com [104.47.57.174])
-        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3r4fmck5mn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 15 Jun 2023 01:31:53 +0000
+        with ESMTP id S229673AbjFOBlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 21:41:17 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2059.outbound.protection.outlook.com [40.107.15.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B052682;
+        Wed, 14 Jun 2023 18:41:15 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J0if7zPB+il5ZtBjDM301EOAL0iKfbBANdBwS4wS3+xs3EAsii1UmJ9V21goTOZ/3Othbs9zI0OFl0ZXG3yboV0ICPetFXWjYWERBU2IpH+etc72r5I5ILiLtKYB+zTJ+t4mi9bv+5tU8hDU87SwX2sNkUBkuyM8ukHEkrSgdC1Djl9JJ981QLwmSW1d+20Zsb+r6sXpbthokK96xCgkgFnGlhWQQMDTudaAsVdaBhqcg70LILP1NfxhFx1n4VbF/gnO86c3giY+3YbpT8heBCyZ0lboxyeDyubWTXudWUarvkCgBpx5ueDpokW/gyP2KxnT5Eo2FS1p5NqcS8lVpg==
+ b=U+O32iR1gXkEJdbCrKdDFjAGdLLHdn0SfAeAqK6twOhfeTiGk5s4j3LGWxcv5JqbhG5ghlZDoR9+OQLwFAbdluuqRluMmk2vaQZ1kw8/krE2ofRqxCgR3Ia9sk4+FenvjYxKd1Hpj/fPwYPMRnvKtEcZqOO1y0frioFHRYwJTKWS7fM1mpQPMpw41Eb8m48UP5JcdUau/WKU1l/r2J+Qtn6NFJ8PUxkts93iwhyof1A3F8pN8/esFbvAHKiLeRLAcvplwDQ197fGSKepRb3YbqFaWm/jBDiILzPVVLqWKS+j9dMtMrf1pqKuBtuwWGLEP5HtpMEPI2CdfZewZ/IVbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AD5V3/tAb1vFAD5VwMEEcgbrDas9iHFdRWguyOp3Agw=;
- b=fsk3sn7IKyAe46GXKfCOgax6WCZVzEVvmkSfHL28D7ooGqBHHdVXWEkX2QqTExglFBz2/pJeOvResynARRwjxyVoo2ct5aE8w81Kn9t9ujpY/AlBXwYfC2VPb14lLQyMRMP0QdEmCj2P5YeEOzf3tmGgXhx7fbrMasOqzXj0WKHnXQMkubx/Np4T/6SGAxP59ymv3P+THuNZDVnoCIDo31pegDn3sU9htCurBtUeL4K7IcBMrFDzUs8ajduFvXZJ92c8LvjrmzBJ1wIjuWFYdvXGO2a0FovexQdGS6pHXaY0EyrQl1SZOmXZ3/+uCLvc/zKIxBryA6K1QT6pRTuPNQ==
+ bh=/8yGGuC2DfD1VvgUV1rOu0UBsvecwcgYCTC2CecbBxk=;
+ b=QcIKhuvjQ86QvKyZMQ3QAUBSUzU5gEol0A/eHdnGzpGPs4CIx0SRE02nbsDAUAHnxdOqEguOlcR3NzSrduz0kprE6VXw1xyx8bThjfqDvDlVyXVc7coFbZ0gXLzRT9QVTmZQVLMbNsy+rA74MXT9+aP2DpJWPXgd5J+ieWNWgI11FXgM84W0rN5wy433HxOYcdnc51vEuHjeZLM+zQ+A2UzQqEAtrIbX+fQ6nXzWog9vHOlBF+gyfqeQMhlP1ApUzOznmYRUN+l26Crc4z6UThs/GLSjSF+X8Sdq/tJtR905WbzqASZhOKWZDyIKXp0xehu/jDcajhjt03ArAo0bAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AD5V3/tAb1vFAD5VwMEEcgbrDas9iHFdRWguyOp3Agw=;
- b=wB8Mr8xhE3Szi8Vpa0oowFA4ViOA2Xap3hysRmx6Ij3eLf6h5Z2Z+yB3DCk5z0xbs4pfPpCQpP9SlNb4ooff5/yG2wyAPXpXvHCDkxOGJuNqoYQR6ED0h0KrjXiSbcstxRNSUJTI9geh8LypdC3+IYo5OAK/suZNo4XehP/ReTY=
-Received: from PH0PR10MB4759.namprd10.prod.outlook.com (2603:10b6:510:3d::12)
- by CO1PR10MB4580.namprd10.prod.outlook.com (2603:10b6:303:98::6) with
+ bh=/8yGGuC2DfD1VvgUV1rOu0UBsvecwcgYCTC2CecbBxk=;
+ b=jZTb8B0gVS5lbI7x7cCnkTkx/byXq5BJHDH1P/m/vNzXKP8pkUndzyJJWSCj45n9Ekc+zqp5D10/cqwkS9UcU4OorU8lFpcruwU0046syLdkBmpQUCUn6agU29Ip1Jh4+LnfYhh963M592K/YR4A6UuNknYPO3xjtv4u09zeTD0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com (2603:10a6:102:2b1::21)
+ by AM8PR04MB8034.eurprd04.prod.outlook.com (2603:10a6:20b:249::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Thu, 15 Jun
- 2023 01:31:51 +0000
-Received: from PH0PR10MB4759.namprd10.prod.outlook.com
- ([fe80::b77c:5f48:7b34:39c0]) by PH0PR10MB4759.namprd10.prod.outlook.com
- ([fe80::b77c:5f48:7b34:39c0%7]) with mapi id 15.20.6477.037; Thu, 15 Jun 2023
- 01:31:51 +0000
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: ufs: samsung,exynos: drop unneeded quotes
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
-Message-ID: <yq1wn05wlxg.fsf@ca-mkp.ca.oracle.com>
-References: <20230609140651.64488-1-krzysztof.kozlowski@linaro.org>
-Date:   Wed, 14 Jun 2023 21:31:49 -0400
-In-Reply-To: <20230609140651.64488-1-krzysztof.kozlowski@linaro.org>
-        (Krzysztof Kozlowski's message of "Fri, 9 Jun 2023 16:06:51 +0200")
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.25; Thu, 15 Jun
+ 2023 01:41:13 +0000
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::8af8:59df:c8ab:ff51]) by PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::8af8:59df:c8ab:ff51%5]) with mapi id 15.20.6477.037; Thu, 15 Jun 2023
+ 01:41:12 +0000
+From:   Sandor Yu <Sandor.yu@nxp.com>
+To:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, Sandor.yu@nxp.com,
+        oliver.brown@nxp.com
+Subject: [PATCH v6 0/8] Initial support for Cadence MHDP8501(HDMI/DP) for i.MX8MQ
+Date:   Thu, 15 Jun 2023 09:38:10 +0800
+Message-Id: <cover.1686729444.git.Sandor.yu@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SA1P222CA0026.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:22c::27) To PH0PR10MB4759.namprd10.prod.outlook.com
- (2603:10b6:510:3d::12)
+X-ClientProxiedBy: SG2PR01CA0176.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:28::32) To PAXPR04MB9448.eurprd04.prod.outlook.com
+ (2603:10a6:102:2b1::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR10MB4759:EE_|CO1PR10MB4580:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fd0f1a8-3f80-4953-22ce-08db6d404b4f
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9448:EE_|AM8PR04MB8034:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef1c0003-966a-4202-f002-08db6d4199ef
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bnxd5rnm6+wF8ZljfbAvNvJdbr318yVLMdd6x1cohRGF6WHtr+SitHPGM7pApXtjtDv0Y42hg2c9qND+v/XaRwiIVCUEHV2pwpc/HTr2XVekMQs3nmKLtNqN7+EAd6PKu4O/zVdUXHbc4oCNfZWepJFEoqhrn0eyW/cX+75OcQlsfNINha6bARDM1NEa32VjgWIDC6yXynzFQFuQSXJzHVmYvPO2s+7H/5iIKs1P2FkFffj1I3GF0pHAMg22n7SnLJRWUzmZM/7VCrINh+LmOKxVNnZ7w13bAjaJw28TQ+UyFg/K8S/La6k/LQwomd43lX5fEP7Uwkrcv4lW7t7GZRcilxYctiQPtJJUOftpDYeC+t5Nf6nnTkguOdVcybjAmeTTfK+H6mSH8MCAQdQZU/SlySngWxgX93PnIGpl/cQnbE56t/RLo6+bVEENBP810Ph5R8eLVtUv6SQHul+7tzUwqkbxpkhXpaDEKHiVvxHnz+od6AZFtr2NoBRjfehnxHdnI4i7/QvkmazTIEzTFk60wmM4b4lc5rP+SvdGr+xiwapOqOXEpxGwD7DMSgva
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR10MB4759.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(346002)(396003)(136003)(376002)(39860400002)(366004)(451199021)(41300700001)(5660300002)(7416002)(8676002)(8936002)(2906002)(558084003)(86362001)(478600001)(186003)(6512007)(26005)(6506007)(36916002)(6486002)(38100700002)(316002)(66946007)(66556008)(6916009)(4326008)(66476007)(54906003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: FvWPSYZn8o9YXksT3gK1H8EHCI+5yTCwhMFFhvmi2lkRWA49Sa98fnxOrvogNLgwrk2LJwqPpdJZjVdktvuRhd/jqSe4Bgy9kd4M8DSh7fp2YkYmq7wGjjSEIdhoQpObZp6UJ306dXX+3D74ZbgTI/22coZq+HvTb7UuLqxGC2bUbpKXTmKrUkrcIuh0s1E9kzL3s4cDXMaWOno+1QLn9EpkE9WREFzZIvukfnrYn+pH55sEH8ert7JFB+e6WL0D2mWCa+Dd6M0cjNMriZAsoynpfb2iVw2/9cDke2PZTm4Po8ySa3+pDIfCnVYjl3yDOvfVkJydY5y2QuBuPdCPfvJjJE6rpZUzK1v4EeGTzRkCObko39SnJOUsjsCS9vjsGeG8rfc86qnSz2wjAJjGtu4TmccsGjMFgdmCp/b7qFsgiE7yHL+qcZJh5Za5uH1yNuJxMt/w7f8DC0kO2BMpxb05OVrLgf/JiX1lqs2SBVYdXC0E5q3MrEajOd5s/IDwbl4a+EU63uHRyMvMhEYWEB3kgtlCCjBwoGC0y6JyuC/QmBBgUVYsl+RK9P5qOMRZfMzX/2FaNA+z1dz7FFvAslLcsrnIB30pdg8N1ZSRopKXRmgDF6L0VnbKEWfvdr/7
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9448.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(39860400002)(376002)(136003)(396003)(366004)(451199021)(2616005)(186003)(2906002)(83380400001)(66476007)(66946007)(66556008)(52116002)(316002)(36756003)(8936002)(41300700001)(8676002)(6486002)(966005)(86362001)(4326008)(478600001)(26005)(6512007)(6506007)(7416002)(38100700002)(38350700002)(5660300002)(921005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qHori+3v+rEnKgW3bcIpTb4OlSl8r570DMJWZN7b2NYVIWIoKTAaPe5+JyxH?=
- =?us-ascii?Q?uc86qHT/1H293L4dvcVrYQlQ9Lc/P9Ip/JwZ722GACZVRdV3zXeY7VdH6Ler?=
- =?us-ascii?Q?T75R6V+WwUcANwV3k2WFejTltfXQZOmqv9lup+sHQglD5Jr5hSylYJtBQfKQ?=
- =?us-ascii?Q?HNCFsm6iTeFljAM10F0Z0nWHktE0Yxg4KKsz79V7sftZ9B8Yp3V54hXf1kPf?=
- =?us-ascii?Q?JLEncphzrBklLUo5YJ8jFYrwY6JNsQ/ZBf0HqvRdHvsT4PL4vS68qqr5EAsI?=
- =?us-ascii?Q?xTtZDdOsonG3Fq06nAdQ8KOmIQuW8R5q/t2T24KBV1rMkQs17/RblRJLuVFq?=
- =?us-ascii?Q?jcBWzdpLHySsrcG4bJcSCw4pnjIpcYKHTHj2nHi9Osnp/tcf1bhobuSQ+4qZ?=
- =?us-ascii?Q?s5nThH8z9BRdakqqDgO12PTJ92nInp69uO7IuRK+4Zn3EsMKGnta/o8fCmNg?=
- =?us-ascii?Q?q+97oAgppCnY7engYPh4URP7SJGs0bAAW0PVaR04tTi0ql/iJgfjxxGvKF8R?=
- =?us-ascii?Q?DcgVcZvdje1Fc2DtD2iU/ARQVNSfkJ0aB+mZRxOkTJYGeOMjdIFwreHb0+rT?=
- =?us-ascii?Q?Df/iWfj5qNtMHFR5Wzm+7f8lc5wCI00KE59Qwjc6ZUflbJIHwQEpqn/8dfYA?=
- =?us-ascii?Q?PRg4C+lYlIIkSqb0q4hF81YBKGXoCOFMJapbjRvlBCrLVZaXzaS+gaHOvzR4?=
- =?us-ascii?Q?fOvJA35jkWYQ89N1bm4k7cgP2BDI85EIVLfrQN06W1IqiUGxQDgsb9DXw1Ey?=
- =?us-ascii?Q?+ihcRrhS6QluXYcYBlSle+6fT1DTQ/yv7sv562bfA+cRZSYJXw+JY4sSnSBz?=
- =?us-ascii?Q?ISggCLik+0blFxsXk48Dc8yBsB5w4iyKgaAY0h44rY/YMKnxil7WXsXJWSBn?=
- =?us-ascii?Q?ixHZPUFECnCgkOTCUi4y1XGMz2EvXeNK8+f1w9jO2MHoHzdGovZ/8pVzxX+v?=
- =?us-ascii?Q?QZb0t8PuRvkASfO0dPwlv9zvH8fJm54EGBIZ7uopR8X+q6wbJ9XuBI444h28?=
- =?us-ascii?Q?CFJYKrzNMHGMDwdYfpmn0IxlyM1ZjeS3A+ndPR9+bYcoJ2MWhNxyorf6M+EV?=
- =?us-ascii?Q?UOfS9Jc7ikZbj8PfbRzgpdaaCHVcw/lY7cyBol1ZDGcHduGTS/Y/9uVvA9Xz?=
- =?us-ascii?Q?9Xl9SAjAg8AE7NZ9GzhWvNQmT91uZjNcv/suMf/wo61yOXz86TzAdfjEgBfm?=
- =?us-ascii?Q?lo3YnnY6Hk3TF77J0NOMt3lLxNTwgtJSCXDmHPjs5jLL7uVznyTq5wumwBh0?=
- =?us-ascii?Q?0fhF2287KRdtIKonRmyPDJRbJCaXLr+QfDNZwfZojlneQMtarVVCuYOzex2q?=
- =?us-ascii?Q?9gHMu5oubOLFhJyu5johcE0ogQHsHVICWP7cECSeC1vJY9JTei54kioGFH2v?=
- =?us-ascii?Q?HnnOi20V1Vl5eGpUG9bekQXtZTgd3aIBqARsAUzXK5OFBOoni2UzR+/gHwX0?=
- =?us-ascii?Q?J47156zTtkQSWaedZdxNH+qFVlPTR2Y0XjZh02Y14TkqiP/eibmRRq1AeRsv?=
- =?us-ascii?Q?s4d/Vd0IGM1h95QqtrHLj60+0ArzhJ12nLKFfGGdDNtWde+ukXL0LDeHVB9S?=
- =?us-ascii?Q?0V62TYM9VgZkwITjPCfvOAc4nnM/hc4993aASsvOlvSMocCf7pJ1dUlDHRCb?=
- =?us-ascii?Q?yg=3D=3D?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?us-ascii?Q?mqt+j5N8skuKdfmQ+kWLmi13NAdxvdtmrUbeLWe9lZCNQk+9Es5k/DdbekvW?=
- =?us-ascii?Q?JrkYJ/gqL7LL1FN3tNJpbTcxkQ5CreRPBoe2fUx4c+LUmGx6snAvrMFlBlp8?=
- =?us-ascii?Q?XGM63FXPNDCxqKRqFLqEajMZ6BJKX5eEOApY1/pdq3DgwFUrT/IZ9Ch05J8I?=
- =?us-ascii?Q?iWpSKnOrt2fwy1Wv8GCJUO0cv0cbtGQxYntk4KUojtJefVytmB9+b5aR9ndC?=
- =?us-ascii?Q?R9F0WWNZXR2PMfh09PxuImKprp+22f2VsfQhIyl1Jt4XtAc7DsY2+wEEHbvT?=
- =?us-ascii?Q?eR2CSk7Mtt7hm5WR7ITFY04lk7WQF7SSGsMIBSed2RvalkOoCKbI21/VJfwu?=
- =?us-ascii?Q?kafN5GVRJuoyUY0Re+UYa2JsAoQCCYy/tjrwm6eEG+MKrfnBOxeiPV/4xxOB?=
- =?us-ascii?Q?6Xa6NtbaVOc24Emp6YSYut+lkY+SHxqhaKkemaYyRIzaOdLMdtynXrpysZYR?=
- =?us-ascii?Q?+QrDkYAhlMczLDk9eAED2cgGORsYP5Vdy2HbOr/2ZswaKwSlD/qdrYnzfTEv?=
- =?us-ascii?Q?CYdk7Jhqd7kcW6pj5K55QMLkSgOj/Y6y7i/p4Rwx/faXptBwoJhJBjBQq2Kl?=
- =?us-ascii?Q?i5VGk8Xbel74hHP673KmrvMm8OMsGb9FpFJB9+70hLKUj/+Nc0i8GaAf4S5T?=
- =?us-ascii?Q?FOWvqtbMfVkBVk2ZfbLSo3RobcJRB1RgBao0jHs6dF6BN1uZm33UsfvpIRZN?=
- =?us-ascii?Q?zOFs2k7IZRFOa0ybWsy4xHdbsDxnForUypjq9fyh518GB+6FkPyfF9/CUzUH?=
- =?us-ascii?Q?Pz79MWbh0FnacMCHfbo3ViPqzqgra2XOSYVl63esGgea+R72Fu/o/Dmwc4yC?=
- =?us-ascii?Q?evBaq5tB8MynphzKZ3CnhuDpSVF2uLCCRqt1T0qVptGteKcGue1zsdMttDSB?=
- =?us-ascii?Q?+SyjbdqWXWimDqNz6CiqnxBgLSO3VtECg0Y96oRxljFEaR7AzmDUrFEAJI6h?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fd0f1a8-3f80-4953-22ce-08db6d404b4f
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR10MB4759.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XAn/SVNXAe5v8ntiIpF5arM18Z6UqQpRTRChaU0QzVRoCfaqHMer+eUEue4x?=
+ =?us-ascii?Q?pNpxNsUP/Pn1ilD/Cv4FHQT1n72wuAJaW7MRzcEb4yNucsWMTB2lkpVoUMOJ?=
+ =?us-ascii?Q?B1cry+mNv3cRSRdaE3oqAAB1Y61DKldu7ljt++UB+G5eanBm6SqMhzxoSlVZ?=
+ =?us-ascii?Q?z38JauZ3nqdV4Nic5wtIo7qo6NhHGikObFaJFM1ws+BUTIGUyOvG3pLMW2Qz?=
+ =?us-ascii?Q?sZys4+m3JwEpKOf0A/NmaDoF95adrFv61FerbwC6X08fHomXVigVE1pOQe14?=
+ =?us-ascii?Q?f+gX4ZrcrDdX213E0UB3lNm3fnQyIdZixVZPn/Bv7dKzAW+0t8wFYHqO61f8?=
+ =?us-ascii?Q?Wm3r8TvnNBhXa6QGRy/ehJN0I9ldoR+Zj3o2SR2E40pbV0rDkRSQrnc9SnXF?=
+ =?us-ascii?Q?mE/umBnxN1B/0YQG+q825bqIyteiWLk32hH/Q3duUkJvFBBZmO4knTpIUpjB?=
+ =?us-ascii?Q?0gwx/PHZfUHpuTdWxicbX6bj+VTa8WGSNrLPeZl2wSNLtqDL4BUwyLJiUDL8?=
+ =?us-ascii?Q?yXkniIpmiQ6U1n7s1EGU47/m/IcKaEfXdteKPqZt0XNsj8QyQgW0dgUz0Mvs?=
+ =?us-ascii?Q?KtwxhlTCQkImy/zleYl0EHU6G8s1CLaDFSY5ldovo1OQwdHcLP3vBBeujJ9v?=
+ =?us-ascii?Q?hGZWDkcLkI56bwxg+e8PKiF+BlypKeoKrNW3XgYge5v4eIF+p1nbELcJMBgm?=
+ =?us-ascii?Q?31Ny4C0WelLkEH7FgAesBdGSAG/c4LtDWq3F9suK3VHJ0WW78kveApd7uJ0B?=
+ =?us-ascii?Q?6NWC0rky2gmXZbjF93jsmIb9zJkJgO0RhuYSEV3gf6d63TxD4BLe107NmLlV?=
+ =?us-ascii?Q?7VfyR6Ox4gmp2ZzTppcdmrfD7vF/nB3thX7QEBUYn6Ytz2qbXWZc38ckpslN?=
+ =?us-ascii?Q?NhY03pNo48yYusdGItfhx5UGtGGBXk4omMcZ5Z+m4pbzHm2+ofSLNgIWm9NM?=
+ =?us-ascii?Q?LfpDry7Ki4kygi+eTJNAkoRuMbH6s5PCUiu3cNQ5QLTlYAY1Bp9gxoNBCNXE?=
+ =?us-ascii?Q?IUMl5hLPUiv+075rOU0Zwg4X3W32V/pC1U97uO/7NhV7NGDUHwYfjJ8U/QXk?=
+ =?us-ascii?Q?rXbhPNA28CcoN7z7+aQQzvLZ3ZR4EdEwHHcWMl9L2jft88xpWrpvfxP8DIAI?=
+ =?us-ascii?Q?d/1I5Je+UGTdfX+VC63tjg0+aU0zfKX1y9VfND9TicVrDdVaJnsFIVBgxhZS?=
+ =?us-ascii?Q?BpTDC9OmIG/H5TpEzsPRsb3zDB1i/2GvtTZJeWYTwMdFalK7gp/uXNMA60dj?=
+ =?us-ascii?Q?t8MbZ8pUodYdHBHfs+fLm3M6B7lJH68Xn3BGTAA02EmYyc9YEiUwP8g3+CUF?=
+ =?us-ascii?Q?h8t7ezKZJVt+tM9pi30zJWmB9QceQtT4BOaboeLG2EjMma6guXudy+OQkGki?=
+ =?us-ascii?Q?zyjjkyDVdI8eKJoLqvXWLSqxGqWMT1cBq6gPu0Ub6g6DiM047L/dPzUkyt1w?=
+ =?us-ascii?Q?tXYMYWpgchEm64AaDznlqPjRGndodzNmADOOf471Zq8SdLOga72DIUju6bPP?=
+ =?us-ascii?Q?neiVgsXdF5liFu3lrfd8Kqh0vtOTcvJXnoGviMyZWn+8Pg9tGerTPW33/6S3?=
+ =?us-ascii?Q?Vl3dtlkAWrTbuHF1DYrRkB9YAmvrnUdFf60AVr+B?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef1c0003-966a-4202-f002-08db6d4199ef
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9448.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 01:31:51.3014
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 01:41:12.8265
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: f9UIOzfdiaoXZgBQgUpxLFKP6cqIMVW8HGcX5/79SSImoBfOR+QrEMVgZk0JYW1uRCP0mfpII4hPsQenyRXnIGf7q+1B+nPKmcYEiZs0LPo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR10MB4580
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-14_14,2023-06-14_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=772 phishscore=0
- malwarescore=0 mlxscore=0 adultscore=0 bulkscore=0 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306150011
-X-Proofpoint-ORIG-GUID: FTpC03XRE9jvr-mHUmYiz-jKL2QEUWJM
-X-Proofpoint-GUID: FTpC03XRE9jvr-mHUmYiz-jKL2QEUWJM
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: x72+tlqDzGDfkTUJLiyoacnFZ/1JCbA+Ot7jlxBi2Wpte2xHLiGaozpnxdem6od6i4fTd8wKJ2fP1b1dPY6Xlw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB8034
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The patch set initial support for Cadence MHDP8501(HDMI/DP) DRM bridge
+drivers and Cadence HDP-TX PHY(HDMI/DP) drivers for Freescale i.MX8MQ.
 
-Krzysztof,
+The patch set compose of DRM bridge drivers and PHY drivers.
 
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+Both of them need the followed two patches to pass build.
+  drm: bridge: Cadence: convert mailbox functions to macro functions
+  phy: Add HDMI configuration options
 
-Applied to 6.5/scsi-staging, thanks!
+DRM bridges driver patches:
+  dt-bindings: display: bridge: Add Cadence MHDP8501 HDMI and DP
+  drm: bridge: Cadence: Add MHDP8501 DP driver
+  drm: bridge: Cadence: Add MHDP8501 HDMI driver
+
+PHY driver patches:
+  dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+  phy: freescale: Add DisplayPort PHY driver for i.MX8MQ
+  phy: freescale: Add HDMI PHY driver for i.MX8MQ
+
+v5->v6:
+HDMI/DP bridge driver
+- 8501 is the part number of Cadence MHDP on i.MX8MQ.
+  Use MHDP8501 to name hdmi/dp drivers and files. 
+- Add compatible "fsl,imx8mq-mhdp8501-dp" for i.MX8MQ DP driver
+- Add compatible "fsl,imx8mq-mhdp8501-hdmi" for i.MX8MQ HDMI driver
+- Combine HDMI and DP dt-bindings into one file cdns,mhdp8501.yaml
+- Fix HDMI scrambling is not enable issue when driver working in 4Kp60
+  mode.
+- Add HDMI/DP PHY API mailbox protect.
+
+HDMI/DP PHY driver:
+- Rename DP and HDMI PHY files and move to folder phy/freescale/
+- Remove properties num_lanes and link_rate from DP PHY driver.
+- Combine HDMI and DP dt-bindings into one file fsl,imx8mq-dp-hdmi-phy.yaml
+- Update compatible string to "fsl,imx8mq-dp-phy".
+- Update compatible string to "fsl,imx8mq-hdmi-phy".
+
+v4->v5:
+- Drop "clk" suffix in clock name.
+- Add output port property in the example of hdmi/dp.
+
+v3->v4:
+dt-bindings:
+- Correct dt-bindings coding style and address review comments.
+- Add apb_clk description.
+- Add output port for HDMI/DP connector
+PHY:
+- Alphabetically sorted in Kconfig and Makefile for DP and HDMI PHY
+- Remove unused registers define from HDMI and DP PHY drivers.
+- More description in phy_hdmi.h.
+- Add apb_clk to HDMI and DP phy driver.
+HDMI/DP:
+- Use get_unaligned_le32() to replace hardcode type conversion
+  in HDMI AVI infoframe data fill function.
+- Add mailbox mutex lock in HDMI/DP driver for phy functions
+  to reslove race conditions between HDMI/DP and PHY drivers.
+- Add apb_clk to both HDMI and DP driver.
+- Rename some function names and add prefix with "cdns_hdmi/cdns_dp".
+- Remove bpc 12 and 16 optional that not supported.
+
+v2->v3:
+Address comments for dt-bindings files.
+- Correct dts-bindings file names 
+  Rename phy-cadence-hdptx-dp.yaml to cdns,mhdp-imx8mq-dp.yaml
+  Rename phy-cadence-hdptx-hdmi.yaml to cdns,mhdp-imx8mq-hdmi.yaml
+- Drop redundant words and descriptions.
+- Correct hdmi/dp node name.
+
+v2 is a completely different version compared to v1.
+Previous v1 can be available here [1].
+
+v1->v2:
+- Reuse Cadence mailbox access functions from mhdp8546 instead of
+  rockchip DP.
+- Mailbox access functions be convert to marco functions
+  that will be referenced by HDP-TX PHY(HDMI/DP) driver too.
+- Plain bridge instead of component driver.
+- Standalone Cadence HDP-TX PHY(HDMI/DP) driver.
+- Audio driver are removed from the patch set, it will be add in another
+  patch set later.
+
+[1] https://patchwork.kernel.org/project/linux-rockchip/cover/cover.1590982881.git.Sandor.yu@nxp.com/
+
+Sandor Yu (8):
+  drm: bridge: Cadence: convert mailbox functions to macro functions
+  dt-bindings: display: bridge: Add Cadence MHDP8501 HDMI and DP
+  drm: bridge: Cadence: Add MHDP8501 DP driver
+  phy: Add HDMI configuration options
+  drm: bridge: Cadence: Add MHDP8501 HDMI driver
+  dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+  phy: freescale: Add DisplayPort PHY driver for i.MX8MQ
+  phy: freescale: Add HDMI PHY driver for i.MX8MQ
+
+ .../display/bridge/cdns,mhdp8501.yaml         |  105 ++
+ .../bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml  |   53 +
+ drivers/gpu/drm/bridge/cadence/Kconfig        |   25 +
+ drivers/gpu/drm/bridge/cadence/Makefile       |    3 +
+ .../gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c | 1078 +++++++++++++++++
+ .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 1024 ++++++++++++++++
+ .../gpu/drm/bridge/cadence/cdns-mhdp8501.h    |  399 ++++++
+ .../drm/bridge/cadence/cdns-mhdp8546-core.c   |  195 +--
+ .../drm/bridge/cadence/cdns-mhdp8546-core.h   |    1 -
+ drivers/phy/freescale/Kconfig                 |   18 +
+ drivers/phy/freescale/Makefile                |    2 +
+ drivers/phy/freescale/phy-fsl-imx8mq-dp.c     |  697 +++++++++++
+ drivers/phy/freescale/phy-fsl-imx8mq-hdmi.c   |  889 ++++++++++++++
+ include/drm/bridge/cdns-mhdp-mailbox.h        |  240 ++++
+ include/linux/phy/phy-hdmi.h                  |   38 +
+ include/linux/phy/phy.h                       |    7 +-
+ 16 files changed, 4578 insertions(+), 196 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501.h
+ create mode 100644 drivers/phy/freescale/phy-fsl-imx8mq-dp.c
+ create mode 100644 drivers/phy/freescale/phy-fsl-imx8mq-hdmi.c
+ create mode 100644 include/drm/bridge/cdns-mhdp-mailbox.h
+ create mode 100644 include/linux/phy/phy-hdmi.h
 
 -- 
-Martin K. Petersen	Oracle Linux Engineering
+2.34.1
+
