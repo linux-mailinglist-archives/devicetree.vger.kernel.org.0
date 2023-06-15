@@ -2,58 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDAA27319B7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:16:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D2167319C1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:20:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234656AbjFONQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:16:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35284 "EHLO
+        id S230055AbjFONUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230055AbjFONQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:16:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E4B270C;
-        Thu, 15 Jun 2023 06:16:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E07260BB1;
-        Thu, 15 Jun 2023 13:16:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BB8C433C8;
-        Thu, 15 Jun 2023 13:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686834962;
-        bh=BZz7VgE7FZsHyhQC20/TP0fYQCt9kxxbS+7BpFxp0Qg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ONIbZw9nFYdVAI8RzqPvNfyDIkAQ1WIVTIL3GcbFQ6BxtBYOxrwysYJuk22+zeGMN
-         Sga/nSXVvexeb2lhSdEwomGBeq6VwBBGKlHopueeoFrWZ15yqzeSIHAi4cNtdTdUxt
-         UwVS7TTNYCQhDUHMTmX8qwX21OdbY2sDggdiUcY+t2Rb8jPFCv/jptT5V+zWN9xWi5
-         bV6ol0zgnOl0HKUOUBgw0n4mtsQ20IQ8jXwoyIHOuIhwuOhACpr/6UtOp5W/RtDWLo
-         BgGT5FQbzSxJ5em79FWybn+N5Qfm+M2X0c464X6tyrQ1+BMTcyI/37IcCM9S6WbIes
-         dDYoVTAKJmJyg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1343944AbjFONUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:20:05 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 682CB191;
+        Thu, 15 Jun 2023 06:20:04 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDJqo1031371;
+        Thu, 15 Jun 2023 08:19:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686835192;
+        bh=8YWfbq8/q8VKcB5u+SGrbbYuej1y2a8NhKJhPFGJBhM=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=xVEBbe2LyWwndc+etA0RvkaCYW7mVYMzL06ke+1glKaFGqghe/l7zAiBqm9kHKotp
+         YsgKgxO0dRfJO7Pw2VmA/aJdPEjSWzzERfSM/VAyN1TXkq2o9d4lh6Em3KdQcgC/N2
+         mPw9eQRYGR5ftzAmvVkSFCwQRiGAaJ/jxZ7Fr4xQ=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDJqDP112826
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 08:19:52 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 08:19:52 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 08:19:52 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDJmJe060571;
+        Thu, 15 Jun 2023 08:19:49 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        Valentin Caron <valentin.caron@foss.st.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230615075815.310261-1-valentin.caron@foss.st.com>
-References: <20230615075815.310261-1-valentin.caron@foss.st.com>
-Subject: Re: [PATCH v3 0/4] spi: stm32: add spi device mode
-Message-Id: <168683495795.547441.10667645380315680455.b4-ty@kernel.org>
-Date:   Thu, 15 Jun 2023 14:15:57 +0100
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Nitin Yadav <n-yadav@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Tony Lindgren <tony@atomide.com>
+Subject: Re: [PATCH 0/6] arm64: dts: ti: k3-j7*: Add general purpose timers
+Date:   Thu, 15 Jun 2023 18:49:46 +0530
+Message-ID: <168683516438.2362648.11436943550545172181.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230531213215.602395-1-nm@ti.com>
+References: <20230531213215.602395-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-c6835
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,38 +70,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jun 2023 09:58:11 +0200, Valentin Caron wrote:
-> STM32 SPI can operate in device mode.
-> This series adds this functionnality in spi-stm32 driver.
+Hi Nishanth Menon,
+
+On Wed, 31 May 2023 16:32:09 -0500, Nishanth Menon wrote:
+> Add pending general purpose timer support for various J7 family
 > 
-> Since v2:
->  - Rename this series: spi device mode
-> 
-> Since v1:
->  - Do not add #address-cells and #size-cells in st,stm32-spi.yaml
->  - Do not add cs-gpio description in st,stm32-spi.yaml
->  - Do not add st,spi-slave-underrun property to handle spi slave underrun
+> Full list of K3 SoCs:
+> * AM625: already merged
+> * AM62A7: https://lore.kernel.org/all/20230418012717.1230882-2-nm@ti.com/
+> * AM64: https://lore.kernel.org/all/20230414073328.381336-2-nm@ti.com/
+> * AM65: already merged
+> * J7200: https://lore.kernel.org/all/20230426103219.1565266-1-u-kumar1@ti.com/ (needs a respin)
 > 
 > [...]
 
-Applied to
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/4] spi: stm32: renaming of spi_master into spi_controller
-      commit: 6f486556abe35f2e6684f95241acbc463342d3eb
-[2/4] spi: stm32: use dmaengine_terminate_{a}sync instead of _all
-      commit: 4f2b39dc2d14d4fc55d7a3a140ac07eaa761b701
-[3/4] dt-bindings: spi: stm32: disable spi-slave property for stm32f4-f7
-      commit: e6afe03351ac81fbc4f2b93bf3b356f7b662939d
-[4/4] spi: stm32: introduction of stm32h7 SPI device mode support
-      commit: e40335fcb89acb274d05deffad9225e973278ec9
+[1/6] arm64: dts: ti: k3-j721e: Add general purpose timers
+      commit: 7f209dd1267ce2a4a5f6a9e4571858fa2d2e588c
+[2/6] arm64: dts: ti: k3-j721e: Configure pinctrl for timer IO
+      commit: 72a44d1c473486582d1d6177404e2fa7adf531ac
+[3/6] arm64: dts: ti: k3-j721s2: Add general purpose timers
+      commit: 835d04422f9d4c232c060150e696075cd34e081a
+[4/6] arm64: dts: ti: k3-j721s2: Configure pinctrl for timer IO
+      commit: 1ecc75be7bc522941261b5eb0c315b09098a47f4
+[5/6] arm64: dts: ti: k3-j784s4: Add general purpose timers
+      commit: 833377cf858b24d45e658454bcb683dd9076b576
+[6/6] arm64: dts: ti: k3-j784s4: Configure pinctrl for timer IO
+      commit: 5a41bcff08f9c0705f4e6c576d168051a7b323be
 
 All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
 problems are discovered then the patch may be dropped or reverted.
 
 You may get further e-mails resulting from automated or manual testing
@@ -106,6 +116,7 @@ patches will not be replaced.
 Please add any relevant lists and maintainers to the CCs when replying
 to this mail.
 
-Thanks,
-Mark
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
