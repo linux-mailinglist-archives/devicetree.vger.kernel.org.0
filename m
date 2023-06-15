@@ -2,152 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAA89730D7A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 05:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6443730DD5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 06:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238219AbjFODZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jun 2023 23:25:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46000 "EHLO
+        id S237365AbjFOEBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 00:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238324AbjFODY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jun 2023 23:24:56 -0400
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA58A26AD
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 20:24:54 -0700 (PDT)
-Received: by mail-ua1-x92f.google.com with SMTP id a1e0cc1a2514c-78775a5a84eso1273986241.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jun 2023 20:24:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686799494; x=1689391494;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2nSVGPPWBRzpCGCRYannX5iA+YMKGtqta1nbYF5t7UA=;
-        b=naLregnKKESEIb9Rj4ReayoHQGn78YEhwBRimP5/yR9tSsvy3UnvX3tgU6szoMUip+
-         50ISCvWu8EGTn6cEtxA8lCi74gdoa6k4GEUGC4DPGc8khHfUVK6cYsepluZ6DLtvbk9J
-         4rBhaNm+eUswtHkMKiCYQ9Mk3w8qGCAPY8ggo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686799494; x=1689391494;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2nSVGPPWBRzpCGCRYannX5iA+YMKGtqta1nbYF5t7UA=;
-        b=abgnrcQgYw5EBznNMx57EKfx9Snfvcz9nWcHAK/06tIXLVBsJGWiBnS+tphZS8Te6Y
-         xXOZ4fjL1BHMtHbNlW3bMob38lYAsZ7AMdLJTTSe64KnlNwuor2o9Ch+gzbs2h3E76ZR
-         t92Yc5GkHfAonvy0qjN0LruttLeaLqFRkPS+8x96lj5athMpYgct4e49ZfG1JT9h29MJ
-         lAySL1a91gI+Qp+CEe4DleXPuo2n68OMd2QlTfdxFxOZZgNjjKz+1gzsJvxBnyP/9QP6
-         wJxQiQ8l11oIwH5GM9u7Bkoy3doTQ9HvnIlrEXeH97LW26y3Orb9R87jeCt3vpfyk4gh
-         +dvA==
-X-Gm-Message-State: AC+VfDxl/d/ONcEOT6SP2H4fLX3GCFhr6xb7et86JFsURNBX5UWiS+yx
-        g8kzz/4lL8xoFjwtmQ+N+C+JTUMwkvsEwYdf9dYZCw==
-X-Google-Smtp-Source: ACHHUZ7yKjRDJ1WlW1Oput8L54g88VDOjieJMDdfRPhL25+Te/RHk2aWjxgB6vrI6XWEfF2SBrmyef0xPxvHJ45yXOg=
-X-Received: by 2002:a05:6102:503:b0:43f:5c7e:d5db with SMTP id
- l3-20020a056102050300b0043f5c7ed5dbmr135418vsa.2.1686799493855; Wed, 14 Jun
- 2023 20:24:53 -0700 (PDT)
+        with ESMTP id S229448AbjFOEBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 00:01:46 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31624E3;
+        Wed, 14 Jun 2023 21:01:44 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35F41GpV102556;
+        Wed, 14 Jun 2023 23:01:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686801676;
+        bh=B3tVnaHBrTh1EakG8xwEt9gRtjsiN9xvLXdYvAk6tUI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=vlIk37hSRtrm+zTsFMgaC6bf0J/VXRPyKHdDdH5X8VUNhxeDG7dRgvK49jI1/osC8
+         EsFso6ZQw0u+s63TguDOygb18HM/qxA56DzHoMXdfi5GBEaJE6iFItaTwzWSnLXIbn
+         TtV4YhgpOPp4pBlFyfusMcZcYpUvQ7biEgFT3GXw=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35F41Gk2056219
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 14 Jun 2023 23:01:16 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
+ Jun 2023 23:01:16 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 14 Jun 2023 23:01:16 -0500
+Received: from [172.24.145.182] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35F41CBS001429;
+        Wed, 14 Jun 2023 23:01:13 -0500
+Message-ID: <76f14228-2ccf-bcd5-153a-20c4dd365bad@ti.com>
+Date:   Thu, 15 Jun 2023 09:31:12 +0530
 MIME-Version: 1.0
-References: <20230609083009.2822259-1-wenst@chromium.org> <20230609083009.2822259-8-wenst@chromium.org>
- <a5c00706-dc23-4561-8bcf-729fd10e74ef@sirena.org.uk>
-In-Reply-To: <a5c00706-dc23-4561-8bcf-729fd10e74ef@sirena.org.uk>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 15 Jun 2023 11:24:42 +0800
-Message-ID: <CAGXv+5HWM_mfKp-o8kOyZ7W8yqZwBwPF3QNwo5sBfuv4quc-vQ@mail.gmail.com>
-Subject: Re: [PATCH 7/9] regulator: mt6358: Add output voltage fine tuning to
- fixed regulators
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62-main: Remove power-domains
+ from crypto node
+Content-Language: en-US
+To:     Kamlesh Gurudasani <kamlesh@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+        Jayesh Choudhary <j-choudhary@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230614-sa3ul-v2-1-3a832b82339c@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20230614-sa3ul-v2-1-3a832b82339c@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,TVD_SUBJ_WIPE_DEBT,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 12:15=E2=80=AFAM Mark Brown <broonie@kernel.org> wr=
-ote:
->
-> On Fri, Jun 09, 2023 at 04:30:04PM +0800, Chen-Yu Tsai wrote:
-> > The "fixed" LDO regulators found on the MT6358 and MT6366 PMICs have
-> > either no voltage selection register, or only one valid setting.
-> > However these do have a fine voltage calibration setting that can
-> > slightly boost the output voltage from 0 mV to 100 mV, in 10 mV
-> > increments.
->
-> This and the followup patch break the build on both arm64 and x86_64:
->
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
-=E2=80=98MT6358_VFE28_ANA_CON0=E2=80=99 undeclared here (not in a function)=
-; did you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
->   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
->       |                             ^~~~~~~
-
-Argh, I sequenced the patches in my tree incorrectly. I see you already
-merged the first six patches. I'll send a new version including a header
-change that this patch needs, and other fixups that reviewers suggested.
-
-ChenYu
 
 
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:525:9: note: in e=
-xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
->   525 |         MT6358_REG_FIXED("ldo_vfe28", VFE28, MT6358_LDO_VFE28_CON=
-0, 0, 2800000),
->       |         ^~~~~~~~~~~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
-=E2=80=98MT6358_VCN28_ANA_CON0=E2=80=99 undeclared here (not in a function)=
-; did you mean =E2=80=98MT6358_VCN18_ANA_CON0=E2=80=99?
->   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
->       |                             ^~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:526:9: note: in e=
-xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
->   526 |         MT6358_REG_FIXED("ldo_vcn28", VCN28, MT6358_LDO_VCN28_CON=
-0, 0, 2800000),
->       |         ^~~~~~~~~~~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
-=E2=80=98MT6358_VXO22_ANA_CON0=E2=80=99 undeclared here (not in a function)=
-; did you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
->   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
->       |                             ^~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:527:9: note: in e=
-xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
->   527 |         MT6358_REG_FIXED("ldo_vxo22", VXO22, MT6358_LDO_VXO22_CON=
-0, 0, 2200000),
->       |         ^~~~~~~~~~~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
-=E2=80=98MT6358_VAUX18_ANA_CON0=E2=80=99 undeclared here (not in a function=
-); did you mean =E2=80=98MT6358_VRF18_ANA_CON0=E2=80=99?
->   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
->       |                             ^~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:528:9: note: in e=
-xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
->   528 |         MT6358_REG_FIXED("ldo_vaux18", VAUX18,
->       |         ^~~~~~~~~~~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
-=E2=80=98MT6358_VBIF28_ANA_CON0=E2=80=99 undeclared here (not in a function=
-); did you mean =E2=80=98MT6358_VIO28_ANA_CON0=E2=80=99?
->   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
->       |                             ^~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:530:9: note: in e=
-xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
->   530 |         MT6358_REG_FIXED("ldo_vbif28", VBIF28,
->       |         ^~~~~~~~~~~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:127:29: error: =
-=E2=80=98MT6358_VAUD28_ANA_CON0=E2=80=99 undeclared here (not in a function=
-); did you mean =E2=80=98MT6358_VA12_ANA_CON0=E2=80=99?
->   127 |                 .vsel_reg =3D MT6358_##vreg##_ANA_CON0,   \
->       |                             ^~~~~~~
-> /build/stage/linux/drivers/regulator/mt6358-regulator.c:535:9: note: in e=
-xpansion of macro =E2=80=98MT6358_REG_FIXED=E2=80=99
->   535 |         MT6358_REG_FIXED("ldo_vaud28", VAUD28,
->       |         ^~~~~~~~~~~~~~~~
+On 14/06/23 15:16, Kamlesh Gurudasani wrote:
+> Only SYSFW has control of SA3UL power.
+> From SYSFW 08.04.00.002, for security reasons, device ID for power
+> management of SA3UL has been removed.
+> 
+> "power-domains" property in crypto node tries to access
+> the SA3UL, for which it gets NACK and hence, SA3UL driver doesn't
+> probe properly.
+> 
+> Fixes: 8af893654c02 ("arm64: dts: ti: k3-am62-main: Enable crypto accelerator")
+> 
+> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+> ---
+> v2 changes:
+> -make commit message clearer
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index b3e4857bbbe4..18a6e9ffaf58 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -174,7 +174,6 @@ k3_reset: reset-controller {
+>  	crypto: crypto@40900000 {
+>  		compatible = "ti,am62-sa3ul";
+>  		reg = <0x00 0x40900000 0x00 0x1200>;
+> -		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
+
+
+Per Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml this is a
+required property. This would need binding update to make power-domains
+optional for certain compatibles.
+
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+>  		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
+> 
+> ---
+> base-commit: 53ab6975c12d1ad86c599a8927e8c698b144d669
+> change-id: 20230614-sa3ul-cb4bd1bb4d08
+> 
+> Best regards,
+
+-- 
+Regards
+Vignesh
