@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37AD0731A03
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:32:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294A5731A17
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:35:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244119AbjFONcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43070 "EHLO
+        id S245603AbjFONf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344133AbjFONcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:32:14 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A2F2728;
-        Thu, 15 Jun 2023 06:32:12 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDW2nl077334;
-        Thu, 15 Jun 2023 08:32:02 -0500
+        with ESMTP id S1344521AbjFONfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:35:05 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32DA30ED;
+        Thu, 15 Jun 2023 06:34:22 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDYG8w015431;
+        Thu, 15 Jun 2023 08:34:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686835922;
-        bh=LT9SxIRDZ5Glea4YYkDGPYIGRSOnE6svaSGUdthHlZE=;
+        s=ti-com-17Q1; t=1686836056;
+        bh=lMOnK1i7X2ucCZqWvCght1vJtWbIWWUy9vQXuN2xkxM=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=BcCCyxlnn8FXeXRsIsMqITra96N3Gu4xD6VCFiQ8FMVMa58TQQS7bL++nZ0d6AZ8A
-         EheFAPXlmUhslZvTENkmhonbmQWycv7Kxgk18kgygYKUwv42vOB4C5jStA7uII3Rmc
-         xlFqlk/Y19ZybbodILEyq0ZP8HcFqizMopiHBR8M=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDW21m009613
+        b=T9qDEOq8nhcJQFNa0kihFLKR7sN9c7nJt3fieG4oBgFEZ6tlXLCNKlz9RJKsOuZZe
+         Mlo94xmotppPn2WcuV9KJO8EfKLhb8LZ9wqsAtyzWJo6/XgWIsMSqK+jY59avl7hSh
+         K3OFyI7wwiVhCuQDx/bd4C4CKJ32z1A85HN9X5NE=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDYGSv059436
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 08:32:02 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 15 Jun 2023 08:34:16 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 08:32:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 08:34:15 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 08:32:02 -0500
+ Frontend Transport; Thu, 15 Jun 2023 08:34:15 -0500
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDVwe6095321;
-        Thu, 15 Jun 2023 08:31:59 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDYCjD026934;
+        Thu, 15 Jun 2023 08:34:12 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+To:     Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <conor+dt@kernel.org>, <m-chawdhry@ti.com>, <n-francis@ti.com>,
-        Udit Kumar <u-kumar1@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [v4 0/6] arm64: dts: ti: k3-j7200: Add properties and sync with uboot
-Date:   Thu, 15 Jun 2023 19:01:57 +0530
-Message-ID: <168681817159.2098323.6783558956732952676.b4-ty@ti.com>
+        Tero Kristo <kristo@kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Nitin Yadav <n-yadav@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>
+Subject: Re: [PATCH 0/2] arm64: dts: ti: k3-am62/64: Add ESM Support
+Date:   Thu, 15 Jun 2023 19:04:10 +0530
+Message-ID: <168683604345.2365430.13268995742166730561.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230611111140.3189111-1-u-kumar1@ti.com>
-References: <20230611111140.3189111-1-u-kumar1@ti.com>
+In-Reply-To: <20230530185335.79942-1-nm@ti.com>
+References: <20230530185335.79942-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -67,34 +69,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Udit Kumar,
+Hi Nishanth Menon,
 
-On Sun, 11 Jun 2023 16:41:34 +0530, Udit Kumar wrote:
-> In continuation of patch series posted by Nishanth for sync of uboot device tree with kernel device tree for AM64 SOC.
-> https://lore.kernel.org/linux-arm-kernel/20230414073328.381336-1-nm@ti.com/
+On Tue, 30 May 2023 13:53:33 -0500, Nishanth Menon wrote:
+> Couple of follow on patches based on [1] adding ESM nodes and mapping
+> for AM62/AM64.
 > 
-> This series extend device tree sync/clean up for J7200 SOC.
-> 
-> This patch series build on top of
-> https://lore.kernel.org/all/20230419040007.3022780-1-u-kumar1@ti.com
+> Nishanth Menon (2):
+>   arm64: dts: ti: k3-am62: Add ESM support
+>   arm64: dts: ti: k3-am64: Add ESM support
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/6] arm64: dts: ti: k3-j7200: Add general purpose timers
-      commit: c8a28ed4837ce03254e0941f4fbc8364b1e78543
-[2/6] arm64: dts: ti: k3-j7200: Configure pinctrl for timer IO pads
-      commit: 03612d384621ffe21c6d338de916251d1bfd84fa
-[3/6] arm64: dts: ti: k3-j7200-common-proc-board: remove duplicate main_i2c0 pin mux
-      commit: 7f58e2b418d89f38f242b04da5a1dd93a2c514fd
-[4/6] arm64: dts: ti: k3-j7200-common-proc-board: Add uart pinmux
-      commit: 3709ea7f960ed77ac29af692c9e32351060400d9
-[5/6] arm64: dts: ti: k3-j7200-common-proc-board: Define aliases at board level
-      commit: c4ba159fff90791956370ce93c130aadea87dbb6
-[6/6] arm64: dts: ti: k3-j7200: Drop SoC level aliases
-      commit: 858dde8a3f56f0b7a0c217ac4abf56e34c34ae74
+[1/2] arm64: dts: ti: k3-am62: Add ESM support
+      commit: a58eedd1d195f17418c327482a79de5b84bc5aa8
+[2/2] arm64: dts: ti: k3-am64: Add ESM support
+      commit: f049b541b81acd88133c2c2247d4fae6c33f1b99
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
