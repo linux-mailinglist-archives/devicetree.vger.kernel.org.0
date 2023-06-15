@@ -2,105 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B28731F7E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 19:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01836731FAD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 20:07:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236173AbjFORri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 13:47:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
+        id S230407AbjFOSHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 14:07:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234708AbjFORri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 13:47:38 -0400
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1531B271F;
-        Thu, 15 Jun 2023 10:47:37 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-341daf315b3so3351895ab.0;
-        Thu, 15 Jun 2023 10:47:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686851256; x=1689443256;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IXUuU+bjTRUlDh30kMbjfqbr6PEXiONI6qJ0Ou76ZMM=;
-        b=ivI9K1pCDx3ZmP6A2tDdOlCO0QkZ6cCBssYlh5zUxGAdGyVujhljei8dw6NfcAygAS
-         Z1XN34SC81j9NNIYqFhr4/opcAEBBT9Jh4bF6AktF6an9OtFCdOjlD8mx98fkH4PZ0Xp
-         h6ZZ7KJ2WCPlY+0V/f2RW90V+E5kGfl8YbE/LfKHREej3nKD9znR35v9POeJGd8kMvxJ
-         AsxXfHvkI70SYoWCv3niS5ZG4H8md1HfZrd6Wqcc5w0lcmXuGTfZCeyCHv1f+bUlIEob
-         MiHV4aZYHhzuFPOOD0i+0aYJt9Q0Tu+EfNJ+fYVKlLleHRVlgf/yh/VQdDxcvuyyr0ca
-         IwfQ==
-X-Gm-Message-State: AC+VfDweQ4rH7AFeI6pCIo37KKv8bViCy7rsLhkIRDyPIJqL01F2HXna
-        8pUrxy+2pTDTnyc/mQJezA==
-X-Google-Smtp-Source: ACHHUZ4rcf0f5VD09/y2OdnlU6rJyVmdPxbV3gdxcOg2VFvtQm13Yr7CRD75ZN4ywJL3AJeDxmxjbA==
-X-Received: by 2002:a92:ce08:0:b0:340:5928:e048 with SMTP id b8-20020a92ce08000000b003405928e048mr171435ilo.11.1686851256291;
-        Thu, 15 Jun 2023 10:47:36 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id o8-20020a92d388000000b00341c0710169sm609236ilo.46.2023.06.15.10.47.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 10:47:35 -0700 (PDT)
-Received: (nullmailer pid 1252912 invoked by uid 1000);
-        Thu, 15 Jun 2023 17:47:34 -0000
-Date:   Thu, 15 Jun 2023 11:47:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     palmer@dabbelt.com, Conor Dooley <conor.dooley@microchip.com>,
+        with ESMTP id S229696AbjFOSHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 14:07:13 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 70C8C1A3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 11:07:12 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 7AF2780B3;
+        Thu, 15 Jun 2023 18:07:10 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/6] dt-bindings: riscv: cpus: switch to
- unevaluatedProperties: false
-Message-ID: <20230615174734.GA1240678-robh@kernel.org>
-References: <20230610-snaking-version-81ae5abb7573@spud>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: ti: Few more pin group node name updates
+Date:   Thu, 15 Jun 2023 21:07:01 +0300
+Message-ID: <20230615180706.34535-1-tony@atomide.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230610-snaking-version-81ae5abb7573@spud>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 10, 2023 at 06:24:47PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Do the various bits needed to drop the additionalProperties: true that
-> we currently have in riscv/cpu.yaml, to permit actually enforcing what
-> people put in cpus nodes.
+I noticed few more pin group node names to update to prepare for the
+pinctrl-single yaml binding for make dtbs_check.
 
-Arm needs pretty much all the same properties. I started on adding them 
-to cpu.yaml a while back. Let me finish that up.
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts           | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi   | 2 +-
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts           | 2 +-
+ arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts         | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts       | 2 +-
+ 6 files changed, 8 insertions(+), 8 deletions(-)
 
-> 
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> 
-> Conor Dooley (6):
->   dt-bindings: riscv: cpus: add a ref the common cpu schema
->   dt-bindings: riscv: cpus: allow clocks property
-
-I just have 'clocks: true', so if you want to keep this setting it to 1 
-clock that's fine. But I imagine that it's just a matter of time until 
-someone wants more clocks.
-
->   dt-bindings: riscv: cpus: add a ref to thermal-cooling-cells
->   dt-bindings: riscv: cpus: permit operating-points-v2
->   dt-bindings: riscv: cpus: document cpu-supply
->   dt-bindings: riscv: cpus: switch to unevaluatedProperties: false
-> 
->  .../devicetree/bindings/riscv/cpus.yaml         | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> -- 
-> 2.39.2
-> 
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -432,7 +432,7 @@ AM62X_MCU_IOPAD(0x0048, PIN_INPUT, 0) /* (D10) MCU_I2C0_SDA */
+ 		>;
+ 	};
+ 
+-	gbe_pmx_obsclk: gbe-pmx-clk-default {
++	gbe_pmx_obsclk: gbe-pmx-clk-default-pins {
+ 		pinctrl-single,pins = <
+ 			AM62X_MCU_IOPAD(0x0004, PIN_OUTPUT, 1) /* (B8) MCU_SPI0_CS1.MCU_OBSCLK0 */
+ 		>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+@@ -10,7 +10,7 @@
+  */
+ 
+ &main_pmx0 {
+-	cp2102n_reset_pin_default: cp2102n-reset-pin-default {
++	cp2102n_reset_pin_default: cp2102n-reset-default-pins {
+ 		pinctrl-single,pins = <
+ 			/* (AF12) GPIO1_24, used as cp2102 reset */
+ 			AM65X_IOPAD(0x01e0, PIN_OUTPUT, 7)
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -192,7 +192,7 @@ AM65X_WKUP_IOPAD(0x002c, PIN_OUTPUT, 0) /* (R4) MCU_OSPI0_CSn0 */
+ 		>;
+ 	};
+ 
+-	wkup_pca554_default: wkup-pca554-default {
++	wkup_pca554_default: wkup-pca554-default-pins {
+ 		pinctrl-single,pins = <
+ 			AM65X_WKUP_IOPAD(0x0034, PIN_INPUT, 7) /* (T1) MCU_OSPI1_CLK.WKUP_GPIO0_25 */
+ 		>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
+--- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
++++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
+@@ -33,7 +33,7 @@ AM65X_IOPAD(0x01c4, PIN_INPUT_PULLUP, 7)  /* (AH13) GPIO1_17 */
+ 		>;
+ 	};
+ 
+-	main_bkey_pcie_reset: main-bkey-pcie-reset {
++	main_bkey_pcie_reset: main-bkey-pcie-reset-pins {
+ 		pinctrl-single,pins = <
+ 			AM65X_IOPAD(0x01bc, PIN_OUTPUT_PULLUP, 7)  /* (AG13) GPIO1_15 */
+ 		>;
+@@ -46,7 +46,7 @@ AM65X_IOPAD(0x01cc, PIN_INPUT_PULLUP, 7)  /* (AD13) GPIO1_19 */
+ 		>;
+ 	};
+ 
+-	main_m2_pcie_mux_control: main-m2-pcie-mux-control {
++	main_m2_pcie_mux_control: main-m2-pcie-mux-control-pins {
+ 		pinctrl-single,pins = <
+ 			AM65X_IOPAD(0x0148, PIN_INPUT_PULLUP, 7)  /* (AG22) GPIO0_82 */
+ 			AM65X_IOPAD(0x0160, PIN_INPUT_PULLUP, 7)  /* (AE20) GPIO0_88 */
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+@@ -272,7 +272,7 @@ J721S2_WKUP_IOPAD(0x088, PIN_OUTPUT, 0) /* (C25) WKUP_GPIO0_12.MCU_UART0_TXD */
+ 		>;
+ 	};
+ 
+-	mcu_rpi_header_gpio0_pins0_default: mcu-rpi-header-gpio0-pins0-default {
++	mcu_rpi_header_gpio0_pins0_default: mcu-rpi-header-gpio0-default-pins-0 {
+ 		pinctrl-single,pins = <
+ 			J721S2_WKUP_IOPAD(0x118, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_66 */
+ 			J721S2_WKUP_IOPAD(0x05C, PIN_INPUT, 7) /* (E24) MCU_SPI1_D0.WKUP_GPIO0_1 */
+@@ -288,7 +288,7 @@ J721S2_WKUP_IOPAD(0x064, PIN_INPUT, 7) /* (C27) MCU_SPI1_CS0.WKUP_GPIO0_3 */
+ };
+ 
+ &wkup_pmx3 {
+-	mcu_rpi_header_gpio0_pins1_default: mcu-rpi-header-gpio0-pins1-default {
++	mcu_rpi_header_gpio0_pins1_default: mcu-rpi-header-gpio0-default-pins-1 {
+ 		pinctrl-single,pins = <
+ 			J721S2_WKUP_IOPAD(0x000, PIN_INPUT, 7) /* (K26) WKUP_GPIO0_49 */
+ 		>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+--- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+@@ -359,7 +359,7 @@ J721E_IOPAD(0x290, INPUT_DISABLE, 1) /* (U6) USB0_DRVVBUS.USB1_DRVVBUS */
+ 		>;
+ 	};
+ 
+-	dp0_3v3_en_pins_default:dp0-3v3-en-default-pins {
++	dp0_3v3_en_pins_default: dp0-3v3-en-default-pins {
+ 		pinctrl-single,pins = <
+ 			J721E_IOPAD(0xc8, PIN_INPUT, 7) /* (AE26) PRG0_PRU0_GPO6.GPIO0_49 */
+ 		>;
+-- 
+2.41.0
