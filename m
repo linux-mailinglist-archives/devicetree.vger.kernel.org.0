@@ -2,59 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32177731152
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 09:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77261731165
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 09:52:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244284AbjFOHu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 03:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34842 "EHLO
+        id S236884AbjFOHwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 03:52:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245424AbjFOHuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 03:50:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A725C5;
-        Thu, 15 Jun 2023 00:50:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6F658611D1;
-        Thu, 15 Jun 2023 07:50:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C3D3EC433C8;
-        Thu, 15 Jun 2023 07:50:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686815420;
-        bh=zun/Pp2HfNTP0g+oW4guAz8PIZ3oIfm+vw18roGseO8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=UgBEUPJ9KKTaDkr6fhn2t0DbW7xtLhXwKn/LtT811TPANzY+N5CiZpd2v5giowQSx
-         q/mteKWSgBURD0vL+xlvlCeNGXZZhbdq+AZpMXXzREgwLrKSsY/VDAx+LXUOTHsYMC
-         iVWbkmENptppcaxsrvxco0eZaxsmU6I3jvOU1qbLQOHtjljT7SQIE7WI6mRaPgWGQZ
-         3BKdTupcY0XXi6wRAO99Q8JztQl8tjer3xP4KwXMFhoYBvoiBOFY3uCcmqVgrIhMds
-         vC5cG/nOM3h+jqW8SS7cP5N2GhOD3BvjTGDDyXSfaOlCQ0ABurD6LChkoqOuGVymrm
-         txhmoMFSDYw8Q==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id AD071E21EEA;
-        Thu, 15 Jun 2023 07:50:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S245214AbjFOHwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 03:52:34 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15AFB270F
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 00:52:13 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f766777605so2431532e87.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 00:52:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686815529; x=1689407529;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OnLAb/o5l2EuhHYqpE8y7BrnGhDNpYQ/A+Vx7BWAr88=;
+        b=wp56Ds3X9nkSr0F9ISHqBFM4O4uRWA1NeoaGxPwb6kiQi+kk/eQZdCCTtv3Nsm1OSB
+         6sUSNcaqWAmbQO6qBPjhrlbTIhIVOnOdsdscPQD7utiRhUsQktfmZmsJ4a52zMWauGX2
+         zgghpDCVOZDmQOs2TVaW3irBNAbVz+tErqkdOvYu0/pHwviwCdcJsHbTf21gd1/JyPPR
+         fkxUPmXDEVjk4bjx+tlRH3+sgrOY7L5x+Xu23R44MwyWa+Dt/yEYCwOH6Ie3uP2GfZeY
+         y/vxaIj/CtXOIEoGzjaUJ/UiJexwcqhdzmB+XwPMQjeFbKMSyyuBCXFDV/9bJnq4CJuh
+         XbjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686815529; x=1689407529;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OnLAb/o5l2EuhHYqpE8y7BrnGhDNpYQ/A+Vx7BWAr88=;
+        b=Bv4Xu5Ab+qeNVLdQS4FDaeByK7pdB33YaFXu2m2unvdyYaJbhDbaRLGGCFXNgtIPZG
+         OkkPuJAOBwqurOw32p7tw5QufhockabUPm5NRd09PRNXs4sbHZUrVZvwzPXlQfR/EMhw
+         g8SzilCl+tCyZMfmubRvP0WoMamPTi6uNEuQRWsi0kQGpX+WyJfHdy7uN3bx4WNE531H
+         pqevhlTvYVIt8iWFARl8xJvbvvNtuVVCMyYwDCRZAIRtHgcTY8v2toB2hmxVX3NTa4TH
+         K3VH0Jzuaqi4NdNI5vuLbzzT5n8raycHyfnhTc4qNidU8kgkpTGKynnQlEqqaI9BNx2o
+         UDLw==
+X-Gm-Message-State: AC+VfDyK7GShnDDP+QaMqgOcg+Az7I09xZFe3cMpHTTwtniYz/QQ3m6b
+        JYChb0zpF4+MVFVCxwU26ovRLg==
+X-Google-Smtp-Source: ACHHUZ6byeATepKDfRbb48D1WYuexmYDvekDU3GjrZKiJbCCViAjaUqDxWYYkI3TFgnr+axOqZQCiw==
+X-Received: by 2002:a05:6512:1cd:b0:4f4:dd51:aec7 with SMTP id f13-20020a05651201cd00b004f4dd51aec7mr8412115lfp.54.1686815529466;
+        Thu, 15 Jun 2023 00:52:09 -0700 (PDT)
+Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id w15-20020ac2598f000000b004f138ecab11sm2482805lfn.24.2023.06.15.00.52.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 00:52:09 -0700 (PDT)
+Message-ID: <8568eead-90f6-ce15-d483-4d72dbab6294@linaro.org>
+Date:   Thu, 15 Jun 2023 09:52:07 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH next-next v4 0/2] Add support for partial store and forward
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168681542070.22382.18369277791311849849.git-patchwork-notify@kernel.org>
-Date:   Thu, 15 Jun 2023 07:50:20 +0000
-References: <20230613054340.12837-1-pranavi.somisetty@amd.com>
-In-Reply-To: <20230613054340.12837-1-pranavi.somisetty@amd.com>
-To:     Pranavi Somisetty <pranavi.somisetty@amd.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        claudiu.beznea@microchip.com, git@amd.com, michal.simek@amd.com,
-        harini.katakam@amd.com, radhey.shyam.pandey@amd.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v6 00/22] Restructure RPM SMD ICC
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20230526-topic-smd_icc-v6-0-263283111e66@linaro.org>
+ <0764b5fda92acb995ffbd05c4b3d2b2f.sboyd@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <0764b5fda92acb995ffbd05c4b3d2b2f.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,39 +88,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
-
-On Mon, 12 Jun 2023 23:43:38 -0600 you wrote:
-> Add support for partial store and forward mode in Cadence MACB.
+On 15.06.2023 02:49, Stephen Boyd wrote:
+> Quoting Konrad Dybcio (2023-06-14 11:04:19)
+>> This series reshuffles things around, moving the management of SMD RPM
+>> bus clocks to the interconnect framework where they belong. This helps
+>> us solve a couple of issues:
+>>
+>> 1. We can work towards unused clk cleanup of RPMCC without worrying
+>>    about it killing some NoC bus, resulting in the SoC dying.
+>>    Deasserting actually unused RPM clocks (among other things) will
+>>    let us achieve "true SoC-wide power collapse states", also known as
+>>    VDD_LOW and VDD_MIN.
+>>
+>> 2. We no longer have to keep tons of quirky bus clock ifs in the icc
+>>    driver. You either have a RPM clock and call "rpm set rate" or you
+>>    have a single non-RPM clock (like AHB_CLK_SRC) or you don't have any.
+>>
+>> 3. There's less overhead - instead of going through layers and layers of
+>>    the CCF, ratesetting comes down to calling max() and sending a single
+>>    RPM message. ICC is very very dynamic so that's a big plus.
+>>
+>> The clocks still need to be vaguely described in the clk-smd-rpm driver,
+>> as it gives them an initial kickoff, before actually telling RPM to
+>> enable DVFS scaling.  After RPM receives that command, all clocks that
+>> have not been assigned a rate are considered unused and are shut down
+>> in hardware, leading to the same issue as described in point 1.
 > 
-> Link for v1:
-> https://lore.kernel.org/all/20221213121245.13981-1-pranavi.somisetty@amd.com/
-> 
-> Changes v2:
-> 1. Removed all the changes related to validating FCS when Rx checksum
-> offload is disabled.
-> 2. Instead of using a platform dependent number (0xFFF) for the reset
-> value of rx watermark, derive it from designcfg_debug2 register.
-> 3. Added a check to see if partial s/f is supported, by reading the
-> designcfg_debug6 register.
-> 4. Added devicetree bindings for "rx-watermark" property.
-> Link for v2:
-> https://lore.kernel.org/all/20230511071214.18611-1-pranavi.somisetty@amd.com/
-> 
-> [...]
+> Why can't we move the enable of DVFS scaling call to the interconnect
+> driver as well? We want the clk driver to not reference the interconnect
+> resources at all.
+That would result in no rpmcc ratesetting on platforms without a functional
+interconnect driver. The DVFS call concerns both bus and !bus clocks.
 
-Here is the summary with links:
-  - [net-next,v4,1/2] dt-bindings: net: cdns,macb: Add rx-watermark property
-    https://git.kernel.org/netdev/net-next/c/5b32c61a2dac
-  - [net-next,v4,2/2] net: macb: Add support for partial store and forward
-    https://git.kernel.org/netdev/net-next/c/cae4bc06b3e4
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Konrad
