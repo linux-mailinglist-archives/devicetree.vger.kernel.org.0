@@ -2,79 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0F44731396
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6EC7313E4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:32:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245523AbjFOJWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55374 "EHLO
+        id S244373AbjFOJcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:32:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237138AbjFOJWP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:22:15 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF522715;
-        Thu, 15 Jun 2023 02:22:09 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35F82d54022646;
-        Thu, 15 Jun 2023 11:21:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=i1KQomgbTCKKL1jhfJcq7MepijYGukr9j+2PCgWp/oI=;
- b=Vubs1l+rfvAQc9+HOllCIuWdAGDSInzCAuLZaGX1KwvqS7OEx8Sw+SniB9W2TB2sWa9X
- 7F702keig91HWbGFRRbnXLlsGvpJxamz6656v4gbYoEywi8YDW7m+boMRZF1FX6wMHLx
- HeKwkn9GK7jpiQ/JUkNn9g7bH9jh6scgFETkm8elxZWAm5uNOZiPBC1i+8adg56gq9x8
- Q7guEhFM9rWwWVmOchf+RBPujLkrLsNpmCL+pLFj5g481LHrplajBak4/CwIvoV1J11W
- ju7tRR6YHKEQw/+ek9BwlZ2EUVLXWV7rrVp+K8QtN4x0TvuUKnjdLUVBXUKWYQM8zp93 Gw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3r7vkfsqsp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 11:21:50 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C245610002A;
-        Thu, 15 Jun 2023 11:21:49 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B894521A235;
-        Thu, 15 Jun 2023 11:21:49 +0200 (CEST)
-Received: from localhost (10.201.21.210) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 15 Jun
- 2023 11:21:48 +0200
-From:   Yann Gautier <yann.gautier@foss.st.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S240097AbjFOJcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:32:14 -0400
+X-Greylist: delayed 8404 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Jun 2023 02:32:12 PDT
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0001BD2;
+        Thu, 15 Jun 2023 02:32:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686821530; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=NTkz/F98FAB9EP8/uPNmjKI7sbZYPv+bNqmwBuFyCOKQdu8KVL9nvOh2oB64Fvhuuv
+    BHHXHTDDe5DK5+VEEWCzJD+Bf7RlkOo7uBH8NHz7wPMthLuf6YMWiTFQr976EKeGcQih
+    McbAsEyZys+BrwRWx0PoQ8C11ohLsX3toH/KOdDK56hGSA5zSPWaXPkSG98WCetDMexH
+    QcRgxuzE+u14bXH8zXUFAeiZnh48CAHrdX3nBdqpytY4ArPe+AQyox/T1FxuyeDhfJZ/
+    DxK3NbgechROk5wsVcoMcCPjzydOmtU3nxQr6ycVPqp/jwEMrek2OhrufHHh5J7UJaUc
+    BEEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686821530;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=rdXiwRKLa25iA50V22EnrAVG7V/n2VWhkNaXZ8DmZr8=;
+    b=X10A4GWF22LiuWJn5OViyGdA1YZHvgJM/0uR+5N2az6CQ02tpzm0j6h4qR5aDPXV9L
+    uCiWDIinObc6juxl1CEvAxu2WATbiSjT1VkycDsVHcbfJ3XVVQaaWCbMV47pIes2tQJh
+    JpzXeMgEBDuh8zTooJV7YP4pTBGIp1bDDrEdB/YcpRNK5JKXAnVMpSRyOnzhj1CLUjp3
+    Lr/du1yTPx9072caCcTEAiA4T74LG/mjSHwEpC/x1t2bfOztrj5zSwHKDJ3KePesMzet
+    +HTLwkDsZrqn+HR6Z0hidOyJoG+ydEj+6ZMriGFKI/Fh74b7LNMmxs/Idx4MMGTuo/yg
+    icGg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686821529;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=rdXiwRKLa25iA50V22EnrAVG7V/n2VWhkNaXZ8DmZr8=;
+    b=CScb8zj6NZPT3kyX+ABmqs4dpZJYiARr+JjrHvNtOxZWIdUwKvmyDNKF6ZzFNUjjmx
+    bJg+oyiSK0q6edSkSEMbxKJFe5Wd8lmXcWCROSAnUjQkndU2a90eighmSIlFgtUdaouR
+    J9EZgd1pH4w3xAypS08WZqqFgjFEOekfMToIbX69I5tiG2EQoC/KbhJhciRKVBtPKmyG
+    90+Vp69MUiFKSjvZND/oRtQaYArZYCzHhRIJ9JRWu/3nw+E0tmBF/4qr+AnEcayxNPyH
+    kxEIITS4vF8p5u0rhP0smwPqbU0nbkycDVPVAoWjh0M973rlAqRpSCf6mqjmEMGHt/yR
+    JVuQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686821529;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=rdXiwRKLa25iA50V22EnrAVG7V/n2VWhkNaXZ8DmZr8=;
+    b=tbEgi1nYzSiwdc5Huh2N54qlKwSiJkG/wb+vW7cYs38UByHrZh7guoxi5FCHzRQrKt
+    aT+QK8Y7EC4VPXkhkyBg==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGeonQ="
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
+    with ESMTPSA id jaf17fz5F9W92zq
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Thu, 15 Jun 2023 11:32:09 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH 0/9] MIPS: CI20: Add WiFi / Bluetooth support
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20230615090804.GA8625@alpha.franken.de>
+Date:   Thu, 15 Jun 2023 11:32:09 +0200
+Cc:     Paul Cercueil <paul@crapouillou.net>, list@opendingux.net,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        <linux-kernel@vger.kernel.org>, Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        Xiang wangx <wangxiang@cdjrlc.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Yann Gautier <yann.gautier@foss.st.com>
-Subject: [PATCH 6/6] mmc: mmci: stm32: add delay block support for STM32MP25
-Date:   Thu, 15 Jun 2023 11:20:01 +0200
-Message-ID: <20230615092001.1213132-7-yann.gautier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230615092001.1213132-1-yann.gautier@foss.st.com>
-References: <20230615092001.1213132-1-yann.gautier@foss.st.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.210]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-15_06,2023-06-14_02,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <DD2F5891-794C-4154-BBBD-F23C04E6FE05@goldelico.com>
+References: <E1q9iWM-0004zB-00@elvis.franken.de>
+ <20230615090804.GA8625@alpha.franken.de>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,113 +91,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On STM32MP25, the delay block is inside the SoC, and configured through
-the SYSCFG registers. The algorithm is also different from what was in
-STM32MP1 chip.
 
-Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
----
- drivers/mmc/host/mmci_stm32_sdmmc.c | 66 ++++++++++++++++++++++++++++-
- 1 file changed, 65 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/mmc/host/mmci_stm32_sdmmc.c b/drivers/mmc/host/mmci_stm32_sdmmc.c
-index c51c85ca24917..d6112a8dacf8b 100644
---- a/drivers/mmc/host/mmci_stm32_sdmmc.c
-+++ b/drivers/mmc/host/mmci_stm32_sdmmc.c
-@@ -33,6 +33,20 @@
- #define DLYB_LNG_TIMEOUT_US	1000
- #define SDMMC_VSWEND_TIMEOUT_US 10000
- 
-+#define SYSCFG_DLYBSD_CR	0x0
-+#define DLYBSD_CR_EN		BIT(0)
-+#define DLYBSD_CR_RXTAPSEL_MASK	GENMASK(6, 1)
-+#define DLYBSD_TAPSEL_NB	32
-+#define DLYBSD_BYP_EN		BIT(16)
-+#define DLYBSD_BYP_CMD		GENMASK(21, 17)
-+#define DLYBSD_ANTIGLITCH_EN	BIT(22)
-+
-+#define SYSCFG_DLYBSD_SR	0x4
-+#define DLYBSD_SR_LOCK		BIT(0)
-+#define DLYBSD_SR_RXTAPSEL_ACK	BIT(1)
-+
-+#define DLYBSD_TIMEOUT_1S_IN_US	1000000
-+
- struct sdmmc_lli_desc {
- 	u32 idmalar;
- 	u32 idmabase;
-@@ -499,6 +513,46 @@ static int sdmmc_dlyb_mp15_prepare(struct mmci_host *host)
- 	return 0;
- }
- 
-+static int sdmmc_dlyb_mp25_enable(struct sdmmc_dlyb *dlyb)
-+{
-+	u32 cr, sr;
-+
-+	cr = readl_relaxed(dlyb->base + SYSCFG_DLYBSD_CR);
-+	cr |= DLYBSD_CR_EN;
-+
-+	writel_relaxed(cr, dlyb->base + SYSCFG_DLYBSD_CR);
-+
-+	return readl_relaxed_poll_timeout(dlyb->base + SYSCFG_DLYBSD_SR,
-+					   sr, sr & DLYBSD_SR_LOCK, 1,
-+					   DLYBSD_TIMEOUT_1S_IN_US);
-+}
-+
-+static int sdmmc_dlyb_mp25_set_cfg(struct sdmmc_dlyb *dlyb,
-+				   int unit __maybe_unused, int phase,
-+				   bool sampler __maybe_unused)
-+{
-+	u32 cr, sr;
-+
-+	cr = readl_relaxed(dlyb->base + SYSCFG_DLYBSD_CR);
-+	cr &= ~DLYBSD_CR_RXTAPSEL_MASK;
-+	cr |= FIELD_PREP(DLYBSD_CR_RXTAPSEL_MASK, phase);
-+
-+	writel_relaxed(cr, dlyb->base + SYSCFG_DLYBSD_CR);
-+
-+	return readl_relaxed_poll_timeout(dlyb->base + SYSCFG_DLYBSD_SR,
-+					  sr, sr & DLYBSD_SR_RXTAPSEL_ACK, 1,
-+					  DLYBSD_TIMEOUT_1S_IN_US);
-+}
-+
-+static int sdmmc_dlyb_mp25_prepare(struct mmci_host *host)
-+{
-+	struct sdmmc_dlyb *dlyb = host->variant_priv;
-+
-+	dlyb->max = DLYBSD_TAPSEL_NB;
-+
-+	return 0;
-+}
-+
- static int sdmmc_dlyb_phase_tuning(struct mmci_host *host, u32 opcode)
- {
- 	struct sdmmc_dlyb *dlyb = host->variant_priv;
-@@ -639,6 +693,12 @@ static struct sdmmc_tuning_ops dlyb_tuning_mp15_ops = {
- 	.set_cfg = sdmmc_dlyb_mp15_set_cfg,
- };
- 
-+static struct sdmmc_tuning_ops dlyb_tuning_mp25_ops = {
-+	.dlyb_enable = sdmmc_dlyb_mp25_enable,
-+	.tuning_prepare = sdmmc_dlyb_mp25_prepare,
-+	.set_cfg = sdmmc_dlyb_mp25_set_cfg,
-+};
-+
- void sdmmc_variant_init(struct mmci_host *host)
- {
- 	struct device_node *np = host->mmc->parent->of_node;
-@@ -657,7 +717,11 @@ void sdmmc_variant_init(struct mmci_host *host)
- 		return;
- 
- 	dlyb->base = base_dlyb;
--	dlyb->ops = &dlyb_tuning_mp15_ops;
-+	if (of_device_is_compatible(np, "st,stm32mp25-sdmmc2"))
-+		dlyb->ops = &dlyb_tuning_mp25_ops;
-+	else
-+		dlyb->ops = &dlyb_tuning_mp15_ops;
-+
- 	host->variant_priv = dlyb;
- 	host->mmc_ops->execute_tuning = sdmmc_execute_tuning;
- }
--- 
-2.25.1
+> Am 15.06.2023 um 11:08 schrieb Thomas Bogendoerfer =
+<tsbogend@alpha.franken.de>:
+>=20
+> On Thu, Jun 15, 2023 at 10:39:53AM +0200, Paul Cercueil wrote:
+>> Thomas: are you able to drop this series from mips-next, or should =
+I/we send fixup patches instead?
+>=20
+> as I'm not rebasing mips-next I need fixup patches. This won't solve
+> bisectability, but not doing rebases is the what Linus prefers.
+
+Indeed. I have found some very old statements on this topic:
+https://yarchive.net/comp/linux/git_rebase.html
+
+> > How do I insert build fixes into existing changesets so that the =
+tree
+> > is more bisectable?
+>=20
+> Just delay pushing out. There really is _zero_ downside to this. None =
+at
+> all. There are only upsides.
+
+...
+
+> Also, I'd *much* rather have a few problems in the tree than have =
+people
+> screw up history in order to hide them. Sure, we want to keep things
+> bisectable, but quite frankly, if you do a reasonable job and compile =
+the
+> kernel before you push out, it will be "mostly bisectable".
+>=20
+> And yes, mistakes happen. Mistakes will *always* happen. It's ok. =
+Relax.
+
+...
+
+> So in short:
+>=20
+>  - clean trees and bisectability are all wonderful things. No doubt =
+about
+>    that at all.
+>=20
+>  - but if getting there means that you lose a lot of _other_ wonderful
+>    things (like being able to trust history, and the people being =
+under
+>    your watchful eyes having to deal with you re-writing their trees),
+>    we'd be much better off taking the occasional commit that fixes =
+things
+>    up _after_ the fact rather than before!
+>=20
+>  - and you actually can help fix your issues by doing some simple =
+things
+>    *before* pushing out, rather than push out immediately. IOW, do =
+your
+>    whitespace sanity fixes, your compile checks etc early, and don't =
+push
+>    out until after you've done them.
+
+...
+
+> So:
+>  - making things public is *different* from developing them. Don't =
+push
+>    out just because you committed something!
+>=20
+>  - you shouldn't publicize a tree until it's in reasonable shape. =
+EVER.
+>    Even -mm or -next is *not* better off with a pile of sh*t just =
+because
+>    you're working in that area.
+>=20
+>    I cannot stress this enough. I think Andrew has been way too polite =
+to
+>    some people.
+>=20
+>  - and once it is, you generally shouldn't mess with old commits even =
+when
+>    you fix things. Full cleanliness or always being able to bisect
+>    specific configurations is not an excuse for messing up all the =
+other
+>    things, and if this problem happens a lot, I would like to point =
+you to
+>    the two previous points.
+>=20
+
+...
+
+> And btw, a *big* part of the above is also:
+>=20
+>  - mistakes happen.
+>=20
+> There will be bugs. There will be cases where things aren't bisectable
+> (although they should generally be bisectable for *your* =
+configuration,
+> because if they aren't, that shows that you didn't even compile the
+> commits you made).
+>=20
+> And there will be kernels that don't boot. Even expecting people to =
+always
+> boot-test every single commit would be unrealistic - let's face it, =
+most
+> things look really obvious, and the fact that even obvious fixes can =
+have
+> bugs doesn't mean that there should be hard rules about "every single
+> commit has to be boot-tested on X machines".
+>=20
+> So it's an important part of the process to try to do a good job, and =
+not
+> publicizing crap - but it's *equally* important to realize that crap
+> happens, and that it's easily *more* distracting to try to clean it up
+> after-the-fact than it is to just admit that it happened.
+
+Ok, then we have to keep this series as is and fix it on top (just for
+my V2a board since it seems to work for Paul for a different version).
+
+So let's focus on the fixes.
+
+Best regards,
+Nikolaus
+
+
+>=20
+> Thomas.
+>=20
+> --=20
+> Crap can work. Given enough thrust pigs will fly, but it's not =
+necessarily a
+> good idea.                                                [ RFC1925, =
+2.3 ]
 
