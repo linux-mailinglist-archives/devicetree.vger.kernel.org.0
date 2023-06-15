@@ -2,66 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFACD731DF1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 18:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81E2C731E1D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 18:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbjFOQil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 12:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40508 "EHLO
+        id S236672AbjFOQqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 12:46:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjFOQik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 12:38:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFECFE69;
-        Thu, 15 Jun 2023 09:38:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 549D361999;
-        Thu, 15 Jun 2023 16:38:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32A5EC433C8;
-        Thu, 15 Jun 2023 16:38:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686847118;
-        bh=F22bVWQutuqXY4+tXA/ymZHSWuT7v9Xwt1AL5BPn/Ug=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TgMX6Ci6I/OTSdrWAA8xWQSNewYLAz7PSAhLvL3XEzyiVsdb+fa57gAMuSUwJ+VEi
-         D8peYgh/500K9tDptketizD2OyA11Z9hhQs6EfhuUskeux0oqWl1R+mCVtTf1/81+v
-         WtdrbmquTupacBXtvNEhXwID/vFmAChiMbU0Rd9+1KgutYzZej0tuI5WzYw2H6i9In
-         hUnf6QzByudzLsdKs41jDQEcyW2DSllNSYGdAsXV6+gMhklsyGScmJxqcOZc49zGMt
-         429G5Mod+R821/wtV1v4dEzJH3zLalqcpx+xvhGYorAq+EMGOoQMFmMzKLHwX5UXZT
-         aOuOAZMjJ/hMQ==
-Date:   Thu, 15 Jun 2023 09:41:58 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jingoo Han <jingoohan1@gmail.com>, linux-tegra@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-pwm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, linux-leds@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Helge Deller <deller@gmx.de>,
-        linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/4] video: backlight: lp855x: modernize
- bindings
-Message-ID: <20230615164158.6tpsd766mqx3o7y4@ripper>
-References: <20230519180728.2281-1-aweber.kernel@gmail.com>
- <168669542896.1315701.6764382551599027707.b4-ty@kernel.org>
+        with ESMTP id S236686AbjFOQp0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 12:45:26 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129B82D60;
+        Thu, 15 Jun 2023 09:44:56 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-77aecbadfefso234365939f.3;
+        Thu, 15 Jun 2023 09:44:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686847494; x=1689439494;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xsMBqmgF0rY87deAgbWAVQ8J/025bqTGL9yMoTkGyWU=;
+        b=SMlQunxbHbKK47ouyag+dETywVyhzD26dcONEs7vSOYhDWfjp8N7Z/XMkuhlvzV8Fk
+         hPcRd7y62Xv8cIsYwlyklELVkv2mR5URg3qywtid5cFSFENxrRyXqlQ7vhlcLES598Re
+         /d4XGmZavHl+0SKVK0WfYIjhCBuzpGWodJztAXIMi5N/aEfuHKqc39FmgQIAnlIzHl3u
+         cQDVroFRHsW4yLo4EtjR83bENCQhGN18YC1l/9++Lg5dAR215J9NWtcD5A/X025+HxRZ
+         ZmTyo3zAnmLlNLFsSH0kikHfW2/IOwqzJCO06Ko+4wlCs1qtkw4VyWqH6LFqUcYQyP2b
+         NAlA==
+X-Gm-Message-State: AC+VfDyuYJLiunlpq3F2OHoh9cfT7r/EtdaT1fnPJ8pftn94+JbY9Zbe
+        XNbAvSvL2x/ZbZxNhhl40A==
+X-Google-Smtp-Source: ACHHUZ71kVLmLSj4RnOUsJPwuM9aCjRiUNC1DqZl8ZeK+7GmQZnX14smCeAQpYiHRP1TlutY6DZBiw==
+X-Received: by 2002:a6b:db14:0:b0:777:b765:661a with SMTP id t20-20020a6bdb14000000b00777b765661amr18187638ioc.14.1686847494494;
+        Thu, 15 Jun 2023 09:44:54 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id i14-20020a02ca4e000000b00411b2414eb5sm5610532jal.94.2023.06.15.09.44.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jun 2023 09:44:53 -0700 (PDT)
+Received: (nullmailer pid 1173348 invoked by uid 1000);
+        Thu, 15 Jun 2023 16:44:52 -0000
+Date:   Thu, 15 Jun 2023 10:44:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v1 1/1] of/platform: Propagate firmware node by calling
+ device_set_node()
+Message-ID: <20230615164452.GA1166619-robh@kernel.org>
+References: <20230615145243.37095-1-andriy.shevchenko@linux.intel.com>
+ <ZIsnaE95qIJ2DVzK@smile.fi.intel.com>
+ <ZIsnvXztBQvtYw9b@smile.fi.intel.com>
+ <ZIsoWBxb8aGdJ4ja@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <168669542896.1315701.6764382551599027707.b4-ty@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <ZIsoWBxb8aGdJ4ja@smile.fi.intel.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,33 +66,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 03:30:10PM -0700, Bjorn Andersson wrote:
-> On Fri, 19 May 2023 20:07:24 +0200, Artur Weber wrote:
-> > Convert TI LP855X backlight controller bindings from TXT to YAML and,
-> > while we're at it, rework some of the code related to PWM handling.
-> > Also correct existing DTS files to avoid introducing new dtb_check
-> > errors.
+On Thu, Jun 15, 2023 at 06:03:52PM +0300, Andy Shevchenko wrote:
+> On Thu, Jun 15, 2023 at 06:01:17PM +0300, Andy Shevchenko wrote:
+> > On Thu, Jun 15, 2023 at 05:59:52PM +0300, Andy Shevchenko wrote:
+> > > On Thu, Jun 15, 2023 at 05:52:43PM +0300, Andy Shevchenko wrote:
+> > > > Insulate of_device_alloc() and of_amba_device_create() from possible
+> > > > changes to fwnode_handle implementation by using device_set_node()
+> > > > instead of open-coding dev->dev.fwnode assignments.
+> > > 
+> > > Side note. When I preparing this change I have noticed a lot of
+> > > 
+> > > 	dev_set_name(... dev_name())
 > > 
-> > Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> > Plus
 > > 
-> > [...]
+> > 	dev_set_name(dev, ...)
+> > 	...
+> > 	dev_set_name(dev, ...)
+> > 
+> > on the same device will also give a memory leak.
 > 
-> Applied, thanks!
+> Ah, seems false alarm, the kobject_set_name_vargs() frees the old one.
+> Sorry for the noise for second point. But the first one still applies.
 > 
-> [4/4] arm64: dts: adapt to LP855X bindings changes
->       commit: ebdcfc8c42c2b9d5ca1b27d8ee558eefb3e904d8
-> 
+> > > in the code which seems to me problematic in two ways:
+> > > 1) (minor) the dev_set_name() may fail, no checks are there;
 
-Sorry, that was not for me to pick up. So I've dropped this change
-again.
+Is there anything besides a memory alloc failure? What will print a 
+message already. Wouldn't we fail a bit later on when adding the 
+device anyways?
 
-Please note that all other changes to the affected file is prefixed
-"arm64: tegra:". Following this is a good idea, and would have helped me
-not accidentally pick this change.
+In a rough count, 92 out of 500 cases check the return of 
+dev_set_name().
 
-Regards,
-Bjorn
-
-> Best regards,
-> -- 
-> Bjorn Andersson <andersson@kernel.org>
+Rob
