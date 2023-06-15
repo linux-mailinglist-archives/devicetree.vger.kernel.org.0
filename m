@@ -2,64 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA3D5731576
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3D4773157B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235699AbjFOKf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44636 "EHLO
+        id S245371AbjFOKfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:35:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343805AbjFOKfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:35:02 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B1A2D57;
-        Thu, 15 Jun 2023 03:34:51 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAYjeo126737;
-        Thu, 15 Jun 2023 05:34:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686825285;
-        bh=wh0QqwRSPw29Uvn4QmDhToM9IHpmqbwMJmSZ/t9TW8Y=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=kcQoxDgi8XgMhoUgTcr9kZK2ME/i3TJm/k4GbuHkTqTmfwaOGuj6uVzJVWlD6aEdo
-         t9hX8Kf5wvY8w8mxOlO2FtXyyXQ9H0NLCtmqOHTpHDan7XvKYjxs7hfIPA1qmsi06g
-         La/+EOHYMtI62yrGCGexQPIR2N9GMD04wU15vvTE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAYjOQ085547
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 05:34:45 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 05:34:45 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 05:34:45 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAYgBP117046;
-        Thu, 15 Jun 2023 05:34:43 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bhavya Kapoor <b-kapoor@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <nm@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: Enable support for high speed modes
-Date:   Thu, 15 Jun 2023 16:04:40 +0530
-Message-ID: <168681785699.2096385.9821957808447105813.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230502090814.144791-1-b-kapoor@ti.com>
-References: <20230502090814.144791-1-b-kapoor@ti.com>
+        with ESMTP id S245475AbjFOKfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:35:34 -0400
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3006::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D495F212A;
+        Thu, 15 Jun 2023 03:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202212; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=5tjG7fTn80mFODGDPDCGElfropwD1cl6RdLdwU6sFGM=; b=LJhx+eePN7naR6BdcMOLRU/g9y
+        aU7yjuRBg3KnRL91F1c8KBS64B5f472cvkh9lJ6Tbk3IO9fDlePa8s3RmdHFWtQU6EQ2S/6qFp7A0
+        NaqxVzlReLG78LLIIOws8xyqPMq/ghnSugslgHA4N1xOAfmK5dV4gQ+eG5PigGUt2S35aFSEJCmeN
+        mXrj/KbBLTBi9CWbY96D0tjPlps6zjYAPD5J2wyCV8PB8iou3EdKkdOV+ymtueZPz0xYCv1dgYURz
+        0oNvlYxBq2xdUMWL+XtCF7jzwqKsbCb+gGt1ickd+axS/aptkEK7oEWRVTmbXpau8IZ8pSQM08YwH
+        oD7RolUg==;
+Received: from [2a01:799:961:2c00:5fc6:a9a5:c042:d1cd] (port=59132)
+        by smtp.domeneshop.no with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <noralf@tronnes.org>)
+        id 1q9kK8-0071Va-QB;
+        Thu, 15 Jun 2023 12:35:28 +0200
+Message-ID: <81007308-02dc-b1fb-f336-21bc25033c12@tronnes.org>
+Date:   Thu, 15 Jun 2023 12:35:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 2/8] dt-bindings: display: panel: mipi-dbi-spi: add
+ shineworld lh133k compatible
+Content-Language: en-US
+To:     =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     kernel@pengutronix.de, Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, noralf@tronnes.org
+References: <20230614123222.4167460-1-l.goehrs@pengutronix.de>
+ <20230614123222.4167460-3-l.goehrs@pengutronix.de>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20230614123222.4167460-3-l.goehrs@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -67,19 +71,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 02 May 2023 14:38:14 +0530, Bhavya Kapoor wrote:
-> eMMC tuning was incomplete earlier, so support for high speed modes was
-> kept disabled. Remove no-1-8-v property to enable support for high
-> speed modes for eMMC in J784S4 SoC.
+
+On 6/14/23 14:32, Leonard Göhrs wrote:
+> The Shineworld LH133K is a 1.3" 240x240px RGB LCD with a MIPI DBI
+> compatible SPI interface.
+> The initialization procedure is quite basic with the exception of
+> requiring inverted colors.
+> A basic mipi-dbi-cmd[1] script to get the display running thus looks
+> like this:
 > 
+>     $ cat shineworld,lh133k.txt
+>     command 0x11 # exit sleep mode
+>     delay 120
 > 
+>     # The display seems to require display color inversion, so enable it.
+>     command 0x21 # INVON
+> 
+>     # Enable normal display mode (in contrast to partial display mode).
+>     command 0x13 # NORON
+>     command 0x29 # MIPI_DCS_SET_DISPLAY_ON
+> 
+>     $ mipi-dbi-cmd shineworld,lh133k.bin shineworld,lh133k.txt
+> 
+> [1]: https://github.com/notro/panel-mipi-dbi
+> 
+> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
 
-Applied, thanks!
+Normally I would take this trough drm-misc-next but -rc6 is the cutoff
+so if I do that it won't make it to 6.5. If the other patches make it to
+6.5 the dtb checks will fail. I'm okay with the patches going through
+another tree if that's preferred. Let me know if I should apply the
+mipi-dbi-spi patches.
 
-[1/1] arm64: dts: ti: k3-j784s4-main: Enable support for high speed modes
-      commit: 0bc425484e9c5fffc2b94e4a9a474401f2210d5f
+Reviewed-by: Noralf Trønnes <noralf@tronnes.org>
 
-Best regards,
--- 
-Vignesh
-
+>  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml    | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> index 9b701df5e9d28..c07da1a9e6288 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> @@ -67,6 +67,7 @@ properties:
+>      items:
+>        - enum:
+>            - sainsmart18
+> +          - shineworld,lh133k
+>        - const: panel-mipi-dbi-spi
+>  
+>    write-only:
