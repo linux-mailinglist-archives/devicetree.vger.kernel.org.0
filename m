@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EAC2731A3F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0D44731A4A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:41:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344366AbjFONk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:40:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
+        id S1344037AbjFONla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:41:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344442AbjFONkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:40:37 -0400
+        with ESMTP id S238823AbjFONlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:41:06 -0400
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDBB448D;
-        Thu, 15 Jun 2023 06:39:32 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDdFLn016323;
-        Thu, 15 Jun 2023 08:39:15 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFC7B2D49;
+        Thu, 15 Jun 2023 06:40:37 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FDeXTf016932;
+        Thu, 15 Jun 2023 08:40:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686836355;
-        bh=2/pBkqDceYj9n0f+/NIxgpHbw2aZzs7700cTCtTWooY=;
+        s=ti-com-17Q1; t=1686836433;
+        bh=uHLcCzVHIEFkUgZbxEL9EAV3LiC/LMck/W3AA/tZngk=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=I2yEe5Te+hrjmA64vfviScLXJJRm+nhiKTE3f41t69kH7SCz6lvowWXQYofgmNskq
-         mnwAL1efvSUGzUvV4mk5okAqek6o95VLmlHCmi3bsfDXQq2Kus3u0DXsmKoSC+J3/e
-         9exTgGEg/eB73YSbdkW6d7EASCWYV2peSNifPuWo=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDdFJg124047
+        b=O6QIfzMzj6X6Gqr0s9NDj3fSTYNMN5+yquZGDCiOPph+UfFfRo2T/kZFc8SxvgNks
+         RUksbAS3fltQiVjFu6s0kv1QX/W+nXdcB9Ly2buWrRl6CL3DVCFvRfdaI3eQO72G5l
+         WEFj7KIkSuo6TgfBxo+TOR5YEATSmtexXQdQXH2w=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FDeXIh062978
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Jun 2023 08:39:15 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 15 Jun 2023 08:40:33 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Jun 2023 08:39:14 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 08:40:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Jun 2023 08:39:14 -0500
+ Frontend Transport; Thu, 15 Jun 2023 08:40:32 -0500
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDdBpm011260;
-        Thu, 15 Jun 2023 08:39:12 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FDeSCJ102483;
+        Thu, 15 Jun 2023 08:40:29 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Udit Kumar <u-kumar1@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>
-Subject: Re: [PATCH 0/9] arm64: dts: ti: k3-j721e-*: Fix up pinmux and aliases
-Date:   Thu, 15 Jun 2023 19:09:09 +0530
-Message-ID: <168683627164.2366271.3394284993273377362.b4-ty@ti.com>
+        Tero Kristo <kristo@kernel.org>, <vaishnav.a@ti.com>,
+        <afd@ti.com>, <u-kumar1@ti.com>
+Subject: Re: (subset) [PATCH 0/3] arm64: dts: ti: k3-j7200: Fixes for various dtbs_checks warnings
+Date:   Thu, 15 Jun 2023 19:10:27 +0530
+Message-ID: <168681817160.2098323.13159910495290581719.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230601183151.1000157-1-nm@ti.com>
-References: <20230601183151.1000157-1-nm@ti.com>
+In-Reply-To: <20230424173623.477577-1-nm@ti.com>
+References: <20230424173623.477577-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -71,39 +69,21 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Nishanth Menon,
 
-On Thu, 01 Jun 2023 13:31:42 -0500, Nishanth Menon wrote:
-> This series cleansup k3-j721e platforms for pinmuxes and aliases.
-> Provide complete description of uart and i2c instead of piggy-backing on
-> bootloader configurations, ensure board detection eeproms are defined,
-> aliases be defined in the board files as well.
+On Mon, 24 Apr 2023 12:36:20 -0500, Nishanth Menon wrote:
+> Few fixups for j7200 dtbs_check warnings.
 > 
-> Many of these changes were maintained in u-boot tree, and this moves
-> those orphan changes to the super set definition in kernel.
+> Bootlog: https://gist.github.com/nmenon/6a37fca2f05633b7153e661d2516deab
+> 
+> NOTE: lets see the discussion summary of [1] to see where to take this
+> series, but, I will put it out here in the list for discussion anyways.
 > 
 > [...]
-
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/9] arm64: dts: ti: k3-j721e-sk: Add missing uart pinmuxes
-      commit: acfb362a9c78d6708080cdd850b036225c78371b
-[2/9] arm64: dts: ti: k3-j721e-sk: Enable wakeup_i2c0 and eeprom
-      commit: 1b4b376c878b36d1a1c848ebc885487e4cad2546
-[3/9] arm64: dts: ti: j721e-som/common-proc-board: Add product links
-      commit: 26efc8d1ad0cc14e2740d310935fa146b1fc5a58
-[4/9] arm64: dts: ti: j721e-common-proc-board: Add uart pinmux
-      commit: 86718345b4d3c0d386b3f73ef43e7f72ff04cf4a
-[5/9] arm64: dts: ti: k3-j721e-som-p0: Enable wakeup_i2c0 and eeprom
-      commit: b04b18ccb3d5c19c864c10f7cc7b014218aecb22
-[6/9] arm64: dts: ti: k3-j721e-beagleboneai64: Add wakeup_uart pinmux
-      commit: 4c2c99026ca1525912b40cbc1b69306145ce7082
-[7/9] arm64: dts: ti: k3-j721e-sk: Define aliases at board level
-      commit: d1a4304c149d1a26a912d532501ead42e5952501
-[8/9] arm64: dts: ti: k3-j721e-common-proc-board: Define aliases at board level
-      commit: ff59580bf2580ec262098399aab03dfca537bec8
-[9/9] arm64: dts: ti: k3-j721e: Drop SoC level aliases
-      commit: 8be20986e0c54420e52048d20bdc31e3a8aec93f
+[1/3] arm64: dts: ti: k3-j7200-mcu-wakeup: Remove 0x unit address prefix from nodename
+      commit: 4c3cdac1955a5274a42d915e98827ba0f136c286
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
