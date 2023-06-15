@@ -2,86 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D967314F4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB68B731522
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:22:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241406AbjFOKMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 06:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33760 "EHLO
+        id S243836AbjFOKWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 06:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240601AbjFOKM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:12:29 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ED692713
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:12:27 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f8cdb12719so15057405e9.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:12:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686823945; x=1689415945;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zz9EX+Ta4PloLk34RJ2hnXK/x9oTdPVOw0dFQbZy70I=;
-        b=frDkKppf7lZoIiLPcx/27B7RgHBKXqgtzlP/rh77BLFE3SROa9LxxSjX0hYVsi93Eh
-         pihQ2Zb5eyq7gMv33tbGJsRj+Qug3TvDMAJx+xdvCazTNVcRub4Ku3T2MqOG/t9CJ4VA
-         BGlhoRaR5ctRw9tEmpJZ2DsMImtcr2nxcf6TtacCV71di92Q2LJrLGygNFVjKwT2SuCf
-         2AMISPslSoznjAM6va9T7YngkUzSBuU6lJUPjNsasWZUiKvG6RFDdYYIxyDVbOOE86f0
-         VowdSZaUy1Yp2rGYAOwJLEtpaJ+JYGdGN0MqOMnuQxxPUpY4ckofRlcherP+O8FWZeYw
-         Vy1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686823945; x=1689415945;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zz9EX+Ta4PloLk34RJ2hnXK/x9oTdPVOw0dFQbZy70I=;
-        b=M/iXJ//dA9qrStVhpuMhYsF5suFyPMTda8JWiDqigbs6TIaocih+x8fvULSvuFRDtw
-         kjfURxWHBozcAw1Pl8bwfRIU7oF+7/T8VVuOp4hpMrI/mf1L25o6Tq4fd6Mu+/wGFVgc
-         vWCyNfZRTvVdMcQFP1KpmC3LzkccKVAr2LGIIeiM7TpBvcDf6CMsgUwjvqIjlAYV5T3z
-         ULngBoXAwUk7cdY3NlyRDwxpfz0rByvkq/Ha3ebBsU9PDKgqAzaWf55MvbxKs3nvFx//
-         YUsBkomuk+8JaC0qc12RiOi78QtHL0PbwVH3RuZkMXwHSPmMS4uJg9kIc6hyWKlVJ48e
-         vVkA==
-X-Gm-Message-State: AC+VfDwfI+WpSMlndtRtPheNFebL6xqW2e7jJ9TRmsL+8k0PdJdyULKW
-        muiY9zx5Jc2sVykkrPnjdnjjyw==
-X-Google-Smtp-Source: ACHHUZ6cP3h9pbkk+CWbJrI5Giw2RTOJdpJN7rRK57+WSwcGuPKNLwcuav9AADz+5ttsuona8PGN8g==
-X-Received: by 2002:a5d:6442:0:b0:311:d35:e23f with SMTP id d2-20020a5d6442000000b003110d35e23fmr2990366wrw.27.1686823945596;
-        Thu, 15 Jun 2023 03:12:25 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f60a:f5e3:7ae:6745? ([2a01:e0a:982:cbb0:f60a:f5e3:7ae:6745])
-        by smtp.gmail.com with ESMTPSA id f11-20020a5d50cb000000b0030fb828511csm13974283wrt.100.2023.06.15.03.12.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 03:12:25 -0700 (PDT)
-Message-ID: <44ebcc5e-d424-0e5f-1384-19397a0c36ae@linaro.org>
-Date:   Thu, 15 Jun 2023 12:12:24 +0200
+        with ESMTP id S230389AbjFOKWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:22:33 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCC7EAC;
+        Thu, 15 Jun 2023 03:22:31 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAMOkn124558;
+        Thu, 15 Jun 2023 05:22:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686824544;
+        bh=dDwybbfVtjuCp67WsqlxXc7FQmiEac9ZSane3r/Bcrs=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=ClUBlbeAQddvEz3LoCkFDfK36GE0FT685OM0WhF3K7RJZ7r8GPqSk8GS/o0WJpRtK
+         4XSUA7+2S145fQI7ZeNxuLhN3cpp9XDrB4CqSK1Fr4IEJJu081DSThJwEpoIBYiQXe
+         CvzZhmFC1ypmh3v6hpPublrgogrqwl5D4EOjGi/U=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAMOeR025208
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 05:22:24 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 05:22:23 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 05:22:23 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAMKx7022328;
+        Thu, 15 Jun 2023 05:22:21 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Bryan Brattlof <bb@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ARM Linux Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/6] add VTM nodes to TI's K3 SoCs
+Date:   Thu, 15 Jun 2023 15:52:17 +0530
+Message-ID: <168681817145.2098323.12531563189730512154.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230120003051.9100-1-bb@ti.com>
+References: <20230120003051.9100-1-bb@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230601-topic-sm8x50-upstream-redriver-v3-0-988c560e2195@linaro.org>
- <20230601-topic-sm8x50-upstream-redriver-v3-2-988c560e2195@linaro.org>
- <2023061514-wager-iphone-cf71@gregkh>
-Organization: Linaro Developer Services
-Subject: Re: [PATCH v3 2/2] usb: typec: add support for the nb7vpq904m Type-C
- Linear Redriver
-In-Reply-To: <2023061514-wager-iphone-cf71@gregkh>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,46 +68,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2023 11:47, Greg Kroah-Hartman wrote:
-> On Tue, Jun 13, 2023 at 04:50:08PM +0200, neil.armstrong@linaro.org wrote:
->> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>
->> Add support for the ON Semiconductor NB7VPQ904M Type-C USB SuperSpeed
->> and DisplayPort ALT Mode Linear Redriver chip found on some devices
->> with a Type-C port.
->>
->> The redriver compensates ultra High-Speeed DisplayPort and USB
->> Super Speed signal integrity losses mainly due to PCB & transmission
->> cables.
->>
->> The redriver doesn't support SuperSpeed lines swapping, but
->> can support Type-C SBU lines swapping.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/usb/typec/mux/Kconfig      |   8 +
->>   drivers/usb/typec/mux/Makefile     |   1 +
->>   drivers/usb/typec/mux/nb7vpq904m.c | 529 +++++++++++++++++++++++++++++++++++++
->>   3 files changed, 538 insertions(+)
-> 
-> I get the following build error on my system with this applied:
-> 
->    CC [M]  drivers/usb/typec/mux/nb7vpq904m.o
-> drivers/usb/typec/mux/nb7vpq904m.c: In function ‘nb7vpq904m_register_bridge’:
-> drivers/usb/typec/mux/nb7vpq904m.c:327:20: error: ‘struct drm_bridge’ has no member named ‘of_node’
->    327 |         nb7->bridge.of_node = nb7->client->dev.of_node;
->        |                    ^
-> 
-> 
-> What went wrong?
+Hi Bryan Brattlof,
 
-DRM bridge attach should be protected by #ifdef CONFIG_OF aswell, I'll send a v4 with such fix.
+On Thu, 19 Jan 2023 18:30:45 -0600, Bryan Brattlof wrote:
+> This patch series adds in basic VTM nodes for all of TI's K3 SoCs. As of
+> right now these do not do much other than add thermal entries into the
+> sysfs directory and power down the device once it's exceeded a critical
+> temperature.
+> 
+> Changes from v1:
+> - Fixed indexing of thermal nodes[0]
+> 
+> [...]
 
-Thanks for the report,
-Neil
-> 
-> thanks,
-> 
-> greg k-h
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/6] arm64: dts: ti: k3-am64-main: add VTM node
+      commit: 96135297a76003faae68e3aa86e2e19851510eb9
+[2/6] arm64: dts: ti: k3-am62-wakeup: add VTM node
+      commit: bbb6dc62505acf6fcb80573f7e7a59875c33be0d
+[3/6] arm64: dts: ti: k3-j721e-mcu-wakeup: add VTM node
+      commit: 8fb4e87c55979c1f6691346205b884d1863ca6db
+[4/6] arm64: dts: ti: k3-j721s2-mcu-wakeup: add VTM node
+      commit: d148e3fe52c855b1709ed031eff6e63e87ad0372
+[5/6] arm64: dts: ti: k3-j7200-mcu-wakeup: add VTM node
+      commit: 4aa6586a9720849527379c415d0977f0d5bcfcac
+[6/6] arm64: dts: ti: k3-am62a-wakeup: add VTM node
+      commit: 225312fbaf37bb283dbc92a0a1d4dfe58629ab64
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
