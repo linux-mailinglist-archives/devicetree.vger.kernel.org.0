@@ -2,88 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D6EC7313E4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:32:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12283731428
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 11:37:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244373AbjFOJcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 05:32:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34102 "EHLO
+        id S1343550AbjFOJhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 05:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240097AbjFOJcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:32:14 -0400
-X-Greylist: delayed 8404 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Jun 2023 02:32:12 PDT
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0001BD2;
-        Thu, 15 Jun 2023 02:32:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686821530; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=NTkz/F98FAB9EP8/uPNmjKI7sbZYPv+bNqmwBuFyCOKQdu8KVL9nvOh2oB64Fvhuuv
-    BHHXHTDDe5DK5+VEEWCzJD+Bf7RlkOo7uBH8NHz7wPMthLuf6YMWiTFQr976EKeGcQih
-    McbAsEyZys+BrwRWx0PoQ8C11ohLsX3toH/KOdDK56hGSA5zSPWaXPkSG98WCetDMexH
-    QcRgxuzE+u14bXH8zXUFAeiZnh48CAHrdX3nBdqpytY4ArPe+AQyox/T1FxuyeDhfJZ/
-    DxK3NbgechROk5wsVcoMcCPjzydOmtU3nxQr6ycVPqp/jwEMrek2OhrufHHh5J7UJaUc
-    BEEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686821530;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=rdXiwRKLa25iA50V22EnrAVG7V/n2VWhkNaXZ8DmZr8=;
-    b=X10A4GWF22LiuWJn5OViyGdA1YZHvgJM/0uR+5N2az6CQ02tpzm0j6h4qR5aDPXV9L
-    uCiWDIinObc6juxl1CEvAxu2WATbiSjT1VkycDsVHcbfJ3XVVQaaWCbMV47pIes2tQJh
-    JpzXeMgEBDuh8zTooJV7YP4pTBGIp1bDDrEdB/YcpRNK5JKXAnVMpSRyOnzhj1CLUjp3
-    Lr/du1yTPx9072caCcTEAiA4T74LG/mjSHwEpC/x1t2bfOztrj5zSwHKDJ3KePesMzet
-    +HTLwkDsZrqn+HR6Z0hidOyJoG+ydEj+6ZMriGFKI/Fh74b7LNMmxs/Idx4MMGTuo/yg
-    icGg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686821529;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=rdXiwRKLa25iA50V22EnrAVG7V/n2VWhkNaXZ8DmZr8=;
-    b=CScb8zj6NZPT3kyX+ABmqs4dpZJYiARr+JjrHvNtOxZWIdUwKvmyDNKF6ZzFNUjjmx
-    bJg+oyiSK0q6edSkSEMbxKJFe5Wd8lmXcWCROSAnUjQkndU2a90eighmSIlFgtUdaouR
-    J9EZgd1pH4w3xAypS08WZqqFgjFEOekfMToIbX69I5tiG2EQoC/KbhJhciRKVBtPKmyG
-    90+Vp69MUiFKSjvZND/oRtQaYArZYCzHhRIJ9JRWu/3nw+E0tmBF/4qr+AnEcayxNPyH
-    kxEIITS4vF8p5u0rhP0smwPqbU0nbkycDVPVAoWjh0M973rlAqRpSCf6mqjmEMGHt/yR
-    JVuQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686821529;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=rdXiwRKLa25iA50V22EnrAVG7V/n2VWhkNaXZ8DmZr8=;
-    b=tbEgi1nYzSiwdc5Huh2N54qlKwSiJkG/wb+vW7cYs38UByHrZh7guoxi5FCHzRQrKt
-    aT+QK8Y7EC4VPXkhkyBg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGeonQ="
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
-    with ESMTPSA id jaf17fz5F9W92zq
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Thu, 15 Jun 2023 11:32:09 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH 0/9] MIPS: CI20: Add WiFi / Bluetooth support
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20230615090804.GA8625@alpha.franken.de>
-Date:   Thu, 15 Jun 2023 11:32:09 +0200
-Cc:     Paul Cercueil <paul@crapouillou.net>, list@opendingux.net,
+        with ESMTP id S1343538AbjFOJgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 05:36:48 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AF252D56;
+        Thu, 15 Jun 2023 02:35:52 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686821716;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=tdk5EMEjl4leBhCxd1dmifb+WUt3kNNJIw7zVJ9fvlo=;
+        b=U5+zUg/GID9mrvw0SW2BWCeDcaoAOEp/x/CgseFY3XWUmPL01J0zoSq/8Va6ysMEa+X2Du
+        hsEvgRUCZUQwpF1yVxAhgaTTUMR+d9IcLt1jL21WeuTm9jf4tWTyH7eYHu/FLMvFKbPPKS
+        fniYUoDybjmi7sgME9oGudRDePLP9gewe837b+SdOxHNRdeorTL0Znk08Te/cM+54u0K/d
+        KFsV1CNJkzDYqMAN1ADrLGFOKKKRCjCrHXaipr0XgxonwmxTEqP6Gv7S1cMFePSxtOSpmb
+        XxpB4l2oL31c1jr60EZKbJpLknHS2918mQYjyMjVrVbJiQcvBF6OViTlV43w4A==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0EC9EE0007;
+        Thu, 15 Jun 2023 09:35:13 +0000 (UTC)
+Date:   Thu, 15 Jun 2023 11:35:12 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <DD2F5891-794C-4154-BBBD-F23C04E6FE05@goldelico.com>
-References: <E1q9iWM-0004zB-00@elvis.franken.de>
- <20230615090804.GA8625@alpha.franken.de>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-X-Mailer: Apple Mail (2.3445.104.21)
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
+Message-ID: <20230615113512.07967677@bootlin.com>
+In-Reply-To: <CAHp75VfFyDzr4qHNssXZ8RLy0gxMWdjBgac4JLd7grRLEG-vyw@mail.gmail.com>
+References: <20230614074904.29085-1-herve.codina@bootlin.com>
+        <20230614074904.29085-8-herve.codina@bootlin.com>
+        <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
+        <20230614114214.1371485e@bootlin.com>
+        <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
+        <20230614223418.0d7e355d@bootlin.com>
+        <CAHp75VfFyDzr4qHNssXZ8RLy0gxMWdjBgac4JLd7grRLEG-vyw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,134 +87,173 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andy,
+On Thu, 15 Jun 2023 01:05:40 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+
+> On Wed, Jun 14, 2023 at 11:34 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> > On Wed, 14 Jun 2023 14:51:43 +0300
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
+> > > On Wed, Jun 14, 2023 at 12:42 PM Herve Codina <herve.codina@bootlin.com> wrote:  
+> > > > On Wed, 14 Jun 2023 12:02:57 +0300
+> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
+> > > > > On Wed, Jun 14, 2023 at 10:49 AM Herve Codina <herve.codina@bootlin.com> wrote:  
+> 
+> ...
+> 
+> > > > > > +       typeof(__array[0] + 0) __element = __array[--__len];    \  
+> > > > >
+> > > > > Do we need the ' + 0' part?  
+> > > >
+> > > > Yes.
+> > > >
+> > > > __array can be an array of const items and it is legitimate to get the
+> > > > minimum value from const items.
+> > > >
+> > > > typeof(__array[0]) keeps the const qualifier but we need to assign __element
+> > > > in the loop.
+> > > > One way to drop the const qualifier is to get the type from a rvalue computed
+> > > > from __array[0]. This rvalue has to have the exact same type with only the const
+> > > > dropped.
+> > > > '__array[0] + 0' was a perfect canditate.  
+> > >
+> > > Seems like this also deserves a comment. But if the series is accepted
+> > > as is, it may be done as a follow up.
+> > >  
+> >
+> > Finally not so simple ...
+> > I did some deeper tests and the macros need to be fixed.
+> >
+> > I hope this one (with comments added) is correct:
+> > --- 8 ---
+> > /*
+> >  * Do not check the array parameter using __must_be_array().
+> >  * In the following legit use-case where the "array" passed is a simple pointer,
+> >  * __must_be_array() will return a failure.
+> >  * --- 8< ---
+> >  * int *buff
+> >  * ...
+> >  * min = min_array(buff, nb_items);
+> >  * --- 8< ---
+> >  *
+> >  * The first typeof(&(array)[0]) is needed in order to support arrays of both
+> >  * 'int *buff' and 'int buf[N]' types.
+> >  *
+> >  * typeof(__array[0] + 0) used for __element is needed as the array can be an
+> >  * array of const items.
+> >  * In order to discard the const qualifier use an arithmetic operation (rvalue).  
+> 
+> 
+> >  * This arithmetic operation discard the const but also can lead to an integer  
+> 
+> discards
+> 
+> >  * promotion. For instance, a const s8 __array[0] lead to an int __element due  
+> 
+> leads
+> 
+> >  * to the promotion.
+> >  * In this case, simple min() or max() operation fails (type mismatch).
+> >  * Use min_t() or max_t() (op_t parameter) enforcing the type in order to avoid
+> >  * the min() or max() failure.  
+> 
+> This part perhaps can be avoided. See below.
+> 
+> >  */
+> > #define __minmax_array(op_t, array, len) ({                     \
+> >         typeof(&(array)[0]) __array = (array);                  \
+> >         typeof(len) __len = (len);                              \
+> >         typeof(__array[0] + 0) __element = __array[--__len];    \
+> >         while (__len--)                                         \
+> >                 __element = op_t(typeof(__array[0]), __element, __array[__len]); \  
+> 
+> But can't we instead have typeof(+(array[0])) in the definition of __element?
+> There are also other possible solutions: a) _Generic() with listed
+> const types to move them to non-const, and b) __auto_type (which is
+> supported by GCC 4.9 and clang, but not in the C11 standard).
+
+typeof(+(array[0])) keeps the promotion.
+
+__auto_type works with my gcc-12 but not with a gcc-5.5. Depending on the
+compiler version, it discards or keeps the const qualifier. For this reason
+I would prefer to not use it.
+
+Did the job using _Generic().
+
+This lead to:
+--- 8< ---
+/*
+ * Remove a const qualifier
+ * _Generic(foo, type-name: association, ..., default: association) performs a
+ * comparison against the foo type (not the qualified type).
+ * Do not use the const keyword in the type-name as it will not match the
+ * unqualified type of foo.
+ */
+#define __unconst_type_cases(type)		\
+	unsigned type:  (unsigned type)0,	\
+	signed type:    (signed type)0
 
 
-> Am 15.06.2023 um 11:08 schrieb Thomas Bogendoerfer =
-<tsbogend@alpha.franken.de>:
->=20
-> On Thu, Jun 15, 2023 at 10:39:53AM +0200, Paul Cercueil wrote:
->> Thomas: are you able to drop this series from mips-next, or should =
-I/we send fixup patches instead?
->=20
-> as I'm not rebasing mips-next I need fixup patches. This won't solve
-> bisectability, but not doing rebases is the what Linus prefers.
+#define __unconst_typeof(x) typeof(			\
+	_Generic((x),					\
+		char: (char)0,				\
+		__unconst_type_cases(char),		\
+		__unconst_type_cases(short),		\
+		__unconst_type_cases(int),		\
+		__unconst_type_cases(long),		\
+		__unconst_type_cases(long long),	\
+		default: (x)))
 
-Indeed. I have found some very old statements on this topic:
-https://yarchive.net/comp/linux/git_rebase.html
+/*
+ * Do not check the array parameter using __must_be_array().
+ * In the following legit use-case where the "array" passed is a simple pointer,
+ * __must_be_array() will return a failure.
+ * --- 8< ---
+ * int *buff
+ * ...
+ * min = min_array(buff, nb_items);
+ * --- 8< ---
+ *
+ * The first typeof(&(array)[0]) is needed in order to support arrays of both
+ * 'int *buff' and 'int buf[N]' types.
+ *
+ * The array can be an array of const items.
+ * typeof() keeps the const qualifier. Use __unconst_typeof() in order to
+ * discard the const qualifier for the __element variable.
+ */
+#define __minmax_array(op, array, len) ({				\
+	typeof(&(array)[0]) __array = (array);				\
+	typeof(len) __len = (len);					\
+	__unconst_typeof(__array[0]) __element = __array[--__len];	\
+	while (__len--)							\
+		__element = op(__element, __array[__len]);		\
+	__element; })
 
-> > How do I insert build fixes into existing changesets so that the =
-tree
-> > is more bisectable?
->=20
-> Just delay pushing out. There really is _zero_ downside to this. None =
-at
-> all. There are only upsides.
+/**
+ * min_array - return minimum of values present in an array
+ * @array: array
+ * @len: array length
+ *
+ * Note that @len must not be zero (empty array).
+ */
+#define min_array(array, len) __minmax_array(min, array, len)
 
-...
+/**
+ * max_array - return maximum of values present in an array
+ * @array: array
+ * @len: array length
+ *
+ * Note that @len must not be zero (empty array).
+ */
+#define max_array(array, len) __minmax_array(max, array, len)
+--- 8< ---
 
-> Also, I'd *much* rather have a few problems in the tree than have =
-people
-> screw up history in order to hide them. Sure, we want to keep things
-> bisectable, but quite frankly, if you do a reasonable job and compile =
-the
-> kernel before you push out, it will be "mostly bisectable".
->=20
-> And yes, mistakes happen. Mistakes will *always* happen. It's ok. =
-Relax.
+Do you think it looks good ?
 
-...
+For, the KUnit tests, I agree, it would be nice to have something.
+I need some more substantial work to implement and run the test in KUnit
+and the first task will be learning the KUnit test system. 
+I will do that but out of this series.
 
-> So in short:
->=20
->  - clean trees and bisectability are all wonderful things. No doubt =
-about
->    that at all.
->=20
->  - but if getting there means that you lose a lot of _other_ wonderful
->    things (like being able to trust history, and the people being =
-under
->    your watchful eyes having to deal with you re-writing their trees),
->    we'd be much better off taking the occasional commit that fixes =
-things
->    up _after_ the fact rather than before!
->=20
->  - and you actually can help fix your issues by doing some simple =
-things
->    *before* pushing out, rather than push out immediately. IOW, do =
-your
->    whitespace sanity fixes, your compile checks etc early, and don't =
-push
->    out until after you've done them.
-
-...
-
-> So:
->  - making things public is *different* from developing them. Don't =
-push
->    out just because you committed something!
->=20
->  - you shouldn't publicize a tree until it's in reasonable shape. =
-EVER.
->    Even -mm or -next is *not* better off with a pile of sh*t just =
-because
->    you're working in that area.
->=20
->    I cannot stress this enough. I think Andrew has been way too polite =
-to
->    some people.
->=20
->  - and once it is, you generally shouldn't mess with old commits even =
-when
->    you fix things. Full cleanliness or always being able to bisect
->    specific configurations is not an excuse for messing up all the =
-other
->    things, and if this problem happens a lot, I would like to point =
-you to
->    the two previous points.
->=20
-
-...
-
-> And btw, a *big* part of the above is also:
->=20
->  - mistakes happen.
->=20
-> There will be bugs. There will be cases where things aren't bisectable
-> (although they should generally be bisectable for *your* =
-configuration,
-> because if they aren't, that shows that you didn't even compile the
-> commits you made).
->=20
-> And there will be kernels that don't boot. Even expecting people to =
-always
-> boot-test every single commit would be unrealistic - let's face it, =
-most
-> things look really obvious, and the fact that even obvious fixes can =
-have
-> bugs doesn't mean that there should be hard rules about "every single
-> commit has to be boot-tested on X machines".
->=20
-> So it's an important part of the process to try to do a good job, and =
-not
-> publicizing crap - but it's *equally* important to realize that crap
-> happens, and that it's easily *more* distracting to try to clean it up
-> after-the-fact than it is to just admit that it happened.
-
-Ok, then we have to keep this series as is and fix it on top (just for
-my V2a board since it seems to work for Paul for a different version).
-
-So let's focus on the fixes.
-
-Best regards,
-Nikolaus
-
-
->=20
-> Thomas.
->=20
-> --=20
-> Crap can work. Given enough thrust pigs will fly, but it's not =
-necessarily a
-> good idea.                                                [ RFC1925, =
-2.3 ]
-
+Thanks for your feedback and pointers,
+Hervé
