@@ -2,198 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE0BA731A7F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 707CC731A9E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:58:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344100AbjFONwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:52:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
+        id S231231AbjFON6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:58:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240810AbjFONwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:52:16 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B270E1BDB;
-        Thu, 15 Jun 2023 06:52:09 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-5ed99ebe076so28045276d6.2;
-        Thu, 15 Jun 2023 06:52:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686837129; x=1689429129;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RTISzDzB0vgzRtUm+XOEwGTMkJ6kple5Xm92txPcOLI=;
-        b=RZs0H0colKUY6LS5gf+N4I7AdqC+9xX4y/bW1RwfN8MKvImH+r1v1PQZOrCjrU5nDt
-         FsUk19iGS4qcdIpaKZBzfFzR90IEsZjP/cmgrWjolhyNxJIjCNveCNZt5MBpOU6tmDR+
-         +lKN+lRE7dBIjY+mEzP6T6/JzM1D6LKxM0hknfDMhsLHyLi59tSfMVeO2QADLNAmbJBA
-         prgMVlzi1fUMkU5k9DAMfS7U60GbueV0mN084FuSbM5Fs11usiozcJdhfNJ/QaSQF9od
-         tStbo7OYeHdy+A81I+BiQVRSrQaWoEASjqWMpT/A2DIg2Nowe1MxBxKkdvOhs07UtdaH
-         SxRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686837129; x=1689429129;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RTISzDzB0vgzRtUm+XOEwGTMkJ6kple5Xm92txPcOLI=;
-        b=OrilFSMvkc52fG0Umcp6evpEpvvv8LA7Q7i65Mz+5xBKi+QUn2LmKCR4oglDjW4NCp
-         FLw3XFzg9hhM6ULoLwGIe+xNRc54TYTJ6S63JAcb2dpGWkzLsWAIA7idx0Re3JwUiO1c
-         775dpY+IIQvTr4Gr3qqFVchvuYeRUJ8MGIdmHcgbCBdkWQambCW8xxfEWhZ9VuawWgGD
-         F9NxHAzzGDwRO3RvryVxfUl6pKr+jBWj1OhCZoCeaLrY/pojYwWI8vCZDM/BANE8PKFr
-         +qzSBzcNZbl2fRAwzQ69AwUKFZAqXtBRkXyOsM8pBtDucgmicE4EudXRID35KqwalyfE
-         oxIg==
-X-Gm-Message-State: AC+VfDzohLOvSwjid3+JM1wCvrHKbLu2dtUnF33Km5EwxMQkBsk+coYy
-        FuJhe07UksAIGQwRu2Vdh0+Ztdu5EoM5FIpN3Yow4DzllKCGpQ==
-X-Google-Smtp-Source: ACHHUZ7wjjBG8VxmyvEb3k5iTRCIsao8mEEup0Ly3jqvyGSn+EjEgNrTRbdDIWOSsKwflUDuWQFak/maSvKiVTp6mqQ=
-X-Received: by 2002:ad4:5de3:0:b0:62f:ea09:7088 with SMTP id
- jn3-20020ad45de3000000b0062fea097088mr3600822qvb.27.1686837128707; Thu, 15
- Jun 2023 06:52:08 -0700 (PDT)
+        with ESMTP id S1344785AbjFON6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:58:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8101FDD;
+        Thu, 15 Jun 2023 06:58:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DB1F063AD8;
+        Thu, 15 Jun 2023 13:58:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFBA3C433CA;
+        Thu, 15 Jun 2023 13:58:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686837507;
+        bh=HDfK6TZ6p1z9konXBYN4xiV7FVSWRCnUgThCTPlpODE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=MijxV188M3NQstbEsPBKj+rQV+7WTV0//Wbr3a4d9hw8Uh4EqXOfg6QCDXnAbBL3w
+         +pAhyiO0Nd5YMsZFl9bhjk0PQDxIxAWDXbE+BhfykWcGOwQ8DNQQ/Md7bB9BirALm8
+         UGFWqGhWUmu/KeTaAjC0+hOdgJ8A0F0Ygzh7ZPkV81o3IxSnB+foK4J0l78ccT1KjQ
+         yJtEqC3LtEmWDIbFo1IHk8it1Rh+JUSK+oIbMePCKvnQtwP1Irr2hBe17qwVe8U1kP
+         N/9GukHMt5b9RS/sLbuKqTNkrLStQp8A2nVjbO7weAdBsWLYqVjVDSx9DjqSUDgm9g
+         pivHGmCjswPKw==
+From:   Mark Brown <broonie@kernel.org>
+To:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, krzysztof.kozlowski@linaro.org,
+        YingKun Meng <mengyingkun@loongson.cn>
+Cc:     devicetree@vger.kernel.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        loongarch@lists.linux.dev, loongson-kernel@lists.loongnix.cn
+In-Reply-To: <20230614122659.3402788-1-mengyingkun@loongson.cn>
+References: <20230614122659.3402788-1-mengyingkun@loongson.cn>
+Subject: Re: [PATCH v3 3/3] ASoC: dt-bindings: Add support for Loongson
+ audio card
+Message-Id: <168683750444.557448.16842931306884549608.b4-ty@kernel.org>
+Date:   Thu, 15 Jun 2023 14:58:24 +0100
 MIME-Version: 1.0
-References: <20230614074904.29085-1-herve.codina@bootlin.com>
- <20230614074904.29085-8-herve.codina@bootlin.com> <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
- <20230614114214.1371485e@bootlin.com> <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
- <20230614223418.0d7e355d@bootlin.com> <CAHp75VfFyDzr4qHNssXZ8RLy0gxMWdjBgac4JLd7grRLEG-vyw@mail.gmail.com>
- <20230615113512.07967677@bootlin.com>
-In-Reply-To: <20230615113512.07967677@bootlin.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 15 Jun 2023 16:51:32 +0300
-Message-ID: <CAHp75Vf2aR1x-Nf2+uUySyGH-p12YbP2Z=Ezbspqg==pCpRbOg@mail.gmail.com>
-Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-c6835
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 12:35=E2=80=AFPM Herve Codina <herve.codina@bootlin=
-.com> wrote:
-> On Thu, 15 Jun 2023 01:05:40 +0300
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On Wed, 14 Jun 2023 20:26:59 +0800, YingKun Meng wrote:
+> The audio card uses loongson I2S controller present in
+> 7axxx/2kxxx chips to transfer audio data.
+> 
+> On loongson platform, the chip has only one I2S controller.
+> 
+> 
 
-...
+Applied to
 
-> Did the job using _Generic().
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Cool! Keep my tag for that version and thank you for pursuing the
-implementation that works for everybody.
+Thanks!
 
-> This lead to:
-> --- 8< ---
-> /*
->  * Remove a const qualifier
+[3/3] ASoC: dt-bindings: Add support for Loongson audio card
+      commit: fadccca8f33959857948e279045a3757b5f21d55
 
-...from integer types
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
->  * _Generic(foo, type-name: association, ..., default: association) perfo=
-rms a
->  * comparison against the foo type (not the qualified type).
->  * Do not use the const keyword in the type-name as it will not match the
->  * unqualified type of foo.
->  */
-> #define __unconst_type_cases(type)              \
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-__unconst_integer_type_cases() ?
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
->         unsigned type:  (unsigned type)0,       \
->         signed type:    (signed type)0
->
->
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Single blank line is enough.
+Thanks,
+Mark
 
-> #define __unconst_typeof(x) typeof(                     \
-
-__unconst_integer_typeof() ?
-
->         _Generic((x),                                   \
->                 char: (char)0,                          \
->                 __unconst_type_cases(char),             \
->                 __unconst_type_cases(short),            \
->                 __unconst_type_cases(int),              \
->                 __unconst_type_cases(long),             \
->                 __unconst_type_cases(long long),        \
->                 default: (x)))
->
-> /*
->  * Do not check the array parameter using __must_be_array().
->  * In the following legit use-case where the "array" passed is a simple p=
-ointer,
->  * __must_be_array() will return a failure.
->  * --- 8< ---
->  * int *buff
->  * ...
->  * min =3D min_array(buff, nb_items);
->  * --- 8< ---
->  *
->  * The first typeof(&(array)[0]) is needed in order to support arrays of =
-both
->  * 'int *buff' and 'int buf[N]' types.
->  *
->  * The array can be an array of const items.
->  * typeof() keeps the const qualifier. Use __unconst_typeof() in order to
->  * discard the const qualifier for the __element variable.
->  */
-> #define __minmax_array(op, array, len) ({                               \
->         typeof(&(array)[0]) __array =3D (array);                         =
- \
->         typeof(len) __len =3D (len);                                     =
- \
->         __unconst_typeof(__array[0]) __element =3D __array[--__len];     =
- \
->         while (__len--)                                                 \
->                 __element =3D op(__element, __array[__len]);             =
- \
->         __element; })
->
-> /**
->  * min_array - return minimum of values present in an array
->  * @array: array
->  * @len: array length
->  *
->  * Note that @len must not be zero (empty array).
->  */
-> #define min_array(array, len) __minmax_array(min, array, len)
->
-> /**
->  * max_array - return maximum of values present in an array
->  * @array: array
->  * @len: array length
->  *
->  * Note that @len must not be zero (empty array).
->  */
-> #define max_array(array, len) __minmax_array(max, array, len)
-> --- 8< ---
->
-> Do you think it looks good ?
-
-Yes!
-
-> For, the KUnit tests, I agree, it would be nice to have something.
-> I need some more substantial work to implement and run the test in KUnit
-> and the first task will be learning the KUnit test system.
-> I will do that but out of this series.
-
-Thank you, it's fine with me.
-
---=20
-With Best Regards,
-Andy Shevchenko
