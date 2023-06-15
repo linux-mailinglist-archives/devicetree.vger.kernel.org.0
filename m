@@ -2,185 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3526731A66
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE0BA731A7F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 15:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344367AbjFONsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jun 2023 09:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55802 "EHLO
+        id S1344100AbjFONwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jun 2023 09:52:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240305AbjFONsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:48:01 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 140441FD4;
-        Thu, 15 Jun 2023 06:48:00 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35FDdHPa014416;
-        Thu, 15 Jun 2023 13:47:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=0LDiQ7QQb1AId1XieMZ6NIoy9CpkFaV7zwJID5Hj/Oo=;
- b=dkwIuS/c8s/lzaC7I2z2MxTfkPdt5vZscD3+SJd3czXpZfJx9eo+Oq+Dj6av2UoDS00d
- k6Gjx+AfqJzamGswkqFqK7+cYjVi33kPUFvTT8IPQDSZpATbR51ZqthtvgN+4lqcZsdf
- TYlUSW0QdyX4E/SNSGfgjVVr9ep1ArUTgS4nhP6XXiwFd0eQv6UglAPLchaXvS0A1XyL
- m6iLcR32c7H7LJCjlfo4Tpqd0LrFCotPZ2F2idslvc4LXHed/5LDQOzyFn8AQQJhIwA1
- n0zSBNr3RD4u+5R3w5bxm6E7F6C2N0Fic1kwWf47U4gWrwum7zkgJGti4yk42H4WTmQa vQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r83p980sa-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 13:47:43 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35FDlf8L031123
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Jun 2023 13:47:41 GMT
-Received: from [10.50.16.35] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 15 Jun
- 2023 06:47:37 -0700
-Message-ID: <5d9ab90f-4fc3-26c6-141e-e9388ac2f0cf@quicinc.com>
-Date:   Thu, 15 Jun 2023 19:17:34 +0530
+        with ESMTP id S240810AbjFONwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 09:52:16 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B270E1BDB;
+        Thu, 15 Jun 2023 06:52:09 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-5ed99ebe076so28045276d6.2;
+        Thu, 15 Jun 2023 06:52:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686837129; x=1689429129;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RTISzDzB0vgzRtUm+XOEwGTMkJ6kple5Xm92txPcOLI=;
+        b=RZs0H0colKUY6LS5gf+N4I7AdqC+9xX4y/bW1RwfN8MKvImH+r1v1PQZOrCjrU5nDt
+         FsUk19iGS4qcdIpaKZBzfFzR90IEsZjP/cmgrWjolhyNxJIjCNveCNZt5MBpOU6tmDR+
+         +lKN+lRE7dBIjY+mEzP6T6/JzM1D6LKxM0hknfDMhsLHyLi59tSfMVeO2QADLNAmbJBA
+         prgMVlzi1fUMkU5k9DAMfS7U60GbueV0mN084FuSbM5Fs11usiozcJdhfNJ/QaSQF9od
+         tStbo7OYeHdy+A81I+BiQVRSrQaWoEASjqWMpT/A2DIg2Nowe1MxBxKkdvOhs07UtdaH
+         SxRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686837129; x=1689429129;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RTISzDzB0vgzRtUm+XOEwGTMkJ6kple5Xm92txPcOLI=;
+        b=OrilFSMvkc52fG0Umcp6evpEpvvv8LA7Q7i65Mz+5xBKi+QUn2LmKCR4oglDjW4NCp
+         FLw3XFzg9hhM6ULoLwGIe+xNRc54TYTJ6S63JAcb2dpGWkzLsWAIA7idx0Re3JwUiO1c
+         775dpY+IIQvTr4Gr3qqFVchvuYeRUJ8MGIdmHcgbCBdkWQambCW8xxfEWhZ9VuawWgGD
+         F9NxHAzzGDwRO3RvryVxfUl6pKr+jBWj1OhCZoCeaLrY/pojYwWI8vCZDM/BANE8PKFr
+         +qzSBzcNZbl2fRAwzQ69AwUKFZAqXtBRkXyOsM8pBtDucgmicE4EudXRID35KqwalyfE
+         oxIg==
+X-Gm-Message-State: AC+VfDzohLOvSwjid3+JM1wCvrHKbLu2dtUnF33Km5EwxMQkBsk+coYy
+        FuJhe07UksAIGQwRu2Vdh0+Ztdu5EoM5FIpN3Yow4DzllKCGpQ==
+X-Google-Smtp-Source: ACHHUZ7wjjBG8VxmyvEb3k5iTRCIsao8mEEup0Ly3jqvyGSn+EjEgNrTRbdDIWOSsKwflUDuWQFak/maSvKiVTp6mqQ=
+X-Received: by 2002:ad4:5de3:0:b0:62f:ea09:7088 with SMTP id
+ jn3-20020ad45de3000000b0062fea097088mr3600822qvb.27.1686837128707; Thu, 15
+ Jun 2023 06:52:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH V23 2/3] misc: dcc: Add driver support for Data Capture
- and Compare unit(DCC)
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+References: <20230614074904.29085-1-herve.codina@bootlin.com>
+ <20230614074904.29085-8-herve.codina@bootlin.com> <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
+ <20230614114214.1371485e@bootlin.com> <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
+ <20230614223418.0d7e355d@bootlin.com> <CAHp75VfFyDzr4qHNssXZ8RLy0gxMWdjBgac4JLd7grRLEG-vyw@mail.gmail.com>
+ <20230615113512.07967677@bootlin.com>
+In-Reply-To: <20230615113512.07967677@bootlin.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 15 Jun 2023 16:51:32 +0300
+Message-ID: <CAHp75Vf2aR1x-Nf2+uUySyGH-p12YbP2Z=Ezbspqg==pCpRbOg@mail.gmail.com>
+Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
-        "Rajendra Nayak" <quic_rjendra@quicinc.com>
-References: <cover.1683265984.git.quic_schowdhu@quicinc.com>
- <2259ab0348282349e88905ea99bcb4aa815d941f.1683265984.git.quic_schowdhu@quicinc.com>
- <2023061542-reformed-unholy-10a3@gregkh>
- <cc9750f3-c85c-be7f-e63c-0fcf4eb160f0@quicinc.com>
- <2023061515-unbuckled-consonant-e207@gregkh>
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-In-Reply-To: <2023061515-unbuckled-consonant-e207@gregkh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: eHemSX8XnrDNw_eIcSRWHcTwR2raXKl9
-X-Proofpoint-GUID: eHemSX8XnrDNw_eIcSRWHcTwR2raXKl9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-15_09,2023-06-14_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 bulkscore=0 mlxlogscore=999 mlxscore=0
- suspectscore=0 adultscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306150121
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 15, 2023 at 12:35=E2=80=AFPM Herve Codina <herve.codina@bootlin=
+.com> wrote:
+> On Thu, 15 Jun 2023 01:05:40 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
+...
 
-On 6/15/2023 6:20 PM, Greg Kroah-Hartman wrote:
-> On Thu, Jun 15, 2023 at 06:13:53PM +0530, Souradeep Chowdhury wrote:
->>
->>
->> On 6/15/2023 4:03 PM, Greg Kroah-Hartman wrote:
->>> On Thu, May 04, 2023 at 11:36:22PM -0700, Souradeep Chowdhury wrote:
->>>> +/**
->>>> + * struct dcc_config_entry - configuration information related to each dcc instruction
->>>> + * @base:                    Base address of the register to be configured in dcc
->>>
->>> Why is this a u32 and not a bigger size?
->>
->> Currently only 32 bit register addresses are supported for DCC
->> configuration.
->>
->>>
->>>> + * @offset:                  Offset to the base address to be configured in dcc
->>>> + * @len:                     Length of the address in words to be configured in dcc
->>>
->>> What is a "word" here, 16 bits?
->>
->> Each word is 4 bytes(32 bits)
-> 
-> See, I guess wrong, you should say what this is :)
+> Did the job using _Generic().
 
-Ack
+Cool! Keep my tag for that version and thank you for pursuing the
+implementation that works for everybody.
 
-> 
->>>> + * @loop_cnt:                The number of times to loop on the register address in case
->>>> +				of loop instructions
->>>> + * @write_val:               The value to be written on the register address in case of
->>>> +				write instructions
->>>> + * @mask:                    Mask corresponding to the value to be written in case of
->>>> +				write instructions
->>>> + * @apb_bus:                 Type of bus to be used for the instruction, can be either
->>>> +				'apb' or 'ahb'
->>>
->>> How can a bool be either "apb" or "ahb"?
->>
->> 1 stands for apb and 0 for ahb. Will update the same here.
-> 
-> Why not have an enum?  Will there ever be another "bus"?
+> This lead to:
+> --- 8< ---
+> /*
+>  * Remove a const qualifier
 
-No, only these two are supported for dcc.
+...from integer types
 
-> 
->>>> +static ssize_t ready_read(struct file *filp, char __user *userbuf,
->>>> +			  size_t count, loff_t *ppos)
->>>> +{
->>>> +	int ret = 0;
->>>> +	char *buf;
->>>> +	struct dcc_drvdata *drvdata = filp->private_data;
->>>> +
->>>> +	mutex_lock(&drvdata->mutex);
->>>> +
->>>> +	if (!is_dcc_enabled(drvdata)) {
->>>> +		ret = -EINVAL;
->>>> +		goto out_unlock;
->>>> +	}
->>>> +
->>>> +	if (!FIELD_GET(BIT(1), readl(drvdata->base + dcc_status(drvdata->mem_map_ver))))
->>>> +		buf = "Y\n";
->>>> +	else
->>>> +		buf = "N\n";
->>>> +out_unlock:
->>>> +	mutex_unlock(&drvdata->mutex);
->>>> +
->>>> +	if (ret < 0)
->>>> +		return -EINVAL;
->>>> +	else
->>>
->>> You do the "lock, get a value, unlock, do something with the value"
->>> thing a bunch, but what prevents the value from changing after the lock
->>> happens?  So why is the lock needed at all?
->>
->> The lock is used to prevent concurrent accesses of the drv_data when
->> scripts are being run from userspace.
-> 
-> How would that matter?  The state can change instantly after the lock is
-> given up, and then the returned value is now incorrect.  So no need for
-> a lock at all as you really aren't "protecting" anything, or am I
-> missing something else?
+>  * _Generic(foo, type-name: association, ..., default: association) perfo=
+rms a
+>  * comparison against the foo type (not the qualified type).
+>  * Do not use the const keyword in the type-name as it will not match the
+>  * unqualified type of foo.
+>  */
+> #define __unconst_type_cases(type)              \
 
-This lock is needed to protect the access to the global instance of 
-drv_data structure instantiated at probe time within each individual 
-callbacks of debugfs.
+__unconst_integer_type_cases() ?
 
-> 
-> thanks,
-> 
-> greg k-h
+>         unsigned type:  (unsigned type)0,       \
+>         signed type:    (signed type)0
+>
+>
+
+Single blank line is enough.
+
+> #define __unconst_typeof(x) typeof(                     \
+
+__unconst_integer_typeof() ?
+
+>         _Generic((x),                                   \
+>                 char: (char)0,                          \
+>                 __unconst_type_cases(char),             \
+>                 __unconst_type_cases(short),            \
+>                 __unconst_type_cases(int),              \
+>                 __unconst_type_cases(long),             \
+>                 __unconst_type_cases(long long),        \
+>                 default: (x)))
+>
+> /*
+>  * Do not check the array parameter using __must_be_array().
+>  * In the following legit use-case where the "array" passed is a simple p=
+ointer,
+>  * __must_be_array() will return a failure.
+>  * --- 8< ---
+>  * int *buff
+>  * ...
+>  * min =3D min_array(buff, nb_items);
+>  * --- 8< ---
+>  *
+>  * The first typeof(&(array)[0]) is needed in order to support arrays of =
+both
+>  * 'int *buff' and 'int buf[N]' types.
+>  *
+>  * The array can be an array of const items.
+>  * typeof() keeps the const qualifier. Use __unconst_typeof() in order to
+>  * discard the const qualifier for the __element variable.
+>  */
+> #define __minmax_array(op, array, len) ({                               \
+>         typeof(&(array)[0]) __array =3D (array);                         =
+ \
+>         typeof(len) __len =3D (len);                                     =
+ \
+>         __unconst_typeof(__array[0]) __element =3D __array[--__len];     =
+ \
+>         while (__len--)                                                 \
+>                 __element =3D op(__element, __array[__len]);             =
+ \
+>         __element; })
+>
+> /**
+>  * min_array - return minimum of values present in an array
+>  * @array: array
+>  * @len: array length
+>  *
+>  * Note that @len must not be zero (empty array).
+>  */
+> #define min_array(array, len) __minmax_array(min, array, len)
+>
+> /**
+>  * max_array - return maximum of values present in an array
+>  * @array: array
+>  * @len: array length
+>  *
+>  * Note that @len must not be zero (empty array).
+>  */
+> #define max_array(array, len) __minmax_array(max, array, len)
+> --- 8< ---
+>
+> Do you think it looks good ?
+
+Yes!
+
+> For, the KUnit tests, I agree, it would be nice to have something.
+> I need some more substantial work to implement and run the test in KUnit
+> and the first task will be learning the KUnit test system.
+> I will do that but out of this series.
+
+Thank you, it's fine with me.
+
+--=20
+With Best Regards,
+Andy Shevchenko
