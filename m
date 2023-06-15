@@ -2,86 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE58731577
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3D5731576
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jun 2023 12:35:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238915AbjFOKf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S235699AbjFOKf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 15 Jun 2023 06:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44656 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343568AbjFOKec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:34:32 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2596F2944
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:34:11 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f74cda5f1dso5808324e87.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 03:34:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686825249; x=1689417249;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G8QVs6IFYYIXBUDr6PLIM4vaEwCL0Jet3wwAQMko+hY=;
-        b=TYyKQmV+8Q/wxVs6R4Uml9i+kL0onsHJpSQ0m6cvTbJwiGniH59jYx9ptbp1qn4JTJ
-         dLawg1a0MgiGEVc5U/pvgihrz4Ze+rTI0ZlsTa7Mej+zmR77v7uW4E72/Ti47A0W/r9S
-         lKzZP6PjJcb5gDqRq0hFSZQ02CkRPOMOkzACI5/YxwoXOoiY3EkjqkFU1MNzkwgCKadN
-         gc1UUlvAdKDSD/npgg5kYy6Y2lsmSxgijCaDxu9Q6vbXuB/2JorDHOovJsw3q7uwJd20
-         RwgPz6wh+5aW7CU9r6MhABb1/4jZdcPwMUZFnmLESeBBAz2X9xk2Y+CXmldi+T/w0lnS
-         GfTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686825249; x=1689417249;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G8QVs6IFYYIXBUDr6PLIM4vaEwCL0Jet3wwAQMko+hY=;
-        b=ch/99i8vjK0KhYJVaCpeG+0ujGuPOVDCeKYpTOphzsE0m2bO912NFMiAR/KrBzZVpQ
-         szImuyWJqMkNaIjpgIFPCKFt0j3E8m6DtvoyaRKZm1XM76TPdzSCQzf/jhWpSyNrr3AY
-         mfQ17LTMFp7ma2DUVKl5q/OzkgU5DIctXDQb7ijhAFRNWD2WXnnq/brndhzuWtWx35//
-         JuwCHa+p0nLh4ZEXvu+BgGyiHdjzbVLAq+bFavOQaZvyqyPM++FCWPcvE1rQsVzXrrVU
-         nGEleGtsQqda/WrJ2eq5vkromuCHbN4xgmx8pW0o5C57+KN2tNoxJlCm3mIyPJEDrgea
-         Xg4g==
-X-Gm-Message-State: AC+VfDzxZir5+3cN4GM0Hg0V16UT/z/vInbHyMAstP/2+DCjDIJZMdUj
-        A9S/sgjFzxGcgKqG0q5HosaRKA==
-X-Google-Smtp-Source: ACHHUZ7yhIVM9232hKYltYGexXTGAQbYM4uGSl7gtvYnnnoTX1sxq98NzXEeEFBv5qIChyCAh3VCcQ==
-X-Received: by 2002:a19:651a:0:b0:4f7:69a9:b882 with SMTP id z26-20020a19651a000000b004f769a9b882mr2538888lfb.3.1686825249292;
-        Thu, 15 Jun 2023 03:34:09 -0700 (PDT)
-Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id u26-20020ac243da000000b004f4d5003e8dsm2505864lfl.7.2023.06.15.03.34.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 03:34:08 -0700 (PDT)
-Message-ID: <001d7571-5e9f-4f60-f6d0-35806a3e51c5@linaro.org>
-Date:   Thu, 15 Jun 2023 12:34:06 +0200
+        with ESMTP id S1343805AbjFOKfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jun 2023 06:35:02 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B1A2D57;
+        Thu, 15 Jun 2023 03:34:51 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35FAYjeo126737;
+        Thu, 15 Jun 2023 05:34:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686825285;
+        bh=wh0QqwRSPw29Uvn4QmDhToM9IHpmqbwMJmSZ/t9TW8Y=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=kcQoxDgi8XgMhoUgTcr9kZK2ME/i3TJm/k4GbuHkTqTmfwaOGuj6uVzJVWlD6aEdo
+         t9hX8Kf5wvY8w8mxOlO2FtXyyXQ9H0NLCtmqOHTpHDan7XvKYjxs7hfIPA1qmsi06g
+         La/+EOHYMtI62yrGCGexQPIR2N9GMD04wU15vvTE=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35FAYjOQ085547
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Jun 2023 05:34:45 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Jun 2023 05:34:45 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Jun 2023 05:34:45 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35FAYgBP117046;
+        Thu, 15 Jun 2023 05:34:43 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bhavya Kapoor <b-kapoor@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <nm@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: Enable support for high speed modes
+Date:   Thu, 15 Jun 2023 16:04:40 +0530
+Message-ID: <168681785699.2096385.9821957808447105813.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230502090814.144791-1-b-kapoor@ti.com>
+References: <20230502090814.144791-1-b-kapoor@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v8 07/18] drm/msm/a6xx: Add a helper for
- software-resetting the GPU
-Content-Language: en-US
-To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
- <20230223-topic-gmuwrapper-v8-7-69c68206609e@linaro.org>
- <jplt5g5xuphbnci73pdtaxd63fguxtgtp4c37kc7ehavzrjbau@kamshezxnvgy>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <jplt5g5xuphbnci73pdtaxd63fguxtgtp4c37kc7ehavzrjbau@kamshezxnvgy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,93 +66,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.06.2023 19:18, Akhil P Oommen wrote:
-> On Mon, May 29, 2023 at 03:52:26PM +0200, Konrad Dybcio wrote:
->>
->> Introduce a6xx_gpu_sw_reset() in preparation for adding GMU wrapper
->> GPUs and reuse it in a6xx_gmu_force_off().
->>
->> This helper, contrary to the original usage in GMU code paths, adds
->> a write memory barrier which together with the necessary delay should
->> ensure that the reset is never deasserted too quickly due to e.g. OoO
->> execution going crazy.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c |  3 +--
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 11 +++++++++++
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu.h |  1 +
->>  3 files changed, 13 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->> index b86be123ecd0..5ba8cba69383 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->> @@ -899,8 +899,7 @@ static void a6xx_gmu_force_off(struct a6xx_gmu *gmu)
->>  	a6xx_bus_clear_pending_transactions(adreno_gpu, true);
->>  
->>  	/* Reset GPU core blocks */
->> -	gpu_write(gpu, REG_A6XX_RBBM_SW_RESET_CMD, 1);
->> -	udelay(100);
->> +	a6xx_gpu_sw_reset(gpu, true);
->>  }
->>  
->>  static void a6xx_gmu_set_initial_freq(struct msm_gpu *gpu, struct a6xx_gmu *gmu)
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> index e3ac3f045665..083ccb5bcb4e 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> @@ -1634,6 +1634,17 @@ void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_
->>  	gpu_write(gpu, REG_A6XX_GBIF_HALT, 0x0);
->>  }
->>  
->> +void a6xx_gpu_sw_reset(struct msm_gpu *gpu, bool assert)
->> +{
->> +	gpu_write(gpu, REG_A6XX_RBBM_SW_RESET_CMD, assert);
->> +	/* Add a barrier to avoid bad surprises */
-> Can you please make this comment a bit more clear? Highlight that we
-> should ensure the register is posted at hw before polling.
+
+On Tue, 02 May 2023 14:38:14 +0530, Bhavya Kapoor wrote:
+> eMMC tuning was incomplete earlier, so support for high speed modes was
+> kept disabled. Remove no-1-8-v property to enable support for high
+> speed modes for eMMC in J784S4 SoC.
 > 
-> I think this barrier is required only during assert.
-Generally it should not be strictly required at all, but I'm thinking
-that it'd be good to keep it in both cases, so that:
-
-if (assert)
-	we don't keep writing things to the GPU if it's in reset
-else
-	we don't start writing things to the GPU becomes it comes
-	out of reset
-
-Also, if you squint hard enough at the commit message, you'll notice
-I intended for this so only be a wmb, but for some reason generalized
-it.. Perhaps that's another thing I should fix!
-for v9..
-
-Konrad
 > 
-> -Akhil.
->> +	mb();
->> +
->> +	/* The reset line needs to be asserted for at least 100 us */
->> +	if (assert)
->> +		udelay(100);
->> +}
->> +
->>  static int a6xx_pm_resume(struct msm_gpu *gpu)
->>  {
->>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
->> index 9580def06d45..aa70390ee1c6 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
->> @@ -89,5 +89,6 @@ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu);
->>  int a6xx_gpu_state_put(struct msm_gpu_state *state);
->>  
->>  void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_off);
->> +void a6xx_gpu_sw_reset(struct msm_gpu *gpu, bool assert);
->>  
->>  #endif /* __A6XX_GPU_H__ */
->>
->> -- 
->> 2.40.1
->>
+
+Applied, thanks!
+
+[1/1] arm64: dts: ti: k3-j784s4-main: Enable support for high speed modes
+      commit: 0bc425484e9c5fffc2b94e4a9a474401f2210d5f
+
+Best regards,
+-- 
+Vignesh
+
