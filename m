@@ -2,180 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BD6E73261A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 06:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F08A732646
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 06:42:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231244AbjFPEEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 00:04:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48890 "EHLO
+        id S229969AbjFPEm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 00:42:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjFPEEV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 00:04:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D622685;
-        Thu, 15 Jun 2023 21:04:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1156A61BFE;
-        Fri, 16 Jun 2023 04:04:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BF8CC43391;
-        Fri, 16 Jun 2023 04:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686888259;
-        bh=mM+ePtb7BuKhyXicQy73Wilwkxcyho5LfSxMZEjCC+U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=t/4FrNRf+HpGEQpn/4gnQq7WIrkrzyRZfKOAdt5SdfVSRU0gTA7MpkzLe5K4IUEF9
-         CMvHU7F3mCAtd5PhJ3XlepeTElk22v0EgYDmG+q2B+E5C+2KLSTHSwWqmHFDRGhv4x
-         B9nL1A4Lt/BQ/Y9JxAlgALUmVQk2b9usm/83u1yjWH3UHLkamUsoa3p6xloxk3Mqgv
-         klguQgasGkXW4ivxULAaxbK5fpraox+R1+4tFqGScsvy0CVCcn0yaq17fq8ZYFX/rG
-         jJFqpqvkOxh4cO9fLD7JhOhi45Z+dSIhxJRFatf8kAG7zOr6x3GoOyK+C0cb12C1y7
-         oq4UVe25ktXzg==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-51a3e7a9127so16533a12.1;
-        Thu, 15 Jun 2023 21:04:19 -0700 (PDT)
-X-Gm-Message-State: AC+VfDzky2uESs+PQnYuubjroGh851xMeEcgbZYCFrUIUZJ6Jy2ME2iZ
-        u1HmOFhUBbEq9jbIzXz3rqetZUpI8oEjMZ+MkOI=
-X-Google-Smtp-Source: ACHHUZ6bTOrFVu2ifqXPtw4eiH/scWRZwhF3/BunnDnhrmuUNZtNKzzMETjOzHCVCIvYSDM/AjGy09btuxswxw8ow7U=
-X-Received: by 2002:a05:6402:42c3:b0:514:8fdb:6354 with SMTP id
- i3-20020a05640242c300b005148fdb6354mr6909278edc.18.1686888257340; Thu, 15 Jun
- 2023 21:04:17 -0700 (PDT)
+        with ESMTP id S229906AbjFPEmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 00:42:54 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1942D5E;
+        Thu, 15 Jun 2023 21:42:53 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35G3ZROX022462;
+        Fri, 16 Jun 2023 04:42:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=BAXd2yjk8OcvSytsAMg0FjZeyy7emml9cZq/OfUk3xU=;
+ b=FO7Yehd13Yyyzrz7I7RKsGP3rTFyPQuDpAcoZgBgdR857+nSusucsXcXLBam0Y9eeZ3j
+ YvtX1J+s2IB0OJo4dJDAHHgQpCT8VdIVaBsh2p3fHCWgMUAwMrbcrOiNK2C1kLRUUpIP
+ 0pm48O7EWbVbtk1Hs2bQ6i1qbfUdSNHE3zoRTpV2EYgSg6P8BL9eSoYG+rHWWAgkok9t
+ Hg/UF1IHgpwkhLDeCTk2kEQKoeUyh2wRrahFm5pEh86soi8jn+D1MQAFA3zeL79JBwKv
+ gSPl6fm3KxL8RfavqedLM8T75Zltn7U/edwXLhPdQgeaSXsJMHAscYmQDy7ddg4KhwU/ Bw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r81t3hu56-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Jun 2023 04:42:50 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35G4gnxP008574
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Jun 2023 04:42:49 GMT
+Received: from [10.201.206.212] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 15 Jun
+ 2023 21:42:46 -0700
+Message-ID: <5f8298d5-3379-924e-6c27-a9f54af4bf09@quicinc.com>
+Date:   Fri, 16 Jun 2023 10:12:43 +0530
 MIME-Version: 1.0
-References: <20230615091757.24686-1-zhuyinbo@loongson.cn> <20230615091757.24686-2-zhuyinbo@loongson.cn>
-In-Reply-To: <20230615091757.24686-2-zhuyinbo@loongson.cn>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Fri, 16 Jun 2023 12:04:05 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5XxxGd_+NMRJKUCtk24dBQF0Fzdsg_5mZEWh1hs_u0qg@mail.gmail.com>
-Message-ID: <CAAhV-H5XxxGd_+NMRJKUCtk24dBQF0Fzdsg_5mZEWh1hs_u0qg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] loongarch: export some arch-specific pm interfaces
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH V2 1/2] arm64: dts: qcom: ipq5332: enable GPIO based LEDs
+ and Buttons
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230615145311.2776-1-quic_sridsn@quicinc.com>
+ <20230615145311.2776-2-quic_sridsn@quicinc.com>
+ <db9a6c19-f28d-ce5e-fd47-04eda6da5a91@linaro.org>
+From:   Sridharan S N <quic_sridsn@quicinc.com>
+In-Reply-To: <db9a6c19-f28d-ce5e-fd47-04eda6da5a91@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RidZNmwa99SJG_NH6RoiKvtgv0ezNiQ1
+X-Proofpoint-ORIG-GUID: RidZNmwa99SJG_NH6RoiKvtgv0ezNiQ1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-16_02,2023-06-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ mlxscore=0 suspectscore=0 adultscore=0 mlxlogscore=991 phishscore=0
+ priorityscore=1501 spamscore=0 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306160043
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yinbo,
 
-I think this patch should go through the loongarch tree and the others
-to go through the soc tree, so I just applied this one. The next
-version you can only send the other two, thanks.
+On 6/15/2023 8:28 PM, Konrad Dybcio wrote:
+> On 15.06.2023 16:53, Sridharan S N wrote:
+>> Add support for wlan-2g LED on GPIO 36 and wps buttons on GPIO 35.
+>>
+>> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
+>> ---
+> This patch references a file that does not exist in -next and does
+> not state any dependency on other patches. With the hundreds of
+> emails flowing in daily, it's impossible to keep track of it.
+>
+> For the patch contents, lgtm.
+>
+> Konrad
 
-Huacai
+will mention dependency in V4
 
-On Thu, Jun 15, 2023 at 5:18=E2=80=AFPM Yinbo Zhu <zhuyinbo@loongson.cn> wr=
-ote:
->
-> Some power management controllers need to support DTS and will use
-> the suspend interface thus this patch was to export such interface
-> for their use.
->
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
->  arch/loongarch/include/asm/acpi.h    |  3 +--
->  arch/loongarch/include/asm/suspend.h | 10 ++++++++++
->  arch/loongarch/power/suspend.c       |  8 ++++----
->  3 files changed, 15 insertions(+), 6 deletions(-)
->  create mode 100644 arch/loongarch/include/asm/suspend.h
->
-> diff --git a/arch/loongarch/include/asm/acpi.h b/arch/loongarch/include/a=
-sm/acpi.h
-> index 976a810352c6..1d7810798c08 100644
-> --- a/arch/loongarch/include/asm/acpi.h
-> +++ b/arch/loongarch/include/asm/acpi.h
-> @@ -8,6 +8,7 @@
->  #ifndef _ASM_LOONGARCH_ACPI_H
->  #define _ASM_LOONGARCH_ACPI_H
->
-> +#include <asm/suspend.h>
->  #ifdef CONFIG_ACPI
->  extern int acpi_strict;
->  extern int acpi_disabled;
-> @@ -37,12 +38,10 @@ extern struct list_head acpi_wakeup_device_list;
->
->  extern int loongarch_acpi_suspend(void);
->  extern int (*acpi_suspend_lowlevel)(void);
-> -extern void loongarch_suspend_enter(void);
->
->  static inline unsigned long acpi_get_wakeup_address(void)
->  {
->  #ifdef CONFIG_SUSPEND
-> -       extern void loongarch_wakeup_start(void);
->         return (unsigned long)loongarch_wakeup_start;
->  #endif
->         return 0UL;
-> diff --git a/arch/loongarch/include/asm/suspend.h b/arch/loongarch/includ=
-e/asm/suspend.h
-> new file mode 100644
-> index 000000000000..fc64089fefaa
-> --- /dev/null
-> +++ b/arch/loongarch/include/asm/suspend.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef __ASM_SUSPEND_H
-> +#define __ASM_SUSPEND_H
-> +
-> +void loongarch_common_resume(void);
-> +void loongarch_common_suspend(void);
-> +void loongarch_suspend_enter(void);
-> +void loongarch_wakeup_start(void);
-> +
-> +#endif
-> diff --git a/arch/loongarch/power/suspend.c b/arch/loongarch/power/suspen=
-d.c
-> index 5e19733e5e05..166d9e06a64b 100644
-> --- a/arch/loongarch/power/suspend.c
-> +++ b/arch/loongarch/power/suspend.c
-> @@ -27,7 +27,7 @@ struct saved_registers {
->  };
->  static struct saved_registers saved_regs;
->
-> -static void arch_common_suspend(void)
-> +void loongarch_common_suspend(void)
->  {
->         save_counter();
->         saved_regs.pgd =3D csr_read64(LOONGARCH_CSR_PGDL);
-> @@ -40,7 +40,7 @@ static void arch_common_suspend(void)
->         loongarch_suspend_addr =3D loongson_sysconf.suspend_addr;
->  }
->
-> -static void arch_common_resume(void)
-> +void loongarch_common_resume(void)
->  {
->         sync_counter();
->         local_flush_tlb_all();
-> @@ -62,12 +62,12 @@ int loongarch_acpi_suspend(void)
->         enable_gpe_wakeup();
->         enable_pci_wakeup();
->
-> -       arch_common_suspend();
-> +       loongarch_common_suspend();
->
->         /* processor specific suspend */
->         loongarch_suspend_enter();
->
-> -       arch_common_resume();
-> +       loongarch_common_resume();
->
->         return 0;
->  }
-> --
-> 2.20.1
->
+Regards,
+
+Sridharan S N
+
+>> Changes in V2:
+>> 	- Updated commit message
+>>
+>>   .../boot/dts/qcom/ipq5332-rdp-common.dtsi     | 39 +++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+>> index 97dc0e5c15f0..a8671a4ac2e4 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+>> @@ -19,6 +19,31 @@
+>>   	chosen {
+>>   		stdout-path = "serial0";
+>>   	};
+>> +
+>> +	gpio-keys {
+>> +		compatible = "gpio-keys";
+>> +		pinctrl-0 = <&gpio_keys_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		button-wps {
+>> +			label = "wps";
+>> +			linux,code = <KEY_WPS_BUTTON>;
+>> +			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
+>> +			debounce-interval = <60>;
+>> +		};
+>> +	};
+>> +
+>> +	leds {
+>> +		compatible = "gpio-leds";
+>> +		pinctrl-0 = <&gpio_leds_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		led-0 {
+>> +			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "phy0tx";
+>> +			default-state = "off";
+>> +		};
+>> +	};
+>>   };
+>>   
+>>   &blsp1_i2c1 {
+>> @@ -52,6 +77,20 @@
+>>   /* PINCTRL */
+>>   
+>>   &tlmm {
+>> +	gpio_keys_default: gpio-keys-default-state {
+>> +		pins = "gpio35";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-pull-up;
+>> +	};
+>> +
+>> +	gpio_leds_default: gpio-leds-default-state {
+>> +		pins = "gpio36";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>>   	i2c_1_pins: i2c-1-state {
+>>   		pins = "gpio29", "gpio30";
+>>   		function = "blsp1_i2c0";
