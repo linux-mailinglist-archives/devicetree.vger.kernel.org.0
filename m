@@ -2,203 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82669732CA4
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D734732D33
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232573AbjFPKBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 06:01:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35472 "EHLO
+        id S234497AbjFPKQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 06:16:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233027AbjFPKBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:01:34 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B7F194
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:01:32 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686909691;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9X5WQIES+6mq7XGo7uf4HLjXsHKtnf4NLzPOksl9SVk=;
-        b=LgRQEufPhj+l9+E7vgGPxDm3rkY2NdCq6QYoro45KxB6Rs/lxfvhxQAWpuX50I6XRWgOrc
-        H3DW9aT6nubsEk1XukvYEN6zDQFI6bqDfOkNEP4wqwJYc1Lz3Q6t+3eRjy/IzXshpUMSg4
-        3NiuVMqTBELN74GdcpEmgQg5j4hVBrRQ5byTendTvCec6MRH9Et2drrWrS7d7w4Gn11bpM
-        jn/nD758w8UEx0ofmq09mmBSMySd7rpidY6o74jwSdPsBMfNkL/3r30CcFJEXjEITPyi4Y
-        se3O1PEj/yXBbbry+vG7NHT/Lmp3DOKKtjd1wOLhVSfM+7kqFnvrwD8grBuA+w==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0CE8E20009;
-        Fri, 16 Jun 2023 10:01:29 +0000 (UTC)
-Date:   Fri, 16 Jun 2023 12:01:29 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 6/7] drm/panel: sitronix-st7789v: Add EDT ET028013DMA
- panel support
-Message-ID: <20230616120129.75fb00b3@xps-13>
-In-Reply-To: <tr2rmz375jwkwjufhgvb7vbxwqik2w6i276yshh2tbo6dcfhh7@llvt6bigivfy>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
-        <20230609145951.853533-7-miquel.raynal@bootlin.com>
-        <tr2rmz375jwkwjufhgvb7vbxwqik2w6i276yshh2tbo6dcfhh7@llvt6bigivfy>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S245538AbjFPKQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:16:18 -0400
+Received: from 5.mo563.mail-out.ovh.net (5.mo563.mail-out.ovh.net [46.105.53.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFA96296A
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:16:16 -0700 (PDT)
+Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net [51.68.80.175])
+        by mo563.mail-out.ovh.net (Postfix) with ESMTPS id 114C523948;
+        Fri, 16 Jun 2023 09:57:55 +0000 (UTC)
+Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net. [127.0.0.1])
+        by director1.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+        for <conor+dt@kernel.org>; Fri, 16 Jun 2023 09:57:54 +0000 (UTC)
+Received: from pro2.mail.ovh.net (unknown [10.108.20.117])
+        by director1.derp.mail-out.ovh.net (Postfix) with ESMTPS id AC5FE1FA441;
+        Fri, 16 Jun 2023 09:57:54 +0000 (UTC)
+Received: from traphandler.com (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 16 Jun
+ 2023 11:57:54 +0200
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+To:     <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Subject: [PATCH v9 0/5] Add a multicolor LED driver for groups of monochromatic LEDs
+Date:   Fri, 16 Jun 2023 11:57:41 +0200
+Message-ID: <20230616095746.872220-1-jjhiblot@traphandler.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: CAS3.emp2.local (172.16.1.3) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 3612449853141236187
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrgedvgedgvddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffoggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeejuefhkeelgffhlefhtefhgeektdevvdfgkeeltdehgeeujeeutdehkeeuhffftdenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepughirhgvtghtohhruddruggvrhhprdhmrghilhdqohhuthdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqlhgvughssehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehieef
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Some HW design implement multicolor LEDs with several monochromatic LEDs.
+Grouping the monochromatic LEDs allows to configure them in sync and use
+the triggers.
+The PWM multicolor LED driver implements such grouping but only for
+PWM-based LEDs. As this feature is also desirable for the other types of
+LEDs, this series implements it for any kind of LED device.
 
-mripard@kernel.org wrote on Mon, 12 Jun 2023 10:51:09 +0200:
+changes v8->v9:
+  - rebased on top of lee-leds/for-leds-next
+  - updated kernel version and date for /sys/class/leds/<led>/color in
+    Documentation/ABI/testing/sysfs-class-led
+  - dropped patch "leds: class: simplify the implementation of
+    devm_of_led_get()" because __devm_led_get() is now used by
+    devm_led_get()
 
-> On Fri, Jun 09, 2023 at 04:59:50PM +0200, Miquel Raynal wrote:
-> > This panel from Emerging Display Technologies Corporation features an
-> > ST7789V2 panel inside which is almost identical to what the Sitronix
-> > panel driver supports.
-> >=20
-> > In practice, the module physical size is specific, and experiments show
-> > that the display will malfunction if any of the following situation
-> > occurs:
-> > * Pixel clock is above 3MHz
-> > * Pixel clock is not inverted
-> > I could not properly identify the reasons behind these failures, scope
-> > captures show valid input signals.
-> >=20
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../gpu/drm/panel/panel-sitronix-st7789v.c    | 34 +++++++++++++++++--
-> >  1 file changed, 32 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/g=
-pu/drm/panel/panel-sitronix-st7789v.c
-> > index 212bccc31804..7de192a3a8aa 100644
-> > --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> > +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> > @@ -30,7 +30,8 @@
-> >  #define ST7789V_RGBCTRL_RCM(n)			(((n) & 3) << 5)
-> >  #define ST7789V_RGBCTRL_VSYNC_HIGH		BIT(3)
-> >  #define ST7789V_RGBCTRL_HSYNC_HIGH		BIT(2)
-> > -#define ST7789V_RGBCTRL_PCLK_HIGH		BIT(1)
-> > +#define ST7789V_RGBCTRL_PCLK_FALLING		BIT(1)
-> > +#define ST7789V_RGBCTRL_PCLK_RISING		0
-> >  #define ST7789V_RGBCTRL_VBP(n)			((n) & 0x7f)
-> >  #define ST7789V_RGBCTRL_HBP(n)			((n) & 0x1f)
-> > =20
-> > @@ -117,6 +118,7 @@ struct st7789v_panel_info {
-> >  	u16 width_mm;
-> >  	u16 height_mm;
-> >  	u32 bus_format;
-> > +	u32 bus_flags;
-> >  };
-> > =20
-> >  struct st7789v {
-> > @@ -175,6 +177,18 @@ static const struct drm_display_mode default_mode =
-=3D {
-> >  	.vtotal =3D 320 + 8 + 4 + 4,
-> >  };
-> > =20
-> > +static const struct drm_display_mode slow_mode =3D {
-> > +	.clock =3D 3000,
-> > +	.hdisplay =3D 240,
-> > +	.hsync_start =3D 240 + 38,
-> > +	.hsync_end =3D 240 + 38 + 10,
-> > +	.htotal =3D 240 + 38 + 10 + 10,
-> > +	.vdisplay =3D 320,
-> > +	.vsync_start =3D 320 + 8,
-> > +	.vsync_end =3D 320 + 8 + 4,
-> > +	.vtotal =3D 320 + 8 + 4 + 4,
-> > +}; =20
->=20
-> Why is it supposed to be slow (and compared to what)? It looks like a
-> fairly normal mode to me? Or is it because it's refreshed at 30Hz?
+changes v7->v8:
+ - consistently use "LEDs group multicolor" throughout the code.
+ - rename some variables with more explicit names.
+ - improve comments.
+ - use the 100-characters per line limit.
 
-The initial support was using 60Hz and for a reason that I do not
-understand (scope capture look right), the panel I use is highly
-unstable at whatever frequency above 30Hz, so for me it was "slow" :-)
-But of course I'll use the panel name to qualify the mode.
+changes v6->v7:
+ - in led_mcg_probe() increment the counter at the end of the loop for
+   clarity.
 
-> Either way, the ST7789V is a panel controller and can be connected to a
-> wide range of panels depending on the model, so it would be better to
-> just use the model name there.
+changes v5->v6:
+ - restore sysfs access to the leds when the device is removed
 
-Sure.
+changes v4->v5:
+ - Use "depends on COMPILE_TEST || OF" in Kconfig to indicate that OF
+   is a functional requirement, not just a requirement for the
+   compilation.
+ - in led_mcg_probe() check if devm_of_led_get_optional() returns an
+   error before testing for the end of the list.
+ - use sysfs_emit() instead of sprintf() in color_show().
+ - some grammar fixes in the comments and the commit logs.
 
-> >  static int st7789v_get_modes(struct drm_panel *panel,
-> >  			     struct drm_connector *connector)
-> >  {
-> > @@ -197,6 +211,7 @@ static int st7789v_get_modes(struct drm_panel *pane=
-l,
-> > =20
-> >  	connector->display_info.width_mm =3D panel_info->width_mm;
-> >  	connector->display_info.height_mm =3D panel_info->height_mm;
-> > +	connector->display_info.bus_flags =3D panel_info->bus_flags;
-> >  	drm_display_info_set_bus_formats(&connector->display_info,
-> >  					 &panel_info->bus_format, 1);
-> > =20
-> > @@ -206,8 +221,13 @@ static int st7789v_get_modes(struct drm_panel *pan=
-el,
-> >  static int st7789v_prepare(struct drm_panel *panel)
-> >  {
-> >  	struct st7789v *ctx =3D panel_to_st7789v(panel);
-> > +	const struct st7789v_panel_info *panel_info =3D ctx->panel_info;
-> > +	u8 pck =3D ST7789V_RGBCTRL_PCLK_FALLING;
-> >  	int ret;
-> > =20
-> > +	if (panel_info->bus_flags & DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE)
-> > +		pck =3D ST7789V_RGBCTRL_PCLK_RISING;
-> > + =20
->=20
-> I guess it could be in a separate commit
+changes v2->v3, only minor changes:
+ - rephrased the Kconfig descritpion
+ - make the sysfs interface of underlying LEDs read-only only if the probe
+   is successful.
+ - sanitize the header files
+ - removed the useless call to dev_set_drvdata()
+ - use dev_fwnode() to get the fwnode to the device.
 
-I will rebase on top of Sebastian's series who already addressed that
-point (as well as many others).
+changes v1->v2:
+ - Followed Rob Herrings's suggestion to make the dt binding much simpler.
+ - Added a patch to store the color property of a LED in its class
+   structure (struct led_classdev).
+Jean-Jacques Hiblot (5):
+  devres: provide devm_krealloc_array()
+  leds: provide devm_of_led_get_optional()
+  leds: class: store the color index in struct led_classdev
+  dt-bindings: leds: Add binding for a multicolor group of LEDs
+  leds: Add a multicolor LED driver to group monochromatic LEDs
 
-[...]
+ Documentation/ABI/testing/sysfs-class-led     |   9 +
+ .../bindings/leds/leds-group-multicolor.yaml  |  64 +++++++
+ drivers/leds/led-class.c                      |  45 +++++
+ drivers/leds/rgb/Kconfig                      |  13 ++
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-group-multicolor.c      | 164 ++++++++++++++++++
+ include/linux/device.h                        |  13 ++
+ include/linux/leds.h                          |   3 +
+ 8 files changed, 312 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+ create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
 
-> > =20
-> > +static const struct st7789v_panel_info et028013dma_info =3D {
-> > +	.display_mode =3D &slow_mode,
-> > +	.width_mm =3D 43,
-> > +	.height_mm =3D 58,
-> > +	.bus_format =3D MEDIA_BUS_FMT_RGB666_1X18,
-> > +	.bus_flags =3D DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE,
-> > +};
-> > +
-> >  static const struct of_device_id st7789v_of_match[] =3D {
-> >  	{ .compatible =3D "sitronix,st7789v", .data =3D &st7789v_info },
-> > +	{ .compatible =3D "edt,et028013dma", .data =3D &et028013dma_info }, =
-=20
->=20
-> We should sort them by alphabetical order
->=20
-> Maxime
+-- 
+2.34.1
 
-Ok!
-
-Thanks,
-Miqu=C3=A8l
