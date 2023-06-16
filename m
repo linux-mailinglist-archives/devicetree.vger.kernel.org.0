@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA103732FD5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:29:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90975732FDF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:31:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230420AbjFPL3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 07:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48002 "EHLO
+        id S244919AbjFPLbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 07:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjFPL3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:29:14 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA671FE2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 04:29:12 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b445512846so7245201fa.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 04:29:12 -0700 (PDT)
+        with ESMTP id S245126AbjFPLbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:31:03 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD1652118
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 04:31:00 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f84d70bf96so802601e87.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 04:31:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686914951; x=1689506951;
+        d=linaro.org; s=google; t=1686915059; x=1689507059;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uPl/Cm9TUOIJAydXqu/DaBtxLQsqLO/czBac9wLWX/0=;
-        b=MuFnXiXNi4gk451FOYKezE9N/oK+j6bnAE5Vu7vXJ6sw14V5qVHQDl1yXoq9UmMBxO
-         3rX9ISyF8OHgdvjZ4mu9wA4sMianW8ZdW0Gos5GavFSc77y3xZMYS3oCenjXOSlgI0cg
-         J5bFDcufryPBluZKlszl9NMCjVn2rhBii2xQiRhWzooK6omvViMzxvuMQJ83DKxpDwo5
-         KV1nh6+0UZP2ZyDFb02uujrVtS8uVHC3XNlJFR7DDEDqsJca5XJseOhrJPBCWs+BtHEP
-         NbNQd6WjK3WF3ngRMJK5FA21T0IkFpnAtb67wS/MA6n5f/0cI6OcB1Rjh53DxCpTsxlV
-         ziSg==
+        bh=//Qu3hiEpe4TLJdaTFZDC48BNT7ERszPyV1zXJ0yHKg=;
+        b=uxWtNsJwvZ7HF7KxfcW0YjH/M8cblUzouedbDzOZ5eXHgUJpgNiTjRXoU+hUgqwemw
+         jMoXOC8uFFVPzAofHyzci7EJgyYLj7JkLdhns5WCD7/vfpyb+ZwP8jGhtGfL8Salic0M
+         RP5YzhDCeGvQlDSNNEseyl+Swwja0XAemWdMwlmEWFM0ey1RETRNQbkP/pjKHwZOVqWl
+         6atqNG1hzyWuyfCCrUqs7cRFnnc1wmbTpnmyQhAYXVqUXSboQW1lXnnqXRSH4oCQE6tX
+         DNxSaGmd+/CsSwyF/nwX0tv7pKjJeIqYPoGtLiZvj6JmdbY+VrGBQRR7VEcAqF/ViLc3
+         dtzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686914951; x=1689506951;
+        d=1e100.net; s=20221208; t=1686915059; x=1689507059;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uPl/Cm9TUOIJAydXqu/DaBtxLQsqLO/czBac9wLWX/0=;
-        b=FSzwluT4WomGKlp0H0eaS61nX28W/5Gj0aL9PbglIYXbFqAZ9MzxdWVK2GW0Dxn/7g
-         wm68QCGok6/GoLc81iXWQm+xGMV3ZbhSlEAA00NI4wjH85RCM5Li//4coPaBRGKgeIGL
-         cZXVUtrxXfkMX2qlvtH72ZfR0Syi0Evz/x5h+lEGKn8kIKqLbJKre4urXoCMmwo/mStt
-         iM69KdQ3SJAR2LdbBNJJ/H9wSdOMrp6byAx2W5dJGENcbH5ShwkZHwy5GX+QJO18fEJt
-         QO4pLQt6qb+J255KhuKV96fFcUw1lkmOCi3spkw1zZp3AwhjfCyyw7DbpAzB7wm0TJtX
-         tq4w==
-X-Gm-Message-State: AC+VfDwL/S2FezefhwFxMdimpGTAjlV6MxV3E+ujF8+dXgg6k5tNs7YX
-        MAEdeps6CF6N5EYFulAQDLfjOA==
-X-Google-Smtp-Source: ACHHUZ5GqF0WMOzAI6Q/BVK4J832e4ALlDR8lDuwXSJmIo5ZLqbT1NyvufaXxwDRquYbpj0l37hsoQ==
-X-Received: by 2002:a2e:3c16:0:b0:2b2:3a4:4ebe with SMTP id j22-20020a2e3c16000000b002b203a44ebemr1600689lja.48.1686914950883;
-        Fri, 16 Jun 2023 04:29:10 -0700 (PDT)
+        bh=//Qu3hiEpe4TLJdaTFZDC48BNT7ERszPyV1zXJ0yHKg=;
+        b=gp99YikacTSoaVbb3rRoDxdgkR/JVm5YgncRDGQuPt+fl56xGaQ7RYCXf1WI38VwPv
+         c6+TlySYoc8YcUO26bgFN76foYeAHqODyQYCOxrX2NZsmgmrW2o9K9kRXy3ez/oBRzPB
+         YF8NiA3pCRh4vABRqKCT57tip/feTfFPCDzWYIXTkqcUquDEvlGWf2gMvZ8qcIxgrBhH
+         IwrxhrU6LW6BxsNYNu2QoE1whxYZ84M0IxASgUmvhhp6L1+GUXIK0zwesLAKp+UpQEnb
+         ILEWrDuQUKso0PuetBk/KHM1nlHEbXDAFffosZJPFZQSpxuWD+TqlZSalmnR54mJbB99
+         Ka9Q==
+X-Gm-Message-State: AC+VfDyldpbb9BLwGZtyrUkOgbAPChTqlBNAh0qLbqjnPJhn0vD/U+Z3
+        zmCgkusuQ/Z4rj3kr0iKiqM6Xw==
+X-Google-Smtp-Source: ACHHUZ6xOEU9IxkNAKpDcdKP6bGtm30j0f0RiCE4/9TaVC12Vt+UWYvrK8C42wyXSoBUqZYplv9I7Q==
+X-Received: by 2002:a05:6512:52e:b0:4f6:3347:a044 with SMTP id o14-20020a056512052e00b004f63347a044mr660271lfc.26.1686915059114;
+        Fri, 16 Jun 2023 04:30:59 -0700 (PDT)
 Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id j3-20020a2e8503000000b002a8c1462ecbsm3575638lji.137.2023.06.16.04.29.09
+        by smtp.gmail.com with ESMTPSA id v27-20020ac2561b000000b004f2391fe9a6sm954063lfd.266.2023.06.16.04.30.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 04:29:10 -0700 (PDT)
-Message-ID: <7d2e580e-1861-d22f-e67d-726a2a69043e@linaro.org>
-Date:   Fri, 16 Jun 2023 13:29:09 +0200
+        Fri, 16 Jun 2023 04:30:58 -0700 (PDT)
+Message-ID: <6a0a9fe7-d08e-4d1d-0085-f854f95c390f@linaro.org>
+Date:   Fri, 16 Jun 2023 13:30:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [RESEND v6 6/8] arm64: dts: qcom: sc7280: Modify VA/RX/TX macro
- clock nodes for audioreach solution
+Subject: Re: [RESEND v6 7/8] arm64: dts: qcom: sc7280: Modify LPASS_MCC reg
+ region size in the lpass_tlmm node
 Content-Language: en-US
 To:     Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
         krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
@@ -67,15 +67,15 @@ Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
         quic_visr@quicinc.com,
         Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 References: <20230616103534.4031331-1-quic_mohs@quicinc.com>
- <20230616103534.4031331-7-quic_mohs@quicinc.com>
+ <20230616103534.4031331-8-quic_mohs@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230616103534.4031331-7-quic_mohs@quicinc.com>
+In-Reply-To: <20230616103534.4031331-8-quic_mohs@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,80 +85,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 16.06.2023 12:35, Mohammad Rafi Shaik wrote:
 > From: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > 
-> Modify VA, RX and TX macro and lpass_tlmm clock properties and
-> enable them. For audioreach solution mclk, npl and fsgen clocks
-> are enabled through the q6prm clock driver.
-> 
-> Delete the power domain properties from VA, RX and TX macro,
-> for audioreach solution the macro, dcodec power domains enabled
-> through the q6prm clock driver.
+> Modify LPASS_MCC register region size in "lpass_tlmm" node.
+> The pincntl driver requires access until slew-rate register region
+> and remaining register region related to the lpass_efuse register
+> is not required in pincntl driver as lpass_efuse register region is
+> required in adsp remoteproc driver.
 > 
 > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
 > ---
-Maybe sc7280-audioreach.dtsi containing all these changes that could be
-reused by others would be in order?
-
->  .../sc7280-herobrine-audioreach-wcd9385.dtsi  | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> index 9daea1b25656..c02ca393378f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> @@ -196,3 +196,46 @@ q6prmcc: clock-controller {
->  		};
->  	};
->  };
-> +
-> +&lpass_rx_macro {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-Surely they shouldn't cause issues, even if the vote would be
-superfluous? They are still powered by these power domains, I'd assume?
-
-> +	clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&lpass_va_macro>;
-> +	clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
-The drivers use clk_get with name-based lookup.. you should be able to
-simply extend the list in the common DTSI. Please test that on both
-audioreach and the other thing though.
+Fixes tag?
 
 Konrad
-
-> +
-> +	status = "okay";
-> +};
-> +
-> +&lpass_tlmm {
-> +	clocks = <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-> +	clock-names = "core", "audio";
-> +};
-> +
-> +&lpass_tx_macro {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +	clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&lpass_va_macro>;
-> +	clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&lpass_va_macro {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +	clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +		 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-> +	clock-names = "mclk", "macro", "dcodec";
-> +
-> +	status = "okay";
-> +};
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 36f9edabb9d7..ec38f2feb9bf 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -2509,7 +2509,7 @@ lpass_ag_noc: interconnect@3c40000 {
+>  		lpass_tlmm: pinctrl@33c0000 {
+>  			compatible = "qcom,sc7280-lpass-lpi-pinctrl";
+>  			reg = <0 0x033c0000 0x0 0x20000>,
+> -				<0 0x03550000 0x0 0x10000>;
+> +				<0 0x03550000 0x0 0xa100>;
+>  			qcom,adsp-bypass-mode;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
