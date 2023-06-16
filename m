@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CCF8732BE8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E9F732BEE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245741AbjFPJfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50772 "EHLO
+        id S234151AbjFPJhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:37:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344887AbjFPJfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:35:08 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB07430CB
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:34:47 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-98220bb31c6so72609966b.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:34:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686908081; x=1689500081;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kZHHWviwTUp2ejqoeSZblZoLVhlAgV7AT/D/NA4zn2g=;
-        b=RFbR3G/tJWjdDIhl9htsX/oE2/jyhXJPe7msrR7SD7etbtY7R5vps+2jRyEMM1cn1H
-         OQGuk0DikMBzJxAtu0S8MmGnEDivWTbsbancTB2zJFM0GfeiwscwBRH7p9uCLPCu40FQ
-         EjO0FALoXEE9lYAOeqxVwXnqBb5RDLpTf4ISklq6OMCokH9nrXg3zj47Nem+Nwl9VPvB
-         5fYgobK51SnYWuInP1lANM2AAjqT4JK7l4UdFrmnLVsL/5CnomT1RygmZoq3EAQ/ljKL
-         T4DSvmrK5hYssJ6aQoIJAHZwTbpUNLivkmzajCAZ0qrryrSJfqWWRj7XIFXCC+a36nVe
-         uRwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686908081; x=1689500081;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kZHHWviwTUp2ejqoeSZblZoLVhlAgV7AT/D/NA4zn2g=;
-        b=JyuJNwdkxuBdEzEi39adhNaKZKFskhcpctxHKN6NS3osmUMdIwNDSj8JS5sD1RPjG3
-         x84EluY0SzDNBS7tJ7DGPL1JuQ8NtwcfaBWoeNbb5TQc0g64ipf5CfHm0FTnRgIfaQFe
-         XFlQM0GYaB5sckX5Q7jQ8I2/7QYMdjnyYHctSgOLB/qbBhtk8Sd9mPB1dexZxaD/gRq+
-         mrv8em5PGlJenVEHQRMmve8Sw2sXEVc3YO+YmNhRUtjLiowuupdQktXPOCIZajDdd51q
-         8K3E4ab0N34/1AaEUTehN/k6YXzZ8jSeYHRyfcRqn2Cl2DxvsyrepQ6Luive7uK/emMB
-         RRkQ==
-X-Gm-Message-State: AC+VfDy84t8A2l3Htd08j7c4yH3sShIbqVf309Kdislsz1tpSBXjQNX8
-        O5veQT16eO/gxhwSbyQwzHH4AsePQvJKZfWOf50=
-X-Google-Smtp-Source: ACHHUZ4JmeiI5S5sC7B7JLCWQlF0z5JzQWoNDMiTjrVoe1w/cjglt+eqV1gOtm/XPjX2e8NGxPvknw==
-X-Received: by 2002:a17:907:3ea2:b0:978:9b09:ccaf with SMTP id hs34-20020a1709073ea200b009789b09ccafmr1586083ejc.14.1686908080964;
-        Fri, 16 Jun 2023 02:34:40 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id re6-20020a170906d8c600b00982aca1560asm1777417ejb.219.2023.06.16.02.34.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 02:34:40 -0700 (PDT)
-Message-ID: <ffd57fcc-51f1-cb1f-e589-c1a42d3ceeb2@linaro.org>
-Date:   Fri, 16 Jun 2023 11:34:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: tlv320aic32x4: convert to DT
- schema format
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S232489AbjFPJhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:37:12 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B611172A
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:37:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686908230; x=1718444230;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HQvWz81Ld93c01HSutLc5bamb4ebTB0r8Bnb201rjcs=;
+  b=YfbvdeACB8K5AgHSYyZSDTX8LFgSBHtETk5h3nBCgBF8IMW84gdvLzIF
+   lOGfEPrh9d4O/Qc28A+ptR0jX5x+T18rCh1yfM99dPgAHJ6HLAz11yU9g
+   Vy8lNkLTSQNWVPNNJ0vYJDMGEPVFHT39x12DbEXJ1Gd7lJ+92wQQ//lxN
+   0vdGwOJy0go5Eg06RAXOGel1p8iiDhscwM3jfvuQkI0sBhE/nFjRj1K/N
+   XqcysUewoJs8iT/IETVLwGP7UN9pmcm2eXE6x3IxVg5yBjHAP3oEc6Rce
+   CwW+oigqE89Gjezg1IIOhvCCUfeX2ylbFAywbVPO40seB0F6aYQKT14AY
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; 
+   d="asc'?scan'208";a="230503115"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Jun 2023 02:37:09 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 16 Jun 2023 02:37:08 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 16 Jun 2023 02:37:06 -0700
+Date:   Fri, 16 Jun 2023 10:36:40 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+CC:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-References: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        Conor Dooley <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+        <loongson-kernel@lists.loongnix.cn>,
+        Xuerui Wang <kernel@xen0n.name>, <loongarch@lists.linux.dev>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Hongliang Wang <wanghongliang@loongson.cn>
+Subject: Re: [PATCH 2/6] dt-bindings: loongarch: Add Loongson SoC boards
+ compatibles
+Message-ID: <20230616-endocrine-container-d2625622a56e@wendy>
+References: <cover.1686882123.git.zhoubinbin@loongson.cn>
+ <3b2ba830d81f85130e89316dc0c4d478482cd79d.1686882123.git.zhoubinbin@loongson.cn>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gxUJ7EXtOGyJtlEQ"
+Content-Disposition: inline
+In-Reply-To: <3b2ba830d81f85130e89316dc0c4d478482cd79d.1686882123.git.zhoubinbin@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,19 +74,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 10:35, Alexander Stein wrote:
-> Convert the binding to DT schema format.
-> Since commit 514b044cba667 ("ASoC: tlv320aic32x4: Model PLL in CCF")
-> clocks & clock-names = "mclk" is mandatory, it has been added to required
-> properties as well. '#sound-dai-cells' is added for reference from
-> simple-audio-card.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+--gxUJ7EXtOGyJtlEQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jun 16, 2023 at 02:10:39PM +0800, Binbin Zhou wrote:
+> Add Loongson SoC boards binding with DT schema format using json-schema
+>=20
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
+>  .../devicetree/bindings/loongarch/boards.yaml | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/loongarch/boards.ya=
+ml
+>=20
+> diff --git a/Documentation/devicetree/bindings/loongarch/boards.yaml b/Do=
+cumentation/devicetree/bindings/loongarch/boards.yaml
+> new file mode 100644
+> index 000000000000..3ef87b732668
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/loongarch/boards.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/loongarch/boards.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson SoC-based boards
+> +
+> +maintainers:
+> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: Loongson-2K0500 processor based boards
+> +        items:
+> +          - const: loongson,ls2k0500
+> +
+> +      - description: Loongson-2K1000 processor based boards
+> +        items:
+> +          - const: loongson,ls2k1000
+> +
+> +      - description: Loongson-2K2000 processor based boards
+> +        items:
+> +          - const: loongson,ls2k2000
 
+=46rom what I do know of loongarch stuff, these are all compatibles
+for SoCs, not boards. The usual model would be to do something like
+items:
+  - const: loongsoon,ls2k1000-dev-kit
+  - const: loongsoon,ls2k1000
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where you have a compatible for the SoC and one for the board.
 
-Best regards,
-Krzysztof
+Cheers,
+Conor.
 
+--gxUJ7EXtOGyJtlEQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIwtKAAKCRB4tDGHoIJi
+0ghpAQCaA0pckhxQPaKLBZ9TXJCNQUIUIbBNNCrD8NHwpPe+EAD/QtT5jczbOJrS
+keY6X3oqCjvD5sAL73q2TPM55lt8Lwo=
+=8w59
+-----END PGP SIGNATURE-----
+
+--gxUJ7EXtOGyJtlEQ--
