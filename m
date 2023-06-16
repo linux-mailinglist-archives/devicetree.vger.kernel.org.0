@@ -2,127 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1BAB73365E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45479733669
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:47:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345214AbjFPQpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 12:45:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33194 "EHLO
+        id S229670AbjFPQrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 12:47:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbjFPQpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:45:33 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4382E2D4E
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:45:28 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686933927;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=MGzSKk660DroERy27MTril8DXfD7rhlt4k34kYPLySg=;
-        b=WtFPNVqvwGutyQEyiX/7R/QKId0RoZmojte7VnQBxtEgOMhWT8Q95mC1v/EBp3Nf8JPh80
-        R0hDLmBIYpqnNEIN+q4og7Naii8ew9Anzd9VeWo8L61Xyur1SLOXk4GW9ivtqkk0wy37Ji
-        CRTnbBoj/oWDh83i3wfbG8vlyARPADQb13r12seQhqNO8EM28E3NruU0PEwmfs6g9DV2iW
-        4iLuTFAyxPKIS9g55rspdVV1bqbY62w9+0BCCJiXo+gg2fLBxDOiEwUFYrARlCjVJpQY/S
-        hTh/IIpDpZvX7c3OMmsu2UU3TTDv+/otR4Q+C2J+TM8rxsUTfBASxAfGZOwrTA==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E1B5A1BF203;
-        Fri, 16 Jun 2023 16:45:24 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Thomas Weber <thomas.weber@corscience.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 2/2] drm/panel: simple: Add support for Mitsubishi AA084XE01
-Date:   Fri, 16 Jun 2023 18:45:24 +0200
-Message-Id: <20230616164524.2806421-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229518AbjFPQrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:47:46 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B783C30F1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:47:45 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-98220bb31c6so140014466b.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:47:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686934064; x=1689526064;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fR/ewEVzheud766IYogIIFYLKZVXzHUKJUCXE3IEQwQ=;
+        b=rGUeIYi4IdshDA7+hbcoGOkqgoSQkakptbeirMO/8Pk0Za0pIfm8rxTJj39EzbQHa9
+         oAxUiGDMPB8XlE32Z6TLSN7pzeip6NtD9myAXFvWYopaMZX007baNDS4OODvRzkJ4XK/
+         BxT8Rx9QFfGIbB8NB04fh8VJkOqJQ+BlZxbN9n6PId+6016eXBD4kntYpuAx4otDAzfT
+         CrCPghrWZnww2ftgna3xiIXFjZtgh1C81mcKiNzSA08ZxnKF/J+qVKOWXqKjeisD/9hg
+         NEoH6NInD6b40jJvTQPXHzHVujCE8CXL3fJ3Hd9yGdgiwaqPYnbb4ClZ4PQCbyooY9od
+         mRwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686934064; x=1689526064;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fR/ewEVzheud766IYogIIFYLKZVXzHUKJUCXE3IEQwQ=;
+        b=e2j+AgQLKNMATwzi2qxWmuarueRdIo7B64u+K5aiYjWGEjlVhlXkKfEKWFgiSiEhkB
+         E6/CDNvU/kCDkrVmamfM9RTH+n2wzS65i5XhA2P2V1UirYbPva24BZFq7NT+Z7ZlKrLO
+         5SIqvqWvj70tuYCs7GKT8h6rZ/pemVir8FdoSbVIIjO3ZdUzAFU7sgJpCn4yw1mQ/LJV
+         qdVTHDMmfJJM4VfbZbWVqTooVMFk8qRmVPVTKavTtnBWr431BJJrzU6GvGY9xaLb8W6X
+         +MxNx0tKrR3qo34Y8JPDHyO3nHwXxRDn2UIoswv8Mj37pcAZqoHjXdv2SDB4xV7Pp3GI
+         s35Q==
+X-Gm-Message-State: AC+VfDz7kj3pJB7E3Jl8runxDv8fm3b4Xpk2j1ri7sMqOVpoOFceGL57
+        dEOxRCzxdlRoYW4nunyBDQrxFl7KjTjXQM6tbYo=
+X-Google-Smtp-Source: ACHHUZ63zAUCicktB84FmVBiqmjP2B+fOb0miIHGkGuCBDLQfBbTBvT9sZYVXErc12e8NZ4CiYo1YA==
+X-Received: by 2002:a17:906:2b50:b0:970:e010:3bb2 with SMTP id b16-20020a1709062b5000b00970e0103bb2mr2174696ejg.35.1686934064188;
+        Fri, 16 Jun 2023 09:47:44 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id i25-20020a170906265900b00977ca5de275sm11171386ejc.13.2023.06.16.09.47.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 09:47:43 -0700 (PDT)
+Message-ID: <e2b98d80-8e9a-6083-3bc5-677bef0d3263@linaro.org>
+Date:   Fri, 16 Jun 2023 18:47:41 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
+ Synquacer platform
+To:     Jassi Brar <jaswinder.singh@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        ilias.apalodimas@linaro.org, masahisa.kojima@linaro.org
+References: <20230616035813.255062-1-jaswinder.singh@linaro.org>
+ <165dd295-1b3a-5062-772a-613a7bf6fd45@linaro.org>
+ <CAJe_ZhdV3yaKUVD43duO4hkGMByJhq7x9bN+eBXJdBXdxgDneg@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJe_ZhdV3yaKUVD43duO4hkGMByJhq7x9bN+eBXJdBXdxgDneg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thomas Weber <thomas.weber@corscience.de>
+On 16/06/2023 18:23, Jassi Brar wrote:
+> On Fri, 16 Jun 2023 at 05:15, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 16/06/2023 05:58, jaswinder.singh@linaro.org wrote:
+>>> From: Jassi Brar <jaswinder.singh@linaro.org>
+>>>
+>>> Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
+>>> Specify bindings for the platform and boards based on that.
+>>
+>> A nit, subject: drop second/last, redundant "bindings". The
+>> "dt-bindings" prefix is already stating that these are bindings.
+>>
+> I can remove it, but I see many mentions like "Fix bindings for"  "Add
+> binding for" etc in the subject line.
 
-Add support for the Mitsubishi AA084XE01 panel which is an 8.4 inch XGA
-TFT-LCD module for industrial use.
+Can we fix them as well?
 
-Link: https://www.mouser.fr/datasheet/2/274/aa084xe01_e-364171.pdf
-Signed-off-by: Thomas Weber <thomas.weber@corscience.de>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 8a3b685c2fcc..f79c9f9124a0 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2670,6 +2670,30 @@ static const struct panel_desc mitsubishi_aa070mc01 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
- };
- 
-+static const struct drm_display_mode mitsubishi_aa084xe01_mode = {
-+	.clock = 80000,
-+	.hdisplay = 1024,
-+	.hsync_start = 1024 + 24,
-+	.hsync_end = 1024 + 24 + 63,
-+	.htotal = 1024 + 24 + 63 + 1,
-+	.vdisplay = 768,
-+	.vsync_start = 768 + 3,
-+	.vsync_end = 768 + 3 + 6,
-+	.vtotal = 768 + 3 + 6 + 1,
-+	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-+};
-+
-+static const struct panel_desc mitsubishi_aa084xe01 = {
-+	.modes = &mitsubishi_aa084xe01_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 1024,
-+		.height = 768,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB565_1X16,
-+};
-+
- static const struct display_timing multi_inno_mi0700s4t_6_timing = {
- 	.pixelclock = { 29000000, 33000000, 38000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4158,6 +4182,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "mitsubishi,aa070mc01-ca1",
- 		.data = &mitsubishi_aa070mc01,
-+	}, {
-+		.compatible = "mitsubishi,aa084xe01",
-+		.data = &mitsubishi_aa084xe01,
- 	}, {
- 		.compatible = "multi-inno,mi0700s4t-6",
- 		.data = &multi_inno_mi0700s4t_6,
--- 
-2.34.1
+> 
+>>
+>> Binding without it's user is usually useless. Where is the user?
+>>
+> It is required for SystemReady-2.0 certification.
+
+For what? If there is no user, it is not required for SR. We don't
+document compatibles for something which does not exist in the projects.
+
+
+Best regards,
+Krzysztof
 
